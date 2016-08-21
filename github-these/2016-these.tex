@@ -592,23 +592,33 @@ Voir \cite[Theorem 4.1]{Washington:2008}
 \subsection{Lien entre isogénie et son action sur le module de Tate}
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
-La construction d'extension de corps finis est un problème qui devient naturel dès lors que l'on travaille sur des corps finis avec des algorithmes pour lesquels la précision nécessaire au cours du calcul n'est pas fixée mais est un paramètre de l'entrée. Dés lors on aura alors besoin de  construire des extensions de corps de taille arbitraire, pour lesquelles on voudra une construction dite compatible de telle sorte que cela permette des injections canoniques dans les étages plus bas de la tour afin de ramener les calculs dans le corps initial du problème.
+La construction d'extension de corps finis est un problème qui devient naturel dès lors que l'on travaille sur des corps finis avec des algorithmes pour lesquels la précision nécessaire au cours du calcul n'est pas fixée mais est un paramètre de l'entrée. Dés lors on aura besoin de  construire des extensions de corps de taille arbitraire, pour lesquelles on voudra une construction dite compatible de telle sorte que cela.
+
+\begin{defi}[Tour \textit{$\ell$}-adique]
+\label{def:tour-ell}
+On appelle tour d'extension $\ell$-adique du corps fini $\mathbb{F}_q$ la suite des extensions: $\mathbb{F}_q, \mathbb{F}_{q^{\ell}}, \mathbb{F}_{q^{\ell^2}}, \cdots$ pour lesquels chaque élément de la suite est une extension de degré $\ell$ du précédent.
+\end{defi}
+
+
 Ainsi les travaux de \cite{DeFeo-Shost'12} ont ouvert la voie à d'autres travaux: \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13} ; pour lesquels les idées de constructions de tours de corps finis compatibles et le passage de représentation univariée à bivariée ont permis d'obtenir des résultats satisfaisants en terme de complexité.
 Les travaux de  \cite{DeFeo-Shost'12} ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
 
-La présentation des travaux \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13} va se faire dans un ordre anti-chronologique car les travaux de \cite{Doliskani-Schost15} sont plus simples du fait du sujet traité et contiennent des idées similaires reprises de ses antécédents  \cite{DeFeo-Doliskani-Schost13}, \cite{DeFeo-Shost'12}.
+La présentation des travaux \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13} va se faire dans un ordre anti-chronologique car les travaux de \cite{Doliskani-Schost15} sont plus simples du fait du sujet traité et contiennent des idées similaires reprises de ses antécédents \cite{DeFeo-Doliskani-Schost13}, \cite{DeFeo-Shost'12}.
 
-Les complexités sont calculées en nombre d'opération ($+, \times,\div$) à coût identique dans $\mathbb{F}_q$, indépendamment de la construction de $\mathbb{F}_q$. On notera par $M: \mathbb{N} \rightarrow \mathbb{N}$ l'application telle que la multplication d'un polynôme de degré $n$ à coefficients dans $R$ coûtera $M(n)$ opérations dans $R$ et telle que $M$ est super-linéaire, en utilisant les résultats de \cite{Cantor-Kaltofen91} on a $M(n)=O(n\log(n) \log \log(n))$.
+Les complexités sont calculées en nombre d'opération ($+, \times,\div$) à coût identique dans $\mathbb{F}_q$, indépendamment de la construction de $\mathbb{F}_q$. On notera par $M: \mathbb{N} \rightarrow \mathbb{N}$ l'application telle que la multiplication d'un polynôme de degré $n$ à coefficients dans $R$ coûtera $M(n)$ opérations dans $R$ et telle que $M$ est super-linéaire, en utilisant les résultats de \cite{Cantor-Kaltofen91} on a $M(n)=O(n\log(n) \log \log(n))$.
 \section{$\ell$= 2 [Doliskani-Schost]}
-La \emph{totalité} des travaux présentés ici proviennent du travail de \cite{Doliskani-Schost15}
-L'idée de base derrière le travail de \cite{Doliskani-Schost15} est de permettre un passage efficace d'une représentation bivariée à une représentation monovariée afin de rajouter à la volée des extensions de la tour compatibles avec ce qui a été fait auparavant.
+La \emph{totalité} des travaux présentés ici proviennent du travail de \cite{Doliskani-Schost15}.
 
 Une façon naturelle de  construire une extension de corps fini est de trouver un polynôme irréductible défini sur celui-ci et de degré égal à celui de l'extension désirée et d'ensuite quotienter le corps par celui-ci.
+Ainsi les éléments des tours d'extension seront toujours représentés comme des polynômes à coefficients dans $\mathbb{F}_q$, la taille des entrées et sorties d'éléments dans $\mathbb{F}_{q^n}$ sera donc $O(n)$.
+
+L'idée de base derrière le travail de \cite{Doliskani-Schost15} est de permettre un passage efficace d'une représentation bivariée à une représentation monovariée afin de rajouter à la volée des extensions de la tour compatibles avec ce qui a été fait auparavant.
+
 
 L'objectif est de calculer une extension du corps fini $\mathbb{F}_q$, avec $q$ impair, de taille $\mathbb{F}_{q^n}$ avec $n=2^k$ et $k \geqslant 1$. 
 Comme vu dans \cite{lang2002algebra}{Theorem VI.9.1} et mis en pratique dans \cite{Shoup93} pour calculer une extension quadratique d'un corps fini $\mathbb{F}_q$ on a deux cas à considérer:
 \begin{itemize}
-\item[$q=1 \bmod 4$] alors n'importe quel résidu quadratique $\alpha$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-\alpha$ duquel on déduit alors une construction de $\mathbb{F}_{q^n}$,
+\item[$q=1 \bmod 4$] alors tout résidu non quadratique $\alpha$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-\alpha$ duquel on déduit alors une construction de $\mathbb{F}_{q^n}$,
 \item[$q=3 \bmod 4$] on se ramène au cas $q=1\bmod 4$ en construisant une extension quadratique $\mathbb{F}_{q'}$ de $\mathbb{F}_q$, on peut faire cela en considérant le polynôme irréductible $X^2+1$.
 \end{itemize} 
 
@@ -616,9 +626,26 @@ Ainsi pour construire une extension de degré 2 d'un corps fini $\mathbb{F}_q$ u
 
 De plus il sera considéré pour le corps fini  $\mathbb{F}_q$ que $q=1 \bmod 4$ car le calcul d'une extension quadratique $\mathbb{F}_{q'}$ lorsque $q=3 \bmod 4$ ne rajoute que un facteur $O(1)$ pour le nombre d'opérations sur $\mathbb{F}_q$, cela se justifie par la discussion sur les coûts d'opérations $+,\times, \div$ sur de polynômes de degré $n$ sur $\mathbb{F}_q$.
 
-\begin{prop}
-
+Dans ce document on ne va pas considérer toutes les opérations sur une tour $2$-adique, seront évidemment considérées les opérations de base telles que la multiplication et l'inversion, mais aussi le Frobenius (crucial pour les applications que l'on va en faire), le calcul de racine carrée, d'autres opérations peuvent être trouvées dans \cite{Doliskani-Schost15}.
+\begin{prop}{Doliskani-Schost'15}
+Soit $q=1 \bmod 4$, étant donné un résidu non quadratique $\alpha$ de $\mathbb{F}_q$, alors pour $k\geqslant 0$ et $n=2^k$, les temps de calculs pour les opérations dans $\mathbb{F}_q$ énoncés dans le tableau \ref{tab:complexite-degre2} sont vérifiés.
 \end{prop}
+\begin{figure}
+\label{tab:complexite-degre2}
+\begin{tabular}{|l|r|}
+  \hline
+  \textit{Opérations}  & \textit{Coûts} \\
+  \hline
+  \textit{addition/soustraction}  & $O(n)$ \\
+  \textit{multiplication}  & $M(n)+ O(n)$ \\
+  \textit{division} & $O(M(n))$ \\
+  \textit{Frobenius} & $O(n + \log(q))$ \\
+  \textit{Square-root} & $ O(M(n)\log(nq)) (\textit{attendu}) $ \\
+  \hline
+\end{tabular}
+\caption{Coûts des opérations dans $\mathbb{F}_{q^n}$ avec $n=2^k$}
+\end{figure}
+On remarquera que pour le calcul d'une racine carrée on a un coût attendu, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
 
 \section{$\ell \neq 2$ [De Feo-Doliskani-Schost]}
 
