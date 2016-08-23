@@ -751,7 +751,17 @@ Pour $m \geqslant 0$ on définit:
 \begin{equation*}
 \varepsilon_m=\lambda^{q} + \lambda^{q+q^2} + \cdots + \lambda^{q+q^2+\cdots+q^{m}}
 \end{equation*} 
-de telle sorte que l'on ait $\eta=1+\lambda+\lambda \varepsilon_{n-2}$, ainsi en définissant $\zeta_m=\lambda^{q+q^2+\cdots+q^{m}} $ on a une relation de récurrence pour le calcul de $\varepsilon$:
+de telle sorte que l'on ait $\eta=1+\lambda+\lambda \varepsilon_{n-2}$, ainsi en définissant $\zeta_m=\lambda^{q+q^2+\cdots+q^{m}} $ que l'on peut construire par récurrence:
+\begin{equation}
+\zeta_1=\gamma^q \quad \textit{et} \quad
+\zeta_m=
+\begin{cases} 
+\zeta_{m/2}  \zeta_{m/2}\zeta_{m/2}^{q^{m/2}} \textit{si m est pair }\\
+\zeta_{1}  \zeta_{m-1}^{q} \textit{si m est impair}
+\end{cases}
+\end{equation}
+
+ on a alors une relation de récurrence similaire pour le calcul de $\varepsilon$:
 
 \begin{equation}
 \label{eq:varepsilon}
@@ -762,8 +772,14 @@ de telle sorte que l'on ait $\eta=1+\lambda+\lambda \varepsilon_{n-2}$, ainsi en
 \varepsilon_{m-1} + \zeta_{m} \textit{si m est impair}
 \end{cases}
 \end{equation}
-Le calcul de $\lambda$ a un coût de $O(M(n)log(q))$ opérations sur $\mathbb{F}_q$, le calcul de $\varepsilon_1$ et $\eta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, supposons que le calcul de $\varepsilon_m$ et $\zeta_m$ ait été effectué. En utilisant les équations \ref{varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathbb{F}_{q^n}$   
+Le calcul de $\lambda$ a un coût de $O(M(n)log(q))$ opérations sur $\mathbb{F}_q$, le calcul de $\varepsilon_1$ et $\eta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, supposons que le calcul de $\varepsilon_m$ et $\zeta_m$ ait été effectué. En utilisant les équations \ref{varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathbb{F}_{q^n}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ est calculé en $O(M(n)\log(n)+M(n)\log(q))=O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$.
+Ainsi $\beta$ peut être déduit en $O(\log(q))$ opérations sur $\mathbb{F}_q$, le coût de calcul de $\gamma$ étant négligeable par rapport à celui de $\eta$. On a alors un coût total de $O(M(n)\log(nq))$ opération sur $\mathbb{F}_q$.
+
+Une implantation de cette construction de tours $2$-adique et des opérations du Frobenius et du calcul de racine carrée ont été réalisé sur SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
+
+Il est à noter que en pratique pour le calcul de racine carrée de $\delta$ on peut parfois être amené à considérer un élément de $\mathbb{L}_k$ qui n'est pas un carré. Cela est testé en pratique sur $\beta$ qui est un résidu quadratique si et seulement si $\delta$ l'est. Une astuce consiste alors à multiplier $\delta$ par l'élément générateur $x_{k}$ du corps afin  de multiplier cet élément par un résidu non quadratique, on injecte alors $\delta x_k$ dans $\mathbb{L}_{k+1}$. On applique l'algorithme vu précédemment, le résultat obtenu est alors divisé par $x_{k+1}$ pour obtenir la racine carrée de $\delta$ souhaitée.
 \section{$\ell \neq 2$ [De Feo-Doliskani-Schost]}
+Le travail présenté ici est issu de \cite{DeFeo-Doliskani-Schost13}. Les différences avec le travail de \cite{Doliskani-Schost15} sont notamment des "push" et "pull" plus compliqués à calculer, ainsi que la discussion faite sur l'existence d'un résidu $\ell$ adique qui ne se résout pas de façon aussi simple que dans \cite{Doliskani-Schost15}. Le calcul du Frobenius n'avait pas été fait dans \cite{DeFeo-Doliskani-Schost13}, cela est fait ici lors d'un travail conjoint avec Luca De Feo, Jérome Plut et Eric Schost, les idées utilisées sont des applications directes de celles de \cite{Doliskani-Schost15}.
 
 
 \chapter{Isogénies sur les corps finis}
