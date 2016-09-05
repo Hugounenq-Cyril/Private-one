@@ -781,6 +781,43 @@ Il est à noter que en pratique pour le calcul de racine carrée de $\delta$ on 
 \section{$\ell \neq 2$ [De Feo-Doliskani-Schost]}
 Le travail présenté ici est issu de \cite{DeFeo-Doliskani-Schost13}. Les différences avec le travail de \cite{Doliskani-Schost15} sont notamment des "push" et "pull" plus compliqués à calculer, ainsi que la discussion faite sur l'existence d'un résidu $\ell$ adique qui ne se résout pas de façon aussi simple que dans \cite{Doliskani-Schost15}. Le calcul du Frobenius n'avait pas été fait dans \cite{DeFeo-Doliskani-Schost13}, cela est fait ici lors d'un travail conjoint avec Luca De Feo, Jérome Plut et Eric Schost, les idées utilisées sont des applications directes de celles de \cite{Doliskani-Schost15}.
 
+Dans cette section la tour $\ell$-adique sera écrite:
+\[
+\mathbb{F}_q, \mathbb{F}_{q^\ell}, \mathbb{F}_{q^{\ell^2}}, \cdots.
+\]
+L'objectif ici sera de représenter de façon univariée les éléments du corps $\mathbb{F}_{q^{\ell^i}}$, pour cela on va représenter les éléments de ce corps à l'aide d'éléments de $\mathbb{F}_{q}[X_i]/\langle Q_i \rangle$ pour un polynôme irréductible $Q_i \in \mathbb{F}_q[X_i]$. La principale diffculté par rapport au cas $\ell=2$ sera de construire de tels polynômes, pour cela on sera obligé de construire des extensions de corps d'indice $r$ où des résidus non $\ell$ adiques existent. On construira alors sur ces corps des tours d'extension $\ell$-adique, qui contiendront donc des corps de la taille $r\ell^i$. Il faudra alors utiliser une descente dans les corps pour alors avoir des corps de taille $\ell^i$.
+
+\paragraph{Notation des représentations}
+
+
+\paragraph{Construction de tours quasi-cyclotomique}
+On commence donc par construire une extension de corps $\mathbb{K}_0=\mathbb{F}_q[Y_0]/\langle P_0 _rangle$ telle que la classe résiduelle $y_0$ de $Y_0$ soit un résidu non $\ell$ adique de $\mathbb{K}_0$, on note $r$ le degré de $P_0$.
+
+Par \cite{Lang2002algebra}[Th. VI.9.1] on a pour $i \geqslant 1$ le polynôme $Y_i^{\ell^i}-y_0 \in \mathbb{K}_O[Y_i]$ qui est irréductible, le corps $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ est ainsi un corps à $q^{r\ell^i}$ éléments. En notant $y_i$ les classes résiduelles $y_i$ de $Y_i$ dans $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ sont naturellement plongées les unes dans les autres à l'aide de l'isomorphisme $\mathbb{K}_{i+1} \simeq \mathbb{K}_i[Y_{i+1}]/\langle Y_{i+1}^{\ell}-y_i\rangle $, en particulier on a $y_{i+1}^{\ell}=y_i$.
+
+
+ Pour pouvoir alors calculer un corps de taille $\ell^i$ on utilise le processus de descente résultat suivant qui vient d'une idée de Shoup:
+
+\begin{prop}{Shoup}
+Pour $i \geqslant 0$, soit $x_i$ la trace de $y_i$ sur un sous corps d'indice $r$:
+\begin{equation*}
+x_i=\sum_{j=0}^{r-1}y_i^{q^{\ell^i}j}
+\end{equation*}
+On a alors \cite{Shoup88}[Th. 2.1] qui prouve que $\mathbb{F}_q(x_i)=\mathbb{F}_{q^{\ell^i}}$
+\end{prop}
+
+Montrons donc dans un premier temps comment calculer $\mathbb{K}_0 \simeq \mathbb{F}_{q^r}$
+
+
+
+\paragraph{Calcul d'une extension contenant un résidu non $\ell$ adique}
+Le calcul de $P_0$ se fait à l'aide du $\ell$ ème polynôme cyclotomique $\phi_{\ell} \in \mathbb{Z}[X_0]$ et de sa factorisation sur $\mathbb{F}_q[X_0]$, par \cite{Shoup93}[Th.9] cela a un coût de $O_e(M(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
+
+$\phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$, avec $r$ le degré de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, il est à noter que $r$ divise $\ell-1$. Soit $F_0$ un des facteurs irréductibles de $\phi_{\ell}$, alors par construction il existe des résidus non $\ell$ adiques dans $\mathbb{F}_q[X]/\langle F_0 \rangle$. Une fois qu'un tel résidu $y_0$ est trouvé son polynôme minimal $P_0$ sur $\mathbb{F}_q$ de degré $r$ est calculé en $O(r^2)$ opérations sur $\mathbb{F}_q$ d'après \cite{Shoup93}[Th.4]. 
+En pratique un tel résidu non quadratique $y_0$ est trouvé aléatoirement après $O(1)$ essais d'après \cite{Shoup93}[Lemma 15], chaque essai a un coût de $O_e(M(\ell)\log(r)+M(r)\log(\ell)\log(r)+M(r)\log(q))$ opérations sur $\mathbb{F}_q$.
+%peut etre affiner les sources
+Selon l'ordre de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \nmid q-1$ et $\ell \nmid q+1$
+
 
 \chapter{Isogénies sur les corps finis}
 
