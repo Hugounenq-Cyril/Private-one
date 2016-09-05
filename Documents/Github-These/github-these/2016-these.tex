@@ -778,7 +778,10 @@ Ainsi $\beta$ peut être déduit en $O(\log(q))$ opérations sur $\mathbb{F}_q$,
 Une implantation de cette construction de tours $2$-adique et des opérations du Frobenius et du calcul de racine carrée ont été réalisé sur SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
 Il est à noter que en pratique pour le calcul de racine carrée de $\delta$ on peut parfois être amené à considérer un élément de $\mathbb{L}_k$ qui n'est pas un carré. Cela est testé en pratique sur $\beta$ qui est un résidu quadratique si et seulement si $\delta$ l'est. Une astuce consiste alors à multiplier $\delta$ par l'élément générateur $x_{k}$ du corps afin  de multiplier cet élément par un résidu non quadratique, on injecte alors $\delta x_k$ dans $\mathbb{L}_{k+1}$. On applique l'algorithme vu précédemment, le résultat obtenu est alors divisé par $x_{k+1}$ pour obtenir la racine carrée de $\delta$ souhaitée.
+
+
 \section{$\ell \neq 2$ [De Feo-Doliskani-Schost]}
+
 Le travail présenté ici est issu de \cite{DeFeo-Doliskani-Schost13}. Les différences avec le travail de \cite{Doliskani-Schost15} sont notamment des "push" et "pull" plus compliqués à calculer, ainsi que la discussion faite sur l'existence d'un résidu $\ell$ adique qui ne se résout pas de façon aussi simple que dans \cite{Doliskani-Schost15}. Le calcul du Frobenius n'avait pas été fait dans \cite{DeFeo-Doliskani-Schost13}, cela est fait ici lors d'un travail conjoint avec Luca De Feo, Jérome Plut et Eric Schost, les idées utilisées sont des applications directes de celles de \cite{Doliskani-Schost15}.
 
 Dans cette section la tour $\ell$-adique sera écrite:
@@ -788,10 +791,25 @@ Dans cette section la tour $\ell$-adique sera écrite:
 L'objectif ici sera de représenter de façon univariée les éléments du corps $\mathbb{F}_{q^{\ell^i}}$, pour cela on va représenter les éléments de ce corps à l'aide d'éléments de $\mathbb{F}_{q}[X_i]/\langle Q_i \rangle$ pour un polynôme irréductible $Q_i \in \mathbb{F}_q[X_i]$. La principale diffculté par rapport au cas $\ell=2$ sera de construire de tels polynômes, pour cela on sera obligé de construire des extensions de corps d'indice $r$ où des résidus non $\ell$ adiques existent. On construira alors sur ces corps des tours d'extension $\ell$-adique, qui contiendront donc des corps de la taille $r\ell^i$. Il faudra alors utiliser une descente dans les corps pour alors avoir des corps de taille $\ell^i$.
 
 \paragraph{Notation des représentations}
-Comme dit précédemment les éléments du corps $\mathbb{F}_{q^{\ell^i}}$ peuvent être représentés comme des éléments de $\mathbb{F}_q[X_i]/\langle Q_i \rangle $, avec $Q_i$ un polynôme irréductible.
+Comme dit précédemment les éléments du corps $\mathbb{F}_{q^{\ell^i}}$ peuvent être représentés comme des éléments de $\mathbb{F}_q[X_i]/\langle Q_i \rangle $, avec $Q_i$ un polynôme irréductible Un élément de $\mathbb{F}_{q^{\ell^i}}$ peut être donc représenté à l'aide de la base:
+
+\[
+U_i=(1,x_i,x_i^2,\cdots,x_i^{\ell^i-1})
+\]
+
+On peut alors vous construire une base au dessus de celle-là, à l'aide d'un polynôme irréductible $T_{i}$ de degré $\ell$, de telle sorte que l'on ait: $\mathbb{F}_{q^{\ell^{i}}}\simeq \mathbb{F}_q[X_{i-1},X_{i}]/\langle Q_{i-1}(X_{i-1}), T_i(X_{i-1},X_{i}) \rangle $. Ainsi un élément de $\mathbb{F}_{q^{\ell^{i}}}$ sera représenté à l'aide de la base bivariée suivante:
+
+\[
+B_i=(1,x_{i-1},x_{i-1}^2,\cdots,x_{i-1}^{\ell^{i-1}-1},x_i^{\ell-1},x_i^{\ell-1}x_{i-1}^{\ell^{i-1}-1})
+\] 
+Le relèvement correspond à un changement de base de $B_i$ vers $U_i$, le "push" correspond à un changement de base de $U_i$ vers $B_i$.
+
+Ces opérations de base servent à faire des plongements dans des éléments plus bas dans la tour, mais aussi sont des moyens de faire des opérations de base plus rapides à l'aide notamment de bases univariées comme vu précédemment dans le cas $\ell=2$.
+
+De façon plus générale on notera pour $0 \geqslant j \geqslant i $ $Q_{i,j} \in \mathbb{F}_q(x_j)[X_i]$ le polynôme minimal de $x_i$ sur $\mathbb{F}_{q}(x_j)$, il a pour degré $\ell^{i-j}$. On a en particulier $Q_{i,0}=Q_i$ et $Q_{i,i-1}=T_{i}[X_i,X_{i-1}]$.
 
 \paragraph{Construction de tours quasi-cyclotomique}
-On commence donc par construire une extension de corps $\mathbb{K}_0=\mathbb{F}_q[Y_0]/\langle P_0 _rangle$ telle que la classe résiduelle $y_0$ de $Y_0$ soit un résidu non $\ell$ adique de $\mathbb{K}_0$, on note $r$ le degré de $P_0$.
+La première étape conssite à construire une extension de corps $\mathbb{K}_0=\mathbb{F}_q[Y_0]/\langle P_0 \rangle$ telle que la classe résiduelle $y_0$ de $Y_0$ soit un résidu non $\ell$ adique de $\mathbb{K}_0$, on note $r$ le degré de $P_0$.
 
 Par \cite{Lang2002algebra}[Th. VI.9.1] on a pour $i \geqslant 1$ le polynôme $Y_i^{\ell^i}-y_0 \in \mathbb{K}_O[Y_i]$ qui est irréductible, le corps $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ est ainsi un corps à $q^{r\ell^i}$ éléments. En notant $y_i$ les classes résiduelles $y_i$ de $Y_i$ dans $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ sont naturellement plongées les unes dans les autres à l'aide de l'isomorphisme $\mathbb{K}_{i+1} \simeq \mathbb{K}_i[Y_{i+1}]/\langle Y_{i+1}^{\ell}-y_i\rangle $, en particulier on a $y_{i+1}^{\ell}=y_i$.
 
@@ -816,8 +834,36 @@ Le calcul de $P_0$ se fait à l'aide du $\ell$ ème polynôme cyclotomique $\phi
 $\phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$, avec $r$ le degré de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, il est à noter que $r$ divise $\ell-1$. Soit $F_0$ un des facteurs irréductibles de $\phi_{\ell}$, alors par construction il existe des résidus non $\ell$ adiques dans $\mathbb{F}_q[X]/\langle F_0 \rangle$. Une fois qu'un tel résidu $y_0$ est trouvé son polynôme minimal $P_0$ sur $\mathbb{F}_q$ de degré $r$ est calculé en $O(r^2)$ opérations sur $\mathbb{F}_q$ d'après \cite{Shoup93}[Th.4]. 
 En pratique un tel résidu non quadratique $y_0$ est trouvé aléatoirement après $O(1)$ essais d'après \cite{Shoup93}[Lemma 15], chaque essai a un coût de $O_e(M(\ell)\log(r)+M(r)\log(\ell)\log(r)+M(r)\log(q))$ opérations sur $\mathbb{F}_q$.
 %peut etre affiner les sources
-Selon l'ordre de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \nmid q-1$ et $\ell \nmid q+1$
+Selon l'ordre de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \nmid q-1$ et $\ell \nmid q+1$ et ensuite le cas général qui a une complexité moins intéressante mais toujours linéaire en la taille de l'extension.
 
+\paragraph{$\ell \nmid q-1$}
+Dans ce cas $r=1$ car $\phi_{\ell}$ se scinde en facteurs linéaires sur $\mathbb{F}_q$. Le polynôme $P_0$ s'écrit donc $Y_0-y_0$ avec $y_0$ un résidu non $\ell$ adique de $\mathbb{F}_q$. Comme le calcul de la factorisation de $\phi_{\ell}$ n'est pas nécessaire, on obtient alors une complexité de $O_e(\log(q))$ opérations sur $\mathbb{F}_q$.
+
+Ce cas-ci permet de ne pas utiliser de méthode de descente car on a $\mathbb{K}_0 \simeq \mathbb{F}_q$ et par conséquent on obtient pour $i \geqslant 0 $   $\mathbb{K}_i \simeq \mathbb{F}_{q^{\ell^i}}$, et donc $x_i=y_i$. Les polynômes obtenus alors sont: $Q_i=X^{\ell^i}-y_0$ et $T_i=X_i^{\ell}-X_{i-1}$. Le relèvement et le push ne sont que des opérations arithmétiques. En effet pour $F=\sum_{0 \leqslant j \leqslant \ell^{i+1}}f_jx_{i+1}^j$ le relévement réécrit cet élément dans une base $x_i,x_{i+1}$ en utilisant la relation suivantes:
+\begin{equation*}
+x_{i+1}^j=x_i^{j \div \ell}x_{i+1}^{j \bmod \ell} 
+\end{equation*}
+tandis que le push réécrit un élément écrit dans une base $x_i, x_{i+1}$ en un élément exprimé dans la base $x_{i+1}$ en utilisant la relation suivante:
+\begin{equation*}
+\quad x_i^ex_{i+1}^f=x_{i+1}^{e\ell + f} 
+\end{equation*}
+
+\paragraph{$\ell \nmid q+1$}
+Dans ce cas $\phi_{\ell}$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$ (id est $r=2$). Il est alors nécessaire de prendre $y_0$ tel qu'il soit de norme $1$ sur $\mathbb{F}_q$. Le résultat suivant nous donne alors un moyen de calculer $Q_{i,j}$:
+%Apparemment inutile car une methode plus simple est trouvée plus tard...
+%\begin{prop}
+%Pour $1\geqslant j<i$ $Q_{i,j}$ vérifie:
+%\begin{equation*}
+%Q_{i,j}(X_i)=Y^{\ell^{i-j}-Y^{-\ell^{i-j}}-x_j \bmod Y^2-X_iY+1
+%\end{equation*}
+%\end{prop}
+%
+%\begin{proof}
+%Voir \cite{DeFeo-Doliskani-Schost13}
+%\end{proof}
+
+\paragraph{Cas général}
+Dans ce cas on ne fait aucune hypothèse sur la décomposition de $\phi_{\ell}$ dans $\mathbb{F}_q[X]$. De plus comme $r=[\mathbb{K}_0:\mathbb{F}_q]$ et qu'il divise $\ell-1$ alors $r$ est premier avec $\ell$. Ainsi $Q_i$ est bien le polynôme minimal de $x_i$ sur $\mathbb{F}_q$, de la même manière $Q_{i,j}$ est le polynôme minimal de $x_i$ sur $\mathbb{K}_j$. Ceci nous permet donc de remplacer le corps de base $\mathbb{F}_q$ par $\mathbb{K}_0$. Le calcul se fera sur la base d'opérations dans $\mathbb{K}_0$, un facteur $O(M(r)\log(r))$, qui correspond au coût d'opérations dans $\mathbb{K}_0$, sera ajouté pour avoir le coût exprimé en nombres d'opérations sur $\mathbb{F}_q$.
 
 \chapter{Isogénies sur les corps finis}
 
