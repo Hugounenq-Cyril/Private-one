@@ -1,0 +1,843 @@
+\documentclass[10pt,a4paper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage[francais]{babel}
+\usepackage{hyperref}
+\usepackage{amssymb,amsthm,amsmath,amsfonts}
+\usepackage{units}
+\usepackage{lmodern}
+\usepackage{fp}
+\usepackage{graphicx}
+\bibliographystyle{plain}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{makeidx}
+\usepackage{gloss}
+\usepackage{xcolor}
+\def\glossname{Glossaire}
+\usepackage{ragged2e}
+\usepackage{changepage}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{fixedpointarithmetic}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Théorème}
+\theoremstyle{definition} 
+\newtheorem{lem}[thm]{Lemme}
+\theoremstyle{definition} 
+\newtheorem{cor}[thm]{Corollaire}
+\theoremstyle{definition} 
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition} 
+\newtheorem{defi}[thm]{Définition}
+\theoremstyle{remark} 
+\newtheorem{rem}[thm]{Remarque}
+\theoremstyle{remark} 
+\newtheorem{exe}[thm]{Exemple}
+
+\newcommand{\defeq}{\mathrel{\mathop:}=}
+
+\author{Hugounenq Cyril}
+\title{Arithmétique Rapide appliqué à la Géométrie et à la Cryptologie}
+\makeindex
+\makegloss
+
+
+\makeatletter
+\def\footrule{{
+\vskip-\footruleskip\vskip-\footrulewidth
+\color{\footrulecolor}
+\hrule\@width\headwidth\@height
+\footrulewidth\vskip\footruleskip
+}}
+\makeatother
+
+%%% BEGIN DOCUMENT
+\begin{document}
+\fancyhf{}%␣efface␣tout␣ce␣qu'il␣y␣avait␣avant
+\fancyhead[L]{\nouppercase\leftmark}%␣LO␣=␣gauche/impair␣;␣RE␣=␣droite/pair
+\fancyhead[R]{}
+\fancyfoot[C]{\thepage}%␣C␣=␣centré
+\fancyfoot[L]{}
+
+
+
+
+\renewcommand{\headrulewidth}{1pt}% 1pt header rule
+\renewcommand{\headrule}{\hbox to\headwidth{%
+  \color{orange}\leaders\hrule height \headrulewidth\hfill}}
+  
+\renewcommand{\footrulewidth}{1pt}% 1pt header rule
+\newcommand{\footrulecolor}{blue}
+
+
+%\small
+\setlength{\parskip}{-1pt plus 1pt}
+
+\newcommand{\abstracttextfont}{\normalfont}
+%\abstractintoc
+%\begin{abstract} 
+%Text 
+%\end{abstract}
+%\abstractintoc
+%\renewcommand\abstractname{R\'esum\'e}
+%\begin{abstract} \selectlanguage{french}
+%Texte 
+%\end{abstract}
+\selectlanguage{french}% french si rapport en français
+
+
+
+%\cleardoublepage
+
+%\tableofcontents* % the asterisk means that the table of contents itself isn't put into the ToC
+\normalsize
+
+\mainmatter
+% \SingleSpace
+
+\chapter{Rappels théoriques}
+
+
+
+\section{Théorie des ordres dans un corps quadratique imaginaire}
+
+\section{Courbes Elliptiques}
+
+Dans ce chaptire nous allons faire quelques rappels sur les courbes elliptiques. Pour approfondir le sujet le lecteur pourra consulter \cite{Silv1} ou encore \cite{Washington:2008}
+
+\subsection{\'Equations de Weierstrass}
+
+Soit $\mathbb{K}$ un corps, on dénote par $\overline{\mathbb{K}}$ sa cloture algébrique. On rappelle tout d'abord  la définition d'un espace projectif sur $\mathbb{K}$:
+
+\begin{defi}
+On appelle espace projectif de dimension $2$ sur un corps $\mathbb{K}$ et on note $\mathbb{P}^2(\mathbb{K})$, l'ensemble des classes $(X:Y:Z)$ de la relation d'équivalence définie comme suit:
+\begin{equation*}
+\forall (X,Y,Z) \in \mathbb{K}^3 \setminus (0,0,0), (X,Y,Z) \equiv (X',Y',Z') \Leftrightarrow \exists c \in \mathbb{K}^*, X'=cX, Y'=cY, Z'=cZ.
+\end{equation*}
+\end{defi}
+
+
+
+On définit sur $\mathbb{K}$ une équation de Weierstrass comme une équation de la forme:
+
+\begin{defi}
+Une courbe elliptique $E$ peut être définie comme la variété projective associée à l'équation :
+\begin{equation}
+\label{eq:weierstrass-proj}
+E:Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3
+\end{equation}
+avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le point $[0:1:0]$ est appelé le \emph{point à l'infini} et sera noté $0_E$. Dès lors que l'on a $a_1,a_2,a_3,a_4,a_6$ des éléments de $\mathbb{K}$ alors on dit que la courbe est définie sur $\mathbb{K}$.
+\end{defi}
+
+L'équation \ref{eq:weierstrass-proj} est dite forme homogène de l'équation de Weierstrass. En appliquant le changement de variables suivant: $x=\frac{X}{Z}$, $y=\frac{Y}{Z}$, on passe alors en coordonnées affines, on obtient l'équation de Weierstrass suivante:
+
+\begin{equation}
+\label{eq:weierstrass-red}
+E:y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6
+\end{equation}
+appelée équation affine de Weierstrass. La courbe $E$ est alors définie comme étant l'ensemble des points solutions de \ref{eq:weierstrass-red} avec le point à l'infini $O_E$.
+
+ On définit aussi:
+\begin{equation*}
+b_2=a_1^2+4a_2, b_4=a_1a_3+2a_4, b_6=a_3^2+4a_6, b_8=a_1^2a_6-a_1a_3a_4+4a_2a_6+a_2a_3^2-a_2^4
+\end{equation*}
+On définit alors le discriminant $\Delta$ de l'équation de Werierstrass \ref{eq:weierstrass-red}:
+\begin{equation*}
+\Delta = -b_2^2b_8-8b_4-27b_6^2+9b_2b_4b_6
+\end{equation*}
+
+La courbe $E$ admet un unique point singulier si et seulement si $\Delta$ est nul, la courbe est non singulière si et seulement si $\Delta$ est non nul (\cite[Prop. III.1.4]{Silv1}).
+
+%L'équation de Weierstrass \ref{eq:weierstrass} est dite non-singulière si et seulement si $\Delta$ est non nul.
+On peut alors énoncer une autre définition de courbe elliptique.
+
+\begin{defi}
+Une courbe elliptique $E$ sur $\mathbb{K}$ est une courbe définie par une équation de Weierstrass \ref{eq:weierstrass-red} non singulière.
+\end{defi}
+
+On définit: 
+\begin{equation*}
+j=\frac{(b_2^2-24b_4)^3}{\Delta}
+\end{equation*}
+La constante $j$ est appelée \emph{$j$-invariant} de la courbe.
+
+Une question naturelle est de se demander à quel point l'équation de Weierstrass définit de façon unique une courbe elliptique. En supposant que l'on considère les changements de variable qui préservent le point à l'infini $O_E$, il est montré \cite[III.3.1b]{Silv1} que le seul changement de variable préservant la forme de l'équation de Weierstrass et $O_E$ est:
+
+\begin{equation*}
+x=u^2x'+r    \quad  y=u^3y'+u^2sx'+t
+\end{equation*}
+avec $u,r,s,t$ des éléments de $\overline{\mathbb{K}}$ et $u$ différent de $0$. En actualisant alors le calcul des $a'_i$ et des calculs subséquents on justifie alors la dénomination de \emph{$j$-invariant}.
+\newline
+
+
+On définit alors l'ensemble des points d'une courbe elliptique $E$ définie sur $\mathbb{K}$  noté $E(\mathbb{K})$.
+
+\begin{defi}
+Soit une courbe $E$ définie sur $\mathbb{K}$ on définit $E(\mathbb{K})$ comme étant l'ensemble:
+\begin{equation*}
+E(\mathbb{K})=\{(X:Y:Z)\in \mathbb{P}^3(\mathbb{K}) \setminus (0,0,0) : Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3 \}
+\end{equation*}
+Le seul point correspondant à $Z=0$ est le point à l'infini $O_E=(0:1:0)$, chaque classe différente de $O_E$ a un unique représentant $(X:Y:1)$ ce qui nous donne la notation équivalente suivante:
+\begin{equation*}
+E(\mathbb{K})=\{(x,y)\in \mathbb{K}^2  : y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6 \} \cup {O_E}
+\end{equation*}
+\end{defi}
+
+On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une courbe elliptique $E$ définie sur $\mathbb{K}$, alors son corps de fonction $\mathbb{K}(E)$ est le corps des fractions suivant:
+\begin{equation*}
+\mathbb{K}(E) \defeq \mathbb{K}[x,y]/(f(x,y)).
+\end{equation*}
+
+\subsection{Loi de groupe}
+%\begin{figure}
+%\begin{tikzpicture}[domain=-10/3:4.5,samples=100,yscale=1/2]
+%\begin{scope}[fixed point arithmetic]
+%\coordinate (Q) at (2, -4/3) {};
+%\coordinate (-Q) at (2, 4/3) {};
+%\coordinate (-2Q) at (-1079/576, 59653/13824);
+%\coordinate (3Q) at (2319138/4977361, 27920423524/11104492391);
+%\draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+%\draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+%\draw (-2Q) node[/dot,label=$P$] {}
+%              (3Q) node[/dot,label=$Q$] (G) {}
+%              (-Q) node[/dot,label=$R$] {};
+%\draw[label position=right,label distance=5pt] (Q) node[/dot,label=$P+Q$] {};
+%\end{scope}
+%\end{tikzpicture}
+%\end{figure}
+%
+\begin{figure}
+
+\begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
+          \begin{scope}[fixed point arithmetic]
+            \begin{scope}[fixed point arithmetic]
+              \coordinate (Q) at (2, -4/3) {};
+              \coordinate (-Q) at (2, 4/3) {};
+              \coordinate (-2Q) at (-1079/576, 59653/13824);
+              \coordinate (3Q) at (2319138/4977361, 27920423524/11104492391);
+            \end{scope}
+
+            \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+            \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+
+            \draw[shorten >=-2cm, shorten <=-2cm] (-2Q) -- (-Q);
+            \draw[dashed] (-Q) -- (Q);
+
+            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
+              every label/.style={inner sep=5pt,font=\scriptsize}]
+              \draw (-2Q) node[/dot,label=$P$] {}
+              (3Q) node[/dot,label=$Q$] (G) {}
+              (-Q) node[/dot,label=$R$] {};
+              \draw[label position=right,label distance=5pt] (Q) node[/dot,label=$P+Q$] {};
+            \end{scope}
+          \end{scope}
+
+          \begin{scope}[xshift=10cm]
+            \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+            \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+
+            \begin{scope}[fixed point arithmetic]
+              \coordinate (-Q) at (2, 4/3) {};
+              \coordinate (-2Q) at (-1079/576, 59653/13824);
+              \path let \p1 = (-2Q) in coordinate (2Q) at (\x1,-\y1);
+            \end{scope}
+
+            \draw[shorten >=-2cm, shorten <=-2cm] (-Q) -- (2Q);
+            \draw[dashed] (-2Q) -- (2Q);
+
+            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
+              every label/.style={inner sep=5pt,font=\scriptsize}]
+              \draw (-Q) node[/dot,label=$P$] {}
+              (-2Q) node[/dot,label=$2P$] (G) {};
+              \draw[label position=below] (2Q) node[/dot,label=$R$] {};
+            \end{scope}
+          \end{scope}
+        \end{tikzpicture}
+
+\end{figure}
+
+On peut définir sur $E(\mathbb{K})$ une loi de groupe abélienne à l'aide de la méthode dite de la \emph{corde et de la tangente}
+
+\begin{defi}[Loi d'addition]
+Soient $P,Q \in E(\mathbb{K})$, $L$ la droite reliant $P$ à $Q$ (ou tangente si $P=Q$) et $R$ le troisième point d'intersection de $L$ avec $E$. Soit $L'$ la droite reliant $R$ à $O_E$ cette droite intersecte alors la courbe en un troisième point $P+Q$.
+\end{defi}
+
+Une preuve que cette loi définit bien une loi de groupe abélienne est montrée dans \cite[III.2.2]{Silv1}.
+
+En utilisant la notation $(x_P,y_P)$ pour les coordonnées affines d'un point $P$ de la courbe, on obtient alors pour les points distincts $P,Q$ de $E(\mathbb{K})$ les formules suivantes:
+\begin{itemize}
+\item $P+O_E=O_E+P=(x_P,y_P)$
+\item $-P=(x_P,-y_P-a_1x_P-a_3)$
+\item En notant $\lambda= \begin{cases}
+\frac{y_{Q}-y_{P}}{x_{Q}-x_{P}} & \textit{si } P\neq Q\\
+\frac{3x_{P}^{2}+2a_{2}x_{P}+a_{4}-a_{1}y_{P}}{2y_{P}+a_{1}x_{P}+a_{3}} & \textit{si } P=Q
+\end{cases}\ $,
+
+on peut alors exprimer les coordonnées de $P+Q$:
+\begin{equation*}
+\begin{alignedat}{1}
+& x_{P+Q}=\lambda^2 +a_1\lambda-a_2-x_P-x_Q,\\
+& y_{P+Q}=-(\lambda +a_1)x_{P+Q}-y_{P}-\lambda x_P-a_3
+\end{alignedat}
+\end{equation*}
+\end{itemize}
+
+
+
+
+\paragraph*{Multiplication par $m$}\   {
+\newline
+
+
+\'A l'aide de la loi additive on peut définir la multiplication scalaire par l'entier naturel $m$ comme suit:
+
+\begin{equation}
+\begin{alignedat}{1}
+[m]: E(\mathbb{K}) & \rightarrow E(\mathbb{K}) \\
+P & \mapsto \underbrace{P+ \cdots +P}_{m fois} 
+\end{alignedat}
+\end{equation}
+
+\begin{defi}
+On appelle points de \emph{$m$-torsion} l'ensemble des points de $E$ qui sont envoyés sur l'élément neutre $0_E$ par $[m]$. Cet ensemble est noté $E[m]$.
+\end{defi}
+%On a ici un exemple d'endomorphismes de la courbe $E$.
+}
+
+\subsection{Isogénies}
+
+\begin{defi}
+Soient $E_1$ et $E_2$ deux courbes elliptiques, une isogénie de $E_1$ dans $E_2$ est un morphisme de groupes:
+\begin{equation*}
+\varphi:E_1 \rightarrow E_2
+\end{equation*}
+tel que $\varphi(O_{E_1})=O_{E_2}$.
+\end{defi}
+On dira que $E_1$ et $E_2$ sont isogénes si il existe une isogénie $\varphi$ non nulle qui va de $E_1$ dans $E_2$. Une question naturelle est de se demander comment ces isogénies agissent sur les groupes de points d'une courbe, le théorème suivant répond à cette question.
+
+\begin{thm}
+Soient $\varphi:E_1 \rightarrow E_2$ une isogénie, $P,Q$ deux points de $E_1$. Alors:
+\begin{equation*}
+\varphi(P+Q)=\varphi(P)+\varphi(Q)
+\end{equation*}
+\end{thm}
+
+\begin{proof}
+Voir \cite[III.4.8]{Silv1}
+\end{proof}
+
+\begin{exe}
+La multiplication par $m$ est par exemple un homomorphisme:
+\begin{equation*}
+[m](P+Q)=[m]P+[m]Q
+\end{equation*}
+\end{exe}
+
+\begin{thm}
+Soit $\varphi$ une isogénie non nulle définie sur un corps $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors:
+\begin{itemize}
+\item $\ker(\varphi)$ est un groupe fini,
+\item $\varphi$ est surjective si $\mathbb{K}$ est un corps algébriquement clos.
+\end{itemize}
+\end{thm}
+
+\begin{proof}
+Voir \cite[II.2]{Silv1}
+\end{proof}
+
+Lorsque l'on a $\varphi$ surjective alors on peut définir sur les corps de fonctions associés à $E_1$ et $E_2$ l'injection suivante:
+\begin{equation*}
+\begin{alignedat}{1}
+\varphi^*: \mathbb{K}(E_2) & \rightarrow \mathbb{K}(E_1) \\
+f & \mapsto f  \circ \varphi
+\end{alignedat}
+\end{equation*}
+
+\begin{defi}
+Soit $\mathbb{K}$ un corps algébriquement clos, $\varphi$ une isogénie définie sur $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors $\varphi$ est dite \emph{séparable} ou \emph{inséparable} selon les propriétés de $[K(E_1):\varphi^*(\mathbb{K}(E_2))]$. On note alors \emph{$\deg_s{\varphi}$}, \emph{$\deg_i{\varphi}$} les degrés correspondants et l'on a $\deg{\varphi}=\deg_s{\varphi}\deg_i{\varphi}$
+\end{defi}
+
+Lorsque $\mathbb{K}$ n'est pas algébriquement clos on définit le degré de l'isogénie comme étant le degré de l'isogénie définie sur la cloture algébrique de $\mathbb{K}$.
+
+
+On désignera alors pour un entier $\ell$, une isogénie de degré $\ell$ par: $\ell$-isogénie.
+
+\begin{thm}
+Soit $\varphi$ une isogénie non constante de $E_1$ dans $E_2$, alors:
+\begin{itemize}
+\item pour tout point $Q$ de $E_2$ on a $|\varphi^{-1}(Q)|=\deg(\varphi)$,
+\item si $\varphi$ est séparable alors $\varphi$ est non ramifiée et on a $\deg_s(\varphi)=\ker(\varphi)$.
+\end{itemize}
+\end{thm}
+
+\begin{proof}
+Voir \cite[III.4.10]{Silv1}
+\end{proof}
+
+Une conséquence directe de ce théorème est le résultat suivant:
+
+\begin{cor}
+Soit $E_1$ une courbe elliptique, alors il y a une correspondance bijective entre les isogénies séparables qui ont pour domaine de définition $E_1$ et les sous-groupes de $E_1$:
+\begin{equation*}
+\begin{alignedat}{1}
+(\varphi :E_1\rightarrow \varphi(E_1)) &\mapsto  \ker(\varphi)  \\
+ (E_1\rightarrow\nicefrac{E_1}{C})  &\  \reflectbox{$\mapsto$} \ C 
+\end{alignedat}
+\end{equation*}
+\end{cor}
+
+L'ensemble des isogénies de $E_1$ vers $E_2$ est appelé homomorphismes et est noté \emph{$\mathrm{Hom}(E_1,E_2)$}. L'ensemble des isogénies de $E_1$ vers $E_1$ est appelé endomorphismes et est noté \emph{$\mathrm{End}(E_1)=\mathrm{Hom}(E_1,E_1)$}, les éléments de $\mathrm{End}(E_1)$ inversibles sont appelés automorphismes et sont notés \emph{$\mathrm{Aut}(E_1)$}. Une isogénie définie sur $\mathbb{K}$ sera dite \emph{$\mathbb{K}$-rationnelle} ou simplement \emph{rationnelle} quand il n'y a pas d'ambiguïtés.
+
+\begin{defi}[Isogénie duale]
+Soit $\varphi$ une isogénie définie sur $\mathbb{K}$ d'une courbe elliptique $E_1$ vers une courbe elliptique $E_2$, alors l'unique isogénie $\widehat{\varphi}$ qui va de $E_2$ ver $E_1$ telle que $\widehat{\varphi}\circ\varphi=[\deg(\varphi)]$ est appelée \emph{isogénie duale}.
+\end{defi}
+
+\begin{proof}
+Voir \cite[III.6.1]{Silv1}
+\end{proof}
+
+\begin{thm}
+Soit $\varphi:E_1 \rightarrow E_2$ une isogénie.
+\begin{enumerate}
+\item Soit $m=\deg(\varphi)$, alors:
+\begin{equation*}
+\widehat{\varphi}\circ \varphi=[m]_{E_1} \textit{ et }  \varphi \circ \widehat{\varphi}=[m]_{E_2}.
+\end{equation*}
+\item Soit $\lambda:E_2 \rightarrow E_3$ une autre isogénie, alors
+\begin{equation*}
+\widehat{\lambda \circ \varphi}=\widehat{\lambda} \circ \widehat{\varphi}.
+\end{equation*} 
+\item Soit $\phi:E_1 \rightarrow E_2$ une autre isogénie, alors
+\begin{equation*}
+\widehat{\varphi+\phi}=\widehat{\varphi}+\widehat{\phi}.
+\end{equation*}
+\item Pour tout $m$ entier relatif,
+\begin{equation*}
+[\widehat{m}]=[m] \textit{ et } \deg[m]=m^2.
+\end{equation*}
+\item $\deg( \varphi)=\deg(\widehat{\varphi})$,
+\item $\widehat{\widehat{\varphi}}=\varphi$.
+\end{enumerate}
+ 
+\end{thm}
+
+\begin{proof}
+Voir \cite[Theorem III.6.2]{Silv1}
+\end{proof}
+
+\begin{cor}
+Soit $E$ une courbe elliptique définie sur $\mathbb{K}$ et $m \in \mathbb{Z}$ avec $m \neq 0$,
+\begin{enumerate}
+\item Si $m \neq 0$ dans  $\mathbb{K}$ alors
+\begin{equation*}
+E[m]=\nicefrac{\mathbb{Z}}{m\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{m\mathbb{Z}}. 
+\end{equation*}
+\item Si $\mathrm{car}(\mathbb{K})=p>0$ alors:
+\begin{equation*}
+\begin{alignedat}{1}
+&\textit{Soit } E[p^e]=\{O_E\} \textit{ pour tout } e \geqslant 1 \\
+&\textit{Soit } E[p^e]=\nicefrac{\mathbb{Z}}{p^e\mathbb{Z}} \textit{ pour tout } e \geqslant 1
+\end{alignedat}
+\end{equation*}
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+Voir \cite[Corrolary III.6.4]{Silv1}.
+\end{proof}
+
+\begin{defi}
+Une courbe elliptique $E$ définie sur un corps $\mathbb{K}$ de caractéristique $p$ différente de $0$ est dite \emph{supersingulière} si $E[p^e]=\{O_E\}$ pour tout $e$ entier naturel non nul, elle est dite \emph{ordinaire} sinon. 
+\end{defi}
+
+\begin{defi}[Module de Tate]
+Soit $E$ une courbe elliptique et $\ell$ un nombre premier. Le \emph{$\ell$-adique module de Tate} de $E$ est le groupe:
+\begin{equation*}
+T_{\ell}(E)=\varprojlim_nE[\ell^n],
+\end{equation*}
+la limite projective étant définie par rapport à l'application naturelle
+\begin{equation*}
+E[\ell^{n+1}] \overset{[\ell]}{\rightarrow} E[\ell^n].
+\end{equation*}
+\end{defi}
+Comme chacun des $E[\ell^n]$ est un $\nicefrac{\mathbb{Z}}{\ell^n\mathbb{Z}}$-module, on observe alors que le module de Tate a une structure naturelle de $\mathbb{Z}_{\ell}$-module.
+\begin{prop}
+En tant que $\mathbb{Z}_{\ell}$ module, le module de Tate a la structure suivante:
+\begin{equation*}
+T_{\ell} \cong 
+\begin{cases} 
+\mathbb{Z}_{\ell} \times \mathbb{Z}_{\ell} &\textit{ si } \ell \neq \mathrm{car}(\mathbb{K}). \\
+\mathbb{Z}_{\ell} &\textit{ si } \ell=\mathrm{car}(\mathbb{K})  \textit{et E est ordinaire}. \\
+\{O_E\} &\textit{ si } \ell=\mathrm{car}(\mathbb{K})  \textit{et E est supersingulière}.
+\end{cases}
+\end{equation*}
+\end{prop}
+
+%\begin{alignedat}{2}
+%& T_{\ell} \cong \mathbb{Z}_{\ell} \times \mathbb{Z}_{\ell} &\textit{ si } \ell \neq \mathrm{car}(\mathbb{K}).& \\
+%& T_{p} \cong \{O_E\} \textit{ or } \mathbb{Z}_{p} \times \mathbb{Z}_{\ell} &\textit{ si }  p =\mathrm{car}(\mathbb{K})&>0.
+%\end{alignedat}
+
+
+\subsection{Endomorphismes}
+
+Soit $E$ une courbe elliptique, alors si l'on adjoint à $\mathrm{End}(E)=\mathcal{O}$, la composition et l'addition d'endomorphismes cela forme un anneau. De plus la multiplication scalaire fournit un homomorphisme de $\mathbb{Z}$ dans $\mathrm{End}(E)$. Cependant $\mathrm{End}(E)$ n'est pas nécessairement réduit à $\mathbb{Z}$.
+
+\begin{defi}
+Une courbe elliptique $E$ est dite à multiplication complexe si $\mathrm{End}(E)$ n'est pas réduit à $\mathbb{Z}$.
+\end{defi}
+On a le résultat suivant sur la structure de $\mathrm{End}(E)$.
+
+\begin{thm}
+$\mathrm{End}(E)$ est soit isomorphe à $\mathbb{Z}$, soit isomorphe à un ordre dans un corps quadratique imaginaire, soit isomorphe à un ordre dans une algèbre de quaternions 
+\end{thm}
+
+\begin{proof}
+Voir \cite[Corollary III.9.4]{Silv1}
+\end{proof}
+
+\section{Courbes elliptiques définies sur un corps fini}
+
+Soit $p$ un nombre premier, on notera $\mathbb{F}_q=\mathbb{F}_{p^e}$ le corps fini à $q$ éléments défini à isomorphisme près. Travailler sur un corps fini entraîne le fait que le nombre de points d'une courbe elliptiqe est fini, ainsi nous travaillons avec un groupe abélien fini. Afin d'étudier ce groupe et en particulier d'établir sa cardinalité nous allons introduire l'endomorphisme de Frobenius. Dans la suite de ce document nous considérerons que les courbes elliptiques mentionnées sont définies sur un corps fini. 
+
+\subsection{L'endomorphisme de Frobenius}
+\begin{defi}
+Soit $E$ une courbe définie sur $\mathbb{F}_q$, l'application: 
+\begin{equation*}
+\begin{alignedat}{1}
+\pi :E &\mapsto  E  \\
+ (x,y)  &\mapsto (x^q,y^q)  
+\end{alignedat}
+\end{equation*}
+est un homomorphisme de la courbe et est appelée \emph{endomorphisme de Frobenius}. 
+\end{defi}
+
+\begin{prop}
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius relatif à $\mathbb{F}_q$. Les conditions suivantes sont équivantes:
+\begin{enumerate}
+\item $E$ est supersingulière,
+\item $E[p^e]=\{O_E\}$ pour tout $e > 0$,
+\item la duale $\widehat{\pi}$ de l'endomorphisme de Frobenius est purement inséparable,
+\item la trace de l'endomorphisme de Frobenius est divisible par $p$,
+\item l'anneau d'endomorphisme $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
+\end{enumerate}
+si ces conditions ne sont pas vérifiées alors on a les conditions équivalentes suivantes:
+\begin{enumerate}
+\item $E$ est ordinaire,
+\item $E[p^e]=\mathbb{Z}/p^e\mathbb{Z}$ pour tout $e > 0$,
+\item la duale $\widehat{\pi}$ de l'endomorphisme de Frobenius est séparable,
+\item la trace de l'endomorphisme de Frobenius est première avec $p$,
+\item l'anneau d'endomorphisme $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombre quadratique imaginaire.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Voir \cite[Theorem V.3.1]{Silv1}
+\end{proof}
+
+L'endomorphisme de Frobenius relatif à $\mathbb{F}_q$ admet pour polynôme caractéristique:
+\begin{equation}
+\pi^2-t\pi+q=0
+\end{equation}
+avec $t$ la trace de l'endomorphisme de Frobenius. Cette équation a un rôle important dans le calcul de cardinalité de courbes elliptiques, en particulier dans l'algorithme de Schoof.
+
+\begin{prop}
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $t$ la trace de l'endomorphisme de Frobenius relatif à $ \mathbb{F}_q$ alors on a:
+\begin{equation*}
+|E(\mathbb{F}_q)|=q+1-t.
+\end{equation*}
+\end{prop}
+
+\begin{proof}
+Voir \cite[Theorem V.1.1]{Silv1}
+\end{proof}
+
+\begin{thm}[Hasse]
+Soit $E$ une courbe définie sur $\mathbb{F}_q$, alors 
+\begin{equation}
+|t| \leqslant 2 \sqrt{q}
+\end{equation}
+\end{thm}
+
+\begin{proof}
+Voir \cite[Theorem V.1.1]{Silv1}
+\end{proof}
+
+On a alors le résultat suivant sur la structure des points d'une courbe elliptique:
+
+\begin{prop}
+Le groupe abélien $E(\mathbb{F}_q$) est isomorphe à $\nicefrac{\mathbb{Z}}{n_1 \mathbb{Z}} \times \nicefrac{\mathbb{Z}}{n_2 \mathbb{Z}}$ avec $n_2 \mid n_1$ et $n_2 \mid q-1$
+\end{prop}
+
+\begin{proof}
+Voir \cite[Theorem 4.1]{Washington:2008}
+\end{proof}
+
+
+
+\subsection{Courbes définies sur $\mathbb{C}$}
+\subsection{Multiplication complexe}
+\subsection{Polynôme modulaire}
+\subsection{Bases (loi additive, isogénie, frobenius, module de Tate}
+\subsection{S.E.A}
+\subsection{Lien entre isogénie et son action sur le module de Tate}
+
+\chapter{Construction efficaces de tours $\ell$-adiques}
+La construction d'extension de corps finis est un problème qui devient naturel dès lors que l'on travaille sur des corps finis avec des algorithmes pour lesquels la précision nécessaire au cours du calcul n'est pas fixée mais est un paramètre de l'entrée. Dés lors on aura besoin de  construire des extensions de corps de taille arbitraire, pour lesquelles on voudra une construction dite compatible de telle sorte que l'on puisse injecter efficacement, lorsque cela est possible, les résultats dans les corps les plus petits au sens de l'inclusion.
+
+\begin{defi}[Tour \textit{$\ell$}-adique]
+\label{def:tour-ell}
+On appelle tour d'extension $\ell$-adique du corps fini $\mathbb{F}_q$ la suite des extensions: $\mathbb{F}_q, \mathbb{F}_{q^{\ell}}, \mathbb{F}_{q^{\ell^2}}, ...$ pour lesquels chaque élément de la suite est une extension de degré $\ell$ du précédent.
+\end{defi}
+
+
+Ainsi les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert la voie à d'autres travaux:  sur les tours $2$-adiques\cite{Doliskani-Schost15}, les tours $\ell$-adiques\cite{DeFeo-Doliskani-Schost13} ; pour lesquels les idées de constructions de tours de corps finis compatibles et le passage de représentation univariée à bivariée ont permis d'obtenir des résultats satisfaisants en terme de complexité.
+Les travaux de  \cite{DeFeo-Shost'12} ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
+
+La présentation des travaux \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13} va se faire dans un ordre anti-chronologique car les travaux de \cite{Doliskani-Schost15} sur les tours $2$-adiques sont plus simples du fait du sujet traité et contiennent des idées similaires reprises de ses antécédents \cite{DeFeo-Doliskani-Schost13}, \cite{DeFeo-Shost'12}.
+
+Une façon naturelle de  construire une extension de corps fini est de trouver un polynôme irréductible défini sur celui-ci et de degré égal à celui de l'extension désirée et d'ensuite quotienter le corps par celui-ci.
+Ainsi les éléments des tours d'extension seront toujours représentés comme des polynômes à coefficients dans $\mathbb{F}_q$, la taille des entrées et sorties d'éléments dans $\mathbb{F}_{q^n}$ sera donc $O(n)$.
+
+Les complexités sont calculées en nombre d'opération ($+, \times,\div$) à coût identique dans $\mathbb{F}_q$, indépendamment de la construction de $\mathbb{F}_q$. On notera par $M: \mathbb{N} \rightarrow \mathbb{N}$ l'application telle que la multiplication d'un polynôme de degré $n$ à coefficients dans $R$ coûtera $M(n)$ opérations dans $R$ et telle que $M$ est super-linéaire, en utilisant les résultats de \cite{Cantor-Kaltofen91} on a $M(n)=O(n\log(n) \log \log(n))$.
+
+\section{$\ell$= 2 [Doliskani-Schost]}
+La \emph{totalité} des travaux présentés ici proviennent du travail de \cite{Doliskani-Schost15}.
+
+L'idée de base derrière le travail de \cite{Doliskani-Schost15} est de permettre un passage efficace d'une représentation bivariée à une représentation monovariée afin de rajouter à la volée des extensions de la tour compatibles avec ce qui a été fait auparavant.
+
+
+L'objectif est de calculer une extension du corps fini $\mathbb{F}_q$, avec $q$ impair, de taille $\mathbb{F}_{q^n}$ avec $n=2^k$ et $k \geqslant 1$. 
+Comme vu dans \cite{lang2002algebra}{Theorem VI.9.1} et mis en pratique dans \cite{Shoup93} pour calculer une extension quadratique d'un corps fini $\mathbb{F}_q$ on a deux cas à considérer:
+\begin{itemize}
+\item[$q=1 \bmod 4$] alors tout résidu non quadratique $\alpha$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-\alpha$ duquel on déduit alors une construction de $\mathbb{F}_{q^n}$,
+\item[$q=3 \bmod 4$] on se ramène au cas $q=1\bmod 4$ en construisant une extension quadratique $\mathbb{F}_{q'}$ de $\mathbb{F}_q$, on peut faire cela en considérant le polynôme irréductible $X^2+1$.
+\end{itemize} 
+
+Ainsi pour construire une extension de degré 2 d'un corps fini $\mathbb{F}_q$ un résidu non quadratique $\alpha$ défini sur $\mathbb{F}_q$ est nécessaire. On trouve celui-ci après $O(1)$ essais, on ne va donc pas considérer le coût de calcul de celui-ci. 
+
+De plus il sera considéré pour le corps fini  $\mathbb{F}_q$ que $q=1 \bmod 4$ car le calcul d'une extension quadratique $\mathbb{F}_{q'}$ lorsque $q=3 \bmod 4$ ne rajoute que un facteur $O(1)$ pour le nombre d'opérations sur $\mathbb{F}_q$, cela se justifie par la discussion sur les coûts d'opérations $+,\times, \div$ sur de polynômes de degré $n$ sur $\mathbb{F}_q$.
+
+Dans ce document on ne va pas considérer toutes les opérations sur une tour $2$-adique, seront évidemment considérées les opérations de base telles que la multiplication et l'inversion, mais aussi le Frobenius (crucial pour les applications que l'on va en faire), le calcul de racine carrée, d'autres opérations peuvent être trouvées dans \cite{Doliskani-Schost15}.
+\begin{prop}[Doliskani-Schost'15]
+Soit $q=1 \bmod 4$, étant donné un résidu non quadratique $\alpha$ de $\mathbb{F}_q$, alors pour $k\geqslant 0$ et $n=2^k$, les temps de calculs pour les opérations dans $\mathbb{F}_q$ énoncés dans le tableau \ref{tab:complexite-degre2} sont vérifiés.
+\end{prop}
+\begin{figure}
+\label{tab:complexite-degre2}
+\begin{tabular}{|l|r|}
+  \hline
+  \textit{Opérations}  & \textit{Coûts} \\
+  \hline
+  \textit{addition/soustraction}  & $O(n)$ \\
+  \textit{multiplication}  & $M(n)+ O(n)$ \\
+  \textit{division} & $O(M(n))$ \\
+  \textit{Frobenius} & $O(n + \log(q))$ \\
+  \textit{Square-root} & $ O(M(n)\log(nq)) (\textit{attendu}) $ \\
+  \hline
+\end{tabular}
+\caption{Coûts des opérations dans $\mathbb{F}_{q^n}$ avec $n=2^k$}
+\end{figure}
+Il est à noter que pour le calcul d'une racine carrée le coût est attendu, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
+
+Certains résultats du tableau \ref{tab:complexite-degre2} sont connus tels que l'addition et la soustraction, l'obtention des autres sera expliqué par la suite.
+
+\subsection{Représentation des éléments de la tour $\ell$-adique}%titre a retravailler
+Dans cette sous-section la tour $2$-adique: $\mathbb{F}_q, \mathbb{F}_{q^2}, \mathbb{F}_{q^{2^2}}, \cdots$ sera écrite:
+\[
+\mathbb{L}_{0} \subset \mathbb{L}_{1} \subset \mathbb{L}_{2}, ... 
+\]
+afin d'alléger la notation, avec $\mathbb{L}_{k}=\mathbb{F}_{q^{2^{k}}}$ pour tout entier $k$.
+
+
+Les éléments de $\mathbb{L}_k$ peuvent être représentés de deux manières différente monovariée et bivariée, de la même manière que dans \cite{DeFeo-Shost'12}. 
+
+Soit $\alpha$ un résidu non quadratique de $ \mathbb{L}_0$, à l'aide de celui-ci sont définis les suites de polynômes $T_1,T_2,\cdots, T_k$ en les indéterminées $X_1,X_2, \cdots X_k$ de la façon suivante:
+\[
+T_1=X_1-\alpha \quad \textit{et} \quad T_k=X_k^2-X_{k-1} \quad \textit{avec $k$ entier naturel non nul}
+\]  de la même manière la suite de polynômes $P_1,P_2, \cdots P_k$ est définie à l'aide de $\alpha$ de la façon suivante:
+\[
+P_k=X_k^{2^k}-\alpha \quad \textit{avec $k$ entier naturel non nul} 
+\]
+
+Comme abordé dans plus tôt et discuté dans \cite{lang2002algebra}, l'égalité entre les idéaux suivants est vérifiée:
+\begin{equation}
+\label{eq:corres-repre-2}
+\langle T_1, T_2, \cdots, T_k \rangle = \langle P_k, X_{k_1}-X_k^2, ..., X_1-X_{k}^{2^{k-1}} \rangle,
+\end{equation}
+Cet idéal premier est alors appelé $A_k$ et l'on a:
+\[
+\mathbb{L}_k \cong \mathbb{F}_q[X_1,X_2,\cdots,X_k]/A_k
+\]
+Soit $k \geqslant 1$  on note $x_k$ l'image de l'indéterminée $X_k$ dans l'anneau résiduel $\mathbb{F}_q[X_1,X_2, ...,X_k]/A_k$, alors par inclusion naturelle de $\mathbb{F}_q[X_1,X_2, ...,X_k]/A_k$ dans $\mathbb{F}_q[X_1,X_2, ...,X_{k+1}]/A_{k+1}$, $x_k$ peut aussi être vu de façon indifférenciée comme un élément de $\mathbb{F}_{q^{2^j}}$ pour $j \geqslant k$.
+
+De plus grâce à l'équation \ref{eq:corres-repre-2}, représenter un élément de $\mathbb{L}_k$ peut être fait soit comme un polynôme en $x_1, ..., x_k$ de degré au plus un en chaque variable grâce au côté gauche de l'équation \ref{eq:corres-repre-2}, soit comme un polynôme en $x_k$ de degré au plus $2^k$ grâce au côté gauche de l'équation \ref{eq:corres-repre-2}.
+
+L'écriture par défaut des éléments de $\mathbb{L}_k$ sera donc la représentation univariée. Ainsi un élément de $\mathbb{L}_k$ sera représenté sous la forme $g(x_k)$ avec $g$ un polynôme de $\mathbb{F}_q[X_k]$ de degré strictement inférieur à $2^k$. 
+
+Cependant lors des représentations d'éléments de $\mathbb{L}_k$ il ne va pas être fait des changements de base univariée à multivariée mais seulement à du bivarié pour permettre des passages d'un niveau dans la tour $2$ adique. On représentera par exemple alors $\mathbb{L}_k$ pour $k\geqslant1$ des deux façons suivantes:
+\begin{equation*}
+\mathbb{L}_k \cong \mathbb{F}_q[X_k]/\langle P_k(X_k) \rangle \cong \mathbb{F}_q[X_k,X_{k-1}]/\langle P_{k-1}(X_{k_1}), X_k^2-X_{k-1}  \rangle
+\end{equation*}  
+La $\mathbb{F}_q$ base monomiale de $\mathbb{L}_k$ est donc:
+\begin{equation*}
+1,x_k,x_k^2,...,x_k^{2^k-1}
+\end{equation*}
+la $\mathbb{F}_q$ base bivariée de $\mathbb{L}_k$ est alors:
+\begin{equation*}
+1,x_{k-1},x_{k-1}^2,...,x_{k-1}^{2^{k-1}-1},x_k,x_kx_{k-1},x_kx_{k-1}^2,...,x_kx_{k-1}^{2^{k-1}-1}
+\end{equation*}
+En pratique ce changement se fait de la façon suivante à partir d'une expression $G(x_k)$ d'un élément de $\mathbb{L}_k$ avec $G$ un polynôme de degré inférieur à $2^k-1$:
+\begin{equation*}
+G(x_k)=G_0(x_k)+x_kG_1(x_k^2)=G_0(x_k)+x_kG(x_{k-1})
+\end{equation*}
+avec $G_0$ et $G_1$ des polynômes de degré inférieur à $2^{k-1}-1$. Ce changement de base ne requiert aucun calcul arithmétique, ainsi celui-ci pourra être utilisé sans coût supplémentaire et en particulier un élément pourra être considéré indifféremment dans une base multivariée ou monovariée.%a completer
+
+L'inversion d'un élément pourrait être alors considérée dans une base univariée en utilisant l'algorithme étendu d'Euclide étendu. Ainsi le coût d'inversion d'un élément de $\mathbb{L}_k$ serait de $O(M(n)log(n))$ opérations sur $\mathbb{F}_q$ en utilisant les résultats de \cite{vzGJG03}[ch.11]. Une autre technique plus avantageuse est préférée en remarquant un élément $\gamma=G(x_k)$ inversible de $\mathbb{L}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
+\begin{align*}
+\frac{1}{G(x_k)} &=\frac{1}{G_0(x_{k-1})+x_kG_1(x_{k-1})} \\
+ 				&= \frac{G_0(x_{k-1})-x_kG_1(x_{k-1})}{G_0(x_{k-1})^2-x_{k-1}G_1(x_{k-1})^2}
+\end{align*}
+Ainsi le coût d'une inversion d'un élément de $\mathbb{L}_k$ est le coût d'une addition de la multiplication d'éléments de $\mathbb{L}_k$ ainsi que le coût d'une inversion d'éléments dans $\mathbb{L}_{k-1}$, on a donc affaire à un algorithme récursif de coût  $T(k)=T(k-1)+O(M(2^k))$; avec la super linéarité de $M$ on obtient un coût de calcul de $O(M(n))=O(M(2^k))$ opérations en $\mathbb{F}_q$
+
+\subsubsection*{Calcul du Frobenius}
+On aborde ici une partie essentielle à la réussite de l'algorithme de calcul d'isogénies expliqué plus tard, le calcul du Frobenius. Rappelons ici l'objectif d'une telle opération: soit $\gamma $ un élément de $\mathbb{L}_k$ et soit $s=q^d$ avec $d$ un entier quelconque, on veut alors calculer $\gamma^s$ dans $\mathbb{L}_k$. Pour plus de lisibilité on pose $2^k=n$.
+
+
+On commence par le cas le plus simple: $\gamma=x_k$, ainsi en réécrivant $s=nu+v$, en se rappelant que l'on a $x_k^n=\alpha $ nous permet d'obtenir $x_k^s=\alpha^ux_k^v$. De plus comme $\alpha$ est un élément de $\mathbb{F}_q$ on obtient $\alpha^u=\alpha^{u \bmod q-1}$, cette opération est donc effectuée en $O(\log(q))$ opérations dans $\mathbb{F}_q$ à l'aide de l'exponentiation rapide. Une méthode rapide est préconisée pour le calcul de $u \bmod q-1$ et $v$, dans un premier temps il faut calculer $\rho=r \bmod n(q-1)$ à l'aide de l'exponentiation rapide puis $u \bmod q-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne de $\rho$ par $n$. Le coût booléen d'une telle opération est de $O(\log(d)\log(nq))$.
+
+Soit  $\gamma=G(x_k)$, alors en écrivant $G(x_k)=g_{n-1}x_k^{n-1}+ \cdots + g_1 x_k + g_0$ on obtient alors:
+
+\begin{align*}
+\gamma^r &= g_{n-1}(x_k^r)^{n-1}+ \cdots + g_1 (x_k^r) + g_0 \\
+         &= g_{n-1}(\alpha^ux_k^v)^{n-1}+ \cdots + g_1 (\alpha^ux_k^v) + g_0
+\end{align*}
+Ainsi avec la connaissance de $\alpha^u,v$ le calcul de $\gamma^r$ revient au calcul des $n$ premières puissances de $\alpha^ux_k^v$ et de les remplacer dans l'écriture de $G$. Comme on a $\alpha=x_k^n$ ces puissances sont juste des monômes en $x_k$ et on peut donc les calculer en $O(n)$ multiplications sur $\mathbb{F}_q$. Le coût total pour le Frobenius obtenu est donc de $O(n+ \log(q))$ opérations sur $\mathbb{F}_q$.
+
+Maintenant que le coût du Frobenius a été établie nous allons maintenant voir une autre opération nécessaire pour le calcul d'isogénies, le calcul de racines carrées.
+
+\subsubsection*{Calcul d'une racine carrée}
+Les résultats de cette problématique sont issus d'idées développées dans \cite{Doliskani-Schost14} et sont adaptés à cette construction de tour $2$ adique où le coût du Frobenius est très faible. 
+
+Soit $\delta$ un carré non nul de $\mathbb{L}_k$ ayant pour racine carrée $\gamma$ (non connue a priori). Soit $\beta$ dans $\mathbb{F}_q$ défini de la manière suivante:
+\begin{align}
+\label{eq:trace-square-root}
+\beta=T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma)=\sum_{i=0}^{n-1}\gamma^{q^i}&=\gamma(1+\gamma^{q-1}+\cdots+ \gamma^{q^{n-1}-1} ) \\
+&=\gamma(1+\delta^{(q-1)/2}+\cdots+ \gamma^{(q^{n-1}-1)/2} \\
+&=\gamma \eta
+\end{align}
+en posant 
+\begin{align*}
+\eta=1+\delta^{(q-1)/2}+\cdots+ \gamma^{(q^{n-1}-1)/2}
+\end{align*}
+Sans perte de généralité on peut supposer que l'on a $\eta \neq 0$, si ce n'est pas le cas alors on peut remplacer $\gamma$ par $\gamma c^2$ avec $c$ choisi aléatoirement parmi les inversibles de $\mathbb{F}_q$.
+$O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) \neq 0$. En effet il y a $q^{2^k}/q$ valeurs de $c$ pour lesquelles on a $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) = 0$ ainsi la probabilité d'avoir une $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) \neq 0$ est de $1-(q^{2^k}/q)/(q^{2^k})=1-1/q>1/2$.
+Maintenant si l'on met au carré l'équation \ref{eq:trace-square-root} on obtient alors l'équation suivante dans $\mathbb{F}_q$: $\beta^2=\delta \eta^2$. Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation et $\gamma$ calculé car on a alors $\gamma=\beta \eta^{-1}$.
+Le coût de $\beta$ est un nombre attendu de $O(\log(q))$ opérations sur $\mathbb{F}_q$ \cite{vzGJG03}[ch 14.5], ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
+
+Soit $\lambda$ un élément de $\mathbb{L}_k$ défini par $\lambda = \delta^{(q-1)/2} $ on a alors la relation suivante avec $\eta$:
+\begin{equation*}
+\eta = 1 + \lambda + \lambda^{1+q} + \lambda^{1+q+q^2} + \cdots + \lambda^{1+q+q^2+\cdots+q^{n-2}} 
+\end{equation*}
+Pour $m \geqslant 0$ on définit:
+\begin{equation*}
+\varepsilon_m=\lambda^{q} + \lambda^{q+q^2} + \cdots + \lambda^{q+q^2+\cdots+q^{m}}
+\end{equation*} 
+de telle sorte que l'on ait $\eta=1+\lambda+\lambda \varepsilon_{n-2}$, ainsi en définissant $\zeta_m=\lambda^{q+q^2+\cdots+q^{m}} $ que l'on peut construire par récurrence:
+\begin{equation}
+\zeta_1=\gamma^q \quad \textit{et} \quad
+\zeta_m=
+\begin{cases} 
+\zeta_{m/2}  \zeta_{m/2}\zeta_{m/2}^{q^{m/2}} \textit{si m est pair }\\
+\zeta_{1}  \zeta_{m-1}^{q} \textit{si m est impair}
+\end{cases}
+\end{equation}
+
+ on a alors une relation de récurrence similaire pour le calcul de $\varepsilon$:
+
+\begin{equation}
+\label{eq:varepsilon}
+\varepsilon_1=\lambda^q \quad \textit{et} \quad
+\varepsilon_m=
+\begin{cases} 
+\varepsilon_{m/2} + \zeta_{m/2}\varepsilon_{m/2}^{q^{m/2}} \textit{si m est pair }\\
+\varepsilon_{m-1} + \zeta_{m} \textit{si m est impair}
+\end{cases}
+\end{equation}
+Le calcul de $\lambda$ a un coût de $O(M(n)log(q))$ opérations sur $\mathbb{F}_q$, le calcul de $\varepsilon_1$ et $\eta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, supposons que le calcul de $\varepsilon_m$ et $\zeta_m$ ait été effectué. En utilisant les équations \ref{varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathbb{F}_{q^n}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ est calculé en $O(M(n)\log(n)+M(n)\log(q))=O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$.
+Ainsi $\beta$ peut être déduit en $O(\log(q))$ opérations sur $\mathbb{F}_q$, le coût de calcul de $\gamma$ étant négligeable par rapport à celui de $\eta$. On a alors un coût total de $O(M(n)\log(nq))$ opération sur $\mathbb{F}_q$.
+
+Une implantation de cette construction de tours $2$-adique et des opérations du Frobenius et du calcul de racine carrée ont été réalisé sur SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
+
+Il est à noter que en pratique pour le calcul de racine carrée de $\delta$ on peut parfois être amené à considérer un élément de $\mathbb{L}_k$ qui n'est pas un carré. Cela est testé en pratique sur $\beta$ qui est un résidu quadratique si et seulement si $\delta$ l'est. Une astuce consiste alors à multiplier $\delta$ par l'élément générateur $x_{k}$ du corps afin  de multiplier cet élément par un résidu non quadratique, on injecte alors $\delta x_k$ dans $\mathbb{L}_{k+1}$. On applique l'algorithme vu précédemment, le résultat obtenu est alors divisé par $x_{k+1}$ pour obtenir la racine carrée de $\delta$ souhaitée.
+\section{$\ell \neq 2$ [De Feo-Doliskani-Schost]}
+Le travail présenté ici est issu de \cite{DeFeo-Doliskani-Schost13}. Les différences avec le travail de \cite{Doliskani-Schost15} sont notamment des "push" et "pull" plus compliqués à calculer, ainsi que la discussion faite sur l'existence d'un résidu $\ell$ adique qui ne se résout pas de façon aussi simple que dans \cite{Doliskani-Schost15}. Le calcul du Frobenius n'avait pas été fait dans \cite{DeFeo-Doliskani-Schost13}, cela est fait ici lors d'un travail conjoint avec Luca De Feo, Jérome Plut et Eric Schost, les idées utilisées sont des applications directes de celles de \cite{Doliskani-Schost15}.
+
+Dans cette section la tour $\ell$-adique sera écrite:
+\[
+\mathbb{F}_q, \mathbb{F}_{q^\ell}, \mathbb{F}_{q^{\ell^2}}, \cdots.
+\]
+L'objectif ici sera de représenter de façon univariée les éléments du corps $\mathbb{F}_{q^{\ell^i}}$, pour cela on va représenter les éléments de ce corps à l'aide d'éléments de $\mathbb{F}_{q}[X_i]/\langle Q_i \rangle$ pour un polynôme irréductible $Q_i \in \mathbb{F}_q[X_i]$. La principale diffculté par rapport au cas $\ell=2$ sera de construire de tels polynômes, pour cela on sera obligé de construire des extensions de corps d'indice $r$ où des résidus non $\ell$ adiques existent. On construira alors sur ces corps des tours d'extension $\ell$-adique, qui contiendront donc des corps de la taille $r\ell^i$. Il faudra alors utiliser une descente dans les corps pour alors avoir des corps de taille $\ell^i$.
+
+\paragraph{Notation des représentations}
+Comme dit précédemment les éléments du corps $\mathbb{F}_{q^{\ell^i}}$ peuvent être représentés comme des éléments de $\mathbb{F}_q[X_i]/\langle Q_i \rangle $, avec $Q_i$ un polynôme irréductible.
+
+\paragraph{Construction de tours quasi-cyclotomique}
+On commence donc par construire une extension de corps $\mathbb{K}_0=\mathbb{F}_q[Y_0]/\langle P_0 _rangle$ telle que la classe résiduelle $y_0$ de $Y_0$ soit un résidu non $\ell$ adique de $\mathbb{K}_0$, on note $r$ le degré de $P_0$.
+
+Par \cite{Lang2002algebra}[Th. VI.9.1] on a pour $i \geqslant 1$ le polynôme $Y_i^{\ell^i}-y_0 \in \mathbb{K}_O[Y_i]$ qui est irréductible, le corps $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ est ainsi un corps à $q^{r\ell^i}$ éléments. En notant $y_i$ les classes résiduelles $y_i$ de $Y_i$ dans $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ sont naturellement plongées les unes dans les autres à l'aide de l'isomorphisme $\mathbb{K}_{i+1} \simeq \mathbb{K}_i[Y_{i+1}]/\langle Y_{i+1}^{\ell}-y_i\rangle $, en particulier on a $y_{i+1}^{\ell}=y_i$.
+
+
+ Pour pouvoir alors calculer un corps de taille $\ell^i$ on utilise le processus de descente résultat suivant qui vient d'une idée de Shoup:
+
+\begin{prop}{Shoup}
+Pour $i \geqslant 0$, soit $x_i$ la trace de $y_i$ sur un sous corps d'indice $r$:
+\begin{equation*}
+x_i=\sum_{j=0}^{r-1}y_i^{q^{\ell^i}j}
+\end{equation*}
+On a alors \cite{Shoup88}[Th. 2.1] qui prouve que $\mathbb{F}_q(x_i)=\mathbb{F}_{q^{\ell^i}}$
+\end{prop}
+
+Montrons donc dans un premier temps comment calculer $\mathbb{K}_0 \simeq \mathbb{F}_{q^r}$
+
+
+
+\paragraph{Calcul d'une extension contenant un résidu non $\ell$ adique}
+Le calcul de $P_0$ se fait à l'aide du $\ell$ ème polynôme cyclotomique $\phi_{\ell} \in \mathbb{Z}[X_0]$ et de sa factorisation sur $\mathbb{F}_q[X_0]$, par \cite{Shoup93}[Th.9] cela a un coût de $O_e(M(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
+
+$\phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$, avec $r$ le degré de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, il est à noter que $r$ divise $\ell-1$. Soit $F_0$ un des facteurs irréductibles de $\phi_{\ell}$, alors par construction il existe des résidus non $\ell$ adiques dans $\mathbb{F}_q[X]/\langle F_0 \rangle$. Une fois qu'un tel résidu $y_0$ est trouvé son polynôme minimal $P_0$ sur $\mathbb{F}_q$ de degré $r$ est calculé en $O(r^2)$ opérations sur $\mathbb{F}_q$ d'après \cite{Shoup93}[Th.4]. 
+En pratique un tel résidu non quadratique $y_0$ est trouvé aléatoirement après $O(1)$ essais d'après \cite{Shoup93}[Lemma 15], chaque essai a un coût de $O_e(M(\ell)\log(r)+M(r)\log(\ell)\log(r)+M(r)\log(q))$ opérations sur $\mathbb{F}_q$.
+%peut etre affiner les sources
+Selon l'ordre de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \nmid q-1$ et $\ell \nmid q+1$
+
+
+\chapter{Isogénies sur les corps finis}
+
+\section{Calculs d'isogénie}
+\subsection{Algorithme de Lercier Sirvent (+ resultat de Tristan)}
+\subsection{Algorithme de Couveignes (parler de ses variantes)}
+
+\subsection{Volcans d'isogénies}
+\subsection{Travaux de Kohel, Fouquet-Morain}
+Mettre l'algorithme de Fouquet Morain
+\subsection{Travaux de Miret \& Al. et Ionica-Joux}
+
+
+\section{Frobenius et ses applications sur un volcan d'isogénies}
+\subsection{Base diagonale, horizontale}
+\subsection{Orbites selon le Frobenius}
+\subsection{Amélioration de l'algorithme de Couveignes}
+
+\section{Améliorations éventuelles à l'aide du pairing}
+
+\bibliographystyle{plain}
+\bibliography{Biblio}
+\end{document}
