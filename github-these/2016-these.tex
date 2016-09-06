@@ -921,6 +921,14 @@ Montrons alors comment est calculé un relèvement à partir des éléments sus-
 \mathbb{K}_0[Y_{i-1},X_i]/\langle Y^{\ell^{i-1}}-y_{i-2},T_i \rangle = \mathbb{K}_{i-1}[X_i]/\langle Q_{i,i-1} \rangle.
 \end{equation*}
 On applique alors $\psi_{i,i}^{-1}:\mathbb{K}_{i-1}[X_i]/\langle Q_{i,i-1} \rangle \to \mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle$ pour avoir l'image de $A$ dans $\mathbb{K}_i$. Enfin on applique $\psi_{i}:\mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle \to \mathbb{K}_0[X_i]/ \langle Q_i \rangle $ pour avoir $A$ exprimé dans une base monomiale en $x_i$. Faire le push revient à faire l'inverse de ses opérations.
+
+\paragraph{Couvegines and Lercier's ideas to explicitely compute Q and T}
+Ici vont être explicités des méthodes permettant de calculer les tours $\ell$ adiques, celles-ci s'inspirent de travaux de Couveignes et Lercier \cite{couveignesLercier2013}.
+
+Premièrement nous allons voir les idées de Couveignes et Lercier, dans un second temps nous allons voir qu'un seul exemple, le cas où l'on a le polynôme modulaire $\phi_l$ qui se scinde en facteurs quadratiques sur $\mathbb{F}_q$ de par l'intérêt des objets qu'il manipule, le cas où l'on a le polynôme modulaire qui se scinde en facteurs linéaires sur $\mathbb{F}_q$ n'est pas traité ici mais l'est dans \cite{DeFeo-Doliskani-Schost13}.
+
+Soient $G,G'$ deux $\mathbb{F}_q$ groupes algébriques intègres de même dimension, $\phi: G' \to G$ un morphisme de groupe surjectif et séparable de degré $\ell$, alors l'ensemble des points $x$ de $G$ de fibre $G'_x$ de cardinal $\ell$ est un ensemble ouvert non vide $U \subset G$. 
+On utilise alors l'homomorphisme induit de groupes finis $G'(\mathbb{F}_q) \to G(\mathbb{F}_q)$, si il est non surjectif alors il existe des points de $G(\mathbb{F}_q)$ avec leur fibrés définis dans une extension algébrique de $\mathbb{F}_q$. Ainsi si l'on est capable de déterminer un homomorphisme $\phi$ de telle manière que l'on puisse trouver un point contenu dans $U$, avec un fibre irréductible et ensuite appliquer une projection linéaire sur cette fibre, on détermine alors un polynôme irreductible de degré divisant $\ell$ (et espéré égal à $\ell$). Ainsi si l'on répète cette construction avec un nouvel homomorphisme $\phi':G''' \to G''$, et ainsi de suite, alors avec cette suite on est capable de construire des tours $\ell$-adiques sur $\mathbb{F}_q$. 
 \chapter{Isogénies sur les corps finis}
 
 \section{Calculs d'isogénie}
