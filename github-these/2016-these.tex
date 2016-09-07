@@ -235,7 +235,7 @@ On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une 
             \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
               every label/.style={inner sep=5pt,font=\scriptsize}]
               \draw (-2Q) node[/dot,label=$P$] {}
-              (3Q) node[/dot,label=$Q$] (G) {}
+               (3Q) node[/dot,label=$Q$] (G) {}
               (-Q) node[/dot,label=$R$] {};
               \draw[label position=right,label distance=5pt] (Q) node[/dot,label=$P+Q$] {};
             \end{scope}
@@ -928,7 +928,25 @@ Ici vont être explicités des méthodes permettant de calculer les tours $\ell$
 Premièrement nous allons voir les idées de Couveignes et Lercier, dans un second temps nous allons voir qu'un seul exemple, le cas où l'on a le polynôme modulaire $\phi_l$ qui se scinde en facteurs quadratiques sur $\mathbb{F}_q$ de par l'intérêt des objets qu'il manipule, le cas où l'on a le polynôme modulaire qui se scinde en facteurs linéaires sur $\mathbb{F}_q$ n'est pas traité ici mais l'est dans \cite{DeFeo-Doliskani-Schost13}.
 
 Soient $G,G'$ deux $\mathbb{F}_q$ groupes algébriques intègres de même dimension, $\phi: G' \to G$ un morphisme de groupe surjectif et séparable de degré $\ell$, alors l'ensemble des points $x$ de $G$ de fibre $G'_x$ de cardinal $\ell$ est un ensemble ouvert non vide $U \subset G$. 
-On utilise alors l'homomorphisme induit de groupes finis $G'(\mathbb{F}_q) \to G(\mathbb{F}_q)$, si il est non surjectif alors il existe des points de $G(\mathbb{F}_q)$ avec leur fibrés définis dans une extension algébrique de $\mathbb{F}_q$. Ainsi si l'on est capable de déterminer un homomorphisme $\phi$ de telle manière que l'on puisse trouver un point contenu dans $U$, avec un fibre irréductible et ensuite appliquer une projection linéaire sur cette fibre, on détermine alors un polynôme irreductible de degré divisant $\ell$ (et espéré égal à $\ell$). Ainsi si l'on répète cette construction avec un nouvel homomorphisme $\phi':G''' \to G''$, et ainsi de suite, alors avec cette suite on est capable de construire des tours $\ell$-adiques sur $\mathbb{F}_q$. 
+L'homomorphisme induit de groupes finis $\phi_{\mid \mathbb{F}_q}: G'(\mathbb{F}_q) \to G(\mathbb{F}_q)$ permet lorsqu'il est non surjectif de définir des extensions algébriques de $\mathbb{F}_q$ à partir des fibrés de points de $G(\mathbb{F}_q)$ qui ne se trouvent pas dans l'image de $\phi_{\mid \mathbb{F}_q}$. 
+
+Pour construire ces extensions algébriques on applique sur une fibre irréductible issue de points ne se trouvant pas dans l'image de $\phi_{\mid \mathbb{F}_q}$ une projection linéaire et on détermine alors un polynôme irréductible de degré divisant $\ell$ (espéré égal à $\ell$). Si l'on peut itérer cette méthode avec un nouvel homomorphisme: $\phi':G'' \to G'$ qui vérifie les même conditions que vu précédemment, alors on peut déterminer des extensions $\ell$-adiques de $\mathbb{F}_q$.
+
+On va donc voir une application de cette méthode qui a un intérêt aussi de par l'objet qu'elle manipule: les cycles d'isogénies.
+
+\paragraph{Towers from elliptic curves}
+Dans cette partie on revoit les constructions de Couveignes et Lercier \cite{couveignesLercier2013} et l'on montre en particulier les passages pertinents pour une construction de tour.
+
+Soit $\ell$ un nombre premier différent de $p$ qui ne divise pas $q-1$, soit $E_0$ une courbe elliptiqe de cardinal sur $\mathbb{F}_q$ multiple de $\ell$. Un telle courbe existe d'après le théorème de Hasse seulement si $\ell \leqslant q+2\sqrt{q} +1$.  
+Les isogénies
+On travaille alors avec des isogénies $\mathbb{F}_q$-rationnelles séparables de degré $\ell$. Ainsi si l'on considère le polynôme charactéristique de l'endomorphisme de Frobenius:
+\begin{equation*}
+X^2-t_{\pi}X+q=(X-1)(X-q) \bmod \ell
+\end{equation*}
+celui-ci se scinde modulo $\ell$. En effet comme $\ell \wedge q = 1$ on a le produit des valeurs propres qui n'est pas divisible par $\ell$. De plus comme le cardinal de la courbe: $|E|=q+1-t$ est divisible par $\ell$ alors on peut montrer que l'on a $t_{\pi}^2-4q$, le discrimant du polynôme charactéristique de $\pi$ qui est non nul. Enfin on montre que les deux valeurs propres $1$ et $q$ sont distinctes car $\ell \nmid q-1$.
+Ainsi à l'aide de ces deux valeurs propres ont peut déterminer des sous-groupes cycliques de la $\ell$ torsion.
+Par l'hypothèse faite sur $\ell$ il existe un $e \geqslant 1$ tel que $E[\ell^e] \subset \mathbb{F}_q$ est cyclique d'ordre $\ell^e$.
+
 \chapter{Isogénies sur les corps finis}
 
 \section{Calculs d'isogénie}
