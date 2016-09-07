@@ -943,8 +943,16 @@ On travaille alors avec des isogénies $\mathbb{F}_q$-rationnelles séparables d
 \begin{equation*}
 X^2-t_{\pi}X+q=(X-1)(X-q) \bmod \ell
 \end{equation*}
-celui-ci se scinde modulo $\ell$. En effet comme $\ell \wedge q = 1$ on a le produit des valeurs propres qui n'est pas divisible par $\ell$. De plus comme le cardinal de la courbe: $|E|=q+1-t$ est divisible par $\ell$ alors on peut montrer que l'on a $t_{\pi}^2-4q$, le discrimant du polynôme charactéristique de $\pi$ qui est non nul. Enfin on montre que les deux valeurs propres $1$ et $q$ sont distinctes car $\ell \nmid q-1$.
-Ainsi à l'aide de ces deux valeurs propres ont peut déterminer des sous-groupes cycliques de la $\ell$ torsion.
+celui-ci se scinde modulo $\ell$.
+% En effet comme $\ell \wedge q = 1$ on a le produit des valeurs propres qui n'est pas divisible par $\ell$.
+
+En effet par hypothèse sur le cardinal de la courbe on a: $|E|=q+1-t_{\pi}=0 \bmod \ell$, on peut alors montrer que $(t_{\pi}^2-4q)=(q+1)^2-4q=(q-1)^2 \bmod \ell$. De plus le fait que $\ell \nmid q-1$ nous permet d'énoncer que le discrimant du polynôme charactéristique de $\pi$ est strictement supérieur à $O$ modulo $\ell$, le Frobenius admet donc deux valeurs propres. Enfin on montre que les deux valeurs propres sont $1$ et $q \bmod \ell$ car on a $t_{\pi}=q+1 \bmod \ell$.
+
+Ainsi à l'aide de ces deux valeurs propres ont peut déterminer des sous-groupes cycliques de la $\ell$ torsion. Comme on ne peut pour le moment que travailler sur $\mathbb{F}_q$, le but de cette méthode étant de construire une extension $\ell$-adique de $\mathbb{F}_q$, on ne peut considérer que le sous-groupe cyclique de taille $\ell$ associé à la valeur propre $1$. On construit donc à l'aide de ce sous groupe une $\ell$ isogénie qui a pour image $E_1$. 
+
+On peut alors appliquer exactement le même raisonnement sur $E_1$ que sur $E$ car deux courbes isogènes sont de même cardinal. Ainsi on construit un cycle d'isogénie.
+
+
 Par l'hypothèse faite sur $\ell$ il existe un $e \geqslant 1$ tel que $E[\ell^e] \subset \mathbb{F}_q$ est cyclique d'ordre $\ell^e$.
 
 \chapter{Isogénies sur les corps finis}
