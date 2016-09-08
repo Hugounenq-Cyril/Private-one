@@ -937,23 +937,27 @@ On va donc voir une application de cette méthode qui a un intérêt aussi de pa
 \paragraph{Towers from elliptic curves}
 Dans cette partie on revoit les constructions de Couveignes et Lercier \cite{couveignesLercier2013} et l'on montre en particulier les passages pertinents pour une construction de tour.
 
-Soit $\ell$ un nombre premier différent de $p$ qui ne divise pas $q-1$, soit $E_0$ une courbe elliptiqe de cardinal sur $\mathbb{F}_q$ multiple de $\ell$. Un telle courbe existe d'après le théorème de Hasse seulement si $\ell \leqslant q+2\sqrt{q} +1$.  
-Les isogénies
-On travaille alors avec des isogénies $\mathbb{F}_q$-rationnelles séparables de degré $\ell$. Ainsi si l'on considère le polynôme charactéristique de l'endomorphisme de Frobenius:
+Soit $\ell$ un nombre premier différent de $p$ qui ne divise pas $q-1$, soit $E_0$ une courbe elliptiqe de cardinal sur $\mathbb{F}_q$: $|E(\mathbb{F}_q)|=\ell^e l'$ avec $e \geqslant 1$ et $l' \wedge \ell =1$. Une telle courbe existe d'après le théorème de Hasse seulement si $\ell \leqslant q+2\sqrt{q} +1$.  
+Pour mettre en pratique l'idée de Couvegines et Lercier expliqué plus haut on travaille alors avec des isogénies $\mathbb{F}_q$-rationnelles séparables de degré $\ell$. Il est donc naturel de s'intéresser à l'action du Frobenius sur la $\ell$ torsion afin de déterminer ces isogénies. On étudie donc le polynôme charactéristique du Frobenius:
 \begin{equation*}
 X^2-t_{\pi}X+q=(X-1)(X-q) \bmod \ell
 \end{equation*}
-celui-ci se scinde modulo $\ell$.
+qui dans ce cas précis se scinde modulo $\ell$.
 % En effet comme $\ell \wedge q = 1$ on a le produit des valeurs propres qui n'est pas divisible par $\ell$.
 
 En effet par hypothèse sur le cardinal de la courbe on a: $|E|=q+1-t_{\pi}=0 \bmod \ell$, on peut alors montrer que $(t_{\pi}^2-4q)=(q+1)^2-4q=(q-1)^2 \bmod \ell$. De plus le fait que $\ell \nmid q-1$ nous permet d'énoncer que le discrimant du polynôme charactéristique de $\pi$ est strictement supérieur à $O$ modulo $\ell$, le Frobenius admet donc deux valeurs propres. Enfin on montre que les deux valeurs propres sont $1$ et $q \bmod \ell$ car on a $t_{\pi}=q+1 \bmod \ell$.
 
-Ainsi à l'aide de ces deux valeurs propres ont peut déterminer des sous-groupes cycliques de la $\ell$ torsion. Comme on ne peut pour le moment que travailler sur $\mathbb{F}_q$, le but de cette méthode étant de construire une extension $\ell$-adique de $\mathbb{F}_q$, on ne peut considérer que le sous-groupe cyclique de taille $\ell$ associé à la valeur propre $1$. On construit donc à l'aide de ce sous groupe une $\ell$ isogénie qui a pour image $E_1$. 
+Ainsi à l'aide de ces deux valeurs propres ont peut déterminer des sous-groupes cycliques de la $\ell$ torsion. 
 
-On peut alors appliquer exactement le même raisonnement sur $E_1$ que sur $E$ car deux courbes isogènes sont de même cardinal. Ainsi on construit un cycle d'isogénie.
+Comme on ne peut pour le moment que travailler sur $\mathbb{F}_q$, le but de cette méthode étant de construire une extension $\ell$-adique de $\mathbb{F}_q$, on ne peut utiliser que le sous-groupe cyclique de taille $\ell$ associé à la valeur propre $1$. On construit donc à l'aide de ce sous groupe une $\ell$ isogénie qui a pour image $E_1$. 
 
+De manière plus générale  on peut affirmer que $\ell$ torsion de $E$ n'est pas entièrement rationnelle car on a $\ell \nmid q-1$, la $\ell$ torsion est seulement cyclique. Ainsi cet argument et la cardinalité de la courbe permettent d'affirmer que l'on a un sous groupe cyclique d'ordre $\ell^e$ défini sur $\mathbb{F}_q$, on peut donc aussi travailler directement avec des $\ell^i$ isogénies avec $1 \leqslant i \leqslant e$.
 
-Par l'hypothèse faite sur $\ell$ il existe un $e \geqslant 1$ tel que $E[\ell^e] \subset \mathbb{F}_q$ est cyclique d'ordre $\ell^e$.
+Le sous groupe cyclique de la $\ell$ torsion défini comme le noyau de $\pi -q$ génère une $\ell$ isogénie rationnelle, car l'ensemble des points de son noyau est stable sous l'action du Frobenius. Ainsi $E_0$ admet deux courbes $\ell$ isogènes, cet argument peut se répéter à ses courbes $\ell$isogènes car celles-ci ont la même cardinalité. On a donc défini un cycle de $\ell$isogénies. Ainsi à partir de $E_0$ on dénote $E_1$ la courbe obtenue par le sous groupe cyclique de $\ell$ torsion rationnel, de manière générale on notera $E_{i+1}$ le codomaine de l'isogénie qui a pour noyeau la $\ell$-torsion rationnelle de $E_i$. Ce cycle a une longueur fini comme l'énonce le lemme suivant issu de \cite{DeFeo-Doliskani-Schost13}:
+
+\begin{lem}
+
+\end{lem}
 
 \chapter{Isogénies sur les corps finis}
 
