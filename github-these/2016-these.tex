@@ -945,20 +945,55 @@ X^2-t_{\pi}X+q=(X-1)(X-q) \bmod \ell
 qui dans ce cas précis se scinde modulo $\ell$.
 % En effet comme $\ell \wedge q = 1$ on a le produit des valeurs propres qui n'est pas divisible par $\ell$.
 
-En effet par hypothèse sur le cardinal de la courbe on a: $|E|=q+1-t_{\pi}=0 \bmod \ell$, on peut alors montrer que $(t_{\pi}^2-4q)=(q+1)^2-4q=(q-1)^2 \bmod \ell$. De plus le fait que $\ell \nmid q-1$ nous permet d'énoncer que le discrimant du polynôme charactéristique de $\pi$ est strictement supérieur à $O$ modulo $\ell$, le Frobenius admet donc deux valeurs propres. Enfin on montre que les deux valeurs propres sont $1$ et $q \bmod \ell$ car on a $t_{\pi}=q+1 \bmod \ell$.
+En effet par hypothèse sur le cardinal de la courbe on a: $|E|=q+1-t_{\pi}=0 \bmod \ell$, on peut alors montrer que $t_{\pi}^2-4q=(q+1)^2-4q=(q-1)^2 \bmod \ell$. De plus le fait que $\ell \nmid q-1$ nous permet d'énoncer que le discrimant du polynôme charactéristique de $\pi$ est différent de $0$ modulo $\ell$, le Frobenius admet donc deux valeurs propres. Enfin on montre que les deux valeurs propres sont $1$ et $q \bmod \ell$ car on a $t_{\pi}=q+1 \bmod \ell$.
 
-Ainsi à l'aide de ces deux valeurs propres ont peut déterminer des sous-groupes cycliques de la $\ell$ torsion. 
+Ainsi à l'aide de ces deux valeurs propres on peut déterminer des sous-groupes cycliques de la $\ell$ torsion. 
 
-Comme on ne peut pour le moment que travailler sur $\mathbb{F}_q$, le but de cette méthode étant de construire une extension $\ell$-adique de $\mathbb{F}_q$, on ne peut utiliser que le sous-groupe cyclique de taille $\ell$ associé à la valeur propre $1$. On construit donc à l'aide de ce sous groupe une $\ell$ isogénie qui a pour image $E_1$. 
+Comme on ne peut pour le moment que travailler sur $\mathbb{F}_q$, le but de cette méthode étant de construire une extension $\ell$-adique de $\mathbb{F}_q$, on ne peut utiliser que le sous-groupe cyclique de taille $\ell^e$ associé à la valeur propre $1$. On construit donc à l'aide de ce sous groupe une $\ell$ isogénie qui a pour image $E_1$. 
 
-De manière plus générale  on peut affirmer que $\ell$ torsion de $E$ n'est pas entièrement rationnelle car on a $\ell \nmid q-1$, la $\ell$ torsion est seulement cyclique. Ainsi cet argument et la cardinalité de la courbe permettent d'affirmer que l'on a un sous groupe cyclique d'ordre $\ell^e$ défini sur $\mathbb{F}_q$, on peut donc aussi travailler directement avec des $\ell^i$ isogénies avec $1 \leqslant i \leqslant e$.
+De manière plus générale  on peut affirmer que la $\ell$ torsion de $E$ n'est pas entièrement rationnelle car on a $\ell \nmid q-1$, la $\ell$ torsion est seulement cyclique. Ainsi cet argument et la cardinalité de la courbe permettent d'affirmer que l'on a un sous groupe cyclique d'ordre $\ell^e$ défini sur $\mathbb{F}_q$, on peut donc aussi travailler directement avec des $\ell^i$ isogénies avec $1 \leqslant i \leqslant e$.
 
-Le sous groupe cyclique de la $\ell$ torsion défini comme le noyau de $\pi -q$ génère une $\ell$ isogénie rationnelle, car l'ensemble des points de son noyau est stable sous l'action du Frobenius. Ainsi $E_0$ admet deux courbes $\ell$ isogènes, cet argument peut se répéter à ses courbes $\ell$isogènes car celles-ci ont la même cardinalité. On a donc défini un cycle de $\ell$isogénies. Ainsi à partir de $E_0$ on dénote $E_1$ la courbe obtenue par le sous groupe cyclique de $\ell$ torsion égal à $\ker (\pi_{|E_0} - \mathrm{Id}_{|E_0})$, de manière générale on notera $E_{i+1}$ le codomaine de l'isogénie engendré par $\ker (\pi_{|E_i} - \mathrm{Id}_{|E_i})$ . Ce cycle a une longueur fini comme l'énonce le lemme suivant issu de \cite{DeFeo-Doliskani-Schost13}:
+Le sous groupe cyclique de la $\ell$ torsion défini comme le noyau de $\pi -q$ génère une $\ell$ isogénie rationnelle, car l'ensemble des points de son noyau est stable sous l'action du Frobenius. Ainsi $E_0$ admet deux courbes $\ell$ isogènes, cet argument peut se répéter à ses courbes $\ell$isogènes car celles-ci ont la même cardinalité. On a donc défini un cycle de $\ell$isogénies. Ainsi à partir de $E_0$ on dénote $E_1$ la courbe comdonaire de la $\ell$-isogénie qui a pour noyau le sous groupe cyclique de la $\ell$ torsion égal à $\ker (\pi_{|E_0[\ell]} - \mathrm{Id}_{|E_0[\ell]})$, de manière générale on notera $E_{i+1}$ le codomaine de l'isogénie engendré par $\ker (\pi_{|E_i[\ell]} - \mathrm{Id}_{|E_i[\ell]})$ . Ce cycle a une longueur finie comme l'énonce le lemme suivant issu de \cite{DeFeo-Doliskani-Schost13}:
 
 \begin{lem}
 Soient $E_0,E_1, \cdots$ les courbes elliptiques définies comme ci-dessus, alors il existe un $n \in O(\sqrt{q}\log(q))$ tel que $E_n$ est isomorphe à $E_0$.
 \end{lem}
 
+\begin{proof}
+La preuve se sert du théorème de Minkowski qui nous donne une borne sur le nombre de groupe de classe de $\mathbb{Q}[X]/(X^2-t_{\pi}X+q)$. Les détails techniques de cette preuve ne sont pas le sujet de cette partie.
+\end{proof}
+
+Ainsi on travaillera avec les courbes $E_i$ avec $i$ modulo la longueur du cycle: $n$. En pratique pour faire cela il faut prendre en compte l'isomorphisme $E_n \simeq E_0$, cet isomorphisme peut être calculé grâce aux formules de Weierstrass et cela n'ajoute pas de grosses opérations arithmétiques à effectuer.
+
+On va donc se servir de ce cycle pour calculer des extensions de façon incrémentale, ainsi on pourra travailler sur des tours dont on ne connaît pas à priori le degré d'extension. 
+
+MOntrons comment construire un polynôme irréductible $f(x) \in \mathbb{F}_q[x]$ de degré $d=\ell^{\delta}$. Soient deux entiers $\lambda_{e+\delta}, \mu_{e+\delta}$ tels que 
+\begin{align*}
+\lambda_{e+\delta}=1 \bmod \ell^{e} \quad , \quad \mu_{e+\delta}=q \bmod \ell^e, \\
+X^2-tX+q = (X-\lambda_{e+\delta})(X-\mu_{e+\delta}) \bmod \ell^{e+\delta} 
+\end{align*}
+On note $\lambda_{e+\delta}=1+\ell^el'$ avec $l' \wedge \ell = 1$. Dans la suite on notera tout simplement $\lambda=\lambda_{e+\delta}$ et $\mu = \mu_{e+\delta}$. On pose maintenant:
+\begin{equation*}
+\mathfrak{d}=(d,\pi-\lambda)=(\ell,\pi-\lambda)^{\delta}=\mathfrak{l}^{\delta}.
+\end{equation*}
+C'est un idéal inversible, noyau de l'isogénie $i_{\delta}:E_0 \to E_{\delta}$. Le $\ell$ sous-groupe de Sylow de $E_{i+1}(\mathbb{F}_q)$ est le noyau de $\mathfrak{l}^e=(\ell^e,\pi - 1)$, et il est cyclique. Soit $A$ un générateur de $\mathfrak{l}^e$ avec $\ell^e \neq 2$. On écrit l'isogénie $\phi_i$ comme une fration rationnelle : 
+\begin{align*}
+\phi_{i}:E_i \to E_{i+1}, \\
+(x,y) \mapsto \left( \frac{f_i(x)}{g_i(x)},y\left(\frac{f_i(x)}{g_i(x)} \right)^' \right)
+\end{align*}
+avec $g_i$ le carré du polynôme de degré $\frac{ell-1}{2}$  qui s'annule sur l'abscisse des points du noyau de $\phi_{i}$. On note alors $ T_{1}(X)=f_{1}(x)-g_{1}(x)x(A)$. Soit $B \in E_i(\overline{\mathbb{F}_q})$ tel que $\phi_i{\delta}(B)=A$, alors  $B$ est un générateur de $\mathfrak{l}^{e+\delta}=(\ell^{e+\delta},\pi-\lambda)$. En particulier on a:
+\begin{equation*}
+\pi(B)=\lambda B
+\end{equation*}
+avec l'ordre de $\lambda=1+\ell^el'$ dans $(\mathbb{Z}/\ell^{e+\delta}\mathbb{Z})^*$ qui est $d=\ell^{\delta}$. Ainsi l'orbite de Galois de $B$ est de taille $d$ et le polynôme $T_{1}(X)$,dont les racines appartiennent au fibré $\phi_i^{-1}(A)$ est irréductible. 
+
+Pour définir alors des extensions successives on prend alors les pré images par les isogénies $\phi_{i_1},\phi_{i_2}, \cdots$.
+
+On aurait pu définir un polynôme irréductible de degré $\ell^{\delta}$ directement en considérant une isogénie $\psi:E_i \to E_{i+\delta}$ de degré $\ell^{\delta}$ et qui a pour noyau $\mathfrak{d}=(d,\pi-\lambda)=(\ell,\pi-\lambda_{e+\delta})^{\delta}=\mathfrak{l}^{\delta}$ avec $\lambda_{e+\delta}, \mu_{e+\delta}$ tels que 
+\begin{align*}
+\lambda_{e+\delta}=1 \bmod \ell^{e} \quad , \quad \mu_{e+\delta}=q \bmod \ell^e, \\
+X^2-tX+q = (X-\lambda_{e+\delta})(X-\mu_{e+\delta}) \bmod \ell^{e+\delta} 
+\end{align*}.
 \chapter{Isogénies sur les corps finis}
 
 \section{Calculs d'isogénie}
