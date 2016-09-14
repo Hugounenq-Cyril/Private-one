@@ -967,33 +967,46 @@ Ainsi on travaillera avec les courbes $E_i$ avec $i$ modulo la longueur du cycle
 
 On va donc se servir de ce cycle pour calculer des extensions de façon incrémentale, ainsi on pourra travailler sur des tours dont on ne connaît pas à priori le degré d'extension. 
 
-MOntrons comment construire un polynôme irréductible $f(x) \in \mathbb{F}_q[x]$ de degré $d=\ell^{\delta}$. Soient deux entiers $\lambda_{e+\delta}, \mu_{e+\delta}$ tels que 
+Montrons comment construire un polynôme irréductible $f(x) \in \mathbb{F}_q[x]$ de degré $\ell$. Soient  les deux entiers $\lambda_{e+1}, \mu_{e+1}$ tels que 
 \begin{align*}
-\lambda_{e+\delta}=1 \bmod \ell^{e} \quad , \quad \mu_{e+\delta}=q \bmod \ell^e, \\
-X^2-tX+q = (X-\lambda_{e+\delta})(X-\mu_{e+\delta}) \bmod \ell^{e+\delta} 
+\lambda_{e+1}=1 \bmod \ell^{e} \quad , \quad \mu_{e+1}=q \bmod \ell^e, \\
+X^2-tX+q = (X-\lambda_{e+1})(X-\mu_{e+1}) \bmod \ell^{e+1} 
 \end{align*}
-On note $\lambda_{e+\delta}=1+\ell^el'$ avec $l' \wedge \ell = 1$. Dans la suite on notera tout simplement $\lambda=\lambda_{e+\delta}$ et $\mu = \mu_{e+\delta}$. On pose maintenant:
+On note $\lambda_{e+1}=1+\ell^el'$ avec $l' \wedge \ell = 1$. Dans la suite on notera tout simplement $\lambda=\lambda_{e+1}$ et $\mu = \mu_{e+1}$. On pose maintenant:
 \begin{equation*}
-\mathfrak{d}=(d,\pi-\lambda)=(\ell,\pi-\lambda)^{\delta}=\mathfrak{l}^{\delta}.
+(\ell,\pi-\lambda)=\mathfrak{l}.
 \end{equation*}
-C'est un idéal inversible, noyau de l'isogénie $i_{\delta}:E_0 \to E_{\delta}$. Le $\ell$ sous-groupe de Sylow de $E_{i+1}(\mathbb{F}_q)$ est le noyau de $\mathfrak{l}^e=(\ell^e,\pi - 1)$, et il est cyclique. Soit $A$ un générateur de $\mathfrak{l}^e$ avec $\ell^e \neq 2$. On écrit l'isogénie $\phi_i$ comme une fration rationnelle : 
+C'est un idéal inversible, noyau de l'isogénie $\phi_{i}:E_i \to E_{i+1}$. Notre but est de travailler avec un élément de $\ell$ torsion de $E_{i+1}$ pour lequel on est sûr de ne pas avoir d'antécédent par la $\ell$ isogénie défini dans $\mathbb{F}_q$. Le $\ell$ sous-groupe de Sylow de $E_{i+1}(\mathbb{F}_q)$ est le noyau de $\mathfrak{l}^e=(\ell^e,\pi - 1)$ et il est cyclique, on travaille donc avec $A$ un générateur de $\mathfrak{l}^e$ avec $\ell^e \neq 2$. En écrivant l'isogénie $\phi_i$ comme une fration rationnelle : 
 \begin{align*}
 \phi_{i}:E_i \to E_{i+1}, \\
-(x,y) \mapsto \left( \frac{f_i(x)}{g_i(x)},y\left(\frac{f_i(x)}{g_i(x)} \right)^' \right)
+(x,y) \mapsto \left( \frac{f_i(x)}{g_i(x)},y\left( \frac{f_i(x)}{g_i(x)} \right)^' \right)
 \end{align*}
-avec $g_i$ le carré du polynôme de degré $\frac{ell-1}{2}$  qui s'annule sur l'abscisse des points du noyau de $\phi_{i}$. On note alors $ T_{1}(X)=f_{1}(x)-g_{1}(x)x(A)$. Soit $B \in E_i(\overline{\mathbb{F}_q})$ tel que $\phi_i{\delta}(B)=A$, alors  $B$ est un générateur de $\mathfrak{l}^{e+\delta}=(\ell^{e+\delta},\pi-\lambda)$. En particulier on a:
+avec $g_i$ le carré du polynôme de degré $\frac{ell-1}{2}$  qui s'annule sur l'abscisse des points du noyau de $\phi_{i}$ on  définit alors $ T_{1}(X)=f_{1}(x)-g_{1}(x)x(A)$. Soit $B \in E_i(\overline{\mathbb{F}_q})$ tel que $\phi_i{\delta}(B)=A$, alors  $B$ est un générateur de $\mathfrak{l}^{e+1}=(\ell^{e+1},\pi-\lambda)$. En particulier on a:
 \begin{equation*}
 \pi(B)=\lambda B
 \end{equation*}
-avec l'ordre de $\lambda=1+\ell^el'$ dans $(\mathbb{Z}/\ell^{e+\delta}\mathbb{Z})^*$ qui est $d=\ell^{\delta}$. Ainsi l'orbite de Galois de $B$ est de taille $d$ et le polynôme $T_{1}(X)$,dont les racines appartiennent au fibré $\phi_i^{-1}(A)$ est irréductible. 
+avec l'ordre de $\lambda=1+\ell^el'$ dans $(\mathbb{Z}/\ell^{e+1}\mathbb{Z})^*$ qui est $\ell$. Ainsi l'orbite de Galois de $B$ est de taille $\ell$ et le polynôme $T_{1}(X)$,dont les racines appartiennent au fibré $\phi_i^{-1}(A)$ est irréductible. 
 
-Pour définir alors des extensions successives on prend alors les pré images par les isogénies $\phi_{i_1},\phi_{i_2}, \cdots$.
+Pour définir alors des extensions successives on prend alors les pré images par les isogénies $\phi_{i_1},\phi_{i_2}, \cdots$. On définit donc la suite de polynômes suivant pour construire une tour d'extension $\ell$-adique en notant $\eta =x(A)$ l'abscisse d'un générateur de la $\ell^e$-torsion de $E_0$:
+\begin{align*}
+T_0=f_0(X_1)-\etaf_0(X_1), \\
+T_i=f_{-i}(X_{i+1})-X_{i+1}g_{-i}(X_{i+1})
+\end{align*}
 
 On aurait pu définir un polynôme irréductible de degré $\ell^{\delta}$ directement en considérant une isogénie $\psi:E_i \to E_{i+\delta}$ de degré $\ell^{\delta}$ et qui a pour noyau $\mathfrak{d}=(d,\pi-\lambda)=(\ell,\pi-\lambda_{e+\delta})^{\delta}=\mathfrak{l}^{\delta}$ avec $\lambda_{e+\delta}, \mu_{e+\delta}$ tels que 
 \begin{align*}
 \lambda_{e+\delta}=1 \bmod \ell^{e} \quad , \quad \mu_{e+\delta}=q \bmod \ell^e, \\
 X^2-tX+q = (X-\lambda_{e+\delta})(X-\mu_{e+\delta}) \bmod \ell^{e+\delta} 
 \end{align*}.
+
+On a alors le résultat suivant qui donne le temps de calcul 
+
+
+\paragraph{Remarques sur les utilisations dans notre cas pratique}
+On pourra remarquer que dans le cas qui nous intéresse en pratique on choisit comme corps de base pour la tour $\ell$-adique une extension $F_1$ de $\mathbb{F}_q$ dans laquelle on a $E[\ell] \subset E(F_1)$. Cela se traduit en pratique par le calcul des ordres des valeurs propres $\lambda, \mu$ de $\pi$ modulo la $\ell$-torsion, on travaille alors avec l'extension de degré $d_1$ avec $d_1=ppcm(o(\lambda),o(\mu))$ et $o$ l'ordre multiplicatif dans $\mathbb{Z}/\ell\mathbb{Z}^*$. $d_1$ est en particulier l'ordre de la matrice $\pi$ sur la $\ell$ torsion, il divise $\ell-1$.  
+
+En pratique on voudra travailler sur un corps fini $\mathbb{F}_q$ tel que l'on ait $E[\ell] \subset E(\mathbb{F}_q)$, cela a pour conséquence d'après le théorème sur la structure de groupe des points d'une courbe elliptique que l'on ait $\ell \mid q-1$. On utilisera donc en pratique le cas développé ici .
+
 \chapter{Isogénies sur les corps finis}
 
 \section{Calculs d'isogénie}
