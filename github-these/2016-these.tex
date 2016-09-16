@@ -979,8 +979,10 @@ On note $\lambda_{e+1}=1+\ell^el'$ avec $l' \wedge \ell = 1$. Dans la suite on n
 C'est un idéal inversible, noyau de l'isogénie $\phi_{i}:E_i \to E_{i+1}$. Notre but est de travailler avec un élément de $\ell$ torsion de $E_{i+1}$ pour lequel on est sûr de ne pas avoir d'antécédent par la $\ell$ isogénie défini dans $\mathbb{F}_q$. Le $\ell$ sous-groupe de Sylow de $E_{i+1}(\mathbb{F}_q)$ est le noyau de $\mathfrak{l}^e=(\ell^e,\pi - 1)$ et il est cyclique, on travaille donc avec $A$ un générateur de $\mathfrak{l}^e$ avec $\ell^e \neq 2$. En écrivant l'isogénie $\phi_i$ comme une fration rationnelle : 
 \begin{align*}
 \phi_{i}:E_i \to E_{i+1}, \\
-(x,y) \mapsto \left( \frac{f_i(x)}{g_i(x)},y\left( \frac{f_i(x)}{g_i(x)} \right)^' \right)
+(x,y) \mapsto \left( \frac{f_{i}(x)}{g_{i}(x)} ,y \left( \frac{f_{i}(x)}{g_{i}(x)} \right) ^{'} \right)
 \end{align*}
+%^' \right)
+
 avec $g_i$ le carré du polynôme de degré $\frac{ell-1}{2}$  qui s'annule sur l'abscisse des points du noyau de $\phi_{i}$ on  définit alors $ T_{1}(X)=f_{1}(x)-g_{1}(x)x(A)$. Soit $B \in E_i(\overline{\mathbb{F}_q})$ tel que $\phi_i{\delta}(B)=A$, alors  $B$ est un générateur de $\mathfrak{l}^{e+1}=(\ell^{e+1},\pi-\lambda)$. En particulier on a:
 \begin{equation*}
 \pi(B)=\lambda B
@@ -999,13 +1001,33 @@ On aurait pu définir un polynôme irréductible de degré $\ell^{\delta}$ direc
 X^2-tX+q = (X-\lambda_{e+\delta})(X-\mu_{e+\delta}) \bmod \ell^{e+\delta} .
 \end{align*}
 
-On a alors le résultat suivant qui donne le temps de calcul 
+\paragraph{Existence de telles courbes}
+Il est alors naturel de se demander sous quelles conditions on peut trouver une courbe elliptique $E$ définie sur $\mathbb{F}_q$ de cardinal multiple de $\ell$ avec $\ell \wedge q =1$ et $\ell \nmid q-1$. Par le théroème de Hasse si l'on a $\ell \leqslant 2\sqrt{q}$ alors il existe au moins deux entiers multiples de $\ell$ dans l'intervalle $[q+1-2\sqrt{q}, q+1+2\sqrt{q} ] $, on a alors au moins un des deux entiers qui n'est pas congru à $1$ modulo $q$. Il existe donc au moins une courbe de cardinal multiple de $\ell$. L'objectif est donc d'expliciter une borne inférieure sur ce nombre de courbes. Pour cela on utilise les résultats de Lenstra \cite{lenstra1987} qui ont été étendus à notre cas par Howe \cite{howe1993}.
+
+\begin{cor}{Howe}
+\label{cor:Howe:densite}
+Soit $W(\mathbb{F}_q)$ l'ensemble des courbes elliptiques sous forme de Weierstrass définies sur $\mathbb{F}_q$. Soit $\mu_w$ la mesure uniforme sur cet ensemble, soit $\ell$  tel que $\ell \nmid q-1$ alors la densité $r(\ell,q)$ de courbes elliptiques sous forme de Weierstrass ayant un point $\mathbb{F}_q$ rationnel d'ordre $\ell$ vérifie:
+\begin{equation*}
+|r(\ell,q)-\frac{1}{\ell-1}| \leqslant \frac{4\ell(\ell+1)}{(\ell-1)\sqrt{q}}
+\end{equation*}
+\end{cor}
+ainsi pour limiter le terme d'erreur pour l'évauation de $r(\ell,q)$ on se place dans le cas où l'on a $4\ell \leqslant q^{\frac{1}{4}}$, on aura alors l'erreur: $\frac{4\ell(\ell+1)}{(\ell-1)\sqrt{q}} \leqslant \frac{1}{2 \ell} $. Dans ce cas-là on pourra donc considérer qu'il faut répéter $\ell$ fois le choix d'une courbe elliptique sous forme de Weierstrass avant de trouver une courbe de cardinal divisible par $\ell$.
+
+On peut alors énoncer le résultat suivant issu de \cite{DeFeo-Doliskani-Schost13} qui donne le temps de calcul de construction d'une tour $\ell$-adique:
+
+\begin{thm}
+Pour $\ell$ premier avec $\ell \leqslant q^{1/4}$, $\ell \wedge q = 1$ et $\ell \nmid q-1$. L'initialisation de la tour requiert $O_e(\ell \log^5(q)+\ell^3)$ opérations binaires; la construction du $i$-ème étage de la tour requiert $O_e(\ell^2+M(\ell)\log(\ell q)+M(\ell^i)\log(\ell^i))$ opérations sur $\mathbb{F}_q$
+\end{thm} 
+
+\begin{proof}
+Le coût de calcul de la cardinalité d'une courbe elliptique est de $O(\log q)^{5+\epsilon(q)}$ opérations élémentaires en utilisant l'algorithme de Schoof. On a cette opérations à répéter jusqu'à $\ell$ fois pour espérer trouver une courbe de cardinal multiple à $\ell$ d'après \ref{cor:Howe:densite}. 
+\end{proof}
 
 
 \paragraph{Remarques sur les utilisations dans notre cas pratique}
 On pourra remarquer que dans le cas qui nous intéresse en pratique on choisit comme corps de base pour la tour $\ell$-adique une extension $F_1$ de $\mathbb{F}_q$ dans laquelle on a $E[\ell] \subset E(F_1)$. Cela se traduit en pratique par le calcul des ordres des valeurs propres $\lambda, \mu$ de $\pi$ modulo la $\ell$-torsion, on travaille alors avec l'extension $F_1$ de degré $d_1$ avec $d_1=ppcm(o(\lambda),o(\mu))$ et $o$ l'ordre multiplicatif dans $\mathbb{Z}/\ell\mathbb{Z}^*$. $d_1$ est en particulier l'ordre de la matrice $\pi$ sur la $\ell$ torsion, il divise $\ell-1$.  
 
-En pratique on travaillera donc sur une extension $F_1$ de $\mathbb{F}_q$ tel que l'on ait $E[\ell] \subset E(F_1)$, cela a pour conséquence d'après le théorème sur la structure de groupe des points d'une courbe elliptique que l'on ait $\ell \mid |F_1|-1$. On utilisera donc en pratique la construction de tous $\ell$-adique développé ici , et on devra ajouter un facteur pour avoir le coût des opérations dans $\mathbb{F}_q$.
+En pratique on travaillera sur une extension $F_1$ de $\mathbb{F}_q$ tel que l'on ait $E[\ell] \subset E(F_1)$, cela a pour conséquence d'après le théorème sur la structure de groupe des points d'une courbe elliptique que l'on ait $\ell \mid |F_1|-1$. On utilisera donc en pratique la construction de tour $\ell$-adique développé ici , et on devra ajouter un facteur pour avoir le coût des opérations dans $\mathbb{F}_q$.
 
 \chapter{Isogénies sur les corps finis}
 
