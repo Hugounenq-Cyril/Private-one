@@ -1020,7 +1020,9 @@ Pour $\ell$ premier avec $\ell \leqslant q^{1/4}$, $\ell \wedge q = 1$ et $\ell 
 \end{thm} 
 
 \begin{proof}
-Le coût de calcul de la cardinalité d'une courbe elliptique est de $O(\log q)^{5+\epsilon(q)}$ opérations élémentaires en utilisant l'algorithme de Schoof. On a cette opérations à répéter jusqu'à $\ell$ fois pour espérer trouver une courbe de cardinal multiple à $\ell$ d'après \ref{cor:Howe:densite}. 
+Le coût de calcul de la cardinalité d'une courbe elliptique est de $O(\log q)^{5+\epsilon(q)}$ opérations élémentaires en utilisant l'algorithme de Schoof. On a cette opérations à répéter jusqu'à $\ell$ fois pour espérer trouver une courbe de cardinal multiple à $\ell$ d'après \ref{cor:Howe:densite}. Le coût total d'une courbe de cardinalité multiple de $\ell$ est donc de  $O(\ell\log q)^{5+\epsilon(q)}$. Pour calculer les $j$-invariants du volcan cyclique on a besoin de calculer le $\ell$ ème polynôme modulaire $\phi_{\ell}$ modulo $p$, il est d'abord calculé sur $\mathbb{Z}$ avec un coût de $O^~(\ell^3)$ opérations binaires d'après \cite{enge2008} puis réduit modulo $p$.
+
+Pour construire le $i$ ème niveau on doit tout d'abord calculer l'équation de $E_{-i}$
 \end{proof}
 
 
