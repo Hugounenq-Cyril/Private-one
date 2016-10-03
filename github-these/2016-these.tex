@@ -1036,9 +1036,20 @@ On pourra remarquer que dans le cas qui nous intéresse en pratique on choisit c
 En pratique on travaillera sur une extension $F_1$ de $\mathbb{F}_q$ tel que l'on ait $E[\ell] \subset E(F_1)$, cela a pour conséquence d'après le théorème sur la structure de groupe des points d'une courbe elliptique que l'on ait $\ell \mid |F_1|-1$. On utilisera donc en pratique la construction de tour $\ell$-adique développé ici , et on devra ajouter un facteur pour avoir le coût des opérations dans $\mathbb{F}_q$.
 
 \paragraph{Relèvement et descente}
-Une fois que l'on a calculé les polynômes Q et T selon les différentes possibilités données par le scindement de $\phi_\ell$ dans $\mathbb{F}_q$, alors on peut énoncer de manière unifiée comment sont calculés les relèvement et les descentes dans la tour d'extension $\ell$-adique.
+Les différentes constructions de tours $\ell$-adiques à l'aide de fibrés irréductibles s'appliquent aussi au cas où l'on a $\phi_{\ell}$ qui se scinde en produits de facteurs irréductibles de degré $1$ et $2$ en plus du cas précédent comme cela est développé plus en détail dans \cite{DeFeo-Doliskani-Schost13}. Ainsi toutes ces constructions à l'aide de fibrés irréductibles ont une structure commune qui nous permet de calculer le relèvement et la descente de la même manière. En rennomant les variables $(X_i,X_{i-1})$ par $(X,Y)$ et les polynômes $(Q_{i-1},Q_{i},T_i)$ par $(R,S,T)$, alors l'extension au niveau $i$ s'écrit:
+\begin{equation}
+\mathbb{F}_q[Y]/\langle S(Y) \rangle  \quad \textit{et } \quad \mathbb{F}_q[X,Y]/ \langle R(X), T(X,Y) \rangle
+\end{equation}
+avec $R$ de degré $\ell^{i-1}$ et $S$ de degré $\ell^i$ et $T(X,Y)$ de la forme $f(Y) -Xg(Y)$ avec $\deg(f)=\ell$ et $deg(g)< \ell$ et $ \mathrm{pgcd}(g,f)=1$. En particulier on peut avoir $g=1$. Dans le reste de cette section on considèrera $f,g$ et le degré $\ell$ fixés.
 
+Le relèvement est le passage d'une base bivariée vers une base monovariée, cela correspond donc au passage de la base de droite à celle de gauche. La descente est l'opération inverse. En utilisant la forme particulière de $T$ on montre alors qu'on peut réduire ces opérations à la composition et la décomposition de fonctions rationnelles.
 
+\paragraph{Relèvement}
+Soit $P$ dans $\mathbb{F}_q[X,Y]$ et $n$ dans $\mathbb{N}$ avec $\deg(P,X)<n$. On définit $P[f,g,n]$ comme étant:
+\[
+P[f,g,n]=g^{n-1}P(\frac{f}{g},Y)\in \mathbb{F}_q[X,Y].
+\]
+Si par exemple $P=\sum_{i=0}^{n-1}p_i(Y)X^i$ alors $P[f,g,n]=\sum_{i=0}^{n}p_if^ig^{n-1-i}$. On va donc montrer comment le calculer puis on va relier ce polynôme au relèvement d'éléments de la tour.
 
 \chapter{Isogénies sur les corps finis}
 
