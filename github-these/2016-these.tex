@@ -1083,6 +1083,15 @@ Si par exemple $P=\sum_{i=0}^{n-1}p_i(Y)X^i$ alors $P[f,g,n]=\sum_{i=0}^{n}p_if^
 \end{algorithmic}
 \end{algorithm}
 
+
+\begin{thm}
+Avec les entrées $P,f,g,n$ tels que $\deg(P,X)<n$ et $\deg(P,Y)<\ell$, l'algorithme \ref{alg:Compose} calcule $Q=P[f,g,n]$ avec un coût de $O(M(\elln)\log(n))$ opérations sur $\mathbb{F}_q$.
+\end{thm}
+
+\begin{proof}
+Cette preuve est issue de \cite{DeFeo-Doliskani-Schost13}.
+\end{proof}
+
 \begin{algorithm}
 \caption{\label{alg:Decompose}Decompose}
 \begin{algorithmic}[1]
