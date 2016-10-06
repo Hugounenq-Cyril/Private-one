@@ -5,6 +5,8 @@
 \usepackage[francais]{babel}
 \usepackage{hyperref}
 \usepackage{amssymb,amsthm,amsmath,amsfonts}
+\usepackage{algorithmic}
+\usepackage{algorithm}
 \usepackage{units}
 \usepackage{lmodern}
 \usepackage{fp}
@@ -42,6 +44,9 @@
 \newtheorem{rem}[thm]{Remarque}
 \theoremstyle{remark} 
 \newtheorem{exe}[thm]{Exemple}
+
+\def\algorithmicrequire{\textbf{Entrée:}}
+\def\algorithmicensure{\textbf{Sortie:}}
 
 \newcommand{\defeq}{\mathrel{\mathop:}=}
 
@@ -625,7 +630,7 @@ Comme vu dans \cite{lang2002algebra}{Theorem VI.9.1} et mis en pratique dans \ci
 
 Ainsi pour construire une extension de degré 2 d'un corps fini $\mathbb{F}_q$ un résidu non quadratique $\alpha$ défini sur $\mathbb{F}_q$ est nécessaire. On trouve celui-ci après $O(1)$ essais, on ne va donc pas considérer le coût de calcul de celui-ci. 
 
-De plus il sera considéré pour le corps fini  $\mathbb{F}_q$ que $q=1 \bmod 4$ car le calcul d'une extension quadratique $\mathbb{F}_{q'}$ lorsque $q=3 \bmod 4$ ne rajoute que un facteur $O(1)$ pour le nombre d'opérations sur $\mathbb{F}_q$, cela se justifie par la discussion sur les coûts d'opérations $+,\times, \div$ sur de polynômes de degré $n$ sur $\mathbb{F}_q$.
+De plus il sera considéré pour le corps fini  $\mathbb{F}_q$ que $q=1 \bmod 4$ car le calcul d'une extension quadratique $\mathbb{F}_{q'}$ lorsque $q=3 \bmod 4$ ne rajoute que un facteur $O(1)$ pour le nombre d'opérations sur $\mathbb{F}_q$, cela se justifie par la discussion sur les coûts d'opérations $+,\times, \div$ sur des polynômes de degré $n$ sur $\mathbb{F}_q$.
 
 Dans ce document on ne va pas considérer toutes les opérations sur une tour $2$-adique, seront évidemment considérées les opérations de base telles que la multiplication et l'inversion, mais aussi le Frobenius (crucial pour les applications que l'on va en faire), le calcul de racine carrée, d'autres opérations peuvent être trouvées dans \cite{Doliskani-Schost15}.
 \begin{prop}[Doliskani-Schost'15]
@@ -658,7 +663,7 @@ Dans cette sous-section la tour $2$-adique: $\mathbb{F}_q, \mathbb{F}_{q^2}, \ma
 afin d'alléger la notation, avec $\mathbb{L}_{k}=\mathbb{F}_{q^{2^{k}}}$ pour tout entier $k$.
 
 
-Les éléments de $\mathbb{L}_k$ peuvent être représentés de deux manières différente monovariée et bivariée, de la même manière que dans \cite{DeFeo-Shost'12}. 
+Les éléments de $\mathbb{L}_k$ peuvent être représentés de deux manières différentes: monovariée et bivariée, de la même manière que dans \cite{DeFeo-Shost'12}. 
 
 Soit $\alpha$ un résidu non quadratique de $ \mathbb{L}_0$, à l'aide de celui-ci sont définis les suites de polynômes $T_1,T_2,\cdots, T_k$ en les indéterminées $X_1,X_2, \cdots X_k$ de la façon suivante:
 \[
@@ -668,10 +673,10 @@ T_1=X_1-\alpha \quad \textit{et} \quad T_k=X_k^2-X_{k-1} \quad \textit{avec $k$ 
 P_k=X_k^{2^k}-\alpha \quad \textit{avec $k$ entier naturel non nul} 
 \]
 
-Comme abordé dans plus tôt et discuté dans \cite{lang2002algebra}, l'égalité entre les idéaux suivants est vérifiée:
+Comme abordé dans \cite{lang2002algebra}, l'égalité entre les idéaux suivants est vérifiée:
 \begin{equation}
 \label{eq:corres-repre-2}
-\langle T_1, T_2, \cdots, T_k \rangle = \langle P_k, X_{k_1}-X_k^2, ..., X_1-X_{k}^{2^{k-1}} \rangle,
+\langle T_1, T_2, \cdots, T_k \rangle = \langle P_k, X_{k-1}-X_k^2, ..., X_1-X_{k}^{2^{k-1}} \rangle,
 \end{equation}
 Cet idéal premier est alors appelé $A_k$ et l'on a:
 \[
@@ -679,11 +684,11 @@ Cet idéal premier est alors appelé $A_k$ et l'on a:
 \]
 Soit $k \geqslant 1$  on note $x_k$ l'image de l'indéterminée $X_k$ dans l'anneau résiduel $\mathbb{F}_q[X_1,X_2, ...,X_k]/A_k$, alors par inclusion naturelle de $\mathbb{F}_q[X_1,X_2, ...,X_k]/A_k$ dans $\mathbb{F}_q[X_1,X_2, ...,X_{k+1}]/A_{k+1}$, $x_k$ peut aussi être vu de façon indifférenciée comme un élément de $\mathbb{F}_{q^{2^j}}$ pour $j \geqslant k$.
 
-De plus grâce à l'équation \ref{eq:corres-repre-2}, représenter un élément de $\mathbb{L}_k$ peut être fait soit comme un polynôme en $x_1, ..., x_k$ de degré au plus un en chaque variable grâce au côté gauche de l'équation \ref{eq:corres-repre-2}, soit comme un polynôme en $x_k$ de degré au plus $2^k$ grâce au côté gauche de l'équation \ref{eq:corres-repre-2}.
+De plus grâce à l'équation \ref{eq:corres-repre-2}, représenter un élément de $\mathbb{L}_k$ peut être fait soit comme un polynôme en $x_1, ..., x_k$ de degré au plus un en chaque variable grâce au côté gauche de l'équation \ref{eq:corres-repre-2}, soit comme un polynôme en $x_k$ de degré au plus $2^k$ grâce au côté droit de l'équation \ref{eq:corres-repre-2}.
 
 L'écriture par défaut des éléments de $\mathbb{L}_k$ sera donc la représentation univariée. Ainsi un élément de $\mathbb{L}_k$ sera représenté sous la forme $g(x_k)$ avec $g$ un polynôme de $\mathbb{F}_q[X_k]$ de degré strictement inférieur à $2^k$. 
 
-Cependant lors des représentations d'éléments de $\mathbb{L}_k$ il ne va pas être fait des changements de base univariée à multivariée mais seulement à du bivarié pour permettre des passages d'un niveau dans la tour $2$ adique. On représentera par exemple alors $\mathbb{L}_k$ pour $k\geqslant1$ des deux façons suivantes:
+Cependant lors des représentations d'éléments de $\mathbb{L}_k$ il ne va pas être fait des changements de base univariée à base multivariée mais seulement à une base bivarié pour permettre des passages un niveau plus bas dans la tour $2$ adique. On représentera par exemple alors $\mathbb{L}_k$ pour $k\geqslant1$ des deux façons suivantes:
 \begin{equation*}
 \mathbb{L}_k \cong \mathbb{F}_q[X_k]/\langle P_k(X_k) \rangle \cong \mathbb{F}_q[X_k,X_{k-1}]/\langle P_{k-1}(X_{k_1}), X_k^2-X_{k-1}  \rangle
 \end{equation*}  
@@ -695,24 +700,24 @@ la $\mathbb{F}_q$ base bivariée de $\mathbb{L}_k$ est alors:
 \begin{equation*}
 1,x_{k-1},x_{k-1}^2,...,x_{k-1}^{2^{k-1}-1},x_k,x_kx_{k-1},x_kx_{k-1}^2,...,x_kx_{k-1}^{2^{k-1}-1}
 \end{equation*}
-En pratique ce changement se fait de la façon suivante à partir d'une expression $G(x_k)$ d'un élément de $\mathbb{L}_k$ avec $G$ un polynôme de degré inférieur à $2^k-1$:
+En pratique ce changement de base se fait de la façon suivante à partir d'une expression $G(x_k)$ d'un élément de $\mathbb{L}_k$ avec $G$ un polynôme de degré inférieur à $2^k-1$:
 \begin{equation*}
 G(x_k)=G_0(x_k)+x_kG_1(x_k^2)=G_0(x_k)+x_kG(x_{k-1})
 \end{equation*}
-avec $G_0$ et $G_1$ des polynômes de degré inférieur à $2^{k-1}-1$. Ce changement de base ne requiert aucun calcul arithmétique, ainsi celui-ci pourra être utilisé sans coût supplémentaire et en particulier un élément pourra être considéré indifféremment dans une base multivariée ou monovariée.%a completer
+avec $G_0$ et $G_1$ des polynômes de degré inférieur à $2^{k-1}-1$. Ce changement de base ne requiert aucun calcul arithmétique, ainsi celui-ci pourra être utilisé sans coût supplémentaire et en particulier un élément pourra être considéré indifféremment dans une base bivariée ou monovariée.%a completer
 
 L'inversion d'un élément pourrait être alors considérée dans une base univariée en utilisant l'algorithme étendu d'Euclide étendu. Ainsi le coût d'inversion d'un élément de $\mathbb{L}_k$ serait de $O(M(n)log(n))$ opérations sur $\mathbb{F}_q$ en utilisant les résultats de \cite{vzGJG03}[ch.11]. Une autre technique plus avantageuse est préférée en remarquant un élément $\gamma=G(x_k)$ inversible de $\mathbb{L}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
 \begin{align*}
 \frac{1}{G(x_k)} &=\frac{1}{G_0(x_{k-1})+x_kG_1(x_{k-1})} \\
  				&= \frac{G_0(x_{k-1})-x_kG_1(x_{k-1})}{G_0(x_{k-1})^2-x_{k-1}G_1(x_{k-1})^2}
 \end{align*}
-Ainsi le coût d'une inversion d'un élément de $\mathbb{L}_k$ est le coût d'une addition de la multiplication d'éléments de $\mathbb{L}_k$ ainsi que le coût d'une inversion d'éléments dans $\mathbb{L}_{k-1}$, on a donc affaire à un algorithme récursif de coût  $T(k)=T(k-1)+O(M(2^k))$; avec la super linéarité de $M$ on obtient un coût de calcul de $O(M(n))=O(M(2^k))$ opérations en $\mathbb{F}_q$
+Ainsi le coût d'une inversion d'un élément de $\mathbb{L}_k$ est le coût d'une addition de la multiplication d'éléments de $\mathbb{L}_k$ ainsi que le coût d'une inversion d'éléments dans $\mathbb{L}_{k-1}$, on a donc affaire à un algorithme récursif de coût  $T(k)=T(k-1)+O(M(2^k))$; avec la super linéarité de $M$ on obtient un coût de calcul de $O(M(n))=O(M(2^k))$ opérations en $\mathbb{F}_q$.
 
 \subsubsection*{Calcul du Frobenius}
 On aborde ici une partie essentielle à la réussite de l'algorithme de calcul d'isogénies expliqué plus tard, le calcul du Frobenius. Rappelons ici l'objectif d'une telle opération: soit $\gamma $ un élément de $\mathbb{L}_k$ et soit $s=q^d$ avec $d$ un entier quelconque, on veut alors calculer $\gamma^s$ dans $\mathbb{L}_k$. Pour plus de lisibilité on pose $2^k=n$.
 
 
-On commence par le cas le plus simple: $\gamma=x_k$, ainsi en réécrivant $s=nu+v$, en se rappelant que l'on a $x_k^n=\alpha $ nous permet d'obtenir $x_k^s=\alpha^ux_k^v$. De plus comme $\alpha$ est un élément de $\mathbb{F}_q$ on obtient $\alpha^u=\alpha^{u \bmod q-1}$, cette opération est donc effectuée en $O(\log(q))$ opérations dans $\mathbb{F}_q$ à l'aide de l'exponentiation rapide. Une méthode rapide est préconisée pour le calcul de $u \bmod q-1$ et $v$, dans un premier temps il faut calculer $\rho=r \bmod n(q-1)$ à l'aide de l'exponentiation rapide puis $u \bmod q-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne de $\rho$ par $n$. Le coût booléen d'une telle opération est de $O(\log(d)\log(nq))$.
+On commence par le cas le plus simple: $\gamma=x_k$, ainsi en réécrivant $s=nu+v$, le fait que l'on ait $x_k^n=\alpha $ nous permet d'obtenir $x_k^s=\alpha^ux_k^v$. De plus comme $\alpha$ est un élément de $\mathbb{F}_q$ on obtient $\alpha^u=\alpha^{u \bmod q-1}$, cette opération est donc effectuée en $O(\log(q))$ opérations dans $\mathbb{F}_q$ à l'aide de l'exponentiation rapide. Une méthode rapide est préconisée pour le calcul de $u \bmod q-1$ et $v$, dans un premier temps il faut calculer $\rho=r \bmod n(q-1)$ à l'aide de l'exponentiation rapide puis $u \bmod q-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne de $\rho$ par $n$. Le coût booléen d'une telle opération est de $O(\log(d)\log(nq))$.
 
 Soit  $\gamma=G(x_k)$, alors en écrivant $G(x_k)=g_{n-1}x_k^{n-1}+ \cdots + g_1 x_k + g_0$ on obtient alors:
 
@@ -720,9 +725,9 @@ Soit  $\gamma=G(x_k)$, alors en écrivant $G(x_k)=g_{n-1}x_k^{n-1}+ \cdots + g_1
 \gamma^r &= g_{n-1}(x_k^r)^{n-1}+ \cdots + g_1 (x_k^r) + g_0 \\
          &= g_{n-1}(\alpha^ux_k^v)^{n-1}+ \cdots + g_1 (\alpha^ux_k^v) + g_0
 \end{align*}
-Ainsi avec la connaissance de $\alpha^u,v$ le calcul de $\gamma^r$ revient au calcul des $n$ premières puissances de $\alpha^ux_k^v$ et de les remplacer dans l'écriture de $G$. Comme on a $\alpha=x_k^n$ ces puissances sont juste des monômes en $x_k$ et on peut donc les calculer en $O(n)$ multiplications sur $\mathbb{F}_q$. Le coût total pour le Frobenius obtenu est donc de $O(n+ \log(q))$ opérations sur $\mathbb{F}_q$.
+Ainsi avec la connaissance de $\alpha^u,v$ le calcul de $\gamma^r$ revient au calcul des $n$ premières puissances de $\alpha^ux_k^v$ et de les remplacer dans l'écriture de $G$. En effet comme $\alpha=x_k^n$ ces puissances sont juste des monômes en $x_k$ et on peut donc les calculer en $O(n)$ multiplications sur $\mathbb{F}_q$. Le coût total pour le Frobenius obtenu est donc de $O(n+ \log(q))$ opérations sur $\mathbb{F}_q$.
 
-Maintenant que le coût du Frobenius a été établie nous allons maintenant voir une autre opération nécessaire pour le calcul d'isogénies, le calcul de racines carrées.
+Maintenant que le coût du Frobenius a été établi nous allons maintenant voir une autre opération nécessaire pour le calcul d'isogénies, le calcul de racines carrées.
 
 \subsubsection*{Calcul d'une racine carrée}
 Les résultats de cette problématique sont issus d'idées développées dans \cite{Doliskani-Schost14} et sont adaptés à cette construction de tour $2$ adique où le coût du Frobenius est très faible. 
@@ -739,29 +744,33 @@ en posant
 \eta=1+\delta^{(q-1)/2}+\cdots+ \gamma^{(q^{n-1}-1)/2}
 \end{align*}
 Sans perte de généralité on peut supposer que l'on a $\eta \neq 0$, si ce n'est pas le cas alors on peut remplacer $\gamma$ par $\gamma c^2$ avec $c$ choisi aléatoirement parmi les inversibles de $\mathbb{F}_q$.
-$O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) \neq 0$. En effet il y a $q^{2^k}/q$ valeurs de $c$ pour lesquelles on a $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) = 0$ ainsi la probabilité d'avoir une $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) \neq 0$ est de $1-(q^{2^k}/q)/(q^{2^k})=1-1/q>1/2$.
+$O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) \neq 0$. En effet il y a $q^{2^k}/q$ valeurs de $c$ pour lesquelles on a $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) = 0$ ainsi la probabilité d'avoir $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) \neq 0$ est de $1-(q^{2^k}/q)/(q^{2^k})=1-1/q>1/2$.
 Maintenant si l'on met au carré l'équation \ref{eq:trace-square-root} on obtient alors l'équation suivante dans $\mathbb{F}_q$: $\beta^2=\delta \eta^2$. Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation et $\gamma$ calculé car on a alors $\gamma=\beta \eta^{-1}$.
-Le coût de $\beta$ est un nombre attendu de $O(\log(q))$ opérations sur $\mathbb{F}_q$ \cite{vzGJG03}[ch 14.5], ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
+Le coût de calcul de $\beta$ est un nombre attendu de $O(\log(q))$ opérations sur $\mathbb{F}_q$ \cite{vzGJG03}[ch 14.5], ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
 
 Soit $\lambda$ un élément de $\mathbb{L}_k$ défini par $\lambda = \delta^{(q-1)/2} $ on a alors la relation suivante avec $\eta$:
 \begin{equation*}
 \eta = 1 + \lambda + \lambda^{1+q} + \lambda^{1+q+q^2} + \cdots + \lambda^{1+q+q^2+\cdots+q^{n-2}} 
 \end{equation*}
 Pour $m \geqslant 0$ on définit:
-\begin{equation*}
-\varepsilon_m=\lambda^{q} + \lambda^{q+q^2} + \cdots + \lambda^{q+q^2+\cdots+q^{m}}
-\end{equation*} 
-de telle sorte que l'on ait $\eta=1+\lambda+\lambda \varepsilon_{n-2}$, ainsi en définissant $\zeta_m=\lambda^{q+q^2+\cdots+q^{m}} $ que l'on peut construire par récurrence:
 \begin{equation}
+\zeta_m=\lambda^{q+q^2+\cdots+q^{m}} 
+\end{equation}
+que l'on peut construire par récurrence:
+\begin{equation*}
 \zeta_1=\gamma^q \quad \textit{et} \quad
 \zeta_m=
 \begin{cases} 
 \zeta_{m/2}  \zeta_{m/2}\zeta_{m/2}^{q^{m/2}} \textit{si m est pair }\\
 \zeta_{1}  \zeta_{m-1}^{q} \textit{si m est impair}
 \end{cases}
-\end{equation}
+\end{equation*}
 
- on a alors une relation de récurrence similaire pour le calcul de $\varepsilon$:
+On définit aussi
+\begin{equation*}
+\varepsilon_m=\lambda^{q} + \lambda^{q+q^2} + \cdots + \lambda^{q+q^2+\cdots+q^{m}}
+\end{equation*} 
+on a alors une relation de récurrence pour le calcul de $\varepsilon$:
 
 \begin{equation}
 \label{eq:varepsilon}
@@ -772,8 +781,13 @@ de telle sorte que l'on ait $\eta=1+\lambda+\lambda \varepsilon_{n-2}$, ainsi en
 \varepsilon_{m-1} + \zeta_{m} \textit{si m est impair}
 \end{cases}
 \end{equation}
-Le calcul de $\lambda$ a un coût de $O(M(n)log(q))$ opérations sur $\mathbb{F}_q$, le calcul de $\varepsilon_1$ et $\eta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, supposons que le calcul de $\varepsilon_m$ et $\zeta_m$ ait été effectué. En utilisant les équations \ref{varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathbb{F}_{q^n}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ est calculé en $O(M(n)\log(n)+M(n)\log(q))=O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$.
-Ainsi $\beta$ peut être déduit en $O(\log(q))$ opérations sur $\mathbb{F}_q$, le coût de calcul de $\gamma$ étant négligeable par rapport à celui de $\eta$. On a alors un coût total de $O(M(n)\log(nq))$ opération sur $\mathbb{F}_q$.
+
+Ainsi on obtient $\eta=1+\lambda+\lambda \varepsilon_{n-2}$. 
+
+
+ 
+Le calcul de $\lambda$ a un coût de $O(M(n)log(q))$ opérations sur $\mathbb{F}_q$, le calcul de $\varepsilon_1$ et $\eta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, supposons que le calcul de $\varepsilon_m$ et $\zeta_m$ ait déjà été effectué. En utilisant les équations \ref{varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathbb{F}_{q^n}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ sont calculés en $O(M(n)\log(n)+M(n)\log(q))=O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$.
+$\beta$ peut donc être calculé en $O(\log(q))$ opérations sur $\mathbb{F}_q$. Le coût de calcul de $\gamma$ étant négligeable par rapport à celui de $\eta$, on a alors un coût total de $O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$.
 
 Une implantation de cette construction de tours $2$-adique et des opérations du Frobenius et du calcul de racine carrée ont été réalisé sur SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
@@ -1050,6 +1064,53 @@ Soit $P$ dans $\mathbb{F}_q[X,Y]$ et $n$ dans $\mathbb{N}$ avec $\deg(P,X)<n$. O
 P[f,g,n]=g^{n-1}P(\frac{f}{g},Y)\in \mathbb{F}_q[X,Y].
 \]
 Si par exemple $P=\sum_{i=0}^{n-1}p_i(Y)X^i$ alors $P[f,g,n]=\sum_{i=0}^{n}p_if^ig^{n-1-i}$. On va donc montrer comment le calculer puis on va relier ce polynôme au relèvement d'éléments de la tour.
+
+\begin{algorithm}
+\caption{\label{alg:Compose}Compose}
+\begin{algorithmic}[1]
+\REQUIRE $P \in \mathbb{F}_q[X,Y], f,g \in \mathbb{F}_q[Y], n \in \mathbb{N}$
+\ENSURE $P[f,g,n] \in \mathbb{F}_q[X,Y]$.
+\IF{ $n=1$}
+ \RETURN $P$
+\ELSE
+\STATE $m \gets \left\lceil n/2 \right\rceil   $
+\STATE Soient $P_0,P_1$ tels que $P=P_0 + X^{m} P_1$
+\STATE $Q_0 \gets \textrm{Compose}(P_0,f,g,m))$
+\STATE $Q_1 \gets \textrm{Compose}(P_0,f,g,n-m))$
+\STATE $Q \gets Q_0g^{n-m}+Q_1f^m$
+\RETURN $Q$ 
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{thm}
+Avec les entrées $P,f,g,n$ tels que $\deg(P,X)<n$ et $\deg(P,Y)<\ell$, l'algorithme \ref{alg:Compose} calcule $Q=P[f,g,n]$ avec un coût de $O(M(\elln)\log(n))$ opérations sur $\mathbb{F}_q$.
+\end{thm}
+
+\begin{proof}
+Cette preuve est issue de \cite{DeFeo-Doliskani-Schost13}.
+\end{proof}
+
+\begin{algorithm}
+\caption{\label{alg:Decompose}Decompose}
+\begin{algorithmic}[1]
+\REQUIRE $Q,f,g,h \in \mathbb{F}_q[Y], n \in \mathbb{N}$
+\ENSURE $P[f,g,n] \in \mathbb{F}_q[X,Y]$.
+\IF{ $n=1$}
+ \RETURN $Q$
+\ELSE
+\STATE $m \gets \left\lceil n/2 \right\rceil   $
+\STATE $u \gets 1/g^{n-m} \bmod f^m$
+\STATE $Q_0 \gets Qu \bmod f^m$
+\STATE $Q_1 \gets (Q-Q_0g^{n-m}) \mathrm{div} f^m$
+\STATE $P_0 \gets \textrm{Decompose}(Q_0,f,g,h,m))$
+\STATE $P_1 \gets \textrm{Decompose}(Q_1,f,g,h,n-m))$
+\RETURN $P_0 + X^mP_1$ 
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
 
 \paragraph{Operations sur les tours $\ell$-adique}
 Comme il va être expliqué plus tard on va utiliser au cours de notre travail une 
