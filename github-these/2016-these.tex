@@ -1085,11 +1085,19 @@ Si par exemple $P=\sum_{i=0}^{n-1}p_i(Y)X^i$ alors $P[f,g,n]=\sum_{i=0}^{n}p_if^
 
 
 \begin{thm}
-Avec les entrées $P,f,g,n$ tels que $\deg(P,X)<n$ et $\deg(P,Y)<\ell$, l'algorithme \ref{alg:Compose} calcule $Q=P[f,g,n]$ avec un coût de $O(M(\elln)\log(n))$ opérations sur $\mathbb{F}_q$.
+Avec les entrées $P,f,g,n$ tels que $\deg(P,X)<n$ et $\deg(P,Y)<\ell$, l'algorithme \ref{alg:Compose} calcule $Q=P[f,g,n]$ avec un coût de $O(M(\ell n)\log(n))$ opérations sur $\mathbb{F}_q$.
 \end{thm}
 
 \begin{proof}
 Cette preuve est issue de \cite{DeFeo-Doliskani-Schost13}.
+\end{proof}
+
+\begin{cor}
+Au niveau $i$ de la tour d'extension $\ell$-adique, un relèvement coûte $O(M(\ell^i)\log(\ell^i))$ opérations sur $\mathbb{F}_q$
+\end{cor}
+
+\begin{proof}
+Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut être représenté dans une base bivariée
 \end{proof}
 
 \begin{algorithm}
