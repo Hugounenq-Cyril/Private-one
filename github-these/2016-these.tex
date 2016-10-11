@@ -848,9 +848,9 @@ Le calcul de $P_0$ se fait à l'aide du $\ell$ ème polynôme cyclotomique $\phi
 $\phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$, avec $r$ le degré de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, il est à noter que $r$ divise $\ell-1$. Soit $F_0$ un des facteurs irréductibles de $\phi_{\ell}$, alors par construction il existe des résidus non $\ell$ adiques dans $\mathbb{F}_q[X]/\langle F_0 \rangle$. Une fois qu'un tel résidu $y_0$ est trouvé son polynôme minimal $P_0$ sur $\mathbb{F}_q$ de degré $r$ est calculé en $O(r^2)$ opérations sur $\mathbb{F}_q$ d'après \cite{Shoup93}[Th.4]. 
 En pratique un tel résidu non quadratique $y_0$ est trouvé aléatoirement après $O(1)$ essais d'après \cite{Shoup93}[Lemma 15], chaque essai a un coût de $O_e(M(\ell)\log(r)+M(r)\log(\ell)\log(r)+M(r)\log(q))$ opérations sur $\mathbb{F}_q$.
 %peut etre affiner les sources
-Selon l'ordre de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \nmid q-1$ et $\ell \nmid q+1$ et ensuite le cas général qui a une complexité moins intéressante mais toujours linéaire en la taille de l'extension.
+Selon l'ordre de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \mid q-1$ et $\ell \nmid q+1$ et ensuite le cas général qui a une complexité moins intéressante mais toujours linéaire en la taille de l'extension.
 
-\paragraph{$\ell \nmid q-1$}
+\paragraph{$\ell \mid q-1$}\label{par:easycase}
 Dans ce cas $r=1$ car $\phi_{\ell}$ se scinde en facteurs linéaires sur $\mathbb{F}_q$. Le polynôme $P_0$ s'écrit donc $Y_0-y_0$ avec $y_0$ un résidu non $\ell$ adique de $\mathbb{F}_q$. Comme le calcul de la factorisation de $\phi_{\ell}$ n'est pas nécessaire, on obtient alors une complexité de $O_e(\log(q))$ opérations sur $\mathbb{F}_q$.
 
 Ce cas-ci permet de ne pas utiliser de méthode de descente car on a $\mathbb{K}_0 \simeq \mathbb{F}_q$ et par conséquent on obtient pour $i \geqslant 0 $   $\mathbb{K}_i \simeq \mathbb{F}_{q^{\ell^i}}$, et donc $x_i=y_i$. Les polynômes obtenus alors sont: $Q_i=X^{\ell^i}-y_0$ et $T_i=X_i^{\ell}-X_{i-1}$. Le relèvement et le push ne sont que des opérations arithmétiques. En effet pour $F=\sum_{0 \leqslant j \leqslant \ell^{i+1}}f_jx_{i+1}^j$ le relévement réécrit cet élément dans une base $x_i,x_{i+1}$ en utilisant la relation suivantes:
@@ -1084,7 +1084,7 @@ Si par exemple $P=\sum_{i=0}^{n-1}p_i(Y)X^i$ alors $P[f,g,n]=\sum_{i=0}^{n}p_if^
 \end{algorithm}
 
 
-\begin{thm}
+\begin{thm}\label{thm:compose}
 Avec les entrées $P,f,g,n$ tels que $\deg(P,X)<n$ et $\deg(P,Y)<\ell$, l'algorithme \ref{alg:Compose} calcule $Q=P[f,g,n]$ avec un coût de $O(M(\ell n)\log(n))$ opérations sur $\mathbb{F}_q$.
 \end{thm}
 
@@ -1097,9 +1097,11 @@ Au niveau $i$ de la tour d'extension $\ell$-adique, un relèvement coûte $O(M(\
 \end{cor}
 
 \begin{proof}
-Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut être représenté dans une base bivariée
+Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut être représenté dans une base bivariée, c'est à dire par un polynôme $A(X,Y)$ avec $\deg(A,X)<n=\ell^{i-1}$ et $\deg(A,Y)<\ell$. On calcule alors à l'aide de l'algorithme \ref{alg:Compose} le polynôme univarié en $Y$ $A^*=A[f,g,n]$ et $\gamma = g^{n-1}$ le tout à l'aide de $O(M(\ell^i)\log(\ell^i))$ opérations dans $\mathbb{F}_q$. Le relevé de $\alpha$ sera alors $A^*/\gamma$ modulo $S$. L'inversion de $\gamma$ coûte $O(M(\elln)\log(\elln))$ opérations, et la multiplication ajoute un cout de $O(M(\ell n))$.
 \end{proof}
 
+\paragraph{Descente}
+On a donc le problème inverse de celui exposé dans le théorème \ref{thm:compose} à traiter pour résuoudre le problème de la descente. On a donc en entrée un polynôme $Q \in \mathbb{F}_q[y]$, on veut alors retrouver $P\in \mathbb{F}_q[X,Y]$ tel que $Q=P[f,g,n]$. 
 \begin{algorithm}
 \caption{\label{alg:Decompose}Decompose}
 \begin{algorithmic}[1]
@@ -1119,10 +1121,27 @@ Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut êtr
 \end{algorithmic}
 \end{algorithm}
 
+\begin{thm}
+Soient $Q,f,g,h,n$ avec $\deg(Q)<\ell n$ et $h=1/g \bmod f$ les entrées de l'algorithme \ref{alg:Decompose}, alors l'algorithme \ref{alg:Decompose} calcule un polynôme $P \in \mathbb{F}_q[X,Y]$ tel que $\deg(P,X)<n$, $\deg(P,Y)<\ell$ et $Q=P[f,g,n]$ avec une complexité de $O(M(\ell n) \log(n))$ opérations sur $\mathbb{F}_q$.
+\end{thm}
 
-\paragraph{Operations sur les tours $\ell$-adique}
-Comme il va être expliqué plus tard on va utiliser au cours de notre travail une 
+\begin{proof}
+Voir la preuve issue de \cite{DeFeo-Doliskani-Schost13}.
+\end{proof}
+
+\begin{cor}
+Au $i$ème niveau de la tour, l'opération de descente coûte $O(M(\ell^i)\log(\ell^i))$ opérations sur $\mathbb{F}_q$.
+\end{cor}
+
+\begin{proof}
+Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut être représenté dans une base univariée sous la forme $A(Y)$ avec $A$ un polynôme de degré strictement inférieur à $\ell n $ avec $n=\ell^{i-1}$. On calcule tout d'abord le polynôme $g^{n-1}$ afin de pouvoir calculer $A^*=g^{n-1}A \bmod S$ le tout avec une complexité de $O(M(\ell^i))$ opérations. On calcule alors le polynôme $h=1/g \bmod f$ avec un coût de $O(M(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$ et l'on applique alors l'algorithme \ref{alg:Decompose} aux entrées: $A^*,f,g,h,n$. Celui-ci calcule alors un polynôme bivarié $B$ avec une complexité de $O(M(\ell^i\log(\ell^i))$ opérations sur $\mathbb{F}_q$, $B$ représente alors $\alpha$ dans la base bivariée.
+\end{proof}
+
+\paragraph{Opérations sur les tours $\ell$-adique}
+Comme il va être expliqué plus tard on va construire une tour $\ell$-adique à partir d'une extension de corps  de$\mathbb{F}_q=F_0$ dénotée $F_1$ telle que l'on ait $d_1=[F_1:F_0]$ égal à l'ordre de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, on aura en particulier $d_1 \mid \ell-1$. On fera remarquer qu'il peut très bien arriver que l'on ait $d_1=1$. De plus par définition de $d_1$, on a $\ell \mid q^{d_1}-1$ et donc on pourra utiliser les constructions de tour $\ell$-adique préconisées dans ce paragraphe \ref{par:easycase} .%cas le plus simple en l'occurence
 On se place dans le cas général où l'on a pas forcément l'existence d'un résidu non $\ell$-adique sur $\mathbb{F}_q$ corps sur lequel on veut construire une tour d'extension. Le corps $\mathbb{F}_q$ est alors dénoté $F_0$ car celui-ci ne correspond donc pas forcément au corps sur lequel il existe un résidu non $\ell$ adique et sur lequel on doit construire une extension de corps . On doit alors pour cela, à l'aide des méthodes précédemment expliquées construire une première extension de corps à $\mathbb{F}_q$
+
+
 
 \chapter{Isogénies sur les corps finis}
 
