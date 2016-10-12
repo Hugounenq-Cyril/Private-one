@@ -1139,8 +1139,27 @@ Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut êtr
 
 \paragraph{Opérations sur les tours $\ell$-adique}
 Comme il va être expliqué plus tard on va construire une tour $\ell$-adique à partir d'une extension de corps  de$\mathbb{F}_q=F_0$ dénotée $F_1$ telle que l'on ait $d_1=[F_1:F_0]$ égal à l'ordre de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, on aura en particulier $d_1 \mid \ell-1$. On fera remarquer qu'il peut très bien arriver que l'on ait $d_1=1$. De plus par définition de $d_1$, on a $\ell \mid q^{d_1}-1$ et donc on pourra utiliser les constructions de tour $\ell$-adique préconisées dans ce paragraphe \ref{par:easycase} .%cas le plus simple en l'occurence
-On se place dans le cas général où l'on a pas forcément l'existence d'un résidu non $\ell$-adique sur $\mathbb{F}_q$ corps sur lequel on veut construire une tour d'extension. Le corps $\mathbb{F}_q$ est alors dénoté $F_0$ car celui-ci ne correspond donc pas forcément au corps sur lequel il existe un résidu non $\ell$ adique et sur lequel on doit construire une extension de corps . On doit alors pour cela, à l'aide des méthodes précédemment expliquées construire une première extension de corps à $\mathbb{F}_q$
 
+\paragraph{Calcul du Frobenius}
+Cette opération sera très importante par la suite pour déterminer des ensembles spécifiques de points d'une courbe elliptique, c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable comparé au cas $\ell=2$ \cite{Doliskani-Schost15} dont ce résultat issu d'un travail conjoint avec Luca DE Feo Jérome Plut et Eric Schost s'inspire.
+
+\begin{thm} \label{thm:frob-ell}
+Soit $F_0 \subset F_1 \subset \cdots \subset F_n$ une tour de Kummer définie telle que $[F_{i+1}:F_i]=\ell$ pour $i \neq 0$ et $[F_1:F_0]=d_1$ avec $d_1$ égal à l'odre multiplicatif de $q=|F_0|$  dans $\mathbb{Z}/\ell \mathbb{Z}$ (voir \textcolor{red}{(réf à mettre plus tard)} pour plus de détail). Soit $a$ un élément de $F_i$ pour tout entier $j$ le calcul de la puissance $|F_j|$ de $a$ coûte $O(\ell^{i-1}M(\ell))$ opérations sur $\mathbb{F}_q$ après un pré calcul de $O(\ell M(\ell)\log(q))$
+\end{thm} 
+
+\begin{proof}
+Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat étant sinon $a$ lui-même. Notons $s= |F_j|$ et $d=[F_i:F_1]=\ell^{i-1}$. Soit $x_i$ l'image de $x$ dans $F_i=\mathbb{F}_q[x]/P_i(x)$, on a en particulier $x_i^d=x_1$.
+
+La première étape est de calculer $y=x_i^s$. En écrivant $s=ud=r$ avec $0 \leqslant r < d$ on a alors $y=x_1^{u \bmod |F_1|-1}x_i^r$. Le calcul de $x_1^{u \bmod |F_1|-1}$ se fait en utilisant $O(\ell M(\ell) \log(q))$ opérations sur $\mathbb{F}_q$, on conserve ce résultat sous la forme d'un monôme dans $F_1[x_i]$. Par hypothèse on a $a$ qui est représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[F_i:F_0]$: 
+\begin{equation*}
+a^*_0+a_1^*x_i+ \cdots + a^*_{d_1d-1}x_i^{d_1d-1}
+\end{equation*}
+avec les $a_i^*$ des éléments de $F_0$. On réécrit $a$ alors sous la forme:
+\begin{equation*}
+a_O+a_1x_i+ \cdots + a_{d-1}x_i^{d-1}
+\end{equation*}
+avec les $a_i \in F_1$ en écrivant pour $k$ appartenant à $[1; d_1d-1]$ $k=u_k d + v$ avec $0 \geqslant v< d$ prenant en compte que l'on a $x_i^k=x_1^{}$
+\end{proof}
 
 
 \chapter{Isogénies sur les corps finis}
