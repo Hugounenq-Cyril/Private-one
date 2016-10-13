@@ -804,14 +804,14 @@ Dans cette section la tour $\ell$-adique sera écrite:
 \]
 L'objectif ici sera de représenter de façon univariée les éléments du corps $\mathbb{F}_{q^{\ell^i}}$, pour cela on va représenter les éléments de ce corps à l'aide d'éléments de $\mathbb{F}_{q}[X_i]/\langle Q_i \rangle$ pour un polynôme irréductible $Q_i \in \mathbb{F}_q[X_i]$. La principale diffculté par rapport au cas $\ell=2$ sera de construire de tels polynômes, pour cela on sera obligé de construire des extensions de corps d'indice $r$ où des résidus non $\ell$ adiques existent. On construira alors sur ces corps des tours d'extension $\ell$-adique, qui contiendront donc des corps de la taille $r\ell^i$. Il faudra alors utiliser une descente dans les corps pour alors avoir des corps de taille $\ell^i$.
 
-\paragraph{Notation des représentations}
+\subsection{Notation des représentations}
 Comme dit précédemment les éléments du corps $\mathbb{F}_{q^{\ell^i}}$ peuvent être représentés comme des éléments de $\mathbb{F}_q[X_i]/\langle Q_i \rangle $, avec $Q_i$ un polynôme irréductible. Un élément de $\mathbb{F}_{q^{\ell^i}}$ peut être donc représenté à l'aide de la base:
 
 \[
 U_i=(1,x_i,x_i^2,\cdots,x_i^{\ell^i-1})
 \]
 
-On peut alors vouloir construire une autre base pour représenter $\mathbb{F}_{q^{\ell^i}}$, ainsi à l'aide d'un polynôme irréductible $T_{i}$ de degré $\ell$ et d'une représentation de $\mathbb{F}_{q^{\ell^{i-1}}}=\mathbb{F}_q[X_{i-1}]/\langle Q_{i-1} \rangle $, de telle sorte que l'on ait: $\mathbb{F}_{q^{\ell^{i}}}\simeq \mathbb{F}_q[X_{i-1},X_{i}]/\langle Q_{i-1}(X_{i-1}), T_i(X_{i-1},X_{i}) \rangle $. Ainsi un élément de $\mathbb{F}_{q^{\ell^{i}}}$ pourra être représenté à l'aide de la base bivariée suivante:
+On peut alors vouloir construire une autre base pour représenter $\mathbb{F}_{q^{\ell^i}}$, ainsi à l'aide d'une représentation de $\mathbb{F}_{q^{\ell^{i-1}}}=\mathbb{F}_q[X_{i-1}]/\langle Q_{i-1} \rangle $, d'un polynôme irréductible $T_{i}$ de $\mathbb{F}_{q^{\ell^{i-1}}}$ de degré $\ell$, on a alors une construction de $\mathbb{F}_{q^{\ell^i}}$: $\mathbb{F}_{q^{\ell^{i}}}\simeq \mathbb{F}_q[X_{i-1},X_{i}]/\langle Q_{i-1}(X_{i-1}), T_i(X_{i-1},X_{i}) \rangle $. Ainsi un élément de $\mathbb{F}_{q^{\ell^{i}}}$ pourra être représenté à l'aide de la base bivariée suivante:
 
 \[
 B_i=(1,x_{i-1},x_{i-1}^2,\cdots,x_{i-1}^{\ell^{i-1}-1},x_i^{\ell-1},x_i^{\ell-1}x_{i-1}^{\ell^{i-1}-1})
@@ -822,48 +822,49 @@ Ces opérations de base servent à faire des plongements dans des corps situés 
 
 De façon plus générale on notera pour $0 \leqslant j \leqslant i $ $Q_{i,j} \in \mathbb{F}_q(x_j)[X_i]$ le polynôme minimal de $x_i$ sur $\mathbb{F}_{q}(x_j)$, il a pour degré $\ell^{i-j}$. On a en particulier $Q_{i,0}=Q_i$ et $Q_{i,i-1}=T_{i}[X_i,X_{i-1}]$.
 
-\paragraph{Construction de tours quasi-cyclotomique}
-La première étape conssite à construire une extension de corps $\mathbb{K}_0=\mathbb{F}_q[Y_0]/\langle P_0 \rangle$ telle que la classe résiduelle $y_0$ de $Y_0$ soit un résidu non $\ell$ adique de $\mathbb{K}_0$, on note $r$ le degré de $P_0$.
+\subsection{Construction de tours quasi-cyclotomique}
+La première étape consiste à construire une extension de corps $\mathbb{K}_0=\mathbb{F}_q[Y_0]/\langle P_0 \rangle$ telle que la classe résiduelle $y_0$ de $Y_0$ soit un résidu non $\ell$ adique de $\mathbb{K}_0$, on note $r$ le degré de $P_0$.
 
-Par \cite[Th. VI.9.1]{Lang2002algebra} on a pour $i \geqslant 1$ le polynôme $Y_i^{\ell^i}-y_0 \in \mathbb{K}_0[Y_i]$ qui est irréductible, le corps $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ est ainsi un corps à $q^{r\ell^i}$ éléments. En notant $y_i$ les classes résiduelles $y_i$ de $Y_i$ dans $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ sont naturellement plongées les unes dans les autres à l'aide de l'isomorphisme $\mathbb{K}_{i+1} \simeq \mathbb{K}_i[Y_{i+1}]/\langle Y_{i+1}^{\ell}-y_i\rangle $, en particulier on a $y_{i+1}^{\ell}=y_i$.
+Par \cite[Th. VI.9.1]{Lang2002algebra} on a pour $i \geqslant 1$ le polynôme $Y_i^{\ell^i}-y_0 \in \mathbb{K}_0[Y_i]$ qui est irréductible, le corps $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ est ainsi un corps à $q^{r\ell^i}$ éléments. En notant $y_i$ les classes résiduelles de $Y_i$ dans $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$, on a ces représentations de corps qui sont naturellement plongées les unes dans les autres à l'aide de l'isomorphisme $\mathbb{K}_{i+1} \simeq \mathbb{K}_i[Y_{i+1}]/\langle Y_{i+1}^{\ell}-y_i\rangle $, en particulier on a $y_{i+1}^{\ell}=y_i$.
 
 
- Pour pouvoir alors calculer un corps de taille $\ell^i$ on utilise le processus de descente résultat suivant qui vient d'une idée de Shoup:
+ Pour pouvoir construire un corps de taille $\ell^i$ on utilise le processus de descente suivant qui provient d'un  travail de Shoup:
 
-\begin{prop}{Shoup}
+\begin{prop}[Shoup]
 Pour $i \geqslant 0$, soit $x_i$ la trace de $y_i$ sur un sous corps d'indice $r$:
 \begin{equation*}
 x_i=\sum_{j=0}^{r-1}y_i^{q^{\ell^i}j}
 \end{equation*}
-On a alors \cite[Th. 2.1]{Shoup88} qui prouve que $\mathbb{F}_q(x_i)=\mathbb{F}_{q^{\ell^i}}$
+On a alors par \cite[Th. 2.1]{Shoup88} $\mathbb{F}_q(x_i)=\mathbb{F}_{q^{\ell^i}}$.
 \end{prop}
 
-Montrons donc dans un premier temps comment calculer $\mathbb{K}_0 \simeq \mathbb{F}_{q^r}$
+Montrons donc dans un premier temps comment calculer $\mathbb{K}_0 \simeq \mathbb{F}_{q^r}$.
 
 
 
-\paragraph{Calcul d'une extension contenant un résidu non $\ell$ adique}
-Le calcul de $P_0$ se fait à l'aide du $\ell$ ème polynôme cyclotomique $\phi_{\ell} \in \mathbb{Z}[X_0]$ et de sa factorisation sur $\mathbb{F}_q[X_0]$, par \cite{Shoup93}[Th.9] cela a un coût de $O_e(M(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
+\subsubsection{Calcul d'une extension contenant un résidu non $\ell$ adique}
+Le calcul de $P_0$ se fait à l'aide du $\ell$-ème polynôme cyclotomique $\Phi_{\ell} \in \mathbb{Z}[X_0]$ et de sa factorisation sur $\mathbb{F}_q[X_0]$, par \cite[Th.9]{Shoup93} celle-ci a un coût de $O_e(M(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
 
-$\phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$, avec $r$ le degré de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, il est à noter que $r$ divise $\ell-1$. Soit $F_0$ un des facteurs irréductibles de $\phi_{\ell}$, alors par construction il existe des résidus non $\ell$ adiques dans $\mathbb{F}_q[X]/\langle F_0 \rangle$. Une fois qu'un tel résidu $y_0$ est trouvé son polynôme minimal $P_0$ sur $\mathbb{F}_q$ de degré $r$ est calculé en $O(r^2)$ opérations sur $\mathbb{F}_q$ d'après \cite{Shoup93}[Th.4]. 
-En pratique un tel résidu non quadratique $y_0$ est trouvé aléatoirement après $O(1)$ essais d'après \cite{Shoup93}[Lemma 15], chaque essai a un coût de $O_e(M(\ell)\log(r)+M(r)\log(\ell)\log(r)+M(r)\log(q))$ opérations sur $\mathbb{F}_q$.
+$\Phi_{\ell}$ se scinde sur $\mathbb{F}_q[X_0]$ en facteurs irréductibles de même degré $r$, avec $r$ l'ordre de $q$ dans $(\mathbb{Z}/\ell \mathbb{Z})^{\times}$, il est à noter que $r$ divise $\ell-1$. Soit $R_0$ un des facteurs irréductibles de $\Phi_{\ell}$, alors par construction il existe des résidus non $\ell$ adiques dans $\mathbb{F}_q[X]/\langle R_0 \rangle$. Une fois qu'un tel résidu $y_0$ est trouvé son polynôme minimal $P_0$ sur $\mathbb{F}_q$ de degré $r$ est calculé en $O(r^2)$ opérations sur $\mathbb{F}_q$ d'après \cite[Th.4]{Shoup93}. 
+En pratique un tel résidu non quadratique $y_0$ est trouvé aléatoirement après $O(1)$ essais d'après \cite[Lemma 15]{Shoup93}, chaque essai a un coût de $O_e(M(\ell)\log(r)+M(r)\log(\ell)\log(r)+M(r)\log(q))$ opérations sur $\mathbb{F}_q$.
 %peut etre affiner les sources
-Selon l'ordre de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \mid q-1$ et $\ell \nmid q+1$ et ensuite le cas général qui a une complexité moins intéressante mais toujours linéaire en la taille de l'extension.
 
-\paragraph{$\ell \mid q-1$}\label{par:easycase}
-Dans ce cas $r=1$ car $\phi_{\ell}$ se scinde en facteurs linéaires sur $\mathbb{F}_q$. Le polynôme $P_0$ s'écrit donc $Y_0-y_0$ avec $y_0$ un résidu non $\ell$ adique de $\mathbb{F}_q$. Comme le calcul de la factorisation de $\phi_{\ell}$ n'est pas nécessaire, on obtient alors une complexité de $O_e(\log(q))$ opérations sur $\mathbb{F}_q$.
+Selon la valeur de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \mid q-1$ et $\ell \mid q+1$ et ensuite le cas général qui a une complexité moins intéressante mais toujours linéaire en la taille de l'extension.
 
-Ce cas-ci permet de ne pas utiliser de méthode de descente car on a $\mathbb{K}_0 \simeq \mathbb{F}_q$ et par conséquent on obtient pour $i \geqslant 0 $   $\mathbb{K}_i \simeq \mathbb{F}_{q^{\ell^i}}$, et donc $x_i=y_i$. Les polynômes obtenus alors sont: $Q_i=X^{\ell^i}-y_0$ et $T_i=X_i^{\ell}-X_{i-1}$. Le relèvement et le push ne sont que des opérations arithmétiques. En effet pour $F=\sum_{0 \leqslant j \leqslant \ell^{i+1}}f_jx_{i+1}^j$ le relévement réécrit cet élément dans une base $x_i,x_{i+1}$ en utilisant la relation suivantes:
+\paragraph{\boldmath $\ell \mid q-1$}\label{par:easycase}
+Dans ce cas $r=1$ car $\Phi_{\ell}$ se scinde en facteurs linéaires sur $\mathbb{F}_q$. Le polynôme $P_0$ s'écrit donc $Y_0-y_0$ avec $y_0$ un résidu non $\ell$-adique de $\mathbb{F}_q$. Comme le calcul de la factorisation de $\Phi_{\ell}$ n'est pas nécessaire, on obtient alors une complexité de $O_e(\log(q))$ opérations sur $\mathbb{F}_q$.
+
+Ce cas-ci permet de ne pas utiliser de méthode de descente car on a $\mathbb{K}_0 \simeq \mathbb{F}_q$ et par conséquent on obtient pour $i \geqslant 0 $   $\mathbb{K}_i \simeq \mathbb{F}_{q^{\ell^i}}$, et donc $x_i=y_i$. Les polynômes obtenus alors sont: $Q_i=X^{\ell^i}-y_0$ et $T_i=X_i^{\ell}-X_{i-1}$. Le relèvement et la descente ne sont que des opérations arithmétiques. En effet pour $F=\sum_{0 \leqslant j \leqslant \ell^{i+1}}f_jx_{i+1}^j$ le relévement réécrit cet élément dans une base $x_i,x_{i+1}$ en utilisant la relation suivante:
 \begin{equation*}
-x_{i+1}^j=x_i^{j \div \ell}x_{i+1}^{j \bmod \ell} 
+x_{i+1}^j=x_i^{j / \ell}x_{i+1}^{j \bmod \ell} 
 \end{equation*}
-tandis que le push réécrit un élément écrit dans une base $x_i, x_{i+1}$ en un élément exprimé dans la base $x_{i+1}$ en utilisant la relation suivante:
+tandis que la descente réécrit un élément éxprimé dans une base $x_i, x_{i+1}$ en un élément exprimé dans la base $x_{i+1}$ en utilisant la relation suivante:
 \begin{equation*}
 \quad x_i^ex_{i+1}^f=x_{i+1}^{e\ell + f} 
 \end{equation*}
 
 \paragraph{$\ell \nmid q+1$}
-Dans ce cas $\phi_{\ell}$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$ (id est $r=2$). Il est alors nécessaire de prendre $y_0$ tel qu'il soit de norme $1$ sur $\mathbb{F}_q$. Le résultat suivant nous donne alors un moyen de calculer $Q_{i,j}$:
+Dans ce cas $\Phi_{\ell}$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$ (id est $r=2$). Il est alors nécessaire de prendre $y_0$ tel qu'il soit de norme $1$ sur $\mathbb{F}_q$. Le résultat suivant nous donne alors un moyen de calculer $Q_{i,j}$:
 %Apparemment inutile car une methode plus simple est trouvée plus tard...
 %\begin{prop}
 %Pour $1\geqslant j<i$ $Q_{i,j}$ vérifie:
@@ -880,37 +881,38 @@ Dans ce cas $\phi_{\ell}$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$ 
 Dans ce cas on ne fait aucune hypothèse sur la décomposition de $\phi_{\ell}$ dans $\mathbb{F}_q[X]$. De plus comme $r=[\mathbb{K}_0:\mathbb{F}_q]$ et qu'il divise $\ell-1$ alors $r$ est premier avec $\ell$. Ainsi $Q_i$ est bien le polynôme minimal de $x_i$ sur $\mathbb{F}_q$, de la même manière $Q_{i,j}$ est le polynôme minimal de $x_i$ sur $\mathbb{K}_j$. Ceci nous permet donc de remplacer le corps de base $\mathbb{F}_q$ par $\mathbb{K}_0$. Le calcul se fera sur la base d'opérations dans $\mathbb{K}_0$, un facteur $O(M(r)\log(r))$, qui correspond au coût d'opérations dans $\mathbb{K}_0$, sera ajouté pour avoir le coût exprimé en nombres d'opérations sur $\mathbb{F}_q$.
 
 
-Pour $i \geqslant 0$, comme $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i} - y_0 \rangle$, chacun de ses éléments peut être représenté dans une base ${y_i^e | 0 \leqslant e < \ell^i }$, ainsi l'élément $x_i$ s'écrit dans cette base:
+Pour $i \geqslant 0$, comme $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i} - y_0 \rangle$, chacun de ses éléments peut être représenté dans une base $ \{y_i^e | 0 \leqslant e < \ell^i \} $, ainsi l'élément $x_i$ s'écrit dans cette base:
 \begin{equation*}
-x_i= \sum_{0 \leqslant j \leqslant r-1}y_i^{q^{\ell^i}j \bmod \ell^i}y_0^{q^{\ell^i}j \div \ell^i}
+x_i= \sum_{0 \leqslant j \leqslant r-1}y_i^{q^{\ell^i}j \bmod \ell^i}y_0^{q^{\ell^i}j / \ell^i}
 \end{equation*}
-La méthode employée ici est le calcul de l'isomorphisme entre deux bases univariées de $\mathbb{K}_i$: ${y_i^e \nmid 0 \leqslant e < \ell^i}$ et ${x_i^e \nmid 0 \leqslant e < \ell^i}$:
+On peut alors représenter $\mathbb{K}_i$ à l'aide des deux bases univariées $\mathbb{K}_i$: $\{ y_i^e | 0 \leqslant e < \ell^i\}$ et $\{x_i^e | 0 \leqslant e < \ell^i\}$. On va alors montrer comment calculer l'isomorphisme entre les deux bases univariées de $\mathbb{K}_i$: $\{ y_i^e | 0 \leqslant e < \ell^i\}$ et $\{x_i^e | 0 \leqslant e < \ell^i\}$:
 \begin{equation*}
-\psi_i: \mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle \to \mathbb{K}_0[X_i]/\langle Q_{i,0} \rangle
+\Psi_i: \mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle \to \mathbb{K}_0[X_i]/\langle Q_{i,0} \rangle,
 \end{equation*}
- , on pourra alors employer la méthode de descente vue dans \cite{Shoup88} sur la représentation image de l'isomorphisme de corps calculée pour avoir une représentation de $\mathbb{F}_{q^{\ell^i}}$. Lors du calcul de $\psi_i$, le calcul nécessaire de $Q_{i,0}$ et $Q_{i,i-1}$ sera effectué. Ensuite, $\psi_i$ sera utilisé pour calculer le "push" et le relèvement entre la base monomiale en $x_i$ et la base bivariée en $(x_{i-1},x_i)$.
+ %on pourra alors employer la méthode de descente vue dans \cite{Shoup88} sur la représentation image de l'isomorphisme de corps calculée pour avoir une représentation de $\mathbb{F}_{q^{\ell^i}}$. 
+ Lors du calcul de $\Psi_i$, le calcul nécessaire de $Q_{i,0}$ et $Q_{i,i-1}$ sera effectué. On se servira de $\Psi_i$ pour calculer la descente et le relèvement entre la base monomiale en $x_i$ et la base bivariée en $(x_{i-1},x_i)$.
  
- On va factoriser $\psi_i$ en isomorphismes élémentaires:
+ On va factoriser $\Psi_i$ en isomorphismes élémentaires:
  \begin{equation*}
- \psi_{i,j}:\mathbb{K}_{j}[X_i]/\langle Q_{i,j} \rangle \to \mathbb{K}_{j-1}[X_i]/ \langle Q_{i,j-1} \rangle, \quad j=i, \cdots,1. 
+ \Psi_{i,j}:\mathbb{K}_{j}[X_i]/\langle Q_{i,j} \rangle \to \mathbb{K}_{j-1}[X_i]/ \langle Q_{i,j-1} \rangle, \quad j=i, \cdots,1. 
  \end{equation*}
  
-On commence donc avec $i=j$, dans ce cas-là on pose $Q_{i,i}=X_i-x_i \in \mathbb{K}_i[X_i]$, de telle sorte que $\mathbb{K_i}=\mathbb{K}_i[X_i] / \langle Q_{i,i} \rangle $.
+On commence donc avec $i=j$, dans ce cas-là on pose $Q_{i,i}=X_i-x_i \in \mathbb{K}_i[X_i]$, de telle sorte que $\mathbb{K}_i=\mathbb{K}_i[X_i] / \langle Q_{i,i} \rangle $.
 
-Considérons maintenant le cas $j \leqslant i$ et supposons que $Q_{i,j}$ est connu. $\psi_{i,j}$ va être alors factorisé en $\Phi_{i,j}'' \circ \Phi_{i,j}' \circ \phi_{i,j}$, il est alors nécessaire d'introduire l'isomorphisme :
+Considérons maintenant le cas $j \leqslant i$ et supposons que $Q_{i,j}$ est connu. $\Psi_{i,j}$ va être alors factorisé en $\Phi_{i,j}'' \circ \Phi_{i,j}' \circ \Phi_{i,j}$, il est alors nécessaire d'introduire l'isomorphisme :
 \begin{equation*}
-\phi_j:\mathbb{K}_j \to \mathbb{K}_{j-1}[Y_j]/\langle Y_j^{\ell}-y_{j-1} \rangle
+\varphi_j:\mathbb{K}_j \to \mathbb{K}_{j-1}[Y_j]/\langle Y_j^{\ell}-y_{j-1} \rangle
 \end{equation*}
-Cet isomorphisme est dans son sens direct un "push" de la base monomiale en $y_j$ vers la base bivariée en $(y_j,y_{j-1})$ et son inverse est donc un relèvement, aucun des deux ne nécessite des opérations arithmétiques. L'isomorphisme suivant peut alors être calculé:
+Cet isomorphisme est dans son sens direct une descente de la base monomiale en $y_j$ vers la base bivariée en $(y_j,y_{j-1})$ et son inverse est donc un relèvement, aucun des deux ne nécessite des opérations arithmétiques, ces deux opérations sont exactement les mêmes que celles décrites dans le cas simple où $r=1$ \ref{par:easycase}. L'isomorphisme suivant peut alors être calculé:
 \begin{equation*}
 \Phi_{i,j}: \mathbb{K}_j[X_i]/\langle Q_{i,j} \rangle \to \mathbb{K}_{j-1}[Y_j,X_i]/\langle Y_j^{\ell}-y_{j-1},Q_{i,j}^* \rangle , 
 \end{equation*} 
-avec $Q_{i,j}^*$ obtenu en appliquant $\phi_j$ à tous les coefficients de $Q_{i,j}$. Comme $\Phi_{i,j}$ consiste en une application coefficient par coefficient de $\phi_j$ alors appliquer $\Phi_{i,j}$ ou son inverse coûte aucune opération arithémtique.
+avec $Q_{i,j}^*$ obtenu en appliquant $\varphi_j$ à tous les coefficients de $Q_{i,j}$. Comme $\Phi_{i,j}$ consiste en une application coefficient par coefficient de $\phi_j$ alors appliquer $\Phi_{i,j}$ ou son inverse ne coûte aucune opération arithmétique.
 
 On change ensuite l'ordre entre $Y_j$ et $X_i$, cela permet de déduire l'existence de $S_{i,j} \in \mathbb{K}_{j-1}[X_j]$ et d'un isomorphisme:
 
 \begin{equation*}
-\Phi_{i,j}' \mathbb{K}_{j-1}[Y_j,X_i]/ \langle Y_j^{\ell}-y_{j-1},Q_{i,j}^* \rangle \to \mathbb{K}_{j_1}[X_i,Y_j]/\langle Q_{i,j-1}, Y_j-S_{i,j}\rangle
+\Phi_{i,j}': \mathbb{K}_{j-1}[Y_j,X_i]/ \langle Y_j^{\ell}-y_{j-1},Q_{i,j}^* \rangle \to \mathbb{K}_{j-1}[X_i,Y_j]/\langle Q_{i,j-1}, Y_j-S_{i,j}\rangle
 \end{equation*}
 avec $\deg(Q_{i,j}^*,X_i)=\ell^{i-j}$ et $\deg(Q_{i,j-1},X_i)=\ell^{i-j+1}$.
 
@@ -924,19 +926,19 @@ Voir \cite{DeFeo-Doliskani-Schost13}.
 
 Le dernier isomorphisme $\Phi_{i,j}''$ s'écrit trivialement:
 \begin{equation*}
-\Phi_{i,j}'' \mathbb{K}_{j_1}[X_i,Y_j]/\langle Q_{i,j-1}, Y_j-S_{i,j}\rangle \to \mathbb{K}_{j-1}[X_i]/\langle Q_{i,j-1} \rangle 
+\Phi_{i,j}'': \mathbb{K}_{j-1}[X_i,Y_j]/\langle Q_{i,j-1}, Y_j-S_{i,j}\rangle \to \mathbb{K}_{j-1}[X_i]/\langle Q_{i,j-1} \rangle 
 \end{equation*}
 il "oublie" la variable $Y_j$, il ne nécessite aucune opération arithémtique.
 
-En faisant varier $j$ de $1$ à $i$ on peut alors $Q_{i,i-1}$ jusqu'à $Q_{i,0}$ en $O(i^2M(\ell^{i+1})\log(\ell))$ opérations sur $\mathbb{K}_0$. En composant les isomorphismes $\psi_{i,j}$, on en déduit que $\psi_i$ ou son inverse peut être calculé en $O(iM(\ell^{i+1}))$ opérations dans $\mathbb{K}_0$.
+En faisant varier $j$ de $1$ à $i$ on peut alors calculer $Q_{i,i-1}$ jusqu'à $Q_{i,0}$ en $O(i^2M(\ell^{i+1})\log(\ell))$ opérations sur $\mathbb{K}_0$. En composant les isomorphismes $\Psi_{i,j}$, on en déduit que $\Psi_i$ ou son inverse peut être calculé en $O(iM(\ell^{i+1}))$ opérations dans $\mathbb{K}_0$.
 
-Montrons alors comment est calculé un relèvement à partir des éléments sus-mentionnés. Soit $A$ un élément écrit dans la base bivariée $(x_i,x_{i-1})$, autrement dit $A$ est dans $\mathbb{K}_0[X_{i-1},X_i]/\langle Q_{i-1}, T_{i} \rangle$. On applique alors $\psi_{i-1}$ à ses coefficients en $x_i^0,x_i,\cdots, x_i^{\ell-1}$ pour réécrire $A$ comme un élément de
+Montrons alors comment est calculé un relèvement à partir des éléments sus-mentionnés. Soit $A$ un élément écrit dans la base bivariée $(x_i,x_{i-1})$, autrement dit $A$ est dans $\mathbb{K}_0[X_{i-1},X_i]/\langle Q_{i-1}, T_{i} \rangle$. On applique alors $\Psi_{i-1}$ à ses coefficients en $x_i^0,x_i,\cdots, x_i^{\ell-1}$ pour réécrire $A$ comme un élément de
 \begin{equation*}
 \mathbb{K}_0[Y_{i-1},X_i]/\langle Y^{\ell^{i-1}}-y_{i-2},T_i \rangle = \mathbb{K}_{i-1}[X_i]/\langle Q_{i,i-1} \rangle.
 \end{equation*}
-On applique alors $\psi_{i,i}^{-1}:\mathbb{K}_{i-1}[X_i]/\langle Q_{i,i-1} \rangle \to \mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle$ pour avoir l'image de $A$ dans $\mathbb{K}_i$. Enfin on applique $\psi_{i}:\mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle \to \mathbb{K}_0[X_i]/ \langle Q_i \rangle $ pour avoir $A$ exprimé dans une base monomiale en $x_i$. Faire le push revient à faire l'inverse de ses opérations.
+On applique alors $\Psi_{i,i}^{-1}:\mathbb{K}_{i-1}[X_i]/\langle Q_{i,i-1} \rangle \to \mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle$ pour avoir l'image de $A$ dans $\mathbb{K}_i$. Enfin on applique $\Psi_{i}:\mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle \to \mathbb{K}_0[X_i]/ \langle Q_i \rangle $ pour avoir $A$ exprimé dans une base monomiale en $x_i$. Faire le push revient à faire l'inverse de ses opérations.
 
-\paragraph{Couvegines and Lercier's ideas to explicitely compute Q and T}
+\paragraph{Couveignes and Lercier's ideas to explicitely compute Q and T}
 Ici vont être explicités des méthodes permettant de calculer les tours $\ell$ adiques, celles-ci s'inspirent de travaux de Couveignes et Lercier \cite{couveignesLercier2013}.
 
 Premièrement nous allons voir les idées de Couveignes et Lercier, dans un second temps nous allons voir qu'un seul exemple, le cas où l'on a le polynôme modulaire $\phi_l$ qui se scinde en facteurs quadratiques sur $\mathbb{F}_q$ de par l'intérêt des objets qu'il manipule, le cas où l'on a le polynôme modulaire qui se scinde en facteurs linéaires sur $\mathbb{F}_q$ n'est pas traité ici mais l'est dans \cite{DeFeo-Doliskani-Schost13}.
