@@ -805,27 +805,27 @@ Dans cette section la tour $\ell$-adique sera écrite:
 L'objectif ici sera de représenter de façon univariée les éléments du corps $\mathbb{F}_{q^{\ell^i}}$, pour cela on va représenter les éléments de ce corps à l'aide d'éléments de $\mathbb{F}_{q}[X_i]/\langle Q_i \rangle$ pour un polynôme irréductible $Q_i \in \mathbb{F}_q[X_i]$. La principale diffculté par rapport au cas $\ell=2$ sera de construire de tels polynômes, pour cela on sera obligé de construire des extensions de corps d'indice $r$ où des résidus non $\ell$ adiques existent. On construira alors sur ces corps des tours d'extension $\ell$-adique, qui contiendront donc des corps de la taille $r\ell^i$. Il faudra alors utiliser une descente dans les corps pour alors avoir des corps de taille $\ell^i$.
 
 \paragraph{Notation des représentations}
-Comme dit précédemment les éléments du corps $\mathbb{F}_{q^{\ell^i}}$ peuvent être représentés comme des éléments de $\mathbb{F}_q[X_i]/\langle Q_i \rangle $, avec $Q_i$ un polynôme irréductible Un élément de $\mathbb{F}_{q^{\ell^i}}$ peut être donc représenté à l'aide de la base:
+Comme dit précédemment les éléments du corps $\mathbb{F}_{q^{\ell^i}}$ peuvent être représentés comme des éléments de $\mathbb{F}_q[X_i]/\langle Q_i \rangle $, avec $Q_i$ un polynôme irréductible. Un élément de $\mathbb{F}_{q^{\ell^i}}$ peut être donc représenté à l'aide de la base:
 
 \[
 U_i=(1,x_i,x_i^2,\cdots,x_i^{\ell^i-1})
 \]
 
-On peut alors vous construire une base au dessus de celle-là, à l'aide d'un polynôme irréductible $T_{i}$ de degré $\ell$, de telle sorte que l'on ait: $\mathbb{F}_{q^{\ell^{i}}}\simeq \mathbb{F}_q[X_{i-1},X_{i}]/\langle Q_{i-1}(X_{i-1}), T_i(X_{i-1},X_{i}) \rangle $. Ainsi un élément de $\mathbb{F}_{q^{\ell^{i}}}$ sera représenté à l'aide de la base bivariée suivante:
+On peut alors vouloir construire une autre base pour représenter $\mathbb{F}_{q^{\ell^i}}$, ainsi à l'aide d'un polynôme irréductible $T_{i}$ de degré $\ell$ et d'une représentation de $\mathbb{F}_{q^{\ell^{i-1}}}=\mathbb{F}_q[X_{i-1}]/\langle Q_{i-1} \rangle $, de telle sorte que l'on ait: $\mathbb{F}_{q^{\ell^{i}}}\simeq \mathbb{F}_q[X_{i-1},X_{i}]/\langle Q_{i-1}(X_{i-1}), T_i(X_{i-1},X_{i}) \rangle $. Ainsi un élément de $\mathbb{F}_{q^{\ell^{i}}}$ pourra être représenté à l'aide de la base bivariée suivante:
 
 \[
 B_i=(1,x_{i-1},x_{i-1}^2,\cdots,x_{i-1}^{\ell^{i-1}-1},x_i^{\ell-1},x_i^{\ell-1}x_{i-1}^{\ell^{i-1}-1})
 \] 
-Le relèvement correspond à un changement de base de $B_i$ vers $U_i$, le "push" correspond à un changement de base de $U_i$ vers $B_i$.
+Le relèvement correspond à un changement de base de $B_i$ vers $U_i$, la descente correspond à un changement de base de $U_i$ vers $B_i$.
 
-Ces opérations de base servent à faire des plongements dans des éléments plus bas dans la tour, mais aussi sont des moyens de faire des opérations de base plus rapides à l'aide notamment de bases univariées comme vu précédemment dans le cas $\ell=2$.
+Ces opérations de base servent à faire des plongements dans des corps situés à des niveaux plus bas dans la tour, mais sont aussi un moyen de faire des opérations de base plus rapides à l'aide notamment de l'utilisation de bases univariées comme vu précédemment dans le cas $\ell=2$.
 
-De façon plus générale on notera pour $0 \geqslant j \geqslant i $ $Q_{i,j} \in \mathbb{F}_q(x_j)[X_i]$ le polynôme minimal de $x_i$ sur $\mathbb{F}_{q}(x_j)$, il a pour degré $\ell^{i-j}$. On a en particulier $Q_{i,0}=Q_i$ et $Q_{i,i-1}=T_{i}[X_i,X_{i-1}]$.
+De façon plus générale on notera pour $0 \leqslant j \leqslant i $ $Q_{i,j} \in \mathbb{F}_q(x_j)[X_i]$ le polynôme minimal de $x_i$ sur $\mathbb{F}_{q}(x_j)$, il a pour degré $\ell^{i-j}$. On a en particulier $Q_{i,0}=Q_i$ et $Q_{i,i-1}=T_{i}[X_i,X_{i-1}]$.
 
 \paragraph{Construction de tours quasi-cyclotomique}
 La première étape conssite à construire une extension de corps $\mathbb{K}_0=\mathbb{F}_q[Y_0]/\langle P_0 \rangle$ telle que la classe résiduelle $y_0$ de $Y_0$ soit un résidu non $\ell$ adique de $\mathbb{K}_0$, on note $r$ le degré de $P_0$.
 
-Par \cite{Lang2002algebra}[Th. VI.9.1] on a pour $i \geqslant 1$ le polynôme $Y_i^{\ell^i}-y_0 \in \mathbb{K}_O[Y_i]$ qui est irréductible, le corps $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ est ainsi un corps à $q^{r\ell^i}$ éléments. En notant $y_i$ les classes résiduelles $y_i$ de $Y_i$ dans $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ sont naturellement plongées les unes dans les autres à l'aide de l'isomorphisme $\mathbb{K}_{i+1} \simeq \mathbb{K}_i[Y_{i+1}]/\langle Y_{i+1}^{\ell}-y_i\rangle $, en particulier on a $y_{i+1}^{\ell}=y_i$.
+Par \cite[Th. VI.9.1]{Lang2002algebra} on a pour $i \geqslant 1$ le polynôme $Y_i^{\ell^i}-y_0 \in \mathbb{K}_0[Y_i]$ qui est irréductible, le corps $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ est ainsi un corps à $q^{r\ell^i}$ éléments. En notant $y_i$ les classes résiduelles $y_i$ de $Y_i$ dans $\mathbb{K}_i=\mathbb{K}_0[Y_i]/\langle Y_i^{\ell^i}-y_0 \rangle$ sont naturellement plongées les unes dans les autres à l'aide de l'isomorphisme $\mathbb{K}_{i+1} \simeq \mathbb{K}_i[Y_{i+1}]/\langle Y_{i+1}^{\ell}-y_i\rangle $, en particulier on a $y_{i+1}^{\ell}=y_i$.
 
 
  Pour pouvoir alors calculer un corps de taille $\ell^i$ on utilise le processus de descente résultat suivant qui vient d'une idée de Shoup:
@@ -835,7 +835,7 @@ Pour $i \geqslant 0$, soit $x_i$ la trace de $y_i$ sur un sous corps d'indice $r
 \begin{equation*}
 x_i=\sum_{j=0}^{r-1}y_i^{q^{\ell^i}j}
 \end{equation*}
-On a alors \cite{Shoup88}[Th. 2.1] qui prouve que $\mathbb{F}_q(x_i)=\mathbb{F}_{q^{\ell^i}}$
+On a alors \cite[Th. 2.1]{Shoup88} qui prouve que $\mathbb{F}_q(x_i)=\mathbb{F}_{q^{\ell^i}}$
 \end{prop}
 
 Montrons donc dans un premier temps comment calculer $\mathbb{K}_0 \simeq \mathbb{F}_{q^r}$
@@ -1097,7 +1097,7 @@ Au niveau $i$ de la tour d'extension $\ell$-adique, un relèvement coûte $O(M(\
 \end{cor}
 
 \begin{proof}
-Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut être représenté dans une base bivariée, c'est à dire par un polynôme $A(X,Y)$ avec $\deg(A,X)<n=\ell^{i-1}$ et $\deg(A,Y)<\ell$. On calcule alors à l'aide de l'algorithme \ref{alg:Compose} le polynôme univarié en $Y$ $A^*=A[f,g,n]$ et $\gamma = g^{n-1}$ le tout à l'aide de $O(M(\ell^i)\log(\ell^i))$ opérations dans $\mathbb{F}_q$. Le relevé de $\alpha$ sera alors $A^*/\gamma$ modulo $S$. L'inversion de $\gamma$ coûte $O(M(\elln)\log(\elln))$ opérations, et la multiplication ajoute un cout de $O(M(\ell n))$.
+Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut être représenté dans une base bivariée, c'est à dire par un polynôme $A(X,Y)$ avec $\deg(A,X)<n=\ell^{i-1}$ et $\deg(A,Y)<\ell$. On calcule alors à l'aide de l'algorithme \ref{alg:Compose} le polynôme univarié en $Y$ $A^*=A[f,g,n]$ et $\gamma = g^{n-1}$ le tout à l'aide de $O(M(\ell^i)\log(\ell^i))$ opérations dans $\mathbb{F}_q$. Le relevé de $\alpha$ sera alors $A^*/\gamma$ modulo $S$. L'inversion de $\gamma$ coûte $O(M(\ell n)\log(\ell n))$ opérations, et la multiplication ajoute un cout de $O(M(\ell n))$.
 \end{proof}
 
 \paragraph{Descente}
@@ -1150,17 +1150,34 @@ Soit $F_0 \subset F_1 \subset \cdots \subset F_n$ une tour de Kummer définie te
 \begin{proof}
 Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat étant sinon $a$ lui-même. Notons $s= |F_j|$ et $d=[F_i:F_1]=\ell^{i-1}$. Soit $x_i$ l'image de $x$ dans $F_i=\mathbb{F}_q[x]/P_i(x)$, on a en particulier $x_i^d=x_1$.
 
-La première étape est de calculer $y=x_i^s$. En écrivant $s=ud=r$ avec $0 \leqslant r < d$ on a alors $y=x_1^{u \bmod |F_1|-1}x_i^r$. Le calcul de $x_1^{u \bmod |F_1|-1}$ se fait en utilisant $O(\ell M(\ell) \log(q))$ opérations sur $\mathbb{F}_q$, on conserve ce résultat sous la forme d'un monôme dans $F_1[x_i]$. Par hypothèse on a $a$ qui est représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[F_i:F_0]$: 
+La première étape est de calculer $y=x_i^s$. En écrivant $s=ud+r$ avec $0 \leqslant r < d$ on a alors $y=x_1^{u \bmod |F_1|-1}x_i^r$. Le calcul de $x_1^{u \bmod |F_1|-1}$ se fait en utilisant $O(\ell M(\ell) \log(q))$ opérations sur $\mathbb{F}_q$, on conserve ce résultat sous la forme d'un monôme dans $F_1[x_i]$. Par hypothèse on a $a$ qui est représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[F_i:F_0]$: 
 \begin{equation*}
 a^*_0+a_1^*x_i+ \cdots + a^*_{d_1d-1}x_i^{d_1d-1}
 \end{equation*}
-avec les $a_i^*$ des éléments de $F_0$. On réécrit $a$ alors sous la forme:
+avec les $a_i^* \in F_0$. On réécrit $a$ alors sous la forme:
 \begin{equation*}
-a_O+a_1x_i+ \cdots + a_{d-1}x_i^{d-1}
+a_0+a_1x_i+ \cdots + a_{d-1}x_i^{d-1}
 \end{equation*}
-avec les $a_i \in F_1$ en écrivant pour $k$ appartenant à $[1; d_1d-1]$ $k=u_k d + v$ avec $0 \geqslant v< d$ prenant en compte que l'on a $x_i^k=x_1^{}$
-\end{proof}
+avec les $a_w=a_w^* + \sum_{k=1}^{d_1d-1/d}a_{i+dk}x_1^k \in F_1$ pour $w$ appartenant à $[0; d-1]$ en rappelant que pour $t$ appartenant à $[1; d_1d-1]$ on a $t=d u_t+v_t$ avec $0 \leqslant v_t<d$ par conséquent $x_w^t=x_1^{u \bmod |F_1|-1}x_w^{v}$ . Ainsi cette opération est juste un réarrangement des coefficients de $a$.
 
+On a alors $a^s$ qui s'écrit sous la forme:
+\begin{equation*}
+a_0 + a_1 y + a_2 y^2 + \cdots + a_{d_1}y^{d-1}
+\end{equation*}
+On calcule alors $a(y)$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_1[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(\ell))$ opérations sur $\mathbb{F}_q$, on aura alors un coût total de $O(\ell^{i-1}M(\ell)))$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_1,x_i)$ de degré $(d_1,d)$, on réécrit alors $a^s$ dans une base canonique de $F_i$ à l'aide du changement de représentation inverse de celui effectué précédemment. C'est à dire à partir $a^s$ représenté sous la forme:
+\begin{equation*}
+b_0 + b_1 x_i + b_2 x_i^2 + \cdots + b_{d-1}x_i^{d-1}
+\end{equation*}
+avec pour tout $k$, $b_k$ un élément de $F_1$. En remarquant que l'on a 
+\begin{equation*}
+ b_k=b_{k,0} + b_{k,1}x_1 + \cdots + b_{k,d_1-1} x_1^{d_1-1}=b_{k,0} + b_{k,1}x_i^d + b_{k,2} x_i^{2 \times d} + \cdots + b_{k,d_1-1} x_i^{(d_1-1)\times d} 
+\end{equation*}
+on aura alors $a^s$ représenté sous la forme:
+\begin{equation*}
+b_0^* + b_1^* x_i + b_2 x_i^2 + \cdots + b_{d_1d-1} x_i^{d_1d-1}
+\end{equation*}
+avec pour $k=ud+v$ avec $0 \leqslant v < d$ $b_k^*=b_{u,v}$. On a alors ici aussi un changement de représentation qui se fait à l'aide d'un réarrangement des coefficients.
+\end{proof}
 
 \chapter{Isogénies sur les corps finis}
 
