@@ -939,37 +939,38 @@ Montrons alors comment est calculé un relèvement à partir des éléments sus-
 On applique alors $\Psi_{i,i}^{-1}:\mathbb{K}_{i-1}[X_i]/\langle Q_{i,i-1} \rangle \to \mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle$ pour avoir l'image de $A$ dans $\mathbb{K}_i$. Enfin on applique $\Psi_{i}:\mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle \to \mathbb{K}_0[X_i]/ \langle Q_i \rangle $ pour avoir $A$ exprimé dans une base monomiale en $x_i$. Faire le push revient à faire l'inverse de ses opérations.
 
 \paragraph{Couveignes and Lercier's ideas to explicitely compute Q and T}
-Ici vont être explicités des méthodes permettant de calculer les tours $\ell$ adiques, celles-ci s'inspirent de travaux de Couveignes et Lercier \cite{couveignesLercier2013}.
+Ici vont être présentés des travaux de Couveignes et Lercier \cite{couveignesLercier2013} permettant de calculer des tours $\ell$ adiques.
 
-Dans un premier temps nous allons voir les idées de Couveignes et Lercie, puis dans un second temps nous allons voir un exemple, le cas où l'on a le polynôme modulaire $\phi_l$ qui se scinde en facteurs quadratiques sur $\mathbb{F}_q$ de par l'intérêt des objets qu'il manipule, le cas où l'on a le polynôme modulaire qui se scinde en facteurs linéaires sur $\mathbb{F}_q$ n'est pas traité ici mais l'est dans \cite{DeFeo-Doliskani-Schost13}.
+Dans un premier temps nous allons voir les idées de Couveignes et Lercier, puis dans un second temps nous allons voir un exemple, celui où le polynôme modulaire $\phi_l$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$, cet exemple a été choisi de par l'intérêt de l'objet qu'il manipule: un cycle d'isogénie. Ce sera donc l'occasion pour le lecteur de se familiariser avec les graphes d'isoégnies. Un autre cas où le polynôme modulaire se scinde en facteurs linéaires sur $\mathbb{F}_q$ n'est pas traité ici mais l'est dans \cite{DeFeo-Doliskani-Schost13}.
 
-Soient $G,G'$ deux $\mathbb{F}_q$ groupes algébriques intègres de même dimension, $\phi: G' \to G$ un morphisme de groupe surjectif et séparable de degré $\ell$, alors l'ensemble des points $x$ de $G$ de fibre $G'_x$ de cardinal $\ell$ est un ensemble ouvert non vide $U \subset G$. 
-L'homomorphisme induit de groupes finis $\phi_{\mid \mathbb{F}_q}: G'(\mathbb{F}_q) \to G(\mathbb{F}_q)$ permet lorsqu'il est non surjectif de définir des extensions algébriques de $\mathbb{F}_q$ à partir des fibrés de points de $G(\mathbb{F}_q)$ qui ne se trouvent pas dans l'image de $\phi_{\mid \mathbb{F}_q}$. 
+Présentons donc l'idée directrice avant de voir un exemple. Soient $G,G'$ deux $\mathbb{F}_q$ groupes algébriques intègres de même dimension, $\phi: G' \to G$ un morphisme de groupe surjectif et séparable de degré $\ell$, alors l'ensemble des points $x$ de $G$ de fibré $G'_x$ de cardinal $\ell$ est un ensemble ouvert non vide $U \subset G$. 
+L'homomorphisme induit de groupes finis $\phi_{\mid \mathbb{F}_q}: G'(\mathbb{F}_q) \to G(\mathbb{F}_q)$ permet lorsqu'il est non surjectif de définir des extensions algébriques de $\mathbb{F}_q$ à partir des fibrés de points de $G(\mathbb{F}_q)$ ne se trouvant pas dans l'image de $\phi_{\mid \mathbb{F}_q}$. 
 
-Pour construire ces extensions algébriques on applique sur une fibre irréductible issue de points ne se trouvant pas dans l'image de $\phi_{\mid \mathbb{F}_q}$ une projection linéaire et on détermine alors un polynôme irréductible de degré divisant $\ell$ (espéré égal à $\ell$). Si l'on peut itérer cette méthode avec un nouvel homomorphisme: $\phi':G'' \to G'$ qui vérifie les même conditions que vu précédemment, alors on peut déterminer des extensions $\ell$-adiques de $\mathbb{F}_q$.
+Pour construire ces extensions algébriques on applique sur un fibré irréductible issu de points ne se trouvant pas dans l'image de $\phi_{\mid \mathbb{F}_q}$ une projection linéaire cela permet alors de  déterminer un polynôme irréductible de degré divisant $\ell$ (espéré égal à $\ell$). Si l'on peut itérer cette méthode avec un nouvel homomorphisme: $\phi':G'' \to G'$ qui vérifie les même conditions que vu précédemment, alors on peut déterminer des extensions $\ell$-adiques de $\mathbb{F}_q$.
 
-On va donc voir une application de cette méthode qui a un intérêt aussi de par l'objet qu'elle manipule: les cycles d'isogénies.
+On va donc voir une application de cette méthode appliquée sur un cycle d'isogénies de degré $\ell$.
 
 \paragraph{Towers from elliptic curves}
-Dans cette partie on revoit les constructions de Couveignes et Lercier \cite{couveignesLercier2013} et l'on montre en particulier les passages pertinents pour une construction de tour.
+%Dans cette partie on revoit les constructions de Couveignes et Lercier \cite{couveignesLercier2013} et l'on montre en particulier les passages pertinents pour une construction de tour.
 
-Soit $\ell$ un nombre premier différent de $p$ qui ne divise pas $q-1$, soit $E_0$ une courbe elliptiqe de cardinal sur $\mathbb{F}_q$: $|E(\mathbb{F}_q)|=\ell^e l'$ avec $e \geqslant 1$ et $l' \wedge \ell =1$. Une telle courbe existe d'après le théorème de Hasse seulement si $\ell \leqslant q+2\sqrt{q} +1$.  
-Pour mettre en pratique l'idée de Couvegines et Lercier expliqué plus haut on travaille alors avec des isogénies $\mathbb{F}_q$-rationnelles séparables de degré $\ell$. Il est donc naturel de s'intéresser à l'action du Frobenius sur la $\ell$ torsion afin de déterminer ces isogénies. On étudie donc le polynôme charactéristique du Frobenius:
+Soit $\ell$ un nombre premier différent de $p$ qui ne divise pas $q-1$, soit $E_0$ une courbe elliptiqe de cardinal sur $\mathbb{F}_q$: $|E_0(\mathbb{F}_q)|=\ell^e a$ avec $e \geqslant 1$ et $a \wedge \ell =1$. Une telle courbe existe d'après le théorème de Hasse seulement si $\ell \leqslant q+2\sqrt{q} +1$.  
+Pour mettre en pratique l'idée de Couvegines et Lercier \cite{couveignesLercier2013} expliqué plus haut on travaille alors avec des isogénies $\mathbb{F}_q$-rationnelles séparables de degré $\ell$. Il est donc naturel de s'intéresser à l'action du Frobenius sur la $\ell$ torsion afin de déterminer ces isogénies. On étudie donc le polynôme caractéristique du Frobenius:
+%peut etre enoncer cela sous forme de proposition ??
 \begin{equation*}
 X^2-t_{\pi}X+q=(X-1)(X-q) \bmod \ell
 \end{equation*}
 qui dans ce cas précis se scinde modulo $\ell$.
-% En effet comme $\ell \wedge q = 1$ on a le produit des valeurs propres qui n'est pas divisible par $\ell$.
 
-En effet par hypothèse sur le cardinal de la courbe on a: $|E|=q+1-t_{\pi}=0 \bmod \ell$, on peut alors montrer que $t_{\pi}^2-4q=(q+1)^2-4q=(q-1)^2 \bmod \ell$. De plus le fait que $\ell \nmid q-1$ nous permet d'énoncer que le discrimant du polynôme charactéristique de $\pi$ est différent de $0$ modulo $\ell$, le Frobenius admet donc deux valeurs propres. Enfin on montre que les deux valeurs propres sont $1$ et $q \bmod \ell$ car on a $t_{\pi}=q+1 \bmod \ell$.
+
+En effet par hypothèse sur le cardinal de la courbe on a: $|E|=q+1-t_{\pi}=0 \bmod \ell$, on peut alors montrer que $d_{\pi}=t_{\pi}^2-4q=(q+1)^2-4q=(q-1)^2 \bmod \ell$. De plus le fait que $\ell \nmid q-1$ nous permet d'énoncer que le discrimant $d_{\pi}$ du polynôme charactéristique de $\pi$ est différent de $0$ modulo $\ell$, le Frobenius admet donc deux valeurs propres. Enfin on montre que les deux valeurs propres sont $1$ et $q \bmod \ell$ car on a $t_{\pi}=q+1 \bmod \ell$.
 
 Ainsi à l'aide de ces deux valeurs propres on peut déterminer des sous-groupes cycliques de la $\ell$ torsion. 
 
 Comme on ne peut pour le moment que travailler sur $\mathbb{F}_q$, le but de cette méthode étant de construire une extension $\ell$-adique de $\mathbb{F}_q$, on ne peut utiliser que le sous-groupe cyclique de taille $\ell^e$ associé à la valeur propre $1$. On construit donc à l'aide de ce sous groupe une $\ell$ isogénie qui a pour image $E_1$. 
 
-De manière plus générale  on peut affirmer que la $\ell$ torsion de $E$ n'est pas entièrement rationnelle car on a $\ell \nmid q-1$, la $\ell$ torsion est seulement cyclique. Ainsi cet argument et la cardinalité de la courbe permettent d'affirmer que l'on a un sous groupe cyclique d'ordre $\ell^e$ défini sur $\mathbb{F}_q$, on peut donc aussi travailler directement avec des $\ell^i$ isogénies avec $1 \leqslant i \leqslant e$.
+De manière plus générale  on peut affirmer que la $\ell$ torsion de $E_0$ n'est pas entièrement rationnelle car on a $\ell \nmid q-1$, la $\ell$ torsion ne peut donc seulement être cyclique. Ainsi cet argument et la cardinalité de la courbe permettent d'affirmer que l'on a un sous groupe cyclique d'ordre $\ell^e$ défini sur $\mathbb{F}_q$, on peut donc aussi travailler directement avec des $\ell^i$ isogénies avec $1 \leqslant i \leqslant e$.
 
-Le sous groupe cyclique de la $\ell$ torsion défini comme le noyau de $\pi -q$ génère une $\ell$ isogénie rationnelle, car l'ensemble des points de son noyau est stable sous l'action du Frobenius. Ainsi $E_0$ admet deux courbes $\ell$ isogènes, cet argument peut se répéter à ses courbes $\ell$isogènes car celles-ci ont la même cardinalité. On a donc défini un cycle de $\ell$isogénies. Ainsi à partir de $E_0$ on dénote $E_1$ la courbe comdonaire de la $\ell$-isogénie qui a pour noyau le sous groupe cyclique de la $\ell$ torsion égal à $\ker (\pi_{|E_0[\ell]} - \mathrm{Id}_{|E_0[\ell]})$, de manière générale on notera $E_{i+1}$ le codomaine de l'isogénie engendré par $\ker (\pi_{|E_i[\ell]} - \mathrm{Id}_{|E_i[\ell]})$ . Ce cycle a une longueur finie comme l'énonce le lemme suivant issu de \cite{DeFeo-Doliskani-Schost13}:
+Le sous groupe cyclique de la $\ell$ torsion défini comme le noyau de $\pi -q$ génère une $\ell$ isogénie rationnelle, car l'ensemble des points de son noyau est stable sous l'action du Frobenius. Ainsi $E_0$ admet deux courbes $\ell$ isogènes, cet argument peut se répéter à ses courbes $\ell$isogènes car celles-ci ont la même cardinalité. On a donc défini un cycle de $\ell$isogénies. Ainsi à partir de $E_0$ on dénote $E_1$ la courbe codomaine de la $\ell$-isogénie qui a pour noyau le sous groupe cyclique de la $\ell$ torsion égal à $\ker (\pi_{|E_0[\ell]} - \mathrm{Id}_{|E_0[\ell]})$, de manière générale on notera $E_{i+1}$ le codomaine de l'isogénie engendré par $\ker (\pi_{|E_i[\ell]} - \mathrm{Id}_{|E_i[\ell]})$ . Ce cycle a une longueur finie comme l'énonce le lemme suivant issu de \cite{DeFeo-Doliskani-Schost13}:
 
 \begin{lem}
 Soient $E_0,E_1, \cdots$ les courbes elliptiques définies comme ci-dessus, alors il existe un $n \in O(\sqrt{q}\log(q))$ tel que $E_n$ est isomorphe à $E_0$.
@@ -992,20 +993,20 @@ On note $\lambda_{e+1}=1+\ell^el'$ avec $l' \wedge \ell = 1$. Dans la suite on n
 \begin{equation*}
 (\ell,\pi-\lambda)=\mathfrak{l}.
 \end{equation*}
-C'est un idéal inversible, noyau de l'isogénie $\phi_{i}:E_i \to E_{i+1}$. Notre but est de travailler avec un élément de $\ell$ torsion de $E_{i+1}$ pour lequel on est sûr de ne pas avoir d'antécédent par la $\ell$ isogénie défini dans $\mathbb{F}_q$. Le $\ell$ sous-groupe de Sylow de $E_{i+1}(\mathbb{F}_q)$ est le noyau de $\mathfrak{l}^e=(\ell^e,\pi - 1)$ et il est cyclique, on travaille donc avec $A$ un générateur de $\mathfrak{l}^e$ avec $\ell^e \neq 2$. En écrivant l'isogénie $\phi_i$ comme une fration rationnelle : 
+C'est un idéal inversible, noyau de l'isogénie $\phi_{i}:E_i \to E_{i+1}$. Notre but est de travailler avec un élément de $\ell$ torsion de $E_{i+1}$ pour lequel on est sûr de ne pas avoir d'antécédent par la $\ell$ isogénie défini dans $\mathbb{F}_q$. Le $\ell$ sous-groupe de Sylow de $E_{i+1}(\mathbb{F}_q)$ est le noyau de $\mathfrak{l}^e=(\ell^e,\pi - 1)$ et il est cyclique, on travaille donc avec $A$ un générateur de $\mathfrak{l}^e$ avec $\ell^e \neq 2$. En écrivant l'isogénie $\phi_i$ comme une fraction rationnelle : 
 \begin{align*}
 \phi_{i}:E_i \to E_{i+1}, \\
 (x,y) \mapsto \left( \frac{f_{i}(x)}{g_{i}(x)} ,y \left( \frac{f_{i}(x)}{g_{i}(x)} \right) ^{'} \right)
 \end{align*}
 %^' \right)
 
-avec $g_i$ le carré du polynôme de degré $\frac{ell-1}{2}$  qui s'annule sur l'abscisse des points du noyau de $\phi_{i}$ on  définit alors $ T_{1}(X)=f_{1}(x)-g_{1}(x)x(A)$. Soit $B \in E_i(\overline{\mathbb{F}_q})$ tel que $\phi_i{\delta}(B)=A$, alors  $B$ est un générateur de $\mathfrak{l}^{e+1}=(\ell^{e+1},\pi-\lambda)$. En particulier on a:
+avec $g_i$ le carré du polynôme de degré $\frac{\ell-1}{2}$  qui s'annule sur l'abscisse des points du noyau de $\phi_{i}$, on  définit alors $ T_{1}(X)=f_{1}(x)-g_{1}(x)x(A)$. Soit $B \in E_i(\overline{\mathbb{F}_q})$ tel que $\phi_i(B)=A$, alors  $B$ est un générateur de $\mathfrak{l}^{e+1}=(\ell^{e+1},\pi-\lambda)$. En particulier on a:
 \begin{equation*}
 \pi(B)=\lambda B
 \end{equation*}
-avec l'ordre de $\lambda=1+\ell^el'$ dans $(\mathbb{Z}/\ell^{e+1}\mathbb{Z})^*$ qui est $\ell$. Ainsi l'orbite de Galois de $B$ est de taille $\ell$ et le polynôme $T_{1}(X)$,dont les racines appartiennent au fibré $\phi_i^{-1}(A)$ est irréductible. 
+avec l'ordre de $\lambda=1+\ell^el'$ dans $(\mathbb{Z}/\ell^{e+1}\mathbb{Z})^*$ qui est $\ell$. Ainsi l'orbite de Galois de $B$ est de taille $\ell$ et le polynôme $T_{1}(X)$,dont les racines appartiennent au fibré $\phi_i^{-1}(A)$, est irréductible. 
 
-Pour définir alors des extensions successives on prend alors les pré images par les isogénies $\phi_{i_1},\phi_{i_2}, \cdots$. On définit donc la suite de polynômes suivant pour construire une tour d'extension $\ell$-adique en notant $\eta =x(A)$ l'abscisse d'un générateur de la $\ell^e$-torsion de $E_0$:
+Pour définir des extensions successives on prend alors les pré images par les isogénies $\phi_{i_1},\phi_{i_2}, \cdots$. On définit donc la suite de polynômes suivante pour construire une tour d'extension $\ell$-adique en notant $\eta =x(A)$ l'abscisse d'un générateur de la $\ell^e$-torsion de $E_0$:
 \begin{align*}
 T_0=f_{-1}(X_1)-\eta g_{-1}(X_1), \\
 T_i=f_{-i-1}(X_{i+1})-X_{i+1}g_{-i-1}(X_{i+1})
@@ -1020,7 +1021,7 @@ X^2-tX+q = (X-\lambda_{e+\delta})(X-\mu_{e+\delta}) \bmod \ell^{e+\delta} .
 \paragraph{Existence de telles courbes}
 Il est alors naturel de se demander sous quelles conditions on peut trouver une courbe elliptique $E$ définie sur $\mathbb{F}_q$ de cardinal multiple de $\ell$ avec $\ell \wedge q =1$ et $\ell \nmid q-1$. Par le théroème de Hasse si l'on a $\ell \leqslant 2\sqrt{q}$ alors il existe au moins deux entiers multiples de $\ell$ dans l'intervalle $[q+1-2\sqrt{q}, q+1+2\sqrt{q} ] $, on a alors au moins un des deux entiers qui n'est pas congru à $1$ modulo $q$. Il existe donc au moins une courbe de cardinal multiple de $\ell$. L'objectif est donc d'expliciter une borne inférieure sur ce nombre de courbes. Pour cela on utilise les résultats de Lenstra \cite{lenstra1987} qui ont été étendus à notre cas par Howe \cite{howe1993}.
 
-\begin{cor}{Howe}
+\begin{cor}[Howe]
 \label{cor:Howe:densite}
 Soit $W(\mathbb{F}_q)$ l'ensemble des courbes elliptiques sous forme de Weierstrass définies sur $\mathbb{F}_q$. Soit $\mu_w$ la mesure uniforme sur cet ensemble, soit $\ell$  tel que $\ell \nmid q-1$ alors la densité $r(\ell,q)$ de courbes elliptiques sous forme de Weierstrass ayant un point $\mathbb{F}_q$ rationnel d'ordre $\ell$ vérifie:
 \begin{equation*}
