@@ -849,22 +849,10 @@ $\Phi_{\ell}$ se scinde sur $\mathbb{F}_q[X_0]$ en facteurs irréductibles de m�
 En pratique un tel résidu non quadratique $y_0$ est trouvé aléatoirement après $O(1)$ essais d'après \cite[Lemma 15]{Shoup93}, chaque essai a un coût de $O_e(M(\ell)\log(r)+M(r)\log(\ell)\log(r)+M(r)\log(q))$ opérations sur $\mathbb{F}_q$.
 %peut etre affiner les sources
 
-Selon la valeur de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \mid q-1$ et $\ell \mid q+1$ et ensuite le cas général qui a une complexité moins intéressante mais toujours linéaire en la taille de l'extension.
+Selon la valeur de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \mid q-1$ et $\ell \nmid q-1$ et ensuite le cas général qui a une complexité moins intéressante mais toujours linéaire en la taille de l'extension. Le cas général va d'abord être présenté avant de voir les deux cas particuliers qui partagent une construction commune généralisée par l'idée de Couveignes et Lercier \cite{couveignesLercier2013}.
 
-\paragraph{\boldmath $\ell \mid q-1$}\label{par:easycase}
-Dans ce cas $r=1$ car $\Phi_{\ell}$ se scinde en facteurs linéaires sur $\mathbb{F}_q$. Le polynôme $P_0$ s'écrit donc $Y_0-y_0$ avec $y_0$ un résidu non $\ell$-adique de $\mathbb{F}_q$. Comme le calcul de la factorisation de $\Phi_{\ell}$ n'est pas nécessaire, on obtient alors une complexité de $O_e(\log(q))$ opérations sur $\mathbb{F}_q$.
-
-Ce cas-ci permet de ne pas utiliser de méthode de descente car on a $\mathbb{K}_0 \simeq \mathbb{F}_q$ et par conséquent on obtient pour $i \geqslant 0 $   $\mathbb{K}_i \simeq \mathbb{F}_{q^{\ell^i}}$, et donc $x_i=y_i$. Les polynômes obtenus alors sont: $Q_i=X^{\ell^i}-y_0$ et $T_i=X_i^{\ell}-X_{i-1}$. Le relèvement et la descente ne sont que des opérations arithmétiques. En effet pour $F=\sum_{0 \leqslant j \leqslant \ell^{i+1}}f_jx_{i+1}^j$ le relévement réécrit cet élément dans une base $x_i,x_{i+1}$ en utilisant la relation suivante:
-\begin{equation*}
-x_{i+1}^j=x_i^{j / \ell}x_{i+1}^{j \bmod \ell} 
-\end{equation*}
-tandis que la descente réécrit un élément éxprimé dans une base $x_i, x_{i+1}$ en un élément exprimé dans la base $x_{i+1}$ en utilisant la relation suivante:
-\begin{equation*}
-\quad x_i^ex_{i+1}^f=x_{i+1}^{e\ell + f} 
-\end{equation*}
-
-\paragraph{$\ell \nmid q+1$}
-Dans ce cas $\Phi_{\ell}$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$ (id est $r=2$). Il est alors nécessaire de prendre $y_0$ tel qu'il soit de norme $1$ sur $\mathbb{F}_q$. Le résultat suivant nous donne alors un moyen de calculer $Q_{i,j}$:
+%\paragraph{$\ell \nmid q+1$}
+%Dans ce cas $\Phi_{\ell}$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$ (id est $r=2$). Il est alors nécessaire de prendre $y_0$ tel qu'il soit de norme $1$ sur $\mathbb{F}_q$. Le résultat suivant nous donne alors un moyen de calculer $Q_{i,j}$:
 %Apparemment inutile car une methode plus simple est trouvée plus tard...
 %\begin{prop}
 %Pour $1\geqslant j<i$ $Q_{i,j}$ vérifie:
@@ -877,7 +865,7 @@ Dans ce cas $\Phi_{\ell}$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$ 
 %Voir \cite{DeFeo-Doliskani-Schost13}
 %\end{proof}
 
-\paragraph{Cas général}
+\subsubsection{Cas général}
 Dans ce cas on ne fait aucune hypothèse sur la décomposition de $\phi_{\ell}$ dans $\mathbb{F}_q[X]$. De plus comme $r=[\mathbb{K}_0:\mathbb{F}_q]$ et qu'il divise $\ell-1$ alors $r$ est premier avec $\ell$. Ainsi $Q_i$ est bien le polynôme minimal de $x_i$ sur $\mathbb{F}_q$, de la même manière $Q_{i,j}$ est le polynôme minimal de $x_i$ sur $\mathbb{K}_j$. Ceci nous permet donc de remplacer le corps de base $\mathbb{F}_q$ par $\mathbb{K}_0$. Le calcul se fera sur la base d'opérations dans $\mathbb{K}_0$, un facteur $O(M(r)\log(r))$, qui correspond au coût d'opérations dans $\mathbb{K}_0$, sera ajouté pour avoir le coût exprimé en nombres d'opérations sur $\mathbb{F}_q$.
 
 
@@ -938,7 +926,21 @@ Montrons alors comment est calculé un relèvement à partir des éléments sus-
 \end{equation*}
 On applique alors $\Psi_{i,i}^{-1}:\mathbb{K}_{i-1}[X_i]/\langle Q_{i,i-1} \rangle \to \mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle$ pour avoir l'image de $A$ dans $\mathbb{K}_i$. Enfin on applique $\Psi_{i}:\mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle \to \mathbb{K}_0[X_i]/ \langle Q_i \rangle $ pour avoir $A$ exprimé dans une base monomiale en $x_i$. Faire le push revient à faire l'inverse de ses opérations.
 
-\paragraph{Couveignes and Lercier's ideas to explicitely compute Q and T}
+
+\subsubsection{\boldmath $\ell \mid q-1$}\label{par:easycase}
+Maintenant on étudie le cas où $r=1$ lorsque $\Phi_{\ell}$ se scinde en facteurs linéaires sur $\mathbb{F}_q$. Le polynôme $P_0$ s'écrit donc $Y_0-y_0$ avec $y_0$ un résidu non $\ell$-adique de $\mathbb{F}_q$. Comme le calcul de la factorisation de $\Phi_{\ell}$ n'est pas nécessaire, on obtient alors une complexité de $O_e(\log(q))$ opérations sur $\mathbb{F}_q$.
+
+Ce cas-ci permet de ne pas utiliser de méthode de descente car on a $\mathbb{K}_0 \simeq \mathbb{F}_q$ et par conséquent on obtient pour $i \geqslant 0 $   $\mathbb{K}_i \simeq \mathbb{F}_{q^{\ell^i}}$, et donc $x_i=y_i$. Les polynômes obtenus alors sont: $Q_i=X^{\ell^i}-y_0$ et $T_i=X_i^{\ell}-X_{i-1}$. Le relèvement et la descente ne sont que des opérations arithmétiques. En effet pour $F=\sum_{0 \leqslant j \leqslant \ell^{i+1}}f_jx_{i+1}^j$ le relévement réécrit cet élément dans une base $x_i,x_{i+1}$ en utilisant la relation suivante:
+\begin{equation*}
+x_{i+1}^j=x_i^{j / \ell}x_{i+1}^{j \bmod \ell} 
+\end{equation*}
+tandis que la descente réécrit un élément éxprimé dans une base $x_i, x_{i+1}$ en un élément exprimé dans la base $x_{i+1}$ en utilisant la relation suivante:
+\begin{equation*}
+\quad x_i^ex_{i+1}^f=x_{i+1}^{e\ell + f} 
+\end{equation*}
+ 
+
+\subsubsection{Couveignes and Lercier's ideas to explicitely compute Q and T}
 Ici vont être présentés des travaux de Couveignes et Lercier \cite{couveignesLercier2013} permettant de calculer des tours $\ell$ adiques.
 
 Dans un premier temps nous allons voir les idées de Couveignes et Lercier, puis dans un second temps nous allons voir un exemple, celui où le polynôme modulaire $\phi_l$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$, cet exemple a été choisi de par l'intérêt de l'objet qu'il manipule: un cycle d'isogénie. Ce sera donc l'occasion pour le lecteur de se familiariser avec les graphes d'isoégnies. Un autre cas où le polynôme modulaire se scinde en facteurs linéaires et quadratiques sur $\mathbb{F}_q$ n'est pas traité ici mais l'est dans \cite{DeFeo-Doliskani-Schost13}.
@@ -1045,11 +1047,6 @@ Pour construire le $i$ ème niveau on doit tout d'abord calculer l'équation de 
 Comme remarqué dans \cite{DeFeo-Doliskani-Schost13} on peut éviter à chaque ajout d'un nouvel étage à la tour d'extension le coût du calcul du $j$-invariant de la courbe isogène en calculant la totalité du cycle juste après avoir trouve une courbe se situant dans un graphe de $\ell$-isogénies cyclique. Pour calculer ce cycle on commence par calculer sur $E_0$ l'isogénie qui a pour noyau la $\ell$ torsion cyclique rationnelle. Pour cela on calcule en $O_e(\log(q))$ opérations sur $\mathbb{F}_q$ un point de $\ell$-torsion rationnel, on calcule alors la courbe image et par conséquent son $j$-invariant en $O(M(\ell))$ opérations sur $\mathbb{F}_q$ en utilisant les formules de Vélu, on répète cette opération jusqu'à retomber sur le $j$-invariant $j(E_0)$, comme vu précédemment on a une borne théorique pour la longueur du cycle de $O(\sqrt{q}\log(q))$. Ainsi on a une complexité totale de $O((M(\ell) + \log(q)) \sqrt{q} \log(q))$, cependant en pratique la longueur du cycle est petite, on peut alors utiliser cette amélioration.
 
 
-\paragraph{Remarques sur les utilisations dans notre cas pratique}
-On pourra remarquer que dans le cas qui nous intéresse en pratique on choisit comme corps de base pour la tour $\ell$-adique une extension $F_1$ de $\mathbb{F}_q$ dans laquelle on a $E[\ell] \subset E(F_1)$. Pour calculer une telle extension on calcule les ordres des valeurs propres $\lambda, \mu$ de $\pi$ modulo la $\ell$-torsion. On travaille alors avec l'extension $F_1$ de degré $d_1$ avec $d_1=ppcm(o(\lambda),o(\mu))=o(q)$ et $o$ l'ordre multiplicatif dans $\mathbb{Z}/\ell\mathbb{Z}^*$, $d_1$ est en particulier l'ordre de la matrice $\pi$ sur la $\ell$ torsion, il divise $\ell-1$. Une conséquence importante pour l'analyse des constructions possibles de tours $\ell$-adiques c'est que dans ce cas-là on aura $\ell \mid F_1-1$, qui est comme on a vu le cas le plus avantageux pour les opérations dans les tours d'extension. 
-
-Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra ajouter un facteur $O(M(\ell)\log(\ell))$ aux résultats obtenus pour une tour $\ell$ adique construite sur un corps $F_1$ tel que $\ell \mid F_1-1$ pour avoir le coût des opérations dans $\mathbb{F}_q$.
-
 \paragraph{Relèvement et descente}
 Les différentes constructions de tours $\ell$-adiques à l'aide de fibrés irréductibles s'appliquent aussi au cas où l'on a $\Phi_{\ell}$ qui se scinde en produits de facteurs irréductibles de degré $1$ et $2$ en plus du cas précédent comme cela est développé plus en détail dans \cite{DeFeo-Doliskani-Schost13}. Ainsi toutes ces constructions à l'aide de fibrés irréductibles ont une structure commune qui nous permet de calculer le relèvement et la descente de la même manière. En rennomant les variables $(X_i,X_{i-1})$ par $(X,Y)$ et les polynômes $(Q_{i-1},Q_{i},T_i)$ par $(R,S,T)$, alors l'extension au niveau $i$ s'écrit:
 \begin{equation}
@@ -1138,7 +1135,14 @@ Au $i$ème niveau de la tour, l'opération de descente coûte $O(M(\ell^i)\log(\
 Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut être représenté dans une base univariée sous la forme $A(Y)$ avec $A$ un polynôme de degré strictement inférieur à $\ell n $ avec $n=\ell^{i-1}$. On calcule tout d'abord le polynôme $g^{n-1}$ afin de pouvoir calculer $A^*=g^{n-1}A \bmod S$ le tout avec une complexité de $O(M(\ell^i))$ opérations. On calcule alors le polynôme $h=1/g \bmod f$ avec un coût de $O(M(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$ et l'on applique alors l'algorithme \ref{alg:Decompose} aux entrées: $A^*,f,g,h,n$. Celui-ci calcule alors un polynôme bivarié $B$ avec une complexité de $O(M(\ell^i\log(\ell^i))$ opérations sur $\mathbb{F}_q$, $B$ représente alors $\alpha$ dans la base bivariée.
 \end{proof}
 
-\paragraph{Opérations sur les tours $\ell$-adique}
+
+\subsubsection{Remarques sur les utilisations dans notre cas pratique}
+On pourra remarquer que dans le cas qui nous intéresse en pratique on choisit comme corps de base pour la tour $\ell$-adique une extension $F_1$ de $\mathbb{F}_q$ dans laquelle on a $E[\ell] \subset E(F_1)$. Pour calculer une telle extension on calcule les ordres des valeurs propres $\lambda, \mu$ de $\pi$ modulo la $\ell$-torsion. On travaille alors avec l'extension $F_1$ de degré $d_1$ avec $d_1=ppcm(o(\lambda),o(\mu))=o(q)$ et $o$ l'ordre multiplicatif dans $\mathbb{Z}/\ell\mathbb{Z}^*$, $d_1$ est en particulier l'ordre de la matrice $\pi$ sur la $\ell$ torsion, il divise $\ell-1$. Une conséquence importante pour l'analyse des constructions possibles de tours $\ell$-adiques c'est que dans ce cas-là on aura $\ell \mid F_1-1$, qui est comme on a vu le cas le plus avantageux pour les opérations dans les tours d'extension. 
+
+Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra ajouter un facteur $O(M(\ell)\log(\ell))$ aux résultats obtenus pour une tour $\ell$ adique construite sur un corps $F_1$ tel que $\ell \mid F_1-1$ pour avoir le coût des opérations dans $\mathbb{F}_q$.
+
+
+\subsubsection{Opérations sur les tours $\ell$-adique}
 Comme il va être expliqué plus tard on va construire une tour $\ell$-adique à partir d'une extension de corps  de$\mathbb{F}_q=F_0$ dénotée $F_1$ telle que l'on ait $d_1=[F_1:F_0]$ égal à l'ordre de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, on aura en particulier $d_1 \mid \ell-1$. On fera remarquer qu'il peut très bien arriver que l'on ait $d_1=1$. De plus par définition de $d_1$, on a $\ell \mid q^{d_1}-1$ et donc on pourra utiliser les constructions de tour $\ell$-adique préconisées dans ce paragraphe \ref{par:easycase} .%cas le plus simple en l'occurence
 
 \paragraph{Calcul du Frobenius}
