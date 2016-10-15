@@ -941,7 +941,7 @@ On applique alors $\Psi_{i,i}^{-1}:\mathbb{K}_{i-1}[X_i]/\langle Q_{i,i-1} \rang
 \paragraph{Couveignes and Lercier's ideas to explicitely compute Q and T}
 Ici vont être présentés des travaux de Couveignes et Lercier \cite{couveignesLercier2013} permettant de calculer des tours $\ell$ adiques.
 
-Dans un premier temps nous allons voir les idées de Couveignes et Lercier, puis dans un second temps nous allons voir un exemple, celui où le polynôme modulaire $\phi_l$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$, cet exemple a été choisi de par l'intérêt de l'objet qu'il manipule: un cycle d'isogénie. Ce sera donc l'occasion pour le lecteur de se familiariser avec les graphes d'isoégnies. Un autre cas où le polynôme modulaire se scinde en facteurs linéaires sur $\mathbb{F}_q$ n'est pas traité ici mais l'est dans \cite{DeFeo-Doliskani-Schost13}.
+Dans un premier temps nous allons voir les idées de Couveignes et Lercier, puis dans un second temps nous allons voir un exemple, celui où le polynôme modulaire $\phi_l$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$, cet exemple a été choisi de par l'intérêt de l'objet qu'il manipule: un cycle d'isogénie. Ce sera donc l'occasion pour le lecteur de se familiariser avec les graphes d'isoégnies. Un autre cas où le polynôme modulaire se scinde en facteurs linéaires et quadratiques sur $\mathbb{F}_q$ n'est pas traité ici mais l'est dans \cite{DeFeo-Doliskani-Schost13}.
 
 Présentons donc l'idée directrice avant de voir un exemple. Soient $G,G'$ deux $\mathbb{F}_q$ groupes algébriques intègres de même dimension, $\phi: G' \to G$ un morphisme de groupe surjectif et séparable de degré $\ell$, alors l'ensemble des points $x$ de $G$ de fibré $G'_x$ de cardinal $\ell$ est un ensemble ouvert non vide $U \subset G$. 
 L'homomorphisme induit de groupes finis $\phi_{\mid \mathbb{F}_q}: G'(\mathbb{F}_q) \to G(\mathbb{F}_q)$ permet lorsqu'il est non surjectif de définir des extensions algébriques de $\mathbb{F}_q$ à partir des fibrés de points de $G(\mathbb{F}_q)$ ne se trouvant pas dans l'image de $\phi_{\mid \mathbb{F}_q}$. 
@@ -1046,12 +1046,12 @@ Comme remarqué dans \cite{DeFeo-Doliskani-Schost13} on peut éviter à chaque a
 
 
 \paragraph{Remarques sur les utilisations dans notre cas pratique}
-On pourra remarquer que dans le cas qui nous intéresse en pratique on choisit comme corps de base pour la tour $\ell$-adique une extension $F_1$ de $\mathbb{F}_q$ dans laquelle on a $E[\ell] \subset E(F_1)$. Cela se traduit en pratique par le calcul des ordres des valeurs propres $\lambda, \mu$ de $\pi$ modulo la $\ell$-torsion, on travaille alors avec l'extension $F_1$ de degré $d_1$ avec $d_1=ppcm(o(\lambda),o(\mu))$ et $o$ l'ordre multiplicatif dans $\mathbb{Z}/\ell\mathbb{Z}^*$. $d_1$ est en particulier l'ordre de la matrice $\pi$ sur la $\ell$ torsion, il divise $\ell-1$.  
+On pourra remarquer que dans le cas qui nous intéresse en pratique on choisit comme corps de base pour la tour $\ell$-adique une extension $F_1$ de $\mathbb{F}_q$ dans laquelle on a $E[\ell] \subset E(F_1)$. Pour calculer une telle extension on calcule les ordres des valeurs propres $\lambda, \mu$ de $\pi$ modulo la $\ell$-torsion. On travaille alors avec l'extension $F_1$ de degré $d_1$ avec $d_1=ppcm(o(\lambda),o(\mu))=o(q)$ et $o$ l'ordre multiplicatif dans $\mathbb{Z}/\ell\mathbb{Z}^*$, $d_1$ est en particulier l'ordre de la matrice $\pi$ sur la $\ell$ torsion, il divise $\ell-1$. Une conséquence importante pour l'analyse des constructions possibles de tours $\ell$-adiques c'est que dans ce cas-là on aura $\ell \mid F_1-1$, qui est comme on a vu le cas le plus avantageux pour les opérations dans les tours d'extension. 
 
-En pratique on travaillera sur une extension $F_1$ de $\mathbb{F}_q$ tel que l'on ait $E[\ell] \subset E(F_1)$, cela a pour conséquence d'après le théorème sur la structure de groupe des points d'une courbe elliptique que l'on ait $\ell \mid |F_1|-1$. On utilisera donc en pratique la construction de tour $\ell$-adique développé ici , et on devra ajouter un facteur pour avoir le coût des opérations dans $\mathbb{F}_q$.
+Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra ajouter un facteur $O(M(\ell)\log(\ell))$ aux résultats obtenus pour une tour $\ell$ adique construite sur un corps $F_1$ tel que $\ell \mid F_1-1$ pour avoir le coût des opérations dans $\mathbb{F}_q$.
 
 \paragraph{Relèvement et descente}
-Les différentes constructions de tours $\ell$-adiques à l'aide de fibrés irréductibles s'appliquent aussi au cas où l'on a $\phi_{\ell}$ qui se scinde en produits de facteurs irréductibles de degré $1$ et $2$ en plus du cas précédent comme cela est développé plus en détail dans \cite{DeFeo-Doliskani-Schost13}. Ainsi toutes ces constructions à l'aide de fibrés irréductibles ont une structure commune qui nous permet de calculer le relèvement et la descente de la même manière. En rennomant les variables $(X_i,X_{i-1})$ par $(X,Y)$ et les polynômes $(Q_{i-1},Q_{i},T_i)$ par $(R,S,T)$, alors l'extension au niveau $i$ s'écrit:
+Les différentes constructions de tours $\ell$-adiques à l'aide de fibrés irréductibles s'appliquent aussi au cas où l'on a $\Phi_{\ell}$ qui se scinde en produits de facteurs irréductibles de degré $1$ et $2$ en plus du cas précédent comme cela est développé plus en détail dans \cite{DeFeo-Doliskani-Schost13}. Ainsi toutes ces constructions à l'aide de fibrés irréductibles ont une structure commune qui nous permet de calculer le relèvement et la descente de la même manière. En rennomant les variables $(X_i,X_{i-1})$ par $(X,Y)$ et les polynômes $(Q_{i-1},Q_{i},T_i)$ par $(R,S,T)$, alors l'extension au niveau $i$ s'écrit:
 \begin{equation}
 \mathbb{F}_q[Y]/\langle S(Y) \rangle  \quad \textit{et } \quad \mathbb{F}_q[X,Y]/ \langle R(X), T(X,Y) \rangle
 \end{equation}
@@ -1090,7 +1090,7 @@ Avec les entrées $P,f,g,n$ tels que $\deg(P,X)<n$ et $\deg(P,Y)<\ell$, l'algori
 \end{thm}
 
 \begin{proof}
-Cette preuve est issue de \cite{DeFeo-Doliskani-Schost13}.
+Voir \cite{DeFeo-Doliskani-Schost13}.
 \end{proof}
 
 \begin{cor}
@@ -1102,7 +1102,7 @@ Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut êtr
 \end{proof}
 
 \paragraph{Descente}
-On a donc le problème inverse de celui exposé dans le théorème \ref{thm:compose} à traiter pour résuoudre le problème de la descente. On a donc en entrée un polynôme $Q \in \mathbb{F}_q[y]$, on veut alors retrouver $P\in \mathbb{F}_q[X,Y]$ tel que $Q=P[f,g,n]$. 
+On a donc le problème inverse de celui traité dans le théorème \ref{thm:compose} pour faire une descente. On a donc en entrée un polynôme $Q \in \mathbb{F}_q[y]$, on veut alors retrouver $P\in \mathbb{F}_q[X,Y]$ tel que $Q=P[f,g,n]$. 
 \begin{algorithm}
 \caption{\label{alg:Decompose}Decompose}
 \begin{algorithmic}[1]
@@ -1112,7 +1112,7 @@ On a donc le problème inverse de celui exposé dans le théorème \ref{thm:comp
  \RETURN $Q$
 \ELSE
 \STATE $m \gets \left\lceil n/2 \right\rceil   $
-\STATE $u \gets 1/g^{n-m} \bmod f^m$
+\STATE $u \gets h^{n-m}=1/g^{n-m} \bmod f^m$
 \STATE $Q_0 \gets Qu \bmod f^m$
 \STATE $Q_1 \gets (Q-Q_0g^{n-m}) \mathrm{div} f^m$
 \STATE $P_0 \gets \textrm{Decompose}(Q_0,f,g,h,m))$
@@ -1142,7 +1142,7 @@ Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut êtr
 Comme il va être expliqué plus tard on va construire une tour $\ell$-adique à partir d'une extension de corps  de$\mathbb{F}_q=F_0$ dénotée $F_1$ telle que l'on ait $d_1=[F_1:F_0]$ égal à l'ordre de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, on aura en particulier $d_1 \mid \ell-1$. On fera remarquer qu'il peut très bien arriver que l'on ait $d_1=1$. De plus par définition de $d_1$, on a $\ell \mid q^{d_1}-1$ et donc on pourra utiliser les constructions de tour $\ell$-adique préconisées dans ce paragraphe \ref{par:easycase} .%cas le plus simple en l'occurence
 
 \paragraph{Calcul du Frobenius}
-Cette opération sera très importante par la suite pour déterminer des ensembles spécifiques de points d'une courbe elliptique, c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable comparé au cas $\ell=2$ \cite{Doliskani-Schost15} dont ce résultat issu d'un travail conjoint avec Luca DE Feo Jérome Plut et Eric Schost s'inspire.
+Cette opération sera très importante par la suite pour déterminer des ensembles spécifiques de points d'une courbe elliptique (comme vu dans l'exmple sur les cycles d'isogénies), c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable comparé au cas $\ell=2$ \cite{Doliskani-Schost15} dont le résultat ici, issu d'un travail conjoint avec Luca De Feo Jérome Plut et Eric Schost, s'inspire.
 
 \begin{thm} \label{thm:frob-ell}
 Soit $F_0 \subset F_1 \subset \cdots \subset F_n$ une tour de Kummer définie telle que $[F_{i+1}:F_i]=\ell$ pour $i \neq 0$ et $[F_1:F_0]=d_1$ avec $d_1$ égal à l'odre multiplicatif de $q=|F_0|$  dans $\mathbb{Z}/\ell \mathbb{Z}$ (voir \textcolor{red}{(réf à mettre plus tard)} pour plus de détail). Soit $a$ un élément de $F_i$ pour tout entier $j$ le calcul de la puissance $|F_j|$ de $a$ coûte $O(\ell^{i-1}M(\ell))$ opérations sur $\mathbb{F}_q$ après un pré calcul de $O(\ell M(\ell)\log(q))$
@@ -1165,7 +1165,7 @@ On a alors $a^s$ qui s'écrit sous la forme:
 \begin{equation*}
 a_0 + a_1 y + a_2 y^2 + \cdots + a_{d_1}y^{d-1}
 \end{equation*}
-On calcule alors $a(y)$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_1[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(\ell))$ opérations sur $\mathbb{F}_q$, on aura alors un coût total de $O(\ell^{i-1}M(\ell)))$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_1,x_i)$ de degré $(d_1,d)$, on réécrit alors $a^s$ dans une base canonique de $F_i$ à l'aide du changement de représentation inverse de celui effectué précédemment. C'est à dire à partir $a^s$ représenté sous la forme:
+On calcule alors $a(y)$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_1[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(\ell))$ opérations sur $\mathbb{F}_q$, on aura alors un coût total de $O(\ell^{i-1}M(\ell)))$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_1,x_i)$ de degré $(d_1,d)$, on réécrit alors $a^s$ dans une base canonique de $F_i$ à l'aide du changement de représentation inverse de celui effectué précédemment. En effet on a $a^s$ représenté sous la forme:
 \begin{equation*}
 b_0 + b_1 x_i + b_2 x_i^2 + \cdots + b_{d-1}x_i^{d-1}
 \end{equation*}
