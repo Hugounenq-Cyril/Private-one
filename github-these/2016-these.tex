@@ -594,6 +594,13 @@ Voir \cite[Theorem 4.1]{Washington:2008}
 \subsection{Polynôme modulaire}
 \subsection{Bases (loi additive, isogénie, frobenius, module de Tate}
 \subsection{S.E.A}
+Ici vont être présentés les bases de S.E.A., aucun apport personnel n'a été fait dans ce cadre là, mais il est intéressant pour le lecteur de voir les concepts et  le contexte de celui-ci qui seront évoqués plus tard.
+
+L'algorithme de Schoof \cite{Schoof85} consistait à calculer le cardinal d'une courbe elliptique $E$ définie sur $\mathbb{F}_q$ à l'aide du polynôme charactéristique du Frobenius $\pi$:
+\begin{equation*}
+X^2-t_{\pi}X+q=0
+\end{equation*}
+Cette équation est alors résolue modulo la $\ell_i$-torsion, avec $\ell_i$ un nombre premier. Cette résolution est donc répétée pour un ensemble de nombres premiers $L$ tel que: $\Pi_{\ell_i \in L}\ell_i>4 \sqrt{q}$.
 \subsection{Lien entre isogénie et son action sur le module de Tate}
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
