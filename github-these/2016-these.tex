@@ -849,22 +849,10 @@ $\Phi_{\ell}$ se scinde sur $\mathbb{F}_q[X_0]$ en facteurs irréductibles de m�
 En pratique un tel résidu non quadratique $y_0$ est trouvé aléatoirement après $O(1)$ essais d'après \cite[Lemma 15]{Shoup93}, chaque essai a un coût de $O_e(M(\ell)\log(r)+M(r)\log(\ell)\log(r)+M(r)\log(q))$ opérations sur $\mathbb{F}_q$.
 %peut etre affiner les sources
 
-Selon la valeur de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \mid q-1$ et $\ell \mid q+1$ et ensuite le cas général qui a une complexité moins intéressante mais toujours linéaire en la taille de l'extension.
+Selon la valeur de $r$ on a différents cas qui se présentent à nous pour le calcul de $Q_{i,j}$. Il y a alors deux cas particuliers qui sont ceux où $\ell \mid q-1$ et $\ell \nmid q-1$ et ensuite le cas général qui a une complexité moins intéressante mais toujours linéaire en la taille de l'extension. Le cas général va d'abord être présenté avant de voir les deux cas particuliers qui partagent une construction commune généralisée par l'idée de Couveignes et Lercier \cite{couveignesLercier2013}.
 
-\paragraph{\boldmath $\ell \mid q-1$}\label{par:easycase}
-Dans ce cas $r=1$ car $\Phi_{\ell}$ se scinde en facteurs linéaires sur $\mathbb{F}_q$. Le polynôme $P_0$ s'écrit donc $Y_0-y_0$ avec $y_0$ un résidu non $\ell$-adique de $\mathbb{F}_q$. Comme le calcul de la factorisation de $\Phi_{\ell}$ n'est pas nécessaire, on obtient alors une complexité de $O_e(\log(q))$ opérations sur $\mathbb{F}_q$.
-
-Ce cas-ci permet de ne pas utiliser de méthode de descente car on a $\mathbb{K}_0 \simeq \mathbb{F}_q$ et par conséquent on obtient pour $i \geqslant 0 $   $\mathbb{K}_i \simeq \mathbb{F}_{q^{\ell^i}}$, et donc $x_i=y_i$. Les polynômes obtenus alors sont: $Q_i=X^{\ell^i}-y_0$ et $T_i=X_i^{\ell}-X_{i-1}$. Le relèvement et la descente ne sont que des opérations arithmétiques. En effet pour $F=\sum_{0 \leqslant j \leqslant \ell^{i+1}}f_jx_{i+1}^j$ le relévement réécrit cet élément dans une base $x_i,x_{i+1}$ en utilisant la relation suivante:
-\begin{equation*}
-x_{i+1}^j=x_i^{j / \ell}x_{i+1}^{j \bmod \ell} 
-\end{equation*}
-tandis que la descente réécrit un élément éxprimé dans une base $x_i, x_{i+1}$ en un élément exprimé dans la base $x_{i+1}$ en utilisant la relation suivante:
-\begin{equation*}
-\quad x_i^ex_{i+1}^f=x_{i+1}^{e\ell + f} 
-\end{equation*}
-
-\paragraph{$\ell \nmid q+1$}
-Dans ce cas $\Phi_{\ell}$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$ (id est $r=2$). Il est alors nécessaire de prendre $y_0$ tel qu'il soit de norme $1$ sur $\mathbb{F}_q$. Le résultat suivant nous donne alors un moyen de calculer $Q_{i,j}$:
+%\paragraph{$\ell \nmid q+1$}
+%Dans ce cas $\Phi_{\ell}$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$ (id est $r=2$). Il est alors nécessaire de prendre $y_0$ tel qu'il soit de norme $1$ sur $\mathbb{F}_q$. Le résultat suivant nous donne alors un moyen de calculer $Q_{i,j}$:
 %Apparemment inutile car une methode plus simple est trouvée plus tard...
 %\begin{prop}
 %Pour $1\geqslant j<i$ $Q_{i,j}$ vérifie:
@@ -877,7 +865,7 @@ Dans ce cas $\Phi_{\ell}$ se scinde en facteurs quadratiques sur $\mathbb{F}_q$ 
 %Voir \cite{DeFeo-Doliskani-Schost13}
 %\end{proof}
 
-\paragraph{Cas général}
+\subsubsection{Cas général}
 Dans ce cas on ne fait aucune hypothèse sur la décomposition de $\phi_{\ell}$ dans $\mathbb{F}_q[X]$. De plus comme $r=[\mathbb{K}_0:\mathbb{F}_q]$ et qu'il divise $\ell-1$ alors $r$ est premier avec $\ell$. Ainsi $Q_i$ est bien le polynôme minimal de $x_i$ sur $\mathbb{F}_q$, de la même manière $Q_{i,j}$ est le polynôme minimal de $x_i$ sur $\mathbb{K}_j$. Ceci nous permet donc de remplacer le corps de base $\mathbb{F}_q$ par $\mathbb{K}_0$. Le calcul se fera sur la base d'opérations dans $\mathbb{K}_0$, un facteur $O(M(r)\log(r))$, qui correspond au coût d'opérations dans $\mathbb{K}_0$, sera ajouté pour avoir le coût exprimé en nombres d'opérations sur $\mathbb{F}_q$.
 
 
@@ -938,38 +926,53 @@ Montrons alors comment est calculé un relèvement à partir des éléments sus-
 \end{equation*}
 On applique alors $\Psi_{i,i}^{-1}:\mathbb{K}_{i-1}[X_i]/\langle Q_{i,i-1} \rangle \to \mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle$ pour avoir l'image de $A$ dans $\mathbb{K}_i$. Enfin on applique $\Psi_{i}:\mathbb{K}_i[X_i]/\langle Q_{i,i} \rangle \to \mathbb{K}_0[X_i]/ \langle Q_i \rangle $ pour avoir $A$ exprimé dans une base monomiale en $x_i$. Faire le push revient à faire l'inverse de ses opérations.
 
-\paragraph{Couveignes and Lercier's ideas to explicitely compute Q and T}
-Ici vont être explicités des méthodes permettant de calculer les tours $\ell$ adiques, celles-ci s'inspirent de travaux de Couveignes et Lercier \cite{couveignesLercier2013}.
 
-Dans un premier temps nous allons voir les idées de Couveignes et Lercie, puis dans un second temps nous allons voir un exemple, le cas où l'on a le polynôme modulaire $\phi_l$ qui se scinde en facteurs quadratiques sur $\mathbb{F}_q$ de par l'intérêt des objets qu'il manipule, le cas où l'on a le polynôme modulaire qui se scinde en facteurs linéaires sur $\mathbb{F}_q$ n'est pas traité ici mais l'est dans \cite{DeFeo-Doliskani-Schost13}.
+\subsubsection{\boldmath $\ell \mid q-1$}\label{par:easycase}
+Maintenant on étudie le cas où $r=1$ lorsque $\Phi_{\ell}$ se scinde en facteurs linéaires sur $\mathbb{F}_q$. Le polynôme $P_0$ s'écrit donc $Y_0-y_0$ avec $y_0$ un résidu non $\ell$-adique de $\mathbb{F}_q$. Comme le calcul de la factorisation de $\Phi_{\ell}$ n'est pas nécessaire, on obtient alors une complexité de $O_e(\log(q))$ opérations sur $\mathbb{F}_q$.
 
-Soient $G,G'$ deux $\mathbb{F}_q$ groupes algébriques intègres de même dimension, $\phi: G' \to G$ un morphisme de groupe surjectif et séparable de degré $\ell$, alors l'ensemble des points $x$ de $G$ de fibre $G'_x$ de cardinal $\ell$ est un ensemble ouvert non vide $U \subset G$. 
-L'homomorphisme induit de groupes finis $\phi_{\mid \mathbb{F}_q}: G'(\mathbb{F}_q) \to G(\mathbb{F}_q)$ permet lorsqu'il est non surjectif de définir des extensions algébriques de $\mathbb{F}_q$ à partir des fibrés de points de $G(\mathbb{F}_q)$ qui ne se trouvent pas dans l'image de $\phi_{\mid \mathbb{F}_q}$. 
+Ce cas-ci permet de ne pas utiliser de méthode de descente car on a $\mathbb{K}_0 \simeq \mathbb{F}_q$ et par conséquent on obtient pour $i \geqslant 0 $   $\mathbb{K}_i \simeq \mathbb{F}_{q^{\ell^i}}$, et donc $x_i=y_i$. Les polynômes obtenus alors sont: $Q_i=X^{\ell^i}-y_0$ et $T_i=X_i^{\ell}-X_{i-1}$. Le relèvement et la descente ne sont que des opérations arithmétiques. En effet pour $F=\sum_{0 \leqslant j \leqslant \ell^{i+1}}f_jx_{i+1}^j$ le relévement réécrit cet élément dans une base $x_i,x_{i+1}$ en utilisant la relation suivante:
+\begin{equation*}
+x_{i+1}^j=x_i^{j / \ell}x_{i+1}^{j \bmod \ell} 
+\end{equation*}
+tandis que la descente réécrit un élément éxprimé dans une base $x_i, x_{i+1}$ en un élément exprimé dans la base $x_{i+1}$ en utilisant la relation suivante:
+\begin{equation*}
+\quad x_i^ex_{i+1}^f=x_{i+1}^{e\ell + f} 
+\end{equation*}
+ 
 
-Pour construire ces extensions algébriques on applique sur une fibre irréductible issue de points ne se trouvant pas dans l'image de $\phi_{\mid \mathbb{F}_q}$ une projection linéaire et on détermine alors un polynôme irréductible de degré divisant $\ell$ (espéré égal à $\ell$). Si l'on peut itérer cette méthode avec un nouvel homomorphisme: $\phi':G'' \to G'$ qui vérifie les même conditions que vu précédemment, alors on peut déterminer des extensions $\ell$-adiques de $\mathbb{F}_q$.
+\subsubsection{Couveignes and Lercier's ideas to explicitely compute Q and T}
+Ici vont être présentés des travaux de Couveignes et Lercier \cite{couveignesLercier2013} permettant de calculer des tours $\ell$ adiques.
 
-On va donc voir une application de cette méthode qui a un intérêt aussi de par l'objet qu'elle manipule: les cycles d'isogénies.
+Dans un premier temps nous allons voir les idées de Couveignes et Lercier, puis dans un second temps nous allons voir un exemple, celui où $\ell$ est un nombre premier différent de $p$ qui ne divise pas $q-1$, cet exemple a été choisi de par l'intérêt de l'objet qu'il manipule: un cycle d'isogénie. Ce sera donc l'occasion pour le lecteur de se familiariser avec les graphes d'isogénies. Un autre cas où le polynôme modulaire se scinde en facteurs linéaires et quadratiques sur $\mathbb{F}_q$ n'est pas traité ici mais l'est dans \cite{DeFeo-Doliskani-Schost13}.
+
+Présentons donc l'idée directrice avant de voir un exemple. Soient $G,G'$ deux $\mathbb{F}_q$ groupes algébriques intègres de même dimension, $\phi: G' \to G$ un morphisme de groupe surjectif et séparable de degré $\ell$, alors l'ensemble des points $x$ de $G$ de fibré $G'_x$ de cardinal $\ell$ est un ensemble ouvert non vide $U \subset G$. 
+L'homomorphisme induit de groupes finis $\phi_{\mid \mathbb{F}_q}: G'(\mathbb{F}_q) \to G(\mathbb{F}_q)$ permet lorsqu'il est non surjectif de définir des extensions algébriques de $\mathbb{F}_q$ à partir des fibrés de points de $G(\mathbb{F}_q)$ ne se trouvant pas dans l'image de $\phi_{\mid \mathbb{F}_q}$. 
+
+Pour construire ces extensions algébriques on applique sur un fibré irréductible issu de points ne se trouvant pas dans l'image de $\phi_{\mid \mathbb{F}_q}$ une projection linéaire cela permet alors de  déterminer un polynôme irréductible de degré divisant $\ell$ (espéré égal à $\ell$). Si l'on peut itérer cette méthode avec un nouvel homomorphisme: $\phi':G'' \to G'$ qui vérifie les même conditions que vu précédemment, alors on peut déterminer des extensions $\ell$-adiques de $\mathbb{F}_q$.
+
+On va donc voir une application de cette méthode appliquée sur un cycle d'isogénies de degré $\ell$.
 
 \paragraph{Towers from elliptic curves}
-Dans cette partie on revoit les constructions de Couveignes et Lercier \cite{couveignesLercier2013} et l'on montre en particulier les passages pertinents pour une construction de tour.
+%Dans cette partie on revoit les constructions de Couveignes et Lercier \cite{couveignesLercier2013} et l'on montre en particulier les passages pertinents pour une construction de tour.
 
-Soit $\ell$ un nombre premier différent de $p$ qui ne divise pas $q-1$, soit $E_0$ une courbe elliptiqe de cardinal sur $\mathbb{F}_q$: $|E(\mathbb{F}_q)|=\ell^e l'$ avec $e \geqslant 1$ et $l' \wedge \ell =1$. Une telle courbe existe d'après le théorème de Hasse seulement si $\ell \leqslant q+2\sqrt{q} +1$.  
-Pour mettre en pratique l'idée de Couvegines et Lercier expliqué plus haut on travaille alors avec des isogénies $\mathbb{F}_q$-rationnelles séparables de degré $\ell$. Il est donc naturel de s'intéresser à l'action du Frobenius sur la $\ell$ torsion afin de déterminer ces isogénies. On étudie donc le polynôme charactéristique du Frobenius:
+Soit $\ell$ un nombre premier différent de $p$ qui ne divise pas $q-1$, soit $E_0$ une courbe elliptiqe de cardinal sur $\mathbb{F}_q$: $|E_0(\mathbb{F}_q)|=\ell^e a$ avec $e \geqslant 1$ et $a \wedge \ell =1$. Une telle courbe existe d'après le théorème de Hasse seulement si $\ell \leqslant q+2\sqrt{q} +1$.  
+Pour mettre en pratique l'idée de Couvegines et Lercier \cite{couveignesLercier2013} expliqué plus haut on travaille alors avec des isogénies $\mathbb{F}_q$-rationnelles séparables de degré $\ell$. Il est donc naturel de s'intéresser à l'action du Frobenius sur la $\ell$ torsion afin de déterminer ces isogénies. On étudie donc le polynôme caractéristique du Frobenius:
+%peut etre enoncer cela sous forme de proposition ??
 \begin{equation*}
 X^2-t_{\pi}X+q=(X-1)(X-q) \bmod \ell
 \end{equation*}
 qui dans ce cas précis se scinde modulo $\ell$.
-% En effet comme $\ell \wedge q = 1$ on a le produit des valeurs propres qui n'est pas divisible par $\ell$.
 
-En effet par hypothèse sur le cardinal de la courbe on a: $|E|=q+1-t_{\pi}=0 \bmod \ell$, on peut alors montrer que $t_{\pi}^2-4q=(q+1)^2-4q=(q-1)^2 \bmod \ell$. De plus le fait que $\ell \nmid q-1$ nous permet d'énoncer que le discrimant du polynôme charactéristique de $\pi$ est différent de $0$ modulo $\ell$, le Frobenius admet donc deux valeurs propres. Enfin on montre que les deux valeurs propres sont $1$ et $q \bmod \ell$ car on a $t_{\pi}=q+1 \bmod \ell$.
+
+En effet par hypothèse sur le cardinal de la courbe on a: $|E|=q+1-t_{\pi}=0 \bmod \ell$, on peut alors montrer que $d_{\pi}=t_{\pi}^2-4q=(q+1)^2-4q=(q-1)^2 \bmod \ell$. De plus le fait que $\ell \nmid q-1$ nous permet d'énoncer que le discrimant $d_{\pi}$ du polynôme charactéristique de $\pi$ est différent de $0$ modulo $\ell$, le Frobenius admet donc deux valeurs propres. Enfin on montre que les deux valeurs propres sont $1$ et $q \bmod \ell$ car on a $t_{\pi}=q+1 \bmod \ell$.
 
 Ainsi à l'aide de ces deux valeurs propres on peut déterminer des sous-groupes cycliques de la $\ell$ torsion. 
 
 Comme on ne peut pour le moment que travailler sur $\mathbb{F}_q$, le but de cette méthode étant de construire une extension $\ell$-adique de $\mathbb{F}_q$, on ne peut utiliser que le sous-groupe cyclique de taille $\ell^e$ associé à la valeur propre $1$. On construit donc à l'aide de ce sous groupe une $\ell$ isogénie qui a pour image $E_1$. 
 
-De manière plus générale  on peut affirmer que la $\ell$ torsion de $E$ n'est pas entièrement rationnelle car on a $\ell \nmid q-1$, la $\ell$ torsion est seulement cyclique. Ainsi cet argument et la cardinalité de la courbe permettent d'affirmer que l'on a un sous groupe cyclique d'ordre $\ell^e$ défini sur $\mathbb{F}_q$, on peut donc aussi travailler directement avec des $\ell^i$ isogénies avec $1 \leqslant i \leqslant e$.
+De manière plus générale  on peut affirmer que la $\ell$ torsion de $E_0$ n'est pas entièrement rationnelle car on a $\ell \nmid q-1$, la $\ell$ torsion ne peut donc seulement être cyclique. Ainsi cet argument et la cardinalité de la courbe permettent d'affirmer que l'on a un sous groupe cyclique d'ordre $\ell^e$ défini sur $\mathbb{F}_q$, on peut donc aussi travailler directement avec des $\ell^i$ isogénies avec $1 \leqslant i \leqslant e$.
 
-Le sous groupe cyclique de la $\ell$ torsion défini comme le noyau de $\pi -q$ génère une $\ell$ isogénie rationnelle, car l'ensemble des points de son noyau est stable sous l'action du Frobenius. Ainsi $E_0$ admet deux courbes $\ell$ isogènes, cet argument peut se répéter à ses courbes $\ell$isogènes car celles-ci ont la même cardinalité. On a donc défini un cycle de $\ell$isogénies. Ainsi à partir de $E_0$ on dénote $E_1$ la courbe comdonaire de la $\ell$-isogénie qui a pour noyau le sous groupe cyclique de la $\ell$ torsion égal à $\ker (\pi_{|E_0[\ell]} - \mathrm{Id}_{|E_0[\ell]})$, de manière générale on notera $E_{i+1}$ le codomaine de l'isogénie engendré par $\ker (\pi_{|E_i[\ell]} - \mathrm{Id}_{|E_i[\ell]})$ . Ce cycle a une longueur finie comme l'énonce le lemme suivant issu de \cite{DeFeo-Doliskani-Schost13}:
+Le sous groupe cyclique de la $\ell$ torsion défini comme le noyau de $\pi -q$ génère une $\ell$ isogénie rationnelle, car l'ensemble des points de son noyau est stable sous l'action du Frobenius. Ainsi $E_0$ admet deux courbes $\ell$ isogènes, cet argument peut se répéter à ses courbes $\ell$isogènes car celles-ci ont la même cardinalité. On a donc défini un cycle de $\ell$isogénies. Ainsi à partir de $E_0$ on dénote $E_1$ la courbe codomaine de la $\ell$-isogénie qui a pour noyau le sous groupe cyclique de la $\ell$ torsion égal à $\ker (\pi_{|E_0[\ell]} - \mathrm{Id}_{|E_0[\ell]})$, de manière générale on notera $E_{i+1}$ le codomaine de l'isogénie engendré par $\ker (\pi_{|E_i[\ell]} - \mathrm{Id}_{|E_i[\ell]})$ . Ce cycle a une longueur finie comme l'énonce le lemme suivant issu de \cite{DeFeo-Doliskani-Schost13}:
 
 \begin{lem}
 Soient $E_0,E_1, \cdots$ les courbes elliptiques définies comme ci-dessus, alors il existe un $n \in O(\sqrt{q}\log(q))$ tel que $E_n$ est isomorphe à $E_0$.
@@ -992,42 +995,42 @@ On note $\lambda_{e+1}=1+\ell^el'$ avec $l' \wedge \ell = 1$. Dans la suite on n
 \begin{equation*}
 (\ell,\pi-\lambda)=\mathfrak{l}.
 \end{equation*}
-C'est un idéal inversible, noyau de l'isogénie $\phi_{i}:E_i \to E_{i+1}$. Notre but est de travailler avec un élément de $\ell$ torsion de $E_{i+1}$ pour lequel on est sûr de ne pas avoir d'antécédent par la $\ell$ isogénie défini dans $\mathbb{F}_q$. Le $\ell$ sous-groupe de Sylow de $E_{i+1}(\mathbb{F}_q)$ est le noyau de $\mathfrak{l}^e=(\ell^e,\pi - 1)$ et il est cyclique, on travaille donc avec $A$ un générateur de $\mathfrak{l}^e$ avec $\ell^e \neq 2$. En écrivant l'isogénie $\phi_i$ comme une fration rationnelle : 
+C'est un idéal inversible, noyau de l'isogénie $\phi_{i}:E_i \to E_{i+1}$. Notre but est de travailler avec un élément de $\ell$ torsion de $E_{i+1}$ pour lequel on est sûr de ne pas avoir d'antécédent par la $\ell$ isogénie défini dans $\mathbb{F}_q$. Le $\ell$ sous-groupe de Sylow de $E_{i+1}(\mathbb{F}_q)$ est le noyau de $\mathfrak{l}^e=(\ell^e,\pi - 1)$ et il est cyclique, on travaille donc avec $A$ un générateur de $\mathfrak{l}^e$ avec $\ell^e \neq 2$. En écrivant l'isogénie $\phi_i$ comme une fraction rationnelle : 
 \begin{align*}
 \phi_{i}:E_i \to E_{i+1}, \\
 (x,y) \mapsto \left( \frac{f_{i}(x)}{g_{i}(x)} ,y \left( \frac{f_{i}(x)}{g_{i}(x)} \right) ^{'} \right)
 \end{align*}
 %^' \right)
 
-avec $g_i$ le carré du polynôme de degré $\frac{ell-1}{2}$  qui s'annule sur l'abscisse des points du noyau de $\phi_{i}$ on  définit alors $ T_{1}(X)=f_{1}(x)-g_{1}(x)x(A)$. Soit $B \in E_i(\overline{\mathbb{F}_q})$ tel que $\phi_i{\delta}(B)=A$, alors  $B$ est un générateur de $\mathfrak{l}^{e+1}=(\ell^{e+1},\pi-\lambda)$. En particulier on a:
+avec $g_i$ le carré du polynôme de degré $\frac{\ell-1}{2}$  qui s'annule sur l'abscisse des points du noyau de $\phi_{i}$, on  définit alors $ T_{1}(X)=f_{1}(x)-g_{1}(x)x(A)$. Soit $B \in E_i(\overline{\mathbb{F}_q})$ tel que $\phi_i(B)=A$, alors  $B$ est un générateur de $\mathfrak{l}^{e+1}=(\ell^{e+1},\pi-\lambda)$. En particulier on a:
 \begin{equation*}
 \pi(B)=\lambda B
 \end{equation*}
-avec l'ordre de $\lambda=1+\ell^el'$ dans $(\mathbb{Z}/\ell^{e+1}\mathbb{Z})^*$ qui est $\ell$. Ainsi l'orbite de Galois de $B$ est de taille $\ell$ et le polynôme $T_{1}(X)$,dont les racines appartiennent au fibré $\phi_i^{-1}(A)$ est irréductible. 
+avec l'ordre de $\lambda=1+\ell^el'$ dans $(\mathbb{Z}/\ell^{e+1}\mathbb{Z})^*$ qui est $\ell$. Ainsi l'orbite de Galois de $B$ est de taille $\ell$ et le polynôme $T_{1}(X)$,dont les racines appartiennent au fibré $\phi_i^{-1}(A)$, est irréductible. 
 
-Pour définir alors des extensions successives on prend alors les pré images par les isogénies $\phi_{i_1},\phi_{i_2}, \cdots$. On définit donc la suite de polynômes suivant pour construire une tour d'extension $\ell$-adique en notant $\eta =x(A)$ l'abscisse d'un générateur de la $\ell^e$-torsion de $E_0$:
+Pour définir des extensions successives on prend alors les pré images par les isogénies $\phi_{i_1},\phi_{i_2}, \cdots$. On définit donc la suite de polynômes suivante pour construire une tour d'extension $\ell$-adique en notant $\eta =x(A)$ l'abscisse d'un générateur de la $\ell^e$-torsion de $E_0$:
 \begin{align*}
 T_0=f_{-1}(X_1)-\eta g_{-1}(X_1), \\
 T_i=f_{-i-1}(X_{i+1})-X_{i+1}g_{-i-1}(X_{i+1})
 \end{align*}
 
-On aurait pu définir un polynôme irréductible de degré $\ell^{\delta}$ directement en considérant une isogénie $\psi:E_i \to E_{i+\delta}$ de degré $\ell^{\delta}$ et qui a pour noyau $\mathfrak{d}=(d,\pi-\lambda)=(\ell,\pi-\lambda_{e+\delta})^{\delta}=\mathfrak{l}^{\delta}$ avec $\lambda_{e+\delta}, \mu_{e+\delta}$ tels que 
+On aurait pu définir un polynôme irréductible de degré $\ell^{\delta}$ directement en considérant une isogénie $\psi:E_i \to E_{i+\delta}$ de degré $\ell^{\delta}$ et qui a pour noyau $\mathfrak{d}=(\ell,\pi-\lambda_{e+\delta})^{\delta}=\mathfrak{l}^{\delta}$ avec $\lambda_{e+\delta}, \mu_{e+\delta}$ tels que 
 \begin{align*}
 \lambda_{e+\delta}=1 \bmod \ell^{e} \quad , \quad \mu_{e+\delta}=q \bmod \ell^e, \\
 X^2-tX+q = (X-\lambda_{e+\delta})(X-\mu_{e+\delta}) \bmod \ell^{e+\delta} .
 \end{align*}
 
 \paragraph{Existence de telles courbes}
-Il est alors naturel de se demander sous quelles conditions on peut trouver une courbe elliptique $E$ définie sur $\mathbb{F}_q$ de cardinal multiple de $\ell$ avec $\ell \wedge q =1$ et $\ell \nmid q-1$. Par le théroème de Hasse si l'on a $\ell \leqslant 2\sqrt{q}$ alors il existe au moins deux entiers multiples de $\ell$ dans l'intervalle $[q+1-2\sqrt{q}, q+1+2\sqrt{q} ] $, on a alors au moins un des deux entiers qui n'est pas congru à $1$ modulo $q$. Il existe donc au moins une courbe de cardinal multiple de $\ell$. L'objectif est donc d'expliciter une borne inférieure sur ce nombre de courbes. Pour cela on utilise les résultats de Lenstra \cite{lenstra1987} qui ont été étendus à notre cas par Howe \cite{howe1993}.
+Il est naturel de se demander sous quelles conditions on peut trouver une courbe elliptique $E$ définie sur $\mathbb{F}_q$ de cardinal multiple de $\ell$ avec $\ell \wedge q =1$ et $\ell \nmid q-1$. Par le théroème de Hasse si l'on a $\ell \leqslant 2\sqrt{q}$ alors il existe au moins deux entiers multiples de $\ell$ dans l'intervalle $[q+1-2\sqrt{q}, q+1+2\sqrt{q} ] $, on a alors au moins un des deux entiers qui n'est pas congru à $1$ modulo $q$. Il existe donc au moins une courbe de cardinal multiple de $\ell$. L'objectif est donc d'expliciter une borne inférieure sur ce nombre de courbes. Pour cela on utilise les résultats de Lenstra \cite{lenstra1987} qui ont été étendus à notre cas par Howe \cite{howe1993}.
 
-\begin{cor}{Howe}
+\begin{cor}[Howe]
 \label{cor:Howe:densite}
-Soit $W(\mathbb{F}_q)$ l'ensemble des courbes elliptiques sous forme de Weierstrass définies sur $\mathbb{F}_q$. Soit $\mu_w$ la mesure uniforme sur cet ensemble, soit $\ell$  tel que $\ell \nmid q-1$ alors la densité $r(\ell,q)$ de courbes elliptiques sous forme de Weierstrass ayant un point $\mathbb{F}_q$ rationnel d'ordre $\ell$ vérifie:
+Soit $W(\mathbb{F}_q)$ l'ensemble des courbes elliptiques sous forme de Weierstrass définies sur $\mathbb{F}_q$. Soit $\mu_w$ la mesure uniforme sur cet ensemble et $\ell$  tel que $\ell \nmid q-1$ alors la densité $r(\ell,q)$ de courbes elliptiques sous forme de Weierstrass ayant un point $\mathbb{F}_q$-rationnel d'ordre $\ell$ vérifie:
 \begin{equation*}
-|r(\ell,q)-\frac{1}{\ell-1}| \leqslant \frac{4\ell(\ell+1)}{(\ell-1)\sqrt{q}}
+|r(\ell,q)-\frac{1}{\ell-1}| \leqslant \frac{4\ell(\ell+1)}{(\ell-1)\sqrt{q}}.
 \end{equation*}
 \end{cor}
-ainsi pour limiter le terme d'erreur pour l'évauation de $r(\ell,q)$ on se place dans le cas où l'on a $4\ell \leqslant q^{\frac{1}{4}}$, on aura alors l'erreur: $\frac{4\ell(\ell+1)}{(\ell-1)\sqrt{q}} \leqslant \frac{1}{2 \ell} $. Dans ce cas-là on pourra donc considérer qu'il faut répéter $\ell$ fois le choix d'une courbe elliptique sous forme de Weierstrass avant de trouver une courbe de cardinal divisible par $\ell$.
+Ainsi pour limiter le terme d'erreur pour l'évaluation de $r(\ell,q)$ on se place dans le cas où l'on a $4\ell \leqslant q^{\frac{1}{4}}$, on aura alors l'erreur: $\frac{4\ell(\ell+1)}{(\ell-1)\sqrt{q}} \leqslant \frac{1}{2 \ell} $. Dans ce cas-là on pourra donc considérer qu'il faut répéter $\ell$ fois le choix d'une courbe elliptique sous forme de Weierstrass avant de trouver une courbe de cardinal divisible par $\ell$.
 
 On peut alors énoncer le résultat suivant issu de \cite{DeFeo-Doliskani-Schost13} qui donne le temps de calcul de construction d'une tour $\ell$-adique:
 
@@ -1036,23 +1039,16 @@ Pour $\ell$ premier avec $\ell \leqslant q^{1/4}$, $\ell \wedge q = 1$ et $\ell 
 \end{thm} 
 
 \begin{proof}
-Le coût de calcul de la cardinalité d'une courbe elliptique est de $O(\log q)^{5+\epsilon(q)}$ opérations élémentaires en utilisant l'algorithme de Schoof. On a cette opérations à répéter jusqu'à $\ell$ fois pour espérer trouver une courbe de cardinal multiple à $\ell$ d'après \ref{cor:Howe:densite}. Le coût total d'une courbe de cardinalité multiple de $\ell$ est donc de  $O(\ell\log q)^{5+\epsilon(q)}$. Pour calculer les $j$-invariants du volcan cyclique on a besoin de calculer le $\ell$ ème polynôme modulaire $\phi_{\ell}$ modulo $p$, il est d'abord calculé sur $\mathbb{Z}$ avec un coût de $\tilde{O}(\ell^3)$ opérations binaires d'après \cite{enge2008} puis réduit modulo $p$. On doit aussi calculer un point d'ordre $\ell^e$ pour cela on choisit au hasard un point de la courbe et on le multiplie par le cofacteur du cardinal de la courbe, on calcule cela en $O_{e}(\log(q))$ opérations sur $\mathbb{F}_q$.
+Le coût de calcul de la cardinalité d'une courbe elliptique est de $O(\log q)^{5+\epsilon(q)}$ opérations élémentaires en utilisant l'algorithme de Schoof. On a cette opérations à répéter jusqu'à $\ell$ fois pour espérer trouver une courbe de cardinal multiple à $\ell$ d'après le corollaire \ref{cor:Howe:densite}. Le coût total de calcul d'une courbe de cardinalité multiple de $\ell$ est donc de  $O(\ell\log q^{5+\epsilon(q)})$. Pour calculer les $j$-invariants du graphe cyclique de $\ell$-isogénies on a besoin de calculer le $\ell$-ème polynôme modulaire $\Phi_{\ell}$ modulo $p$, il est d'abord calculé sur $\mathbb{Z}$ avec un coût de $\tilde{O}(\ell^3)$ opérations binaires d'après \cite{enge2008} puis réduit modulo $p$. On doit aussi calculer un point d'ordre $\ell^e$ pour cela on choisit au hasard un point de la courbe et on le multiplie par le cofacteur du cardinal de la courbe, on calcule cela en $O_{e}(\log(q))$ opérations sur $\mathbb{F}_q$.
 
-Pour construire le $i$ ème niveau on doit tout d'abord calculer l'équation de $E_{-i}$, pour cela on évalue le $\ell$-polynôme modulaire $\phi_{\ell}$ en $j(E_{-(i-1)})$ en $O(\ell^2)$ opérations, on le factorise alors sur $\mathbb{F}_q$ avec $O(M(\ell)\log(\ell q))$ oéprations d'après \cite{vzGJG03}[Ch.14]. Comme on travaille dans le cas particulier d'un volcan réduit à son cratère cyclique ce polynôme n'a que deux racines définies sur $\mathbb{F}_q$: $j(E_{-i})$ et $j(E_{-i+2})$. On sélectionne alors une courbe arbitraire de $j$-invariant: $j(E_{-i})$. Vu que l'on connaît la cardinalité de la courbe alors on calcule un point d'ordre $\ell$ en choisissant au hasard un point de la courbe et en le multipliant par son cofacteur, on calcule cela en $O_{e}(\log(q))$ opérations sur $\mathbb{F}_q$. On calcule alors à l'aide des formules de Vélu l'isogénie $\phi_{-i}$ de laquelle on déduit les polynômes $T_{i},Q_{i}$ en $O(M(\ell^i)\log(\ell^i))$ d'après \cite{DeFeo-Doliskani-Schost13}[Algorithme 1].
+Pour construire le $i$ ème niveau on doit tout d'abord calculer l'équation de $E_{-i}$, pour cela on évalue le $\ell$-polynôme modulaire $\phi_{\ell}$ en $j(E_{-(i-1)})$ en $O(\ell^2)$ opérations, on le factorise alors sur $\mathbb{F}_q$ avec $O(M(\ell)\log(\ell q))$ oéprations d'après \cite[Ch.14]{vzGJG03}. Comme on travaille dans le cas particulier d'un graphe de $\ell$-isogénies cyclique ce polynôme n'a que deux racines définies sur $\mathbb{F}_q$: $j(E_{-i})$ et $j(E_{-i+2})$. On sélectionne alors une courbe arbitraire de $j$-invariant: $j(E_{-i})$. Vu que l'on connaît la cardinalité de la courbe alors on calcule un point $P$ d'ordre $\ell$ en $O_{e}(\log(q))$ opérations sur $\mathbb{F}_q$. On calcule alors à l'aide des formules de Vélu l'isogénie $\phi_{-i}$ qui a pour noyau le groupe engendrée par $P$ de cette isogénie on déduit les polynômes $T_{i},Q_{i}$ en $O(M(\ell^i)\log(\ell^i))$ d'après \cite[Algorithme 1]{DeFeo-Doliskani-Schost13}.
 \end{proof}
 
-Comme remarqué dans \cite{DeFeo-Doliskani-Schost13} on peut éviter à chaque ajout d'un nouvel étage à la tour d'extension le coût du calcul du $j$-invariant de la courbe en calculant la totalité du cycle juste après avoir trouve une courbe se situant dans un volcan de $\ell$-isogénies réduit à un cycle. Pour cela à partir d'une courbe de départ $E_0$ on calcule l'isogénie qui a pour noyau la $\ell$ torsion cyclique rationnelle. Pour cela on calcule en $O_e(\log(q))$ opérations sur $\mathbb{F}_q$ un point de $\ell$-torsion rationnel, on calcule alors
- %le groupe généré par ce point en $O(\ell)$ opérations sur $\mathbb{F}_q$ et on utilise alors les formules de Vélu pour calculer 
- la courbe image et par conséquent son $j$-invariant en $O(M(\ell))$ opérations sur $\mathbb{F}_q$ en utilisant les formules de Vélu, on répète cette opération jusqu'à retomber sur le $j$-invariant $j(E_0)$, comme vu précédemment on a une borne théorique pour la longueur du cycle de $O(\sqrt{q}\log(q))$. Ainsi on a une complexité totale de $O((M(\ell) + \log(q)) \sqrt{q} \log(q))$ cependant en pratique la longueur du cycle est petite, on peut alors utiliser cette amélioration.
+Comme remarqué dans \cite{DeFeo-Doliskani-Schost13} on peut éviter à chaque ajout d'un nouvel étage à la tour d'extension le coût du calcul du $j$-invariant de la courbe isogène en calculant la totalité du cycle juste après avoir trouve une courbe se situant dans un graphe de $\ell$-isogénies cyclique. Pour calculer ce cycle on commence par calculer sur $E_0$ l'isogénie qui a pour noyau la $\ell$ torsion cyclique rationnelle. Pour cela on calcule en $O_e(\log(q))$ opérations sur $\mathbb{F}_q$ un point de $\ell$-torsion rationnel, on calcule alors la courbe image et par conséquent son $j$-invariant en $O(M(\ell))$ opérations sur $\mathbb{F}_q$ en utilisant les formules de Vélu, on répète cette opération jusqu'à retomber sur le $j$-invariant $j(E_0)$, comme vu précédemment on a une borne théorique pour la longueur du cycle de $O(\sqrt{q}\log(q))$. Ainsi on a une complexité totale de $O((M(\ell) + \log(q)) \sqrt{q} \log(q))$, cependant en pratique la longueur du cycle est petite, on peut alors utiliser cette amélioration.
 
-
-\paragraph{Remarques sur les utilisations dans notre cas pratique}
-On pourra remarquer que dans le cas qui nous intéresse en pratique on choisit comme corps de base pour la tour $\ell$-adique une extension $F_1$ de $\mathbb{F}_q$ dans laquelle on a $E[\ell] \subset E(F_1)$. Cela se traduit en pratique par le calcul des ordres des valeurs propres $\lambda, \mu$ de $\pi$ modulo la $\ell$-torsion, on travaille alors avec l'extension $F_1$ de degré $d_1$ avec $d_1=ppcm(o(\lambda),o(\mu))$ et $o$ l'ordre multiplicatif dans $\mathbb{Z}/\ell\mathbb{Z}^*$. $d_1$ est en particulier l'ordre de la matrice $\pi$ sur la $\ell$ torsion, il divise $\ell-1$.  
-
-En pratique on travaillera sur une extension $F_1$ de $\mathbb{F}_q$ tel que l'on ait $E[\ell] \subset E(F_1)$, cela a pour conséquence d'après le théorème sur la structure de groupe des points d'une courbe elliptique que l'on ait $\ell \mid |F_1|-1$. On utilisera donc en pratique la construction de tour $\ell$-adique développé ici , et on devra ajouter un facteur pour avoir le coût des opérations dans $\mathbb{F}_q$.
 
 \paragraph{Relèvement et descente}
-Les différentes constructions de tours $\ell$-adiques à l'aide de fibrés irréductibles s'appliquent aussi au cas où l'on a $\phi_{\ell}$ qui se scinde en produits de facteurs irréductibles de degré $1$ et $2$ en plus du cas précédent comme cela est développé plus en détail dans \cite{DeFeo-Doliskani-Schost13}. Ainsi toutes ces constructions à l'aide de fibrés irréductibles ont une structure commune qui nous permet de calculer le relèvement et la descente de la même manière. En rennomant les variables $(X_i,X_{i-1})$ par $(X,Y)$ et les polynômes $(Q_{i-1},Q_{i},T_i)$ par $(R,S,T)$, alors l'extension au niveau $i$ s'écrit:
+Les différentes constructions de tours $\ell$-adiques à l'aide de fibrés irréductibles s'appliquent aussi au cas où l'on a $\Phi_{\ell}$ qui se scinde en produits de facteurs irréductibles de degré $1$ et $2$ en plus du cas précédent comme cela est développé plus en détail dans \cite{DeFeo-Doliskani-Schost13}. Ainsi toutes ces constructions à l'aide de fibrés irréductibles ont une structure commune qui nous permet de calculer le relèvement et la descente de la même manière. En rennomant les variables $(X_i,X_{i-1})$ par $(X,Y)$ et les polynômes $(Q_{i-1},Q_{i},T_i)$ par $(R,S,T)$, alors l'extension au niveau $i$ s'écrit:
 \begin{equation}
 \mathbb{F}_q[Y]/\langle S(Y) \rangle  \quad \textit{et } \quad \mathbb{F}_q[X,Y]/ \langle R(X), T(X,Y) \rangle
 \end{equation}
@@ -1091,7 +1087,7 @@ Avec les entrées $P,f,g,n$ tels que $\deg(P,X)<n$ et $\deg(P,Y)<\ell$, l'algori
 \end{thm}
 
 \begin{proof}
-Cette preuve est issue de \cite{DeFeo-Doliskani-Schost13}.
+Voir \cite{DeFeo-Doliskani-Schost13}.
 \end{proof}
 
 \begin{cor}
@@ -1103,7 +1099,7 @@ Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut êtr
 \end{proof}
 
 \paragraph{Descente}
-On a donc le problème inverse de celui exposé dans le théorème \ref{thm:compose} à traiter pour résuoudre le problème de la descente. On a donc en entrée un polynôme $Q \in \mathbb{F}_q[y]$, on veut alors retrouver $P\in \mathbb{F}_q[X,Y]$ tel que $Q=P[f,g,n]$. 
+On a donc le problème inverse de celui traité dans le théorème \ref{thm:compose} pour faire une descente. On a donc en entrée un polynôme $Q \in \mathbb{F}_q[y]$, on veut alors retrouver $P\in \mathbb{F}_q[X,Y]$ tel que $Q=P[f,g,n]$. 
 \begin{algorithm}
 \caption{\label{alg:Decompose}Decompose}
 \begin{algorithmic}[1]
@@ -1113,7 +1109,7 @@ On a donc le problème inverse de celui exposé dans le théorème \ref{thm:comp
  \RETURN $Q$
 \ELSE
 \STATE $m \gets \left\lceil n/2 \right\rceil   $
-\STATE $u \gets 1/g^{n-m} \bmod f^m$
+\STATE $u \gets h^{n-m}=1/g^{n-m} \bmod f^m$
 \STATE $Q_0 \gets Qu \bmod f^m$
 \STATE $Q_1 \gets (Q-Q_0g^{n-m}) \mathrm{div} f^m$
 \STATE $P_0 \gets \textrm{Decompose}(Q_0,f,g,h,m))$
@@ -1139,11 +1135,18 @@ Au $i$ème niveau de la tour, l'opération de descente coûte $O(M(\ell^i)\log(\
 Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut être représenté dans une base univariée sous la forme $A(Y)$ avec $A$ un polynôme de degré strictement inférieur à $\ell n $ avec $n=\ell^{i-1}$. On calcule tout d'abord le polynôme $g^{n-1}$ afin de pouvoir calculer $A^*=g^{n-1}A \bmod S$ le tout avec une complexité de $O(M(\ell^i))$ opérations. On calcule alors le polynôme $h=1/g \bmod f$ avec un coût de $O(M(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$ et l'on applique alors l'algorithme \ref{alg:Decompose} aux entrées: $A^*,f,g,h,n$. Celui-ci calcule alors un polynôme bivarié $B$ avec une complexité de $O(M(\ell^i\log(\ell^i))$ opérations sur $\mathbb{F}_q$, $B$ représente alors $\alpha$ dans la base bivariée.
 \end{proof}
 
-\paragraph{Opérations sur les tours $\ell$-adique}
+
+\subsubsection{Remarques sur les utilisations dans notre cas pratique}
+On pourra remarquer que dans le cas qui nous intéresse en pratique on choisit comme corps de base pour la tour $\ell$-adique une extension $F_1$ de $\mathbb{F}_q$ dans laquelle on a $E[\ell] \subset E(F_1)$. Pour calculer une telle extension on calcule les ordres des valeurs propres $\lambda, \mu$ de $\pi$ modulo la $\ell$-torsion. On travaille alors avec l'extension $F_1$ de degré $d_1$ avec $d_1=ppcm(o(\lambda),o(\mu))=o(q)$ et $o$ l'ordre multiplicatif dans $\mathbb{Z}/\ell\mathbb{Z}^*$, $d_1$ est en particulier l'ordre de la matrice $\pi$ sur la $\ell$ torsion, il divise $\ell-1$. Une conséquence importante pour l'analyse des constructions possibles de tours $\ell$-adiques c'est que dans ce cas-là on aura $\ell \mid F_1-1$, qui est comme on a vu le cas le plus avantageux pour les opérations dans les tours d'extension. 
+
+Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra ajouter un facteur $O(M(\ell)\log(\ell))$ aux résultats obtenus pour une tour $\ell$ adique construite sur un corps $F_1$ tel que $\ell \mid F_1-1$ pour avoir le coût des opérations dans $\mathbb{F}_q$.
+
+
+\subsubsection{Opérations sur les tours $\ell$-adique}
 Comme il va être expliqué plus tard on va construire une tour $\ell$-adique à partir d'une extension de corps  de$\mathbb{F}_q=F_0$ dénotée $F_1$ telle que l'on ait $d_1=[F_1:F_0]$ égal à l'ordre de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, on aura en particulier $d_1 \mid \ell-1$. On fera remarquer qu'il peut très bien arriver que l'on ait $d_1=1$. De plus par définition de $d_1$, on a $\ell \mid q^{d_1}-1$ et donc on pourra utiliser les constructions de tour $\ell$-adique préconisées dans ce paragraphe \ref{par:easycase} .%cas le plus simple en l'occurence
 
 \paragraph{Calcul du Frobenius}
-Cette opération sera très importante par la suite pour déterminer des ensembles spécifiques de points d'une courbe elliptique, c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable comparé au cas $\ell=2$ \cite{Doliskani-Schost15} dont ce résultat issu d'un travail conjoint avec Luca DE Feo Jérome Plut et Eric Schost s'inspire.
+Cette opération sera très importante par la suite pour déterminer des ensembles spécifiques de points d'une courbe elliptique (comme vu dans l'exmple sur les cycles d'isogénies), c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable comparé au cas $\ell=2$ \cite{Doliskani-Schost15} dont le résultat ici, issu d'un travail conjoint avec Luca De Feo Jérome Plut et Eric Schost, s'inspire.
 
 \begin{thm} \label{thm:frob-ell}
 Soit $F_0 \subset F_1 \subset \cdots \subset F_n$ une tour de Kummer définie telle que $[F_{i+1}:F_i]=\ell$ pour $i \neq 0$ et $[F_1:F_0]=d_1$ avec $d_1$ égal à l'odre multiplicatif de $q=|F_0|$  dans $\mathbb{Z}/\ell \mathbb{Z}$ (voir \textcolor{red}{(réf à mettre plus tard)} pour plus de détail). Soit $a$ un élément de $F_i$ pour tout entier $j$ le calcul de la puissance $|F_j|$ de $a$ coûte $O(\ell^{i-1}M(\ell))$ opérations sur $\mathbb{F}_q$ après un pré calcul de $O(\ell M(\ell)\log(q))$
@@ -1166,7 +1169,7 @@ On a alors $a^s$ qui s'écrit sous la forme:
 \begin{equation*}
 a_0 + a_1 y + a_2 y^2 + \cdots + a_{d_1}y^{d-1}
 \end{equation*}
-On calcule alors $a(y)$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_1[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(\ell))$ opérations sur $\mathbb{F}_q$, on aura alors un coût total de $O(\ell^{i-1}M(\ell)))$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_1,x_i)$ de degré $(d_1,d)$, on réécrit alors $a^s$ dans une base canonique de $F_i$ à l'aide du changement de représentation inverse de celui effectué précédemment. C'est à dire à partir $a^s$ représenté sous la forme:
+On calcule alors $a(y)$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_1[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(\ell))$ opérations sur $\mathbb{F}_q$, on aura alors un coût total de $O(\ell^{i-1}M(\ell)))$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_1,x_i)$ de degré $(d_1,d)$, on réécrit alors $a^s$ dans une base canonique de $F_i$ à l'aide du changement de représentation inverse de celui effectué précédemment. En effet on a $a^s$ représenté sous la forme:
 \begin{equation*}
 b_0 + b_1 x_i + b_2 x_i^2 + \cdots + b_{d-1}x_i^{d-1}
 \end{equation*}
