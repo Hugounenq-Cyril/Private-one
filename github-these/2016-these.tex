@@ -600,7 +600,10 @@ L'algorithme de Schoof \cite{Schoof85} consistait à calculer le cardinal d'une 
 \begin{equation*}
 X^2-t_{\pi}X+q=0
 \end{equation*}
-Cette équation est alors résolue modulo la $\ell_i$-torsion, avec $\ell_i$ un nombre premier. Cette résolution est donc répétée pour un ensemble de nombres premiers $L$ tel que: $\Pi_{\ell_i \in L}\ell_i>4 \sqrt{q}$.
+en déterminant la valeur de la trace du Frobenius $t_{\pi}$, on a alors: $|E(\mathbb{F}_q)|=q+1-t_{\pi}$. 
+Cette équation est résolue modulo la $\ell_i$-torsion, avec $\ell_i$ un nombre premier. Cette résolution est répétée pour un ensemble de nombres premiers $L$ tel que: $\Pi_{\ell_i \in L}\ell_i>4 \sqrt{q}$, le théorème des restes chinois est alors utilisé pour déterminer $t_{\pi}$ modulo $4\sqrt{q}$. Ainsi avec le théorème de Hasse on peut conclure sur la cardinalité de la courbe sur $\mathbb{F}_q$.
+
+L'un des principals problèmes avec cette approche étant que l'on travaille avec $\ell$ torsion qui lorsque l'on a $\ell \neq p$ est de la forme $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$ et l'on doit alors travailler modulo $f_{\ell}$ le polynôme de $\ell$ division (qui s'annule sur les abscisses des points de $\ell$ torsion) qui est de degré $\ell^2-1/2$. L'idée est alors de considérer des ensembles plus restrictifs de la $\ell$-torsion afin de diminuer le coût de l'algorithme.
 \subsection{Lien entre isogénie et son action sur le module de Tate}
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
