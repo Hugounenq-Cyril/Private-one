@@ -117,7 +117,7 @@
 
 \section{Courbes Elliptiques}
 
-Dans ce chaptire nous allons faire quelques rappels sur les courbes elliptiques. Pour approfondir le sujet le lecteur pourra consulter \cite{Silv1} ou encore \cite{Washington:2008}
+Dans ce chaptire nous allons faire quelques rappels sur les courbes elliptiques. Pour approfondir le sujet le lecteur pourra consulter \cite{Silv1} ou encore \cite{Washington2008}
 
 \subsection{\'Equations de Weierstrass}
 
@@ -436,7 +436,7 @@ Soit $\varphi:E_1 \rightarrow E_2$ une isogénie.
 \end{thm}
 
 \begin{proof}
-Voir \cite[Theorem III.6.2]{Silv1}
+Voir \cite[Theorem III.6.2]{Silv1}.
 \end{proof}
 
 \begin{cor}
@@ -584,7 +584,7 @@ Le groupe abélien $E(\mathbb{F}_q$) est isomorphe à $\nicefrac{\mathbb{Z}}{n_1
 \end{prop}
 
 \begin{proof}
-Voir \cite[Theorem 4.1]{Washington:2008}
+Voir \cite[Theorem 4.1]{Washington2008}
 \end{proof}
 
 
@@ -604,6 +604,34 @@ en déterminant la valeur de la trace du Frobenius $t_{\pi}$, on a alors: $|E(\m
 Cette équation est résolue modulo la $\ell_i$-torsion, avec $\ell_i$ un nombre premier. Cette résolution est répétée pour un ensemble de nombres premiers $L$ tel que: $\Pi_{\ell_i \in L}\ell_i>4 \sqrt{q}$, le théorème des restes chinois est alors utilisé pour déterminer $t_{\pi}$ modulo $4\sqrt{q}$. Ainsi avec le théorème de Hasse on peut conclure sur la cardinalité de la courbe sur $\mathbb{F}_q$.
 
 L'un des principals problèmes avec cette approche étant que l'on travaille avec $\ell$ torsion qui lorsque l'on a $\ell \neq p$ est de la forme $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$ et l'on doit alors travailler modulo $f_{\ell}$ le polynôme de $\ell$ division (qui s'annule sur les abscisses des points de $\ell$ torsion) qui est de degré $\ell^2-1/2$. L'idée est alors de considérer des ensembles plus restrictifs de la $\ell$-torsion afin de diminuer le coût de l'algorithme.
+
+Des améliorations ont donc été apporté à l'algorithme de Schoof par Atkin et Elkies en analysant plus précisément l'action du Frobenius sur la $\ell$-torsion. En se rappelant que l'on a  $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$ alors on peut représenter l'action de $\pi$ sur la $\ell$-torsion sous forme matricielle. Ainsi en analysant les solutions du polynôme charactéristique de $\pi$:
+\begin{equation*}
+X^2-t_{\pi}X+q = 0 \bmod \ell
+\end{equation*} 
+On a plusieurs cas possibles selon que le discriminant $d_{\pi}=t_{\pi}^2-4q$ soit un résidu quadratique ou non quadratique dans $\mathbb{Z}/\ell\mathbb{Z}$. Si $d_{\pi}$ est un résidu quadratique dans $\mathbb{Z}/\ell\mathbb{Z}$ alors $\ell$ est dit nombre de Elkies, sinon il est dit nombre de Atkin. Comme on ne peut connaître à priori ce résultat, car il suppose la connaissance de $t_{\pi}$ et donc la cardinalité de la courbe. On doit alors travailler avec un autre objet le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ de degré $\ell+1$ et symétrique. Ce polynôme a la propriété suivante soit $j_0 \in \mathbb{F}_q$ le $j$-invariant d'une courbe elliptique $E_0$ définie sur $\mathbb{F}_q$ alors les $\ell+1$ racines du polynôme $\Phi_{\ell}(X,j_0)$ sont les $j$-invariants de courbes $\ell$-isogénes à $E_0$. Ces $j$ invariants racines du polynôme modulaire évalué en $j_0$ correspondent exactement aux $j$-invariants des  courbes générées par les $\ell$ isogénies $E \to E/C$ avec $C$(noyau de l'isogénie) un des $\ell+1$ sous groupe cyclique de la $\ell$-torsion.  Dés lors on voit bien que avec cette remarque on voudrait travailler sur ces groupes cycliques de la $\ell$ torsion au lieu de la $\ell$ torsion toute entière, cependant il faudrait que celle-ci soit définie sur le corps sur lequel on travaille. On a alors le résultat suivant qui nous permet d'énoncer dans quel corps $C$ est défini en fonction des cas.
+
+%On a un premier résultat qui nous permet de spécifier certains sous ensembles de la $\ell$-torsion.
+
+\begin{prop}
+Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0, 1728$. Alors:
+\begin{enumerate}
+\item le polynôme $\Phi(X,\ell)$ a une racine $j_0 \in \mathbb{F}_{q}^r$ si et seulement si le noyau $C$ de l'isogénie $E \to E/C$ avec $j(E/C)=j_0$ est un espace propre de dimension $1$ pour $\pi^r$ appliqué à $E[\ell]$
+\end{enumerate}
+\end{prop}
+
+On peut alors énoncer le théorème suivant de Atkin qui permet de déterminer si le nombre est de Elkies ou de Atkin à l'aide du $\ell$-ième polynôme modulaire:
+
+\begin{thm}[Atkin]
+Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0, 1728$. Soit $\Phi_{\ell}(X,j(E))=f_1f_2\cdots f_s$ la factorisation de $\Phi_{\ell}(X,j(E))$ dans $\mathbb{F}_q[X]$ en éléments irréductibles, alors les degrés possibles de $f_1,f_2, \cdots , f_s$ sont:
+\begin{enumerate}
+\item $(1,\ell)$ ou $(1,1, \cdots, 1)$. Dans les deux cas on a $t_{\pi}^2-4q=0 \bmod \mathbb{Z}/\ell \mathbb{Z}$, dans le premier cas on pose $r=\ell$ et dans le second $r=1$;
+\item $(1,1,r,r, \cdots,r)$. Dans ce cas on a $t_{\pi}^2-4q=0$ qui est un résidu quadratique modulo $\ell$. On a alors $r$ qui divise $\ell-1$, et l'on a alors $\pi$ qui agit comme une matrice scalaire sur $E[\ell]$;
+\item $(r,r,\cdots,r)$ avec $r>1$. Dans ce cas $t_{\pi}^2-4q$ n'est pas un résidu quadratique, $r$ divise $\ell+1$ et la restriction de $\pi$ à $E[\ell]$ admet un polynôme charactéristique irréductible sur $\mathbb{Z}/\ell \mathbb{Z}$. 
+\end{enumerate}
+\end{thm}
+Dans tous les cas on a $r$ qui correspond à l'ordre de la matrice $\pi$ dans $PGL_2(\mathbb{Z}/\ell \mathbb{Z})$
+
 \subsection{Lien entre isogénie et son action sur le module de Tate}
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
