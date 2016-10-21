@@ -616,13 +616,14 @@ On a plusieurs cas possibles selon que le discriminant $d_{\pi}=t_{\pi}^2-4q$ so
 \begin{prop}
 Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0, 1728$. Alors:
 \begin{enumerate}
-\item le polynôme $\Phi(X,\ell)$ a une racine $j_0 \in \mathbb{F}_{q}^r$ si et seulement si le noyau $C$ de l'isogénie $E \to E/C$ avec $j(E/C)=j_0$ est un espace propre de dimension $1$ pour $\pi^r$ appliqué à $E[\ell]$
+\item le polynôme $\Phi(X,j)$ a une racine $j_0 \in \mathbb{F}_{q}^r$ si et seulement si le noyau $C$ de l'isogénie $E \to E/C$ avec $j(E/C)=j_0$ est un espace propre de dimension $1$ pour $\pi^r$ appliqué à $E[\ell]$
+\item le polynôme $\Phi(X,j)$ se scinde complètement sur $ \mathbb{F}_{q}^r[X]$ si et seulement si $\pi^r$ agit comme une matrice scalaire sur $E[\ell]$.
 \end{enumerate}
 \end{prop}
 
-On peut alors énoncer le théorème suivant de Atkin qui permet de déterminer si le nombre est de Elkies ou de Atkin à l'aide du $\ell$-ième polynôme modulaire:
+Le théorème suivant de Atkin permet de déterminer plus spécifiquement les cas possibles de factorisation de $\Phi(X,j)$  et aussi d'énoncer si le nombre est de Elkies ou de Atkin selon les cas:
 
-\begin{thm}[Atkin]
+\begin{thm}[Atkin]\label{thm:Atkin}
 Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0, 1728$. Soit $\Phi_{\ell}(X,j(E))=f_1f_2\cdots f_s$ la factorisation de $\Phi_{\ell}(X,j(E))$ dans $\mathbb{F}_q[X]$ en éléments irréductibles, alors les degrés possibles de $f_1,f_2, \cdots , f_s$ sont:
 \begin{enumerate}
 \item $(1,\ell)$ ou $(1,1, \cdots, 1)$. Dans les deux cas on a $t_{\pi}^2-4q=0 \bmod \mathbb{Z}/\ell \mathbb{Z}$, dans le premier cas on pose $r=\ell$ et dans le second $r=1$;
@@ -630,8 +631,26 @@ Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E)
 \item $(r,r,\cdots,r)$ avec $r>1$. Dans ce cas $t_{\pi}^2-4q$ n'est pas un résidu quadratique, $r$ divise $\ell+1$ et la restriction de $\pi$ à $E[\ell]$ admet un polynôme charactéristique irréductible sur $\mathbb{Z}/\ell \mathbb{Z}$. 
 \end{enumerate}
 \end{thm}
-Dans tous les cas on a $r$ qui correspond à l'ordre de la matrice $\pi$ dans $PGL_2(\mathbb{Z}/\ell \mathbb{Z})$
+Dans tous les cas on a $r$ qui correspond à l'ordre de la matrice $\pi$ dans $PGL_2(\mathbb{Z}/\ell \mathbb{Z})$ et on a le résultat suivant pour la trace du Frobenius $t_pi$:
+\begin{equation*}
+t_{\pi}^2=q(\zeta + \zeta^{-1})^2 \bmod \ell
+\end{equation*}
+avec $\zeta \in \overline{\mathbb{F}_q}$ une racine $r$-ième primitive de l'unité.
 
+Ainsi en pratique pour déterminer la nature d'un nombre premier $\ell$ on calcule $g(X)=\mathrm{pgcd}(\Phi(X,\ell),X^q-X)$. Lorsque l'on a $g(X)=1$  alors $\ell$ est un nombre de Atkin, sinon $\ell$ est un nombre de Elkies.
+
+Les nombres premiers de Elkies sont les plus favorables au calcul de $t_{\pi}$ car une fois que l'on a un nombre premier de Elkies alors par le théorème \ref{thm:Atkin} il existe un sous groupe cyclique $C$ de la $\ell$ torsion qui est un espace propre pour le Frobenius $\pi$, on résoud alors l'équation suivante dans ce groupe
+\begin{equation*}
+X^2-t_{\pi}X+q = 0 \bmod g_{\ell}
+\end{equation*} 
+ainsi en travaillant dans ce groupe, plus petit que celui de la $\ell$-torsion, on va diminuer la complexité du calcul à effectuer pour trouver la trace modulo $\ell$.
+
+Par contre pour les nombres premiers $\ell$ de Atkin comme un sous groupe cylcique de la $\ell$-torsion ne peut être déterminé dans $\mathbb{F}_q$ alors on ne peut que spéculer sur les valeurs possibles de $t_{\pi}$ et l'on doit alors toutes les considérer. De telle sorte que pour les différents nombres premiers de Atkin on est obligé d'utiliser un algorithme à pas de bébé pas de géant pour lequel il existe des améliorations proposées par \cite{Ler97a}. Ces améloriations utilisent notamment un tri sur les nombres premiers de Elkies en fonction de leur côut, dû aux nombres de racines primites $r$-ième de l'unité, que ceux-ci ont pour l'algorithme.
+
+
+On va donc dans la suite de ce document se concentrer sur le cas où $\ell$ est un nombre de Elkies car cela nous permettra de déterminer un sous espace particulier de la $\ell$-torsion et de la $\ell^k$ torsion en général avec $k$ un nombre premier.
+
+Couveignes Morain
 \subsection{Lien entre isogénie et son action sur le module de Tate}
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
