@@ -650,9 +650,38 @@ Par contre pour les nombres premiers $\ell$ de Atkin comme un sous groupe cylciq
 
 On va donc dans la suite de ce document se concentrer sur le cas où $\ell$ est un nombre de Elkies car cela nous permettra de déterminer un sous espace particulier de la $\ell$-torsion et de la $\ell^k$ torsion en général avec $k$ un nombre premier.
 
-Une améloriation de l'algorithme S.E.A. pour le cas Elkies a été proposé par Couveignes et Morain \cite{Couveignes96isogenycycles} celle-ci propose en effet de déterminer $t_{\pi} \bmod \ell^k$ en utilisant les cycles d'isogénies. 
+Voyons le cas Elkies plus précisément vu que l'algorithme que proposé dans ce document se compare à de la littérature qui se place dans ce contexte particulier.
 
-Couveignes Morain
+\subsection{Elkies' case} \label{sub:Elkies}
+Lorsque l'on est dans le cas Elkies, alors on cherche à déterminer un des deux sous-groupe de la $\ell$-torsion qui est aussi espace propre pour le Frobenius, le but étant au final de déterminer la trace du Frobenius à travers la détermination de son action sur cet espace propre. 
+
+Ce sous groupe $C$ est déterminé comme étant le noyau de l'isogénie qui relie la courbe $E_0$ dont on veut calculer le cardinal et une des deux courbes $\ell$-isogènes à $E_0$. Pour calculer l'une des deux courbes isogènes il faut calculer les racines du polynôme modulaire $\Phi_{\ell}(X,Y)$ évalué en $j_0$ ($j$-invariant de $E_0$), on obtient alors le $j$-invariant des courbes $\ell$-isognèes définies sur $\mathbb{F}_q$, mais celles-ci sont définies sur $\mathbb{F}_q$ à tordue près. Il faut donc se servir du résultat suivant prouvé par Elkies afin de déterminer exactement la courbe isogène à l'aide des formes de Weierstrass.
+
+\begin{prop}
+Soit $E_0$ une courbe elliptique définie sur $\mathbb{F}_q$, un corps de caractéristique différente de $2$ et de $3$, de $j$-invariant différent de $0$ et $1728$, on suppose de plus que $E_0$ admet une courbe $\ell$-isogène $\tilde{E}$. On note l'équation de Weierstrass de $E_0$: $y^2=x^3+a_4x+a_6$. On a alors $\tilde{j}$ le $j$-invariant de $\tilde{E}$ et son équation de Weierstrass
+\begin{equation*}
+\tilde{E}:y^2=x^3+\tilde{a_4}x+\tilde{a_6}
+\end{equation*}
+ qui nous est précisée par les équations suivantes: 
+\begin{equation*}
+\tilde{a_4}=-\frac{1}{48}\frac{\tilde{j'}^2}{\tilde{j}(\tilde{j}-1728)} \quad \tilde{a_6}=-\frac{1}{864}\frac{\tilde{j'}^3}{\tilde{j}^2(\tilde{j}-1728)}
+\end{equation*}
+avec $\tilde{j'} \in \mathbb{F}_q$ donné par l'équation suivante:
+\begin{equation*}
+\tilde{j'}=-\frac{18}{\ell}\frac{a_6}{a_4}\frac{\Phi_{\ell,X}(j,\tilde{j})}{\Phi_{\ell,Y}(j,\tilde{j})}j
+\end{equation*}
+avec la notation $\Phi_{\ell,X}$(resp. $\Phi_{\ell,Y}$) pour noter la dérivée partielle de $\Phi_{\ell}$ en $X$ (resp. $Y$): $\frac{\partial \Phi_{\ell}}{\partial X} $ (resp. $\frac{\partial \Phi_{\ell}}{\partial, Y} $ )
+\end{prop} 
+
+Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci c'est ce que des algorithmes tels que celui de \cite{BMSS08}  puis \cite{Lercier-Sirvent2008}   cherchent à résoudre en particulier dans ce contexte. Un présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
+
+Mais avant de parler de ces algorithmes regardons plus en détail l'amélioration de S.E.A. pour le cas Elkies qui a été proposé par Couveignes et Morain \cite{Couveignes96isogenycycles} celle-ci propose en effet de déterminer $t_{\pi} \bmod \ell^k$ en utilisant les cycles d'isogénies. 
+
+\subsection{Amélioration du cas Elkies par Couveignes et Morain}
+Comme dit dans \ref{sub:Elkies} l'étape la plus importante pour le coût de l'algorithme est de déterminer un polynôme de Elkies qui définisse un espace propre pour le Frobenius pour lequel on va ensuite déterminer la valeur propre associée. L'algorithme de Couveignes et Morain propose alors de déterminer ces espaces prorpres pour la $\ell^k$ torsion en itérant le procédé sur un cycle d'isogénies.
+
+En effet comme on est dans le cas Elkies alors la courbe $E_0$ dont on veut calculer le cardinal admet deux  courbes $\ell$-isogènes définies dans $\mathbb{F}_q$. Ainsi pour ces courbes isogènes le polynôme modulaire admet aussi deux solutions  dans $\mathbb{F}_q$. 
+
 \subsection{Lien entre isogénie et son action sur le module de Tate}
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
