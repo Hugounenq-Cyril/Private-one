@@ -631,7 +631,7 @@ Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E)
 \item $(r,r,\cdots,r)$ avec $r>1$. Dans ce cas $t_{\pi}^2-4q$ n'est pas un résidu quadratique, $r$ divise $\ell+1$ et la restriction de $\pi$ à $E[\ell]$ admet un polynôme charactéristique irréductible sur $\mathbb{Z}/\ell \mathbb{Z}$. 
 \end{enumerate}
 \end{thm}
-Dans tous les cas on a $r$ qui correspond à l'ordre de la matrice $\pi$ dans $PGL_2(\mathbb{Z}/\ell \mathbb{Z})$ et on a le résultat suivant pour la trace du Frobenius $t_pi$:
+Dans tous les cas on a $r$ qui correspond à l'ordre de la matrice $\pi$ dans $PGL_2(\mathbb{Z}/\ell \mathbb{Z})$ et on a le résultat suivant pour la trace du Frobenius $t_{\pi}$:
 \begin{equation*}
 t_{\pi}^2=q(\zeta + \zeta^{-1})^2 \bmod \ell
 \end{equation*}
@@ -652,7 +652,7 @@ On va donc dans la suite de ce document se concentrer sur le cas où $\ell$ est 
 
 Voyons le cas Elkies plus précisément vu que l'algorithme que proposé dans ce document se compare à de la littérature qui se place dans ce contexte particulier.
 
-\subsection{Elkies' case} \label{sub:Elkies}
+\subsubsection{Elkies' case} \label{sub:Elkies}
 Lorsque l'on est dans le cas Elkies, alors on cherche à déterminer un des deux sous-groupe de la $\ell$-torsion qui est aussi espace propre pour le Frobenius, le but étant au final de déterminer la trace du Frobenius à travers la détermination de son action sur cet espace propre. 
 
 Ce sous groupe $C$ est déterminé comme étant le noyau de l'isogénie qui relie la courbe $E_0$ dont on veut calculer le cardinal et une des deux courbes $\ell$-isogènes à $E_0$. Pour calculer l'une des deux courbes isogènes il faut calculer les racines du polynôme modulaire $\Phi_{\ell}(X,Y)$ évalué en $j_0$ ($j$-invariant de $E_0$), on obtient alors le $j$-invariant des courbes $\ell$-isognèes définies sur $\mathbb{F}_q$, mais celles-ci sont définies sur $\mathbb{F}_q$ à tordue près. Il faut donc se servir du résultat suivant prouvé par Elkies afin de déterminer exactement la courbe isogène à l'aide des formes de Weierstrass.
@@ -677,20 +677,36 @@ Maintenant que la courbe isogène est entièrement déterminée, il reste à dé
 
 Mais avant de parler de ces algorithmes regardons plus en détail l'amélioration de S.E.A. pour le cas Elkies qui a été proposé par Couveignes et Morain \cite{Couveignes96isogenycycles} celle-ci propose en effet de déterminer $t_{\pi} \bmod \ell^k$ en utilisant les cycles d'isogénies. 
 
-\subsection{Amélioration du cas Elkies par Couveignes et Morain}
+\subsubsection{Amélioration du cas Elkies par Couveignes et Morain}
 Comme dit dans \ref{sub:Elkies} l'étape la plus importante pour le coût de l'algorithme est de déterminer un polynôme de Elkies qui définisse un espace propre pour le Frobenius pour lequel on va ensuite déterminer la valeur propre associée. L'algorithme de Couveignes et Morain propose alors de déterminer ces espaces prorpres pour la $\ell^k$ torsion en itérant le procédé sur un cycle d'isogénies.
 
-En effet comme on est dans le cas Elkies alors la courbe $E_0$ dont on veut calculer le cardinal admet deux  courbes $\ell$-isogènes définies dans $\mathbb{F}_q$. Ainsi pour ces courbes isogènes le polynôme modulaire admet aussi deux solutions  dans $\mathbb{F}_q$, car ces courbes sont de même cardinal donc ont la même valeur $t_{\pi}$ et par conséquent le fait que $t_{\pi}^2-4q$ soit un résidu quadratique modulo $\ell$ reste préservé. Ainsi chaque courbe admet deux coubes isogènes définies sur $\mathbb{F}_q$, on définit alors un cycle qui est fini. En effet à chaque courbe on peut associer à isomorphisme près un ordre maximal pour l'indice $\ell$ (\textcolor{red}{ref a mettre plus tard}) dans $\mathbb{Q}[X]/(X^2-t_{\pi})X+q$ or comme le nombre de classe est borné on obtient le résultat. 
+En effet comme on est dans le cas Elkies alors la courbe $E_0$ dont on veut calculer le cardinal admet deux  courbes $\ell$-isogènes définies dans $\mathbb{F}_q$. Ainsi pour ces courbes isogènes le polynôme modulaire admet aussi deux solutions  dans $\mathbb{F}_q$. En effet ces courbes sont de même cardinal que $E_0$ et ont donc la même valeur $t_{\pi}$, par conséquent le fait que $t_{\pi}^2-4q$ soit un résidu quadratique modulo $\ell$ reste préservé. Ainsi chaque courbe admet deux coubes isogènes définies sur $\mathbb{F}_q$, on définit alors un cycle qui est fini. En effet à chaque courbe on peut associer à isomorphisme près un ordre maximal pour l'indice $\ell$ (\textcolor{red}{ref a mettre plus tard}) dans $\mathbb{Q}[X]/(X^2-t_{\pi})X+q$ or comme le nombre de classe est borné on obtient le résultat. 
 
-L'idée derrière cet article est donc de décomposer en deux espaces propres la $\ell^k$ torsion à l'aide des valeurs propres du Frobenius dans le cas Elkies, puis de calculer la valeur de la trace du Frobenius dans ces espaces propres. Pour décrire tout cela il est nécessaire de poser quelques notations. On généralise tout d'abord l'action du Frobenius $\pi$ sur $E[\ell]$ à une action sur $T_{\ell}(E)$, on a alors une décomposition de $T_{\ell}(E)$ en deux espaces propres: $T_{\ell}^1(E) \oplus T_{\ell}^2(E)$, avec $T_{\ell}^1(E)$ associé à $\lambda$ et $T_{\ell}^2(E)$ associé à $\mu$. 
+L'idée derrière cet article est donc de décomposer en deux espaces propres la $\ell^k$ torsion à l'aide des valeurs propres du Frobenius dans le cas Elkies, puis de calculer la valeur de la trace du Frobenius ($t_{\pi}$) dans ces espaces propres. Ainsi la recherche de la valeur de $t_{\pi}$ se fera sur des ensembles plus petits et donc en manipulant des polynômes de degré moindre. Pour décrire tout cela il est nécessaire de poser quelques notations. On généralise tout d'abord l'action du Frobenius $\pi$ sur $E[\ell]$ à une action sur $T_{\ell}(E)$, on a alors une décomposition de $T_{\ell}(E)$ en deux espaces propres: $T_{\ell}^{\lambda}(E) \oplus T_{\ell}^{\mu}(E)$, avec $T_{\ell}^{\lambda}(E)$ associé à la valeur propre $\lambda$ et $T_{\ell}^{\mu}(E)$ associé à la valeur propre $\mu$. 
 
 
-Montrons maintenant que les isogénies peuvent êtres associées de façon canonique aux valeurs propres du Frobenius. On note $I_1$ (resp. $I_2$) l'isogénie engendrée par l'espace propre pour $\pi$ associé à la valeur propre $\lambda$ (resp. $\mu$). Ainsi en partant de $E_0$ on note alors $E_1$(resp. $E_2$) l'image de l'isogénie $I_1$ (resp. $I_2$). Lorsque l'on est sur $E_1$ on a alors à nouveau l'existence de deux isogénies associées aux deux espaces propres: $I_{11}$ pour l'iosgénie associée à la valeur propre $\lambda$ et $I_{12}$ pour l'isogénie associée à la valeur propre $\mu$. On a alors $I_{12}=\widehat{I_{1}}$, car l'isogénie $I_1$ étant rationnelle sa duale l'est aussi et on conclut alors en analysant son action sur $T_{\ell}^1(E)$. Ainsi on a des directions canoniques définies par les valeurs propres $\lambda$ et $\mu$. 
+Montrons tout d'abord que les isogénies peuvent êtres associées de façon canonique aux valeurs propres du Frobenius. On note $I_{\lambda}$ (resp. $I_{\mu}$) l'isogénie engendrée par l'espace propre pour $\pi$ associé à la valeur propre $\lambda$ (resp. $\mu$). Ainsi en partant de $E_0$ on note alors $E_{\lambda}$(resp. $E_{\mu}$) l'image de l'isogénie $I_{\lambda}$ (resp. $I_{\mu}$). Lorsque l'on est sur $E_{\lambda}$ on a alors à nouveau l'existence de deux isogénies associées aux deux espaces propres: $I_{\lambda \lambda}$ pour l'iosgénie associée à la valeur propre $\lambda$ et $I_{\lambda \mu}$ pour l'isogénie associée à la valeur propre $\mu$. On a alors $I_{\lambda \mu}=\widehat{I_{\lambda}}$, en effet l'isogénie $I_{\lambda}$ étant rationnelle sa duale l'est aussi et on conclut alors en analysant son action sur $T_{\ell}^{\lambda}(E)$. Ainsi on a des directions canoniques définies par les valeurs propres $\lambda$ et $\mu$. 
 
-Il reste alors à montrer comment on détermine en pratique un espace propre de la $\ell^k$ torsion. Travaillons donc avec l'espace propre associé à $E_{\lambda}$, on a alors $T_{\ell}^1(E_0) \cap E_0[\ell]$ qui est contruit comme étant le noyau de l'isogénie qui va de $E_0$ à $E_1$. Pour calculer celui-ci on doit tout d'abord calculer à l'aide du polynôme modulaire les $j$-invariants des deux courbes, puis leur représentations sous forme de Weierstrass, puis l'isogénie est ensuite calculée. Ainsi on dénote $h_1$ le polynôme qui s'annule sur l'abscisse des points du noyau de l'isogénie $I_1$. 
-Maintenant si l'on veut déterminer $T_{\ell}^1(E_0) \cap E[\ell^2]$, on remarque que cet ensemble c'est la préimage du noyau de l'isogénie $I_11$ ($h_{11}$) par l'isogénie $I_1$. Ainsi on injecte $I_1$ dans $h_11$ pour obtenir cet ensemble. On répète alors l'opération pour déterminer un espace propre de la $\ell^k$-torsion. Ainsi pour la $\ell^k$-torsion on va déterminer l'espace propre par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ qui factorise le $\ell^k$-ème polynôme de division de degré $\ell^{2k}$.
+Il reste alors à montrer comment on détermine en pratique un espace propre de la $\ell^k$ torsion. Travaillons donc avec l'espace propre associé à $E_{\lambda}$, on a alors $T_{\ell}^{\lambda}(E_0) \cap E_0[\ell]$ qui est contruit comme étant le noyau de l'isogénie qui va de $E_0$ à $E_{\lambda}$. Pour calculer celui-ci on doit tout d'abord calculer à l'aide du polynôme modulaire les $j$-invariants des deux courbes $E_0$ et $E_1$, puis leur représentations sous forme de Weierstrass, puis l'isogénie est ensuite calculée. Ainsi on dénote $h_1$ le polynôme qui s'annule sur l'abscisse des points du noyau de l'isogénie $I_1$. 
+Maintenant si l'on veut déterminer $T_{\ell}^{\lambda}(E_0) \cap E[\ell^2]$, on remarque que cet ensemble c'est la préimage du noyau de l'isogénie $I_{\lambda \lambda}$ (id est $h_{\lambda \lambda}$) par l'isogénie $I_{\lambda}$. Ainsi on injecte $I_{\lambda}$ dans $h_{\lambda \lambda}$ pour obtenir cet ensemble qui est donc le noyau de $h_{\lambda \lambda}(I_{\lambda}(x))$. On répète alors l'opération pour déterminer un espace propre pour le Frobenius de la $\ell^k$-torsion. Ainsi pour la $\ell^k$-torsion on va déterminer l'espace propre par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ qui factorise le $\ell^k$-ème polynôme de division de degré $\ell^{2k}$.
 
-Ainsi on a vu une façon de déterminer un espace propre de la $\ell^k$-torsion, à l'aide d'un cycle d'isogénies.
+On peut alors dès lors résoudre l'équation:
+\begin{equation*}
+X^2-t_{\pi}X+q=0
+\end{equation*}
+modulo l'espace propre $T_{\ell}^{\lambda}(E_0) \cap E[\ell^k]$ (ou $T_{\ell}^{\mu}(E_0) \cap E[\ell^k]$ par exemple) défini par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ au lieu de résoudre celle-ci modulo $E[\ell^k]$ défini par un polynôme de degré $\ell^{2k}$.
+
+\paragraph{Optimisation}
+Cependant on peut travailler aussi avec un facteur de $h_{\lambda^k}$ à la place de celui-ci en effet on peut procéder de la manière suivante:
+\begin{itemize}
+\item Calcul des deux valeurs propres $\lambda$ et $\mu$ du Frobenius modulo $\ell$,
+\item Calcul des ordres multiplicatifs $d_{\lambda},d_{\mu}$ de ces deux valeurs propres dans le groupe multiplicatif $(\mathbb{Z}/\ell \mathbb{Z})^{\times}$,
+\item On pose alors $d=\min(d_{\lambda},d_{\mu})$, on divise éventuellement $d$ par $2$ si il est pair pour prendre en compte les abscisses, l'espace vectoriel associé à $d$ est alors défini sur $\mathbb{F}_p^{d}$ et l'on a alors le polynôme de $\ell$-division qui a pour facteur un polynôme de degré $d$. Après avoir factorisé le polynôme de $\ell$-division par un facteur de degré $d$, on utilise alors celui-ci à la place de $h_{\lambda^{k}}$, de telle sorte que lorsque l'on veut calculer la trace du Frobenius modulo un espace propre de la $\ell^k$ torsion on travaille avec un polynôme de degré $d \ell^{k-1}$ et non $(\ell -1)/2 \ell^{k-1}$.
+\end{itemize}
+
+Ainsi on a vu une façon de déterminer un espace propre de la $\ell^k$-torsion, à l'aide d'un cycle d'isogénies, et d'exploiter au mieux les nombres de Elkies dans l'algorithme S.E.A. 
+
+%Comme il est remarqué dans l'article original on peut aussi travailler sur une extension de corps dans laquelle les points de $\ell$-torsion issus de l'espace propre sont définis, pour trouver le degré de celle-ci il faut calculer l'ordre multiplicatif des valeurs propres du frobenius dans $(\mathbb{Z}/\ell \mathbb{Z})^{\times}$ et travailler alors avec la valeur propre qui a l'ordre le plus petit afin de travailler dans le corps le plus petit.  Ensuite pour travailler avec de la $\ell^k$ torsion on est obligé travailler dans une extension de degré $d\ell^{k-1}$.
 
 
 \subsection{Lien entre isogénie et son action sur le module de Tate}
@@ -1286,6 +1302,7 @@ avec pour $k=ud+v$ avec $0 \leqslant v < d$ $b_k^*=b_{u,v}$. On a alors ici auss
 \chapter{Isogénies sur les corps finis}
 
 \section{Calculs d'isogénie}
+\subsection{BMSS}
 \subsection{Algorithme de Lercier Sirvent (+ resultat de Tristan)}
 \subsection{Algorithme de Couveignes (parler de ses variantes)}
 
