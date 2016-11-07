@@ -592,24 +592,38 @@ Voir \cite[Theorem 4.1]{Washington2008}
 \subsection{S.E.A}
 Ici vont être présentés les bases de S.E.A., aucun apport personnel n'a été fait dans ce cadre là, mais il est intéressant pour le lecteur de voir les concepts et  le contexte de celui-ci qui seront évoqués plus tard.
 
-L'algorithme de Schoof \cite{Schoof85} consistait à calculer le cardinal d'une courbe elliptique $E$ définie sur $\mathbb{F}_q$ à l'aide du polynôme charactéristique du Frobenius $\pi$:
+L'algorithme de Schoof \cite{Schoof85} consiste à calculer le cardinal d'une courbe elliptique $E$ définie sur $\mathbb{F}_q$ à l'aide du polynôme charactéristique du Frobenius $\pi$:
 \begin{equation*}
 X^2-t_{\pi}X+q=0
 \end{equation*}
-en déterminant la valeur de la trace du Frobenius $t_{\pi}$, on a alors: $|E(\mathbb{F}_q)|=q+1-t_{\pi}$. 
-Cette équation est résolue modulo la $\ell_i$-torsion, avec $\ell_i$ un nombre premier. Cette résolution est répétée pour un ensemble de nombres premiers $L$ tel que: $\Pi_{\ell_i \in L}\ell_i>4 \sqrt{q}$, le théorème des restes chinois est alors utilisé pour déterminer $t_{\pi}$ modulo $4\sqrt{q}$. Ainsi avec le théorème de Hasse on peut conclure sur la cardinalité de la courbe sur $\mathbb{F}_q$.
+Une fois la valeur de la trace du Frobenius $t_{\pi}$ déterminée, on a alors: $|E(\mathbb{F}_q)|=q+1-t_{\pi}$. En pratique cette équation est résolue modulo la $\ell_i$-torsion, avec $\ell_i$ un nombre premier. $t_{\pi}$ sera donc déterminée dans ce cas modulo $\ell_i$. Cette résolution est répétée pour un ensemble de nombres premiers $L$ tel que: $\Pi_{\ell_i \in L}\ell_i>4 \sqrt{q}$, le théorème des restes chinois est alors utilisé pour déterminer $t_{\pi}$ modulo $\Pi_{\ell_i \in L}\ell_i$. Ainsi avec le théorème de Hasse on peut déterminer la cardinalité de la courbe sur $\mathbb{F}_q$.
 
-L'un des principals problèmes avec cette approche étant que l'on travaille avec $\ell$ torsion qui lorsque l'on a $\ell \neq p$ est de la forme $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$ et l'on doit alors travailler modulo $f_{\ell}$ le polynôme de $\ell$ division (qui s'annule sur les abscisses des points de $\ell$ torsion) qui est de degré $\ell^2-1/2$. L'idée est alors de considérer des ensembles plus restrictifs de la $\ell$-torsion afin de diminuer le coût de l'algorithme.
+Le principal problème avec cette approche étant que l'on travaille avec $\ell$ torsion qui lorsque l'on a $\ell \neq p$ est de la forme $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$ et l'on doit alors travailler modulo $f_{\ell}$ le polynôme de $\ell$ division (qui s'annule sur les abscisses des points de $\ell$ torsion) qui est de degré $(\ell^2-1)/2$. L'objectif est alors de considérer des ensembles plus restrictifs de la $\ell$-torsion afin de diminuer le coût de l'algorithme.
 
-Des améliorations ont donc été apporté à l'algorithme de Schoof par Atkin et Elkies en analysant plus précisément l'action du Frobenius sur la $\ell$-torsion. En se rappelant que l'on a  $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$ alors on peut représenter l'action de $\pi$ sur la $\ell$-torsion sous forme matricielle. Ainsi en analysant les solutions du polynôme charactéristique de $\pi$:
+Des améliorations ont donc été apportées à l'algorithme de Schoof par Atkin et Elkies en analysant plus précisément l'action du Frobenius sur la $\ell$-torsion. En se rappelant que l'on a  $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$ alors on peut représenter l'action de $\pi$ sur la $\ell$-torsion sous forme matricielle. Ainsi en analysant les solutions du polynôme charactéristique de $\pi$:
 \begin{equation*}
 X^2-t_{\pi}X+q = 0 \bmod \ell
 \end{equation*} 
-On a plusieurs cas possibles selon que le discriminant $d_{\pi}=t_{\pi}^2-4q$ soit un résidu quadratique ou non quadratique dans $\mathbb{Z}/\ell\mathbb{Z}$. Si $d_{\pi}$ est un résidu quadratique dans $\mathbb{Z}/\ell\mathbb{Z}$ alors $\ell$ est dit nombre de Elkies, sinon il est dit nombre de Atkin. Comme on ne peut connaître à priori ce résultat, car il suppose la connaissance de $t_{\pi}$ et donc la cardinalité de la courbe. On doit alors travailler avec un autre objet le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ de degré $\ell+1$ et symétrique. Ce polynôme a la propriété suivante soit $j_0 \in \mathbb{F}_q$ le $j$-invariant d'une courbe elliptique $E_0$ définie sur $\mathbb{F}_q$ alors les $\ell+1$ racines du polynôme $\Phi_{\ell}(X,j_0)$ sont les $j$-invariants de courbes $\ell$-isogénes à $E_0$. Ces $j$ invariants racines du polynôme modulaire évalué en $j_0$ correspondent exactement aux $j$-invariants des  courbes générées par les $\ell$ isogénies $E \to E/C$ avec $C$(noyau de l'isogénie) un des $\ell+1$ sous groupe cyclique de la $\ell$-torsion.  Dés lors on voit bien que avec cette remarque on voudrait travailler sur ces groupes cycliques de la $\ell$ torsion au lieu de la $\ell$ torsion toute entière, cependant il faudrait que celle-ci soit définie sur le corps sur lequel on travaille. On a alors le résultat suivant qui nous permet d'énoncer dans quel corps $C$ est défini en fonction des cas.
+on veut voir quand il est possible de restreindre l'action du Frobenius à des sous-groupes de la $\ell$-torsion.
+On a plusieurs cas possibles selon les propriétés du discriminant $d_{\pi}$.
+
+\begin{defi}\label{def:dif-Atk-Elk}
+Soit $d_{\pi}$ le discriminant du polynôme caractéristique du Frobenius $\pi$ défini sur $\mathbb{F}_q$. Soit $\ell$ un nombre premier différent de $p$ la caractéristique de $\mathbb{F}_q$ alors:
+\begin{itemize}
+\item si $d_{\pi}$ est un résidu quadratique dans $\mathbb{Z}/\ell \mathbb{Z}$ alors $\ell$ est dit nombre premier de Elkies
+\item si $d_{\pi}$ est un non-résidu quadratique dans $\mathbb{Z}/\ell \mathbb{Z}$ alors $\ell$ est dit nombre premier de Atkin
+\end{itemize} 
+\end{defi}
+ On ne peut connaître à priori ce résultat, car il suppose la connaissance de $t_{\pi}$ et donc la cardinalité de la courbe. On doit donc travailler avec un autre objet le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ de degré $\ell+1$ et symétrique. 
+ 
+\begin{prop}
+Soit $j_0 \in \mathbb{F}_q$ le $j$-invariant d'une courbe elliptique $E_0$ définie sur $\mathbb{F}_q$ alors les $\ell+1$ racines du polynôme $\Phi_{\ell}(X,j_0)$ sont les $j$-invariants de courbes $\ell$-isogénes à $E_0$. 
+\end{prop} 
+ Ces $j$ invariants, racines du polynôme modulaire évalué en $j_0$, correspondent exactement aux $j$-invariants des  courbes générées par les $\ell$ isogénies $E \to E/C$ avec $C$(noyau de l'isogénie) un des $\ell+1$ sous groupe cyclique de la $\ell$-torsion. Dés lors avec cette remarque on voit un moyen de déterminer des sous groupes $C$ restreints de  la $\ell$ torsion.  Cependant il faut que celui-ci soit défini sur le corps sur lequel on travaille. On a alors le résultat suivant qui nous permet d'énoncer dans quel corps $C$ est défini en fonction des cas.
 
 %On a un premier résultat qui nous permet de spécifier certains sous ensembles de la $\ell$-torsion.
 
-\begin{prop}
+\begin{prop}\label{pro:def-ss-grp}
 Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0, 1728$. Alors:
 \begin{enumerate}
 \item le polynôme $\Phi(X,j)$ a une racine $j_0 \in \mathbb{F}_{q}^r$ si et seulement si le noyau $C$ de l'isogénie $E \to E/C$ avec $j(E/C)=j_0$ est un espace propre de dimension $1$ pour $\pi^r$ appliqué à $E[\ell]$
@@ -635,7 +649,7 @@ avec $\zeta \in \overline{\mathbb{F}_q}$ une racine $r$-ième primitive de l'uni
 
 Ainsi en pratique pour déterminer la nature d'un nombre premier $\ell$ on calcule $g(X)=\mathrm{pgcd}(\Phi(X,\ell),X^q-X)$. Lorsque l'on a $g(X)=1$  alors $\ell$ est un nombre de Atkin, sinon $\ell$ est un nombre de Elkies.
 
-Les nombres premiers de Elkies sont les plus favorables au calcul de $t_{\pi}$ car une fois que l'on a un nombre premier de Elkies alors par le théorème \ref{thm:Atkin} il existe un sous groupe cyclique $C$ de la $\ell$ torsion qui est un espace propre pour le Frobenius $\pi$, on résoud alors l'équation suivante dans ce groupe
+Les nombres premiers de Elkies sont les plus favorables au calcul de $t_{\pi}$ car une fois que l'on a un nombre premier de Elkies alors par \eqref{pro:def-ss-grp} il existe un sous groupe cyclique $C$ de la $\ell$ torsion qui est un espace propre pour le Frobenius $\pi$, on résoud alors l'équation suivante dans ce groupe
 \begin{equation*}
 X^2-t_{\pi}X+q = 0 \bmod g_{\ell}
 \end{equation*} 
@@ -648,7 +662,7 @@ On va donc dans la suite de ce document se concentrer sur le cas où $\ell$ est 
 
 Voyons le cas Elkies plus précisément vu que l'algorithme que proposé dans ce document se compare à de la littérature qui se place dans ce contexte particulier.
 
-\subsubsection{Elkies' case} \label{sub:Elkies}
+\subsubsection{Cas Elkies} \label{sub:Elkies}
 Lorsque l'on est dans le cas Elkies, alors on cherche à déterminer un des deux sous-groupe de la $\ell$-torsion qui est aussi espace propre pour le Frobenius, le but étant au final de déterminer la trace du Frobenius à travers la détermination de son action sur cet espace propre. 
 
 Ce sous groupe $C$ est déterminé comme étant le noyau de l'isogénie qui relie la courbe $E_0$ dont on veut calculer le cardinal et une des deux courbes $\ell$-isogènes à $E_0$. Pour calculer l'une des deux courbes isogènes il faut calculer les racines du polynôme modulaire $\Phi_{\ell}(X,Y)$ évalué en $j_0$ ($j$-invariant de $E_0$), on obtient alors le $j$-invariant des courbes $\ell$-isognèes définies sur $\mathbb{F}_q$, mais celles-ci sont définies sur $\mathbb{F}_q$ à tordue près. Il faut donc se servir du résultat suivant prouvé par Elkies afin de déterminer exactement la courbe isogène à l'aide des formes de Weierstrass.
