@@ -693,10 +693,10 @@ La construction d'extension de corps finis est un problème naturel dès lors qu
 
 \begin{defi}[Tour \textit{$\ell$}-adique]
 \label{def:tour-ell}
-On appelle tour d'extension $\ell$-adique du corps fini $\mathbb{F}_q$ la suite d'extensions: $ \mathsf{F}_{0}, \mathsf{F}_{1}, \mathsf{F}_{2}, \cdots$ pour lesquels:
+On appelle tour d'extension $\ell$-adique du corps fini $\mathbb{F}_q$ la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{0}, \mathsf{F}_{1}, \mathsf{F}_{2}, \cdots$ pour lesquels:
 \begin{itemize}
-\item $\mathsf{F}_{1}$ est une extension de $\mathsf{F}_{0}=\mathbb{F}_q$ de degré $d_1$ avec $d_1 =o(q)$ avec $o$ qui représente l'odre multiplicatif dans $\mathbb{Z}/\ell \mathbb{Z}$,
-\item $\mathsf{F}_{i}$ pour $i \geqslant 2$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
+\item $\mathsf{F}_{0}$ est une extension de $\mathbb{F}_q$ de degré $d_0$ avec $d_0 =o_m(q)$ avec $o_m$ qui représente l'odre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
+\item $\mathsf{F}_{i}$ pour $i \geqslant 1$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
 \end{itemize}
 \end{defi}
 
@@ -706,22 +706,31 @@ Ainsi les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert 
 Une façon naturelle de  construire une extension de corps fini est de trouver un polynôme irréductible défini sur celui-ci et de degré égal à celui de l'extension désirée et de quotienter ensuite le corps par celui-ci.
 Ainsi les éléments des tours d'extension seront toujours représentés comme des polynômes à coefficients dans $\mathbb{F}_q$, la taille des éléments de $\mathbb{F}_{q^n}$ sera donc $O(n)$ éléments de $\mathbb{F}_q$.
 
-Les complexités sont calculées en nombre d'opérations ($+, \times,\div$) à coût identique dans $\mathbb{F}_q$, indépendamment de la construction de $\mathbb{F}_q$. On notera par $\mathsf{M}: \mathbb{N} \rightarrow \mathbb{N}$ l'application telle que la multiplication d'un polynôme de degré $n$ à coefficients dans $R$ coûtera $\mathsf{M}(n)$ opérations dans $R$ et telle que $\mathsf{M}$ est super-linéaire, en utilisant les résultats de \cite{Cantor-Kaltofen91} on a $\mathsf{M}(n)=O(n\log(n) \log \log(n))$.
+Les complexités sont calculées en nombre d'opérations ($+, \times,\div$) dans $\mathbb{F}_q$, indépendamment de la construction de $\mathbb{F}_q$. On notera par $\mathsf{M}: \mathbb{N} \rightarrow \mathbb{N}$ l'application telle que la multiplication d'un polynôme de degré $n$ à coefficients dans $R$ coûte $\mathsf{M}(n)$ opérations dans $R$ et telle que $\mathsf{M}$ est super-linéaire, en utilisant les résultats de \cite{Cantor-Kaltofen91} on a $\mathsf{M}(n)=O(n\log(n) \log \log(n))$.
+
+%Dire que l'on veut faire des push et des pull.
 
 \section[Doliskani-Schost]{$\ell= 2$ }
-La \emph{totalité} des travaux présentés ici proviennent du travail de \cite{Doliskani-Schost15}.
+La totalité des travaux présentés ici proviennent du travail de \cite{Doliskani-Schost15}.
 
-L'idée de base derrière le travail de \cite{Doliskani-Schost15} est de permettre un passage efficace d'une représentation bivariée à une représentation univariée afin de rajouter à la volée des extensions de la tour compatibles avec ce qui a été fait auparavant.
+L'idée de base de \cite{Doliskani-Schost15} est de permettre un passage efficace d'une représentation bivariée à une représentation univariée afin de rajouter à la volée des extensions de la tour compatibles avec ce qui a été fait auparavant.
 
 
-L'objectif est de calculer une extension du corps fini $\mathbb{F}_q$, avec $q$ impair, de taille $\mathbb{F}_{q^n}$ avec $n=2^k$ et $k \geqslant 1$. 
-Comme vu dans \cite[Theorem VI.9.1]{lang2002algebra} et mis en pratique dans \cite{Shoup93} pour calculer une extension quadratique d'un corps fini $\mathbb{F}_q$ on a deux cas à considérer:
+L'objectif est de calculer une extension du corps fini $\mathbb{F}_q$, avec $q \wedge \ell =1$, de taille $\mathbb{F}_{q^n}$ avec $n=\ell^k$ et $k \geqslant 1$. 
+Comme vu dans \cite[Theorem VI.9.1]{lang2002algebra} et mis en pratique dans \cite{Shoup93} pour calculer une extension quadratique d'un corps fini $\mathbb{F}_q$ on a deux cas à considérer: 
 \begin{itemize}
-\item[$q=1 \bmod 4$] alors tout résidu non quadratique $\alpha$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-\alpha$ duquel on déduit alors une construction de $\mathbb{F}_{q^n}$,
+\item pour $\ell \neq 2$:
+\begin{itemize}
+\item[$q=1 \bmod \ell$] alors tout résidu non $\ell$-adique $\alpha$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-\alpha$, duquel on déduit alors une construction de $\mathsf{F}_{n}$,
+\item[$q \neq 1 \bmod \ell$] on se ramène au cas $q=1\bmod \ell$ en construisant une extension de degré $d_1=o_m(q)$ $\mathsf{F}_{0}$ de $\mathbb{F}_q$. Avec $o_m$ l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, cette construction sera explicitée dans la suite du document.
+\end{itemize}
+\item  pour $\ell=2$:
+\begin{itemize}
+\item[$q=1 \bmod 4$] alors tout résidu non quadratique $\alpha$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-\alpha$ duquel on déduit alors une construction de $\mathsf{F}_{n}$,
 \item[$q=3 \bmod 4$] on se ramène au cas $q=1\bmod 4$ en construisant une extension quadratique $\mathbb{F}_{q'}$ de $\mathbb{F}_q$, on peut faire cela en considérant le polynôme irréductible $X^2+1$.
 \end{itemize} 
-
-Ainsi pour construire une extension de degré 2 d'un corps fini $\mathbb{F}_q$ un résidu non quadratique $\alpha$ défini sur $\mathbb{F}_q$ est nécessaire. On trouve celui-ci après $O(1)$ essais, on ne va donc pas considérer le coût de calcul de celui-ci. 
+\end{itemize}
+Ainsi pour construire une extension de degré $\ell$ d'un corps fini $\mathsf{F}_0$ un résidu non $\ell$-adique $\alpha$ défini sur $\mathsf{F}_0$ est nécessaire. On trouve celui-ci après $O(1)$ essais en prenant des éléments au hasard par \cite[Lemma 15]{Shoup93}, chaque essai a un coût de  on ne va donc pas considérer le coût de calcul de celui-ci. 
 
 De plus il sera considéré pour le corps fini  $\mathbb{F}_q$ que $q=1 \bmod 4$ car le calcul d'une extension quadratique $\mathbb{F}_{q'}$ lorsque $q=3 \bmod 4$ ne rajoute que un facteur $O(1)$ pour le nombre d'opérations sur $\mathbb{F}_q$, cela se justifie par la discussion sur les coûts d'opérations $+,\times, \div$ sur des polynômes de degré $n$ sur $\mathbb{F}_q$.
 
