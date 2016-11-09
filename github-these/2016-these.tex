@@ -715,22 +715,22 @@ La totalité des travaux présentés ici proviennent du travail de \cite{Doliska
 
 L'idée de base de \cite{Doliskani-Schost15} est de permettre un passage efficace d'une représentation bivariée à une représentation univariée afin de rajouter à la volée des extensions de la tour compatibles avec ce qui a été fait auparavant.
 
-
-L'objectif est de calculer une extension du corps fini $\mathbb{F}_q$, avec $q \wedge \ell =1$, de taille $\mathbb{F}_{q^n}$ avec $n=\ell^k$ et $k \geqslant 1$. 
-Comme vu dans \cite[Theorem VI.9.1]{lang2002algebra} et mis en pratique dans \cite{Shoup93} pour calculer une extension quadratique d'un corps fini $\mathbb{F}_q$ on a deux cas à considérer: 
-\begin{itemize}
-\item pour $\ell \neq 2$:
-\begin{itemize}
-\item[$q=1 \bmod \ell$] alors tout résidu non $\ell$-adique $\alpha$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-\alpha$, duquel on déduit alors une construction de $\mathsf{F}_{n}$,
-\item[$q \neq 1 \bmod \ell$] on se ramène au cas $q=1\bmod \ell$ en construisant une extension de degré $d_1=o_m(q)$ $\mathsf{F}_{0}$ de $\mathbb{F}_q$. Avec $o_m$ l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, cette construction sera explicitée dans la suite du document.
-\end{itemize}
-\item  pour $\ell=2$:
+\subsection{Construction d'une tour d'extension}
+L'objectif est de calculer une tour d'extension $\ell$-adique du corps fini $\mathbb{F}_q$, avec $q \wedge \ell =1$, de taille $\mathbb{F}_{q^{d_0n}}$ avec $n=\ell^k$, $k \geqslant 1$ et $d_0 \mid \ell-1$. 
+On considère deux cas selon que $\ell=2$ ou $\ell \neq 2$.
+\subsubsection{$\ell \neq 2$}
+Pour $\ell \neq 2$ on considère deux cas: 
+\paragraph{}{ Pour $q \neq 1 \bmod \ell$ on se ramène au cas $q=1\bmod \ell$ en construisant une extension $\mathsf{F}_{0}$ de $\mathbb{F}_q$ de degré $d_0=r$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$. La construction de $\mathsf{F}_0$ est alors faite en même temps que la détermination d'un résidu non $\ell$-adique. On calcule le $\ell$-ème polynôme cyclotomique $\Phi_{\ell} \in \mathbb{Z}[X_0]$ et on le factorise sur $\mathbb{F}_q[X_0]$ par \cite[Th 9]{Shoup93} cela a un coût de $O_e(\mathsf{M}(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
+Sur $\mathbb{F}_q[X_0]$, $\Phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$. Soit $R_0$ l'un de ces facteurs, alors par construction il existe un non résidu $\ell$ adique dans $\mathbb{F}_q[X_0]/ \langle R_0 \rangle $. On trouve après avoir testé $O(1)$ éléments tirés au hasard par \cite[Lemma 15]{Shoup93}  un tel non résidu $\ell$-adique, chaque essai a un coût de $O_e(\mathsf{M}(\ell)\log(r)+\mathsf{M}(r)\log(\ell)\log(r)+\mathsf{M}(r)\log(q))$ opérations sur $\mathbb{F}_q$. Une fois un tel non résidu $\ell$-adique $y_0$ trouvé on calcule son polynôme minimal $P_0$, ce calcul coûte $O(r^2)$ opérations sur $\mathbb{F}_q$ d'après \cite[Th. 4]{Shoup93}. On construit donc $\mathsf{F}_0=\mathbb{F}_q[X_0]/\langle P_0(X_0) \rangle$ et le non résidu $\ell$-adique sera alors l'image de $X_0$ dans $\mathsf{F}_0$.}
+\paragraph{}{ Pour $q=1 \bmod \ell$ on pose $F_0=\mathbb{F}_q$. Tout non résidu $\ell$-adique $x_0$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-x_0$, duquel on déduit alors une construction de $\mathsf{F}_{n}$. Le calcul de ce non résidu $\ell$-adique se fait après avoir testé $O(1)$ éléments tirés au hasard chaque test s'effectuant en $O_e(\log(q))$ opérations sur $\mathbb{F}_q$ par \cite[Lemma 15]{Shoup93}.} 
+\subsubsection{$\ell=2$}
+Pour $\ell=2$ comme vu dans \cite[Theorem VI.9.1]{lang2002algebra} et mis en pratique dans \cite{Shoup93} pour calculer une extension quadratique d'un corps fini $\mathbb{F}_q$ on a deux cas à considérer:
 \begin{itemize}
 \item[$q=1 \bmod 4$] alors tout résidu non quadratique $\alpha$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-\alpha$ duquel on déduit alors une construction de $\mathsf{F}_{n}$,
 \item[$q=3 \bmod 4$] on se ramène au cas $q=1\bmod 4$ en construisant une extension quadratique $\mathbb{F}_{q'}$ de $\mathbb{F}_q$, on peut faire cela en considérant le polynôme irréductible $X^2+1$.
 \end{itemize} 
-\end{itemize}
-Ainsi pour construire une extension de degré $\ell$ d'un corps fini $\mathsf{F}_0$ un résidu non $\ell$-adique $\alpha$ défini sur $\mathsf{F}_0$ est nécessaire. On trouve celui-ci après $O(1)$ essais en prenant des éléments au hasard par \cite[Lemma 15]{Shoup93}, chaque essai a un coût de  on ne va donc pas considérer le coût de calcul de celui-ci. 
+
+Le coût de calcul d'un non résidu quadratique est négligé car un tel résidu peut être trouvé après le test de $O(1)$ éléments au hasard.
 
 De plus il sera considéré pour le corps fini  $\mathbb{F}_q$ que $q=1 \bmod 4$ car le calcul d'une extension quadratique $\mathbb{F}_{q'}$ lorsque $q=3 \bmod 4$ ne rajoute que un facteur $O(1)$ pour le nombre d'opérations sur $\mathbb{F}_q$, cela se justifie par la discussion sur les coûts d'opérations $+,\times, \div$ sur des polynômes de degré $n$ sur $\mathbb{F}_q$.
 
