@@ -797,7 +797,7 @@ Ainsi le coût d'une inversion d'un élément de $\mathsf{F}_k$ est le coût d'u
 On aborde ici une partie essentielle à la réussite de l'algorithme de calcul d'isogénies expliqué (\textcolor{red}{ref à mettre plus tard}), le calcul du Frobenius. Rappelons ici l'objectif d'une telle opération: soit $\gamma $ un élément de $\mathsf{F}_k$ et soit $s=q^d$ avec $d$ un entier quelconque, on veut alors calculer $\gamma^s$ dans $\mathsf{F}_k$. Pour plus de lisibilité on pose $2^k=n$.
 
 
-On commence par le cas le plus simple: $\gamma=x_k$, ainsi en réécrivant $s=nu+v$, le fait que l'on ait $x_k^n=\alpha $ nous permet d'obtenir $x_k^s=\alpha^ux_k^v$. De plus comme $\alpha$ est un élément de $\mathbb{F}_q$ on obtient $\alpha^u=\alpha^{u \bmod q-1}$, cette opération est donc effectuée en $O(\log(q))$ opérations dans $\mathbb{F}_q$ à l'aide de l'exponentiation rapide. Une méthode rapide est préconisée pour le calcul de $u \bmod q-1$ et $v$, dans un premier temps il faut calculer $\rho=r \bmod n(q-1)$ à l'aide de l'exponentiation rapide puis $u \bmod q-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne de $\rho$ par $n$. Le coût booléen d'une telle opération est de $O(\log(d)\log(nq))$.
+On commence par le cas le plus simple: $\gamma=x_k$, ainsi en réécrivant $s=nu+v$, le fait que l'on ait $x_k^n=\alpha $ nous permet d'obtenir $x_k^s=\alpha^ux_k^v$. De plus comme $\alpha$ est un élément de $\mathbb{F}_q$ on obtient $\alpha^u=\alpha^{u \bmod q-1}$, cette opération est donc effectuée en $O(\log(q))$ opérations dans $\mathbb{F}_q$ à l'aide de l'exponentiation rapide. Une méthode rapide est préconisée pour le calcul de $u \bmod |\mathsf{F}_0|-1$ et $v$, dans un premier temps il faut calculer $\rho=r \bmod \ell^k(|\mathsf{F}_0|-1)$ à l'aide de l'exponentiation rapide puis $u \bmod |\mathsf{F}_0|-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne de $\rho$ par $\ell^k$. Le coût booléen d'une telle opération est de $O(\log(d)\log(nq))$.
 
 Soit  $\gamma=G(x_k)$, alors en écrivant $G(x_k)=g_{n-1}x_k^{n-1}+ \cdots + g_1 x_k + g_0$ on obtient alors:
 
@@ -1252,13 +1252,17 @@ Comme il va être expliqué plus tard on va construire une tour $\ell$-adique à
 Cette opération sera très importante par la suite pour déterminer des ensembles spécifiques de points d'une courbe elliptique (comme vu dans l'exmple sur les cycles d'isogénies), c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable comparé au cas $\ell=2$ \cite{Doliskani-Schost15} dont le résultat ici, issu d'un travail conjoint avec Luca De Feo Jérome Plut et Eric Schost, s'inspire.
 
 \begin{thm} \label{thm:frob-ell}
-Soit $F_0 \subset F_1 \subset \cdots \subset F_n$ une tour de Kummer définie telle que $[F_{i+1}:F_i]=\ell$ pour $i \neq 0$ et $[F_1:F_0]=d_1$ avec $d_1$ égal à l'odre multiplicatif de $q=|F_0|$  dans $\mathbb{Z}/\ell \mathbb{Z}$ (voir \textcolor{red}{(réf à mettre plus tard)} pour plus de détail). Soit $a$ un élément de $F_i$ pour tout entier $j$ le calcul de la puissance $|F_j|$ de $a$ coûte $O(\ell^{i-1}M(\ell))$ opérations sur $\mathbb{F}_q$ après un pré calcul de $O(\ell M(\ell)\log(q))$
+Soit $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1,  \cdots \mathsf{F}_n$ une tour d'extension $\ell$-adique
+% définie telle que $[F_{i+1}:F_i]=\ell$ pour $i \neq 0$ et $[F_1:F_0]=d_1$ avec $d_1$ égal à l'odre multiplicatif de $q=|F_0|$  dans $\mathbb{Z}/\ell \mathbb{Z}$ (voir \textcolor{red}{(réf à mettre plus tard)} pour plus de détail). 
+Soit $a$ un élément de $F_i$ pour tout entier $j$ le calcul de la puissance $|\mathsf{F}_j|$ de $a$ coûte $O(\ell^{i-1}M(\ell))$ opérations sur $\mathbb{F}_q$ après un pré calcul de $O(\ell M(\ell)\log(q))$
 \end{thm} 
 
 \begin{proof}
-Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat étant sinon $a$ lui-même. Notons $s= |F_j|$ et $d=[F_i:F_1]=\ell^{i-1}$. Soit $x_i$ l'image de $x$ dans $F_i=\mathbb{F}_q[x]/P_i(x)$, on a en particulier $x_i^d=x_1$.
+Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat étant sinon $a$ lui-même. Notons $s= |\mathsf{F}_j|$ et $d=[\mathsf{F}_i:\mathsf{F}_0]=\ell^{i}$. Soit $x_i$ l'image de $x$ dans $F_i=\mathsf{F}_0[x]/P_i(x)$, on a en particulier $x_i^d=x_0$.
 
-La première étape est de calculer $y=x_i^s$. En écrivant $s=ud+r$ avec $0 \leqslant r < d$ on a alors $y=x_1^{u \bmod |F_1|-1}x_i^r$. Le calcul de $x_1^{u \bmod |F_1|-1}$ se fait en utilisant $O(\ell M(\ell) \log(q))$ opérations sur $\mathbb{F}_q$, on conserve ce résultat sous la forme d'un monôme dans $F_1[x_i]$. Par hypothèse on a $a$ qui est représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[F_i:F_0]$: 
+La première étape est de calculer $y=x_i^s$. En écrivant $s=ud+v$ avec $0 \leqslant v < d$ on a alors $y=x_0^{u \bmod |F_0|-1}x_i^v$. 
+Une méthode rapide est préconisée pour le calcul de $u \bmod |\mathsf{F}_0|-1$ et $v$, dans un premier temps il faut calculer $\rho=s \bmod \ell^i(|\mathsf{F}_0|-1)$ à l'aide de l'exponentiation rapide puis $u \bmod |\mathsf{F}_0|-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne de $\rho$ par $\ell^i$. Le coût booléen d'une telle opération est de $O(\log(j)\log(\ell^i|\mathsf{F}_0|))$.
+Le calcul de $x_1^{u \bmod |\mathsf{F}_0|-1}$ se fait en utilisant $O(\ell M(\ell) \log(q))$ opérations sur $\mathbb{F}_q$ si et si , on conserve ce résultat sous la forme d'un monôme dans $F_1[x_i]$. Par hypothèse on a $a$ qui est représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[F_i:F_0]$: 
 \begin{equation*}
 a^*_0+a_1^*x_i+ \cdots + a^*_{d_1d-1}x_i^{d_1d-1}
 \end{equation*}
