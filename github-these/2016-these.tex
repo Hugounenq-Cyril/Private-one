@@ -721,102 +721,80 @@ Pour $\ell \neq 2$ on considère deux cas:
 \paragraph{}{ Pour $q \neq 1 \bmod \ell$ on se ramène au cas $q=1\bmod \ell$ en construisant une extension $\mathsf{F}_{0}$ de $\mathbb{F}_q$ de degré $d_0=r$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$, il divise $\ell-1$ et est premier avec $\ell$. La construction de $\mathsf{F}_0$ est faite en même temps que la détermination d'un non résidu $\ell$-adique.
 
 On calcule le $\ell$-ème polynôme cyclotomique $\Phi_{\ell} \in \mathbb{Z}[X_0]$ et on le factorise sur $\mathbb{F}_q[X_0]$ par \cite[Th 9]{Shoup93} cela a un coût de $O_e(\mathsf{M}(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
-Sur $\mathbb{F}_q[X_0]$, $\Phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$. Soit $R_0$ l'un de ces facteurs, alors par construction il existe un non résidu $\ell$-adique dans $\mathbb{F}_q[X_0]/ \langle R_0 \rangle $. On trouve après avoir testé $O(1)$ éléments tirés au hasard par \cite[Lemma 15]{Shoup93}  un tel non résidu $\ell$-adique, chaque essai a un coût de $O_e(\mathsf{M}(\ell)\log(r)+\mathsf{M}(r)\log(\ell)\log(r)+\mathsf{M}(r)\log(q))$ opérations sur $\mathbb{F}_q$. Une fois un tel non résidu $\ell$-adique $y_0$ trouvé on calcule son polynôme minimal $P_0$, ce calcul coûte $O(r^2)$ opérations sur $\mathbb{F}_q$ d'après \cite[Th. 4]{Shoup93}. On construit donc $\mathsf{F}_0=\mathbb{F}_q[X_0]/\langle P_0(X_0) \rangle$ et le non résidu $\ell$-adique sera alors l'image de $X_0$ dans $\mathsf{F}_0$. $\mathsf{F}_0$ étant une extension de degré premier à $\ell$ de $\mathbb{F}_q$ alors on pourra appliquer les résultats obtenus sur les différents algorithmes étudiés (relèvement, descente, Frobenius) lorsque $q=1 \bmod \ell$ en rajoutant un facteur multiplicatif $O(M(r))\log(r)$ pour prendre en compte le coût des opérations algorithmiques dans $\mathsf{F}_0$. }
+Sur $\mathbb{F}_q[X_0]$, $\Phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$. Soit $R_0$ l'un de ces facteurs, alors par construction il existe un non résidu $\ell$-adique dans $\mathbb{F}_q[X_0]/ \langle R_0 \rangle $. On trouve après avoir testé $O(1)$ éléments tirés au hasard par \cite[Lemma 15]{Shoup93}  un tel non résidu $\ell$-adique, chaque essai a un coût de $O_e(\mathsf{M}(\ell)\log(r)+\mathsf{M}(r)\log(\ell)\log(r)+\mathsf{M}(r)\log(q))$ opérations sur $\mathbb{F}_q$. Une fois un tel non résidu $\ell$-adique $y_0$ trouvé on calcule son polynôme minimal $P_0$, ce calcul coûte $O(r^2)$ opérations sur $\mathbb{F}_q$ d'après \cite[Th. 4]{Shoup93}. On construit donc $\mathsf{F}_0=\mathbb{F}_q[X_0]/\langle P_0(X_0) \rangle$ et le non résidu $\ell$-adique sera alors l'image de $X_0$ dans $\mathsf{F}_0$. $\mathsf{F}_0$ étant une extension de degré premier à $\ell$ de $\mathbb{F}_q$ alors on pourra appliquer les résultats obtenus sur les différents algorithmes étudiés (relèvement, descente, Frobenius) lorsque $q=1 \bmod \ell$ en rajoutant un facteur multiplicatif $O(\mathsf{M}(r))\log(r)$ pour prendre en compte le coût des opérations algorithmiques dans $\mathsf{F}_0$. }
 \paragraph{}{ Pour $q=1 \bmod \ell$ on pose $F_0=\mathbb{F}_q$. Tout non résidu $\ell$-adique $x_0$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-x_0$, duquel on déduit alors une construction de $\mathsf{F}_{n}$. Le calcul de ce non résidu $\ell$-adique se fait après avoir testé $O(1)$ éléments tirés au hasard chaque test s'effectuant en $O_e(\log(q))$ opérations sur $\mathbb{F}_q$ par \cite[Lemma 15]{Shoup93}.} 
 \subsubsection{$\ell=2$}
 Pour $\ell=2$ comme vu dans \cite[Theorem VI.9.1]{lang2002algebra} et mis en pratique dans \cite{Shoup93} pour calculer une extension quadratique d'un corps fini $\mathbb{F}_q$ on a deux cas à considérer:
 \begin{itemize}
 \item[$q=1 \bmod 4$] alors tout résidu non quadratique $\alpha$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-\alpha$ duquel on déduit alors une construction de $\mathsf{F}_{n}$,
-\item[$q=3 \bmod 4$] on se ramène au cas $q=1\bmod 4$ en construisant une extension quadratique $\mathbb{F}_{q'}$ de $\mathbb{F}_q$, on peut faire cela en considérant le polynôme irréductible $X^2+1$.
+\item[$q=3 \bmod 4$] on se ramène au cas $q=1\bmod 4$ en construisant une extension quadratique $\mathsf{F}_{0}$ de $\mathbb{F}_q$. On construit celle-ci à l'aide du polynôme irréductible $X^2+1$. Par la même discussion que sur le cas $\ell \neq 2$ et $q \neq 1 \bmod \ell$ on pourra appliquer les résultats obtenus sur les différents algorithmes étudiés (relèvement, descente, Frobenius) lorsque $q=1 \bmod 4$ en rajoutant un facteur multiplicatif négligeable pour prendre en compte le coût des opérations algorithmiques dans $\mathsf{F}_0$.
 \end{itemize} 
 
-Le coût de calcul d'un non résidu quadratique est négligé car un tel résidu peut être trouvé après le test de $O(1)$ éléments au hasard.
+Le coût de calcul d'un non résidu quadratique est négligé car un tel résidu peut être trouvé après le test de $O(1)$ éléments au hasard, chaque test ayant un coût de $O(\log(q))$ opérations sur $\mathbb{F}_q$.
 
 De plus il sera considéré pour le corps fini  $\mathbb{F}_q$ que $q=1 \bmod 4$ car le calcul d'une extension quadratique $\mathbb{F}_{q'}$ lorsque $q=3 \bmod 4$ ne rajoute que un facteur $O(1)$ pour le nombre d'opérations sur $\mathbb{F}_q$, cela se justifie par la discussion sur les coûts d'opérations $+,\times, \div$ sur des polynômes de degré $n$ sur $\mathbb{F}_q$.
 
-Dans ce document on ne va pas considérer toutes les opérations sur une tour $2$-adique, seront évidemment considérées les opérations de base telles que la multiplication et l'inversion, mais aussi le Frobenius (crucial pour les applications que l'on va en faire), le calcul de racine carrée, d'autres opérations peuvent être trouvées dans \cite{Doliskani-Schost15}.
-\begin{prop}[Doliskani-Schost'15]
-Soit $q=1 \bmod 4$, étant donné un résidu non quadratique $\alpha$ de $\mathbb{F}_q$, alors pour $k\geqslant 0$ et $n=2^k$, les temps de calculs pour les opérations dans $\mathbb{F}_q$ énoncés dans le tableau \ref{tab:complexite-degre2} sont vérifiés.
-\end{prop}
-\begin{figure}
-\label{tab:complexite-degre2}
-\begin{tabular}{|l|r|}
-  \hline
-  \textit{Opérations}  & \textit{Coûts} \\
-  \hline
-  \textit{addition/soustraction}  & $O(n)$ \\
-  \textit{multiplication}  & $M(n)+ O(n)$ \\
-  \textit{division} & $O(M(n))$ \\
-  \textit{Frobenius} & $O(n + \log(q))$ \\
-  \textit{Square-root} & $ O(M(n)\log(nq)) (\textit{attendu}) $ \\
-  \hline
-\end{tabular}
-\caption{Coûts des opérations dans $\mathbb{F}_{q^n}$ avec $n=2^k$}
-\end{figure}
-Il est à noter que pour le calcul d'une racine carrée le coût est attendu, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
+A partir de maintenant on se placera dans le cas favorable où l'on a $q=1 \bmod 4$ ou $q = 1 \bmod \ell$, selon que l'on considère spécifiquement une tour $2$-adique ou $\ell$-adique, une approche unifiée de ces cas est privilégiée et sera spécifiée à chaque fois.
 
-Certains résultats du tableau \ref{tab:complexite-degre2} sont connus tels que l'addition et la soustraction, l'obtention des autres sera expliqué par la suite.
 
-\subsection{Représentation des éléments de la tour $2$-adique}%titre a retravailler
-Dans cette sous-section la tour $2$-adique: $\mathbb{F}_q, \mathbb{F}_{q^2}, \mathbb{F}_{q^{2^2}}, \cdots$ sera écrite:
+
+\subsection{Représentation des éléments de la tour $\ell$-adique}%titre a retravailler
+Dans cette sous-section les cas $\ell=2$ et $\ell \neq 2$ vont être traités de façon unifiée. On rappelle que la tour $\ell$-adique est dénotée: $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1, \mathsf{F}_2, \cdots $ avec $\mathsf{F}_0$ une extension de degré $r$ de $\mathbb{F}_q$ et que pour tout $i \geqslant 1$ $\mathsf{F}_i$ est une extension de degré $\ell$ de $\mathsf{F}_{i-1}$. Comme dit dans la sous section précédente on se place dans le cas simple où l'on a $r=1$ et donc $\mathsf{F}_0=\mathbb{F}_q$, cependant afin de permettre un traitement plus général des cas on écrira $F_0$ et non $\mathbb{F}_q$.
+%afin d'alléger la notation, avec $\mathbb{L}_{k}=\mathbb{F}_{q^{2^{k}}}$ pour tout entier $k$.
+
+
+Les éléments de $\mathsf{F}_k$ peuvent être représentés de deux manières différentes: univariée et bivariée, de la même manière que dans \cite{DeFeo-Shost'12}. 
+
+Soit $\alpha$ un non résidu $\ell$-adique de $ \mathsf{F}_0$, à l'aide de celui-ci sont définis les suites de polynômes $T_1,T_2,\cdots, T_k$ en les indéterminées $X_1,X_2, \cdots X_k$ de la façon suivante:
 \[
-\mathbb{L}_{0} \subset \mathbb{L}_{1} \subset \mathbb{L}_{2}, ... 
-\]
-afin d'alléger la notation, avec $\mathbb{L}_{k}=\mathbb{F}_{q^{2^{k}}}$ pour tout entier $k$.
-
-
-Les éléments de $\mathbb{L}_k$ peuvent être représentés de deux manières différentes: univariée et bivariée, de la même manière que dans \cite{DeFeo-Shost'12}. 
-
-Soit $\alpha$ un résidu non quadratique de $ \mathbb{L}_0$, à l'aide de celui-ci sont définis les suites de polynômes $T_1,T_2,\cdots, T_k$ en les indéterminées $X_1,X_2, \cdots X_k$ de la façon suivante:
-\[
-T_1=X_1-\alpha \quad \textit{et} \quad T_k=X_k^2-X_{k-1} \quad \textit{avec $k$ entier naturel non nul}
+T_1=X_1-\alpha \quad \textit{et} \quad T_k=X_k^{\ell}-X_{k-1} \quad \textit{avec $k$ entier naturel non nul}
 \]  de la même manière la suite de polynômes $P_1,P_2, \cdots P_k$ est définie à l'aide de $\alpha$ de la façon suivante:
 \[
-P_k=X_k^{2^k}-\alpha \quad \textit{avec $k$ entier naturel non nul} 
+P_k=X_k^{\ell^k}-\alpha \quad \textit{avec $k$ entier naturel non nul} 
 \]
 
 Comme abordé dans \cite{lang2002algebra}, l'égalité entre les idéaux suivants est vérifiée:
 \begin{equation}
 \label{eq:corres-repre-2}
-\langle T_1, T_2, \cdots, T_k \rangle = \langle P_k, X_{k-1}-X_k^2, ..., X_1-X_{k}^{2^{k-1}} \rangle,
+\langle T_1, T_2, \cdots, T_k \rangle = \langle P_k, X_{k-1}-X_k^{\ell}, ..., X_1-X_{k}^{\ell^{k-1}} \rangle,
 \end{equation}
 Cet idéal premier est alors appelé $A_k$ et l'on a:
 \[
-\mathbb{L}_k \cong \mathbb{F}_q[X_1,X_2,\cdots,X_k]/A_k
+\mathsf{F}_k \cong \mathsf{F}_0[X_1,X_2,\cdots,X_k]/A_k
 \]
-Soit $k \geqslant 1$  on note $x_k$ l'image de l'indéterminée $X_k$ dans l'anneau résiduel $\mathbb{F}_q[X_1,X_2, ...,X_k]/A_k$, alors par inclusion naturelle de $\mathbb{F}_q[X_1,X_2, ...,X_k]/A_k$ dans $\mathbb{F}_q[X_1,X_2, ...,X_{k+1}]/A_{k+1}$, $x_k$ peut aussi être vu de façon indifférenciée comme un élément de $\mathbb{F}_{q^{2^j}}$ pour $j \geqslant k$.
+Soit $k \geqslant 1$  on note $x_k$ l'image de l'indéterminée $X_k$ dans l'anneau résiduel $\mathsf{F}_0[X_1,X_2, ...,X_k]/A_k$, alors par inclusion naturelle de $\mathsf{F}_0[X_1,X_2, ...,X_k]/A_k$ dans $\mathsf{F}_0[X_1,X_2, ...,X_{k+1}]/A_{k+1}$, $x_k$ peut aussi être vu de façon indifférenciée comme un élément de $\mathsf{F}_{j}$ pour $j \geqslant k$.
 
-De plus grâce à l'équation \eqref{eq:corres-repre-2}, représenter un élément de $\mathbb{L}_k$ peut être fait soit comme un polynôme en $x_1, ..., x_k$ de degré au plus un en chaque variable grâce au côté gauche de l'équation \eqref{eq:corres-repre-2}, soit comme un polynôme en $x_k$ de degré au plus $2^k$ grâce au côté droit de l'équation.
+De plus grâce à l'équation \eqref{eq:corres-repre-2}, représenter un élément de $\mathsf{F}_k$ peut être fait soit comme un polynôme en $x_1, ..., x_k$ de degré au plus un en chaque variable grâce au côté gauche de l'équation \eqref{eq:corres-repre-2}, soit comme un polynôme en $x_k$ de degré au plus $\ell^k$ grâce au côté droit de l'équation.
 
-L'écriture par défaut des éléments de $\mathbb{L}_k$ sera donc la représentation univariée. Ainsi un élément de $\mathbb{L}_k$ sera représenté sous la forme $g(x_k)$ avec $g$ un polynôme de $\mathbb{F}_q[X_k]$ de degré strictement inférieur à $2^k$. 
+L'écriture par défaut des éléments de $\mathsf{F}_k$ sera donc la représentation univariée. Ainsi un élément de $\mathsf{F}_k$ sera représenté sous la forme $g(x_k)$ avec $g$ un polynôme de $\mathsf{F}_0[X_k]$ de degré strictement inférieur à $\ell^k$. 
 
-Cependant lors des représentations d'éléments de $\mathbb{L}_k$ il ne va pas être fait des changements de base univariée à base multivariée mais seulement à une base bivarié pour permettre des passages un niveau plus bas dans la tour dyadique. On représentera par exemple alors $\mathbb{L}_k$ pour $k\geqslant1$ des deux façons suivantes:
+Cependant lors des représentations d'éléments de $\mathsf{F}_k$ il ne va pas être fait des changements de base univariée à base multivariée mais seulement à une base bivarié pour permettre des passages un niveau plus bas dans la tour $\ell$-adique. On représentera par exemple alors $\mathsf{F}_k$ pour $k\geqslant1$ des deux façons suivantes:
 \begin{equation*}
-\mathbb{L}_k \cong \mathbb{F}_q[X_k]/\langle P_k(X_k) \rangle \cong \mathbb{F}_q[X_k,X_{k-1}]/\langle P_{k-1}(X_{k_1}), X_k^2-X_{k-1}  \rangle
+\mathsf{F}_k \cong \mathsf{F}_0[X_k]/\langle P_k(X_k) \rangle \cong \mathsf{F}_0[X_k,X_{k-1}]/\langle P_{k-1}(X_{k_1}), X_k^{\ell}-X_{k-1}  \rangle
 \end{equation*}  
-La $\mathbb{F}_q$ base monomiale de $\mathbb{L}_k$ est donc:
+La $\mathsf{F}_0$ base monomiale de $\mathsf{F}_k$ est donc:
 \begin{equation*}
-1,x_k,x_k^2,...,x_k^{2^k-1}
+1,x_k,x_k^{\ell},...,x_k^{\ell^k-1}
 \end{equation*}
-la $\mathbb{F}_q$ base bivariée de $\mathbb{L}_k$ est alors:
+la $\mathsf{F}_0$ base bivariée de $\mathsf{F}_k$ est alors:
 \begin{equation*}
-1,x_{k-1},x_{k-1}^2,...,x_{k-1}^{2^{k-1}-1},x_k,x_kx_{k-1},x_kx_{k-1}^2,...,x_kx_{k-1}^{2^{k-1}-1}
+1,x_{k-1},x_{k-1}^{\ell},...,x_{k-1}^{\ell^{k-1}-1},x_k,x_kx_{k-1},x_kx_{k-1}^2,...,x_kx_{k-1}^{\ell^{k-1}-1}
 \end{equation*}
-En pratique ce changement de base se fait de la façon suivante à partir d'une expression $G(x_k)$ d'un élément de $\mathbb{L}_k$ avec $G$ un polynôme de degré inférieur à $2^k-1$:
+En pratique ce changement de base se fait de la façon suivante à partir d'une expression $G(x_k)$ d'un élément de $\mathsf{F}_k$ avec $G$ un polynôme de degré inférieur à $\ell^k-1$:
 \begin{equation*}
 G(x_k)=G_0(x_k)+x_kG_1(x_k^2)=G_0(x_k)+x_kG(x_{k-1})
 \end{equation*}
-avec $G_0$ et $G_1$ des polynômes de degré inférieur à $2^{k-1}-1$. Ce changement de base ne requiert aucun calcul arithmétique, ainsi celui-ci pourra être utilisé sans coût supplémentaire et en particulier un élément pourra être considéré indifféremment dans une base bivariée ou univariée.%a completer
+avec $G_0$ et $G_1$ des polynômes de degré inférieur à $\ell^{k-1}-1$. Ce changement de base ne requiert aucun calcul arithmétique, ainsi celui-ci pourra être utilisé sans coût supplémentaire et en particulier un élément pourra être considéré indifféremment dans une base bivariée ou univariée.%a completer
 
-L'inversion d'un élément pourrait être alors considérée dans une base univariée en utilisant l'algorithme étendu d'Euclide étendu. Ainsi le coût d'inversion d'un élément de $\mathbb{L}_k$ serait de $O(M(n)log(n))$ opérations sur $\mathbb{F}_q$ en utilisant les résultats de \cite{vzGJG03}[ch.11]. Une autre technique plus avantageuse est préférée en remarquant un élément $\gamma=G(x_k)$ inversible de $\mathbb{L}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
+L'inversion d'un élément pourrait être alors considérée dans une base univariée en utilisant l'algorithme étendu d'Euclide étendu. Ainsi le coût d'inversion d'un élément de $\mathsf{F}_k$ serait de $O(M(n)log(n))$ opérations sur $\mathsf{F}_0$ en utilisant les résultats de \cite{vzGJG03}[ch.11]. Une autre technique plus avantageuse est préférée en remarquant un élément $G(x_k)$ inversible de $\mathSf{F}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
 \begin{align*}
 \frac{1}{G(x_k)} &=\frac{1}{G_0(x_{k-1})+x_kG_1(x_{k-1})} \\
  				&= \frac{G_0(x_{k-1})-x_kG_1(x_{k-1})}{G_0(x_{k-1})^2-x_{k-1}G_1(x_{k-1})^2}
 \end{align*}
-Ainsi le coût d'une inversion d'un élément de $\mathbb{L}_k$ est le coût d'une addition de la multiplication d'éléments de $\mathbb{L}_k$ ainsi que le coût d'une inversion d'éléments dans $\mathbb{L}_{k-1}$, on a donc affaire à un algorithme récursif de coût  $T(k)=T(k-1)+O(M(2^k))$; avec la super linéarité de $M$ on obtient un coût de calcul de $O(M(n))=O(M(2^k))$ opérations en $\mathbb{F}_q$.
+Ainsi le coût d'une inversion d'un élément de $\mathsf{F}_k$ est le coût d'une addition, de la multiplication d'éléments de $\mathsf{F}_k$ ainsi que le coût d'une inversion d'éléments dans $\mathsf{F}_{k-1}$, on a donc affaire à un algorithme récursif de coût  $T(k)=T(k-1)+O(M(\ell^k))$; avec la super linéarité de $M$ on obtient un coût de calcul de $O(M(\ell^k))$ opérations en $\mathsf{F}_0$.
 
 \subsubsection*{Calcul du Frobenius}
-On aborde ici une partie essentielle à la réussite de l'algorithme de calcul d'isogénies expliqué (\textcolor{ref à mettre plus tard}), le calcul du Frobenius. Rappelons ici l'objectif d'une telle opération: soit $\gamma $ un élément de $\mathbb{L}_k$ et soit $s=q^d$ avec $d$ un entier quelconque, on veut alors calculer $\gamma^s$ dans $\mathbb{L}_k$. Pour plus de lisibilité on pose $2^k=n$.
+On aborde ici une partie essentielle à la réussite de l'algorithme de calcul d'isogénies expliqué (\textcolor{red}{ref à mettre plus tard}), le calcul du Frobenius. Rappelons ici l'objectif d'une telle opération: soit $\gamma $ un élément de $\mathsf{F}_k$ et soit $s=q^d$ avec $d$ un entier quelconque, on veut alors calculer $\gamma^s$ dans $\mathsf{F}_k$. Pour plus de lisibilité on pose $2^k=n$.
 
 
 On commence par le cas le plus simple: $\gamma=x_k$, ainsi en réécrivant $s=nu+v$, le fait que l'on ait $x_k^n=\alpha $ nous permet d'obtenir $x_k^s=\alpha^ux_k^v$. De plus comme $\alpha$ est un élément de $\mathbb{F}_q$ on obtient $\alpha^u=\alpha^{u \bmod q-1}$, cette opération est donc effectuée en $O(\log(q))$ opérations dans $\mathbb{F}_q$ à l'aide de l'exponentiation rapide. Une méthode rapide est préconisée pour le calcul de $u \bmod q-1$ et $v$, dans un premier temps il faut calculer $\rho=r \bmod n(q-1)$ à l'aide de l'exponentiation rapide puis $u \bmod q-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne de $\rho$ par $n$. Le coût booléen d'une telle opération est de $O(\log(d)\log(nq))$.
@@ -894,6 +872,29 @@ $\beta$ peut donc être calculé en $O(\log(q))$ opérations sur $\mathbb{F}_q$.
 Une implantation de cette construction de tours $2$-adique et des opérations du Frobenius et du calcul de racine carrée ont été réalisé sur SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
 Il est à noter que en pratique pour le calcul de racine carrée de $\delta$ on peut parfois être amené à considérer un élément de $\mathbb{L}_k$ qui n'est pas un carré. Cela est testé en pratique sur $\beta$ qui est un résidu quadratique si et seulement si $\delta$ l'est. Une astuce consiste alors à multiplier $\delta$ par l'élément générateur $x_{k}$ du corps afin  de multiplier cet élément par un résidu non quadratique, on injecte alors $\delta x_k$ dans $\mathbb{L}_{k+1}$. On applique l'algorithme vu précédemment, le résultat obtenu est alors divisé par $x_{k+1}$ pour obtenir la racine carrée de $\delta$ souhaitée.
+
+Dans ce document on ne va pas considérer toutes les opérations sur une tour $2$-adique, seront évidemment considérées les opérations de base telles que la multiplication et l'inversion, mais aussi le Frobenius (crucial pour les applications que l'on va en faire), le calcul de racine carrée, d'autres opérations peuvent être trouvées dans \cite{Doliskani-Schost15}.
+\begin{prop}[Doliskani-Schost'15]
+Soit $q=1 \bmod 4$, étant donné un résidu non quadratique $\alpha$ de $\mathbb{F}_q$, alors pour $k\geqslant 0$ et $n=2^k$, les temps de calculs pour les opérations dans $\mathbb{F}_q$ énoncés dans le tableau \ref{tab:complexite-degre2} sont vérifiés.
+\end{prop}
+\begin{figure}
+\label{tab:complexite-degre2}
+\begin{tabular}{|l|r|}
+  \hline
+  \textit{Opérations}  & \textit{Coûts} \\
+  \hline
+  \textit{addition/soustraction}  & $O(n)$ \\
+  \textit{multiplication}  & $M(n)+ O(n)$ \\
+  \textit{division} & $O(M(n))$ \\
+  \textit{Frobenius} & $O(n + \log(q))$ \\
+  \textit{Square-root} & $ O(M(n)\log(nq)) (\textit{attendu}) $ \\
+  \hline
+\end{tabular}
+\caption{Coûts des opérations dans $\mathbb{F}_{q^n}$ avec $n=2^k$}
+\end{figure}
+Il est à noter que pour le calcul d'une racine carrée le coût est attendu, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
+
+Certains résultats du tableau \ref{tab:complexite-degre2} sont connus tels que l'addition et la soustraction, l'obtention des autres sera expliqué par la suite.
 
 
 \section{$\ell \neq 2$ [De Feo-Doliskani-Schost]}
