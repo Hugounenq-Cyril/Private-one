@@ -812,23 +812,27 @@ Maintenant que le coût du Frobenius a été établi nous allons voir une autre 
 \subsubsection*{Calcul d'une racine carrée}
 Les résultats de cette problématique sont issus d'idées développées dans \cite{Doliskani-Schost14} et sont adaptés à cette construction de tour $2$ adique où le coût du Frobenius est très faible. 
 
-Soit $\delta$ un carré non nul de $\mathbb{L}_k$ ayant pour racine carrée $\gamma$ (non connue a priori). Soit $\beta$ dans $\mathbb{F}_q$ défini de la manière suivante:
+Soit $\delta$ un carré non nul de $\mathsf{F}_k$ ayant pour racine carrée $\gamma$ (non connue a priori). Soit $\beta$ dans $\mathbb{F}_q$ défini de la manière suivante:
 \begin{align}
 \label{eq:trace-square-root}
 \beta=T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma)=\sum_{i=0}^{n-1}\gamma^{q^i}&=\gamma(1+\gamma^{q-1}+\cdots+ \gamma^{q^{n-1}-1} ) \\
-&=\gamma(1+\delta^{(q-1)/2}+\cdots+ \gamma^{(q^{n-1}-1)/2} \\
+&=\gamma(1+\delta^{(q-1)/2}+\cdots+ \delta^{(q^{n-1}-1)/2}) \\
 &=\gamma \eta
 \end{align}
 en posant 
 \begin{align*}
-\eta=1+\delta^{(q-1)/2}+\cdots+ \gamma^{(q^{n-1}-1)/2}
+\eta=1+\delta^{(q-1)/2}+\cdots+ \delta^{(q^{n-1}-1)/2}
 \end{align*}
 Sans perte de généralité on peut supposer que l'on a $\eta \neq 0$, si ce n'est pas le cas alors on peut remplacer $\gamma$ par $\gamma c^2$ avec $c$ choisi aléatoirement parmi les inversibles de $\mathbb{F}_q$.
 $O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) \neq 0$. En effet il y a $q^{2^k}/q$ valeurs de $c$ pour lesquelles on a $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) = 0$ ainsi la probabilité d'avoir $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) \neq 0$ est de $1-(q^{2^k}/q)/(q^{2^k})=1-1/q>1/2$.
-Maintenant si l'on met au carré l'équation \ref{eq:trace-square-root} on obtient alors l'équation suivante dans $\mathbb{F}_q$: $\beta^2=\delta \eta^2$. Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation et $\gamma$ calculé car on a alors $\gamma=\beta \eta^{-1}$.
+Maintenant si l'on met au carré l'équation \ref{eq:trace-square-root} on obtient alors l'équation suivante dans $\mathbb{F}_q$: 
+\begin{equation*}
+\beta^2=\delta \eta^2. 
+\end{equation*}
+Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation et $\gamma$ calculé car on a alors $\gamma=\beta \eta^{-1}$.
 Le coût de calcul de $\beta$ est un nombre attendu de $O(\log(q))$ opérations sur $\mathbb{F}_q$ \cite{vzGJG03}[ch 14.5], ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
 
-Soit $\lambda$ un élément de $\mathbb{L}_k$ défini par $\lambda = \delta^{(q-1)/2} $ on a alors la relation suivante avec $\eta$:
+Soit $\lambda$ un élément de $\mathsf{F}_k$ défini par $\lambda = \delta^{(q-1)/2} $ on a alors la relation suivante avec $\eta$:
 \begin{equation*}
 \eta = 1 + \lambda + \lambda^{1+q} + \lambda^{1+q+q^2} + \cdots + \lambda^{1+q+q^2+\cdots+q^{n-2}} 
 \end{equation*}
@@ -866,7 +870,7 @@ Ainsi on obtient $\eta=1+\lambda+\lambda \varepsilon_{n-2}$.
 
 
  
-Le calcul de $\lambda$ a un coût de $O(M(n)log(q))$ opérations sur $\mathbb{F}_q$, le calcul de $\varepsilon_1$ et $\eta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, supposons que le calcul de $\varepsilon_m$ et $\zeta_m$ ait déjà été effectué. En utilisant les équations \ref{varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathbb{F}_{q^n}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ sont calculés en $O(M(n)\log(n)+M(n)\log(q))=O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$.
+Le calcul de $\lambda$ a un coût de $O(M(n)log(q))$ opérations sur $\mathbb{F}_q$, le calcul de $\varepsilon_1$ et $\zeta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, supposons que le calcul de $\varepsilon_m$ et $\zeta_m$ ait déjà été effectué. En utilisant les équations \ref{varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathbb{F}_{q^n}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ sont calculés en $O(M(n)\log(n)+M(n)\log(q))=O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$.
 $\beta$ peut donc être calculé en $O(\log(q))$ opérations sur $\mathbb{F}_q$. Le coût de calcul de $\gamma$ étant négligeable par rapport à celui de $\eta$, on a alors un coût total de $O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$.
 
 Une implantation de cette construction de tours $2$-adique et des opérations du Frobenius et du calcul de racine carrée ont été réalisé sur SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
