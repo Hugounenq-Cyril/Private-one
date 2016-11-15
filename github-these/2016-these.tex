@@ -848,68 +848,71 @@ b_0^* + b_1^* x_i + b_2 x_i^2 + \cdots + b_{d_1d-1} x_i^{d_1d-1}
 Maintenant que le coût du Frobenius a été établi nous allons voir une autre opération nécessaire pour le calcul d'isogénies dans le cas de tours dyadiques, le calcul de racines carrées.
 
 \subsubsection*{Calcul d'une racine carrée}
-Les résultats de cette problématique sont issus d'idées développées dans \cite{Doliskani-Schost14} et sont adaptés à cette construction de tour $2$ adique où le coût du Frobenius est très faible. 
+Les résultats de cette problématique sont issus d'idées développées dans \cite{Doliskani-Schost14} et sont adaptés à cette construction de tour d'extension $\ell$-adique où le coût du Frobenius est très faible. Le résultat à retenir est celui pour les extensions dyadiques du fait de son usage pratique même si une généralisation est présentée ici. 
 
-Soit $\delta$ un carré non nul de $\mathsf{F}_k$ ayant pour racine carrée $\gamma$ (non connue a priori). Soit $\beta$ dans $\mathbb{F}_q$ défini de la manière suivante:
+Soit $\delta$ un carré non nul de $\mathsf{F}_k$ ayant pour racine carrée $\gamma$ (non connue a priori). Soit $\beta$ dans $\mathsf{F}_0$ défini de la manière suivante:
 \begin{align}
 \label{eq:trace-square-root}
-\beta=T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma)=\sum_{i=0}^{n-1}\gamma^{q^i}&=\gamma(1+\gamma^{q-1}+\cdots+ \gamma^{q^{n-1}-1} ) \\
-&=\gamma(1+\delta^{(q-1)/2}+\cdots+ \delta^{(q^{n-1}-1)/2}) \\
+\beta=T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma)=\sum_{i=0}^{\ell^k-1}\gamma^{|\mathsf{F}_0|^i}&=\gamma(1+\gamma^{|\mathsf{F}_0|-1}+\cdots+ \gamma^{|\mathsf{F}_0|^{\ell^k-1}-1} ) \\
+&=\gamma(1+\delta^{(|\mathsf{F}_0|-1)/2}+\cdots+ \delta^{(|\mathsf{F}_0|^{\ell^k-1}-1)/2}) \\
 &=\gamma \eta
 \end{align}
 en posant 
 \begin{align*}
-\eta=1+\delta^{(q-1)/2}+\cdots+ \delta^{(q^{n-1}-1)/2}
+\eta=1+\delta^{(|\mathsf{F}_0|-1)/2}+\cdots+ \delta^{(|\mathsf{F}_0|^{\ell^k-1}-1)/2}
 \end{align*}
-Sans perte de généralité on peut supposer que l'on a $\eta \neq 0$, si ce n'est pas le cas alors on peut remplacer $\gamma$ par $\gamma c^2$ avec $c$ choisi aléatoirement parmi les inversibles de $\mathbb{F}_q$.
-$O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) \neq 0$. En effet il y a $q^{2^k}/q$ valeurs de $c$ pour lesquelles on a $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) = 0$ ainsi la probabilité d'avoir $T_{\mathbb{L}_k/\mathbb{F}_q}(\gamma c^2) \neq 0$ est de $1-(q^{2^k}/q)/(q^{2^k})=1-1/q>1/2$.
-Maintenant si l'on met au carré l'équation \ref{eq:trace-square-root} on obtient alors l'équation suivante dans $\mathbb{F}_q$: 
+Sans perte de généralité on peut supposer que l'on a $\eta \neq 0$, si ce n'est pas le cas alors on peut remplacer $\gamma$ par $\gamma c^2$ avec $c$ choisi aléatoirement parmi les inversibles de $\mathsf{F}_k$.
+$O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathbb{L}_k/\mathsf{F}_0}(\gamma c) \neq 0$. En effet il y a $|\mathsf{F}_0|^{\ell^k}/|\mathsf{F}_0|$ valeurs de $c$ pour lesquelles on a $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c) = 0$ ainsi la probabilité d'avoir $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c^2) \neq 0$ est de $1-(|\mathsf{F}_0|^{\ell^k}/|\mathsf{F}_0|)/(|\mathsf{F}_0|^{\ell^k})=1-1/|\mathsf{F}_0|>1/2$.
+Maintenant si l'on met au carré l'équation \ref{eq:trace-square-root} on obtient alors l'équation suivante dans $\mathsf{F}_0$: 
 \begin{equation*}
 \beta^2=\delta \eta^2. 
 \end{equation*}
-Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation et $\gamma$ calculé car on a alors $\gamma=\beta \eta^{-1}$.
-Le coût de calcul de $\beta$ est un nombre attendu de $O(\log(q))$ opérations sur $\mathbb{F}_q$ \cite{vzGJG03}[ch 14.5], ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
-
-Soit $\lambda$ un élément de $\mathsf{F}_k$ défini par $\lambda = \delta^{(q-1)/2} $ on a alors la relation suivante avec $\eta$:
+Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation et $\gamma$ calculé car on a alors
 \begin{equation*}
-\eta = 1 + \lambda + \lambda^{1+q} + \lambda^{1+q+q^2} + \cdots + \lambda^{1+q+q^2+\cdots+q^{n-2}} 
+ \gamma=\beta \eta^{-1}.
+\end{equation*}
+Le coût de calcul de $\beta$ est un nombre attendu de $O(\log(q))$ opérations sur $\mathbb{F}_q$ \cite{vzGJG03}[ch 14.5] si $\mathsf{F}_0 \cong \mathbb{F}_q$, et de $O(M(\ell)\log(\ell)\ell\log(q))$ opérations sur $\mathbb{F}_q$ si $\mathsf{F}_0 \ncong \mathbb{F}_q$. Ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
+
+Soit $\lambda$ un élément de $\mathsf{F}_k$ défini par $\lambda = \delta^{(|\mathsf{F}_0|-1)/2} $ on a alors la relation suivante:
+\begin{equation*}
+\eta = 1 + \lambda + \lambda^{1+|\mathsf{F}_0|} + \lambda^{1+|\mathsf{F}_0|+|\mathsf{F}_0|^{2}} + \cdots + \lambda^{1+|\mathsf{F}_0|+|\mathsf{F}_0|^{2}+\cdots+|\mathsf{F}_0|^{\ell^k-2}} 
 \end{equation*}
 Pour $m \geqslant 0$ on définit:
 \begin{equation}
-\zeta_m=\lambda^{q+q^2+\cdots+q^{m}} 
+\zeta_m=\lambda^{|\mathsf{F}_0|+|\mathsf{F}_0|^2+\cdots+|\mathsf{F}_0|^{m}} 
 \end{equation}
 que l'on peut construire par récurrence:
 \begin{equation*}
-\zeta_1=\gamma^q \quad \textit{et} \quad
+\zeta_1=\gamma^{|\mathsf{F}_0|} \quad \textit{et} \quad
 \zeta_m=
 \begin{cases} 
-\zeta_{m/2}  \zeta_{m/2}\zeta_{m/2}^{q^{m/2}} \textit{si m est pair }\\
-\zeta_{1}  \zeta_{m-1}^{q} \textit{si m est impair}
+\zeta_{m/2}  \zeta_{m/2}\zeta_{m/2}^{|\mathsf{F}_0|^{m/2}} \quad \textit{si m est pair }\\
+\zeta_{1}  \zeta_{m-1}^{|\mathsf{F}_0|} \qaud \textit{si m est impair}
 \end{cases}
 \end{equation*}
 
 On définit aussi
 \begin{equation*}
-\varepsilon_m=\lambda^{q} + \lambda^{q+q^2} + \cdots + \lambda^{q+q^2+\cdots+q^{m}}
+\varepsilon_m=\lambda^{|\mathsf{F}_0|} + \lambda^{|\mathsf{F}_0|+|\mathsf{F}_0|^{2}} + \cdots + \lambda^{|\mathsf{F}_0|+|\mathsf{F}_0|^{2}+\cdots+|\mathsf{F}_0|^{m}}
 \end{equation*} 
 on a alors une relation de récurrence pour le calcul de $\varepsilon$:
 
 \begin{equation}
 \label{eq:varepsilon}
-\varepsilon_1=\lambda^q \quad \textit{et} \quad
+\varepsilon_1=\lambda^{|\mathsf{F}_0|} \quad \textit{et} \quad
 \varepsilon_m=
 \begin{cases} 
-\varepsilon_{m/2} + \zeta_{m/2}\varepsilon_{m/2}^{q^{m/2}} \textit{si m est pair }\\
+\varepsilon_{m/2} + \zeta_{m/2}\varepsilon_{m/2}^{|\mathsf{F}_0|^{m/2}} \textit{si m est pair }\\
 \varepsilon_{m-1} + \zeta_{m} \textit{si m est impair}
 \end{cases}
 \end{equation}
 
-Ainsi on obtient $\eta=1+\lambda+\lambda \varepsilon_{n-2}$. 
+Ainsi on obtient $\eta=1+\lambda+\lambda \varepsilon_{\ell^k-2}$. 
 
 
  
-Le calcul de $\lambda$ a un coût de $O(M(n)log(q))$ opérations sur $\mathbb{F}_q$, le calcul de $\varepsilon_1$ et $\zeta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, supposons que le calcul de $\varepsilon_m$ et $\zeta_m$ ait déjà été effectué. En utilisant les équations \ref{varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathbb{F}_{q^n}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ sont calculés en $O(M(n)\log(n)+M(n)\log(q))=O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$.
-$\beta$ peut donc être calculé en $O(\log(q))$ opérations sur $\mathbb{F}_q$. Le coût de calcul de $\gamma$ étant négligeable par rapport à celui de $\eta$, on a alors un coût total de $O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$.
+Le calcul de $\lambda$ a un coût de $O(M(\ell^k)log(q))$ opérations sur $\mathbb{F}_q$ si $\mathsf{F}_0 \cong \mathbb{F}_q$ et de $O(M(\ell^k)\ell\log(\ell)\log(q))$ opérations sur $\mathbb{F}_q$ si $\mathsf{F}_0 \ncong \mathbb{F}_q$. Le calcul de $\varepsilon_1$ et $\zeta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, supposons que le calcul de $\varepsilon_m$ et $\zeta_m$ ait déjà été effectué. En utilisant les équations \ref{varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathsf{F}_{k}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ sont calculés en $O(M(\ell^k)\log(\ell^k)+M(\ell^k)\log(q))=O(M(\ell^k)\log(\ell^kq))$ opérations sur $\mathbb{F}_q$ si $\mathsf{F}_0 \cong \mathbb{F}_q$ et en $O(M(\ell^k)\log(\ell^k)\log(\ell)+M(\ell^k)\ell\log(\ell)\log(q))=O(M(\ell^k)\log(\ell)\log(\ell^kq^{\ell}))$ opérations sur $\mathbb{F}_q$ si $\mathsf{F}_0 \ncong \mathbb{F}_q$.
+Le coût de calcul de $\gamma$ et $\beta$ étant négligeables par rapport à celui de $\eta$, on a alors un coût total de $O(M(n)\log(nq))$ opérations sur $\mathbb{F}_q$ si $\mathsf{F}_0 \cong \mathbb{F}_q$ et de $O(M(\ell^k)\log(\ell)\log(\ell^kq^{\ell}))$ opérations sur $\mathbb{F}_q$ si $\mathsf{F}_0 \ncong \mathbb{F}_q$.
 
 Une implantation de cette construction de tours $2$-adique et des opérations du Frobenius et du calcul de racine carrée ont été réalisé sur SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
