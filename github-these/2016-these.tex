@@ -159,11 +159,11 @@ On définit alors le discriminant $\Delta$ de l'équation de Werierstrass \ref{e
 La courbe $E$ admet un unique point singulier si et seulement si $\Delta$ est nul, la courbe est non singulière si et seulement si $\Delta$ est non nul (\cite[Prop. III.1.4]{Silv1}).
 
 %L'équation de Weierstrass \ref{eq:weierstrass} est dite non-singulière si et seulement si $\Delta$ est non nul.
-On peut alors énoncer une autre définition de courbe elliptique.
+%On peut alors énoncer une autre définition de courbe elliptique.
 
-\begin{defi}
-Une courbe elliptique $E$ sur $\mathbb{K}$ est une courbe définie par une équation de Weierstrass \ref{eq:weierstrass-red} non singulière.
-\end{defi}
+%\begin{defi}
+%Une courbe elliptique $E$ sur $\mathbb{K}$ est une courbe définie par une équation de Weierstrass \ref{eq:weierstrass-red} non singulière.
+%\end{defi}
 
 On définit: 
 \begin{equation*}
@@ -217,6 +217,7 @@ On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une 
 %\end{figure}
 %
 \begin{figure}
+\begin{center}
 
 \begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
           \begin{scope}[fixed point arithmetic]
@@ -242,28 +243,29 @@ On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une 
             \end{scope}
           \end{scope}
 
-          \begin{scope}[xshift=10cm]
-            \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
-            \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
-
-            \begin{scope}[fixed point arithmetic]
-              \coordinate (-Q) at (2, 4/3) {};
-              \coordinate (-2Q) at (-1079/576, 59653/13824);
-              \path let \p1 = (-2Q) in coordinate (2Q) at (\x1,-\y1);
-            \end{scope}
-
-            \draw[shorten >=-2cm, shorten <=-2cm] (-Q) -- (2Q);
-            \draw[dashed] (-2Q) -- (2Q);
-
-            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
-              every label/.style={inner sep=5pt,font=\scriptsize}]
-              \draw (-Q) node[/dot,label=$P$] {}
-              (-2Q) node[/dot,label=$2P$] (G) {};
-              \draw[label position=below] (2Q) node[/dot,label=$R$] {};
-            \end{scope}
-          \end{scope}
+%          \begin{scope}[xshift=10cm,fixed point arithmetic]
+%            \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+%            \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+%
+%            \begin{scope}[fixed point arithmetic]
+%              \coordinate (-Q) at (2, 4/3) {};
+%              \coordinate (-2Q) at (-1079/576, 59653/13824);
+%              \path let \p1 = (-2Q) in coordinate (2Q) at (\x1,-\y1);
+%            \end{scope}
+%
+%            \draw[shorten >=-2cm, shorten <=-2cm] (-Q) -- (2Q);
+%            \draw[dashed] (-2Q) -- (2Q);
+%
+%            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
+%              every label/.style={inner sep=5pt,font=\scriptsize}]
+%              \draw (-Q) node[/dot,label=$P$] {}
+%              (-2Q) node[/dot,label=$2P$] (G) {};
+%              \draw[label position=below] (2Q) node[/dot,label=$R$] {};
+%            \end{scope}
+%          \end{scope}
         \end{tikzpicture}
 
+\end{center}
 \end{figure}
 
 On peut définir sur $E(\mathbb{K})$ une loi de groupe abélienne à l'aide de la méthode dite de la \emph{corde et de la tangente}
