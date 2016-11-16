@@ -176,14 +176,12 @@ Une question naturelle est de se demander à quel point l'équation de Weierstra
 \begin{equation*}
 x=u^2x'+r    \quad  y=u^3y'+u^2sx'+t
 \end{equation*}
-avec $u,r,s,t$ des éléments de $\overline{\mathbb{K}}$ et $u$ différent de $0$. En actualisant alors le calcul des $a'_i$ et des calculs subséquents on justifie alors la dénomination de \emph{$j$-invariant}.
+avec $u,r,s,t$ des éléments de $\overline{\mathbb{K}}$ et $u$ différent de $0$. En calculant alors les coefficients $a'_i$ de la nouvelle équation de Weierstrass obtenu par le changement de variables, on obtient un $j$-invariant identique ce qui justifie alors la dénomination de celui-ci.
 \newline
 
 
-On définit alors l'ensemble des points d'une courbe elliptique $E$ définie sur $\mathbb{K}$  noté $E(\mathbb{K})$.
-
 \begin{defi}
-Soit une courbe $E$ définie sur $\mathbb{K}$ on définit $E(\mathbb{K})$ comme étant l'ensemble:
+Soit une courbe $E$ définie sur $\mathbb{K}$ on définit $E(\mathbb{K})$, l'ensemble des points d'une courbe elliptique $E$ définit sur $\mathbb{K}$, comme étant l'ensemble:
 \begin{equation*}
 E(\mathbb{K})=\{(X:Y:Z)\in \mathbb{P}^2(\mathbb{K}) \setminus (0,0,0) : Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3 \}
 \end{equation*}
@@ -193,7 +191,7 @@ E(\mathbb{K})=\{(x,y)\in \mathbb{K}^2  : y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6 \} \
 \end{equation*}
 \end{defi}
 
-On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une courbe elliptique $E$ définie sur $\mathbb{K}$, alors son corps de fonction $\mathbb{K}(E)$ est le corps des fractions suivant:
+On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une courbe elliptique $E$ définie sur $\mathbb{K}$, alors son corps de fonction $\mathbb{K}(E)$ est le corps des fractions de l'anneau des coordonnées:
 \begin{equation*}
 \mathbb{K}(E) \defeq \mathbb{K}[x,y]/(f(x,y)).
 \end{equation*}
@@ -259,7 +257,7 @@ On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une 
 %            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
 %              every label/.style={inner sep=5pt,font=\scriptsize}]
 %              \draw (-Q) node[/dot,label=$P$] {}
-%              (-2Q) node[/dot,label=$2P$] (G) {};
+%              (-2Q) node[/dot,label=$[2]P$] (G) {};
 %              \draw[label position=below] (2Q) node[/dot,label=$R$] {};
 %            \end{scope}
 %          \end{scope}
@@ -319,45 +317,22 @@ On appelle points de \emph{$m$-torsion} l'ensemble des points de $E$ qui sont en
 \subsection{Isogénies}
 
 \begin{defi}
-Soient $E_1$ et $E_2$ deux courbes elliptiques, une isogénie de $E_1$ dans $E_2$ est un morphisme de groupes:
+Soient $E_1$ et $E_2$ deux courbes elliptiques, une isogénie $\varphi$ de $E_1$ dans $E_2$ est un morphisme de groupes surjectif et de noyau fini noté:
 \begin{equation*}
 \varphi:E_1 \rightarrow E_2
 \end{equation*}
-tel que $\varphi(O_{E_1})=O_{E_2}$.
+En particulier on a $\varphi(O_{E_1})=O_{E_2}$.
 \end{defi}
-On dira que $E_1$ et $E_2$ sont isogénes si il existe une isogénie $\varphi$ non nulle qui va de $E_1$ dans $E_2$. Une question naturelle est de se demander comment ces isogénies agissent sur les groupes de points d'une courbe, le théorème suivant répond à cette question.
-
-\begin{thm}
-Soient $\varphi:E_1 \rightarrow E_2$ une isogénie, $P,Q$ deux points de $E_1$. Alors:
-\begin{equation*}
-\varphi(P+Q)=\varphi(P)+\varphi(Q)
-\end{equation*}
-\end{thm}
-
-\begin{proof}
-Voir \cite[III.4.8]{Silv1}
-\end{proof}
+On dira que $E_1$ et $E_2$ sont isogènes si il existe une isogénie $\varphi$ qui va de $E_1$ dans $E_2$. 
 
 \begin{exe}
-La multiplication par $m$ est par exemple un homomorphisme:
+La multiplication par $m$ est par exemple une isogénie:
 \begin{equation*}
 [m](P+Q)=[m]P+[m]Q
 \end{equation*}
 \end{exe}
 
-\begin{thm}
-Soit $\varphi$ une isogénie non nulle définie sur un corps $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors:
-\begin{itemize}
-\item $\ker(\varphi)$ est un groupe fini,
-\item $\varphi$ est surjective si $\mathbb{K}$ est un corps algébriquement clos.
-\end{itemize}
-\end{thm}
-
-\begin{proof}
-Voir \cite[II.2]{Silv1}
-\end{proof}
-
-Lorsque l'on a $\varphi$ surjective alors on peut définir sur les corps de fonctions associés à $E_1$ et $E_2$ l'injection suivante:
+Pour une isogénie $\varphi$ on peut définir sur les corps de fonctions associés à $E_1$ et $E_2$ l'injection suivante:
 \begin{equation*}
 \begin{alignedat}{1}
 \varphi^*: \mathbb{K}(E_2) & \rightarrow \mathbb{K}(E_1) \\
@@ -366,25 +341,26 @@ f & \mapsto f  \circ \varphi
 \end{equation*}
 
 \begin{defi}
-Soit $\mathbb{K}$ un corps algébriquement clos, $\varphi$ une isogénie définie sur $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors $\varphi$ est dite \emph{séparable} ou \emph{inséparable} selon les propriétés de $[K(E_1):\varphi^*(\mathbb{K}(E_2))]$. On note alors \emph{$\deg_s{\varphi}$}, \emph{$\deg_i{\varphi}$} les degrés correspondants et l'on a $\deg{\varphi}=\deg_s{\varphi}\deg_i{\varphi}$
+Soit $\mathbb{K}$ un corps algébriquement clos, $\varphi$ une isogénie définie sur $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors $\varphi$ est dite \emph{séparable} ou \emph{inséparable} selon le fait que l'extension $[K(E_1):\varphi^*(\mathbb{K}(E_2))]$ l'est ou pas. On note alors \emph{$\deg_s{\varphi}$}, \emph{$\deg_i{\varphi}$} les degrés de séparabilité et d'inséparabilité de l'extension de corps $[K(E_1):\varphi^*(\mathbb{K}(E_2))]$ et l'on a $\deg{\varphi}=\deg_s{\varphi}\deg_i{\varphi}$ qui est égal aussi au degré de l'extension de corps $[K(E_1):\varphi^*(\mathbb{K}(E_2))]$.
 \end{defi}
 
-Lorsque $\mathbb{K}$ n'est pas algébriquement clos on définit le degré de l'isogénie comme étant le degré de l'isogénie définie sur la cloture algébrique de $\mathbb{K}$.
 
-
-On désignera alors pour un entier $\ell$, une isogénie de degré $\ell$ par: $\ell$-isogénie.
+Une isogénie de degré $\ell$ sera alors appelée: $\ell$-isogénie.
 
 \begin{thm}
-Soit $\varphi$ une isogénie non constante de $E_1$ dans $E_2$, alors:
+Soit $\varphi$ une isogénie de $E_1$ dans $E_2$, alors:
 \begin{itemize}
-\item pour tout point $Q$ de $E_2$ on a $|\varphi^{-1}(Q)|=\deg(\varphi)$,
-\item si $\varphi$ est séparable alors $\varphi$ est non ramifiée et on a $\deg_s(\varphi)=\ker(\varphi)$.
+\item pour tout point $Q$ de $E_2$ on a $|\varphi^{-1}(Q)|=\deg_s(\varphi)$,
+\item si $\varphi$ est séparable alors $\deg_s(\varphi)=\deg(\varphi)=|\ker(\varphi)|$.
 \end{itemize}
 \end{thm}
 
 \begin{proof}
 Voir \cite[III.4.10]{Silv1}
 \end{proof}
+
+Formule de Vélu à mettre ici pour définir $E \rightarrow E/C$.
+
 
 Une conséquence directe de ce théorème est le résultat suivant.
 
@@ -398,10 +374,10 @@ Soit $E_1$ une courbe elliptique, alors il y a une correspondance bijective entr
 \end{equation*}
 \end{cor}
 
-L'ensemble des isogénies de $E_1$ vers $E_2$ est appelé groupe des homomorphismes et est noté \emph{$\mathrm{Hom}(E_1,E_2)$}. L'ensemble des isogénies de $E_1$ vers $E_1$ est appelé anneau des endomorphismes et est noté \emph{$\mathrm{End}(E_1)=\mathrm{Hom}(E_1,E_1)$} cet ensemble contient également l'application triviale nulle, les éléments de $\mathrm{End}(E_1)$ inversibles sont appelés automorphismes et sont notés \emph{$\mathrm{Aut}(E_1)$}. Une isogénie définie sur $\mathbb{K}$ sera dite \emph{$\mathbb{K}$-rationnelle} ou simplement \emph{rationnelle} quand il n'y a pas d'ambiguïtés.
+L'ensemble des isogénies de $E_1$ vers $E_2$ adjoint à l'application nulle est appelé groupe des homomorphismes et est noté \emph{$\mathrm{Hom}(E_1,E_2)$}. L'ensemble des isogénies de $E_1$ vers $E_1$ adjoint à l'application nulle est appelé anneau des endomorphismes et est noté \emph{$\mathrm{End}(E_1)=\mathrm{Hom}(E_1,E_1)$}, les éléments de $\mathrm{End}(E_1)$ inversibles sont appelés automorphismes et sont notés \emph{$\mathrm{Aut}(E_1)$}. Une isogénie définie sur $\mathbb{K}$ sera dite \emph{$\mathbb{K}$-rationnelle} ou simplement \emph{rationnelle} quand il n'y a pas d'ambiguïtés.
 
 \begin{thm}[Isogénie duale]
-Soit $\varphi$ une isogénie définie sur $\mathbb{K}$ d'une courbe elliptique $E_1$ vers une courbe elliptique $E_2$, alors l'unique isogénie $\widehat{\varphi}$ qui va de $E_2$ ver $E_1$ telle que $\widehat{\varphi}\circ\varphi=[\deg(\varphi)]$ est appelée \emph{isogénie duale}.
+Soit $\varphi$ une isogénie définie sur $\mathbb{K}$ d'une courbe elliptique $E_1$ vers une courbe elliptique $E_2$, alors l'unique isogénie $\widehat{\varphi}$ qui va de $E_2$ ver $E_1$ telle que $\widehat{\varphi}\circ\varphi=[\deg(\varphi)]_{E_1}$ est appelée \emph{isogénie duale}.
 \end{thm}
 
 \begin{proof}
@@ -411,10 +387,6 @@ Voir \cite[III.6.1]{Silv1}
 \begin{thm}
 Soit $\varphi:E_1 \rightarrow E_2$ une isogénie.
 \begin{enumerate}
-\item Soit $m=\deg(\varphi)$, alors:
-\begin{equation*}
-\widehat{\varphi}\circ \varphi=[m]_{E_1} \textit{ et }  \varphi \circ \widehat{\varphi}=[m]_{E_2}.
-\end{equation*}
 \item Soit $\lambda:E_2 \rightarrow E_3$ une autre isogénie, alors
 \begin{equation*}
 \widehat{\lambda \circ \varphi}= \widehat{\varphi} \circ \widehat{\lambda}.
