@@ -410,18 +410,18 @@ Voir \cite[Theorem III.6.2]{Silv1}.
 \end{proof}
 
 \begin{cor}
-Soit $E$ une courbe elliptique définie sur $\mathbb{K}$ et $m \in \mathbb{Z}$ avec $m \neq 0$,
+Soit $E$ une courbe elliptique définie sur $\mathbb{K}$ et $m \in \mathbb{Z}^*$,
 \begin{enumerate}
-\item Si $m \neq 0$ dans  $\mathbb{K}$ alors
+\item Si $m \neq \mathrm{car}(\mathbb{K})$ alors
 \begin{equation*}
 E[m]=\nicefrac{\mathbb{Z}}{m\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{m\mathbb{Z}}. 
 \end{equation*}
 \item Si $\mathrm{car}(\mathbb{K})=p>0$ alors:
 \begin{equation*}
 \begin{alignedat}{1}
-&\textit{Soit } E[p^e]=\{O_E\} \textit{ pour tout } e \geqslant 1 \\
+&\textit{Soit } E[p^e]=\{O_E\} \textit{ pour tout } e \geqslant 1 \textit{alors $E$ est dite supersingulière }\\
 &\textit{Soit } E[p^e]=\nicefrac{\mathbb{Z}}{p^e\mathbb{Z}} \textit{ pour tout } e \geqslant 1
-\end{alignedat}
+\textit{alors $E$ est dite ordinaire }\end{alignedat}
 \end{equation*}
 \end{enumerate}
 \end{cor}
@@ -473,16 +473,31 @@ Une courbe elliptique $E$ est dite à multiplication complexe si $\mathrm{End}(E
 On a le résultat suivant sur la structure de $\mathrm{End}(E)$.
 
 \begin{thm}
-$\mathrm{End}(E)$ est soit isomorphe à $\mathbb{Z}$, soit isomorphe à un ordre dans un corps quadratique imaginaire, soit isomorphe à un ordre dans une algèbre de quaternions 
+$\mathrm{End}(E)$ est
+\begin{itemize}
+\item soit isomorphe à $\mathbb{Z}$ dans ce cas la courbe est \emph{ordinaire}, 
+\item soit isomorphe à un ordre dans un corps quadratique imaginaire dans ce cas la courbe est \emph{ordinaire}, 
+\item soit isomorphe à un ordre dans une algèbre de quaternions la courbe est \emph{supersingulière}. 
+\end{itemize}
 \end{thm}
 
 \begin{proof}
-Voir \cite[Corollary III.9.4]{Silv1}
+Voir \cite[Corollary III.9.4]{Silv1}, et \cite[Theorem V.3.1]{Silv1}
 \end{proof}
 
 \section{Courbes elliptiques définies sur un corps fini}
 
-Soit $p$ un nombre premier, on notera $\mathbb{F}_q=\mathbb{F}_{p^e}$ le corps fini à $q$ éléments. Travailler sur un corps fini entraîne le fait que le nombre de points d'une courbe elliptiqe est fini, ainsi nous travaillons avec un groupe abélien fini. Afin d'étudier ce groupe et en particulier d'établir sa cardinalité nous allons introduire l'endomorphisme de Frobenius. Dans la suite de ce document nous considérerons que les courbes elliptiques mentionnées sont définies sur un corps fini. 
+Soit $p$ un nombre premier, on notera $\mathbb{F}_q=\mathbb{F}_{p^e}$ le corps fini à $q$ éléments. Travailler sur un corps fini entraîne le fait que le nombre de points d'une courbe elliptiqe est fini, ainsi nous travaillons avec un groupe abélien fini. Afin d'étudier ce groupe et en particulier d'établir sa cardinalité nous allons introduire l'endomorphisme de Frobenius. Dans la suite de ce document nous considérerons que les courbes elliptiques mentionnées sont définies sur un corps fini.
+
+On a tout d'abord le résultat suivant sur la structure des points d'une courbe elliptique:
+\begin{prop}
+Le groupe abélien $E(\mathbb{F}_q$) est isomorphe à $\nicefrac{\mathbb{Z}}{n_1 \mathbb{Z}} \times \nicefrac{\mathbb{Z}}{n_2 \mathbb{Z}}$ avec $n_2 \mid n_1$ et $n_2 \mid q-1$
+\end{prop}
+
+\begin{proof}
+Voir \cite[Theorem 4.1]{Washington2008}
+\end{proof}
+
 
 \subsection{L'endomorphisme de Frobenius}
 \begin{defi}
@@ -490,28 +505,30 @@ Soit $E$ une courbe définie sur $\mathbb{F}_q$, l'application:
 \begin{equation*}
 \begin{alignedat}{1}
 \pi :E &\mapsto  E  \\
- (x,y)  &\mapsto (x^q,y^q)  
+ (X,Y,Z)  &\mapsto (X^q,Y^q,Z^q)  
 \end{alignedat}
 \end{equation*}
 est un homomorphisme de la courbe et est appelée \emph{endomorphisme de Frobenius}. 
 \end{defi}
 
+Comme le groupe de points d'une courbe elliptique  $E(\mathbb{F}_q$) est isomorphe à $\nicefrac{\mathbb{Z}}{n_1 \mathbb{Z}} \times \nicefrac{\mathbb{Z}}{n_2 \mathbb{Z}}$, alors on peut représenter l'action du Frobenius sous forme matricielle et il fait alors sens de parler de la trace $t_{\pi}$ de l'endomorphisme de Frobenius. 
+
 \begin{prop}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius relatif à $\mathbb{F}_q$. Les conditions suivantes sont équivantes:
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Les conditions suivantes sont équivantes:
 \begin{enumerate}
 \item $E$ est supersingulière,
 \item $E[p^e]=\{O_E\}$ pour tout $e > 0$,
 \item la duale $\widehat{\pi}$ de l'endomorphisme de Frobenius est purement inséparable,
-\item la trace de l'endomorphisme de Frobenius est divisible par $p$,
-\item l'anneau d'endomorphisme $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
+\item la trace $t_{\pi}$ de l'endomorphisme de Frobenius est divisible par $p$,
+\item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
 \end{enumerate}
 si ces conditions ne sont pas vérifiées alors on a les conditions équivalentes suivantes:
 \begin{enumerate}
 \item $E$ est ordinaire,
 \item $E[p^e]=\mathbb{Z}/p^e\mathbb{Z}$ pour tout $e > 0$,
 \item la duale $\widehat{\pi}$ de l'endomorphisme de Frobenius est séparable,
-\item la trace de l'endomorphisme de Frobenius est première avec $p$,
-\item l'anneau d'endomorphisme $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombre quadratique imaginaire.
+\item la trace $t_{\pi}$ de l'endomorphisme de Frobenius est première avec $p$,
+\item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombre quadratique imaginaire.
 \end{enumerate}
 \end{prop}
 
@@ -521,14 +538,14 @@ Voir \cite[Theorem V.3.1]{Silv1}
 
 L'endomorphisme de Frobenius relatif à $\mathbb{F}_q$ admet pour polynôme caractéristique:
 \begin{equation}
-\pi^2-t\pi+q=0
+\pi^2-t_{\pi}+q=0
 \end{equation}
-avec $t$ la trace de l'endomorphisme de Frobenius. Cette équation a un rôle important dans le calcul de cardinalité de courbes elliptiques, en particulier dans l'algorithme de Schoof.
+avec $t$ la trace de l'endomorphisme de Frobenius. Cette équation a un rôle important dans le calcul de cardinalité de courbes elliptiques \cite{Schoof85}.
 
 \begin{prop}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $t$ la trace de l'endomorphisme de Frobenius relatif à $ \mathbb{F}_q$ alors on a:
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $t_{\pi}$ la trace de l'endomorphisme de Frobenius relatif à $ \mathbb{F}_q$ alors on a:
 \begin{equation*}
-|E(\mathbb{F}_q)|=q+1-t.
+|E(\mathbb{F}_q)|=q+1-t_{\pi}.
 \end{equation*}
 \end{prop}
 
@@ -547,15 +564,7 @@ Soit $E$ une courbe définie sur $\mathbb{F}_q$, alors
 Voir \cite[Theorem V.1.1]{Silv1}
 \end{proof}
 
-On a alors le résultat suivant sur la structure des points d'une courbe elliptique:
 
-\begin{prop}
-Le groupe abélien $E(\mathbb{F}_q$) est isomorphe à $\nicefrac{\mathbb{Z}}{n_1 \mathbb{Z}} \times \nicefrac{\mathbb{Z}}{n_2 \mathbb{Z}}$ avec $n_2 \mid n_1$ et $n_2 \mid q-1$
-\end{prop}
-
-\begin{proof}
-Voir \cite[Theorem 4.1]{Washington2008}
-\end{proof}
 
 
 
