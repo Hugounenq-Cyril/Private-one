@@ -359,8 +359,31 @@ Soit $\varphi$ une isogénie de $E_1$ dans $E_2$, alors:
 Voir \cite[III.4.10]{Silv1}
 \end{proof}
 
+\subsubsection{Formule de Vélu}
 Formule de Vélu à mettre ici pour définir $E \rightarrow E/C$.
+ 
+Pour un sous-groupe $C$ de $E(\mathbb{F}_q)$ les formules de Vélu \textcolor{red}{Citer Velu} permettent d'exprimer de façon canonique une isogénie séparable $E \Rightarrow E'$ de noyau $C$ et son codomaine $E'$.  L'isogénie est $\mathbb{F}_q$-rationnelle si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{F}_q[X]$.
 
+Soit $P$ un point de $E$ alors les formules de Vélu nous donnent l'isogénie $I$ de noyau $C$ par: 
+\begin{equation}
+\label{eq:Velu}
+I(P)= \left( x(P)+\sum_{Q \in C \setminus 0_E} x(P+Q)-x(Q),y(P)+\sum_{Q \in C \setminus 0_E} y(P+Q)-y(Q) \right)
+\end{equation} 
+On peut alors exprimer l'équation de la courbe codomaine de l'isogénie à l'aide des formules d'addition. Cependant par un souci de simplicité on va se restreindre au cas où l'on a $p \geqslant 3$, dans ce cas là on peut exprimer l'équation de $E$ par:
+\begin{equation*}
+y^2=x^3+a_2 x^2 + a_4 x + a_6
+\end{equation*}
+On note alors par $f$ et $f'$ les deux fonctions suivantes dans $\mathbb{F}_q(E)$:
+\begin{align*}
+f(P)&=& x(P)^3+a_2x(P)^2+a_4x(P)+a_6 \\
+f'(P)&=& 3x(P)^2+2a_2x(P)+a_4
+\end{align*}
+Avec les formules d'addition on peut réécrire l'équation \ref{eq:Velu} de la façon suivante:
+\begin{equation*}
+I(x,y)=\left( x + \sum_{Q \in G \setminus {0_E}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2} , y + \sum_{Q \in G \setminus {0_E}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3}  \right)
+\end{equation*}
+Alors si on note: 
+$h(x)=\Pi_{Q _in G \setminus {0_E}}(x-x(Q))$
 
 Une conséquence directe de ce théorème est le résultat suivant.
 
