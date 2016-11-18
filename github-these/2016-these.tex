@@ -379,11 +379,33 @@ f(P)&=& x(P)^3+a_2x(P)^2+a_4x(P)+a_6 \\
 f'(P)&=& 3x(P)^2+2a_2x(P)+a_4
 \end{align*}
 Avec les formules d'addition on peut réécrire l'équation \ref{eq:Velu} de la façon suivante:
-\begin{equation*}
+\begin{equation} \label{eq:velu:sum}
 I(x,y)=\left( x + \sum_{Q \in G \setminus {0_E}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2} , y + \sum_{Q \in G \setminus {0_E}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3}  \right)
-\end{equation*}
+\end{equation}
 Alors si on note: 
-$h(x)=\Pi_{Q _in G \setminus {0_E}}(x-x(Q))$
+\begin{equation*}
+h(x)=\Pi_{Q \in G \setminus {0_E}}(x-x(Q)),
+\end{equation*}
+on obtient:
+\begin{equation}\label{eq:velu:gh}
+I(x,y)=(\frac{g(x)}{h(x)},y(\frac{g(x)}{h(x)})')
+\end{equation*}
+avec $g$ un polynôme. On pose ensuite:
+\begin{equation}
+t= \sum_{Q \in G \setminus {0_E}} f'(Q) \quad u=\sum_{Q \in G \setminus {0_E}} 2f(Q) \quad w=u+\sum_{Q \in G \setminus {0_E}}x(Q)f'(Q) 
+\end{equation*}
+
+\begin{rem}
+On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisé par Elkies \textcolor{red}{ref a mettre} qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
+\begin{equation*}
+\frac{g(x)}{h(x)}= x + \sum_{Q \in G \setminus {0_E}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
+\end{equation*}
+ce que l'on peut reformuler par:
+\begin{equation}
+\frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
+\end{equation}
+avec $p_1$ la somme des abscisses des points du noyau. Ainsi à partir de $h(x)$ on est capable de calculer l'isoégnie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$.
+\end{rem}
 
 Une conséquence directe de ce théorème est le résultat suivant.
 
