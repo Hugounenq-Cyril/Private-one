@@ -390,11 +390,12 @@ Alors si on note:
 h(x)=\Pi_{Q \in G \setminus \{0_E\}}(x-x(Q)),
 \end{equation*}
 on obtient:
-\begin{equation}\label{eq:velu:gh}
+\begin{equation} 
+\label{eq:velu:gh}
 I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
-\end{equation*}
+\end{equation}
 avec $g$ un polynôme. On pose ensuite:
-\begin{equation}
+\begin{equation*}
 t= \sum_{Q \in G \setminus \{0_E\}} f'(Q) \quad u=\sum_{Q \in G \setminus \{0_E\}} 2f(Q) \quad w=u+\sum_{Q \in G \setminus \{0_E\}}x(Q)f'(Q) 
 \end{equation*}
 
@@ -621,8 +622,10 @@ Voir \cite[Theorem V.1.1]{Silv1}
 
 
 \subsection{Courbes définies sur $\mathbb{C}$}
+Parler entre autres du polynome modulaire à cette occasion-là.
+\subsubsection{Polynôme modulaire}
 \subsection{Multiplication complexe}
-\subsection{Polynôme modulaire}
+
 \subsection{Algorithme de Schoof et ses améliorations}
 %Ici vont être présentés les bases de S.E.A., aucun apport personnel n'a été fait dans ce cadre là, mais il est intéressant pour le lecteur de voir les concepts et  le contexte de celui-ci qui seront évoqués plus tard.
 
@@ -638,7 +641,7 @@ Des améliorations ont donc été apportées à l'algorithme de Schoof par Atkin
 \begin{equation*}
 X^2-t_{\pi}X+q = 0 \bmod \ell
 \end{equation*} 
-on veut voir quand il est possible de déterminer des sous-groupes de la $\ell$-torsion définis sur $\mathbb{F}_q$.
+on veut voir quand il est possible de déterminer des sous-groupes de la $\ell$-torsion \emph{définis} sur $\mathbb{F}_q$.
 On a plusieurs cas possibles selon les propriétés du discriminant $d_{\pi}=t_{\pi}^2-4q$.
 
 \begin{defi}\label{def:dif-Atk-Elk}
@@ -653,7 +656,11 @@ Soit $d_{\pi}$ le discriminant du polynôme caractéristique du Frobenius $\pi$ 
 \begin{prop}
 Soient $j_0 \in \mathbb{F}_q$ le $j$-invariant d'une courbe elliptique $E_0$ définie sur $\mathbb{F}_q$ et  $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ le $\ell$-ème polynôme modulaire. Les $\ell+1$ racines du polynôme $\Phi_{\ell}(X,j_0)$ sont les $j$-invariants de courbes $\ell$-isogénes à $E_0$. 
 \end{prop} 
- Les $j$ invariants des courbes $\ell$-isogènes à $E_0$, racines du polynôme modulaire évalué en $j_0$, correspondent exactement aux $j$-invariants des  courbes générées par les $\ell$ isogénies $E \to E/C$ avec $C$(noyau de l'isogénie) un des $\ell+1$ sous groupe cyclique de la $\ell$-torsion. Dés lors avec cette remarque on voit un moyen de déterminer des sous groupes $C$ restreints de  la $\ell$ torsion.  Cependant il faut que celui-ci soit défini sur le corps sur lequel on travaille. On a alors le résultat suivant qui nous permet d'énoncer dans quel corps $C$ est défini en fonction des cas.
+ Les $j$ invariants des courbes $\ell$-isogènes à $E_0$, racines du polynôme modulaire évalué en $j_0$, correspondent exactement aux $j$-invariants des  courbes générées par les $\ell$ isogénies $E \to E/C$ avec $C$(noyau de l'isogénie) un des $\ell+1$ sous-groupes cycliques de la $\ell$-torsion. 
+ 
+ Dés lors avec cette remarque on voit un moyen de déterminer des sous groupes cycliques $C$ de  la $\ell$ torsion. En effet à l'aide des $j$-invariants des courbes $\ell$-isogènes à $E_0$ on peut calculer une représentation des courbes codomaines de ces $\ell$-isogénies. Une description de ces calculs peut être trouvée dans \textcolor{red}{Citer exemple}, ces calculs utilisent notamment les dérivées partielles du polynôme modulaires. Une fois que l'on a déterminé les équations des courbes codomaines des isogénies alors on utilise un algorithme de calcul d'isogénies comme \citep{BMSS08}, \cite{Lercier-Sirvent2008}, \cite{Couveignes00} \textcolor{red}{Citer aussi Elkies of course} afin de déterminer le noyau de l'isogénie.  
+ 
+ Cependant il faut que le noyau de l'isogénie $C$ soit défini sur le corps sur lequel on travaille. On a alors le résultat suivant qui nous permet d'énoncer dans quel corps $C$ est défini en fonction des cas.
 
 %On a un premier résultat qui nous permet de spécifier certains sous ensembles de la $\ell$-torsion.
 
@@ -824,7 +831,7 @@ G(x_k)=G_0(x_k)+x_kG_1(x_k^2)=G_0(x_k)+x_kG(x_{k-1})
 \end{equation*}
 avec $G_0$ et $G_1$ des polynômes de degré inférieur à $\ell^{k-1}-1$. Ce changement de base ne requiert aucun calcul arithmétique, ainsi celui-ci pourra être utilisé sans coût supplémentaire et en particulier un élément pourra être considéré indifféremment dans une base bivariée ou univariée.%a completer
 
-L'inversion d'un élément peut être alors considérée dans une base univariée en utilisant l'algorithme d'Euclide étendu. Le coût d'inversion d'un élément de $\mathsf{F}_k$ serait de $O(\mathsf{M}(\ell^k)\log(\ell^k))$ opérations sur $\mathsf{F}_0$ en utilisant les résultats de \cite{vzGJG03}[ch.11]. Une autre technique plus avantageuse est préférée, soit $G(x_k)$ un élément inversible de $\mathSf{F}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
+L'inversion d'un élément peut être alors considérée dans une base univariée en utilisant l'algorithme d'Euclide étendu. Le coût d'inversion d'un élément de $\mathsf{F}_k$ serait de $O(\mathsf{M}(\ell^k)\log(\ell^k))$ opérations sur $\mathsf{F}_0$ en utilisant les résultats de \cite{vzGJG03}[ch.11]. Une autre technique plus avantageuse est préférée, soit $G(x_k)$ un élément inversible de $\mathsf{F}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
 \begin{align*}
 \frac{1}{G(x_k)} &=\frac{1}{G_0(x_{k-1})+x_kG_1(x_{k-1})} \\
  				&= \frac{G_0(x_{k-1})-x_kG_1(x_{k-1})}{G_0(x_{k-1})^2-x_{k-1}G_1(x_{k-1})^2}
@@ -935,7 +942,7 @@ que l'on peut construire par récurrence:
 \zeta_m=
 \begin{cases} 
 \zeta_{m/2}  \zeta_{m/2}\zeta_{m/2}^{|\mathsf{F}_0|^{m/2}} \quad \textit{si m est pair }\\
-\zeta_{1}  \zeta_{m-1}^{|\mathsf{F}_0|} \qaud \textit{si m est impair}
+\zeta_{1}  \zeta_{m-1}^{|\mathsf{F}_0|} \quad \textit{si m est impair}
 \end{cases}
 \end{equation*}
 
