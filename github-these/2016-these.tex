@@ -359,65 +359,72 @@ Soit $\varphi$ une isogénie de $E_1$ dans $E_2$, alors:
 Voir \cite[III.4.10]{Silv1}
 \end{proof}
 
+Comme les isogénies peuvent être décomposées de façon unique en un produit d'isogénie inséparable et séparable, alors on va se concentrer à la détermination d'isogénies séparables par la suite.
+
+Voyons maintenant plus en détail le lien entre une isogénie séparable et son noyau, pour cela on va d'abord rappeler les formules de Vélu et une application de celle-ci.
+
 \subsubsection{Formule de Vélu}
-Formule de Vélu à mettre ici pour définir $E \rightarrow E/C$.
- 
-Pour un sous-groupe $C$ de $E(\mathbb{F}_q)$ les formules de Vélu \textcolor{red}{Citer Velu} permettent d'exprimer de façon canonique une isogénie séparable $E \Rightarrow E'$ de noyau $C$ et son codomaine $E'$.  L'isogénie est $\mathbb{F}_q$-rationnelle si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{F}_q[X]$.
+
+Pour un sous-groupe $C$ de $E(\mathbb{K})$ les formules de Vélu \textcolor{red}{Citer Velu} \cite{velu1971} permettent d'exprimer de façon canonique une isogénie séparable $E \Rightarrow E'$ de noyau $C$ et son codomaine $E'$.  L'isogénie est $\mathbb{F}_q$-rationnelle si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{K}[X]$.
 
 Soit $P$ un point de $E$ alors les formules de Vélu nous donnent l'isogénie $I$ de noyau $C$ par: 
 \begin{equation}
 \label{eq:Velu}
-I(P)= \left( x(P)+\sum_{Q \in C \setminus 0_E} x(P+Q)-x(Q),y(P)+\sum_{Q \in C \setminus 0_E} y(P+Q)-y(Q) \right)
+I(P)= \left( x(P)+\sum_{Q \in C \setminus \{0_E\}} x(P+Q)-x(Q),y(P)+\sum_{Q \in C \setminus \{0_E\}} y(P+Q)-y(Q) \right)
 \end{equation} 
 On peut alors exprimer l'équation de la courbe codomaine de l'isogénie à l'aide des formules d'addition. Cependant par un souci de simplicité on va se restreindre au cas où l'on a $p \geqslant 3$, dans ce cas là on peut exprimer l'équation de $E$ par:
 \begin{equation*}
 y^2=x^3+a_2 x^2 + a_4 x + a_6
 \end{equation*}
-On note alors par $f$ et $f'$ les deux fonctions suivantes dans $\mathbb{F}_q(E)$:
+On note alors par $f$ et $f'$ les deux fonctions suivantes dans $\mathbb{K}(E)$:
 \begin{align*}
 f(P)&=& x(P)^3+a_2x(P)^2+a_4x(P)+a_6 \\
 f'(P)&=& 3x(P)^2+2a_2x(P)+a_4
 \end{align*}
 Avec les formules d'addition on peut réécrire l'équation \ref{eq:Velu} de la façon suivante:
 \begin{equation} \label{eq:velu:sum}
-I(x,y)=\left( x + \sum_{Q \in G \setminus {0_E}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2} , y + \sum_{Q \in G \setminus {0_E}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3}  \right)
+I(x,y)=\left( x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2} , y + \sum_{Q \in G \setminus \{0_E\}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3}  \right)
 \end{equation}
 Alors si on note: 
 \begin{equation*}
-h(x)=\Pi_{Q \in G \setminus {0_E}}(x-x(Q)),
+h(x)=\Pi_{Q \in G \setminus \{0_E\}}(x-x(Q)),
 \end{equation*}
 on obtient:
 \begin{equation}\label{eq:velu:gh}
-I(x,y)=(\frac{g(x)}{h(x)},y(\frac{g(x)}{h(x)})')
+I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
 \end{equation*}
 avec $g$ un polynôme. On pose ensuite:
 \begin{equation}
-t= \sum_{Q \in G \setminus {0_E}} f'(Q) \quad u=\sum_{Q \in G \setminus {0_E}} 2f(Q) \quad w=u+\sum_{Q \in G \setminus {0_E}}x(Q)f'(Q) 
+t= \sum_{Q \in G \setminus \{0_E\}} f'(Q) \quad u=\sum_{Q \in G \setminus \{0_E\}} 2f(Q) \quad w=u+\sum_{Q \in G \setminus \{0_E\}}x(Q)f'(Q) 
 \end{equation*}
 
 \begin{rem}
-On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisé par Elkies \textcolor{red}{ref a mettre} qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
+On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisé par Elkies \cite{elkies1998} \textcolor{red}{ref a mettre} qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
 \begin{equation*}
-\frac{g(x)}{h(x)}= x + \sum_{Q \in G \setminus {0_E}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
+\frac{g(x)}{h(x)}= x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
 \end{equation*}
 ce que l'on peut reformuler par:
 \begin{equation}
 \frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
 \end{equation}
-avec $p_1$ la somme des abscisses des points du noyau. Ainsi à partir de $h(x)$ on est capable de calculer l'isoégnie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$.
+avec $p_1$ la somme des abscisses des points du noyau. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{K}$.
 \end{rem}
 
-Une conséquence directe de ce théorème est le résultat suivant.
+Une conséquence directe de cette remarque est le résultat suivant.
 
 \begin{cor}
-Soit $E_1$ une courbe elliptique, alors il y a une correspondance bijective entre les isogénies séparables qui ont pour domaine de définition $E_1$ et les sous-groupes finis de $E_1$:
+Soit $E$ une courbe elliptique, alors il y a une correspondance bijective entre les isogénies séparables qui ont pour domaine de définition $E$ et les sous-groupes finis de $E$:
 \begin{equation*}
 \begin{alignedat}{1}
-(\varphi :E_1\rightarrow \varphi(E_1)) &\mapsto  \ker(\varphi)  \\
- (E_1\rightarrow\nicefrac{E_1}{C})  &\  \reflectbox{$\mapsto$} \ C 
+(\varphi :E\rightarrow \varphi(E)) &\mapsto  \ker(\varphi)  \\
+ (E\rightarrow\nicefrac{E}{C})  &\  \reflectbox{$\mapsto$} \ C 
 \end{alignedat}
 \end{equation*}
 \end{cor}
+
+\begin{rem}
+Pour $E$ une courbe elliptique et $C$ un sous-groupe fini des points de $E$ la notation $\nicefrac{E}{C}$ désigne la courbe obtenue par l'isogénie séparable de noyau $C$.
+\end{rem}
 
 L'ensemble des isogénies de $E_1$ vers $E_2$ adjoint à l'application nulle est appelé groupe des homomorphismes et est noté \emph{$\mathrm{Hom}(E_1,E_2)$}. L'ensemble des isogénies de $E_1$ vers $E_1$ adjoint à l'application nulle est appelé anneau des endomorphismes et est noté \emph{$\mathrm{End}(E_1)=\mathrm{Hom}(E_1,E_1)$}, les éléments de $\mathrm{End}(E_1)$ inversibles sont appelés automorphismes et sont notés \emph{$\mathrm{Aut}(E_1)$}. Une isogénie définie sur $\mathbb{K}$ sera dite \emph{$\mathbb{K}$-rationnelle} ou simplement \emph{rationnelle} quand il n'y a pas d'ambiguïtés.
 
