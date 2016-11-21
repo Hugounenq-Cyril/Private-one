@@ -651,6 +651,16 @@ Soit $d_{\pi}$ le discriminant du polynôme caractéristique du Frobenius $\pi$ 
 \item si $d_{\pi}$ est un non-résidu quadratique dans $\mathbb{Z}/\ell \mathbb{Z}$ alors $\ell$ est dit nombre premier de Atkin.
 \end{itemize} 
 \end{defi}
+	Avec cette distinction il va être possible selon les cas de déterminer des espaces propres pour le Frobenius appliqué à $\ell$-torsion.Avant cela on a besoin d'énoncer la définition suivante:
+\begin{def}
+Bla Bla
+\end{def}	
+	 
+	Dans le premier cas on doit faire une distinction selon la nullité du discriminant $d_{\pi}$ modulo $\ell$. 
+\begin{itemize}	
+	\item Si $d_{\pi}=0 \bmod \ell$ alors il n'y a qu'une seule valeur propre $\lambda$ et l'espace propre est défini sur $\mathbb{F}_q^r$ avec $r$ l'ordre multiplicatif de la valeur propre $\lambda$ dans $\mathbb{Z}/\ell\mathbb{Z}$.
+	\item Si $d_{\pi} \neq 0 \bmod \ell$ alors il y a deux valeurs propres $\lambda$, $\mu$ et les espaces propres sont définis sur $\mathbb{F}_q$.
+\end{itemize}
  On ne peut connaître à priori ce résultat, car il suppose la connaissance de $t_{\pi}$ et donc la cardinalité de la courbe. On doit donc travailler avec un autre objet le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ de degré $\ell+1$ et symétrique. 
  
 \begin{prop}
@@ -678,7 +688,7 @@ Le théorème suivant de Atkin permet de déterminer plus spécifiquement les ca
 Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0, 1728$. Soit $\Phi_{\ell}(X,j(E))=f_1f_2\cdots f_s$ la factorisation de $\Phi_{\ell}(X,j(E))$ dans $\mathbb{F}_q[X]$ en éléments irréductibles, alors les degrés possibles de $f_1,f_2, \cdots , f_s$ sont:
 \begin{enumerate}
 \item $(1,\ell)$ ou $(1,1, \cdots, 1)$. Dans les deux cas on a $t_{\pi}^2-4q=0 \bmod \mathbb{Z}/\ell \mathbb{Z}$, dans le premier cas on pose $r=\ell$ et dans le second $r=1$;
-\item $(1,1,r,r, \cdots,r)$. Dans ce cas on a $t_{\pi}^2-4q=0$ qui est un résidu quadratique modulo $\ell$. On a alors $r$ qui divise $\ell-1$, et l'on a alors $\pi$ qui agit comme une matrice scalaire sur $E[\ell]$;
+\item $(1,1,r,r, \cdots,r)$. Dans ce cas on a $t_{\pi}^2-4q$ qui est un résidu quadratique modulo $\ell$. On a alors $r$ qui divise $\ell-1$, et l'on a alors $\pi$ qui agit comme une matrice scalaire sur $E[\ell]$;
 \item $(r,r,\cdots,r)$ avec $r>1$. Dans ce cas $t_{\pi}^2-4q$ n'est pas un résidu quadratique, $r$ divise $\ell+1$ et la restriction de $\pi$ à $E[\ell]$ admet un polynôme charactéristique irréductible sur $\mathbb{Z}/\ell \mathbb{Z}$. 
 \end{enumerate}
 \end{thm}
