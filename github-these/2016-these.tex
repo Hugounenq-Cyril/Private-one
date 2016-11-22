@@ -645,40 +645,48 @@ on veut voir quand il est possible de déterminer des sous-groupes de la $\ell$-
 On a plusieurs cas possibles selon les propriétés du discriminant $d_{\pi}=t_{\pi}^2-4q$.
 
 \begin{defi}\label{def:dif-Atk-Elk}
-Soit $d_{\pi}$ le discriminant du polynôme caractéristique du Frobenius $\pi$ défini sur $\mathbb{F}_q$. Soit $\ell$ un nombre premier différent de $p$ la caractéristique de $\mathbb{F}_q$ alors:
+Soient $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0,1728$, $d_{\pi}$ le discriminant du polynôme caractéristique du Frobenius $\pi$ associé à $E$. Soit $\ell$ un nombre premier différent de $p$ la caractéristique de $\mathbb{F}_q$ alors:
 \begin{itemize}
 \item si $d_{\pi}$ est un résidu quadratique dans $\mathbb{Z}/\ell \mathbb{Z}$ alors $\ell$ est dit nombre premier de Elkies,
 \item si $d_{\pi}$ est un non-résidu quadratique dans $\mathbb{Z}/\ell \mathbb{Z}$ alors $\ell$ est dit nombre premier de Atkin.
 \end{itemize} 
 \end{defi}
-	Avec cette distinction il va être possible selon les cas de déterminer des espaces propres pour le Frobenius appliqué à $\ell$-torsion.Avant cela on a besoin d'énoncer la définition suivante:
-\begin{def}
-Bla Bla
-\end{def}	
+	Avec cette distinction il va être possible selon les cas de déterminer des espaces propres pour le Frobenius appliqué à $\ell$-torsion. Avant cela on a besoin d'énoncer la définition suivante:
+\begin{defi}
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Soit $C$ un sous-groupe de $E[\ell]$ d'ordre $\ell$. On note $r$ le plus petit entier $\rho$ tel que $\pi^{\rho}(C)=C$.
+\end{defi}	
 	 
-	Dans le premier cas on doit faire une distinction selon la nullité du discriminant $d_{\pi}$ modulo $\ell$. 
+	Dans le cas Elkies on doit faire une distinction selon la nullité du discriminant $d_{\pi}$ modulo $\ell$. 
 \begin{itemize}	
-	\item Si $d_{\pi}=0 \bmod \ell$ alors il n'y a qu'une seule valeur propre $\lambda$ et l'espace propre est défini sur $\mathbb{F}_q^r$ avec $r$ l'ordre multiplicatif de la valeur propre $\lambda$ dans $\mathbb{Z}/\ell\mathbb{Z}$.
+	\item Si $d_{\pi}=0 \bmod \ell$ alors il n'y a qu'une seule valeur propre $\lambda$ et l'espace propre est défini sur $\mathbb{F}_{q^r}$ avec $r=1$ si l'espace propre est de dimension $2$ sur $\mathbb{F}_q$ et $r=\ell$ si seulement un espace propre de dimension $1$ est défini sur $\mathbb{F}_q$.
 	\item Si $d_{\pi} \neq 0 \bmod \ell$ alors il y a deux valeurs propres $\lambda$, $\mu$ et les espaces propres sont définis sur $\mathbb{F}_q$.
 \end{itemize}
- On ne peut connaître à priori ce résultat, car il suppose la connaissance de $t_{\pi}$ et donc la cardinalité de la courbe. On doit donc travailler avec un autre objet le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ de degré $\ell+1$ et symétrique. 
+
+	Dans le cas Atkin les valeurs propres ne sont définies sur définie sur $\mathbb{F}_\ell$ mais sur $\mathbb{F}_{\ell^2}$, les espaces propres sont alors définis sur $\mathbb{F}_{q^r}$ avec $r \mid \ell+1$.
+	
+	
+	On ne peut connaître à priori ce résultat, car il suppose la connaissance de $t_{\pi}$ et donc la cardinalité de la courbe. On doit donc travailler avec un autre objet le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ de degré $\ell+1$ et symétrique. 
  
-\begin{prop}
-Soient $j_0 \in \mathbb{F}_q$ le $j$-invariant d'une courbe elliptique $E_0$ définie sur $\mathbb{F}_q$ et  $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ le $\ell$-ème polynôme modulaire. Les $\ell+1$ racines du polynôme $\Phi_{\ell}(X,j_0)$ sont les $j$-invariants de courbes $\ell$-isogénes à $E_0$. 
-\end{prop} 
- Les $j$ invariants des courbes $\ell$-isogènes à $E_0$, racines du polynôme modulaire évalué en $j_0$, correspondent exactement aux $j$-invariants des  courbes générées par les $\ell$ isogénies $E \to E/C$ avec $C$(noyau de l'isogénie) un des $\ell+1$ sous-groupes cycliques de la $\ell$-torsion. 
+\begin{defi}
+Soient $j_0 \in \mathbb{F}_q$ le $j$-invariant d'une courbe elliptique $E_0$ définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0,1728$ et  $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ le $\ell$-ème polynôme modulaire. Les $\ell+1$ racines du polynôme $\Phi_{\ell}(X,j_0)$ sont les $j$-invariants de courbes $\ell$-isogénes à $E_0$. 
+\end{defi} 
+Les $j$ invariants des courbes $\ell$-isogènes à $E_0$, racines du polynôme modulaire évalué en $j_0$, correspondent exactement aux $j$-invariants des  courbes générées par les $\ell$ isogénies $E \to E/C$ avec $C$(noyau de l'isogénie) un des $\ell+1$ sous-groupes cycliques de la $\ell$-torsion. 
+
+On montre alors le lien entre l'existence des espaces propres et les racines du $\ell^$-ième polynôme modulaire $\Phi_{\ell}$ par la proposition suivante. 
+
  
- Dés lors avec cette remarque on voit un moyen de déterminer des sous groupes cycliques $C$ de  la $\ell$ torsion. En effet à l'aide des $j$-invariants des courbes $\ell$-isogènes à $E_0$ on peut calculer une représentation des courbes codomaines de ces $\ell$-isogénies. Une description de ces calculs peut être trouvée dans \textcolor{red}{Citer exemple}, ces calculs utilisent notamment les dérivées partielles du polynôme modulaires. Une fois que l'on a déterminé les équations des courbes codomaines des isogénies alors on utilise un algorithme de calcul d'isogénies comme \citep{BMSS08}, \cite{Lercier-Sirvent2008}, \cite{Couveignes00} \textcolor{red}{Citer aussi Elkies of course} afin de déterminer le noyau de l'isogénie.  
  
- Cependant il faut que le noyau de l'isogénie $C$ soit défini sur le corps sur lequel on travaille. On a alors le résultat suivant qui nous permet d'énoncer dans quel corps $C$ est défini en fonction des cas.
+% Dés lors avec cette remarque on voit un moyen de déterminer des sous groupes cycliques $C$ de  la $\ell$ torsion. En effet à l'aide des $j$-invariants des courbes $\ell$-isogènes à $E_0$ on peut calculer une représentation des courbes codomaines de ces $\ell$-isogénies. Une description de ces calculs peut être trouvée dans \textcolor{red}{Citer exemple}, ces calculs utilisent notamment les dérivées partielles du polynôme modulaires. Une fois que l'on a déterminé les équations des courbes codomaines des isogénies alors on utilise un algorithme de calcul d'isogénies comme \citep{BMSS08}, \cite{Lercier-Sirvent2008}, \cite{Couveignes00} \textcolor{red}{Citer aussi Elkies of course} afin de déterminer le noyau de l'isogénie.  
+ 
+% Cependant il faut que le noyau de l'isogénie $C$ soit défini sur le corps sur lequel on travaille. On a alors le résultat suivant qui nous permet d'énoncer dans quel corps $C$ est défini en fonction des cas.
 
 %On a un premier résultat qui nous permet de spécifier certains sous ensembles de la $\ell$-torsion.
 
 \begin{prop}\label{pro:def-ss-grp}
 Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0, 1728$. Alors:
 \begin{enumerate}
-\item le polynôme $\Phi(X,j)$ a une racine $j_0 \in \mathbb{F}_{q}^r$ si et seulement si le noyau $C$ de l'isogénie $E \to E/C$ avec $j(E/C)=j_0$ est un espace propre de dimension $1$ pour $\pi^r$ appliqué à $E[\ell]$
-\item le polynôme $\Phi(X,j)$ se scinde complètement sur $ \mathbb{F}_{q}^r[X]$ si et seulement si $\pi^r$ agit comme une matrice scalaire sur $E[\ell]$.
+\item le polynôme $\Phi_{\ell}(X,j)$ a une racine $j_0 \in \mathbb{F}_{q}^r$ si et seulement si le noyau $C$ de l'isogénie $E \to E/C$ avec $j(E/C)=j_0$ est un espace propre de dimension $1$ pour $\pi^r$ appliqué à $E[\ell]$
+\item le polynôme $\Phi_{\ell}(X,j)$ se scinde complètement sur $ \mathbb{F}_{q}^r[X]$ si et seulement si $\pi^r$ agit comme une matrice scalaire sur $E[\ell]$.
 \end{enumerate}
 \end{prop}
 
@@ -687,55 +695,56 @@ Le théorème suivant de Atkin permet de déterminer plus spécifiquement les ca
 \begin{thm}[Atkin]\label{thm:Atkin}
 Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0, 1728$. Soit $\Phi_{\ell}(X,j(E))=f_1f_2\cdots f_s$ la factorisation de $\Phi_{\ell}(X,j(E))$ dans $\mathbb{F}_q[X]$ en éléments irréductibles, alors les degrés possibles de $f_1,f_2, \cdots , f_s$ sont:
 \begin{enumerate}
-\item $(1,\ell)$ ou $(1,1, \cdots, 1)$. Dans les deux cas on a $t_{\pi}^2-4q=0 \bmod \mathbb{Z}/\ell \mathbb{Z}$, dans le premier cas on pose $r=\ell$ et dans le second $r=1$;
-\item $(1,1,r,r, \cdots,r)$. Dans ce cas on a $t_{\pi}^2-4q$ qui est un résidu quadratique modulo $\ell$. On a alors $r$ qui divise $\ell-1$, et l'on a alors $\pi$ qui agit comme une matrice scalaire sur $E[\ell]$;
-\item $(r,r,\cdots,r)$ avec $r>1$. Dans ce cas $t_{\pi}^2-4q$ n'est pas un résidu quadratique, $r$ divise $\ell+1$ et la restriction de $\pi$ à $E[\ell]$ admet un polynôme charactéristique irréductible sur $\mathbb{Z}/\ell \mathbb{Z}$. 
+\item $(1,\ell)$ ou $(1,1, \cdots, 1)$. Dans les deux cas $t_{\pi}^2-4q=0 \bmod \mathbb{Z}/\ell \mathbb{Z}$, dans le premier cas on pose $r=\ell$ et dans le second $r=1$;
+\item $(1,1,r,r, \cdots,r)$. Dans ce cas $t_{\pi}^2-4q$ est un résidu quadratique modulo $\ell$. On a alors $r$ qui divise $\ell-1$ et $\pi$ agit comme une matrice scalaire sur $E[\ell]$;
+\item $(r,r,\cdots,r)$ avec $r>1$. Dans ce cas $t_{\pi}^2-4q$ n'est pas un résidu quadratique, $r$ divise $\ell+1$ et la restriction de $\pi$ à $E[\ell]$ admet un polynôme charactéristique irréductible sur $\mathbb{F}_q$. 
 \end{enumerate}
 \end{thm}
-Dans tous les cas on a $r$ qui correspond à l'ordre de la matrice $\pi$ dans $PGL_2(\mathbb{Z}/\ell \mathbb{Z})$ et on a le résultat suivant pour la trace du Frobenius $t_{\pi}$:
-\begin{equation*}
+Dans tous les cas on a $r$ qui correspond à l'ordre de la matrice $\pi$ dans $\mathrm{PGL_2}(\mathbb{Z}/\ell \mathbb{Z})$ et la trace du Frobenius $t_{\pi}$ vérifie:
+\begin{equation}
+\label{eq:sea:tra}
 t_{\pi}^2=q(\zeta + \zeta^{-1})^2 \bmod \ell
-\end{equation*}
-avec $\zeta \in \overline{\mathbb{F}_q}$ une racine $r$-ième primitive de l'unité.
+\end{equation}
+avec $\zeta \in \overline{\mathbb{F}_q}$ une racine $r$-ième primitive de l'unité. Ainsi dans le cas Atkin pour déterminer $t_{\pi}$ on est ammené à tester $\varphi(r)/2$ racines primitives $r$-ième de l'unité.
 
 Ainsi en pratique pour déterminer la nature d'un nombre premier $\ell$ on calcule $g(X)=\mathrm{pgcd}(\Phi(X,\ell),X^q-X)$. Lorsque l'on a $g(X)=1$  alors $\ell$ est un nombre de Atkin, sinon $\ell$ est un nombre de Elkies.
 
-Les nombres premiers de Elkies sont les plus favorables au calcul de $t_{\pi}$ car une fois que l'on a un nombre premier de Elkies alors par \eqref{pro:def-ss-grp} il existe un sous groupe cyclique $C$ de la $\ell$ torsion qui est un espace propre de dimension $1$ pour le Frobenius $\pi$. On résoud alors 
+Les nombres premiers de Elkies sont les plus favorables au calcul de $t_{\pi}$ car une fois que l'on a un nombre premier de Elkies alors par la proposition \ref{pro:def-ss-grp} il existe un sous groupe cyclique $C$ de la $\ell$ torsion qui est un espace propre de dimension $1$ pour le Frobenius $\pi$. On résoud alors 
 \begin{equation*}
 X^2-t_{\pi}X+q = 0 \bmod g_{\ell}
 \end{equation*} 
-avec $g_{\ell}$ le polynôme qui s'annule sur les abscisses des points de ce groupe $C$.
+avec $g_{\ell}$ le polynôme qui s'annule sur les abscisses des points de $C$.
 Ce groupe $C$ étant plus petit que celui de la $\ell$-torsion, on va diminuer la complexité du calcul à effectuer pour trouver la trace modulo $\ell$. En effet la $\ell$-torsion étant isomorphe à un produit de deux groupes cycliques, une fois une valeur propre trouvée $\lambda$, alors l'autre valeur propre est $\mu=q/\lambda \bmod \ell$ et l'on obtient alors la trace $t_{\pi}=\lambda+\mu \bmod \ell$. 
 
-Par contre pour les nombres premiers $\ell$ de Atkin comme un sous groupe cylcique de la $\ell$-torsion ne peut être déterminé dans $\mathbb{F}_q$ alors on ne peut que spéculer sur les valeurs possibles de $t_{\pi}$ et l'on doit alors toutes les considérer. De telle sorte que pour les différents nombres premiers de Atkin on est obligé d'utiliser un algorithme à pas de bébé pas de géant pour lequel il existe des améliorations proposées par \cite{Ler97a}. Ces améloriations utilisent notamment un tri sur les nombres premiers de Atkin en fonction de leur côut, dû aux nombres de racines primites $r$-ième de l'unité, que ceux-ci ont pour l'algorithme.
+Par contre pour les nombres premiers $\ell$ de Atkin, comme un sous groupe cylcique de la $\ell$-torsion ne peut être déterminé dans $\mathbb{F}_q$ alors on ne peut déterminer les valeurs exactes de $t_{\pi}$ modulo $\ell$. On doit donc considérer toutes les valeurs possibles données par \eqref{eq:sea:tra}. On répète alors cette opération pour  différents nombres premiers de Atkin, puis on utilise un algorithme à pas de bébé pas de géant pour déterminer la trace du Frobenius. Il existe des améliorations sur l'algorithme à pas de bébé pas de géant proposées par \cite{Ler97a}, ces améloriations utilisent notamment un tri sur les nombres premiers de Atkin en fonction de leur côut. Ce coût est dû au nombre de racines primites $r$-ième de l'unité, qui donnent le nombre de solutions possibles de \eqref{eq:sea:tra}.
 
 
 On va donc dans la suite de ce document se concentrer sur le cas où $\ell$ est un nombre de Elkies car cela nous permettra de déterminer un sous espace particulier de la $\ell$-torsion et de la $\ell^k$ torsion en général avec $k$ un entier.
 
-Voyons le cas Elkies plus précisément vu que l'algorithme que proposé dans ce document se compare à de la littérature qui se place dans ce contexte particulier.
+Voyons le cas Elkies plus précisément car l'algorithme proposé dans ce document se compare à de la littérature qui se place dans ce contexte particulier.
 
 \subsubsection{Cas Elkies} \label{sub:Elkies}
-Lorsque l'on est dans le cas Elkies, alors on cherche à déterminer un sous-groupe de la $\ell$-torsion qui est aussi espace propre pour le Frobenius, le but étant au final de déterminer la trace du Frobenius à travers la détermination de son action sur cet espace propre. 
+Lorsque l'on est dans le cas Elkies, on cherche à déterminer un sous-groupe de la $\ell$-torsion qui est aussi espace propre pour le Frobenius, le but étant de déterminer la trace du Frobenius à travers son action sur cet espace propre. 
 
-Ce sous groupe $C$ est déterminé comme étant le noyau de l'isogénie qui relie la courbe $E_0$ dont on veut calculer le cardinal et une des courbes $\ell$-isogènes à $E_0$. Pour calculer l'une des courbes $\ell$-isogènes il faut calculer les racines du polynôme modulaire $\Phi_{\ell}(X,Y)$ évalué en $j_0$ ($j$-invariant de $E_0$), on obtient alors le $j$-invariant des courbes $\ell$-isognèes définies sur $\mathbb{F}_q$. Celles-ci sont définies sur $\mathbb{F}_q$ par leur $j$-invariant à tordue près. Il faut donc se servir du résultat suivant prouvé par Elkies afin de déterminer exactement la courbe isogène à l'aide des formes de Weierstrass.
+Ce sous-groupe $C$ est calculé comme étant le noyau de l'isogénie qui relie la courbe $E_0$ (dont on cherche le cardinal) et une des courbes $\ell$-isogènes à $E_0$. Pour trouver l'une des courbes $\ell$-isogènes à $E_0$ il faut calculer les racines du $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y)$ évalué en $j_0$ ($j$-invariant de $E_0$), on obtient alors le $j$-invariant des courbes $\ell$-isognèes définies sur $\mathbb{F}_q$. Ces courbes sont définies sur $\mathbb{F}_q$ par leur $j$-invariant à tordue près. Il faut donc se servir du résultat suivant prouvé par Elkies afin de déterminer exactement la courbe isogène à l'aide des formes de Weierstrass.
 
 \begin{prop}
 Soit $E_0$ une courbe elliptique définie sur $\mathbb{F}_q$, un corps de caractéristique différente de $2$ et de $3$, de $j$-invariant différent de $0$ et $1728$, on suppose de plus que $E_0$ admet une courbe $\ell$-isogène $\tilde{E}$. On note l'équation de Weierstrass de $E_0$: $y^2=x^3+a_4x+a_6$. On a alors $\tilde{j}$ le $j$-invariant de $\tilde{E}$ et son équation de Weierstrass
 \begin{equation*}
 \tilde{E}:y^2=x^3+\tilde{a_4}x+\tilde{a_6}
 \end{equation*}
- qui nous est précisée par les équations suivantes: 
+ qui nous est donnée par les équations : 
 \begin{equation*}
 \tilde{a_4}=-\frac{1}{48}\frac{\tilde{j'}^2}{\tilde{j}(\tilde{j}-1728)} \quad \tilde{a_6}=-\frac{1}{864}\frac{\tilde{j'}^3}{\tilde{j}^2(\tilde{j}-1728)}
 \end{equation*}
-avec $\tilde{j'} \in \mathbb{F}_q$ donné par l'équation suivante:
+avec $\tilde{j'} \in \mathbb{F}_q$ donné par:
 \begin{equation*}
 \tilde{j'}=-\frac{18}{\ell}\frac{a_6}{a_4}\frac{\Phi_{\ell,X}(j,\tilde{j})}{\Phi_{\ell,Y}(j,\tilde{j})}j
 \end{equation*}
-avec la notation $\Phi_{\ell,X}$(resp. $\Phi_{\ell,Y}$) pour noter la dérivée partielle de $\Phi_{\ell}$ en $X$ (resp. $Y$): $\frac{\partial \Phi_{\ell}}{\partial X} $ (resp. $\frac{\partial \Phi_{\ell}}{\partial, Y} $ )
+avec $\Phi_{\ell,X}$(resp. $\Phi_{\ell,Y}$) la dérivée partielle de $\Phi_{\ell}$ en $X$ (resp. $Y$): $\frac{\partial \Phi_{\ell}}{\partial X} $.
 \end{prop} 
 
-Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci c'est ce que des algorithmes tels \cite{BMSS08}  puis \cite{Lercier-Sirvent2008}   cherchent à résoudre en particulier dans ce contexte. Un présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
+Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci des algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008}  cherchent à résoudre ce problème dansun tel contexte. Un présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
 
 
 \subsection{Lien entre isogénie et son action sur le module de Tate}
