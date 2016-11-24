@@ -121,12 +121,12 @@ Dans ce chaptire nous allons faire quelques rappels sur les courbes elliptiques.
 
 \subsection{\'Equations de Weierstrass}
 
-Soit $\mathbb{K}$ un corps, on dénote par $\overline{\mathbb{K}}$ sa cloture algébrique. On rappelle tout d'abord  la définition d'un espace projectif sur $\mathbb{K}$.
+Soit $\mathbb{K}$ un corps, on dénote par $\overline{\mathbb{K}}$ sa cloture algébrique. Sauf indication explicite contraire par convention on notera $p$ la caractérisitque du corps $\mathbb{K}$. On rappelle tout d'abord  la définition d'un espace projectif sur $\mathbb{K}$.
 
 \begin{defi}
 On appelle espace projectif de dimension $2$ sur un corps $\mathbb{K}$ et on note $\mathbb{P}^2(\mathbb{K})$, l'ensemble des classes $(X:Y:Z)$ de la relation d'équivalence définie comme suit:
 \begin{equation*}
-\forall (X,Y,Z) \in \mathbb{K}^3 \setminus (0,0,0), (X,Y,Z) \mathrm{ssi} (X',Y',Z') \Leftrightarrow \exists c \in \mathbb{K}^*, X'=cX, Y'=cY, Z'=cZ.
+\forall (X,Y,Z) \in \mathbb{K}^3 \setminus (0,0,0), (X,Y,Z) \equiv (X',Y',Z') \textit{ ssi }\exists c \in \mathbb{K}^*, X'=cX, Y'=cY, Z'=cZ.
 \end{equation*}
 \end{defi}
 
@@ -136,10 +136,10 @@ Une courbe elliptique $E$ peut être définie comme la variété projective asso
 \label{eq:weierstrass-proj}
 E:Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3
 \end{equation}
-avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le point $[0:1:0]$ est appelé le \emph{point à l'infini} et sera noté $O_E$. Dès lors que l'on a $a_1,a_2,a_3,a_4,a_6$ des éléments de $\mathbb{K}$ alors on dit que la courbe est définie sur $\mathbb{K}$.
+avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le point $[0:1:0]$ est appelé le \emph{point à l'infini} et sera noté $O_E$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
 \end{defi}
 
-L'équation \eqref{eq:weierstrass-proj} est dite forme homogène de l'équation de Weierstrass. En appliquant le changement de variables $x=\frac{X}{Z}$, $y=\frac{Y}{Z}$, on passe alors en coordonnées affines, on obtient l'équation de Weierstrass suivante:
+L'équation \eqref{eq:weierstrass-proj} est dite forme homogène de l'équation de Weierstrass. En appliquant le changement de variables $x=\frac{X}{Z}$, $y=\frac{Y}{Z}$, on passe alors en coordonnées affines et on obtient l'équation de Weierstrass suivante:
 
 \begin{equation}
 \label{eq:weierstrass-red}
@@ -151,7 +151,7 @@ appelée équation affine de Weierstrass. La courbe $E$ est alors définie comme
 \begin{equation*}
 b_2=a_1^2+4a_2, b_4=a_1a_3+2a_4, b_6=a_3^2+4a_6, b_8=a_1^2a_6-a_1a_3a_4+4a_2a_6+a_2a_3^2-a_2^4
 \end{equation*}
-On définit alors le discriminant $\Delta$ de l'équation de Werierstrass \ref{eq:weierstrass-red}:
+\'A l'aide de ceux-ci on défnit le discriminant $\Delta$ de l'équation de Weierstrass \ref{eq:weierstrass-red}:
 \begin{equation*}
 \Delta = -b_2^2b_8-8b_4-27b_6^2+9b_2b_4b_6
 \end{equation*}
@@ -181,7 +181,7 @@ avec $u,r,s,t$ des éléments de $\overline{\mathbb{K}}$ et $u$ différent de $0
 
 
 \begin{defi}
-Soit une courbe $E$ définie sur $\mathbb{K}$ on définit $E(\mathbb{K})$, l'ensemble des points d'une courbe elliptique $E$ définit sur $\mathbb{K}$, comme étant l'ensemble:
+Soit une courbe $E$ définie sur $\mathbb{K}$ on définit $E(\mathbb{K})$, l'ensemble des points d'une courbe elliptique $E$ défini sur $\mathbb{K}$, comme étant l'ensemble:
 \begin{equation*}
 E(\mathbb{K})=\{(X:Y:Z)\in \mathbb{P}^2(\mathbb{K}) \setminus (0,0,0) : Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3 \}
 \end{equation*}
@@ -193,7 +193,7 @@ E(\mathbb{K})=\{(x,y)\in \mathbb{K}^2  : y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6 \} \
 
 On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une courbe elliptique $E$ définie sur $\mathbb{K}$, alors son corps de fonction $\mathbb{K}(E)$ est le corps des fractions de l'anneau des coordonnées:
 \begin{equation*}
-\mathbb{K}(E) \defeq \mathbb{K}[x,y]/(f(x,y)).
+\mathbb{K}[x,y]/(f(x,y)).
 \end{equation*}
 
 \subsection{Loi de groupe}
@@ -341,7 +341,7 @@ f & \mapsto f  \circ \varphi
 \end{equation*}
 
 \begin{defi}
-Soit $\mathbb{K}$ un corps algébriquement clos, $\varphi$ une isogénie définie sur $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors $\varphi$ est dite \emph{séparable} ou \emph{inséparable} selon le fait que l'extension $[K(E_1):\varphi^*(\mathbb{K}(E_2))]$ l'est ou pas. On note alors \emph{$\deg_s{\varphi}$}, \emph{$\deg_i{\varphi}$} les degrés de séparabilité et d'inséparabilité de l'extension de corps $[K(E_1):\varphi^*(\mathbb{K}(E_2))]$ et l'on a $\deg{\varphi}=\deg_s{\varphi}\deg_i{\varphi}$ qui est égal aussi au degré de l'extension de corps $[K(E_1):\varphi^*(\mathbb{K}(E_2))]$.
+Soit $\mathbb{K}$ un corps algébriquement clos, $\varphi$ une isogénie définie sur $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors $\varphi$ est dite \emph{séparable} ou \emph{inséparable} selon le fait que l'extension $[\mathbb{K}(E_1):\varphi^*(\mathbb{K}(E_2))]$ l'est ou pas. On note alors \emph{$\deg_s{\varphi}$}, \emph{$\deg_i{\varphi}$} les degrés de séparabilité et d'inséparabilité de l'extension de corps $[\mathbb{K}(E_1):\varphi^*(\mathbb{K}(E_2))]$ et l'on a $\deg{\varphi}=\deg_s{\varphi}\deg_i{\varphi}$ qui est égal aussi au degré de l'extension de corps $[\mathbb{K}(E_1):\varphi^*(\mathbb{K}(E_2))]$.
 \end{defi}
 
 
@@ -365,14 +365,14 @@ Voyons maintenant plus en détail le lien entre une isogénie séparable et son 
 
 \subsubsection{Formule de Vélu}
 
-Pour un sous-groupe $C$ de $E(\mathbb{K})$ les formules de Vélu \textcolor{red}{Citer Velu} \cite{velu1971} permettent d'exprimer de façon canonique une isogénie séparable $E \Rightarrow E'$ de noyau $C$ et son codomaine $E'$.  L'isogénie est $\mathbb{F}_q$-rationnelle si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{K}[X]$.
+Pour un sous-groupe $C$ de $E(\mathbb{K})$ les formules de Vélu \cite{velu1971} permettent d'exprimer de façon canonique une isogénie séparable $E \rightarrow E'$ de noyau $C$ et de codomaine $E'$.  L'isogénie est $\mathbb{K}$-rationnelle si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{K}[X]$.
 
 Soit $P$ un point de $E$ alors les formules de Vélu nous donnent l'isogénie $I$ de noyau $C$ par: 
 \begin{equation}
 \label{eq:Velu}
 I(P)= \left( x(P)+\sum_{Q \in C \setminus \{0_E\}} x(P+Q)-x(Q),y(P)+\sum_{Q \in C \setminus \{0_E\}} y(P+Q)-y(Q) \right)
 \end{equation} 
-On peut alors exprimer l'équation de la courbe codomaine de l'isogénie à l'aide des formules d'addition. Cependant par un souci de simplicité on va se restreindre au cas où l'on a $p \geqslant 3$, dans ce cas là on peut exprimer l'équation de $E$ par:
+On peut alors exprimer l'équation de la courbe codomaine de l'isogénie à l'aide des formules d'addition. Par un souci de simplicité on va se restreindre au cas où l'on a $p \neq 2$, dans ce cas là on peut exprimer l'équation de $E$ par:
 \begin{equation*}
 y^2=x^3+a_2 x^2 + a_4 x + a_6
 \end{equation*}
