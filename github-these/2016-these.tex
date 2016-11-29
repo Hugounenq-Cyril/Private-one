@@ -381,13 +381,13 @@ On note alors par $f$ et $f'$ les deux fonctions suivantes dans $\mathbb{K}(E)$:
 f(P)&=& x(P)^3+a_2x(P)^2+a_4x(P)+a_6 \\
 f'(P)&=& 3x(P)^2+2a_2x(P)+a_4
 \end{align*}
-Avec les formules d'addition on peut réécrire l'équation \ref{eq:Velu} de la façon suivante:
+Avec les formules d'addition on peut réécrire l'équation \ref{eq:Velu} de la façon suivante en explicitant l'isogénie sur les coordonnées affines $x,y$ de chaque point de la courbe:
 \begin{equation} \label{eq:velu:sum}
 I(x,y)=\left( x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2} , y + \sum_{Q \in G \setminus \{0_E\}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3}  \right)
 \end{equation}
 Alors si on note: 
 \begin{equation*}
-h(x)=\Pi_{Q \in G \setminus \{0_E\}}(x-x(Q)),
+h(x)=\prod_{Q \in G \setminus \{0_E\}}(x-x(Q)),
 \end{equation*}
 on obtient:
 \begin{equation} 
@@ -538,6 +538,11 @@ $\mathrm{End}(E)$ est
 Voir \cite[Corollary III.9.4]{Silv1}, et \cite[Theorem V.3.1]{Silv1}
 \end{proof}
 
+\subsection{Courbes définies sur $\mathbb{C}$}
+Parler entre autres du polynome modulaire à cette occasion-là.
+\subsubsection{Polynôme modulaire}
+
+
 \section{Courbes elliptiques définies sur un corps fini}
 
 Soit $p$ un nombre premier, on notera $\mathbb{F}_q=\mathbb{F}_{p^e}$ le corps fini à $q$ éléments. Travailler sur un corps fini entraîne le fait que le nombre de points d'une courbe elliptiqe est fini, ainsi nous travaillons avec un groupe abélien fini. Afin d'étudier ce groupe et en particulier d'établir sa cardinalité nous allons introduire l'endomorphisme de Frobenius. Dans la suite de ce document nous considérerons que les courbes elliptiques mentionnées sont définies sur un corps fini.
@@ -621,9 +626,6 @@ Voir \cite[Theorem V.1.1]{Silv1}
 
 
 
-\subsection{Courbes définies sur $\mathbb{C}$}
-Parler entre autres du polynome modulaire à cette occasion-là.
-\subsubsection{Polynôme modulaire}
 \subsection{Multiplication complexe}
 
 \subsection{Algorithme de Schoof et ses améliorations}
@@ -633,7 +635,7 @@ L'algorithme de Schoof \cite{Schoof85} consiste à calculer le cardinal d'une co
 \begin{equation*}
 X^2-t_{\pi}X+q=0
 \end{equation*}
-Une fois la valeur de la trace du Frobenius $t_{\pi}$ déterminée, on a alors $|E(\mathbb{F}_q)|=q+1-t_{\pi}$. En pratique cette équation est résolue modulo $\ell_i$, avec $\ell_i$ un nombre premier. Cette résolution est répétée pour un ensemble de nombres premiers $L$ tel que: $\Pi_{\ell_i \in L}\ell_i>4 \sqrt{q}$, le théorème des restes chinois est alors utilisé pour déterminer $t_{\pi}$ modulo $\Pi_{\ell_i \in L}\ell_i$. On utilise ensuite le théorème de Hasse pour déterminer la cardinalité de la courbe.
+Une fois la valeur de la trace du Frobenius $t_{\pi}$ déterminée, on a alors $|E(\mathbb{F}_q)|=q+1-t_{\pi}$. En pratique cette équation est résolue modulo $\ell_i$, avec $\ell_i$ un nombre premier. Cette résolution est répétée pour un ensemble de nombres premiers $L$ tel que: $\prod_{\ell_i \in L}\ell_i>4 \sqrt{q}$, le théorème des restes chinois est alors utilisé pour déterminer $t_{\pi}$ modulo $\prod_{\ell_i \in L}\ell_i$. On utilise ensuite le théorème de Hasse pour déterminer la cardinalité de la courbe.
 
 Le principal problème avec cette approche est que l'on travaille avec la $\ell$-torsion qui lorsque l'on a $\ell \neq p$ est de la forme $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$. On doit alors travailler modulo le polynôme de $\ell$-division (le polynôme unitaire qui s'annule sur les abscisses des points de $\ell$-torsion) qui est de degré $(\ell^2-1)/2$. L'objectif de l'amélioration d'Elkies est alors de considérer des sous-groupes de la $\ell$-torsion afin de diminuer le coût de l'algorithme.
 
@@ -662,7 +664,7 @@ Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Soit $C$ u
 	\item Si $d_{\pi} \neq 0 \bmod \ell$ alors il y a deux valeurs propres $\lambda$, $\mu$ et les espaces propres sont définis sur $\mathbb{F}_q$.
 \end{itemize}
 
-	Dans le cas Atkin les valeurs propres ne sont définies sur définie sur $\mathbb{F}_\ell$ mais sur $\mathbb{F}_{\ell^2}$, les espaces propres sont alors définis sur $\mathbb{F}_{q^r}$ avec $r \mid \ell+1$.
+	Dans le cas Atkin les valeurs propres ne sont pas définie sur $\mathbb{F}_\ell$ mais sur $\mathbb{F}_{\ell^2}$, les espaces propres sont alors définis sur $\mathbb{F}_{q^r}$ avec $r \mid \ell+1$.
 	
 	
 	On ne peut connaître à priori ce résultat, car il suppose la connaissance de $t_{\pi}$ et donc la cardinalité de la courbe. On doit donc travailler avec un autre objet le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ de degré $\ell+1$ et symétrique. 
@@ -695,7 +697,7 @@ Le théorème suivant de Atkin permet de déterminer plus spécifiquement les ca
 \begin{thm}[Atkin]\label{thm:Atkin}
 Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0, 1728$. Soit $\Phi_{\ell}(X,j(E))=f_1f_2\cdots f_s$ la factorisation de $\Phi_{\ell}(X,j(E))$ dans $\mathbb{F}_q[X]$ en éléments irréductibles, alors les degrés possibles de $f_1,f_2, \cdots , f_s$ sont:
 \begin{enumerate}
-\item $(1,\ell)$ ou $(1,1, \cdots, 1)$. Dans les deux cas $t_{\pi}^2-4q=0 \bmod \mathbb{Z}/\ell \mathbb{Z}$, dans le premier cas on pose $r=\ell$ et dans le second $r=1$;
+\item $(1,\ell)$ ou $(1,1, \cdots, 1)$. Dans les deux cas $t_{\pi}^2-4q=0 \bmod \ell $, dans le premier cas on pose $r=\ell$ et dans le second $r=1$;
 \item $(1,1,r,r, \cdots,r)$. Dans ce cas $t_{\pi}^2-4q$ est un résidu quadratique modulo $\ell$. On a alors $r$ qui divise $\ell-1$ et $\pi$ agit comme une matrice scalaire sur $E[\ell]$;
 \item $(r,r,\cdots,r)$ avec $r>1$. Dans ce cas $t_{\pi}^2-4q$ n'est pas un résidu quadratique, $r$ divise $\ell+1$ et la restriction de $\pi$ à $E[\ell]$ admet un polynôme charactéristique irréductible sur $\mathbb{F}_q$. 
 \end{enumerate}
@@ -707,7 +709,7 @@ t_{\pi}^2=q(\zeta + \zeta^{-1})^2 \bmod \ell
 \end{equation}
 avec $\zeta \in \overline{\mathbb{F}_q}$ une racine $r$-ième primitive de l'unité. Ainsi dans le cas Atkin pour déterminer $t_{\pi}$ on est ammené à tester $\varphi(r)/2$ racines primitives $r$-ième de l'unité.
 
-Ainsi en pratique pour déterminer la nature d'un nombre premier $\ell$ on calcule $g(X)=\mathrm{pgcd}(\Phi(X,\ell),X^q-X)$. Lorsque l'on a $g(X)=1$  alors $\ell$ est un nombre de Atkin, sinon $\ell$ est un nombre de Elkies.
+En pratique pour déterminer la nature d'un nombre premier $\ell$ on calcule $g(X)=\mathrm{pgcd}(\Phi(X,\ell),X^q-X)$. Lorsque l'on a $g(X)=1$  alors $\ell$ est un nombre de Atkin, sinon $\ell$ est un nombre de Elkies.
 
 Les nombres premiers de Elkies sont les plus favorables au calcul de $t_{\pi}$ car une fois que l'on a un nombre premier de Elkies alors par la proposition \ref{pro:def-ss-grp} il existe un sous groupe cyclique $C$ de la $\ell$ torsion qui est un espace propre de dimension $1$ pour le Frobenius $\pi$. On résoud alors 
 \begin{equation*}
@@ -744,7 +746,7 @@ avec $\tilde{j'} \in \mathbb{F}_q$ donné par:
 avec $\Phi_{\ell,X}$(resp. $\Phi_{\ell,Y}$) la dérivée partielle de $\Phi_{\ell}$ en $X$ (resp. $Y$): $\frac{\partial \Phi_{\ell}}{\partial X} $.
 \end{prop} 
 
-Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci des algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008}  cherchent à résoudre ce problème dansun tel contexte. Un présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
+Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci à l'aide d'algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008}  cherchent à résoudre ce problème dansun tel contexte. Un présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
 
 
 \subsection{Lien entre isogénie et son action sur le module de Tate}
