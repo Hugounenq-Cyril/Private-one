@@ -758,16 +758,19 @@ La construction d'extension de corps finis est un problème naturel dès lors qu
 \label{def:tour-ell}
 Soit $\ell$ un nombre premier, on appelle tour d'extensions $\ell$-adiques du corps fini $\mathbb{F}_q$ la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{0}, \mathsf{F}_{1}, \mathsf{F}_{2}, \cdots$ pour lesquels:
 \begin{itemize}
-\item $\mathsf{F}_{0}$ est une extension de $\mathbb{F}_q$ de degré $d_0$ qui correspond à l'ordre de la matrice du Frobenius restreint à la $\ell$-tosion: $\pi_{\ell}$, on a donc $d_0 \mid \ell-1$. De plus $r \mid d_0$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
+\item $\mathsf{F}_{0}$ est une extension de $\mathbb{F}_q$ de degré $d_0$ qui correspond à l'ordre de la matrice du Frobenius restreint à la $\ell$-torsion de la courbe elliptique étudiée: $\pi_{\ell}$, on a donc $d_0 \mid \ell-1$. De plus $r \mid d_0$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
 \item $\mathsf{F}_{i}$ pour $i \geqslant 1$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
 \end{itemize}
 \end{defi}
 
+\begin{rem}
+Les constructions de tour d'extensions $\ell$-adiques sont donc spécifiées par l'ordre de la matrice du Frobenius restreint à la $\ell$-torsion de la courbe elliptique étudiée. Cette caractéristique est juste prise en compte pour la détermination de $d_0$ et n'influencera pas autrement la construction de la tour ni les opérations effectuées sur celle-ci. Ainsi une même construction de tour d'extension $\ell$-adique pourra servir pour l'étude de deux courbes elliptiques différentes dès lors que l'ordre de la matrice du Frobenius restreint à la $\ell$-torsion de la courbe elliptique étudiée est la même.
+\end{rem}
 
-Les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert la voie à d'autres travaux sur les tours $2$-adiques \cite{Doliskani-Schost15} et les tours $\ell$-adiques \cite{DeFeo-Doliskani-Schost13}. Dans ces travaux l'idée pour obtenir des constructions de tours de corps finis compatibles est le passage de représentation \textit{univariée} à \textit{bivariée}. Ici représenation univariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i]$ avec $x_i$ un élément de primitif de $\mathsf{F}_i$, de même une représentation bivariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i, x_{i-1}]$ avec $x_i$(resp. $x_{i-1}$) élément primitif de $\mathsf{F}_i$ (resp. $\mathsf{F}_{i-1}$). Ces idées ont permis d'obtenir des résultats satisfaisants en terme de complexité comparé aux résultats obtenus en utilisant de l'algèbre linéaire dans les constructions préconisées dans Magma \cite{BosmaCS97}. Ainsi certains algorithmes tels que le \textit{relèvement} ou la \textit{descente} d'éléments dans les corps de la tour $\ell$-adique (et $2$-adique) ont des complexités optimales et correspondent juste à une réécriture des éléments. Le relèvement correspond au fait de prendre un élément de $\mathsf{F}_{i-1}$ et de l'écrire comme un élément de $\mathsf{F}_i$, la descente correspond à l'opération inverse. Il y a aussi des opérations comme le Frobenius, crucial pour l'algorithme \textcolor{red}{ref à mettre plus tard}, ou le calcul de racine carrée qui ont des coûts satisfaisants. Tout cela va être détaillé dans ce qui suit. Les travaux de  \cite{DeFeo-Shost'12} ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
+Les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert la voie à d'autres travaux sur les tours $2$-adiques \cite{Doliskani-Schost15} et les tours $\ell$-adiques \cite{DeFeo-Doliskani-Schost13}. Dans ces travaux l'idée pour obtenir des constructions de tours de corps finis compatibles est le passage de représentation \textit{univariée} à \textit{bivariée}. Ici représentation univariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i]$ avec $x_i$ un élément de primitif de $\mathsf{F}_i$, de même une représentation bivariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i, x_{i-1}]$ avec $x_i$(resp. $x_{i-1}$) élément primitif de $\mathsf{F}_i$ (resp. $\mathsf{F}_{i-1}$). Ces idées ont permis d'obtenir des résultats satisfaisants en terme de complexité comparé aux résultats obtenus en utilisant de l'algèbre linéaire dans les constructions préconisées dans Magma \cite{BosmaCS97}. Ainsi certains algorithmes tels que le \textit{relèvement} ou la \textit{descente} d'éléments dans les corps de la tour $\ell$-adique (et $2$-adique) ont des complexités optimales et correspondent juste à une réécriture des éléments. Le relèvement correspond au fait de prendre un élément de $\mathsf{F}_{i-1}$ et de l'écrire comme un élément de $\mathsf{F}_i$, la descente correspond à l'opération inverse. Il y a aussi des opérations comme le Frobenius, crucial pour l'algorithme \textcolor{red}{ref à mettre plus tard}, ou le calcul de racine carrée qui ont des coûts satisfaisants. Tout cela va être détaillé dans ce qui suit. Les travaux de  \cite{DeFeo-Shost'12} ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
 
 Une façon naturelle de  construire une extension de corps fini $\mathbb{F}_q$ est de trouver un polynôme $P$ irréductible défini sur $\mathbb{F}_q$ et de degré égal à celui de l'extension désirée et de quotienter ensuite $\mathbb{F}_q[X]$ par celui-ci.
-Ainsi les éléments des tours d'extension seront toujours représentés comme des polynômes à coefficients dans $\mathbb{F}_q$, la taille des éléments de $\mathsf{F}_{k}$ sera donc $O(d\ell^k)$ éléments de $\mathbb{F}_q$. 
+Ainsi les éléments des tours d'extension seront toujours représentés comme des polynômes à coefficients dans $\mathbb{F}_q$, la taille des éléments de $\mathsf{F}_{k}$ sera donc $O(d_0\ell^k)$ éléments de $\mathbb{F}_q$. 
 
 Les complexités sont calculées en nombre d'opérations ($+, \times,\div$) dans $\mathbb{F}_q$, indépendamment de la construction de $\mathbb{F}_q$. 
 
@@ -778,8 +781,6 @@ L'idée de base de \cite{Doliskani-Schost15} est de permettre un passage efficac
 \section{Construction d'une tour d'extensions $\ell$-adiques}
 L'objectif est de calculer une tour d'extensions $\ell$-adiques du corps fini $\mathbb{F}_q$, avec $q \wedge \ell =1$, de taille $\mathbb{F}_{q^{d_0n}}$ avec $n=\ell^k$, $k \geqslant 1$ et $d_0 \mid \ell-1$. 
 
-\subsubsection{Titre non defini}
-
 \begin{thm}
 Soit $\ell$ un nombre premier, soit $\mathbb{F}_q$ un corps fini, alors une tour d'extensions $\ell$-adiques du corps $\mathbb{F}_q$: $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1, \mathsf{F}_2, \cdots$ est calculée en $O(d_0\mathsf{M}(d_0)\log(d_0)\log(d_0q))+O(\mathsf{M}(\ell)\log(d_0)+\mathsf{M}(d_0)\log(\ell)\log(d_0)+\mathsf{M}(d_0)\log(q))+O(d_0^2)$ opérations en moyenne sur $\mathbb{F}_q$.
 \end{thm}
@@ -789,12 +790,14 @@ Soit $\ell$ un nombre premier, soit $\mathbb{F}_q$ un corps fini, alors une tour
   Deux cas se présentent selon que la valeur de $d_0$:
   \begin{itemize}
   
- \item Pour $d_0 = 1$ on a $\mathsf{F}_0 \equiv \mathbb{F}_{q}$ et l'on cherche un non-résidu $\ell$-adique de la même manière que la méthode préconisée dans le cas $\d_0 \neq 1$.
+
   \item  Pour $d_0 \neq 1$ on construit tout d'abord $\mathsf{F}_0$ l'extension de $\mathbb{F}_q$ de degré $d_0$ qui divise $\ell-1$ et est donc premier avec $\ell$. Cette construction de $\mathsf{F}_0$ est faite en même temps que la détermination d'un non-résidu $\ell$-adique. 
 
 %Tout d'abord on détermine la nature de $\mathsf{F}_0$, pour cela on calcule le $\ell$-ème polynôme cyclotomique $\Phi_{\ell} \in \mathbb{Z}[X_0]$ et on le factorise sur $\mathbb{F}_q[X_0]$ par \cite[Th 9]{Shoup93} cela a un coût de $O_e(\mathsf{M}(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$. Sur $\mathbb{F}_q[X_0]$, $\Phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$. Si $r=1$ alors on a $\mathbb{F}_q \equiv \mathsf{F}_0$ sinon on doit construire $\mathsf{F}_0$.
 On calcule un polynôme irréductible de degré $d_0$ défini sur $\mathbb{F}_q$, pour cela on utilise par exemple l'algorithme probabiliste de Ben-Or qui calcule un tel polynôme avec une complexité moyenne de $O(d_0\mathsf{M}(d_0)\log(d_0)\log(d_0q))$ opérations sur $\mathbb{F}_q$ d'après \cite[Theorem 14.42]{vzGJG03}.
  Soit $R_0$ un tel polynôme, alors par construction il existe un non-résidu $\ell$-adique dans $\mathbb{F}_q[X_0]/ \langle R_0 \rangle $. On trouve après avoir testé $O(1)$ éléments tirés au hasard par \cite[Lemma 15]{Shoup93}  un tel non-résidu $\ell$-adique, chaque essai a un coût moyen de $O(\mathsf{M}(\ell)\log(d_0)+\mathsf{M}(d_0)\log(\ell)\log(d_0)+\mathsf{M}(d_0)\log(q))$ opérations sur $\mathbb{F}_q$. Une fois un tel non-résidu $\ell$-adique $y_0$ trouvé on calcule son polynôme minimal $P_0$, ce calcul coûte $O(d_0^2)$ opérations sur $\mathbb{F}_q$ d'après \cite[Th. 4]{Shoup93}. On construit donc $\mathsf{F}_0=\mathbb{F}_q[X_0]/\langle P_0(X_0) \rangle$ et le non-résidu $\ell$-adique sera alors l'image de $X_0$ dans $\mathsf{F}_0$. On construit dès lors toute extension $\mathsf{F}_{i}$ de $\mathbb{F}_{q}$ pour $i \geqslant 1$ à l'aide du polynôme irréductible $P_0(X^{\ell^{i}})$ défini dans $\mathbb{F}_q[X]$. 
+ 
+  \item Pour $d_0 = 1$ on a $\mathsf{F}_0 \equiv \mathbb{F}_{q}$ ainsi on cherche un non-résidu $\ell$-adique de la même manière que la méthode préconisée dans le cas $d_0 \neq 1$. Une fois un tel non-résidu $\ell$-adique $\alpha$ trouvé on définit $\mathsf{F}_i$ pour $i \geqslant 1$ à l'aide du polynôme irréductible $X^{\ell^{i}}-\alpha$ défini dans $\mathbb{F}_q[X]$.
  
   \end{itemize}
  \end{proof}
@@ -881,7 +884,7 @@ La descente correspond donc au passage d'un élément de $\mathsf{F}_k$ écrit s
 
 \section{Opérations dans la tour d'extension $\ell$-adique}
 
-\subsubsection*{Inversion d'un élément}
+\subsection*{Inversion d'un élément dans le cas $\ell=2$}
 
 
 L'inversion d'un élément peut être alors considérée dans une base univariée en utilisant l'algorithme d'Euclide étendu. Le coût d'inversion d'un élément de $\mathsf{F}_k$ serait de $O(\mathsf{M}(\ell^kd_0)\log(\ell^kd_0))$ opérations sur $\mathbb{F}_q$ en utilisant les résultats de \cite[ch.11]{vzGJG03}. Une autre technique plus avantageuse est préférée uniquement pour le cas $\ell=2$, soit $G(x_k)$ un élément inversible de $\mathsf{F}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
@@ -891,7 +894,7 @@ L'inversion d'un élément peut être alors considérée dans une base univarié
 \end{align*}
 Le coût d'une inversion d'un élément de $\mathsf{F}_k$ est le coût d'une addition, de la multiplication d'éléments de $\mathsf{F}_k$ ainsi que le coût d'une inversion d'éléments dans $\mathsf{F}_{k-1}$, on a donc affaire à un algorithme récursif de coût  $T(k)=T(k-1)+O(M(\ell^kd_0))$; avec la super linéarité de $M$ on obtient un coût de calcul de $O(M(\ell^k)d_0)$ opérations sur $\mathbb{F}_q$. La complexité de l'inversion est donc de $O(M(\ell^k)d_0)$ opérations sur $\mathbb{F}_q$ dans le cas où l'on considère une extension dyadique.
 
-\subsubsection*{Calcul du Frobenius}
+\subsection*{Calcul du Frobenius}
 
 Cette opération est très importante pour déterminer des ensembles spécifiques de points d'une courbe elliptique (voir \textcolor{red}{ref à mettre plus tard}), c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable comparé au cas $\ell=2$ \cite{Doliskani-Schost15}. Le résultat ici est une généralisation de \cite{Doliskani-Schost15}.
 
@@ -909,7 +912,7 @@ Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat éta
 La première étape est de calculer $y=x_i^s$. En écrivant $s=ud+v$ avec $0 \leqslant v < d$ on a alors $y=x_0^{u \bmod |F_0|-1}x_i^v$. 
 Une méthode rapide est préconisée pour le calcul de $u \bmod |\mathsf{F}_0|-1$ et $v$, dans un premier temps il faut calculer $\rho=s \bmod \ell^i(|\mathsf{F}_0|-1)$ à l'aide de l'exponentiation rapide puis $u \bmod |\mathsf{F}_0|-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne   de $\rho$ par $\ell^i$. Le coût booléen d'une telle opération est de $O(\log(\ell^j)\log(\ell^{i}|\mathsf{F}_0|))$. L'opération majeure étant l'exponentiation avec un exposant de taille $O(\ell^{j}\log(|\mathsf{F}_0|))$ modulo un entier de taille $O(\log(\ell^{i}|\mathsf{F}_0|))$, le calcul de $x_0^{u \bmod |\mathsf{F}_0|-1}$ se fait en utilisant $O( M(d_0) d_0\log(q))$ opérations sur $\mathbb{F}_q$. On conserve ce résultat sous la forme d'un monôme dans $F_0[x_i]$. 
 
-Dans la tour d'extensions $\ell$-adiques les éléments de la tour peuvent être représentés sous forme $G(x_k)$ avec $G$ un polynôme de degré $d$ à coefficients dans $\mathsf{F}_0$, or un élément $G(x_k)$ peut aussi être représenté sous forme $H(x_k)$ avec $H$ un polynôme de degré $d$ à coefficients dans $\mathbb{F}_q$. \'A travers le calcul du Frobenius on va expliciter ces changements de représentation. On se place dans le cas où $\mathbb{F}_q \ncong \mathsf{F}_0$ avec $a$ représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[\mathsf{F}_i:\mathbb{F}_q]$ : 
+Dans la tour d'extensions $\ell$-adiques les éléments de la tour peuvent être représentés sous forme $G(x_k)$ avec $G$ un polynôme de degré $d$ à coefficients dans $\mathsf{F}_0$, or un élément $G(x_k)$ peut aussi être représenté sous forme $H(x_k)$ avec $H$ un polynôme de degré $d_0d$ à coefficients dans $\mathbb{F}_q$. \'A travers le calcul du Frobenius on va expliciter ces changements de représentation. On se place dans le cas où $\mathbb{F}_q \ncong \mathsf{F}_0$ avec $a$ représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[\mathsf{F}_i:\mathbb{F}_q]$ : 
 \begin{equation*}
 a^*_0+a_1^*x_i+ \cdots + a^*_{d_0d-1}x_i^{d_0d-1}
 \end{equation*}
@@ -917,7 +920,7 @@ avec les $a_i^* \in \mathbb{F}_q$. On réécrit $a$ sous la forme:
 \begin{equation*}
 a_0+a_1x_i+ \cdots + a_{d-1}x_i^{d-1}
 \end{equation*}
-avec les $a_w=a_w^* + \sum_{k=1}^{d_1d-1/d}a_{i+dk}x_1^k \in \mathsf{F}_0$ pour $w$ appartenant à $[0; d-1]$. Pour obtenir cette réécriture on s'est servi du fait que pour $t$ appartenant à $[1; d_0d-1]$ tel que $t=d u_t+v_t$ avec $0 \leqslant v_t<d$ on a $x_w^t=x_1^{u_t \bmod |\mathsf{F}_0|-1}x_w^{v_t}$ . Ainsi cette opération est juste un réarrangement des coefficients de $a$.
+avec les $a_w=a_w^* + \sum_{k=1}^{d_1d-1/d}a_{i+dk}^*x_0^k \in \mathsf{F}_0$ pour $w$ appartenant à $[0; d-1]$. Pour obtenir cette réécriture on s'est servi du fait que pour $t$ appartenant à $[1; d_0d-1]$ tel que $t=d u_t+v_t$ avec $0 \leqslant v_t<d$ on a $x_w^t=x_0^{u_t \bmod |\mathsf{F}_0|-1}x_w^{v_t}$ . Ainsi cette opération est juste un réarrangement des coefficients de $a$.
 
 On écrit $a^s$ sous la forme:
 \begin{equation*}
@@ -940,7 +943,7 @@ b_0^* + b_1^* x_i + b_2 x_i^2 + \cdots + b_{d_0d-1} x_i^{d_0d-1}
 
 Maintenant que le coût du Frobenius a été établi nous allons voir une autre opération nécessaire pour le calcul d'isogénies dans le cas de tours dyadiques, le calcul de racines carrées.
 
-\subsubsection*{Calcul d'une racine carrée}
+\subsection*{Calcul d'une racine carrée}
 Les résultats présentés sont issus d'idées développées dans \cite{Doliskani-Schost14} et sont adaptés à la construction de tour d'extensions $\ell$-adiques présentée ici où le coût du Frobenius est très faible. Le résultat à retenir est celui pour les extensions dyadiques du fait de son usage pratique même si une généralisation est présentée. 
 
 \begin{prop}
@@ -948,7 +951,7 @@ Soit $\mathbb{F}_q, \mathsf{F}_0, \cdots \mathsf{F}_k$ une tour d'extension $\el
 \end{prop}
 
 \begin{proof}
-Soit $\delta$ un carré non nul de $\mathsf{F}_k$ ayant pour racine carrée $\gamma$ (non connue a priori). Soit $\beta$ dans $\mathsf{F}_0$ défini de la manière suivante:
+Soit $\delta$ un carré non nul de $\mathsf{F}_k$ ayant pour racine carrée $\gamma$. Soit $\beta$ dans $\mathsf{F}_0$ défini de la manière suivante:
 \begin{align}
 \label{eq:trace-square-root}
 \beta=T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma)=\sum_{i=0}^{\ell^k-1}\gamma^{|\mathsf{F}_0|^i}&=\gamma(1+\gamma^{|\mathsf{F}_0|-1}+\cdots+ \gamma^{|\mathsf{F}_0|^{\ell^k-1}-1} ) \\
@@ -967,8 +970,8 @@ Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation
 \begin{equation*}
  \gamma=\beta \eta^{-1}.
 \end{equation*}
-Sans perte de généralité on peut supposer que l'on a $\eta \neq 0$, si ce n'est pas le cas alors on peut remplacer $\gamma$ par $\gamma c^2$ avec $c$ choisi aléatoirement parmi les inversibles de $\mathsf{F}_k$.
-$O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c^2) \neq 0$. En effet il y a $|\mathsf{F}_0|^{\ell^k}/|\mathsf{F}_0|$ valeurs de $c$ pour lesquelles on a $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c^2) = 0$ ainsi la probabilité d'avoir $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c^2) \neq 0$ est de $1-(|\mathsf{F}_0|^{\ell^k}/|\mathsf{F}_0|)/(|\mathsf{F}_0|^{\ell^k})=1-1/|\mathsf{F}_0|>1/2$.
+Sans perte de généralité on peut supposer que l'on a $\eta \neq 0$, si ce n'est pas le cas alors on peut remplacer $\delta$ par $\delta c^2$ avec $c$ choisi aléatoirement parmi les inversibles de $\mathsf{F}_k$.
+$O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c) \neq 0$. En effet il y a $|\mathsf{F}_0|^{\ell^k}/|\mathsf{F}_0|$ valeurs de $c$ pour lesquelles on a $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c) = 0$ ainsi la probabilité d'avoir $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c) \neq 0$ est de $1-(|\mathsf{F}_0|^{\ell^k}/|\mathsf{F}_0|)/(|\mathsf{F}_0|^{\ell^k})=1-1/|\mathsf{F}_0|>1/2$.
 
 Le coût de calcul de $\beta$ est de $O(M(d_0)\log(q)+C(d_0)\log(d_0))$ opérations en moyenne sur $\mathbb{F}_q$ avec $C(n)=O(n^{1.67})$ d'après \cite{doliskani_Schost_2014_root}. Ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
 
@@ -1009,7 +1012,7 @@ on a alors une relation de récurrence pour le calcul de $\varepsilon$:
 Ainsi on obtient $\eta=1+\lambda+\lambda \varepsilon_{\ell^k-2}$. 
 
  
-Le calcul de $\lambda$ a un coût de $O(M(\ell^kd_0)\log(q))$ opérations sur $\mathbb{F}_q$. Le calcul de $\varepsilon_1$ et $\zeta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, en supposant que le calcul de $\varepsilon_m$ et $\zeta_m$ ait déjà été effectué. En utilisant les équations \ref{varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathsf{F}_{k}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ sont calculés en $O(M(\ell^kd_0)\log(\ell^k)+M(\ell^kd_0)\log(q))=O(M(\ell^kd_0)\log(\ell^kq))$ opérations sur $\mathbb{F}_q$.
+Le calcul de $\lambda$ a un coût de $O(M(\ell^kd_0)\log(q))$ opérations sur $\mathbb{F}_q$. Le calcul de $\varepsilon_1$ et $\zeta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, en supposant que le calcul de $\varepsilon_m$ et $\zeta_m$ ait déjà été effectué. En utilisant les équations \ref{eq:varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathsf{F}_{k}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ sont calculés en $O(M(\ell^kd_0)\log(\ell^k)+M(\ell^kd_0)\log(q))=O(M(\ell^kd_0)\log(\ell^kq))$ opérations sur $\mathbb{F}_q$.
 Le coût de calcul de $\gamma$ et $\beta$ étant négligeables par rapport à celui de $\eta$, on a alors un coût total de $O(M(\ell^kd_0)\log(\ell^kq))$ opérations sur $\mathbb{F}_q$.
 
 \end{proof}
@@ -1031,14 +1034,14 @@ Les coûts des différentes opérations dans de telles tours d'extensions $\ell$
    \hline
   \text{addition/soustraction}  & $O(\ell^kd_0)$ \\
   \text{multiplication}  & $\mathsf{M}(\ell^kd_0)+ O(\ell^kd_0)$  \\
-  \textit{division} & $O(\mathsf{M}(\ell^kd_0))$ \\
-  \textit{Frobenius} & $O(\ell^k \mathsf{M}(d_0) + d_0 \mathsf{M}(d_0)\log(q))$  \\
-  \textit{Square-root} & $ O(\mathsf{M}(\ell^kd_0)\log(\ell^kq)) (\text{en moyenne}) $ \\
+  \text{division} & $O(\mathsf{M}(\ell^kd_0))$ \\
+  \text{Frobenius} & $O(\ell^k \mathsf{M}(d_0) + d_0 \mathsf{M}(d_0)\log(q))$  \\
+  \text{racine carrée} & $ O(\mathsf{M}(\ell^kd_0)\log(\ell^kq)) (\text{en moyenne}) $ \\
   \hline
 \end{tabular}
 \caption{Coûts des opérations dans $\mathsf{F}_{k}$ exprimées en nombre d'opérations sur $\mathbb{F}_q$}
 \end{figure}
-Il est à noter que pour le calcul d'une racine carrée le coût est un coût espéré, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
+Il est à noter que pour le calcul d'une racine carrée le coût est un coût en moyenne, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
 
 Une implantation de construction de tours $2$-adique et des opérations du Frobenius et du calcul de racine carrée ont été réalisé en SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
@@ -1399,6 +1402,7 @@ Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra 
 
 \section{Calculs d'isogénie}
 \subsection{BMSS}
+
 \subsection{Algorithme de Lercier Sirvent (+ resultat de Tristan)}
 \subsection{Algorithme de Couveignes (parler de ses variantes)}
 
