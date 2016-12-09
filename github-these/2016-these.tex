@@ -110,7 +110,7 @@
 % \SingleSpace
 
 \chapter{Rappels théoriques}
-
+\label{cha:Rappels theoriques}
 
 
 \section{Théorie des ordres dans un corps quadratique imaginaire}
@@ -363,7 +363,7 @@ Comme les isogénies peuvent être décomposées de façon unique en un produit 
 
 Voyons maintenant plus en détail le lien entre une isogénie séparable et son noyau, pour cela on va d'abord rappeler les formules de Vélu et une application de celle-ci.
 
-\subsubsection{Formule de Vélu}
+\subsubsection{Formules de Vélu}
 
 Pour un sous-groupe $C$ de $E(\mathbb{K})$ les formules de Vélu \cite{velu1971} permettent d'exprimer de façon canonique une isogénie séparable $E \rightarrow E'$ de noyau $C$ et de codomaine $E'$.  L'isogénie est $\mathbb{K}$-rationnelle si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{K}[X]$.
 
@@ -864,7 +864,7 @@ On représentera alors $\mathsf{F}_k$ pour $k\geqslant1$ des deux façons suivan
   
 \begin{defi}
 Soit $\mathsf{F}_k$ un élément de la tour d'extensions $\ell$-adiques de $\mathbb{F}_q$.
-La $\mathsf{F}_0$ base monomiale de $\mathsf{F}_k$ est:
+La $\mathsf{F}_0$ base monovariée de $\mathsf{F}_k$ est:
 \begin{equation*}
 1,x_k,x_k^{\ell},...,x_k^{\ell^k-1}
 \end{equation*}
@@ -887,7 +887,7 @@ La descente correspond donc au passage d'un élément de $\mathsf{F}_k$ écrit s
 \subsection*{Inversion d'un élément dans le cas $\ell=2$}
 
 
-L'inversion d'un élément peut être alors considérée dans une base univariée en utilisant l'algorithme d'Euclide étendu. Le coût d'inversion d'un élément de $\mathsf{F}_k$ serait de $O(\mathsf{M}(\ell^kd_0)\log(\ell^kd_0))$ opérations sur $\mathbb{F}_q$ en utilisant les résultats de \cite[ch.11]{vzGJG03}. Une autre technique plus avantageuse est préférée uniquement pour le cas $\ell=2$, soit $G(x_k)$ un élément inversible de $\mathsf{F}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
+L'inversion d'un élément peut être effectuée dans une base univariée en utilisant l'algorithme d'Euclide étendu. Le coût d'inversion d'un élément de $\mathsf{F}_k$ serait de $O(\mathsf{M}(\ell^kd_0)\log(\ell^kd_0))$ opérations sur $\mathbb{F}_q$ en utilisant les résultats de \cite[ch.11]{vzGJG03}. Une autre technique plus avantageuse est préférée uniquement pour le cas $\ell=2$, soit $G(x_k)$ un élément inversible de $\mathsf{F}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
 \begin{align*}
 \frac{1}{G(x_k)} &=\frac{1}{G_0(x_{k-1})+x_kG_1(x_{k-1})} \\
  				&= \frac{G_0(x_{k-1})-x_kG_1(x_{k-1})}{G_0(x_{k-1})^2-x_{k-1}G_1(x_{k-1})^2}
@@ -1398,10 +1398,57 @@ Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra 
 
 \paragraph{Calcul du Frobenius}
 
-\chapter{Isogénies sur les corps finis}
+\chapter{Calcul d'isogénies sur les corps finis}
+Dans ce chapitre vont être présentés différents algorithmes pour résoudre le problème suivant: soient $E, E'$ deux courbes elliptiques définies sur $\mathbb{K}$, on cherche alors à calculer la fraction $\mathbb{K}$-rationnelle qui a pour domaine $E(\mathbb{K})$ et pour codomaine $E'(\mathbb{K})$  telle que  cette application  définisse une isogénie.
+On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$, bien que les algorithmes présentés peuvent s'utiliser sur des corps de caractéristique nulle.
 
-\section{Calculs d'isogénie}
-\subsection{BMSS}
+\section{Rappel et applications des formules de Vélu}
+Comme vu dans le chapitre \ref{cha:Rappels theoriques} à l'aide des formules de Vélu on peut expliciter une isogénie séparable de degré $\ell$ sous la forme:
+\begin{equation} 
+\label{eq:velu:gh}
+I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
+\end{equation}
+avec 
+\begin{equation*}
+h(x)=\prod_{Q \in G \setminus \{0_E\}}(x-x(Q)),
+\end{equation*}
+avec $G=\ker(I)$ et $g$ un polynôme. On rappelle qu'en plus à l'aide de la reformulation d'Elkies on a:
+\begin{equation}
+\frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
+\end{equation}
+avec $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
+
+\section{Elkies 1998}
+Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est différente de $3$.
+L'idée de Elkies est d'à partir des équations de Weierstrass de $E:$
+\begin{equation}
+y^2=x^3+a_2x^2+a_4x+a_6
+\end{equation}
+ et $\tilde{E}:$
+\begin{equation}
+y^2=x^3+\tilde{a_2}x^2+\tilde{a_4}x+\tilde{a_6}
+\end{equation}
+injecter l'équation de l'isogénie \textbf{normalisée}:
+\begin{equation} 
+\label{eq:velu:gh}
+I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right) 
+\end{equation}
+et celle de $E$ dans celle de $E'$:
+\begin{equation}
+(x^3+a_2x^2+a_4x+a_6)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3+ \tilde{a_2} \left(\frac{g(x)}{h(x)} \right)^2 + \tilde{a_4} \left(\frac{g(x)}{h(x)} \right) + \tilde{a_6}.
+\end{equation}
+Cette équation est alors dérivée pour obtenir une équation différentielle du second ordre:
+\begin{equation}
+\label{eq:Elkies-deriv}
+(3x^2+a_2x + a_4)\left(\frac{g(x)}{h(x)} \right)'+2(x^3+a_2x^2+a_4x+a_6)\left(\frac{g(x)}{h(x)} \right)''=  3\left(\frac{g(x)}{h(x)} \right)^2 + 2\tilde{a_2}\left(\frac{g(x)}{h(x)} \right)  + \tilde{a_4}
+\end{equation}
+On écrit alors le développement en série de la fonction rationnelle $\frac{g(x)}{h(x)}$ à l'infini:
+\begin{equation}
+\frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{h_i}{x^i}
+\end{equation}
+que l'on injecte dans \ref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $h_i$, les termes $h_1,h_2$ étant donnés par des équations sur les coefficients des équations de Weierstrass de $E$ et $\tilde{E}$.
+\section{BMSS}
+
 
 \subsection{Algorithme de Lercier Sirvent (+ resultat de Tristan)}
 \subsection{Algorithme de Couveignes (parler de ses variantes)}
