@@ -1419,14 +1419,14 @@ avec $G=\ker(I)$ et $g$ un polynôme. On rappelle qu'en plus à l'aide de la ref
 avec $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
 
 \section{Elkies 1998}
-Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est différente de $3$.
+Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p >> \ell$.
 L'idée de Elkies est d'à partir des équations de Weierstrass de $E:$
 \begin{equation}
-y^2=x^3+a_2x^2+a_4x+a_6
+y^2=x^3+Ax+B
 \end{equation}
  et $\tilde{E}:$
 \begin{equation}
-y^2=x^3+\tilde{a_2}x^2+\tilde{a_4}x+\tilde{a_6}
+y^2=x^3+\tilde{A}x+\tilde{B}
 \end{equation}
 injecter l'équation de l'isogénie \textbf{normalisée}:
 \begin{equation} 
@@ -1435,18 +1435,26 @@ I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
 \end{equation}
 et celle de $E$ dans celle de $E'$:
 \begin{equation}
-(x^3+a_2x^2+a_4x+a_6)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3+ \tilde{a_2} \left(\frac{g(x)}{h(x)} \right)^2 + \tilde{a_4} \left(\frac{g(x)}{h(x)} \right) + \tilde{a_6}.
+(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
 \end{equation}
 Cette équation est alors dérivée pour obtenir une équation différentielle du second ordre:
 \begin{equation}
 \label{eq:Elkies-deriv}
-(3x^2+a_2x + a_4)\left(\frac{g(x)}{h(x)} \right)'+2(x^3+a_2x^2+a_4x+a_6)\left(\frac{g(x)}{h(x)} \right)''=  3\left(\frac{g(x)}{h(x)} \right)^2 + 2\tilde{a_2}\left(\frac{g(x)}{h(x)} \right)  + \tilde{a_4}
+(3x^2+A)\left(\frac{g(x)}{h(x)} \right)'+2(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)''=  3\left(\frac{g(x)}{h(x)} \right)^2 + \tilde{A}
 \end{equation}
 On écrit alors le développement en série de la fonction rationnelle $\frac{g(x)}{h(x)}$ à l'infini:
 \begin{equation}
-\frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{h_i}{x^i}
+\frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{r_i}{x^i}
 \end{equation}
-que l'on injecte dans \ref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $h_i$, les termes $h_1,h_2$ étant donnés par des équations sur les coefficients des équations de Weierstrass de $E$ et $\tilde{E}$.
+que l'on injecte dans \ref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $r_i$ en identifiant les coefficients des $x^{-i}$:
+\begin{equation}
+r_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}r_ir_{k-1-i}\frac{2k-3}{2k+3}Ar_{k-2}-\frac{2(k-3)}{2k+3}Br_{k-3} \quad \text{pour tout} k \geqslant 3
+\end{equation}
+, les termes $r_1,r_2$ étant déterminés par:
+\begin{equation}
+r_1=\frac{A-\tilde{A}}{5} \quad r_2={\frac{B-\tilde{B}}{7}}.
+\end{equation}
+Ainsi, à l'aide de cette récurrence, le coût de calcul de $r_3, \cdots , r_{\ell-2}$ est de $O(\ell^2)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de récurrence sur les $r_i$ on peut calculer $h(x)$ en $O(\ell^2)$ opérations sur $\mathbb{F}_q$ voire en $O(\mathsf{M}(n))$ opérations sur $\mathbb{F}_q$ voir \cite{BMSS08} pour plus de détails. Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$. 
 \section{BMSS}
 
 
