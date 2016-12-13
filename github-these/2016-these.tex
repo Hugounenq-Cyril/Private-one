@@ -1406,21 +1406,34 @@ On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$
 Comme vu dans le chapitre \ref{cha:Rappels theoriques} à l'aide des formules de Vélu on peut expliciter une isogénie séparable de degré $\ell$ sous la forme:
 \begin{equation} 
 \label{eq:velu:gh}
-I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
+I(x,y)=\left(\frac{g(x)}{h(x)},cy\left( \frac{g(x)}{h(x)} \right)'\right)
 \end{equation}
 avec 
 \begin{equation*}
 h(x)=\prod_{Q \in G \setminus \{0_E\}}(x-x(Q)),
 \end{equation*}
-avec $G=\ker(I)$ et $g$ un polynôme. On rappelle qu'en plus à l'aide de la reformulation d'Elkies on a:
+avec $G=\ker(I)$, $c \in \mathbb{F}_q$ et $g$ un polynôme. On rappelle qu'en plus à l'aide de la reformulation d'Elkies on a:
 \begin{equation}
 \frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
 \end{equation}
-avec $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
+avec $f(x)=....$ $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
 
+
+Il est important de noter qu'il exciste des isogénies de la forme:
+\begin{equation}
+\label{eq:iso:gen}
+I(x,y)=\left( \frac{g(x)}{h(x)},cy\frac{g(x)}{h(x)} \right)
+\end{equation}
+avec $c \in \overline{\mathbb{F}_q}$. Ainsi on énonce les définitions suivantes:
+
+
+\begin{def}
+Soit $I$ une isogénie de la forme \ref{eq:iso:gen} avec $c=1$, on dit alors que cette isogénie est \emph{normalisée}. 
+De plus on appellera les équations de 
+\end{def}
 \section{Elkies 1998}
 Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p >> \ell$.
-L'idée de Elkies est d'à partir des équations de Weierstrass de $E:$
+L'idée de Elkies est d'à partir des équations de Weierstrass normalisées de $E:$
 \begin{equation}
 y^2=x^3+Ax+B
 \end{equation}
@@ -1444,17 +1457,49 @@ Cette équation est alors dérivée pour obtenir une équation différentielle d
 \end{equation}
 On écrit alors le développement en série de la fonction rationnelle $\frac{g(x)}{h(x)}$ à l'infini:
 \begin{equation}
-\frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{r_i}{x^i}
+\label{eq:iso:frac}
+\frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{h_i}{x^i}
 \end{equation}
 que l'on injecte dans \ref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $r_i$ en identifiant les coefficients des $x^{-i}$:
 \begin{equation}
-r_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}r_ir_{k-1-i}\frac{2k-3}{2k+3}Ar_{k-2}-\frac{2(k-3)}{2k+3}Br_{k-3} \quad \text{pour tout} k \geqslant 3
+h_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}h_ih_{k-1-i}\frac{2k-3}{2k+3}Ah_{k-2}-\frac{2(k-3)}{2k+3}Bh_{k-3} \quad \text{pour tout} k \geqslant 3
 \end{equation}
-, les termes $r_1,r_2$ étant déterminés par:
+, les termes $h_1,h_2$ étant déterminés par:
 \begin{equation}
 r_1=\frac{A-\tilde{A}}{5} \quad r_2={\frac{B-\tilde{B}}{7}}.
 \end{equation}
-Ainsi, à l'aide de cette récurrence, le coût de calcul de $r_3, \cdots , r_{\ell-2}$ est de $O(\ell^2)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de récurrence sur les $r_i$ on peut calculer $h(x)$ en $O(\ell^2)$ opérations sur $\mathbb{F}_q$ voire en $O(\mathsf{M}(n))$ opérations sur $\mathbb{F}_q$ voir \cite{BMSS08} pour plus de détails. Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$. 
+Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{\ell-2}$ est de $O(\ell^2)$ opérations sur $\mathbb{F}_q$. 
+
+\begin{rem}
+On peut ensuite calculer $h(x)$ sans passer par une reconstruction rationnelle, en effet on peut retrouver les sommes de Newton: $p_0,p_1,\cdots, p_n$ à l'aide de la connaissance de $p_0=\ell-1$ et $p_1(x)$. Dans le cas considéré par Elkies il est tout à fait crédible de considérer la connaissance de $p_1$ car le calcul du $\ell$-ème polynôme modulaire $\phi_{\ell}$ a été effectué (voir pour plus de contexte), à l'aide des dérivées de $\phi_{\ell}$. Ensuite à l'aide de \ref{eq:iso:frac} on établit la récurrence:
+\begin{equation*}
+h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
+\end{equation*}
+à l'aide de laquelle on calcule tous les $p_i$ en $O(\ell)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$ par \citep{BMSS08}.
+Ensuite à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
+
+
+
+r les $h_i$ on peut calculer $h(x)$ en $O(\ell^2)$ opérations sur $\mathbb{F}_q$ voire en $O(\mathsf{M}(n))$ opérations sur $\mathbb{F}_q$ voir \cite{BMSS08} pour plus de détails. 
+\end{rem}
+
+\begin{rem}
+\label{rem:pol:rec}
+Soit $P$ un polynôme de degré $d$ défini sur $\mathbb{F}_q[X]$ de caratéristique $p>d$ ou $p=0$. Alors $P$ peut être déterminé à l'aide de la formule:
+\begin{equation}
+P=\exp\left(\int{\frac{P'}{P}}\right)
+\end{equation} 
+On a alors à l'aide des sommes de Newton:$p_0=d,p_1, \cdots, p_d$:
+\begin{equation}
+\frac{P'}{P}= \frac{d}{X} + \sum_{i = 1}^d \frac{p_i}{X^{i+1}}
+\end{equation}
+Ce qui nous donne:
+\begin{equation}
+P=\exp\left( d \log(X) - \sum_{i = 1}^{d} \frac{p_i}{i!X^i} \right)
+\end{equation} 
+Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton on est capable d'exprimer $P$.
+\end{rem}
+Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$. 
 \section{BMSS}
 
 
