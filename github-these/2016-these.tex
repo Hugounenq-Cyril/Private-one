@@ -731,6 +731,7 @@ Lorsque l'on est dans le cas Elkies, on cherche à déterminer un sous-groupe de
 Ce sous-groupe $C$ est calculé comme étant le noyau de l'isogénie qui relie la courbe $E_0$ (dont on cherche le cardinal) et une des courbes $\ell$-isogènes à $E_0$. Pour trouver l'une des courbes $\ell$-isogènes à $E_0$ il faut calculer les racines du $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y)$ évalué en $j_0$ ($j$-invariant de $E_0$), on obtient alors le $j$-invariant des courbes $\ell$-isognèes définies sur $\mathbb{F}_q$. Ces courbes sont définies sur $\mathbb{F}_q$ par leur $j$-invariant à tordue près. Il faut donc se servir du résultat suivant prouvé par Elkies afin de déterminer exactement la courbe isogène à l'aide des formes de Weierstrass.
 
 \begin{prop}
+\label{prop:elk:nor}
 Soit $E_0$ une courbe elliptique définie sur $\mathbb{F}_q$, un corps de caractéristique différente de $2$ et de $3$, de $j$-invariant différent de $0$ et $1728$, on suppose de plus que $E_0$ admet une courbe $\ell$-isogène $\tilde{E}$. On note l'équation de Weierstrass de $E_0$: $y^2=x^3+a_4x+a_6$. On a alors $\tilde{j}$ le $j$-invariant de $\tilde{E}$ et son équation de Weierstrass
 \begin{equation*}
 \tilde{E}:y^2=x^3+\tilde{a_4}x+\tilde{a_6}
@@ -746,7 +747,7 @@ avec $\tilde{j'} \in \mathbb{F}_q$ donné par:
 avec $\Phi_{\ell,X}$(resp. $\Phi_{\ell,Y}$) la dérivée partielle de $\Phi_{\ell}$ en $X$ (resp. $Y$): $\frac{\partial \Phi_{\ell}}{\partial X} $.
 \end{prop} 
 
-Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci à l'aide d'algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008}  cherchent à résoudre ce problème dansun tel contexte. Un présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
+Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci à l'aide d'algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008} qui cherchent à résoudre ce problème dans un tel contexte. Un présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
 
 
 \subsection{Lien entre isogénie et son action sur le module de Tate}
@@ -1419,7 +1420,7 @@ avec $G=\ker(I)$, $c \in \mathbb{F}_q$ et $g$ un polynôme. On rappelle qu'en pl
 avec $f(x)=....$ $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
 
 
-Il est important de noter qu'il exciste des isogénies de la forme:
+Il est important de noter qu'il existe des isogénies de la forme:
 \begin{equation}
 \label{eq:iso:gen}
 I(x,y)=\left( \frac{g(x)}{h(x)},cy\frac{g(x)}{h(x)} \right)
@@ -1427,12 +1428,14 @@ I(x,y)=\left( \frac{g(x)}{h(x)},cy\frac{g(x)}{h(x)} \right)
 avec $c \in \overline{\mathbb{F}_q}$. Ainsi on énonce les définitions suivantes:
 
 
-\begin{def}
+\begin{defi}
 Soit $I$ une isogénie de la forme \ref{eq:iso:gen} avec $c=1$, on dit alors que cette isogénie est \emph{normalisée}. 
-De plus on appellera les équations de 
-\end{def}
+
+Pour deux courbes $\ell$-isogènes exprimées sous forme de Weierstrass telle que l'isogénie associée à ces courbes est une isogénie normale on dit que ces courbes ont des équations de Weierstrass \emph{normalisées}. 
+\end{defi}
 \section{Elkies 1998}
 Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p >> \ell$.
+Dans le modèle de Elkies on travaille avec des courbes à équations de Weierstrass normalisées, celles-ci sont calculées à l'aide du $\ell$-ème polynôme modulaire (voir \ref{prop:elk:nor} pour la construction et ?? pour la preuve que cela donne des équations de Weierstrass normalisées \textcolor{red}{ref à mettre plus tard}).
 L'idée de Elkies est d'à partir des équations de Weierstrass normalisées de $E:$
 \begin{equation}
 y^2=x^3+Ax+B
@@ -1460,27 +1463,24 @@ On écrit alors le développement en série de la fonction rationnelle $\frac{g(
 \label{eq:iso:frac}
 \frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{h_i}{x^i}
 \end{equation}
-que l'on injecte dans \ref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $r_i$ en identifiant les coefficients des $x^{-i}$:
+que l'on injecte dans \ref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $h_i$ en identifiant les coefficients des $x^{-i}$:
 \begin{equation}
-h_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}h_ih_{k-1-i}\frac{2k-3}{2k+3}Ah_{k-2}-\frac{2(k-3)}{2k+3}Bh_{k-3} \quad \text{pour tout} k \geqslant 3
+\label{eq:rec:h_k}
+h_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}h_ih_{k-1-i}\frac{2k-3}{2k+3}Ah_{k-2}-\frac{2(k-3)}{2k+3}Bh_{k-3} \quad \text{pour tout } k \geqslant 3,
 \end{equation}
-, les termes $h_1,h_2$ étant déterminés par:
+les termes $h_1,h_2$ étant déterminés par:
 \begin{equation}
-r_1=\frac{A-\tilde{A}}{5} \quad r_2={\frac{B-\tilde{B}}{7}}.
+h_1=\frac{A-\tilde{A}}{5} \quad h_2={\frac{B-\tilde{B}}{7}}.
 \end{equation}
 Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{\ell-2}$ est de $O(\ell^2)$ opérations sur $\mathbb{F}_q$. 
 
 \begin{rem}
-On peut ensuite calculer $h(x)$ sans passer par une reconstruction rationnelle, en effet on peut retrouver les sommes de Newton: $p_0,p_1,\cdots, p_n$ à l'aide de la connaissance de $p_0=\ell-1$ et $p_1(x)$. Dans le cas considéré par Elkies il est tout à fait crédible de considérer la connaissance de $p_1$ car le calcul du $\ell$-ème polynôme modulaire $\phi_{\ell}$ a été effectué (voir pour plus de contexte), à l'aide des dérivées de $\phi_{\ell}$. Ensuite à l'aide de \ref{eq:iso:frac} on établit la récurrence:
+On peut ensuite calculer $h(x)$ sans passer par une reconstruction rationnelle, en effet on peut retrouver les sommes de Newton: $p_0,p_1,\cdots, p_n$ à l'aide de la connaissance de $p_0=\ell-1$ et $p_1$. Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer la connaissance de $p_1$ car le calcul du $\ell$-ème polynôme modulaire $\phi_{\ell}$ a été effectué (voir \ref{sub:Elkies} pour plus de contexte), à l'aide des dérivées partielles de $\phi_{\ell}$. Ensuite avec \ref{eq:iso:frac} on établit la récurrence:
 \begin{equation*}
 h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
 \end{equation*}
-à l'aide de laquelle on calcule tous les $p_i$ en $O(\ell)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$ par \citep{BMSS08}.
+à l'aide de laquelle on calcule tous les $p_i$ en $O(\ell)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$ par \cite[§2.2]{BMSS08}.
 Ensuite à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
-
-
-
-r les $h_i$ on peut calculer $h(x)$ en $O(\ell^2)$ opérations sur $\mathbb{F}_q$ voire en $O(\mathsf{M}(n))$ opérations sur $\mathbb{F}_q$ voir \cite{BMSS08} pour plus de détails. 
 \end{rem}
 
 \begin{rem}
@@ -1499,7 +1499,8 @@ P=\exp\left( d \log(X) - \sum_{i = 1}^{d} \frac{p_i}{i!X^i} \right)
 \end{equation} 
 Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton on est capable d'exprimer $P$.
 \end{rem}
-Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$. 
+Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir appliquer la remarque \ref{rem:pol:rec}, ainsi que l'équation \ref{eq:rec:h_k}.
+ 
 \section{BMSS}
 
 
