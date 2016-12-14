@@ -1407,17 +1407,17 @@ On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$
 Comme vu dans le chapitre \ref{cha:Rappels theoriques} à l'aide des formules de Vélu on peut expliciter une isogénie séparable de degré $\ell$ sous la forme:
 \begin{equation} 
 \label{eq:velu:gh}
-I(x,y)=\left(\frac{g(x)}{h(x)},cy\left( \frac{g(x)}{h(x)} \right)'\right)
+I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
 \end{equation}
 avec 
 \begin{equation*}
 h(x)=\prod_{Q \in G \setminus \{0_E\}}(x-x(Q)),
 \end{equation*}
-avec $G=\ker(I)$, $c \in \mathbb{F}_q$ et $g$ un polynôme. On rappelle qu'en plus à l'aide de la reformulation d'Elkies on a:
+avec $G=\ker(I)$, $g$ un polynôme. On rappelle qu'en plus à l'aide de la reformulation d'Elkies on a:
 \begin{equation}
 \frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
 \end{equation}
-avec $f(x)=....$ $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
+avec $f$ donné par l'équation de Weierstrass de $E$: $y^2=f(x)$, $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
 
 
 Il est important de noter qu'il existe des isogénies de la forme:
@@ -1476,9 +1476,10 @@ Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{\
 
 \begin{rem}
 On peut ensuite calculer $h(x)$ sans passer par une reconstruction rationnelle, en effet on peut retrouver les sommes de Newton: $p_0,p_1,\cdots, p_n$ à l'aide de la connaissance de $p_0=\ell-1$ et $p_1$. Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer la connaissance de $p_1$ car le calcul du $\ell$-ème polynôme modulaire $\phi_{\ell}$ a été effectué (voir \ref{sub:Elkies} pour plus de contexte), à l'aide des dérivées partielles de $\phi_{\ell}$. Ensuite avec \ref{eq:iso:frac} on établit la récurrence:
-\begin{equation*}
+\begin{equation}
+\label{eq:p:rec}
 h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
-\end{equation*}
+\end{equation}
 à l'aide de laquelle on calcule tous les $p_i$ en $O(\ell)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$ par \cite[§2.2]{BMSS08}.
 Ensuite à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
 \end{rem}
@@ -1502,19 +1503,22 @@ Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton o
 Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir appliquer la remarque \ref{rem:pol:rec}, ainsi que l'équation \ref{eq:rec:h_k}.
  
 \section{BMSS}
-L'algorithme BMSS \cite{BMSS08} propose de résoudre le même problème que l'algorihtme de Elkies \cite{elkies1998} et a une meilleure complexité:
-\begin{thm}Soient $E, \tilde{E}$ $\ell$-isogènes sous forme de Weierstrass normalisées, avec $\ell$ différent de $p$ la caractéristique du corps qui peut être nulle ou doit vérifier $p >> \ell$. Alors:
+L'algorithme BMSS \cite{BMSS08} propose de résoudre le même problème que l'algorihtme de Elkies \cite{elkies1998} et a une meilleure complexité car celui-ci change notamment de méthode pour le calcul des $h_i$:
+\begin{thm}
+\label{thm:BMSS}
+Soient $E, \tilde{E}$ $\ell$-isogènes sous forme de Weierstrass normalisées, avec $\ell$ différent de $p$ la caractéristique du corps qui peut être nulle ou doit vérifier $p >> \ell$. Alors:
 \begin{itemize}
 \item  si la somme des abscisses des points du noyau de l'isogénie est connue l'algorithme BMSS calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$,
 \item si la somme des abscisses des points du noyau de l'isogénie n'est pas connue l'algorithme BMSS calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{K}$.
 \end{itemize}
 \end{thm}
 
-L'algorithme BMSS part du même postulat que Elkies1998, à savoir, en reprenant les notations de la section précédente, résoudre l'équation suivante:   
+L'algorithme BMSS part du même postulat que Elkies1998, à savoir, en reprenant les notations de la section précédente, trouver le développement en série de la solution de l'équation différentielle suivante:   
 \begin{equation}
+\label{eq:BMSS:ED1}
 (x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
 \end{equation}
-et trouver le développement en série de $\frac{g(x)}{h(x)}$. Cependant on ne connaît pas des conditions initiales en $0$ pour cette équation différentielle vérifiée par $\frac{g(x)}{h(x)}$ et comme $\deg(g)=\ell> \deg(h)= \ell-1$ alors on ne peut travailler avec des conditions à l'infini. On pose donc:
+Cependant on ne connaît pas des conditions initiales en $0$ pour cette équation différentielle vérifiée par $\frac{g(x)}{h(x)}$ et comme $\deg(g)=\ell> \deg(h)= \ell-1$ alors on ne peut travailler avec des conditions à l'infini. On pose donc:
 \begin{equation}
 S(x)=\sqrt{\frac{h(1/x^2)}{g(1/x^2)}} \quad \text{équivalent à} \quad \frac{g(x)}{h(x)}=\frac{1}{S(1/\sqrt{x})}
 \end{equation} 
@@ -1522,6 +1526,41 @@ avec
 \begin{equation}
 S(x)=x + \frac{\tilde{A}-A}{10}x^5+\frac{\tilde{B}-B}{14}x^7+O(x^9)
 \end{equation}
+L'équation \ref{eq:BMSS:ED1} devient alors:
+\begin{equation}
+\label{eq:BMSS:ED2}
+(1+Ax^4+Bx^6)(S'(x))^2=1+\tilde{A}(S(x))^4+\tilde{B}(S(x))^6
+\end{equation}
+que l'on reformule à l'aide des fonctions $G(x)=1/(Bx^6+Ax^4+1)$ et $H(t)=\tilde{B}t^6+\tilde{A}t^4+1$. Ainsi \ref{eq:BMSS:ED2} devient 
+\begin{equation}
+\label{eq:BMSS:ED3}
+(S')^2=(H \circ S) G
+\end{equation}
+L'algorithme BMSS résoud alors l'équation différentielle \ref{eq:BMSS:ED3} en utilisant une itération de Newton qui double à chaque itération la précision de la solution. Ainsi si l'on cherche une solution de l'équation \ref{eq:BMSS:ED3}  on commence avec une solution connue modulo $x^d$ puis on en déduit, à l'aide d'une itération de Newton, une solution modulo $x^{2d}$, cette étape coûte $O(M(d))$ opérations sur $\mathbb{F}_q$. Ainsi pour trouver une solution à \ref{eq:BMSS:ED3} modulo $x^{\mu}$ on doit répéter cette procédure $\log(\mu)$ pour avoir, grâce à la superlinéarité de $\mathsf{M}$, un coût total de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
+
+En utilisant les notations suivantes:
+\begin{equation}
+S(x)=xT(x^2), \quad R(x)=\frac{1}{T(x)^2} \quad \text{tel que } \frac{g(x)}{h(x)}=xR(1/x)
+\end{equation}
+on peut alors énoncer les algorithmes qui solutionnent le théorème \ref{thm:BMSS}.
+On commence avec l'algorithme qui suppose la connnaissance de $p_1$
+\begin{enumerate}
+\item Calculer $G(x) \bmod x^{2\ell-1}$ en utilisant \cite[§2.1]{BMSS08} 
+\item Calculer $S(x)$ solution de \eqref{eq:BMSS:ED3} modulo $x^{2\ell}$ en utilisant \cite[§2.4]{BMSS08}, puis en déduire $T$.
+\item Calculer $R=\frac{1}{T^2}$ à l'aide de \cite[§2.1]{BMSS08}
+\item En déduire $\frac{g(x)}{h(x)}$
+\item Calculer $h$ à l'aide des relations de récurrence de \ref{eq:p:rec} et de l'algorithme d'exponentiation rapide \cite[2.2]{BMSS08}
+\item En deduire $g$ à l'aide de \eqref{eq:iso:frac}
+\end{enumerate}
+Sans la connaissance de $p_1$ l'algorithme va être obligé d'utiliser une reconstruction rationnelle avec des algorithmes tels que celui de Berlekamp-Massey:
+\begin{enumerate}
+\item Calculer $G(x) \bmod x^{2\ell-1}$ en utilisant \cite[§2.1]{BMSS08} 
+\item Calculer $S(x)$ solution de  \eqref{eq:BMSS:ED3} modulo $x^{2\ell}$ en utilisant \cite[§2.4]{BMSS08}
+\item En déduire $T$, puis calculer $T(x)^2$.
+\item Calculer $R$ à l'aide de \cite[§2.1]{BMSS08}
+\item En déduire le développement $h_1, \cdots h_{\ell}$ de $\frac{g(x)}{h(x)}$
+\item Calculer $h$ et $g$ à l'aide d'un algorithme de reconstruction rationnelle.
+\end{enumerate}
 
 
 \subsection{Algorithme de Lercier Sirvent (+ resultat de Tristan)}
