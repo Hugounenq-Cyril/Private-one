@@ -1537,12 +1537,51 @@ que l'on reformule à l'aide des fonctions $G(x)=1/(Bx^6+Ax^4+1)$ et $H(t)=\tild
 (S')^2=(H \circ S) G
 \end{equation}
 
+
+
 \begin{lem}
-Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ telle que $G(0)H(\alpha)=\beta^2$ définie modulo $x^{d+1}$, une solution de cette même équation définie modulo $x^{2d}$ peut être calculée en utilisant $O(\mathsf{M}(2^d))$ opérations.
+Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ telles que $G(0)H(\alpha)=\beta^2$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ définie modulo $x^{d+1}$ avec $S(0)=\alpha$ et $S'(0)=\beta$, une solution de cette même équation  peut être calculée à l'aide de l'algorithme en utilisant $O(\mathsf{M}(2^d))$ opérations sur $\mathbb{F}_q$.
 \end{lem}
 
 \begin{proof}
-Bla
+La preuve complète est donnée dans \cite{Lercier-Sirvent2008} la principale différence par rapport à \cite{BMSS08} est que la résolution de l'équation différentielle linéaire issue de \eqref{eq:BMSS:ED3} est faite à l'aide d'un calcul de racine carrée et non plus d'une exponentiation comme dans \cite{BMSS08}. 
+On va donc présenter l'idée pour accroître la précision d'une solution de \eqref{eq:BMSS:ED3}.
+
+Soit $f_1$ une solution de \eqref{eq:BMSS:ED3} modulo $x^{d+1}$ et $f_2$ telle que:
+\begin{equation}
+S=f_1+f_2 \bmod x^{2d+1}
+\end{equation}
+avec $x^{d+1}$ qui divise $f_2$. On a alors $x^{2d}$ qui divise $f_2'^2$ et on obtient par \eqref{eq:BMSS:ED3}:
+\begin{equation}
+\label{eq:BMSS:ED4}
+2f_1'f_2'+f_1'^2=G(x)H(f_1+f_2) \bmod x^{2d}
+\end{equation}
+On fait le développement de Taylor de $H$ en $f_1$, on obtient l'équation différentielle linéaire:
+\begin{equation}
+2f_1'f_2'+f_1'^2=G(x)H(f_1)+G(x)H'(f_1)f'_2 \bmod x^{2d}
+\end{equation}
+avec la condition initiale $f_2(0)=0$. Cette équation a alors pour solution:
+\begin{equation}
+f_2=\frac{1}{J}\int \frac{(G(x)H(f_1)-f_1'^2)J}{2f_1'} dx,
+\end{equation}
+avec 
+\begin{equation}
+J=\exp \left( -\int \frac{G(x)H'(f_1)}{2f_1'}dx \right).
+\end{equation}
+Il est à noter que comme on souhaite uniquement calculer une solution à précision $x^{2d+1}$, on a besoin uniquement de calculer $J$ et son inverse à précision $x^d$.
+Comme $f_1'$ est une solution de \eqref{eq:BMSS:ED3} alors on peut réexprimer $f_1'$ à l'aide de celle-ci et obtenir:
+\begin{equation}
+\frac{G(x)H'(f_1)}{2f_1'}=\frac{H'(f_1)f_1'}{2H(f_1)} \bmod x^d,
+\end{equation}
+ainsi 
+\begin{equation}
+J=\exp \left(-\frac{1}{2}\log H(f_1) \right)= \frac{1}{\sqrt{H(f_1)}}.
+\end{equation}
+Ainsi à chaque nouvelle itération pour résoudre \eqref{eq:BMSS:ED3} on a uniquement besoin de calculer les quantités suivantes:
+\begin{equation}
+S, \quad U=1/S', \quad V=\sqrt{H \circ S}, \quad J=1/V
+\end{equation}
+à chaque itération de ces calculs effectués à l'aide d'une itération de Newton on double la précision de ces quantités. Les uniques opérations effectuées étant des inversions et des multiplications de séries alors la $i$-ème itération coûte $O(\mathsf{M}(2^i))$ opérations sur $\mathbb{F}_q$, et donc par la superlinéarité de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération. 
 \end{proof}
 
 L'algorithme BMSS résoud alors l'équation différentielle \ref{eq:BMSS:ED3} en utilisant une itération de Newton qui double à chaque itération la précision de la solution. Ainsi si l'on cherche une solution de l'équation \ref{eq:BMSS:ED3}  on commence avec une solution connue modulo $x^d$ puis on en déduit, à l'aide d'une itération de Newton, une solution modulo $x^{2d}$, cette étape coûte $O(M(d))$ opérations sur $\mathbb{F}_q$. Ainsi pour trouver une solution à \ref{eq:BMSS:ED3} modulo $x^{\mu}$ on doit répéter cette procédure $\log(\mu)$ pour avoir, grâce à la superlinéarité de $\mathsf{M}$, un coût total de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
