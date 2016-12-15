@@ -1536,6 +1536,15 @@ que l'on reformule à l'aide des fonctions $G(x)=1/(Bx^6+Ax^4+1)$ et $H(t)=\tild
 \label{eq:BMSS:ED3}
 (S')^2=(H \circ S) G
 \end{equation}
+
+\begin{lem}
+Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ telle que $G(0)H(\alpha)=\beta^2$ définie modulo $x^{d+1}$, une solution de cette même équation définie modulo $x^{2d}$ peut être calculée en utilisant $O(\mathsf{M}(2^d))$ opérations.
+\end{lem}
+
+\begin{proof}
+Bla
+\end{proof}
+
 L'algorithme BMSS résoud alors l'équation différentielle \ref{eq:BMSS:ED3} en utilisant une itération de Newton qui double à chaque itération la précision de la solution. Ainsi si l'on cherche une solution de l'équation \ref{eq:BMSS:ED3}  on commence avec une solution connue modulo $x^d$ puis on en déduit, à l'aide d'une itération de Newton, une solution modulo $x^{2d}$, cette étape coûte $O(M(d))$ opérations sur $\mathbb{F}_q$. Ainsi pour trouver une solution à \ref{eq:BMSS:ED3} modulo $x^{\mu}$ on doit répéter cette procédure $\log(\mu)$ pour avoir, grâce à la superlinéarité de $\mathsf{M}$, un coût total de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
 
 En utilisant les notations suivantes:
