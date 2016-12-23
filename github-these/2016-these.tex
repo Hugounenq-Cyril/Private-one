@@ -452,6 +452,7 @@ Soit $\varphi:E_1 \rightarrow E_2$ une isogénie.
 \begin{equation*}
 [\widehat{m}]=[m] \textit{ et } \deg[m]=m^2.
 \end{equation*}
+
 \item $\deg( \varphi)=\deg(\widehat{\varphi})$,
 \item $\widehat{\widehat{\varphi}}=\varphi$.
 \end{enumerate}
@@ -747,7 +748,7 @@ avec $\tilde{j'} \in \mathbb{F}_q$ donné par:
 avec $\Phi_{\ell,X}$(resp. $\Phi_{\ell,Y}$) la dérivée partielle de $\Phi_{\ell}$ en $X$ (resp. $Y$): $\frac{\partial \Phi_{\ell}}{\partial X} $.
 \end{prop} 
 
-Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci à l'aide d'algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008} qui cherchent à résoudre ce problème dans un tel contexte. Un présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
+Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci à l'aide d'algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008} qui cherchent à résoudre ce problème dans un tel contexte. Une présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
 
 
 \subsection{Lien entre isogénie et son action sur le module de Tate}
@@ -1560,9 +1561,15 @@ avec $x^{d+1}$ qui divise $f_2$. On a alors $x^{2d}$ qui divise $f_2'^2$ et on o
 \end{equation}
 On fait le développement de Taylor de $H$ en $f_1$, on obtient l'équation différentielle linéaire:
 \begin{equation}
-2f_1'f_2'+f_1'^2=G(x)H(f_1)+G(x)H'(f_1)f'_2 \bmod x^{2d}
+2f_1'f_2'+f_1'^2=G(x)H(f_1)+G(x)H'(f_1)f_2 \bmod x^{2d}
 \end{equation}
-avec la condition initiale $f_2(0)=0$. Cette équation a alors pour solution:
+avec la condition initiale $f_2(0)=0$. Que l'on peut reformuler:
+\begin{equation}
+\label{eq:LS08:diflin}
+f'_2-\frac{G(x)H'(f_1)}{2f'_1}f_2=\frac{G(x)H(f'_1)-f'_1^2}{2f'_1}
+\end{equation}
+
+ Cette équation a alors pour solution:
 \begin{equation}
 f_2=\frac{1}{J}\int \frac{(G(x)H(f_1)-f_1'^2)J}{2f_1'} dx,
 \end{equation}
@@ -1604,30 +1611,35 @@ S, \quad U=1/S', \quad V=\sqrt{H \circ S}, \quad J=1/V.
 \end{algorithmic}
 \end{algorithm}
 
-Si la quantité $p_1$ est connue une solution de l'équation différentielle \eqref{eq:BMSS:ED3} est résolue modulo $x^{2\ell}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff} , sinon une solution de l'équation différentielle est calculée modulo $x^{4\ell}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}. Une fois $S$ solution de l'équation $\eqref{eq:BMSS:ED3}$ calculée on définit les valeurs suivantes:
+Une solution $S$ de l'équation différentielle \eqref{eq:BMSS:ED3} est calculée à précision $x^{4\ell}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}. On définit les valeurs suivantes:
 \begin{equation}
 S(x)=xT(x^2), \quad R(x)=\frac{1}{T(x)^2} \quad \text{tel que } \frac{g(x)}{h(x)}=xR(1/x)
 \end{equation}
-que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total}, celle de la reconstruction rationnelle, diffère. En effet pour le cas où l'on connaît déjà $p_1$ alors la même méthode que celle préconisée dans Elkies 1998 est utilisée (voir remarques \ref{rem:ELK:h-p}, \ref{rem:pol:rec}), sinon une reconstruction rationnelle est utilisée (\textcolor{red}{mettre référence}).
-
-\begin{rem}
-L'algorithme BMSS impose la nécessité d'avoir $p>>\ell$ car à l'étape $7$ de $\ref{alg:BMSS:eqdiff}$ une intégration est nécessaire ce qui entraîne des divisions pas les entiers compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ sinon. Cela pose donc des limites aux applications de BMSS.
-\end{rem}
-
-
+que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle (\textcolor{red}{mettre référence}).
 
 \begin{algorithm}
 \caption{\label{alg:BMSS:total} BMSS}
 \begin{algorithmic}[1]
 \REQUIRE $\ell>1$, deux courbes $\ell$-normalizées  ,%\\
 \ENSURE La fraction rationnelle $\frac{g(x)}{h(x)}$ qui représente la $\ell$-isogénie
-\STATE Calculer $G(x)=1/(1+Ax^4+Bx^6) \bmod x^{2\ell}$ si ${p_1}$ est connu, $\bmod x^{4\ell-1}$ sinon.
-\STATE Calculer $S(x)$ $\bmod x^{2\ell}$ (resp. $x^{4\ell-1}$) à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}.
-\STATE Soit $T(x)=\sum_{i=0}^{\ell}s_{2i+1}x^i$ (resp. $T(x)=\sum_{i=0}^{2\ell-1}s_{2i+1}x^i$).
-\STATE Calculer $R(x)=1/T(x)^2 \bmod(x^{\ell})$ (resp. $\bmod(x^{2\ell-1})$).
-\STATE Calculer $\frac{g(x)}{h(x)}$ à l'aide des sommes de Newton (resp. à l'aide de reconstruction rationnelle). 
+\STATE Calculer $G(x)=1/(1+Ax^4+Bx^6) \bmod x^{4\ell-1}$.
+\STATE Calculer $S(x)$ $\bmod x^{4\ell-1}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}.
+\STATE Soit $T(x)=\sum_{i=0}^{2\ell-1}s_{2i+1}x^i$.
+\STATE Calculer $R(x)=1/T(x)^2 \bmod(x^{2\ell-1})$.
+\STATE Calculer $\frac{g(x)}{h(x)}$ à l'aide de reconstruction rationnelle. 
 \end{algorithmic}
 \end{algorithm}
+
+\begin{rem}
+Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction rationnelle comme précisé dans les remarques \ref{rem:ELK:h-p} \ref{rem:pol:rec} et ainsi il est suffisant de calculer $S$ à précision $x^{2\ell}$ 
+\end{rem}
+
+\begin{rem}
+L'algorithme BMSS impose le fait d'avoir $p>>\ell$ car à l'étape $7$ de $\ref{alg:BMSS:eqdiff}$ une intégration est nécessaire ce qui entraîne des divisions pas les entiers compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ sinon. Cela pose donc des limites aux applications de BMSS.
+\end{rem}
+
+
+
 
 %on peut alors énoncer les algorithmes qui solutionnent le théorème \ref{thm:BMSS}.
 %On commence avec l'algorithme qui suppose la connnaissance de $p_1$
@@ -1651,6 +1663,43 @@ L'algorithme BMSS impose la nécessité d'avoir $p>>\ell$ car à l'étape $7$ de
 
 
 \section{Algorithme de Lercier Sirvent (+ resultat de Tristan)}
+L'algorithme de Lercier Sirvent répond à la problématique posée par le fait que BMSS ne peut pas s'utiliser sur des corps de petite caractéristique à cause de possibles division par $0$, une solution naturelle envisagée est donc de résoudre ce problème en travaillant dans les entiers entiers $p$-adiques.
+
+Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les nombres $p$-adiques et spécifie quelle précision on a besoin sur les entrées de l'algorithme. On présente tout d'abord l'algorithme de lercier Sirvent \ref{alg:LS08:modified}. 
+
+Celui-ci calcule un relevé $\overline{E}$ de $E$ dans $\mathbb{Q}_p$, l'algorithme calcule un relèvement$\overline{j_{E''}}$ du $j$-invariant $j'$ de la courbe $\ell$-isogène $E'$. Ensuite les formules de Elkies \cite{elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors celle-ci et $\overline{E'}$ ensuite, enfin on calcule $I: E \rightarrow E $ à l'aide de l'isomorphisme $E' \equiv E''$. 
+
+\begin{algorithm}
+\caption{\label{alg:LS08:modified} Algorithme de Lercier-Sirvent}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$ two ordinary elliptic $\ell$-isogenous ,%\\
+\ENSURE $I$ an $\ell$-isogeny such that $I:E \rightarrow E'$
+\STATE Calculer un relevément de l'équation de Weierstrass de $E$ dans $\mathbb{Q}_p$
+\STATE Calculer un relevé $\overline{j_{E'}}$ de la solution de $\phi_{\ell}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
+\STATE Calculer une equation de Weierstrass normalisée de $\overline{E''}$ de $j$-invariant $\overline{j_{E'}}$ à l'aide des formules de Elkies
+\STATE Utiliser l'algorithme BMSS pour calculer l'isogénie $\overline{I}$
+\STATE Réduire modulo $p$ $\overline{E''}$ et $\overline{I}$ vers $E''$ et $I$
+\STATE Utiliser l'isomorphisme:$E' \rightarrow E''$ pour calculer l'isogénie $I: E \rightarrow E'$.
+\RETURN$S$. 
+\end{algorithmic}
+\end{algorithm}
+
+\begin{prop}[Lairez-Vaccon]
+Soient deux courbes $\ell$-isogènes $E,E'$ en entrée et $p \geqslant 5$ l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $ nombres p-adiques 
+\end{prop}
+
+Ce résultat issu de \cite{LairezVaccon16} est une amélioration du résultat original de Lercier Sirvent \cite{Lercier-Sirvent2008}. Cette amélioration porte notamment sur la précision de la solution de l'équation différentielle que l'on doit résoudre à l'étape 2 de l'algorithme BMSS \ref{alg:BMSS:total}.
+
+\begin{proof}
+Une preuve détaillée est donnée dans \cite{LairezVaccon16}.
+En effet on a besoin de calculer une solution de l'équation différentielle linéaire \ref{eq:LS08:diflin} de précision $4\ell-1$ si l'on ne connaît pas la somme des abscisses des points du noyau de l'isogénie. Ainsi dans ce cas qui nous intéresse on applique le résultat de Lairez Vaccon: pour obtenir une solution $p$-adique de précision $4 \ell-1$ on a besoin d'avoir en entrée des éléments de précision $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $.
+\end{proof}
+\begin{thm}
+L'algorithme utilise 
+\end{thm}
+
+
+
 \subsection{Algorithme de Couveignes (parler de ses variantes)}
 
 \subsection{Volcans d'isogénies}
