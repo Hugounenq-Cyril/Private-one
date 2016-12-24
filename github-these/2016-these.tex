@@ -1566,7 +1566,7 @@ On fait le développement de Taylor de $H$ en $f_1$, on obtient l'équation diff
 avec la condition initiale $f_2(0)=0$. Que l'on peut reformuler:
 \begin{equation}
 \label{eq:LS08:diflin}
-f'_2-\frac{G(x)H'(f_1)}{2f'_1}f_2=\frac{G(x)H(f'_1)-f'_1^2}{2f'_1}
+f'_2-\frac{G(x)H'(f_1)}{2f_1'}f_2=\frac{G(x)H(f_1')-f_1'^2}{2f_1'}
 \end{equation}
 
  Cette équation a alors pour solution:
@@ -1665,15 +1665,15 @@ L'algorithme BMSS impose le fait d'avoir $p>>\ell$ car à l'étape $7$ de $\ref{
 \section{Algorithme de Lercier Sirvent (+ resultat de Tristan)}
 L'algorithme de Lercier Sirvent répond à la problématique posée par le fait que BMSS ne peut pas s'utiliser sur des corps de petite caractéristique à cause de possibles division par $0$, une solution naturelle envisagée est donc de résoudre ce problème en travaillant dans les entiers entiers $p$-adiques.
 
-Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les nombres $p$-adiques et spécifie quelle précision on a besoin sur les entrées de l'algorithme. On présente tout d'abord l'algorithme de lercier Sirvent \ref{alg:LS08:modified}. 
+Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les nombres $p$-adiques et spécifie quelle précision on a besoin sur les entrées de l'algorithme. Cependant comme dit précédemment l'algorithme  BMSS travaille avec des courbes normalisées, il est donc nécessaire de calculer des équations normalisées des relevés des courbes dans les $p$-adiques. 
 
-Celui-ci calcule un relevé $\overline{E}$ de $E$ dans $\mathbb{Q}_p$, l'algorithme calcule un relèvement$\overline{j_{E''}}$ du $j$-invariant $j'$ de la courbe $\ell$-isogène $E'$. Ensuite les formules de Elkies \cite{elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors celle-ci et $\overline{E'}$ ensuite, enfin on calcule $I: E \rightarrow E $ à l'aide de l'isomorphisme $E' \equiv E''$. 
+L'algorithme de lercier Sirvent \ref{alg:LS08:modified} calcule un relevé $\overline{E}$ de $E$ dans $\mathbb{Q}_p$, un relèvement$\overline{j_{E''}}$ du $j$-invariant $j'$ de la courbe $\ell$-isogène $E'$ est calculé. Ensuite les formules de Elkies \cite{elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors celle-ci et $\overline{E'}$, enfin on calcule $I: E \rightarrow E $ à l'aide de l'isomorphisme $E' \equiv E''$. 
 
 \begin{algorithm}
 \caption{\label{alg:LS08:modified} Algorithme de Lercier-Sirvent}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$ two ordinary elliptic $\ell$-isogenous ,%\\
-\ENSURE $I$ an $\ell$-isogeny such that $I:E \rightarrow E'$
+\REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes ,%\\
+\ENSURE $I$ une $\ell$-isogénie telle que $I:E \rightarrow E'$
 \STATE Calculer un relevément de l'équation de Weierstrass de $E$ dans $\mathbb{Q}_p$
 \STATE Calculer un relevé $\overline{j_{E'}}$ de la solution de $\phi_{\ell}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
 \STATE Calculer une equation de Weierstrass normalisée de $\overline{E''}$ de $j$-invariant $\overline{j_{E'}}$ à l'aide des formules de Elkies
@@ -1685,18 +1685,29 @@ Celui-ci calcule un relevé $\overline{E}$ de $E$ dans $\mathbb{Q}_p$, l'algorit
 \end{algorithm}
 
 \begin{prop}[Lairez-Vaccon]
-Soient deux courbes $\ell$-isogènes $E,E'$ en entrée et $p \geqslant 5$ l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $ nombres p-adiques 
+Soient deux courbes $\ell$-isogènes $E,E'$ en entrée et $p \geqslant 5$ l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $ nombres p-adiques. 
 \end{prop}
 
 Ce résultat issu de \cite{LairezVaccon16} est une amélioration du résultat original de Lercier Sirvent \cite{Lercier-Sirvent2008}. Cette amélioration porte notamment sur la précision de la solution de l'équation différentielle que l'on doit résoudre à l'étape 2 de l'algorithme BMSS \ref{alg:BMSS:total}.
 
 \begin{proof}
-Une preuve détaillée est donnée dans \cite{LairezVaccon16}.
-En effet on a besoin de calculer une solution de l'équation différentielle linéaire \ref{eq:LS08:diflin} de précision $4\ell-1$ si l'on ne connaît pas la somme des abscisses des points du noyau de l'isogénie. Ainsi dans ce cas qui nous intéresse on applique le résultat de Lairez Vaccon: pour obtenir une solution $p$-adique de précision $4 \ell-1$ on a besoin d'avoir en entrée des éléments de précision $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $.
+Une preuve détaillée pour calculer une solution de l'équation différentielle à précision donnée est dans \cite{LairezVaccon16}, cette méthode repose notamment sur la différentitation précisionnelle qui repose sur une analyse du premier ordre de la propagation des erreurs. 
+
+Comme vu précedemment on a besoin de calculer une solution de l'équation différentielle linéaire \ref{eq:LS08:diflin} de précision $4\ell-1$ si l'on ne connaît pas $p_1$ la somme des abscisses des points du noyau de l'isogénie. Dans ce cas qui nous intéresse on applique le résultat de Lairez Vaccon: pour obtenir une solution $p$-adique de précision $4 \ell-1$ on a besoin d'avoir en entrée des éléments de précision $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $.
 \end{proof}
-\begin{thm}
-L'algorithme utilise 
-\end{thm}
+
+\begin{prop}
+L'algorithme \ref{alg:LS08:modified} calcule une $\ell$-isogénie à l'aide $O(\ell^2)$  opérations sur $\mathbb{F}_q$.
+\end{prop}
+
+\begin{proof}
+On ne considère pas dans cette analyse le coût de la construction de $\mathbb{Q}_q$.
+L'étape $1$ de relèvement de la courbe $E$ dans $\mathbb{Q}_q$ est considéré comme nul car on prend un relevé trivial de $E$.
+L'étape $2$ peut être faite en $\tilde{O}(\ell)$ opérations sur $\mathbb{F}_q$ à l'aide d'un relèvement de Hensel. 
+L'étape $3$ du calcul d'une équation de Weierstrass normalisée a une complexité de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$ à l'aide des formules de Elkies \cite{elkies1998} (voir \ref{sub:Elkies}).
+L'étape $4$ est l'algorithme BMSS \ref{alg:BMSS:total} et a une complexité de $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{Q}_q$ si on ne connaît pas la valeur de $p_1$ (somme des abscisses des points du noyau de l'isogénie). L'étape $4$ a un coût de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{Q}_q)$ si on connaît la valeur de $p_1$ ce qui est envisageable dès lors que l'on se sert des dérivées du polynôme modulaire à l'étape $3$.
+Les deux dernières étapes ont elles un coup négligeable par rapport au reste des opérations, d'où le coût total de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$.
+\end{proof}
 
 
 
