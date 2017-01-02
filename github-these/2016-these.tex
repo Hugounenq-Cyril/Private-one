@@ -1712,7 +1712,21 @@ Les deux dernières étapes ont elles un coup négligeable par rapport au reste 
 
 
 \subsection{Algorithme de Couveignes (parler de ses variantes)}
+Dans cette section l'algorithme de Couveignes \cite{Couveignes96} va tout d'abord être présenté puis ensuite les différentes améliorations apportées par De Feo dans \cite{DeFeo10}.
 
+L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires définies sur un corps fini $\mathbb{F}_q$ si ces deux courbes sont $\ell$-isogénes avec $\ell$ premier avec $p$, l'algorithme calcule la $\ell$-isogénie $\mathbb{F}_q$ rationnelle qui les relie, l'algorithme marche uniquement en caractéristique $p$ impaire. 
+
+
+\subsubsection{Algorithme original de Couveignes}
+Soit $I$ la $\ell$-isogénie qui relie les deux courbes elliptiques ordinaires $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$ on a: $I(E[p^k])=E'[p^k]$.
+Ainsi l'algorithme de Couveignes se sert du fait que la $p^k$-torsion de $E$ a pour image par l'isogénie $I$ la $p^k$-torsion de $E'$ pour en tirer une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement. L'algorithme de Couveignes fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle on a:
+\begin{equation}
+\frac{g(x(kP))}{h(x(kP))}=x(k  P') \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
+\end{equation}
+ et calcule alors à l'aide d'une reconstruction rationnelle  ainsi pour tout générateur de la $p^k$-torsion il faudra tester jusqu'à $O(p^k)$ correspondances à travers les choix des générateurs de la $p^k$-torsion. 
+Ainsi l'algorithme de Couveignes va utiliser cette information pour interpoler l'isogénie à l'aide des points de $p^k$-torsion.
+
+L'algorithme de Couveignes est un algorithme qui calcule une isogénie en utilisant la remarque suivante. Soit $P$ un point de $p^k$-torsion alors son
 \subsection{Volcans d'isogénies}
 \subsection{Travaux de Kohel, Fouquet-Morain}
 Mettre l'algorithme de Fouquet Morain
