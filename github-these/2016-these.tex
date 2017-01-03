@@ -1718,11 +1718,31 @@ L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires
 
 
 \subsubsection{Algorithme original de Couveignes}
-Soit $I$ la $\ell$-isogénie qui relie les deux courbes elliptiques ordinaires $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$ on a: $I(E[p^k])=E'[p^k]$.
-Ainsi l'algorithme de Couveignes se sert du fait que la $p^k$-torsion de $E$ a pour image par l'isogénie $I$ la $p^k$-torsion de $E'$ pour en tirer une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement. L'algorithme de Couveignes fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle on a:
+Soit $I$ la $\ell$-isogénie qui relie deux courbes elliptiques ordinaires $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$ on a: $I(E[p^k])=E'[p^k]$.
+Ainsi l'algorithme de Couveignes se sert du fait que la $p^k$-torsion de $E$ a pour image par l'isogénie $I$ la $p^k$-torsion de $E'$. C'est cette correspondance qui, lorsque $k$ est assez grand, donne une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement. L'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle (comme vu dans \textcolor{red}{ref à mettre}) on a:
 \begin{equation}
-\frac{g(x(kP))}{h(x(kP))}=x(k  P') \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
+\frac{g(x(k \cdot P))}{h(x(k \cdot P))}=x(k \cdot P') \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
 \end{equation}
+avec les formules de Vélu qui impliquent que l'on ait $\deg g = \ell$ et $\deg h = \ell-1$.
+Ainsi pour calculer l'isogénie l'algorithme de Couveignes calcule un polynome $A \in \mathbb{F}_q[X]$ tel que l'on ait 
+\begin{equation}
+A(x(k \cdot P))= x(k \cdot P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
+\end{equation} 
+avec $T \in \mathbb{F}_q[x]$ qui s'annule sur $E'[p^k]$ car on se sert d'une équation définie sur la $p^k$ torsion. En pratique l'algorithme de Couveignes demande que l'on choisisse $k$ tel que $p^k \geqslant 4 \ell+1$, cela est du notamment au fait que l'on veuille calculer l'isogénie sous la forme explicite de Vélu, en appliquant donc l'algorithme de Cauchy on a besoin d'avoir $p^k \geqslant 4 \ell +1$ et non $p^k \geqslant 2 \ell +1$ car tout point d'ordre différent de $2$ a son opposé de même abscisse on doit donc doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\lambda$ avec $\lambda \in \mathbb{Z}/p^k \mathbb{Z}$) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
+
+\subsubsection{Améliorations de De Feo}
+
+Comme dit précédemment des améliorations ont été apportées dans \cite{DeFeo10}, elles sont toutes utilisées dans notre approche $\ell$-adique de l'algorithme de Couveignes, soit directement soit adaptées c'est pourqoi certaines parties seront plus détaillées que d'autres.
+
+\paragraph{Calcul de la $p$-torsion}
+La première amélioration que l'on peut apporter à l'algorithme de Couveignes c'est la première étape de l'algorithme, le calcul de générateurs de la $p^k$ torsion. Dans l'algorithme original celui-ci était effectué à l'aide d'une $p$-descente et de la décomposition de la multiplication par $[p]$:
+\begin{equation}
+[p]=\pi \circ V
+\end{equation}
+avec $\pi$ le Frobenius défini sur $\mathbb{F}_q$ et $V$ le verschebung. L'idée originale est donc d'inverser chacune  de ces isogénies pour calculer itérativement des antécédents de point de $p^i$-torsion par $[p]$. Inverser $V$ revient notamment à factoriser un polynômes de degré $p$ dans une extension. 
+
+Une autre approche a été proposé par De Feo pour prendre avantage notamment des constructions de tour d'Artin Schreier
+défini modulo 
  et calcule alors à l'aide d'une reconstruction rationnelle  ainsi pour tout générateur de la $p^k$-torsion il faudra tester jusqu'à $O(p^k)$ correspondances à travers les choix des générateurs de la $p^k$-torsion. 
 Ainsi l'algorithme de Couveignes va utiliser cette information pour interpoler l'isogénie à l'aide des points de $p^k$-torsion.
 
