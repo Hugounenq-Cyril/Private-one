@@ -1794,7 +1794,7 @@ Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^2)$ opération
 \end{lem}
 
 \begin{proof}
-Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gnuji de calculer $c$ et $\tilde{c}$ racines $p-1$ ème de $H_{E}$ et $H_{E'}$. On doit ensuite construire les corps $\mathbb{f}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $\theta(p-1)$ éléments de $\mathbb{F}_q$ pour représenter de éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$. Le couût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui représente plus de $\Omega(p^3)$ opérations sur $\mathbb{F}_q$ .
+Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\tilde{c}$ racines $p-1$ ème de $H_{E}$ et $H_{E'}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\theta(p^3)$ opérations sur $\mathbb{F}_q$ .
 \end{proof}
 Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est ammené à effectuer les calculs. Pour cela on se sert du résultat suivant issu de \cite{DeFeo10} qui est une généralisation de \cite[Proposition 26]{Ler97a} 
 
@@ -1802,15 +1802,34 @@ Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille 
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, on note alors par $\mathbb{U}_i$ la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{U}_i)$. Pour tout $i \geqslant 1$ on a soit $[\mathbb{U}_{i+1}:\mathbb{U}_{i}]=p$ soit $\mathbb{U}_{i+1}=\mathbb{U}_{i}=\cdots = \mathbb{U}_{1}$.
 \end{prop}
 
+Avant de prouver cela on a besoin du lemme suivant:
+
+\begin{lem}
+Soit $p$ un nombre premier, soit $c$ un nombre premier avec $p$. Pour tout $k \geqslant 1$ on note $\mathrm{ord}_k(c)$ l'ordre de $c$ dans $\mathbb{Z}/p^k\mathbb{Z}$. Alors $\mathrm{ord}_{k+1}(c)=\mathrm{ord}_k(c)$ implique que $\mathrm{ord}_k(c) = \mathrm{ord}_{k-1}(c)$.
+\end{lem}
+
+La preuve suivante n'est pas différente de celle dans \cite{DeFeo10} mais celle-ci est tout de même intéressante par l'approche qu'elle a et notamment l'étude de l'action du Frobenius sur le $p$ module de Tate d'où sa retranscription ici.
+
 \begin{proof}
-Une preuve peut être trouvée dans
+On rappelle tout d'abord l'équation caractéristique du Frobenius:
+\begin{equation}
+X^2 - t_{\pi}X + q = 0
+\end{equation}
+Maintenant si l'on regarde cette équation restreiente à la $p$-torsion, on a alors l'équation qui a deux solutions $0 \bmod p$ et $t_{\pi} \bmod p$. La solution $0 \bmod p$ pouvant être écartée car le Frobenius ne peut avoir de noyau non trivial. Ainsi l'action du Frobenius sur la $p$-torsion revient à une multiplication par $t_{\pi} \bmod p$. Dés lors si l'on regarde cette équation sur $T_{p}(E)$ on voit que l'action du Frobenius peut être représentée par une multiplication par $\mathfrak{t}_{\pi} \in \mathbb{Z}_{p} $. 
+Regardons alors l'action du groupe de Galois $G$ de $\mathbb{F}_q$ sur $T_{p}(E)$. Comme $G$ est engendré par l'automorphisme de $\mathbb{F}_q$, la restriction de son action à $E[p^k]$ peut être représentée par la multiplication de $t_k=\mathfrak{t}_{\pi} \bmod p^k$. Ainsi on a $[\mathbb{U}_k:\mathbb{F}_q]=\mathrm{ord}(t_k)$.
+
+Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
 \end{proof}
+
+Ce résultat montre donc que pour toute courbe elliptique il existe un $i_0$ tel que l'on ait $[\mathbb{U}_i:\mathbb{U}_1]=p^{i-i_0}$ pour tout $i \geqslant i_0$. Ainsi asymptotiquement on aura $[\mathbb{U}_k:\mathbb{U}_1] \in O(p^k)$
 
 \begin{lem}
 Le coût de calcul de la $p^k$-torsion est de au moins $\Omega(\ell^2)$ opérations sur $\mathbb{F}_q$.
 \end{lem}
 
 \begin{proof}
+En utilisant donc les méthodes préconisées par les travaux de Gunji et Voloch, il y a tout d'abord le coût de calcul de la $p$-torsion. Majoré 
+
 Blabla
 \end{proof}
 
