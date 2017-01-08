@@ -1828,16 +1828,37 @@ Le coût de calcul de la $p^k$-torsion est de au moins $\Omega(\ell^2)$ opérati
 \end{lem}
 
 \begin{proof}
-En utilisant donc les méthodes préconisées par les travaux de Gunji et Voloch, il y a tout d'abord le coût de calcul de la $p$-torsion. Majoré 
-
-Blabla
+On utilise donc les méthodes préconisées par les travaux de Gunji et Voloch. Pour la dernière itération de la $p$-descente on a tout d'abord besoin de résoudre une équation d'Artin Schreier \eqref{eq:vol:cov}, pour cela \cite{Couveignes96} utilise un précalcul de l'inverse de l'application $\mathbb{F}_q$-linéaire  $x^q-x$ qu'il applique ensuite. Il est fait de même avec l'application $\mathbb{F}_q$ linéaire $x \rightarrow x^p - x$. Le précalcul a un cout de $O(p^{wk})=O(\ell^{w})$ opérations sur $\mathbb{F}_q$ avec un stockage de $O(\ell^2)$ éléments de $\mathbb{F}_q$.
+Ces pré calculs peuvent être réutilisés pour d'autres calculs de $\ell$-isogénies.
+Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 )$ opérations sur $\mathbb{F}_q$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \rightarrow x^p - x$ étant négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
 \end{proof}
 
-\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points de $p^k$-torsion. Ensuite on doit reconstruire à l'aide de l'algorithme d'Euclide une fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo la $p^k$ torsion. 
+\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide de l'algorithme d'Euclide une fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire qui s'annule l'es abscisses des points de $p^k$ torsion primtifs. 
+
+Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectué distinctement sur les différentes orbites sous l'action du Frobenius puis en utilisant le théorème des restes chinois on obtient alors un polynôme d'interpolation modulo la $p^k$-torsion primitive.
+
+En effet on a l'ensemble des abscisses des point primitifs de $p^k$-torsion qui est de taille $p^k(p-1)/2$. La taille des orbites sous l'action du Frobenius est quant à elle égale à $[\mathbb{U}_k:\mathbb{F}_q]$. Ainsi si l'on note $f$ la taille de ses orbites et $d$ le nombre de représentants on a $d \times f=p^k(p-1)/2$.
+
+\begin{rem}
+On a $f$ la taille des orbites des abscisses qui est égale à $[\mathbb{U}_k:\mathbb{F}_q]$ si et seulement si $2 \nmid [\mathbb{U}_k:\mathbb{F}_q]$. En effet dans le cas où l'on a $2 \mid [\mathbb{U}_k:\mathbb{F}_q]$ si l'on note $p=[\mathbb{U}_k:\mathbb{F}_q]$ alors on a $\pi^{p/2}(x(P))=x(-P)=x(P)$ et donc $f=[\mathbb{U}_k:\mathbb{F}_q]/2$.
+\end{rem} 
+
+%En pratique on travaille avec les points primitifs de $p^k$-torsion afin de pouvoir se servir de l'action du Frobenius pour parcourir tous les éléments à l'aide des représentants et de l'action du Frobenius.
+On note $m_1, m_2, \cdots, m_d$ les différents représentants des orbites selon l'action du Frobenius. Chacune de ces orbites est de taille $[\mathbb{U}_k:\mathbb{U}_1]$ avec $d=[\mathbb{U}_1:\mathbb{F}_q]$.
+\begin{lem}
+Le coût de calcul de l'interpolation de Cauchy est de opérations sur $\mathbb{F}_q$.
+\end{lem}
+
+\begin{proof}
+Tout d'abord il y a le coût de calcul des abscisses des points d'ordre $p^k$, ceci est fait indépendamment de l'hypothèse sur le choix de l'image du générateur de la $p^k$-torsion et pourra donc être réutilisé si cette hypothèse s'avère fausse. Pour calculer tous les points primitifs de $p^k$-torsion on a besoin d'effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{U}_k:\mathbb{F}_q] \in O(p^k) $ et donc ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$.
+Ensuite il faut calculer le polynôme d'interpolation de degré $f$ avec $f \in O(p^k)$ sur des points définis dans une extension de $\mathbb{F}_q$ de taille $f$.
+\end{proof}
 
 \paragraph{Validation de l'isogénie} On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie. Pour cela on doit tout d'abord regarder les degrés et vérifier que l'on a $\deg(R)=\ell$ et $\deg(V)=\ell-1$, si cela n'est pas vérifié alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. Ensuite on peut vérifier que $V$ est bien un carré (ou si $\ell$ est pair que c'est le produit d'un facteur du polynôme de $2$-division et d'un carrée). Ces deux tests suffisent généralement à conclure. Pour plus de sûreté on peut éventuellement évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupe. Enfin si une preuve déterministique est souhaitée on peut vérifier que $V$ est bien un diviseur du polynôme de $\ell$-division. 
 
 Le cas $p=2$ n'est pas traité ici, le lecteur intéressé pourra se référer à \cite[8.5.2]{DeFeo10}
+
+Le cout de la validation est de ....
 
 \begin{thm}
 L'algorithme de Couveignes a une complexité totale de $O(\ell^2)$ opérations sur $\mathbb{F}_q$
