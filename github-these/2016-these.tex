@@ -1908,6 +1908,31 @@ La première étape a un coût de $O(\mathsf{M}(p^{2k}d)\log(p^{k}))$ en utilisa
 O(\mathsf{M}(\ell^2d)\log \ell + \ell L(k-1) + (pd)^2)
 \end{equation*}
 
+avec $L$ qui représente le coût d'effectuer un relèvement ou une descente dans une tour d'Artin Schreier. D'après \cite[Theorem 13]{DeFeo-Shost'12} $L(i) \in O(p^{i+1}d \log^2_p(p^id)+p \mathsf{M}(p^id))$, il est à noter que ce coût est linéaire en la taille de l'entrée (élément de $\mathbb{U}_i$). 
+
+Cette étape, la plus coûteuse de l'algorithme de Couveignes, a à être répétée $O(p^k)=O(\ell)$ fois (à chaque fois on change l'hypothèse faite sur l'image du point générateur de la $p^k$-torsion) pour espérer trouver la bonne hypothèse et donc calculer la $\ell$-isogénie.
+
+On va donc voir dans la prochaine sous-section les améliorations apportées par \cite{DeFeo11} spécifiques à cette partie de l'algorithme.
+
+\subsubsection{AS-FI}
+
+Cette partie est cruciale car comme on l'a vu précédemment la partie la plus coûteuse de l'algorithme de Couvegines reste l'interpolation de Cauchy et en particulier le calcul du polynôme d'interpolation. On peut déjà voir qu'interpoler $p^k$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un cout minimal de $O(p^k p^kd)$. Bien que le polynôme que l'on souhaite calculer est de degré $p^k$ il est possible avec moins d'informations de calculer celui-ci. En effet comme préconisé par Couveignes \cite{Couveignes96} si on travaille avec des représentants d'orbite sous l'action du Frobenius alors on peut retrouver le polynôme d'interpolation en utilisant le théorème des restes chinois. Il manquait alors à l'époque des techniques efficaces pour justement faire agir le Frobenius sur ces représentants, ce que les constructions de tours d'Artin Schreier de \cite{DeFeo-Shost'12} permettent désormais. 
+
+On va donc voir dans cette section comment à partir d'un polynôme d'interpolation défini uniquement à l'aide de représentants de l'orbite selon l'action du Frobenius on retrouve le polynôme d'interpolation. Cette raison est d'ailleurs l'une de celles pour laquelle on travaille uniquement avec des points primitifs de $p^k$-torsion puisque que eux seuls sont définis dans $\mathbb{U}_k$ par définition de $\mathbb{U}_k$. Bien évidemment on peut généraliser cette méthode à tous les points de $p^k$-torsion en utilisant le théorème des restes chinois, mais d'un point de vue pratique prendre $k$ tel que $p^{k-1}(p-1) > 4 \ell +1$ est suffisant, asymptotiquement le résultat reste le même.
+
+Soient $P$ et $P'$ deux points primitifs de $p^k$-torsion de $E$ et $E'$. On veut donc calculer le polynôme d'interpolation $A \in \mathbb{F}_q[X]$ tel que:
+\begin{equation}
+A(x([n]P))=x([n]P') \bmod T(x) \quad \text{pour } \n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*
+\end{equation} 
+
+avec $T(X)= \prod_{\n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*} (X-x([n]P))$
+
+
+Comme dit précédemment comme on cherche à calculer une fraction rationnelle définie sur $\mathbb{F}_q$, ansi le polynôme d'interpolation que l'on veut calculer est défini sur $\mathbb{F}_q$. 
+
+
+
+
  et calcule alors à l'aide d'une reconstruction rationnelle  ainsi pour tout générateur de la $p^k$-torsion il faudra tester jusqu'à $O(p^k)$ correspondances à travers les choix des générateurs de la $p^k$-torsion. 
 Ainsi l'algorithme de Couveignes va utiliser cette information pour interpoler l'isogénie à l'aide des points de $p^k$-torsion.
 
