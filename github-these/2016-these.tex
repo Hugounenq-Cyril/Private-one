@@ -1721,14 +1721,14 @@ L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires
 Soit $I$ la $\ell$-isogénie qui relie deux courbes elliptiques ordinaires $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$ on a: $I(E[p^k])=E'[p^k]$.
 Ainsi l'algorithme de Couveignes se sert du fait que la $p^k$-torsion de $E$ a pour image par l'isogénie $I$ la $p^k$-torsion de $E'$. C'est cette correspondance qui, lorsque $k$ est assez grand, donne une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement. L'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle (comme vu dans \textcolor{red}{ref à mettre}) on a:
 \begin{equation}
-\frac{g(x(k \cdot P))}{h(x(k \cdot P))}=x(k \cdot P') \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
+\frac{g(x([k] \cdot P))}{h(x([k] \cdot P))}=x([k] \cdot P') \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
 \end{equation}
 avec les formules de Vélu qui impliquent que l'on ait $\deg g = \ell$ et $\deg h = \ell-1$.
 Ainsi pour calculer l'isogénie l'algorithme de Couveignes calcule un polynome $A \in \mathbb{F}_q[X]$ tel que l'on ait 
 \begin{equation}
-A(x(k \cdot P))= x(k \cdot P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
+A(x([k] \cdot P))= x([k] \cdot P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
 \end{equation} 
-avec $T \in \mathbb{F}_q[x]$ qui s'annule sur $E'[p^k]$ car on se sert d'une équation définie sur la $p^k$ torsion. En pratique l'algorithme de Couveignes demande que l'on choisisse $k$ tel que $p^k \geqslant 4 \ell+1$, cela est du notamment au fait que l'on veuille calculer l'isogénie sous la forme explicite de Vélu, en appliquant donc l'algorithme de Cauchy on a besoin d'avoir $p^k \geqslant 4 \ell +1$ et non $p^k \geqslant 2 \ell +1$ car tout point d'ordre différent de $2$ a son opposé de même abscisse on doit donc doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\lambda P_2$ avec $\lambda \in \mathbb{Z}/p^k \mathbb{Z}$) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
+avec $T \in \mathbb{F}_q[x]$ qui s'annule sur $E[p^k]$ car on se sert d'une équation définie sur la $p^k$ torsion. En pratique l'algorithme de Couveignes demande que l'on choisisse $k$ tel que $p^k \geqslant 4 \ell+1$, cela est du notamment au fait que l'on veuille calculer l'isogénie sous la forme explicite de Vélu, en appliquant donc l'algorithme de Cauchy on a besoin d'avoir $p^k \geqslant 4 \ell +1$ et non $p^k \geqslant 2 \ell +1$ car tout point d'ordre différent de $2$ a son opposé de même abscisse on doit donc doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\lambda P_2$ avec $\lambda \in \mathbb{Z}/p^k \mathbb{Z}$) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
 
 \subsubsection{Cout de Couveignes}
 
@@ -1751,7 +1751,7 @@ avec $\Delta_0$ et $\Delta_1$ les detérminants des matrices données dans la fi
 Ainsi si on note $c$ l'une des racinces $p-1$ ème de $H_E$, ce résultat implique que les points de $p$-torsion sont définis dans $\mathbb{F}_q[c]$ et leurs abscisses sont incluses dans $\mathbb{F}_q[c^2]$.
 
 
-Le calcul de la $p^k$-torsion peut donc être effectué itérativement à l'aide de la $p$-descente, pour celle-ci on se sert de la décomposition de la multiplication par $p$: 
+Le calcul de la $p^k$-torsion est effectué itérativement à l'aide de la $p$-descente, pour celle-ci on se sert de la décomposition de la multiplication par $p$: 
 \begin{equation}
 [p]=\pi \circ V
 \end{equation}
@@ -1782,17 +1782,18 @@ est un recouvrement étale de degré $p$ et est isomorphe à $E$ sur $\mathbb{F}
 avec $P_1$ un point primitif de $p$-torsion de $E$.
 \end{prop}
 
-La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré images sur $C$ en résolvant l'équation \ref{eq:vol:cov}. On résoud alors l'équation \ref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \textcolor{red}{ref à mettre}.
+La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré-images sur $C$ en résolvant l'équation \ref{eq:vol:cov}. On résoud alors l'équation \ref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \textcolor{red}{ref à mettre}.
 
 Cette méthode est plus efficace que la méthode standard car à l'aide des constructions de Tour d'Artin Schreier on peut résoudre plus rapidement l'équation \ref{eq:vol:cov} qui est une équation d'Artin Schreier cette équation peut être résolue à l'aide de méthodes de \textcolor{red}{ref à mettre} \cite[Ch.6]{DeFeo10} ou par algèbre linéaire comme dans \cite{Couveignes96}. Une fois qu'une solution $\tilde{z}$ de \eqref{eq:vol:cov} est trouvée il faut alors résoudre en $x$ et en $y$ le système de \eqref{eq:vol:iso} à l'aide d'un calcul de $\mathrm{pgcd}$ plus de détails peuvent être trouvés dans \cite[§6.2]{Ler97a} ou dans \cite[§9.1]{DeFeo10} alors que dans la méthode préconisée auparavant on devait facotriser un polynôme.
 
+Comme le travail de \cite{Defeo11} repose sur les constructions de tour d'Artin Schreier, dont une brève description sera faite pour plus de détails voir \cite{DeFeo-Shost'12}, et que celles-ci sont construites comme des extensions de $\mathbb{F}_q$ alors les complexités seront exprimées en terme d'opérations sur $\mathbb{F}_p$ en utilisant la convention que l'on a $q=p^d$.
 
 \begin{lem}
-Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^2)$ opérations sur $\mathbb{F}_q$.
+Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
 \end{lem}
 
 \begin{proof}
-Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\tilde{c}$ racines $p-1$ ème de $H_{E}$ et $H_{E'}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\theta(p^3)$ opérations sur $\mathbb{F}_q$ .
+Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\tilde{c}$ racines $p-1$ ème de $H_{E}$ et $H_{E'}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
 \end{proof}
 
 Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est ammené à effectuer les calculs. Pour cela on se sert du résultat suivant issu de \cite{DeFeo10} qui est une généralisation de \cite[Proposition 26]{Ler97a} 
@@ -1804,30 +1805,31 @@ Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, on note alors par $\
 Avant de prouver cela on a besoin du lemme suivant:
 
 \begin{lem}
+\label{lem:ord}
 Soit $p$ un nombre premier, soit $c$ un nombre premier avec $p$. Pour tout $k \geqslant 1$ on note $\mathrm{ord}_k(c)$ l'ordre de $c$ dans $\mathbb{Z}/p^k\mathbb{Z}$. Alors $\mathrm{ord}_{k+1}(c)=\mathrm{ord}_k(c)$ implique que $\mathrm{ord}_k(c) = \mathrm{ord}_{k-1}(c)$.
 \end{lem}
 
-La preuve suivante n'est pas différente de celle dans \cite{DeFeo10} mais celle-ci est tout de même intéressante par l'approche qu'elle a et notamment l'étude de l'action du Frobenius sur le $p$ module de Tate d'où sa retranscription ici.
+La preuve suivante n'est pas différente de celle dans \cite{DeFeo10} mais celle-ci est tout de même intéressante par son approche dont notamment l'étude de l'action du Frobenius sur le $p$ module de Tate d'où sa retranscription ici.
 
 \begin{proof}
 On rappelle tout d'abord l'équation caractéristique du Frobenius:
 \begin{equation}
 X^2 - t_{\pi}X + q = 0
 \end{equation}
-Maintenant si l'on regarde cette équation restreiente à la $p$-torsion, on a alors l'équation qui a deux solutions $0 \bmod p$ et $t_{\pi} \bmod p$. La solution $0 \bmod p$ pouvant être écartée car le Frobenius ne peut avoir de noyau non trivial. Ainsi l'action du Frobenius sur la $p$-torsion revient à une multiplication par $t_{\pi} \bmod p$. Dés lors si l'on regarde cette équation sur $T_{p}(E)$ on voit que l'action du Frobenius peut être représentée par une multiplication par $\mathfrak{t}_{\pi} \in \mathbb{Z}_{p} $. 
+Maintenant si l'on regarde cette équation restreinte à la $p$-torsion, on a alors l'équation qui a deux solutions: $0 \bmod p$ et $t_{\pi} \bmod p$. La solution $0 \bmod p$ pouvant être écartée car le Frobenius ne peut avoir de noyau non trivial. Ainsi l'action du Frobenius sur la $p$-torsion revient à une multiplication par $t_{\pi} \bmod p$. Dés lors si l'on regarde cette équation sur $T_{p}(E)$ on voit que l'action du Frobenius peut être représentée par une multiplication par $\mathfrak{t}_{\pi} \in \mathbb{Z}_{p} $. 
 Regardons alors l'action du groupe de Galois $G$ de $\mathbb{F}_q$ sur $T_{p}(E)$. Comme $G$ est engendré par l'automorphisme de $\mathbb{F}_q$, la restriction de son action à $E[p^k]$ peut être représentée par la multiplication de $t_k=\mathfrak{t}_{\pi} \bmod p^k$. Ainsi on a $[\mathbb{U}_k:\mathbb{F}_q]=\mathrm{ord}(t_k)$.
 
-Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
+Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
 \end{proof}
 
 Ce résultat montre donc que pour toute courbe elliptique il existe un $i_0$ tel que l'on ait $[\mathbb{U}_i:\mathbb{U}_1]=p^{i-i_0}$ pour tout $i \geqslant i_0$. Ainsi asymptotiquement on aura $[\mathbb{U}_k:\mathbb{U}_1] \in O(p^k)$
 
 \begin{lem}
-Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2)$ opérations sur $\mathbb{F}_q$.
+Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2d)$ opérations sur $\mathbb{F}_p$.
 \end{lem}
 
 \begin{proof}
-On utilise donc les méthodes préconisées par les travaux de Gunji et Voloch. Pour la dernière itération de la $p$-descente on a tout d'abord besoin de résoudre une équation d'Artin Schreier \eqref{eq:vol:cov}, pour cela \cite{Couveignes96} utilise un précalcul de l'inverse de l'application $\mathbb{F}_q$-linéaire  $x^q-x$ qu'il applique ensuite. Il est fait de même avec l'application $\mathbb{F}_q$ linéaire $x \rightarrow x^p - x$. Le précalcul a un cout de $O(p^{wk})=O(\ell^{w})$ opérations sur $\mathbb{F}_q$ avec un stockage de $O(\ell^2)$ éléments de $\mathbb{F}_q$.
+On utilise donc les méthodes préconisées par les travaux de Gunji et Voloch. Pour la dernière itération de la $p$-descente on a tout d'abord besoin de résoudre une équation d'Artin Schreier \eqref{eq:vol:cov}, pour cela \cite{Couveignes96} utilise un précalcul de l'inverse de l'application $\mathbb{F}_q$-linéaire  $x \mapsto x^q-x$ qu'il applique ensuite. Il est fait de même avec l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$. Le précalcul a un coût de $O(p^{wk}d)=O(\ell^{w}d)$ opérations sur $\mathbb{F}_p$ avec un stockage de $O(\ell^2d)$ éléments de $\mathbb{F}_p$.
 Ces pré calculs peuvent être réutilisés pour d'autres calculs de $\ell$-isogénies.
 Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 )$ opérations sur $\mathbb{F}_q$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \rightarrow x^p - x$ étant négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
 \end{proof}
@@ -1922,16 +1924,52 @@ On va donc voir dans cette section comment à partir d'un polynôme d'interpolat
 
 Soient $P$ et $P'$ deux points primitifs de $p^k$-torsion de $E$ et $E'$. On veut donc calculer le polynôme d'interpolation $A \in \mathbb{F}_q[X]$ tel que:
 \begin{equation}
-A(x([n]P))=x([n]P') \bmod T(x) \quad \text{pour } \n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*
+A(x([n]P))=x([n]P') \bmod T(x) \quad \text{pour } n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*
 \end{equation} 
 
-avec $T(X)= \prod_{\n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*} (X-x([n]P))$
+avec $T(X)= \prod_{n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*} (X-x([n]P))$
 
 
 Comme dit précédemment comme on cherche à calculer une fraction rationnelle définie sur $\mathbb{F}_q$, ansi le polynôme d'interpolation que l'on veut calculer est défini sur $\mathbb{F}_q$. 
 
+On commence donc par le théorème des restes chinois pour ensuite se concentrer sur le calcul d'un seul polynôme d'interpolation. Comme préconisé dans \cite{Couveignes96} on regarde la factorisation de $T(X)$ sur $\mathbb{F}_q$:
 
+\begin{equation*}
+T(X)=\prod_{i=1}^dT^{(i)}(X)
+\end{equation*}
+avec $\deg(T_i)=f=[\mathbb{U}_k:\mathbb{F}_q]$ et $df=p^{k-1}(p-1)/2$.
 
+Ainsi on travaille modulo chacun de ces $T_i$ et l'on définit:
+
+\begin{equation}
+A^{(i)}=A \bmod{T^{(i)}}.
+\end{equation}
+
+Avec l'utilisation du Théorème des restes chinois une fois chacun des $A^{(i)}$ déterminés on peut calculer $A$, dés lors on va se concentrer sur le calcul de $A^{(0)}$.
+
+Comme dit précédemment on va prendre avantage du fait du faible coût du Frobenius dans une tour d'Artin Schreier, en effet cela a un faible coût à l'aide de l'algorithme \cite[Iter Frobenius,Theorem 17 et 18]{DeFeo-Shost'12}
+
+Ainsi on fait l'hypothèse que l'abscisse du point $P$ générateur de la $p^k$-torsion de $E$ est envoyé sur l'abscisse du point $P'$ générateur de la $p^k$-torsion de $E'$. Dés lors on veut calculer 
+\begin{enumerate}
+\item le polynôme minimal $T$ de $x(P)$ défini sur $\mathbb{F}_q$ de degré strictement inférieur à $d$.
+\item le polynôme d'interpolation $L$ défini sur $\mathbb{F}_q$ de degré strictement inférieur à $d$ tel que $L(x(P))=x(P')$.
+\end{enumerate}
+
+Ainsi avec un tel polynôme $L$ défini sur $\mathbb{F}_q$ on aura pour tout $\sigma \in \mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$:
+\begin{equation*}
+L(\sigma(x(P))=\sigma(L(x(P)))=\sigma(x(P'))
+\end{equation*}
+ainsi l'information de l'image d'un élément de $\mathbb{U}_k$ entraîne la connaissance des images des points de son orbite sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$. On va donc se servir de l'action du Frobenius sur le polynôme d'interpolation défini uniquement pour un représentant de l'orbite (en l'occurence $L(x(P))=x(P')$) pour calculer successivement à l'aide d'un arbre de produit binaire le polynôme d'interpolation défini sur $\mathbb{F}_q$.
+
+Parlons tout d'abord de l'arbre de produit binaire, cette idée a donc été utilisé dans \cite{Defeo11}, mais avant été utilisé auparavant dans \cite{enge2008}.
+
+Pour $P$ un point primitif de $p^k$ torsion on a $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_k$. On a alors pour tout $n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*$ $x([n]P) \in \mathsf{orb}(x(P))$. On a donc:
+\begin{equation*}
+T(x)=\prod_{n \in }(x-x([n]P))
+\end{equation*}
+
+\paragraph{Comportement de la $p^k$-torsion}
+Soient $p^{i_0}$ tel que $E[p^{i_0}] \subset E[\mathbb{F}_q]$
 
  et calcule alors à l'aide d'une reconstruction rationnelle  ainsi pour tout générateur de la $p^k$-torsion il faudra tester jusqu'à $O(p^k)$ correspondances à travers les choix des générateurs de la $p^k$-torsion. 
 Ainsi l'algorithme de Couveignes va utiliser cette information pour interpoler l'isogénie à l'aide des points de $p^k$-torsion.
