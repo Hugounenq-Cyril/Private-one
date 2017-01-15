@@ -1742,6 +1742,7 @@ Soit $E$ une courbe elliptique définie par l'équation: $y^2=f(x)$. L'\emph{inv
 Gunji a alors démontré le résultat suivant:
 
 \begin{thm}
+\label{thm:Gunji}
 Soient $c_p, c_{p-1}, \cdots, c_{0}$ les racines de $X^{p-1}-H_{E}$ dans son corps de décomposition. Les abscisses des points de $p$-torsion de $E$ sont données par: 
 \begin{equation*}
 X^{p}_i=\frac{\Delta_0^2-a_6c_i^2\Delta_1^2}{4c_i^2}
@@ -1798,8 +1799,18 @@ Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formul
 
 Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est ammené à effectuer les calculs. Pour cela on se sert du résultat suivant issu de \cite{DeFeo10} qui est une généralisation de \cite[Proposition 26]{Ler97a} 
 
+\begin{defi}
+\label{def:p-adic}
+Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour d'extension $p$-adique $\mathbb{U}_0 \mathbb{U}_1, \mathbb{U}_2, \cdots \mathbb{U}_i$ telle que $\mathbb{U}_i$ soit la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{U}_i)$. On pose $\mathbb{U}_0=\mathbb{F}_q$.
+\end{defi}
+
 \begin{prop}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, on note alors par $\mathbb{U}_i$ la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{U}_i)$. Pour tout $i \geqslant 1$ on a soit $[\mathbb{U}_{i+1}:\mathbb{U}_{i}]=p$ soit $\mathbb{U}_{i+1}=\mathbb{U}_{i}=\cdots = \mathbb{U}_{1}$.
+\label{pro:ord:fro}
+Pour une tour d'extension $p$-adique de $\mathbb{F}_q$ défini comme dans \ref{def:p-adic} on a:
+\begin{itemize}
+\item $[\mathbb{U}_1:\mathbb{F}_q] \mid p-1$
+\item Pour tout $i \geqslant 1$ on a soit $[\mathbb{U}_{i+1}:\mathbb{U}_{i}]=p$ soit $\mathbb{U}_{i+1}=\mathbb{U}_{i}=\cdots = \mathbb{U}_{1}$.
+\end{itemize}
 \end{prop}
 
 Avant de prouver cela on a besoin du lemme suivant:
@@ -1812,7 +1823,8 @@ Soit $p$ un nombre premier, soit $c$ un nombre premier avec $p$. Pour tout $k \g
 La preuve suivante n'est pas différente de celle dans \cite{DeFeo10} mais celle-ci est tout de même intéressante par son approche dont notamment l'étude de l'action du Frobenius sur le $p$ module de Tate d'où sa retranscription ici.
 
 \begin{proof}
-On rappelle tout d'abord l'équation caractéristique du Frobenius:
+On a $[\mathbb{U}_1:\mathbb{F}_q] \mid p-1$ par \ref{thm:Gunji}. Prouvons maintenant le second point,
+on rappelle tout d'abord l'équation caractéristique du Frobenius:
 \begin{equation}
 X^2 - t_{\pi}X + q = 0
 \end{equation}
@@ -1822,7 +1834,15 @@ Regardons alors l'action du groupe de Galois $G$ de $\mathbb{F}_q$ sur $T_{p}(E)
 Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
 \end{proof}
 
-Ce résultat montre donc que pour toute courbe elliptique il existe un $i_0$ tel que l'on ait $[\mathbb{U}_i:\mathbb{U}_1]=p^{i-i_0}$ pour tout $i \geqslant i_0$. Ainsi asymptotiquement on aura $[\mathbb{U}_k:\mathbb{U}_1] \in O(p^k)$
+Ce résultat nous permet d'énoncer la définition suivante:
+
+
+
+\begin{defi}
+Soit $\mathbb{U}_0, \mathbb{U}_1, \mathbb{U}_2, \cdots, $ une tour d'extension $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic} alors on définit l'indice de valuation rationnelle $p$-adique de la tour comme étant le plus grand $i$ tel que $\mathbb{U}_i \subset \mathbb{F}_q$. On le note $v_E(p)$
+\end{defi}
+
+Ainsi on a $[\mathbb{U}_i:\mathbb{U}_1]=p^{i-v_E(p)}$ pour tout $i \geqslant v_E(p)$. Ainsi asymptotiquement on aura $[\mathbb{U}_k:\mathbb{U}_1] \in O(p^k)$
 
 \begin{lem}
 Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2d)$ opérations sur $\mathbb{F}_p$.
@@ -1831,14 +1851,20 @@ Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2d)$ opérati
 \begin{proof}
 On utilise donc les méthodes préconisées par les travaux de Gunji et Voloch. Pour la dernière itération de la $p$-descente on a tout d'abord besoin de résoudre une équation d'Artin Schreier \eqref{eq:vol:cov}, pour cela \cite{Couveignes96} utilise un précalcul de l'inverse de l'application $\mathbb{F}_q$-linéaire  $x \mapsto x^q-x$ qu'il applique ensuite. Il est fait de même avec l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$. Le précalcul a un coût de $O(p^{wk}d)=O(\ell^{w}d)$ opérations sur $\mathbb{F}_p$ avec un stockage de $O(\ell^2d)$ éléments de $\mathbb{F}_p$.
 Ces pré calculs peuvent être réutilisés pour d'autres calculs de $\ell$-isogénies.
-Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 )$ opérations sur $\mathbb{F}_q$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \rightarrow x^p - x$ étant négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
+Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 )$ opérations sur $\mathbb{F}_q$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$ étant négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
 \end{proof}
 
-\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide de l'algorithme d'Euclide une fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire qui s'annule l'es abscisses des points de $p^k$ torsion primtifs. 
+\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide de l'algorithme d'Euclide une fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire qui s'annule les abscisses des points de $p^k$ torsion primtifs. 
 
-Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectué distinctement sur les différentes orbites sous l'action du Frobenius puis en utilisant le théorème des restes chinois on obtient alors un polynôme d'interpolation modulo la $p^k$-torsion primitive.
+Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectuée distinctement sur les différentes orbites sous l'action du Frobenius puis en utilisant le théorème des restes chinois on obtient alors un polynôme d'interpolation modulo la $p^k$-torsion primitive.
 
-En effet on a l'ensemble des abscisses des point primitifs de $p^k$-torsion qui est de taille $p^k(p-1)/2$. La taille des orbites sous l'action du Frobenius est quant à elle égale à $[\mathbb{U}_k:\mathbb{F}_q]$. Ainsi si l'on note $f$ la taille de ses orbites et $d$ le nombre de représentants on a $d \times f=p^k(p-1)/2$.
+En effet on a l'ensemble des abscisses des point primitifs de $p^k$-torsion qui est de taille $p^k(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{U}_k:\mathbb{F}_q]$. Ainsi si l'on note $f$ la taille de ses orbites et $d$ le nombre de représentants on a $d \times f=p^k(p-1)/2$.
+
+Détaillons plus en détail cette notion. On a vu précédemment dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'on avait l'extension $U_{i+1}$ dans laquelle est définie la $p^{i+1}$ torsion de $E$ qui est soit une extension $p$-adique de $\mathbb{U}_{i}$ soit est tout simplement égale à $\mathbb{U}_{i}$. Ainsi on définit la valuation $p$-adique rationnelle.
+
+\begin{defi}
+Soient $\mathbb{U}_i$ définis comme dans 
+\end{defi}
 
 \begin{rem}
 On a $f$ la taille des orbites des abscisses qui est égale à $[\mathbb{U}_k:\mathbb{F}_q]$ si et seulement si $2 \nmid [\mathbb{U}_k:\mathbb{F}_q]$. En effet dans le cas où l'on a $2 \mid [\mathbb{U}_k:\mathbb{F}_q]$ si l'on note $p=[\mathbb{U}_k:\mathbb{F}_q]$ alors on a $\pi^{p/2}(x(P))=x(-P)=x(P)$ et donc $f=[\mathbb{U}_k:\mathbb{F}_q]/2$.
@@ -1896,13 +1922,13 @@ Ainsi le calcul de la $p^k$-torsion a un coût total de:
 \tilde{O}_{p,d,\log \ell}((pd)^{\omega}\log_p^2\ell +p^2\ell d \log_p^4\ell +\frac{\ell}{p}C(pd))
 \end{equation*}
 
-A nouveau le détail des calculs de complexité peuvent être trouvés dans \cite{defeo2011}, il est à noter que la complexité obtenue pour résoudre \eqref{eq:vol:cov} est faite à l'aide de techniques spécifiques à la construction de tours $p$-adique, plus de détails peuvent être trouvés dans \cite{DeFeo-Shost'12}.
+A nouveau le détail des calculs de complexité peut être trouvés dans \cite{defeo2011}, la complexité obtenue pour résoudre \eqref{eq:vol:cov} est faite à l'aide de techniques spécifiques à la construction de tours $p$-adique, plus de détails peuvent être trouvés dans \cite{DeFeo-Shost'12}.
 
 Il est à noter que dans ce cas-là on a plus besoin de stocker une matrice de taille $p^{k-1}d \times p^{k-1}d$ pour résoudre l'équation d'Artin Schreier \eqref{eq:vol:cov}, ainsi il n'y a plus besoin de stocker en mémoire $O(\ell^2)$ données.
 
 \paragraph{Interpolation}
 
-L'apport de l'utilisation de tour d'Artin Schreier \cite{DeFeo-Shost'12} est minime sur cette étape qui ne cahnge que très peu de l'original. On commence donc par  calculer un polynôme d'interpolation de degré $p^{k-1}(p-1)-1$ à coeffcients dans $\mathbb{U}_k$ on utilise alors un push-down \cite[push-down]{DeFeo-Shost'12} pour avoir un polynôme de $\mathbb{F}_q[x]$ et ensuite utiliser une reconstruction rationnelle.
+L'apport de l'utilisation de tour d'Artin Schreier \cite{DeFeo-Shost'12} est minime sur cette étape qui ne change que très peu de l'original. On commence donc par  calculer un polynôme d'interpolation de degré $p^{k-1}(p-1)-1$ à coeffcients dans $\mathbb{U}_k$ on utilise alors un push-down \cite[push-down]{DeFeo-Shost'12} pour avoir un polynôme de $\mathbb{F}_q[x]$ et ensuite utiliser une reconstruction rationnelle.
 
 La première étape a un coût de $O(\mathsf{M}(p^{2k}d)\log(p^{k}))$ en utilisant les techniques de \cite[§10.2]{vzGJG03}. Ensuite on utilise une descente pour avoir une expression dans $\mathbb{U}_1[X]=\mathbb{F}_q[c][X]$, enfin à l'aide d'algèbre linéaire on exprime le polynôme sur $\mathbb{F}_q[X]$ en $O((pd)^2)$ opérations sur $\mathbb{F}_p$. La reconstruction rationnelle coûte $O(\mathsf{M}(p^kd)\log(p^k))$ d'après \cite[§11.1]{vzGJG03}, on a donc un coût total de:
 
