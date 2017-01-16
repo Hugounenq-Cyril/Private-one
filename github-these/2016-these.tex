@@ -21,6 +21,8 @@
 \usepackage{ragged2e}
 \usepackage{changepage}
 \usepackage{tikz}
+\usetikzlibrary{decorations}
+\usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{calc}
 \usetikzlibrary{fixedpointarithmetic}
 
@@ -1862,17 +1864,138 @@ Détaillons plus en détail cette notion. On a vu précédemment dans la proposi
 
 \begin{figure}
 \begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
-          \begin{scope}[fixed point arithmetic]
-          \coordinate (Q) at (0, 2) {$\mathbb{U}_{v_E(p)}$};
-          \coordinate (Q) at (0, 4) {$\mathbb{U}_{v_E(p)+1}$};
-          \coordinate (Q) at (0, 6) {$\bullet$};
-          \coordinate (Q) at (0, 8) {$\mathbb{U}_{v_E(p)+i}$};
-          \coordinate (-Q) at (2, 43) {};
-          \coordinate (-2Q) at (76, 24);
-          \coordinate (3Q) at (61, 91);
-            
+          \coordinate (U0) at (0, 0);
+          \coordinate (U1) at (0, 4) ;
+          \coordinate (U2) at (0, 6) ;
+          \coordinate (U3) at (0, 8) ;
+          \draw (U0) node{$\mathbb{U}_{v_E(p)}$};
+          \draw (U1) node{$\mathbb{U}_{v_E(p)+1}$};
+          \draw (U3) node{$\mathbb{U}_{v_E(p)+i}$};
+          \coordinate (U1b) at (0,4.5);
+          \coordinate (U3b) at (0,7.5);
+          \draw[dashed,-] (U1b) to (U3b); 
+          
+          \begin{scope}[xshift=5.8cm]
+          \coordinate (P0) at (0, 0);
+          \draw (P0) node{$\bullet$};
+          \coordinate (P0b) at (0,0.5);
+          \coordinate (P1) at (-3, 4);
+          \coordinate (P1b) at (-2.5,4);
+          \coordinate (P2) at (3, 4);
+          \coordinate (P2b) at (2.5,4);
+          \coordinate (P3) at (-2, 4);
+          \coordinate (P4) at (2, 4);
+          \draw (P1) node{$\bullet$};
+          \draw (P2) node{$\bullet$};
+          \draw (P3) node[color=gray!50]{$\bullet$};
+          \draw (P4) node[color=black]{$\bullet$};
+          %\draw (P4) node[color=black!30]{$\bullet$};
+          \draw [-] (P0) to (P1);
+          \draw [-] (P0) to (P2);
+          \draw[dashed] (P0) to (P3);
+          \draw[dashed] (P0) to (P4);
+          \coordinate (P1c) at (-1.4,4);
+          \coordinate (P11) at (1.4,4);
+          \draw[dashed,red] (P1c) to (P11);  
+          %dernier etage a gauche
+          \coordinate (P20) at (-4.5,8);
+          \coordinate (P21) at (-1.5,8);
+          \draw (P21) node{$\bullet$};
+          \draw (P20) node{$\bullet$};
+          \draw [-] (P1) to (P21);
+          \draw [-] (P1) to (P20);
+          \coordinate (P23) at (-4,8);
+          \coordinate (P24) at (-2,8);
+          \draw [dashed,-] (P1) to (P23);
+          \draw [dashed,-] (P1) to (P24);
+          \coordinate (P25) at (-3.3,8);
+          \coordinate (P26) at (-2.7,8);
+          \draw (P23) node{$\bullet$};
+          \draw (P24) node{$\bullet$};
+          \draw [dashed,-] (P25) to (P26);
+%          \coordinate (P27) at (-4,7);
+%          \coordinate (P28) at (-2,7);
+%          \draw [dashed,-] (P27) to (P28);
+		  %dernier etage a droite
+		  \coordinate (P1) at (3,4);
+          \coordinate (P20) at (4.5,8);
+          \coordinate (P21) at (1.5,8);
+          \draw (P21) node{$\bullet$};
+          \draw (P20) node{$\bullet$};
+          \draw [-] (P1) to (P21);
+          \draw [-] (P1) to (P20);
+          \coordinate (P23) at (4,8);
+          \coordinate (P24) at (2,8);
+          \draw [dashed,-] (P1) to (P23);
+          \draw [dashed,-] (P1) to (P24);
+          \coordinate (P25) at (3.3,8);
+          \coordinate (P26) at (2.7,8);
+          \draw (P23) node{$\bullet$};
+          \draw (P24) node{$\bullet$};
+          \draw [dashed,-] (P25) to (P26);
           \end{scope}
-
+          
+          \begin{scope}[xshift=15.8cm]
+          \coordinate (P0) at (0, 0);
+          \draw (P0) node{$\bullet$};
+          \coordinate (P0b) at (0,0.5);
+          \coordinate (P1) at (-3, 4);
+          \coordinate (P1b) at (-2.5,4);
+          \coordinate (P2) at (3, 4);
+          \coordinate (P2b) at (2.5,4);
+          \coordinate (P3) at (-2, 4);
+          \coordinate (P4) at (2, 4);
+          \draw (P1) node{$\bullet$};
+          \draw (P2) node{$\bullet$};
+          \draw (P3) node[color=gray!50]{$\bullet$};
+          \draw (P4) node[color=black]{$\bullet$};
+          %\draw (P4) node[color=black!30]{$\bullet$};
+          \draw [-] (P0) to (P1);
+          \draw [-] (P0) to (P2);
+          \draw[dashed] (P0) to (P3);
+          \draw[dashed] (P0) to (P4);
+          \coordinate (P1c) at (-1.4,4);
+          \coordinate (P11) at (1.4,4);
+          \draw[dashed,red] (P1c) to (P11);  
+          %dernier etage a gauche
+          \coordinate (P20) at (-4.5,8);
+          \coordinate (P21) at (-1.5,8);
+          \draw (P21) node{$\bullet$};
+          \draw (P20) node{$\bullet$};
+          \draw [-] (P1) to (P21);
+          \draw [-] (P1) to (P20);
+          \coordinate (P23) at (-4,8);
+          \coordinate (P24) at (-2,8);
+          \draw [dashed,-] (P1) to (P23);
+          \draw [dashed,-] (P1) to (P24);
+          \coordinate (P25) at (-3.3,8);
+          \coordinate (P26) at (-2.7,8);
+          \draw (P23) node{$\bullet$};
+          \draw (P24) node{$\bullet$};
+          \draw [dashed,-] (P25) to (P26);
+%          \coordinate (P27) at (-4,7);
+%          \coordinate (P28) at (-2,7);
+%          \draw [dashed,-] (P27) to (P28);
+		  %dernier etage a droite
+		  \coordinate (P1) at (3,4);
+          \coordinate (P20) at (4.5,8);
+          \coordinate (P21) at (1.5,8);
+          \draw (P21) node{$\bullet$};
+          \draw (P20) node{$\bullet$};
+          \draw [-] (P1) to (P21);
+          \draw [-] (P1) to (P20);
+          \coordinate (P23) at (4,8);
+          \coordinate (P24) at (2,8);
+          \draw [dashed,-] (P1) to (P23);
+          \draw [dashed,-] (P1) to (P24);
+          \coordinate (P25) at (3.3,8);
+          \coordinate (P26) at (2.7,8);
+          \draw (P23) node{$\bullet$};
+          \draw (P24) node{$\bullet$};
+          \draw [dashed,-] (P25) to (P26);
+          \end{scope}
+          \draw[color=black,decorate,decoration={brace},below]
+				(16,-1) -- (5.5,-1) node[color=black,below,pos=0.5] {d};
 %          \begin{scope}[xshift=10cm,fixed point arithmetic]
 %            \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
 %            \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
