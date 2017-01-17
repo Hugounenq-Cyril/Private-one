@@ -1789,7 +1789,7 @@ La descente est alors effectuée de la façon suivante, à partir d'un point $P$
 
 Cette méthode est plus efficace que la méthode standard car à l'aide des constructions de Tour d'Artin Schreier on peut résoudre plus rapidement l'équation \ref{eq:vol:cov} qui est une équation d'Artin Schreier cette équation peut être résolue à l'aide de méthodes de \textcolor{red}{ref à mettre} \cite[Ch.6]{DeFeo10} ou par algèbre linéaire comme dans \cite{Couveignes96}. Une fois qu'une solution $\tilde{z}$ de \eqref{eq:vol:cov} est trouvée il faut alors résoudre en $x$ et en $y$ le système de \eqref{eq:vol:iso} à l'aide d'un calcul de $\mathrm{pgcd}$ plus de détails peuvent être trouvés dans \cite[§6.2]{Ler97a} ou dans \cite[§9.1]{DeFeo10} alors que dans la méthode préconisée auparavant on devait facotriser un polynôme.
 
-Comme le travail de \cite{Defeo11} repose sur les constructions de tour d'Artin Schreier, dont une brève description sera faite \textcolor{red}{ref. à mettre} pour plus de détails voir \cite{DeFeo-Shost'12}, et que celles-ci sont construites comme des extensions de $\mathbb{F}_q$ alors les complexités seront exprimées en terme d'opérations sur $\mathbb{F}_p$ en utilisant la convention que l'on a $q=p^d$.
+Comme le travail de \cite{DeFeo11} repose sur les constructions de tour d'Artin Schreier, dont une brève description sera faite \textcolor{red}{ref. à mettre} pour plus de détails voir \cite{DeFeo-Shost'12}, et que celles-ci sont construites comme des extensions de $\mathbb{F}_q$ alors les complexités seront exprimées en terme d'opérations sur $\mathbb{F}_p$ en utilisant la convention que l'on a $q=p^d$.
 
 \begin{lem}
 Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
@@ -1803,7 +1803,7 @@ Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille 
 
 \begin{defi}
 \label{def:p-adic}
-Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour d'extension $p$-adique $\mathbb{U}_0 \mathbb{U}_1, \mathbb{U}_2, \cdots \mathbb{U}_i$ telle que $\mathbb{U}_i$ soit la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{U}_i)$. On pose $\mathbb{U}_0=\mathbb{F}_q$.
+Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour d'extension $p$-adique $\mathbb{U}_0,  \mathbb{U}_1, \mathbb{U}_2, \cdots \mathbb{U}_i$ telle que $\mathbb{U}_i$ soit la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{U}_i)$. On pose $\mathbb{U}_0=\mathbb{F}_q$.
 \end{defi}
 
 \begin{prop}
@@ -2027,7 +2027,7 @@ Détaillons cela, on a vu précédemment dans la proposition \ref{pro:ord:fro} q
 La taille des orbites des abscisses $f$ selon l'action du groupe de Galois $[\mathbb{U}_k:\mathbb{F}_q]$  est égale à $[\mathbb{U}_k:\mathbb{F}_q]$ si et seulement si $2 \nmid [\mathbb{U}_k:\mathbb{F}_q]$. En effet dans le cas où l'on a $2 \mid [\mathbb{U}_k:\mathbb{F}_q]$ si l'on note $e=[\mathbb{U}_k:\mathbb{F}_q]$ alors on a $\pi^{e/2}(x(P))=x(-P)=x(P)$ et donc $f \mid [\mathbb{U}_k:\mathbb{F}_q]/2$.
 \end{rem} 
 
-Dans l'algorithme original de Couveignes le coût minimal du calcul du polynôme d'interpolation a été sous-estimé. En effet on cherche à calculer un polynôme de degré $\frac{p^{k-1}(p-1)}{2}=\frac{\phi(p^k)}{2}$ à coefficients dans $\mathbb{U}_k$, ainsi ne serait ce que pour représenter ce polynôme on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{U}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul. Les travaux de \cite{Defeo11} ont donc résolu cette question et seront présentés à \textcolor{red}{ref à mettre}.
+Dans l'algorithme original de Couveignes le coût minimal du calcul du polynôme d'interpolation a été sous-estimé. En effet on cherche à calculer un polynôme de degré $\frac{p^{k-1}(p-1)}{2}=\frac{\phi(p^k)}{2}$ à coefficients dans $\mathbb{U}_k$, ainsi ne serait ce que pour représenter ce polynôme on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{U}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul. Les travaux de \cite{DeFeo11} ont donc résolu cette question et seront présentés à \textcolor{red}{ref à mettre}.
 
 %En pratique on travaille avec les points primitifs de $p^k$-torsion afin de pouvoir se servir de l'action du Frobenius pour parcourir tous les éléments à l'aide des représentants et de l'action du Frobenius.
 
@@ -2040,20 +2040,15 @@ Dans l'algorithme original de Couveignes le coût minimal du calcul du polynôme
 %Ensuite il faut calculer le polynôme d'interpolation de degré $f$ avec $f \in O(p^k)$ sur des points définis dans une extension de $\mathbb{F}_q$ de taille $f$ .
 %\end{proof}
 
-\paragraph{Validation de l'isogénie} On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie. Pour cela on doit tout d'abord regarder les degrés et vérifier que l'on a $\deg(R)=\ell$ et $\deg(V)=\ell-1$, si cela n'est pas vérifié alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. Ensuite on peut vérifier que $V$ est bien un carré (ou si $\ell$ est pair que c'est le produit d'un facteur du polynôme de $2$-division et d'un carrée). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(\ell) \log(\ell))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut éventuellement évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupe. Enfin si une preuve déterministique est souhaitée on peut vérifier que $V$ est bien un diviseur du polynôme de $\ell$-division, pour cela on calcule le polynôme de $\ell$ division en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$. 
+\paragraph{Validation de l'isogénie} On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie. Pour cela on doit tout d'abord regarder les degrés et vérifier que l'on a $\deg(R)=\ell$ et $\deg(V)=\ell-1$, si cela n'est pas vérifié alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. Ensuite on peut vérifier que $V$ est bien un carré (ou si $\ell$ est pair que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(\ell) \log(\ell))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut éventuellement évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupe. Enfin si une preuve déterministique est souhaitée on peut vérifier que $V$ est bien un diviseur du polynôme de $\ell$-division, pour cela on calcule le polynôme de $\ell$ division en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$. 
 
 Le cas $p=2$ n'est pas traité ici, le lecteur intéressé pourra se référer à \cite[8.5.2]{DeFeo10}
 
-
-\begin{thm}
-L'algorithme de Couveignes a une complexité totale de $O(\ell^2)$ opérations sur $\mathbb{F}_q$
-\end{thm}
-
 \subsubsection{Améliorations de Couveignes: Calcul de la $p^k$-torsion}
 
-Comme dit précédemment des améliorations ont été apportées dans \cite{DeFeo10}, elles sont toutes utilisées dans notre approche $\ell$-adique de l'algorithme de Couveignes, soit directement soit adaptées c'est pourqoi certaines parties seront plus détaillées que d'autres.
+Comme dit précédemment des améliorations ont été apportées dans \cite{DeFeo11}, elles sont toutes utilisées dans notre approche $\ell$-adique de l'algorithme de Couveignes, soit directement soit adaptées c'est pourquoi certaines parties seront plus détaillées que d'autres.
 
-Pour le calcul de la $p^k$-torsion \cite{DeFeo10} utilise les calculs consécutifs aux travaux de \cite{Gunji76} et \cite{Voloch88} sur des tours d'Artin Schreier (tours $p$-adiques)
+Pour le calcul de la $p^k$-torsion \cite{DeFeo11} utilise les calculs consécutifs aux travaux de \cite{Gunji76} et \cite{Voloch88} sur des tours d'Artin Schreier (tours $p$-adiques)
 \paragraph{$p$-torsion}
 La construction de $\mathbb{F}_q[c]$ est faite comme une extension de $\mathbb{F}_p:\mathbb{F}_p[x]/Q_1$ avec $Q_1$ un polynôme irréductible et $Q_1$ qui vérifie l'une des deux conditions suivantes:
 \begin{itemize}
@@ -2066,7 +2061,7 @@ Ainsi les complexités vont être exprimées en termes d'opérations sur $\mathb
 \begin{equation*}
 \tilde{O}(p^2d^3+pC(pd)+C(p)pd+(pd)^{\omega})
 \end{equation*}
-pour plus de détails sur le calcul de complexité voire \cite{defeo2011}, la démarche étant la même que celle décrite dans la sous section précédente. 
+pour plus de détails sur le calcul de complexité voire \cite{DeFeo11}, la démarche étant la même que celle décrite dans la sous section précédente. 
 
 Rappeler quelque part que $q=p^d$
 
@@ -2079,7 +2074,7 @@ Ainsi le calcul de la $p^k$-torsion a un coût total de:
 \tilde{O}_{p,d,\log \ell}((pd)^{\omega}\log_p^2\ell +p^2\ell d \log_p^4\ell +\frac{\ell}{p}C(pd))
 \end{equation*}
 
-A nouveau le détail des calculs de complexité peut être trouvés dans \cite{defeo2011}, la complexité obtenue pour résoudre \eqref{eq:vol:cov} est faite à l'aide de techniques spécifiques à la construction de tours $p$-adique, plus de détails peuvent être trouvés dans \cite{DeFeo-Shost'12}.
+A nouveau le détail des calculs de complexité peut être trouvés dans \cite{DeFeo11}, la complexité obtenue pour résoudre \eqref{eq:vol:cov} est faite à l'aide de techniques spécifiques à la construction de tours $p$-adique, plus de détails peuvent être trouvés dans \cite{DeFeo-Shost'12}.
 
 Il est à noter que dans ce cas-là on a plus besoin de stocker une matrice de taille $p^{k-1}d \times p^{k-1}d$ pour résoudre l'équation d'Artin Schreier \eqref{eq:vol:cov}, ainsi il n'y a plus besoin de stocker en mémoire $O(\ell^2)$ données.
 
@@ -2144,7 +2139,7 @@ L(\sigma(x(P))=\sigma(L(x(P)))=\sigma(x(P'))
 \end{equation*}
 ainsi l'information de l'image d'un élément de $\mathbb{U}_k$ entraîne la connaissance des images des points de son orbite sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$. On va donc se servir de l'action du Frobenius sur le polynôme d'interpolation défini uniquement pour un représentant de l'orbite (en l'occurence $L(x(P))=x(P')$) pour calculer successivement à l'aide d'un arbre de produit binaire le polynôme d'interpolation défini sur $\mathbb{F}_q$.
 
-Parlons tout d'abord de l'arbre de produit binaire, cette idée a donc été utilisé dans \cite{Defeo11}, mais avant été utilisé auparavant dans \cite{enge2008}.
+Parlons tout d'abord de l'arbre de produit binaire, cette idée a donc été utilisé dans \cite{DeFeo11}, mais avant été utilisé auparavant dans \cite{enge2008}.
 
 Pour $P$ un point primitif de $p^k$ torsion on a $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_k$. On a alors pour tout $n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*$ $x([n]P) \in \mathsf{orb}(x(P))$. On a donc:
 \begin{equation*}
