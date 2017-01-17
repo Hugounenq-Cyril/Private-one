@@ -1858,22 +1858,35 @@ Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'
 
 Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectuée distinctement sur les différentes orbites sous l'action du Frobenius puis en utilisant le théorème des restes chinois on obtient alors un polynôme d'interpolation modulo la $p^k$-torsion primitive.
 
-En effet on a l'ensemble des abscisses des point primitifs de $p^k$-torsion qui est de taille $p^k(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{U}_k:\mathbb{F}_q]$. Ainsi si l'on note $f$ la taille de ses orbites et $d$ le nombre de représentants on a $d \times f=p^k(p-1)/2$.
+En effet l'ensemble des abscisses des point primitifs de $p^k$-torsion est de taille $p^k(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{U}_k:\mathbb{F}_q]$ (ou $\frac{[\mathbb{U}_k:\mathbb{F}_q]}{2}$ voire remarque ). Ainsi si l'on note $f$ la taille de ces orbites et $d$ le nombre de représentants on a $d \times f=p^k(p-1)/2$.
 
-Détaillons plus en détail cette notion. On a vu précédemment dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'on avait l'extension $U_{i+1}$ dans laquelle est définie la $p^{i+1}$ torsion de $E$ qui est soit une extension $p$-adique de $\mathbb{U}_{i}$ soit est tout simplement égale à $\mathbb{U}_{i}$. Ainsi si l'on regarde les points d'ordre $p^{v_E(p)}$ de $E$, alors par définition de $v_E(p)$ ils sont définis sur $E(\mathbb{F}_q)$. Si l'on regarde alors les points d'odre $p^{v_E(p)+i}$ avec $i \geqslant 1$ chacun sont définis à partir comme un antécédent de $[p]$ (la multiplication par $p$) d'un point d'ordre $p^{v_E(p)+i}$ et appartiennet ainsi à l'ordite de celui-ci sous l'action du groupe de Galois $[\mathbb{U}_{v_E(p)+i}:\mathbb{U}_{v_E(p)+i-1}]$. Ainsi comme illustré sur la figure on peut voir une répartition des points de $p^i$-torsion selon l'action du Frobenius et leurs orbites.
+Détaillons cela, on a vu précédemment dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $U_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension $p$-adique de $\mathbb{U}_{i}$ soit égale à $\mathbb{U}_{i}$. Ainsi les points d'ordre $p^{v_E(p)}$ de $E$ sont par définition de $v_E(p)$ définis sur $E(\mathbb{F}_q)$, on note $d$ le nombre d'abiscisses différentes de ces éléments. Dès lors les points d'odre $p^{v_E(p)+i}$ avec $i \geqslant 1$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_E(p)+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{U}_{v_E(p)+i}:\mathbb{U}_{v_E(p)+i-1}]$ est un antécédent de $P_i$ par $[p]$. Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des points de $p^i$-torsion selon l'action du Frobenius et les différentes orbites.
 
 \begin{figure}
+\begin{center}
 \begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
           \coordinate (U0) at (0, 0);
           \coordinate (U1) at (0, 4) ;
           \coordinate (U2) at (0, 6) ;
           \coordinate (U3) at (0, 8) ;
-          \draw (U0) node{$\mathbb{U}_{v_E(p)}$};
+          \draw (U0) node{$\mathbb{F}_{q}=\mathbb{U}_{v_E(p)}$};
           \draw (U1) node{$\mathbb{U}_{v_E(p)+1}$};
           \draw (U3) node{$\mathbb{U}_{v_E(p)+i}$};
           \coordinate (U1b) at (0,4.5);
           \coordinate (U3b) at (0,7.5);
           \draw[dashed,-] (U1b) to (U3b); 
+          \coordinate (U4) at (6.5, 0);
+          \coordinate (U5) at (15, 0);
+          \draw[dashed,-] (U4) to (U5);
+          \coordinate (U6) at (9.5,4);
+          \coordinate (U7) at (12,4);
+		  %\draw[dashed,-] (U6) to (U7); 
+		  \coordinate (U10) at (22,0);
+		  \coordinate (U11) at (22,4);
+		  \coordinate (U12) at (22,8); 
+		  \draw (U10) node{$E[p^{v_E(p)}]$};
+          \draw (U11) node{$E[p^{v_E(p)+1}]$};
+          \draw (U12) node{$E[p^{v_E(p)+i}]$};        
           
           \begin{scope}[xshift=5.8cm]
           \coordinate (P0) at (0, 0);
@@ -1887,7 +1900,7 @@ Détaillons plus en détail cette notion. On a vu précédemment dans la proposi
           \coordinate (P4) at (2, 4);
           \draw (P1) node{$\bullet$};
           \draw (P2) node{$\bullet$};
-          \draw (P3) node[color=gray!50]{$\bullet$};
+          \draw (P3) node[color=black]{$\bullet$};
           \draw (P4) node[color=black]{$\bullet$};
           %\draw (P4) node[color=black!30]{$\bullet$};
           \draw [-] (P0) to (P1);
@@ -1896,7 +1909,7 @@ Détaillons plus en détail cette notion. On a vu précédemment dans la proposi
           \draw[dashed] (P0) to (P4);
           \coordinate (P1c) at (-1.4,4);
           \coordinate (P11) at (1.4,4);
-          \draw[dashed,red] (P1c) to (P11);  
+          \draw[dashed] (P1c) to (P11);  
           %dernier etage a gauche
           \coordinate (P20) at (-4.5,8);
           \coordinate (P21) at (-1.5,8);
@@ -1924,6 +1937,10 @@ Détaillons plus en détail cette notion. On a vu précédemment dans la proposi
           \draw (P20) node{$\bullet$};
           \draw [-] (P1) to (P21);
           \draw [-] (P1) to (P20);
+          \coordinate (P200) at (4.6,8);
+          \coordinate (P210) at (-4.6,8);
+          \draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
+				(P210) -- (P200) node[color=black,above=0.2cm, pos=0.5] {f};
           \coordinate (P23) at (4,8);
           \coordinate (P24) at (2,8);
           \draw [dashed,-] (P1) to (P23);
@@ -1947,7 +1964,7 @@ Détaillons plus en détail cette notion. On a vu précédemment dans la proposi
           \coordinate (P4) at (2, 4);
           \draw (P1) node{$\bullet$};
           \draw (P2) node{$\bullet$};
-          \draw (P3) node[color=gray!50]{$\bullet$};
+          \draw (P3) node[color=black]{$\bullet$};
           \draw (P4) node[color=black]{$\bullet$};
           %\draw (P4) node[color=black!30]{$\bullet$};
           \draw [-] (P0) to (P1);
@@ -1956,7 +1973,7 @@ Détaillons plus en détail cette notion. On a vu précédemment dans la proposi
           \draw[dashed] (P0) to (P4);
           \coordinate (P1c) at (-1.4,4);
           \coordinate (P11) at (1.4,4);
-          \draw[dashed,red] (P1c) to (P11);  
+          \draw[dashed] (P1c) to (P11);  
           %dernier etage a gauche
           \coordinate (P20) at (-4.5,8);
           \coordinate (P21) at (-1.5,8);
@@ -1984,6 +2001,10 @@ Détaillons plus en détail cette notion. On a vu précédemment dans la proposi
           \draw (P20) node{$\bullet$};
           \draw [-] (P1) to (P21);
           \draw [-] (P1) to (P20);
+          \coordinate (P210) at (-4.6,8);
+          \coordinate (P200) at (4.6,8);
+          \draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
+				(P210) -- (P200) node[color=black,above=0.2cm, pos=0.5] {f};
           \coordinate (P23) at (4,8);
           \coordinate (P24) at (2,8);
           \draw [dashed,-] (P1) to (P23);
@@ -1996,50 +2017,28 @@ Détaillons plus en détail cette notion. On a vu précédemment dans la proposi
           \end{scope}
           \draw[color=black,decorate,decoration={brace},below]
 				(16,-1) -- (5.5,-1) node[color=black,below,pos=0.5] {d};
-%          \begin{scope}[xshift=10cm,fixed point arithmetic]
-%            \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
-%            \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
-%
-%            \begin{scope}[fixed point arithmetic]
-%              \coordinate (-Q) at (2, 4/3) {};
-%              \coordinate (-2Q) at (-1079/576, 59653/13824);
-%              \path let \p1 = (-2Q) in coordinate (2Q) at (\x1,-\y1);
-%            \end{scope}
-%
-%            \draw[shorten >=-2cm, shorten <=-2cm] (-Q) -- (2Q);
-%            \draw[dashed] (-2Q) -- (2Q);
-%
-%            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
-%              every label/.style={inner sep=5pt,font=\scriptsize}]
-%              \draw (-Q) node[/dot,label=$P$] {}
-%              (-2Q) node[/dot,label=$[2]P$] (G) {};
-%              \draw[label position=below] (2Q) node[/dot,label=$R$] {};
-%            \end{scope}
-%          \end{scope}
         \end{tikzpicture}
 \caption{Classification des points de $p^k$-torsion selon l'action du Frobenius}
+\label{fig:p-tor:fro}
+\end{center}
 \end{figure} 
 
-\begin{defi}
-Soient $\mathbb{U}_i$ définis comme dans 
-\end{defi}
-
 \begin{rem}
-On a $f$ la taille des orbites des abscisses qui est égale à $[\mathbb{U}_k:\mathbb{F}_q]$ si et seulement si $2 \nmid [\mathbb{U}_k:\mathbb{F}_q]$. En effet dans le cas où l'on a $2 \mid [\mathbb{U}_k:\mathbb{F}_q]$ si l'on note $p=[\mathbb{U}_k:\mathbb{F}_q]$ alors on a $\pi^{p/2}(x(P))=x(-P)=x(P)$ et donc $f=[\mathbb{U}_k:\mathbb{F}_q]/2$.
+La taille des orbites des abscisses $f$ selon l'action du groupe de Galois $[\mathbb{U}_k:\mathbb{F}_q]$  est égale à $[\mathbb{U}_k:\mathbb{F}_q]$ si et seulement si $2 \nmid [\mathbb{U}_k:\mathbb{F}_q]$. En effet dans le cas où l'on a $2 \mid [\mathbb{U}_k:\mathbb{F}_q]$ si l'on note $e=[\mathbb{U}_k:\mathbb{F}_q]$ alors on a $\pi^{e/2}(x(P))=x(-P)=x(P)$ et donc $f \mid [\mathbb{U}_k:\mathbb{F}_q]/2$.
 \end{rem} 
 
-Dans l'algorithme original de Couveignes le coût minimal du calcul du polynôme d'interpolation a été sous-estimé. En effet on cherche à calculer un polynôme de degré $p^{k-1}(p-1)=\phi(p^k)$ à coefficients dans $\mathbb{U}_k$, ainsi ne serait ce que pour représenter ce polynôme on aurait besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc on aurait à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$, il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul. Les travaux de \cite{DeFeo10} ont donc résolu cette question et seront présentés à \textcolor{red}{ref à mettre}.
+Dans l'algorithme original de Couveignes le coût minimal du calcul du polynôme d'interpolation a été sous-estimé. En effet on cherche à calculer un polynôme de degré $\frac{p^{k-1}(p-1)}{2}=\frac{\phi(p^k)}{2}$ à coefficients dans $\mathbb{U}_k$, ainsi ne serait ce que pour représenter ce polynôme on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{U}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul. Les travaux de \cite{Defeo11} ont donc résolu cette question et seront présentés à \textcolor{red}{ref à mettre}.
 
 %En pratique on travaille avec les points primitifs de $p^k$-torsion afin de pouvoir se servir de l'action du Frobenius pour parcourir tous les éléments à l'aide des représentants et de l'action du Frobenius.
-On note $m_1, m_2, \cdots, m_d$ les différents représentants des orbites selon l'action du Frobenius. Chacune de ces orbites est de taille $[\mathbb{U}_k:\mathbb{U}_1]$ avec $d=[\mathbb{U}_1:\mathbb{F}_q]$.
-\begin{lem}
-Le coût de calcul de l'interpolation de Cauchy est de opérations sur $\mathbb{F}_q$.
-\end{lem}
 
-\begin{proof}
-Tout d'abord il y a le coût de calcul des abscisses des points d'ordre $p^k$, ceci est fait indépendamment de l'hypothèse sur le choix de l'image du générateur de la $p^k$-torsion et pourra donc être réutilisé si cette hypothèse s'avère fausse. Pour calculer tous les points primitifs de $p^k$-torsion on a besoin d'effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{U}_k:\mathbb{F}_q] \in O(p^k) $ et donc ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$.
-Ensuite il faut calculer le polynôme d'interpolation de degré $f$ avec $f \in O(p^k)$ sur des points définis dans une extension de $\mathbb{F}_q$ de taille $f$.
-\end{proof}
+%\begin{lem}
+%Le coût de calcul de l'interpolation de Cauchy est de opérations sur $\mathbb{F}_q$.
+%\end{lem}
+%
+%\begin{proof}
+%Tout d'abord il y a le coût de calcul des abscisses des points d'ordre $p^k$, ceci est fait indépendamment de l'hypothèse sur le choix de l'image du générateur de la $p^k$-torsion et pourra donc être réutilisé si cette hypothèse s'avère fausse. Pour calculer tous les points primitifs de $p^k$-torsion on a besoin d'effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{U}_k:\mathbb{F}_q] \in O(p^k) $ et donc ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$.
+%Ensuite il faut calculer le polynôme d'interpolation de degré $f$ avec $f \in O(p^k)$ sur des points définis dans une extension de $\mathbb{F}_q$ de taille $f$ .
+%\end{proof}
 
 \paragraph{Validation de l'isogénie} On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie. Pour cela on doit tout d'abord regarder les degrés et vérifier que l'on a $\deg(R)=\ell$ et $\deg(V)=\ell-1$, si cela n'est pas vérifié alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. Ensuite on peut vérifier que $V$ est bien un carré (ou si $\ell$ est pair que c'est le produit d'un facteur du polynôme de $2$-division et d'un carrée). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(\ell) \log(\ell))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut éventuellement évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupe. Enfin si une preuve déterministique est souhaitée on peut vérifier que $V$ est bien un diviseur du polynôme de $\ell$-division, pour cela on calcule le polynôme de $\ell$ division en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$. 
 
