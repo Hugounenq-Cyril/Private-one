@@ -1799,7 +1799,7 @@ Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opératio
 Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\tilde{c}$ racines $p-1$ ème de $H_{E}$ et $H_{E'}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
 \end{proof}
 
-Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est ammené à effectuer les calculs. On introduit donc la définition de tours d'extensions $p$-adique, en effet le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement la valuation $p$-adique de la torsion rationnelle de la courbe de $1$.
+Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est ammené à effectuer les calculs. On introduit donc la définition de tours d'extensions $p$-adique, le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement la valuation $p$-adique de la torsion rationnelle de la courbe de $1$.
 
 \begin{defi}
 \label{def:p-adic}
@@ -1836,13 +1836,21 @@ Regardons alors l'action du groupe de Galois $G$ de $\mathbb{F}_q$ sur $T_{p}(E)
 Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
 \end{proof}
 
-Ce résultat nous permet d'énoncer la définition suivante:
+
+On voit donc à travers cette preuve que si $E[p] \subset E(\mathbb{F}_q)$ alors il est possible que $\mathbb{U}_0=\mathbb{U}_1=\mathbb{U}_2$, de même lorsque l'on a $E[p] \nsubset E(\mathbb{F}_q)$ il est possible que $\mathbb{U}_1=\mathbb{U}_2$, dés lors la distinction suivante est nécessaire.
+
+
+%On voit donc à travers ce résultat qu'il est possible que l'on ait $\mathbb{U}_2=\mathbb{U}_1$ alors que l'on peut avoir $\mathbb{U}_0 \neq \mathbb{U}_1$. En effet pour $d=[\mathbb{U}_1:\mathbb{F}_q]$ on a $t_{\pi}(\mathbb{U}_1)=t_{\pi}(\mathbb{F}_q)^d$, ainsi il est nécessaire de prendre en compte ce cas afin de pouvoir quantifier la taille des tours sur lesquelles on travaille.
 
 \begin{defi}
-Soit $\mathbb{U}_0, \mathbb{U}_1, \mathbb{U}_2, \cdots, $ une tour d'extension $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic} alors on définit l'indice de valuation rationnelle $p$-adique de la tour comme étant le plus grand $i$ tel que $\mathbb{U}_i \subset \mathbb{F}_q$. On le note $v_E(p)$
+Soit $\mathbb{U}_0, \mathbb{U}_1, \mathbb{U}_2, \cdots, $ une tour d'extension $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic} alors on définit l'indice de valuation rationnelle $p$-adique de la tour comme étant le plus grand indice $i$ tel que $\mathbb{U}_i \subset \mathbb{F}_q$. On le note $v_p(E(\mathbb{F}_q))$. On définit de la même manière l'indice de valuation $p$-adique de la courbe définie sur $\mathbb{U}_1$ comme étant le plus grand indice $i$ tel que $\mathbb{U}_i \subset \mathbb{U}_1$. On le note $v_p(E(\mathbb{U}_1))$.
 \end{defi}
 
-Ainsi on a $[\mathbb{U}_i:\mathbb{U}_1]=p^{i-v_E(p)}$ pour tout $i \geqslant v_E(p)$. Ainsi asymptotiquement on aura $[\mathbb{U}_k:\mathbb{U}_1] \in O(p^k)$
+\begin{rem}
+Il est à noter que si $v_p(E(\mathbb{F}_q)) \neq 0$ alors $v_p(E(\mathbb{F}_q))=v_p(E(\mathbb{U}_1))$.
+\end{rem}
+
+Ainsi on a $[\mathbb{U}_i:\mathbb{U}_1]=p^{i- v_p(E(\mathbb{U}_1))}$ pour tout $i \geqslant  v_p(E(\mathbb{U}_1))$. Ainsi asymptotiquement on a $[\mathbb{U}_k:\mathbb{U}_1] \in O(p^k)$
 
 \begin{lem}
 Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2d)$ opérations sur $\mathbb{F}_p$.
@@ -1851,16 +1859,17 @@ Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2d)$ opérati
 \begin{proof}
 On utilise donc les méthodes préconisées par les travaux de Gunji et Voloch. Pour la dernière itération de la $p$-descente on a tout d'abord besoin de résoudre une équation d'Artin Schreier \eqref{eq:vol:cov}, pour cela \cite{Couveignes96} utilise un précalcul de l'inverse de l'application $\mathbb{F}_q$-linéaire  $x \mapsto x^q-x$ qu'il applique ensuite. Il est fait de même avec l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$. Le précalcul a un coût de $O(p^{wk}d)=O(\ell^{w}d)$ opérations sur $\mathbb{F}_p$ avec un stockage de $O(\ell^2d)$ éléments de $\mathbb{F}_p$.
 Ces pré calculs peuvent être réutilisés pour d'autres calculs de $\ell$-isogénies.
-Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 )$ opérations sur $\mathbb{F}_q$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$ est négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
+Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 d)$ opérations sur $\mathbb{F}_p$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$ est négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
 \end{proof}
 
-\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide de l'algorithme d'Euclide une fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire qui s'annule les abscisses des points de $p^k$ torsion primtifs. 
+\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide de l'algorithme d'Euclide une fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire qui s'annule sur les abscisses des points de $p^k$ torsion primitifs. 
 
 Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectuée distinctement sur les différentes orbites sous l'action du Frobenius puis en utilisant le théorème des restes chinois on obtient alors un polynôme d'interpolation modulo la $p^k$-torsion primitive.
 
-En effet l'ensemble des abscisses des point primitifs de $p^k$-torsion est de taille $p^k(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{U}_k:\mathbb{F}_q]$ (ou $\frac{[\mathbb{U}_k:\mathbb{F}_q]}{2}$ voire remarque ). Ainsi si l'on note $f$ la taille de ces orbites et $d$ le nombre de représentants on a $d \times f=p^k(p-1)/2$.
+En effet l'ensemble des abscisses des points primitifs de $p^k$-torsion est de taille $p^{k-1}(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{U}_k:\mathbb{U}_1]$ (ou $\frac{[\mathbb{U}_k:\mathbb{U}_1]}{2}$ voir remarque \ref{rem:orb:fro} ). Ainsi si l'on note $f$ la taille de ces orbites et $d$ le nombre de représentants on a $d \times f=p^{k-1}(p-1)/2$.
 
-Détaillons cela, on a vu précédemment dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $U_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension $p$-adique de $\mathbb{U}_{i}$ soit égale à $\mathbb{U}_{i}$. Ainsi les points d'ordre $p^{v_E(p)}$ de $E$ sont par définition de $v_E(p)$ définis sur $E(\mathbb{F}_q)$, on note $d$ le nombre d'abiscisses différentes de ces éléments. Dès lors les points d'odre $p^{v_E(p)+i}$ avec $i \geqslant 1$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_E(p)+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{U}_{v_E(p)+i}:\mathbb{U}_{v_E(p)+i-1}]$ est un antécédent de $P_i$ par $[p]$. Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des points de $p^i$-torsion selon l'action du Frobenius et les différentes orbites.
+Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $U_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{U}_{i}$ soit égale à $\mathbb{U}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{U}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{U}_1))$ définis sur $\mathbb{U}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $d$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{U}_1))+i+1}$ avec $i \geqslant 1$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{U}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{U}_{v_E(p)+i}:\mathbb{U}_{v_E(p)+i-1}]$ est un antécédent de $P_i$ par $[p]$, il y en a donc $p$. Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des points de $p^{i+v_p(E(\mathbb{U}_1))}$-torsion selon l'action du Frobenius et les différentes orbites. $d$ le nombre de représentants des orbites est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{U}_1))}:\frac{p^{v_p(E(\mathbb{U}_1))-1}(p-1)}{2}$ et n'est généralement pas égal à $[\mathbb{U}_1: \mathbb{F}_q]$. En effet $\mathbb{U}_1$ est construit comme une extension de $\mathbb{F}_q$ qui contient les points de $p$-torsion de $E$ et donc $d \mid p-1$ par le théorème de Gunji \ref{thm:Gunji}.
+
 
 \begin{figure}
 \begin{center}
@@ -1869,9 +1878,9 @@ Détaillons cela, on a vu précédemment dans la proposition \ref{pro:ord:fro} q
           \coordinate (U1) at (0, 4) ;
           \coordinate (U2) at (0, 6) ;
           \coordinate (U3) at (0, 8) ;
-          \draw (U0) node{$\mathbb{F}_{q}=\mathbb{U}_{v_E(p)}$};
-          \draw (U1) node{$\mathbb{U}_{v_E(p)+1}$};
-          \draw (U3) node{$\mathbb{U}_{v_E(p)+i}$};
+          \draw (U0) node{$\mathbb{F}_{q} \subset \mathbb{U}_{v_p(E(\mathbb{U}_1))}$};
+          \draw (U1) node{$\mathbb{U}_{v_p(E(\mathbb{U}_1))+1}$};
+          \draw (U3) node{$\mathbb{U}_{v_p(E(\mathbb{U}_1))+i}$};
           \coordinate (U1b) at (0,4.5);
           \coordinate (U3b) at (0,7.5);
           \draw[dashed,-] (U1b) to (U3b); 
@@ -1884,11 +1893,11 @@ Détaillons cela, on a vu précédemment dans la proposition \ref{pro:ord:fro} q
 		  \coordinate (U10) at (22,0);
 		  \coordinate (U11) at (22,4);
 		  \coordinate (U12) at (22,8); 
-		  \draw (U10) node{$E[p^{v_E(p)}]$};
-          \draw (U11) node{$E[p^{v_E(p)+1}]$};
-          \draw (U12) node{$E[p^{v_E(p)+i}]$};        
+%		  \draw (U10) node{$E[p^{v_p(E(\mathbb{U}_1))}]$};
+%          \draw (U11) node{$E[p^{v_p(E(\mathbb{U}_1))+1}]$};
+%          \draw (U12) node{$E[p^{v_p(E(\mathbb{U}_1))+i}]$};        
           
-          \begin{scope}[xshift=5.8cm]
+          \begin{scope}[xshift=6.5cm]
           \coordinate (P0) at (0, 0);
           \draw (P0) node{$\bullet$};
           \coordinate (P0b) at (0,0.5);
@@ -1952,7 +1961,7 @@ Détaillons cela, on a vu précédemment dans la proposition \ref{pro:ord:fro} q
           \draw [dashed,-] (P25) to (P26);
           \end{scope}
           
-          \begin{scope}[xshift=15.8cm]
+          \begin{scope}[xshift=16.5cm]
           \coordinate (P0) at (0, 0);
           \draw (P0) node{$\bullet$};
           \coordinate (P0b) at (0,0.5);
@@ -2024,8 +2033,26 @@ Détaillons cela, on a vu précédemment dans la proposition \ref{pro:ord:fro} q
 \end{figure} 
 
 \begin{rem}
-La taille des orbites des abscisses $f$ selon l'action du groupe de Galois $[\mathbb{U}_k:\mathbb{F}_q]$  est égale à $[\mathbb{U}_k:\mathbb{F}_q]$ si et seulement si $2 \nmid [\mathbb{U}_k:\mathbb{F}_q]$. En effet dans le cas où l'on a $2 \mid [\mathbb{U}_k:\mathbb{F}_q]$ si l'on note $e=[\mathbb{U}_k:\mathbb{F}_q]$ alors on a $\pi^{e/2}(x(P))=x(-P)=x(P)$ et donc $f \mid [\mathbb{U}_k:\mathbb{F}_q]/2$.
+\label{rem:orb:fro}
+La taille des orbites des abscisses $f$ selon l'action du groupe de Galois $[\mathbb{U}_k:\mathbb{F}_q]$  est égale à $[\mathbb{U}_k:\mathbb{F}_q]$ si et seulement si $2 \nmid [\mathbb{U}_k:\mathbb{F}_q]$. En effet dans le cas où l'on a $2 \mid [\mathbb{U}_k:\mathbb{F}_q]$ alors si l'on regarde l'action du frobenius sur la $p^k$-torsion comme une multiplication par la trace du Frobenius $t_{\pi}$ modulo $p^k$ alors on a  si l'on note $e=[\mathbb{U}_k:\mathbb{F}_q]$ alors on a $\pi^{e/2}(x(P))=x(-P)=x(P)$ et donc $f \mid [\mathbb{U}_k:\mathbb{F}_q]/2$.
 \end{rem} 
+
+\begin{cor}
+Soit $k$ tel que que $\mathbb{U}_k \neq \mathbb{F}_q$ avec $\mathbb{U}_k$ défini comme dans \textcolor{red}{ref à mettre}. 
+La taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $[\mathbb{U}_k:\mathbb{F}_q]$  est égale à:
+\begin{enumerate} 
+\item $[\mathbb{U}_k:\mathbb{F}_q]$ si $2 \nmid [\mathbb{U}_k:\mathbb{F}_q]$,
+\item $[\mathbb{U}_k:\mathbb{F}_q]/2$ si $2 \mid [\mathbb{U}_k:\mathbb{F}_q]$.
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi lorsque  $2 \mid [\mathbb{U}_k:\mathbb{F}_q]$ on a $(t_{\pi}^{[\mathbb{U}_k:\mathbb{F}_q]/2})^2=t_{\pi}^{[\mathbb{U}_k:\mathbb{F}_q]}=1 \bmod p^k$. Ainsi l'action de $\pi^{[\mathbb{U}_k:\mathbb{F}_q]/2}$ sur la $p^k$ torsion correspond à une multiplication par une racine carrée de $1$, or par définition $[\mathbb{U}_k:\mathbb{F}_q]$ est l'ordre de  $t_{\pi}$ dans $(\mathbb{Z}/p^k \mathbb{Z})^*$ et donc $t_{\pi}^{[\mathbb{U}_k:\mathbb{F}_q]/2}=-1 \bmod \mathbb{Z}/p^k \mathbb{Z}$.
+\end{proof}
+
+\begin{rem}
+Ce résultat peut aussi être démontré à l'aide du théorème de Gunji \ref{thm:Gunji}, notamment le fait que pour $c$ une racine $p-1$ème de $H_E$ les abscisses des points de $p$-torsion sont définies dans $\mathbb{F}_q[c^2]$.
+\end{rem}
 
 Dans l'algorithme original de Couveignes le coût minimal du calcul du polynôme d'interpolation a été sous-estimé. En effet on cherche à calculer un polynôme de degré $\frac{p^{k-1}(p-1)}{2}=\frac{\phi(p^k)}{2}$ à coefficients dans $\mathbb{U}_k$, ainsi ne serait ce que pour représenter ce polynôme on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{U}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul. Les travaux de \cite{DeFeo11} ont donc résolu cette question et seront présentés à \textcolor{red}{ref à mettre}.
 
