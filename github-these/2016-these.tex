@@ -2075,7 +2075,32 @@ Le cas $p=2$ n'est pas traité ici, le lecteur intéressé pourra se référer �
 
 Comme dit précédemment des améliorations ont été apportées dans \cite{DeFeo11}, elles sont toutes utilisées dans notre approche $\ell$-adique de l'algorithme de Couveignes, soit directement soit adaptées c'est pourquoi certaines parties seront plus détaillées que d'autres.
 
-Pour le calcul de la $p^k$-torsion \cite{DeFeo11} utilise les calculs consécutifs aux travaux de \cite{Gunji76} et \cite{Voloch88} sur des tours d'Artin Schreier (tours $p$-adiques)
+Pour le calcul de la $p^k$-torsion \cite{DeFeo11} utilise les calculs consécutifs aux travaux de \cite{Gunji76} et \cite{Voloch88} sur des tours d'Artin Schreier (tours $p$-adiques).
+
+Faisons une brève présentation de celles-ci, pour plus de détails voir \cite{DeFeo-Shost'12}.
+
+\begin{defi}[tour $p$-adique]
+Soit $\mathbb{F}_q$ un corps fini, soit $\mathbb{U}_0$, $\mathbb{U}_1$, $\cdots$, $\mathbb{U}_i$ la suite d'extensions de corps définie telle que:
+\begin{enumerate}
+\item $[\mathbb{F_q} :\mathbb{U}_0]= d$
+\item $[\mathbb{U}_{i+1} :\mathbb{U}_i]= p$ pour tout $i \geqslant 1$.
+\end{enumerate}
+\end{defi}
+
+Une représentation efficace d'une tour $p$-adique est une tour dite \emph{primitive} dans laquelle tout corps de la tour est généré par un élément de celle-ci. Ainsi la multiplication de deux éléments de la tour peut être fait à l'aide de la multiplication de polynômes univariés à l'opposé de représentations multivariées qui ne sont pas efficaces.
+
+On présente donc à cet effet comment est construite une telle tour:
+\begin{thm}
+Soit $\mathbb{U}_0=\mathbb{F}_p[X_0]/Q_0$, avec $Q_0$ un polynôme irréductible de degré $d$, soit alors $x_0=X_0 \bmod Q_0$ tel que $Tr_{\mathbb{U}_0/\mathbb{F}_p}(x_0)\neq 0$. On définit la suite de polynômes $G_i$ avec $ 1 \leqslant i \leqslant k$ par:
+\begin{equation}
+blabla
+\end{equation}
+\end{thm} 
+
+\begin{proof}
+Voir théorème 2 
+\end{proof}
+
 \paragraph{$p$-torsion}
 La construction de $\mathbb{F}_q[c]$ est faite comme une extension de $\mathbb{F}_p:\mathbb{F}_p[x]/Q_1$ avec $Q_1$ un polynôme irréductible et $Q_1$ qui vérifie l'une des deux conditions suivantes:
 \begin{itemize}
