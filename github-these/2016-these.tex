@@ -1735,7 +1735,7 @@ avec $T \in \mathbb{F}_q[x]$ qui s'annule sur $E[p^k]$ car on se sert d'une équ
 \subsubsection{Coût de Couveignes}
 
 \paragraph{Calcul de la $p$-torsion}
-La première amélioration que l'on peut apporter à l'algorithme de Couveignes c'est la première étape de l'algorithme, le calcul de générateurs de la $p^k$ torsion. On a tout d'abord besoin de définir les points de $p$-torsion pour cela on se sert du travail de Gunji \cite{Gunji76} on se place dans le cas où $p \neq 2$.
+La première amélioration que l'on peut apporter à l'algorithme de Couveignes c'est la première étape de l'algorithme, le calcul de générateurs de la $p^k$ torsion. On a tout d'abord besoin de définir les points de $p$-torsion pour cela on se sert du travail de Gunji \cite{Gunji76} on se place dans le cas où $p \neq 2$. Le lecteur intéressé par le cas $p=2$ pourra se référer à \cite[3.2]{DeFeo11}.
 
 \begin{defi}
 Soit $E$ une courbe elliptique définie par l'équation: $y^2=f(x)$. L'\emph{invariant de Hasse} est le coefficient de $X^{p-1}$ dans $f(X)^{\frac{p-1}{2}}$ on le note $H_{E}$.
@@ -1803,12 +1803,12 @@ Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille 
 
 \begin{defi}
 \label{def:p-adic}
-Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour d'extension $p$-adique $\mathbb{L}_0,  \mathbb{L}_1, \mathbb{L}_2, \cdots \mathbb{L}_i$ telle que $\mathbb{L}_i$ soit la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{L}_i)$. On pose $\mathbb{L}_0=\mathbb{F}_q$.
+Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour de \emph{niveau} $p$-adique  $\mathbb{L}_0,  \mathbb{L}_1, \mathbb{L}_2, \cdots \mathbb{L}_i$ telle que $\mathbb{L}_i$ soit la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{L}_i)$. On pose $\mathbb{L}_0=\mathbb{F}_q$.
 \end{defi}
 
 \begin{prop}
 \label{pro:ord:fro}
-Pour une tour d'extension $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic} on a:
+Pour une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic} on a:
 \begin{itemize}
 \item $[\mathbb{L}_1:\mathbb{F}_q] \mid p-1$
 \item Pour tout $i \geqslant 1$ on a soit $[\mathbb{L}_{i+1}:\mathbb{L}_{i}]=p$ soit $\mathbb{L}_{i+1}=\mathbb{L}_{i}=\cdots = \mathbb{L}_{1}$.
@@ -1822,7 +1822,7 @@ Avant de prouver cela on a besoin du lemme suivant:
 Soit $p$ un nombre premier, soit $c$ un nombre premier avec $p$. Pour tout $k \geqslant 1$ on note $\mathrm{ord}_k(c)$ l'ordre de $c$ dans $\mathbb{Z}/p^k\mathbb{Z}$. Alors $\mathrm{ord}_{k+1}(c)=\mathrm{ord}_k(c)$ implique que $\mathrm{ord}_k(c) = \mathrm{ord}_{k-1}(c)$.
 \end{lem}
 
-La preuve suivante n'est pas différente de celle dans \cite{DeFeo10} mais celle-ci est tout de même intéressante par son approche dont notamment l'étude de l'action du Frobenius sur le $p$ module de Tate d'où sa retranscription ici.
+La preuve suivante n'est pas différente de celle dans \cite{DeFeo10} mais celle-ci est tout de même intéressante par son approche dont notamment l'étude de l'action du Frobenius sur le $p$-module de Tate d'où sa retranscription ici.
 
 \begin{proof}
 On a $[\mathbb{L}_1:\mathbb{F}_q] \mid p-1$ par le théorème \ref{thm:Gunji}. Prouvons maintenant le second point,
@@ -1837,13 +1837,17 @@ Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:
 \end{proof}
 
 
-On voit donc à travers cette preuve que si $E[p] \subset E(\mathbb{F}_q)$ alors il est possible que $\mathbb{L}_0=\mathbb{L}_1=\mathbb{L}_2$, de même lorsque l'on a $E[p] \nsubset E(\mathbb{F}_q)$ il est possible que $\mathbb{L}_1=\mathbb{L}_2$, dés lors la distinction suivante est nécessaire.
+On voit donc à travers cette preuve que si $E[p] \subset E(\mathbb{F}_q)$ alors il est possible que $\mathbb{L}_0=\mathbb{L}_1=\mathbb{L}_2$, de même lorsque l'on a pas $E[p] \subset E(\mathbb{F}_q)$ il est possible que $\mathbb{L}_1=\mathbb{L}_2$, dés lors la distinction suivante est nécessaire.
 
 
 %On voit donc à travers ce résultat qu'il est possible que l'on ait $\mathbb{U}_2=\mathbb{U}_1$ alors que l'on peut avoir $\mathbb{U}_0 \neq \mathbb{U}_1$. En effet pour $d=[\mathbb{U}_1:\mathbb{F}_q]$ on a $t_{\pi}(\mathbb{U}_1)=t_{\pi}(\mathbb{F}_q)^d$, ainsi il est nécessaire de prendre en compte ce cas afin de pouvoir quantifier la taille des tours sur lesquelles on travaille.
 
 \begin{defi}
-Soit $\mathbb{L}_0, \mathbb{L}_1, \mathbb{L}_2, \cdots, $ une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic} alors on définit l'indice de valuation rationnelle $p$-adique de la tour comme étant le plus grand indice $i$ tel que $\mathbb{L}_i \subset \mathbb{F}_q$. On le note $v_p(E(\mathbb{F}_q))$. On définit de la même manière l'indice de valuation $p$-adique de la courbe définie sur $\mathbb{L}_1$ comme étant le plus grand indice $i$ tel que $\mathbb{L}_i \subset \mathbb{L}_1$. On le note $v_p(E(\mathbb{L}_1))$.
+Soit $\mathbb{L}_0, \mathbb{L}_1, \mathbb{L}_2, \cdots, $ une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic} alors on définit
+\begin{itemize}
+\item $v_p(E(\mathbb{F}_q))=\max\left( i, \mathbb{L}_i \subset \mathbb{F}_q \right)$,
+\item $v_p(E(\mathbb{L}_1))=\max\left( i, \mathbb{L}_i \subset \mathbb{L}_1 \right)$.
+\end{itemize}
 \end{defi}
 
 \begin{rem}
@@ -1868,7 +1872,7 @@ Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectu�
 
 En effet l'ensemble des abscisses des points primitifs de $p^k$-torsion est de taille $p^{k-1}(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{L}_k:\mathbb{L}_1]$ (ou $\frac{[\mathbb{L}_k:\mathbb{L}_1]}{2}$ voir corollaire \ref{cor:orb:fro}). Ainsi si l'on note $e$ la taille de ces orbites et $f$ le nombre de représentants on a $e \times f=p^{k-1}(p-1)/2$.
 
-Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $f$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 1$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i}:\mathbb{L}_{v_E(p)+i-1}]$ est un antécédent de $P_i$ par $[p]$. La multiplication par $p$ étant de noyau de taille $p$ sur une courbe elliptique ordinaire on a égalité avec la taille de l'orbite. Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des points de $p^{i+v_p(E(\mathbb{L}_1))}$-torsion selon l'action du Frobenius et les différentes orbites. $f$ le nombre de représentants des orbites est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$ et n'est généralement pas égal à $\frac{[\mathbb{L}_1: \mathbb{F}_q]}{2}$. En effet $\mathbb{L}_1$ est construit comme une extension de $\mathbb{F}_q$ qui contient les points de $p$-torsion de $E$ et donc $[\mathbb{L}_1: \mathbb{F}_q] \mid p-1$ par le théorème de Gunji \ref{thm:Gunji}.
+Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $f$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 0$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i+1}:\mathbb{L}_{v_E(p)+i}]$ est un antécédent de $P_i$ par $[p]$. La multiplication par $p$ étant de noyau de taille $p$ sur une courbe elliptique ordinaire on a égalité avec la taille de l'orbite. Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des points de $p^{i+v_p(E(\mathbb{L}_1))}$-torsion selon l'action du Frobenius et les différentes orbites. $f$ le nombre de représentants des orbites est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$ et n'est généralement pas égal à $\frac{[\mathbb{L}_1: \mathbb{F}_q]}{2}$. En effet $\mathbb{L}_1$ est construit comme une extension de $\mathbb{F}_q$ qui contient les points de $p$-torsion de $E$ et donc $[\mathbb{L}_1: \mathbb{F}_q] \mid p-1$ par le théorème de Gunji \ref{thm:Gunji}.
 
 
 \begin{figure}
@@ -2051,9 +2055,9 @@ Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer 
 Ce résultat peut aussi être démontré à l'aide du théorème de Gunji \ref{thm:Gunji}, notamment le fait que pour $c$ une racine $p-1$ème de $H_E$ les abscisses des points de $p$-torsion sont définies dans $\mathbb{F}_q[c^2]$.
 \end{rem}
 
-Ainsi asymptotiquement la taille des orbites $d \in O(p^k)$, dés lors ne serait-ce que pour représenter un polynôme d'interpolation défini sur une orbite on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette question et seront présentés à \textcolor{red}{ref à mettre}.
+Ainsi asymptotiquement la taille des orbites $e \in O(p^k)$, dés lors ne serait-ce que pour représenter un polynôme d'interpolation défini sur une orbite on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette question et seront présentées à \textcolor{red}{ref à mettre}.
 
-Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation $A$ et du polynome $T$ qui s'annule sur l'abscisse des points d'ordre $p^k$ est faite à l'aide de $O(\mathsf{M}(p^{kd})\log(p^k))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03}.
+Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation $A$ et du polynome $T$ qui s'annule sur les abscisses des points d'ordre $p^k$ est fait à l'aide de $O(\mathsf{M}(p^{k})\log(p^k))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03}.
 %En pratique on travaille avec les points primitifs de $p^k$-torsion afin de pouvoir se servir de l'action du Frobenius pour parcourir tous les éléments à l'aide des représentants et de l'action du Frobenius.
 
 %\begin{lem}
@@ -2065,9 +2069,8 @@ Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation
 %Ensuite il faut calculer le polynôme d'interpolation de degré $f$ avec $f \in O(p^k)$ sur des points définis dans une extension de $\mathbb{F}_q$ de taille $f$ .
 %\end{proof}
 
-\paragraph{Validation de l'isogénie} On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie. Pour cela on doit tout d'abord regarder les degrés et vérifier que l'on a $\deg(R)=\ell$ et $\deg(V)=\ell-1$, si cela n'est pas vérifié alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. Ensuite on peut vérifier que $V$ est bien un carré (ou si $\ell$ est pair que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(\ell) \log(\ell))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut éventuellement évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupe. Enfin si une preuve déterministique est souhaitée on peut vérifier que $V$ est bien un diviseur du polynôme de $\ell$-division, pour cela on calcule le polynôme de $\ell$ division en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$. 
+\paragraph{Validation de l'isogénie} On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=\ell$ et $\deg(V)=\ell-1$. Ensuite on vérifie que $V$ est bien un carré (ou si $\ell$ est pair que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(\ell) \log(\ell))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $\ell$-division, pour cela on calcule le polynôme de $\ell$ division en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$. 
 
-Le cas $p=2$ n'est pas traité ici, le lecteur intéressé pourra se référer à \cite[8.5.2]{DeFeo10}
 
 \subsubsection{Améliorations de Couveignes: Calcul de la $p^k$-torsion}
 
@@ -2079,17 +2082,18 @@ Faisons une brève présentation de celles-ci, pour plus de détails voir \cite{
 
 \begin{defi}[tour $p$-adique]
 Soit $\mathbb{F}_q$ un corps fini, soit $\mathbb{U}_0$, $\mathbb{U}_1$, $\cdots$, $\mathbb{U}_i$ la suite d'extensions de corps définie telle que:
-\begin{enumerate}
-\item $[\mathbb{F}_q :\mathbb{U}_0]= d$
+\begin{itemize}
+\item $\mathbb{U}_0=\mathbb{F}_q$
+\item $[\mathbb{U}_1 : \mathbb{F}_q]= d_1$
 \item $[\mathbb{U}_{i+1} :\mathbb{U}_i]= p$ pour tout $i \geqslant 1$.
-\end{enumerate}
+\end{itemize}
 \end{defi}
 
 Une représentation efficace d'une tour $p$-adique est une tour dite \emph{primitive} dans laquelle tout corps de la tour est généré par un élément de celle-ci. Ainsi la multiplication de deux éléments de la tour peut être faite à l'aide de leur représentation en polynômes univariés à l'opposé de représentations multivariées qui ne sont pas efficaces.
 
 On présente donc à cet effet comment est construite une telle tour d'après \cite{DeFeo-Shost'12}:
 \begin{thm}
-Soit $\mathbb{U}_1=\mathbb{F}_p[X_1]/Q_1$, avec $Q_1$ un polynôme irréductible de degré $d$, soit alors $x_1=X_1 \bmod Q_1$ tel que $Tr_{\mathbb{U}_1/\mathbb{F}_p}(x_1)\neq 0$. On définit la suite de polynômes $G_i$ avec $ 1 \leqslant i \leqslant k$ par:
+Soit $\mathbb{U}_1=\mathbb{F}_p[X_1]/Q_1$, avec $Q_1$ un polynôme irréductible de degré $d \times d_1$, soit alors $x_1=X_1 \bmod Q_1$ tel que $Tr_{\mathbb{U}_1/\mathbb{F}_p}(x_1)\neq 0$. On définit la suite de polynômes $G_i$ avec $ 1 \leqslant i \leqslant k$ par:
 \begin{equation}
 \begin{cases}
 G_1=X_1 & \\
@@ -2116,27 +2120,27 @@ Voir  \cite[Théorème 2]{DeFeo-Shost'12}
 \begin{defi}
 Soit $\alpha \in \mathbb{U}_k=\mathbb{F}_p[x_k]$ avec $k \geqslant 2$ et $g \in \mathbb{F}_p[X_k]$ tel que $\deg(g)<|\mathbb{U}_1|^{p^k}$ $\alpha=g(x_k)$, alors:
 \begin{itemize} 
-\item si $\alpha \in \mathbb{U}_{k-1}$, alors il existe un polynôme $h \in \mathbb{F}_p[X_{k-1}]$ tel que $\deg(h)<|\mathbb{U}_1|^{p^{k-1}}$ $\alpha=h(x_{k-1})$ et le fait d'écrire $\alpha$ comme un élément de $\mathbb{U}_{k-1}$ s'appelle une descente (ou push-down dans la littérature anglophone \cite{DeFeo-Shost'12})
-\item comme $\alpha \in \mathbb{U}_{k+1}$, alors il existe un polynôme $j \in \mathbb{F}_p[X_{k-1}]$ tel que $\deg(j)<|\mathbb{U}_1|^{p^{k+1}}$ $\alpha=j(x_{k+1})$ et le fait d'écrire $\alpha$ comme un élément de $\mathbb{U}_{k+1}$ s'appelle un relèvement (ou lift dans la littérature anglophone \cite{DeFeo-Shost'12}).
+\item si $\alpha \in \mathbb{U}_{k-1}$, alors il existe un polynôme $h \in \mathbb{F}_p[X_{k-1}]$ tel que $\deg(h)<|\mathbb{U}_1|^{p^{k-1}}$ $\alpha=h(x_{k-1})$ et le fait d'écrire $\alpha$ comme un élément de $\mathbb{U}_{k-1}$ s'appelle une \emph{descente} (ou push-down dans la littérature anglophone \cite{DeFeo-Shost'12})
+\item comme $\alpha \in \mathbb{U}_{k+1}$, alors il existe un polynôme $j \in \mathbb{F}_p[X_{k-1}]$ tel que $\deg(j)<|\mathbb{U}_1|^{p^{k+1}}$ $\alpha=j(x_{k+1})$ et le fait d'écrire $\alpha$ comme un élément de $\mathbb{U}_{k+1}$ s'appelle un \emph{relèvement} (ou lift dans la littérature anglophone \cite{DeFeo-Shost'12}).
 \end{itemize}
 \end{defi}
 
-Ainsi on va lier cette définition de tours $p$-adiques à celle évoquée plus tôt définie à l'aide de la $p$-torsion de la courbe elliptique $E$ que l'on étudie.
+Ainsi on va lier cette définition de tours $p$-adiques à celle des tours $p$-adiques de \emph{niveau} évoquée plus tôt définie à l'aide de la $p$-torsion de la courbe elliptique $E$ que l'on étudie.
 
 \begin{rem}
 Ces tours $p$-adique sont donc les constructions utilisées pour les tours de niveaux.
-En effet on pose $\mathbb{L}_1=\mathbb{U}_1$, et dés lors pour tout $i\geqslant$ on pose $\mathbb{U}_{i+1}=\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$.
+En effet on pose $\mathbb{L}_1=\mathbb{U}_1$, et dés lors pour tout $i\geqslant 1$ on pose $\mathbb{U}_{i+1}=\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$.
 \end{rem}
 
 A partir de maintenant on va utiliser uniquement la notation $\mathbb{U}_i$ car celle-ci correspond au pire des cas, celui où $v_p(E(\mathbb{L}_1))=1$ et $v_p(E(\mathbb{F}_q))=0$.
 
 \paragraph{$p$-torsion}
-La construction de $\mathbb{F}_q[c]$ est faite comme une extension de $\mathbb{F}_p:\mathbb{F}_p[X]/Q_1(X)$ avec $Q_1$ un polynôme irréductible qui vérifie l'une des deux conditions suivantes:
+La construction de $\mathbb{F}_q[c]$ est faite comme une extension de $\mathbb{F}_p:\mathbb{F}_p[X]/Q_1(X)$ avec $Q_1$ un polynôme irréductible de degré $dd_1$ qui vérifie l'une des deux conditions suivantes:
 \begin{itemize}
-\item $d \wedge p =1$
+\item $d d_1 \wedge p =1$
 \item $\deg Q'_1+2 = \deg Q_1$
 \end{itemize}
-Généralement il est suffisant de sélectionner un polynôme $Q_1$ au hasard et de tester si il est irréductible pour avoir un polynôme qui vérifie une de ces conditions. Cela a un coût de $O(pd \mathsf{M}(pd)\log(pd)\log(p^2d))$ opérations sur $\mathbb{F}_p$ en utilisant l'algorithme de Ben-Or d'après \cite[Theoreme 14.42]{vzGJG03}.
+Généralement il est suffisant de sélectionner un polynôme $Q_1$ au hasard et de tester si il est irréductible pour avoir un polynôme qui vérifie une de ces conditions. Cela a un coût de $O(dd_1 \mathsf{M}(dd_1)\log(dd_1)\log(pdd_1))$ opérations sur $\mathbb{F}_p$ en utilisant l'algorithme de Ben-Or d'après \cite[Theoreme 14.42]{vzGJG03}.
 
 Ainsi comme $\mathbb{F}_q[c]$ est construit comme une extension de $\mathbb{F}_p$ et non de $\mathbb{F}_q$ les complexités vont être exprimées en termes d'opérations sur $\mathbb{F}_p$. Avec une telle construction la complexité de calculer la $p$-torsion est de: 
 \begin{equation*}
