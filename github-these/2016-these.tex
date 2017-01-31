@@ -1862,13 +1862,13 @@ Ces pré calculs peuvent être réutilisés pour d'autres calculs de $\ell$-isog
 Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 d)$ opérations sur $\mathbb{F}_p$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$ est négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
 \end{proof}
 
-\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide de l'algorithme d'Euclide une fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire qui s'annule sur les abscisses des points de $p^k$ torsion primitifs. 
+\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide de l'algorithme d'Euclide une fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire $T$ qui s'annule sur les abscisses des points de $p^k$ torsion primitifs. 
 
 Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectuée distinctement sur les différentes orbites sous l'action du Frobenius puis en utilisant le théorème des restes chinois on obtient alors un polynôme d'interpolation modulo la $p^k$-torsion primitive.
 
-En effet l'ensemble des abscisses des points primitifs de $p^k$-torsion est de taille $p^{k-1}(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{L}_k:\mathbb{L}_1]$ (ou $\frac{[\mathbb{L}_k:\mathbb{L}_1]}{2}$ voir corollaire \ref{cor:orb:fro}). Ainsi si l'on note $f$ la taille de ces orbites et $d$ le nombre de représentants on a $d \times f=p^{k-1}(p-1)/2$.
+En effet l'ensemble des abscisses des points primitifs de $p^k$-torsion est de taille $p^{k-1}(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{L}_k:\mathbb{L}_1]$ (ou $\frac{[\mathbb{L}_k:\mathbb{L}_1]}{2}$ voir corollaire \ref{cor:orb:fro}). Ainsi si l'on note $e$ la taille de ces orbites et $f$ le nombre de représentants on a $e \times f=p^{k-1}(p-1)/2$.
 
-Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $d$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 1$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i}:\mathbb{L}_{v_E(p)+i-1}]$ est un antécédent de $P_i$ par $[p]$, il y en a donc $p$. Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des points de $p^{i+v_p(E(\mathbb{L}_1))}$-torsion selon l'action du Frobenius et les différentes orbites. $d$ le nombre de représentants des orbites est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$ et n'est généralement pas égal à $[\mathbb{L}_1: \mathbb{F}_q]$. En effet $\mathbb{L}_1$ est construit comme une extension de $\mathbb{F}_q$ qui contient les points de $p$-torsion de $E$ et donc $d \mid p-1$ par le théorème de Gunji \ref{thm:Gunji}.
+Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $f$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 1$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i}:\mathbb{L}_{v_E(p)+i-1}]$ est un antécédent de $P_i$ par $[p]$. La multiplication par $p$ étant de noyau de taille $p$ sur une courbe elliptique ordinaire on a égalité avec la taille de l'orbite. Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des points de $p^{i+v_p(E(\mathbb{L}_1))}$-torsion selon l'action du Frobenius et les différentes orbites. $f$ le nombre de représentants des orbites est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$ et n'est généralement pas égal à $\frac{[\mathbb{L}_1: \mathbb{F}_q]}{2}$. En effet $\mathbb{L}_1$ est construit comme une extension de $\mathbb{F}_q$ qui contient les points de $p$-torsion de $E$ et donc $[\mathbb{L}_1: \mathbb{F}_q] \mid p-1$ par le théorème de Gunji \ref{thm:Gunji}.
 
 
 \begin{figure}
@@ -1949,7 +1949,7 @@ Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i
           \coordinate (P200) at (4.6,8);
           \coordinate (P210) at (-4.6,8);
           \draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
-				(P210) -- (P200) node[color=black,above=0.2cm, pos=0.5] {f};
+				(P210) -- (P200) node[color=black,above=0.2cm, pos=0.5] {e};
           \coordinate (P23) at (4,8);
           \coordinate (P24) at (2,8);
           \draw [dashed,-] (P1) to (P23);
@@ -2013,7 +2013,7 @@ Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i
           \coordinate (P210) at (-4.6,8);
           \coordinate (P200) at (4.6,8);
           \draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
-				(P210) -- (P200) node[color=black,above=0.2cm, pos=0.5] {f};
+				(P210) -- (P200) node[color=black,above=0.2cm, pos=0.5] {e};
           \coordinate (P23) at (4,8);
           \coordinate (P24) at (2,8);
           \draw [dashed,-] (P1) to (P23);
@@ -2025,7 +2025,7 @@ Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i
           \draw [dashed,-] (P25) to (P26);
           \end{scope}
           \draw[color=black,decorate,decoration={brace},below]
-				(16,-1) -- (5.5,-1) node[color=black,below,pos=0.5] {d};
+				(16.7,-1) -- (6.4,-1) node[color=black,below,pos=0.5] {f};
         \end{tikzpicture}
 \caption{Classification des points de $p^k$-torsion selon l'action du Frobenius}
 \label{fig:p-tor:fro}
@@ -2044,15 +2044,16 @@ La taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du g
 \end{cor}
 
 \begin{proof}
-Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $d$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ cela veut dire que $t_{\pi}^d=1 \bmod p^k$ ou $t_{\pi}^d=-1 \bmod p^k$, par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $d \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{d})^2=1 \bmod p^k$, ainsi $2d \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $d= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
+Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $e$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ cela veut dire que $t_{\pi}^e=1 \bmod p^k$ ou $t_{\pi}^d=-1 \bmod p^k$, par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $e \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{d})^2=1 \bmod p^k$, ainsi $2e \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $e= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
 \end{proof}
 
 \begin{rem}
 Ce résultat peut aussi être démontré à l'aide du théorème de Gunji \ref{thm:Gunji}, notamment le fait que pour $c$ une racine $p-1$ème de $H_E$ les abscisses des points de $p$-torsion sont définies dans $\mathbb{F}_q[c^2]$.
 \end{rem}
 
-Dans l'algorithme original de Couveignes le coût minimal du calcul du polynôme d'interpolation a été sous-estimé. En effet on cherche à calculer un polynôme de degré $\frac{p^{k-1}(p-1)}{2}=\frac{\phi(p^k)}{2}$ à coefficients dans $\mathbb{L}_k$, ainsi ne serait ce que pour représenter ce polynôme on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul. Les travaux de \cite{DeFeo11} ont donc résolu cette question et seront présentés à \textcolor{red}{ref à mettre}.
+Ainsi asymptotiquement la taille des orbites $d \in O(p^k)$, dés lors ne serait-ce que pour représenter un polynôme d'interpolation défini sur une orbite on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette question et seront présentés à \textcolor{red}{ref à mettre}.
 
+Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation $A$ et du polynome $T$ qui s'annule sur l'abscisse des points d'ordre $p^k$ est faite à l'aide de $O(\mathsf{M}(p^{kd})\log(p^k))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03}.
 %En pratique on travaille avec les points primitifs de $p^k$-torsion afin de pouvoir se servir de l'action du Frobenius pour parcourir tous les éléments à l'aide des représentants et de l'action du Frobenius.
 
 %\begin{lem}
