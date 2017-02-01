@@ -2110,7 +2110,7 @@ P_2=X_2^P-X_2-G_1(X_1)\\
 Q_1(X_1)
 \end{cases}
 \end{equation}
-dans l'anneau de polynômes $\mathbb{F}_p[X_1, \cdots, X_i]$.    
+dans l'anneau de polynômes $\mathbb{F}_p[X_1, \cdots, X_i]$. De plus cette construction définit une tour primitive pour laquelle $\mathbb{U}_i=\mathbb{F}_p[x_i]$ avec $x_i$ le résidu de $X_i$ dans $\mathbb{U}_i$ pour tout $i \geqslant 1$.    
 \end{thm} 
 
 \begin{proof}
@@ -2128,7 +2128,7 @@ Soit $\alpha \in \mathbb{U}_k=\mathbb{F}_p[x_k]$ avec $k \geqslant 2$ et $g \in 
 Ainsi on va lier cette définition de tours $p$-adiques à celle des tours $p$-adiques de \emph{niveau} évoquée plus tôt définie à l'aide de la $p$-torsion de la courbe elliptique $E$ que l'on étudie.
 
 \begin{rem}
-Ces tours $p$-adique sont donc les constructions utilisées pour les tours de niveaux.
+Ces tours $p$-adique sont les constructions utilisées pour les tours de niveaux.
 En effet on pose $\mathbb{L}_1=\mathbb{U}_1$, et dés lors pour tout $i\geqslant 1$ on pose $\mathbb{U}_{i+1}=\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$.
 \end{rem}
 
@@ -2146,7 +2146,7 @@ Ainsi comme $\mathbb{F}_q[c]$ est construit comme une extension de $\mathbb{F}_p
 \begin{equation*}
 \tilde{O}(p^2d^3+pC(pd)+C(p)pd+(pd)^{\omega})
 \end{equation*}
-pour plus de détails sur le calcul de complexité voire \cite{DeFeo11}, la démarche étant la même que celle décrite dans la sous section précédente. 
+pour plus de détails sur le calcul de complexité voire \cite{DeFeo11}, la démarche étant la même que celle décrite dans la sous section précédente, il est à noter que pour ce calcul de complexité $d_1$ a été majoré par $p$ car $d_1 \mid p-1$. 
 
 \begin{rem}
 On rappelle que la convention de noter $q=p^d$ a été prise tout au long de ce document.
@@ -2167,9 +2167,9 @@ Il est à noter que dans ce cas-là on a plus besoin de stocker une matrice de t
 
 \paragraph{Interpolation}
 
-Le seul apport de l'utilisation de tour d'Artin Schreier \cite{DeFeo-Shost'12} ne change pas la méthode utilisée dans l'algorithme original \cite{Couveignes96}, seul quelques opérations sont plus rapides grâce à celle-ci. 
+Le seul apport de l'utilisation de tour d'Artin-Schreier \cite{DeFeo-Shost'12} est l'accélération d'opérations utilisées l'algorithme original \cite{Couveignes96}. 
 
-On commence par calculer un polynôme d'interpolation $A$ de degré $p^{k-1}(p-1)-1$ à coefficients dans $\mathbb{U}_k$ à l'aide des couples de points supposés $(P,I(P)))$. On utilise ensuite une \emph{descente} (\cite[push-down]{DeFeo-Shost'12}) sur les coefficients de $A$ pour avoir un polynôme exprimé dans $\mathbb{F}_q[c][x]$, enfin on utilise l'expression du plongement de $\mathbb{F}_q$ dans $\mathbb{F}_q[c]$ pour obtenir une expression de $A$ avec des coefficients dans $\mathbb{F}_q$. Finalement on utilise une reconstruction rationnelle sur $\mathbb{F}_q$ pour avoir un candidat pour l'isogénie.
+On calcule tout d'abord un polynôme d'interpolation $A$ de degré $p^{k-1}(p-1)-1$ à coefficients dans $\mathbb{U}_k$ à l'aide des couples de points supposés $(P,I(P)))$. On utilise ensuite une \emph{descente} (\cite[push-down]{DeFeo-Shost'12}) sur les coefficients de $A$ pour avoir un polynôme exprimé dans $\mathbb{F}_q[c][X]$, enfin on utilise l'expression du plongement de $\mathbb{F}_q$ dans $\mathbb{F}_q[c]$ pour obtenir une expression de $A$ avec des coefficients dans $\mathbb{F}_q$. Finalement on utilise une reconstruction rationnelle sur $\mathbb{F}_q$ pour avoir un candidat pour l'isogénie.
 
 La première étape a un coût de $O(\mathsf{M}(p^{2k}d)\log(p^{k}))$ en utilisant les techniques de \cite[§10.2]{vzGJG03}. Ensuite on utilise une \emph{descente} pour avoir une expression des coefficients de $A$ dans $\mathbb{U}_1[X]=\mathbb{F}_q[c][X]$, cela coûte $\ell L(k-1)$ opérations sur $\mathbb{F}_p$ avec $L$ qui représente le coût d'effectuer un \emph{relèvement} ou une \emph{descente} dans une tour d'Artin Schreier. D'après \cite[Theorem 13]{DeFeo-Shost'12} $L(i) \in O(p^{i+1}d \log^2_p(p^id)+p \mathsf{M}(p^id))$, il est à noter que ce coût est linéaire en la taille de l'entrée (élément de $\mathbb{U}_i$). Enfin à l'aide d'algèbre linéaire on exprime le polynôme sur $\mathbb{F}_q[X]$ en $O(\ell(pd)^2)$ opérations sur $\mathbb{F}_p$. La reconstruction rationnelle coûte $O(\mathsf{M}(p^kd)\log(p^k))$ d'après \cite[§11.1]{vzGJG03}, on a donc un coût total de:
 \begin{equation*}
@@ -2184,55 +2184,76 @@ On va donc voir dans la prochaine sous-section les améliorations apportées par
 
 Cette partie sur le calcul du polynôme d'interpolation est cruciale car comme vu précédemment c'est la partie plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^k$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un cout minimal de $O(p^k p^kd)$ opérations sur $\mathbb{F}_p$. 
 
-Bien que le polynôme $A$ que l'on souhaite calculer est de degré $p^{k-1}(p-1)-1$ il est possible avec moins d'informations de calculer celui-ci. Le polynôme $A$ étant censé représenter l'action d'une isogénie sur les points d'ordre $p^k$ alors $A$ comme l'isogénie doit commuter avec le Frobenius et être défini sur $\mathbb{F}_q$. Couveignes \cite{Couveignes96} avait préconisé de travailler distinctivement sur les orbites de points sous l'action du Frobenius, on utilisait alors le théorème des restes chinois pour calculer $A$. Cette méthode avait l'avantage d'utiliser des polynômes définis sur $\mathbb{F}_q$ pour le Théorème des Restes Chinois. Cependant cette méthode ne tirait pas pleinement parti du fait que connaître l'image d'un générateur d'une orbite fixait la valeur des autres points de l'orbite. Il manquait pour l'algorithme original des techniques efficaces pour faire agir le Frobenius ce que les constructions de tours d'Artin Schreier de \cite{DeFeo-Shost'12} permettent désormais.
+Bien que le polynôme $A$ que l'on souhaite calculer est de degré $p^{k-1}(p-1)-1$ il est possible avec moins d'informations de calculer celui-ci. Le polynôme $A$ étant censé représenter l'action d'une isogénie sur les points d'ordre $p^k$ alors $A$ comme l'isogénie doit commuter avec le Frobenius et être défini sur $\mathbb{F}_q$. Couveignes \cite{Couveignes96} avait préconisé de travailler distinctivement sur les orbites de points sous l'action du Frobenius, on utilisait ensuite le théorème des restes chinois pour calculer $A$. Cette méthode avait l'avantage de paralléliser le calcul et d'utiliser des polynômes définis sur $\mathbb{F}_q$ pour le Théorème des Restes Chinois. Cependant cette méthode ne tirait pas pleinement parti du fait que connaître l'image d'un générateur d'une orbite fixait la valeur des autres points de l'orbite. Il manquait pour l'algorithme original des techniques efficaces pour faire agir le Frobenius ce que les constructions de tours d'Artin Schreier de \cite{DeFeo-Shost'12} permettent désormais.
 
-On va donc voir dans cette section comment à partir d'un polynôme d'interpolation défini uniquement à l'aide de représentants de l'orbite selon l'action du Frobenius on calcule efficacement le polynôme d'interpolation sur toutes les orbites. C'est d'ailleurs l'une des raisons pour travailler uniquement avec des points primitifs de $p^k$-torsion puisque que eux seuls sont définis dans $\mathbb{U}_k$ (on s'est placé dans le cas où $\mathbb{L}_k = \mathbb{U}_k$). Bien évidemment on peut généraliser cette méthode à tous les points de $p^k$-torsion en utilisant le théorème des restes chinois, mais d'un point de vue pratique prendre $k$ tel que $p^{k-1}(p-1) > 4 \ell +1$ est suffisant, asymptotiquement le résultat reste le même.
+On va donc voir dans cette section comment à partir d'un polynôme d'interpolation défini uniquement à l'aide de l'image d'un représentant de l'orbite selon l'action du Frobenius on calcule efficacement le polynôme d'interpolation sur toute l'orbite. Ceci est l'une des raisons pour travailler uniquement avec des points primitifs de $p^k$-torsion puisque que eux seuls sont définis dans $\mathbb{U}_k$ (on s'est placé dans le cas où $\mathbb{L}_k = \mathbb{U}_k$) et sont donc tous dans des orbites de taille identiques. Bien évidemment on peut généraliser cette méthode à tous les points de $p^k$-torsion en utilisant le théorème des restes chinois, mais d'un point de vue pratique prendre $k$ tel que $p^{k-1}(p-1) > 4 \ell +1$ est suffisant, asymptotiquement le résultat reste le même.
 
 Soient $P$ et $P'$ deux points primitifs de $p^k$-torsion de $E$ et $E'$. On veut donc calculer le polynôme d'interpolation de degré minimal $A \in \mathbb{F}_q[X]$ tel que:
 \begin{equation}
 A(x([n]P))=x([n]P') \bmod T(x) \quad \text{pour } n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*
 \end{equation} 
 
-avec $T(X)= \prod_{n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*} (X-x([n]P))$. Il est à noter que le souhait d'avoir $A$ minimal signifie qu'il faut aussi prendre en compte le fait que pour $n \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ on a $x([n]P)=x([-n]P)$ et $x([n]P')=x([-n]P')$. 
+avec $T(X)= \prod_{n < \frac{p^{k-1}(p-1)}{2}, n \wedge p =1} (X-x([n]P))$. Il est à noter que le souhait d'avoir $A$ minimal signifie qu'il faut aussi prendre en compte le fait que pour $n \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ on a $x([n]P)=x([-n]P)$ et $x([n]P')=x([-n]P')$. 
 
-
-Comme dit précédemment comme on cherche à calculer une fraction rationnelle définie sur $\mathbb{F}_q$, le polynôme d'interpolation que l'on veut calculer est défini sur $\mathbb{F}_q$. 
-
-On commence donc par le théorème des restes chinois pour ensuite se concentrer sur le calcul d'un seul polynôme d'interpolation. Comme préconisé dans \cite{Couveignes96} on regarde la factorisation de $T(X)$ sur $\mathbb{F}_q$:
+Comme on souhaite travailler distinctement sur les différentes orbites selon l'action du Frobenius, on regarde donc la factorisation de $T(X)$ sur $\mathbb{F}_q$ comme préconisé dans \cite{Couveignes96}:
 
 \begin{equation*}
-T(X)=\prod_{i=1}^rT^{(i)}(X)
+T(X)=\prod_{i=1}^fT^{(i)}(X)
 \end{equation*}
-avec $\deg(T_i)=f=[\mathbb{U}_k:\mathbb{F}_q]$ (ou $f=[\mathbb{U}_k:\mathbb{F}_q]/2$ voir corollaire \ref{cor:orb:fro}) et $rf=p^{k-1}(p-1)/2$.
+avec $\deg(T_i)=e=[\mathbb{U}_k:\mathbb{F}_q]$ (ou $e=[\mathbb{U}_k:\mathbb{F}_q]/2$ voir corollaire \ref{cor:orb:fro}) et $ef=p^{k-1}(p-1)/2$.
 
-Ainsi on travaille modulo chacun de ces $T^{(i)}$ et l'on définit:
+Ainsi à l'aide du théorème des restes chinois on réduit le problème au calcul de chacun des $T^{(i)}$ et l'on définit:
 
 \begin{equation}
 A^{(i)}=A \bmod{T^{(i)}}.
 \end{equation}
 
-Avec l'utilisation du théorème des restes chinois une fois chacun des $A^{(i)}$ déterminés on peut calculer $A$, dés lors on va se concentrer sur le calcul de $A^{(0)}$.
+Une fois chacun des $A^{(i)}$ déterminés on calcule $A$ avec le théorème des restes chinois, dés lors on va se concentrer sur le calcul de $A^{(0)}$.
 
 Comme dit précédemment on va prendre avantage du fait du faible coût du Frobenius dans une tour d'Artin-Schreier à l'aide de l'algorithme \cite[Iter Frobenius,Theorem 17 et 18]{DeFeo-Shost'12}.
 
 Ainsi on fait l'hypothèse que l'abscisse du point $P$ générateur de la $p^k$-torsion de $E$ est envoyé sur l'abscisse du point $P'$ générateur de la $p^k$-torsion de $E'$. Par construction de la tour d'Artin-Schreier on a $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ tel que $\mathbb{U}_k=\mathbb{F}_q[x(P)]$, dés lors on veut calculer: 
 \begin{enumerate}
-\item le polynôme minimal $T$ de $x(P)$ défini sur $\mathbb{F}_q$ de degré égal à $f$,
-\item le polynôme d'interpolation $L$ défini sur $\mathbb{F}_q$ de degré strictement inférieur à $f$ tel que $L(x(P))=x(P')$.
+\item le polynôme minimal $T$ de $x(P)$ défini sur $\mathbb{F}_q$ de degré égal à $e$,
+\item le polynôme d'interpolation $L$ défini sur $\mathbb{F}_q$ de degré strictement inférieur à $e$ tel que $L(x(P))=x(P')$.
 \end{enumerate}
 
-Ainsi avec un tel polynôme $L$ défini sur $\mathbb{F}_q$ on aura pour tout $\sigma \in \mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$:
+On ne va ici que donner les idées directrices pour calculer $T$, les idées développées par \cite{DeFeo11} étant reprises très largement dans la section \textcolor{red}{ref à mettre plus tard} elles seront plus abordées dans cette section.
+
+\begin{defi}
+Soit $\sigma \in \mathsf{Gal}[\mathbb{U}_k:\mathbb{F}_q]$, $T=\sum_{i=0}^{d}t_iX^i \in \mathbb{U}_k[X]$ alors:
+\[
+\sigma(T)=\sum_{i=0}^{d}\sigma(t_i)X^i.
+\]   
+\end{defi}
+
+Ainsi avec un tel polynôme $L$ défini sur $\mathbb{F}_q$ on aura pour tout $\sigma \in \mathsf{Gal}[\mathbb{U}_k:\mathbb{F}_q]$:
 \begin{equation*}
 L(\sigma(x(P))=\sigma(L(x(P)))=\sigma(x(P')).
 \end{equation*}
-L'information de l'image de $x(P) \in \mathbb{U}_k$ entraîne donc la connaissance des images des points de l'orbite de $x(P)$ sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$. On va donc se servir de l'action du Frobenius sur le polynôme d'interpolation défini uniquement pour un représentant de l'orbite (en l'occurence $L(x(P))=x(P')$) pour déterminer $L$ alors que les méthodes classiques \cite[10.1-2]{vzGJG03} préconisent un arbre de produit binaire avec la connaissance des $x([n]P)$ avec $n \in (\mathbb{Z}/p^k\mathbb{Z})^*$. 
+L'information de l'image de $x(P) \in \mathbb{U}_k$ entraîne bien la connaissance des images des éléments de l'orbite de $x(P)$ sous l'action de n'importe quel élément de $\mathsf{Gal}[\mathbb{U}_k:\mathbb{F}_q]$. 
+%On va donc se servir de l'action du Frobenius sur le polynôme d'interpolation défini uniquement pour un représentant de l'orbite (en l'occurence $L(x(P))=x(P')$) pour déterminer $L$ alors que les méthodes classiques \cite[10.1-2]{vzGJG03} préconisent un arbre de produit binaire avec la connaissance des $x([n]P)$ avec $n \in (\mathbb{Z}/p^k\mathbb{Z})^*$. 
 
-Montrons donc comment l'on tire avantage de l'action du Frobenius pour la construction d'un tel polynôme d'interpolation, cette idée a donc été utilisé dans \cite{DeFeo11}, et auparavant dans \cite{enge2008}.
+Montrons donc comment l'on tire avantage de l'action du Frobenius pour la construction d'un tel polynôme d'interpolation, cette idée a été utilisé dans \cite{DeFeo11}, et auparavant dans \cite{enge2008}.
 
-Soit $P$ un point primitif de $p^k$ torsion alors $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_k$. On a alors pour tout $n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*$ $[n]P \in \mathsf{orb}(P)$. On a donc:
+Soit $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_k$. On a alors pour tout $n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*$ $x([n]P) \in \mathsf{orb}(x(P))$. On a donc:
 \begin{equation*}
-T(x)=\prod_{[n]P \in \mathsf{orb}(P)}(x-x([n]P))=\prod_{i=0}^{\ell^k-1}(x-x(\pi^i(P)))
+T^{(0)}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P))}(x-x([n]P))=\prod_{i=0}^{d_1p^{k-1}-1}(x-\pi^i(x((P))))=\prod_{i=0}^{d_1p^{k-1}-1}\pi^i(x-x(P))
 \end{equation*}
+On introduit quelques notations pour permettre un calcul efficace de $T$ à partir de $x-x(P)$.
+
+On note $T_0^{(0)}=x-x(P)$, $\sigma_i$ un élément générateur de $\mathsf{Gal}[\mathbb{U}_i:\mathbb{U}_{i-1}]$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
+\[
+T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j \quad  b = \begin{cases}
+    p-1 &\text{if $i<k-1$,}\\
+    d_1 &\text{otherwise.}
+  \end{cases}
+\]
+ On voit alors que $T_0^{k}=T_0$ le polynôme minimal de $x(P)$ sur $\mathbb{F}_q$.
+
+Ainsi si l'on représente à l'aide d'un arbre binaire le calcul de $T_0$, on a sur la figure en rouge, les seuls éléments utilisés lors du calcul de $T_0$.
+
+
 
 \paragraph{Comportement de la $p^k$-torsion}
 Soient $p^{i_0}$ tel que $E[p^{i_0}] \subset E[\mathbb{F}_q]$
