@@ -2210,7 +2210,6 @@ A_{i}=A \bmod{T_{i}}.
 
 Une fois chacun des $A_{i}$ déterminés on calcule $A$ avec le théorème des restes chinois, dés lors on va se concentrer sur le calcul de $A_{0}$.
 
-Comme dit précédemment on prend avantage du faible coût du Frobenius dans une tour d'Artin-Schreier à l'aide de l'algorithme \cite[Iter Frobenius,Theorem 17 et 18]{DeFeo-Shost'12} qui a une complexité de $O((i-j)L(i))$ pour le calcul d'une puissance $p^{p^{jd}}$ d'un élément de $\mathbb{U}_i$.
 
 Ainsi on fait l'hypothèse que l'abscisse du point $P$ générateur de la $p^k$-torsion de $E$ est envoyé sur l'abscisse du point $P'$ générateur de la $p^k$-torsion de $E'$. Par construction de la tour d'Artin-Schreier on a $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ tel que $\mathbb{U}_k=\mathbb{F}_q[x(P)]$, dés lors on veut calculer: 
 \begin{enumerate}
@@ -2229,10 +2228,12 @@ Soit $A_0$ un polynôme d'interpolation défini sur $\mathbb{F}_q$, alors on a p
 \begin{equation*}
 A_0(\sigma(x(P))=\sigma(A_0(x(P)))=\sigma(x(P')).
 \end{equation*}
-L'information de l'image de $x(P) \in \mathbb{U}_k$ entraîne bien la connaissance des images des éléments de l'orbite de $x(P)$ sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$. 
+L'information de l'image de $x(P) \in \mathbb{U}_k$ entraîne bien la connaissance des images des éléments de l'orbite de $x(P)$ sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$, ainsi on prend avantage du faible coût du Frobenius dans une tour d'Artin-Schreier à l'aide de l'algorithme \cite[Iter Frobenius,Theorem 17 et 18]{DeFeo-Shost'12} qui a une complexité de $O((i-j)L(i))$ pour le calcul d'une puissance $p^{p^{jd}}$ d'un élément de $\mathbb{U}_i$.
+
+
 %On va donc se servir de l'action du Frobenius sur le polynôme d'interpolation défini uniquement pour un représentant de l'orbite (en l'occurence $L(x(P))=x(P')$) pour déterminer $L$ alors que les méthodes classiques \cite[10.1-2]{vzGJG03} préconisent un arbre de produit binaire avec la connaissance des $x([n]P)$ avec $n \in (\mathbb{Z}/p^k\mathbb{Z})^*$. 
 
-On présente uniquement les idées directrices pour calculer $T$, les idées développées par \cite{DeFeo11} et auparavant par \cite{enge2008} étant reprises très largement dans la section \textcolor{red}{ref à mettre plus tard} elles seront plus détaillées à cette occasion.
+On présente uniquement les idées directrices pour calculer $T$, le calcul de $A_0$ et les idées développées par \cite{DeFeo11} et auparavant par \cite{enge2008} étant repris très largement dans la section \textcolor{red}{ref à mettre plus tard} ils seront plus détaillées à cette occasion.
 
 Soit $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_k$, alors pour tout $n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*$ $x([n]P) \in \mathsf{orb}(x(P))$. On a donc:
 \begin{equation*}
@@ -2279,7 +2280,7 @@ T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
 		
 		\draw (ABA)--(ABAa);
 		\draw (ABA) node[fill=white]{$\color{red}{T_0^{(1)}}$};
-		\draw (ABAa) node[fill=white][left]{$\color{red}{T_0^{(0)}}$};%ancien \pi(T)
+		\draw (ABAa) node[fill=white][left]{$\color{red}{\sigma^4T_0^{(0)}}$};%ancien \pi(T)
 		
 		\coordinate (ACA) at (-5.37,8.5);
 		%\coordinate (ACA) at (-6.37,8.5);
@@ -2292,15 +2293,15 @@ T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
 		
 		
 		\draw (ACA)--(ACAa);
-		\draw (ACAa) node[fill=white]{$\pi^2(T_0^{(0)})$};%ancien \pi^2(T)
+		\draw (ACAa) node[fill=white]{$\sigma^2(T_0^{(0)})$};%ancien \pi^2(T)
 		
 		\coordinate (ACAb) at (-2.74,12.75);
 		%\coordinate (ACAb) at (-3.74,12.75);
 		
 		
 		\draw (ACA)--(ACAb);
-		\draw (ACAb) node[fill=white]{$\pi^6(T_0^{(0)})$};%ancien \pi^3(T)
-		\draw (ACA) node[fill=white]{$\color{red}{\pi^2(T_0^{(1)})}$};% ancien \pi^2(T_2)
+		\draw (ACAb) node[fill=white]{$\sigma^6(T_0^{(0)})$};%ancien \pi^3(T)
+		\draw (ACA) node[fill=white]{$\color{red}{\sigma^2(T_0^{(1)})}$};% ancien \pi^2(T_2)
 		
 		\begin{scope}[xshift=18cm]
 		\coordinate (ABA) at (-12.63,8.5);
@@ -2308,41 +2309,41 @@ T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
 
 		\draw (ABA)--(AC);
 		
-		\coordinate (ABAb) at (-15.26,12.75);
+		\coordinate (ABAb) at (-15.76,12.75);
 		%\coordinate (ABAb) at (-14.26,12.75);
 		
 		\draw (ABA)--(ABAb);
-		\draw (ABAb) node[fill=white]{$\pi(T_0^{(0)})$};%ancien \pi^4(T)
+		\draw (ABAb) node[fill=white]{$\sigma(T_0^{(0)})$};%ancien \pi^4(T)
 		
-		\coordinate (ABAa) at (-10,12.75);
+		\coordinate (ABAa) at (-8.5,12.75);
 		%\coordinate (ABAa) at (-9,12.75);
 		
 		
 		\draw (ABA)--(ABAa);
-		\draw (ABAa) node[fill=white,left]{$\pi^5(T_0^{(0)})$};%ancien \pi^5(T)
-		\draw (ABA) node[fill=white]{$\pi^4(T_0^{(1)})$};%ancien \pi^4(T_2)
+		\draw (ABAa) node[fill=white,left]{$\sigma^5(T_0^{(0)})$};%ancien \pi^5(T)
+		\draw (ABA) node[fill=white]{$\sigma^4(T_0^{(1)})$};%ancien \pi^4(T_2)
 		
 		\coordinate (ACA) at (-5.37,8.5);
 		%\coordinate (ACA) at (-6.37,8.5);
 		
 		
 		\draw (AC)--(ACA);
-		\draw (AC) node[fill=white]{$\color{red}{\pi^(T_0^{(2)})}$};%ancien \pi^4(T_3)
+		\draw (AC) node[fill=white]{$\color{red}{\sigma^(T_0^{(2)})}$};%ancien \pi^4(T_3)
 		
-		\coordinate (ACAa) at (-8,12.75);
+		\coordinate (ACAa) at (-6.5,12.75);
 		%\coordinate (ACAa) at (-9,12.75);
 		
 		
 		\draw (ACA)--(ACAa);
-		\draw (ACAa) node[fill=white]{$\pi^3(T_0^{(0)})$};%ancien \pi^6(T)
+		\draw (ACAa) node[fill=white]{$\sigma^3(T_0^{(0)})$};%ancien \pi^6(T)
 		
-		\coordinate (ACAb) at (-2.74,12.75);
+		\coordinate (ACAb) at (-2.00,12.75);
 		%\coordinate (ACAb) at (-3.74,12.75);
 		
 		
 		\draw (ACA)--(ACAb);
-		\draw (ACAb) node[fill=white]{$\pi^7(T_0^{(0)})$};%ancien \pi^7(T)	
-		\draw (ACA) node[fill=white]{$\pi^6(T_0^{(1)})$};%ancien \pi^6(T_2)	
+		\draw (ACAb) node[fill=white]{$\sigma^7(T_0^{(0)})$};%ancien \pi^7(T)	
+		\draw (ACA) node[fill=white]{$\sigma^6(T_0^{(1)})$};%ancien \pi^6(T_2)	
 		\end{scope}
 		
 		\coordinate (A1) at (-17,0);
@@ -2368,7 +2369,7 @@ T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
 La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-tor:fro} puisque l'arbre \ref{fig:orb:T} représente un seul des $f$ arbres de \ref{fig:p-tor:fro} et que les extrémités de l'arbre \ref{fig:orb:T} représentent les polynomes qui s'annulent en les abscisses de points des extrémités d'un des arbres de \ref{fig:p-tor:fro}.
 \end{rem}
 
-Le calcul de $A_0$ peut lui aussi être effectué efficacement à l'aide du Frobenius, une présentation détaillée sera faite en \textcolor{red}{ref à mettre}. Ainsi avec l'utilisation du Frobenius on obtient le résultat suivant pour le calcul du polynome d'interpolation sur les points d'ordre $p^k$:
+Ainsi avec l'utilisation du Frobenius on obtient le résultat suivant pour le calcul du polynome d'interpolation sur les points d'ordre $p^k$:
 
 \begin{thm}
 Soient $P$ un point d'ordre $p^k$ de $E$ et $P'$ un point d'ordre $p^k$ de $E'$ alors le calcul du polynôme d'interpolation $A$ tel que $A(x([n]P))=x([n]P')$ pour tout $n \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ a une complexité de:
@@ -2397,12 +2398,7 @@ Voir section $5.2$ de \cite{DeFeo11}.
 \end{proof}
 
 \paragraph{Comportement de la $p^k$-torsion}
-Soient $p^{i_0}$ tel que $E[p^{i_0}] \subset E[\mathbb{F}_q]$
 
- et calcule alors à l'aide d'une reconstruction rationnelle  ainsi pour tout générateur de la $p^k$-torsion il faudra tester jusqu'à $O(p^k)$ correspondances à travers les choix des générateurs de la $p^k$-torsion. 
-Ainsi l'algorithme de Couveignes va utiliser cette information pour interpoler l'isogénie à l'aide des points de $p^k$-torsion.
-
-L'algorithme de Couveignes est un algorithme qui calcule une isogénie en utilisant la remarque suivante. Soit $P$ un point de $p^k$-torsion alors son
 \subsection{Volcans d'isogénies}
 \subsection{Travaux de Kohel, Fouquet-Morain}
 Mettre l'algorithme de Fouquet Morain
