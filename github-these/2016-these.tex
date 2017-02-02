@@ -2236,7 +2236,7 @@ On présente uniquement les idées directrices pour calculer $T$, les idées dé
 
 Soit $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_k$, alors pour tout $n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*$ $x([n]P) \in \mathsf{orb}(x(P))$. On a donc:
 \begin{equation*}
-T_{0}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P))}(x-x([n]P))=\prod_{i=0}^{d_1p^{k-1}-1}(x-\pi^i(x((P))))=\prod_{i=0}^{d_1p^{k-1}-1}\pi^i(x-x(P))
+T_{0}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P))}(x-x([n]P))=\prod_{i=0}^{d_1p^{k-1}-1}(x-\pi^i(x(P)))=\prod_{i=0}^{d_1p^{k-1}-1}\pi^i(x-x(P))
 \end{equation*}
 
 On note $T_0^{(0)}=x-x(P)$, $\sigma_i$ un élément générateur de $\mathsf{Gal}(\mathbb{U}_i:\mathbb{U}_{i-1})$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
@@ -2249,7 +2249,124 @@ T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
 \]
  $T_0^{(k)}$ est égal à $T_0$ le polynôme minimal de $x(P)$ sur $\mathbb{F}_q$.
 
-Ainsi si l'on représente à l'aide d'un arbre binaire le calcul de $T_0$, on a sur la figure en rouge, les seuls éléments utilisés lors du calcul de $T_0$, cela ne représente donc d'une branche de celui-ci.
+\'A l'aide d'une représentation de ce calcul sur un arbre binaire, on voit sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en travaillant avec une branche de celui-ci.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.3]
+        \coordinate (A) at (0,0);
+        \coordinate (AB) at (-9,4.25);
+		\coordinate (AC) at (9,4.25);
+		\draw (A)--(AB);
+		\draw (A)--(AC);
+		\draw (A) node[fill=white]{$\color{red}{T_0^{(3)}}$};
+		
+
+		\coordinate (ABA) at (-12.63,8.5);
+		%\coordinate (ABA) at (-11.63,8.5);
+		
+		\draw (ABA)--(AB);
+		
+		\coordinate (ABAb) at (-15.26,12.75);
+		%\coordinate (ABAb) at (-14.26,12.75);
+		
+		\draw (ABA)--(ABAb);
+		\draw (ABAb) node[fill=white]{$\color{red}{T_0^{(0)}}$};
+		
+		\coordinate (ABAa) at (-10,12.75);
+		%\coordinate (ABAa) at (-9,12.75);
+		
+		
+		\draw (ABA)--(ABAa);
+		\draw (ABA) node[fill=white]{$\color{red}{T_0^{(1)}}$};
+		\draw (ABAa) node[fill=white][left]{$\color{red}{T_0^{(0)}}$};%ancien \pi(T)
+		
+		\coordinate (ACA) at (-5.37,8.5);
+		%\coordinate (ACA) at (-6.37,8.5);
+		
+		
+		\draw (AB)--(ACA);
+		\draw (AB) node[fill=white]{$\color{red}{T_0^{(2)}}$};
+		\coordinate (ACAa) at (-8,12.75);
+		%\coordinate (ACAa) at (-9,12.75);
+		
+		
+		\draw (ACA)--(ACAa);
+		\draw (ACAa) node[fill=white]{$\pi^2(T_0^{(0)})$};%ancien \pi^2(T)
+		
+		\coordinate (ACAb) at (-2.74,12.75);
+		%\coordinate (ACAb) at (-3.74,12.75);
+		
+		
+		\draw (ACA)--(ACAb);
+		\draw (ACAb) node[fill=white]{$\pi^6(T_0^{(0)})$};%ancien \pi^3(T)
+		\draw (ACA) node[fill=white]{$\color{red}{\pi^2(T_0^{(1)})}$};% ancien \pi^2(T_2)
+		
+		\begin{scope}[xshift=18cm]
+		\coordinate (ABA) at (-12.63,8.5);
+		%\coordinate (ABA) at (-11.63,8.5);
+
+		\draw (ABA)--(AC);
+		
+		\coordinate (ABAb) at (-15.26,12.75);
+		%\coordinate (ABAb) at (-14.26,12.75);
+		
+		\draw (ABA)--(ABAb);
+		\draw (ABAb) node[fill=white]{$\pi(T_0^{(0)})$};%ancien \pi^4(T)
+		
+		\coordinate (ABAa) at (-10,12.75);
+		%\coordinate (ABAa) at (-9,12.75);
+		
+		
+		\draw (ABA)--(ABAa);
+		\draw (ABAa) node[fill=white,left]{$\pi^5(T_0^{(0)})$};%ancien \pi^5(T)
+		\draw (ABA) node[fill=white]{$\pi^4(T_0^{(1)})$};%ancien \pi^4(T_2)
+		
+		\coordinate (ACA) at (-5.37,8.5);
+		%\coordinate (ACA) at (-6.37,8.5);
+		
+		
+		\draw (AC)--(ACA);
+		\draw (AC) node[fill=white]{$\color{red}{\pi^(T_0^{(2)})}$};%ancien \pi^4(T_3)
+		
+		\coordinate (ACAa) at (-8,12.75);
+		%\coordinate (ACAa) at (-9,12.75);
+		
+		
+		\draw (ACA)--(ACAa);
+		\draw (ACAa) node[fill=white]{$\pi^3(T_0^{(0)})$};%ancien \pi^6(T)
+		
+		\coordinate (ACAb) at (-2.74,12.75);
+		%\coordinate (ACAb) at (-3.74,12.75);
+		
+		
+		\draw (ACA)--(ACAb);
+		\draw (ACAb) node[fill=white]{$\pi^7(T_0^{(0)})$};%ancien \pi^7(T)	
+		\draw (ACA) node[fill=white]{$\pi^6(T_0^{(1)})$};%ancien \pi^6(T_2)	
+		\end{scope}
+		
+		\coordinate (A1) at (-17,0);
+		\coordinate (A2) at (-17,4.25);
+		\coordinate (A3) at (-17,8.5);
+		\coordinate (A4) at (-17,12.75);
+		\draw (A1)--(A2)--(A3)--(A4);
+		\draw (A1) node{$\bullet$};
+		\draw (A2) node{$\bullet$};
+		\draw (A3) node{$\bullet$};
+		\draw (A4) node{$\bullet$};
+		\draw (A1) node[left]{$\mathbb{F}_q=\mathbb{U}_0$};
+		\draw (A2) node[left]{$\mathbb{U}_1$};
+		\draw (A3) node[left]{$\mathbb{U}_{2}$};
+		\draw (A4) node[left]{$\mathbb{U}_{3}$};
+\end{tikzpicture}
+\end{center}
+\caption{Arbre de sous produits pour le calcul de $T_0^{(0)}$ dans le cas d'une tour d'extension quadratique. Seul les éléments en rouge de l'arbre sont pris en compte pour le calcul, $\pi$ peut être n'importe quel élément générateur de $\mathsf{Gal}(\mathbb{U}_3:\mathbb{U}_0)$.}
+\label{fig:orb:T}
+\end{figure}
+
+\begin{rem}
+La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-tor:fro} puisque l'arbre \ref{fig:orb:T} représente un seul des $f$ arbres de \ref{fig:p-tor:fro} et que les extrémités de l'arbre \ref{fig:orb:T} représentent les polynomes qui s'annulent en les abscisses de points des extrémités d'un des arbres de \ref{fig:p-tor:fro}.
+\end{rem}
 
 Le calcul de $A_0$ peut lui aussi être effectué efficacement à l'aide du Frobenius, une présentation détaillée sera faite en \textcolor{red}{ref à mettre}. Ainsi avec l'utilisation du Frobenius on obtient le résultat suivant pour le calcul du polynome d'interpolation sur les points d'ordre $p^k$:
 
@@ -2260,6 +2377,24 @@ O(p\mathsf{L}(k)\log(\frac{\ell}{p^{v_p(E(\mathbb{F}_q))}})+\mathsf{M}(\ell d)\l
 \]
 opérations sur $\mathbb{F}_q$.
 \end{thm}
+
+\begin{proof}
+Voir section $5.2$ de \cite{DeFeo11}.
+\end{proof}
+
+L'algorithme de Couveignes avec les modifications apportées par l'utilisation de tours d'Artin-Schreier et du Frobenius pour le calcul du polynôme d'interpolation dénoté C2-AS-FI a alors la complexité suivante:
+
+\begin{thm}
+Soient $E$ et $E'$ deux courbes $\ell$-isogènes, l'algorithme de Couveignes modifié C2-AS-FI a une complexité de:
+\[
+\tilde{O}_{p,d,\log \ell}(p^2d^3+\mathsf{C}(p)pd+(pd)^{\omega}\log^2 \ell + p^3 \ell^2 d \log^3 \ell + p^2\ell^2d^2+(\frac{\ell^2}{p}+p)\mathsf{C}(pd))
+\]
+opérations sur $\mathbb{F}_q$.
+\end{thm}
+
+\begin{proof}
+Voir section $5.2$ de \cite{DeFeo11}.
+\end{proof}
 
 \paragraph{Comportement de la $p^k$-torsion}
 Soient $p^{i_0}$ tel que $E[p^{i_0}] \subset E[\mathbb{F}_q]$
