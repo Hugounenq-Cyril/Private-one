@@ -756,25 +756,21 @@ Maintenant que la courbe isogène est entièrement déterminée, il reste à dé
 \subsection{Lien entre isogénie et son action sur le module de Tate}
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
-La construction d'extension de corps finis est un problème naturel dès lors que l'on travaille sur des corps finis. On peut être ammené à construire des extensions de corps de taille arbitraire pour lesquelles on voudra une construction dite \textit{compatible} de telle sorte que l'on puisse injecter, lorsque cela est possible, des éléments du corps dans les sous-corps pré-existants en ne faisant aucune opération arithmétique.
+La construction d'extension de corps finis est un problème naturel dès lors que l'on travaille sur des corps finis. On peut être ammené à construire des extensions de corps de taille arbitraire pour lesquelles on voudra une construction dite \textit{compatible} de telle sorte que l'on puisse projeter, lorsque cela est possible, des éléments du corps dans les constructions pré-existantes efficacement.
 
 \begin{defi}[Tour \textit{$\ell$}-adique]
 \label{def:tour-ell}
-Soit $\ell$ un nombre premier, on appelle tour d'extensions $\ell$-adiques du corps fini $\mathbb{F}_q$ la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{0}, \mathsf{F}_{1}, \mathsf{F}_{2}, \cdots$ pour lesquels:
+Soit $\mathbb{F}_q$ un corps fini à $q$ éléments de caractéristique $p$, soit $\ell$ un nombre premier différent de $p$, on appelle tour d'extensions $\ell$-adiques du corps fini $\mathbb{F}_q$ la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{0}, \mathsf{F}_{1}, \mathsf{F}_{2}, \cdots$ pour lesquels:
 \begin{itemize}
-\item $\mathsf{F}_{0}$ est une extension de $\mathbb{F}_q$ de degré $d_0$ qui correspond à l'ordre de la matrice du Frobenius restreint à la $\ell$-torsion de la courbe elliptique étudiée: $\pi_{\ell}$, on a donc $d_0 \mid \ell-1$. De plus $r \mid d_0$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
+\item $\mathsf{F}_{0}$ est une extension de $\mathbb{F}_q$ de degré $d_0 \mid \ell-1$. De plus $r \mid d_0$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
 \item $\mathsf{F}_{i}$ pour $i \geqslant 1$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
 \end{itemize}
 \end{defi}
 
-\begin{rem}
-Les constructions de tour d'extensions $\ell$-adiques sont donc spécifiées par l'ordre de la matrice du Frobenius restreint à la $\ell$-torsion de la courbe elliptique étudiée. Cette caractéristique est juste prise en compte pour la détermination de $d_0$ et n'influencera pas autrement la construction de la tour ni les opérations effectuées sur celle-ci. Ainsi une même construction de tour d'extension $\ell$-adique pourra servir pour l'étude de deux courbes elliptiques différentes dès lors que l'ordre de la matrice du Frobenius restreint à la $\ell$-torsion de la courbe elliptique étudiée est la même.
-\end{rem}
-
-Les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert la voie à d'autres travaux sur les tours $2$-adiques \cite{Doliskani-Schost15} et les tours $\ell$-adiques \cite{DeFeo-Doliskani-Schost13}. Dans ces travaux l'idée pour obtenir des constructions de tours de corps finis compatibles est le passage de représentation \textit{univariée} à \textit{bivariée}. Ici représentation univariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i]$ avec $x_i$ un élément de primitif de $\mathsf{F}_i$, de même une représentation bivariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i, x_{i-1}]$ avec $x_i$(resp. $x_{i-1}$) élément primitif de $\mathsf{F}_i$ (resp. $\mathsf{F}_{i-1}$). Ces idées ont permis d'obtenir des résultats satisfaisants en terme de complexité comparé aux résultats obtenus en utilisant de l'algèbre linéaire dans les constructions préconisées dans Magma \cite{BosmaCS97}. Ainsi certains algorithmes tels que le \textit{relèvement} ou la \textit{descente} d'éléments dans les corps de la tour $\ell$-adique (et $2$-adique) ont des complexités optimales et correspondent juste à une réécriture des éléments. Le relèvement correspond au fait de prendre un élément de $\mathsf{F}_{i-1}$ et de l'écrire comme un élément de $\mathsf{F}_i$, la descente correspond à l'opération inverse. Il y a aussi des opérations comme le Frobenius, crucial pour l'algorithme \textcolor{red}{ref à mettre plus tard}, ou le calcul de racine carrée qui ont des coûts satisfaisants. Tout cela va être détaillé dans ce qui suit. Les travaux de  \cite{DeFeo-Shost'12} ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
-
 Une façon naturelle de  construire une extension de corps fini $\mathbb{F}_q$ est de trouver un polynôme $P$ irréductible défini sur $\mathbb{F}_q$ et de degré égal à celui de l'extension désirée et de quotienter ensuite $\mathbb{F}_q[X]$ par celui-ci.
 Ainsi les éléments des tours d'extension seront toujours représentés comme des polynômes à coefficients dans $\mathbb{F}_q$, la taille des éléments de $\mathsf{F}_{k}$ sera donc $O(d_0\ell^k)$ éléments de $\mathbb{F}_q$. 
+
+Les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert la voie à d'autres travaux sur les tours $2$-adiques \cite{Doliskani-Schost15} et les tours $\ell$-adiques \cite{DeFeo-Doliskani-Schost13}. Dans ces travaux l'idée pour obtenir des constructions de tours de corps finis compatibles est le passage de représentation \textit{univariée} à \textit{bivariée}. Ici représentation univariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i]$ avec $x_i$ un élément générateur de $\mathsf{F}_i$, de même une représentation bivariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i, x_{i-1}]$ avec $x_i$(resp. $x_{i-1}$) élément générateur de $\mathsf{F}_i$ (resp. $\mathsf{F}_{i-1}$). Ces idées ont permis d'obtenir des résultats satisfaisants en terme de complexité, comparés aux résultats obtenus en utilisant de l'algèbre linéaire dans les constructions préconisées par \cite{BosmaCS97} et implantées dans le système de calcul formel Magma. Ainsi certains algorithmes tels que le \textit{relèvement} ou la \textit{descente} d'éléments dans les corps de la tour $\ell$-adique ont des complexités optimales et correspondent juste à une réécriture des éléments. Le relèvement correspond au fait de prendre un élément de $\mathsf{F}_{i-1}$ et de l'écrire comme un élément de $\mathsf{F}_i$, la descente correspond à l'opération inverse. Il y a aussi des opérations comme le Frobenius, crucial pour l'algorithme \textcolor{red}{ref à mettre plus tard}, ou le calcul de racine carrée qui ont des coûts satisfaisants. Tout cela va être détaillé dans ce qui suit. Les travaux de  \cite{DeFeo-Shost'12} sur les tours $p$-adiques ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
 
 Les complexités sont calculées en nombre d'opérations ($+, \times,\div$) dans $\mathbb{F}_q$, indépendamment de la construction de $\mathbb{F}_q$. 
 
@@ -786,29 +782,27 @@ L'idée de base de \cite{Doliskani-Schost15} est de permettre un passage efficac
 L'objectif est de calculer une tour d'extensions $\ell$-adiques du corps fini $\mathbb{F}_q$, avec $q \wedge \ell =1$, de taille $\mathbb{F}_{q^{d_0n}}$ avec $n=\ell^k$, $k \geqslant 1$ et $d_0 \mid \ell-1$. 
 
 \begin{thm}
-Soit $\ell$ un nombre premier, soit $\mathbb{F}_q$ un corps fini, alors une tour d'extensions $\ell$-adiques du corps $\mathbb{F}_q$: $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1, \mathsf{F}_2, \cdots$ est calculée en $O(d_0\mathsf{M}(d_0)\log(d_0)\log(d_0q))+O(\mathsf{M}(\ell)\log(d_0)+\mathsf{M}(d_0)\log(\ell)\log(d_0)+\mathsf{M}(d_0)\log(q))+O(d_0^2)$ opérations en moyenne sur $\mathbb{F}_q$.
+Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$, soit $\ell$ un nombre premier différent de $p$,  alors une tour d'extensions $\ell$-adiques du corps $\mathbb{F}_q$: $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1, \mathsf{F}_2, \cdots$ est calculée en $O(d_0\mathsf{M}(d_0)\log(d_0)\log(d_0q))+O(\mathsf{M}(\ell)\log(d_0)+\mathsf{M}(d_0)\log(\ell)\log(d_0)+\mathsf{M}(d_0)\log(q))+O(d_0^2)$ opérations en moyenne sur $\mathbb{F}_q$.
 \end{thm}
  
  \begin{proof}
   %Pour $q \neq 1 \bmod \ell$ on se ramène au cas $q=1\bmod \ell$ en construisant une extension $\mathsf{F}_{0}$ de $\mathbb{F}_q$ de degré $d_0 \mid r$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
-  Deux cas se présentent selon que la valeur de $d_0$:
-  \begin{itemize}
-  
-
-  \item  Pour $d_0 \neq 1$ on construit tout d'abord $\mathsf{F}_0$ l'extension de $\mathbb{F}_q$ de degré $d_0$ qui divise $\ell-1$ et est donc premier avec $\ell$. Cette construction de $\mathsf{F}_0$ est faite en même temps que la détermination d'un non-résidu $\ell$-adique. 
+  On construit tout d'abord $\mathsf{F}_0$ l'extension de $\mathbb{F}_q$ de degré $d_0$ qui divise $\ell-1$ et est donc premier avec $\ell$. Cette construction de $\mathsf{F}_0$ est faite en même temps que la détermination d'un non-résidu $\ell$-adique. 
 
 %Tout d'abord on détermine la nature de $\mathsf{F}_0$, pour cela on calcule le $\ell$-ème polynôme cyclotomique $\Phi_{\ell} \in \mathbb{Z}[X_0]$ et on le factorise sur $\mathbb{F}_q[X_0]$ par \cite[Th 9]{Shoup93} cela a un coût de $O_e(\mathsf{M}(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$. Sur $\mathbb{F}_q[X_0]$, $\Phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$. Si $r=1$ alors on a $\mathbb{F}_q \equiv \mathsf{F}_0$ sinon on doit construire $\mathsf{F}_0$.
 On calcule un polynôme irréductible de degré $d_0$ défini sur $\mathbb{F}_q$, pour cela on utilise par exemple l'algorithme probabiliste de Ben-Or qui calcule un tel polynôme avec une complexité moyenne de $O(d_0\mathsf{M}(d_0)\log(d_0)\log(d_0q))$ opérations sur $\mathbb{F}_q$ d'après \cite[Theorem 14.42]{vzGJG03}.
- Soit $R_0$ un tel polynôme, alors par construction il existe un non-résidu $\ell$-adique dans $\mathbb{F}_q[X_0]/ \langle R_0 \rangle $. On trouve après avoir testé $O(1)$ éléments tirés au hasard par \cite[Lemma 15]{Shoup93}  un tel non-résidu $\ell$-adique, chaque essai a un coût moyen de $O(\mathsf{M}(\ell)\log(d_0)+\mathsf{M}(d_0)\log(\ell)\log(d_0)+\mathsf{M}(d_0)\log(q))$ opérations sur $\mathbb{F}_q$. Une fois un tel non-résidu $\ell$-adique $y_0$ trouvé on calcule son polynôme minimal $P_0$, ce calcul coûte $O(d_0^2)$ opérations sur $\mathbb{F}_q$ d'après \cite[Th. 4]{Shoup93}. On construit donc $\mathsf{F}_0=\mathbb{F}_q[X_0]/\langle P_0(X_0) \rangle$ et le non-résidu $\ell$-adique sera alors l'image de $X_0$ dans $\mathsf{F}_0$. On construit dès lors toute extension $\mathsf{F}_{i}$ de $\mathbb{F}_{q}$ pour $i \geqslant 1$ à l'aide du polynôme irréductible $P_0(X^{\ell^{i}})$ défini dans $\mathbb{F}_q[X]$. 
+ Soit $R_0$ un tel polynôme, alors par construction il existe un non-résidu $\ell$-adique dans $\mathbb{F}_q[X_0]/ \langle R_0 \rangle $. On trouve après avoir testé $O(1)$ éléments tirés au hasard un tel non-résidu $\ell$-adique, chaque essai a un coût moyen de $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$ d'après \cite[11.1]{vzGJG03}. Une fois un tel non-résidu $\ell$-adique $y_0$ trouvé on calcule son polynôme minimal $P_0$, ce calcul coûte $O(d_0^2)=O(\ell^2)$ opérations sur $\mathbb{F}_q$ d'après \cite[Th. 3.4]{Shoup93}. On construit donc $\mathsf{F}_0=\mathbb{F}_q[X_0]/\langle P_0(X_0) \rangle$ et le non-résidu $\ell$-adique sera alors l'image de $X_0$ dans $\mathsf{F}_0$. On définit le polynôme irréductible $P_i=P_0(X^{\ell^{i}})$ dans $\mathbb{F}_q[X]$ et on construit toute extension $\mathsf{F}_{i}$ de $\mathbb{F}_{q}$ comme étant $\mathsf{F}_{i}=\mathbb{F}_q[X]/P_i(X)$. 
  
-  \item Pour $d_0 = 1$ on a $\mathsf{F}_0 \equiv \mathbb{F}_{q}$ ainsi on cherche un non-résidu $\ell$-adique de la même manière que la méthode préconisée dans le cas $d_0 \neq 1$. Une fois un tel non-résidu $\ell$-adique $\alpha$ trouvé on définit $\mathsf{F}_i$ pour $i \geqslant 1$ à l'aide du polynôme irréductible $X^{\ell^{i}}-\alpha$ défini dans $\mathbb{F}_q[X]$.
+\end{proof}
+
+\begin{rem}
+Pour $d_0 = 1$ on a $\mathsf{F}_0 \equiv \mathbb{F}_{q}$ ainsi on cherche un non-résidu $\ell$-adique de la même manière que la méthode préconisée dans le cas $d_0 \neq 1$. Une fois un tel non-résidu $\ell$-adique $\alpha$ trouvé on définit $\mathsf{F}_i$ pour $i \geqslant 1$ à l'aide du polynôme irréductible $X^{\ell^{i}}-\alpha$ défini dans $\mathbb{F}_q[X]$.
+\end{rem}
+
  
-  \end{itemize}
- \end{proof}
- 
- \begin{rem}
- Sachant que $d_0 \mid \ell-1$ ce coût peut être borné à l'aide de $\ell$ de la façon suivante: $O(\mathsf{M}(\ell)(\log(\ell)^2)+\log(\ell)+\log(q)+\ell \log(\ell)\log(\ell q))+O(\ell^2)$ opérations en moyenne sur $\mathbb{F}_q$.
- \end{rem}
+\begin{rem}
+Sachant que $d_0 \mid \ell-1$ ce coût peut être borné à l'aide de $\ell$ de la façon suivante: $O(\mathsf{M}(\ell)(\log(\ell)^2)+\log(\ell)+\log(q)+\ell \log(\ell)\log(\ell q))+O(\ell^2)$ opérations en moyenne sur $\mathbb{F}_q$.
+\end{rem}
  
  %$\mathsf{F}_0$ étant une extension de degré premier à $\ell$ de $\mathbb{F}_q$ %alors lorsque l'on a une complexité exprimée en termes d'opérations sur $\mathsf{F}_0$ 
 %%on pourra appliquer les résultats obtenus sur les différents algorithmes étudiés (relèvement, descente, Frobenius) lorsque $q=1 \bmod \ell$ en 
@@ -1050,6 +1044,10 @@ Il est à noter que pour le calcul d'une racine carrée le coût est un coût en
 Une implantation de construction de tours $2$-adique et des opérations du Frobenius et du calcul de racine carrée ont été réalisé en SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
 \section{$\ell \neq 2$ [De Feo-Doliskani-Schost] inutile....}
+
+\begin{rem}
+Les constructions de tour d'extensions $\ell$-adiques sont donc spécifiées par l'ordre de la matrice du Frobenius restreint à la $\ell$-torsion de la courbe elliptique étudiée. Cette caractéristique est juste prise en compte pour la détermination de $d_0$ et n'influencera pas autrement la construction de la tour ni les opérations effectuées sur celle-ci. Ainsi une même construction de tour d'extension $\ell$-adique pourra servir pour l'étude de deux courbes elliptiques différentes dès lors que l'ordre de la matrice du Frobenius restreint à la $\ell$-torsion de la courbe elliptique étudiée est la même.
+\end{rem}
 
 Le travail présenté ici est issu de \cite{DeFeo-Doliskani-Schost13}. Les différences avec le travail de \cite{Doliskani-Schost15} sont notamment des "push" et "pull" plus compliqués à calculer, ainsi que la discussion faite sur l'existence d'un résidu $\ell$ adique qui ne se résout pas de façon aussi simple que dans \cite{Doliskani-Schost15}. Le calcul du Frobenius n'avait pas été fait dans \cite{DeFeo-Doliskani-Schost13}, cela est fait ici lors d'un travail conjoint avec Luca De Feo, Jérome Plut et Eric Schost, les idées utilisées sont des applications directes de celles de \cite{Doliskani-Schost15}.
 
