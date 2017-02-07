@@ -750,6 +750,10 @@ avec $\tilde{j'} \in \mathbb{F}_q$ donné par:
 avec $\Phi_{\ell,X}$(resp. $\Phi_{\ell,Y}$) la dérivée partielle de $\Phi_{\ell}$ en $X$ (resp. $Y$): $\frac{\partial \Phi_{\ell}}{\partial X} $.
 \end{prop} 
 
+\begin{proof}
+Voir \cite{Schoof95}[§7]
+\end{proof}
+
 Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci à l'aide d'algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008} qui cherchent à résoudre ce problème dans un tel contexte. Une présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
 
 
@@ -1426,7 +1430,7 @@ Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra 
 
 \chapter{Calcul d'isogénies sur les corps finis}
 Dans ce chapitre vont être présentés différents algorithmes pour résoudre le problème suivant: soient $E, E'$ deux courbes elliptiques définies sur $\mathbb{K}$, on cherche alors à calculer la fraction $\mathbb{K}$-rationnelle qui a pour domaine $E(\mathbb{K})$ et pour codomaine $E'(\mathbb{K})$  telle que  cette application  définisse une isogénie.
-On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$, bien que les algorithmes présentés peuvent s'utiliser sur des corps de caractéristique nulle.
+On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$, bien que certains algorithmes présentés peuvent aussi s'utiliser sur des corps de caractéristique nulle.
 
 \section{Rappel et applications des formules de Vélu}
 Comme vu dans le chapitre \ref{cha:Rappels theoriques} à l'aide des formules de Vélu on peut expliciter une isogénie séparable de degré $\ell$ sous la forme:
@@ -1440,6 +1444,7 @@ h(x)=\prod_{Q \in G \setminus \{0_E\}}(x-x(Q)),
 \end{equation*}
 avec $G=\ker(I)$, $g$ un polynôme. On rappelle qu'en plus à l'aide de la reformulation d'Elkies on a:
 \begin{equation}
+\label{eq:vel:elk}
 \frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
 \end{equation}
 avec $f$ donné par l'équation de Weierstrass de $E$: $y^2=f(x)$, $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
@@ -1460,7 +1465,7 @@ Pour deux courbes $\ell$-isogènes exprimées sous forme de Weierstrass telle qu
 \end{defi}
 \section{Elkies 1998}
 Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p >> \ell$.
-Dans le modèle de Elkies on travaille avec des courbes à équations de Weierstrass normalisées, celles-ci sont calculées à l'aide du $\ell$-ème polynôme modulaire (voir proposition \ref{prop:elk:nor} pour la construction et ?? pour la preuve que cela donne des équations de Weierstrass normalisées \textcolor{red}{ref à mettre plus tard}).
+Dans le modèle de Elkies on travaille avec des courbes à équations de Weierstrass normalisées, celles-ci sont calculées à l'aide du $\ell$-ème polynôme modulaire (voir proposition \ref{prop:elk:nor} pour la construction et \cite{Schoof95} pour plus de détails).
 L'idée de Elkies est d'à partir des équations de Weierstrass normalisées de $E:$
 \begin{equation}
 y^2=x^3+Ax+B
@@ -1474,7 +1479,7 @@ injecter l'équation de l'isogénie \textbf{normalisée}:
 \label{eq:velu:gh}
 I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right) 
 \end{equation}
-et celle de $E$ dans celle de $E'$:
+et celle de $E$ dans celle de $\tilde{E}$:
 \begin{equation}
 (x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
 \end{equation}
@@ -1483,7 +1488,7 @@ Cette équation est alors dérivée pour obtenir une équation différentielle d
 \label{eq:Elkies-deriv}
 (3x^2+A)\left(\frac{g(x)}{h(x)} \right)'+2(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)''=  3\left(\frac{g(x)}{h(x)} \right)^2 + \tilde{A}
 \end{equation}
-On écrit alors le développement en série de la fonction rationnelle $\frac{g(x)}{h(x)}$ à l'infini:
+On écrit alors le développement en série de la fraction rationnelle $\frac{g(x)}{h(x)}$ à l'infini:
 \begin{equation}
 \label{eq:iso:frac}
 \frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{h_i}{x^i}
@@ -1500,17 +1505,6 @@ h_1=\frac{A-\tilde{A}}{5} \quad h_2={\frac{B-\tilde{B}}{7}}.
 Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{\ell-2}$ est de $O(\ell^2)$ opérations sur $\mathbb{F}_q$. 
 
 \begin{rem}
-\label{rem:ELK:h-p}
-On peut ensuite calculer $h(x)$ sans passer par une reconstruction rationnelle, en effet on peut retrouver les sommes de Newton: $p_0,p_1,\cdots, p_n$ à l'aide de la connaissance de $p_0=\ell-1$ et $p_1$. Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer la connaissance de $p_1$ car le calcul du $\ell$-ème polynôme modulaire $\phi_{\ell}$ a été effectué (voir \ref{sub:Elkies} pour plus de contexte), à l'aide des dérivées partielles de $\phi_{\ell}$. Ensuite avec \ref{eq:iso:frac} on établit la récurrence:
-\begin{equation}
-\label{eq:p:rec}
-h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
-\end{equation}
-à l'aide de laquelle on calcule tous les $p_i$ en $O(\ell)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$ par \cite[§2.2]{BMSS08}.
-Ensuite à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
-\end{rem}
-
-\begin{rem}
 \label{rem:pol:rec}
 Soit $P$ un polynôme de degré $d$ défini sur $\mathbb{F}_q[X]$ de caratéristique $p>d$ ou $p=0$. Alors $P$ peut être déterminé à l'aide de la formule:
 \begin{equation}
@@ -1518,6 +1512,7 @@ P=\exp\left(\int{\frac{P'}{P}}\right)
 \end{equation} 
 On a alors à l'aide des sommes de Newton:$p_0=d,p_1, \cdots, p_d$:
 \begin{equation}
+\label{eq:pol:new}
 \frac{P'}{P}= \frac{d}{X} + \sum_{i = 1}^d \frac{p_i}{X^{i+1}}
 \end{equation}
 Ce qui nous donne:
@@ -1526,6 +1521,18 @@ P=\exp\left( d \log(X) - \sum_{i = 1}^{d} \frac{p_i}{i!X^i} \right)
 \end{equation} 
 Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton on est capable d'exprimer $P$.
 \end{rem}
+
+\begin{rem}
+\label{rem:ELK:h-p}
+On peut calculer $h(x)$ sans faire une reconstruction rationnelle, en effet on peut déterminer les sommes de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de $p_0=\ell-1, p_1$ et $\frac{g(x)}{h(x)}=x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$. Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer la connaissance de $p_1$. En effet comme le calcul du $\ell$-ème polynôme modulaire $\phi_{\ell}$ a été effectué (voir \ref{sub:Elkies} pour plus de contexte), alors à l'aide des dérivées partielles de $\phi_{\ell}$ on peut calculer celui-ci. Une formule explicite de ce calcul est donnée dans \cite[Theorem 17.22]{ehcc05} et sa preuve est dans \cite[§7]{Schoof95}. En utilisant \eqref{eq:iso:frac} et \eqref{eq:pol:new} dans \eqref{eq:vel:elk} on établit la récurrence:
+\begin{equation}
+\label{eq:p:rec}
+h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
+\end{equation}
+à l'aide de laquelle on calcule tous les $p_i$ en $O(\ell)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$ par \cite[§2.2]{BMSS08}.
+Enfin à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
+\end{rem}
+
 Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir appliquer la remarque \ref{rem:pol:rec}, ainsi que l'équation \ref{eq:rec:h_k}.
  
 \section{BMSS}
