@@ -770,7 +770,7 @@ Soit $\mathbb{F}_q$ un corps fini à $q$ éléments de caractéristique $p$, soi
 Une façon naturelle de  construire une extension de corps fini $\mathbb{F}_q$ est de trouver un polynôme $P$ irréductible défini sur $\mathbb{F}_q$ et de degré égal à celui de l'extension désirée et de quotienter ensuite $\mathbb{F}_q[X]$ par celui-ci.
 Ainsi les éléments des tours d'extension seront toujours représentés comme des polynômes à coefficients dans $\mathbb{F}_q$, la taille des éléments de $\mathsf{F}_{k}$ sera donc $O(d_0\ell^k)$ éléments de $\mathbb{F}_q$. 
 
-Les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert la voie à d'autres travaux sur les tours $2$-adiques \cite{Doliskani-Schost15} et les tours $\ell$-adiques \cite{DeFeo-Doliskani-Schost13}. Dans ces travaux l'idée pour obtenir des constructions de tours de corps finis compatibles est le passage de représentation \textit{univariée} à \textit{bivariée}. Ici représentation univariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i]$ avec $x_i$ un élément générateur de $\mathsf{F}_i$, de même une représentation bivariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i, x_{i-1}]$ avec $x_i$(resp. $x_{i-1}$) élément générateur de $\mathsf{F}_i$ (resp. $\mathsf{F}_{i-1}$). Ces idées ont permis d'obtenir des résultats satisfaisants en terme de complexité, comparés aux résultats obtenus en utilisant de l'algèbre linéaire dans les constructions préconisées par \cite{BosmaCS97} et implantées dans le système de calcul formel Magma. Ainsi certains algorithmes tels que le \textit{relèvement} ou la \textit{descente} d'éléments dans les corps de la tour $\ell$-adique ont des complexités optimales et correspondent juste à une réécriture des éléments. Le relèvement correspond au fait de prendre un élément de $\mathsf{F}_{i-1}$ et de l'écrire comme un élément de $\mathsf{F}_i$, la descente correspond à l'opération inverse. Il y a aussi des opérations comme le Frobenius, crucial pour l'algorithme \textcolor{red}{ref à mettre plus tard}, ou le calcul de racine carrée qui ont des coûts satisfaisants. Tout cela va être détaillé dans ce qui suit. Les travaux de  \cite{DeFeo-Shost'12} sur les tours $p$-adiques ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
+Les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert la voie à d'autres travaux sur les tours $2$-adiques \cite{Doliskani-Schost15} et les tours $\ell$-adiques \cite{DeFeo-Doliskani-Schost13}. Dans ces travaux l'idée pour obtenir des constructions de tours de corps finis compatibles est le passage de représentation \textit{univariée} à \textit{bivariée}. Ici représentation univariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i]$ avec $x_i$ un élément générateur de $\mathsf{F}_i$, de même une représentation bivariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i, x_{i-1}]$ avec $x_i$(resp. $x_{i-1}$) élément générateur de $\mathsf{F}_i$ (resp. $\mathsf{F}_{i-1}$). Ces idées ont permis d'obtenir des résultats satisfaisants en terme de complexité, comparés aux résultats obtenus en utilisant de l'algèbre linéaire dans les constructions préconisées par \cite{BosmaCS97} et implantées dans le système de calcul formel Magma. Ainsi certains algorithmes tels que le \textit{relèvement} ou la \textit{descente} d'éléments dans les corps de la tour $\ell$-adique ont des complexités optimales et correspondent seulement à une réécriture des éléments. Le relèvement correspond au fait de prendre un élément de $\mathsf{F}_{i-1}$ et de l'écrire comme un élément de $\mathsf{F}_i$, la descente correspond à l'opération inverse. Il y a aussi des opérations comme le Frobenius, crucial pour l'algorithme \textcolor{red}{ref à mettre plus tard}, ou le calcul de racine carrée qui ont des coûts satisfaisants. Tout cela va être détaillé dans ce qui suit. Les travaux de  \cite{DeFeo-Shost'12} sur les tours $p$-adiques ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
 
 Les complexités sont calculées en nombre d'opérations ($+, \times,\div$) dans $\mathbb{F}_q$, indépendamment de la construction de $\mathbb{F}_q$. 
 
@@ -872,7 +872,7 @@ la $\mathbb{F}_q$ base bivariée de $\mathsf{F}_k$ est:
 \end{equation*}
 \end{defi}
 
-En pratique le changement de base monovariée à bivariée se fait de la façon suivante à partir d'une expression $G(x_k)$ d'un élément de $\mathsf{F}_k$ avec $G$ un polynôme de degré inférieur à $\ell^k-1$:
+En pratique le changement de base monovariée à bivariée se fait de la façon suivante à partir d'une expression $G(x_k)$ d'un élément de $\mathsf{F}_k$ avec $G$ un polynôme de degré inférieur à $d_0\ell^k-1$:
 \begin{equation*}
 G(x_k)=G_0(x_k)+ G_1(x_k^\ell)+x_kG_2(x_k^\ell)+ \cdots + x_k^{\ell-1} G_{\ell}(x_k^{\ell}) =G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
 \end{equation*}
@@ -892,6 +892,16 @@ alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf
 \alpha_0 + \alpha_5x_2^1+ \alpha_{10}x_2^{2} + \alpha_{15}x_2^{3} + \cdots + \alpha_{5k}x_2^{k} + \cdots + \alpha_{120}x_2^{24}. 
 \end{equation} 
  Ainsi on voit que $\alpha$ est aussi un élément de $\mathsf{F}_2$. Le passage de la représentation de $\alpha$ de \eqref{eq:exe:mon} à \eqref{eq:exe:biv} correspond à une \emph{descente}, l'opération inverse est elle un \emph{relèvement}.
+ 
+ Par contre pour $\beta$ un élément de $\mathsf{F}_3$ écrit de la façon suivante dans la base monovariée:
+ \begin{equation}
+ \beta_0 + \beta_1 x_3+ \cdots +\beta_{5k}x_3^{5k} + \beta_{5k+1}x_3^{5k+1}+\beta_{5k+2}x_3^{5k+2}+ \beta_{5k+3}x_3^{5k+3}+ \beta_{5k+4}x_3^{5k+4}+ \cdots + \beta_{124}x_3^{124}
+ \end{equation}
+l'écriture de $\beta$ dans la base bivariée est: 
+ \begin{equation}
+  \beta_0 + \beta_1 x_3+ \cdots + x_2^{k}(\beta_{5k}+\beta_{5k+1} x_3 + \beta_{5k+2} x_3^2 + \beta_{5k+3} x_3^3 + \beta_{5k+4}x_3^4)+ \cdots + \beta_{124}x_2^{24}x_3^{4}.
+ \end{equation}
+ On voit ici que $\beta \notin \mathsf{F}_2$ et donc on ne peut le faire descendre dans la tour d'extension mais seulement s'arrêter à cette écriture dans la base bivariée.
 \end{exe}
 
 \section{Opérations dans la tour d'extension $\ell$-adique}
@@ -919,36 +929,36 @@ auquel il faut ajouter un calcul booléen de $O(\log(\ell^j)\log(\ell^i|\mathsf{
 \end{thm} 
 
 \begin{proof}
-Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat étant sinon $a$ lui-même. Notons $s= |\mathsf{F}_j|$ et $d=[\mathsf{F}_i:\mathsf{F}_0]=\ell^{i}$. Soit $x_i$ l'image de $x$ dans $F_i=\mathsf{F}_0[x]/P_i(x)$, on a en particulier $x_i^d=x_0$.
+Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat étant sinon $a$ lui-même. Notons $s= |\mathsf{F}_j|$ et rappelons que $[\mathsf{F}_i:\mathsf{F}_0]=\ell^{i}$. Soit $x_i$ l'image de $x$ dans $F_i=\mathsf{F}_0[x]/P_i(x)$, on a en particulier $x_i^{\ell^i}=x_0$.
 
-La première étape est de calculer $y=x_i^s$. En écrivant $s=ud+v$ avec $0 \leqslant v < d$ on a alors $y=x_0^{u \bmod |F_0|-1}x_i^v$. 
+La première étape est de calculer $y=x_i^s$. En écrivant $s=u\ell^i+v$ avec $0 \leqslant v < \ell^i$ on a alors $y=x_0^{u \bmod |F_0|-1}x_i^v$. 
 Une méthode rapide est préconisée pour le calcul de $u \bmod |\mathsf{F}_0|-1$ et $v$, dans un premier temps il faut calculer $\rho=s \bmod \ell^i(|\mathsf{F}_0|-1)$ à l'aide de l'exponentiation rapide puis $u \bmod |\mathsf{F}_0|-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne   de $\rho$ par $\ell^i$. Le coût booléen d'une telle opération est de $O(\log(\ell^j)\log(\ell^{i}|\mathsf{F}_0|))$. L'opération majeure étant l'exponentiation avec un exposant de taille $O(\ell^{j}\log(|\mathsf{F}_0|))$ modulo un entier de taille $O(\log(\ell^{i}|\mathsf{F}_0|))$, le calcul de $x_0^{u \bmod |\mathsf{F}_0|-1}$ se fait en utilisant $O( M(d_0) d_0\log(q))$ opérations sur $\mathbb{F}_q$. On conserve ce résultat sous la forme d'un monôme dans $F_0[x_i]$. 
 
-Dans la tour d'extensions $\ell$-adiques les éléments de la tour peuvent être représentés sous forme $G(x_k)$ avec $G$ un polynôme de degré $d$ à coefficients dans $\mathsf{F}_0$, or un élément $G(x_k)$ peut aussi être représenté sous forme $H(x_k)$ avec $H$ un polynôme de degré $d_0d$ à coefficients dans $\mathbb{F}_q$. \'A travers le calcul du Frobenius on va expliciter ces changements de représentation. On se place dans le cas où $\mathbb{F}_q \ncong \mathsf{F}_0$ avec $a$ représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[\mathsf{F}_i:\mathbb{F}_q]$ : 
+Dans la tour d'extensions $\ell$-adiques les éléments de la tour peuvent être représentés sous forme $G(x_k)$ avec $G$ un polynôme de degré $d$ à coefficients dans $\mathsf{F}_0$, or un élément $G(x_k)$ peut aussi être représenté sous forme $H(x_k)$ avec $H$ un polynôme de degré $d_0\ell^i$ à coefficients dans $\mathbb{F}_q$. \'A travers le calcul du Frobenius on va expliciter ces changements de représentation. Soit $a$ représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[\mathsf{F}_i:\mathbb{F}_q]$ : 
 \begin{equation*}
-a^*_0+a_1^*x_i+ \cdots + a^*_{d_0d-1}x_i^{d_0d-1}
+a^*_0+a_1^*x_i+ \cdots + a^*_{d_0\ell^i-1}x_i^{d_0\ell^i-1}
 \end{equation*}
 avec les $a_i^* \in \mathbb{F}_q$. On réécrit $a$ sous la forme:
 \begin{equation*}
-a_0+a_1x_i+ \cdots + a_{d-1}x_i^{d-1}
+a_0+a_1x_i+ \cdots + a_{\ell^i-1}x_i^{\ell^i-1}
 \end{equation*}
-avec les $a_w=a_w^* + \sum_{k=1}^{d_1d-1/d}a_{i+dk}^*x_0^k \in \mathsf{F}_0$ pour $w$ appartenant à $[0; d-1]$. Pour obtenir cette réécriture on s'est servi du fait que pour $t$ appartenant à $[1; d_0d-1]$ tel que $t=d u_t+v_t$ avec $0 \leqslant v_t<d$ on a $x_w^t=x_0^{u_t \bmod |\mathsf{F}_0|-1}x_w^{v_t}$ . Ainsi cette opération est juste un réarrangement des coefficients de $a$.
+avec les $a_w=a_w^* + \sum_{k=1}^{\lfloor d_0\ell^i-1/d \rfloor}a_{w+dk}^*x_0^k \in \mathsf{F}_0$ pour $w$ appartenant à $[0; \ell^i-1]$. Pour obtenir cette réécriture on s'est servi du fait que pour $t$ appartenant à $[1; d_0\ell^i-1]$ tel que $t=\ell^i u_t+v_t$ avec $0 \leqslant v_t<\ell^i$ on a $x_w^t=x_0^{u_t \bmod |\mathsf{F}_0|-1}x_w^{v_t}$ . Ainsi cette opération est juste un réarrangement des coefficients de $a$.
 
 On écrit $a^s$ sous la forme:
 \begin{equation*}
-a_0 + a_1 y + a_2 y^2 + \cdots + a_{d-1}y^{d-1}
+a_0 + a_1 y + a_2 y^2 + \cdots + a_{\ell^i-1}y^{\ell^i-1}
 \end{equation*}
-On calcule alors $a(y)$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_0[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(d_0))$ opérations sur $\mathbb{F}_q$. On a alors un coût total de $O(\ell^{i}M(d_0)))$ opérations dans $\mathbb{F}_q$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_0,x_i)$ de degré $(d_0,d)$, on réécrit alors $a^s$ sous la forme $G(x_i)$ avec $G$ un polynôme à coefficients dans $\mathbb{F}_q$ de degré $d_0d$  à l'aide du changement de représentation inverse de celui effectué précédemment. En effet $a^s$ est représenté sous la forme:
+On calcule alors $a(y)$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_0[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(d_0))$ opérations sur $\mathbb{F}_q$. On a alors un coût total de $O(\ell^{i}M(d_0)))$ opérations dans $\mathbb{F}_q$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_0,x_i)$ de degré $(d_0-1,\ell^i-1)$, on réécrit alors $a^s$ sous la forme $G(x_i)$ avec $G$ un polynôme à coefficients dans $\mathbb{F}_q$ de degré $d_0\ell^i$  à l'aide du changement de représentation inverse de celui effectué précédemment. En effet $a^s$ est représenté sous la forme:
 \begin{equation*}
-b_0 + b_1 x_i + b_2 x_i^2 + \cdots + b_{d-1}x_i^{d-1}
+b_0 + b_1 x_i + b_2 x_i^2 + \cdots + b_{\ell^i-1}x_i^{\ell^i-1}
 \end{equation*}
 avec $b_k$ un élément de $\mathsf{F}_0$ pour tout $k$. En remarquant que
 \begin{equation*}
- b_k=b_{k,0} + b_{k,1}x_0 + \cdots + b_{k,d_1-1} x_0^{d_1-1}=b_{k,0} + b_{k,1}x_i^d + b_{k,2} x_i^{2 \times d} + \cdots + b_{k,d_0-1} x_i^{(d_0-1)\times d} 
+ b_k=b_{k,0} + b_{k,1}x_0 + \cdots + b_{k,d_0-1} x_0^{d_0-1}=b_{k,0} + b_{k,1}x_i^{\ell^i} + b_{k,2} x_i^{2 \times \ell^i} + \cdots + b_{k,d_0-1} x_i^{(d_0-1)\times \ell^i} 
 \end{equation*}
  avec $b_{k,i}$ un élément de $\mathbb{F}_q$ pour tous $k,i$, on représente $a^s$ sous la forme:
 \begin{equation*}
-b_0^* + b_1^* x_i + b_2 x_i^2 + \cdots + b_{d_0d-1} x_i^{d_0d-1}
+b_0^* + b_1^* x_i + b^*_2 x_i^2 + \cdots + b^*_{d_0\ell^i-1} x_i^{d_0\ell^i-1}
 \end{equation*}
  en  utilisant la transformation $b_k^*=b_{u,v}$ pour tous $k,u,v$ tels que $k=ud+v$ avec $0 \leqslant v < d$.
 \end{proof}
