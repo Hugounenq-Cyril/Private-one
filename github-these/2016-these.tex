@@ -1539,10 +1539,10 @@ Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \
 L'algorithme BMSS \cite{BMSS08} propose de résoudre le même problème que l'algorihtme de Elkies \cite{elkies1998} et a une meilleure complexité car celui-ci change notamment de méthode pour le calcul des $h_i$:
 \begin{thm}
 \label{thm:BMSS}
-Soient $E, \tilde{E}$ deux courbes ordinaires $\ell$-isogènes sous forme de Weierstrass normalisées, avec $\ell$ différent de $p$ la caractéristique du corps qui peut être nulle ou doit vérifier $p >> \ell$. Alors:
+Soient $E, \tilde{E}$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{F}_q$ sous forme de Weierstrass normalisées, avec $\ell$ différent de $p$ la caractéristique de $\mathbb{F}_q$ qui peut être nulle ou doit vérifier $p >> \ell$. Alors:
 \begin{itemize}
-\item  si la somme des abscisses des points du noyau de l'isogénie est connue l'algorithme BMSS calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$,
-\item si la somme des abscisses des points du noyau de l'isogénie n'est pas connue l'algorithme BMSS calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{K}$.
+\item  si la somme des abscisses des points du noyau de l'isogénie est connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$,
+\item si la somme des abscisses des points du noyau de l'isogénie n'est pas connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{K}$.
 \end{itemize}
 \end{thm}
 
@@ -1567,32 +1567,32 @@ L'équation \ref{eq:BMSS:ED1} devient alors:
 que l'on reformule à l'aide des fonctions $G(x)=1/(Bx^6+Ax^4+1)$ et $H(t)=\tilde{B}t^6+\tilde{A}t^4+1$. Ainsi \ref{eq:BMSS:ED2} devient 
 \begin{equation}
 \label{eq:BMSS:ED3}
-(S')^2=(H \circ S) G
+(S')^2=(H \circ S) G.
 \end{equation}
 
-Ainsi on va d'abord exposer une solution pour résoudre cette équation différentielle \eqref{eq:BMSS:ED3}, puis on présentera la résolution complète du problème énoncé dans le théorème \ref{thm:BMSS}. 
+On va d'abord exposer une solution pour résoudre cette équation différentielle \eqref{eq:BMSS:ED3}, puis on présentera la résolution complète du problème énoncé dans le théorème \ref{thm:BMSS}. 
 
 \begin{lem}
 \label{lem:BMSS}
-Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ telles que $G(0)H(\alpha)=\beta^2$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ définie modulo $x^{d+1}$ avec $S(0)=\alpha$ et $S'(0)=\beta$, une solution de cette même équation définie modulo $x^{2d}$ peut être calculée à l'aide de l'algorithme \ref{alg:BMSS:eqdiff} en utilisant $O(\mathsf{M}(2^d))$ opérations sur $\mathbb{F}_q$.
+Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ telles que $G(0)H(\alpha)=\beta^2$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ définie modulo $x^{k+1}$ avec $S(0)=\alpha$ et $S'(0)=\beta$, une solution de cette même équation définie modulo $x^{2k}$ peut être calculée à l'aide de l'algorithme \ref{alg:BMSS:eqdiff} en utilisant $O(\mathsf{M}(2^k))$ opérations sur $\mathbb{F}_q$.
 \end{lem}
 
 \begin{proof}
 La preuve complète est donnée dans \cite{Lercier-Sirvent2008} la principale différence par rapport à \cite{BMSS08} est que la résolution de l'équation différentielle linéaire issue de \eqref{eq:BMSS:ED3} est faite à l'aide d'un calcul de racine carrée et non plus d'une exponentiation comme dans \cite{BMSS08}. 
-On va donc présenter l'idée pour accroître la précision d'une solution de \eqref{eq:BMSS:ED3} et donc démontrer partiellement le lemme \ref{lem:BMSS}.
+On va donc présenter l'idée pour accroître la précision d'une solution de \eqref{eq:BMSS:ED3} et partiellement démontrer le lemme \ref{lem:BMSS}.
 
-Soit $f_1$ une solution de \eqref{eq:BMSS:ED3} modulo $x^{d+1}$ et $f_2$ telle que:
+Soit $f_1$ une solution de \eqref{eq:BMSS:ED3} modulo $x^{k+1}$ et $f_2$ telle que:
 \begin{equation}
-S=f_1+f_2 \bmod x^{2d+1}
+S=f_1+f_2 \bmod x^{2k+1}
 \end{equation}
-avec $x^{d+1}$ qui divise $f_2$. On a alors $x^{2d}$ qui divise $f_2'^2$ et on obtient par \eqref{eq:BMSS:ED3}:
+avec $x^{k+1}$ qui divise $f_2$. On a alors $x^{2k}$ qui divise $f_2'^2$ et on obtient par \eqref{eq:BMSS:ED3}:
 \begin{equation}
 \label{eq:BMSS:ED4}
-2f_1'f_2'+f_1'^2=G(x)H(f_1+f_2) \bmod x^{2d}
+2f_1'f_2'+f_1'^2=G(x)H(f_1+f_2) \bmod x^{2k}
 \end{equation}
-On fait le développement de Taylor de $H$ en $f_1$, on obtient l'équation différentielle linéaire:
+Le développement de Taylor de $H$ en $f_1$ nous donne l'équation différentielle linéaire:
 \begin{equation}
-2f_1'f_2'+f_1'^2=G(x)H(f_1)+G(x)H'(f_1)f_2 \bmod x^{2d}
+2f_1'f_2'+f_1'^2=G(x)H(f_1)+G(x)H'(f_1)f_2 \bmod x^{2k}
 \end{equation}
 avec la condition initiale $f_2(0)=0$. Que l'on peut reformuler:
 \begin{equation}
@@ -1606,33 +1606,34 @@ f_2=\frac{1}{J}\int \frac{(G(x)H(f_1)-f_1'^2)J}{2f_1'} dx,
 \end{equation}
 avec 
 \begin{equation}
+\label{eq:LS08:J}
 J=\exp \left( -\int \frac{G(x)H'(f_1)}{2f_1'}dx \right).
 \end{equation}
-Il est à noter que comme on souhaite uniquement calculer une solution à précision $x^{2d+1}$, on a besoin uniquement de calculer $J$ et son inverse à précision $x^d$.
-Comme $f_1'$ est une solution de \eqref{eq:BMSS:ED3} alors on peut réexprimer $f_1'$ à l'aide de celle-ci et obtenir:
+Il est à noter que comme on souhaite uniquement calculer une solution à précision $x^{2k+1}$, on a besoin uniquement de calculer $J$ et son inverse à précision $x^k$.
+Comme $f_1'$ est une solution de \eqref{eq:BMSS:ED3} alors on peut réexprimer $f_1'$ à l'aide de celle-ci dans \eqref{eq:LS08:J} et obtenir:
 \begin{equation}
-\frac{G(x)H'(f_1)}{2f_1'}=\frac{H'(f_1)f_1'}{2H(f_1)} \bmod x^d,
+\frac{G(x)H'(f_1)}{2f_1'}=\frac{H'(f_1)f_1'}{2H(f_1)} \bmod x^k,
 \end{equation}
 ainsi 
 \begin{equation}
 J=\exp \left(-\frac{1}{2}\log H(f_1) \right)= \frac{1}{\sqrt{H(f_1)}}.
 \end{equation}
-Ainsi à chaque nouvelle itération pour résoudre \eqref{eq:BMSS:ED3} on a uniquement besoin de calculer les quantités suivantes:
+\'A chaque nouvelle itération pour résoudre \eqref{eq:BMSS:ED3} on a uniquement besoin de calculer les quantités suivantes:
 \begin{equation}
 S, \quad U=1/S', \quad V=\sqrt{H \circ S}, \quad J=1/V.
 \end{equation}
-\'A chaque itération de ces calculs effectués on double la précision de ces quantités à l'aide d'une itération de Newton. Les uniques opérations effectuées étant des inversions et des multiplications de séries alors la $i$-ème itération coûte $O(\mathsf{M}(2^i))$ opérations sur $\mathbb{F}_q$, et donc par la superlinéarité de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération. 
+La précision de ces quantités est doublée dès lors que l'on utilise une itération de Newton pour les calculer. Les uniques opérations effectuées étant des inversions et des multiplications de séries alors la $i$-ème itération coûte $O(\mathsf{M}(2^i))$ opérations sur $\mathbb{F}_q$, et donc par la superlinéarité de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération. 
 \end{proof}
 
 
 \begin{algorithm}
 \caption{\label{alg:BMSS:eqdiff} Résolution d'équation différentielle}
 \begin{algorithmic}[1]
-\REQUIRE $d>1, \alpha \in \mathbb{F}_q, \beta \in \mathbb{F}_q^*, H \in \mathbb{F}_q[t], G \in \mathbb{F}_{q}[[x]]$ ,%\\
-\ENSURE $S \in \mathbb{F}_q[x]$ solution de $S'^2=(H \circ S)G \bmod x^{2d}$
+\REQUIRE $k>1, \alpha \in \mathbb{F}_q, \beta \in \mathbb{F}_q^*, H \in \mathbb{F}_q[t], G \in \mathbb{F}_{q}[[x]]$ ,%\\
+\ENSURE $S \in \mathbb{F}_q[x]$ solution de $S'^2=(H \circ S)G \bmod x^{2k}$
 \STATE Soient $U \gets 1/\beta + O(x), J \gets 1/\sqrt{H(\alpha)}+O(x), V \gets \sqrt{H(\alpha)} + O(x)$
 \STATE Soit $S \gets \alpha + \beta x + \frac{G'(0)H(\alpha)+G(0)H'(\alpha)\beta}{4\beta}x^2+O(x^3)$;
-\FOR {$i \in {2, \cdots , 2^{d-1}}$}
+\FOR {$i \in {2, \cdots , 2^{k-1}}$}
 \STATE $U \gets U(2-S'U) \bmod x^{2i}$
 \STATE $V \gets (V+(H \circ S)J(2-VJ))/2 \bmod x^{i}$
 \STATE $J \gets J(2-VJ) \bmod {x^i}$
@@ -1646,12 +1647,12 @@ Une solution $S$ de l'équation différentielle \eqref{eq:BMSS:ED3} est calculé
 \begin{equation}
 S(x)=xT(x^2), \quad R(x)=\frac{1}{T(x)^2} \quad \text{tel que } \frac{g(x)}{h(x)}=xR(1/x)
 \end{equation}
-que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle (\textcolor{red}{mettre référence}).
+que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle \cite[11]{vzGJG03} (\textcolor{red}{mettre référence}) qui a un cout de $O(\mathsf{M}(\ell)\log(\ell))$.
 
 \begin{algorithm}
 \caption{\label{alg:BMSS:total} BMSS}
 \begin{algorithmic}[1]
-\REQUIRE $\ell>1$, deux courbes $\ell$-normalizées  ,%\\
+\REQUIRE $\ell>1$, deux courbes $E,\tilde{E}$ $\ell$-normalizées  ,%\\
 \ENSURE La fraction rationnelle $\frac{g(x)}{h(x)}$ qui représente la $\ell$-isogénie
 \STATE Calculer $G(x)=1/(1+Ax^4+Bx^6) \bmod x^{4\ell-1}$.
 \STATE Calculer $S(x)$ $\bmod x^{4\ell-1}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}.
@@ -1662,11 +1663,11 @@ que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La de
 \end{algorithm}
 
 \begin{rem}
-Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction rationnelle comme précisé dans les remarques \ref{rem:ELK:h-p} \ref{rem:pol:rec} et ainsi il est suffisant de calculer $S$ à précision $x^{2\ell}$ 
+Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction rationnelle comme précisé dans les remarques \ref{rem:ELK:h-p} \ref{rem:pol:rec} et ainsi il est suffisant de calculer $S$ à précision $x^{2\ell}$ car on a pas besoin d'effecture une reconstruction rationnelle.
 \end{rem}
 
 \begin{rem}
-L'algorithme BMSS impose le fait d'avoir $p>>\ell$ car à l'étape $7$ de $\ref{alg:BMSS:eqdiff}$ une intégration est nécessaire ce qui entraîne des divisions pas les entiers compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ sinon. Cela pose donc des limites aux applications de BMSS.
+L'algorithme BMSS impose le fait d'avoir $p>>\ell$ car à l'étape $7$ de l'algorithme $\ref{alg:BMSS:eqdiff}$ une intégration est nécessaire ce qui entraîne des divisions pas les entiers compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ sinon. Cela pose donc des limites aux applications de BMSS.
 \end{rem}
 
 
