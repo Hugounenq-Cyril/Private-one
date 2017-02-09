@@ -1627,7 +1627,7 @@ J=\exp \left(-\frac{1}{2}\log H(f_1) \right)= \frac{1}{\sqrt{H(f_1)}}.
 \begin{equation}
 S, \quad U=1/S', \quad V=\sqrt{H \circ S}, \quad J=1/V.
 \end{equation}
-La précision de ces quantités est doublée dès lors que l'on utilise une itération de Newton pour les calculer. Les uniques opérations effectuées étant des inversions et des multiplications de séries alors la $i$-ème itération coûte $O(\mathsf{M}(2^i))$ opérations sur $\mathbb{K}$, et donc par la superlinéarité de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération. 
+La précision de ces quantités est doublée dès lors àchaque itération de Newton utilisée pour les calculer. Les uniques opérations effectuées étant des inversions et des multiplications de séries alors la $i$-ème itération coûte $O(\mathsf{M}(2^i))$ opérations sur $\mathbb{K}$, et donc par la superlinéarité de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération. 
 \end{proof}
 
 
@@ -1699,17 +1699,17 @@ L'algorithme BMSS impose le fait d'avoir $p>>\ell$ car à l'étape $7$ de l'algo
 %\end{enumerate}
 
 
-\section{Algorithme de Lercier Sirvent (+ resultat de Tristan)}
+\section{Algorithme de Lercier Sirvent}
 L'algorithme de Lercier Sirvent répond à la problématique posée par le fait que BMSS ne peut pas s'utiliser sur des corps de petite caractéristique à cause de possibles division par $0$, une solution naturelle envisagée est donc de résoudre ce problème en travaillant dans les entiers entiers $p$-adiques.
 
-Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les nombres $p$-adiques et spécifie quelle précision on a besoin sur les entrées de l'algorithme. Cependant comme dit précédemment l'algorithme  BMSS travaille avec des courbes elliptiques sous forme de Weierstrass normalisées, il est donc nécessaire de calculer des équations normalisées des relevés des courbes dans les $p$-adiques. L'algorithme est énoncé dans le cas où l'on a $p \geqslant 5$, les calculs ont lieu dans $\mathbb{Q}_q$ une extension non ramifiée de degré $d$ de $\mathbb{Q}_p$.
+Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les nombres $p$-adiques et spécifie quelle précision on a besoin sur les entrées de l'algorithme. Cependant l'algorithme  BMSS travaille avec des courbes elliptiques sous forme de Weierstrass normalisées, il est donc nécessaire de calculer des équations normalisées des relevés des courbes dans les $p$-adiques. L'algorithme est énoncé dans le cas où l'on a $p \geqslant 5$, les calculs ont lieu dans $\mathbb{Q}_q$ une extension non ramifiée de degré $d$ de $\mathbb{Q}_p$.
 
 L'algorithme de Lercier Sirvent \ref{alg:LS08:modified} calcule un relevé $\overline{E}$ de $E$ dans $\mathbb{Q}_p$, un relèvement$\overline{j_{E''}}$ du $j$-invariant $j'$ de la courbe $\ell$-isogène $E'$ est calculé. Ensuite les formules de Elkies \cite{elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors $\overline{I}$ et $\overline{E''}$, enfin on calcule $I: E \rightarrow E' $ à l'aide de l'isomorphisme $E' \cong E''$. 
 
 \begin{algorithm}
 \caption{\label{alg:LS08:modified} Algorithme de Lercier-Sirvent}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes ,%\\
+\REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{F}_q$,%\\
 \ENSURE $I$ une $\ell$-isogénie telle que $I:E \rightarrow E'$
 \STATE Calculer un relèvement de l'équation de Weierstrass de $E$ dans $\mathbb{Q}_p$
 \STATE Calculer un relevé $\overline{j_{E'}}$ de la solution de $\phi_{\ell}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
@@ -1722,7 +1722,7 @@ L'algorithme de Lercier Sirvent \ref{alg:LS08:modified} calcule un relevé $\ove
 \end{algorithm}
 
 \begin{prop}[Lairez-Vaccon]
-Soient deux courbes $\ell$-isogènes $E,E'$ en entrée et $p \geqslant 5$ l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus: 
+Soient deux courbes $\ell$-isogènes $E,E'$ définies sur $\mathbb{F}_q$ de caractéristique $p$ avec $p \geqslant 5$, l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus: 
 \begin{itemize}
 \item $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $ nombres p-adiques si l'on ne connaît pas $p_1$ la somme des abscisses du noyau,
 \item  $ 1 + \lfloor \log_p(2 \ell - 1) \rfloor $ nombres $p$-adiques si l'on connaît $p_1$ la somme des abscisses du noyau.
@@ -1754,7 +1754,9 @@ L'étape $4$ est l'algorithme BMSS \ref{alg:BMSS:total} et a une complexité de 
 Les deux dernières étapes ont elles un coup négligeable par rapport au reste des opérations, d'où le coût total de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$.
 \end{proof}
 
-
+\begin{rem}
+Le coût de calcul des coefficients de $\phi_{\ell}$ à précision $p^{1+\log(4\ell -1)}$ est de $O(\ell^3 \log^3\ell \log\log\ell)$ opérations binaires et $O(\ell^2 \log \ell)$ d'espace binaire pour stocker les $O(\ell^2)$ coefficients de $\phi_{\ell} \in \mathbb{Z}_p[X,Y]$ d'après \cite[Algorithm 6.1, Theorem 1]{BLS12} en utilisant la précision $1+ \lfloor \log_p(4\ell-1) \rfloor$ préconisée par \cite{LairezVaccon16}.
+\end{rem}
 
 
 \subsection{Algorithme de Couveignes }
