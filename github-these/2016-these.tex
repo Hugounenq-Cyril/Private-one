@@ -366,7 +366,7 @@ Comme les isogénies peuvent être décomposées de façon unique en un produit 
 Voyons maintenant plus en détail le lien entre une isogénie séparable et son noyau, pour cela on va d'abord rappeler les formules de Vélu et une application de celle-ci.
 
 \subsubsection{Formules de Vélu}
-
+\label{sse:Vel}
 Pour un sous-groupe $C$ de $E(\mathbb{K})$ les formules de Vélu \cite{velu1971} permettent d'exprimer de façon canonique une isogénie séparable $E \rightarrow E'$ de noyau $C$ et de codomaine $E'$.  L'isogénie est $\mathbb{K}$-rationnelle si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{K}[X]$.
 
 Soit $P$ un point de $E$ alors les formules de Vélu nous donnent l'isogénie $I$ de noyau $C$ par: 
@@ -1762,21 +1762,21 @@ Le coût de calcul des coefficients de $\phi_{\ell}$ à précision $p^{1+\log(4\
 \subsection{Algorithme de Couveignes }
 Dans cette section l'algorithme de Couveignes \cite{Couveignes96} va tout d'abord être présenté puis ensuite les différentes améliorations apportées par De Feo dans \cite{DeFeo10}.
 
-L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires définies sur un corps fini $\mathbb{F}_q$ si ces deux courbes sont $\ell$-isogènes avec $\ell$ premier avec $p$, l'algorithme calcule la $\ell$-isogénie $\mathbb{F}_q$ rationnelle qui les relie, l'algorithme marche uniquement en caractéristique $p$ impaire. 
+L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires $\ell$-isogènes définies sur un corps fini $\mathbb{F}_q$ avec $\ell$ premier avec $p$ et calcule la $\ell$-isogénie $\mathbb{F}_q$-rationnelle qui les relie. L'algorithme marche uniquement en caractéristique $p$ impaire. 
 
 
 \subsubsection{Algorithme original de Couveignes}
 Soit $I$ la $\ell$-isogénie qui relie deux courbes elliptiques ordinaires $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$ on a: $I(E[p^k])=E'[p^k]$.
-Ainsi l'algorithme de Couveignes se sert du fait que la $p^k$-torsion de $E$ a pour image par l'isogénie $I$ la $p^k$-torsion de $E'$. C'est cette correspondance qui, lorsque $k$ est assez grand, donne une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement. L'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle (comme vu dans \textcolor{red}{ref à mettre}) on a:
+C'est cette correspondance qui, lorsque $k$ est assez grand, donne une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement. L'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle avec les formules de Vélu (voir \ref{sse:Vel}) on a:
 \begin{equation}
 \frac{g(x([k] \cdot P))}{h(x([k] \cdot P))}=x([k] \cdot P') \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
 \end{equation}
-avec les formules de Vélu qui impliquent que l'on ait $\deg g = \ell$ et $\deg h = \ell-1$.
-Ainsi pour calculer l'isogénie l'algorithme de Couveignes calcule un polynome $A \in \mathbb{F}_q[X]$ tel que l'on ait 
+avec $\deg g = \ell$ et $\deg h = \ell-1$.
+Pour calculer l'isogénie l'algorithme de Couveignes calcule un polynome $A \in \mathbb{F}_q[X]$ tel que l'on ait 
 \begin{equation}
 A(x([k] \cdot P))= x([k] \cdot P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
 \end{equation} 
-avec $T \in \mathbb{F}_q[x]$ qui s'annule sur $E[p^k]$ car on se sert d'une équation définie sur la $p^k$ torsion. En pratique l'algorithme de Couveignes demande que l'on choisisse $k$ tel que $p^k \geqslant 4 \ell+1$, cela est du notamment au fait que l'on veuille calculer l'isogénie sous la forme explicite de Vélu, en appliquant donc l'algorithme de Cauchy on a besoin d'avoir $p^k \geqslant 4 \ell +1$ et non $p^k \geqslant 2 \ell +1$ car tout point d'ordre différent de $2$ a son opposé de même abscisse on doit donc doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\lambda P_2$ avec $\lambda \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^* $) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
+avec $T \in \mathbb{F}_q[x]$ qui s'annule sur $E[p^k]$ car on se travaille sur la $p^k$ torsion. En pratique l'algorithme de Couveignes demande choisit $k$ tel que $p^k \geqslant 4 \ell+1$, cela est du notamment au fait que l'on veuille calculer l'isogénie sous la forme explicite de Vélu, en appliquant donc l'algorithme de Cauchy on a besoin d'avoir $p^k \geqslant 4 \ell +1$ et non $p^k \geqslant 2 \ell +1$ car tout point d'ordre différent de $2$ a son opposé de même abscisse on doit donc doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\lambda P_2$ avec $\lambda \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^* $) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
 
 \subsubsection{Coût de Couveignes}
 
