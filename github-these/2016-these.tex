@@ -1776,7 +1776,7 @@ Pour calculer l'isogénie l'algorithme de Couveignes calcule un polynome $A \in 
 \begin{equation}
 A(x([k] \cdot P))= x([k] \cdot P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
 \end{equation} 
-avec $T \in \mathbb{F}_q[x]$ qui s'annule sur $E[p^k]$ car on se travaille sur la $p^k$ torsion. En pratique l'algorithme de Couveignes demande choisit $k$ tel que $p^k \geqslant 4 \ell+1$, cela est du notamment au fait que l'on veuille calculer l'isogénie sous la forme explicite de Vélu, en appliquant donc l'algorithme de Cauchy on a besoin d'avoir $p^k \geqslant 4 \ell +1$ et non $p^k \geqslant 2 \ell +1$ car tout point d'ordre différent de $2$ a son opposé de même abscisse on doit donc doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\lambda P_2$ avec $\lambda \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^* $) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
+avec $T \in \mathbb{F}_q[x]$ qui s'annule sur $E[p^k]$ car on se travaille sur la $p^k$ torsion. En pratique l'algorithme de Couveignes demande choisit $k$ tel que $p^k \geqslant 4 \ell+1$. En effet on veut faire une interpolation de Cauchy pour calculer la forme explicite de Velu, normalement on a besoin de $p^k \geqslant 2 \ell +1$ mais comme tout point d'ordre différent de $2$ a son opposé de même abscisse on doit doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\alpha P_2$ avec $\alpha \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^* $) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
 
 \subsubsection{Coût de Couveignes}
 
@@ -1795,9 +1795,38 @@ Soient $c_p, c_{p-1}, \cdots, c_{0}$ les racines de $X^{p-1}-H_{E}$ dans son cor
 \begin{equation*}
 X^{p}_i=\frac{\Delta_0^2-a_6c_i^2\Delta_1^2}{4c_i^2}
 \end{equation*}
-avec $\Delta_0$ et $\Delta_1$ les detérminants des matrices données dans la figure \textcolor{red}{ref à mettre} avec $r=\frac{p-1}{2}, \alpha_{\nu}=\nu (\nu -1 ) a_6, \beta_{\nu}=\nu(\nu-\frac{1}{2})a_4 \nu_{\nu}=\nu^2a_2$ et $\delta_{\nu}=\gamma(\nu + \frac{1}{2})$ avec $\Delta_1=1$ lorsque $r=1$.
+avec $\Delta_0$ et $\Delta_1$ les detérminants des matrices données dans la figure \ref{fig:gun:det} avec $r=\frac{p-1}{2}, \alpha_{\nu}=\nu (\nu -1 ) a_6, \beta_{\nu}=\nu(\nu-\frac{1}{2})a_4 \nu_{\nu}=\nu^2a_2$ et $\delta_{\nu}=\gamma(\nu + \frac{1}{2})$ avec $\Delta_1=1$ lorsque $r=1$.
 \end{thm}
-Ainsi si on note $c$ l'une des racinces $p-1$ ème de $H_E$, ce résultat implique que les points de $p$-torsion sont définis dans $\mathbb{F}_q[c]$ et leurs abscisses sont incluses dans $\mathbb{F}_q[c^2]$.
+
+\begin{figure}
+\label{fig:gun:det}
+\begin{equation*}
+\begin{alignedat}{1}
+\Delta_0 &=\left| 
+\begin{matrix}
+\beta_1 & \alpha_2 & 0 & 0 & \cdots & 0\\
+\delta_1 & \gamma_2 - c^2 & \beta_3 & \alpha_4 & \ddots & \vdots \\
+0 & \delta_2 & \gamma_3 - c^2 & \beta_4 & \ddots & 0 \\
+\vdots & \ddots & \delta_3 & \ddots & \ddots & \alpha_r \\
+\vdots & & \ddots  & \ddots & \ddots & \beta_r \\
+0 & \cdots & \cdots & 0 & \delta_{r-1} & \gamma_r - c^2 
+\end{matrix}
+\right| \\
+\Delta_1 &= \left| 
+\begin{matrix}
+\gamma_2-c^2 & \beta_3 & \alpha_4 & \cdots & 0 \\
+\delta_2 & \gamma_3 - c^2 & \beta_4 & \ddots & \vdots \\
+0 & \delta_3 & \ddots & \ddots & \alpha_r \\
+\vdots & \ddots & \ddots & \ddots & \beta_r \\
+0 & \cdots & 0 & \delta_{r-1} & \gamma_r-c^2
+\end{matrix}
+\right|.
+\end{alignedat}
+\end{equation*}
+\caption{Les déterminants $\Delta_0$ et $\Delta_1$ apparaissant dans la formule de Gunji.}
+\end{figure}
+
+En notant $c$ l'une des racinces $p-1$ ème de $H_E$, ce résultat implique que les points de $p$-torsion sont définis dans $\mathbb{F}_q[c]$ et leurs abscisses sont incluses dans $\mathbb{F}_q[c^2]$.
 
 
 Le calcul de la $p^k$-torsion est effectué itérativement à l'aide de la $p$-descente, pour celle-ci on se sert de la décomposition de la multiplication par $p$: 
@@ -1806,32 +1835,57 @@ Le calcul de la $p^k$-torsion est effectué itérativement à l'aide de la $p$-d
 \end{equation}
 avec $\pi$ le Frobenius défini sur $\mathbb{F}_q$ et $V$ le verschebung. L'idée originale est donc d'inverser chacune  de ces isogénies pour calculer itérativement des antécédents de point de $p^i$-torsion par $[p]$. Inverser l'isogénie séparable $V$ revient notamment à factoriser un polynômes de degré $p$ dans une extension de $\mathbb{F}_q$, $V$ peut être explicité à l'aide de la $p$-torsion de $E: E[p]$. 
 
-Une autre approche a été proposé par De Feo pour prendre avantage notamment des constructions de tour d'Artin Schreier en s'appuyant sur les travaux de Voloch \cite{Voloch90} suggéré dans l'article original \cite{Couveignes96}. On suppose $p\neq 2$ et l'on pose $E$ et $\tilde{E}$ d'équations respectives:
+Une autre approche a été proposé par De Feo pour prendre avantage notamment des constructions de tour d'Artin Schreier en s'appuyant sur les travaux de Voloch \cite{Voloch90} suggéré dans l'article original \cite{Couveignes96}. On suppose $p\neq 2$ et l'on pose $E$ et $\widehat{E}$ d'équations respectives:
 \begin{equation}
-y^2=f(x)x^3+a_2x^2+a_4x+a_6 \\
-\tilde{y}^2=\tilde{f}(\tilde{x})=\tilde{x}^3+\sqrt[p]{a_2}\tilde{x}^2+\sqrt[p]{a_4}\tilde{x}+\sqrt[p]{a_6}
+\begin{alignedat}{1}
+y^2 &= f(x)x^3+a_2x^2+a_4x+a_6 \\
+\widehat{y}^2 &= \widehat{f}(\widehat{x})=\widehat{x}^3+\sqrt[p]{a_2}\widehat{x}^2+\sqrt[p]{a_4}\widehat{x}+\sqrt[p]{a_6}
+\end{alignedat}
 \end{equation}
 on pose alors:
 \begin{equation}
-\tilde{f}(x)^{\frac{p-1}{2}}=\alpha(x)+H_{\tilde{E}}X^{p-1}+X^{p}\beta(x)
+\widehat{f}(x)^{\frac{p-1}{2}}=\alpha(x)+H_{\widehat{E}}X^{p-1}+X^{p}\beta(x)
 \end{equation}
-aec $\deg  \alpha <p-1$ et $H_{\tilde{E}}$ l'invariant de Hasse de $\tilde{E}$. Voloch a alors démontré le résultat suivant:
+aec $\deg  \alpha <p-1$ et $H_{\widehat{E}}$ l'invariant de Hasse de $\widehat{E}$. Voloch a alors démontré le résultat suivant:
 \begin{prop}
-Soit $\tilde{c}$ une racine $p-1$ ème de $H_{\tilde{E}}$, le recouvrement de $\tilde{E}$ défini par:
+Soit $\widehat{c}$ une racine $p-1$ ème de $H_{\widehat{E}}$, le recouvrement de $\widehat{E}$ défini par:
 \begin{equation}
 \label{eq:vol:cov}
-C:\tilde{z}^p-\tilde{z}=\frac{\tilde{y}\beta \tilde{x}}{\tilde{c}^p}
+C:\widehat{z}^p-\widehat{z}=\frac{\widehat{y}\beta( \widehat{x})}{\widehat{c}^p}
 \end{equation}
 est un recouvrement étale de degré $p$ et est isomorphe à $E$ sur $\mathbb{F}_q[c]$ à l'aide de l'isomorphisme suivant:
 \begin{equation}
 \label{eq:vol:iso}
-(\tilde{x},\tilde{y})=V(x,y) \\
-\tilde{z}=\frac{-y}{\tilde{c}^p}\sum_{i=1}^{p-1}\frac{1}{x-x([i]P_1)}
+\begin{alignedat}{1}
+(\widehat{x},\widehat{y}) &= V(x,y) \\
+\widehat{z} &= \frac{-y}{\widehat{c}^p}\sum_{i=1}^{p-1}\frac{1}{x-x([i]P_1)}
+\end{alignedat}{1}
 \end{equation}
 avec $P_1$ un point primitif de $p$-torsion de $E$.
 \end{prop}
 
 La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré-images sur $C$ en résolvant l'équation \eqref{eq:vol:cov}. On résoud alors l'équation \eqref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \textcolor{red}{ref à mettre}.
+
+\begin{figure}
+\label{fig:dra:des}
+\begin{tikzpicture}
+\begin{scope}
+    \coordinate (Eh) at (0, 0.1) ;
+   	\coordinate (E'h) at (5, 0.1);
+   	\coordinate (Eb) at (0, -0.1) ;
+   	\coordinate (E'b) at (5, -0.1);
+   	\coordinate (E) at (0, 0) ;
+   	\coordinate (E') at (5, 0);
+   	\draw[dashed, thick,->] (Eh) 	to[bend left=20] node[above left] {$\pi^{-1}$} (E'h);
+   	\draw[dashed, thick,->] (E'b) 	to[bend right=-20] node[below right] {$V^{-1}$} (Eb);
+   	\draw (E) node{$\bullet$};
+   	\draw (E) node[left]{$E$};
+    \draw (E') node{$\bullet$};
+    \draw (E') node[right]{$\widehat{E}$};
+\end{scope}
+\end{tikzpicture}
+\caption{Descente d'un point de $p$-torsion sur $E$.}
+\end{figure}
 
 Cette méthode est plus efficace que la méthode standard car à l'aide des constructions de Tour d'Artin Schreier on peut résoudre plus rapidement l'équation \eqref{eq:vol:cov} qui est une équation d'Artin Schreier cette équation peut être résolue à l'aide de méthodes de \textcolor{red}{ref à mettre} \cite[Ch.6]{DeFeo10} ou par algèbre linéaire comme dans \cite{Couveignes96}. Une fois qu'une solution $\tilde{z}$ de \eqref{eq:vol:cov} est trouvée il faut alors résoudre en $x$ et en $y$ le système de \eqref{eq:vol:iso} à l'aide d'un calcul de $\mathrm{pgcd}$ plus de détails peuvent être trouvés dans \cite[§6.2]{Ler97a} ou dans \cite[§9.1]{DeFeo10} alors que dans la méthode préconisée auparavant on devait facotriser un polynôme.
 
@@ -1842,10 +1896,10 @@ Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opératio
 \end{lem}
 
 \begin{proof}
-Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\tilde{c}$ racines $p-1$ ème de $H_{E}$ et $H_{E'}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\tilde{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
+Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $c'$ racines $p-1$ ème de $H_{E}$ et $H_{E'}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[c']$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[c']$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[c']$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
 \end{proof}
 
-Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est ammené à effectuer les calculs. On introduit donc la définition de tours d'extensions $p$-adique, le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement la valuation $p$-adique de la torsion rationnelle de la courbe de $1$.
+Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est amené à effectuer les calculs. On introduit donc la définition de tours d'extensions $p$-adique, le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement la valuation $p$-adique de la torsion rationnelle de la courbe de $1$.
 
 \begin{defi}
 \label{def:p-adic}
