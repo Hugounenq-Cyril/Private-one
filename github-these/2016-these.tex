@@ -1864,7 +1864,7 @@ est un recouvrement étale de degré $p$ et est isomorphe à $E$ sur $\mathbb{F}
 avec $P_1$ un point primitif de $p$-torsion de $E$.
 \end{prop}
 
-La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré-images sur $C$ en résolvant l'équation \eqref{eq:vol:cov}. On résoud alors l'équation \eqref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \textcolor{red}{ref à mettre}.
+La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré-images sur $C$ en résolvant l'équation \eqref{eq:vol:cov}. On résoud alors l'équation \eqref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \ref{fig:dra:des}.
 
 \begin{figure}
 \label{fig:dra:des}
@@ -1887,7 +1887,7 @@ La descente est alors effectuée de la façon suivante, à partir d'un point $P$
 \caption{Descente d'un point de $p$-torsion sur $E$.}
 \end{figure}
 
-Cette méthode est plus efficace que la méthode standard car à l'aide des constructions de Tour d'Artin Schreier on peut résoudre plus rapidement l'équation \eqref{eq:vol:cov} qui est une équation d'Artin Schreier cette équation peut être résolue à l'aide de méthodes de \textcolor{red}{ref à mettre} \cite[Ch.6]{DeFeo10} ou par algèbre linéaire comme dans \cite{Couveignes96}. Une fois qu'une solution $\tilde{z}$ de \eqref{eq:vol:cov} est trouvée il faut alors résoudre en $x$ et en $y$ le système de \eqref{eq:vol:iso} à l'aide d'un calcul de $\mathrm{pgcd}$ plus de détails peuvent être trouvés dans \cite[§6.2]{Ler97a} ou dans \cite[§9.1]{DeFeo10} alors que dans la méthode préconisée auparavant on devait facotriser un polynôme.
+Cette méthode est plus efficace que la méthode standard car à l'aide des constructions de Tour d'Artin-Schreier on peut résoudre plus rapidement l'équation \eqref{eq:vol:cov} qui est une équation d'Artin-Schreier cette équation peut être résolue à l'aide de méthodes de \cite[§6.1]{DeFeo-Shost'12} ou par algèbre linéaire comme dans \cite{Couveignes96}. Une fois qu'une solution $\tilde{z}$ de \eqref{eq:vol:cov} est trouvée il faut alors résoudre en $x$ et en $y$ le système de \eqref{eq:vol:iso} à l'aide d'un calcul de $\mathrm{pgcd}$ plus de détails peuvent être trouvés dans \cite[§6.2]{Ler97a} ou dans \cite[§7]{DeFeo11} alors que dans la méthode préconisée auparavant on devait factoriser un polynôme.
 
 Comme le travail de \cite{DeFeo11} repose sur les constructions de tour d'Artin Schreier, dont une brève description sera faite \textcolor{red}{ref. à mettre} pour plus de détails voir \cite{DeFeo-Shost'12}, et que celles-ci sont construites comme des extensions de $\mathbb{F}_p$ alors les complexités seront exprimées en terme d'opérations sur $\mathbb{F}_p$ en utilisant la convention que l'on a $q=p^d$.
 
@@ -1896,7 +1896,7 @@ Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opératio
 \end{lem}
 
 \begin{proof}
-Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $c'$ racines $p-1$ ème de $H_{E}$ et $H_{E'}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[c']$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[c']$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[c']$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
+Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\widehat{c}$ racines $p-1$ ème de $H_{E}$ et $H_{\widehat{E}}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
 \end{proof}
 
 Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est amené à effectuer les calculs. On introduit donc la définition de tours d'extensions $p$-adique, le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement la valuation $p$-adique de la torsion rationnelle de la courbe de $1$.
