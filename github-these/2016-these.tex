@@ -1904,7 +1904,7 @@ Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formul
 Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est amené à effectuer les calculs. On introduit donc la définition de tours d'extensions $p$-adique, le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement la valuation $p$-adique de la torsion rationnelle de la courbe de $1$.
 
 \begin{defi}
-\label{def:p-adic}
+\label{def:p-adic:level}
 Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour de \emph{niveau} $p$-adique  $\mathbb{L}_0,  \mathbb{L}_1, \mathbb{L}_2, \cdots \mathbb{L}_i$ telle que $\mathbb{L}_i$ soit la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{L}_i)$. On pose $\mathbb{L}_0=\mathbb{F}_q$.
 \end{defi}
 
@@ -2141,7 +2141,7 @@ Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i
 
 \begin{cor}
 \label{cor:orb:fro}
-Soit $k$ tel que que $\mathbb{L}_k \neq \mathbb{F}_q$ avec $\mathbb{L}_k$ défini comme dans \textcolor{red}{ref à mettre}. 
+Soit $k$ tel que que $\mathbb{L}_k \neq \mathbb{F}_q$ avec $\mathbb{L}_k$ défini comme dans \ref{def:p-adic:level}. 
 La taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $[\mathbb{L}_k:\mathbb{F}_q]$  est égale à:
 \begin{enumerate} 
 \item $[\mathbb{L}_k:\mathbb{F}_q]$ si $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$,
@@ -2150,11 +2150,11 @@ La taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du g
 \end{cor}
 
 \begin{proof}
-Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $e$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ cela veut dire que $t_{\pi}^e=1 \bmod p^k$ ou $t_{\pi}^d=-1 \bmod p^k$, par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $e \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{d})^2=1 \bmod p^k$, ainsi $2e \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $e= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
+Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $e$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ cela veut dire que $t_{\pi}^e=1 \bmod p^k$ ou $t_{\pi}^e=-1 \bmod p^k$, par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $e \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{e})^2=1 \bmod p^k$, ainsi $2e \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $e= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
 \end{proof}
 
 \begin{rem}
-Ce résultat peut aussi être démontré à l'aide du théorème de Gunji \ref{thm:Gunji}, notamment le fait que pour $c$ une racine $p-1$ème de $H_E$ les abscisses des points de $p$-torsion sont définies dans $\mathbb{F}_q[c^2]$ qui n'est pas forcément isomorphe à $\mathbb{F}_q[c]$.
+Ce résultat peut aussi être démontré à l'aide du théorème de Gunji \ref{thm:Gunji}, pour $c$ une racine $p-1$ème de $H_E$ les abscisses des points de $p$-torsion sont définies dans $\mathbb{F}_q[c^2]$ qui n'est pas forcément isomorphe à $\mathbb{F}_q[c]$.
 \end{rem}
 
 Ainsi asymptotiquement la taille des orbites $e \in O(p^k)$, dés lors ne serait-ce que pour représenter un polynôme d'interpolation défini sur une orbite on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette question et seront présentées à \textcolor{red}{ref à mettre}.
@@ -2178,7 +2178,7 @@ Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation
 
 Comme dit précédemment des améliorations ont été apportées dans \cite{DeFeo11}, elles sont toutes utilisées dans notre approche $\ell$-adique de l'algorithme de Couveignes, soit directement soit adaptées c'est pourquoi certaines parties seront plus détaillées que d'autres.
 
-Pour le calcul de la $p^k$-torsion \cite{DeFeo11} utilise les calculs consécutifs aux travaux de \cite{Gunji76} et \cite{Voloch88} sur des tours d'Artin Schreier (tours $p$-adiques).
+Pour le calcul de la $p^k$-torsion \cite{DeFeo11} utilise les méthodes précédemments présentés issues des travaux de \cite{Gunji76} et \cite{Voloch90}, la différence est que les calculs sont faits sur des tours d'Artin-Schreier (tours $p$-adiques).
 
 Faisons une brève présentation de celles-ci, pour plus de détails voir \cite{DeFeo-Shost'12}.
 
@@ -2199,7 +2199,7 @@ Soit $\mathbb{U}_1=\mathbb{F}_p[X_1]/Q_1$, avec $Q_1$ un polynôme irréductible
 \begin{equation}
 \begin{cases}
 G_1=X_1 & \\
-G_2=X_2 & \text{si } p=2 \text{et } d \text{ impair} \\
+G_2=X_2 & \text{si } p=2 \text{ et } d \text{ impair} \\
 G_i=X_i^{2p-1} & \text{dans les autres cas.} 
 \end{cases}
 \end{equation}
@@ -2234,7 +2234,7 @@ Ces tours $p$-adique sont les constructions utilisées pour les tours de niveaux
 En effet on pose $\mathbb{L}_1=\mathbb{U}_1$, et dés lors pour tout $i\geqslant 1$ on pose $\mathbb{U}_{i+1}=\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$.
 \end{rem}
 
-A partir de maintenant on va utiliser uniquement la notation $\mathbb{U}_i$ car celle-ci correspond au pire des cas, celui où $v_p(E(\mathbb{L}_1))=1$ et $v_p(E(\mathbb{F}_q))=0$.
+A partir de maintenant on va utiliser uniquement la notation $\mathbb{U}_i$ car celle-ci correspond au pire des cas, celui où $v_p(E(\mathbb{L}_1))=1$ et $v_p(E(\mathbb{F}_q))=0$. Ainsi on va voir comment avec ces constructions de tours $p$-adiques on améliore les différentes étapes de l'algorithme de Couveignes.
 
 \paragraph{$p$-torsion}
 La construction de $\mathbb{F}_q[c]$ est faite comme une extension de $\mathbb{F}_p:\mathbb{F}_p[X]/Q_1(X)$ avec $Q_1$ un polynôme irréductible de degré $dd_1$ qui vérifie l'une des deux conditions suivantes:
@@ -2248,14 +2248,14 @@ Ainsi comme $\mathbb{F}_q[c]$ est construit comme une extension de $\mathbb{F}_p
 \begin{equation*}
 \tilde{O}(p^2d^3+pC(pd)+C(p)pd+(pd)^{\omega})
 \end{equation*}
-pour plus de détails sur le calcul de complexité voire \cite{DeFeo11}, la démarche étant la même que celle décrite dans la sous section précédente, il est à noter que pour ce calcul de complexité $d_1$ a été majoré par $p$ car $d_1 \mid p-1$. 
+pour plus de détails sur le calcul de complexité voir \cite{DeFeo11}. La démarche étant la même que celle décrite dans la sous section précédente elle n'est pas rappelée ici. Il est à noter que pour ce calcul de complexité $d_1$ a été majoré par $p$ car $d_1 \mid p-1$. 
 
 \begin{rem}
 On rappelle que la convention de noter $q=p^d$ a été prise tout au long de ce document.
 \end{rem}
 
 \paragraph{$p^k$-torsion}
-Pour le calcul de la $p^k$-torsion comme dit précédemment cela est effectué itérativement en résolvant successivement l'équation \eqref{eq:vol:cov} puis \eqref{eq:vol:iso}.
+Pour le calcul de la $p^k$-torsion comme dit précédemment \textcolor{red}{ref à mettre} cela est effectué itérativement en résolvant successivement l'équation \eqref{eq:vol:cov} puis \eqref{eq:vol:iso}.
 
 Ainsi le calcul de la $p^k$-torsion a un coût total de: 
 
@@ -2265,13 +2265,12 @@ Ainsi le calcul de la $p^k$-torsion a un coût total de:
 
 A nouveau le détail des calculs de complexité peut être trouvés dans \cite{DeFeo11}, la complexité obtenue pour résoudre \eqref{eq:vol:cov} est faite à l'aide de techniques spécifiques à la construction de tours $p$-adique, plus de détails peuvent être trouvés dans \cite{DeFeo-Shost'12}.
 
-Il est à noter que dans ce cas-là on a plus besoin de stocker une matrice de taille $p^{k-1}d \times p^{k-1}d$ pour résoudre l'équation d'Artin Schreier \eqref{eq:vol:cov}, ainsi il n'y a plus besoin de stocker en mémoire $O(\ell^2)$ données.
+Il est à noter que dans ce cas-là on a plus besoin de stocker une matrice de taille $p^{k-1}d \times p^{k-1}d=O(\ell^2)$ pour résoudre l'équation d'Artin Schreier \eqref{eq:vol:cov}.
 
 \paragraph{Interpolation}
+Dans cette partie on va voir tout d'abord le seul apport de l'utilisation de tours d'Artin-Schreier \cite{DeFeo-Shost'12} pour les opérations utilisées pour l'interpolation de l'isogénie dans l'algorithme original \cite{Couveignes96} puis nous allons voir les modifications apportées à l'algorithme par \cite[§5]{DeFeo11} afin d'obtenir une bien meilleure complexité.
 
-Le seul apport de l'utilisation de tour d'Artin-Schreier \cite{DeFeo-Shost'12} est l'accélération d'opérations utilisées l'algorithme original \cite{Couveignes96}. 
-
-On calcule tout d'abord un polynôme d'interpolation $A$ de degré $p^{k-1}(p-1)-1$ à coefficients dans $\mathbb{U}_k$ à l'aide des couples de points supposés $(P,I(P)))$. On utilise ensuite une \emph{descente} (\cite[push-down]{DeFeo-Shost'12}) sur les coefficients de $A$ pour avoir un polynôme exprimé dans $\mathbb{F}_q[c][X]$, enfin on utilise l'expression du plongement de $\mathbb{F}_q$ dans $\mathbb{F}_q[c]$ pour obtenir une expression de $A$ avec des coefficients dans $\mathbb{F}_q$. Finalement on utilise une reconstruction rationnelle sur $\mathbb{F}_q$ pour avoir un candidat pour l'isogénie.
+On calcule tout d'abord un polynôme d'interpolation $A$ de degré $p^{k-1}(p-1)-1$ à coefficients dans $\mathbb{U}_k$ à l'aide des $p^{k-1}(p-1)$ couples de points supposés $(P,I(P)))$. Le polynôme d'interpolation $A$ que l'on veut calculer est un polynôme défini sur $\mathbb{F}_q$, on doit donc transposer $A$ sur $\mathbb{F}_q$. On utilise une \emph{descente} (\cite[push-down]{DeFeo-Shost'12}) sur les coefficients de $A$ pour avoir un polynôme exprimé dans $\mathbb{F}_q[c][X]$, enfin on utilise l'expression du plongement de $\mathbb{F}_q$ dans $\mathbb{F}_q[c]$ pour obtenir une expression de $A$ avec des coefficients dans $\mathbb{F}_q$. Finalement on utilise une reconstruction rationnelle sur $\mathbb{F}_q$ pour avoir un candidat pour l'isogénie.
 
 La première étape a un coût de $O(\mathsf{M}(p^{2k}d)\log(p^{k}))$ en utilisant les techniques de \cite[§10.2]{vzGJG03}. Ensuite on utilise une \emph{descente} pour avoir une expression des coefficients de $A$ dans $\mathbb{U}_1[X]=\mathbb{F}_q[c][X]$, cela coûte $\ell L(k-1)$ opérations sur $\mathbb{F}_p$ avec $L$ qui représente le coût d'effectuer un \emph{relèvement} ou une \emph{descente} dans une tour d'Artin Schreier. D'après \cite[Theorem 13]{DeFeo-Shost'12} $L(i) \in O(p^{i+1}d \log^2_p(p^id)+p \mathsf{M}(p^id))$, il est à noter que ce coût est linéaire en la taille de l'entrée (élément de $\mathbb{U}_i$). Enfin à l'aide d'algèbre linéaire on exprime le polynôme sur $\mathbb{F}_q[X]$ en $O(\ell(pd)^2)$ opérations sur $\mathbb{F}_p$. La reconstruction rationnelle coûte $O(\mathsf{M}(p^kd)\log(p^k))$ d'après \cite[§11.1]{vzGJG03}, on a donc un coût total de:
 \begin{equation*}
@@ -2284,9 +2283,9 @@ On va donc voir dans la prochaine sous-section les améliorations apportées par
 
 \subsubsection{AS-FI}
 
-Cette partie sur le calcul du polynôme d'interpolation est cruciale car comme vu précédemment c'est la partie plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^k$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un cout minimal de $O(p^k p^kd)$ opérations sur $\mathbb{F}_p$. 
+Cette partie sur le calcul du polynôme d'interpolation est cruciale car comme vu précédemment c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un cout minimal de $O(p^k p^kd)$ opérations sur $\mathbb{F}_p$. 
 
-Bien que le polynôme $A$ que l'on souhaite calculer est de degré $p^{k-1}(p-1)-1$ il est possible avec moins d'informations de calculer celui-ci. Le polynôme $A$ étant censé représenter l'action d'une isogénie sur les points d'ordre $p^k$ alors $A$ comme l'isogénie doit commuter avec le Frobenius et être défini sur $\mathbb{F}_q$. Couveignes \cite{Couveignes96} avait préconisé de travailler distinctement sur les orbites de points sous l'action du Frobenius, on utilisait ensuite le théorème des restes chinois pour calculer $A$. Cette méthode avait l'avantage de paralléliser le calcul et d'utiliser des polynômes définis sur $\mathbb{F}_q$ pour le Théorème des Restes Chinois. Cependant cette méthode ne tirait pas pleinement parti du fait que connaître l'image d'un générateur d'une orbite fixait la valeur des autres points de l'orbite. Il manquait pour l'algorithme original des techniques efficaces pour faire agir le Frobenius ce que les constructions de tours d'Artin Schreier de \cite{DeFeo-Shost'12} permettent désormais.
+Bien que le polynôme $A$ que l'on souhaite calculer est de degré $p^{k-1}(p-1)-1$ il est possible avec moins d'informations de calculer celui-ci. Le polynôme $A$ étant censé représenter l'action d'une isogénie sur les points d'ordre $p^k$ alors $A$ comme l'isogénie doit commuter avec le Frobenius et être défini sur $\mathbb{F}_q$. Couveignes \cite{Couveignes96} avait préconisé de travailler distinctement sur les orbites de points sous l'action du Frobenius, on utilisait ensuite le théorème des restes chinois pour calculer $A$. Cette méthode avait l'avantage de paralléliser le calcul et d'utiliser des polynômes définis sur $\mathbb{F}_q$ pour le Théorème des Restes Chinois. Cependant cette méthode ne tirait pas pleinement parti du fait que connaître l'image d'un générateur d'une orbite fixait la valeur des autres points de l'orbite selon l'action du Frobenius. Il manquait pour l'algorithme original des techniques efficaces pour faire agir le Frobenius ce que les constructions de tours d'Artin Schreier de \cite{DeFeo-Shost'12} permettent désormais.
 
 On va montrer dans cette section les idées directrices pour obtenir à partir d'un polynôme d'interpolation défini uniquement à l'aide de l'image d'un représentant de l'orbite selon l'action du Frobenius le polynôme d'interpolation défini sur toute l'orbite. Ceci est l'une des raisons pour travailler uniquement avec des points primitifs de $p^k$-torsion puisque que eux seuls sont définis dans $\mathbb{U}_k$ (on s'est placé dans le cas où $\mathbb{L}_k = \mathbb{U}_k$) et sont donc tous dans des orbites de tailles identiques. Bien évidemment on peut généraliser cette méthode à tous les points de $p^k$-torsion en utilisant le théorème des restes chinois, mais d'un point de vue pratique prendre $k$ tel que $p^{k-1}(p-1) > 4 \ell +1$ est suffisant, asymptotiquement le résultat reste le même.
 
