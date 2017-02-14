@@ -1938,8 +1938,16 @@ Regardons alors l'action du groupe de Galois $G$ de $\mathbb{F}_q$ sur $T_{p}(E)
 Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
 \end{proof}
 
+\begin{lem}
+\label{lem:bij:ord}
+Soient $P_{k-1}$, $P_k$ deux points d'ordres $p^{k-1} \neq 1$ et $p^{k}$ d'une courbe elliptique $E$ ordinaire définie sur une tour de niveau d'extensions $\ell$-adiques tels que $[p]P_{k}=P_{k-1}$. On suppose de plus que $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$. Alors il y a une bijection entre les points de $p$-division de $P_{k-1} \in \mathbb{U}_{k-1}$ et les points de l'orbite de $\sigma \in \mathsf{Gal}(\mathbb{U}_k:\mathbb{U}_{k-1})$ appliqué sur $P_{k}$.
+\end{lem}
 
-On voit donc à travers cette preuve que si $E[p] \subset E(\mathbb{F}_q)$ alors il est possible que $\mathbb{L}_0=\mathbb{L}_1=\mathbb{L}_2$, de même lorsque l'on a $E[p] \not\subset E(\mathbb{F}_q)$ il est possible que $\mathbb{L}_1=\mathbb{L}_2$, dés lors la distinction suivante est nécessaire.
+\begin{proof}
+L'ensemble des points de $p$-division de $P_{k-1}$ car $P$ appartient à $E$ une courbe elliptique ordinaire. La taille de l'orbite de $\sigma$ est quant à elle égale $[\mathbb{L}_k:\mathbb{L}_{k-1}]$ égale à $p$ car $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$. Il ne reste donc qu'à montrer une inclusion pour montrer l'égalité. On a vu dans la preuve de la proposition \ref{pro:ord:fro} que l'on pouvait déterminer les points de $p^k$ torsion comme des vecteurs propres pour le Frobenius. Ainsi le point $P_k$ correspond à $t_{k} \bmod p^k$ et ses conjugués correspondent à $t_{k-1}^i P_{k} \bmod p^k$ avec $i \in \{0, \cdots , p-1  \}$ et l'on a $[pt_{k-1}^i]P_{k}=[t_{k-1}^i \bmod p^k]P_{k-1}=[1]P_{k-1}$ car $t_{k-1}^i= \mathfrak{t}_{\pi} \bmod p^{k-1}$.
+\end{proof}
+
+On voit donc à travers la preuve de la proposition \ref{pro:ord:fro} que si $E[p] \subset E(\mathbb{F}_q)$ alors il est possible que $\mathbb{L}_0=\mathbb{L}_1=\mathbb{L}_2$, de même lorsque l'on a $E[p] \not\subset E(\mathbb{F}_q)$ il est possible que $\mathbb{L}_1=\mathbb{L}_2$, dés lors la distinction suivante est nécessaire.
 
 
 %On voit donc à travers ce résultat qu'il est possible que l'on ait $\mathbb{U}_2=\mathbb{U}_1$ alors que l'on peut avoir $\mathbb{U}_0 \neq \mathbb{U}_1$. En effet pour $d=[\mathbb{U}_1:\mathbb{F}_q]$ on a $t_{\pi}(\mathbb{U}_1)=t_{\pi}(\mathbb{F}_q)^d$, ainsi il est nécessaire de prendre en compte ce cas afin de pouvoir quantifier la taille des tours sur lesquelles on travaille.
@@ -2283,11 +2291,11 @@ On va donc voir dans la prochaine sous-section les améliorations apportées par
 
 \subsubsection{AS-FI}
 
-Cette partie sur le calcul du polynôme d'interpolation est cruciale car comme vu précédemment c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un cout minimal de $O(p^k p^kd)$ opérations sur $\mathbb{F}_p$. 
+Cette partie sur le calcul du polynôme d'interpolation est cruciale car comme vu précédemment c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un cout minimal de $O(p^k p^kd)$ opérations sur $\mathbb{F}_p$ à l'aide de la méthode précédemment présentée. 
 
-Bien que le polynôme $A$ que l'on souhaite calculer est de degré $p^{k-1}(p-1)-1$ il est possible avec moins d'informations de calculer celui-ci. Le polynôme $A$ étant censé représenter l'action d'une isogénie sur les points d'ordre $p^k$ alors $A$ comme l'isogénie doit commuter avec le Frobenius et être défini sur $\mathbb{F}_q$. Couveignes \cite{Couveignes96} avait préconisé de travailler distinctement sur les orbites de points sous l'action du Frobenius, on utilisait ensuite le théorème des restes chinois pour calculer $A$. Cette méthode avait l'avantage de paralléliser le calcul et d'utiliser des polynômes définis sur $\mathbb{F}_q$ pour le Théorème des Restes Chinois. Cependant cette méthode ne tirait pas pleinement parti du fait que connaître l'image d'un générateur d'une orbite fixait la valeur des autres points de l'orbite selon l'action du Frobenius. Il manquait pour l'algorithme original des techniques efficaces pour faire agir le Frobenius ce que les constructions de tours d'Artin Schreier de \cite{DeFeo-Shost'12} permettent désormais.
+Bien que le polynôme $A$ que l'on souhaite calculer est de degré $p^{k-1}(p-1)-1$ il est possible avec moins d'informations de calculer celui-ci. Le polynôme $A$ étant censé représenter l'action d'une isogénie sur les points d'ordre $p^k$ alors $A$ comme l'isogénie doit commuter avec le Frobenius et être défini sur $\mathbb{F}_q$. Couveignes \cite{Couveignes96} avait préconisé de travailler distinctement sur les orbites de points sous l'action du Frobenius, on utilisait ensuite le théorème des restes chinois pour calculer $A$. Cette méthode avait l'avantage de paralléliser le calcul et d'utiliser des polynômes définis sur $\mathbb{F}_q$ pour le Théorème des Restes Chinois. Cependant cette méthode ne tirait pas pleinement parti du fait que connaître l'image d'un générateur d'une orbite selon l'action du Frobenius fixait la valeur des autres points de l'orbite. Il manquait pour l'algorithme original des techniques efficaces pour faire agir le Frobenius ce que les constructions de tours d'Artin Schreier de \cite{DeFeo-Shost'12} permettent désormais.
 
-On va montrer dans cette section les idées directrices pour obtenir à partir d'un polynôme d'interpolation défini uniquement à l'aide de l'image d'un représentant de l'orbite selon l'action du Frobenius le polynôme d'interpolation défini sur toute l'orbite. Ceci est l'une des raisons pour travailler uniquement avec des points primitifs de $p^k$-torsion puisque que eux seuls sont définis dans $\mathbb{U}_k$ (on s'est placé dans le cas où $\mathbb{L}_k = \mathbb{U}_k$) et sont donc tous dans des orbites de tailles identiques. Bien évidemment on peut généraliser cette méthode à tous les points de $p^k$-torsion en utilisant le théorème des restes chinois, mais d'un point de vue pratique prendre $k$ tel que $p^{k-1}(p-1) > 4 \ell +1$ est suffisant, asymptotiquement le résultat reste le même.
+On va montrer dans cette section les idées directrices pour obtenir à partir d'un polynôme d'interpolation défini uniquement à l'aide de l'image d'un représentant de l'orbite défini dans $\mathbb{U}_k$ le polynôme d'interpolation défini sur toute l'orbite avec des coefficients dans $\mathbb{F}_q$. Ceci est l'une des raisons pour travailler uniquement avec des points primitifs de $p^k$-torsion puisque que eux seuls sont définis dans $\mathbb{U}_k$ (on s'est placé dans le cas où $\mathbb{L}_k = \mathbb{U}_k$) et sont donc tous dans des orbites de tailles identiques. Bien évidemment on peut généraliser cette méthode à tous les points de $p^k$-torsion en utilisant le théorème des restes chinois, mais d'un point de vue pratique prendre $k$ tel que $p^{k-1}(p-1) > 4 \ell +1$ est suffisant, asymptotiquement le résultat reste le même.
 
 Soient $P$ et $P'$ deux points primitifs de $p^k$-torsion de $E$ et $E'$. On veut calculer le polynôme d'interpolation de degré minimal $A \in \mathbb{F}_q[X]$ tel que:
 \begin{equation}
@@ -2336,7 +2344,34 @@ L'information de l'image de $x(P) \in \mathbb{U}_k$ entraîne bien la connaissan
 
 On présente uniquement les idées directrices pour calculer $T$, le calcul de $A_0$ et les idées développées par \cite{DeFeo11} et auparavant par \cite{enge2008} étant repris très largement dans la section \textcolor{red}{ref à mettre plus tard} ils seront plus détaillées à cette occasion.
 
-Soit $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_k$, alors pour tout $n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*$ $x([n]P) \in \mathsf{orb}(x(P))$. On a donc:
+\begin{thm}
+\label{thm:orb:fro}
+Soit $k\geqslant  v_p({E(\mathbb{L}_1)} \geqslant 1$,
+ $P \in E(\mathbb{L}_{k})$ tel que $\langle P \rangle =E[p^k]$ 
+ alors l'orbite de $P$ sous l'action d'un élément générateur
+  de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{L}_{v_p({E(\mathbb{L}_1)})})$:
+   $\mathsf{orb}(x(P))=
+   \{ x([n]P) , 
+   n= \pm 1 \bmod p^{v_p({E(\mathbb{L}_1)})} \}$. 
+\end{thm}
+
+\begin{proof}
+Soit $[n]P$ un point de $E[p^k]$ appartenant à l'orbite de $P$, alors $P$ et $[n]P$ sont tous les deux des points de $p$-division d'un même point d'ordre $p^{k-1}$ par le lemme \ref{lem:bij:ord}. On montre par récurrence que $P$ et $[n]P$ sont des points de $p^{k-v_p({E(\mathbb{L}_1)})}$-division de $[p^{k-v_p({E(\mathbb{L}_1)})}]P \in \mathbb{L}_{v_p({E(\mathbb{L}_1)})}$ d'ordre $p^{v_p(E(\mathbb{L}_1))}$. Ainsi on a $[np^{k-v_p(E(\mathbb{L}_1))}]P=[p^{k-v_p(E(\mathbb{L}_1))}]P$ comme $P$ est un point d'ordre $p^k$ on a $np^{k-v_p(E(\mathbb{L}_1))}=p^{k-v_p(E(\mathbb{L}_1))} \bmod p^k$ ce qui nous permet de déduire que l'on a $n=1 \bmod p^{v_p(E(\mathbb{L}_1))}$. Comme il y a $p^{k-v_p(E(\mathbb{L}_1))}$ $n \bmod p^k$ qui vérifient cette condition alors on a bien déterminé tous les points de l'orbite. Les opposés des points ayant la même abscisses alors les abscisses des points $[n]P$ avec $n=-1 \bmod p^{v_p(E(\mathbb{L}_1))}$ appartiennent à l'orbite de $x(P)$ sous l'action d'un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-v_p(E(\mathbb{L}_1))}:\mathbb{U}_{v_p(E(\mathbb{L}_1))})$.
+\end{proof}
+
+\begin{cor}
+Soit $k >  0$,
+ $P \in E(\mathbb{L}_{k})$ tel que $\langle P \rangle =E[p^k]$ 
+ alors l'orbite de $P$ sous l'action d'un élément générateur
+  de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{F}_q)$:
+   $\mathsf{orb}(x(P))=
+   \{ x([n]P) , 
+   n \wedge p =1 \}$. 
+\end{cor}
+
+Ainsi ce cas du corollaire n'est pas intéressant à étudier d'un point de vue théorique, il correspond au pire des cas en pratique. On va donc se placer dans la suite dans un cas du théorème \ref{thm:orb:fro}. 
+
+Soit $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{U}_{k-v_p(E(\mathbb{L}_1))} \setminus \mathbb{U}_{k-v_p(E(\mathbb{L}_1))-1}$ par définition de $\mathbb{U}_{k-v_p(E(\mathbb{L}_1))}$, alors pour tout $n \in \left( \mathbb{Z}/p^{k}\mathbb{Z} \right), n=1 \bmod p^{v_p(E(\mathbb{L}_1))}$ $x([n]P) \in \mathsf{orb}(x(P))$ avec $\mathsf{orb}(x(P))$ créé par l'action d'un élément générateur de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{L}_{v_p(E(\mathbb{L}_1))})$. On a donc:
 \begin{equation*}
 T_{0}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P))}(x-x([n]P))=\prod_{i=0}^{d_1p^{k-1}-1}(x-\pi^i(x(P)))=\prod_{i=0}^{d_1p^{k-1}-1}\pi^i(x-x(P))
 \end{equation*}
