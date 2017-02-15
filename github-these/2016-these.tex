@@ -1966,6 +1966,33 @@ Il est à noter que si $v_p(E(\mathbb{F}_q)) \neq 0$ alors $v_p(E(\mathbb{F}_q))
 
 Ainsi on a $[\mathbb{L}_i:\mathbb{L}_1]=p^{i- v_p(E(\mathbb{L}_1))}$ pour tout $i \geqslant  v_p(E(\mathbb{L}_1))$. Asymptotiquement on a donc $[\mathbb{L}_k:\mathbb{L}_1] \in O(p^k)$.
 
+\begin{thm}
+\label{thm:orb:fro}
+Soit $k\geqslant  v_p({E(\mathbb{L}_1)} \geqslant 1$,
+ $P \in E(\mathbb{L}_{k})$ tel que $\langle P \rangle =E[p^k]$ 
+ alors l'orbite de $P$ sous l'action d'un élément générateur
+  de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{L}_{v_p({E(\mathbb{L}_1)})})$:
+   $\mathsf{orb}(x(P))=
+   \{ x([n]P) , 
+   n= \pm 1 \bmod p^{v_p({E(\mathbb{L}_1)})} \}$. 
+\end{thm}
+
+\begin{proof}
+Soit $[n]P$ un point de $E[p^k]$ appartenant à l'orbite de $P$, alors $P$ et $[n]P$ sont tous les deux des points de $p$-division d'un même point d'ordre $p^{k-1}$ par le lemme \ref{lem:bij:ord}. On montre par récurrence que $P$ et $[n]P$ sont des points de $p^{k-v_p({E(\mathbb{L}_1)})}$-division de $[p^{k-v_p({E(\mathbb{L}_1)})}]P \in \mathbb{L}_{v_p({E(\mathbb{L}_1)})}$ d'ordre $p^{v_p(E(\mathbb{L}_1))}$. Ainsi on a $[np^{k-v_p(E(\mathbb{L}_1))}]P=[p^{k-v_p(E(\mathbb{L}_1))}]P$ comme $P$ est un point d'ordre $p^k$ on a $np^{k-v_p(E(\mathbb{L}_1))}=p^{k-v_p(E(\mathbb{L}_1))} \bmod p^k$ ce qui nous permet de déduire que l'on a $n=1 \bmod p^{v_p(E(\mathbb{L}_1))}$. Comme il y a $p^{k-v_p(E(\mathbb{L}_1))}$ $n \bmod p^k$ qui vérifient cette condition alors on a bien déterminé tous les points de l'orbite. Les opposés des points ayant la même abscisses alors les abscisses des points $[n]P$ avec $n=-1 \bmod p^{v_p(E(\mathbb{L}_1))}$ appartiennent à l'orbite de $x(P)$ sous l'action d'un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-v_p(E(\mathbb{L}_1))}:\mathbb{U}_{v_p(E(\mathbb{L}_1))})$.
+\end{proof}
+
+\begin{prop}
+\textcolor{red}{inclus dans le corollaire suivant...}
+Soit $P \in E(\mathbb{L}_1)$ un point d'ordre $p$ de la courbe elliptique $E$ définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, soit $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_0$ avec $d_0 \mid p-1$. Alors les orbites des points d'ordre $p$ sous l'action de $\mathsf{Gal}(\mathbb{L}_1:\mathbb{F}_q)$ est de taille de $d_0 $ et il y a $f$ orbites telles que $f \times d_0  = (p-1)/2$.
+\end{prop}
+
+
+\begin{cor}
+Soit $k \geqslant 1$, $P \in E(\mathbb{L}_{k})$ un point d'ordre $p^k$ de la courbe elliptique $E$ définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, soit $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_0$ avec $d_0 \mid p-1$. Alors les orbites des points d'ordre $p^k$ sous l'action de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{F}_q)$ est de taille de $d_0 p^{k-v_p(E(\mathbb{L}_1))}$ et il y a $f$ orbites telles que $f \times d_0 p^{k-v_p(E(\mathbb{L}_1))} = p^{k-1}(p-1)/2$.
+\end{cor}
+
+
+
 \begin{lem}
 Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2d)$ opérations sur $\mathbb{F}_p$.
 \end{lem}
@@ -2327,7 +2354,7 @@ Ainsi on fait l'hypothèse que l'abscisse du point $P$ générateur de la $p^k$-
 \end{enumerate}
 
 \begin{defi}
-Soit $\sigma \in \mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$, $T=\sum_{i=0}^{d}t_iX^i \in \mathbb{U}_k[X]$ alors:
+Soient $j > k \geqslant 0$, $\sigma \in \mathsf{Gal}(\mathbb{U}_j:\mathbb{U}_k)$, $T=\sum_{i=0}^{d}t_iX^i \in \mathbb{U}_k[X]$ alors:
 \[
 \sigma(T)=\sum_{i=0}^{d}\sigma(t_i)X^i.
 \]   
@@ -2344,49 +2371,25 @@ L'information de l'image de $x(P) \in \mathbb{U}_k$ entraîne bien la connaissan
 
 On présente uniquement les idées directrices pour calculer $T$, le calcul de $A_0$ et les idées développées par \cite{DeFeo11} et auparavant par \cite{enge2008} étant repris très largement dans la section \textcolor{red}{ref à mettre plus tard} ils seront plus détaillées à cette occasion.
 
-\begin{thm}
-\label{thm:orb:fro}
-Soit $k\geqslant  v_p({E(\mathbb{L}_1)} \geqslant 1$,
- $P \in E(\mathbb{L}_{k})$ tel que $\langle P \rangle =E[p^k]$ 
- alors l'orbite de $P$ sous l'action d'un élément générateur
-  de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{L}_{v_p({E(\mathbb{L}_1)})})$:
-   $\mathsf{orb}(x(P))=
-   \{ x([n]P) , 
-   n= \pm 1 \bmod p^{v_p({E(\mathbb{L}_1)})} \}$. 
-\end{thm}
 
-\begin{proof}
-Soit $[n]P$ un point de $E[p^k]$ appartenant à l'orbite de $P$, alors $P$ et $[n]P$ sont tous les deux des points de $p$-division d'un même point d'ordre $p^{k-1}$ par le lemme \ref{lem:bij:ord}. On montre par récurrence que $P$ et $[n]P$ sont des points de $p^{k-v_p({E(\mathbb{L}_1)})}$-division de $[p^{k-v_p({E(\mathbb{L}_1)})}]P \in \mathbb{L}_{v_p({E(\mathbb{L}_1)})}$ d'ordre $p^{v_p(E(\mathbb{L}_1))}$. Ainsi on a $[np^{k-v_p(E(\mathbb{L}_1))}]P=[p^{k-v_p(E(\mathbb{L}_1))}]P$ comme $P$ est un point d'ordre $p^k$ on a $np^{k-v_p(E(\mathbb{L}_1))}=p^{k-v_p(E(\mathbb{L}_1))} \bmod p^k$ ce qui nous permet de déduire que l'on a $n=1 \bmod p^{v_p(E(\mathbb{L}_1))}$. Comme il y a $p^{k-v_p(E(\mathbb{L}_1))}$ $n \bmod p^k$ qui vérifient cette condition alors on a bien déterminé tous les points de l'orbite. Les opposés des points ayant la même abscisses alors les abscisses des points $[n]P$ avec $n=-1 \bmod p^{v_p(E(\mathbb{L}_1))}$ appartiennent à l'orbite de $x(P)$ sous l'action d'un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-v_p(E(\mathbb{L}_1))}:\mathbb{U}_{v_p(E(\mathbb{L}_1))})$.
-\end{proof}
+Ainsi on s'est placé dans le cas où $\mathbb{L}_1 \not \cong \mathbb{F}_q$  et $\mathbb{L}_2 \not \cong \mathbb{L}_1$ qui correspond au pire des cas en pratique. Pour plus de détails sur la description des orbites selon les cas possibles le lecteur peut regarder le  lemme \ref{lem:bij:ord}, le théorème \ref{thm:orb:fro} ainsi que les corollaires.
 
-\begin{cor}
-Soit $k >  0$,
- $P \in E(\mathbb{L}_{k})$ tel que $\langle P \rangle =E[p^k]$ 
- alors l'orbite de $P$ sous l'action d'un élément générateur
-  de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{F}_q)$:
-   $\mathsf{orb}(x(P))=
-   \{ x([n]P) , 
-   n \wedge p =1 \}$. 
-\end{cor}
-
-Ainsi ce cas du corollaire n'est pas intéressant à étudier d'un point de vue théorique, il correspond au pire des cas en pratique. On va donc se placer dans la suite dans un cas du théorème \ref{thm:orb:fro}. 
-
-Soit $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{U}_{k-v_p(E(\mathbb{L}_1))} \setminus \mathbb{U}_{k-v_p(E(\mathbb{L}_1))-1}$ par définition de $\mathbb{U}_{k-v_p(E(\mathbb{L}_1))}$, alors pour tout $n \in \left( \mathbb{Z}/p^{k}\mathbb{Z} \right), n=1 \bmod p^{v_p(E(\mathbb{L}_1))}$ $x([n]P) \in \mathsf{orb}(x(P))$ avec $\mathsf{orb}(x(P))$ créé par l'action d'un élément générateur de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{L}_{v_p(E(\mathbb{L}_1))})$. On a donc:
+Soient $k \geqslant 1$, $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{U}_{k} \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_{k}$. On note $\mathsf{orb}(x(P))$ l'ensemble des abscisses des points de l'orbite créée par l'action d'un élément générateur $\pi$ de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_{q})$ sur l'élément $x(P) \in \mathbb{U}_k$. On a donc:
 \begin{equation*}
-T_{0}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P))}(x-x([n]P))=\prod_{i=0}^{d_1p^{k-1}-1}(x-\pi^i(x(P)))=\prod_{i=0}^{d_1p^{k-1}-1}\pi^i(x-x(P))
+T_{0}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P)), n \leqslant p^k-1/2}(x-x([n]P))=\prod_{i=0}^{p^{k-1}d_1-1}(x-\pi^i(x(P)))=\prod_{i=0}^{{p^{k-1}d_1-1}}\pi^i(x-x(P))
 \end{equation*}
 
-On note $T_0^{(0)}=x-x(P)$, $\sigma_i$ un élément générateur de $\mathsf{Gal}(\mathbb{U}_i:\mathbb{U}_{i-1})$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
+On note $T_0^{(0)}=x-x(P)$, soit $k \geqslant i\geqslant 0$ $\sigma_i$ un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-i+1}:\mathbb{U}_{k-i})$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
 \[
 T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
     p-1 &\text{si $i<k-1$,}\\
-    d_1 &\text{si ( $i=k-1$ et $2 \nmid d_1$)}\\
-    d_1/2 &\text{si ( $i=k-1$ et $2 \mid d_1 $)}.
+    d_1 -1  &\text{si ( $i=k-1$ et $2 \nmid d_1$)}\\
+    d_1/2 - 1 &\text{si ( $i=k-1$ et $2 \mid d_1 $)}.
   \end{cases}
 \]
  $T_0^{(k)}$ est égal à $T_0$ le polynôme minimal de $x(P)$ sur $\mathbb{F}_q$.
 
-\'A l'aide d'une représentation de ce calcul sur un arbre binaire, on voit sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en travaillant avec une branche de celui-ci.
+\'A l'aide d'une représentation de ce calcul sur un arbre binaire, on voit sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en travaillant avec une branche de celui-ci à l'aide de la méthode décrite ci-dessus.
 
 \begin{figure}
 \begin{center}
@@ -2502,10 +2505,10 @@ T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
 \end{figure}
 
 \begin{rem}
-La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-tor:fro} puisque l'arbre \ref{fig:orb:T} représente un seul des $f$ arbres de \ref{fig:p-tor:fro} et que les extrémités de l'arbre \ref{fig:orb:T} représentent les polynomes qui s'annulent en les abscisses de points des extrémités d'un des arbres de \ref{fig:p-tor:fro}.
+La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-tor:fro} puisque l'arbre \ref{fig:orb:T} représente un seul des $f$ arbres de \ref{fig:p-tor:fro} et que les extrémités de l'arbre \ref{fig:orb:T} représentent les polynômes qui s'annulent en les abscisses de points des extrémités d'un des arbres de \ref{fig:p-tor:fro}.
 \end{rem}
 
-Ainsi avec l'utilisation du Frobenius on obtient le résultat suivant pour le calcul du polynome d'interpolation sur les points d'ordre $p^k$:
+Ainsi avec l'utilisation du Frobenius on obtient le résultat suivant pour le calcul du polynôme d'interpolation sur les points d'ordre $p^k$:
 
 \begin{thm}
 Soient $P$ un point d'ordre $p^k$ de $E$ et $P'$ un point d'ordre $p^k$ de $E'$ alors le calcul du polynôme d'interpolation $A$ tel que $A(x([n]P))=x([n]P')$ pour tout $n \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ a une complexité de:
