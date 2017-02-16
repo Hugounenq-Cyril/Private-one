@@ -455,7 +455,7 @@ Soit $\varphi:E_1 \rightarrow E_2$ une isogénie.
 [\widehat{m}]=[m] \textit{ et } \deg[m]=m^2.
 \end{equation*}
 
-\item $\deg( \varphi)=\deg(\widehat{\varphi})$,
+\\item $\deg( \varphi)=\deg(\widehat{\varphi})$,
 \item $\widehat{\widehat{\varphi}}=\varphi$.
 \end{enumerate}
  
@@ -1071,6 +1071,1302 @@ Il est à noter que pour le calcul d'une racine carrée le coût est un coût en
 
 Une implantation de construction de tours dyadiques et des opérations du Frobenius et du calcul de racine carrée ont été réalisé en SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
+\chapter{Calcul d'isogénies sur les corps finis}
+Dans ce chapitre vont être présentés différents algorithmes pour résoudre le problème suivant: soient $E, E'$ deux courbes elliptiques définies sur $\mathbb{K}$, on cherche alors à calculer la fraction $\mathbb{K}$-rationnelle qui a pour domaine $E(\mathbb{K})$ et pour codomaine $E'(\mathbb{K})$  telle que  cette application  définisse une isogénie.
+On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$, bien que certains algorithmes présentés peuvent aussi s'utiliser sur des corps de caractéristique nulle.
+
+\section{Rappel et applications des formules de Vélu}
+Comme vu dans le chapitre \ref{cha:Rappels theoriques} à l'aide des formules de Vélu on peut expliciter une isogénie séparable de degré $\ell$ sous la forme:
+\begin{equation} 
+\label{eq:velu:gh}
+I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
+\end{equation}
+avec 
+\begin{equation*}
+h(x)=\prod_{Q \in G \setminus \{0_E\}}(x-x(Q)),
+\end{equation*}
+avec $G=\ker(I)$, $g$ un polynôme. On rappelle qu'en plus à l'aide de la reformulation d'Elkies on a:
+\begin{equation}
+\label{eq:vel:elk}
+\frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
+\end{equation}
+avec $f$ donné par l'équation de Weierstrass de $E$: $y^2=f(x)$, $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
+
+
+Il est important de noter qu'il existe des isogénies de la forme:
+\begin{equation}
+\label{eq:iso:gen}
+I(x,y)=\left( \frac{g(x)}{h(x)},cy\frac{g(x)}{h(x)} \right)
+\end{equation}
+avec $c \in \overline{\mathbb{F}_q}$. Ainsi on énonce les définitions suivantes:
+
+
+\begin{defi}
+Soit $I$ une isogénie de la forme \eqref{eq:iso:gen} avec $c=1$, on dit alors que cette isogénie est \emph{normalisée}. 
+
+Pour deux courbes $\ell$-isogènes exprimées sous forme de Weierstrass telle que l'isogénie associée à ces courbes est une isogénie normale on dit que ces courbes ont des équations de Weierstrass \emph{normalisées}. 
+\end{defi}
+\section{Elkies 1998}
+Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p >> \ell$.
+Dans le modèle de Elkies on travaille avec des courbes à équations de Weierstrass normalisées, celles-ci sont calculées à l'aide du $\ell$-ème polynôme modulaire (voir proposition \ref{prop:elk:nor} pour la construction et \cite{Schoof95} pour plus de détails).
+L'idée de Elkies est d'à partir des équations de Weierstrass normalisées de $E:$
+\begin{equation}
+y^2=x^3+Ax+B
+\end{equation}
+ et $\tilde{E}:$
+\begin{equation}
+y^2=x^3+\tilde{A}x+\tilde{B}
+\end{equation}
+injecter l'équation de l'isogénie \textbf{normalisée}:
+\begin{equation} 
+\label{eq:velu:gh}
+I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right) 
+\end{equation}
+et celle de $E$ dans celle de $\tilde{E}$:
+\begin{equation}
+(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
+\end{equation}
+Cette équation est alors dérivée pour obtenir une équation différentielle du second ordre:
+\begin{equation}
+\label{eq:Elkies-deriv}
+(3x^2+A)\left(\frac{g(x)}{h(x)} \right)'+2(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)''=  3\left(\frac{g(x)}{h(x)} \right)^2 + \tilde{A}
+\end{equation}
+On écrit alors le développement en série de la fraction rationnelle $\frac{g(x)}{h(x)}$ à l'infini:
+\begin{equation}
+\label{eq:iso:frac}
+\frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{h_i}{x^i}
+\end{equation}
+que l'on injecte dans \eqref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $h_i$ en identifiant les coefficients des $x^{-i}$:
+\begin{equation}
+\label{eq:rec:h_k}
+h_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}h_ih_{k-1-i}\frac{2k-3}{2k+3}Ah_{k-2}-\frac{2(k-3)}{2k+3}Bh_{k-3} \quad \text{pour tout } k \geqslant 3,
+\end{equation}
+les termes $h_1,h_2$ étant déterminés par:
+\begin{equation}
+h_1=\frac{A-\tilde{A}}{5} \quad h_2={\frac{B-\tilde{B}}{7}}.
+\end{equation}
+Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{\ell-2}$ est de $O(\ell^2)$ opérations sur $\mathbb{F}_q$. 
+
+\begin{rem}
+\label{rem:pol:rec}
+Soit $P$ un polynôme de degré $d$ défini sur $\mathbb{F}_q[X]$ de caratéristique $p>d$ ou $p=0$. Alors $P$ peut être déterminé à l'aide de la formule:
+\begin{equation}
+P=\exp\left(\int{\frac{P'}{P}}\right)
+\end{equation} 
+On a alors à l'aide des sommes de Newton:$p_0=d,p_1, \cdots, p_d$:
+\begin{equation}
+\label{eq:pol:new}
+\frac{P'}{P}= \frac{d}{X} + \sum_{i = 1}^d \frac{p_i}{X^{i+1}}
+\end{equation}
+Ce qui nous donne:
+\begin{equation}
+P=\exp\left( d \log(X) - \sum_{i = 1}^{d} \frac{p_i}{i!X^i} \right)
+\end{equation} 
+Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton on est capable d'exprimer $P$.
+\end{rem}
+
+\begin{rem}
+\label{rem:ELK:h-p}
+On peut calculer $h(x)$ sans faire une reconstruction rationnelle, en effet on peut déterminer les sommes de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de $p_0=\ell-1, p_1$ et $\frac{g(x)}{h(x)}=x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$. Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer la connaissance de $p_1$. En effet comme le calcul du $\ell$-ème polynôme modulaire $\phi_{\ell}$ a été effectué (voir \ref{sub:Elkies} pour plus de contexte), alors à l'aide des dérivées partielles de $\phi_{\ell}$ on peut calculer celui-ci. Une formule explicite de ce calcul est donnée dans \cite[Theorem 17.22]{ehcc05} et sa preuve est dans \cite[§7]{Schoof95}. En utilisant \eqref{eq:iso:frac} et \eqref{eq:pol:new} dans \eqref{eq:vel:elk} on établit la récurrence:
+\begin{equation}
+\label{eq:p:rec}
+h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
+\end{equation}
+à l'aide de laquelle on calcule tous les $p_i$ en $O(\ell)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$ par \cite[§2.2]{BMSS08}.
+Enfin à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
+\end{rem}
+
+Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir appliquer la remarque \ref{rem:pol:rec}, ainsi que l'équation \eqref{eq:rec:h_k}.
+
+On peut alors énoncer le théorème suivant
+\begin{thm}
+Soient $E$ et $\tilde{E}$ deux courbes elliptiques $\ell$-isogènes définies sur $\mathbb{K}$ alors l'algorithme de Elkies calcule la $\ell$-isogénie en $O(\ell^2)$ opérations sur $\mathbb{K}$.
+\end{thm}
+ 
+\section{BMSS}
+L'algorithme BMSS \cite{BMSS08} propose de résoudre le même problème que l'algorihtme de Elkies \cite{elkies1998} et a une meilleure complexité car celui-ci change notamment de méthode pour le calcul des $h_i$:
+\begin{thm}
+\label{thm:BMSS}
+Soient $E, \tilde{E}$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{K}$ sous forme de Weierstrass normalisées, avec $\ell$ différent de $p$ la caractéristique de $\mathbb{K}$ qui peut être nulle ou doit vérifier $p >> \ell$. Alors:
+\begin{itemize}
+\item  si la somme des abscisses des points du noyau de l'isogénie est connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$,
+\item si la somme des abscisses des points du noyau de l'isogénie n'est pas connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{K}$.
+\end{itemize}
+\end{thm}
+
+L'algorithme BMSS part du même postulat que Elkies1998, à savoir, en reprenant les notations de la section précédente, trouver le développement en série de la solution de l'équation différentielle suivante:   
+\begin{equation}
+\label{eq:BMSS:ED1}
+(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
+\end{equation}
+Cependant on ne connaît pas des conditions initiales en $0$ pour cette équation différentielle vérifiée par $\frac{g(x)}{h(x)}$ et comme $\deg(g)=\ell> \deg(h)= \ell-1$ alors on ne peut travailler avec des conditions à l'infini. On pose donc:
+\begin{equation}
+S(x)=\sqrt{\frac{h(1/x^2)}{g(1/x^2)}} \quad \text{équivalent à} \quad \frac{g(x)}{h(x)}=\frac{1}{S(1/\sqrt{x})}
+\end{equation} 
+avec 
+\begin{equation}
+S(x)=x + \frac{\tilde{A}-A}{10}x^5+\frac{\tilde{B}-B}{14}x^7+O(x^9)
+\end{equation}
+L'équation \eqref{eq:BMSS:ED1} devient alors:
+\begin{equation}
+\label{eq:BMSS:ED2}
+(1+Ax^4+Bx^6)(S'(x))^2=1+\tilde{A}(S(x))^4+\tilde{B}(S(x))^6
+\end{equation}
+que l'on reformule à l'aide des fonctions $G(x)=1/(Bx^6+Ax^4+1)$ et $H(t)=\tilde{B}t^6+\tilde{A}t^4+1$. Ainsi \eqref{eq:BMSS:ED2} devient 
+\begin{equation}
+\label{eq:BMSS:ED3}
+(S')^2=(H \circ S) G.
+\end{equation}
+
+On va d'abord exposer une solution pour résoudre cette équation différentielle \eqref{eq:BMSS:ED3}, puis on présentera la résolution complète du problème énoncé dans le théorème \ref{thm:BMSS}. 
+
+\begin{lem}
+\label{lem:BMSS}
+Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ telles que $G(0)H(\alpha)=\beta^2$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ définie modulo $x^{k+1}$ avec $S(0)=\alpha$ et $S'(0)=\beta$, une solution de cette même équation définie modulo $x^{2k}$ peut être calculée à l'aide de l'algorithme \ref{alg:BMSS:eqdiff} en utilisant $O(\mathsf{M}(2^k))$ opérations sur $\mathbb{K}$.
+\end{lem}
+
+\begin{proof}
+La preuve complète est donnée dans \cite{Lercier-Sirvent2008} la principale différence par rapport à \cite{BMSS08} est que la résolution de l'équation différentielle linéaire issue de \eqref{eq:BMSS:ED3} est faite à l'aide d'un calcul de racine carrée et non plus d'une exponentiation comme dans \cite{BMSS08}. 
+On va donc présenter l'idée pour accroître la précision d'une solution de \eqref{eq:BMSS:ED3} et partiellement démontrer le lemme \ref{lem:BMSS}.
+
+Soit $f_1$ une solution de \eqref{eq:BMSS:ED3} modulo $x^{k+1}$ et $f_2$ telle que:
+\begin{equation}
+S=f_1+f_2 \bmod x^{2k+1}
+\end{equation}
+avec $x^{k+1}$ qui divise $f_2$. On a alors $x^{2k}$ qui divise $f_2'^2$ et on obtient par \eqref{eq:BMSS:ED3}:
+\begin{equation}
+\label{eq:BMSS:ED4}
+2f_1'f_2'+f_1'^2=G(x)H(f_1+f_2) \bmod x^{2k}
+\end{equation}
+Le développement en série de Taylor de $H$ en $f_1$ nous donne l'équation différentielle linéaire:
+\begin{equation}
+2f_1'f_2'+f_1'^2=G(x)H(f_1)+G(x)H'(f_1)f_2 \bmod x^{2k}
+\end{equation}
+avec la condition initiale $f_2(0)=0$. Que l'on peut reformuler:
+\begin{equation}
+\label{eq:LS08:diflin}
+f'_2-\frac{G(x)H'(f_1)}{2f_1'}f_2=\frac{G(x)H(f_1')-f_1'^2}{2f_1'}
+\end{equation}
+
+ Cette équation a alors pour solution:
+\begin{equation}
+f_2=\frac{1}{J}\int \frac{(G(x)H(f_1)-f_1'^2)J}{2f_1'} dx,
+\end{equation}
+avec 
+\begin{equation}
+\label{eq:LS08:J}
+J=\exp \left( -\int \frac{G(x)H'(f_1)}{2f_1'}dx \right).
+\end{equation}
+Il est à noter que comme on souhaite uniquement calculer une solution à précision $x^{2k+1}$, on a besoin uniquement de calculer $J$ et son inverse à précision $x^k$.
+Comme $f_1'$ est une solution de \eqref{eq:BMSS:ED3} alors on peut réexprimer $f_1'$ à l'aide de celle-ci dans \eqref{eq:LS08:J} et obtenir:
+\begin{equation}
+\frac{G(x)H'(f_1)}{2f_1'}=\frac{H'(f_1)f_1'}{2H(f_1)} \bmod x^k,
+\end{equation}
+ainsi 
+\begin{equation}
+J=\exp \left(-\frac{1}{2}\log H(f_1) \right)= \frac{1}{\sqrt{H(f_1)}}.
+\end{equation}
+\'A chaque nouvelle itération pour résoudre \eqref{eq:BMSS:ED3} on a uniquement besoin de calculer les quantités suivantes:
+\begin{equation}
+S, \quad U=1/S', \quad V=\sqrt{H \circ S}, \quad J=1/V.
+\end{equation}
+La précision de ces quantités est doublée dès lors àchaque itération de Newton utilisée pour les calculer. Les uniques opérations effectuées étant des inversions et des multiplications de séries alors la $i$-ème itération coûte $O(\mathsf{M}(2^i))$ opérations sur $\mathbb{K}$, et donc par la superlinéarité de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération. 
+\end{proof}
+
+
+\begin{algorithm}
+\caption{\label{alg:BMSS:eqdiff} Résolution d'équation différentielle}
+\begin{algorithmic}[1]
+\REQUIRE $k>1, \alpha \in \mathbb{F}_q, \beta \in \mathbb{F}_q^*, H \in \mathbb{F}_q[t], G \in \mathbb{F}_{q}[[x]]$ ,%\\
+\ENSURE $S \in \mathbb{F}_q[x]$ solution de $S'^2=(H \circ S)G \bmod x^{2k}$
+\STATE Soient $U \gets 1/\beta + O(x), J \gets 1/\sqrt{H(\alpha)}+O(x), V \gets \sqrt{H(\alpha)} + O(x)$
+\STATE Soit $S \gets \alpha + \beta x + \frac{G'(0)H(\alpha)+G(0)H'(\alpha)\beta}{4\beta}x^2+O(x^3)$;
+\FOR {$i \in {2, \cdots , 2^{k-1}}$}
+\STATE $U \gets U(2-S'U) \bmod x^{2i}$
+\STATE $V \gets (V+(H \circ S)J(2-VJ))/2 \bmod x^{i}$
+\STATE $J \gets J(2-VJ) \bmod {x^i}$
+\STATE $S \gets S+V \int ((H \circ S)G-S'^2)UJ/2 \bmod x^{2i+1}$
+\ENDFOR
+\RETURN$S$. 
+\end{algorithmic}
+\end{algorithm}
+
+Une solution $S$ de l'équation différentielle \eqref{eq:BMSS:ED3} est calculée à précision $x^{4\ell}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}. On définit les valeurs suivantes:
+\begin{equation}
+S(x)=xT(x^2), \quad R(x)=\frac{1}{T(x)^2} \quad \text{tel que } \frac{g(x)}{h(x)}=xR(1/x)
+\end{equation}
+que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle qui a un coût de $O(\mathsf{M}(\ell)\log(\ell))$ \cite[11]{vzGJG03} et domine toutes les autres.
+
+\begin{algorithm}
+\caption{\label{alg:BMSS:total} BMSS}
+\begin{algorithmic}[1]
+\REQUIRE $\ell>1$, deux courbes $E,\tilde{E}$ $\ell$-normalizées  ,%\\
+\ENSURE La fraction rationnelle $\frac{g(x)}{h(x)}$ qui représente la $\ell$-isogénie
+\STATE Calculer $G(x)=1/(1+Ax^4+Bx^6) \bmod x^{4\ell-1}$.
+\STATE Calculer $S(x)$ $\bmod x^{4\ell-1}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}.
+\STATE Soit $T(x)=\sum_{i=0}^{2\ell-1}s_{2i+1}x^i$.
+\STATE Calculer $R(x)=1/T(x)^2 \bmod(x^{2\ell-1})$.
+\STATE Calculer $\frac{g(x)}{h(x)}$ à l'aide de reconstruction rationnelle. 
+\end{algorithmic}
+\end{algorithm}
+
+\begin{rem}
+Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction rationnelle avec la méthode  précisée dans les remarques \ref{rem:pol:rec} et \ref{rem:ELK:h-p}. Il est dés lors suffisant de calculer $S$ à précision $x^{2\ell}$ car la connaissance $\frac{g(x)}{h(x)}$ à précision $\ell-2$ est suffisante pour connaître $p_0,p_1,\cdots ,p_{\ell-1}$. Ainsi avec la connaissance de $p_1$ la complexité de l'étape $5$ de l'algorithme \ref{alg:BMSS:total} est de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$ et donne la complexité de celui-ci.
+\end{rem}
+
+\begin{rem}
+L'algorithme BMSS impose le fait d'avoir $p>>\ell$ car à l'étape $7$ de l'algorithme $\ref{alg:BMSS:eqdiff}$ une intégration est nécessaire ce qui entraîne des divisions pas les entiers compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ sinon. Cela pose donc des limites aux applications de BMSS.
+\end{rem}
+
+
+
+
+%on peut alors énoncer les algorithmes qui solutionnent le théorème \ref{thm:BMSS}.
+%On commence avec l'algorithme qui suppose la connnaissance de $p_1$
+%\begin{enumerate}
+%\item Calculer $G(x) \bmod x^{2\ell-1}$ en utilisant \cite[§2.1]{BMSS08} 
+%\item Calculer $S(x)$ solution de \eqref{eq:BMSS:ED3} modulo $x^{2\ell}$ en utilisant \cite[§2.4]{BMSS08}, puis en déduire $T$.
+%\item Calculer $R=\frac{1}{T^2}$ à l'aide de \cite[§2.1]{BMSS08}
+%\item En déduire $\frac{g(x)}{h(x)}$
+%\item Calculer $h$ à l'aide des relations de récurrence de \eqref{eq:p:rec} et de l'algorithme d'exponentiation rapide \cite[2.2]{BMSS08}
+%\item En deduire $g$ à l'aide de \eqref{eq:iso:frac}
+%\end{enumerate}
+%Sans la connaissance de $p_1$ l'algorithme va être obligé d'utiliser une reconstruction rationnelle avec des algorithmes tels que celui de Berlekamp-Massey:
+%\begin{enumerate}
+%\item Calculer $G(x) \bmod x^{2\ell-1}$ en utilisant \cite[§2.1]{BMSS08} 
+%\item Calculer $S(x)$ solution de  \eqref{eq:BMSS:ED3} modulo $x^{2\ell}$ en utilisant \cite[§2.4]{BMSS08}
+%\item En déduire $T$, puis calculer $T(x)^2$.
+%\item Calculer $R$ à l'aide de \cite[§2.1]{BMSS08}
+%\item En déduire le développement $h_1, \cdots h_{\ell}$ de $\frac{g(x)}{h(x)}$
+%\item Calculer $h$ et $g$ à l'aide d'un algorithme de reconstruction rationnelle.
+%\end{enumerate}
+
+
+\section{Algorithme de Lercier Sirvent}
+L'algorithme de Lercier Sirvent répond à la problématique posée par le fait que BMSS ne peut pas s'utiliser sur des corps de petite caractéristique à cause de possibles division par $0$, une solution naturelle envisagée est donc de résoudre ce problème en travaillant dans les entiers entiers $p$-adiques.
+
+Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les nombres $p$-adiques et spécifie quelle précision on a besoin sur les entrées de l'algorithme. Cependant l'algorithme  BMSS travaille avec des courbes elliptiques sous forme de Weierstrass normalisées, il est donc nécessaire de calculer des équations normalisées des relevés des courbes dans les $p$-adiques. L'algorithme est énoncé dans le cas où l'on a $p \geqslant 5$, les calculs ont lieu dans $\mathbb{Q}_q$ une extension non ramifiée de degré $d$ de $\mathbb{Q}_p$.
+
+L'algorithme de Lercier Sirvent \ref{alg:LS08:modified} calcule un relevé $\overline{E}$ de $E$ dans $\mathbb{Q}_p$, un relèvement$\overline{j_{E''}}$ du $j$-invariant $j'$ de la courbe $\ell$-isogène $E'$ est calculé. Ensuite les formules de Elkies \cite{elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors $\overline{I}$ et $\overline{E''}$, enfin on calcule $I: E \rightarrow E' $ à l'aide de l'isomorphisme $E' \cong E''$. 
+
+\begin{algorithm}
+\caption{\label{alg:LS08:modified} Algorithme de Lercier-Sirvent}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{F}_q$,%\\
+\ENSURE $I$ une $\ell$-isogénie telle que $I:E \rightarrow E'$
+\STATE Calculer un relèvement de l'équation de Weierstrass de $E$ dans $\mathbb{Q}_p$
+\STATE Calculer un relevé $\overline{j_{E'}}$ de la solution de $\phi_{\ell}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
+\STATE Calculer une equation de Weierstrass normalisée de $\overline{E''}$ de $j$-invariant $\overline{j_{E'}}$ à l'aide des formules de Elkies
+\STATE Utiliser l'algorithme BMSS pour calculer l'isogénie $\overline{I}$
+\STATE Réduire modulo $p$ $\overline{E''}$ et $\overline{I}$ vers $E''$ et $I$
+\STATE Utiliser l'isomorphisme:$E' \rightarrow E''$ pour calculer l'isogénie $I: E \rightarrow E'$.
+\RETURN$S$. 
+\end{algorithmic}
+\end{algorithm}
+
+\begin{prop}[Lairez-Vaccon]
+Soient deux courbes $\ell$-isogènes $E,E'$ définies sur $\mathbb{F}_q$ de caractéristique $p$ avec $p \geqslant 5$, l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus: 
+\begin{itemize}
+\item $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $ nombres p-adiques si l'on ne connaît pas $p_1$ la somme des abscisses du noyau,
+\item  $ 1 + \lfloor \log_p(2 \ell - 1) \rfloor $ nombres $p$-adiques si l'on connaît $p_1$ la somme des abscisses du noyau.
+\end{itemize}
+\end{prop}
+
+Ce résultat issu de \cite{LairezVaccon16} est une amélioration du résultat original de Lercier Sirvent \cite{Lercier-Sirvent2008}. Cette amélioration porte notamment sur la précision de la solution de l'équation différentielle que l'on doit résoudre à l'étape 2 de l'algorithme BMSS \ref{alg:BMSS:total} qui est décrite dans l'algorithme \ref{alg:BMSS:eqdiff}.
+
+\begin{proof}
+Une preuve détaillée pour calculer une solution de l'équation différentielle à précision donnée est dans \cite{LairezVaccon16}, cette méthode repose notamment sur la différentitation précisionnelle qui repose sur une analyse du premier ordre de la propagation des erreurs. 
+
+Comme vu précédemment on a besoin de calculer une solution de l'équation différentielle linéaire \eqref{eq:LS08:diflin} de précision $4\ell-1$ si l'on ne connaît pas $p_1$ la somme des abscisses des points du noyau de l'isogénie. Dans ce cas on applique le résultat de Lairez-Vaccon: pour obtenir une solution $p$-adique de précision $4 \ell-1$ on a besoin d'avoir en entrée des éléments de précision $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $. Tandis que dans le cas où l'on connaît $p_1$ on a besoin de calculer une solution de \eqref{eq:LS08:diflin} de précision $2\ell - 1$ et avec le résultat de Lairez-Vaccon on a besoin d'avoir une précision en entrée de $ 1 + \lfloor \log_p(2 \ell - 1) \rfloor $ nombres $p$-adiques.
+\end{proof}
+
+\begin{rem}
+Lors de l'étape $2$ de l'algorithme de  Lercier Sirvent (\ref{alg:LS08:modified}) on a besoin de connaître l'évaluation du $\ell$ème polynôme modulaire en $j_E$: $\phi_{\ell}(X,j_E)$ et on a aussi besoin de connaître des dérivées partielles de $\phi_{\ell}$ lors de l'étape $3$ (voit \ref{sub:Elkies}), ceci suppose donc la connaissance de $\phi_{\ell}$ qui à l'aide de formules (voir \cite[Theoreme 17.22]{ehcc05}) peut nous permettre de connaître $p_1$. Ainsi il est très raisonnable de penser que l'algorithme de Lercier Sirvent peut être utilisé dans certains cas avec une précision d'au plus $1 + \lfloor \log_{p}(2\ell - 1) \rfloor$.
+\end{rem}
+
+\begin{prop}
+L'algorithme \ref{alg:LS08:modified} calcule une $\ell$-isogénie à l'aide de $O(\ell^2)$  opérations sur $\mathbb{Q}_q$.
+\end{prop}
+
+\begin{proof}
+On ne considère pas dans cette analyse le coût de la construction de $\mathbb{Q}_q$.
+L'étape $1$ de relèvement de la courbe $E$ dans $\mathbb{Q}_q$ est considéré comme nul car on prend un relevé trivial de $E$.
+L'étape $2$ peut être faite en $\tilde{O}(\ell)$ opérations sur $\mathbb{F}_q$ à l'aide d'un relèvement de Hensel. 
+L'étape $3$ du calcul d'une équation de Weierstrass normalisée a une complexité de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$ à l'aide des formules de Elkies \cite{elkies1998} (voir \ref{sub:Elkies}).
+L'étape $4$ est l'algorithme BMSS \ref{alg:BMSS:total} et a une complexité de $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{Q}_q$ si on ne connaît pas la valeur de $p_1$ (somme des abscisses des points du noyau de l'isogénie). L'étape $4$ a un coût de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{Q}_q)$ si on connaît la valeur de $p_1$ ce qui est envisageable dès lors que l'on se sert des dérivées du polynôme modulaire à l'étape $3$ et d'une évaluation du polynôme modulaire à l'étape $2$.
+Les deux dernières étapes ont elles un coup négligeable par rapport au reste des opérations, d'où le coût total de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$.
+\end{proof}
+
+\begin{rem}
+Le coût de calcul des coefficients de $\phi_{\ell}$ à précision $p^{1+\log(4\ell -1)}$ est de $O(\ell^3 \log^3\ell \log\log\ell)$ opérations binaires et $O(\ell^2 \log \ell)$ d'espace binaire pour stocker les $O(\ell^2)$ coefficients de $\phi_{\ell} \in \mathbb{Z}_p[X,Y]$ d'après \cite[Algorithm 6.1, Theorem 1]{BLS12} en utilisant la précision $1+ \lfloor \log_p(4\ell-1) \rfloor$ préconisée par \cite{LairezVaccon16}.
+\end{rem}
+
+
+\section{Algorithme de Couveignes et ses améliorations}
+Dans cette section l'algorithme de Couveignes \cite{Couveignes96} va tout d'abord être présenté puis ensuite les différentes améliorations apportées par De Feo dans \cite{DeFeo10}.
+
+L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires $\ell$-isogènes définies sur un corps fini $\mathbb{F}_q$ avec $\ell$ premier avec $p$ et calcule la $\ell$-isogénie $\mathbb{F}_q$-rationnelle qui les relie. L'algorithme marche uniquement en caractéristique $p$ impaire. 
+
+
+\subsection{Algorithme original de Couveignes}
+Soit $I$ la $\ell$-isogénie qui relie deux courbes elliptiques ordinaires $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$ on a: $I(E[p^k])=E'[p^k]$.
+C'est cette correspondance qui, lorsque $k$ est assez grand, donne une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement, l'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle avec les formules de Vélu (voir \ref{sse:Vel}) on a:
+\begin{equation}
+\frac{g(x([k] P))}{h(x([k] P))}=x([k] P') \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
+\end{equation}
+avec $\deg g = \ell$ et $\deg h = \ell-1$.
+Pour calculer l'isogénie l'algorithme de Couveignes calcule un polynome $A \in \mathbb{F}_q[X]$ tel que l'on ait 
+\begin{equation}
+A(x([k] P))= x([k] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
+\end{equation} 
+avec $T \in \mathbb{F}_q[x]$ qui s'annule sur les abscisses des points de $E[p^k]$ car on se travaille sur la $p^k$ torsion. La valeur de $k$ est en pratique choisie telle que $p^k \geqslant 4 \ell+1$. En effet on veut faire une interpolation de Cauchy pour calculer la forme explicite de Vélu, normalement on a besoin de $p^k \geqslant 2 \ell +1$ mais comme tout point d'ordre différent de $2$ a son opposé de même abscisse on doit doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\alpha P'$ avec $\alpha \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^* $) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
+
+\subsubsection{Coût de Couveignes}
+
+\paragraph{Calcul de la $p$-torsion}
+La première étape de l'algorithme est le calcul de générateurs de la $p^k$ torsion. On a tout d'abord besoin de définir les points de $p$-torsion pour cela on se sert du travail de Gunji \cite{Gunji76} et on se place dans le cas où $p \neq 2$. Le lecteur intéressé par le cas $p=2$ pourra se référer à \cite[3.2]{DeFeo11}.
+
+\begin{defi}
+Soit $E$ une courbe elliptique définie par l'équation: $y^2=f(x)$. L'\emph{invariant de Hasse} est le coefficient de $X^{p-1}$ dans $f(X)^{\frac{p-1}{2}}$ on le note $H_{E}$.
+\end{defi}
+
+Gunji a alors démontré le résultat suivant:
+
+\begin{thm}
+\label{thm:Gunji}
+Soient $c_p, c_{p-1}, \cdots, c_{0}$ les racines de $X^{p-1}-H_{E}$ dans son corps de décomposition. Les abscisses des points de $p$-torsion de $E$ sont données par: 
+\begin{equation*}
+X^{p}_i=\frac{\Delta_0^2-a_6c_i^2\Delta_1^2}{4c_i^2}
+\end{equation*}
+avec $\Delta_0$ et $\Delta_1$ les detérminants des matrices données dans la figure \ref{fig:gun:det} avec $r=\frac{p-1}{2}, \alpha_{\nu}=\nu (\nu -1 ) a_6, \beta_{\nu}=\nu(\nu-\frac{1}{2})a_4 \nu_{\nu}=\nu^2a_2$ et $\delta_{\nu}=\gamma(\nu + \frac{1}{2})$ avec $\Delta_1=1$ lorsque $r=1$.
+\end{thm}
+
+\begin{figure}
+\label{fig:gun:det}
+\begin{equation*}
+\begin{alignedat}{1}
+\Delta_0 &=\left| 
+\begin{matrix}
+\beta_1 & \alpha_2 & 0 & 0 & \cdots & 0\\
+\delta_1 & \gamma_2 - c^2 & \beta_3 & \alpha_4 & \ddots & \vdots \\
+0 & \delta_2 & \gamma_3 - c^2 & \beta_4 & \ddots & 0 \\
+\vdots & \ddots & \delta_3 & \ddots & \ddots & \alpha_r \\
+\vdots & & \ddots  & \ddots & \ddots & \beta_r \\
+0 & \cdots & \cdots & 0 & \delta_{r-1} & \gamma_r - c^2 
+\end{matrix}
+\right| \\
+\Delta_1 &= \left| 
+\begin{matrix}
+\gamma_2-c^2 & \beta_3 & \alpha_4 & \cdots & 0 \\
+\delta_2 & \gamma_3 - c^2 & \beta_4 & \ddots & \vdots \\
+0 & \delta_3 & \ddots & \ddots & \alpha_r \\
+\vdots & \ddots & \ddots & \ddots & \beta_r \\
+0 & \cdots & 0 & \delta_{r-1} & \gamma_r-c^2
+\end{matrix}
+\right|.
+\end{alignedat}
+\end{equation*}
+\caption{Les déterminants $\Delta_0$ et $\Delta_1$ apparaissant dans la formule de Gunji.}
+\end{figure}
+
+En notant $c$ l'une des racinces $p-1$ ème de $H_E$, ce résultat implique que les points de $p$-torsion sont définis dans $\mathbb{F}_q[c]$ et leurs abscisses sont incluses dans $\mathbb{F}_q[c^2]$.
+
+
+Le calcul de la $p^k$-torsion est effectué itérativement à l'aide de la $p$-descente, pour celle-ci on se sert de la décomposition de la multiplication par $p$: 
+\begin{equation}
+[p]=\pi \circ V
+\end{equation}
+avec $\pi$ le Frobenius défini sur $\mathbb{F}_q$ et $V$ le Verschiebung. L'idée originale est donc d'inverser chacune  de ces isogénies pour calculer itérativement des antécédents de point de $p^i$-torsion par $[p]$. Inverser l'isogénie séparable $V$ revient notamment à factoriser un polynômes de degré $p$ dans une extension de $\mathbb{F}_q$, $V$ peut être explicité à l'aide de la $p$-torsion de $E: E[p]$. 
+
+Une autre approche a été proposé par De Feo pour prendre avantage notamment des constructions de tour d'Artin Schreier en s'appuyant sur les travaux de Voloch \cite{Voloch90} celle-ci a été suggéré dans l'article original \cite{Couveignes96}. On suppose $p\neq 2$ et l'on pose $E$ et $\widehat{E}$ d'équations respectives:
+\begin{equation}
+\begin{alignedat}{1}
+y^2 &= f(x)x^3+a_2x^2+a_4x+a_6 \\
+\widehat{y}^2 &= \widehat{f}(\widehat{x})=\widehat{x}^3+\sqrt[p]{a_2}\widehat{x}^2+\sqrt[p]{a_4}\widehat{x}+\sqrt[p]{a_6}
+\end{alignedat}
+\end{equation}
+on pose alors:
+\begin{equation}
+\widehat{f}(x)^{\frac{p-1}{2}}=\alpha(x)+H_{\widehat{E}}X^{p-1}+X^{p}\beta(x)
+\end{equation}
+aec $\deg  \alpha <p-1$ et $H_{\widehat{E}}$ l'invariant de Hasse de $\widehat{E}$. Voloch a alors démontré le résultat suivant:
+\begin{prop}
+Soit $\widehat{c}$ une racine $p-1$ ème de $H_{\widehat{E}}$, le recouvrement de $\widehat{E}$ défini par:
+\begin{equation}
+\label{eq:vol:cov}
+C:\widehat{z}^p-\widehat{z}=\frac{\widehat{y}\beta( \widehat{x})}{\widehat{c}^p}
+\end{equation}
+est un recouvrement étale de degré $p$ et est isomorphe à $E$ sur $\mathbb{F}_q[c]$ à l'aide de l'isomorphisme suivant:
+\begin{equation}
+\label{eq:vol:iso}
+\begin{alignedat}{1}
+(\widehat{x},\widehat{y}) &= V(x,y) \\
+\widehat{z} &= \frac{-y}{\widehat{c}^p}\sum_{i=1}^{p-1}\frac{1}{x-x([i]P_1)}
+\end{alignedat}{1}
+\end{equation}
+avec $P_1$ un point d'ordre $p$ de $E$.
+\end{prop}
+
+La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré-images sur $C$ en résolvant l'équation \eqref{eq:vol:cov}. On résoud alors l'équation \eqref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition précédente nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \ref{fig:dra:des}.
+
+\begin{figure}
+\begin{center}
+\label{fig:dra:des}
+\begin{tikzpicture}
+\begin{scope}
+    \coordinate (E) at (0, 0) ;
+   	\coordinate (E') at (5, 0);
+   	\coordinate (C) at (0, -3) ;
+   	%\draw (E) node {$\bullet$};
+   	%\draw (E) node[left] {$E$};
+   	%\draw (E') node {$\bullet$};
+   	%\draw (C) node {$\bullet$};
+   	%\draw (E') node[right] {$\widehat{E}$};
+   	%\draw (C) node[below] {$C$};
+   	\node (C) at (0,-3) {$C$};
+   	\node (E) at (0,0) {$E$};
+   	\node (E') at (5,0) {$\widehat{E}$};
+   	\draw[ thick,<-] (E) to[bend left=20] node[above left] {$\pi$} (E');
+   	\draw[ thick,<-] (E') to[bend right=-20] node[below right] {$V$} (E);
+    \draw[thick,->] (E) to node [midway, left] {$\cong$} (C);
+    \draw[thick,->] (C) to (E');
+\end{scope}
+\end{tikzpicture}
+\caption{Descente d'un point de $p$-torsion sur $E$.}
+\end{center}
+\end{figure}
+
+Cette méthode est plus efficace que la méthode standard car à l'aide des constructions de Tour d'Artin-Schreier on peut résoudre plus rapidement l'équation \eqref{eq:vol:cov} qui est une équation d'Artin-Schreier cette équation peut être résolue à l'aide de méthodes de \cite[§6.1]{DeFeo-Shost'12} ou par algèbre linéaire comme dans \cite{Couveignes96}. Une fois qu'une solution $\tilde{z}$ de \eqref{eq:vol:cov} est trouvée il faut alors résoudre en $x$ et en $y$ le système de \eqref{eq:vol:iso} à l'aide d'un calcul de $\mathrm{pgcd}$ plus de détails peuvent être trouvés dans \cite[§6.2]{Ler97a} ou dans \cite[§7]{DeFeo11} alors que dans la méthode préconisée auparavant on devait factoriser un polynôme.
+
+Comme le travail de \cite{DeFeo11} repose sur les constructions de tour d'Artin Schreier, dont une brève description sera faite \textcolor{red}{ref. à mettre} pour plus de détails voir \cite{DeFeo-Shost'12}, et que celles-ci sont construites comme des extensions de $\mathbb{F}_p$ alors les complexités seront exprimées en terme d'opérations sur $\mathbb{F}_p$ en rappelant la convention que l'on a $q=p^d$.
+
+\begin{lem}
+Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
+\end{lem}
+
+\begin{proof}
+Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\widehat{c}$ racines $p-1$ ème de $H_{E}$ et $H_{\widehat{E}}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
+\end{proof}
+
+Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est amené à effectuer les calculs. On introduit donc la définition de tours d'extensions $p$-adique, le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement la valuation $p$-adique de la torsion rationnelle de la courbe de $1$.
+
+\begin{defi}
+\label{def:p-adic:level}
+Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour de \emph{niveau} $p$-adique  $\mathbb{L}_0,  \mathbb{L}_1, \mathbb{L}_2, \cdots \mathbb{L}_i$ telle que $\mathbb{L}_i$ soit la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{L}_i)$. On pose $\mathbb{L}_0=\mathbb{F}_q$.
+\end{defi}
+
+\begin{prop}
+\label{pro:ord:fro}
+Pour une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic:level} on a:
+\begin{itemize}
+\item $[\mathbb{L}_1:\mathbb{F}_q] \mid p-1$
+\item Pour tout $i \geqslant 1$ on a soit $[\mathbb{L}_{i+1}:\mathbb{L}_{i}]=p$ soit $\mathbb{L}_{i+1}=\mathbb{L}_{i}=\cdots = \mathbb{L}_{1}$.
+\end{itemize}
+\end{prop}
+
+Avant de prouver cela on a besoin du lemme suivant:
+
+\begin{lem}
+\label{lem:ord}
+Soit $p$ un nombre premier, soit $c$ un nombre premier avec $p$. Pour tout $k \geqslant 1$ on note $\mathrm{ord}_k(c)$ l'ordre de $c$ dans $\mathbb{Z}/p^k\mathbb{Z}$. Alors $\mathrm{ord}_{k+1}(c)=\mathrm{ord}_k(c)$ implique que $\mathrm{ord}_k(c) = \mathrm{ord}_{k-1}(c)$.
+\end{lem}
+
+La preuve suivante de la proposition \label{pro:ord:fro} n'est pas différente de celle dans \cite[Proposition 5]{DeFeo11} mais celle-ci est tout de même intéressante par son approche dont notamment l'étude de l'action du Frobenius sur le $p$-module de Tate d'où sa retranscription ici.
+
+\begin{proof}
+On a $[\mathbb{L}_1:\mathbb{F}_q] \mid p-1$ par le théorème \ref{thm:Gunji}. Prouvons maintenant le second point,
+on rappelle tout d'abord l'équation caractéristique du Frobenius:
+\begin{equation}
+X^2 - t_{\pi}X + q = 0
+\end{equation}
+Maintenant si l'on regarde cette équation restreinte à la $p$-torsion, on a alors l'équation qui a deux solutions: $0 \bmod p$ et $t_{\pi} \bmod p$. La solution $0 \bmod p$ est écartée car le Frobenius ne peut avoir de noyau non trivial. Ainsi l'action du Frobenius sur la $p$-torsion revient à une multiplication par $t_{\pi} \bmod p$. Dés lors si l'on regarde cette équation sur $T_{p}(E)$ on voit que l'action du Frobenius peut être représentée par une multiplication par $\mathfrak{t}_{\pi} \in \mathbb{Z}_{p} $. 
+Regardons alors l'action du groupe de Galois $G$ de $\mathbb{F}_q$ sur $T_{p}(E)$. Comme $G$ est engendré par l'automorphisme de $\mathbb{F}_q$, la restriction de son action à $E[p^k]$ peut être représentée par la multiplication de $t_k=\mathfrak{t}_{\pi} \bmod p^k$. Ainsi on a $[\mathbb{L}_k:\mathbb{F}_q]=\mathrm{ord}(t_k)$.
+
+Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
+\end{proof}
+
+On voit donc à travers la preuve de la proposition \ref{pro:ord:fro} que si $E[p] \subset E(\mathbb{F}_q)$ alors il est possible que $\mathbb{L}_0=\mathbb{L}_1=\mathbb{L}_2$, de même lorsque l'on a $E[p] \not\subset E(\mathbb{F}_q)$ il est possible que $\mathbb{L}_1=\mathbb{L}_2$, dés lors la distinction suivante est nécessaire.
+
+
+%On voit donc à travers ce résultat qu'il est possible que l'on ait $\mathbb{U}_2=\mathbb{U}_1$ alors que l'on peut avoir $\mathbb{U}_0 \neq \mathbb{U}_1$. En effet pour $d=[\mathbb{U}_1:\mathbb{F}_q]$ on a $t_{\pi}(\mathbb{U}_1)=t_{\pi}(\mathbb{F}_q)^d$, ainsi il est nécessaire de prendre en compte ce cas afin de pouvoir quantifier la taille des tours sur lesquelles on travaille.
+
+\begin{defi}
+Soit $\mathbb{L}_0, \mathbb{L}_1, \mathbb{L}_2, \cdots, $ une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic:level} alors on définit
+\begin{itemize}
+\item $v_p(E(\mathbb{F}_q))=\max\left( i, \mathbb{L}_i \subset \mathbb{F}_q \right)$,
+\item $v_p(E(\mathbb{L}_1))=\max\left( i, \mathbb{L}_i \subset \mathbb{L}_1 \right)$.
+\end{itemize}
+\end{defi}
+
+\begin{rem}
+Il est à noter que si $v_p(E(\mathbb{F}_q)) \neq 0$ alors $v_p(E(\mathbb{F}_q))=v_p(E(\mathbb{L}_1))$.
+\end{rem}
+
+Ainsi on a $[\mathbb{L}_i:\mathbb{L}_1]=p^{i- v_p(E(\mathbb{L}_1))}$ pour tout $i \geqslant  v_p(E(\mathbb{L}_1))$. Asymptotiquement on a donc $[\mathbb{L}_k:\mathbb{L}_1] \in O(p^k)$.
+
+
+\begin{lem}
+Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2d)$ opérations sur $\mathbb{F}_p$.
+\end{lem}
+
+\begin{proof}
+On utilise les méthodes préconisées par les travaux de Gunji et Voloch. Pour la dernière itération de la $p$-descente on a tout d'abord besoin de résoudre une équation d'Artin Schreier \eqref{eq:vol:cov}, pour cela \cite{Couveignes96} utilise un précalcul de l'inverse de l'application $\mathbb{F}_q$-linéaire  $x \mapsto x^q-x$ qu'il applique ensuite. Il est fait de même avec l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$. Le précalcul a un coût de $O(p^{wk}d)=O(\ell^{w}d)$ opérations sur $\mathbb{F}_p$ avec un stockage de $O(\ell^2d)$ éléments de $\mathbb{F}_p$.
+Ces pré calculs peuvent être réutilisés pour d'autres calculs de $\ell$-isogénies.
+Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 d)$ opérations sur $\mathbb{F}_p$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$ est négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
+\end{proof}
+
+\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide d'une interpolation de Cauchy la fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire $T$ qui s'annule sur les abscisses des points d'ordre $p^k$. 
+
+Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectuée distinctement sur les différentes orbites sous l'action du Frobenius puis en utilisant le théorème des restes chinois on obtient alors un polynôme d'interpolation modulo la $p^k$-torsion primitive. Cette idée de travailler selon les différentes orbites sous l'action du Frobenius est importante et sera donc développée ici, elle sera reprise et améliorée par \cite{DeFeo11} ainsi que dans l'algorithme $\ell$-adique de Couveignes présenté \textcolor{red}{ref à mettre}.
+
+En effet l'ensemble des abscisses des points primitifs de $p^k$-torsion est de taille $p^{k-1}(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{L}_k:\mathbb{F}_q]$ (ou $\frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$ voir corollaire \ref{cor:orb:fro}). Ainsi si l'on note $e$ la taille de ces orbites et $f$ le nombre de représentants on a $e \times f=p^{k-1}(p-1)/2$.
+
+Etudions maintenant plus en détail les orbites des abscisses de points d'ordre $p^k$ sous les actions d'éléments de groupes de Galois.
+
+
+\begin{cor}
+\label{cor:orb:fro}
+Soit $k$ tel que que $\mathbb{L}_k \neq \mathbb{F}_q$ avec $\mathbb{L}_k$ défini comme dans \ref{def:p-adic:level}, 
+la taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $[\mathbb{L}_k:\mathbb{F}_q]$  est égale à:
+\begin{enumerate} 
+\item $[\mathbb{L}_k:\mathbb{F}_q]$ si $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$,
+\item $[\mathbb{L}_k:\mathbb{F}_q]/2$ si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$.
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $e$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ cela veut dire que $t_{\pi}^e=1 \bmod p^k$ ou $t_{\pi}^e=-1 \bmod p^k$, par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $e \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{e})^2=1 \bmod p^k$, ainsi $2e \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $e= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
+\end{proof}
+
+
+\begin{rem}
+Ce résultat peut aussi être démontré à l'aide du théorème de Gunji \ref{thm:Gunji}, pour $c$ une racine $p-1$ème de $H_E$ les abscisses des points de $p$-torsion sont définies dans $\mathbb{F}_q[c^2]$ qui n'est pas forcément isomorphe à $\mathbb{F}_q[c]$.
+\end{rem}
+
+On va se placer dans la suite de cette section dans le cas où l'on a $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$ afin de ne pas complexifier l'étude.
+
+\begin{lem}
+\label{lem:bij:ord}
+Soient $E$ une courbe elliptique ordinaire définie sur une tour de niveau d'extensions $\ell$-adiques telle que $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$, $P_{k-1}$, $P_k$ deux points de $E$ d'ordres $p^{k-1} \neq 1$ et $p^{k}$ tels que $[p]P_{k}=P_{k-1}$, alors il y a une bijection entre les points de $p$-division de $P_{k-1} \in \mathbb{L}_{k-1}$ et les points de l'orbite générée par l'action de $\sigma $ un générateur de $ \mathsf{Gal}(\mathbb{L}_k:\mathbb{L}_{k-1})$ appliqué à $P_{k}$.
+\end{lem}
+
+\begin{proof}
+L'ensemble des points de $p$-division de $P_{k-1}$ est de cardinalité $p$ car $P$ appartient à $E$ une courbe elliptique ordinaire. La taille de l'orbite de $\sigma$ est quant à elle égale $[\mathbb{L}_k:\mathbb{L}_{k-1}]$ égale à $p$ car $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$. Il ne reste donc qu'à montrer une inclusion pour montrer l'égalité. On a vu dans la preuve de la proposition \ref{pro:ord:fro} que l'on pouvait déterminer les points de $p^k$ torsion comme des vecteurs propres pour le Frobenius. Ainsi les points conjugués à $P_k$ correspond à$\sigma^{i } P_{k} \bmod p^k$ avec $i \in \{0, \cdots , p-1  \}$ et l'on a $[\sigma^{i}]P_{k}=[\sigma^{i} \bmod p^k]P_{k-1}=[1]P_{k-1}$ car $P_{k-1} \in \mathbb{L}_{k-1}$.
+\end{proof}
+
+\begin{thm}
+\label{thm:orb:fro}
+Soit $k\geqslant  v_p({E(\mathbb{L}_1)} \geqslant 1$,
+ $P \in E(\mathbb{L}_{k})$ tel que $\langle P \rangle =E[p^k]$ 
+ alors l'orbite de $P$ sous l'action d'un élément générateur
+  de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{L}_{v_p({E(\mathbb{L}_1)})})$:
+   $\mathsf{orb}(x(P))=
+   \{ x([n]P) , 
+   n= \pm 1 \bmod p^{v_p({E(\mathbb{L}_1)})} \}$. 
+\end{thm}
+
+\begin{proof}
+Soit $[n]P$ un point de $E[p^k]$ appartenant à l'orbite de $P$, alors $P$ et $[n]P$ sont tous les deux des points de $p$-division d'un même point d'ordre $p^{k-1}$ par le lemme \ref{lem:bij:ord}. On montre par récurrence que $P$ et $[n]P$ sont des points de $p^{k-v_p({E(\mathbb{L}_1)})}$-division de $[p^{k-v_p({E(\mathbb{L}_1)})}]P \in \mathbb{L}_{v_p({E(\mathbb{L}_1)})}$ d'ordre $p^{v_p(E(\mathbb{L}_1))}$. Ainsi on a $[np^{k-v_p(E(\mathbb{L}_1))}]P=[p^{k-v_p(E(\mathbb{L}_1))}]P$ comme $P$ est un point d'ordre $p^k$ on a $np^{k-v_p(E(\mathbb{L}_1))}=p^{k-v_p(E(\mathbb{L}_1))} \bmod p^k$ ce qui nous permet de déduire que l'on a $n=1 \bmod p^{v_p(E(\mathbb{L}_1))}$. Comme il y a $p^{k-v_p(E(\mathbb{L}_1))}$ $n \bmod p^k$ qui vérifient cette condition alors on a bien déterminé tous les points de l'orbite. Les opposés des points ayant la même abscisses alors les abscisses des points $[n]P$ avec $n=-1 \bmod p^{v_p(E(\mathbb{L}_1))}$ appartiennent aussi à l'orbite de $x(P)$ sous l'action d'un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-v_p(E(\mathbb{L}_1))}:\mathbb{U}_{v_p(E(\mathbb{L}_1))})$ mais on préférera éviter dans les calculs ces doublons inutiles.
+\end{proof}
+
+\begin{prop}
+\textcolor{red}{inclus dans le corollaire suivant...}
+Soient $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_1$ avec $d_1 \mid p-1$, alors les orbites des points d'ordre $p$ sous l'action de $\mathsf{Gal}(\mathbb{L}_1:\mathbb{F}_q)$ est de taille de $d_1 $ et il y a $f$ orbites telles que $f \times d_1  = (p-1)/2$.
+\end{prop}
+
+
+\begin{cor}
+Soient $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_1$ avec $d_1 \mid p-1$, $k \geqslant 1$, alors les orbites des abscisses de points d'ordre $p^k$ sous l'action de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{F}_q)$ sont de taille $d_1 p^{k-v_p(E(\mathbb{L}_1))}$ et il y a $f$ orbites telles que $f \times d_1 p^{k-v_p(E(\mathbb{L}_1))} = p^{k-1}(p-1)/2$.
+\end{cor}
+
+%Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $f$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 0$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i+1}:\mathbb{L}_{v_E(p)+i}]$ est un antécédent de $P_i$ par $[p]$ (voir lemme \ref{lem:bij:ord}). 
+
+Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses des points d'ordre $p^{i+v_p(E(\mathbb{L}_1))}$ selon l'action du Frobenius et les différentes orbites. $f$ le nombre de représentants des orbites est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$ et n'est généralement pas égal à $\frac{[\mathbb{L}_1: \mathbb{F}_q]}{2}$. En effet $\mathbb{L}_1$ est construit comme une extension de $\mathbb{F}_q$ qui contient les points de $p$-torsion de $E$ et donc $[\mathbb{L}_1: \mathbb{F}_q]=d_1 \mid p-1$ par le théorème de Gunji \ref{thm:Gunji}.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.30,domain=-10/3:4.5,samples=100,yscale=1/2]
+		\node (U0) at (0,0) {$\mathbb{F}_{q}$};
+		\node (U1) at (0,4) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))}$};
+		\node (U2) at (0,8) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))+1}$};
+		\node (U3) at (0,16) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$};
+        \draw[dashed] (U2) to (U3);
+        \node (At2) at (25,4) {};
+		\node (At3) at (35,4) {};
+		\node (At0) at (7,4) {};
+		\node (At1) at (17,4) {};
+		\node (Af0) at (11.5,1.5) {};
+		\node (Af1) at (30.5,1.5) {};
+		\draw[color=black,decorate,decoration={brace,raise=0.2cm},below]
+				(Af1) -- (Af0) node[color=black,below=0.2cm, pos=0.5] {$f$};
+		\node (O) at (21,-5) {$O_E$};
+		\draw [dashed, color=gray!50] (At0.center) to (O);
+		\draw [dashed, color=gray!50] (At1.center) to (O);
+		\draw [dashed, color=gray!50] (At2.center) to (O);
+		\draw [dashed, color=gray!50] (At3.center) to (O);
+		\draw [dashed] (19,4) to (23,4);
+         \begin{scope}[xshift=12cm]
+         \node (A0) at (-5,4) {$\bullet$};
+         \node (A1) at (5,4) {$\bullet$};
+         \draw[dashed] (A0) to (A1);
+         \node (A0b) at (-5.3,4) {};
+         \node (A1b) at (5.3,4){};
+         \draw[color=black,decorate,decoration={brace,raise=0.2cm},below]
+				(A1b) -- (A0b) node[color=black,below=0.2cm, pos=0.5] {$d_1$};
+		\node (A10) at (-7,8) {$\bullet$};
+		\node (A11) at (-3,8) {$\bullet$};
+		\draw[dashed] (A10) to (A11);
+		\draw (A0) to (A10);
+		\draw (A0) to (A11);
+		\node (A12) at (3,8) {$\bullet$};
+		\node (A13) at (7,8) {$\bullet$};
+		\draw (A1) to (A12);
+		\draw (A1) to (A13);
+		\draw[dashed] (A12) to (A13);
+		\node (A20) at (-8.5,16) {$\bullet$};
+		\node (A21) at (-5.5,16) {$\bullet$};
+		\draw[dashed] (A20) to (A21);
+		\draw (A10) to (A20);
+		\draw (A10) to (A21);
+		\node (A23) at (-1.5,16) {$\bullet$};
+		\node (A22) at (-4.5,16) {$\bullet$};
+		\draw[dashed] (A23) to (A22);
+		\draw (A11) to (A22);
+		\draw (A11) to (A23);
+		\node (A24) at (8.5,16) {$\bullet$}; %autre côté
+		\node (A25) at (5.5,16) {$\bullet$};
+		\draw[dashed] (A25) to (A24);
+		\draw (A13) to (A24);
+		\draw (A13) to (A25);
+		\node (A26) at (1.5,16) {$\bullet$};
+		\node (A27) at (4.5,16) {$\bullet$};
+		\draw[dashed] (A26) to (A27);
+		\draw (A12) to (A26);
+		\draw (A12) to (A27);
+		\node (A30) at (-8.9,16) {};
+		\node (A31) at (-1.1,16) {};
+		\draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
+				(A30) -- (A31) node[color=black,above=0.2cm, pos=0.5] {$e$};
+		\node (A32) at (8.9,16) {};
+		\node (A33) at (1.1,16) {};
+		\draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
+				(A33) -- (A32) node[color=black,above=0.2cm, pos=0.5] {$e$};
+		
+        \end{scope} 
+        \begin{scope}[xshift=30cm]
+         \node (A0) at (-5,4) {$\bullet$};
+         \node (A1) at (5,4) {$\bullet$};
+         \draw[dashed] (A0) to (A1);
+         \node (A0b) at (-5.3,4) {};
+         \node (A1b) at (5.3,4){};
+         \draw[color=black,decorate,decoration={brace,raise=0.2cm},below]
+				(A1b) -- (A0b) node[color=black,below=0.2cm, pos=0.5] {$d_1$};
+		\node (A10) at (-7,8) {$\bullet$};
+		\node (A11) at (-3,8) {$\bullet$};
+		\draw[dashed] (A10) to (A11);
+		\draw (A0) to (A10);
+		\draw (A0) to (A11);
+		\node (A12) at (3,8) {$\bullet$};
+		\node (A13) at (7,8) {$\bullet$};
+		\draw (A1) to (A12);
+		\draw (A1) to (A13);
+		\draw[dashed] (A12) to (A13);
+		\node (A20) at (-8.5,16) {$\bullet$};
+		\node (A21) at (-5.5,16) {$\bullet$};
+		\draw[dashed] (A20) to (A21);
+		\draw (A10) to (A20);
+		\draw (A10) to (A21);
+		\node (A23) at (-1.5,16) {$\bullet$};
+		\node (A22) at (-4.5,16) {$\bullet$};
+		\draw[dashed] (A23) to (A22);
+		\draw (A11) to (A22);
+		\draw (A11) to (A23);
+		\node (A24) at (8.5,16) {$\bullet$}; %autre côté
+		\node (A25) at (5.5,16) {$\bullet$};
+		\draw[dashed] (A25) to (A24);
+		\draw (A13) to (A24);
+		\draw (A13) to (A25);
+		\node (A26) at (1.5,16) {$\bullet$};
+		\node (A27) at (4.5,16) {$\bullet$};
+		\draw[dashed] (A26) to (A27);
+		\draw (A12) to (A26);
+		\draw (A12) to (A27);
+		\node (A30) at (-8.9,16) {};
+		\node (A31) at (-1.1,16) {};
+		\draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
+				(A30) -- (A31) node[color=black,above=0.2cm, pos=0.5] {$e$};
+		\node (A32) at (8.9,16) {};
+		\node (A33) at (1.1,16) {};
+		\draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
+				(A33) -- (A32) node[color=black,above=0.2cm, pos=0.5] {$e$};
+		\end{scope}		
+		
+                   
+\end{tikzpicture}
+\end{center}
+\caption{Classification des points de $p^k$-torsion selon l'action du Frobenius, en particulier on a une décomposition des $p-1$ points d'ordre $p$ en $f$ orbites de taille $d_1$ chacune.}
+\end{figure}
+
+
+
+
+
+Ainsi asymptotiquement la taille des orbites $e \in O(p^k)$, dés lors ne serait-ce que pour représenter un polynôme d'interpolation défini sur une orbite on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette question et seront présentées à \textcolor{red}{ref à mettre}.
+
+Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation $A$ et du polynome $T$ qui s'annule sur les abscisses des points d'ordre $p^k$ est fait à l'aide de $O(\mathsf{M}(p^{k})\log(p^k))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03}.
+%En pratique on travaille avec les points primitifs de $p^k$-torsion afin de pouvoir se servir de l'action du Frobenius pour parcourir tous les éléments à l'aide des représentants et de l'action du Frobenius.
+
+%\begin{lem}
+%Le coût de calcul de l'interpolation de Cauchy est de opérations sur $\mathbb{F}_q$.
+%\end{lem}
+%
+%\begin{proof}
+%Tout d'abord il y a le coût de calcul des abscisses des points d'ordre $p^k$, ceci est fait indépendamment de l'hypothèse sur le choix de l'image du générateur de la $p^k$-torsion et pourra donc être réutilisé si cette hypothèse s'avère fausse. Pour calculer tous les points primitifs de $p^k$-torsion on a besoin d'effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{U}_k:\mathbb{F}_q] \in O(p^k) $ et donc ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$.
+%Ensuite il faut calculer le polynôme d'interpolation de degré $f$ avec $f \in O(p^k)$ sur des points définis dans une extension de $\mathbb{F}_q$ de taille $f$ .
+%\end{proof}
+
+\paragraph{Validation de l'isogénie} On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=\ell$ et $\deg(V)=\ell-1$. Ensuite on vérifie que $V$ est bien un carré (ou si $\ell$ est pair que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(\ell) \log(\ell))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $\ell$-division, pour cela on calcule le polynôme de $\ell$ division en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$. 
+
+
+\subsection{Apports de l'utilisation de tours d'extensions p-adiques à l'algorithme de Couveignes}
+
+Comme dit précédemment des améliorations ont été apportées dans \cite{DeFeo11}, elles sont toutes utilisées dans notre approche $\ell$-adique de l'algorithme de Couveignes, soit directement soit adaptées c'est pourquoi certaines parties seront plus détaillées que d'autres.
+
+Pour le calcul de la $p^k$-torsion \cite{DeFeo11} utilise les méthodes précédemments présentés issues des travaux de \cite{Gunji76} et \cite{Voloch90}, la différence est que les calculs sont faits sur des tours d'Artin-Schreier (tours $p$-adiques).
+
+Faisons une brève présentation des tours d'Artin-Schreier, pour plus de détails voir \cite{DeFeo-Shost'12}.
+\textcolor{red}{Cette brève description est bien inutile...}
+\begin{defi}[tour $p$-adique]
+Soit $\mathbb{F}_q$ un corps fini, soit $\mathbb{U}_0$, $\mathbb{U}_1$, $\cdots$, $\mathbb{U}_i$ la suite d'extensions de corps définie telle que:
+\begin{itemize}
+\item $\mathbb{U}_0=\mathbb{F}_q$
+\item $[\mathbb{U}_1 : \mathbb{F}_q]= d_1$
+\item $[\mathbb{U}_{i+1} :\mathbb{U}_i]= p$ pour tout $i \geqslant 1$.
+\end{itemize}
+\end{defi}
+\textcolor{red}{Surement toujours inutile...}
+Une représentation efficace d'une tour $p$-adique est une tour dite \emph{primitive} dans laquelle tout corps de la tour est généré par un élément de celle-ci. Ainsi la multiplication de deux éléments de la tour peut être faite à l'aide de leur représentation en polynômes univariés à l'opposé de représentations multivariées qui ne sont pas efficaces.
+
+On présente donc à cet effet comment est construite une telle tour d'après \cite{DeFeo-Shost'12}:
+\textcolor{red}{Encore inutile...}
+\begin{thm}
+Soit $\mathbb{U}_1=\mathbb{F}_p[X_1]/Q_1$, avec $Q_1$ un polynôme irréductible de degré $d \times d_1$, soit alors $x_1=X_1 \bmod Q_1$ tel que $Tr_{\mathbb{U}_1/\mathbb{F}_p}(x_1)\neq 0$. On définit la suite de polynômes $G_i$ avec $ 1 \leqslant i \leqslant k$ par:
+\begin{equation}
+\begin{cases}
+G_1=X_1 & \\
+G_2=X_2 & \text{si } p=2 \text{ et } d \text{ impair} \\
+G_i=X_i^{2p-1} & \text{dans les autres cas.} 
+\end{cases}
+\end{equation}
+La suite $(G_i)_{1 \leqslant i \leqslant k }$ définit une \emph{tour d'extension $p$-adique} $(\mathbb{U}_1, \cdots, \mathbb{U}_k)$ dans laquelle pour tout $i$ on a $\mathbb{U}_i=\mathbb{F}_p[X_1, \cdots, X_i]/K_i$ avec $K_i$ l'idéal engendré par:
+\begin{equation}
+\begin{cases}
+P_i=X_i^P-X_i-G_i(X_0, \cdots,X_{i-1}) \\
+\cdots \\
+P_2=X_2^P-X_2-G_1(X_1)\\
+Q_1(X_1)
+\end{cases}
+\end{equation}
+dans l'anneau de polynômes $\mathbb{F}_p[X_1, \cdots, X_i]$. De plus cette construction définit une tour primitive pour laquelle $\mathbb{U}_i=\mathbb{F}_p[x_i]$ avec $x_i$ le résidu de $X_i$ dans $\mathbb{U}_i$ pour tout $i \geqslant 1$.    
+\end{thm} 
+
+\begin{proof}
+Voir  \cite[Théorème 2]{DeFeo-Shost'12} 
+\end{proof}
+\textcolor{red}{Encore inutile...}
+\begin{defi}
+Soit $\alpha \in \mathbb{U}_k=\mathbb{F}_p[x_k]$ avec $k \geqslant 2$ et $g \in \mathbb{F}_p[X_k]$ tel que $\deg(g)<|\mathbb{U}_1|^{p^k}$ $\alpha=g(x_k)$, alors:
+\begin{itemize} 
+\item si $\alpha \in \mathbb{U}_{k-1}$, alors il existe un polynôme $h \in \mathbb{F}_p[X_{k-1}]$ tel que $\deg(h)<|\mathbb{U}_1|^{p^{k-1}}$ $\alpha=h(x_{k-1})$ et le fait d'écrire $\alpha$ comme un élément de $\mathbb{U}_{k-1}$ s'appelle une \emph{descente} (ou push-down dans la littérature anglophone \cite{DeFeo-Shost'12})
+\item comme $\alpha \in \mathbb{U}_{k+1}$, alors il existe un polynôme $j \in \mathbb{F}_p[X_{k-1}]$ tel que $\deg(j)<|\mathbb{U}_1|^{p^{k+1}}$ $\alpha=j(x_{k+1})$ et le fait d'écrire $\alpha$ comme un élément de $\mathbb{U}_{k+1}$ s'appelle un \emph{relèvement} (ou lift dans la littérature anglophone \cite{DeFeo-Shost'12}).
+\end{itemize}
+\end{defi}
+
+Ainsi on va lier cette définition de tours $p$-adiques à celle des tours $p$-adiques de \emph{niveau} évoquée plus tôt définie à l'aide de la $p$-torsion de la courbe elliptique $E$ que l'on étudie.
+\textcolor{red}{Encore inutile... à remplacer par la remarque suivante}
+\begin{rem}
+Ces tours $p$-adique sont les constructions utilisées pour les tours de niveaux.
+En effet on pose $\mathbb{L}_1=\mathbb{U}_1$, et dés lors pour tout $i\geqslant 1$ on pose $\mathbb{U}_{i+1}=\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$.
+\end{rem}
+
+
+A partir de maintenant on va utiliser uniquement la notation $\mathbb{U}_i$ car celle-ci correspond au pire des cas, celui où $v_p(E(\mathbb{L}_1))=1$ et $v_p(E(\mathbb{F}_q))=0$. Ainsi on va voir comment avec ces constructions de tours $p$-adiques on améliore les différentes étapes de l'algorithme de Couveignes.
+\textcolor{red}{A surement remplacer par :}On se place désormais dans le pire des cas où l'on a $\mathbb{L}_1 \not \cong \mathbb{F}_q$ et $\mathbb{L}_1 \not \cong \mathbb{L}_2$. On va voir comment avec les constructions de tours $p$-adiques d'Artin-Schreier améliorent les différentes étapes de l'algorithme de Couveignes.
+\subsubsection{Calcul de la $p$-torsion}
+La construction de $\mathbb{F}_q[c]$ est faite comme une extension de $\mathbb{F}_p:\mathbb{F}_p[X]/Q_1(X)$ avec $Q_1$ un polynôme irréductible de degré $dd_1$ qui vérifie l'une des deux conditions suivantes:
+\begin{itemize}
+\item $d d_1 \wedge p =1$
+\item $\deg Q'_1+2 = \deg Q_1$
+\end{itemize}
+Généralement il est suffisant de sélectionner un polynôme $Q_1$ au hasard et de tester si il est irréductible pour avoir un polynôme qui vérifie une de ces conditions. Cela a un coût de $O(dd_1 \mathsf{M}(dd_1)\log(dd_1)\log(pdd_1))$ opérations sur $\mathbb{F}_p$ en utilisant l'algorithme de Ben-Or d'après \cite[Theoreme 14.42]{vzGJG03}.
+
+Ainsi comme $\mathbb{F}_q[c]$ est construit comme une extension de $\mathbb{F}_p$ et non de $\mathbb{F}_q$ les complexités vont être exprimées en termes d'opérations sur $\mathbb{F}_p$. Avec une telle construction la complexité de calculer la $p$-torsion est de: 
+\begin{equation*}
+\tilde{O}(p^2d^3+pC(pd)+C(p)pd+(pd)^{\omega})
+\end{equation*}
+pour plus de détails sur le calcul de complexité voir \cite{DeFeo11}. La démarche étant la même que celle décrite dans la sous section précédente elle n'est pas rappelée ici. Il est à noter que pour ce calcul de complexité $d_1$ a été majoré par $p$ car $d_1 \mid p-1$. 
+
+\begin{rem}
+On rappelle que la convention de noter $q=p^d$ a été prise tout au long de ce document.
+\end{rem}
+
+\subsubsection{Calcul de la $p^k$-torsion}
+Pour le calcul de la $p^k$-torsion comme dit précédemment \textcolor{red}{ref à mettre} cela est effectué itérativement en résolvant successivement l'équation \eqref{eq:vol:cov} puis \eqref{eq:vol:iso}.
+
+Ainsi le calcul de la $p^k$-torsion a un coût total de: 
+
+\begin{equation*}
+\tilde{O}_{p,d,\log \ell}((pd)^{\omega}\log_p^2\ell +p^2\ell d \log_p^4\ell +\frac{\ell}{p}C(pd))
+\end{equation*}
+
+A nouveau le détail des calculs de complexité peut être trouvés dans \cite{DeFeo11}, la complexité obtenue pour résoudre \eqref{eq:vol:cov} est faite à l'aide de techniques spécifiques à la construction de tours $p$-adique, plus de détails peuvent être trouvés dans \cite{DeFeo-Shost'12}.
+
+Il est à noter que dans ce cas-là on a plus besoin de stocker une matrice de taille $p^{k-1}d \times p^{k-1}d=O(\ell^2)$ pour résoudre l'équation d'Artin Schreier \eqref{eq:vol:cov}.
+
+\subsubsection{Interpolation}
+Dans cette partie on va voir tout d'abord le seul apport de l'utilisation de tours d'Artin-Schreier \cite{DeFeo-Shost'12} pour les opérations utilisées pour l'interpolation de l'isogénie dans l'algorithme original \cite{Couveignes96} puis nous allons voir dans la sous-section suivante les modifications apportées à l'algorithme par \cite[§5]{DeFeo11} afin d'obtenir une bien meilleure complexité.
+
+On calcule tout d'abord un polynôme d'interpolation $A$ de degré $p^{k-1}(p-1)-1$ à coefficients dans $\mathbb{U}_k$ à l'aide des $p^{k-1}(p-1)$ couples de points supposés $(P,I(P)))$. Le polynôme d'interpolation $A$ que l'on veut calculer est un polynôme défini sur $\mathbb{F}_q$, on doit donc transposer $A$ sur $\mathbb{F}_q$. On utilise une \emph{descente} (\cite[push-down]{DeFeo-Shost'12}) sur les coefficients de $A$ pour avoir un polynôme exprimé dans $\mathbb{F}_q[c][X]$, enfin on utilise l'expression du plongement de $\mathbb{F}_q$ dans $\mathbb{F}_q[c]$ pour obtenir une expression de $A$ avec des coefficients dans $\mathbb{F}_q$. Finalement on utilise une reconstruction rationnelle sur $\mathbb{F}_q$ pour avoir un candidat pour l'isogénie.
+
+La première étape a un coût de $O(\mathsf{M}(p^{2k}d)\log(p^{k}))$ en utilisant les techniques de \cite[§10.2]{vzGJG03}. Ensuite on utilise une \emph{descente} pour avoir une expression des coefficients de $A$ dans $\mathbb{U}_1[X]=\mathbb{F}_q[c][X]$, cela coûte $\ell L(k-1)$ opérations sur $\mathbb{F}_p$ avec $L$ qui représente le coût d'effectuer un \emph{relèvement} ou une \emph{descente} dans une tour d'Artin Schreier. D'après \cite[Theorem 13]{DeFeo-Shost'12} $L(i) \in O(p^{i+1}d \log^2_p(p^id)+p \mathsf{M}(p^id))$, il est à noter que ce coût est linéaire en la taille de l'entrée (élément de $\mathbb{U}_i$). Enfin à l'aide d'algèbre linéaire on exprime le polynôme sur $\mathbb{F}_q[X]$ en $O(\ell(pd)^2)$ opérations sur $\mathbb{F}_p$. La reconstruction rationnelle coûte $O(\mathsf{M}(p^kd)\log(p^k))$ d'après \cite[§11.1]{vzGJG03}, on a donc un coût total de:
+\begin{equation*}
+O(\mathsf{M}(\ell^2d)\log \ell + \ell L(k-1) + \ell(pd)^2)
+\end{equation*}
+
+Cette étape, la plus coûteuse de l'algorithme de Couveignes, doit être répétée $O(p^k)=O(\ell)$ fois (à chaque fois on change l'hypothèse faite sur l'image du point générateur de la $p^k$-torsion) pour espérer trouver la bonne hypothèse et calculer la $\ell$-isogénie.
+
+On va donc voir dans la prochaine sous-section les améliorations apportées par \cite{DeFeo11} spécifiques à cette partie de l'algorithme.
+
+\subsection{Apports de l'utilisation de l'action du Frobenius sur des tours $p$-adiques à l'algorithme de Couveignes}
+
+Cette partie sur le calcul du polynôme d'interpolation est cruciale car comme vu précédemment c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un cout minimal de $O(p^k p^kd)$ opérations sur $\mathbb{F}_p$ à l'aide de la méthode précédemment présentée. 
+
+Bien que le polynôme $A$ que l'on souhaite calculer est de degré $p^{k-1}(p-1)-1$ il est possible avec moins d'informations de calculer celui-ci. Le polynôme $A$ étant censé représenter l'action d'une isogénie sur les points d'ordre $p^k$ alors $A$ comme l'isogénie doit commuter avec le Frobenius et être défini sur $\mathbb{F}_q$. Couveignes \cite{Couveignes96} avait préconisé de travailler distinctement sur les orbites de points sous l'action du Frobenius, on utilisait ensuite le théorème des restes chinois pour calculer $A$. Cette méthode avait l'avantage de paralléliser le calcul et d'utiliser des polynômes définis sur $\mathbb{F}_q$ pour le Théorème des Restes Chinois. Cependant cette méthode ne tirait pas pleinement parti du fait que connaître l'image d'un générateur d'une orbite selon l'action du Frobenius fixait la valeur des autres points de l'orbite. Il manquait pour l'algorithme original des techniques efficaces pour faire agir le Frobenius ce que les constructions de tours d'Artin Schreier de \cite{DeFeo-Shost'12} permettent désormais.
+
+On va montrer dans cette section les idées directrices pour obtenir à partir d'un polynôme d'interpolation défini uniquement à l'aide de l'image d'un représentant de l'orbite défini dans $\mathbb{U}_k$ le polynôme d'interpolation défini sur toute l'orbite avec des coefficients dans $\mathbb{F}_q$. Ceci est l'une des raisons pour travailler uniquement avec des points primitifs de $p^k$-torsion puisque que eux seuls sont définis dans $\mathbb{U}_k$ (on s'est placé dans le cas où $\mathbb{L}_k = \mathbb{U}_k$) et sont donc tous dans des orbites de tailles identiques. Bien évidemment on peut généraliser cette méthode à tous les points de $p^k$-torsion en utilisant le théorème des restes chinois, mais d'un point de vue pratique prendre $k$ tel que $p^{k-1}(p-1) > 4 \ell +1$ est suffisant, asymptotiquement le résultat reste le même.
+
+Soient $P$ et $P'$ deux points primitifs de $p^k$-torsion de $E$ et $E'$. On veut calculer le polynôme d'interpolation de degré minimal $A \in \mathbb{F}_q[X]$ tel que:
+\begin{equation}
+A(x([n]P))=x([n]P') \bmod T(x) \quad \text{pour } n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*
+\end{equation} 
+
+avec $T(X)= \prod_{n < \frac{p^{k-1}(p-1)}{2}, n \wedge p =1} (X-x([n]P))$. Il est à noter que le souhait d'avoir $A$ minimal signifie qu'il faut aussi prendre en compte le fait que pour $n \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ on a $x([n]P)=x([-n]P)$ et $x([n]P')=x([-n]P')$. 
+
+Comme on souhaite travailler distinctement sur les différentes orbites selon l'action du Frobenius, on regarde la factorisation de $T(X)$ sur $\mathbb{F}_q$ comme préconisé dans \cite{Couveignes96}:
+
+\begin{equation*}
+T(X)=\prod_{i=1}^fT_{i}(X)
+\end{equation*}
+avec $\deg(T_i)=e=[\mathbb{U}_k:\mathbb{F}_q]$ (ou $e=[\mathbb{U}_k:\mathbb{F}_q]/2$ voir corollaire \ref{cor:orb:fro}) et $ef=p^{k-1}(p-1)/2$.
+
+\'A l'aide du théorème des restes chinois on réduit le problème au calcul de chacun des $T_{i}$ et l'on définit:
+
+\begin{equation}
+A_{i}=A \bmod{T_{i}}.
+\end{equation}
+
+Une fois chacun des $A_{i}$ déterminés on calcule $A$ avec le théorème des restes chinois, dés lors on va se concentrer sur le calcul de $A_{0}$.
+
+
+Ainsi on fait l'hypothèse que l'abscisse du point $P$ générateur de la $p^k$-torsion de $E$ est envoyé sur l'abscisse du point $P'$ générateur de la $p^k$-torsion de $E'$. Par construction de la tour d'Artin-Schreier on a $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ tel que $\mathbb{U}_k=\mathbb{F}_q[x(P)]$, dés lors on veut calculer: 
+\begin{enumerate}
+\item le polynôme minimal $T_{0}$ de $x(P)$ défini sur $\mathbb{F}_q$ de degré égal à $e$,
+\item le polynôme d'interpolation $A_0$ défini sur $\mathbb{F}_q$ de degré strictement inférieur à $e$ tel que $A_0(x(P))=x(P')$.
+\end{enumerate}
+
+\begin{defi}
+Soient $j > k \geqslant 0$, $\sigma \in \mathsf{Gal}(\mathbb{U}_j:\mathbb{U}_k)$, $T=\sum_{i=0}^{d}t_iX^i \in \mathbb{U}_k[X]$ alors:
+\[
+\sigma(T)=\sum_{i=0}^{d}\sigma(t_i)X^i.
+\]   
+\end{defi}
+
+Soit $A_0$ un polynôme d'interpolation défini sur $\mathbb{F}_q$, alors on a pour tout $\sigma \in \mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$:
+\begin{equation*}
+A_0(\sigma(x(P))=\sigma(A_0(x(P)))=\sigma(x(P')).
+\end{equation*}
+L'information de l'image de $x(P) \in \mathbb{U}_k$ entraîne bien la connaissance des images des éléments de l'orbite de $x(P)$ sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$, ainsi on prend avantage du faible coût du Frobenius dans une tour d'Artin-Schreier à l'aide de l'algorithme \cite[Iter Frobenius,Theorem 17 et 18]{DeFeo-Shost'12} qui a une complexité de $O((i-j)L(i))$ pour le calcul d'une puissance $p^{p^{jd}}$ d'un élément de $\mathbb{U}_i$.
+
+
+%On va donc se servir de l'action du Frobenius sur le polynôme d'interpolation défini uniquement pour un représentant de l'orbite (en l'occurence $L(x(P))=x(P')$) pour déterminer $L$ alors que les méthodes classiques \cite[10.1-2]{vzGJG03} préconisent un arbre de produit binaire avec la connaissance des $x([n]P)$ avec $n \in (\mathbb{Z}/p^k\mathbb{Z})^*$. 
+
+On présente uniquement les idées directrices pour calculer $T$, le calcul de $A_0$ et les idées développées par \cite{DeFeo11} et auparavant par \cite{enge2008} étant repris très largement dans la section \textcolor{red}{ref à mettre plus tard} ils seront plus détaillées à cette occasion.
+
+
+Ainsi on s'est placé dans le cas où $\mathbb{L}_1 \not \cong \mathbb{F}_q$  et $\mathbb{L}_2 \not \cong \mathbb{L}_1$ qui correspond au pire des cas en pratique. Pour plus de détails sur la description des orbites selon les cas possibles le lecteur peut regarder le  lemme \ref{lem:bij:ord}, le théorème \ref{thm:orb:fro} ainsi que les corollaires.
+
+Soient $k \geqslant 1$, $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{U}_{k} \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_{k}$. On note $\mathsf{orb}(x(P))$ l'ensemble des abscisses des points de l'orbite créée par l'action d'un élément générateur $\pi$ de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_{q})$ sur l'élément $x(P) \in \mathbb{U}_k$. On a donc:
+\begin{equation*}
+T_{0}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P)), n \leqslant p^k-1/2}(x-x([n]P))=\prod_{i=0}^{p^{k-1}d_1-1}(x-\pi^i(x(P)))=\prod_{i=0}^{{p^{k-1}d_1-1}}\pi^i(x-x(P))
+\end{equation*}
+
+On note $T_0^{(0)}=x-x(P)$, soit $k \geqslant i\geqslant 0$ $\sigma_i$ un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-i+1}:\mathbb{U}_{k-i})$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
+\[
+T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
+    p-1 &\text{si $i<k-1$,}\\
+    d_1 -1  &\text{si ( $i=k-1$ et $2 \nmid d_1$)}\\
+    d_1/2 - 1 &\text{si ( $i=k-1$ et $2 \mid d_1 $)}.
+  \end{cases}
+\]
+ $T_0^{(k)}$ est égal à $T_0$ le polynôme minimal de $x(P)$ sur $\mathbb{F}_q$.
+
+Une représentation de ce calcul sur un arbre binaire permet de voir sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en travaillant avec une branche de celui-ci à l'aide de la méthode décrite ci-dessus.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.3]
+        \coordinate (A) at (0,0);
+        \coordinate (AB) at (-9,4.25);
+		\coordinate (AC) at (9,4.25);
+		\draw (A)--(AB);
+		\draw (A)--(AC);
+		\draw (A) node[fill=white]{$\color{red}{T_0^{(3)}}$};
+		
+
+		\coordinate (ABA) at (-12.63,8.5);
+		%\coordinate (ABA) at (-11.63,8.5);
+		
+		\draw (ABA)--(AB);
+		
+		\coordinate (ABAb) at (-15.26,12.75);
+		%\coordinate (ABAb) at (-14.26,12.75);
+		
+		\draw (ABA)--(ABAb);
+		\draw (ABAb) node[fill=white]{$\color{red}{T_0^{(0)}}$};
+		
+		\coordinate (ABAa) at (-10,12.75);
+		%\coordinate (ABAa) at (-9,12.75);
+		
+		
+		\draw (ABA)--(ABAa);
+		\draw (ABA) node[fill=white]{$\color{red}{T_0^{(1)}}$};
+		\draw (ABAa) node[fill=white][left]{$\color{red}{\sigma^4T_0^{(0)}}$};%ancien \pi(T)
+		
+		\coordinate (ACA) at (-5.37,8.5);
+		%\coordinate (ACA) at (-6.37,8.5);
+		
+		
+		\draw (AB)--(ACA);
+		\draw (AB) node[fill=white]{$\color{red}{T_0^{(2)}}$};
+		\coordinate (ACAa) at (-8,12.75);
+		%\coordinate (ACAa) at (-9,12.75);
+		
+		
+		\draw (ACA)--(ACAa);
+		\draw (ACAa) node[fill=white]{$\sigma^2(T_0^{(0)})$};%ancien \pi^2(T)
+		
+		\coordinate (ACAb) at (-2.74,12.75);
+		%\coordinate (ACAb) at (-3.74,12.75);
+		
+		
+		\draw (ACA)--(ACAb);
+		\draw (ACAb) node[fill=white]{$\sigma^6(T_0^{(0)})$};%ancien \pi^3(T)
+		\draw (ACA) node[fill=white]{$\color{red}{\sigma^2(T_0^{(1)})}$};% ancien \pi^2(T_2)
+		
+		\begin{scope}[xshift=18cm]
+		\coordinate (ABA) at (-12.63,8.5);
+		%\coordinate (ABA) at (-11.63,8.5);
+
+		\draw (ABA)--(AC);
+		
+		\coordinate (ABAb) at (-15.76,12.75);
+		%\coordinate (ABAb) at (-14.26,12.75);
+		
+		\draw (ABA)--(ABAb);
+		\draw (ABAb) node[fill=white]{$\sigma(T_0^{(0)})$};%ancien \pi^4(T)
+		
+		\coordinate (ABAa) at (-8.5,12.75);
+		%\coordinate (ABAa) at (-9,12.75);
+		
+		
+		\draw (ABA)--(ABAa);
+		\draw (ABAa) node[fill=white,left]{$\sigma^5(T_0^{(0)})$};%ancien \pi^5(T)
+		\draw (ABA) node[fill=white]{$\sigma^4(T_0^{(1)})$};%ancien \pi^4(T_2)
+		
+		\coordinate (ACA) at (-5.37,8.5);
+		%\coordinate (ACA) at (-6.37,8.5);
+		
+		
+		\draw (AC)--(ACA);
+		\draw (AC) node[fill=white]{$\color{red}{\sigma(T_0^{(2)})}$};%ancien \pi^4(T_3)
+		
+		\coordinate (ACAa) at (-6.5,12.75);
+		%\coordinate (ACAa) at (-9,12.75);
+		
+		
+		\draw (ACA)--(ACAa);
+		\draw (ACAa) node[fill=white]{$\sigma^3(T_0^{(0)})$};%ancien \pi^6(T)
+		
+		\coordinate (ACAb) at (-2.00,12.75);
+		%\coordinate (ACAb) at (-3.74,12.75);
+		
+		
+		\draw (ACA)--(ACAb);
+		\draw (ACAb) node[fill=white]{$\sigma^7(T_0^{(0)})$};%ancien \pi^7(T)	
+		\draw (ACA) node[fill=white]{$\sigma^6(T_0^{(1)})$};%ancien \pi^6(T_2)	
+		\end{scope}
+		
+		\coordinate (A1) at (-17,0);
+		\coordinate (A2) at (-17,4.25);
+		\coordinate (A3) at (-17,8.5);
+		\coordinate (A4) at (-17,12.75);
+		\draw (A1)--(A2)--(A3)--(A4);
+		\draw (A1) node{$\bullet$};
+		\draw (A2) node{$\bullet$};
+		\draw (A3) node{$\bullet$};
+		\draw (A4) node{$\bullet$};
+		\draw (A1) node[left]{$\mathbb{F}_q=\mathbb{U}_0$};
+		\draw (A2) node[left]{$\mathbb{U}_1$};
+		\draw (A3) node[left]{$\mathbb{U}_{2}$};
+		\draw (A4) node[left]{$\mathbb{U}_{3}$};
+\end{tikzpicture}
+\end{center}
+\caption{Arbre de sous produits pour le calcul de $T_0^{(0)}$ dans le cas d'une tour d'extension quadratique. Seul les éléments en rouge de l'arbre sont pris en compte pour le calcul, $\sigma$ peut être n'importe quel élément générateur de $\mathsf{Gal}(\mathbb{U}_3:\mathbb{U}_0)$.}
+\label{fig:orb:T}
+\end{figure}
+
+\begin{rem}
+La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-tor:fro} puisque l'arbre \ref{fig:orb:T} représente un seul des $f$ arbres de \ref{fig:p-tor:fro} et que les extrémités de l'arbre \ref{fig:orb:T} représentent les polynômes qui s'annulent en les abscisses de points des extrémités d'un des arbres de \ref{fig:p-tor:fro}.
+\end{rem}
+
+Ainsi avec l'utilisation du Frobenius on obtient le résultat suivant pour le calcul du polynôme d'interpolation sur les points d'ordre $p^k$:
+
+\begin{thm}
+Soient $P$ un point d'ordre $p^k$ de $E$ et $P'$ un point d'ordre $p^k$ de $E'$ alors le calcul du polynôme d'interpolation $A$ tel que $A(x([n]P))=x([n]P')$ pour tout $n \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ a une complexité de:
+\[
+O(p\mathsf{L}(k)\log(\frac{\ell}{p^{v_p(E(\mathbb{F}_q))}})+\mathsf{M}(\ell d)\log \ell \log p + \frac{\ell}{p}\mathsf{C}(pd)\log(d)+\ell (pd)^2)
+\]
+opérations sur $\mathbb{F}_q$.
+\end{thm}
+
+\begin{proof}
+Voir section $5.2$ de \cite{DeFeo11}.
+\end{proof}
+
+L'algorithme de Couveignes avec les modifications apportées par l'utilisation de tours d'Artin-Schreier et du Frobenius pour le calcul du polynôme d'interpolation dénoté C2-AS-FI a alors la complexité suivante:
+
+\begin{thm}
+Soient $E$ et $E'$ deux courbes $\ell$-isogènes, l'algorithme de Couveignes modifié C2-AS-FI a une complexité de:
+\[
+\tilde{O}_{p,d,\log \ell}(p^2d^3+\mathsf{C}(p)pd+(pd)^{\omega}\log^2 \ell + p^3 \ell^2 d \log^3 \ell + p^2\ell^2d^2+(\frac{\ell^2}{p}+p)\mathsf{C}(pd))
+\]
+opérations sur $\mathbb{F}_q$.
+\end{thm}
+
+\begin{proof}
+Voir section $5.2$ de \cite{DeFeo11}.
+\end{proof}
+
+\paragraph{Comportement de la $p^k$-torsion}
+
+\chapter{Volcans d'isogénies}
+\subsection{Travaux de Kohel, Fouquet-Morain}
+Mettre l'algorithme de Fouquet Morain
+\subsection{Travaux de Miret \& Al. et Ionica-Joux}
+
+
+\section{Frobenius et ses applications sur un volcan d'isogénies}
+\subsection{Base diagonale, horizontale}
+% A retravailler
+Mais avant de parler de ces algorithmes regardons plus en détail l'amélioration de S.E.A. pour le cas Elkies qui a été proposé par Couveignes et Morain \cite{Couveignes96isogenycycles} celle-ci propose en effet de déterminer $t_{\pi} \bmod \ell^k$ en utilisant les cycles d'isogénies. 
+
+\subsubsection{Amélioration du cas Elkies par Couveignes et Morain}
+Comme dit dans \ref{sub:Elkies} l'étape la plus importante pour le coût de l'algorithme est de déterminer un polynôme de Elkies qui définisse un espace propre pour le Frobenius pour lequel on va ensuite déterminer la valeur propre associée. L'algorithme de Couveignes et Morain propose alors de déterminer ces espaces prorpres pour la $\ell^k$ torsion en itérant le procédé sur un cycle d'isogénies.
+
+En effet comme on est dans le cas Elkies alors la courbe $E_0$ dont on veut calculer le cardinal admet deux  courbes $\ell$-isogènes définies dans $\mathbb{F}_q$. Ainsi pour ces courbes isogènes le polynôme modulaire admet aussi deux solutions  dans $\mathbb{F}_q$. En effet ces courbes sont de même cardinal que $E_0$ et ont donc la même valeur $t_{\pi}$, par conséquent le fait que $t_{\pi}^2-4q$ soit un résidu quadratique modulo $\ell$ reste préservé. Ainsi chaque courbe admet deux coubes isogènes définies sur $\mathbb{F}_q$, on définit alors un cycle qui est fini. En effet à chaque courbe on peut associer à isomorphisme près un ordre maximal pour l'indice $\ell$ (\textcolor{red}{ref a mettre plus tard}) dans $\mathbb{Q}[X]/(X^2-t_{\pi})X+q$ or comme le nombre de classe est borné on obtient le résultat. 
+
+L'idée derrière cet article est donc de décomposer en deux espaces propres la $\ell^k$ torsion à l'aide des valeurs propres du Frobenius dans le cas Elkies, puis de calculer la valeur de la trace du Frobenius ($t_{\pi}$) dans ces espaces propres. Ainsi la recherche de la valeur de $t_{\pi}$ se fera sur des ensembles plus petits et donc en manipulant des polynômes de degré moindre. Pour décrire tout cela il est nécessaire de poser quelques notations. On généralise tout d'abord l'action du Frobenius $\pi$ sur $E[\ell]$ à une action sur $T_{\ell}(E)$, on a alors une décomposition de $T_{\ell}(E)$ en deux espaces propres: $T_{\ell}^{\lambda}(E) \oplus T_{\ell}^{\mu}(E)$, avec $T_{\ell}^{\lambda}(E)$ associé à la valeur propre $\lambda$ et $T_{\ell}^{\mu}(E)$ associé à la valeur propre $\mu$. 
+
+
+Montrons tout d'abord que les isogénies peuvent êtres associées de façon canonique aux valeurs propres du Frobenius. On note $I_{\lambda}$ (resp. $I_{\mu}$) l'isogénie engendrée par l'espace propre pour $\pi$ associé à la valeur propre $\lambda$ (resp. $\mu$). Ainsi en partant de $E_0$ on note alors $E_{\lambda}$(resp. $E_{\mu}$) l'image de l'isogénie $I_{\lambda}$ (resp. $I_{\mu}$). Lorsque l'on est sur $E_{\lambda}$ on a alors à nouveau l'existence de deux isogénies associées aux deux espaces propres: $I_{\lambda \lambda}$ pour l'iosgénie associée à la valeur propre $\lambda$ et $I_{\lambda \mu}$ pour l'isogénie associée à la valeur propre $\mu$. On a alors $I_{\lambda \mu}=\widehat{I_{\lambda}}$, en effet l'isogénie $I_{\lambda}$ étant rationnelle sa duale l'est aussi et on conclut alors en analysant son action sur $T_{\ell}^{\lambda}(E)$. Ainsi on a des directions canoniques définies par les valeurs propres $\lambda$ et $\mu$. 
+
+Il reste alors à montrer comment on détermine en pratique un espace propre de la $\ell^k$ torsion. Travaillons donc avec l'espace propre associé à $E_{\lambda}$, on a alors $T_{\ell}^{\lambda}(E_0) \cap E_0[\ell]$ qui est contruit comme étant le noyau de l'isogénie qui va de $E_0$ à $E_{\lambda}$. Pour calculer celui-ci on doit tout d'abord calculer à l'aide du polynôme modulaire les $j$-invariants des deux courbes $E_0$ et $E_1$, puis leur représentations sous forme de Weierstrass, puis l'isogénie est ensuite calculée. Ainsi on dénote $h_1$ le polynôme qui s'annule sur l'abscisse des points du noyau de l'isogénie $I_1$. 
+Maintenant si l'on veut déterminer $T_{\ell}^{\lambda}(E_0) \cap E[\ell^2]$, on remarque que cet ensemble c'est la préimage du noyau de l'isogénie $I_{\lambda \lambda}$ (id est $h_{\lambda \lambda}$) par l'isogénie $I_{\lambda}$. Ainsi on injecte $I_{\lambda}$ dans $h_{\lambda \lambda}$ pour obtenir cet ensemble qui est donc le noyau de $h_{\lambda \lambda}(I_{\lambda}(x))$. On répète alors l'opération pour déterminer un espace propre pour le Frobenius de la $\ell^k$-torsion. Ainsi pour la $\ell^k$-torsion on va déterminer l'espace propre par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ qui factorise le $\ell^k$-ème polynôme de division de degré $\ell^{2k}$.
+
+On peut alors dès lors résoudre l'équation:
+\begin{equation*}
+X^2-t_{\pi}X+q=0
+\end{equation*}
+modulo l'espace propre $T_{\ell}^{\lambda}(E_0) \cap E[\ell^k]$ (ou $T_{\ell}^{\mu}(E_0) \cap E[\ell^k]$ par exemple) défini par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ au lieu de résoudre celle-ci modulo $E[\ell^k]$ défini par un polynôme de degré $\ell^{2k}$.
+
+\paragraph{Optimisation}
+Cependant on peut travailler aussi avec un facteur de $h_{\lambda^k}$ à la place de celui-ci en effet on peut procéder de la manière suivante:
+\begin{itemize}
+\item Calcul des deux valeurs propres $\lambda$ et $\mu$ du Frobenius modulo $\ell$,
+\item Calcul des ordres multiplicatifs $d_{\lambda},d_{\mu}$ de ces deux valeurs propres dans le groupe multiplicatif $(\mathbb{Z}/\ell \mathbb{Z})^{\times}$,
+\item On pose alors $d=\min(d_{\lambda},d_{\mu})$, on divise éventuellement $d$ par $2$ si il est pair pour prendre en compte les abscisses, l'espace vectoriel associé à $d$ est alors défini sur $\mathbb{F}_p^{d}$ et l'on a alors le polynôme de $\ell$-division qui a pour facteur un polynôme de degré $d$. Après avoir factorisé le polynôme de $\ell$-division par un facteur de degré $d$, on utilise alors celui-ci à la place de $h_{\lambda^{k}}$, de telle sorte que lorsque l'on veut calculer la trace du Frobenius modulo un espace propre de la $\ell^k$ torsion on travaille avec un polynôme de degré $d \ell^{k-1}$ et non $(\ell -1)/2 \ell^{k-1}$.
+\end{itemize}
+
+Ainsi on a vu une façon de déterminer un espace propre de la $\ell^k$-torsion, à l'aide d'un cycle d'isogénies, et d'exploiter au mieux les nombres de Elkies dans l'algorithme S.E.A. 
+
+%Comme il est remarqué dans l'article original on peut aussi travailler sur une extension de corps dans laquelle les points de $\ell$-torsion issus de l'espace propre sont définis, pour trouver le degré de celle-ci il faut calculer l'ordre multiplicatif des valeurs propres du frobenius dans $(\mathbb{Z}/\ell \mathbb{Z})^{\times}$ et travailler alors avec la valeur propre qui a l'ordre le plus petit afin de travailler dans le corps le plus petit.  Ensuite pour travailler avec de la $\ell^k$ torsion on est obligé travailler dans une extension de degré $d\ell^{k-1}$.
+\subsection{Orbites selon le Frobenius}
+\subsection{Amélioration de l'algorithme de Couveignes}
+
+\section{Améliorations éventuelles à l'aide du pairing}
+
+\chapter{Rebus}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
+          \coordinate (U0) at (0, 0);
+          \coordinate (U1) at (0, 4) ;
+          \coordinate (U2) at (0, 6) ;
+          \coordinate (U3) at (0, 8) ;
+          \draw (U0) node{$\mathbb{F}_{q} \subset \mathbb{L}_{v_p(E(\mathbb{L}_1))}$};
+          \draw (U1) node{$\mathbb{L}_{v_p(E(\mathbb{L}_1))+1}$};
+          \draw (U3) node{$\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$};
+          \coordinate (U1b) at (0,4.5);
+          \coordinate (U3b) at (0,7.5);
+          \draw[dashed,-] (U1b) to (U3b); 
+          \coordinate (U4) at (6.5, 0);
+          \coordinate (U5) at (15, 0);
+          \draw[dashed,-] (U4) to (U5);
+          \coordinate (U6) at (9.5,4);
+          \coordinate (U7) at (12,4);
+		  %\draw[dashed,-] (U6) to (U7); 
+		  \coordinate (U10) at (22,0);
+		  \coordinate (U11) at (22,4);
+		  \coordinate (U12) at (22,8); 
+%		  \draw (U10) node{$E[p^{v_p(E(\mathbb{U}_1))}]$};
+%          \draw (U11) node{$E[p^{v_p(E(\mathbb{U}_1))+1}]$};
+%          \draw (U12) node{$E[p^{v_p(E(\mathbb{U}_1))+i}]$};        
+          
+          \begin{scope}[xshift=6.5cm]
+          \coordinate (P0) at (0, 0);
+          \draw (P0) node{$\bullet$};
+          \coordinate (P0b) at (0,0.5);
+          \coordinate (P1) at (-3, 4);
+          \coordinate (P1b) at (-2.5,4);
+          \coordinate (P2) at (3, 4);
+          \coordinate (P2b) at (2.5,4);
+          \coordinate (P3) at (-2, 4);
+          \coordinate (P4) at (2, 4);
+          \draw (P1) node{$\bullet$};
+          \draw (P2) node{$\bullet$};
+          \draw (P3) node[color=black]{$\bullet$};
+          \draw (P4) node[color=black]{$\bullet$};
+          %\draw (P4) node[color=black!30]{$\bullet$};
+          \draw [-] (P0) to (P1);
+          \draw [-] (P0) to (P2);
+          \draw[dashed] (P0) to (P3);
+          \draw[dashed] (P0) to (P4);
+          \coordinate (P1c) at (-1.4,4);
+          \coordinate (P11) at (1.4,4);
+          \draw[dashed] (P1c) to (P11);  
+          %dernier etage a gauche
+          \coordinate (P20) at (-4.5,8);
+          \coordinate (P21) at (-1.5,8);
+          \draw (P21) node{$\bullet$};
+          \draw (P20) node{$\bullet$};
+          \draw [-] (P1) to (P21);
+          \draw [-] (P1) to (P20);
+          \coordinate (P23) at (-4,8);
+          \coordinate (P24) at (-2,8);
+          \draw [dashed,-] (P1) to (P23);
+          \draw [dashed,-] (P1) to (P24);
+          \coordinate (P25) at (-3.3,8);
+          \coordinate (P26) at (-2.7,8);
+          \draw (P23) node{$\bullet$};
+          \draw (P24) node{$\bullet$};
+          \draw [dashed,-] (P25) to (P26);
+%          \coordinate (P27) at (-4,7);
+%          \coordinate (P28) at (-2,7);
+%          \draw [dashed,-] (P27) to (P28);
+		  %dernier etage a droite
+		  \coordinate (P1) at (3,4);
+          \coordinate (P20) at (4.5,8);
+          \coordinate (P21) at (1.5,8);
+          \draw (P21) node{$\bullet$};
+          \draw (P20) node{$\bullet$};
+          \draw [-] (P1) to (P21);
+          \draw [-] (P1) to (P20);
+          \coordinate (P200) at (4.6,8);
+          \coordinate (P210) at (-4.6,8);
+          \draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
+				(P210) -- (P200) node[color=black,above=0.2cm, pos=0.5] {e};
+          \coordinate (P23) at (4,8);
+          \coordinate (P24) at (2,8);
+          \draw [dashed,-] (P1) to (P23);
+          \draw [dashed,-] (P1) to (P24);
+          \coordinate (P25) at (3.3,8);
+          \coordinate (P26) at (2.7,8);
+          \draw (P23) node{$\bullet$};
+          \draw (P24) node{$\bullet$};
+          \draw [dashed,-] (P25) to (P26);
+          \end{scope}
+          
+          \begin{scope}[xshift=16.5cm]
+          \coordinate (P0) at (0, 0);
+          \draw (P0) node{$\bullet$};
+          \coordinate (P0b) at (0,0.5);
+          \coordinate (P1) at (-3, 4);
+          \coordinate (P1b) at (-2.5,4);
+          \coordinate (P2) at (3, 4);
+          \coordinate (P2b) at (2.5,4);
+          \coordinate (P3) at (-2, 4);
+          \coordinate (P4) at (2, 4);
+          \draw (P1) node{$\bullet$};
+          \draw (P2) node{$\bullet$};
+          \draw (P3) node[color=black]{$\bullet$};
+          \draw (P4) node[color=black]{$\bullet$};
+          %\draw (P4) node[color=black!30]{$\bullet$};
+          \draw [-] (P0) to (P1);
+          \draw [-] (P0) to (P2);
+          \draw[dashed] (P0) to (P3);
+          \draw[dashed] (P0) to (P4);
+          \coordinate (P1c) at (-1.4,4);
+          \coordinate (P11) at (1.4,4);
+          \draw[dashed] (P1c) to (P11);  
+          %dernier etage a gauche
+          \coordinate (P20) at (-4.5,8);
+          \coordinate (P21) at (-1.5,8);
+          \draw (P21) node{$\bullet$};
+          \draw (P20) node{$\bullet$};
+          \draw [-] (P1) to (P21);
+          \draw [-] (P1) to (P20);
+          \coordinate (P23) at (-4,8);
+          \coordinate (P24) at (-2,8);
+          \draw [dashed,-] (P1) to (P23);
+          \draw [dashed,-] (P1) to (P24);
+          \coordinate (P25) at (-3.3,8);
+          \coordinate (P26) at (-2.7,8);
+          \draw (P23) node{$\bullet$};
+          \draw (P24) node{$\bullet$};
+          \draw [dashed,-] (P25) to (P26);
+%          \coordinate (P27) at (-4,7);
+%          \coordinate (P28) at (-2,7);
+%          \draw [dashed,-] (P27) to (P28);
+		  %dernier etage a droite
+		  \coordinate (P1) at (3,4);
+          \coordinate (P20) at (4.5,8);
+          \coordinate (P21) at (1.5,8);
+          \draw (P21) node{$\bullet$};
+          \draw (P20) node{$\bullet$};
+          \draw [-] (P1) to (P21);
+          \draw [-] (P1) to (P20);
+          \coordinate (P210) at (-4.6,8);
+          \coordinate (P200) at (4.6,8);
+          \draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
+				(P210) -- (P200) node[color=black,above=0.2cm, pos=0.5] {e};
+          \coordinate (P23) at (4,8);
+          \coordinate (P24) at (2,8);
+          \draw [dashed,-] (P1) to (P23);
+          \draw [dashed,-] (P1) to (P24);
+          \coordinate (P25) at (3.3,8);
+          \coordinate (P26) at (2.7,8);
+          \draw (P23) node{$\bullet$};
+          \draw (P24) node{$\bullet$};
+          \draw [dashed,-] (P25) to (P26);
+          \end{scope}
+          \draw[color=black,decorate,decoration={brace},below]
+				(16.7,-1) -- (6.4,-1) node[color=black,below,pos=0.5] {f};
+        \end{tikzpicture}
+\caption{Classification des points de $p^k$-torsion selon l'action du Frobenius}
+\label{fig:p-tor:fro}
+\end{center}
+\end{figure} 
+
 \section{$\ell \neq 2$ [De Feo-Doliskani-Schost] inutile....}
 
 \begin{rem}
@@ -1428,1205 +2724,6 @@ Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra 
 
 \paragraph{Calcul du Frobenius}
 
-\chapter{Calcul d'isogénies sur les corps finis}
-Dans ce chapitre vont être présentés différents algorithmes pour résoudre le problème suivant: soient $E, E'$ deux courbes elliptiques définies sur $\mathbb{K}$, on cherche alors à calculer la fraction $\mathbb{K}$-rationnelle qui a pour domaine $E(\mathbb{K})$ et pour codomaine $E'(\mathbb{K})$  telle que  cette application  définisse une isogénie.
-On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$, bien que certains algorithmes présentés peuvent aussi s'utiliser sur des corps de caractéristique nulle.
-
-\section{Rappel et applications des formules de Vélu}
-Comme vu dans le chapitre \ref{cha:Rappels theoriques} à l'aide des formules de Vélu on peut expliciter une isogénie séparable de degré $\ell$ sous la forme:
-\begin{equation} 
-\label{eq:velu:gh}
-I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
-\end{equation}
-avec 
-\begin{equation*}
-h(x)=\prod_{Q \in G \setminus \{0_E\}}(x-x(Q)),
-\end{equation*}
-avec $G=\ker(I)$, $g$ un polynôme. On rappelle qu'en plus à l'aide de la reformulation d'Elkies on a:
-\begin{equation}
-\label{eq:vel:elk}
-\frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
-\end{equation}
-avec $f$ donné par l'équation de Weierstrass de $E$: $y^2=f(x)$, $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
-
-
-Il est important de noter qu'il existe des isogénies de la forme:
-\begin{equation}
-\label{eq:iso:gen}
-I(x,y)=\left( \frac{g(x)}{h(x)},cy\frac{g(x)}{h(x)} \right)
-\end{equation}
-avec $c \in \overline{\mathbb{F}_q}$. Ainsi on énonce les définitions suivantes:
-
-
-\begin{defi}
-Soit $I$ une isogénie de la forme \eqref{eq:iso:gen} avec $c=1$, on dit alors que cette isogénie est \emph{normalisée}. 
-
-Pour deux courbes $\ell$-isogènes exprimées sous forme de Weierstrass telle que l'isogénie associée à ces courbes est une isogénie normale on dit que ces courbes ont des équations de Weierstrass \emph{normalisées}. 
-\end{defi}
-\section{Elkies 1998}
-Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p >> \ell$.
-Dans le modèle de Elkies on travaille avec des courbes à équations de Weierstrass normalisées, celles-ci sont calculées à l'aide du $\ell$-ème polynôme modulaire (voir proposition \ref{prop:elk:nor} pour la construction et \cite{Schoof95} pour plus de détails).
-L'idée de Elkies est d'à partir des équations de Weierstrass normalisées de $E:$
-\begin{equation}
-y^2=x^3+Ax+B
-\end{equation}
- et $\tilde{E}:$
-\begin{equation}
-y^2=x^3+\tilde{A}x+\tilde{B}
-\end{equation}
-injecter l'équation de l'isogénie \textbf{normalisée}:
-\begin{equation} 
-\label{eq:velu:gh}
-I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right) 
-\end{equation}
-et celle de $E$ dans celle de $\tilde{E}$:
-\begin{equation}
-(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
-\end{equation}
-Cette équation est alors dérivée pour obtenir une équation différentielle du second ordre:
-\begin{equation}
-\label{eq:Elkies-deriv}
-(3x^2+A)\left(\frac{g(x)}{h(x)} \right)'+2(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)''=  3\left(\frac{g(x)}{h(x)} \right)^2 + \tilde{A}
-\end{equation}
-On écrit alors le développement en série de la fraction rationnelle $\frac{g(x)}{h(x)}$ à l'infini:
-\begin{equation}
-\label{eq:iso:frac}
-\frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{h_i}{x^i}
-\end{equation}
-que l'on injecte dans \eqref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $h_i$ en identifiant les coefficients des $x^{-i}$:
-\begin{equation}
-\label{eq:rec:h_k}
-h_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}h_ih_{k-1-i}\frac{2k-3}{2k+3}Ah_{k-2}-\frac{2(k-3)}{2k+3}Bh_{k-3} \quad \text{pour tout } k \geqslant 3,
-\end{equation}
-les termes $h_1,h_2$ étant déterminés par:
-\begin{equation}
-h_1=\frac{A-\tilde{A}}{5} \quad h_2={\frac{B-\tilde{B}}{7}}.
-\end{equation}
-Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{\ell-2}$ est de $O(\ell^2)$ opérations sur $\mathbb{F}_q$. 
-
-\begin{rem}
-\label{rem:pol:rec}
-Soit $P$ un polynôme de degré $d$ défini sur $\mathbb{F}_q[X]$ de caratéristique $p>d$ ou $p=0$. Alors $P$ peut être déterminé à l'aide de la formule:
-\begin{equation}
-P=\exp\left(\int{\frac{P'}{P}}\right)
-\end{equation} 
-On a alors à l'aide des sommes de Newton:$p_0=d,p_1, \cdots, p_d$:
-\begin{equation}
-\label{eq:pol:new}
-\frac{P'}{P}= \frac{d}{X} + \sum_{i = 1}^d \frac{p_i}{X^{i+1}}
-\end{equation}
-Ce qui nous donne:
-\begin{equation}
-P=\exp\left( d \log(X) - \sum_{i = 1}^{d} \frac{p_i}{i!X^i} \right)
-\end{equation} 
-Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton on est capable d'exprimer $P$.
-\end{rem}
-
-\begin{rem}
-\label{rem:ELK:h-p}
-On peut calculer $h(x)$ sans faire une reconstruction rationnelle, en effet on peut déterminer les sommes de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de $p_0=\ell-1, p_1$ et $\frac{g(x)}{h(x)}=x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$. Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer la connaissance de $p_1$. En effet comme le calcul du $\ell$-ème polynôme modulaire $\phi_{\ell}$ a été effectué (voir \ref{sub:Elkies} pour plus de contexte), alors à l'aide des dérivées partielles de $\phi_{\ell}$ on peut calculer celui-ci. Une formule explicite de ce calcul est donnée dans \cite[Theorem 17.22]{ehcc05} et sa preuve est dans \cite[§7]{Schoof95}. En utilisant \eqref{eq:iso:frac} et \eqref{eq:pol:new} dans \eqref{eq:vel:elk} on établit la récurrence:
-\begin{equation}
-\label{eq:p:rec}
-h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
-\end{equation}
-à l'aide de laquelle on calcule tous les $p_i$ en $O(\ell)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$ par \cite[§2.2]{BMSS08}.
-Enfin à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
-\end{rem}
-
-Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir appliquer la remarque \ref{rem:pol:rec}, ainsi que l'équation \eqref{eq:rec:h_k}.
-
-On peut alors énoncer le théorème suivant
-\begin{thm}
-Soient $E$ et $\tilde{E}$ deux courbes elliptiques $\ell$-isogènes définies sur $\mathbb{K}$ alors l'algorithme de Elkies calcule la $\ell$-isogénie en $O(\ell^2)$ opérations sur $\mathbb{K}$.
-\end{thm}
- 
-\section{BMSS}
-L'algorithme BMSS \cite{BMSS08} propose de résoudre le même problème que l'algorihtme de Elkies \cite{elkies1998} et a une meilleure complexité car celui-ci change notamment de méthode pour le calcul des $h_i$:
-\begin{thm}
-\label{thm:BMSS}
-Soient $E, \tilde{E}$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{K}$ sous forme de Weierstrass normalisées, avec $\ell$ différent de $p$ la caractéristique de $\mathbb{K}$ qui peut être nulle ou doit vérifier $p >> \ell$. Alors:
-\begin{itemize}
-\item  si la somme des abscisses des points du noyau de l'isogénie est connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$,
-\item si la somme des abscisses des points du noyau de l'isogénie n'est pas connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{K}$.
-\end{itemize}
-\end{thm}
-
-L'algorithme BMSS part du même postulat que Elkies1998, à savoir, en reprenant les notations de la section précédente, trouver le développement en série de la solution de l'équation différentielle suivante:   
-\begin{equation}
-\label{eq:BMSS:ED1}
-(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
-\end{equation}
-Cependant on ne connaît pas des conditions initiales en $0$ pour cette équation différentielle vérifiée par $\frac{g(x)}{h(x)}$ et comme $\deg(g)=\ell> \deg(h)= \ell-1$ alors on ne peut travailler avec des conditions à l'infini. On pose donc:
-\begin{equation}
-S(x)=\sqrt{\frac{h(1/x^2)}{g(1/x^2)}} \quad \text{équivalent à} \quad \frac{g(x)}{h(x)}=\frac{1}{S(1/\sqrt{x})}
-\end{equation} 
-avec 
-\begin{equation}
-S(x)=x + \frac{\tilde{A}-A}{10}x^5+\frac{\tilde{B}-B}{14}x^7+O(x^9)
-\end{equation}
-L'équation \eqref{eq:BMSS:ED1} devient alors:
-\begin{equation}
-\label{eq:BMSS:ED2}
-(1+Ax^4+Bx^6)(S'(x))^2=1+\tilde{A}(S(x))^4+\tilde{B}(S(x))^6
-\end{equation}
-que l'on reformule à l'aide des fonctions $G(x)=1/(Bx^6+Ax^4+1)$ et $H(t)=\tilde{B}t^6+\tilde{A}t^4+1$. Ainsi \eqref{eq:BMSS:ED2} devient 
-\begin{equation}
-\label{eq:BMSS:ED3}
-(S')^2=(H \circ S) G.
-\end{equation}
-
-On va d'abord exposer une solution pour résoudre cette équation différentielle \eqref{eq:BMSS:ED3}, puis on présentera la résolution complète du problème énoncé dans le théorème \ref{thm:BMSS}. 
-
-\begin{lem}
-\label{lem:BMSS}
-Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ telles que $G(0)H(\alpha)=\beta^2$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ définie modulo $x^{k+1}$ avec $S(0)=\alpha$ et $S'(0)=\beta$, une solution de cette même équation définie modulo $x^{2k}$ peut être calculée à l'aide de l'algorithme \ref{alg:BMSS:eqdiff} en utilisant $O(\mathsf{M}(2^k))$ opérations sur $\mathbb{K}$.
-\end{lem}
-
-\begin{proof}
-La preuve complète est donnée dans \cite{Lercier-Sirvent2008} la principale différence par rapport à \cite{BMSS08} est que la résolution de l'équation différentielle linéaire issue de \eqref{eq:BMSS:ED3} est faite à l'aide d'un calcul de racine carrée et non plus d'une exponentiation comme dans \cite{BMSS08}. 
-On va donc présenter l'idée pour accroître la précision d'une solution de \eqref{eq:BMSS:ED3} et partiellement démontrer le lemme \ref{lem:BMSS}.
-
-Soit $f_1$ une solution de \eqref{eq:BMSS:ED3} modulo $x^{k+1}$ et $f_2$ telle que:
-\begin{equation}
-S=f_1+f_2 \bmod x^{2k+1}
-\end{equation}
-avec $x^{k+1}$ qui divise $f_2$. On a alors $x^{2k}$ qui divise $f_2'^2$ et on obtient par \eqref{eq:BMSS:ED3}:
-\begin{equation}
-\label{eq:BMSS:ED4}
-2f_1'f_2'+f_1'^2=G(x)H(f_1+f_2) \bmod x^{2k}
-\end{equation}
-Le développement en série de Taylor de $H$ en $f_1$ nous donne l'équation différentielle linéaire:
-\begin{equation}
-2f_1'f_2'+f_1'^2=G(x)H(f_1)+G(x)H'(f_1)f_2 \bmod x^{2k}
-\end{equation}
-avec la condition initiale $f_2(0)=0$. Que l'on peut reformuler:
-\begin{equation}
-\label{eq:LS08:diflin}
-f'_2-\frac{G(x)H'(f_1)}{2f_1'}f_2=\frac{G(x)H(f_1')-f_1'^2}{2f_1'}
-\end{equation}
-
- Cette équation a alors pour solution:
-\begin{equation}
-f_2=\frac{1}{J}\int \frac{(G(x)H(f_1)-f_1'^2)J}{2f_1'} dx,
-\end{equation}
-avec 
-\begin{equation}
-\label{eq:LS08:J}
-J=\exp \left( -\int \frac{G(x)H'(f_1)}{2f_1'}dx \right).
-\end{equation}
-Il est à noter que comme on souhaite uniquement calculer une solution à précision $x^{2k+1}$, on a besoin uniquement de calculer $J$ et son inverse à précision $x^k$.
-Comme $f_1'$ est une solution de \eqref{eq:BMSS:ED3} alors on peut réexprimer $f_1'$ à l'aide de celle-ci dans \eqref{eq:LS08:J} et obtenir:
-\begin{equation}
-\frac{G(x)H'(f_1)}{2f_1'}=\frac{H'(f_1)f_1'}{2H(f_1)} \bmod x^k,
-\end{equation}
-ainsi 
-\begin{equation}
-J=\exp \left(-\frac{1}{2}\log H(f_1) \right)= \frac{1}{\sqrt{H(f_1)}}.
-\end{equation}
-\'A chaque nouvelle itération pour résoudre \eqref{eq:BMSS:ED3} on a uniquement besoin de calculer les quantités suivantes:
-\begin{equation}
-S, \quad U=1/S', \quad V=\sqrt{H \circ S}, \quad J=1/V.
-\end{equation}
-La précision de ces quantités est doublée dès lors àchaque itération de Newton utilisée pour les calculer. Les uniques opérations effectuées étant des inversions et des multiplications de séries alors la $i$-ème itération coûte $O(\mathsf{M}(2^i))$ opérations sur $\mathbb{K}$, et donc par la superlinéarité de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération. 
-\end{proof}
-
-
-\begin{algorithm}
-\caption{\label{alg:BMSS:eqdiff} Résolution d'équation différentielle}
-\begin{algorithmic}[1]
-\REQUIRE $k>1, \alpha \in \mathbb{F}_q, \beta \in \mathbb{F}_q^*, H \in \mathbb{F}_q[t], G \in \mathbb{F}_{q}[[x]]$ ,%\\
-\ENSURE $S \in \mathbb{F}_q[x]$ solution de $S'^2=(H \circ S)G \bmod x^{2k}$
-\STATE Soient $U \gets 1/\beta + O(x), J \gets 1/\sqrt{H(\alpha)}+O(x), V \gets \sqrt{H(\alpha)} + O(x)$
-\STATE Soit $S \gets \alpha + \beta x + \frac{G'(0)H(\alpha)+G(0)H'(\alpha)\beta}{4\beta}x^2+O(x^3)$;
-\FOR {$i \in {2, \cdots , 2^{k-1}}$}
-\STATE $U \gets U(2-S'U) \bmod x^{2i}$
-\STATE $V \gets (V+(H \circ S)J(2-VJ))/2 \bmod x^{i}$
-\STATE $J \gets J(2-VJ) \bmod {x^i}$
-\STATE $S \gets S+V \int ((H \circ S)G-S'^2)UJ/2 \bmod x^{2i+1}$
-\ENDFOR
-\RETURN$S$. 
-\end{algorithmic}
-\end{algorithm}
-
-Une solution $S$ de l'équation différentielle \eqref{eq:BMSS:ED3} est calculée à précision $x^{4\ell}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}. On définit les valeurs suivantes:
-\begin{equation}
-S(x)=xT(x^2), \quad R(x)=\frac{1}{T(x)^2} \quad \text{tel que } \frac{g(x)}{h(x)}=xR(1/x)
-\end{equation}
-que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle qui a un coût de $O(\mathsf{M}(\ell)\log(\ell))$ \cite[11]{vzGJG03} et domine toutes les autres.
-
-\begin{algorithm}
-\caption{\label{alg:BMSS:total} BMSS}
-\begin{algorithmic}[1]
-\REQUIRE $\ell>1$, deux courbes $E,\tilde{E}$ $\ell$-normalizées  ,%\\
-\ENSURE La fraction rationnelle $\frac{g(x)}{h(x)}$ qui représente la $\ell$-isogénie
-\STATE Calculer $G(x)=1/(1+Ax^4+Bx^6) \bmod x^{4\ell-1}$.
-\STATE Calculer $S(x)$ $\bmod x^{4\ell-1}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}.
-\STATE Soit $T(x)=\sum_{i=0}^{2\ell-1}s_{2i+1}x^i$.
-\STATE Calculer $R(x)=1/T(x)^2 \bmod(x^{2\ell-1})$.
-\STATE Calculer $\frac{g(x)}{h(x)}$ à l'aide de reconstruction rationnelle. 
-\end{algorithmic}
-\end{algorithm}
-
-\begin{rem}
-Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction rationnelle avec la méthode  précisée dans les remarques \ref{rem:pol:rec} et \ref{rem:ELK:h-p}. Il est dés lors suffisant de calculer $S$ à précision $x^{2\ell}$ car la connaissance $\frac{g(x)}{h(x)}$ à précision $\ell-2$ est suffisante pour connaître $p_0,p_1,\cdots ,p_{\ell-1}$. Ainsi avec la connaissance de $p_1$ la complexité de l'étape $5$ de l'algorithme \ref{alg:BMSS:total} est de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$ et donne la complexité de celui-ci.
-\end{rem}
-
-\begin{rem}
-L'algorithme BMSS impose le fait d'avoir $p>>\ell$ car à l'étape $7$ de l'algorithme $\ref{alg:BMSS:eqdiff}$ une intégration est nécessaire ce qui entraîne des divisions pas les entiers compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ sinon. Cela pose donc des limites aux applications de BMSS.
-\end{rem}
-
-
-
-
-%on peut alors énoncer les algorithmes qui solutionnent le théorème \ref{thm:BMSS}.
-%On commence avec l'algorithme qui suppose la connnaissance de $p_1$
-%\begin{enumerate}
-%\item Calculer $G(x) \bmod x^{2\ell-1}$ en utilisant \cite[§2.1]{BMSS08} 
-%\item Calculer $S(x)$ solution de \eqref{eq:BMSS:ED3} modulo $x^{2\ell}$ en utilisant \cite[§2.4]{BMSS08}, puis en déduire $T$.
-%\item Calculer $R=\frac{1}{T^2}$ à l'aide de \cite[§2.1]{BMSS08}
-%\item En déduire $\frac{g(x)}{h(x)}$
-%\item Calculer $h$ à l'aide des relations de récurrence de \eqref{eq:p:rec} et de l'algorithme d'exponentiation rapide \cite[2.2]{BMSS08}
-%\item En deduire $g$ à l'aide de \eqref{eq:iso:frac}
-%\end{enumerate}
-%Sans la connaissance de $p_1$ l'algorithme va être obligé d'utiliser une reconstruction rationnelle avec des algorithmes tels que celui de Berlekamp-Massey:
-%\begin{enumerate}
-%\item Calculer $G(x) \bmod x^{2\ell-1}$ en utilisant \cite[§2.1]{BMSS08} 
-%\item Calculer $S(x)$ solution de  \eqref{eq:BMSS:ED3} modulo $x^{2\ell}$ en utilisant \cite[§2.4]{BMSS08}
-%\item En déduire $T$, puis calculer $T(x)^2$.
-%\item Calculer $R$ à l'aide de \cite[§2.1]{BMSS08}
-%\item En déduire le développement $h_1, \cdots h_{\ell}$ de $\frac{g(x)}{h(x)}$
-%\item Calculer $h$ et $g$ à l'aide d'un algorithme de reconstruction rationnelle.
-%\end{enumerate}
-
-
-\section{Algorithme de Lercier Sirvent}
-L'algorithme de Lercier Sirvent répond à la problématique posée par le fait que BMSS ne peut pas s'utiliser sur des corps de petite caractéristique à cause de possibles division par $0$, une solution naturelle envisagée est donc de résoudre ce problème en travaillant dans les entiers entiers $p$-adiques.
-
-Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les nombres $p$-adiques et spécifie quelle précision on a besoin sur les entrées de l'algorithme. Cependant l'algorithme  BMSS travaille avec des courbes elliptiques sous forme de Weierstrass normalisées, il est donc nécessaire de calculer des équations normalisées des relevés des courbes dans les $p$-adiques. L'algorithme est énoncé dans le cas où l'on a $p \geqslant 5$, les calculs ont lieu dans $\mathbb{Q}_q$ une extension non ramifiée de degré $d$ de $\mathbb{Q}_p$.
-
-L'algorithme de Lercier Sirvent \ref{alg:LS08:modified} calcule un relevé $\overline{E}$ de $E$ dans $\mathbb{Q}_p$, un relèvement$\overline{j_{E''}}$ du $j$-invariant $j'$ de la courbe $\ell$-isogène $E'$ est calculé. Ensuite les formules de Elkies \cite{elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors $\overline{I}$ et $\overline{E''}$, enfin on calcule $I: E \rightarrow E' $ à l'aide de l'isomorphisme $E' \cong E''$. 
-
-\begin{algorithm}
-\caption{\label{alg:LS08:modified} Algorithme de Lercier-Sirvent}
-\begin{algorithmic}[1]
-\REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{F}_q$,%\\
-\ENSURE $I$ une $\ell$-isogénie telle que $I:E \rightarrow E'$
-\STATE Calculer un relèvement de l'équation de Weierstrass de $E$ dans $\mathbb{Q}_p$
-\STATE Calculer un relevé $\overline{j_{E'}}$ de la solution de $\phi_{\ell}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
-\STATE Calculer une equation de Weierstrass normalisée de $\overline{E''}$ de $j$-invariant $\overline{j_{E'}}$ à l'aide des formules de Elkies
-\STATE Utiliser l'algorithme BMSS pour calculer l'isogénie $\overline{I}$
-\STATE Réduire modulo $p$ $\overline{E''}$ et $\overline{I}$ vers $E''$ et $I$
-\STATE Utiliser l'isomorphisme:$E' \rightarrow E''$ pour calculer l'isogénie $I: E \rightarrow E'$.
-\RETURN$S$. 
-\end{algorithmic}
-\end{algorithm}
-
-\begin{prop}[Lairez-Vaccon]
-Soient deux courbes $\ell$-isogènes $E,E'$ définies sur $\mathbb{F}_q$ de caractéristique $p$ avec $p \geqslant 5$, l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus: 
-\begin{itemize}
-\item $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $ nombres p-adiques si l'on ne connaît pas $p_1$ la somme des abscisses du noyau,
-\item  $ 1 + \lfloor \log_p(2 \ell - 1) \rfloor $ nombres $p$-adiques si l'on connaît $p_1$ la somme des abscisses du noyau.
-\end{itemize}
-\end{prop}
-
-Ce résultat issu de \cite{LairezVaccon16} est une amélioration du résultat original de Lercier Sirvent \cite{Lercier-Sirvent2008}. Cette amélioration porte notamment sur la précision de la solution de l'équation différentielle que l'on doit résoudre à l'étape 2 de l'algorithme BMSS \ref{alg:BMSS:total} qui est décrite dans l'algorithme \ref{alg:BMSS:eqdiff}.
-
-\begin{proof}
-Une preuve détaillée pour calculer une solution de l'équation différentielle à précision donnée est dans \cite{LairezVaccon16}, cette méthode repose notamment sur la différentitation précisionnelle qui repose sur une analyse du premier ordre de la propagation des erreurs. 
-
-Comme vu précédemment on a besoin de calculer une solution de l'équation différentielle linéaire \eqref{eq:LS08:diflin} de précision $4\ell-1$ si l'on ne connaît pas $p_1$ la somme des abscisses des points du noyau de l'isogénie. Dans ce cas on applique le résultat de Lairez-Vaccon: pour obtenir une solution $p$-adique de précision $4 \ell-1$ on a besoin d'avoir en entrée des éléments de précision $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $. Tandis que dans le cas où l'on connaît $p_1$ on a besoin de calculer une solution de \eqref{eq:LS08:diflin} de précision $2\ell - 1$ et avec le résultat de Lairez-Vaccon on a besoin d'avoir une précision en entrée de $ 1 + \lfloor \log_p(2 \ell - 1) \rfloor $ nombres $p$-adiques.
-\end{proof}
-
-\begin{rem}
-Lors de l'étape $2$ de l'algorithme de  Lercier Sirvent (\ref{alg:LS08:modified}) on a besoin de connaître l'évaluation du $\ell$ème polynôme modulaire en $j_E$: $\phi_{\ell}(X,j_E)$ et on a aussi besoin de connaître des dérivées partielles de $\phi_{\ell}$ lors de l'étape $3$ (voit \ref{sub:Elkies}), ceci suppose donc la connaissance de $\phi_{\ell}$ qui à l'aide de formules (voir \cite[Theoreme 17.22]{ehcc05}) peut nous permettre de connaître $p_1$. Ainsi il est très raisonnable de penser que l'algorithme de Lercier Sirvent peut être utilisé dans certains cas avec une précision d'au plus $1 + \lfloor \log_{p}(2\ell - 1) \rfloor$.
-\end{rem}
-
-\begin{prop}
-L'algorithme \ref{alg:LS08:modified} calcule une $\ell$-isogénie à l'aide de $O(\ell^2)$  opérations sur $\mathbb{Q}_q$.
-\end{prop}
-
-\begin{proof}
-On ne considère pas dans cette analyse le coût de la construction de $\mathbb{Q}_q$.
-L'étape $1$ de relèvement de la courbe $E$ dans $\mathbb{Q}_q$ est considéré comme nul car on prend un relevé trivial de $E$.
-L'étape $2$ peut être faite en $\tilde{O}(\ell)$ opérations sur $\mathbb{F}_q$ à l'aide d'un relèvement de Hensel. 
-L'étape $3$ du calcul d'une équation de Weierstrass normalisée a une complexité de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$ à l'aide des formules de Elkies \cite{elkies1998} (voir \ref{sub:Elkies}).
-L'étape $4$ est l'algorithme BMSS \ref{alg:BMSS:total} et a une complexité de $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{Q}_q$ si on ne connaît pas la valeur de $p_1$ (somme des abscisses des points du noyau de l'isogénie). L'étape $4$ a un coût de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{Q}_q)$ si on connaît la valeur de $p_1$ ce qui est envisageable dès lors que l'on se sert des dérivées du polynôme modulaire à l'étape $3$ et d'une évaluation du polynôme modulaire à l'étape $2$.
-Les deux dernières étapes ont elles un coup négligeable par rapport au reste des opérations, d'où le coût total de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$.
-\end{proof}
-
-\begin{rem}
-Le coût de calcul des coefficients de $\phi_{\ell}$ à précision $p^{1+\log(4\ell -1)}$ est de $O(\ell^3 \log^3\ell \log\log\ell)$ opérations binaires et $O(\ell^2 \log \ell)$ d'espace binaire pour stocker les $O(\ell^2)$ coefficients de $\phi_{\ell} \in \mathbb{Z}_p[X,Y]$ d'après \cite[Algorithm 6.1, Theorem 1]{BLS12} en utilisant la précision $1+ \lfloor \log_p(4\ell-1) \rfloor$ préconisée par \cite{LairezVaccon16}.
-\end{rem}
-
-
-\subsection{Algorithme de Couveignes et ses améliorations}
-Dans cette section l'algorithme de Couveignes \cite{Couveignes96} va tout d'abord être présenté puis ensuite les différentes améliorations apportées par De Feo dans \cite{DeFeo10}.
-
-L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires $\ell$-isogènes définies sur un corps fini $\mathbb{F}_q$ avec $\ell$ premier avec $p$ et calcule la $\ell$-isogénie $\mathbb{F}_q$-rationnelle qui les relie. L'algorithme marche uniquement en caractéristique $p$ impaire. 
-
-
-\subsubsection{Algorithme original de Couveignes}
-Soit $I$ la $\ell$-isogénie qui relie deux courbes elliptiques ordinaires $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$ on a: $I(E[p^k])=E'[p^k]$.
-C'est cette correspondance qui, lorsque $k$ est assez grand, donne une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement, l'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle avec les formules de Vélu (voir \ref{sse:Vel}) on a:
-\begin{equation}
-\frac{g(x([k] P))}{h(x([k] P))}=x([k] P') \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
-\end{equation}
-avec $\deg g = \ell$ et $\deg h = \ell-1$.
-Pour calculer l'isogénie l'algorithme de Couveignes calcule un polynome $A \in \mathbb{F}_q[X]$ tel que l'on ait 
-\begin{equation}
-A(x([k] P))= x([k] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
-\end{equation} 
-avec $T \in \mathbb{F}_q[x]$ qui s'annule sur les abscisses des points de $E[p^k]$ car on se travaille sur la $p^k$ torsion. La valeur de $k$ est en pratique choisie telle que $p^k \geqslant 4 \ell+1$. En effet on veut faire une interpolation de Cauchy pour calculer la forme explicite de Vélu, normalement on a besoin de $p^k \geqslant 2 \ell +1$ mais comme tout point d'ordre différent de $2$ a son opposé de même abscisse on doit doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\alpha P'$ avec $\alpha \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^* $) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
-
-\subsubsection{Coût de Couveignes}
-
-\paragraph{Calcul de la $p$-torsion}
-La première étape de l'algorithme est le calcul de générateurs de la $p^k$ torsion. On a tout d'abord besoin de définir les points de $p$-torsion pour cela on se sert du travail de Gunji \cite{Gunji76} et on se place dans le cas où $p \neq 2$. Le lecteur intéressé par le cas $p=2$ pourra se référer à \cite[3.2]{DeFeo11}.
-
-\begin{defi}
-Soit $E$ une courbe elliptique définie par l'équation: $y^2=f(x)$. L'\emph{invariant de Hasse} est le coefficient de $X^{p-1}$ dans $f(X)^{\frac{p-1}{2}}$ on le note $H_{E}$.
-\end{defi}
-
-Gunji a alors démontré le résultat suivant:
-
-\begin{thm}
-\label{thm:Gunji}
-Soient $c_p, c_{p-1}, \cdots, c_{0}$ les racines de $X^{p-1}-H_{E}$ dans son corps de décomposition. Les abscisses des points de $p$-torsion de $E$ sont données par: 
-\begin{equation*}
-X^{p}_i=\frac{\Delta_0^2-a_6c_i^2\Delta_1^2}{4c_i^2}
-\end{equation*}
-avec $\Delta_0$ et $\Delta_1$ les detérminants des matrices données dans la figure \ref{fig:gun:det} avec $r=\frac{p-1}{2}, \alpha_{\nu}=\nu (\nu -1 ) a_6, \beta_{\nu}=\nu(\nu-\frac{1}{2})a_4 \nu_{\nu}=\nu^2a_2$ et $\delta_{\nu}=\gamma(\nu + \frac{1}{2})$ avec $\Delta_1=1$ lorsque $r=1$.
-\end{thm}
-
-\begin{figure}
-\label{fig:gun:det}
-\begin{equation*}
-\begin{alignedat}{1}
-\Delta_0 &=\left| 
-\begin{matrix}
-\beta_1 & \alpha_2 & 0 & 0 & \cdots & 0\\
-\delta_1 & \gamma_2 - c^2 & \beta_3 & \alpha_4 & \ddots & \vdots \\
-0 & \delta_2 & \gamma_3 - c^2 & \beta_4 & \ddots & 0 \\
-\vdots & \ddots & \delta_3 & \ddots & \ddots & \alpha_r \\
-\vdots & & \ddots  & \ddots & \ddots & \beta_r \\
-0 & \cdots & \cdots & 0 & \delta_{r-1} & \gamma_r - c^2 
-\end{matrix}
-\right| \\
-\Delta_1 &= \left| 
-\begin{matrix}
-\gamma_2-c^2 & \beta_3 & \alpha_4 & \cdots & 0 \\
-\delta_2 & \gamma_3 - c^2 & \beta_4 & \ddots & \vdots \\
-0 & \delta_3 & \ddots & \ddots & \alpha_r \\
-\vdots & \ddots & \ddots & \ddots & \beta_r \\
-0 & \cdots & 0 & \delta_{r-1} & \gamma_r-c^2
-\end{matrix}
-\right|.
-\end{alignedat}
-\end{equation*}
-\caption{Les déterminants $\Delta_0$ et $\Delta_1$ apparaissant dans la formule de Gunji.}
-\end{figure}
-
-En notant $c$ l'une des racinces $p-1$ ème de $H_E$, ce résultat implique que les points de $p$-torsion sont définis dans $\mathbb{F}_q[c]$ et leurs abscisses sont incluses dans $\mathbb{F}_q[c^2]$.
-
-
-Le calcul de la $p^k$-torsion est effectué itérativement à l'aide de la $p$-descente, pour celle-ci on se sert de la décomposition de la multiplication par $p$: 
-\begin{equation}
-[p]=\pi \circ V
-\end{equation}
-avec $\pi$ le Frobenius défini sur $\mathbb{F}_q$ et $V$ le Verschiebung. L'idée originale est donc d'inverser chacune  de ces isogénies pour calculer itérativement des antécédents de point de $p^i$-torsion par $[p]$. Inverser l'isogénie séparable $V$ revient notamment à factoriser un polynômes de degré $p$ dans une extension de $\mathbb{F}_q$, $V$ peut être explicité à l'aide de la $p$-torsion de $E: E[p]$. 
-
-Une autre approche a été proposé par De Feo pour prendre avantage notamment des constructions de tour d'Artin Schreier en s'appuyant sur les travaux de Voloch \cite{Voloch90} celle-ci a été suggéré dans l'article original \cite{Couveignes96}. On suppose $p\neq 2$ et l'on pose $E$ et $\widehat{E}$ d'équations respectives:
-\begin{equation}
-\begin{alignedat}{1}
-y^2 &= f(x)x^3+a_2x^2+a_4x+a_6 \\
-\widehat{y}^2 &= \widehat{f}(\widehat{x})=\widehat{x}^3+\sqrt[p]{a_2}\widehat{x}^2+\sqrt[p]{a_4}\widehat{x}+\sqrt[p]{a_6}
-\end{alignedat}
-\end{equation}
-on pose alors:
-\begin{equation}
-\widehat{f}(x)^{\frac{p-1}{2}}=\alpha(x)+H_{\widehat{E}}X^{p-1}+X^{p}\beta(x)
-\end{equation}
-aec $\deg  \alpha <p-1$ et $H_{\widehat{E}}$ l'invariant de Hasse de $\widehat{E}$. Voloch a alors démontré le résultat suivant:
-\begin{prop}
-Soit $\widehat{c}$ une racine $p-1$ ème de $H_{\widehat{E}}$, le recouvrement de $\widehat{E}$ défini par:
-\begin{equation}
-\label{eq:vol:cov}
-C:\widehat{z}^p-\widehat{z}=\frac{\widehat{y}\beta( \widehat{x})}{\widehat{c}^p}
-\end{equation}
-est un recouvrement étale de degré $p$ et est isomorphe à $E$ sur $\mathbb{F}_q[c]$ à l'aide de l'isomorphisme suivant:
-\begin{equation}
-\label{eq:vol:iso}
-\begin{alignedat}{1}
-(\widehat{x},\widehat{y}) &= V(x,y) \\
-\widehat{z} &= \frac{-y}{\widehat{c}^p}\sum_{i=1}^{p-1}\frac{1}{x-x([i]P_1)}
-\end{alignedat}{1}
-\end{equation}
-avec $P_1$ un point d'ordre $p$ de $E$.
-\end{prop}
-
-La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré-images sur $C$ en résolvant l'équation \eqref{eq:vol:cov}. On résoud alors l'équation \eqref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition précédente nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \ref{fig:dra:des}.
-
-\begin{figure}
-\begin{center}
-\label{fig:dra:des}
-\begin{tikzpicture}
-\begin{scope}
-    \coordinate (E) at (0, 0) ;
-   	\coordinate (E') at (5, 0);
-   	\coordinate (C) at (0, -3) ;
-   	%\draw (E) node {$\bullet$};
-   	%\draw (E) node[left] {$E$};
-   	%\draw (E') node {$\bullet$};
-   	%\draw (C) node {$\bullet$};
-   	%\draw (E') node[right] {$\widehat{E}$};
-   	%\draw (C) node[below] {$C$};
-   	\node (C) at (0,-3) {$C$};
-   	\node (E) at (0,0) {$E$};
-   	\node (E') at (5,0) {$\widehat{E}$};
-   	\draw[ thick,<-] (E) to[bend left=20] node[above left] {$\pi$} (E');
-   	\draw[ thick,<-] (E') to[bend right=-20] node[below right] {$V$} (E);
-    \draw[thick,->] (E) to node [midway, left] {$\cong$} (C);
-    \draw[thick,->] (C) to (E');
-\end{scope}
-\end{tikzpicture}
-\caption{Descente d'un point de $p$-torsion sur $E$.}
-\end{center}
-\end{figure}
-
-Cette méthode est plus efficace que la méthode standard car à l'aide des constructions de Tour d'Artin-Schreier on peut résoudre plus rapidement l'équation \eqref{eq:vol:cov} qui est une équation d'Artin-Schreier cette équation peut être résolue à l'aide de méthodes de \cite[§6.1]{DeFeo-Shost'12} ou par algèbre linéaire comme dans \cite{Couveignes96}. Une fois qu'une solution $\tilde{z}$ de \eqref{eq:vol:cov} est trouvée il faut alors résoudre en $x$ et en $y$ le système de \eqref{eq:vol:iso} à l'aide d'un calcul de $\mathrm{pgcd}$ plus de détails peuvent être trouvés dans \cite[§6.2]{Ler97a} ou dans \cite[§7]{DeFeo11} alors que dans la méthode préconisée auparavant on devait factoriser un polynôme.
-
-Comme le travail de \cite{DeFeo11} repose sur les constructions de tour d'Artin Schreier, dont une brève description sera faite \textcolor{red}{ref. à mettre} pour plus de détails voir \cite{DeFeo-Shost'12}, et que celles-ci sont construites comme des extensions de $\mathbb{F}_p$ alors les complexités seront exprimées en terme d'opérations sur $\mathbb{F}_p$ en rappelant la convention que l'on a $q=p^d$.
-
-\begin{lem}
-Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
-\end{lem}
-
-\begin{proof}
-Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\widehat{c}$ racines $p-1$ ème de $H_{E}$ et $H_{\widehat{E}}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
-\end{proof}
-
-Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est amené à effectuer les calculs. On introduit donc la définition de tours d'extensions $p$-adique, le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement la valuation $p$-adique de la torsion rationnelle de la courbe de $1$.
-
-\begin{defi}
-\label{def:p-adic:level}
-Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour de \emph{niveau} $p$-adique  $\mathbb{L}_0,  \mathbb{L}_1, \mathbb{L}_2, \cdots \mathbb{L}_i$ telle que $\mathbb{L}_i$ soit la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{L}_i)$. On pose $\mathbb{L}_0=\mathbb{F}_q$.
-\end{defi}
-
-\begin{prop}
-\label{pro:ord:fro}
-Pour une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic:level} on a:
-\begin{itemize}
-\item $[\mathbb{L}_1:\mathbb{F}_q] \mid p-1$
-\item Pour tout $i \geqslant 1$ on a soit $[\mathbb{L}_{i+1}:\mathbb{L}_{i}]=p$ soit $\mathbb{L}_{i+1}=\mathbb{L}_{i}=\cdots = \mathbb{L}_{1}$.
-\end{itemize}
-\end{prop}
-
-Avant de prouver cela on a besoin du lemme suivant:
-
-\begin{lem}
-\label{lem:ord}
-Soit $p$ un nombre premier, soit $c$ un nombre premier avec $p$. Pour tout $k \geqslant 1$ on note $\mathrm{ord}_k(c)$ l'ordre de $c$ dans $\mathbb{Z}/p^k\mathbb{Z}$. Alors $\mathrm{ord}_{k+1}(c)=\mathrm{ord}_k(c)$ implique que $\mathrm{ord}_k(c) = \mathrm{ord}_{k-1}(c)$.
-\end{lem}
-
-La preuve suivante de la proposition \label{pro:ord:fro} n'est pas différente de celle dans \cite[Proposition 5]{DeFeo11} mais celle-ci est tout de même intéressante par son approche dont notamment l'étude de l'action du Frobenius sur le $p$-module de Tate d'où sa retranscription ici.
-
-\begin{proof}
-On a $[\mathbb{L}_1:\mathbb{F}_q] \mid p-1$ par le théorème \ref{thm:Gunji}. Prouvons maintenant le second point,
-on rappelle tout d'abord l'équation caractéristique du Frobenius:
-\begin{equation}
-X^2 - t_{\pi}X + q = 0
-\end{equation}
-Maintenant si l'on regarde cette équation restreinte à la $p$-torsion, on a alors l'équation qui a deux solutions: $0 \bmod p$ et $t_{\pi} \bmod p$. La solution $0 \bmod p$ est écartée car le Frobenius ne peut avoir de noyau non trivial. Ainsi l'action du Frobenius sur la $p$-torsion revient à une multiplication par $t_{\pi} \bmod p$. Dés lors si l'on regarde cette équation sur $T_{p}(E)$ on voit que l'action du Frobenius peut être représentée par une multiplication par $\mathfrak{t}_{\pi} \in \mathbb{Z}_{p} $. 
-Regardons alors l'action du groupe de Galois $G$ de $\mathbb{F}_q$ sur $T_{p}(E)$. Comme $G$ est engendré par l'automorphisme de $\mathbb{F}_q$, la restriction de son action à $E[p^k]$ peut être représentée par la multiplication de $t_k=\mathfrak{t}_{\pi} \bmod p^k$. Ainsi on a $[\mathbb{L}_k:\mathbb{F}_q]=\mathrm{ord}(t_k)$.
-
-Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
-\end{proof}
-
-On voit donc à travers la preuve de la proposition \ref{pro:ord:fro} que si $E[p] \subset E(\mathbb{F}_q)$ alors il est possible que $\mathbb{L}_0=\mathbb{L}_1=\mathbb{L}_2$, de même lorsque l'on a $E[p] \not\subset E(\mathbb{F}_q)$ il est possible que $\mathbb{L}_1=\mathbb{L}_2$, dés lors la distinction suivante est nécessaire.
-
-
-%On voit donc à travers ce résultat qu'il est possible que l'on ait $\mathbb{U}_2=\mathbb{U}_1$ alors que l'on peut avoir $\mathbb{U}_0 \neq \mathbb{U}_1$. En effet pour $d=[\mathbb{U}_1:\mathbb{F}_q]$ on a $t_{\pi}(\mathbb{U}_1)=t_{\pi}(\mathbb{F}_q)^d$, ainsi il est nécessaire de prendre en compte ce cas afin de pouvoir quantifier la taille des tours sur lesquelles on travaille.
-
-\begin{defi}
-Soit $\mathbb{L}_0, \mathbb{L}_1, \mathbb{L}_2, \cdots, $ une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic:level} alors on définit
-\begin{itemize}
-\item $v_p(E(\mathbb{F}_q))=\max\left( i, \mathbb{L}_i \subset \mathbb{F}_q \right)$,
-\item $v_p(E(\mathbb{L}_1))=\max\left( i, \mathbb{L}_i \subset \mathbb{L}_1 \right)$.
-\end{itemize}
-\end{defi}
-
-\begin{rem}
-Il est à noter que si $v_p(E(\mathbb{F}_q)) \neq 0$ alors $v_p(E(\mathbb{F}_q))=v_p(E(\mathbb{L}_1))$.
-\end{rem}
-
-Ainsi on a $[\mathbb{L}_i:\mathbb{L}_1]=p^{i- v_p(E(\mathbb{L}_1))}$ pour tout $i \geqslant  v_p(E(\mathbb{L}_1))$. Asymptotiquement on a donc $[\mathbb{L}_k:\mathbb{L}_1] \in O(p^k)$.
-
-
-\begin{lem}
-Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2d)$ opérations sur $\mathbb{F}_p$.
-\end{lem}
-
-\begin{proof}
-On utilise les méthodes préconisées par les travaux de Gunji et Voloch. Pour la dernière itération de la $p$-descente on a tout d'abord besoin de résoudre une équation d'Artin Schreier \eqref{eq:vol:cov}, pour cela \cite{Couveignes96} utilise un précalcul de l'inverse de l'application $\mathbb{F}_q$-linéaire  $x \mapsto x^q-x$ qu'il applique ensuite. Il est fait de même avec l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$. Le précalcul a un coût de $O(p^{wk}d)=O(\ell^{w}d)$ opérations sur $\mathbb{F}_p$ avec un stockage de $O(\ell^2d)$ éléments de $\mathbb{F}_p$.
-Ces pré calculs peuvent être réutilisés pour d'autres calculs de $\ell$-isogénies.
-Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 d)$ opérations sur $\mathbb{F}_p$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$ est négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
-\end{proof}
-
-\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide d'une interpolation de Cauchy la fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire $T$ qui s'annule sur les abscisses des points d'ordre $p^k$. 
-
-Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectuée distinctement sur les différentes orbites sous l'action du Frobenius puis en utilisant le théorème des restes chinois on obtient alors un polynôme d'interpolation modulo la $p^k$-torsion primitive. Cette idée de travailler selon les différentes orbites sous l'action du Frobenius est importante et sera donc développée ici, elle sera reprise et améliorée par \cite{DeFeo11} ainsi que dans l'algorithme $\ell$-adique de Couveignes présenté \textcolor{red}{ref à mettre}.
-
-En effet l'ensemble des abscisses des points primitifs de $p^k$-torsion est de taille $p^{k-1}(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{L}_k:\mathbb{F}_q]$ (ou $\frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$ voir corollaire \ref{cor:orb:fro}). Ainsi si l'on note $e$ la taille de ces orbites et $f$ le nombre de représentants on a $e \times f=p^{k-1}(p-1)/2$.
-
-Etudions maintenant plus en détail les orbites des abscisses de points d'ordre $p^k$ sous les actions d'éléments de groupes de Galois.
-
-
-\begin{cor}
-\label{cor:orb:fro}
-Soit $k$ tel que que $\mathbb{L}_k \neq \mathbb{F}_q$ avec $\mathbb{L}_k$ défini comme dans \ref{def:p-adic:level}, 
-la taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $[\mathbb{L}_k:\mathbb{F}_q]$  est égale à:
-\begin{enumerate} 
-\item $[\mathbb{L}_k:\mathbb{F}_q]$ si $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$,
-\item $[\mathbb{L}_k:\mathbb{F}_q]/2$ si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$.
-\end{enumerate}
-\end{cor}
-
-\begin{proof}
-Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $e$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ cela veut dire que $t_{\pi}^e=1 \bmod p^k$ ou $t_{\pi}^e=-1 \bmod p^k$, par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $e \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{e})^2=1 \bmod p^k$, ainsi $2e \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $e= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
-\end{proof}
-
-
-\begin{rem}
-Ce résultat peut aussi être démontré à l'aide du théorème de Gunji \ref{thm:Gunji}, pour $c$ une racine $p-1$ème de $H_E$ les abscisses des points de $p$-torsion sont définies dans $\mathbb{F}_q[c^2]$ qui n'est pas forcément isomorphe à $\mathbb{F}_q[c]$.
-\end{rem}
-
-On va se placer dans la suite de cette section dans le cas où l'on a $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$ afin de ne pas complexifier l'étude.
-
-\begin{lem}
-\label{lem:bij:ord}
-Soient $E$ une courbe elliptique ordinaire définie sur une tour de niveau d'extensions $\ell$-adiques telle que $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$, $P_{k-1}$, $P_k$ deux points de $E$ d'ordres $p^{k-1} \neq 1$ et $p^{k}$ tels que $[p]P_{k}=P_{k-1}$, alors il y a une bijection entre les points de $p$-division de $P_{k-1} \in \mathbb{L}_{k-1}$ et les points de l'orbite générée par l'action de $\sigma $ un générateur de $ \mathsf{Gal}(\mathbb{L}_k:\mathbb{L}_{k-1})$ appliqué à $P_{k}$.
-\end{lem}
-
-\begin{proof}
-L'ensemble des points de $p$-division de $P_{k-1}$ est de cardinalité $p$ car $P$ appartient à $E$ une courbe elliptique ordinaire. La taille de l'orbite de $\sigma$ est quant à elle égale $[\mathbb{L}_k:\mathbb{L}_{k-1}]$ égale à $p$ car $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$. Il ne reste donc qu'à montrer une inclusion pour montrer l'égalité. On a vu dans la preuve de la proposition \ref{pro:ord:fro} que l'on pouvait déterminer les points de $p^k$ torsion comme des vecteurs propres pour le Frobenius. Ainsi le point $P_k$ correspond à $t_{k} \bmod p^k$ et ses conjugués correspondent à $t_{k-1}^i P_{k} \bmod p^k$ avec $i \in \{0, \cdots , p-1  \}$ et l'on a $[pt_{k-1}^i]P_{k}=[t_{k-1}^i \bmod p^k]P_{k-1}=[1]P_{k-1}$ car $t_{k-1}^i= \mathfrak{t}_{\pi} \bmod p^{k-1}$.
-\end{proof}
-
-\begin{thm}
-\label{thm:orb:fro}
-Soit $k\geqslant  v_p({E(\mathbb{L}_1)} \geqslant 1$,
- $P \in E(\mathbb{L}_{k})$ tel que $\langle P \rangle =E[p^k]$ 
- alors l'orbite de $P$ sous l'action d'un élément générateur
-  de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{L}_{v_p({E(\mathbb{L}_1)})})$:
-   $\mathsf{orb}(x(P))=
-   \{ x([n]P) , 
-   n= \pm 1 \bmod p^{v_p({E(\mathbb{L}_1)})} \}$. 
-\end{thm}
-
-\begin{proof}
-Soit $[n]P$ un point de $E[p^k]$ appartenant à l'orbite de $P$, alors $P$ et $[n]P$ sont tous les deux des points de $p$-division d'un même point d'ordre $p^{k-1}$ par le lemme \ref{lem:bij:ord}. On montre par récurrence que $P$ et $[n]P$ sont des points de $p^{k-v_p({E(\mathbb{L}_1)})}$-division de $[p^{k-v_p({E(\mathbb{L}_1)})}]P \in \mathbb{L}_{v_p({E(\mathbb{L}_1)})}$ d'ordre $p^{v_p(E(\mathbb{L}_1))}$. Ainsi on a $[np^{k-v_p(E(\mathbb{L}_1))}]P=[p^{k-v_p(E(\mathbb{L}_1))}]P$ comme $P$ est un point d'ordre $p^k$ on a $np^{k-v_p(E(\mathbb{L}_1))}=p^{k-v_p(E(\mathbb{L}_1))} \bmod p^k$ ce qui nous permet de déduire que l'on a $n=1 \bmod p^{v_p(E(\mathbb{L}_1))}$. Comme il y a $p^{k-v_p(E(\mathbb{L}_1))}$ $n \bmod p^k$ qui vérifient cette condition alors on a bien déterminé tous les points de l'orbite. Les opposés des points ayant la même abscisses alors les abscisses des points $[n]P$ avec $n=-1 \bmod p^{v_p(E(\mathbb{L}_1))}$ appartiennent aussi à l'orbite de $x(P)$ sous l'action d'un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-v_p(E(\mathbb{L}_1))}:\mathbb{U}_{v_p(E(\mathbb{L}_1))})$ mais on préférera éviter dans les calculs ces doublons inutiles.
-\end{proof}
-
-\begin{prop}
-\textcolor{red}{inclus dans le corollaire suivant...}
-Soient $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_1$ avec $d_1 \mid p-1$, alors les orbites des points d'ordre $p$ sous l'action de $\mathsf{Gal}(\mathbb{L}_1:\mathbb{F}_q)$ est de taille de $d_1 $ et il y a $f$ orbites telles que $f \times d_1  = (p-1)/2$.
-\end{prop}
-
-
-\begin{cor}
-Soient $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_1$ avec $d_1 \mid p-1$, $k \geqslant 1$, alors les orbites des abscisses de points d'ordre $p^k$ sous l'action de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{F}_q)$ sont de taille $d_1 p^{k-v_p(E(\mathbb{L}_1))}$ et il y a $f$ orbites telles que $f \times d_1 p^{k-v_p(E(\mathbb{L}_1))} = p^{k-1}(p-1)/2$.
-\end{cor}
-
-%Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $f$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 0$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i+1}:\mathbb{L}_{v_E(p)+i}]$ est un antécédent de $P_i$ par $[p]$ (voir lemme \ref{lem:bij:ord}). 
-
-Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses des points d'ordre $p^{i+v_p(E(\mathbb{L}_1))}$ selon l'action du Frobenius et les différentes orbites. $f$ le nombre de représentants des orbites est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$ et n'est généralement pas égal à $\frac{[\mathbb{L}_1: \mathbb{F}_q]}{2}$. En effet $\mathbb{L}_1$ est construit comme une extension de $\mathbb{F}_q$ qui contient les points de $p$-torsion de $E$ et donc $[\mathbb{L}_1: \mathbb{F}_q]=d_1 \mid p-1$ par le théorème de Gunji \ref{thm:Gunji}.
-
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
-		\node (U0) at (0,0) {$\mathbb{F}_{q}$};
-		\node (U1) at (0,4) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))}$};
-		\node (U2) at (0,8) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))+1}$};
-		\node (U3) at (0,12) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$};
-        \draw[dashed] (U2) to (U3);
-         \begin{scope}[xshift=6.5cm]
-         \node (A0) at (-5,4) {$\bullet$};
-         \node (A1) at (5,4) {$\bullet$};
-         \draw[dashed] (A0) to (A1);
-         \node (A0b) at (-5.3,4) {};
-         \node (A1b) at (5.3,4){};
-         \draw[color=black,decorate,decoration={brace,raise=0.2cm},below]
-				(A1b) -- (A0b) node[color=black,below=0.2cm, pos=0.5] {$d_1$};
-		\node (A10) at (-7,8) {$\bullet$};
-		\node (A11) at (-3,8) {$\bullet$};
-		\draw[dashed] (A10) to (A11);
-		\draw (A0) to (A10);
-		\draw (A0) to (A11);
-		\node (A12) at (3,8) {$\bullet$};
-		\node (A13) at (7,8) {$\bullet$};
-		\draw (A1) to (A12);
-		\draw (A1) to (A13);
-		\draw[dashed] (A12) to (A13);
-		
-         \end{scope}           
-\end{tikzpicture}
-\end{center}
-\end{figure}
-
-
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
-          \coordinate (U0) at (0, 0);
-          \coordinate (U1) at (0, 4) ;
-          \coordinate (U2) at (0, 6) ;
-          \coordinate (U3) at (0, 8) ;
-          \draw (U0) node{$\mathbb{F}_{q} \subset \mathbb{L}_{v_p(E(\mathbb{L}_1))}$};
-          \draw (U1) node{$\mathbb{L}_{v_p(E(\mathbb{L}_1))+1}$};
-          \draw (U3) node{$\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$};
-          \coordinate (U1b) at (0,4.5);
-          \coordinate (U3b) at (0,7.5);
-          \draw[dashed,-] (U1b) to (U3b); 
-          \coordinate (U4) at (6.5, 0);
-          \coordinate (U5) at (15, 0);
-          \draw[dashed,-] (U4) to (U5);
-          \coordinate (U6) at (9.5,4);
-          \coordinate (U7) at (12,4);
-		  %\draw[dashed,-] (U6) to (U7); 
-		  \coordinate (U10) at (22,0);
-		  \coordinate (U11) at (22,4);
-		  \coordinate (U12) at (22,8); 
-%		  \draw (U10) node{$E[p^{v_p(E(\mathbb{U}_1))}]$};
-%          \draw (U11) node{$E[p^{v_p(E(\mathbb{U}_1))+1}]$};
-%          \draw (U12) node{$E[p^{v_p(E(\mathbb{U}_1))+i}]$};        
-          
-          \begin{scope}[xshift=6.5cm]
-          \coordinate (P0) at (0, 0);
-          \draw (P0) node{$\bullet$};
-          \coordinate (P0b) at (0,0.5);
-          \coordinate (P1) at (-3, 4);
-          \coordinate (P1b) at (-2.5,4);
-          \coordinate (P2) at (3, 4);
-          \coordinate (P2b) at (2.5,4);
-          \coordinate (P3) at (-2, 4);
-          \coordinate (P4) at (2, 4);
-          \draw (P1) node{$\bullet$};
-          \draw (P2) node{$\bullet$};
-          \draw (P3) node[color=black]{$\bullet$};
-          \draw (P4) node[color=black]{$\bullet$};
-          %\draw (P4) node[color=black!30]{$\bullet$};
-          \draw [-] (P0) to (P1);
-          \draw [-] (P0) to (P2);
-          \draw[dashed] (P0) to (P3);
-          \draw[dashed] (P0) to (P4);
-          \coordinate (P1c) at (-1.4,4);
-          \coordinate (P11) at (1.4,4);
-          \draw[dashed] (P1c) to (P11);  
-          %dernier etage a gauche
-          \coordinate (P20) at (-4.5,8);
-          \coordinate (P21) at (-1.5,8);
-          \draw (P21) node{$\bullet$};
-          \draw (P20) node{$\bullet$};
-          \draw [-] (P1) to (P21);
-          \draw [-] (P1) to (P20);
-          \coordinate (P23) at (-4,8);
-          \coordinate (P24) at (-2,8);
-          \draw [dashed,-] (P1) to (P23);
-          \draw [dashed,-] (P1) to (P24);
-          \coordinate (P25) at (-3.3,8);
-          \coordinate (P26) at (-2.7,8);
-          \draw (P23) node{$\bullet$};
-          \draw (P24) node{$\bullet$};
-          \draw [dashed,-] (P25) to (P26);
-%          \coordinate (P27) at (-4,7);
-%          \coordinate (P28) at (-2,7);
-%          \draw [dashed,-] (P27) to (P28);
-		  %dernier etage a droite
-		  \coordinate (P1) at (3,4);
-          \coordinate (P20) at (4.5,8);
-          \coordinate (P21) at (1.5,8);
-          \draw (P21) node{$\bullet$};
-          \draw (P20) node{$\bullet$};
-          \draw [-] (P1) to (P21);
-          \draw [-] (P1) to (P20);
-          \coordinate (P200) at (4.6,8);
-          \coordinate (P210) at (-4.6,8);
-          \draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
-				(P210) -- (P200) node[color=black,above=0.2cm, pos=0.5] {e};
-          \coordinate (P23) at (4,8);
-          \coordinate (P24) at (2,8);
-          \draw [dashed,-] (P1) to (P23);
-          \draw [dashed,-] (P1) to (P24);
-          \coordinate (P25) at (3.3,8);
-          \coordinate (P26) at (2.7,8);
-          \draw (P23) node{$\bullet$};
-          \draw (P24) node{$\bullet$};
-          \draw [dashed,-] (P25) to (P26);
-          \end{scope}
-          
-          \begin{scope}[xshift=16.5cm]
-          \coordinate (P0) at (0, 0);
-          \draw (P0) node{$\bullet$};
-          \coordinate (P0b) at (0,0.5);
-          \coordinate (P1) at (-3, 4);
-          \coordinate (P1b) at (-2.5,4);
-          \coordinate (P2) at (3, 4);
-          \coordinate (P2b) at (2.5,4);
-          \coordinate (P3) at (-2, 4);
-          \coordinate (P4) at (2, 4);
-          \draw (P1) node{$\bullet$};
-          \draw (P2) node{$\bullet$};
-          \draw (P3) node[color=black]{$\bullet$};
-          \draw (P4) node[color=black]{$\bullet$};
-          %\draw (P4) node[color=black!30]{$\bullet$};
-          \draw [-] (P0) to (P1);
-          \draw [-] (P0) to (P2);
-          \draw[dashed] (P0) to (P3);
-          \draw[dashed] (P0) to (P4);
-          \coordinate (P1c) at (-1.4,4);
-          \coordinate (P11) at (1.4,4);
-          \draw[dashed] (P1c) to (P11);  
-          %dernier etage a gauche
-          \coordinate (P20) at (-4.5,8);
-          \coordinate (P21) at (-1.5,8);
-          \draw (P21) node{$\bullet$};
-          \draw (P20) node{$\bullet$};
-          \draw [-] (P1) to (P21);
-          \draw [-] (P1) to (P20);
-          \coordinate (P23) at (-4,8);
-          \coordinate (P24) at (-2,8);
-          \draw [dashed,-] (P1) to (P23);
-          \draw [dashed,-] (P1) to (P24);
-          \coordinate (P25) at (-3.3,8);
-          \coordinate (P26) at (-2.7,8);
-          \draw (P23) node{$\bullet$};
-          \draw (P24) node{$\bullet$};
-          \draw [dashed,-] (P25) to (P26);
-%          \coordinate (P27) at (-4,7);
-%          \coordinate (P28) at (-2,7);
-%          \draw [dashed,-] (P27) to (P28);
-		  %dernier etage a droite
-		  \coordinate (P1) at (3,4);
-          \coordinate (P20) at (4.5,8);
-          \coordinate (P21) at (1.5,8);
-          \draw (P21) node{$\bullet$};
-          \draw (P20) node{$\bullet$};
-          \draw [-] (P1) to (P21);
-          \draw [-] (P1) to (P20);
-          \coordinate (P210) at (-4.6,8);
-          \coordinate (P200) at (4.6,8);
-          \draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
-				(P210) -- (P200) node[color=black,above=0.2cm, pos=0.5] {e};
-          \coordinate (P23) at (4,8);
-          \coordinate (P24) at (2,8);
-          \draw [dashed,-] (P1) to (P23);
-          \draw [dashed,-] (P1) to (P24);
-          \coordinate (P25) at (3.3,8);
-          \coordinate (P26) at (2.7,8);
-          \draw (P23) node{$\bullet$};
-          \draw (P24) node{$\bullet$};
-          \draw [dashed,-] (P25) to (P26);
-          \end{scope}
-          \draw[color=black,decorate,decoration={brace},below]
-				(16.7,-1) -- (6.4,-1) node[color=black,below,pos=0.5] {f};
-        \end{tikzpicture}
-\caption{Classification des points de $p^k$-torsion selon l'action du Frobenius}
-\label{fig:p-tor:fro}
-\end{center}
-\end{figure} 
-
-
-
-Ainsi asymptotiquement la taille des orbites $e \in O(p^k)$, dés lors ne serait-ce que pour représenter un polynôme d'interpolation défini sur une orbite on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette question et seront présentées à \textcolor{red}{ref à mettre}.
-
-Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation $A$ et du polynome $T$ qui s'annule sur les abscisses des points d'ordre $p^k$ est fait à l'aide de $O(\mathsf{M}(p^{k})\log(p^k))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03}.
-%En pratique on travaille avec les points primitifs de $p^k$-torsion afin de pouvoir se servir de l'action du Frobenius pour parcourir tous les éléments à l'aide des représentants et de l'action du Frobenius.
-
-%\begin{lem}
-%Le coût de calcul de l'interpolation de Cauchy est de opérations sur $\mathbb{F}_q$.
-%\end{lem}
-%
-%\begin{proof}
-%Tout d'abord il y a le coût de calcul des abscisses des points d'ordre $p^k$, ceci est fait indépendamment de l'hypothèse sur le choix de l'image du générateur de la $p^k$-torsion et pourra donc être réutilisé si cette hypothèse s'avère fausse. Pour calculer tous les points primitifs de $p^k$-torsion on a besoin d'effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{U}_k:\mathbb{F}_q] \in O(p^k) $ et donc ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$.
-%Ensuite il faut calculer le polynôme d'interpolation de degré $f$ avec $f \in O(p^k)$ sur des points définis dans une extension de $\mathbb{F}_q$ de taille $f$ .
-%\end{proof}
-
-\paragraph{Validation de l'isogénie} On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=\ell$ et $\deg(V)=\ell-1$. Ensuite on vérifie que $V$ est bien un carré (ou si $\ell$ est pair que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(\ell) \log(\ell))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $\ell$-division, pour cela on calcule le polynôme de $\ell$ division en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$. 
-
-
-\subsubsection{Améliorations de Couveignes: Calcul de la $p^k$-torsion}
-
-Comme dit précédemment des améliorations ont été apportées dans \cite{DeFeo11}, elles sont toutes utilisées dans notre approche $\ell$-adique de l'algorithme de Couveignes, soit directement soit adaptées c'est pourquoi certaines parties seront plus détaillées que d'autres.
-
-Pour le calcul de la $p^k$-torsion \cite{DeFeo11} utilise les méthodes précédemments présentés issues des travaux de \cite{Gunji76} et \cite{Voloch90}, la différence est que les calculs sont faits sur des tours d'Artin-Schreier (tours $p$-adiques).
-
-Faisons une brève présentation des tours d'Artin-Schreier, pour plus de détails voir \cite{DeFeo-Shost'12}.
-\textcolor{red}{Cette brève description est bien inutile...}
-\begin{defi}[tour $p$-adique]
-Soit $\mathbb{F}_q$ un corps fini, soit $\mathbb{U}_0$, $\mathbb{U}_1$, $\cdots$, $\mathbb{U}_i$ la suite d'extensions de corps définie telle que:
-\begin{itemize}
-\item $\mathbb{U}_0=\mathbb{F}_q$
-\item $[\mathbb{U}_1 : \mathbb{F}_q]= d_1$
-\item $[\mathbb{U}_{i+1} :\mathbb{U}_i]= p$ pour tout $i \geqslant 1$.
-\end{itemize}
-\end{defi}
-
-Une représentation efficace d'une tour $p$-adique est une tour dite \emph{primitive} dans laquelle tout corps de la tour est généré par un élément de celle-ci. Ainsi la multiplication de deux éléments de la tour peut être faite à l'aide de leur représentation en polynômes univariés à l'opposé de représentations multivariées qui ne sont pas efficaces.
-
-On présente donc à cet effet comment est construite une telle tour d'après \cite{DeFeo-Shost'12}:
-\begin{thm}
-Soit $\mathbb{U}_1=\mathbb{F}_p[X_1]/Q_1$, avec $Q_1$ un polynôme irréductible de degré $d \times d_1$, soit alors $x_1=X_1 \bmod Q_1$ tel que $Tr_{\mathbb{U}_1/\mathbb{F}_p}(x_1)\neq 0$. On définit la suite de polynômes $G_i$ avec $ 1 \leqslant i \leqslant k$ par:
-\begin{equation}
-\begin{cases}
-G_1=X_1 & \\
-G_2=X_2 & \text{si } p=2 \text{ et } d \text{ impair} \\
-G_i=X_i^{2p-1} & \text{dans les autres cas.} 
-\end{cases}
-\end{equation}
-La suite $(G_i)_{1 \leqslant i \leqslant k }$ définit une \emph{tour d'extension $p$-adique} $(\mathbb{U}_1, \cdots, \mathbb{U}_k)$ dans laquelle pour tout $i$ on a $\mathbb{U}_i=\mathbb{F}_p[X_1, \cdots, X_i]/K_i$ avec $K_i$ l'idéal engendré par:
-\begin{equation}
-\begin{cases}
-P_i=X_i^P-X_i-G_i(X_0, \cdots,X_{i-1}) \\
-\cdots \\
-P_2=X_2^P-X_2-G_1(X_1)\\
-Q_1(X_1)
-\end{cases}
-\end{equation}
-dans l'anneau de polynômes $\mathbb{F}_p[X_1, \cdots, X_i]$. De plus cette construction définit une tour primitive pour laquelle $\mathbb{U}_i=\mathbb{F}_p[x_i]$ avec $x_i$ le résidu de $X_i$ dans $\mathbb{U}_i$ pour tout $i \geqslant 1$.    
-\end{thm} 
-
-\begin{proof}
-Voir  \cite[Théorème 2]{DeFeo-Shost'12} 
-\end{proof}
-
-\begin{defi}
-Soit $\alpha \in \mathbb{U}_k=\mathbb{F}_p[x_k]$ avec $k \geqslant 2$ et $g \in \mathbb{F}_p[X_k]$ tel que $\deg(g)<|\mathbb{U}_1|^{p^k}$ $\alpha=g(x_k)$, alors:
-\begin{itemize} 
-\item si $\alpha \in \mathbb{U}_{k-1}$, alors il existe un polynôme $h \in \mathbb{F}_p[X_{k-1}]$ tel que $\deg(h)<|\mathbb{U}_1|^{p^{k-1}}$ $\alpha=h(x_{k-1})$ et le fait d'écrire $\alpha$ comme un élément de $\mathbb{U}_{k-1}$ s'appelle une \emph{descente} (ou push-down dans la littérature anglophone \cite{DeFeo-Shost'12})
-\item comme $\alpha \in \mathbb{U}_{k+1}$, alors il existe un polynôme $j \in \mathbb{F}_p[X_{k-1}]$ tel que $\deg(j)<|\mathbb{U}_1|^{p^{k+1}}$ $\alpha=j(x_{k+1})$ et le fait d'écrire $\alpha$ comme un élément de $\mathbb{U}_{k+1}$ s'appelle un \emph{relèvement} (ou lift dans la littérature anglophone \cite{DeFeo-Shost'12}).
-\end{itemize}
-\end{defi}
-
-Ainsi on va lier cette définition de tours $p$-adiques à celle des tours $p$-adiques de \emph{niveau} évoquée plus tôt définie à l'aide de la $p$-torsion de la courbe elliptique $E$ que l'on étudie.
-
-\begin{rem}
-Ces tours $p$-adique sont les constructions utilisées pour les tours de niveaux.
-En effet on pose $\mathbb{L}_1=\mathbb{U}_1$, et dés lors pour tout $i\geqslant 1$ on pose $\mathbb{U}_{i+1}=\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$.
-\end{rem}
-
-A partir de maintenant on va utiliser uniquement la notation $\mathbb{U}_i$ car celle-ci correspond au pire des cas, celui où $v_p(E(\mathbb{L}_1))=1$ et $v_p(E(\mathbb{F}_q))=0$. Ainsi on va voir comment avec ces constructions de tours $p$-adiques on améliore les différentes étapes de l'algorithme de Couveignes.
-
-\paragraph{$p$-torsion}
-La construction de $\mathbb{F}_q[c]$ est faite comme une extension de $\mathbb{F}_p:\mathbb{F}_p[X]/Q_1(X)$ avec $Q_1$ un polynôme irréductible de degré $dd_1$ qui vérifie l'une des deux conditions suivantes:
-\begin{itemize}
-\item $d d_1 \wedge p =1$
-\item $\deg Q'_1+2 = \deg Q_1$
-\end{itemize}
-Généralement il est suffisant de sélectionner un polynôme $Q_1$ au hasard et de tester si il est irréductible pour avoir un polynôme qui vérifie une de ces conditions. Cela a un coût de $O(dd_1 \mathsf{M}(dd_1)\log(dd_1)\log(pdd_1))$ opérations sur $\mathbb{F}_p$ en utilisant l'algorithme de Ben-Or d'après \cite[Theoreme 14.42]{vzGJG03}.
-
-Ainsi comme $\mathbb{F}_q[c]$ est construit comme une extension de $\mathbb{F}_p$ et non de $\mathbb{F}_q$ les complexités vont être exprimées en termes d'opérations sur $\mathbb{F}_p$. Avec une telle construction la complexité de calculer la $p$-torsion est de: 
-\begin{equation*}
-\tilde{O}(p^2d^3+pC(pd)+C(p)pd+(pd)^{\omega})
-\end{equation*}
-pour plus de détails sur le calcul de complexité voir \cite{DeFeo11}. La démarche étant la même que celle décrite dans la sous section précédente elle n'est pas rappelée ici. Il est à noter que pour ce calcul de complexité $d_1$ a été majoré par $p$ car $d_1 \mid p-1$. 
-
-\begin{rem}
-On rappelle que la convention de noter $q=p^d$ a été prise tout au long de ce document.
-\end{rem}
-
-\paragraph{$p^k$-torsion}
-Pour le calcul de la $p^k$-torsion comme dit précédemment \textcolor{red}{ref à mettre} cela est effectué itérativement en résolvant successivement l'équation \eqref{eq:vol:cov} puis \eqref{eq:vol:iso}.
-
-Ainsi le calcul de la $p^k$-torsion a un coût total de: 
-
-\begin{equation*}
-\tilde{O}_{p,d,\log \ell}((pd)^{\omega}\log_p^2\ell +p^2\ell d \log_p^4\ell +\frac{\ell}{p}C(pd))
-\end{equation*}
-
-A nouveau le détail des calculs de complexité peut être trouvés dans \cite{DeFeo11}, la complexité obtenue pour résoudre \eqref{eq:vol:cov} est faite à l'aide de techniques spécifiques à la construction de tours $p$-adique, plus de détails peuvent être trouvés dans \cite{DeFeo-Shost'12}.
-
-Il est à noter que dans ce cas-là on a plus besoin de stocker une matrice de taille $p^{k-1}d \times p^{k-1}d=O(\ell^2)$ pour résoudre l'équation d'Artin Schreier \eqref{eq:vol:cov}.
-
-\paragraph{Interpolation}
-Dans cette partie on va voir tout d'abord le seul apport de l'utilisation de tours d'Artin-Schreier \cite{DeFeo-Shost'12} pour les opérations utilisées pour l'interpolation de l'isogénie dans l'algorithme original \cite{Couveignes96} puis nous allons voir les modifications apportées à l'algorithme par \cite[§5]{DeFeo11} afin d'obtenir une bien meilleure complexité.
-
-On calcule tout d'abord un polynôme d'interpolation $A$ de degré $p^{k-1}(p-1)-1$ à coefficients dans $\mathbb{U}_k$ à l'aide des $p^{k-1}(p-1)$ couples de points supposés $(P,I(P)))$. Le polynôme d'interpolation $A$ que l'on veut calculer est un polynôme défini sur $\mathbb{F}_q$, on doit donc transposer $A$ sur $\mathbb{F}_q$. On utilise une \emph{descente} (\cite[push-down]{DeFeo-Shost'12}) sur les coefficients de $A$ pour avoir un polynôme exprimé dans $\mathbb{F}_q[c][X]$, enfin on utilise l'expression du plongement de $\mathbb{F}_q$ dans $\mathbb{F}_q[c]$ pour obtenir une expression de $A$ avec des coefficients dans $\mathbb{F}_q$. Finalement on utilise une reconstruction rationnelle sur $\mathbb{F}_q$ pour avoir un candidat pour l'isogénie.
-
-La première étape a un coût de $O(\mathsf{M}(p^{2k}d)\log(p^{k}))$ en utilisant les techniques de \cite[§10.2]{vzGJG03}. Ensuite on utilise une \emph{descente} pour avoir une expression des coefficients de $A$ dans $\mathbb{U}_1[X]=\mathbb{F}_q[c][X]$, cela coûte $\ell L(k-1)$ opérations sur $\mathbb{F}_p$ avec $L$ qui représente le coût d'effectuer un \emph{relèvement} ou une \emph{descente} dans une tour d'Artin Schreier. D'après \cite[Theorem 13]{DeFeo-Shost'12} $L(i) \in O(p^{i+1}d \log^2_p(p^id)+p \mathsf{M}(p^id))$, il est à noter que ce coût est linéaire en la taille de l'entrée (élément de $\mathbb{U}_i$). Enfin à l'aide d'algèbre linéaire on exprime le polynôme sur $\mathbb{F}_q[X]$ en $O(\ell(pd)^2)$ opérations sur $\mathbb{F}_p$. La reconstruction rationnelle coûte $O(\mathsf{M}(p^kd)\log(p^k))$ d'après \cite[§11.1]{vzGJG03}, on a donc un coût total de:
-\begin{equation*}
-O(\mathsf{M}(\ell^2d)\log \ell + \ell L(k-1) + \ell(pd)^2)
-\end{equation*}
-
-Cette étape, la plus coûteuse de l'algorithme de Couveignes, doit être répétée $O(p^k)=O(\ell)$ fois (à chaque fois on change l'hypothèse faite sur l'image du point générateur de la $p^k$-torsion) pour espérer trouver la bonne hypothèse et calculer la $\ell$-isogénie.
-
-On va donc voir dans la prochaine sous-section les améliorations apportées par \cite{DeFeo11} spécifiques à cette partie de l'algorithme.
-
-\subsubsection{AS-FI}
-
-Cette partie sur le calcul du polynôme d'interpolation est cruciale car comme vu précédemment c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un cout minimal de $O(p^k p^kd)$ opérations sur $\mathbb{F}_p$ à l'aide de la méthode précédemment présentée. 
-
-Bien que le polynôme $A$ que l'on souhaite calculer est de degré $p^{k-1}(p-1)-1$ il est possible avec moins d'informations de calculer celui-ci. Le polynôme $A$ étant censé représenter l'action d'une isogénie sur les points d'ordre $p^k$ alors $A$ comme l'isogénie doit commuter avec le Frobenius et être défini sur $\mathbb{F}_q$. Couveignes \cite{Couveignes96} avait préconisé de travailler distinctement sur les orbites de points sous l'action du Frobenius, on utilisait ensuite le théorème des restes chinois pour calculer $A$. Cette méthode avait l'avantage de paralléliser le calcul et d'utiliser des polynômes définis sur $\mathbb{F}_q$ pour le Théorème des Restes Chinois. Cependant cette méthode ne tirait pas pleinement parti du fait que connaître l'image d'un générateur d'une orbite selon l'action du Frobenius fixait la valeur des autres points de l'orbite. Il manquait pour l'algorithme original des techniques efficaces pour faire agir le Frobenius ce que les constructions de tours d'Artin Schreier de \cite{DeFeo-Shost'12} permettent désormais.
-
-On va montrer dans cette section les idées directrices pour obtenir à partir d'un polynôme d'interpolation défini uniquement à l'aide de l'image d'un représentant de l'orbite défini dans $\mathbb{U}_k$ le polynôme d'interpolation défini sur toute l'orbite avec des coefficients dans $\mathbb{F}_q$. Ceci est l'une des raisons pour travailler uniquement avec des points primitifs de $p^k$-torsion puisque que eux seuls sont définis dans $\mathbb{U}_k$ (on s'est placé dans le cas où $\mathbb{L}_k = \mathbb{U}_k$) et sont donc tous dans des orbites de tailles identiques. Bien évidemment on peut généraliser cette méthode à tous les points de $p^k$-torsion en utilisant le théorème des restes chinois, mais d'un point de vue pratique prendre $k$ tel que $p^{k-1}(p-1) > 4 \ell +1$ est suffisant, asymptotiquement le résultat reste le même.
-
-Soient $P$ et $P'$ deux points primitifs de $p^k$-torsion de $E$ et $E'$. On veut calculer le polynôme d'interpolation de degré minimal $A \in \mathbb{F}_q[X]$ tel que:
-\begin{equation}
-A(x([n]P))=x([n]P') \bmod T(x) \quad \text{pour } n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*
-\end{equation} 
-
-avec $T(X)= \prod_{n < \frac{p^{k-1}(p-1)}{2}, n \wedge p =1} (X-x([n]P))$. Il est à noter que le souhait d'avoir $A$ minimal signifie qu'il faut aussi prendre en compte le fait que pour $n \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ on a $x([n]P)=x([-n]P)$ et $x([n]P')=x([-n]P')$. 
-
-Comme on souhaite travailler distinctement sur les différentes orbites selon l'action du Frobenius, on regarde la factorisation de $T(X)$ sur $\mathbb{F}_q$ comme préconisé dans \cite{Couveignes96}:
-
-\begin{equation*}
-T(X)=\prod_{i=1}^fT_{i}(X)
-\end{equation*}
-avec $\deg(T_i)=e=[\mathbb{U}_k:\mathbb{F}_q]$ (ou $e=[\mathbb{U}_k:\mathbb{F}_q]/2$ voir corollaire \ref{cor:orb:fro}) et $ef=p^{k-1}(p-1)/2$.
-
-\'A l'aide du théorème des restes chinois on réduit le problème au calcul de chacun des $T_{i}$ et l'on définit:
-
-\begin{equation}
-A_{i}=A \bmod{T_{i}}.
-\end{equation}
-
-Une fois chacun des $A_{i}$ déterminés on calcule $A$ avec le théorème des restes chinois, dés lors on va se concentrer sur le calcul de $A_{0}$.
-
-
-Ainsi on fait l'hypothèse que l'abscisse du point $P$ générateur de la $p^k$-torsion de $E$ est envoyé sur l'abscisse du point $P'$ générateur de la $p^k$-torsion de $E'$. Par construction de la tour d'Artin-Schreier on a $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$ tel que $\mathbb{U}_k=\mathbb{F}_q[x(P)]$, dés lors on veut calculer: 
-\begin{enumerate}
-\item le polynôme minimal $T_{0}$ de $x(P)$ défini sur $\mathbb{F}_q$ de degré égal à $e$,
-\item le polynôme d'interpolation $A_0$ défini sur $\mathbb{F}_q$ de degré strictement inférieur à $e$ tel que $A_0(x(P))=x(P')$.
-\end{enumerate}
-
-\begin{defi}
-Soient $j > k \geqslant 0$, $\sigma \in \mathsf{Gal}(\mathbb{U}_j:\mathbb{U}_k)$, $T=\sum_{i=0}^{d}t_iX^i \in \mathbb{U}_k[X]$ alors:
-\[
-\sigma(T)=\sum_{i=0}^{d}\sigma(t_i)X^i.
-\]   
-\end{defi}
-
-Soit $A_0$ un polynôme d'interpolation défini sur $\mathbb{F}_q$, alors on a pour tout $\sigma \in \mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$:
-\begin{equation*}
-A_0(\sigma(x(P))=\sigma(A_0(x(P)))=\sigma(x(P')).
-\end{equation*}
-L'information de l'image de $x(P) \in \mathbb{U}_k$ entraîne bien la connaissance des images des éléments de l'orbite de $x(P)$ sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$, ainsi on prend avantage du faible coût du Frobenius dans une tour d'Artin-Schreier à l'aide de l'algorithme \cite[Iter Frobenius,Theorem 17 et 18]{DeFeo-Shost'12} qui a une complexité de $O((i-j)L(i))$ pour le calcul d'une puissance $p^{p^{jd}}$ d'un élément de $\mathbb{U}_i$.
-
-
-%On va donc se servir de l'action du Frobenius sur le polynôme d'interpolation défini uniquement pour un représentant de l'orbite (en l'occurence $L(x(P))=x(P')$) pour déterminer $L$ alors que les méthodes classiques \cite[10.1-2]{vzGJG03} préconisent un arbre de produit binaire avec la connaissance des $x([n]P)$ avec $n \in (\mathbb{Z}/p^k\mathbb{Z})^*$. 
-
-On présente uniquement les idées directrices pour calculer $T$, le calcul de $A_0$ et les idées développées par \cite{DeFeo11} et auparavant par \cite{enge2008} étant repris très largement dans la section \textcolor{red}{ref à mettre plus tard} ils seront plus détaillées à cette occasion.
-
-
-Ainsi on s'est placé dans le cas où $\mathbb{L}_1 \not \cong \mathbb{F}_q$  et $\mathbb{L}_2 \not \cong \mathbb{L}_1$ qui correspond au pire des cas en pratique. Pour plus de détails sur la description des orbites selon les cas possibles le lecteur peut regarder le  lemme \ref{lem:bij:ord}, le théorème \ref{thm:orb:fro} ainsi que les corollaires.
-
-Soient $k \geqslant 1$, $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{U}_{k} \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_{k}$. On note $\mathsf{orb}(x(P))$ l'ensemble des abscisses des points de l'orbite créée par l'action d'un élément générateur $\pi$ de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_{q})$ sur l'élément $x(P) \in \mathbb{U}_k$. On a donc:
-\begin{equation*}
-T_{0}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P)), n \leqslant p^k-1/2}(x-x([n]P))=\prod_{i=0}^{p^{k-1}d_1-1}(x-\pi^i(x(P)))=\prod_{i=0}^{{p^{k-1}d_1-1}}\pi^i(x-x(P))
-\end{equation*}
-
-On note $T_0^{(0)}=x-x(P)$, soit $k \geqslant i\geqslant 0$ $\sigma_i$ un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-i+1}:\mathbb{U}_{k-i})$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
-\[
-T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
-    p-1 &\text{si $i<k-1$,}\\
-    d_1 -1  &\text{si ( $i=k-1$ et $2 \nmid d_1$)}\\
-    d_1/2 - 1 &\text{si ( $i=k-1$ et $2 \mid d_1 $)}.
-  \end{cases}
-\]
- $T_0^{(k)}$ est égal à $T_0$ le polynôme minimal de $x(P)$ sur $\mathbb{F}_q$.
-
-Une représentation de ce calcul sur un arbre binaire permet de voir sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en travaillant avec une branche de celui-ci à l'aide de la méthode décrite ci-dessus.
-
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}[scale=0.3]
-        \coordinate (A) at (0,0);
-        \coordinate (AB) at (-9,4.25);
-		\coordinate (AC) at (9,4.25);
-		\draw (A)--(AB);
-		\draw (A)--(AC);
-		\draw (A) node[fill=white]{$\color{red}{T_0^{(3)}}$};
-		
-
-		\coordinate (ABA) at (-12.63,8.5);
-		%\coordinate (ABA) at (-11.63,8.5);
-		
-		\draw (ABA)--(AB);
-		
-		\coordinate (ABAb) at (-15.26,12.75);
-		%\coordinate (ABAb) at (-14.26,12.75);
-		
-		\draw (ABA)--(ABAb);
-		\draw (ABAb) node[fill=white]{$\color{red}{T_0^{(0)}}$};
-		
-		\coordinate (ABAa) at (-10,12.75);
-		%\coordinate (ABAa) at (-9,12.75);
-		
-		
-		\draw (ABA)--(ABAa);
-		\draw (ABA) node[fill=white]{$\color{red}{T_0^{(1)}}$};
-		\draw (ABAa) node[fill=white][left]{$\color{red}{\sigma^4T_0^{(0)}}$};%ancien \pi(T)
-		
-		\coordinate (ACA) at (-5.37,8.5);
-		%\coordinate (ACA) at (-6.37,8.5);
-		
-		
-		\draw (AB)--(ACA);
-		\draw (AB) node[fill=white]{$\color{red}{T_0^{(2)}}$};
-		\coordinate (ACAa) at (-8,12.75);
-		%\coordinate (ACAa) at (-9,12.75);
-		
-		
-		\draw (ACA)--(ACAa);
-		\draw (ACAa) node[fill=white]{$\sigma^2(T_0^{(0)})$};%ancien \pi^2(T)
-		
-		\coordinate (ACAb) at (-2.74,12.75);
-		%\coordinate (ACAb) at (-3.74,12.75);
-		
-		
-		\draw (ACA)--(ACAb);
-		\draw (ACAb) node[fill=white]{$\sigma^6(T_0^{(0)})$};%ancien \pi^3(T)
-		\draw (ACA) node[fill=white]{$\color{red}{\sigma^2(T_0^{(1)})}$};% ancien \pi^2(T_2)
-		
-		\begin{scope}[xshift=18cm]
-		\coordinate (ABA) at (-12.63,8.5);
-		%\coordinate (ABA) at (-11.63,8.5);
-
-		\draw (ABA)--(AC);
-		
-		\coordinate (ABAb) at (-15.76,12.75);
-		%\coordinate (ABAb) at (-14.26,12.75);
-		
-		\draw (ABA)--(ABAb);
-		\draw (ABAb) node[fill=white]{$\sigma(T_0^{(0)})$};%ancien \pi^4(T)
-		
-		\coordinate (ABAa) at (-8.5,12.75);
-		%\coordinate (ABAa) at (-9,12.75);
-		
-		
-		\draw (ABA)--(ABAa);
-		\draw (ABAa) node[fill=white,left]{$\sigma^5(T_0^{(0)})$};%ancien \pi^5(T)
-		\draw (ABA) node[fill=white]{$\sigma^4(T_0^{(1)})$};%ancien \pi^4(T_2)
-		
-		\coordinate (ACA) at (-5.37,8.5);
-		%\coordinate (ACA) at (-6.37,8.5);
-		
-		
-		\draw (AC)--(ACA);
-		\draw (AC) node[fill=white]{$\color{red}{\sigma(T_0^{(2)})}$};%ancien \pi^4(T_3)
-		
-		\coordinate (ACAa) at (-6.5,12.75);
-		%\coordinate (ACAa) at (-9,12.75);
-		
-		
-		\draw (ACA)--(ACAa);
-		\draw (ACAa) node[fill=white]{$\sigma^3(T_0^{(0)})$};%ancien \pi^6(T)
-		
-		\coordinate (ACAb) at (-2.00,12.75);
-		%\coordinate (ACAb) at (-3.74,12.75);
-		
-		
-		\draw (ACA)--(ACAb);
-		\draw (ACAb) node[fill=white]{$\sigma^7(T_0^{(0)})$};%ancien \pi^7(T)	
-		\draw (ACA) node[fill=white]{$\sigma^6(T_0^{(1)})$};%ancien \pi^6(T_2)	
-		\end{scope}
-		
-		\coordinate (A1) at (-17,0);
-		\coordinate (A2) at (-17,4.25);
-		\coordinate (A3) at (-17,8.5);
-		\coordinate (A4) at (-17,12.75);
-		\draw (A1)--(A2)--(A3)--(A4);
-		\draw (A1) node{$\bullet$};
-		\draw (A2) node{$\bullet$};
-		\draw (A3) node{$\bullet$};
-		\draw (A4) node{$\bullet$};
-		\draw (A1) node[left]{$\mathbb{F}_q=\mathbb{U}_0$};
-		\draw (A2) node[left]{$\mathbb{U}_1$};
-		\draw (A3) node[left]{$\mathbb{U}_{2}$};
-		\draw (A4) node[left]{$\mathbb{U}_{3}$};
-\end{tikzpicture}
-\end{center}
-\caption{Arbre de sous produits pour le calcul de $T_0^{(0)}$ dans le cas d'une tour d'extension quadratique. Seul les éléments en rouge de l'arbre sont pris en compte pour le calcul, $\sigma$ peut être n'importe quel élément générateur de $\mathsf{Gal}(\mathbb{U}_3:\mathbb{U}_0)$.}
-\label{fig:orb:T}
-\end{figure}
-
-\begin{rem}
-La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-tor:fro} puisque l'arbre \ref{fig:orb:T} représente un seul des $f$ arbres de \ref{fig:p-tor:fro} et que les extrémités de l'arbre \ref{fig:orb:T} représentent les polynômes qui s'annulent en les abscisses de points des extrémités d'un des arbres de \ref{fig:p-tor:fro}.
-\end{rem}
-
-Ainsi avec l'utilisation du Frobenius on obtient le résultat suivant pour le calcul du polynôme d'interpolation sur les points d'ordre $p^k$:
-
-\begin{thm}
-Soient $P$ un point d'ordre $p^k$ de $E$ et $P'$ un point d'ordre $p^k$ de $E'$ alors le calcul du polynôme d'interpolation $A$ tel que $A(x([n]P))=x([n]P')$ pour tout $n \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ a une complexité de:
-\[
-O(p\mathsf{L}(k)\log(\frac{\ell}{p^{v_p(E(\mathbb{F}_q))}})+\mathsf{M}(\ell d)\log \ell \log p + \frac{\ell}{p}\mathsf{C}(pd)\log(d)+\ell (pd)^2)
-\]
-opérations sur $\mathbb{F}_q$.
-\end{thm}
-
-\begin{proof}
-Voir section $5.2$ de \cite{DeFeo11}.
-\end{proof}
-
-L'algorithme de Couveignes avec les modifications apportées par l'utilisation de tours d'Artin-Schreier et du Frobenius pour le calcul du polynôme d'interpolation dénoté C2-AS-FI a alors la complexité suivante:
-
-\begin{thm}
-Soient $E$ et $E'$ deux courbes $\ell$-isogènes, l'algorithme de Couveignes modifié C2-AS-FI a une complexité de:
-\[
-\tilde{O}_{p,d,\log \ell}(p^2d^3+\mathsf{C}(p)pd+(pd)^{\omega}\log^2 \ell + p^3 \ell^2 d \log^3 \ell + p^2\ell^2d^2+(\frac{\ell^2}{p}+p)\mathsf{C}(pd))
-\]
-opérations sur $\mathbb{F}_q$.
-\end{thm}
-
-\begin{proof}
-Voir section $5.2$ de \cite{DeFeo11}.
-\end{proof}
-
-\paragraph{Comportement de la $p^k$-torsion}
-
-\subsection{Volcans d'isogénies}
-\subsection{Travaux de Kohel, Fouquet-Morain}
-Mettre l'algorithme de Fouquet Morain
-\subsection{Travaux de Miret \& Al. et Ionica-Joux}
-
-
-\section{Frobenius et ses applications sur un volcan d'isogénies}
-\subsection{Base diagonale, horizontale}
-% A retravailler
-Mais avant de parler de ces algorithmes regardons plus en détail l'amélioration de S.E.A. pour le cas Elkies qui a été proposé par Couveignes et Morain \cite{Couveignes96isogenycycles} celle-ci propose en effet de déterminer $t_{\pi} \bmod \ell^k$ en utilisant les cycles d'isogénies. 
-
-\subsubsection{Amélioration du cas Elkies par Couveignes et Morain}
-Comme dit dans \ref{sub:Elkies} l'étape la plus importante pour le coût de l'algorithme est de déterminer un polynôme de Elkies qui définisse un espace propre pour le Frobenius pour lequel on va ensuite déterminer la valeur propre associée. L'algorithme de Couveignes et Morain propose alors de déterminer ces espaces prorpres pour la $\ell^k$ torsion en itérant le procédé sur un cycle d'isogénies.
-
-En effet comme on est dans le cas Elkies alors la courbe $E_0$ dont on veut calculer le cardinal admet deux  courbes $\ell$-isogènes définies dans $\mathbb{F}_q$. Ainsi pour ces courbes isogènes le polynôme modulaire admet aussi deux solutions  dans $\mathbb{F}_q$. En effet ces courbes sont de même cardinal que $E_0$ et ont donc la même valeur $t_{\pi}$, par conséquent le fait que $t_{\pi}^2-4q$ soit un résidu quadratique modulo $\ell$ reste préservé. Ainsi chaque courbe admet deux coubes isogènes définies sur $\mathbb{F}_q$, on définit alors un cycle qui est fini. En effet à chaque courbe on peut associer à isomorphisme près un ordre maximal pour l'indice $\ell$ (\textcolor{red}{ref a mettre plus tard}) dans $\mathbb{Q}[X]/(X^2-t_{\pi})X+q$ or comme le nombre de classe est borné on obtient le résultat. 
-
-L'idée derrière cet article est donc de décomposer en deux espaces propres la $\ell^k$ torsion à l'aide des valeurs propres du Frobenius dans le cas Elkies, puis de calculer la valeur de la trace du Frobenius ($t_{\pi}$) dans ces espaces propres. Ainsi la recherche de la valeur de $t_{\pi}$ se fera sur des ensembles plus petits et donc en manipulant des polynômes de degré moindre. Pour décrire tout cela il est nécessaire de poser quelques notations. On généralise tout d'abord l'action du Frobenius $\pi$ sur $E[\ell]$ à une action sur $T_{\ell}(E)$, on a alors une décomposition de $T_{\ell}(E)$ en deux espaces propres: $T_{\ell}^{\lambda}(E) \oplus T_{\ell}^{\mu}(E)$, avec $T_{\ell}^{\lambda}(E)$ associé à la valeur propre $\lambda$ et $T_{\ell}^{\mu}(E)$ associé à la valeur propre $\mu$. 
-
-
-Montrons tout d'abord que les isogénies peuvent êtres associées de façon canonique aux valeurs propres du Frobenius. On note $I_{\lambda}$ (resp. $I_{\mu}$) l'isogénie engendrée par l'espace propre pour $\pi$ associé à la valeur propre $\lambda$ (resp. $\mu$). Ainsi en partant de $E_0$ on note alors $E_{\lambda}$(resp. $E_{\mu}$) l'image de l'isogénie $I_{\lambda}$ (resp. $I_{\mu}$). Lorsque l'on est sur $E_{\lambda}$ on a alors à nouveau l'existence de deux isogénies associées aux deux espaces propres: $I_{\lambda \lambda}$ pour l'iosgénie associée à la valeur propre $\lambda$ et $I_{\lambda \mu}$ pour l'isogénie associée à la valeur propre $\mu$. On a alors $I_{\lambda \mu}=\widehat{I_{\lambda}}$, en effet l'isogénie $I_{\lambda}$ étant rationnelle sa duale l'est aussi et on conclut alors en analysant son action sur $T_{\ell}^{\lambda}(E)$. Ainsi on a des directions canoniques définies par les valeurs propres $\lambda$ et $\mu$. 
-
-Il reste alors à montrer comment on détermine en pratique un espace propre de la $\ell^k$ torsion. Travaillons donc avec l'espace propre associé à $E_{\lambda}$, on a alors $T_{\ell}^{\lambda}(E_0) \cap E_0[\ell]$ qui est contruit comme étant le noyau de l'isogénie qui va de $E_0$ à $E_{\lambda}$. Pour calculer celui-ci on doit tout d'abord calculer à l'aide du polynôme modulaire les $j$-invariants des deux courbes $E_0$ et $E_1$, puis leur représentations sous forme de Weierstrass, puis l'isogénie est ensuite calculée. Ainsi on dénote $h_1$ le polynôme qui s'annule sur l'abscisse des points du noyau de l'isogénie $I_1$. 
-Maintenant si l'on veut déterminer $T_{\ell}^{\lambda}(E_0) \cap E[\ell^2]$, on remarque que cet ensemble c'est la préimage du noyau de l'isogénie $I_{\lambda \lambda}$ (id est $h_{\lambda \lambda}$) par l'isogénie $I_{\lambda}$. Ainsi on injecte $I_{\lambda}$ dans $h_{\lambda \lambda}$ pour obtenir cet ensemble qui est donc le noyau de $h_{\lambda \lambda}(I_{\lambda}(x))$. On répète alors l'opération pour déterminer un espace propre pour le Frobenius de la $\ell^k$-torsion. Ainsi pour la $\ell^k$-torsion on va déterminer l'espace propre par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ qui factorise le $\ell^k$-ème polynôme de division de degré $\ell^{2k}$.
-
-On peut alors dès lors résoudre l'équation:
-\begin{equation*}
-X^2-t_{\pi}X+q=0
-\end{equation*}
-modulo l'espace propre $T_{\ell}^{\lambda}(E_0) \cap E[\ell^k]$ (ou $T_{\ell}^{\mu}(E_0) \cap E[\ell^k]$ par exemple) défini par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ au lieu de résoudre celle-ci modulo $E[\ell^k]$ défini par un polynôme de degré $\ell^{2k}$.
-
-\paragraph{Optimisation}
-Cependant on peut travailler aussi avec un facteur de $h_{\lambda^k}$ à la place de celui-ci en effet on peut procéder de la manière suivante:
-\begin{itemize}
-\item Calcul des deux valeurs propres $\lambda$ et $\mu$ du Frobenius modulo $\ell$,
-\item Calcul des ordres multiplicatifs $d_{\lambda},d_{\mu}$ de ces deux valeurs propres dans le groupe multiplicatif $(\mathbb{Z}/\ell \mathbb{Z})^{\times}$,
-\item On pose alors $d=\min(d_{\lambda},d_{\mu})$, on divise éventuellement $d$ par $2$ si il est pair pour prendre en compte les abscisses, l'espace vectoriel associé à $d$ est alors défini sur $\mathbb{F}_p^{d}$ et l'on a alors le polynôme de $\ell$-division qui a pour facteur un polynôme de degré $d$. Après avoir factorisé le polynôme de $\ell$-division par un facteur de degré $d$, on utilise alors celui-ci à la place de $h_{\lambda^{k}}$, de telle sorte que lorsque l'on veut calculer la trace du Frobenius modulo un espace propre de la $\ell^k$ torsion on travaille avec un polynôme de degré $d \ell^{k-1}$ et non $(\ell -1)/2 \ell^{k-1}$.
-\end{itemize}
-
-Ainsi on a vu une façon de déterminer un espace propre de la $\ell^k$-torsion, à l'aide d'un cycle d'isogénies, et d'exploiter au mieux les nombres de Elkies dans l'algorithme S.E.A. 
-
-%Comme il est remarqué dans l'article original on peut aussi travailler sur une extension de corps dans laquelle les points de $\ell$-torsion issus de l'espace propre sont définis, pour trouver le degré de celle-ci il faut calculer l'ordre multiplicatif des valeurs propres du frobenius dans $(\mathbb{Z}/\ell \mathbb{Z})^{\times}$ et travailler alors avec la valeur propre qui a l'ordre le plus petit afin de travailler dans le corps le plus petit.  Ensuite pour travailler avec de la $\ell^k$ torsion on est obligé travailler dans une extension de degré $d\ell^{k-1}$.
-\subsection{Orbites selon le Frobenius}
-\subsection{Amélioration de l'algorithme de Couveignes}
-
-\section{Améliorations éventuelles à l'aide du pairing}
 
 \bibliographystyle{plain}
 \bibliography{Biblio}
