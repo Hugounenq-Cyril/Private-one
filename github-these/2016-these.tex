@@ -1759,7 +1759,7 @@ Le coût de calcul des coefficients de $\phi_{\ell}$ à précision $p^{1+\log(4\
 \end{rem}
 
 
-\subsection{Algorithme de Couveignes }
+\subsection{Algorithme de Couveignes et ses améliorations}
 Dans cette section l'algorithme de Couveignes \cite{Couveignes96} va tout d'abord être présenté puis ensuite les différentes améliorations apportées par De Feo dans \cite{DeFeo10}.
 
 L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires $\ell$-isogènes définies sur un corps fini $\mathbb{F}_q$ avec $\ell$ premier avec $p$ et calcule la $\ell$-isogénie $\mathbb{F}_q$-rationnelle qui les relie. L'algorithme marche uniquement en caractéristique $p$ impaire. 
@@ -1767,21 +1767,21 @@ L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires
 
 \subsubsection{Algorithme original de Couveignes}
 Soit $I$ la $\ell$-isogénie qui relie deux courbes elliptiques ordinaires $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$ on a: $I(E[p^k])=E'[p^k]$.
-C'est cette correspondance qui, lorsque $k$ est assez grand, donne une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement. L'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle avec les formules de Vélu (voir \ref{sse:Vel}) on a:
+C'est cette correspondance qui, lorsque $k$ est assez grand, donne une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement, l'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle avec les formules de Vélu (voir \ref{sse:Vel}) on a:
 \begin{equation}
-\frac{g(x([k] \cdot P))}{h(x([k] \cdot P))}=x([k] \cdot P') \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
+\frac{g(x([k] P))}{h(x([k] P))}=x([k] P') \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
 \end{equation}
 avec $\deg g = \ell$ et $\deg h = \ell-1$.
 Pour calculer l'isogénie l'algorithme de Couveignes calcule un polynome $A \in \mathbb{F}_q[X]$ tel que l'on ait 
 \begin{equation}
-A(x([k] \cdot P))= x([k] \cdot P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
+A(x([k] P))= x([k] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
 \end{equation} 
-avec $T \in \mathbb{F}_q[x]$ qui s'annule sur $E[p^k]$ car on se travaille sur la $p^k$ torsion. En pratique l'algorithme de Couveignes demande choisit $k$ tel que $p^k \geqslant 4 \ell+1$. En effet on veut faire une interpolation de Cauchy pour calculer la forme explicite de Velu, normalement on a besoin de $p^k \geqslant 2 \ell +1$ mais comme tout point d'ordre différent de $2$ a son opposé de même abscisse on doit doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\alpha P_2$ avec $\alpha \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^* $) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
+avec $T \in \mathbb{F}_q[x]$ qui s'annule sur les abscisses des points de $E[p^k]$ car on se travaille sur la $p^k$ torsion. La valeur de $k$ est en pratique choisie telle que $p^k \geqslant 4 \ell+1$. En effet on veut faire une interpolation de Cauchy pour calculer la forme explicite de Vélu, normalement on a besoin de $p^k \geqslant 2 \ell +1$ mais comme tout point d'ordre différent de $2$ a son opposé de même abscisse on doit doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\alpha P'$ avec $\alpha \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^* $) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
 
 \subsubsection{Coût de Couveignes}
 
 \paragraph{Calcul de la $p$-torsion}
-La première amélioration que l'on peut apporter à l'algorithme de Couveignes c'est la première étape de l'algorithme, le calcul de générateurs de la $p^k$ torsion. On a tout d'abord besoin de définir les points de $p$-torsion pour cela on se sert du travail de Gunji \cite{Gunji76} on se place dans le cas où $p \neq 2$. Le lecteur intéressé par le cas $p=2$ pourra se référer à \cite[3.2]{DeFeo11}.
+La première étape de l'algorithme est le calcul de générateurs de la $p^k$ torsion. On a tout d'abord besoin de définir les points de $p$-torsion pour cela on se sert du travail de Gunji \cite{Gunji76} et on se place dans le cas où $p \neq 2$. Le lecteur intéressé par le cas $p=2$ pourra se référer à \cite[3.2]{DeFeo11}.
 
 \begin{defi}
 Soit $E$ une courbe elliptique définie par l'équation: $y^2=f(x)$. L'\emph{invariant de Hasse} est le coefficient de $X^{p-1}$ dans $f(X)^{\frac{p-1}{2}}$ on le note $H_{E}$.
@@ -1833,9 +1833,9 @@ Le calcul de la $p^k$-torsion est effectué itérativement à l'aide de la $p$-d
 \begin{equation}
 [p]=\pi \circ V
 \end{equation}
-avec $\pi$ le Frobenius défini sur $\mathbb{F}_q$ et $V$ le verschebung. L'idée originale est donc d'inverser chacune  de ces isogénies pour calculer itérativement des antécédents de point de $p^i$-torsion par $[p]$. Inverser l'isogénie séparable $V$ revient notamment à factoriser un polynômes de degré $p$ dans une extension de $\mathbb{F}_q$, $V$ peut être explicité à l'aide de la $p$-torsion de $E: E[p]$. 
+avec $\pi$ le Frobenius défini sur $\mathbb{F}_q$ et $V$ le Verschiebung. L'idée originale est donc d'inverser chacune  de ces isogénies pour calculer itérativement des antécédents de point de $p^i$-torsion par $[p]$. Inverser l'isogénie séparable $V$ revient notamment à factoriser un polynômes de degré $p$ dans une extension de $\mathbb{F}_q$, $V$ peut être explicité à l'aide de la $p$-torsion de $E: E[p]$. 
 
-Une autre approche a été proposé par De Feo pour prendre avantage notamment des constructions de tour d'Artin Schreier en s'appuyant sur les travaux de Voloch \cite{Voloch90} suggéré dans l'article original \cite{Couveignes96}. On suppose $p\neq 2$ et l'on pose $E$ et $\widehat{E}$ d'équations respectives:
+Une autre approche a été proposé par De Feo pour prendre avantage notamment des constructions de tour d'Artin Schreier en s'appuyant sur les travaux de Voloch \cite{Voloch90} celle-ci a été suggéré dans l'article original \cite{Couveignes96}. On suppose $p\neq 2$ et l'on pose $E$ et $\widehat{E}$ d'équations respectives:
 \begin{equation}
 \begin{alignedat}{1}
 y^2 &= f(x)x^3+a_2x^2+a_4x+a_6 \\
@@ -1861,28 +1861,32 @@ est un recouvrement étale de degré $p$ et est isomorphe à $E$ sur $\mathbb{F}
 \widehat{z} &= \frac{-y}{\widehat{c}^p}\sum_{i=1}^{p-1}\frac{1}{x-x([i]P_1)}
 \end{alignedat}{1}
 \end{equation}
-avec $P_1$ un point primitif de $p$-torsion de $E$.
+avec $P_1$ un point d'ordre $p$ de $E$.
 \end{prop}
 
-La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré-images sur $C$ en résolvant l'équation \eqref{eq:vol:cov}. On résoud alors l'équation \eqref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \ref{fig:dra:des}.
+La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré-images sur $C$ en résolvant l'équation \eqref{eq:vol:cov}. On résoud alors l'équation \eqref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition précédente nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \ref{fig:dra:des}.
 
 \begin{figure}
 \begin{center}
 \label{fig:dra:des}
 \begin{tikzpicture}
 \begin{scope}
-    \coordinate (Eh) at (0, 0.1) ;
-   	\coordinate (E'h) at (5, 0.1);
-   	\coordinate (Eb) at (0, -0.1) ;
-   	\coordinate (E'b) at (5, -0.1);
-   	\coordinate (E) at (0, 0) ;
+    \coordinate (E) at (0, 0) ;
    	\coordinate (E') at (5, 0);
-   	\draw[dashed, thick,->] (Eh) 	to[bend left=20] node[above left] {$\pi^{-1}$} (E'h);
-   	\draw[dashed, thick,->] (E'b) 	to[bend right=-20] node[below right] {$V^{-1}$} (Eb);
-   	\draw (E) node{$\bullet$};
-   	\draw (E) node[left]{$E$};
-    \draw (E') node{$\bullet$};
-    \draw (E') node[right]{$\widehat{E}$};
+   	\coordinate (C) at (0, -3) ;
+   	%\draw (E) node {$\bullet$};
+   	%\draw (E) node[left] {$E$};
+   	%\draw (E') node {$\bullet$};
+   	%\draw (C) node {$\bullet$};
+   	%\draw (E') node[right] {$\widehat{E}$};
+   	%\draw (C) node[below] {$C$};
+   	\node (C) at (0,-3) {$C$};
+   	\node (E) at (0,0) {$E$};
+   	\node (E') at (5,0) {$\widehat{E}$};
+   	\draw[ thick,<-] (E) to[bend left=20] node[above left] {$\pi$} (E');
+   	\draw[ thick,<-] (E') to[bend right=-20] node[below right] {$V$} (E);
+    \draw[thick,->] (E) to node [midway, left] {$\cong$} (C);
+    \draw[thick,->] (C) to (E');
 \end{scope}
 \end{tikzpicture}
 \caption{Descente d'un point de $p$-torsion sur $E$.}
@@ -1891,7 +1895,7 @@ La descente est alors effectuée de la façon suivante, à partir d'un point $P$
 
 Cette méthode est plus efficace que la méthode standard car à l'aide des constructions de Tour d'Artin-Schreier on peut résoudre plus rapidement l'équation \eqref{eq:vol:cov} qui est une équation d'Artin-Schreier cette équation peut être résolue à l'aide de méthodes de \cite[§6.1]{DeFeo-Shost'12} ou par algèbre linéaire comme dans \cite{Couveignes96}. Une fois qu'une solution $\tilde{z}$ de \eqref{eq:vol:cov} est trouvée il faut alors résoudre en $x$ et en $y$ le système de \eqref{eq:vol:iso} à l'aide d'un calcul de $\mathrm{pgcd}$ plus de détails peuvent être trouvés dans \cite[§6.2]{Ler97a} ou dans \cite[§7]{DeFeo11} alors que dans la méthode préconisée auparavant on devait factoriser un polynôme.
 
-Comme le travail de \cite{DeFeo11} repose sur les constructions de tour d'Artin Schreier, dont une brève description sera faite \textcolor{red}{ref. à mettre} pour plus de détails voir \cite{DeFeo-Shost'12}, et que celles-ci sont construites comme des extensions de $\mathbb{F}_p$ alors les complexités seront exprimées en terme d'opérations sur $\mathbb{F}_p$ en utilisant la convention que l'on a $q=p^d$.
+Comme le travail de \cite{DeFeo11} repose sur les constructions de tour d'Artin Schreier, dont une brève description sera faite \textcolor{red}{ref. à mettre} pour plus de détails voir \cite{DeFeo-Shost'12}, et que celles-ci sont construites comme des extensions de $\mathbb{F}_p$ alors les complexités seront exprimées en terme d'opérations sur $\mathbb{F}_p$ en rappelant la convention que l'on a $q=p^d$.
 
 \begin{lem}
 Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
@@ -1910,7 +1914,7 @@ Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour de \emph{niveau
 
 \begin{prop}
 \label{pro:ord:fro}
-Pour une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic} on a:
+Pour une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic:level} on a:
 \begin{itemize}
 \item $[\mathbb{L}_1:\mathbb{F}_q] \mid p-1$
 \item Pour tout $i \geqslant 1$ on a soit $[\mathbb{L}_{i+1}:\mathbb{L}_{i}]=p$ soit $\mathbb{L}_{i+1}=\mathbb{L}_{i}=\cdots = \mathbb{L}_{1}$.
@@ -1924,7 +1928,7 @@ Avant de prouver cela on a besoin du lemme suivant:
 Soit $p$ un nombre premier, soit $c$ un nombre premier avec $p$. Pour tout $k \geqslant 1$ on note $\mathrm{ord}_k(c)$ l'ordre de $c$ dans $\mathbb{Z}/p^k\mathbb{Z}$. Alors $\mathrm{ord}_{k+1}(c)=\mathrm{ord}_k(c)$ implique que $\mathrm{ord}_k(c) = \mathrm{ord}_{k-1}(c)$.
 \end{lem}
 
-La preuve suivante n'est pas différente de celle dans \cite{DeFeo10} mais celle-ci est tout de même intéressante par son approche dont notamment l'étude de l'action du Frobenius sur le $p$-module de Tate d'où sa retranscription ici.
+La preuve suivante de la proposition \label{pro:ord:fro} n'est pas différente de celle dans \cite[Proposition 5]{DeFeo11} mais celle-ci est tout de même intéressante par son approche dont notamment l'étude de l'action du Frobenius sur le $p$-module de Tate d'où sa retranscription ici.
 
 \begin{proof}
 On a $[\mathbb{L}_1:\mathbb{F}_q] \mid p-1$ par le théorème \ref{thm:Gunji}. Prouvons maintenant le second point,
@@ -1938,22 +1942,13 @@ Regardons alors l'action du groupe de Galois $G$ de $\mathbb{F}_q$ sur $T_{p}(E)
 Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
 \end{proof}
 
-\begin{lem}
-\label{lem:bij:ord}
-Soient $P_{k-1}$, $P_k$ deux points d'ordres $p^{k-1} \neq 1$ et $p^{k}$ d'une courbe elliptique $E$ ordinaire définie sur une tour de niveau d'extensions $\ell$-adiques tels que $[p]P_{k}=P_{k-1}$. On suppose de plus que $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$. Alors il y a une bijection entre les points de $p$-division de $P_{k-1} \in \mathbb{U}_{k-1}$ et les points de l'orbite de $\sigma \in \mathsf{Gal}(\mathbb{U}_k:\mathbb{U}_{k-1})$ appliqué sur $P_{k}$.
-\end{lem}
-
-\begin{proof}
-L'ensemble des points de $p$-division de $P_{k-1}$ car $P$ appartient à $E$ une courbe elliptique ordinaire. La taille de l'orbite de $\sigma$ est quant à elle égale $[\mathbb{L}_k:\mathbb{L}_{k-1}]$ égale à $p$ car $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$. Il ne reste donc qu'à montrer une inclusion pour montrer l'égalité. On a vu dans la preuve de la proposition \ref{pro:ord:fro} que l'on pouvait déterminer les points de $p^k$ torsion comme des vecteurs propres pour le Frobenius. Ainsi le point $P_k$ correspond à $t_{k} \bmod p^k$ et ses conjugués correspondent à $t_{k-1}^i P_{k} \bmod p^k$ avec $i \in \{0, \cdots , p-1  \}$ et l'on a $[pt_{k-1}^i]P_{k}=[t_{k-1}^i \bmod p^k]P_{k-1}=[1]P_{k-1}$ car $t_{k-1}^i= \mathfrak{t}_{\pi} \bmod p^{k-1}$.
-\end{proof}
-
 On voit donc à travers la preuve de la proposition \ref{pro:ord:fro} que si $E[p] \subset E(\mathbb{F}_q)$ alors il est possible que $\mathbb{L}_0=\mathbb{L}_1=\mathbb{L}_2$, de même lorsque l'on a $E[p] \not\subset E(\mathbb{F}_q)$ il est possible que $\mathbb{L}_1=\mathbb{L}_2$, dés lors la distinction suivante est nécessaire.
 
 
 %On voit donc à travers ce résultat qu'il est possible que l'on ait $\mathbb{U}_2=\mathbb{U}_1$ alors que l'on peut avoir $\mathbb{U}_0 \neq \mathbb{U}_1$. En effet pour $d=[\mathbb{U}_1:\mathbb{F}_q]$ on a $t_{\pi}(\mathbb{U}_1)=t_{\pi}(\mathbb{F}_q)^d$, ainsi il est nécessaire de prendre en compte ce cas afin de pouvoir quantifier la taille des tours sur lesquelles on travaille.
 
 \begin{defi}
-Soit $\mathbb{L}_0, \mathbb{L}_1, \mathbb{L}_2, \cdots, $ une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic} alors on définit
+Soit $\mathbb{L}_0, \mathbb{L}_1, \mathbb{L}_2, \cdots, $ une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic:level} alors on définit
 \begin{itemize}
 \item $v_p(E(\mathbb{F}_q))=\max\left( i, \mathbb{L}_i \subset \mathbb{F}_q \right)$,
 \item $v_p(E(\mathbb{L}_1))=\max\left( i, \mathbb{L}_i \subset \mathbb{L}_1 \right)$.
@@ -1966,10 +1961,30 @@ Il est à noter que si $v_p(E(\mathbb{F}_q)) \neq 0$ alors $v_p(E(\mathbb{F}_q))
 
 Ainsi on a $[\mathbb{L}_i:\mathbb{L}_1]=p^{i- v_p(E(\mathbb{L}_1))}$ pour tout $i \geqslant  v_p(E(\mathbb{L}_1))$. Asymptotiquement on a donc $[\mathbb{L}_k:\mathbb{L}_1] \in O(p^k)$.
 
+
+\begin{lem}
+Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2d)$ opérations sur $\mathbb{F}_p$.
+\end{lem}
+
+\begin{proof}
+On utilise les méthodes préconisées par les travaux de Gunji et Voloch. Pour la dernière itération de la $p$-descente on a tout d'abord besoin de résoudre une équation d'Artin Schreier \eqref{eq:vol:cov}, pour cela \cite{Couveignes96} utilise un précalcul de l'inverse de l'application $\mathbb{F}_q$-linéaire  $x \mapsto x^q-x$ qu'il applique ensuite. Il est fait de même avec l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$. Le précalcul a un coût de $O(p^{wk}d)=O(\ell^{w}d)$ opérations sur $\mathbb{F}_p$ avec un stockage de $O(\ell^2d)$ éléments de $\mathbb{F}_p$.
+Ces pré calculs peuvent être réutilisés pour d'autres calculs de $\ell$-isogénies.
+Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 d)$ opérations sur $\mathbb{F}_p$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$ est négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
+\end{proof}
+
+\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide d'une interpolation de Cauchy la fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire $T$ qui s'annule sur les abscisses des points d'ordre $p^k$. 
+
+Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectuée distinctement sur les différentes orbites sous l'action du Frobenius puis en utilisant le théorème des restes chinois on obtient alors un polynôme d'interpolation modulo la $p^k$-torsion primitive. Cette idée de travailler selon les différentes orbites sous l'action du Frobenius est importante et sera donc développée ici, elle sera reprise et améliorée par \cite{DeFeo11} ainsi que dans l'algorithme $\ell$-adique de Couveignes présenté \textcolor{red}{ref à mettre}.
+
+En effet l'ensemble des abscisses des points primitifs de $p^k$-torsion est de taille $p^{k-1}(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{L}_k:\mathbb{F}_q]$ (ou $\frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$ voir corollaire \ref{cor:orb:fro}). Ainsi si l'on note $e$ la taille de ces orbites et $f$ le nombre de représentants on a $e \times f=p^{k-1}(p-1)/2$.
+
+Etudions maintenant plus en détail les orbites des abscisses de points d'ordre $p^k$ sous les actions d'éléments de groupes de Galois.
+
+
 \begin{cor}
 \label{cor:orb:fro}
-Soit $k$ tel que que $\mathbb{L}_k \neq \mathbb{F}_q$ avec $\mathbb{L}_k$ défini comme dans \ref{def:p-adic:level}. 
-La taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $[\mathbb{L}_k:\mathbb{F}_q]$  est égale à:
+Soit $k$ tel que que $\mathbb{L}_k \neq \mathbb{F}_q$ avec $\mathbb{L}_k$ défini comme dans \ref{def:p-adic:level}, 
+la taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $[\mathbb{L}_k:\mathbb{F}_q]$  est égale à:
 \begin{enumerate} 
 \item $[\mathbb{L}_k:\mathbb{F}_q]$ si $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$,
 \item $[\mathbb{L}_k:\mathbb{F}_q]/2$ si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$.
@@ -1980,11 +1995,21 @@ La taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du g
 Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $e$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ cela veut dire que $t_{\pi}^e=1 \bmod p^k$ ou $t_{\pi}^e=-1 \bmod p^k$, par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $e \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{e})^2=1 \bmod p^k$, ainsi $2e \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $e= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
 \end{proof}
 
+
 \begin{rem}
 Ce résultat peut aussi être démontré à l'aide du théorème de Gunji \ref{thm:Gunji}, pour $c$ une racine $p-1$ème de $H_E$ les abscisses des points de $p$-torsion sont définies dans $\mathbb{F}_q[c^2]$ qui n'est pas forcément isomorphe à $\mathbb{F}_q[c]$.
 \end{rem}
 
 On va se placer dans la suite de cette section dans le cas où l'on a $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$ afin de ne pas complexifier l'étude.
+
+\begin{lem}
+\label{lem:bij:ord}
+Soient $E$ une courbe elliptique ordinaire définie sur une tour de niveau d'extensions $\ell$-adiques telle que $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$, $P_{k-1}$, $P_k$ deux points de $E$ d'ordres $p^{k-1} \neq 1$ et $p^{k}$ tels que $[p]P_{k}=P_{k-1}$, alors il y a une bijection entre les points de $p$-division de $P_{k-1} \in \mathbb{L}_{k-1}$ et les points de l'orbite générée par l'action de $\sigma $ un générateur de $ \mathsf{Gal}(\mathbb{L}_k:\mathbb{L}_{k-1})$ appliqué à $P_{k}$.
+\end{lem}
+
+\begin{proof}
+L'ensemble des points de $p$-division de $P_{k-1}$ est de cardinalité $p$ car $P$ appartient à $E$ une courbe elliptique ordinaire. La taille de l'orbite de $\sigma$ est quant à elle égale $[\mathbb{L}_k:\mathbb{L}_{k-1}]$ égale à $p$ car $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$. Il ne reste donc qu'à montrer une inclusion pour montrer l'égalité. On a vu dans la preuve de la proposition \ref{pro:ord:fro} que l'on pouvait déterminer les points de $p^k$ torsion comme des vecteurs propres pour le Frobenius. Ainsi le point $P_k$ correspond à $t_{k} \bmod p^k$ et ses conjugués correspondent à $t_{k-1}^i P_{k} \bmod p^k$ avec $i \in \{0, \cdots , p-1  \}$ et l'on a $[pt_{k-1}^i]P_{k}=[t_{k-1}^i \bmod p^k]P_{k-1}=[1]P_{k-1}$ car $t_{k-1}^i= \mathfrak{t}_{\pi} \bmod p^{k-1}$.
+\end{proof}
 
 \begin{thm}
 \label{thm:orb:fro}
@@ -1998,38 +2023,30 @@ Soit $k\geqslant  v_p({E(\mathbb{L}_1)} \geqslant 1$,
 \end{thm}
 
 \begin{proof}
-Soit $[n]P$ un point de $E[p^k]$ appartenant à l'orbite de $P$, alors $P$ et $[n]P$ sont tous les deux des points de $p$-division d'un même point d'ordre $p^{k-1}$ par le lemme \ref{lem:bij:ord}. On montre par récurrence que $P$ et $[n]P$ sont des points de $p^{k-v_p({E(\mathbb{L}_1)})}$-division de $[p^{k-v_p({E(\mathbb{L}_1)})}]P \in \mathbb{L}_{v_p({E(\mathbb{L}_1)})}$ d'ordre $p^{v_p(E(\mathbb{L}_1))}$. Ainsi on a $[np^{k-v_p(E(\mathbb{L}_1))}]P=[p^{k-v_p(E(\mathbb{L}_1))}]P$ comme $P$ est un point d'ordre $p^k$ on a $np^{k-v_p(E(\mathbb{L}_1))}=p^{k-v_p(E(\mathbb{L}_1))} \bmod p^k$ ce qui nous permet de déduire que l'on a $n=1 \bmod p^{v_p(E(\mathbb{L}_1))}$. Comme il y a $p^{k-v_p(E(\mathbb{L}_1))}$ $n \bmod p^k$ qui vérifient cette condition alors on a bien déterminé tous les points de l'orbite. Les opposés des points ayant la même abscisses alors les abscisses des points $[n]P$ avec $n=-1 \bmod p^{v_p(E(\mathbb{L}_1))}$ appartiennent à l'orbite de $x(P)$ sous l'action d'un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-v_p(E(\mathbb{L}_1))}:\mathbb{U}_{v_p(E(\mathbb{L}_1))})$.
+Soit $[n]P$ un point de $E[p^k]$ appartenant à l'orbite de $P$, alors $P$ et $[n]P$ sont tous les deux des points de $p$-division d'un même point d'ordre $p^{k-1}$ par le lemme \ref{lem:bij:ord}. On montre par récurrence que $P$ et $[n]P$ sont des points de $p^{k-v_p({E(\mathbb{L}_1)})}$-division de $[p^{k-v_p({E(\mathbb{L}_1)})}]P \in \mathbb{L}_{v_p({E(\mathbb{L}_1)})}$ d'ordre $p^{v_p(E(\mathbb{L}_1))}$. Ainsi on a $[np^{k-v_p(E(\mathbb{L}_1))}]P=[p^{k-v_p(E(\mathbb{L}_1))}]P$ comme $P$ est un point d'ordre $p^k$ on a $np^{k-v_p(E(\mathbb{L}_1))}=p^{k-v_p(E(\mathbb{L}_1))} \bmod p^k$ ce qui nous permet de déduire que l'on a $n=1 \bmod p^{v_p(E(\mathbb{L}_1))}$. Comme il y a $p^{k-v_p(E(\mathbb{L}_1))}$ $n \bmod p^k$ qui vérifient cette condition alors on a bien déterminé tous les points de l'orbite. Les opposés des points ayant la même abscisses alors les abscisses des points $[n]P$ avec $n=-1 \bmod p^{v_p(E(\mathbb{L}_1))}$ appartiennent aussi à l'orbite de $x(P)$ sous l'action d'un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-v_p(E(\mathbb{L}_1))}:\mathbb{U}_{v_p(E(\mathbb{L}_1))})$ mais on préférera éviter dans les calculs ces doublons inutiles.
 \end{proof}
 
 \begin{prop}
 \textcolor{red}{inclus dans le corollaire suivant...}
-Soit $P \in E(\mathbb{L}_1)$ un point d'ordre $p$ de la courbe elliptique $E$ définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, soit $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_0$ avec $d_0 \mid p-1$. Alors les orbites des points d'ordre $p$ sous l'action de $\mathsf{Gal}(\mathbb{L}_1:\mathbb{F}_q)$ est de taille de $d_0 $ et il y a $f$ orbites telles que $f \times d_0  = (p-1)/2$.
+Soient $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_1$ avec $d_1 \mid p-1$, alors les orbites des points d'ordre $p$ sous l'action de $\mathsf{Gal}(\mathbb{L}_1:\mathbb{F}_q)$ est de taille de $d_1 $ et il y a $f$ orbites telles que $f \times d_1  = (p-1)/2$.
 \end{prop}
 
 
 \begin{cor}
-Soit $k \geqslant 1$, $P \in E(\mathbb{L}_{k})$ un point d'ordre $p^k$ de la courbe elliptique $E$ définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, soit $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_0$ avec $d_0 \mid p-1$. Alors les orbites des points d'ordre $p^k$ sous l'action de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{F}_q)$ est de taille de $d_0 p^{k-v_p(E(\mathbb{L}_1))}$ et il y a $f$ orbites telles que $f \times d_0 p^{k-v_p(E(\mathbb{L}_1))} = p^{k-1}(p-1)/2$.
+Soient $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_1$ avec $d_1 \mid p-1$, $k \geqslant 1$, alors les orbites des abscisses de points d'ordre $p^k$ sous l'action de $\mathsf{Gal}(\mathbb{L}_{k}:\mathbb{F}_q)$ sont de taille $d_1 p^{k-v_p(E(\mathbb{L}_1))}$ et il y a $f$ orbites telles que $f \times d_1 p^{k-v_p(E(\mathbb{L}_1))} = p^{k-1}(p-1)/2$.
 \end{cor}
 
+%Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $f$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 0$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i+1}:\mathbb{L}_{v_E(p)+i}]$ est un antécédent de $P_i$ par $[p]$ (voir lemme \ref{lem:bij:ord}). 
 
+Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses des points d'ordre $p^{i+v_p(E(\mathbb{L}_1))}$ selon l'action du Frobenius et les différentes orbites. $f$ le nombre de représentants des orbites est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$ et n'est généralement pas égal à $\frac{[\mathbb{L}_1: \mathbb{F}_q]}{2}$. En effet $\mathbb{L}_1$ est construit comme une extension de $\mathbb{F}_q$ qui contient les points de $p$-torsion de $E$ et donc $[\mathbb{L}_1: \mathbb{F}_q]=d_1 \mid p-1$ par le théorème de Gunji \ref{thm:Gunji}.
 
-\begin{lem}
-Le coût de calcul de la $p^k$-torsion est d'au moins $\Omega(\ell^2d)$ opérations sur $\mathbb{F}_p$.
-\end{lem}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
 
-\begin{proof}
-On utilise les méthodes préconisées par les travaux de Gunji et Voloch. Pour la dernière itération de la $p$-descente on a tout d'abord besoin de résoudre une équation d'Artin Schreier \eqref{eq:vol:cov}, pour cela \cite{Couveignes96} utilise un précalcul de l'inverse de l'application $\mathbb{F}_q$-linéaire  $x \mapsto x^q-x$ qu'il applique ensuite. Il est fait de même avec l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$. Le précalcul a un coût de $O(p^{wk}d)=O(\ell^{w}d)$ opérations sur $\mathbb{F}_p$ avec un stockage de $O(\ell^2d)$ éléments de $\mathbb{F}_p$.
-Ces pré calculs peuvent être réutilisés pour d'autres calculs de $\ell$-isogénies.
-Enfin à l'aide de ces pré-calculs on effectue la résolution de l'équation d'Artin Schreier à l'aide de $O(\ell^2 d)$ opérations sur $\mathbb{F}_p$, le coût de l'inversion de l'application $\mathbb{F}_q$ linéaire $x \mapsto x^p - x$ est négligeable, pour plus de détails le lecteur peut voir \cite[§2.4]{Couveignes96}.
-\end{proof}
-
-\paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide d'une interpolation de Cauchy la fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire $T$ qui s'annule sur les abscisses des points de $p^k$ torsion primitifs. 
-
-Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est effectuée distinctement sur les différentes orbites sous l'action du Frobenius puis en utilisant le théorème des restes chinois on obtient alors un polynôme d'interpolation modulo la $p^k$-torsion primitive. Cette idée de travailler selon les différentes orbites sous l'action du Frobenius est importante et sera donc développée ici, cette idée sera reprise et améliorée par \cite{DeFeo11} ainsi que dans l'algorithme $\ell$-adique de Couveignes présenté \textcolor{red}{ref à mettre}.
-
-En effet l'ensemble des abscisses des points primitifs de $p^k$-torsion est de taille $p^{k-1}(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à elle égale à $[\mathbb{L}_k:\mathbb{L}_1]$ (ou $\frac{[\mathbb{L}_k:\mathbb{L}_1]}{2}$ voir corollaire \ref{cor:orb:fro}). Ainsi si l'on note $e$ la taille de ces orbites et $f$ le nombre de représentants on a $e \times f=p^{k-1}(p-1)/2$.
-
-Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $f$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 0$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i+1}:\mathbb{L}_{v_E(p)+i}]$ est un antécédent de $P_i$ par $[p]$. La multiplication par $p$ étant de noyau de taille $p$ sur une courbe elliptique ordinaire on a égalité avec la taille de l'orbite. Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des points de $p^{i+v_p(E(\mathbb{L}_1))}$-torsion selon l'action du Frobenius et les différentes orbites. $f$ le nombre de représentants des orbites est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$ et n'est généralement pas égal à $\frac{[\mathbb{L}_1: \mathbb{F}_q]}{2}$. En effet $\mathbb{L}_1$ est construit comme une extension de $\mathbb{F}_q$ qui contient les points de $p$-torsion de $E$ et donc $[\mathbb{L}_1: \mathbb{F}_q] \mid p-1$ par le théorème de Gunji \ref{thm:Gunji}.
+\end{tikzpicture}
+\end{center}
+\end{figure}
 
 
 \begin{figure}
@@ -2218,8 +2235,8 @@ Comme dit précédemment des améliorations ont été apportées dans \cite{DeFe
 
 Pour le calcul de la $p^k$-torsion \cite{DeFeo11} utilise les méthodes précédemments présentés issues des travaux de \cite{Gunji76} et \cite{Voloch90}, la différence est que les calculs sont faits sur des tours d'Artin-Schreier (tours $p$-adiques).
 
-Faisons une brève présentation de celles-ci, pour plus de détails voir \cite{DeFeo-Shost'12}.
-
+Faisons une brève présentation des tours d'Artin-Schreier, pour plus de détails voir \cite{DeFeo-Shost'12}.
+\textcolor{red}{Cette brève description est bien inutile...}
 \begin{defi}[tour $p$-adique]
 Soit $\mathbb{F}_q$ un corps fini, soit $\mathbb{U}_0$, $\mathbb{U}_1$, $\cdots$, $\mathbb{U}_i$ la suite d'extensions de corps définie telle que:
 \begin{itemize}
@@ -2392,7 +2409,7 @@ T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
 \]
  $T_0^{(k)}$ est égal à $T_0$ le polynôme minimal de $x(P)$ sur $\mathbb{F}_q$.
 
-\'A l'aide d'une représentation de ce calcul sur un arbre binaire, on voit sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en travaillant avec une branche de celui-ci à l'aide de la méthode décrite ci-dessus.
+Une représentation de ce calcul sur un arbre binaire permet de voir sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en travaillant avec une branche de celui-ci à l'aide de la méthode décrite ci-dessus.
 
 \begin{figure}
 \begin{center}
@@ -2470,7 +2487,7 @@ T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
 		
 		
 		\draw (AC)--(ACA);
-		\draw (AC) node[fill=white]{$\color{red}{\sigma^(T_0^{(2)})}$};%ancien \pi^4(T_3)
+		\draw (AC) node[fill=white]{$\color{red}{\sigma(T_0^{(2)})}$};%ancien \pi^4(T_3)
 		
 		\coordinate (ACAa) at (-6.5,12.75);
 		%\coordinate (ACAa) at (-9,12.75);
