@@ -2043,7 +2043,31 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
-
+		\node (U0) at (0,0) {$\mathbb{F}_{q}$};
+		\node (U1) at (0,4) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))}$};
+		\node (U2) at (0,8) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))+1}$};
+		\node (U3) at (0,12) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$};
+        \draw[dashed] (U2) to (U3);
+         \begin{scope}[xshift=6.5cm]
+         \node (A0) at (-5,4) {$\bullet$};
+         \node (A1) at (5,4) {$\bullet$};
+         \draw[dashed] (A0) to (A1);
+         \node (A0b) at (-5.3,4) {};
+         \node (A1b) at (5.3,4){};
+         \draw[color=black,decorate,decoration={brace,raise=0.2cm},below]
+				(A1b) -- (A0b) node[color=black,below=0.2cm, pos=0.5] {$d_1$};
+		\node (A10) at (-7,8) {$\bullet$};
+		\node (A11) at (-3,8) {$\bullet$};
+		\draw[dashed] (A10) to (A11);
+		\draw (A0) to (A10);
+		\draw (A0) to (A11);
+		\node (A12) at (3,8) {$\bullet$};
+		\node (A13) at (7,8) {$\bullet$};
+		\draw (A1) to (A12);
+		\draw (A1) to (A13);
+		\draw[dashed] (A12) to (A13);
+		
+         \end{scope}           
 \end{tikzpicture}
 \end{center}
 \end{figure}
