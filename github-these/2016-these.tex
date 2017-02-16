@@ -1966,6 +1966,26 @@ Il est à noter que si $v_p(E(\mathbb{F}_q)) \neq 0$ alors $v_p(E(\mathbb{F}_q))
 
 Ainsi on a $[\mathbb{L}_i:\mathbb{L}_1]=p^{i- v_p(E(\mathbb{L}_1))}$ pour tout $i \geqslant  v_p(E(\mathbb{L}_1))$. Asymptotiquement on a donc $[\mathbb{L}_k:\mathbb{L}_1] \in O(p^k)$.
 
+\begin{cor}
+\label{cor:orb:fro}
+Soit $k$ tel que que $\mathbb{L}_k \neq \mathbb{F}_q$ avec $\mathbb{L}_k$ défini comme dans \ref{def:p-adic:level}. 
+La taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $[\mathbb{L}_k:\mathbb{F}_q]$  est égale à:
+\begin{enumerate} 
+\item $[\mathbb{L}_k:\mathbb{F}_q]$ si $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$,
+\item $[\mathbb{L}_k:\mathbb{F}_q]/2$ si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$.
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $e$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ cela veut dire que $t_{\pi}^e=1 \bmod p^k$ ou $t_{\pi}^e=-1 \bmod p^k$, par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $e \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{e})^2=1 \bmod p^k$, ainsi $2e \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $e= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
+\end{proof}
+
+\begin{rem}
+Ce résultat peut aussi être démontré à l'aide du théorème de Gunji \ref{thm:Gunji}, pour $c$ une racine $p-1$ème de $H_E$ les abscisses des points de $p$-torsion sont définies dans $\mathbb{F}_q[c^2]$ qui n'est pas forcément isomorphe à $\mathbb{F}_q[c]$.
+\end{rem}
+
+On va se placer dans la suite de cette section dans le cas où l'on a $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$ afin de ne pas complexifier l'étude.
+
 \begin{thm}
 \label{thm:orb:fro}
 Soit $k\geqslant  v_p({E(\mathbb{L}_1)} \geqslant 1$,
@@ -2174,23 +2194,6 @@ Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i
 \end{figure} 
 
 
-\begin{cor}
-\label{cor:orb:fro}
-Soit $k$ tel que que $\mathbb{L}_k \neq \mathbb{F}_q$ avec $\mathbb{L}_k$ défini comme dans \ref{def:p-adic:level}. 
-La taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $[\mathbb{L}_k:\mathbb{F}_q]$  est égale à:
-\begin{enumerate} 
-\item $[\mathbb{L}_k:\mathbb{F}_q]$ si $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$,
-\item $[\mathbb{L}_k:\mathbb{F}_q]/2$ si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$.
-\end{enumerate}
-\end{cor}
-
-\begin{proof}
-Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $e$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ cela veut dire que $t_{\pi}^e=1 \bmod p^k$ ou $t_{\pi}^e=-1 \bmod p^k$, par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $e \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{e})^2=1 \bmod p^k$, ainsi $2e \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $e= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
-\end{proof}
-
-\begin{rem}
-Ce résultat peut aussi être démontré à l'aide du théorème de Gunji \ref{thm:Gunji}, pour $c$ une racine $p-1$ème de $H_E$ les abscisses des points de $p$-torsion sont définies dans $\mathbb{F}_q[c^2]$ qui n'est pas forcément isomorphe à $\mathbb{F}_q[c]$.
-\end{rem}
 
 Ainsi asymptotiquement la taille des orbites $e \in O(p^k)$, dés lors ne serait-ce que pour représenter un polynôme d'interpolation défini sur une orbite on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$ et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définis sur une extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette question et seront présentées à \textcolor{red}{ref à mettre}.
 
