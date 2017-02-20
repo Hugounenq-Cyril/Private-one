@@ -574,6 +574,7 @@ est un homomorphisme de la courbe et est appelée \emph{endomorphisme de Frobeni
 Comme le groupe de points d'une courbe elliptique  $E(\mathbb{F}_q$) est isomorphe à $\nicefrac{\mathbb{Z}}{n_1 \mathbb{Z}} \times \nicefrac{\mathbb{Z}}{n_2 \mathbb{Z}}$, alors on peut représenter l'action du Frobenius sous forme matricielle et il fait alors sens de parler de la trace $t_{\pi}$ de l'endomorphisme de Frobenius. 
 
 \begin{prop}
+\label{pro:fro:dis}
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Les conditions suivantes sont équivantes:
 \begin{enumerate}
 \item $E$ est supersingulière,
@@ -2165,6 +2166,8 @@ Les deux thèses à citer pour cette partie sont celles de \cite{Kohel96} qui a 
 Dans cette section on va aborder les anneaux d'endomorphismes, car c'est cet objet qu'a étudié Kohel dans sa thèse \cite{Kohel96} qui a permis ensuite de définir les volcans de $l$-isogénies. On a tout d'abord besoin de faire quelques rappels sur les ordres d'un corps quadratique car on verra que ceux-ci correspondent en fait aux anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini.
 
 \subsection{Rappel sur les ordres d'un corps quadratique}
+\textcolor{red}{A eventuellement mettre dans le chapitre d'introduction j'ai laissé une palce vide pour cette sous-section.}
+
 Soit $K$ un corps quadratique, alors il existe un entier $N$ sans facteur carré tel que l'on peut écrire $K=\mathbb{Q}\sqrt{N}$. On donne la définition suivante:
 \begin{defi}
 Soit $K=\mathbb{Q}\sqrt{N}$, on définit le discriminant $d_K$ de $K$ de la façon suivante: 
@@ -2195,22 +2198,24 @@ Soit $K$ un corps quadratique imaginaire, $d_K$ son discriminant alors :
 Chercher la preuve...
 \end{proof}
 
-On va alors travailler 
+On définit alors les ensembles sur $K$  avec lesquels on va travailler:
 
 \begin{defi}
 Un ordre $\mathcal{O}$ d'un corps quadratique $K$ est un sous-ensemble vérifiant les conditions suivantes: 
 \begin{enumerate}
-\item $\mathcal{O}$ est un sous-anneau de $K$
-\item $\mathcal{O}$ est $\mathbb{Z}$-module libre de rang $2$
+\item $\mathcal{O}$ est un sous-anneau de $K$,
+\item $\mathcal{O}$ est $\mathbb{Z}$-module libre de rang $2$.
 \end{enumerate} 
 \end{defi}
 
+On a le résultat suivant qui nous permet de définir le plus grand ordre au sens de l'inclusion.
+
 \begin{prop}
-Soit $K$ un corps quadratique imaginaire soit $\mathcal{O}_K$ l'anneau des entiers de $K$ alors $\mathcal{O}_K$ est l'ordre maximal de $K$.
+Soit $K$ un corps quadratique imaginaire, $\mathcal{O}_K$ l'anneau des entiers de $K$ alors $\mathcal{O}_K$ est l'ordre maximal de $K$.
 \end{prop}
 
 \begin{proof}
-En effet soit $\mathcal{O}$ un ordre de $K$ et soit $\alpha \in \mathcal{O}$. Comme $\mathcal{O}$ est sous-anneau de $K$, on a donc $\alpha \in K$. Comme $\mathcal{O}$ est un $\mathbb{Z}$-module libre de rang 2 alors c'est un entier algébrique. On a donc montré que tout ordre $\mathcal{O}$ de $K$ était inclus dans $\mathcal{O}_K$.
+Soit $\mathcal{O}$ un ordre de $K$ et soit $\alpha \in \mathcal{O}$, comme $\mathcal{O}$ est sous-anneau de $K$, on a $\alpha \in K$. $\mathcal{O}$ étant un $\mathbb{Z}$-module libre de rang 2 alors $\alpha$ est un entier algébrique et donc $\alpha \in \mathcal{O}_K$.
 \end{proof}
 
 
@@ -2220,40 +2225,45 @@ On pourra aussi noter $\mathcal{O}_K$ de la façon suivante
 avec $\omega_K = \frac{d_K+\sqrt{d_K}}{2} $, on met ainsi en avant la base de $\mathbb{Z}$-module: $1, \omega_K$ de $\mathcal{O}_K$
 \end{rem}
 
+Cette notation nous permet alors d'exprimer les indices des ordres $\mathcal{O}$ par rapport à $\mathcal{O}_K$ comme le spécifie le lemme suivant:
+
 \begin{lem}
-Soit $\mathcal{O}$ un ordre dans un corps quadratique $K$ de discriminant $d_K$. Alors $\mathcal{O}$ a un indice fini dans $\mathcal{O}_K$. Ainsi si l'on note: $f= [\mathcal{O}_K : \mathcal{O}]$, alors on a 
-\[ \mathcal{O} = \mathbb{Z} + f\mathcal{O}_K = [1, f\omega_K]  \]
+Soit $\mathcal{O}$ un ordre dans un corps quadratique imaginaire $K$ de discriminant $d_K$, alors $\mathcal{O}$ a un indice fini dans $\mathcal{O}_K$. De plus si l'on note: $f= [\mathcal{O}_K : \mathcal{O}]$, alors on a 
+\[ \mathcal{O} = \mathbb{Z} + f\mathcal{O}_K = [1, f\omega_K]. \]
 \end{lem}
 
 \begin{proof}
-Dans le livre de Cox \cite{Cox89} lemme 7.7.2
+voir \cite[lemma 7.7.2]{Cox89}.
 \end{proof}
 
-On peut alors définir une relation d'ordre sur les ordres:
+On a alors la définition suivante qui nous permet de nommer les indices dans ce contexte:
 \begin{defi}
-Soit $\mathcal{O}$ un ordre de $K$, l'indice $f=[\mathcal{O}_K : \mathcal{O}]$ est appelé le conducteur de $\mathcal{O}$.
+Soit $\mathcal{O}$ un ordre du corps quadratique imaginaire $K$, l'indice $f=[\mathcal{O}_K : \mathcal{O}]$ est appelé le conducteur de $\mathcal{O}$.
 \end{defi}
 
 \begin{rem}
-On peut donc associer à tout ordre un entier: son conducteur. On peut aussi par conséquent définir une relation d'ordre sur les conducteurs. En effet si on a $m \mid n$ alors on a l'ordre $n\mathcal{O}_K \subset m\mathcal{O}_K$.
+\`A l'aide des conducteurs on peut définir une relation d'ordre sur les ordres, en effet si on a $m \mid n$ alors on a l'ordre $n\mathcal{O}_K \subset m\mathcal{O}_K$.
 \end{rem}
 
-C'est cette idée que l'on va retrouver dans les volcans de $l$-isogénies en essayant de former une "chaîne" d'anneaux d'endomorphismes $\mathcal{O}_1 \rightarrow \mathcal{O}_2 \rightarrow ... \rightarrow \mathcal{O}_s$ avec $l || [\mathcal{O}_i : \mathcal{O}_{i+1}] $ 
+C'est cette idée que l'on va retrouver dans les volcans de $l$-isogénies en essayant de donner une structure aux relations entre les différents ordres isomorphes aux anneaux d'endomorphismes (voir \ref{pro:fro:dis}).
 \\
 \\
 On peut aussi définir un autre invariant pour un ordre, son discriminant.
 
 \begin{defi}
-Soit $\alpha \mapsto \overline{\alpha}$ l'automorphisme non-trivial d'un corps quadratique imaginaire $K$. Soit $\mathcal{O}$ un ordre de $K$ avec $\mathcal{O}=[\alpha, \beta]$. Alors le discriminant de $\mathcal{O}$ est le nombre 
+Soit $\alpha \mapsto \overline{\alpha}$ l'automorphisme non-trivial d'un corps quadratique imaginaire $K$, soit $\mathcal{O}$ un ordre de $K$ avec $\mathcal{O}=[\alpha, \beta]$, alors le discriminant de $\mathcal{O}$ est le nombre 
 \[D= \left( \det \left( 
 \begin{array}{cc}
 \alpha & \beta\\
 \overline{\alpha} & \overline{\beta}
 \end{array} 
-\right) \right)^2 \] 
-Le discriminant ne dépendant pas de la base, on a alors avec la base de $\mathcal{O}$ qui est  $[1, f \omega_K]$:
-\[D=f^2d_K\]
+\right) \right)^2. \]
 \end{defi}
+Le discriminant ne dépendant pas de la base, on a alors pour la base $[1, f \omega_K]$ de $\mathcal{O}$:
+\[D=f^2d_K.\]
+
+\subsection{Anneau d'endomorphisme de courbes elliptiques ordinaires}
+Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires qui sont comme vus dans \ref{pro:fro:dis} isomorphes à des ordres dans un corps quadratique imaginaire. On va donc voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
 
 
 
