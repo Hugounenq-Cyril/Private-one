@@ -631,6 +631,20 @@ Voir \cite[Theorem V.1.1]{Silv1}
 
 \subsection{Multiplication complexe}
 
+\begin{defi}
+Une courbe elliptique $E$ ordinaire est dite à multiplication complexe si $\mathrm{End(E)}$ contient un endomorphisme différent de $[m]$ (la multiplication par $m$ sur les points de $E$) pour tout entier $m$. 
+\end{defi} 
+
+Ainsi toute courbe elliptique définie sur un corps fini est à multiplication complexe:
+
+\begin{prop}
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi$ l'endomorphisme de Frobenius alors: 
+\[
+\mathbb{Z}[\pi] \subset \mathrm{End}(E).
+\]
+\end{prop}
+
+
 \subsection{Algorithme de Schoof et ses améliorations}
 %Ici vont être présentés les bases de S.E.A., aucun apport personnel n'a été fait dans ce cadre là, mais il est intéressant pour le lecteur de voir les concepts et  le contexte de celui-ci qui seront évoqués plus tard.
 
@@ -2166,7 +2180,7 @@ Les deux thèses à citer pour cette partie sont celles de \cite{Kohel96} qui a 
 Dans cette section on va aborder les anneaux d'endomorphismes, car c'est cet objet qu'a étudié Kohel dans sa thèse \cite{Kohel96} qui a permis ensuite de définir les volcans de $l$-isogénies. On a tout d'abord besoin de faire quelques rappels sur les ordres d'un corps quadratique car on verra que ceux-ci correspondent en fait aux anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini.
 
 \subsection{Rappel sur les ordres d'un corps quadratique}
-\textcolor{red}{A eventuellement mettre dans le chapitre d'introduction j'ai laissé une palce vide pour cette sous-section.}
+\textcolor{red}{A eventuellement mettre dans le chapitre d'introduction j'ai laissé une place vide pour cette sous-section.}
 
 Soit $K$ un corps quadratique, alors il existe un entier $N$ sans facteur carré tel que l'on peut écrire $K=\mathbb{Q}\sqrt{N}$. On donne la définition suivante:
 \begin{defi}
@@ -2263,8 +2277,61 @@ Le discriminant ne dépendant pas de la base, on a alors pour la base $[1, f \om
 \[D=f^2d_K.\]
 
 \subsection{Anneau d'endomorphisme de courbes elliptiques ordinaires}
-Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires qui sont comme vus dans \ref{pro:fro:dis} isomorphes à des ordres dans un corps quadratique imaginaire. On va donc voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
+Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires qui sont comme vus dans la proposition \ref{pro:fro:dis} isomorphes à des ordres dans un corps quadratique imaginaire. On va donc voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
 
+\begin{prop}
+Soit 
+\end{prop}
+
+\begin{lem}
+Soient $E,E'$ deux courbes elliptiques ordinaires, $\phi: E \mapsto E'$ une isogénie de degré $\ell$ alors:
+\begin{enumerate}
+\item soit $[End(E) : End(E')]=\ell$, 
+\item soit $[End(E) : End(E')]=1$,
+\item soit $[End(E') : End(E)]=\ell$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Voir \cite[Proposition 21]{Kohel96}.
+\end{proof}
+
+\begin{defi}
+Soient $E,E'$ deux courbes elliptiques ordinaires, $\phi: E \mapsto E'$ une $\ell$-isogénie alors $\phi: E \mapsto E'$ est dite:
+\begin{enumerate}
+\item montante si $[End(E') : End(E)]=\ell$,
+\item descendante si $[End(E) : End(E')]=\ell$,
+\item horizontale si $[End(E') : End(E)]=1$.
+\end{enumerate}
+\end{defi}
+
+On a alors le résultat suivant sur les duales des isogénies:
+\begin{lem}Soit $\phi : E \mapsto E'$ une isogénie et sa duale $\widehat{\phi}$. Alors:
+\begin{enumerate}
+\item $\phi$ est une isogénie montante si et seulement si $\widehat{\phi}$ est une isogénie descendante.
+\item $\phi$ est une isogénie descendante si et seulement si $\widehat{\phi}$ est une isogénie montante.
+\item $\phi$ est une isogénie horizontale si et seulement si $\widehat{\phi}$ est une isogénie horizontale.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Voir \cite[Lemme 6.1.1]{Fouquet01}
+\end{proof}
+
+\begin{thm}
+Soit $E$ une courbe elliptique ordinaire définie sur un corps fini $\mathbb{F}_q$ et soit $\ell$ un nombre premier différent de la caractéristique de $\mathbb{F}_q$
+\begin{enumerate}
+\item Si $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $ 1 + \left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies horizontales
+\item Si $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet une $l$ isogénie montante
+\item Si $\ell \nmid [\mathcal{O} : \mathbb{Z}[\pi]]$ alors $E$ n'admet pas de $l$-isogénie descendante
+\item Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell-\left( \frac{d_K}{l} \right)$ isogénies descendantes
+\item  Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell$ $\ell$-isogénies descendantes.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+Voir \cite[Proposition 23]{Kohel96}.
+\end{proof}
 
 
 \section{Détection de courbes sur le cratère}
