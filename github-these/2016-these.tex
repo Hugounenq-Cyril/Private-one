@@ -2488,6 +2488,20 @@ Soit $n$ la longueur du plus court chemin descendant de $E$ alors $n$ est le niv
 \end{figure}
 On peut donc voir sur le dessin \ref{fig:vol:3t} les 3 différents formes de volcan qui existent, celles-ci sont distinguées par la forme de leur cratère qui est déterminée par la valeur de $\left( \frac{d_K}{\ell} \right)$.
 
+On peut vouloir travailler avec des $\ell$-isogénies qui ne sont pas définies dans $\mathbb{F}_q$ qui vont en dessous de la base du volcan, dés lors on doit travailler dans une extension $\ell$-adique et l'on peut se demander comment se comportera le volcan sur une telle extension, le résultat suivant y répond.
+
+\begin{lem}
+Soit $g$ le conducteur de $\mathbb{Z}[\pi]$, $\ell$ un nombre premier différent de $p$ et $2$ tel que $\ell \mid g$, $n$ la valuation $\ell$-adique de $g$, alors la valuation $\ell$-adique de $\mathbb{Z}[\pi^{\ell}]$ est $n+1$. 
+\end{lem}
+
+\begin{proof}
+Voir \cite[Lemme 6.5.2]{Fouquet01}
+\end{proof}
+
+\begin{rem}
+Pour le cas $\ell=2$ l'augmentation se fait de la taille de la valuation $2$-adique de $\left( g \omega_K + 2 \right)$.
+\end{rem}
+
 \subsubsection{Algorithme de Fouquet-Morain}
 
 Maintenant nous pouvons décrire les principes de l'algorithme de Fouquet-Morain.
@@ -2509,12 +2523,25 @@ Pour détecter une courbe située sur le cratère on doit calculer les $\ell+1$ 
 \end{itemize}
 
 \paragraph{Algorithme de Fouquet-Morain}
-L'algorithme de Fouquet-Morain \cite{FouquetMorain02} calcule donc pour différents nombres premiers $\ell_i$ la valuation $v_i$ $\ell_i$-adique du conducteur de $\mathbb{Z}[\pi]$. A l'aide de cette valuation on obtient la valeur du carré de la trace modulo $\ell_i^{v_i}$, le signe est calculé à l'aide d'une détermination de valeurs propres pour le Frobenius en factorisant le polynôme de $\ell_i$-division. 
+L'algorithme de Fouquet-Morain \cite{FouquetMorain02} calcule donc pour différents nombres premiers $\ell_i$ la valuation $v_i$ $\ell_i$-adique du conducteur de $\mathbb{Z}[\pi]$. \`A l'aide de cette valuation on obtient la valeur du carré de la trace modulo $\ell_i^{v_i}$, le signe est calculé à l'aide d'une détermination de valeurs propres pour le Frobenius en factorisant le polynôme de $\ell_i$-division. 
 
-\section{Lien entre les niveaux du volcan et la structure de la torsion}
+
+
+\section{Lien entre les niveaux d'une courbe dans le volcan et la structure de la torsion}
+
+On va dans cette section mettre en avant les liens qui existent entre le niveau d'une courbe dans un volcan de $\ell$-isogénie et la structure de sa $\ell$-torsion.
+
+On va partir du bas du volcan puis monter pour déterminer le comportement de la $\ell$-torsion d'une courbe dans un volcan de $\ell$-isogénies. 
 
 \paragraph{Comportement de la $p^k$-torsion}
 
+\begin{prop}
+Soit $E$ une courbe elliptique située en bas du volcan de $\ell$-isogénie, alors $\ell$-torsion rationnelle de $E$ est cyclique.
+\end{prop}
+
+\begin{proof}
+Bla bla
+\end{proof}
 
 \chapter{Rebus}
 
