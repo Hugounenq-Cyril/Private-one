@@ -2384,15 +2384,56 @@ $\ell+1$ & cas b::$\left\{ \begin{array}{cc}
 \end{cor}
 
 \begin{proof}
-Voir \cite{FouquetMorain02}, \cite[§2.3]{FouquetMorain02}.
+Voir \cite[§2.3]{FouquetMorain02}.
 \end{proof}
 
+Maintenant que l'on a bien introduit les relations possibles entre les anneaux d'endomorphismes on définit certains termes de la littérature:
+
 \begin{defi}
-Le terme cratère du volcan de $\ell$-isogénies désigne le sous-graphe composé uniquement de courbes dont l'anneau d'endomorphismes est isomorphe à un ordre $\mathcal{O}$ tel que $[\mathcal{O}: \mathcal{O}_K]=1$, c'est à dire l'ordre est maximal par rapport à l'indice $\ell$
+Soit $\ell$ un nombre premier, le terme volcan de $\ell$-isogénies désigne le graphe composé de courbes $\ell$-isogènes entre elles.
 \end{defi}
 
-\subsubsection{Détection de courbes sur le cratère}
+\begin{defi}
+Soit $\ell$ un nombre premier, le terme cratère du volcan de $\ell$-isogénies désigne le sous-graphe composé uniquement de courbes dont l'anneau d'endomorphismes est isomorphe à un ordre $\mathcal{O}$ tel que $[\mathcal{O}: \mathcal{O}_K]=1$, c'est à dire l'ordre est maximal par rapport à l'indice $\ell$
+\end{defi}
 
+\begin{defi}
+Soit $\ell$ un nombre premier, un parcours descendant sur un volcan de $\ell$-isogénies d'une courbe elliptique $E$ est une suite de courbes elliptiques $\ell$-isogènes $E=E_0 \rightarrow E_1 \rightarrow E_2 \rightarrow ... \rightarrow E_m$ telles que $E_i \rightarrow E_{i+1}$ est une $l$ -isogénie descendante et que l'on ait $l \nmid [ \mathcal{O}_m : \mathbb{Z}[\pi]]$. 
+\end{defi}
+
+\begin{defi}
+Soit $\ell$ un nombre premier, $E$ une courbe elliptique située sur le cratère d'un volcan de $\ell$-isogénies alors la longueur $h$ du chemin descendant de $E$ est appelée la hauteur du volcan.
+\end{defi}
+
+\begin{defi}
+Définir les niveaux intermédiaires
+\end{defi}
+
+Faire un dessin des différents volcans.
+
+\paragraph{Détection de courbes sur le cratère}
+
+
+Maintenant nous pouvons décrire les principes de l'algorithme de Fouquet-Morain.
+
+L'algorithme de Fouquet-Morain \cite{FouquetMorain02} est un algorithme qui cherche à calculer un chemin descendant d'une courbe elliptique située sur le cratère afin de calculer la valuation $\ell$-adique du conducteur de $\mathbb{Z}[\pi]$. Pour trouver une courbe sur le cratère la première chose à faire est de savoir déterminer un chemin descendant. 
+
+\paragraph{Chemin descendant}
+En pratique une courbe admet au plus $2$ isogénies horizontales et au moins une isogénie descecendante (voir corollaire \ref{cor:tab:vol}), ainsi à l'aide du calcul en parallèle de 3 isogénies on est sûr d'avoir une des 3 qui est une isogénie descendante. Il est aussi important de noter que toute courbe du volcan admet au plus une isogénie montante. Dés lors que l'on parcourt le volcan d'isogénies à partir d'une isogénie descendante et que l'on ne retourne pas sur une courbe déjà parcourue alors la suite des isogénies parcourues seront descendantes jusqu'à ce que l'on se retrouve sur une courbe située en bas du volcan. On détecte qu'une courbe est en bas du volcan dés lors qu'il n'y a qu'une seule courbe isogène à celle-ci.
+
+Ainsi en pratique \cite{FouquetMorain02} calcule 3 chemins à partir de la courbe de départ et le(s) chemin(s) le(s) plus court(s) sera(ont) alors le(s) chemin(s) descendant(s). 
+
+\paragraph{Détection d'une courbe sur le cratère}
+Pour détecter une courbe située sur le cratère on doit calculer les $\ell+1$ chemins différentes paratant de la courbe $E$:
+\begin{itemize}
+\item si celle-ci admet deux chemins plus longs que les $\ell-1$ autres alors $\left( \frac{D}{\ell} \right) = 1$ et le cratère est un cycle,
+\item si celle-ci admet $\ell+1$ chemins de longueur identique alors $\left( \frac{D}{\ell} \right) = 1$ et le cratère est réduit à un point,
+\item si celle-ci admet $1$ chemin plus grand que les $\ell$ autres et si elle est isogène à une courbe qui admet les mêmes longueurs de chemin alors $\left( \frac{D}{\ell} \right) = 0$ et le cratère est réduit à deux points,
+\item si celle-ci $1$ chemin plus grand que les $\ell$ autres et si elle est isogène à une courbe $E_h$ qui n'admet pas les mêmes longueurs de chemin alors $E_h$ se situe au dessus de $E$ dans le volcan et on recommence le test avec $E_h$.
+\end{itemize}
+
+\paragraph{Algorithme de Fouquet-Morain}
+L'algorithme de Fouquet-Morain \cite{FouquetMorain02} calcule donc pour différents nombres premiers $\ell_i$ la valuation $\ell_i$ adique du conducteur de $\mathbb{Z}[\pi]$. Ainsi on aura  afin de déterminer 
 
 \section{Lien entre les niveaux du volcan et la structure de la torsion}
 
