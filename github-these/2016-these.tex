@@ -2394,25 +2394,101 @@ Soit $\ell$ un nombre premier, le terme volcan de $\ell$-isogénies désigne le 
 \end{defi}
 
 \begin{defi}
-Soit $\ell$ un nombre premier, le terme cratère du volcan de $\ell$-isogénies désigne le sous-graphe composé uniquement de courbes dont l'anneau d'endomorphismes est isomorphe à un ordre $\mathcal{O}$ tel que $[\mathcal{O}: \mathcal{O}_K]=1$, c'est à dire l'ordre est maximal par rapport à l'indice $\ell$
+Soit $\ell$ un nombre premier, le terme cratère du volcan de $\ell$-isogénies désigne le sous-graphe composé uniquement de courbes dont l'anneau d'endomorphismes est isomorphe à un ordre $\mathcal{O}$ tel que $[\mathcal{O}: \mathcal{O}_K]=1$, c'est à dire l'ordre est maximal par rapport à l'indice $\ell$.
 \end{defi}
 
 \begin{defi}
-Soit $\ell$ un nombre premier, un parcours descendant sur un volcan de $\ell$-isogénies d'une courbe elliptique $E$ est une suite de courbes elliptiques $\ell$-isogènes $E=E_0 \rightarrow E_1 \rightarrow E_2 \rightarrow ... \rightarrow E_m$ telles que $E_i \rightarrow E_{i+1}$ est une $l$ -isogénie descendante et que l'on ait $l \nmid [ \mathcal{O}_m : \mathbb{Z}[\pi]]$. 
+Soit $\ell$ un nombre premier, un chemin descendant sur un volcan de $\ell$-isogénies d'une courbe elliptique $E$ est une suite de courbes elliptiques $\ell$-isogènes $E=E_0 \rightarrow E_1 \rightarrow E_2 \rightarrow ... \rightarrow E_m$ telles que $E_i \rightarrow E_{i+1}$ est une $l$ -isogénie descendante et que l'on ait $l \nmid [ \mathcal{O}_m : \mathbb{Z}[\pi]]$. 
 \end{defi}
 
 \begin{defi}
-Soit $\ell$ un nombre premier, $E$ une courbe elliptique située sur le cratère d'un volcan de $\ell$-isogénies alors la longueur $h$ du chemin descendant de $E$ est appelée la hauteur du volcan.
+Soit $\ell$ un nombre premier, $E_c$ une courbe elliptique située sur le cratère d'un volcan de $\ell$-isogénies alors la longueur $h$ du plus court chemin descendant de $E_h$ est appelée la hauteur du volcan.
+Soit $n$ la longueur du plus court chemin descendant de $E$ alors $n$ est le niveau de $E$ dans le volcan d'isogénies.
 \end{defi}
 
-\begin{defi}
-Définir les niveaux intermédiaires
-\end{defi}
+\begin{figure}[h]
+\label{fig:vol:3t}
+		\begin{center}
+        \begin{tikzpicture}[scale=0.2]
+        \coordinate (A) at (0,0);
+		\coordinate (B) at (230:5);
+		\coordinate (C) at (270:4);
+		\coordinate (D) at (310:5);
+		\draw (A) node{$\bullet$};
+		\draw (B) node{$\bullet$};
+		\draw (C) node{$\bullet$};
+		\draw (D) node{$\bullet$};
+		\node at (0,-6.7) {$\left( \frac{d_K}{\ell} \right) = -1$};
+		\draw (A)--(B);
+		\draw (A)--(C);
+		\draw (A)--(D);
+		
+		\begin{scope}[xshift=20cm]
+		\coordinate (A) at (0,0);
+		\coordinate (B) at (5.5,0);
+		\coordinate (C) at (240:4.2);
+		\coordinate (D) at (300:4.2);
+		\draw (A) node{$\bullet$};
+		\draw (B) node{$\bullet$};
+		\draw (C) node{$\bullet$};
+		\draw (D) node{$\bullet$};
+		\node at (2.8,-6.7) { $\left( \frac{d_K}{\ell} \right) = 0$};
+		\draw (A)--(B);
+		\draw (A)--(C);
+		\draw (A)--(D);
+		\end{scope}
+		
+		\begin{scope}[xshift=25.5cm]
+		\coordinate (A) at (0,0);
+		\coordinate (C) at (240:4.2);
+		\coordinate (D) at (300:4.2);
+		\draw (A) node{$\bullet$};
+		\draw (C) node{$\bullet$};
+		\draw (D) node{$\bullet$};
+		\draw (A)--(C);
+		\draw (A)--(D);
+		\end{scope}
+		
+		\begin{scope}[xshift=45cm]
+		\node (A) at (-3,0) {$\bullet$};
+		\node (B) at (3,0) {$\bullet$};
+		\node (C) at (270:1.2) {$\bullet$};
+		\node (D) at (90:1.5) {};
+		\node at (0,-6.7) { $\left( \frac{d_K}{\ell} \right) = +1$};
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[-] (A.center) to[bend right=40] (B.center);
+			\begin{scope}[xshift=-3cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+			\end{scope}
+			\begin{scope}[xshift=3cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+			\end{scope}
+		\end{scope}
+		\end{tikzpicture}
+		\end{center}
+		\caption{Différents types de volcans de $2$-isogénies.}
+\end{figure}
+On peut donc voir sur le dessin \ref{fig:vol:3t} les 3 différents formes de volcan qui existent, celles-ci sont distinguées par la forme de leur cratère qui est déterminée par la valeur de $\left( \frac{d_K}{\ell} \right)$.
 
-Faire un dessin des différents volcans.
-
-\paragraph{Détection de courbes sur le cratère}
-
+\subsubsection{Algorithme de Fouquet-Morain}
 
 Maintenant nous pouvons décrire les principes de l'algorithme de Fouquet-Morain.
 
@@ -2429,11 +2505,11 @@ Pour détecter une courbe située sur le cratère on doit calculer les $\ell+1$ 
 \item si celle-ci admet deux chemins plus longs que les $\ell-1$ autres alors $\left( \frac{D}{\ell} \right) = 1$ et le cratère est un cycle,
 \item si celle-ci admet $\ell+1$ chemins de longueur identique alors $\left( \frac{D}{\ell} \right) = 1$ et le cratère est réduit à un point,
 \item si celle-ci admet $1$ chemin plus grand que les $\ell$ autres et si elle est isogène à une courbe qui admet les mêmes longueurs de chemin alors $\left( \frac{D}{\ell} \right) = 0$ et le cratère est réduit à deux points,
-\item si celle-ci $1$ chemin plus grand que les $\ell$ autres et si elle est isogène à une courbe $E_h$ qui n'admet pas les mêmes longueurs de chemin alors $E_h$ se situe au dessus de $E$ dans le volcan et on recommence le test avec $E_h$.
+\item si celle-ci admet $1$ chemin plus grand que les $\ell$ autres et si elle est isogène à une courbe $E_h$ qui n'admet pas les mêmes longueurs de chemin alors $E_h$ se situe au dessus de $E$ dans le volcan et on recommence le test avec $E_h$.
 \end{itemize}
 
 \paragraph{Algorithme de Fouquet-Morain}
-L'algorithme de Fouquet-Morain \cite{FouquetMorain02} calcule donc pour différents nombres premiers $\ell_i$ la valuation $\ell_i$ adique du conducteur de $\mathbb{Z}[\pi]$. Ainsi on aura  afin de déterminer 
+L'algorithme de Fouquet-Morain \cite{FouquetMorain02} calcule donc pour différents nombres premiers $\ell_i$ la valuation $v_i$ $\ell_i$-adique du conducteur de $\mathbb{Z}[\pi]$. A l'aide de cette valuation on obtient la valeur du carré de la trace modulo $\ell_i^{v_i}$, le signe est calculé à l'aide d'une détermination de valeurs propres pour le Frobenius en factorisant le polynôme de $\ell_i$-division. 
 
 \section{Lien entre les niveaux du volcan et la structure de la torsion}
 
