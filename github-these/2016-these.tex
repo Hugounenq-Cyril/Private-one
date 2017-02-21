@@ -474,9 +474,9 @@ E[m]=\nicefrac{\mathbb{Z}}{m\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{m\mathbb{Z}
 \item Si $\mathrm{car}(\mathbb{K})=p>0$ alors:
 \begin{equation*}
 \begin{alignedat}{1}
-&\textit{Soit } E[p^e]=\{O_E\} \textit{ pour tout } e \geqslant 1 \textit{alors $E$ est dite supersingulière }\\
-&\textit{Soit } E[p^e]=\nicefrac{\mathbb{Z}}{p^e\mathbb{Z}} \textit{ pour tout } e \geqslant 1
-\textit{alors $E$ est dite ordinaire }\end{alignedat}
+&\text{Soit } E[p^e]=\{O_E\} \text{ pour tout } e \geqslant 1 \text{alors $E$ est dite supersingulière }\\
+&\text{Soit } E[p^e]=\nicefrac{\mathbb{Z}}{p^e\mathbb{Z}} \text{ pour tout } e \geqslant 1
+\text{alors $E$ est dite ordinaire }\end{alignedat}
 \end{equation*}
 \end{enumerate}
 \end{cor}
@@ -505,9 +505,9 @@ En tant que $\mathbb{Z}_{\ell}$ module, le module de Tate a la structure suivant
 \begin{equation*}
 T_{\ell} \cong 
 \begin{cases} 
-\mathbb{Z}_{\ell} \times \mathbb{Z}_{\ell} &\textit{ si } \ell \neq \mathrm{car}(\mathbb{K}). \\
-\mathbb{Z}_{\ell} &\textit{ si } \ell=\mathrm{car}(\mathbb{K})  \textit{et E est ordinaire}. \\
-\{O_E\} &\textit{ si } \ell=\mathrm{car}(\mathbb{K})  \textit{et E est supersingulière}.
+\mathbb{Z}_{\ell} \times \mathbb{Z}_{\ell} &\text{ si } \ell \neq \mathrm{car}(\mathbb{K}). \\
+\mathbb{Z}_{\ell} &\text{ si } \ell=\mathrm{car}(\mathbb{K})  \text{et E est ordinaire}. \\
+\{O_E\} &\text{ si } \ell=\mathrm{car}(\mathbb{K})  \text{et E est supersingulière}.
 \end{cases}
 \end{equation*}
 \end{prop}
@@ -2209,7 +2209,7 @@ Soit $K$ un corps quadratique imaginaire, $d_K$ son discriminant alors :
 \end{prop}
 
 \begin{proof}
-Chercher la preuve...
+Voir \cite[exercise 5.7]{Cox89}.
 \end{proof}
 
 On définit alors les ensembles sur $K$  avec lesquels on va travailler:
@@ -2236,7 +2236,7 @@ Soit $\mathcal{O}$ un ordre de $K$ et soit $\alpha \in \mathcal{O}$, comme $\mat
 \begin{rem}
 On pourra aussi noter $\mathcal{O}_K$ de la façon suivante 
 \[ \mathcal{O}_K =[1, \omega_K] \]
-avec $\omega_K = \frac{d_K+\sqrt{d_K}}{2} $, on met ainsi en avant la base de $\mathbb{Z}$-module: $1, \omega_K$ de $\mathcal{O}_K$
+avec $\omega_K = \frac{d_K+\sqrt{d_K}}{2} $, on met ainsi en avant la base de $\mathbb{Z}$-module: $1, \omega_K$ de $\mathcal{O}_K$.
 \end{rem}
 
 Cette notation nous permet alors d'exprimer les indices des ordres $\mathcal{O}$ par rapport à $\mathcal{O}_K$ comme le spécifie le lemme suivant:
@@ -2259,7 +2259,7 @@ Soit $\mathcal{O}$ un ordre du corps quadratique imaginaire $K$, l'indice $f=[\m
 \`A l'aide des conducteurs on peut définir une relation d'ordre sur les ordres, en effet si on a $m \mid n$ alors on a l'ordre $n\mathcal{O}_K \subset m\mathcal{O}_K$.
 \end{rem}
 
-C'est cette idée que l'on va retrouver dans les volcans de $l$-isogénies en essayant de donner une structure aux relations entre les différents ordres isomorphes aux anneaux d'endomorphismes (voir \ref{pro:fro:dis}).
+C'est cette idée que l'on va retrouver dans les volcans de $l$-isogénies en essayant de donner une structure aux relations entre les différents ordres isomorphes aux anneaux d'endomorphismes (voir proposition \ref{pro:fro:dis}).
 \\
 \\
 On peut aussi définir un autre invariant pour un ordre, son discriminant.
@@ -2277,18 +2277,24 @@ Le discriminant ne dépendant pas de la base, on a alors pour la base $[1, f \om
 \[D=f^2d_K.\]
 
 \subsection{Anneau d'endomorphisme de courbes elliptiques ordinaires}
-Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires qui sont comme vus dans la proposition \ref{pro:fro:dis} isomorphes à des ordres dans un corps quadratique imaginaire. On va donc voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
+Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini qui sont comme vus dans la proposition \ref{pro:fro:dis} isomorphes à des ordres dans un corps quadratique imaginaire. On va donc voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
 
-\begin{prop}
-Soit 
-\end{prop}
+La première remarque à faire c'est que pour toute courbe elliptique ordinaire définie sur un corps fini pour $\mathcal{O}$ l'ordre associé à isomorphisme près à $\mathrm{End}(E)$ on a: 
+\[
+\mathbb{Z}[\pi] \subset \mathcal{O} \subset \mathcal{O}_K.
+\]
+Ainsi pour tout ordre associé à isomorphisme près à un anneau d'endomorphisme on a un ordre minimal au sens de l'inclusion celui qui contient toutes les multiplications scalaires et l'endomorphisme de Frobenius.
+
+\begin{rem}
+On va noter désormais $\mathcal{O}$(resp. $\mathcal{O}'$) pour l'ordre défini à isomorphisme près associé à $\mathrm{End}(E)$ (resp. $\mathrm{End}(E')$.
+\end{rem}
 
 \begin{lem}
 Soient $E,E'$ deux courbes elliptiques ordinaires, $\phi: E \mapsto E'$ une isogénie de degré $\ell$ alors:
 \begin{enumerate}
-\item soit $[End(E) : End(E')]=\ell$, 
-\item soit $[End(E) : End(E')]=1$,
-\item soit $[End(E') : End(E)]=\ell$.
+\item soit $[\mathcal{O} : \mathcal{O'}]=\ell$, 
+\item soit $[\mathcal{O} : \mathcal{O'}]=1$,
+\item soit $[\mathcal{O'} : \mathcal{O}]=\ell$.
 \end{enumerate}
 \end{lem}
 
@@ -2299,9 +2305,9 @@ Voir \cite[Proposition 21]{Kohel96}.
 \begin{defi}
 Soient $E,E'$ deux courbes elliptiques ordinaires, $\phi: E \mapsto E'$ une $\ell$-isogénie alors $\phi: E \mapsto E'$ est dite:
 \begin{enumerate}
-\item montante si $[End(E') : End(E)]=\ell$,
-\item descendante si $[End(E) : End(E')]=\ell$,
-\item horizontale si $[End(E') : End(E)]=1$.
+\item montante si $[\mathcal{O'} : \mathcal{O}]=\ell$,
+\item descendante si $[\mathcal{O} : \mathcal{O'}]=\ell$,
+\item horizontale si $[\mathcal{O'} : \mathcal{O}]=1$.
 \end{enumerate}
 \end{defi}
 
@@ -2315,8 +2321,20 @@ On a alors le résultat suivant sur les duales des isogénies:
 \end{lem}
 
 \begin{proof}
-Voir \cite[Lemme 6.1.1]{Fouquet01}
+Voir \cite[Lemma 2.1]{FouquetMorain02}
 \end{proof}
+
+\begin{defi}
+Soit $\ell$ un nombre premier, soit $D$ un discriminant associé à un ordre dans un corps quadratique imaginaire, on définit alors:
+\begin{equation*}
+\left( \frac{D}{\ell} \right)= \begin{cases}
+  \text{symbole de Legendre} & \text{si } \ell\neq 2 \\
+0 & \text{si } \ell=2 \text{ et } D=0 \bmod 4 \\
+1 & \text{si } \ell=2 \text{ et } D=1 \bmod 8 \\
+-1 & \text{si } \ell=2 \text{ et } D=5 \bmod 8 \\
+\end{cases}
+\end{equation*}
+\end{defi}
 
 \begin{thm}
 Soit $E$ une courbe elliptique ordinaire définie sur un corps fini $\mathbb{F}_q$ et soit $\ell$ un nombre premier différent de la caractéristique de $\mathbb{F}_q$
@@ -2324,7 +2342,7 @@ Soit $E$ une courbe elliptique ordinaire définie sur un corps fini $\mathbb{F}_
 \item Si $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $ 1 + \left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies horizontales
 \item Si $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet une $l$ isogénie montante
 \item Si $\ell \nmid [\mathcal{O} : \mathbb{Z}[\pi]]$ alors $E$ n'admet pas de $l$-isogénie descendante
-\item Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell-\left( \frac{d_K}{l} \right)$ isogénies descendantes
+\item Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell-\left( \frac{d_K}{\ell} \right)$ isogénies descendantes
 \item  Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell$ $\ell$-isogénies descendantes.
 \end{enumerate}
 \end{thm}
@@ -2333,9 +2351,50 @@ Soit $E$ une courbe elliptique ordinaire définie sur un corps fini $\mathbb{F}_
 Voir \cite[Proposition 23]{Kohel96}.
 \end{proof}
 
+On peut dés lors relier ce théorème avec les racines du polynôme modulaire évalué en le $j$-invariant de la courbe que l'on étudie:
 
-\section{Détection de courbes sur le cratère}
+\begin{cor}
+\label{cor:tab:vol} 
+Dans le tableau suivant sont résumés les différentes possibilités de types d'isogénies selon la valeur de $\mathcal{N}_{\ell}(E)$ qui représente le nombre de solutions à l'équation: $\Phi_{\ell}(X,j(E))=0$
+\newline
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+$\mathcal{N}_{\ell}(E)$ & Type des l-isogénies &  & $\left(\frac{D}{\ell}\right)$ & $\left(\frac{d_{\pi}}{\ell}\right)$\tabularnewline
+\hline 
+\hline 
+$0$ & aucune & $\ell \,\nmid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell \,\nmid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $-1$ & $-1$\tabularnewline
+\hline 
+$2$ & $\rightarrow$ & $\ell \,\nmid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell \,\nmid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $+1$ & $+1$\tabularnewline
+\hline 
+$1$ & cas 1: $\rightarrow$ & $\ell\,\nmid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell\,\nmid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $0$ & $0$\tabularnewline
+\hline 
+$1$ & cas 2: $\uparrow$ & $\ell\,\mid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell\,\nmid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $0$ & $0$\tabularnewline
+\hline 
+$\ell+1$ & cas a::$\left\{ \begin{array}{cc}
+1+\left(\frac{D}{\ell}\right) & \rightarrow\\
+l-\left(\frac{D}{\ell}\right) & \downarrow
+\end{array}\right.$ & $\ell \,\mid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell \,\nmid[\mathcal{O}:\mathbb{Z}[\pi]]$  & inconnu & $0$\tabularnewline
+\hline 
+$\ell+1$ & cas b::$\left\{ \begin{array}{cc}
+1 & \uparrow\\
+\ell & \downarrow
+\end{array}\right.$ & $\ell \,\mid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell \,\mid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $0$ & $0$\tabularnewline
+\hline  \label{tableau}
+\end{tabular}
+\end{cor}
 
+\begin{proof}
+Voir \cite{FouquetMorain02}, \cite[§2.3]{FouquetMorain02}.
+\end{proof}
+
+\begin{defi}
+Le terme cratère du volcan de $\ell$-isogénies désigne le sous-graphe composé uniquement de courbes dont l'anneau d'endomorphismes est isomorphe à un ordre $\mathcal{O}$ tel que $[\mathcal{O}: \mathcal{O}_K]=1$, c'est à dire l'ordre est maximal par rapport à l'indice $\ell$
+\end{defi}
+
+\subsubsection{Détection de courbes sur le cratère}
+
+
+\section{Lien entre les niveaux du volcan et la structure de la torsion}
 
 \paragraph{Comportement de la $p^k$-torsion}
 
