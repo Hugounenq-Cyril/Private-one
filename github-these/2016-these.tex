@@ -2547,12 +2547,20 @@ E(\mathbb{F}_{q^r}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q^r}}(E)}{\pi-1}
 \cite[Theorem 1]{Lenstra1996}
 \end{proof}
 
+\begin{lem}
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ de conducteur $f$ sur un volcan de $\ell$-isogénies, $\pi=a+g \omega_K$ l'endomorphisme de Frobenius alors le plus grand $n_2$ tel que $E[n_2] \subset E(\mathbb{F}_q)$ est $n_2=\mathrm{pgcd}(a-1,g/f)$.
+\end{lem}
+
+\begin{proof}
+Voir  \cite[Lemma 1]{Ruck1987}.
+\end{proof}
+
 \begin{prop}
 Sur un volcan de $\ell$-isogénies, deux courbes $E$, $E'$ situées au même niveau ont la même structure de $\ell$-torsion rationnelle.
 \end{prop}
 
 \begin{proof}
-Cette preuve est issue de \cite{Ionica2010}.
+Cette preuve est issue de \cite{Ionica2010} elle est très importante pour comprendre la liaison entre la structure de la $\ell$-torsion d'une courbe et son niveau dans le volcan.
 Tout d'abord on peut remarquer que deux courbes situées sur un même volcan de $\ell$-isogénies ont la même cardinalité. Par la proposition \ref{pro:len:str} la structure de la torsion rationnelle est alors de la forme :
 \[
 E(\mathbb{F}_{q}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q}}(E)}{\pi-1}
@@ -2560,6 +2568,33 @@ E(\mathbb{F}_{q}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q}}(E)}{\pi-1}
 On rappelle l'écriture $\pi=a + g \omega_K$, pour le plus grand $N$ tel que $E[N] \subset E(\mathbb{F}_q)$ on a par \cite[Lemma 1]{Ruck1987} $N=\mathrm{pgcd}(a-1,g/f)$ avec $f$ le conducteur de $\mathrm{End}(E)$.
 \end{proof}
 
+On a besoin du résultat intermédiare suivant:
+
+\begin{prop}
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi=a+g \omega_K$ l'endomorphisme de Frobenius alors: $v_{\ell}(a-1) \geqslant \min(v_{\ell}(g),v_{\ell}(|E(\mathbb{F}_q)|/2))$.
+\end{prop}
+
+\begin{proof}
+Voir \cite[Lemma 5.2]{Ionica2010}
+\end{proof}
+
+On peut maintenant relier la structure de la $\ell$-torsion et le niveau de la courbe dans le volcan de $\ell$-isogénies.
+
+\begin{prop}
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/n_1\mathbb{Z} \times \mathbb{Z}/n_2\mathbb{Z}$ alors si:
+\begin{itemize}
+\item[$v_{\ell}(n_1)>v_{\ell}(n_2)$] alors $E$ est à un niveau bien défini
+\item[$v_{\ell}(n_1)=v_{\ell}(n_2)$] alors $E$ n'est pas à un niveau bien défini
+\end{itemize}
+\end{prop}
+
+\begin{proof}
+Blabla
+\end{proof}
+
+\begin{cor}
+On a alors le passage de niveau qui entraine des changements de structure...
+\end{cor}
 
 On va partir du bas du volcan puis monter pour déterminer le comportement de la $\ell$-torsion d'une courbe dans un volcan de $\ell$-isogénies. 
 
