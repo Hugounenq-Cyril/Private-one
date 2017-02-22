@@ -128,7 +128,7 @@ Soit $\mathbb{K}$ un corps, on dénote par $\overline{\mathbb{K}}$ sa cloture al
 \begin{defi}
 On appelle espace projectif de dimension $2$ sur un corps $\mathbb{K}$ et on note $\mathbb{P}^2(\mathbb{K})$, l'ensemble des classes $(X:Y:Z)$ de la relation d'équivalence définie comme suit:
 \begin{equation*}
-\forall (X,Y,Z) \in \mathbb{K}^3 \setminus (0,0,0), (X,Y,Z) \equiv (X',Y',Z') \textit{ ssi }\exists c \in \mathbb{K}^*, X'=cX, Y'=cY, Z'=cZ.
+\forall (X,Y,Z) \in \mathbb{K}^3 \setminus (0,0,0), (X,Y,Z) \equiv (X',Y',Z') \text{ ssi }\exists c \in \mathbb{K}^*, X'=cX, Y'=cY, Z'=cZ.
 \end{equation*}
 \end{defi}
 
@@ -281,8 +281,8 @@ En utilisant la notation $(x_P,y_P)$ pour les coordonnées affines d'un point $P
 \item $P+O_E=O_E+P=(x_P,y_P)$
 \item $-P=(x_P,-y_P-a_1x_P-a_3)$
 \item En notant $\lambda= \begin{cases}
-\frac{y_{Q}-y_{P}}{x_{Q}-x_{P}} & \textit{si } P\neq Q\\
-\frac{3x_{P}^{2}+2a_{2}x_{P}+a_{4}-a_{1}y_{P}}{2y_{P}+a_{1}x_{P}+a_{3}} & \textit{si } P=Q
+\frac{y_{Q}-y_{P}}{x_{Q}-x_{P}} & \text{si } P\neq Q\\
+\frac{3x_{P}^{2}+2a_{2}x_{P}+a_{4}-a_{1}y_{P}}{2y_{P}+a_{1}x_{P}+a_{3}} & \text{si } P=Q
 \end{cases}\ $,
 
 on peut alors exprimer les coordonnées de $P+Q$:
@@ -452,7 +452,7 @@ Soit $\varphi:E_1 \rightarrow E_2$ une isogénie.
 \end{equation*}
 \item Pour tout $m$ entier relatif,
 \begin{equation*}
-[\widehat{m}]=[m] \textit{ et } \deg[m]=m^2.
+[\widehat{m}]=[m] \text{ et } \deg[m]=m^2.
 \end{equation*}
 \item $\deg( \varphi)=\deg(\widehat{\varphi})$,
 \item $\widehat{\widehat{\varphi}}=\varphi$.
@@ -557,7 +557,15 @@ Le groupe abélien $E(\mathbb{F}_q$) est isomorphe à $\nicefrac{\mathbb{Z}}{n_1
 \begin{proof}
 Voir \cite[Theorem 4.1]{Washington2008}
 \end{proof}
+On a le résultat suivant qui ne donne pas l'égalité entre les structures de groupe de deux courbes elliptiques isogènes mais entre leur cardinalité.
 
+\begin{prop}
+Soient $E$, $E'$ deux courbes elliptiques définies sur un corps fini avec $E$ et $E'$ reliées par une isogénie alors $E$ et $E'$ ont la même cardinalité sur $\mathbb{F}_q$.
+\end{prop}
+
+\begin{proof}
+Preuve à trouver...
+\end{proof}
 
 \subsection{L'endomorphisme de Frobenius}
 \begin{defi}
@@ -2491,16 +2499,12 @@ On peut donc voir sur le dessin \ref{fig:vol:3t} les 3 différents formes de vol
 On peut vouloir travailler avec des $\ell$-isogénies qui ne sont pas définies dans $\mathbb{F}_q$ qui vont en dessous de la base du volcan, dés lors on doit travailler dans une extension $\ell$-adique et l'on peut se demander comment se comportera le volcan sur une telle extension, le résultat suivant y répond.
 
 \begin{lem}
-Soit $g$ le conducteur de $\mathbb{Z}[\pi]$, $\ell$ un nombre premier différent de $p$ et $2$ tel que $\ell \mid g$, $n$ la valuation $\ell$-adique de $g$, alors la valuation $\ell$-adique de $\mathbb{Z}[\pi^{\ell}]$ est $n+1$. 
+Soit $g$ le conducteur de $\mathbb{Z}[\pi]$, $\ell$ un nombre premier différent de $p$ tel que $\ell \mid g$, $n$ la valuation $\ell$-adique de $g$, alors la valuation $\ell$-adique de $\mathbb{Z}[\pi^{\ell}]$ est $n+1$. 
 \end{lem}
 
 \begin{proof}
-Voir \cite[Lemme 6.5.2]{Fouquet01}
+Voir \cite[Proposition 6]{MiretMSTV08}.
 \end{proof}
-
-\begin{rem}
-Pour le cas $\ell=2$ l'augmentation se fait de la taille de la valuation $2$-adique de $\left( g \omega_K + 2 \right)$.
-\end{rem}
 
 \subsubsection{Algorithme de Fouquet-Morain}
 
@@ -2529,9 +2533,37 @@ L'algorithme de Fouquet-Morain \cite{FouquetMorain02} calcule donc pour différe
 
 \section{Lien entre les niveaux d'une courbe dans le volcan et la structure de la torsion}
 
-On va dans cette section mettre en avant les liens qui existent entre le niveau d'une courbe dans un volcan de $\ell$-isogénie et la structure de sa $\ell$-torsion.
+On va dans cette section mettre en avant les liens qui existent entre le niveau d'une courbe dans un volcan de $\ell$-isogénie et la structure de sa $\ell$-torsion. Les résultats exposés ici sont tirés de \cite{MiretMSTV08} et \cite{Ionica-Joux10}.
+
+\begin{prop}[Lenstra]
+\label{pro:len:str}
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi$ l' endomorphisme de frobenius alors si $\pi \not \in \mathbb{Z}$ alors pour les extension de corps de la forme $\mathbb{F}_{q^r}$ $\mathrm{End}_{\mathbb{F}_{q^r}}(E)$ est un $\mathbb{Z}$-module de rang $2$ et il y a l'isomorphisme de $\mathbb{Z}$-module suivant:
+\[
+E(\mathbb{F}_{q^r}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q^r}}(E)}{\pi-1}
+\] 
+\end{prop}
+
+\begin{proof}
+\cite[Theorem 1]{Lenstra1996}
+\end{proof}
+
+\begin{prop}
+Sur un volcan de $\ell$-isogénies, deux courbes $E$, $E'$ situées au même niveau ont la même structure de $\ell$-torsion rationnelle.
+\end{prop}
+
+\begin{proof}
+Cette preuve est issue de \cite{Ionica2010}.
+Tout d'abord on peut remarquer que deux courbes situées sur un même volcan de $\ell$-isogénies ont la même cardinalité. Par la proposition \ref{pro:len:str} la structure de la torsion rationnelle est alors de la forme :
+\[
+E(\mathbb{F}_{q}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q}}(E)}{\pi-1}
+\] 
+On rappelle l'écriture $\pi=a + g \omega_K$, pour le plus grand $N$ tel que $E[N] \subset E(\mathbb{F}_q)$ on a par \cite[Lemma 1]{Ruck1987} $N=\mathrm{pgcd}(a-1,g/f)$ avec $f$ le conducteur de $\mathrm{End}(E)$.
+\end{proof}
+
 
 On va partir du bas du volcan puis monter pour déterminer le comportement de la $\ell$-torsion d'une courbe dans un volcan de $\ell$-isogénies. 
+
+
 
 \paragraph{Comportement de la $p^k$-torsion}
 
@@ -2543,13 +2575,6 @@ Soit $E$ une courbe elliptique située en bas du volcan de $\ell$-isogénie, alo
 Bla bla
 \end{proof}
 
-\begin{prop}
-Sur un volcan de $\ell$-isogénies, deux courbes $E$, $E'$ situées au même niveau ont la même structure de $\ell$-torsion rationnelle.
-\end{prop}
-
-\begin{proof}
-Bla Bla...
-\end{proof}
 
 \chapter{Rebus}
 
