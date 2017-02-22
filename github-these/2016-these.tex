@@ -111,6 +111,8 @@
 \mainmatter
 % \SingleSpace
 
+\tableofcontents*
+
 \chapter{Rappels théoriques}
 \label{cha:Rappels theoriques}
 
@@ -2548,6 +2550,7 @@ E(\mathbb{F}_{q^r}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q^r}}(E)}{\pi-1}
 \end{proof}
 
 \begin{lem}
+\label{lem:ruc:rat}
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ de conducteur $f$ sur un volcan de $\ell$-isogénies, $\pi=a+g \omega_K$ l'endomorphisme de Frobenius alors le plus grand $n_2$ tel que $E[n_2] \subset E(\mathbb{F}_q)$ est $n_2=\mathrm{pgcd}(a-1,g/f)$.
 \end{lem}
 
@@ -2581,24 +2584,71 @@ Voir \cite[Lemma 5.2]{Ionica2010}
 On peut maintenant relier la structure de la $\ell$-torsion et le niveau de la courbe dans le volcan de $\ell$-isogénies.
 
 \begin{prop}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/n_1\mathbb{Z} \times \mathbb{Z}/n_2\mathbb{Z}$ alors si:
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/n_1\mathbb{Z} \times \mathbb{Z}/n_2\mathbb{Z}$, $\pi = a + g \omega_K$ l'endomorphisme de Frobenius alors si:
 \begin{itemize}
-\item[$v_{\ell}(n_1)>v_{\ell}(n_2)$] alors $E$ est à un niveau bien défini
-\item[$v_{\ell}(n_1)=v_{\ell}(n_2)$] alors $E$ n'est pas à un niveau bien défini
+\item[$v_{\ell}(n_1)>v_{\ell}(n_2)$] alors $E$ est se situe au niveau $n_2$,
+\item[$v_{\ell}(n_1)=v_{\ell}(n_2)$] alors $E$ se situe à un niveau supérieur ou égal à $v_{\ell}(|E(\mathbb{F}_q)|)/2$.
 \end{itemize}
 \end{prop}
 
 \begin{proof}
-Blabla
+La preuve est issue du travail de \cite{MiretMSTV08}, \cite{Ionica2010}.
+\begin{itemize}
+\item On se place tout d'abord dans le premier cas où l'on a $v_{\ell}(n_1)>v_{\ell}(n_2)$, on a par conséquent $v_{\ell}(n_2) < v_{\ell}(|E(\mathbb{F}_q)|)/2$. On va d'abord prouver que la valuation $\ell$-adique de $n_2$ diminue de $1$ à chaque descente d'un niveau dans le volcan, puis déterminer la structure d'une courbe située en bas du volcan pour ensuite obtenir le résultat.  On a $n_2$ qui est égal à $\mathrm{pgcd}(a-1,g/f)$ par le lemme \ref{lem:ruc:rat}.
+
+Supposons que $\min(v_{\ell}(g),v_{\ell}(|E(\mathbb{F}_q)|)/2)= v_{\ell}(g)$, on a alors $v_{\ell}(a-1) \geqslant v_{\ell}(g)$ et comme $n_2=\mathrm{pgcd}(a-1,g/f)$ alors on a $v_{\ell}(n_2)=v_{\ell}(g/f)$. Supposons maintenant que $\min(v_{\ell}(g),v_{\ell}(|E(\mathbb{F}_q)|)/2)= v_{\ell}(|E(\mathbb{F}_q)|)/2)$ alors on obtient $v_{\ell}(a-1) \geqslant v_{\ell}(|E(\mathbb{F}_q)|)/2) > v_{\ell}(n_2)$ ce qui est absurde. 
+
+Dés lors quand on descend d'un niveau dans le volcan la valuation $\ell$-adique de $f$ augmente de $1$ et par conséquent $v_{ell}(n_2)=v_{\ell}(g/f)$ diminue de $1$ aussi, en particulier cela implique que la valuation $\ell$-adique de $n_2$ pour une courbe sur le cratère est nulle. Ainsi on voit bien la bijection entre la valuation $\ell$-adique de $n_2$ et le niveau de la courbe dans le volcan.
+
+\item On se place désormais dans le cas où l'on a $v_{\ell}(n_1)=v_{\ell}(n_2)$ (et par conséquent $2 \mid v_{\ell}(|E(\mathbb{F}_q)|)$) alors dans ce cas la structure de la $\ell$ torsion ne change pas du cratère jusqu'à un niveau où l'on tombe dans le premier cas, ainsi $E$ se trouve à un niveau supérieur à $v_{\ell}(|E(\mathbb{F}_q)|)/2$.
+\end{itemize}
 \end{proof}
 
+\begin{defi}
+Sur un volcan de $\ell$-isogénie on appelle le niveau à partir duquel la structure de la $\ell$-torsion ne change pas en même temps que les niveaux du volcan le premier niveau de stabilité.
+
+Un volcan dont tous les niveaux ont des structures de $\ell$-torsion disctinctes est dit un volcan régulier.
+\end{defi}
+
 \begin{cor}
-On a alors le passage de niveau qui entraine des changements de structure...
+\label{cor:des:str}
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ située en dessous du premier niveau de stabilité telle que $E[\ell^{\infty}]=\mathbb{Z}/\ell^r\mathbb{Z} \times \mathbb{Z}/\ell^s\mathbb{Z}$ alors pour $E_b$ une des courbes situées un niveau en dessous de $E$ dans le volcan de $\ell$-isogénie on a $E_b[\ell^{\infty}]=\mathbb{Z}/\ell^{r+1}\mathbb{Z} \times \mathbb{Z}/\ell^{s-1}\mathbb{Z}$
 \end{cor}
 
-On va partir du bas du volcan puis monter pour déterminer le comportement de la $\ell$-torsion d'une courbe dans un volcan de $\ell$-isogénies. 
+\begin{rem}
+On a appelé le niveau de stabilité premier niveau de stabilité car le second introduit et développé dans \cite{Ionica-Joux10} correspond lui à un niveau à partir duquel le pairing ne permet plus de déterminer des isogénies montantes sur le volcan de $\ell$-isogénies.  
+\end{rem}
 
+\begin{prop} 
+\label{pro:iso:mon}
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que l'on ait sa $l$-torsion infinie de la forme: $E(\mathbb{F}_q)[l^{\infty}]=\nicefrac{\mathbb{Z}}{l^{r}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{l^{s}\mathbb{Z}}= \langle P,Q \rangle $ avec $r>s +1 \geqslant  1$ et $P$ un point d'ordre $n_1$. Alors on a:
+\begin{enumerate}
+\item La $l$-isogénie engendrée par $l^{r-1}P$ est une isogénie montante qui mène à une courbe elliptique $E'$ ayant comme structure de $l$-torsion: \[E'(\mathbb{F}_q)[l^{\infty}]=\nicefrac{\mathbb{Z}}{l^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{l^{s+1}\mathbb{Z}} \]
+\item Les autres $l$-isogénies sont descendantes
+\end{enumerate}
+\end{prop}
 
+\begin{proof}
+Une preuve est disponible dans\cite[Proposition 4]{MiretMSTV08} pour le cas $\ell=2$, mais on va proposer ici une preuve plus directe et générale.
+Par le corollaire \ref{cor:tab:vol} on sait que l'on a $l+1$ $l$-isogénies et que si l'on a une $l$ isogénie montante alors les  autres sont descendantes.
+\\
+Considérons l'isogénie $\phi$ engendrée par $l^{r-1}P$. L'image de $P:\widetilde{P}$ par l'isogénie $\phi$ est alors d'ordre $l^{r-1}$. 
+
+Montrons par l'absurde que l'on n'a pas $\nicefrac{\mathbb{Z}}{l^{r}\mathbb{Z}} \subset \phi(E)(\mathbb{F}_q)[l^{\infty}]$. Supposons qu'il existe un point $\widetilde{R}$ d'ordre $l^n$ avec $n \geqslant r$. Cela implique donc que l'on ait l'existence de $R \in E(\mathbb{F}_q)$ tel que $R$ soit d'ordre $l^n$ et $R \notin \langle P \rangle$ ou  $l^nR =l^{r-1}P$. La deuxième hypothèse est impossible car cela implique qu'il existe $S \in E(\mathbb{F}_q)$ tel que $l S=P$ et contredirait donc l'hypothèse de la structure de $E(\mathbb{F}_q)[l^{\infty}]$. De même la seconde hypothèse: $l^nR = \mathcal{O}$ contredit elle aussi la structure de $E(\mathbb{F}_q)[l^{\infty}]$. On a donc:
+\[\phi(E)(\mathbb{F}_q)[l^{\infty}]=\nicefrac{\mathbb{Z}}{l^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{l^{s+1}\mathbb{Z}} \].
+
+On observe bien que c'est une isogénie montante par le corollaire \ref{cor:des:str}.
+\end{proof}
+
+\begin{cor} 
+\label{cor:struct:ext}
+Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ telle que l'on ait $E(\mathbb{F}_{q})[l^{\infty}]=\mathbb{Z} / l^{r} \mathbb{Z} \times \mathbb{Z} / l^{s} \mathbb{Z}$, alors on a $E(\mathbb{F}_{q^l})[l^{\infty}]=\mathbb{Z} / l^{r+1} \mathbb{Z} \times \mathbb{Z} / l^{s+1} \mathbb{Z}$.
+\end{cor}
+
+\begin{proof}
+%A l'aide des propositions \ref{desc-io} et \ref{ext-volc} le résultat est démontré dans \cite{IonicaJ10}
+On a vu dans la proposition  que lorsque l'on prenait une extension de degré $\ell$ alors on augmentait la hauteur du volcan que de $1$, de plus en regardant la courbe $E_b$ située en bas du volcan défini sur $\mathbb{F}_q$ celle-ci a pour structure $\mathbb{Z} / l^{r+s} \mathbb{Z}$ par la proposition . Ainsi si l'on regarde $E_b$ définie sur $\mathbb{F}_{q^{\ell}}$  
+\end{proof}
 
 \paragraph{Comportement de la $p^k$-torsion}
 
