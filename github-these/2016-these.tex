@@ -2501,6 +2501,7 @@ On peut donc voir sur le dessin \ref{fig:vol:3t} les 3 différents formes de vol
 On peut vouloir travailler avec des $\ell$-isogénies qui ne sont pas définies dans $\mathbb{F}_q$ qui vont en dessous de la base du volcan, dés lors on doit travailler dans une extension $\ell$-adique et l'on peut se demander comment se comportera le volcan sur une telle extension, le résultat suivant y répond.
 
 \begin{lem}
+\label{lem:val:ext}
 Soit $g$ le conducteur de $\mathbb{Z}[\pi]$, $\ell$ un nombre premier différent de $p$ tel que $\ell \mid g$, $n$ la valuation $\ell$-adique de $g$, alors la valuation $\ell$-adique de $\mathbb{Z}[\pi^{\ell}]$ est $n+1$. 
 \end{lem}
 
@@ -2584,6 +2585,7 @@ Voir \cite[Lemma 5.2]{Ionica2010}
 On peut maintenant relier la structure de la $\ell$-torsion et le niveau de la courbe dans le volcan de $\ell$-isogénies.
 
 \begin{prop}
+\label{pro:niv:str}
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/n_1\mathbb{Z} \times \mathbb{Z}/n_2\mathbb{Z}$, $\pi = a + g \omega_K$ l'endomorphisme de Frobenius alors si:
 \begin{itemize}
 \item[$v_{\ell}(n_1)>v_{\ell}(n_2)$] alors $E$ est se situe au niveau $n_2$,
@@ -2621,33 +2623,33 @@ On a appelé le niveau de stabilité premier niveau de stabilité car le second 
 
 \begin{prop} 
 \label{pro:iso:mon}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que l'on ait sa $l$-torsion infinie de la forme: $E(\mathbb{F}_q)[l^{\infty}]=\nicefrac{\mathbb{Z}}{l^{r}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{l^{s}\mathbb{Z}}= \langle P,Q \rangle $ avec $r>s +1 \geqslant  1$ et $P$ un point d'ordre $n_1$. Alors on a:
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que l'on ait sa $\ell$-torsion infinie de la forme: $E(\mathbb{F}_q)[\ell^{\infty}]=\nicefrac{\mathbb{Z}}{\ell^{r}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{\ell^{s}\mathbb{Z}}= \langle P,Q \rangle $ avec $r>s +1 \geqslant  1$ et $P$ un point d'ordre $n_1$. Alors on a:
 \begin{enumerate}
-\item La $l$-isogénie engendrée par $l^{r-1}P$ est une isogénie montante qui mène à une courbe elliptique $E'$ ayant comme structure de $l$-torsion: \[E'(\mathbb{F}_q)[l^{\infty}]=\nicefrac{\mathbb{Z}}{l^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{l^{s+1}\mathbb{Z}} \]
-\item Les autres $l$-isogénies sont descendantes
+\item La $l$-isogénie engendrée par $\ell^{r-1}P$ est une isogénie montante qui mène à une courbe elliptique $E'$ ayant comme structure de $l$-torsion: \[E'(\mathbb{F}_q)[\ell^{\infty}]=\nicefrac{\mathbb{Z}}{\ell^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{\ell^{s+1}\mathbb{Z}} \]
+\item Les autres $\ell$-isogénies sont descendantes
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
 Une preuve est disponible dans\cite[Proposition 4]{MiretMSTV08} pour le cas $\ell=2$, mais on va proposer ici une preuve plus directe et générale.
-Par le corollaire \ref{cor:tab:vol} on sait que l'on a $l+1$ $l$-isogénies et que si l'on a une $l$ isogénie montante alors les  autres sont descendantes.
+Par le corollaire \ref{cor:tab:vol} on sait que l'on a $\ell+1$ $\ell$-isogénies et que si l'on a une $\ell$ isogénie montante alors les  autres sont descendantes.
 \\
-Considérons l'isogénie $\phi$ engendrée par $l^{r-1}P$. L'image de $P:\widetilde{P}$ par l'isogénie $\phi$ est alors d'ordre $l^{r-1}$. 
+Considérons l'isogénie $\phi$ engendrée par $\ell^{r-1}P$. L'image de $P:\widetilde{P}$ par l'isogénie $\phi$ est alors d'ordre $\ell^{r-1}$. 
 
-Montrons par l'absurde que l'on n'a pas $\nicefrac{\mathbb{Z}}{l^{r}\mathbb{Z}} \subset \phi(E)(\mathbb{F}_q)[l^{\infty}]$. Supposons qu'il existe un point $\widetilde{R}$ d'ordre $l^n$ avec $n \geqslant r$. Cela implique donc que l'on ait l'existence de $R \in E(\mathbb{F}_q)$ tel que $R$ soit d'ordre $l^n$ et $R \notin \langle P \rangle$ ou  $l^nR =l^{r-1}P$. La deuxième hypothèse est impossible car cela implique qu'il existe $S \in E(\mathbb{F}_q)$ tel que $l S=P$ et contredirait donc l'hypothèse de la structure de $E(\mathbb{F}_q)[l^{\infty}]$. De même la seconde hypothèse: $l^nR = \mathcal{O}$ contredit elle aussi la structure de $E(\mathbb{F}_q)[l^{\infty}]$. On a donc:
-\[\phi(E)(\mathbb{F}_q)[l^{\infty}]=\nicefrac{\mathbb{Z}}{l^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{l^{s+1}\mathbb{Z}} \].
+Montrons par l'absurde que l'on n'a pas $\nicefrac{\mathbb{Z}}{\ell^{r}\mathbb{Z}} \subset \phi(E)(\mathbb{F}_q)[\ell^{\infty}]$. Supposons qu'il existe un point $\widetilde{R}$ d'ordre $\ell^n$ avec $n \geqslant r$. Cela implique donc que l'on ait l'existence de $R \in E(\mathbb{F}_q)$ tel que $R$ soit d'ordre $\ell^n$ et $R \notin \langle P \rangle$ ou  $\ell^nR =\ell^{r-1}P$. La deuxième hypothèse est impossible car cela implique qu'il existe $S \in E(\mathbb{F}_q)$ tel que $l S=P$ et contredirait donc l'hypothèse de la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. De même la première hypothèse: $\ell^nR = \mathcal{O}$ contredit elle aussi la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. On a donc:
+\[\phi(E)(\mathbb{F}_q)[\ell^{\infty}]=\nicefrac{\mathbb{Z}}{\ell^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{\ell^{s+1}\mathbb{Z}}. \]
 
 On observe bien que c'est une isogénie montante par le corollaire \ref{cor:des:str}.
 \end{proof}
 
 \begin{cor} 
 \label{cor:struct:ext}
-Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ telle que l'on ait $E(\mathbb{F}_{q})[l^{\infty}]=\mathbb{Z} / l^{r} \mathbb{Z} \times \mathbb{Z} / l^{s} \mathbb{Z}$, alors on a $E(\mathbb{F}_{q^l})[l^{\infty}]=\mathbb{Z} / l^{r+1} \mathbb{Z} \times \mathbb{Z} / l^{s+1} \mathbb{Z}$.
+Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ telle que l'on ait $E(\mathbb{F}_{q})[\ell^{\infty}]=\mathbb{Z} / \ell^{r} \mathbb{Z} \times \mathbb{Z} / \ell^{s} \mathbb{Z}$, alors on a $E(\mathbb{F}_{q^{\ell}})[l^{\infty}]=\mathbb{Z} / \ell^{r+1} \mathbb{Z} \times \mathbb{Z} / \ell^{s+1} \mathbb{Z}$.
 \end{cor}
 
 \begin{proof}
 %A l'aide des propositions \ref{desc-io} et \ref{ext-volc} le résultat est démontré dans \cite{IonicaJ10}
-On a vu dans la proposition  que lorsque l'on prenait une extension de degré $\ell$ alors on augmentait la hauteur du volcan que de $1$, de plus en regardant la courbe $E_b$ située en bas du volcan défini sur $\mathbb{F}_q$ celle-ci a pour structure $\mathbb{Z} / l^{r+s} \mathbb{Z}$ par la proposition . Ainsi si l'on regarde $E_b$ définie sur $\mathbb{F}_{q^{\ell}}$  
+A l'aide du lemme \ref{lem:val:ext} et de la proposition \ref{pro:niv:str} on ne peut que montrer que l'on a  $E(\mathbb{F}_{q^{\ell}})[l^{\infty}]=\mathbb{Z} / \ell^{r+\Delta} \mathbb{Z} \times \mathbb{Z} / \ell^{s+1} \mathbb{Z}$ avec $\Delta \geqslant 1$, pour prouver l'égalité on a besoin d'utiliser les couplages, pour plus de détails le lecteur peut aller voir \cite[§5.3.1]{Ionica2010}.
 \end{proof}
 
 \paragraph{Comportement de la $p^k$-torsion}
