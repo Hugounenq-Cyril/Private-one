@@ -563,11 +563,12 @@ Voir \cite[Theorem 4.1]{Washington2008}
 On a le résultat suivant qui ne donne pas l'égalité entre les structures de groupe de deux courbes elliptiques isogènes mais entre leur cardinalité.
 
 \begin{prop}
+\label{pro:iso:ega}
 Soient $E$, $E'$ deux courbes elliptiques définies sur un corps fini avec $E$ et $E'$ reliées par une isogénie alors $E$ et $E'$ ont la même cardinalité sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
-Preuve à trouver...
+Voir \cite[Exercise V.5.4.a]{Silv1}
 \end{proof}
 
 \subsection{L'endomorphisme de Frobenius}
@@ -2187,7 +2188,7 @@ Une implantation de construction de tours dyadiques et des opérations du Froben
 Les deux documents à citer pour cette section sont \cite{Kohel96} qui a introduit les graphes d'isogénie et   \cite{Fouquet01} qui a développé ces idées pour donner une structure à ces graphes.
 
 \section{Anneau d'endomorphismes}
-
+\label{sec:ann:end}
 Dans cette section on va aborder les anneaux d'endomorphismes, car c'est cet objet qu'a étudié Kohel dans sa thèse \cite{Kohel96} qui a permis ensuite de définir les volcans de $l$-isogénies. On a tout d'abord besoin de faire quelques rappels sur les ordres d'un corps quadratique imaginaire car on a vu que ceux-ci correspondent à isomorphisme près aux anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini.
 
 \subsection{Rappel sur les ordres d'un corps quadratique}
@@ -2292,6 +2293,8 @@ Le discriminant ne dépendant pas de la base, pour la base $[1, f \omega_K]$ de 
 $d_{\pi}=t_{\pi}^2-4q$ le discriminant de l'équation caractéristique du Frobenius est aussi le discriminant de l'ordre $\mathbb{Z}[\pi]$.
 \end{rem}
 
+
+
 \subsection{Anneau d'endomorphisme de courbes elliptiques ordinaires}
 Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini qui sont comme vus dans la proposition \ref{pro:fro:dis} isomorphes à des ordres dans un corps quadratique imaginaire. On va voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
 
@@ -2319,6 +2322,7 @@ Voir \cite[Proposition 21]{Kohel96}.
 \end{proof}
 
 \begin{defi}
+\label{def:iso:nom}
 Soient $E,E'$ deux courbes elliptiques ordinaires, $\phi: E \mapsto E'$ une $\ell$-isogénie alors $\phi: E \mapsto E'$ est dite:
 \begin{enumerate}
 \item montante si $[\mathcal{O'} : \mathcal{O}]=\ell$,
@@ -2328,7 +2332,9 @@ Soient $E,E'$ deux courbes elliptiques ordinaires, $\phi: E \mapsto E'$ une $\el
 \end{defi}
 
 On a alors le résultat suivant sur les duales des isogénies:
-\begin{lem}Soit $\phi : E \mapsto E'$ une isogénie et sa duale $\widehat{\phi}$. Alors:
+\begin{lem}
+\label{lem:dua:vol}
+Soit $\phi : E \mapsto E'$ une isogénie et sa duale $\widehat{\phi}$. Alors:
 \begin{enumerate}
 \item $\phi$ est une isogénie montante si et seulement si $\widehat{\phi}$ est une isogénie descendante.
 \item $\phi$ est une isogénie descendante si et seulement si $\widehat{\phi}$ est une isogénie montante.
@@ -2339,6 +2345,90 @@ On a alors le résultat suivant sur les duales des isogénies:
 \begin{proof}
 Voir \cite[Lemma 2.1]{FouquetMorain02}
 \end{proof}
+
+\begin{figure}
+\begin{center}
+
+\begin{tikzpicture}[scale=0.60]
+\coordinate (A) at (0,1.5);
+\coordinate (AB) at (1,1.5);
+%\coordinate (AZ) at (-1.5,1.5);	
+\coordinate (B) at (0,5);
+\coordinate (BB) at (1,5);
+%\coordinate (BZ) at (-1.5,5.2);
+%\coordinate (BZ2) at (-1.5,4.8);
+\coordinate (C) at (0,10);
+\coordinate (CB) at (1,10);
+%\coordinate (CZ) at (-1.5,10);
+\draw (A) node[left]{$\mathbb{Z} + \ell^2 \mathcal{O}$} node{$\bullet$};
+\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}$} node{$\bullet$};
+\draw (C) node[left]{$\mathcal{O}$} node{$\bullet$};
+\draw (A)--(B)node[midway,left] {$\ell$};
+\draw (B)--(C) node[midway,left] {$\ell$};
+%\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
+%\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
+\begin{scope}[yshift=10cm]
+	\begin{scope}[xshift=4.3cm]
+		\node (A) at (-3,0) {$\bullet$};
+		\node (B) at (3,0) {$\bullet$};
+		\node (C) at (270:1.2) {$\bullet$};
+		\node (D) at (90:1.5) {};
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[-] (A.center) to[bend right=40] (B.center);
+			\begin{scope}[xshift=-3cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (CA) node{$\bullet$};
+			\draw (CB) node{$\bullet$};
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+			\end{scope}
+			\begin{scope}[xshift=3cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (CA) node{$\bullet$};
+			\draw (CB) node{$\bullet$};
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (CA) node{$\bullet$};
+			\draw (CB) node{$\bullet$};
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+			\end{scope}
+	\end{scope}
+\end{scope}
+
+%faire des fleches courbees avec les indices \ell et \ell^2
+
+
+\end{tikzpicture}
+\end{center}
+\caption{Représentation d'un volcan de $2$-isogénies, avec les différents ordres.}		
+\label{fig:ord:vol}
+\end{figure}
+Sur la figure \ref{fig:ord:vol} on a les différents ordres qui sont représentés, ils est à noter qu'avec la convention donnée par la définition \ref{def:iso:nom} les ordres qui apparaissent dans un même niveau du graphe ont le même conducteur par rapport à l'ordre maximal. Ce graphe n'est pas orienté comme le précise le lemme \ref{lem:iso:nom}.
 
 \begin{defi}
 Soit $\ell$ un nombre premier, soit $D$ un discriminant associé à un ordre dans un corps quadratique imaginaire, on définit alors:
@@ -2367,11 +2457,11 @@ Soit $E$ une courbe elliptique ordinaire définie sur un corps fini $\mathbb{F}_
 Voir \cite[Proposition 23]{Kohel96}.
 \end{proof}
 
-On peut dés lors relier ce théorème avec les racines du polynôme modulaire évalué en le $j$-invariant de la courbe que l'on étudie:
+On peut dés lors relier ce théorème avec les racines du $\ell$-ème polynôme modulaire évalué en le $j$-invariant de la courbe que l'on étudie:
 
 \begin{cor}
 \label{cor:tab:vol} 
-Dans le tableau suivant sont résumées les différentes possibilités de types d'isogénies selon la valeur de $\mathcal{N}_{\ell}(E)$ qui représente le nombre de solutions à l'équation: $\Phi_{\ell}(X,j(E))=0$
+Dans le tableau suivant sont résumées les différentes possibilités de types d'isogénies selon la valeur de $\mathcal{N}_{\ell}(E)$ qui représente le nombre de solutions à l'équation: $\Phi_{\ell}(X,j(E))=0$ sur $\mathbb{F}_q$
 \newline
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
@@ -2570,7 +2660,7 @@ Sur un volcan de $\ell$-isogénies, deux courbes $E$, $E'$ situées au même niv
 
 \begin{proof}
 Cette preuve est issue de \cite{Ionica2010}.
-Tout d'abord on peut remarquer que deux courbes situées sur un même volcan de $\ell$-isogénies ont la même cardinalité. Par la proposition \ref{pro:len:str} la structure de la torsion rationnelle est alors de la forme :
+Tout d'abord on peut remarquer que deux courbes situées sur un même volcan de $\ell$-isogénies ont la même cardinalité par la proposition \ref{pro:iso:ega}. Par la proposition \ref{pro:len:str} la structure de la torsion rationnelle est alors de la forme :
 \[
 E(\mathbb{F}_{q}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q}}(E)}{\pi-1}
 \] 
@@ -2659,8 +2749,39 @@ A l'aide du lemme \ref{lem:val:ext} et de la proposition \ref{pro:niv:str} on ne
 \end{proof}
 
 \chapter{Action du Frobenius sur un volcan de $\ell$-isogénies}
+\section{Cas Elkies}
+On se place dans le cas Elkies où l'on va étudier une courbe elliptique ordinaire pour laquelle le polynôme caractéristique du Frobenius se scinde modulo la $\ell^k$-torsion:
+\begin{equation*}
+\pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \bmod \ell^k.
+\end{equation*}
+On va par ailleurs noter $h=v_{\ell}(\lambda - \mu)$, ainsi on aura le polynôme caractéristique qui se scinde modulo une $\ell^k$ torsion avec $k \geqslant h$, $h$ représente ici la hauteur du volcan, car on rappelle que l'on a $h=\frac{v_{\ell}(d_{\pi})-v_{\ell}d_K}{2}$ (voir section \ref{sec:ann:end}).
 
+Comme on travaille sur l'action du Frobenius sur la $\ell$-torsion sur une courbe elliptique alors on réprésente celle ci à l'aide d'une matrice $2 \times 2$. On présente tout d'abord un résultat intermédiaire sur la représentation d'un application sur la $\ell$-torsion et se représentation à conjugaison près. 
+
+
+On a alors le résultat suivant sur la forme des matrices à conjugaison près
+Tout reste à faire...
+\section{Cas Atkin}
 \chapter{Rebus}
+
+
+\begin{algorithm}
+\caption{\label{alg:dichotomie} Dychotomic algorithm for research of point near of the border}
+\begin{algorithmic}[1]
+\REQUIRE $P_1, \cdots, P_m$ a list of point under a unique direction $\overrightarrow{P_1P_m}$,%\\
+\ENSURE $S P_i,P_{i+1}$ two points such that $\mathrm{d}(P_i,P_{i+1}) \leqslant \sqrt{N}$ and such that $P_i \in \mathcal{P}$ and $P_{i+1} \not \in \mathcal{P}$,
+\IF{$(\mathrm{d}(P_1,P_m)\leqslant \sqrt{n})$} 
+\STATE \textbf{Return}$P_1$
+\ELSE \STATE $\mathrm{Test}(P_{\lfloor m/2 \rfloor})$
+\IF{$P_{\lfloor m/2 \rfloor} \in \mathcal{P}$}
+\STATE \textbf{Return} $\mathrm{Dychotomic search}(P_{\lfloor m/2 \rfloor},P_m)$
+\ELSE 
+\STATE \textbf{Return} $\mathrm{Dychotomic search}(P_1,P_{\lfloor m/2 \rfloor})$ 
+\ENDIF
+\ENDIF 
+\end{algorithmic}
+\end{algorithm}
+
 
 \subsection{Travaux de Kohel, Fouquet-Morain}
 Mettre l'algorithme de Fouquet Morain
