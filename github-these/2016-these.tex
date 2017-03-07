@@ -2754,9 +2754,48 @@ On se place dans le cas Elkies où l'on va étudier une courbe elliptique ordina
 \begin{equation*}
 \pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \bmod \ell^k.
 \end{equation*}
-On va par ailleurs noter $h=v_{\ell}(\lambda - \mu)$, ainsi on aura le polynôme caractéristique qui se scinde modulo une $\ell^k$ torsion avec $k \geqslant h$, $h$ représente ici la hauteur du volcan, car on rappelle que l'on a $h=\frac{v_{\ell}(d_{\pi})-v_{\ell}d_K}{2}$ (voir section \ref{sec:ann:end}).
+On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi$ se scinde modulo la $\ell^k$ torsion avec $k \geqslant h$, $h$ représente ici la hauteur du volcan, car on rappelle que l'on a $h=\frac{v_{\ell}(d_{\pi})-v_{\ell}d_K}{2}$ (voir section \ref{sec:ann:end}).
 
-Comme on travaille sur l'action du Frobenius sur la $\ell$-torsion sur une courbe elliptique alors on réprésente celle ci à l'aide d'une matrice $2 \times 2$. On présente tout d'abord un résultat intermédiaire sur la représentation d'un application sur la $\ell$-torsion et se représentation à conjugaison près. 
+Comme on travaille sur l'action du Frobenius sur la $\ell$-torsion sur une courbe elliptique alors on réprésente l'action du Frobenius sur $T_{\ell}(E)$ à l'aide d'une matrice $2 \times 2$. On a le résultat suivant qui nous donne la forme de ces matrices à conjugaison près.
+
+
+\begin{prop}\label{prop:matrice-frobenius}
+Soit~$E$ une courbe elliptique ordinaire d'endomorphisme de Frobenius~$\pi$
+telle que le polynôme caractérisitque de $\pi$
+a deux racines distinctes $\lambda$, $\mu$ appartenant à $\mathbb{Z}_{\ell}$,
+ainsi le volcan de $\ell$-isogénies de $E$ a un cratère cyclique.
+Il existe un unique $e \in [ 0, h]$
+tel que $\pi|T_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
+à la matrice 
+\begin{equation*}
+\left ( \begin{matrix}\lambda & \ell^e \\ 0 & \mu
+\end{matrix}\right ).
+\end{equation*}
+% where $a ∈ ℤ$, $0 ≤ a ≤ ℓ^{h} - 1$,
+De plus $e = h$ si~$E$ se situe sur le cratère,
+sinon $h - e$~est la profondeur de~$E$ dans le volcan.
+\end{prop}
+
+On souligne le fait que $\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
+\mu \end{smallmatrix}\right)$ est conjugée à $\left(\begin{smallmatrix} \lambda & 0 \\ 0 & \mu\end{smallmatrix}\right)$ sur~$\mathbb{Z}_{\ell}$.
+\begin{proof}
+Comme le polynôme caractéristique de $\pi$ se scinde sur $\mathbb{Z}_{\ell}$ 
+alors la matrice $\pi|T_{\ell}(E)$ est triangulaire.
+La conjugaison de la matrice $\left ( \begin{smallmatrix}\lambda & a\\0 & \mu
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & b\\0 & 1
+\end{smallmatrix} \right )$ change le coefficient $a$ par $a-b (\lambda - \mu)$, 
+et la conjugaison par ~$\left(\begin{smallmatrix} c & 0 \\ 0 &
+1\end{smallmatrix}\right)$ change~$a$ par~$c \cdot a$,
+ainsi la valuation $\ell$-adique~$e = v_{\ell}(a)$ est invariante sous la conjugaison matricielle.
+Cela prouve la première partie de la proposition. 
+
+Pour la seconde partie par le thèorème de Tate \cite[Isogeny theorem III.7.7 (a)]{Silv1},$\mathcal{O} \otimes \mathbb{Z}_{\ell}$~est isomorphe à l'ordre dans~$\mathbb{Q}_{\ell}[\pi_{\ell}]$
+de matrices avec coefficients entiers, cet ordre est généré par la matrice identité et la matrice 
+$\ell^{-\min (h, v_{\ell}(a))} (\pi_{\ell}-\lambda)$.
+\end{proof}
+Ainsi avec cette proposition on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion.
+On voit aussi que cette détermination n'est pas sujette à l'existence de niveau de stabilité vu que la deuxième partie de la preuve se fait à l'aide des ordres et non de la structure de $\ell$-torsion.
+
 
 
 On a alors le résultat suivant sur la forme des matrices à conjugaison près
