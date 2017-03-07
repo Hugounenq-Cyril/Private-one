@@ -2796,7 +2796,36 @@ $\ell^{-\min (h, v_{\ell}(a))} (\pi_{\ell}-\lambda)$.
 Ainsi avec cette proposition on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion.
 On voit aussi que cette détermination n'est pas sujette à l'existence de niveau de stabilité vu que la deuxième partie de la preuve se fait à l'aide des ordres et non de la structure de $\ell$-torsion.
 
+On va maintenant se focaliser sur la détermination de l'espace propre du Frobenius et voir comment le le déterminer à précision finie, on travaille donc sur des courbes situées sur le cratère car c'est le seul cas où l'on peut diagonaliser le Frobenius.
 
+On va donc travailler avec points spécifiques que l'on va définir avant cela on a besoin d'introduire la notion suivante:
+
+\begin{defi}
+Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\phi$ une isogénie de degré $\ell^k$ de domaine $E$, alors $\phi$ est dite une isogénie horizontale si il existe $\phi_1, \cdots, \phi_k$ $k$ $\ell$-isogénies horizontales, dans le sens de \ref{def:iso:nom},telles que $\phi=\phi_1 \circ \phi_2 \circ \cdots \circ \phi_k=\phi$.
+\end{defi}
+
+\begin{defi}[Bases horizontales et diagonales]
+  Soit~$E$ une courbe se situant sur le cratère, 
+  on appelle un point de $E[\ell^k]$ \emph{horizontal} 
+  si il génère le noyau d'une isogénie horizontale. 
+  On appelle une base de $E[\ell^k]$ \emph{diagonale} 
+  si $\pi$ est diagonale dedans, \emph{horizontale} si 
+  les deux points de la base sont horizontaux.
+\end{defi}
+Le résultat suivant permet de lier les bases horizontales et diagonales.
+
+\begin{prop} \label{pro:dia:hor}
+Soit~$E$ une courbe se situant sur le cratère et $P$ un point de $E[\ell^k]$
+tel que $\ell^h P$ soit un vecteur propre de $\pi$, 
+alors $\ell^hP$~est horizontal si et seulement si $P$ est un vecteur propre pour $\pi$.
+SI $\pi(P)=\lambda P$ alors on dit que $\ell^h P$ a pour direction $\lambda$.
+\end{prop}
+
+
+
+
+
+En particulier il est plus facile de calculer une base diagonale qu'une base horizontale, ainsi cette proposition est très pratique pour calculer des bases horizontales.
 
 On a alors le résultat suivant sur la forme des matrices à conjugaison près
 Tout reste à faire...
