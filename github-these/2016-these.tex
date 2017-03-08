@@ -2443,6 +2443,7 @@ Soit $\ell$ un nombre premier, soit $D$ un discriminant associé à un ordre dan
 \end{defi}
 
 \begin{thm}
+\label{thm:Koh:cas}
 Soit $E$ une courbe elliptique ordinaire définie sur un corps fini $\mathbb{F}_q$ et soit $\ell$ un nombre premier différent de la caractéristique de $\mathbb{F}_q$
 \begin{enumerate}
 \item Si $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $ 1 + \left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies horizontales
@@ -2759,7 +2760,7 @@ On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi
 Comme on travaille sur l'action du Frobenius sur la $\ell$-torsion sur une courbe elliptique alors on réprésente l'action du Frobenius sur $T_{\ell}(E)$ à l'aide d'une matrice $2 \times 2$. On a le résultat suivant qui nous donne la forme de ces matrices à conjugaison près.
 
 
-\begin{prop}\label{prop:matrice-frobenius}
+\begin{prop}\label{pro:mat:fro}
 Soit~$E$ une courbe elliptique ordinaire d'endomorphisme de Frobenius~$\pi$
 telle que le polynôme caractérisitque de $\pi$
 a deux racines distinctes $\lambda$, $\mu$ appartenant à $\mathbb{Z}_{\ell}$,
@@ -2815,7 +2816,7 @@ Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\p
 Le résultat suivant permet de lier les bases horizontales et diagonales.
 
 
-Montrons tout d'abord pour $\phi:E \mapsto E'$ comment calculer l'image de la matrice du Frobenius $\pi|T_{\ell}(E)$ en fonction de $T_{\ell}(E')$.
+Montrons tout d'abord pour $\phi:E \mapsto E'$ comment calculer l'image de la matrice du Frobenius $\pi|T_{\ell}(E)$ dans une base de $T_{\ell}(E')$.
 
 \begin{lem}
 \label{lem:iso:con}
@@ -2873,7 +2874,69 @@ un vecteur propre de $\pi$ pour la valeur propre $\mu$ alors
 ~$(\pi - \mu) P = x (\lambda - \mu) R$ et l'on obtient le résultat.
 \end{proof}
 
-En particulier il est plus facile de calculer une base diagonale qu'une base horizontale, ainsi cette proposition est très pratique pour calculer des bases horizontales.
+En particulier il est plus facile de calculer une base diagonale qu'une base horizontale, ainsi cette proposition est très pratique pour calculer des bases horizontales. On a alors besoin du résultat suivant pour construire des isogénies horizontales de taille aussi grande que la $\ell$ torsion définie sur le corps sur lequel on travaille.
+
+\begin{prop}\label{pro:pus:hor}
+Soit~$\psi: E \rightarrow E'$ une $\ell$-isogénie horizontale de direction~$\lambda$,
+$Q \in E[\ell^{\infty}]$,
+si $[\ell] Q$~est horizontal de direction~$\mu$,
+alors $\psi(Q)$ est horizontal de direction~$\mu$.
+\end{prop}
+\begin{proof}
+Soit~$Q' = \psi(Q)$ et~$\widehat{\psi}$ l'isogénie duale de~$\psi$, 
+comme $\widehat{\psi}$~et~$\widehat{\psi}(Q') = [\ell]Q$ sont horizontales
+de direction~$\mu$ alors $Q'$~est horizontal de direction $\mu$.
+\end{proof}
+
+\begin{prop}\label{prop:parallel}
+soit~$\psi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
+\begin{enumerate}
+\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan de
+ $\ell$-isogénies,
+\item\label{pro:par:fun} pour tout point~$P \in E[\ell^k]$,
+les isogénies de noyau $\langle P \rangle$ et~$\langle \psi(P) \rangle$ sont de même type
+(ascendantes, descendantes, ou horizontales de même direction),
+\item\label{pro:par:asc} si $P \in E[\ell]$ et $P' \in E'[\ell]$ sont tous les 
+deux des points générateurs d'isogénies ascendantes, ou horizontales de même 
+direction alors $E/\langle P \rangle$ et~$E'/\langle P' \rangle$ sont encore $r$-isogènes.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Les points (1) et (2) découlent de la proposition \ref{pro:mat:fro} et du fait que pour $\psi$ isogénie rationnelle de degré $r$ premier avec $\ell$ on a un isomorphisme de modules de Tates qui commute avec le Frobenius. Pour le point (3) il suffit de remarquer qu'il existe un unique sous-groupe d'ordre $\ell$ qui génère soit une isogénie ascendante soit une isogénie de direction fixée, ainsi on doit avoir $\langle P' \rangle=\langle \psi(P) \rangle$.
+
+\end{proof}
+Le troisième point de cette proposition nous permet de réduire le problème du calcul de la $r$-isogénie entre deux courbes elliptiques  au calcul de la base entre deux points sur le cratère (ou quelque chose du genre...).
+
+Voyons tout d'abord comment déterminer à l'aide d'une base horizontale les isogénies descendantes d'une courbe située sur le cratère.
+
+\begin{prop}
+Soit $E$ une courbe située sur le cratère, $k\geqslant 1$, $\langle P, Q \rangle= E[\ell^k]$ une base horizontale. Alors les $\ell$-isogénies descendantes sont générées par les sous-groupes $\langle [\ell^{k-1}]P+ b [\ell^{k-1}]Q \rangle$ avec $b \wedge \ell =1$.
+\end{prop}
+
+\begin{proof}
+Comme il y a en tout $\ell+1$ sous groupes de $E[\ell]$ avec les sous groupes $\langle [\ell^{k-1}]P \rangle$,  $\langle [\ell^{k-1}]Q \rangle$ qui engendrent des isogénies horizontales alors les $\ell-1$ sous groupes restants de la forme $\langle [\ell^{k-1}]P+ b [\ell^{k-1}]Q \rangle$ avec $b \wedge \ell =1$ engendrent des isogénies descendantes par le théorème \ref{thm:Koh:cas}.
+\end{proof}
+
+\begin{cor}
+Soit $E$ une courbe située sur le cratère, $k\geqslant i \geqslant 1$, $\langle P, Q \rangle= E[\ell^k]$ une base horizontale. Alors les $\ell^i$-isogénies descendantes sont générées par les sous-groupes $\langle [a\ell^{k-i}]P+ b [\ell^{k-i}]Q \rangle$ avec $b \wedge \ell =1$ et $a = 1 \bmod \ell$.
+\end{cor}
+
+\begin{prop}
+Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que $[\ell^i]P$ soit horizontal, $\psi:E \mapsto E_i$ une isogénie descendante de degré $\ell^i$, on note $P'=\psi(P)$, alors $[\ell^{k-i}]P'$ est un générateur du noyau d'une isogénie montante de degré $\ell^{i}$ noté $\widehat{\psi}$ et l'on a $\widehat{\psi}(P')$ qui est le générateur d'une isogénie horizontale de degré $\ell^{k-i}$.  
+\end{prop}
+
+\begin{proof}
+Comme $\psi$ est une isogénie descendante de degré $\ell^i$ et que $P$ est un vecteur propre de $\pi$ alors $P \not \in \ker \psi$, ainsi $P$ et $\psi(P)$ sont de même ordre. De plus comme l'isogénie  
+\'A rédiger...
+\end{proof}
+
+\begin{prop}
+Soit $P \in E[\ell^k]$, tel que $[\ell]P$ soit horizontal, $\psi:E \mapsto E_1$ une isogénie descendante de degré $\ell$, on note $P'=\psi(P)$, alors $\ell^{k-1}P'$ est un générateur du noyau d'une isogénie montante de degré $\ell^1$ noté $\widehat{\psi}$ et l'on a $\widehat{\psi}(P')$ qui est le générateur d'une isogénie horizontale de degré $\ell^{k-1}$.  
+\end{prop}
+
+\begin{proof}
+\'A rédiger...
+\end{proof}
 
 On a alors le résultat suivant sur la forme des matrices à conjugaison près
 Tout reste à faire...
