@@ -2814,25 +2814,63 @@ Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\p
 \end{defi}
 Le résultat suivant permet de lier les bases horizontales et diagonales.
 
-\begin{prop} \label{pro:dia:hor}
-Soit~$E$ une courbe se situant sur le cratère et $P$ un point de $E[\ell^k]$
-tel que $\ell^h P$ soit un vecteur propre de $\pi$, 
-alors $\ell^hP$~est horizontal si et seulement si $P$ est un vecteur propre pour $\pi$.
-SI $\pi(P)=\lambda P$ alors on dit que $\ell^h P$ a pour direction $\lambda$.
-\end{prop}
 
 Montrons tout d'abord pour $\phi:E \mapsto E'$ comment calculer l'image de la matrice du Frobenius $\pi|T_{\ell}(E)$ en fonction de $T_{\ell}(E')$.
 
 \begin{lem}
-Blabla
+\label{lem:iso:con}
+Soient $\langle P, Q \rangle$ une base de $E[\ell^k]$, $\phi$ l'isogénie de noyau engendré par $[x]P+[y]Q$  avec $x\wedge \ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau engendré par $R$,  $\Pi$ la matrice du Frobenius sur $T_{\ell}(E)$ alors la matrice du Frobenius sur $T_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi \cdot M_R$ à conjugaison près.
 \end{lem}
 
 \begin{proof}
-Bla Bla
+Le sous-groupe $\langle R \rangle$ définit un point dans l'espace projectif de $E[\ell^k]$,
+celui-ci est une ligne projective sur $\mathbb{Z}/\ell^k \mathbb{Z}$. Il existe 
+une bijection canonique~\cite[II.1.1]{Serre77} entre cette ligne projective et 
+l'ensemble des réseaux d'indice $\ell^k$ dans le $\mathbb{Z}_{\ell}$ module $T_{\ell}(E)$:
+la ligne $\langle R \rangle$ est donc en bijection avec le réseau~$\Lambda_R = 
+\langle R \rangle + \ell^k T_{\ell}(E)$. Ce réseau est aussi la préimage du réseau 
+$\ell^kT_{\ell}(E')$ par $\phi$.
+
+Le réseau $\Lambda_R$ est engendré par les colonnes de la matrice 
+$L_R = \left (\begin{smallmatrix}\ell^k & 0 & x\\0 & \ell^k & y\end{smallmatrix} \right )$.
+La forme normale réduite de Hermite de $L_R$ est 
+$M_R = \left (\begin{smallmatrix}\ell^{k-m} & x/y' \\ 0 & \ell^m\end{smallmatrix}\right )$,
+et les colonnes de $M_R$ génèrent le réseau $\Lambda_R$.
+On peut vérifier que $M_R$ a pour déterminant $\ell^k$.
+Comme $\Lambda_R = \phi^{-1} (\ell^k T_{\ell} (E'))$,
+alors il existe une base de~$T_{\ell}(E')$
+dans laquelle $\phi$ a pour matrice~$\ell^k M_R^{-1}$.
+Ainsi, dans cette base de ~$T_{\ell}(E')$
+la matrice de~$\pi|T_{\ell}(E')$ est $M_R^{-1} \cdot \Pi \cdot M_R^{}$.
 \end{proof}
 
+
+\begin{prop} \label{pro:dia:hor}
+Soit~$E$ une courbe se situant sur le cratère et $P$ un point de $E[\ell^k]$
+tel que $\ell^h P$ soit un vecteur propre de $\pi$, 
+alors $\ell^hP$~est horizontal si et seulement si $P$ est un vecteur propre pour $\pi$.
+Si $\pi(P)=\lambda P$ alors on dit que $\ell^h P$ a pour direction $\lambda$.
+\end{prop}
+
 \begin{proof}
-Bli bli
+La proposition étant évidente pour $h \geqslant k$,
+on suppose que l'on a $k \geqslant h$.
+
+Soit $\langle R,S \rangle =E[\ell^k]$ une base qui diagonalise $\pi$.
+On peut alors exprimer $P=[x]R+[y]S$, on suppose sans perte de généralité
+que $y=1$.
+
+Soit $\phi$ l'isogénie de noyau $[\ell^h]P$ et $E'$ son codomaine.
+Comme $[\ell^h]P$ est un vecteur propre de $\pi$, alors $\phi$ est une isogénie
+rationnelle. Par le lemme \ref{lem:iso:con}, la matrice $\pi|T_{\ell}(E')$
+ est égale à $\left ( \begin{smallmatrix}\lambda& \ell^{h-k} x (\lambda-\mu)\\ 0&\mu
+\end{smallmatrix}\right )$.  
+
+Cette matrice est diagonalisable seulement si $v_{\ell}(x) \geqslant k - h$.
+
+Pour l'autre sens de la preuve supposons sans perte de généralité que $P$ soit 
+un vecteur propre de $\pi$ pour la valeur propre $\mu$ alors 
+~$(\pi - \mu) P = x (\lambda - \mu) R$ et l'on obtient le résultat.
 \end{proof}
 
 En particulier il est plus facile de calculer une base diagonale qu'une base horizontale, ainsi cette proposition est très pratique pour calculer des bases horizontales.
