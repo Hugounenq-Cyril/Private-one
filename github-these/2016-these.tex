@@ -2606,7 +2606,7 @@ Voir \cite[Proposition 6]{MiretMSTV08}.
 \end{proof}
 
 \subsubsection{Algorithme de Fouquet-Morain}
-
+\label{sub:alg:FM}
 Maintenant nous pouvons décrire les principes de l'algorithme de Fouquet-Morain.
 
 L'algorithme de Fouquet-Morain \cite{FouquetMorain02} est un algorithme qui cherche à calculer un chemin descendant d'une courbe elliptique située sur le cratère afin de calculer la valuation $\ell$-adique du conducteur de $\mathbb{Z}[\pi]$. Pour trouver une courbe sur le cratère la première chose à faire est de savoir déterminer un chemin descendant. 
@@ -2888,8 +2888,8 @@ comme $\widehat{\psi}$~et~$\widehat{\psi}(Q') = [\ell]Q$ sont horizontales
 de direction~$\mu$ alors $Q'$~est horizontal de direction $\mu$.
 \end{proof}
 
-\begin{prop}\label{prop:parallel}
-soit~$\psi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
+\begin{prop}\label{pro:par:iso}
+Soit~$\psi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
 \begin{enumerate}
 \item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan de
  $\ell$-isogénies,
@@ -2918,25 +2918,33 @@ Comme il y a en tout $\ell+1$ sous groupes de $E[\ell]$ avec les sous groupes $\
 \end{proof}
 
 \begin{cor}
-Soit $E$ une courbe située sur le cratère, $k\geqslant i \geqslant 1$, $\langle P, Q \rangle= E[\ell^k]$ une base horizontale. Alors les $\ell^i$-isogénies descendantes sont générées par les sous-groupes $\langle [a\ell^{k-i}]P+ b [\ell^{k-i}]Q \rangle$ avec $b \wedge \ell =1$ et $a = 1 \bmod \ell$.
+Soit $E$ une courbe située sur le cratère, $k\geqslant i \geqslant 1$, $\langle P, Q \rangle= E[\ell^k]$ une base horizontale. Alors les $\ell^i$-isogénies descendantes sont générées par les sous-groupes $\langle [a\ell^{k-i}]P+ [b\ell^{k-i}]Q \rangle$ avec $b \wedge \ell =1$ et $a = 1 \bmod \ell$.
+\end{cor}
+Il est important de noter que le seul critère restricitf pour obtenir ce résultat est d'avoir la $\ell$-isogénie engendrée par $\langle [a \ell^{k-1}]P+ [b \ell^{k-1}]Q \rangle $ de type descendante (pour plus de détails voir sous-section \ref{sub:alg:FM} ou \cite{FouquetMorain02}).
+
+\begin{prop}
+Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que $[\ell^i]P$ soit horizontal, $\psi:E \mapsto E_i$ une isogénie descendante de degré $\ell^i$, on note $P'=\psi(P)$, alors:
+\begin{enumerate}
+\item  $\langle [\ell^{k-i}]P' \rangle$ est le noyau d'une isogénie montante de degré $\ell^{i}$ duale de $\psi$ notée $\widehat{\psi}$ 
+\item  $\langle \widehat{\psi}(P') \rangle$ est le noyau d'une isogénie horizontale de degré $\ell^{k-i}$.  
+\end{enumerate}
+\end{prop}
+
+
+\begin{proof}
+Pour le pont (1) si l'on note $\langle P_0, Q_0 \rangle =E[\ell^k]$ une base horizontale, alors on peut supposer sans perte de généralité que $P$ appartient à l'espace propre associé à  $P_0$ ainsi on a $P=[a]P_0+[\ell^{k-i}b]Q_0$ avec $a \wedge \ell =1$. Supposons que $\psi$ est de noyau $\langle [a'\ell^{k-i}]P_0+[b'\ell^{k-i}]Q_0 \rangle$ avec $b' \wedge \ell =1$ et $a' = 1 \bmod \ell$. Alors les images de $[\ell^{k-i}]P_0$ et $[\ell^{k-i}]Q_0$ par $E \rightarrow E/\langle [\ell^{k-i}]P,[a'\ell^{k-i}]P_0+[b'\ell^{k-i}]Q_0  \rangle $ sont l'élément neutre, l'image de $P$ par $\psi$ étant encore de degré $\ell^k$ on a le résultat.
+
+Pour le point (2) il suffit d'écrire que $\widehat{\psi}(P')=\widehat{\psi}\circ \psi P= [\ell^i] P$ on conclut alors à l'aide des hypothèses sur $P$.
+\end{proof}
+
+\begin{cor}
+Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se situent à une profondeur $e$ du cratère, soient $E_c$ et $E'_c$ les courbes les plus proches de $E$ et $E'$ situées sur le cratère soient $P \in E_c$ et $P' \in E'_c$ deux points d'ordre $\ell^k$ avec $k \geqslant e \geqslant 1$ tels que $[\ell^e]P$ et $[\ell^e]P'$ soient horizontaux de même direction. On note $\varphi:E_c \rightarrow E$ et $\varphi':E'_c \rightarrow E'$ les deux $\ell^e$ isogénies descendantes alors:
+\begin{itemize}
+\item $\phi(\varphi(P)) \in \langle \varphi'(P') \rangle$
+\end{itemize} 
 \end{cor}
 
-\begin{prop}
-Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que $[\ell^i]P$ soit horizontal, $\psi:E \mapsto E_i$ une isogénie descendante de degré $\ell^i$, on note $P'=\psi(P)$, alors $[\ell^{k-i}]P'$ est un générateur du noyau d'une isogénie montante de degré $\ell^{i}$ noté $\widehat{\psi}$ et l'on a $\widehat{\psi}(P')$ qui est le générateur d'une isogénie horizontale de degré $\ell^{k-i}$.  
-\end{prop}
-
-\begin{proof}
-Comme $\psi$ est une isogénie descendante de degré $\ell^i$ et que $P$ est un vecteur propre de $\pi$ alors $P \not \in \ker \psi$, ainsi $P$ et $\psi(P)$ sont de même ordre. De plus comme l'isogénie  
-\'A rédiger...
-\end{proof}
-
-\begin{prop}
-Soit $P \in E[\ell^k]$, tel que $[\ell]P$ soit horizontal, $\psi:E \mapsto E_1$ une isogénie descendante de degré $\ell$, on note $P'=\psi(P)$, alors $\ell^{k-1}P'$ est un générateur du noyau d'une isogénie montante de degré $\ell^1$ noté $\widehat{\psi}$ et l'on a $\widehat{\psi}(P')$ qui est le générateur d'une isogénie horizontale de degré $\ell^{k-1}$.  
-\end{prop}
-
-\begin{proof}
-\'A rédiger...
-\end{proof}
+Ainsi à l'aide de cette méthode et des points (1) et (2) de la proposition \ref{pro:par:iso} pour deux courbes $E$, $E'$ $r$-isogènes avec $r$ premier avec $\ell$ de tels points $\psi(P) et E$ et $\psi(P') et E'$ tels que 
 
 On a alors le résultat suivant sur la forme des matrices à conjugaison près
 Tout reste à faire...
