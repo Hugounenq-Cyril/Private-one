@@ -2923,10 +2923,10 @@ Soit $E$ une courbe située sur le cratère, $k\geqslant i \geqslant 1$, $\langl
 Il est important de noter que le seul critère restricitf pour obtenir ce résultat est d'avoir la $\ell$-isogénie engendrée par $\langle [a \ell^{k-1}]P+ [b \ell^{k-1}]Q \rangle $ de type descendante (pour plus de détails voir sous-section \ref{sub:alg:FM} ou \cite{FouquetMorain02}).
 
 \begin{prop}
-Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que $[\ell^i]P$ soit horizontal, $\psi:E \mapsto E_i$ une isogénie descendante de degré $\ell^i$, on note $P'=\psi(P)$, alors:
+Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que $[\ell^i]P$ soit horizontal de direction $\lambda$, $\psi:E \mapsto E_i$ une isogénie descendante de degré $\ell^i$, on note $P'=\psi(P)$, alors:
 \begin{enumerate}
 \item  $\langle [\ell^{k-i}]P' \rangle$ est le noyau d'une isogénie montante de degré $\ell^{i}$ duale de $\psi$ notée $\widehat{\psi}$ 
-\item  $\langle \widehat{\psi}(P') \rangle$ est le noyau d'une isogénie horizontale de degré $\ell^{k-i}$.  
+\item  $\langle \widehat{\psi}(P') \rangle$ est le noyau d'une isogénie horizontale de direction $\lambda$ de degré $\ell^{k-i}$.  
 \end{enumerate}
 \end{prop}
 
@@ -2937,14 +2937,24 @@ Pour le pont (1) si l'on note $\langle P_0, Q_0 \rangle =E[\ell^k]$ une base hor
 Pour le point (2) il suffit d'écrire que $\widehat{\psi}(P')=\widehat{\psi}\circ \psi P= [\ell^i] P$ on conclut alors à l'aide des hypothèses sur $P$.
 \end{proof}
 
+\begin{defi}
+Soit $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère, $E_c$ la courbe la plus proche de $E$ sur le cratère, $P$ un point d'ordre $\ell^k$ avec $k>e$ tel que $[\ell^e]P$ soit horizontal de direction $\lambda$ (resp. $\mu$)  la $\ell^e$ isogénie $\varphi:E_c \rightarrow E$, alors $\varphi(P)$ est appelé point \emph{partiellement horizontal} de direction $\lambda$ (resp. $\mu$) et de profondeur $e$.
+\end{defi}
+
 \begin{cor}
-Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se situent à une profondeur $e$ du cratère, soient $E_c$ et $E'_c$ les courbes les plus proches de $E$ et $E'$ situées sur le cratère soient $P \in E_c$ et $P' \in E'_c$ deux points d'ordre $\ell^k$ avec $k \geqslant e \geqslant 1$ tels que $[\ell^e]P$ et $[\ell^e]P'$ soient horizontaux de même direction. On note $\varphi:E_c \rightarrow E$ et $\varphi':E'_c \rightarrow E'$ les deux $\ell^e$ isogénies descendantes alors:
+Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se situent à une profondeur $e$ du cratère, $P \in E,P' \in E'$ des points partiellement horizontaux de même direction alors:
 \begin{itemize}
-\item $\phi(\varphi(P)) \in \langle \varphi'(P') \rangle$
+\item $\phi(P) \in \langle (P') \rangle$
 \end{itemize} 
 \end{cor}
 
-Ainsi à l'aide de cette méthode on est capable à l'aide de bases horizontales et d'isogénies montantes de déterminer une correspondance entre deux groupes cycliques d'ordre $\ell^k$ de courbes $r$-isogénes qui respectent l'action de la $r$-isogénie.
+Ainsi à l'aide de cette méthode on est capable à l'aide de bases horizontales et d'isogénies montantes de déterminer une correspondance entre deux groupes cycliques d'ordre $\ell^k$ de courbes $r$-isogénes qui respectent l'action de la $r$-isogénie et qui ne se situent pas forcément sur le cratère. 
+
+La différence entre des points horizontaux $P_{\lambda}, P_{\mu}$ d'ordre $\ell^k$ et des points partiellement horizontaux c'est que pour deux points partiellement horizontaux $R_{\lambda}, R_{\mu}$ de profondeur $e$ de direction opposées on a $\langle [\ell^{e}]R_{\lambda} \rangle = \langle [\ell^{e}]R_{\mu} \rangle$ alors que l'on a vu que pour deux points horizontaux de direction opposées on avait $\langle [\ell^{k-1}]P_{\lambda} \rangle \neq \langle [\ell^{k-1}]P_{\mu} \rangle $. 
+
+Ainsi en pratique on a vu que l'on était obligé de travailler avec la $\ell^{h+1}$ torsion et cette précédente discussion justifie l'utilité de se concentrer sur les points d'ordre $\ell^{k}$ avec $k \geqslant h+1$ plutôt que sur la $\ell^k$ torsion.
+
+Supposons que l'on ait pour une courbe située en dessous du cratère dans le volcan deux points  Il faut noter que l'on a 
 
 On a alors le résultat suivant sur la forme des matrices à conjugaison près
 Tout reste à faire...
