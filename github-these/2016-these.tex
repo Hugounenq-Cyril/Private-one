@@ -2751,11 +2751,13 @@ A l'aide du lemme \ref{lem:val:ext} et de la proposition \ref{pro:niv:str} on ne
 
 \chapter{Action du Frobenius sur un volcan de $\ell$-isogénies}
 \section{Cas Elkies}
+La majeure partie du travail présenté dans cette section a été effectué en collaboration avec Luca De Feo, Jérome Plut et Eric Schost. Il a fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
+
 On se place dans le cas Elkies où l'on va étudier une courbe elliptique ordinaire pour laquelle le polynôme caractéristique du Frobenius se scinde modulo la $\ell^k$-torsion:
 \begin{equation*}
 \pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \bmod \ell^k.
 \end{equation*}
-On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi$ se scinde modulo la $\ell^k$ torsion avec $k \geqslant h$, $h$ représente ici la hauteur du volcan, car on rappelle que l'on a $h=\frac{v_{\ell}(d_{\pi})-v_{\ell}d_K}{2}$ (voir section \ref{sec:ann:end}).
+On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi$ se scinde modulo la $\ell^k$ torsion avec $k \geqslant h$, $h$ représente ici la hauteur du volcan, on rappelle que l'on a $h=\frac{v_{\ell}(d_{\pi})-v_{\ell}d_K}{2}$ (voir section \ref{sec:ann:end}).
 
 Comme on travaille sur l'action du Frobenius sur la $\ell$-torsion sur une courbe elliptique alors on réprésente l'action du Frobenius sur $T_{\ell}(E)$ à l'aide d'une matrice $2 \times 2$. On a le résultat suivant qui nous donne la forme de ces matrices à conjugaison près.
 
@@ -2797,7 +2799,7 @@ $\ell^{-\min (h, v_{\ell}(a))} (\pi_{\ell}-\lambda)$.
 Ainsi avec cette proposition on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion.
 On voit aussi que cette détermination n'est pas sujette à l'existence de niveau de stabilité vu que la deuxième partie de la preuve se fait à l'aide des ordres et non de la structure de $\ell$-torsion.
 
-On va maintenant se focaliser sur la détermination de l'espace propre du Frobenius et voir comment le le déterminer à précision finie, on travaille donc sur des courbes situées sur le cratère car c'est le seul cas où l'on peut diagonaliser le Frobenius.
+On va maintenant se focaliser sur la détermination de l'espace propre du Frobenius et voir comment le déterminer à précision finie, on travaille donc sur des courbes situées sur le cratère car c'est le seul cas où l'on peut diagonaliser le Frobenius. On verra par la suite comment utiliser cette diagonalisation pour avoir une détermination de sous-groupes cycliques de la $\ell^k$-torsion pour des courbes situées en dehors du cratère.
 
 On va donc travailler avec points spécifiques que l'on va définir avant cela on a besoin d'introduire la notion suivante:
 
@@ -2813,7 +2815,6 @@ Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\p
   si $\pi$ est diagonale dedans, \emph{horizontale} si 
   les deux points de la base sont horizontaux.
 \end{defi}
-Le résultat suivant permet de lier les bases horizontales et diagonales.
 
 
 Montrons tout d'abord pour $\phi:E \mapsto E'$ comment calculer l'image de la matrice du Frobenius $\pi|T_{\ell}(E)$ dans une base de $T_{\ell}(E')$.
@@ -2845,6 +2846,8 @@ Ainsi, dans cette base de ~$T_{\ell}(E')$
 la matrice de~$\pi|T_{\ell}(E')$ est $M_R^{-1} \cdot \Pi \cdot M_R^{}$.
 \end{proof}
 
+Le résultat suivant permet de lier les bases horizontales et diagonales.
+
 
 \begin{prop} \label{pro:dia:hor}
 Soit~$E$ une courbe se situant sur le cratère et $P$ un point de $E[\ell^k]$
@@ -2874,7 +2877,7 @@ un vecteur propre de $\pi$ pour la valeur propre $\mu$ alors
 ~$(\pi - \mu) P = x (\lambda - \mu) R$ et l'on obtient le résultat.
 \end{proof}
 
-En particulier il est plus facile de calculer une base diagonale qu'une base horizontale, ainsi cette proposition est très pratique pour calculer des bases horizontales. On a alors besoin du résultat suivant pour construire des isogénies horizontales de taille aussi grande que la $\ell$ torsion définie sur le corps sur lequel on travaille.
+En particulier il est plus facile de calculer une base diagonale qu'une base horizontale, ainsi cette proposition est très pratique pour calculer des bases horizontales. On a alors besoin du résultat suivant pour construire des isogénies horizontales de taille aussi grande que la $\ell$ torsion définie sur le corps sur lequel on travaille, cela nous permet notamment d'éviter d'avoir à travailler dans des extensions de corps supplémentaires.
 
 \begin{prop}\label{pro:pus:hor}
 Soit~$\psi: E \rightarrow E'$ une $\ell$-isogénie horizontale de direction~$\lambda$,
@@ -2887,6 +2890,8 @@ Soit~$Q' = \psi(Q)$ et~$\widehat{\psi}$ l'isogénie duale de~$\psi$,
 comme $\widehat{\psi}$~et~$\widehat{\psi}(Q') = [\ell]Q$ sont horizontales
 de direction~$\mu$ alors $Q'$~est horizontal de direction $\mu$.
 \end{proof}
+
+La proposition suivante nous permet de faire le lien entre les bases horizontales et le contexte de l'algorithme de Couveignes.
 
 \begin{prop}\label{pro:par:iso}
 Soit~$\psi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
@@ -2905,7 +2910,7 @@ direction alors $E/\langle P \rangle$ et~$E'/\langle P' \rangle$ sont encore $r$
 Les points (1) et (2) découlent de la proposition \ref{pro:mat:fro} et du fait que pour $\psi$ isogénie rationnelle de degré $r$ premier avec $\ell$ on a un isomorphisme de modules de Tates qui commute avec le Frobenius. Pour le point (3) il suffit de remarquer qu'il existe un unique sous-groupe d'ordre $\ell$ qui génère soit une isogénie ascendante soit une isogénie de direction fixée, ainsi on doit avoir $\langle P' \rangle=\langle \psi(P) \rangle$.
 
 \end{proof}
-Le troisième point de cette proposition nous permet de réduire le problème du calcul de la $r$-isogénie entre deux courbes elliptiques âu même problème pour deux courbes situées sur le cratère du volcan de $\ell$-isogénies.
+Le troisième point de cette proposition nous permet de réduire le problème du calcul de la $r$-isogénie entre deux courbes elliptiques au même problème pour deux courbes situées sur le cratère du volcan de $\ell$-isogénies.
 
 Voyons tout d'abord comment déterminer à l'aide d'une base horizontale les isogénies descendantes d'une courbe située sur le cratère.
 
@@ -2925,7 +2930,7 @@ Il est important de noter que le seul critère restricitf pour obtenir ce résul
 \begin{prop}
 Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que $[\ell^i]P$ soit horizontal de direction $\lambda$, $\psi:E \mapsto E_i$ une isogénie descendante de degré $\ell^i$, on note $P'=\psi(P)$, alors:
 \begin{enumerate}
-\item  $\langle [\ell^{k-i}]P' \rangle$ est le noyau d'une isogénie montante de degré $\ell^{i}$ duale de $\psi$ notée $\widehat{\psi}$ 
+\item  $\langle [\ell^{k-i}]P' \rangle$ est le noyau d'une isogénie montante de degré $\ell^{i}$ duale de $\psi$ notée $\widehat{\psi}$, 
 \item  $\langle \widehat{\psi}(P') \rangle$ est le noyau d'une isogénie horizontale de direction $\lambda$ de degré $\ell^{k-i}$.  
 \end{enumerate}
 \end{prop}
@@ -2938,7 +2943,7 @@ Pour le point (2) il suffit d'écrire que $\widehat{\psi}(P')=\widehat{\psi}\cir
 \end{proof}
 
 \begin{defi}
-Soit $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère, $E_c$ la courbe la plus proche de $E$ sur le cratère, $P$ un point d'ordre $\ell^k$ avec $k>e$ tel que $[\ell^e]P$ soit horizontal de direction $\lambda$ (resp. $\mu$)  la $\ell^e$ isogénie $\varphi:E_c \rightarrow E$, alors $\varphi(P)$ est appelé point \emph{partiellement horizontal} de direction $\lambda$ (resp. $\mu$) et de profondeur $e$.
+Soient $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère, $E_c$ la courbe la plus proche de $E$ sur le cratère, $P \in E$ un point d'ordre $\ell^k$ avec $k>e$ tel que $[\ell^e]P$ soit horizontal de direction $\lambda$ (resp. $\mu$), $\varphi$ la $\ell^e$-isogénie $\varphi:E_c \rightarrow E$, alors $\varphi(P)$ est appelé point \emph{partiellement horizontal} de direction $\lambda$ (resp. $\mu$) et de profondeur $e$.
 \end{defi}
 
 \begin{cor}
