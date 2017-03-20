@@ -2774,7 +2774,7 @@ tel que $\pi|T_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
 \left ( \begin{matrix}\lambda & \ell^e \\ 0 & \mu
 \end{matrix}\right ).
 \end{equation*}
-% where $a ∈ ℤ$, $0 ≤ a ≤ ℓ^{h} - 1$,
+% where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
 De plus $e = h$ si~$E$ se situe sur le cratère,
 sinon $h - e$~est la profondeur de~$E$ dans le volcan.
 \end{prop}
@@ -2956,7 +2956,59 @@ La différence entre des points horizontaux $P_{\lambda}, P_{\mu}$ d'ordre $\ell
 
 Ainsi en pratique on a vu que l'on était obligé de travailler avec la $\ell^{h+1}$ torsion et cette précédente discussion justifie l'utilité de se concentrer sur les points d'ordre $\ell^{k}$ avec $k \geqslant h+1$ plutôt que sur la $\ell^k$ torsion.
 
-Objectif finir le Frobenius avec l'analyse des différentes classes pour l'endomorphisme de Frobenius.
+Objectif finir le Frobenius avec l'analyse des différentes classes pour l'endomorphisme de Frobenius. On a tout d'abord le premier résultat qui nous précise dans quel extension de corps on sera ammené à travailler pour avoir de la $\ell^k$ torsion qui soit définie.
+
+ Pour $\ell$ premier impair, on note~$\alpha
+= v_{\ell}(\lambda^{\ell-1}-1)$ et~$\beta=v_{\ell}(\mu^{\ell-1}-1)$; pour $\ell=2$,
+on note~$\alpha=v_2(\lambda^2-1)-1$ et~$\beta = v_2(\mu^2-1)-1$, on suppose 
+sans perte de généralité que $\alpha \geq \beta$.  Comme $\lambda \neq \mu \pmod{\ell^{h+1}}$, il est
+impossible que $\lambda \equiv \mu \equiv 1 \pmod{\ell^h}$ par la structure 
+d'un volcan de $\ell$-isogénies, ainsi au moins une des deux
+valuations~$\alpha, \beta$ est~$\leq h$, par conséquent~$\beta \leq h$.
+\label{sub:classes}
+\begin{prop}\label{prop:classes}
+For any~$k$, let~$d_k$ be the degree of the smallest field extension $F/\mathbb{F}_q$
+such that~$E[\ell^k]\subset E(F)$. Then:
+\begin{enumerate}
+\item The order of $q$ in $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ divides $d_1$,
+and $d_1$ divides~$(\ell-1)$.
+\item If $\ell$~is odd then for all $k \geq 1$,
+$ d_k = \ell^{\min (v_{\ell} (d_1), k - \beta)}$.
+% $d_k = \mathrm {lcm} (d_1, \ell^{k-\beta})$.
+\item If $\ell=2$ then $d_2 \in \{1,2\}$ and, for all~$k \geq 2$,
+% $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
+$d_k = \ell^{\min (v_{\ell} (d_2), k - \beta)}$.
+\item Let $[F:\mathbb{F}_q]=d_1\ell^n$, the group $E[\ell^{\infty}](F)$ is isomorphic to~$(\mathbb{Z}/\ell^{n+\alpha} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
+\item\label{prop:classes:count} The group~$E[\ell^k]$ contains at most
+$k \cdot \ell^{k+\beta}$ Galois conjugacy classes over~$F_1 = \mathbb{F}_{q^{d_1}}$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Le degré ~$d_k$ correspond à l'ordre de la matrice~$\pi|E[\ell^k]$.
+$d_k$ est donc le plus petit multiple commmun des ordres multiplicatifs
+de~$\lambda, \mu$ modulo~$\ell^k$.
+on obtient donc~(i) en utilisant le fait que~$\lambda \cdot \mu = q$.
+% We conclude using the multiplicative structure of~$(\mathbb{Z}/\ell^k \mathbb{Z})^\times$, and the fact
+% that $\lambda\mu=q$.
+% Note that in general the order of~$q$ is a strict divisor of~$d_1$,
+% as is for example the case for~$\pi^2 - \pi + 29 = 0$ and~$\ell = 7$,
+% where $q = 29 \cong 1 \pmod{7}$ and $d_1 = 6$.
+Pour les points~(ii)--(v) on peut supposer que l'on a $d_1 = 1$.
+Alors, pour tout entier~$N$, $v_{\ell}(\lambda^{2N}-1) = \alpha + v_{\ell} (2N)$.
+Soit~$(P, Q)$ une base diagonale de~$E[\ell^k]$,
+le point $(\pi^N - 1) (x P + y Q) = (\lambda^N-1) x P + (\mu^N-1) y Q$
+est nul si et seulement si $v_{\ell} (x) + \alpha + v_{\ell} (N) \geq k$
+et~$v_{\ell} (y) + \beta + v_{\ell} (N) \geq k$, cela montre~(iv).
+Les plus grandes classes de Galois sont celles pour lesquelles
+a~$v_{\ell} (y) = 0$ et leur taille est~$\ell^{k - \beta}$,
+ce qui prouve~(ii) et~(iii).
+De plus, pour tout~$i \leq k-\beta$ les points dans une orbite de taille~$\leq \ell^i$
+sont ceux pour lesquels~$v_{\ell} (x) \geq k - \alpha - i$ et~$v_{\ell} (y) \geq k - \beta - i$;
+il y a au plus $\ell^{\min(\alpha+i, k) + \min (\beta+i, k)}$ tels points,
+par conséquent il y a $\ell^{\min(\alpha+i, k) + \min(\beta, k-i)} \leq \ell^{k-i+\beta}$
+ classes correspondantes.
+En additionnant ce résultat pour tous les ~$i$ on prouve~(v).
+\end{proof}
 
 \subsubsection{Couveignes-Morain Bonne place ?}
 
@@ -2981,12 +3033,12 @@ and~$\rho(x, y) = x+y - \nu(x, y) = \max (0, x-\alpha+1, y-\beta+1)$.
 The decomposition of the group~$E[\ell^k]$ in Galois classes is as follows:
 \begin{enumerate}
 \item for~$i, j = 1, …, k-1$:
-$(\ell-1)^2 · \ell^{\nu(i,j)}$ classes of size~$\ell^{\rho(i,j)}$;
+$(\ell-1)^2 \cdot \ell^{\nu(i,j)}$ classes of size~$\ell^{\rho(i,j)}$;
 \item for~$i = 1, …, k-1$:
-$(\ell-1) · \ell^{\min (i, \alpha-1)}$ classes of size~$\ell^{\max (0, i-\alpha+1)}$, and
-$(\ell-1) · \ell^{\min (i, \beta-1)}$ classes of size~$\ell^{\max (0, i-\beta+1)}$;
+$(\ell-1) \cdot \ell^{\min (i, \alpha-1)}$ classes of size~$\ell^{\max (0, i-\alpha+1)}$, and
+$(\ell-1) \cdot \ell^{\min (i, \beta-1)}$ classes of size~$\ell^{\max (0, i-\beta+1)}$;
 \item the $\ell^2$ singleton classes of~$E[\ell]$.
-% \item \todo{le cas où $ℓ=2$}
+% \item \todo{le cas où $\ell=2$}
 \end{enumerate}
 \end{prop}
 \begin{proof}
@@ -3032,22 +3084,22 @@ The proof is much the same as in the odd case.
 
 %\begin{prop}\label{prop:orbites-2-torsion}
 %Let~$E$ be an elliptic curve with $2$-maximal endomorphism ring.
-%Assume $λ ≡ μ ≡ 1 \pmod{4}$ and let~$α = v_2(λ-1), β=v_2(μ-1)$.
-%Write~$ν_2(x, y) = \min (x+y, x+β-2, y+α-2)$
-%and~$ρ_2(x, y) = x+y - ν_2(x, y) = \max (0, x-α+2, y-β+2)$.
+%Assume $\lambda \cong \mu \cong 1 \pmod{4}$ and let~$\alpha = v_2(\lambda-1), \beta=v_2(\mu-1)$.
+%Write~$ν_2(x, y) = \min (x+y, x+\beta-2, y+\alpha-2)$
+%and~$ρ_2(x, y) = x+y - ν_2(x, y) = \max (0, x-\alpha+2, y-\beta+2)$.
 %The decomposition of the group~$E[2^k]$ in Galois classes is as follows:
 %\begin{enumerate}
 %\item for~$i, j = 1, …, k-2$:
-%$4 · 2^{ν_2(i,j)}$ classes of size~$2^{ρ_2(i,j)}$;
+%$4 \cdot 2^{ν_2(i,j)}$ classes of size~$2^{ρ_2(i,j)}$;
 %\item for~$i = 1, …, k-2$:
-%$4 · 2^{\min (i, α-2)}$ classes of size~$2^{\max (0, i-α+2)}$, and
-%$4 · 2^{\min (i, β-2)}$ classes of size~$2^{\max (0, i-β+2)}$.
+%$4 \cdot 2^{\min (i, \alpha-2)}$ classes of size~$2^{\max (0, i-\alpha+2)}$, and
+%$4 \cdot 2^{\min (i, \beta-2)}$ classes of size~$2^{\max (0, i-\beta+2)}$.
 %\item the 16 singleton classes of~$E[4]$.
 %\end{enumerate}
 %\end{prop}
-%Note that if $λ$ or~$μ ≡ -1 \pmod{4}$ then
+%Note that if $\lambda$ or~$\mu \cong -1 \pmod{4}$ then
 %by replacing the base field by a quadratic extension,
-%we can always ensure that the condition $λ ≡ μ ≡ 1 \pmod{4}$ is
+%we can always ensure that the condition $\lambda \cong \mu \cong 1 \pmod{4}$ is
 %satisfied.
 
 
