@@ -3010,18 +3010,7 @@ par conséquent il y a $\ell^{\min(\alpha+i, k) + \min(\beta, k-i)} \leq \ell^{k
 En additionnant ce résultat pour tous les ~$i$ on prouve~(v).
 \end{proof}
 
-\subsubsection{Couveignes-Morain Bonne place ?}
-
-Dire que la détermination d'isogénies à l'aide de Couveignes-Morain, ne nous donne que des polynômes qui définissent les isogénies et non pas leur factorisation, on serait alors ammené à mettre en correspondance deux polynômes et non deux générateurs de sous-groupes, ce qui fait qu'on l'aurait bien dans l'os... Non ?
-
-Supposons que l'on ait pour une courbe située en dessous du cratère dans le volcan deux points  Il faut noter que l'on a 
-
-On a alors le résultat suivant sur la forme des matrices à conjugaison près
-Tout reste à faire...
-\section{Cas Atkin}
-\chapter{Rebus}
-\section{Galois classes in~$E[\ell^k]$}
-\label{ap:galois}
+Ainsi le point (v) nous donne une borne maximale sur le nombre de représentants des différentes orbites qe l'on a à calculer pour reconstruire tout $E[\ell^{\infty}](F)$, on a le résultat suivant qui précise la décomposition des différentes et leurs tailles:
 
 We give here the full decomposition of $E[\ell^k]$ in Galois classes.
 This is a more precise form of Proposition~\ref{prop:classes}~(v).
@@ -3082,25 +3071,40 @@ the sets~$V(i, c) \cdot P$ and~$V(j,d) \cdot Q$.
 We now state the equivalent proposition when~$\ell = 2$.
 The proof is much the same as in the odd case.
 
-%\begin{prop}\label{prop:orbites-2-torsion}
-%Let~$E$ be an elliptic curve with $2$-maximal endomorphism ring.
-%Assume $\lambda \cong \mu \cong 1 \pmod{4}$ and let~$\alpha = v_2(\lambda-1), \beta=v_2(\mu-1)$.
-%Write~$ν_2(x, y) = \min (x+y, x+\beta-2, y+\alpha-2)$
-%and~$ρ_2(x, y) = x+y - ν_2(x, y) = \max (0, x-\alpha+2, y-\beta+2)$.
-%The decomposition of the group~$E[2^k]$ in Galois classes is as follows:
-%\begin{enumerate}
-%\item for~$i, j = 1, …, k-2$:
-%$4 \cdot 2^{ν_2(i,j)}$ classes of size~$2^{ρ_2(i,j)}$;
-%\item for~$i = 1, …, k-2$:
-%$4 \cdot 2^{\min (i, \alpha-2)}$ classes of size~$2^{\max (0, i-\alpha+2)}$, and
-%$4 \cdot 2^{\min (i, \beta-2)}$ classes of size~$2^{\max (0, i-\beta+2)}$.
-%\item the 16 singleton classes of~$E[4]$.
-%\end{enumerate}
-%\end{prop}
-%Note that if $\lambda$ or~$\mu \cong -1 \pmod{4}$ then
-%by replacing the base field by a quadratic extension,
-%we can always ensure that the condition $\lambda \cong \mu \cong 1 \pmod{4}$ is
-%satisfied.
+\begin{prop}\label{prop:orbites-2-torsion}
+Let~$E$ be an elliptic curve with $2$-maximal endomorphism ring.
+Assume $\lambda \equiv \mu \equiv 1 \pmod{4}$ and let~$\alpha = v_2(\lambda-1), \beta=v_2(\mu-1)$.
+Write~$\nu_2(x, y) = \min (x+y, x+\beta-2, y+\alpha-2)$
+and~$\rho_2(x, y) = x+y - \nu_2(x, y) = \max (0, x-\alpha+2, y-\beta+2)$.
+The decomposition of the group~$E[2^k]$ in Galois classes is as follows:
+\begin{enumerate}
+\item for~$i, j = 1, …, k-2$:
+$4 \cdot 2^{\nu_2(i,j)}$ classes of size~$2^{\rho_2(i,j)}$;
+\item for~$i = 1, …, k-2$:
+$4 \cdot 2^{\min (i, \alpha-2)}$ classes of size~$2^{\max (0, i-\alpha+2)}$, and
+$4 \cdot 2^{\min (i, \beta-2)}$ classes of size~$2^{\max (0, i-\beta+2)}$.
+\item the 16 singleton classes of~$E[4]$.
+\end{enumerate}
+\end{prop}
+Note that if $\lambda$ or~$\mu \cong -1 \pmod{4}$ then
+by replacing the base field by a quadratic extension,
+we can always ensure that the condition $\lambda \cong \mu \cong 1 \pmod{4}$ is
+satisfied.
+
+
+\subsubsection{Couveignes-Morain Bonne place ?}
+
+Dire que la détermination d'isogénies à l'aide de Couveignes-Morain, ne nous donne que des polynômes qui définissent les isogénies et non pas leur factorisation, on serait alors ammené à mettre en correspondance deux polynômes et non deux générateurs de sous-groupes, ce qui fait qu'on l'aurait bien dans l'os... Non ?
+
+Supposons que l'on ait pour une courbe située en dessous du cratère dans le volcan deux points  Il faut noter que l'on a 
+
+On a alors le résultat suivant sur la forme des matrices à conjugaison près
+Tout reste à faire...
+\section{Cas Atkin}
+\chapter{Rebus}
+\section{Galois classes in~$E[\ell^k]$}
+\label{ap:galois}
+
 
 
 \begin{algorithm}
