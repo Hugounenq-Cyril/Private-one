@@ -2631,7 +2631,7 @@ L'algorithme de Fouquet-Morain \cite{FouquetMorain02} calcule donc pour différe
 
 
 \section{Lien entre les niveaux d'une courbe dans le volcan et la structure de la torsion}
-
+\label{sec:lie:niv}
 On va dans cette section mettre en avant les liens qui existent entre le niveau d'une courbe dans un volcan de $\ell$-isogénie et la structure de sa $\ell$-torsion rationnelle. Les résultats exposés ici sont tirés de \cite{MiretMSTV08} et \cite{Ionica-Joux10}.
 
 \begin{prop}[Lenstra]
@@ -2799,6 +2799,8 @@ $\ell^{-\min (h, v_{\ell}(a))} (\pi_{\ell}-\lambda)$.
 Ainsi avec cette proposition on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion.
 On voit aussi que cette détermination n'est pas sujette à l'existence de niveau de stabilité vu que la preuve ne se fait pas à l'aide de la structure de la $\ell$-torsion.
 
+\subsection{Determination de sous groupes cycliques à l'aide du Frobenius}
+
 On va maintenant se focaliser sur la détermination de l'espace propre du Frobenius et voir comment le déterminer à précision finie. On travaille donc sur des courbes situées sur le cratère car c'est le seul cas où l'on peut diagonaliser le Frobenius. On verra par la suite comment utiliser cette diagonalisation pour avoir une détermination de sous-groupes cycliques de la $\ell^k$-torsion pour des courbes situées en dehors du cratère.
 
 On travaille donc avec points spécifiques que l'on va définir avant cela on a besoin d'introduire la notion suivante:
@@ -2953,31 +2955,34 @@ Ainsi on est capable à l'aide de bases horizontales et d'isogénies montantes d
 
 La différence entre des points horizontaux $P_{\lambda}, Q_{\mu}$ d'ordre $\ell^k$ et des points partiellement horizontaux c'est que pour deux points partiellement horizontaux $R_{\lambda}, R_{\mu}$ de profondeur $e$ de direction opposées on a $\langle [\ell^{e}]R_{\lambda} \rangle = \langle [\ell^{e}]R_{\mu} \rangle$ alors que l'on a vu que pour deux points horizontaux de direction opposées on avait $\langle [\ell^{k-1}]P_{\lambda} \rangle \neq \langle [\ell^{k-1}]Q_{\mu} \rangle $. 
 
-Ainsi en pratique on a vu que l'on était obligé de travailler avec la $\ell^{h+1}$ torsion et cette précédente discussion justifie l'utilité de se concentrer sur les points d'ordre $\ell^{k}$ avec $k \geqslant h+1$ plutôt que sur la $\ell^k$ torsion.
+Ainsi en pratique on est obligé de travailler avec la $\ell^{h+1}$ torsion, cette précédente discussion justifie l'utilité de se concentrer sur les points d'ordre $\ell^{k}$ avec $k \geqslant h+1$ plutôt que sur la $\ell^k$ torsion dans le contexte de l'algorithme de Couveignes.
 
-Objectif finir le Frobenius avec l'analyse des différentes classes pour l'endomorphisme de Frobenius. On a tout d'abord le premier résultat qui nous précise dans quel extension de corps on sera ammené à travailler pour avoir de la $\ell^k$ torsion qui soit définie.
+\subsection{Décomposition de la $\ell^k$ torsion sous l'action du Frobenius}
+\label{sub:classes}
+On va maintenant voir la décomposition de la $\ell^k$ torsion en orbites selon l'action du Frobenius, afin de pouvoir ultérieurement calculer toute la $\ell^k$ torsion à partir des représentants des orbites et de l'action du Frobenius. 
+%On a tout d'abord le premier résultat qui nous précise dans quel extension de corps on sera ammené à travailler pour avoir de la $\ell^k$ torsion qui soit définie.
 
  Pour $\ell$ premier impair, on note~$\alpha
 = v_{\ell}(\lambda^{\ell-1}-1)$ et~$\beta=v_{\ell}(\mu^{\ell-1}-1)$; pour $\ell=2$,
 on note~$\alpha=v_2(\lambda^2-1)-1$ et~$\beta = v_2(\mu^2-1)-1$, on suppose 
-sans perte de généralité que $\alpha \geq \beta$.  Comme $\lambda \neq \mu \pmod{\ell^{h+1}}$, il est
+sans perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces valeurs-là car pour n'improte quelle courbe $E$ et corps fini $\mathbb{F_q}$ on a $E[\ell] \subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[2] \subset E(\mathbb{F}_q^{2})$ pour $\ell=2$.  Comme $\lambda \neq \mu \pmod{\ell^{h+1}}$, il est
 impossible que $\lambda \equiv \mu \equiv 1 \pmod{\ell^h}$ par la structure 
-d'un volcan de $\ell$-isogénies, ainsi au moins une des deux
-valuations~$\alpha, \beta$ est~$\leq h$, par conséquent~$\beta \leq h$.
-\label{sub:classes}
-\begin{prop}\label{prop:classes}
+d'un volcan de $\ell$-isogénies (voir section \ref{sec:lie:niv}), ainsi au moins une des deux
+valuations~$\alpha, \beta$ est~$\leqslant h$, par conséquent on va supposer sans perte de généralité que~$\beta \leqslant h$.
+
+\begin{prop}\label{pro:clas:fro}
 Pour tout~$k$, on note~$d_k$ le degré de la plus petite extension de corps $F/\mathbb{F}_q$
 telle que~$E[\ell^k]\subset E(F)$. On  a alors:
 \begin{enumerate}
 \item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
-et $d_1$ qui divise~$(\ell-1)$;
-\item si $\ell$~est impair alors pour tout $k \geq 1$,
+et $d_1$ qui divise~$(\ell-1)$.
+\item Si $\ell$~est impair alors pour tout $k \geqslant 1$,
 $ d_k = \ell^{\min (v_{\ell} (d_1), k - \beta)}$.
 % $d_k = \mathrm {lcm} (d_1, \ell^{k-\beta})$.
-\item si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k \geq 2$,
+\item Si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k \geqslant 2$,
 % $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
 $d_k = \ell^{\min (v_{\ell} (d_2), k - \beta)}$.
-\item soit $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\alpha} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
+\item Soit $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\alpha} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
 \item\label{prop:classes:count} Le groupe~$E[\ell^k]$ contient au plus
 $k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}_{q^{d_1}}$.
 \end{enumerate}
@@ -2985,35 +2990,30 @@ $k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}
 \begin{proof}
 Le degré ~$d_k$ correspond à l'ordre de la matrice~$\pi|E[\ell^k]$.
 $d_k$ est donc le plus petit multiple commmun des ordres multiplicatifs
-de~$\lambda, \mu$ modulo~$\ell^k$.
+de~$\lambda, \mu$ modulo~$\ell^k$,
 on obtient donc~(i) en utilisant le fait que~$\lambda \cdot \mu = q$.
-% We conclude using the multiplicative structure of~$(\mathbb{Z}/\ell^k \mathbb{Z})^\times$, and the fact
-% that $\lambda\mu=q$.
-% Note that in general the order of~$q$ is a strict divisor of~$d_1$,
-% as is for example the case for~$\pi^2 - \pi + 29 = 0$ and~$\ell = 7$,
-% where $q = 29 \cong 1 \pmod{7}$ and $d_1 = 6$.
-Pour les points~(ii)--(v) on peut supposer que l'on a $d_1 = 1$.
-Alors, pour tout entier~$N$, $v_{\ell}(\lambda^{2N}-1) = \alpha + v_{\ell} (2N)$.
+Pour les points~(ii)--(v) on peut supposer que l'on a $d_1 = 1$,
+alors pour tout entier~$N$, $v_{\ell}(\lambda^{2N}-1) = \alpha + v_{\ell} (2N)$.
 Soit~$(P, Q)$ une base diagonale de~$E[\ell^k]$,
-le point $(\pi^N - 1) (x P + y Q) = (\lambda^N-1) x P + (\mu^N-1) y Q$
+le point $(\pi^N - 1) ([x] P + [y] Q) = [(\lambda^N-1) x] P + [(\mu^N-1) y] Q$
 est nul si et seulement si $v_{\ell} (x) + \alpha + v_{\ell} (N) \geq k$
 et~$v_{\ell} (y) + \beta + v_{\ell} (N) \geq k$, cela montre~(iv).
 Les plus grandes classes de Galois sont celles pour lesquelles
-a~$v_{\ell} (y) = 0$ et leur taille est~$\ell^{k - \beta}$,
+on a~$v_{\ell} (y) = 0$ et leur taille est~$\ell^{k - \beta}$,
 ce qui prouve~(ii) et~(iii).
-De plus, pour tout~$i \leq k-\beta$ les points dans une orbite de taille~$\leq \ell^i$
-sont ceux pour lesquels~$v_{\ell} (x) \geq k - \alpha - i$ et~$v_{\ell} (y) \geq k - \beta - i$;
+De plus, pour tout~$i \leq k-\beta$ les points dans une orbite de taille~$\leqslant \ell^i$
+sont ceux pour lesquels~$v_{\ell} (x) \geqslant k - \alpha - i$ et~$v_{\ell} (y) \geqslant k - \beta - i$;
 il y a au plus $\ell^{\min(\alpha+i, k) + \min (\beta+i, k)}$ tels points,
-par conséquent il y a $\ell^{\min(\alpha+i, k) + \min(\beta, k-i)} \leq \ell^{k-i+\beta}$
+par conséquent il y a $\ell^{\min(\alpha+i, k) + \min(\beta, k-i)} \leqslant \ell^{k-i+\beta}$
  classes correspondantes.
 En additionnant ce résultat pour tous les ~$i$ on prouve~(v).
 \end{proof}
 
-Ainsi le point (v) nous donne une borne maximale sur le nombre de représentants des différentes orbites qe l'on a à calculer pour reconstruire tout $E[\ell^{\infty}](F)$, on a le résultat suivant qui précise la décomposition des différentes et leurs tailles:
-\todo{Regarder les notations pour le corps de base/extensions...}
+Ainsi le point (v) nous donne une borne maximale sur le nombre de représentants des différentes orbites que l'on a à calculer pour reconstruire tout $E[\ell^{\infty}](F)$ à l'aide de l'action de Galois, on a le résultat suivant qui précise la décomposition des différentes orbites et leurs tailles:
+
 \begin{prop}\label{prop:orbites-l-torsion}
 Soit~$E$ une courbe elliptique ordinaire avec un anneau d'endomorphisme maximal
- par rapprt à $\ell$.
+ par rapport à $\ell$.
 Supposons que $\ell \neq 2$, $\lambda \equiv \mu \equiv 1 \bmod \ell$ et posons~$\alpha = v_{\ell}(\lambda-1), \beta=v_{\ell}(\mu-1)$.
 On écrit~$\nu(x, y) = \min (x+y, x+\beta-1, y+\alpha-1)$
 et~$\rho(x, y) = x+y - \nu(x, y) = \max (0, x-\alpha+1, y-\beta+1)$.
@@ -3042,8 +3042,7 @@ alors par~\cite[Théorème II.3.2]{Serre70},
 l'application~$f(x, y, z) = \ell^x \cdot \varepsilon^y \cdot \exp (\ell z)$
 est un isomorphisme de groupe entre~$\mathbb{Z} \times (\mathbb{Z}/(\ell-1) \mathbb{Z}) \times \mathbb{Z}_{\ell}$ et~$\mathbb{Q}_{\ell}^{\times}$.
 Pour~$i \in [0,k-1 ]$ et~$c \in \mathbb{Z}/(\ell-1)\mathbb{Z}$,
-on note~$V(i,c)$ l'image dans $\mathbb{Z}/\ell^k \mathbb{Z}$ donnée par~$f(k-1-i,c,– )$:
-then la structure multiplicative de $V(i, c)$
+on note~$V(i,c)$ l'image dans $\mathbb{Z}/\ell^k \mathbb{Z}$ donnée par~$f(k-1-i,c,- )$, la structure multiplicative de $V(i, c)$
 est celle d'un espace homogène principal sous l'action de~$\mathbb{Z}/\ell^i \mathbb{Z}$.
 On définit alors~$W(i,j,c,d) = [V(i, c)] P \,+\, [V(j, d)]  Q \subset E[\ell^k]$.
 
@@ -3051,7 +3050,7 @@ Comme~$\lambda \equiv 1 \bmod \ell^{\alpha}$, on peut écrire~$\lambda = f(0,0,u
 et~$\mu = f(0,0, v\, \ell^{\beta-1})$
 avec~$u, v \in \mathbb{Z}_{\ell}^{\times}$.
 On a alors l'ensemble~$W(i,j,c,d)$ qui est stable sous l'action du groupe de Galois.
-Moreover, les orbites de~$W(i,j,c,d)$ correspondent de façon bijective
+Les orbites de~$W(i,j,c,d)$ correspondent de façon bijective
 aux points du domaine fondamental du réseau~$\Lambda_{i,j}$ genéré par
 les colonnes de~$\left(  \begin{smallmatrix}
 \ell^i & 0 & u \ell^{\alpha-1}\\ 
@@ -3097,6 +3096,9 @@ en remplaçant le corps de base par une extension quadratique
 on peut se ramener à la condition $\lambda \equiv \mu \equiv 1 \bmod 4$.
 
 
+
+\section{Cas Atkin}
+\chapter{Rebus}
 \subsubsection{Couveignes-Morain Bonne place ?}
 
 Dire que la détermination d'isogénies à l'aide de Couveignes-Morain, ne nous donne que des polynômes qui définissent les isogénies et non pas leur factorisation, on serait alors ammené à mettre en correspondance deux polynômes et non deux générateurs de sous-groupes, ce qui fait qu'on l'aurait bien dans l'os... Non ?
@@ -3105,11 +3107,6 @@ Supposons que l'on ait pour une courbe située en dessous du cratère dans le vo
 
 On a alors le résultat suivant sur la forme des matrices à conjugaison près
 Tout reste à faire...
-\section{Cas Atkin}
-\chapter{Rebus}
-\section{Galois classes in~$E[\ell^k]$}
-\label{ap:galois}
-
 
 \subsection{Travaux de Kohel, Fouquet-Morain}
 Mettre l'algorithme de Fouquet Morain
