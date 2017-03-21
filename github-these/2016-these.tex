@@ -543,7 +543,7 @@ $\mathrm{End}(E)$ est
 Voir \cite[Corollary III.9.4]{Silv1}, et \cite[Theorem V.3.1]{Silv1}
 \end{proof}
 
-\subsection{Courbes définies sur $\mathbb{C}$}
+\subsection{Courbes d\'efinies sur $\mathbb{C}$}
 Parler entre autres du polynome modulaire à cette occasion-là.
 \subsubsection{Polynôme modulaire}
 
@@ -1939,7 +1939,7 @@ Sachant que $d_0 \mid \ell-1$ ce coût peut être borné à l'aide de $\ell$ de 
 
 
 
-\section{Représentation des éléments de la tour d'extensions $\ell$-adiques}%titre a retravailler
+\section{Repr\'esentation des \'el\'ements de la tour d'extensions $\ell$-adiques}%titre a retravailler
 %On rappelle que la tour $\ell$-adique est dénotée: $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1, \mathsf{F}_2, \cdots $ avec $\mathsf{F}_0$ une extension de degré $r$ de $\mathbb{F}_q$ et que pour tout $i \geqslant 1$ $\mathsf{F}_i$ est une extension de degré $\ell$ de $\mathsf{F}_{i-1}$. Comme dit  précédemment on travaille $F_0$ et non $\mathbb{F}_q$ afin de permmettre un traitement plus général des cas, une distinction sera faite par la suite selon que $\mathsf{F}_0 \cong \mathbb{F}_q$ ou $\mathsf{F}_0 \ncong \mathbb{F}_q$.
 %afin d'alléger la notation, avec $\mathbb{L}_{k}=\mathbb{F}_{q^{2^{k}}}$ pour tout entier $k$.
 
@@ -2184,7 +2184,7 @@ Il est à noter que pour le calcul d'une racine carrée le coût est un coût en
 Une implantation de construction de tours dyadiques et des opérations du Frobenius et du calcul de racine carrée ont été réalisé en SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
 
-\chapter{Volcans d'isogénies}
+\chapter{Volcans d'isog\'enies}
 Les deux documents à citer pour cette section sont \cite{Kohel96} qui a introduit les graphes d'isogénie et   \cite{Fouquet01} qui a développé ces idées pour donner une structure à ces graphes.
 
 \section{Anneau d'endomorphismes}
@@ -2757,7 +2757,7 @@ On se place dans le cas Elkies où l'on va étudier une courbe elliptique ordina
 \begin{equation*}
 \pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \bmod \ell^k.
 \end{equation*}
-On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi$ se scinde modulo la $\ell^k$ torsion avec $k \geqslant h$, $h$ représente ici la hauteur du volcan, on rappelle que l'on a $h=\frac{v_{\ell}(d_{\pi})-v_{\ell}d_K}{2}$ (voir section \ref{sec:ann:end}).
+On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi$ se scinde modulo la $\ell^k$ torsion avec $k \geqslant h$, $h$ représente ici la hauteur du volcan, on rappelle que l'on a $h=\frac{v_{\ell}(d_{\pi})-v_{\ell}(d_K)}{2}$ (voir section \ref{sec:ann:end}).
 
 Comme on travaille sur l'action du Frobenius sur la $\ell$-torsion sur une courbe elliptique alors on réprésente l'action du Frobenius sur $T_{\ell}(E)$ à l'aide d'une matrice $2 \times 2$. On a le résultat suivant qui nous donne la forme de ces matrices à conjugaison près.
 
@@ -3011,85 +3011,91 @@ En additionnant ce résultat pour tous les ~$i$ on prouve~(v).
 \end{proof}
 
 Ainsi le point (v) nous donne une borne maximale sur le nombre de représentants des différentes orbites qe l'on a à calculer pour reconstruire tout $E[\ell^{\infty}](F)$, on a le résultat suivant qui précise la décomposition des différentes et leurs tailles:
-
-We give here the full decomposition of $E[\ell^k]$ in Galois classes.
-This is a more precise form of Proposition~\ref{prop:classes}~(v).
+\todo{Regarder les notations pour le corps de base/extensions...}
 \begin{prop}\label{prop:orbites-l-torsion}
-Let~$E$ be an elliptic curve with $\ell$-maximal endomorphism ring.
-Assume $\ell \neq 2$, $\lambda \cong \mu \cong 1 \pmod{\ell}$ and let~$\alpha = v_{\ell}(\lambda-1), \beta=v_{\ell}(\mu-1)$.
-Write~$\nu(x, y) = \min (x+y, x+\beta-1, y+\alpha-1)$
-and~$\rho(x, y) = x+y - \nu(x, y) = \max (0, x-\alpha+1, y-\beta+1)$.
-The decomposition of the group~$E[\ell^k]$ in Galois classes is as follows:
+Soit~$E$ une courbe elliptique ordinaire avec un anneau d'endomorphisme maximal
+ par rapprt à $\ell$.
+Supposons que $\ell \neq 2$, $\lambda \equiv \mu \equiv 1 \bmod \ell$ et posons~$\alpha = v_{\ell}(\lambda-1), \beta=v_{\ell}(\mu-1)$.
+On écrit~$\nu(x, y) = \min (x+y, x+\beta-1, y+\alpha-1)$
+et~$\rho(x, y) = x+y - \nu(x, y) = \max (0, x-\alpha+1, y-\beta+1)$.
+La décomposition du groupe~$E[\ell^k]$ en calsse de Galois est comme suit:
 \begin{enumerate}
-\item for~$i, j = 1, …, k-1$:
-$(\ell-1)^2 \cdot \ell^{\nu(i,j)}$ classes of size~$\ell^{\rho(i,j)}$;
-\item for~$i = 1, …, k-1$:
-$(\ell-1) \cdot \ell^{\min (i, \alpha-1)}$ classes of size~$\ell^{\max (0, i-\alpha+1)}$, and
-$(\ell-1) \cdot \ell^{\min (i, \beta-1)}$ classes of size~$\ell^{\max (0, i-\beta+1)}$;
-\item the $\ell^2$ singleton classes of~$E[\ell]$.
+\item pour~$i, j = 1, …, k-1$:
+$(\ell-1)^2 \cdot \ell^{\nu(i,j)}$ classes de taille~$\ell^{\rho(i,j)}$;
+\item pour~$i = 1, …, k-1$:
+$(\ell-1) \cdot \ell^{\min (i, \alpha-1)}$ classes de taille~$\ell^{\max (0, i-\alpha+1)}$, et
+$(\ell-1) \cdot \ell^{\min (i, \beta-1)}$ classes de taille~$\ell^{\max (0, i-\beta+1)}$;
+\item les $\ell^2$ classes de singleton de~$E[\ell]$.
 % \item \todo{le cas où $\ell=2$}
 \end{enumerate}
 \end{prop}
 \begin{proof}
-Fix a basis~$(P, Q)$ of~$E[\ell^k]$ such that~$\pi(P)=\lambda P$, $\pi(Q)=\mu Q$.
-Studying the Galois orbits of~$E[\ell^k]$
-means studying the map~$\mathbb{Z}_\ell^2 \rightarrow \mathbb{Z}_\ell^2, (x, y) \mapsto (\lambda x, \mu y)$.
-In other words, the orbits correspond to elements of~$\mathbb{Z}_\ell^2$
-modulo the \emph{multiplicative} subgroup generated by~$(\lambda, \mu)$.
-An easy way to describe this
-is to consider a \emph{multiplicative lattice} in~$(\mathbb{Q}_{\ell}^{\times})^2$.
+Soit~$(P, Q)$ une base de~$E[\ell^k]$ telle que~$\pi(P)=[\lambda] P$, $\pi(Q)=[\mu] Q$.
+\'Etudier les orbites de Galois de~$E[\ell^k]$
+revient à étudier l'action~$\mathbb{Z}_\ell^2 \rightarrow \mathbb{Z}_\ell^2, (x, y) \mapsto (\lambda x, \mu y)$.
+Ainsi les orbites correspondent aux éléments de~$\mathbb{Z}_\ell^2$ définis
+modulo le sous-groupe \emph{multiplicatif} genéré par~$(\lambda, \mu)$.
+Un moyen facile de représenter celui-ci est de travailler 
+avec un \emph{réseau multiplicatif} dans~$(\mathbb{Q}_{\ell}^{\times})^2$.
 
-Let~$\varepsilon$ be a primitive $(\ell-1)$-th root of unity in~$\mathbb{Z}_{\ell}$.
-Then by~\cite[Théorème II.3.2]{Serre.Arith},
-the map~$f(x, y, z) = \ell^x \cdot \varepsilon^y \cdot \exp (\ell z)$
-is a group isomorphism between~$\mathbb{Z} \times (\mathbb{Z}/(\ell-1) \mathbb{Z}) \times \mathbb{Z}_{\ell}$ and~$\mathbb{Q}_{\ell}^{\times}$.
-For~$i \in [0,k-1 ]$ and~$c \in \mathbb{Z}/(\ell-1)\mathbb{Z}$,
-let~$V(i,c)$ be the image in $\mathbb{Z}/\ell^k \mathbb{Z}$ of the map~$f(k-1-i,c,–)$:
-then the multiplicative structure of $V(i, c)$
-is that of a principal homogeneous space under~$\mathbb{Z}/\ell^i \mathbb{Z}$.
-We also define~$W(i,j,c,d) = V(i, c) \cdot P \,+\, V(j, d) \cdot Q \subset E[\ell^k]$.
+Soit~$\varepsilon$ une racine primitive $(\ell-1)$-ème de l'unité dans~$\mathbb{Z}_{\ell}$,
+alors par~\cite[Théorème II.3.2]{Serre70},
+l'application~$f(x, y, z) = \ell^x \cdot \varepsilon^y \cdot \exp (\ell z)$
+est un isomorphisme de groupe entre~$\mathbb{Z} \times (\mathbb{Z}/(\ell-1) \mathbb{Z}) \times \mathbb{Z}_{\ell}$ et~$\mathbb{Q}_{\ell}^{\times}$.
+Pour~$i \in [0,k-1 ]$ et~$c \in \mathbb{Z}/(\ell-1)\mathbb{Z}$,
+on note~$V(i,c)$ l'image dans $\mathbb{Z}/\ell^k \mathbb{Z}$ donnée par~$f(k-1-i,c,– )$:
+then la structure multiplicative de $V(i, c)$
+est celle d'un espace homogène principal sous l'action de~$\mathbb{Z}/\ell^i \mathbb{Z}$.
+On définit alors~$W(i,j,c,d) = [V(i, c)] P \,+\, [V(j, d)]  Q \subset E[\ell^k]$.
 
-Since~$\lambda \cong 1 \pmod{\ell^{\alpha}}$, we may write~$\lambda = f(0,0,u\, \ell^{\alpha-1})$
-and~$\mu = f(0,0, v\, \ell^{\beta-1})$
-for some~$u, v \in \mathbb{Z}_{\ell}^{\times}$.
-This implies that the set~$W(i,j,c,d)$ is stable under Galois.
-Moreover, the orbits of~$W(i,j,c,d)$ correspond bijectively to
-points of a fundamental domain of the lattice~$\Lambda_{i,j}$ generated by
-the columns of~$\begin{smallmatrix} \ell^i & 0 & u \ell^{\alpha-1}\\ 0 & \ell^j & v \ell^{\beta-1}\end{smallmatrix}$,
-whereas the size of each orbit is computed modulo~$[(\mathbb{Z}/\ell^i \mathbb{Z}) \times (\mathbb{Z}/\ell^j \mathbb{Z})\::\: \Lambda_{i,j}]$.
-By using elementary column manipulations,
-we find that the covolume of~$\Lambda_{i,j}$ is~$\ell^{\nu(i,j)}$,
-hence the point~(i) of the proposition.
-(The case~$i = j = 0$ yields singleton classes in~$E[\ell]$).
+Comme~$\lambda \equiv 1 \bmod \ell^{\alpha}$, on peut écrire~$\lambda = f(0,0,u\, \ell^{\alpha-1})$
+et~$\mu = f(0,0, v\, \ell^{\beta-1})$
+avec~$u, v \in \mathbb{Z}_{\ell}^{\times}$.
+On a alors l'ensemble~$W(i,j,c,d)$ qui est stable sous l'action du groupe de Galois.
+Moreover, les orbites de~$W(i,j,c,d)$ correspondent de façon bijective
+aux points du domaine fondamental du réseau~$\Lambda_{i,j}$ genéré par
+les colonnes de~$\left(  \begin{smallmatrix}
+\ell^i & 0 & u \ell^{\alpha-1}\\ 
+0 & \ell^j & v \ell^{\beta-1}
+\end{smallmatrix} \right) $,
+il est à noter que la taille de chaque orbite est calculée modulo~$[(\mathbb{Z}/\ell^i \mathbb{Z}) \times (\mathbb{Z}/\ell^j \mathbb{Z})\::\: \Lambda_{i,j}]$.
+En utilisant des opérations élémentaires sur les colonnes 
+on trouve que  le volume fondamental de~$\Lambda_{i,j}$ est~$\ell^{\nu(i,j)}$,
+ainsi on obtient le point~(i) de la proposition.
+(Le cas~$i = j = 0$ nous donne le résultat sur les classes de singleton dans~$E[\ell]$).
 
-The union of all the sets~$W(j,i,c,d)$
-is exactly the set of all~$x P + y Q$ for~$x, y \neq 0$.
-We obtain the classes of~(ii) by considering
-the sets~$V(i, c) \cdot P$ and~$V(j,d) \cdot Q$.
+La réunion de tous les ensembles~$W(j,i,c,d)$
+correspond exactement à l'ensemble des~$[x] P + [y] Q$ pour~$x, y \neq 0$.
+On obtient les classes de~(ii) avec
+les ensembles~$[V(i, c)] P$ et~$[V(j,d)] Q$.
 \end{proof}
 
-We now state the equivalent proposition when~$\ell = 2$.
-The proof is much the same as in the odd case.
+En particulier pour avoir une description des orbites points d'ordre $\ell^k$, en reprenant les notations de la preuve il suffit de voir que cet ensemble de points d'ordre $\ell^k$ correspond aux sous ensembles de~$W(j,i,c,d)$ avec $i=k-1$ ou $j=k-1$. 
+
+On obtient une proposition équivalente pour~$\ell = 2$.
+
 
 \begin{prop}\label{prop:orbites-2-torsion}
-Let~$E$ be an elliptic curve with $2$-maximal endomorphism ring.
-Assume $\lambda \equiv \mu \equiv 1 \pmod{4}$ and let~$\alpha = v_2(\lambda-1), \beta=v_2(\mu-1)$.
-Write~$\nu_2(x, y) = \min (x+y, x+\beta-2, y+\alpha-2)$
-and~$\rho_2(x, y) = x+y - \nu_2(x, y) = \max (0, x-\alpha+2, y-\beta+2)$.
-The decomposition of the group~$E[2^k]$ in Galois classes is as follows:
+Soit~$E$ une courbe elliptique ordinaire avec un anneau d'endomorphisme maximal
+ par rapprt à $2$.
+Supposons que $\lambda \equiv \mu \equiv 1 \bmod4 $, soit~$\alpha = v_2(\lambda-1), \beta=v_2(\mu-1)$
+on écrit~$\nu_2(x, y) = \min (x+y, x+\beta-2, y+\alpha-2)$
+et~$\rho_2(x, y) = x+y - \nu_2(x, y) = \max (0, x-\alpha+2, y-\beta+2)$.
+La décomposition du groupe~$E[2^k]$ en classes de Galois se fait comme suit:
 \begin{enumerate}
-\item for~$i, j = 1, …, k-2$:
-$4 \cdot 2^{\nu_2(i,j)}$ classes of size~$2^{\rho_2(i,j)}$;
-\item for~$i = 1, …, k-2$:
-$4 \cdot 2^{\min (i, \alpha-2)}$ classes of size~$2^{\max (0, i-\alpha+2)}$, and
-$4 \cdot 2^{\min (i, \beta-2)}$ classes of size~$2^{\max (0, i-\beta+2)}$.
-\item the 16 singleton classes of~$E[4]$.
+\item pour~$i, j = 1, …, k-2$:
+$4 \cdot 2^{\nu_2(i,j)}$ classes de taille~$2^{\rho_2(i,j)}$;
+\item pour~$i = 1, …, k-2$:
+$4 \cdot 2^{\min (i, \alpha-2)}$ classes de taille~$2^{\max (0, i-\alpha+2)}$, et
+$4 \cdot 2^{\min (i, \beta-2)}$ classes de taille~$2^{\max (0, i-\beta+2)}$.
+\item les 16 classes de singleton de~$E[4]$.
 \end{enumerate}
 \end{prop}
-Note that if $\lambda$ or~$\mu \cong -1 \pmod{4}$ then
-by replacing the base field by a quadratic extension,
-we can always ensure that the condition $\lambda \cong \mu \cong 1 \pmod{4}$ is
-satisfied.
+La preuve étant similaire à celle du cas impair elle ne sera pas écrite.
+
+Si l'on a~$\lambda$ ou~$\mu \equiv -1 \bmod 4$ alors
+en remplaçant le corps de base par une extension quadratique 
+on peut se ramener à la condition $\lambda \equiv \mu \equiv 1 \bmod 4$.
 
 
 \subsubsection{Couveignes-Morain Bonne place ?}
@@ -3104,25 +3110,6 @@ Tout reste à faire...
 \chapter{Rebus}
 \section{Galois classes in~$E[\ell^k]$}
 \label{ap:galois}
-
-
-
-\begin{algorithm}
-\caption{\label{alg:dichotomie} Dychotomic algorithm for research of point near of the border}
-\begin{algorithmic}[1]
-\REQUIRE $P_1, \cdots, P_m$ a list of point under a unique direction $\overrightarrow{P_1P_m}$,%\\
-\ENSURE $S P_i,P_{i+1}$ two points such that $\mathrm{d}(P_i,P_{i+1}) \leqslant \sqrt{N}$ and such that $P_i \in \mathcal{P}$ and $P_{i+1} \not \in \mathcal{P}$,
-\IF{$(\mathrm{d}(P_1,P_m)\leqslant \sqrt{n})$} 
-\STATE \textbf{Return}$P_1$
-\ELSE \STATE $\mathrm{Test}(P_{\lfloor m/2 \rfloor})$
-\IF{$P_{\lfloor m/2 \rfloor} \in \mathcal{P}$}
-\STATE \textbf{Return} $\mathrm{Dychotomic search}(P_{\lfloor m/2 \rfloor},P_m)$
-\ELSE 
-\STATE \textbf{Return} $\mathrm{Dychotomic search}(P_1,P_{\lfloor m/2 \rfloor})$ 
-\ENDIF
-\ENDIF 
-\end{algorithmic}
-\end{algorithm}
 
 
 \subsection{Travaux de Kohel, Fouquet-Morain}
