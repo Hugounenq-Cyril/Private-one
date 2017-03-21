@@ -2797,14 +2797,14 @@ de matrices avec coefficients entiers, cet ordre est généré par la matrice id
 $\ell^{-\min (h, v_{\ell}(a))} (\pi_{\ell}-\lambda)$.
 \end{proof}
 Ainsi avec cette proposition on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion.
-On voit aussi que cette détermination n'est pas sujette à l'existence de niveau de stabilité vu que la deuxième partie de la preuve se fait à l'aide des ordres et non de la structure de $\ell$-torsion.
+On voit aussi que cette détermination n'est pas sujette à l'existence de niveau de stabilité vu que la preuve ne se fait pas à l'aide de la structure de la $\ell$-torsion.
 
-On va maintenant se focaliser sur la détermination de l'espace propre du Frobenius et voir comment le déterminer à précision finie, on travaille donc sur des courbes situées sur le cratère car c'est le seul cas où l'on peut diagonaliser le Frobenius. On verra par la suite comment utiliser cette diagonalisation pour avoir une détermination de sous-groupes cycliques de la $\ell^k$-torsion pour des courbes situées en dehors du cratère.
+On va maintenant se focaliser sur la détermination de l'espace propre du Frobenius et voir comment le déterminer à précision finie. On travaille donc sur des courbes situées sur le cratère car c'est le seul cas où l'on peut diagonaliser le Frobenius. On verra par la suite comment utiliser cette diagonalisation pour avoir une détermination de sous-groupes cycliques de la $\ell^k$-torsion pour des courbes situées en dehors du cratère.
 
-On va donc travailler avec points spécifiques que l'on va définir avant cela on a besoin d'introduire la notion suivante:
+On travaille donc avec points spécifiques que l'on va définir avant cela on a besoin d'introduire la notion suivante:
 
 \begin{defi}
-Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\phi$ une isogénie de degré $\ell^k$ de domaine $E$, alors $\phi$ est dite une isogénie horizontale si il existe $\phi_1, \cdots, \phi_k$ $k$ $\ell$-isogénies horizontales, dans le sens de \ref{def:iso:nom},telles que $\phi=\phi_1 \circ \phi_2 \circ \cdots \circ \phi_k=\phi$.
+Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\phi$ une isogénie de degré $\ell^k$ de domaine $E$, alors $\phi$ est dite une isogénie horizontale si il existe $\phi_1, \cdots, \phi_k$ $k$ $\ell$-isogénies horizontales, dans le sens de la définition \ref{def:iso:nom},telles que $\phi=\phi_1 \circ \phi_2 \circ \cdots \circ \phi_k$.
 \end{defi}
 
 \begin{defi}[Bases horizontales et diagonales]
@@ -2816,12 +2816,11 @@ Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\p
   les deux points de la base sont horizontaux.
 \end{defi}
 
-
-Montrons tout d'abord pour $\phi:E \mapsto E'$ comment calculer l'image de la matrice du Frobenius $\pi|T_{\ell}(E)$ dans une base de $T_{\ell}(E')$.
+Avant montrer les liens entre bases horizontales et diagonales on a besoin du résultat intermédiaire suivant qui pour $\phi:E \mapsto E'$ montre comment calculer l'image de la matrice du Frobenius $\pi|T_{\ell}(E)$ dans une base de $T_{\ell}(E')$.
 
 \begin{lem}
 \label{lem:iso:con}
-Soient $\langle P, Q \rangle$ une base de $E[\ell^k]$, $\phi$ l'isogénie de noyau engendré par $[x]P+[y]Q$  avec $x\wedge \ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau engendré par $R$,  $\Pi$ la matrice du Frobenius sur $T_{\ell}(E)$ alors la matrice du Frobenius sur $T_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi \cdot M_R$ à conjugaison près.
+Soient $\langle P, Q \rangle$ une base de $E[\ell^k]$, $\phi$ l'isogénie de noyau engendré par $R=[x]P+[y]Q$  avec $x\wedge \ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau engendré par $R$,  $\Pi$ la matrice du Frobenius sur $T_{\ell}(E)$ alors la matrice du Frobenius sur $T_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi \cdot M_R$ à conjugaison près.
 \end{lem}
 
 \begin{proof}
@@ -2846,7 +2845,7 @@ Ainsi, dans cette base de ~$T_{\ell}(E')$
 la matrice de~$\pi|T_{\ell}(E')$ est $M_R^{-1} \cdot \Pi \cdot M_R^{}$.
 \end{proof}
 
-Le résultat suivant permet de lier les bases horizontales et diagonales.
+%Le résultat suivant permet de lier les bases horizontales et diagonales.
 
 
 \begin{prop} \label{pro:dia:hor}
@@ -2894,12 +2893,12 @@ de direction~$\mu$ alors $Q'$~est horizontal de direction $\mu$.
 La proposition suivante nous permet de faire le lien entre les bases horizontales et le contexte de l'algorithme de Couveignes.
 
 \begin{prop}\label{pro:par:iso}
-Soit~$\psi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
+Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
 \begin{enumerate}
 \item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan de
  $\ell$-isogénies,
 \item\label{pro:par:fun} pour tout point~$P \in E[\ell^k]$,
-les isogénies de noyau $\langle P \rangle$ et~$\langle \psi(P) \rangle$ sont de même type
+les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de même type
 (ascendantes, descendantes, ou horizontales de même direction),
 \item\label{pro:par:asc} si $P \in E[\ell]$ et $P' \in E'[\ell]$ sont tous les 
 deux des points générateurs d'isogénies ascendantes, ou horizontales de même 
@@ -2907,7 +2906,7 @@ direction alors $E/\langle P \rangle$ et~$E'/\langle P' \rangle$ sont encore $r$
 \end{enumerate}
 \end{prop}
 \begin{proof}
-Les points (1) et (2) découlent de la proposition \ref{pro:mat:fro} et du fait que pour $\psi$ isogénie rationnelle de degré $r$ premier avec $\ell$ on a un isomorphisme de modules de Tates qui commute avec le Frobenius. Pour le point (3) il suffit de remarquer qu'il existe un unique sous-groupe d'ordre $\ell$ qui génère soit une isogénie ascendante soit une isogénie de direction fixée, ainsi on doit avoir $\langle P' \rangle=\langle \psi(P) \rangle$.
+Les points (1) et (2) découlent de la proposition \ref{pro:mat:fro} et du fait que pour $\phi$ isogénie rationnelle de degré $r$ premier avec $\ell$ on a un isomorphisme de modules de Tate qui commutent avec le Frobenius. Pour le point (3) il suffit de remarquer qu'il existe un unique sous-groupe d'ordre $\ell$ qui génère soit une isogénie ascendante soit une isogénie de direction fixée, ainsi on doit avoir $\langle P' \rangle=\langle \phi(P) \rangle$.
 
 \end{proof}
 Le troisième point de cette proposition nous permet de réduire le problème du calcul de la $r$-isogénie entre deux courbes elliptiques au même problème pour deux courbes situées sur le cratère du volcan de $\ell$-isogénies.
@@ -2928,18 +2927,18 @@ Soit $E$ une courbe située sur le cratère, $k\geqslant i \geqslant 1$, $\langl
 Il est important de noter que le seul critère restricitf pour obtenir ce résultat est d'avoir la $\ell$-isogénie engendrée par $\langle [a \ell^{k-1}]P+ [b \ell^{k-1}]Q \rangle $ de type descendante (pour plus de détails voir sous-section \ref{sub:alg:FM} ou \cite{FouquetMorain02}).
 
 \begin{prop}
-Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que $[\ell^i]P$ soit horizontal de direction $\lambda$, $\psi:E \mapsto E_i$ une isogénie descendante de degré $\ell^i$, on note $P'=\psi(P)$, alors:
+Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que $[\ell^i]P$ soit horizontal de direction $\lambda$, $\varphi:E \mapsto E_i$ une isogénie descendante de degré $\ell^i$, on note $P'=\varphi(P)$, alors:
 \begin{enumerate}
-\item  $\langle [\ell^{k-i}]P' \rangle$ est le noyau d'une isogénie montante de degré $\ell^{i}$ duale de $\psi$ notée $\widehat{\psi}$, 
-\item  $\langle \widehat{\psi}(P') \rangle$ est le noyau d'une isogénie horizontale de direction $\lambda$ de degré $\ell^{k-i}$.  
+\item  $\langle [\ell^{k-i}]P' \rangle$ est le noyau d'une isogénie montante de degré $\ell^{i}$ duale de $\varphi$ notée $\widehat{\varphi}$, 
+\item  $\langle \widehat{\varphi}(P') \rangle$ est le noyau d'une isogénie horizontale de direction $\lambda$ de degré $\ell^{k-i}$.  
 \end{enumerate}
 \end{prop}
 
 
 \begin{proof}
-Pour le pont (1) si l'on note $\langle P_0, Q_0 \rangle =E[\ell^k]$ une base horizontale, alors on peut supposer sans perte de généralité que $P$ appartient à l'espace propre associé à  $P_0$ ainsi on a $P=[a]P_0+[\ell^{k-i}b]Q_0$ avec $a \wedge \ell =1$. Supposons que $\psi$ est de noyau $\langle [a'\ell^{k-i}]P_0+[b'\ell^{k-i}]Q_0 \rangle$ avec $b' \wedge \ell =1$ et $a' = 1 \bmod \ell$. Alors les images de $[\ell^{k-i}]P_0$ et $[\ell^{k-i}]Q_0$ par $E \rightarrow E/\langle [\ell^{k-i}]P,[a'\ell^{k-i}]P_0+[b'\ell^{k-i}]Q_0  \rangle $ sont l'élément neutre, l'image de $P$ par $\psi$ étant encore de degré $\ell^k$ on a le résultat.
+Pour le point (1) si l'on note $\langle P_0, Q_0 \rangle =E[\ell^k]$ une base horizontale, alors on peut supposer sans perte de généralité que $P$ appartient à l'espace propre associé à  $P_0$ ainsi on a $P=[a]P_0+[\ell^{k-i}b]Q_0$ avec $a \wedge \ell =1$. Supposons sans perte de généralité que $\varphi$ est de noyau $\langle [a'\ell^{k-i}]P_0+[b'\ell^{k-i}]Q_0 \rangle$ avec $b' \wedge \ell =1$ et $a' = 1 \bmod \ell$. Alors les images de $[\ell^{k-i}]P_0$ et $[\ell^{k-i}]Q_0$ par $E \rightarrow E/\langle [\ell^{k-i}]P,[a'\ell^{k-i}]P_0+[b'\ell^{k-i}]Q_0  \rangle $ sont l'élément neutre, l'image de $P$ par $\varphi$ étant encore d'ordre $\ell^k$ on a le résultat.
 
-Pour le point (2) il suffit d'écrire que $\widehat{\psi}(P')=\widehat{\psi}\circ \psi P= [\ell^i] P$ on conclut alors à l'aide des hypothèses sur $P$.
+Pour le point (2) il suffit d'écrire que $\widehat{\varphi}(P')=\widehat{\varphi}\circ \varphi (P)= [\ell^i] P$ on conclut alors à l'aide des hypothèses sur $P$.
 \end{proof}
 
 \begin{defi}
@@ -2950,9 +2949,9 @@ Soient $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère
 Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se situent à une profondeur $e$ du cratère, $P \in E,P' \in E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in \langle P' \rangle$. 
 \end{cor}
 
-Ainsi à l'aide de cette méthode on est capable à l'aide de bases horizontales et d'isogénies montantes de déterminer une correspondance entre deux groupes cycliques d'ordre $\ell^k$ de courbes $r$-isogénes qui respectent l'action de la $r$-isogénie et qui ne se situent pas forcément sur le cratère. 
+Ainsi on est capable à l'aide de bases horizontales et d'isogénies montantes de déterminer une correspondance entre deux groupes cycliques d'ordre $\ell^k$ de courbes $r$-isogénes qui respectent l'action de la $r$-isogénie et qui ne se situent pas forcément sur le cratère. 
 
-La différence entre des points horizontaux $P_{\lambda}, P_{\mu}$ d'ordre $\ell^k$ et des points partiellement horizontaux c'est que pour deux points partiellement horizontaux $R_{\lambda}, R_{\mu}$ de profondeur $e$ de direction opposées on a $\langle [\ell^{e}]R_{\lambda} \rangle = \langle [\ell^{e}]R_{\mu} \rangle$ alors que l'on a vu que pour deux points horizontaux de direction opposées on avait $\langle [\ell^{k-1}]P_{\lambda} \rangle \neq \langle [\ell^{k-1}]P_{\mu} \rangle $. 
+La différence entre des points horizontaux $P_{\lambda}, Q_{\mu}$ d'ordre $\ell^k$ et des points partiellement horizontaux c'est que pour deux points partiellement horizontaux $R_{\lambda}, R_{\mu}$ de profondeur $e$ de direction opposées on a $\langle [\ell^{e}]R_{\lambda} \rangle = \langle [\ell^{e}]R_{\mu} \rangle$ alors que l'on a vu que pour deux points horizontaux de direction opposées on avait $\langle [\ell^{k-1}]P_{\lambda} \rangle \neq \langle [\ell^{k-1}]Q_{\mu} \rangle $. 
 
 Ainsi en pratique on a vu que l'on était obligé de travailler avec la $\ell^{h+1}$ torsion et cette précédente discussion justifie l'utilité de se concentrer sur les points d'ordre $\ell^{k}$ avec $k \geqslant h+1$ plutôt que sur la $\ell^k$ torsion.
 
@@ -2967,20 +2966,20 @@ d'un volcan de $\ell$-isogénies, ainsi au moins une des deux
 valuations~$\alpha, \beta$ est~$\leq h$, par conséquent~$\beta \leq h$.
 \label{sub:classes}
 \begin{prop}\label{prop:classes}
-For any~$k$, let~$d_k$ be the degree of the smallest field extension $F/\mathbb{F}_q$
-such that~$E[\ell^k]\subset E(F)$. Then:
+Pour tout~$k$, on note~$d_k$ le degré de la plus petite extension de corps $F/\mathbb{F}_q$
+telle que~$E[\ell^k]\subset E(F)$. On  a alors:
 \begin{enumerate}
-\item The order of $q$ in $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ divides $d_1$,
-and $d_1$ divides~$(\ell-1)$.
-\item If $\ell$~is odd then for all $k \geq 1$,
+\item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
+et $d_1$ qui divise~$(\ell-1)$;
+\item si $\ell$~est impair alors pour tout $k \geq 1$,
 $ d_k = \ell^{\min (v_{\ell} (d_1), k - \beta)}$.
 % $d_k = \mathrm {lcm} (d_1, \ell^{k-\beta})$.
-\item If $\ell=2$ then $d_2 \in \{1,2\}$ and, for all~$k \geq 2$,
+\item si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k \geq 2$,
 % $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
 $d_k = \ell^{\min (v_{\ell} (d_2), k - \beta)}$.
-\item Let $[F:\mathbb{F}_q]=d_1\ell^n$, the group $E[\ell^{\infty}](F)$ is isomorphic to~$(\mathbb{Z}/\ell^{n+\alpha} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
-\item\label{prop:classes:count} The group~$E[\ell^k]$ contains at most
-$k \cdot \ell^{k+\beta}$ Galois conjugacy classes over~$F_1 = \mathbb{F}_{q^{d_1}}$.
+\item soit $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\alpha} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
+\item\label{prop:classes:count} Le groupe~$E[\ell^k]$ contient au plus
+$k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}_{q^{d_1}}$.
 \end{enumerate}
 \end{prop}
 \begin{proof}
