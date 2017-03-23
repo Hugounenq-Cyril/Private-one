@@ -2963,15 +2963,17 @@ Ainsi en pratique on est obligé de travailler avec la $\ell^{h+1}$ torsion, cet
 On va maintenant voir la décomposition de la $\ell^k$ torsion en orbites selon l'action du Frobenius, afin de pouvoir ultérieurement calculer toute la $\ell^k$ torsion à partir des représentants des orbites et de l'action du Frobenius. 
 %On a tout d'abord le premier résultat qui nous précise dans quel extension de corps on sera ammené à travailler pour avoir de la $\ell^k$ torsion qui soit définie.
 
+On se place dans le cas où la courbe elliptique ordinaire $E$ admet un anneau d'endomorphisme maximal par rapport à $\ell$.
  Pour $\ell$ premier impair, on note~$\alpha
 = v_{\ell}(\lambda^{\ell-1}-1)$ et~$\beta=v_{\ell}(\mu^{\ell-1}-1)$; pour $\ell=2$,
 on note~$\alpha=v_2(\lambda^2-1)-1$ et~$\beta = v_2(\mu^2-1)-1$, on suppose 
-sans perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces valeurs-là car pour n'improte quelle courbe $E$ et corps fini $\mathbb{F_q}$ on a $E[\ell] \subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[2] \subset E(\mathbb{F}_q^{2})$ pour $\ell=2$.  Comme $\lambda \neq \mu \pmod{\ell^{h+1}}$, il est
+sans perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces valeurs-là car pour n'importe quel corps fini $\mathbb{F}_q$ on a $E[\ell] \subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[4] \subset E(\mathbb{F}_q^{2})$ pour $\ell=2$.  Comme $\lambda \neq \mu \pmod{\ell^{h+1}}$, il est
 impossible que $\lambda \equiv \mu \equiv 1 \pmod{\ell^h}$ par la structure 
 d'un volcan de $\ell$-isogénies (voir section \ref{sec:lie:niv}), ainsi au moins une des deux
 valuations~$\alpha, \beta$ est~$\leqslant h$, par conséquent on va supposer sans perte de généralité que~$\beta \leqslant h$.
 
 \begin{prop}\label{pro:clas:fro}
+Soit $E$ une courbe elliptique ordinaire telle que son anneau d'endomorphisme soit maximal par rapport à $\ell$.
 Pour tout~$k$, on note~$d_k$ le degré de la plus petite extension de corps $F/\mathbb{F}_q$
 telle que~$E[\ell^k]\subset E(F)$. On  a alors:
 \begin{enumerate}
@@ -2992,25 +2994,25 @@ $k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}
 Le degré ~$d_k$ correspond à l'ordre de la matrice~$\pi|E[\ell^k]$.
 $d_k$ est donc le plus petit multiple commmun des ordres multiplicatifs
 de~$\lambda, \mu$ modulo~$\ell^k$,
-on obtient donc~(i) en utilisant le fait que~$\lambda \cdot \mu = q$.
-Pour les points~(ii)--(v) on peut supposer que l'on a $d_1 = 1$,
+on obtient donc~(1) en utilisant le fait que~$\lambda \cdot \mu = q$.
+Pour les points~(2)--(5) on peut supposer que l'on a $d_1 = 1$,
 alors pour tout entier~$N$, $v_{\ell}(\lambda^{2N}-1) = \alpha + v_{\ell} (2N)$.
 Soit~$(P, Q)$ une base diagonale de~$E[\ell^k]$,
 le point $(\pi^N - 1) ([x] P + [y] Q) = [(\lambda^N-1) x] P + [(\mu^N-1) y] Q$
 est nul si et seulement si $v_{\ell} (x) + \alpha + v_{\ell} (N) \geq k$
-et~$v_{\ell} (y) + \beta + v_{\ell} (N) \geq k$, cela montre~(iv).
+et~$v_{\ell} (y) + \beta + v_{\ell} (N) \geq k$, cela montre~(4).
 Les plus grandes classes de Galois sont celles pour lesquelles
 on a~$v_{\ell} (y) = 0$ et leur taille est~$\ell^{k - \beta}$,
-ce qui prouve~(ii) et~(iii).
+ce qui prouve~(2) et~(3).
 De plus, pour tout~$i \leq k-\beta$ les points dans une orbite de taille~$\leqslant \ell^i$
 sont ceux pour lesquels~$v_{\ell} (x) \geqslant k - \alpha - i$ et~$v_{\ell} (y) \geqslant k - \beta - i$;
 il y a au plus $\ell^{\min(\alpha+i, k) + \min (\beta+i, k)}$ tels points,
 par conséquent il y a $\ell^{\min(\alpha+i, k) + \min(\beta, k-i)} \leqslant \ell^{k-i+\beta}$
  classes correspondantes.
-En additionnant ce résultat pour tous les ~$i$ on prouve~(v).
+En additionnant ce résultat pour tous les ~$i$ on prouve~(5).
 \end{proof}
 
-Ainsi le point (v) nous donne une borne maximale sur le nombre de représentants des différentes orbites que l'on a à calculer pour reconstruire tout $E[\ell^{\infty}](F)$ à l'aide de l'action de Galois, on a le résultat suivant qui précise la décomposition des différentes orbites et leurs tailles:
+Ainsi le point (5) nous donne une borne maximale sur le nombre de représentants des différentes orbites que l'on a à calculer pour reconstruire tout $E[\ell^{k}](F)$ à l'aide de l'action de Galois, on a le résultat suivant qui précise la décomposition des différentes orbites et leurs tailles:
 
 \begin{prop}\label{prop:orbites-l-torsion}
 Soit~$E$ une courbe elliptique ordinaire avec un anneau d'endomorphisme maximal
@@ -3076,7 +3078,7 @@ On obtient une proposition équivalente pour~$\ell = 2$.
 
 \begin{prop}\label{prop:orbites-2-torsion}
 Soit~$E$ une courbe elliptique ordinaire avec un anneau d'endomorphisme maximal
- par rapprt à $2$.
+ par rapport à $2$.
 Supposons que $\lambda \equiv \mu \equiv 1 \bmod4 $, soit~$\alpha = v_2(\lambda-1), \beta=v_2(\mu-1)$
 on écrit~$\nu_2(x, y) = \min (x+y, x+\beta-2, y+\alpha-2)$
 et~$\rho_2(x, y) = x+y - \nu_2(x, y) = \max (0, x-\alpha+2, y-\beta+2)$.
@@ -3093,8 +3095,8 @@ $4 \cdot 2^{\min (i, \beta-2)}$ classes de taille~$2^{\max (0, i-\beta+2)}$.
 La preuve étant similaire à celle du cas impair elle ne sera pas écrite.
 
 Si l'on a~$\lambda$ ou~$\mu \equiv -1 \bmod 4$ alors
-en remplaçant le corps de base par une extension quadratique 
-on peut se ramener à la condition $\lambda \equiv \mu \equiv 1 \bmod 4$.
+on peut toujours se ramener à la condition $\lambda \equiv \mu \equiv 1 \bmod 4$
+en remplaçant le corps de base par une extension quadratique.
 
 
 
@@ -3143,8 +3145,6 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \end{algorithmic}
 \end{algorithm}
 
-Lorsque l'on est en dessous du niveau de stabilité et que l'on connaît une base dans laquelle le Frobenius se trigonalise on est alors capable à l'aide du point $P_k$ vecteur propre, qui correspond au point d'ordre $\ell^k$ défini dans la plus petite extension, de calculer des isogénies montantes (voir proposition \ref{pro:iso:mon}) et donc de déterminer une chemin montant pour obtenir $E_c$ la courbe la plus proche de $E$ sur le cratère. Lorsque l'on est au-dessus du niveau de stabilité on peut éventuellement utiliser une méthode utilisant le couplage \cite{Ionica-Joux10} ou sinon la détermination d'isogénie montante à l'aide des méthodes décrites dans \cite{FouquetMorain02}, celles-ci ont un coût de $O()$ opérations sur $\mathbb{F}_q$. Ainsi l'isogénie montante $\widehat{\varphi}$ que l'on calcule étant rationnelle, elle commute avec le Frobenius et donc la matrice du Frobenius dans l'image de la base est la même. \`A chaque montée de niveau on calculera alors une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est trigonalisée (voire diagonalisée pour la courbe située sur le cratère).   
-
 
 \begin{algorithm}
 \caption{\label{alg:diagonal}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
@@ -3153,17 +3153,26 @@ Lorsque l'on est en dessous du niveau de stabilité et que l'on connaît une bas
 \REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan de $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif;
 \ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
-$\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
-tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)= \mu Q_k$.
+$\lambda, \mu, b \in \mathbb{Z}/\ell^k \mathbb{Z}$
+tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)= \mu Q_k + b P_k$.
 % \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$; $P_0, Q_0 \leftarrow $ deux éléments tes que~$\langle P_0,Q_0 \rangle  E[\ell]$.}
-\FOR {$i=0$  to  $k-1$}
-\STATE\label{alg:diagonal:divide}
-  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
-\STATE\label{alg:diagonal:frobenius}
-  compute $\pi|(P',Q')=\left( \begin{smallmatrix}
+\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$;$i \leftarrow 0$; $P_0, Q_0 \leftarrow $ deux éléments tels que~$\langle P_0,Q_0 \rangle =  E[\ell]$.}
+\STATE compute $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+\WHILE {$\pi|(P',Q')= (\lambda + a\ell^i) \cdot I_2$}
+\STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
+\STATE\label{alg:diagonal:divide}
+  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+\STATE $i \leftarrow i+1$.
+\STATE   $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+\STATE compute $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i}\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+\ENDWHILE 
+\IF{$\lambda + a \ell^i \neq \mu + d \ell^i$}
+%\STATE $\delta \leftarrow 0$;
+\WHILE{$i<k $}
 \STATE\label{alg:diagonal:solve1}
   \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
   solve equation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
@@ -3174,7 +3183,63 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \STATE\label{alg:diagonal:upd-P}
   $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow x P' + Q'$.
 \STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
-\ENDFOR
+\STATE $i \leftarrow i+1$.
+\STATE\label{alg:diagonal:divide}
+  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+\STATE compute $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i}\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
+\ENDWHILE
+\ELSE 
+\STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta) \leftarrow (Q',P', c \ell^i)$; \textbf{end if}.
+\WHILE{$i<k$}
+\STATE \textbf{if} $c = 0$ \textbf{then} $y \leftarrow 0$;
+\STATE \textbf{else}  solve equation 
+$ \delta \ell^i y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
+\STATE\label{alg:diagonal:upd-P}
+  $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow Q'$.
+\STATE{$\lambda \leftarrow \lambda + a \ell^{i} + y$; $\mu \leftarrow \mu + d \ell^{i} $.}
+\STATE\label{alg:diagonal:divide}
+  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+\STATE $i \leftarrow i+1$.
+\STATE compute $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i} + \delta\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
+\STATE $\delta \leftarrow \delta + b \ell^i$
+\ENDWHILE
+\ENDIF
+\RETURN $(P_{k},Q_{k},\lambda,\mu, \delta).$
+\end{algorithmic}
+\end{algorithm}
+
+Lorsque l'on est en dessous du niveau de stabilité et que l'on connaît une base dans laquelle le Frobenius se trigonalise on est alors capable à l'aide du point $P_k$ vecteur propre, qui correspond au point d'ordre $\ell^k$ défini dans la plus petite extension, de calculer des isogénies montantes (voir proposition \ref{pro:iso:mon}) et donc de déterminer une chemin montant pour obtenir $E_c$ la courbe la plus proche de $E$ sur le cratère. Lorsque l'on est au-dessus du niveau de stabilité on peut éventuellement utiliser une méthode utilisant le couplage \cite{Ionica-Joux10} ou sinon la détermination d'isogénie montante à l'aide des méthodes décrites dans \cite{FouquetMorain02}, celles-ci ont un coût de $O()$ opérations sur $\mathbb{F}_q$. Ainsi l'isogénie montante $\widehat{\varphi}$ que l'on calcule étant rationnelle, elle commute avec le Frobenius et donc la matrice du Frobenius dans l'image de la base est la même, on va supposer sans perte de généralité que celle-ci a son noyau qui est engendré par $[\ell^{k-1}]P$. \`A chaque montée de niveau on calculera alors une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est trigonalisée (voire diagonalisée pour la courbe située sur le cratère).   
+
+
+\begin{algorithm}
+\caption{\label{alg:diagonal}Montée d'un niveau dans le volcan et calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
+\label{alg:bas:fro}
+\begin{algorithmic}[1]
+\REQUIRE $E_i$: une courbe elliptique ordinaire située sur un volcan de $\ell$-isogénies avec cratère cyclique; $P_i,Q_i$ une base de $E[\ell^k]$; $\Pi$ la matrice de $\pi$ exprimée dans la base $P,Q$; $\widehat{\varphi}$ la $\ell$-isogénie de noyau engendré par $[\ell^{k-1}]P$
+\ENSURE $(P_{i+1}, Q_{i+1} )$: une base de $E_{i+1}[\ell^k]$ dans laquelle l'action du Frobenius est trigonalisée: $\left( \begin{smallmatrix} \lambda & 0 \\ c \ell^{k-1} & \mu \end{smallmatrix} \right)$ \;
+$\lambda, \mu, c\ell^{k-1}  \in \mathbb{Z}/\ell^k \mathbb{Z}$.
+% \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE{$\lambda, \mu, c \leftarrow \Pi$}
+\STATE\label{alg:diagonal:divide}
+  $P' \leftarrow \mathsf{div}(\ell,\widehat{\varphi} (P_{i}))$; $Q' \leftarrow  \widehat{\varphi}(Q_{i})$.
+\STATE\label{alg:diagonal:frobenius}
+  compute $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda & b\ell^{k-1}\\
+c\ell^{k-1} & \mu \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+\STATE\label{alg:diagonal:solve1}
+  \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
+  solve equation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
+\STATE\label{alg:diagonal:solve2}
+  \textbf{else} solve equation
+  $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
+  $y \leftarrow -cx/b$; \textbf{end if}.
+\STATE\label{alg:diagonal:upd-P}
+  $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow x P' + Q'$.
+\STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
 \RETURN $(P_{k},Q_{k},\lambda,\mu).$
 \end{algorithmic}
 \end{algorithm}
