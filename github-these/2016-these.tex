@@ -2797,7 +2797,25 @@ Pour la seconde partie par le thèorème de Tate \cite[Isogeny theorem III.7.7 (
 de matrices avec coefficients entiers, cet ordre est généré par la matrice identité et la matrice 
 $\ell^{-\min (h, v_{\ell}(a))} (\pi_{\ell}-\lambda)$.
 \end{proof}
-Ainsi avec cette proposition on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion.
+
+Ainsi avec la proposition \ref{pro:mat:fro} on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion comme le montre le résultat suivant qui nous donne un moyen de savoir comment monter et descendre à l'intérieur d'un volcan de $\ell$-isogénies.
+
+\begin{prop}
+\label{pro:tri:dir}
+Soient $E$ une courbe elliptique ordinaire située à une profondeur $e \leqslant h$ du cratère cyclique du volcan de $\ell$-isogénie, $P,Q \in E$ tels que $\langle P,Q \rangle = E[\ell^k]$ avec $k>h-e$ pour lesquels la matrice du Frobenius est de la forme $\left( \begin{smallmatrix} \lambda & \delta \ell^{h-e} \\ 0 & \mu \end{smallmatrix} \right)$ avec $\delta \wedge \ell=1$ alors la $\ell$-isogénie montante de domaine $E$ a pour noyau le groupe engendré par  $[\ell^{k-1}]P$, les descendantes étant alors engendrées par des isogénies qui pour noyau le groupe engendré par $[\ell^{k-1}](Q+[a]P)$ avec $a \in \mathbb{Z}/\ell \mathbb{Z}$.
+\end{prop}
+
+\begin{proof}
+Soit $\widehat{\varphi}$ la $\ell$-isogénie de noyau $\langle \ell^{k-1}P \rangle$, alors l'action de $\pi$ dans la base $\widehat{\varphi}(P), \widehat{\varphi}(Q)$ est de la forme $\left( \begin{smallmatrix} \lambda & \delta \\ 0 & \mu \end{smallmatrix} \right)$ car $\widehat{\varphi}$ commute avec le Frobenius. Soit $P'$ un point de $\ell$ division de $\widehat{\varphi}(P)$ alors par la proposition \ref{pro:mat:fro} le Frobenius a pour matrice $\left( \begin{smallmatrix} \lambda & \delta \ell^{h-e+1} \\ c \ell^{k-1} & \mu \end{smallmatrix} \right)$ avec $c \in \mathbb{Z}/\ell \mathbb{Z}$ $\widehat{\varphi}$ dans cette base et donc par la proposition \ref{pro:mat:fro} on a le résultat.
+
+De même on peut montrer que pour $\varphi$ une $\ell$-isogénie de noyau $\langle [\ell^{k-1}](Q+[a]P) \rangle$ avec $a \in \mathbb{Z}/\ell \mathbb{Z}$ on obtient pour $Q'$ un point de $\ell$-division de $Q+[a]P$ dans la base $\varphi(P), Q'$ une matrice du Frobenius de la forme $\left( \begin{smallmatrix} \lambda & \delta \ell^{h-e-1}+b\ell^{k-1} \\ 0 & \mu \end{smallmatrix} \right)$ avec $b \in \mathbb{Z}/\ell \mathbb{Z}$ $\widehat{\varphi}$, on conclut alors par la proposition \ref{pro:mat:fro}.
+\end{proof}
+
+%Dire que par la taille des orbites on doit avoir celui qui est diagonalisé est celui de plus grande orbite  et l'autre non
+
+On pourra noter qu'avec cette proposition on retrouve bien la proposition \ref{pro:iso:mon} qui nous disait que la $\ell$-isogénie engendrée par un point appartenant au strictement plus grand groupe de torsion cyclique rationnel était montante.
+
+
 On voit aussi que cette détermination n'est pas sujette à l'existence de niveau de stabilité vu que la preuve ne se fait pas à l'aide de la structure de la $\ell$-torsion.
 
 \subsection{Determination de sous groupes cycliques à l'aide du Frobenius}
