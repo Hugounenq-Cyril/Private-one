@@ -3136,12 +3136,9 @@ On va donc travailler avec une courbe elliptique se trouvant sur un volcan de $\
 
 Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère, ainsi la calcul d'une base de la $\ell^k$ torsion diffère dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
 
-\todo{Mettre référence à $\mathsf{R}$ ici! + a l'algorithme de division d'un point}
-$\mathsf{R}(i)$ is a bound on the expected cost of finding a root of a polynomial of degree
-  $\ell$ in $F_i[x]$.
-  For general $\ell$, we have
-$\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$ using the variant of the
-Cantor-Zassenhaus algorithm described in~\cite[Chapter~14.5]{vzGJG03}
+\todo{A mettre ici ? Peut etre dans le chapitre \ref{cha:tour}}
+On notera par $\mathsf{R}(i)$ une borne sur le coût espéré du calcul de racine d'un polynôme de degré $\ell$ à coefficients dans $\mathsf{F}_i$.
+On a $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$ en utilisant la variante de l'algorithme de Cantor-Zassenhaus décrite dans ~\cite[Chapter~14.5]{vzGJG03}.
 
 On va noter par $\mathsf{divise}(\ell,P)$ l'algorithme qui donne un des antécédents par la multiplication par $\ell$ du point $P$.
 \begin{algorithm}
@@ -3156,7 +3153,7 @@ tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)=\delta P_k +  \mu Q_k$.
 \STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$; $\delta \leftarrow 0$; $P_0, Q_0 \leftarrow $ éléments neutres de~$E[\ell]$.}
 \FOR {$i=0$  to  $k-1$}
 \STATE\label{alg:point:divide}
-  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE\label{alg:trigonal:frobenius}
   compute $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i} + \delta \\
@@ -3191,11 +3188,11 @@ est calculée en factorisant le polynome de $\ell$-division
 avec un coût attendu de $O(\ell\\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
 opérations en utilisant l'algorithme de Cantor-Zassenhaus.
   Une fois que $E[\ell]$ a été calculé, on peut factoriser la
-  multiplication-par-$\ell$ par un product de deux $\ell$-isogenies. Pour tout
-   $P$ defini in $E(F_{i-\beta})$, le calcul de
-  $\mathsf{div}(\ell, P)$ à l'étape ~\ref{alg:point:divide} coute $O(\mathsf{R}(i-\beta+1))$
+  multiplication-par-$\ell$ par un produit de deux $\ell$-isogenies. Pour tout
+   $P$ défini dans $E(F_{i-\beta})$, le calcul de
+  $\mathsf{divise}(\ell, P)$ à l'étape ~\ref{alg:point:divide} coute $O(\mathsf{R}(i-\beta+1))$
   opérations.
-  L'évaluation de~$\pi(P')$ à l'étape~\ref{alg:trigonal:frobenius} a un cout
+  L'évaluation de~$\pi(Q')$ à l'étape~\ref{alg:trigonal:frobenius} a un cout
   de~$O(\ell^{i-\beta}\mathsf{M}(\ell))$ par le théoèreme \ref{thm:frob-ell}.
   L'écriture~$\pi(P')$ comme une combinaison linéaire~$[u] P' + [v] Q'$ nécessite au
   plus~$\ell^2$ additions de points, avec un cout de~$\ell^2
@@ -3206,7 +3203,61 @@ opérations en utilisant l'algorithme de Cantor-Zassenhaus.
   la dernière boucle domine la complexité et donne le résultat.
 \end{proof}
 
-Le premier objet à calculer afin d'obtenir une base horizontale est donc le calcul de la valeur de $h$. En particulier on sait que le polynôme caractéristique du Frobenius se scinde pour modulo la $\ell^h$ torsion mais pas sur la $\ell^{h-1}$ torsion on va dés lors avec l'algorithme \ref{alg:bas:fro} calculer une base de la $\ell^k$-torsion et la valeur des deux valeurs propres modulo $\ell^k$. Ainsi si celles-ci ne sont pas dictinctes on recommence l'algorithme pour une base de la $\ell^{k+1}$ torsion, sinon on calcule la valeur de $h$. De plus par la proposition \ref{pro:mat:fro} on connaît la hauteur de $E$ dans le volcan de $\ell$-isogénies. 
+\`A partir d'une base de la $\ell^k$ torsion pour une courbe $E$ située en dessous du cratère on peut se servir de celle-ci pour calculer une base diagonale de la $\ell^k$ torsion pour la courbe "nom à trouver" \todo{Définir cela!} $Ec$  à l'aide de l'algorithme suivant:
+
+\begin{algorithm}
+\caption{\label{alg:rem:tri}Calcul d'une base de $E_c[\ell^k]$ pour $E_c$ situéee au niveau du cratère à partir de $E$ non située sur le cratère et de l'action de $\pi$ dans celle-ci}
+\begin{algorithmic}[1]
+\REQUIRE $E$: une courbe elliptique ordinaire non située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique;
+$k$: une entier positif; $P,Q$ une base de $E[\ell^k]$; $\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
+tels que $\pi(P)= \lambda P$, $ \pi(Q)=\delta P +  \mu Q$.
+\ENSURE $(P_k, Q_k )$: une base de $E_c[\ell^k]$;
+$\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
+tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)=  \mu Q_k$.
+\FOR {$i=1$ to $h-v_{\ell}(\delta )$}
+\STATE Calcul de l'iosgénie $\varphi$ de noyau $\langle \ell^{k-1}P \rangle$
+\STATE\label{alg:rem:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, \varphi(P))$; $Q' \leftarrow \mathsf{divise} (\ell, \varphi(Q))$.
+\STATE\label{alg:rem:frobenius}
+  compute $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda  & \ell \delta \\
+c\ell^{k-1} & \mu  \end{smallmatrix} \right) \pmod {\ell^{k}}.$
+\STATE 
+  \textbf{if} $c=0$ \textbf{then} $y \leftarrow 0 $; 
+\STATE\label{alg:rem:solve1}
+  \textbf{else} solve equation
+ $y\ell^{k-1}(\mu - \lambda) + c \ell^{k-1}$; \textbf{end if}.
+\STATE
+  $P \leftarrow P' + y Q'$.
+  \STATE{$\lambda \leftarrow \lambda + y (\ell \delta)$; $\mu \leftarrow \mu - y (\ell \delta) $; $\delta \leftarrow \ell \delta$.}
+\ENDFOR
+\RETURN $(P_{k},Q_{k},\lambda,\mu).$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{prop}
+Soit $E$ une courbe au niveau $h-e$ dans le volcan alors L'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_c[\ell^k]$ avec une complexité de $O(e( \mathsf{R}(k) + \ell^2\mathsf{M}(\ell^{k})) )$ oéprations sur $\mathbb{F}_q$.
+\end{prop}
+
+\begin{proof}
+L'équation à l'étape \ref{alg:rem:solve1} peut déjà être simplifiée par $\ell^{k-1}$ avant d'être résolue modulo $\ell$. Un calcul direct montre qu'à chaque étape $(P_i,Q_i)$ est une base dans laquelle le coefficient en haut à droite de la matrice de$\pi$ augmente de $1$ à chaque étape. 
+
+
+A l'étape~\ref{alg:rem:divide} comme $P$ et $Q$ sont définis dans $E(\mathsf{F}_{k-i})$ 
+alors le cout de $\mathsf{divise}$ est de $O(\mathsf{R}(k-i))$
+  opérations.
+
+  L'évaluation de~$\pi(Q')$ et $\pi(P')$ à l'étape~\ref{alg:rem:frobenius} a un cout
+  de~$O(\ell^{k}\mathsf{M}(\ell))$ par le théoèreme \ref{thm:frob-ell}.
+  L'écriture~$\pi(P')$ comme une combinaison linéaire~$[u] P' + [v] Q'$ nécessite au
+  plus~$\ell^2$ additions de points, avec un cout de~$\ell^2
+  \mathsf{M}(\ell^{k})$.
+  Le cout de résolution de l'équation à l'étape~\ref{alg:trigonal:solve1}
+  par recherche exhaustive est négligeable, comme les 
+  opérations restantes. 
+\end{proof}
+
+Il est possible que la courbe elliptique $E$ avec laquelle on travaille soit déjà située sur le cratère alors dans un tel cas on peut directement utiliser l'algorithme suivant qui permet de calculer une base diagonale de la $\ell^k$ torsion.
 
 \begin{algorithm}
 \caption{\label{alg:bas:diag}Calcul d'une base de $E[\ell^k]$ pour $E$ au niveau du cratère et de l'action de $\pi$ dans celle-ci}
@@ -3220,7 +3271,7 @@ tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)= \mu Q_k$.
 \STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$; $P_0, Q_0 \leftarrow $ deux éléments tes que~$\langle P_0,Q_0 \rangle  E[\ell]$.}
 \FOR {$i=0$  to  $k-1$}
 \STATE\label{alg:diagonal:divide}
-  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE\label{alg:diagonal:frobenius}
   compute $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
@@ -3240,6 +3291,47 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \end{algorithmic}
 \end{algorithm}
 
+\begin{prop}\label{th:alg:diagonal}
+  Algorithm~\ref{alg:diagonal} computes a diagonal basis of~$E[\ell^k]$
+  using an expected
+  $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell
+  q))$ operations in $\mathbb{F}_q$.
+\end{prop}
+\begin{proof}
+The equation at line~\ref{alg:diagonal:solve1} or~\ref{alg:diagonal:solve2}
+is first divided out by the largest power of~$\ell$ possible,
+which is~$\ell^{\min (h, i)}$, then solved modulo $\ell$.
+For~$i \leqslant h-1$, since~$a = d$ and~$b = c = 0$,
+the solutions are~$x = y = 0$, and
+steps~\ref{alg:diagonal:solve1} to~\ref{alg:diagonal:upd-P} do nothing.
+A straightforward calculation shows that after each loop the basis
+$(P_{i+1},Q_{i+1})$ is diagonal.
+
+For~$i = 0$, the basis of~$E[\ell](F_1)$ at step~\ref{alg:diagonal:divide}
+is computed by factoring the $\ell$-division polynomial
+at an expected cost of $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
+operations using the Cantor-Zassenhaus algorithm.
+  Once $E[\ell]$ has been computed, we can factor the
+  multiplication-by-$\ell$ map as a product of two $\ell$-isogenies. Then,
+  for any $P$ defined in $E(F_{i-\beta})$, the computation of
+  $\mathsf{divise}(\ell, P)$ at Step~\ref{alg:diagonal:divide} costs $O(\mathsf{R}(i-\beta+1))$
+  operations.
+  Evaluating~$\pi(P')$ in Step~\ref{alg:diagonal:frobenius} has a cost
+  of~$O(\ell^{i-\beta}\mathsf{M}(\ell))$.
+  Writing~$\pi(P')$ as a linear combination~$\alpha P' + \beta Q'$ needs at
+  most~$\ell^2$ point additions, with a cost of~$\ell^2
+  \mathsf{M}(\ell^{i-\beta+1})$.
+  The cost of solving the equations at Steps~\ref{alg:diagonal:solve1}
+  and~\ref{alg:diagonal:solve2} by exhaustive search is negligible, as
+  are the remaining operations.  Since the cost of each loop grows
+  geometrically, the last loop dominates all others, and gives the
+  stated complexity.
+\end{proof}
+
+
+Le premier objet à calculer afin d'obtenir une base horizontale est donc le calcul de la valeur de $h$. En particulier on sait que le polynôme caractéristique du Frobenius se scinde pour modulo la $\ell^h$ torsion mais pas sur la $\ell^{h-1}$ torsion on va dés lors avec l'algorithme \ref{alg:bas:fro} calculer une base de la $\ell^k$-torsion et la valeur des deux valeurs propres modulo $\ell^k$. Ainsi si celles-ci ne sont pas dictinctes on recommence l'algorithme pour une base de la $\ell^{k+1}$ torsion, sinon on calcule la valeur de $h$. De plus par la proposition \ref{pro:mat:fro} on connaît la hauteur de $E$ dans le volcan de $\ell$-isogénies. 
+
+
 \begin{algorithm}
 \caption{\label{alg:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
 \begin{algorithmic}[1]
@@ -3256,9 +3348,9 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \WHILE {$\pi|(P',Q')= (\lambda + a\ell^i) \cdot I_2$}
 \STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
 \STATE\label{alg:diagonal:divide}
-  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE $i \leftarrow i+1$.
-\STATE   $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+\STATE   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE compute $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
@@ -3278,7 +3370,7 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
 \STATE $i \leftarrow i+1$.
 \STATE\label{alg:diagonal:divide}
-  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE compute $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
@@ -3293,7 +3385,7 @@ $ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
   $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow Q'$.
 \STATE{$\lambda \leftarrow \lambda + a \ell^{i} + \delta y$; $\mu \leftarrow \mu + d \ell^{i} $.}
 \STATE\label{alg:diagonal:divide}
-  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE $i \leftarrow i+1$.
 \STATE compute $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i} + \delta\\
@@ -3305,35 +3397,6 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
-\caption{\label{alg:rem:tri}Calcul d'une base de $E_c[\ell^k]$ pour $E_c$ situéee au niveau du cratère à partir de $E$ non située sur le cratère et de l'action de $\pi$ dans celle-ci}
-\begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire non située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique;
-$k$: une entier positif; $P,Q$ une base de $E[\ell^k]$; $\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
-tels que $\pi(P)= \lambda P$, $ \pi(Q)=\delta P +  \mu Q$.
-\ENSURE $(P_k, Q_k )$: une base de $E_c[\ell^k]$;
-$\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
-tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)=  \mu Q_k$.
-\FOR {$i=1$ to $h-v_{\ell}(\delta )$}
-\STATE Calcul de l'iosgénie $\varphi$ de noyau $\langle \ell^{k-1}P \rangle$
-\STATE\label{alg:diagonal:divide}
-  $P' \leftarrow \mathsf{div}(\ell, \varphi(P))$; $Q' \leftarrow \mathsf{div} (\ell, \varphi(Q))$.
-\STATE\label{alg:diagonal:frobenius}
-  compute $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda  & \ell \delta \\
-c\ell^{k-1} & \mu  \end{smallmatrix} \right) \pmod {\ell^{k}}.$
-\STATE 
-  \textbf{if} $c=0$ \textbf{then} $y \leftarrow 0 $; 
-\STATE\label{alg:diagonal:solve2}
-  \textbf{else} solve equation
- $(-\ell \delta ) y^2 + (c\ell^{k-1}+\lambda )y - \mu $; \textbf{end if}.
-\STATE\label{alg:diagonal:upd-P}
-  $P \leftarrow P' + y Q'$.
-  \STATE{$\lambda \leftarrow \lambda + y (\ell \delta)$; $\mu \leftarrow \mu - y (\ell \delta) $; $\delta \leftarrow \ell \delta$.}
-\ENDFOR
-\RETURN $(P_{k},Q_{k},\lambda,\mu).$
-\end{algorithmic}
-\end{algorithm}
 
 Lorsque l'on est en dessous du niveau de stabilité et que l'on connaît une base dans laquelle le Frobenius se trigonalise on est alors capable à l'aide du point $P_k$ vecteur propre, qui correspond au point d'ordre $\ell^k$ défini dans la plus petite extension, de calculer des isogénies montantes (voir proposition \ref{pro:iso:mon}) et donc de déterminer une chemin montant pour obtenir $E_c$ la courbe la plus proche de $E$ sur le cratère. Lorsque l'on est au-dessus du niveau de stabilité on peut éventuellement utiliser une méthode utilisant le couplage \cite{Ionica-Joux10} ou sinon la détermination d'isogénie montante à l'aide des méthodes décrites dans \cite{FouquetMorain02}, celles-ci ont un coût de $O()$ opérations sur $\mathbb{F}_q$. Ainsi l'isogénie montante $\widehat{\varphi}$ que l'on calcule étant rationnelle, elle commute avec le Frobenius et donc la matrice du Frobenius dans l'image de la base est la même, on va supposer sans perte de généralité que celle-ci a son noyau qui est engendré par $[\ell^{k-1}]P$. \`A chaque montée de niveau on calculera alors une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est trigonalisée (voire diagonalisée pour la courbe située sur le cratère).   
 
@@ -3348,7 +3411,7 @@ Lorsque l'on est en dessous du niveau de stabilité et que l'on connaît une bas
 %% \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
 %\STATE{$\lambda, \mu, c \leftarrow \Pi$}
 %\STATE\label{alg:diagonal:divide}
-%  $P' \leftarrow \mathsf{div}(\ell,\widehat{\varphi} (P_{i}))$; $Q' \leftarrow  \widehat{\varphi}(Q_{i})$.
+%  $P' \leftarrow \mathsf{divise}(\ell,\widehat{\varphi} (P_{i}))$; $Q' \leftarrow  \widehat{\varphi}(Q_{i})$.
 %\STATE\label{alg:diagonal:frobenius}
 %  compute $\pi|(P',Q')=\left( \begin{smallmatrix}
 %\lambda & b\ell^{k-1}\\
@@ -3374,12 +3437,12 @@ $k \geqslant h + 1$.\\
 \FOR{$i = 1$ to~$k-1$}
 \STATE $\psi_i \gets $ isogeny with kernel~$\langle \ell^{h} P_{i-1} \rangle$
 \STATE $Q_{i} \gets \psi_i(Q_{i-1})$
-\STATE\label{alg:horizontal:divide} $P' \gets \mathsf{div}(\ell, \psi_i(P_{i-1}))$.
+\STATE\label{alg:horizontal:divide} $P' \gets \mathsf{divise}(\ell, \psi_i(P_{i-1}))$.
 \STATE\label{alg:horizontal:frob} Write~$\pi(P') = \lambda P' + b Q_i$ for~$b \in \mathbb{Z}/\ell\mathbb{Z}$ and
 let $P_{i} \gets P' - (b/\mu) Q_i$.
 \ENDFOR
 \RETURN\label{alg:horizontal:final} $R = \widehat{\psi}_1 \circ … \circ \widehat{\psi}_{k-1}
-  (\mathsf{div}( \ell^{k-(h+1)}, P_{k-1}) )$. 
+  (\mathsf{divise}( \ell^{k-(h+1)}, P_{k-1}) )$. 
 \end{algorithmic}
 \end{algorithm}
 
