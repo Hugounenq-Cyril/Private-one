@@ -3128,14 +3128,22 @@ Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets
 
 \section{Elkies}
 
+
+
 Vu que l'on se place dans le contexte de l'algorithme de Couveignes alors on veut calculer la une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. On verra dans un autre chapitre \todo{spécifier ce chapitre} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu précédemment que l'on devait avoir $k \geqslant h+1$ \todo{mettre référence}.
 
 On va donc travailler avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, et on va supposer dans un premier temps que l'on a $k>h$.
 
 Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère, ainsi la calcul d'une base de la $\ell^k$ torsion diffère dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
 
-\todo{Mettre référence à $\mathsf{R}$ ici!}
+\todo{Mettre référence à $\mathsf{R}$ ici! + a l'algorithme de division d'un point}
+$\mathsf{R}(i)$ is a bound on the expected cost of finding a root of a polynomial of degree
+  $\ell$ in $F_i[x]$.
+  For general $\ell$, we have
+$\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$ using the variant of the
+Cantor-Zassenhaus algorithm described in~\cite[Chapter~14.5]{vzGJG03}
 
+On va noter par $\mathsf{divise}(\ell,P)$ l'algorithme qui donne un des antécédents par la multiplication par $\ell$ du point $P$.
 \begin{algorithm}
 \caption{\label{alg:bas:tri}Calcul d'une base de $E[\ell^k]$ dans laquelle l'action du Frobenius est triangulaire pour $E$ non situéee au niveau du cratère}
 \begin{algorithmic}[1]
@@ -3155,12 +3163,12 @@ tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)=\delta P_k +  \mu Q_k$.
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \STATE 
   \textbf{if} $b \ell^i + \delta=0$ \textbf{then} $(P',Q',a,b,c,d) \leftarrow (Q',P',d,c,b,a) $  \textbf{end if}.
-\STATE\label{alg:diagonal:solve1}
+\STATE
   \textbf{if} $b = 0$ et $c=0$ \textbf{then} $y \leftarrow 0$;
-\STATE\label{alg:diagonal:solve2}
+\STATE\label{alg:trigonal:solve1}
   \textbf{else} solve equation
  $( \delta + b \ell^i) y^2 + (\ell^i(a-d)+\lambda - \mu)y - c\ell^i $; \textbf{end if}.
-\STATE\label{alg:diagonal:upd-P}
+\STATE
   $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow  Q'$.
 \STATE{$\lambda \leftarrow \lambda + \ell^{i} a + y (b \ell^i + \delta)$; $\mu \leftarrow \mu + \ell^{i} d $; $\delta \leftarrow \delta + b \ell^i$.}
 \ENDFOR
@@ -3169,25 +3177,33 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \end{algorithm}
 
 \begin{prop}
-L'algorithme \ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ avec une complexité de $O()$ oéprations sur $\mathbb{F}_q$.
+L'algorithme \ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ avec une complexité de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell
+  q))$ oéprations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
-Test. \todo{Mettre référence $\mathsf{R}$}
+L'équation à l'étape \ref{alg:trigonal:solve1} peut déjà être simpliée par $\ell^i$ avant d'être résolue modulo $\ell$. Pour $i<h-e-1$ comme $a=b$ et $c=d$ alors le calcul est trivial.
+Un calcul direct montre qu'à chaque étape $P_i,Q_i$ est une base dans laquelle l'action du Frobenius est triangulaire supérieure. 
+
+
 Pour~$i = 0$, la base de~$E[\ell](F_1)$ à l'étape~\ref{alg:point:divide}
 est calculée en factorisant le polynome de $\ell$-division 
-avec un coût attendu de $O(\ell\MM(\ell^2)\log(\ell)\log(\ell q))$
+avec un coût attendu de $O(\ell\\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
 opérations en utilisant l'algorithme de Cantor-Zassenhaus.
   Une fois que $E[\ell]$ a été calculé, on peut factoriser la
   multiplication-par-$\ell$ par un product de deux $\ell$-isogenies. Pour tout
    $P$ defini in $E(F_{i-\beta})$, le calcul de
   $\mathsf{div}(\ell, P)$ à l'étape ~\ref{alg:point:divide} coute $O(\mathsf{R}(i-\beta+1))$
   opérations.
-  L'évaluation de~$\pi(P')$ in Step~\ref{alg:trigonal:frobenius} a un cout
+  L'évaluation de~$\pi(P')$ à l'étape~\ref{alg:trigonal:frobenius} a un cout
   de~$O(\ell^{i-\beta}\mathsf{M}(\ell))$ par le théoèreme \ref{thm:frob-ell}.
   L'écriture~$\pi(P')$ comme une combinaison linéaire~$[u] P' + [v] Q'$ nécessite au
   plus~$\ell^2$ additions de points, avec un cout de~$\ell^2
   \mathsf{M}(\ell^{i-\beta+1})$.
+  Le cout de résoudre l'équation à l'étape~\ref{alg:trigonal:solve1}
+  par recherche exhaustive est négligeable, comme les 
+  opérations restantes. Comme le cout de chaque boucle est géométrique
+  la dernière boucle domine la complexité et donne le résultat.
 \end{proof}
 
 Le premier objet à calculer afin d'obtenir une base horizontale est donc le calcul de la valeur de $h$. En particulier on sait que le polynôme caractéristique du Frobenius se scinde pour modulo la $\ell^h$ torsion mais pas sur la $\ell^{h-1}$ torsion on va dés lors avec l'algorithme \ref{alg:bas:fro} calculer une base de la $\ell^k$-torsion et la valeur des deux valeurs propres modulo $\ell^k$. Ainsi si celles-ci ne sont pas dictinctes on recommence l'algorithme pour une base de la $\ell^{k+1}$ torsion, sinon on calcule la valeur de $h$. De plus par la proposition \ref{pro:mat:fro} on connaît la hauteur de $E$ dans le volcan de $\ell$-isogénies. 
