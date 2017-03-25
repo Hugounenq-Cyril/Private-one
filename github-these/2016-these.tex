@@ -1872,6 +1872,7 @@ Voir section $5.2$ de \cite{DeFeo11}.
 \end{proof}
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
+\label{cha:tour}
 La construction d'extension de corps finis est un problème naturel dès lors que l'on travaille sur des corps finis. On peut être amené à construire des extensions de corps de taille arbitraire pour lesquelles on voudra une construction dite \textit{compatible} de telle sorte que l'on puisse projeter, lorsque cela est possible, des éléments du corps dans les constructions pré-existantes efficacement.
 
 \begin{defi}[Tour \textit{$\ell$}-adique]
@@ -3123,11 +3124,72 @@ en remplaçant le corps de base par une extension quadratique.
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
 Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
-Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets présentés dans le chapitre \ref{cha:act:fro}.
+Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets présentés dans le chapitre \ref{cha:act:fro}. Sont aussi utilisés les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les extensions de corps de définies dans la définition \ref{def:tour-ell}.
 
 \section{Elkies}
 
-Vu que l'on se place dans le contexte de l'algorithme de Couveignes alors on veut calculer la une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. On verra dans un autre chapitre \todo{spécifier ce chapitre} le lien entre $k$ et $r$, on a aussi vu précédemment que l'on devait avoir $k \geqslant h+1$.
+Vu que l'on se place dans le contexte de l'algorithme de Couveignes alors on veut calculer la une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. On verra dans un autre chapitre \todo{spécifier ce chapitre} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu précédemment que l'on devait avoir $k \geqslant h+1$ \todo{mettre référence}.
+
+On va donc travailler avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, et on va supposer dans un premier temps que l'on a $k>h$.
+
+Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère, ainsi la calcul d'une base de la $\ell^k$ torsion diffère dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
+
+\todo{Mettre référence à $\mathsf{R}$ ici!}
+
+\begin{algorithm}
+\caption{\label{alg:bas:tri}Calcul d'une base de $E[\ell^k]$ dans laquelle l'action du Frobenius est triangulaire pour $E$ non situéee au niveau du cratère}
+\begin{algorithmic}[1]
+\REQUIRE $E$: une courbe elliptique ordinaire non située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique;
+$k$: une entier positif;
+\ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
+$\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
+tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)=\delta P_k +  \mu Q_k$.
+% \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$; $\delta \leftarrow 0$; $P_0, Q_0 \leftarrow $ éléments neutres de~$E[\ell]$.}
+\FOR {$i=0$  to  $k-1$}
+\STATE\label{alg:point:divide}
+  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
+\STATE\label{alg:trigonal:frobenius}
+  compute $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i} + \delta \\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+\STATE 
+  \textbf{if} $b \ell^i + \delta=0$ \textbf{then} $(P',Q',a,b,c,d) \leftarrow (Q',P',d,c,b,a) $  \textbf{end if}.
+\STATE\label{alg:diagonal:solve1}
+  \textbf{if} $b = 0$ et $c=0$ \textbf{then} $y \leftarrow 0$;
+\STATE\label{alg:diagonal:solve2}
+  \textbf{else} solve equation
+ $( \delta + b \ell^i) y^2 + (\ell^i(a-d)+\lambda - \mu)y - c\ell^i $; \textbf{end if}.
+\STATE\label{alg:diagonal:upd-P}
+  $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow  Q'$.
+\STATE{$\lambda \leftarrow \lambda + \ell^{i} a + y (b \ell^i + \delta)$; $\mu \leftarrow \mu + \ell^{i} d $; $\delta \leftarrow \delta + b \ell^i$.}
+\ENDFOR
+\RETURN $(P_{k},Q_{k},\lambda,\mu).$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{prop}
+L'algorithme \ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ avec une complexité de $O()$ oéprations sur $\mathbb{F}_q$.
+\end{prop}
+
+\begin{proof}
+Test. \todo{Mettre référence $\mathsf{R}$}
+Pour~$i = 0$, la base de~$E[\ell](F_1)$ à l'étape~\ref{alg:point:divide}
+est calculée en factorisant le polynome de $\ell$-division 
+avec un coût attendu de $O(\ell\MM(\ell^2)\log(\ell)\log(\ell q))$
+opérations en utilisant l'algorithme de Cantor-Zassenhaus.
+  Une fois que $E[\ell]$ a été calculé, on peut factoriser la
+  multiplication-par-$\ell$ par un product de deux $\ell$-isogenies. Pour tout
+   $P$ defini in $E(F_{i-\beta})$, le calcul de
+  $\mathsf{div}(\ell, P)$ à l'étape ~\ref{alg:point:divide} coute $O(\mathsf{R}(i-\beta+1))$
+  opérations.
+  L'évaluation de~$\pi(P')$ in Step~\ref{alg:trigonal:frobenius} a un cout
+  de~$O(\ell^{i-\beta}\mathsf{M}(\ell))$ par le théoèreme \ref{thm:frob-ell}.
+  L'écriture~$\pi(P')$ comme une combinaison linéaire~$[u] P' + [v] Q'$ nécessite au
+  plus~$\ell^2$ additions de points, avec un cout de~$\ell^2
+  \mathsf{M}(\ell^{i-\beta+1})$.
+\end{proof}
+
 Le premier objet à calculer afin d'obtenir une base horizontale est donc le calcul de la valeur de $h$. En particulier on sait que le polynôme caractéristique du Frobenius se scinde pour modulo la $\ell^h$ torsion mais pas sur la $\ell^{h-1}$ torsion on va dés lors avec l'algorithme \ref{alg:bas:fro} calculer une base de la $\ell^k$-torsion et la valeur des deux valeurs propres modulo $\ell^k$. Ainsi si celles-ci ne sont pas dictinctes on recommence l'algorithme pour une base de la $\ell^{k+1}$ torsion, sinon on calcule la valeur de $h$. De plus par la proposition \ref{pro:mat:fro} on connaît la hauteur de $E$ dans le volcan de $\ell$-isogénies. 
 
 \begin{algorithm}
@@ -3161,39 +3223,6 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \RETURN $(P_{k},Q_{k},\lambda,\mu).$
 \end{algorithmic}
 \end{algorithm}
-
-\begin{algorithm}
-\caption{\label{alg:bas:tri}Calcul d'une base de $E[\ell^k]$ pour $E$ non situéee au niveau du cratère et de l'action de $\pi$ dans celle-ci}
-\begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire non située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique;
-$k$: une entier positif;
-\ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
-$\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
-tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)=\delta P_k +  \mu Q_k$.
-% \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$; $\delta \leftarrow 0$; $P_0, Q_0 \leftarrow $ éléments neutres de~$E[\ell]$.}
-\FOR {$i=0$  to  $k-1$}
-\STATE\label{alg:diagonal:divide}
-  $P' \leftarrow \mathsf{div}(\ell, P_{i})$; $Q' \leftarrow \mathsf{div} (\ell, Q_{i})$.
-\STATE\label{alg:diagonal:frobenius}
-  compute $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i} + \delta \\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
-\STATE 
-  \textbf{if} $b \ell^i + \delta=0$ \textbf{then} $(P',Q',a,b,c,d) \leftarrow (Q',P',d,c,b,a) $  \textbf{end if}.
-\STATE\label{alg:diagonal:solve1}
-  \textbf{if} $b = 0$ et $c=0$ \textbf{then} $y \leftarrow 0$;
-\STATE\label{alg:diagonal:solve2}
-  \textbf{else} solve equation
- $( \delta + b \ell^i) y^2 + (\ell^i(a-d)+\lambda - \mu)y - c\ell^i $; \textbf{end if}.
-\STATE\label{alg:diagonal:upd-P}
-  $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow  Q'$.
-\STATE{$\lambda \leftarrow \lambda + \ell^{i} a + y (b \ell^i + \delta)$; $\mu \leftarrow \mu + \ell^{i} d $; $\delta \leftarrow \delta + b \ell^i$.}
-\ENDFOR
-\RETURN $(P_{k},Q_{k},\lambda,\mu).$
-\end{algorithmic}
-\end{algorithm}
-
 
 \begin{algorithm}
 \caption{\label{alg:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
@@ -3321,13 +3350,13 @@ Lorsque l'on est en dessous du niveau de stabilité et que l'on connaît une bas
 %\end{algorithm}
 
 \begin{algorithm}
-\caption{\label{alg:horizontal}Computing a horizontal point of order~$ℓ^k$}
+\caption{\label{alg:horizontal}Computing a horizontal point of order~$\ell^k$}
 \begin{algorithmic}[1]
 \REQUIRE $(P_0, Q_0)$: a diagonal basis of~$E[\ell^{h+1}]$; $k$: an integer,
-$k ≥ h + 1$.\\
+$k \geqslant h + 1$.\\
 \ENSURE $R$: a horizontal point of~$E[\ell^k]$ with direction~$\lambda$.
 \FOR{$i = 1$ to~$k-1$}
-\STATE $\psi_i \gets $ isogeny with kernel~$\chev{\ell^{h} P_{i-1}}$
+\STATE $\psi_i \gets $ isogeny with kernel~$\langle \ell^{h} P_{i-1} \rangle$
 \STATE $Q_{i} \gets \psi_i(Q_{i-1})$
 \STATE\label{alg:horizontal:divide} $P' \gets \mathsf{div}(\ell, \psi_i(P_{i-1}))$.
 \STATE\label{alg:horizontal:frob} Write~$\pi(P') = \lambda P' + b Q_i$ for~$b \in \mathbb{Z}/\ell\mathbb{Z}$ and
