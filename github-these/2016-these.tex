@@ -3215,7 +3215,7 @@ tels que $\pi(P)= \lambda P$, $ \pi(Q)=\delta P +  \mu Q$.
 $\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)=  \mu Q_k$.
 \FOR {$i=1$ to $h-v_{\ell}(\delta )$}
-\STATE Calcul de l'iosgénie $\varphi$ de noyau $\langle \ell^{k-1}P \rangle$
+\STATE\label{alg:rem:iso}  $\varphi \leftarrow $ isogénie de noyau $\langle \ell^{k-1}P \rangle$
 \STATE\label{alg:rem:divide}
   $P' \leftarrow \mathsf{divise}(\ell, \varphi(P))$; $Q' \leftarrow \mathsf{divise} (\ell, \varphi(Q))$.
 \STATE\label{alg:rem:frobenius}
@@ -3253,7 +3253,7 @@ alors le cout de $\mathsf{divise}$ est de $O(\mathsf{R}(k-i))$
   \mathsf{M}(\ell^{k})$.
   Le cout de résolution de l'équation à l'étape~\ref{alg:trigonal:solve1}
   par recherche exhaustive est négligeable, comme les 
-  opérations restantes. 
+  opérations restantes dont l'étape \ref{alg:rem:iso}. 
   \todo{oubli cout du calcul de l'isogénie et de son application}
 \end{proof}
 
@@ -3357,10 +3357,10 @@ let $P_{i} \gets P' - (b/\mu) Q_i$.
   opérations dans $\mathbb{F}_q$.
 \end{prop}
 \begin{proof}
-Soit $E_i$ le codomaine de $\varphi_i$.
+Soit $E_i$ le codomaine de $\psi_i$.
 On check that at step~$i$ of the loop,
 the points~$(P_i, Q_i)$ form a diagonal basis of~$E_i[\ell^{h+1}]$,
-and $\varphi_i$~has direction~$\lambda$.
+and $\psi_i$~has direction~$\lambda$.
 Le fait que $R$~est horizontal est une conséquence
 de la Proposition~\ref{pro:pus:hor}.
 Les deux opérations les plus couteuses des boucles sont les
@@ -3372,11 +3372,12 @@ dominée par la dernière opération $\mathsf{divise}$ qui coûte $O(\mathsf{R}(
 \end{proof}
 
 \begin{prop}
+Soit $E$ une courbe située au niveau $h-e$ dans un volcan de $\ell$-isogénies soit $E_s$ sa courbe sommet dont on connaît un point horizontal $P_h$ d'ordre $\ell^k$, soit $\varphi_s:Es \ rightarrow E $ la $\ell^{e}$ isogénie descendante telle que l'on connaît une décomposition en $e$ $\ell$ isogénies descendantes: $\varphi=\varphi_1 \circ \varphi_{e}$ alors le coût de calculer $\varphi(P)$ est de $O(e())$ opérations sur $\mathbb{F}_q$
 Faire une proposition sur le cout d'évaluer un point partiellement horizontal.
 \end{prop}
 
 \begin{proof}
-A faire...
+On rappelle que pour $P \in \mathsf{F}_{k-\beta}$ point horizontal alors on a  $\varphi(P) \in \mathsf{F}_{k-\beta}$. Le cout de l'évaluation d'une isogénie rationnelle de degré $\ell$ sur un point $P \in \mathsf{F}_{k-\beta}$ étant de $O()$ opérations sur $\mathbb{F}_q$ on obtient le résultat.
 \end{proof}
 
 Le premier objet à calculer afin d'obtenir une base horizontale est donc le calcul de la valeur de $h$. En particulier on sait que le polynôme caractéristique du Frobenius se scinde pour modulo la $\ell^h$ torsion mais pas sur la $\ell^{h-1}$ torsion on va dés lors avec l'algorithme \ref{alg:bas:fro} calculer une base de la $\ell^k$-torsion et la valeur des deux valeurs propres modulo $\ell^k$. Ainsi si celles-ci ne sont pas dictinctes on recommence l'algorithme pour une base de la $\ell^{k+1}$ torsion, sinon on calcule la valeur de $h$. De plus par la proposition \ref{pro:mat:fro} on connaît la hauteur de $E$ dans le volcan de $\ell$-isogénies. 
