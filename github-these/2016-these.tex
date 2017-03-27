@@ -3373,34 +3373,35 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \ENDWHILE 
 \STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{end if}.
+\STATE $h-e \leftarrow i-1$; $i \leftarrow 0$
 \WHILE{ $\mathsf{trigonal}$}
 \STATE \textbf{if} $c = 0$ \textbf{then} $y \leftarrow 0$;
 \STATE\label{alg:ult:trigonal:solve1} \textbf{else}  résoudre equation 
 $ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
 \STATE\label{alg:ult:trigonal:upd-P}
-  $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow Q'$.
-\STATE{$\lambda \leftarrow \lambda + a \ell^{i} + \delta y$; $\mu \leftarrow \mu + d \ell^{i} $; $ \mathsf{trigonal} \leftarrow !(v_{\ell}(\lambda - \mu)==v_{\ell}(\delta)) $ .} %$\delta \leftarrow \delta + b \ell^i$
-\STATE\label{alg:ult:rem:iso}  $\widehat{\varphi} \leftarrow $ isogénie de noyau $\langle \ell^{i}P_{i+1} \rangle$
+  $P_{h-e+i+1} \leftarrow P' + y Q'$; $Q_{h-e+i+1} \leftarrow Q'$.
+\STATE{$\lambda \leftarrow \lambda + a \ell^{h-e+i} + \delta y$; $\mu \leftarrow \mu + d \ell^{h-e+i} $; $ \mathsf{trigonal} \leftarrow !(v_{\ell}(\lambda - \mu)==v_{\ell}(\delta)) $ .} %$\delta \leftarrow \delta + b \ell^i$
+\STATE\label{alg:ult:rem:iso}  $\widehat{\varphi} \leftarrow $ isogénie de noyau $\langle \ell^{h-e+i}P_{h-e+i+1} \rangle$
 \STATE\label{alg:ult:rem:divide}
-  $P' \leftarrow \mathsf{divise}(\ell, \widehat{\varphi}(P_{i+1}))$; $Q' \leftarrow  \widehat{\varphi}(Q_{i+1})$.
+  $P' \leftarrow \mathsf{divise}(\ell, \widehat{\varphi}(P_{h-e+i+1}))$; $Q' \leftarrow  \widehat{\varphi}(Q_{h-e+i+1})$.
 \STATE\label{alg:ult:rem:frobenius}
   Calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda  & \ell \delta \\
-c\ell^{i} & \mu  \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+c\ell^{h-e+i} & \mu  \end{smallmatrix} \right) \pmod {\ell^{h-e+i+1}}.$
 \STATE 
   \textbf{if} $c=0$ \textbf{then} $y \leftarrow 0 $; 
 \STATE\label{alg:ult:rem:solve1}
   \textbf{else} solve equation
- $y\ell^{i}(\mu - \lambda) + c \ell^{i}$; \textbf{end if}.
+ $y\ell^{h-e+i}(\mu - \lambda) + c \ell^{h-e+i}$; \textbf{end if}.
 \STATE
-  $P' \leftarrow P' + [y \ell^{i}] Q'$.
+  $P' \leftarrow P' + [y \ell^{h-e+i}] Q'$.
 \STATE\label{alg:ult:trigonal:divide}
   $P' \leftarrow \mathsf{divise}(\ell, P')$; $Q' \leftarrow \mathsf{divise} (\ell, Q')$; $\delta \leftarrow \ell \delta $.
 \STATE $i \leftarrow i+1$.
-\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i} + \delta\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
-\STATE $\delta \leftarrow \delta + b \ell^i$
+\STATE\label{alg:ult:trigonal:frob}  calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{h-e+i} & b\ell^{h-e+i} + \delta\\
+c\ell^{h-e+i} & \mu + d\ell^{h-e+i} \end{smallmatrix} \right) \pmod {\ell^{h-e+i+1}}.$  
+\STATE $\delta \leftarrow \delta + b \ell^{h-e+i-1}$
 \ENDWHILE
 \STATE \label{alg:ult:init:dia}
 résoudre équation~$\delta + x(\lambda - \mu) = 0$;
@@ -3435,7 +3436,7 @@ L'algorithme \ref{alg:ulti:fro} a une complexité de ...
 Pour une courbe située sur un volcan régulier si l'on a $E$ qui se trouve au niveau $h-e$ alors la première étape de l'algorithme, celle où l'action du Frobenius est représentable à l'aide d'une matrice scalaire, dure jusqu'à ce que l'on travaille avec des points d'ordre $\ell^{h-e+1}$, ainsi cette première boucle est répétée $h-e+1$ fois. Pour une boucle $i$ qui calcule l'action du Frobenius sur la $\ell^{i+1}$ torsion, on a les points d'ordre $\ell^{i+1}$ qui sont définis dans $\mathsf{F}_{i+1+e-\beta}$ par la proposition \ref{pro:niv:str}, ainsi le cout de calcul d'un tel point $P$ à l'étape \ref{alg:ult:identical:divide} est de $R(i+1+e-\beta)$.Le cout de calcul de $\pi(P)$ est de $O(\ell^{i+e-\beta}M(\ell))$. L'écriture de $\pi(P)=[u]P$, on se limite à ce cas là car on est dans le cas où la matrice représentant l'action du Frobenius est scalaire, a un coût de $O(\ell M(\ell^{i+1+e-\beta}))$. Comme chaque boucle a un coût géométrique, c'est la dernière qui domine et donne la complexité. Ainsi cette première partie de l'algorithme a un coût total de $O(R(h-\beta)+\ell M(\ell^{h-\beta}))$ auquel il faut ajouter le coût de calcul de la base de $\ell$-torsion: $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
 
 Ensuite on passe à la partie où l'on calcule à chaque boucle une base de la $\ell^i$ torsion dans laquelle l'action du Frobenius est triangulaire, et l'on remonte d'un niveau dans le volcan et l'on trigonalise à nouveau la $\ell^i$ torsion. Cette étape est répétée du niveau $h-e$ où l'on exprime l'action du Frobenius dans une base de la $\ell^{h-e+1}$ torsion au niveau $h$ où l'on exprime l'action du Frobenius dans une base de la $\ell^{h+1}$ torsion. 
-Lors de la boucle $h-e+i$, les étapes \ref{alg:ult:trigonal:solve1} et \ref{alg:ult:rem:solve1} sont résolues à l'aide d'une recherche exhaustive et ont un cout négligeable par rapport aux autres opérations. Lors de la boucle $h-e+i$ les points $P_{h-e+i+1}$ et $Q_{h-e+i+1}$ sont d'ordre $\ell^{h-e+i+1}$ et définis dans $\mathsf{F}_{h-e+i+1-\beta}$. En particulier par la structure des volcans réguliers (\proposition ref{pro:niv:str}) les antécédents de $P_{h-e+i+1}$ d'ordre $\ell^{h+1}$ sont définis dans  $ \mathsf{F}_{h-e-\beta}$ ainsi le coût de l'étape \ref{alg:ult:rem:divide} est majoré par le coût de l'étape  de $R(h-e-\beta+1)$, pour $P \in \mathsf{F}_{h-e-\beta+1}$ le coût de calcul de $\pi(P)$ est de $O(\ell^{h-e-\beta}M(\ell))$. L'écriture de $\pi(P)=[u]P+[v]Q$ à l'étape \ref{alg:ult:rem:frobenius}  a un coût de de $O(\ell M(\ell^{h-e-\beta}+1))$. 
+Lors de la boucle $h-e+i$, les étapes \ref{alg:ult:trigonal:solve1} et \ref{alg:ult:rem:solve1} sont résolues à l'aide d'une recherche exhaustive et ont un cout négligeable par rapport aux autres opérations. Lors de la boucle $h-e+i$ les points $P_{h-e+i+1}$ et $Q_{h-e+i+1}$ situés sur une courbe au niveau $h-(e-i)$ sont d'ordre $\ell^{h-e+i+1}$ et définis dans $\mathsf{F}_{h-(e-i)+1-\beta+(e-i)}=\mathsf{F}_{h+1-\beta}$. En particulier par la structure des volcans réguliers (proposition \ref{pro:niv:str}) les antécédents de $P_{h-e+i+1}$ d'ordre $\ell^{h+1}$ sont définis dans  $ \mathsf{F}_{h+1-\beta}$ or comme cette boucle s'arrête lorsque l'on atteint la $\ell^{h+1}$ torsion pour la courbe au niveau du cratère, les opérations $\mathsf{divise}, \pi(P')$ et $\pi(P')=[u]P'+[v]Q'$ sont faites dans $ \mathsf{F}_{h+1-\beta}$. De même pour les points $Q,Q'$ on a le même résultat car à l'étape \ref{alg:ult:rem:divide} on transporte la base sur une courbe située un niveau au-dessu dans le cratère et dès lors les points de $\ell$ divions de $\widehat{\varphi}(Q_{h-e+i+1})$ sont aussi définis dans $ \mathsf{F}_{h+1-\beta}$. Ainsi le coût des étapes \ref{alg:ult:rem:divide} et \ref{alg:ult:trigonal:divide} est de $R(h+1-\beta)$, pour $P \in \mathsf{F}_{h+1-\beta}$ le coût de calcul de $\pi(P)$ est de $O(\ell^{h-\beta}M(\ell))$. L'écriture de $\pi(P)=[u]P+[v]Q$ aux étapes \ref{alg:ult:rem:frobenius} \ref{alg:ult:trigonal:frob} a un coût de $O(\ell^2 M(\ell^{h+1-\beta}))$. Le coût étant le même pour chaque boucle on a un cout total pour cette boucle de trigonalisation de $O(e(R(h+1-\beta)+\ell^{h-\beta}M(\ell)+\ell^2 M(\ell^{h+1-\beta})))$.
 \end{proof}
 
 Une fois que l'on a calculé une base diagonale $(P,Q)$ de la $\ell^k$ torsion pour $k>h$ alors on connaît (par la proposition \ref{pro:dia:hor}) deux points horizontaux  de directions opposées et d'ordre $\ell^{k-h}$:$[\ell^{h}]P, [\ell^{h}]Q$. On va donc maintenant se servir de la proposition \ref{pro:pus:hor} pour faire un algorithme qui nous donne des points horizontaux sur le cratère.
