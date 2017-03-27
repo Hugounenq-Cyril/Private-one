@@ -1259,7 +1259,7 @@ Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opératio
 \end{lem}
 
 \begin{proof}
-Le cout de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\widehat{c}$ racines $p-1$ ème de $H_{E}$ et $H_{\widehat{E}}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
+Le côut de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\widehat{c}$ racines $p-1$ ème de $H_{E}$ et $H_{\widehat{E}}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
 \end{proof}
 
 Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est amené à effectuer les calculs. On introduit donc la définition de tours d'extensions $p$-adique, le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement la valuation $p$-adique de la torsion rationnelle de la courbe de $1$.
@@ -1653,7 +1653,7 @@ On va donc voir dans la prochaine sous-section les améliorations apportées par
 
 \subsection{Apports de l'utilisation de l'action du Frobenius sur des tours $p$-adiques à l'algorithme de Couveignes}
 
-Cette partie sur le calcul du polynôme d'interpolation est cruciale car comme vu précédemment c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un cout minimal de $O(p^k p^kd)$ opérations sur $\mathbb{F}_p$ à l'aide de la méthode précédemment présentée. 
+Cette partie sur le calcul du polynôme d'interpolation est cruciale car comme vu précédemment c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un côut minimal de $O(p^k p^kd)$ opérations sur $\mathbb{F}_p$ à l'aide de la méthode précédemment présentée. 
 
 Bien que le polynôme $A$ que l'on souhaite calculer est de degré $p^{k-1}(p-1)-1$ il est possible avec moins d'informations de calculer celui-ci. Le polynôme $A$ étant censé représenter l'action d'une isogénie sur les points d'ordre $p^k$ alors $A$ comme l'isogénie doit commuter avec le Frobenius et être défini sur $\mathbb{F}_q$. Couveignes \cite{Couveignes96} avait préconisé de travailler distinctement sur les orbites de points sous l'action du Frobenius, on utilisait ensuite le théorème des restes chinois pour calculer $A$. Cette méthode avait l'avantage de paralléliser le calcul et d'utiliser des polynômes définis sur $\mathbb{F}_q$ pour le Théorème des Restes Chinois. Cependant cette méthode ne tirait pas pleinement parti du fait que connaître l'image d'un générateur d'une orbite selon l'action du Frobenius fixait la valeur des autres points de l'orbite. Il manquait pour l'algorithme original des techniques efficaces pour faire agir le Frobenius ce que les constructions de tours d'Artin Schreier de \cite{DeFeo-Shost'12} permettent désormais.
 
@@ -2163,6 +2163,9 @@ Il est à noter que en pratique pour le calcul de racine carrée de $\delta$ on 
 %\begin{prop}[Doliskani-Schost'15]
 %Soit $q=1 \bmod 4$, étant donné un résidu non quadratique $\alpha$ de $\mathbb{F}_q$, alors pour $k\geqslant 0$ et $n=2^k$, les temps de calculs pour les opérations dans $\mathbb{F}_q$ énoncés dans le tableau \ref{tab:complexite-degre2} sont vérifiés.
 %\end{prop}
+\begin{defi}
+On note $\mathsf{R}(i)$ une borne sur le coût espéré du calcul de racine d'un polynôme de degré $\ell$ à coefficients dans $\mathsf{F}_i$.
+\end{defi}
 
 Les coûts des différentes opérations dans de telles tours d'extensions $\ell$-adiques sont résumés dans le tableau  \ref{tab:complexite-degre2}.
 \begin{figure}
@@ -2176,11 +2179,13 @@ Les coûts des différentes opérations dans de telles tours d'extensions $\ell$
   \text{division} & $O(\mathsf{M}(\ell^kd_0))$ \\
   \text{Frobenius} & $O(\ell^k \mathsf{M}(d_0) + d_0 \mathsf{M}(d_0)\log(q))$  \\
   \text{racine carrée} & $ O(\mathsf{M}(\ell^kd_0)\log(\ell^kq)) (\text{en moyenne}) $ \\
+  \text{racine $\ell$-ème} & $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$\\
   \hline
 \end{tabular}
 \caption{Coûts des opérations dans $\mathsf{F}_{k}$ exprimées en nombre d'opérations sur $\mathbb{F}_q$}
 \end{figure}
-Il est à noter que pour le calcul d'une racine carrée le coût est un coût en moyenne, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
+On a $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$ en utilisant la variante de l'algorithme de Cantor-Zassenhaus décrite dans ~\cite[Chapter~14.5]{vzGJG03}.
+Il est à noter que pour le calcul d'une racine le coût est un coût en moyenne, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
 
 Une implantation de construction de tours dyadiques et des opérations du Frobenius et du calcul de racine carrée ont été réalisé en SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
@@ -2429,7 +2434,7 @@ Voir \cite[Lemma 2.1]{FouquetMorain02}
 \caption{Représentation d'un volcan de $2$-isogénies, avec les différents ordres.}		
 \label{fig:ord:vol}
 \end{figure}
-Sur la figure \ref{fig:ord:vol} on a les différents ordres qui sont représentés, ils est à noter qu'avec la convention donnée par la définition \ref{def:iso:nom} les ordres qui apparaissent dans un même niveau du graphe ont le même conducteur par rapport à l'ordre maximal. Ce graphe n'est pas orienté comme le précise le lemme \ref{lem:iso:nom}.
+Sur la figure \ref{fig:ord:vol} on a les différents ordres qui sont représentés, ils est à noter qu'avec la convention donnée par la définition \ref{def:iso:nom} les ordres qui apparaissent dans un même niveau du graphe ont le même conducteur par rapport à l'ordre maximal. Ce graphe n'est pas orienté comme le précise le lemme \ref{lem:dua:vol}.
 
 \begin{defi}
 Soit $\ell$ un nombre premier, soit $D$ un discriminant associé à un ordre dans un corps quadratique imaginaire, on définit alors:
@@ -2505,12 +2510,21 @@ Le terme cratère du volcan de $\ell$-isogénies désigne le sous-graphe compos�
 \end{defi}
 
 \begin{defi}
+Soit $\ell$ un nombre premier, soit $\varphi$ une $\ell^k$-isogénie, alors $\varphi$ est dite une $\ell^k$-isogénie descendante si il existe $k$ $\ell$-isogénies descendantes $\varphi_i, i \in [1,k]$ telles que $\varphi=\varphi_1 \circ \cdots \circ \varphi_k$. De même pour la $\ell^k$-isogénie $\widehat{\varphi}$ elle est dite ascendante si il existe $k$ $\ell$-isogénies ascendantes $\widehat{\varphi_i}, i \in [1,k]$ telles que $\widehat{\varphi}=\widehat{\varphi_1} \circ \cdots \circ \widehat{\varphi_k}$. Enfin on dit que la $\ell^k$-isogénie $\psi$ est horizontale si il existe $k$ $\ell$-isogénies horizontales $\psi_i, i \in [1,k]$ telles que $\psi=\psi_1 \circ \cdots \circ \psi_k$.
+\end{defi}
+
+\begin{defi}
 Soit $\ell$ un nombre premier, un chemin descendant sur un volcan de $\ell$-isogénies d'une courbe elliptique $E$ est une suite de courbes elliptiques $\ell$-isogènes $E=E_0 \rightarrow E_1 \rightarrow E_2 \rightarrow ... \rightarrow E_m$ telles que $E_i \mapsto E_{i+1}$ est une $l$ -isogénie descendante et que l'on ait $l \nmid [ \mathcal{O}_m : \mathbb{Z}[\pi]]$. 
 \end{defi}
 
 \begin{defi}
 Soit $\ell$ un nombre premier, $E_c$ une courbe elliptique située sur le cratère d'un volcan de $\ell$-isogénies alors la longueur $h$ d'un chemin descendant partant de $E_c$ est appelée la hauteur du volcan.
 Soit $n$ la longueur d'un chemin descendant partant de la courbe elliptique $E$ alors $n$ est le niveau de $E$ dans le volcan d'isogénies.
+\end{defi}
+
+\begin{defi}
+\label{def:cou:som}
+Soit $E$ une courbe elliptique située au niveau $n$ du cratère du volcan de $\ell$-isogénies, soit $E_s$ la courbe codomaine de la $\ell^{h-n}$-isogénie ascendante $\widehat{\varphi}$ de domaine $E$. Alors $E_s$ est dite la \emph{courbe sommet} de $E$. 
 \end{defi}
 
 \begin{figure}[h]
@@ -2747,7 +2761,7 @@ Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ avec $E(\ma
 
 \begin{proof}
 %A l'aide des propositions \ref{desc-io} et \ref{ext-volc} le résultat est démontré dans \cite{IonicaJ10}
-A l'aide du lemme \ref{lem:val:ext} et de la proposition \ref{pro:niv:str} on ne peut que montrer que l'on a  $E(\mathbb{F}_{q^{\ell}})[l^{\infty}]=\mathbb{Z} / \ell^{r+\Delta} \mathbb{Z} \times \mathbb{Z} / \ell^{s+1} \mathbb{Z}$ avec $\Delta \geqslant 1$, pour prouver l'égalité on a besoin d'utiliser les couplages, pour plus de détails le lecteur peut aller voir \cite[§5.3.1]{Ionica2010}.
+A l'aide du lemme \ref{lem:val:ext} et de la proposition \ref{pro:niv:str} on ne peut que montrer que l'on a  $E(\mathbb{F}_{q^{\ell}})[l^{\infty}]=\mathbb{Z} / \ell^{r+\delta} \mathbb{Z} \times \mathbb{Z} / \ell^{s+1} \mathbb{Z}$ avec $\delta \geqslant 1$, pour prouver l'égalité on a besoin d'utiliser les couplages, pour plus de détails le lecteur peut aller voir \cite[§5.3.1]{Ionica2010}.
 \end{proof}
 
 \chapter{Action du Frobenius sur un volcan de $\ell$-isogénies}
@@ -2823,11 +2837,11 @@ On voit aussi que cette détermination n'est pas sujette à l'existence de nivea
 
 On va maintenant se focaliser sur la détermination de l'espace propre du Frobenius et voir comment le déterminer à précision finie. On travaille donc sur des courbes situées sur le cratère car c'est le seul cas où l'on peut diagonaliser le Frobenius. On verra par la suite comment utiliser cette diagonalisation pour avoir une détermination de sous-groupes cycliques de la $\ell^k$-torsion pour des courbes situées en dehors du cratère.
 
-On travaille donc avec points spécifiques que l'on va définir avant cela on a besoin d'introduire la notion suivante:
+On travaille donc avec points spécifiques :
 
-\begin{defi}
-Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\phi$ une isogénie de degré $\ell^k$ de domaine $E$, alors $\phi$ est dite une isogénie horizontale si il existe $\phi_1, \cdots, \phi_k$ $k$ $\ell$-isogénies horizontales, dans le sens de la définition \ref{def:iso:nom},telles que $\phi=\phi_1 \circ \phi_2 \circ \cdots \circ \phi_k$.
-\end{defi}
+%\begin{defi}
+%Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\phi$ une isogénie de degré $\ell^k$ de domaine $E$, alors $\phi$ est dite une isogénie horizontale si il existe $\phi_1, \cdots, \phi_k$ $k$ $\ell$-isogénies horizontales, dans le sens de la définition \ref{def:iso:nom},telles que $\phi=\phi_1 \circ \phi_2 \circ \cdots \circ \phi_k$.
+%\end{defi}
 
 \begin{defi}[Bases horizontales et diagonales]
   Soit~$E$ une courbe se situant sur le cratère, 
@@ -3130,21 +3144,16 @@ Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets
 
 
 
-Vu que l'on se place dans le contexte de l'algorithme de Couveignes alors on veut calculer la une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. On verra dans un autre chapitre \todo{spécifier ce chapitre} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu précédemment que l'on devait avoir $k \geqslant h+1$ \todo{mettre référence}.
+On travaille avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, on se place dans le contexte de l'algorithme de Couveignes et on veut calculer une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. En particulier on ne connaît pas la cardinalité de la courbe. On verra dans un autre chapitre \todo{spécifier ce chapitre} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu précédemment que l'on devait avoir $k \geqslant h+1$ (voir proposition \ref{pro:dia:hor}), on rappelle aussi que $\beta$ représente la plus grande valuation de la $\ell$-torsion rationnelle pour une courbe située sur le sommet du cratère du volcan de $\ell$-isogénies(voir sous section \ref{sub:classes}).
 
-On va donc travailler avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, et on va supposer dans un premier temps que l'on a $k>h$.
+Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère (voir proposition \ref{pro:mat:fro}), le calcul d'une base de la $\ell^k$ torsion diffère donc dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
 
-Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère, ainsi la calcul d'une base de la $\ell^k$ torsion diffère dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
-
-\todo{A mettre ici ? Peut etre dans le chapitre \ref{cha:tour}}
-On notera par $\mathsf{R}(i)$ une borne sur le coût espéré du calcul de racine d'un polynôme de degré $\ell$ à coefficients dans $\mathsf{F}_i$.
-On a $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$ en utilisant la variante de l'algorithme de Cantor-Zassenhaus décrite dans ~\cite[Chapter~14.5]{vzGJG03}.
-
-On va noter par $\mathsf{divise}(\ell,P)$ l'algorithme qui donne un des antécédents par la multiplication par $\ell$ du point $P$.
+On note par $\mathsf{divise}(\ell,P)$ l'algorithme qui donne un des antécédents par la multiplication par $\ell$ du point $P$.
+\todo{Franciser les algorithmes au moins pour le nom Algorithm}
 \begin{algorithm}
-\caption{\label{alg:bas:tri}Calcul d'une base de $E[\ell^k]$ dans laquelle l'action du Frobenius est triangulaire pour $E$ non situéee au niveau du cratère}
+\caption{\label{alg:bas:tri}Calcul d'une base de $E[\ell^k]$ dans laquelle l'action du Frobenius est triangulaire pour $E$ situéee au niveau $n \neq h$ d'un volcan de $\ell$-isogénies à cratère cyclique}
 \begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire non située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique;
+\REQUIRE $E$: une courbe elliptique ordinaire au niveau $n \neq h$ d'un volcan de $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif;
 \ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
 $\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
@@ -3179,8 +3188,8 @@ L'algorithme \ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ avec
 \end{prop}
 
 \begin{proof}
-L'équation à l'étape \ref{alg:trigonal:solve1} peut déjà être simpliée par $\ell^i$ avant d'être résolue modulo $\ell$. Pour $i<h-e-1$ comme $a=b$ et $c=d$ alors le calcul est trivial.
-Un calcul direct montre qu'à chaque étape $P_i,Q_i$ est une base dans laquelle l'action du Frobenius est triangulaire supérieure. 
+L'équation à l'étape \ref{alg:trigonal:solve1} peut déjà être simpliée par $\ell^i$ avant d'être résolue modulo $\ell$. Pour $i<h-e-1$ comme $a=b$ et $c=d=0$ alors le calcul est trivial.
+Un calcul direct montre qu'à chaque étape $(P_i,Q_i)$ est une base dans laquelle l'action du Frobenius est triangulaire supérieure. 
 
 
 Pour~$i = 0$, la base de~$E[\ell](\mathsf{F}_1)$ à l'étape~\ref{alg:point:divide}
@@ -3192,32 +3201,32 @@ opérations en utilisant l'algorithme de Cantor-Zassenhaus.
    $P$ défini dans $E(\mathsf{F}_{i})$, le calcul de
   $\mathsf{divise}(\ell, P)$ à l'étape ~\ref{alg:point:divide} coute $O(\mathsf{R}(i+1))$
   opérations.
-  L'évaluation de~$\pi(P')$ à l'étape~\ref{alg:trigonal:frobenius} a un cout
-  de~$O(\ell^{i}\mathsf{M}(\ell))$ par le théoèreme \ref{thm:frob-ell}.
+  L'évaluation de~$\pi(P')$ à l'étape~\ref{alg:trigonal:frobenius} a un côut
+  de~$O(\ell^{i}\mathsf{M}(\ell))$ par le théorème \ref{thm:frob-ell}.
   L'écriture~$\pi(P')$ comme une combinaison linéaire~$[u] P' + [v] Q'$ nécessite au
-  plus~$\ell^2$ additions de points, avec un cout de~$\ell^2
+  plus~$\ell^2$ additions de points, avec un côut de~$\ell^2
   \mathsf{M}(\ell^{i})$.
-  Le cout de résoudre l'équation à l'étape~\ref{alg:trigonal:solve1}
+  Le côut de résoudre l'équation à l'étape~\ref{alg:trigonal:solve1}
   par recherche exhaustive est négligeable, comme les 
-  opérations restantes. Comme le cout de chaque boucle est géométrique
+  opérations restantes. Comme le côut de chaque boucle est géométrique
   la dernière boucle domine la complexité et donne le résultat.
 \end{proof}
 
-\`A partir d'une base de la $\ell^k$ torsion pour une courbe $E$ située en dessous du cratère on peut se servir de celle-ci pour calculer une base diagonale de la $\ell^k$ torsion pour la courbe "sommet nom à trouver" \todo{Définir cela!} $Ec$  à l'aide de l'algorithme suivant:
+\`A partir d'une base de la $\ell^k$ torsion pour une courbe $E$ située en dessous du cratère on peut se servir de celle-ci pour calculer une base diagonale de la $\ell^k$ torsion pour la courbe sommet (voir définition \ref{def:cou:som} pour un rappel) $E_s$  à l'aide de l'algorithme suivant:
 
 \begin{algorithm}
-\caption{\label{alg:rem:tri}Calcul d'une base de $E_c[\ell^k]$ pour $E_c$ situéee au niveau du cratère à partir de $E$ non située sur le cratère et de l'action de $\pi$ dans celle-ci}
+\caption{\label{alg:rem:tri}Calcul d'une base de $E_s[\ell^k]$ dans laquelle l'action du Frobenius est diagonale pour $E_s$ la courbe sommet de $E$ située au niveau $n \neq h$ pour laquelle on on connait une base triangulaire du Frobenius}
 \begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire non située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique;
-$k$: une entier positif; $P,Q$ une base de $E[\ell^k]$; $\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
+\REQUIRE $E$: une courbe elliptique ordinaire située à un niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique;
+$k$: une entier positif; $(P,Q)$ une base de $E[\ell^k]$; $\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P)= \lambda P$, $ \pi(Q)=\delta P +  \mu Q$.
-\ENSURE $(P_k, Q_k )$: une base de $E_c[\ell^k]$;
+\ENSURE $(P_k, Q_k )$: une base de $E_s[\ell^k]$;
 $\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)=  \mu Q_k$.
 \FOR {$i=1$ to $h-v_{\ell}(\delta )$}
-\STATE\label{alg:rem:iso}  $\varphi \leftarrow $ isogénie de noyau $\langle \ell^{k-1}P \rangle$
+\STATE\label{alg:rem:iso}  $\widehat{\varphi} \leftarrow $ isogénie de noyau $\langle \ell^{k-1}P \rangle$
 \STATE\label{alg:rem:divide}
-  $P' \leftarrow \mathsf{divise}(\ell, \varphi(P))$; $Q' \leftarrow \mathsf{divise} (\ell, \varphi(Q))$.
+  $P' \leftarrow \mathsf{divise}(\ell, \widehat{\varphi}(P))$; $Q' \leftarrow \mathsf{divise} (\ell, \widehat{\varphi}(Q))$.
 \STATE\label{alg:rem:frobenius}
   compute $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda  & \ell \delta \\
@@ -3235,39 +3244,40 @@ c\ell^{k-1} & \mu  \end{smallmatrix} \right) \pmod {\ell^{k}}.$
 \end{algorithm}
 
 \begin{prop}
-Soit $E$ une courbe au niveau $h-e$ dans le volcan alors L'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_c[\ell^k]$ avec une complexité de $O( \mathsf{R}(k+\beta+e) + \ell^2\mathsf{M}(\ell^{k+\beta+e}))$ oéprations sur $\mathbb{F}_q$.
+Soit $E$ une courbe au niveau $h-e$ dans le volcan, soit $E_s$ sa courbe sommet associée, alors l'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité de $O( \mathsf{R}(k+\beta+e) + \ell\mathsf{M}(\ell^{k+\beta+e})+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ oéprations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
 L'équation à l'étape \ref{alg:rem:solve1} peut déjà être simplifiée par $\ell^{k-1}$ avant d'être résolue modulo $\ell$. Un calcul direct montre qu'à chaque étape $(P_i,Q_i)$ est une base dans laquelle le coefficient en haut à droite de la matrice de $\pi$ a sa valuation $\ell$-adique qui augmente de $1$. 
 
 
-A l'étape~\ref{alg:rem:divide} dans le pire des cas où l'on serait sur un volcan régulier on aurait les points $P$ et $Q$ situés au niveau $h-e+i$ sont définis dans $E(\mathsf{F}_{k+\beta+e-i})$ 
-alors le cout de $\mathsf{divise}$ est de $O(\mathsf{R}(k+\beta+e-i))$
+\`A l'étape~\ref{alg:rem:divide} dans le pire des cas où l'on serait sur un volcan régulier on aurait les points $P$ et $Q$ situés au niveau $h-e+i$ sont définis dans $E(\mathsf{F}_{k+\beta+e-i})$ 
+alors le côut de $\mathsf{divise}$ est de $O(\mathsf{R}(k+\beta+e-i))$
   opérations.
 
-  L'évaluation de~$\pi(Q')$ et $\pi(P')$ à l'étape~\ref{alg:rem:frobenius} a un cout
+  L'évaluation de~$\pi(Q')$ et $\pi(P')$ à l'étape~\ref{alg:rem:frobenius} a un côut
   de~$O(\ell^{k+\beta+e-i}\mathsf{M}(\ell))$ par le théoèreme \ref{thm:frob-ell}.
   L'écriture~$\pi(P')$ comme une combinaison linéaire~$\lambda P' + [v] Q'$ nécessite au
-  plus~$\ell$ additions de points, avec un cout de~$\ell
+  plus~$\ell$ additions de points, avec un côut de~$\ell
   \mathsf{M}(\ell^{k+\beta+e-i})$.
-  Le cout de résolution de l'équation à l'étape~\ref{alg:trigonal:solve1}
+  Le côut de résolution de l'équation à l'étape~\ref{alg:trigonal:solve1}
   par recherche exhaustive est négligeable, comme les 
   opérations restantes dont l'étape \ref{alg:rem:iso}.
-  Comme le cout de chaque boucle est géométrique
+  Comme le côut de chaque boucle est géométrique
   la première boucle domine la complexité et donne le résultat.
-  \todo{oubli cout du calcul de l'isogénie et de son application}
 \end{proof}
 
-Le résultat énoncé précédemment est valide pour les réguliers, pour les volcans non réguliers on a le résultat suivant:
+Le résultat énoncé précédemment est valide aussi bien pour les volcans réguliers que non réguliers, pour les volcans non réguliers on a le résultat spécifique suivant:
 
 \begin{prop}
-Soit $E$ une courbe au niveau $h-e$, situé au-dessus du premier niveau de stabilité dans le volcan alors L'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_c[\ell^k]$ avec une complexité de $O(e( \mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta})) )$ oéprations sur $\mathbb{F}_q$.
+Soit $E$ une courbe au niveau $h-e$, situé au-dessus du premier niveau de stabilité dans le volcan alors l'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_c[\ell^k]$ avec une complexité de $O(e( \mathsf{R}(k-\beta) + \ell\mathsf{M}(\ell^{k-\beta}))+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q) )$ oéprations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
 La preuve est la même que la précédente la seule différence est que à chaque fois que l'on monte d'un niveau dans la tour d'extension on peut toujours travailler dans le même corps, celui pour lequel les points de la $\ell^k$ torsion sont définis pour une courbe sur le cratère.
 \end{proof}
+Cette discussion sur la rationnalité de la $\ell^k$-torsion pour une courbe située en desous du cratère montre la nécessité dés lors que l'on sait à l'aide du calcul de l'action du Frobenius dans une une base de la $\ell^i$ torsion qu'une courbe est située en dessous du cratère de faire de suite une remontée afin d'éviter de travailler dans des extensions de corps supplémentaires, l'algorithme suivant est donc proposé pour palier à cette éventualité.
+
 
 
 Il est possible que la courbe elliptique $E$ avec laquelle on travaille soit déjà située sur le cratère alors dans un tel cas on peut directement utiliser l'algorithme suivant qui permet de calculer une base diagonale de la $\ell^k$ torsion.
@@ -3321,22 +3331,22 @@ Un simple calcul permet de vérifier qu'à la fin de chaque boucle
 $(P_{i+1},Q_{i+1})$ est diagonal.
 
 Pour~$i = 0$, la base de~$E[\ell](\mathsf{F}_1)$ à l'étape~\ref{alg:diagonal:divide}
-est calculée en factorisant le polynome de $\ell$-division
-à un cout espéré \todo{vérifier orthographe cout, coût} de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
+est calculée en factorisant le polynôme de $\ell$-division
+à un côut espéré \todo{vérifier orthographe côut, coût} de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
 opérations en utilisant l'algorithme de Cantor-Zassenhaus.
   Une fois que $E[\ell]$ a été calculé,on factorise la
   multiplication-par-$\ell$ comme un produit de deux $\ell$-isogénies. Ainsi
   fpour tout $P$ défini dans $E(\mathsf{F}_{i-\beta})$, le calcul de
   $\mathsf{divise}(\ell, P)$ à l'étape~\ref{alg:diagonal:divide} coûte $O(\mathsf{R}(i-\beta+1))$
   opérations.
-  L'évaluation de~$\pi(P')$ à l'étape~\ref{alg:diagonal:frobenius} a un cout
+  L'évaluation de~$\pi(P')$ à l'étape~\ref{alg:diagonal:frobenius} a un côut
   de~$O(\ell^{i-\beta}\mathsf{M}(\ell))$.
   Ecrire~$\pi(P')$ comme une combinaison linéraire~$[u] P' + [v] Q'$ nécessite au
-  moins~$\ell^2$ additions de points, avec un cout de ~$\ell^2
+  moins~$\ell^2$ additions de points, avec un côut de ~$\ell^2
   \mathsf{M}(\ell^{i-\beta+1})$.
-  Le cout de résolution des équations aux étapes~\ref{alg:diagonal:solve1}
+  Le côut de résolution des équations aux étapes~\ref{alg:diagonal:solve1}
   et~\ref{alg:diagonal:solve2} par recherche exhaustive est négligeable, comme
-  les autres opérations restantes. Comme le cout de chaque boucle augmente
+  les autres opérations restantes. Comme le côut de chaque boucle augmente
   de façon géométrique, la dernière boucle domine les autres, et donne la
   compléxité annoncée.
 \end{proof}
@@ -3366,7 +3376,7 @@ let $P_{i} \gets P' - (b/\mu) Q_i$.
 %\par\kern -4ex
 \begin{prop}\label{pro:alg:hor}
   L'algorithme~\ref{alg:hor:poi} est correct et calcule un point horizontal
-  avec un cout espéré de $O(\mathsf{R}(k-\beta) + k\mathsf{R}(h-\beta+1) + k\ell^2\mathsf{M}(\ell^{h-\beta+1}))$
+  avec un côut espéré de $O(\mathsf{R}(k-\beta) + k\mathsf{R}(h-\beta+1) + k\ell^2\mathsf{M}(\ell^{h-\beta+1}))$
   opérations dans $\mathbb{F}_q$.
 \end{prop}
 \begin{proof}
@@ -3387,15 +3397,15 @@ dominée par la dernière opération $\mathsf{divise}$ qui coûte $O(\mathsf{R}(
 \begin{prop}
 \label{pro:par:hor}
 Soit $E$ une courbe située au niveau $h-e$ dans un volcan de $\ell$-isogénies soit $E_s$ sa courbe sommet dont on connaît un point horizontal $P_h$ d'ordre $\ell^k$, soit $\varphi_s:Es \ rightarrow E $ la $\ell^{e}$ isogénie descendante telle que l'on connaît une décomposition en $e$ $\ell$ isogénies descendantes: $\varphi=\varphi_1 \circ \varphi_{e}$ alors le coût de calculer $\varphi(P)$ est de $O(e\mathsf{M}(\ell^{k-\beta+1}))$ opérations sur $\mathbb{F}_q$.
-Faire une proposition sur le cout d'évaluer un point partiellement horizontal.
+Faire une proposition sur le côut d'évaluer un point partiellement horizontal.
 \end{prop}
 
 \begin{proof}
-On rappelle que pour $P \in \mathsf{F}_{k-\beta}$ point horizontal alors on a  $\varphi(P) \in \mathsf{F}_{k-\beta}$ si le codomain. Le cout de l'évaluation d'une isogénie rationnelle de degré $\ell$ sur un point $P \in \mathsf{F}_{k-\beta}$ étant de $O(\mathsf{M}(\ell^{k-\beta+1}))$ opérations sur $\mathbb{F}_q$ on obtient le résultat.
+On rappelle que pour $P \in \mathsf{F}_{k-\beta}$ point horizontal alors on a  $\varphi(P) \in \mathsf{F}_{k-\beta}$. Le côut de l'évaluation d'une isogénie rationnelle de degré $\ell$ sur un point $P \in \mathsf{F}_{k-\beta}$ étant de $O(\mathsf{M}(\ell^{k-\beta+1}))$ opérations sur $\mathbb{F}_q$ on obtient le résultat.
 \end{proof}
 
 \begin{rem}
-Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne pas en compe le cout de calcul des isogénies descendants car si l'on veut calculer un point partiellement horizontal pour une coure non située sur le cratère alors il est raisonnable de penser que les algorithmes \ref{alg:bas:tri} et \ref{alg:rem:tri} ont été utilisé pour obtenir une base diagonale pour la courbe sommet de $E$, et ainsi au passage on a calculé les duales des isogénies dont on se sert dans l'algorithme \ref{alg:rem:tri}.
+Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne pas en compte le côut de calcul des isogénies descendantes $\varphi_i$ car si l'on veut calculer un point partiellement horizontal pour une courbe non située sur le cratère alors il est raisonnable de penser que les algorithmes \ref{alg:bas:tri} et \ref{alg:rem:tri} ont été utilisé pour obtenir une base diagonale pour la courbe située sur le cratère, ainsi on a calculé les duales des $\varphi_i$ dans l'algorithme \ref{alg:rem:tri}.
 \end{rem}
 
 Le premier objet à calculer afin d'obtenir une base horizontale est donc le calcul de la valeur de $h$. En particulier on sait que le polynôme caractéristique du Frobenius se scinde pour modulo la $\ell^h$ torsion mais pas sur la $\ell^{h-1}$ torsion on va dés lors avec l'algorithme \ref{alg:bas:fro} calculer une base de la $\ell^k$-torsion et la valeur des deux valeurs propres modulo $\ell^k$. Ainsi si celles-ci ne sont pas dictinctes on recommence l'algorithme pour une base de la $\ell^{k+1}$ torsion, sinon on calcule la valeur de $h$. De plus par la proposition \ref{pro:mat:fro} on connaît la hauteur de $E$ dans le volcan de $\ell$-isogénies. 
@@ -3407,9 +3417,12 @@ Lorsque l'on est en dessous du niveau de stabilité et que l'on connaît une bas
 
 Maintenant que l'on a  
 
-\todo{Cout de détermination de la forme du cratère à mettre !}
+\todo{côut de détermination de la forme du cratère à mettre !}
 
 \section{Atkin}
+
+\chapter{Calcul de polynôme d'interpolation}
+
 
 \chapter{Rebus}
 \subsubsection{Couveignes-Morain Bonne place ?}
@@ -3933,7 +3946,7 @@ Au niveau $i$ de la tour d'extension $\ell$-adique, un relèvement coûte $O(M(\
 \end{cor}
 
 \begin{proof}
-Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut être représenté dans une base bivariée, c'est à dire par un polynôme $A(X,Y)$ avec $\deg(A,X)<n=\ell^{i-1}$ et $\deg(A,Y)<\ell$. On calcule alors à l'aide de l'algorithme \ref{alg:Compose} le polynôme univarié en $Y$ $A^*=A[f,g,n]$ et $\gamma = g^{n-1}$ le tout à l'aide de $O(M(\ell^i)\log(\ell^i))$ opérations dans $\mathbb{F}_q$. Le relevé de $\alpha$ sera alors $A^*/\gamma$ modulo $S$. L'inversion de $\gamma$ coûte $O(M(\ell n)\log(\ell n))$ opérations, et la multiplication ajoute un cout de $O(M(\ell n))$.
+Soit $\alpha$ un élément de $\mathbb{F}_{q^{\ell^i}}$ alors $\alpha$ peut être représenté dans une base bivariée, c'est à dire par un polynôme $A(X,Y)$ avec $\deg(A,X)<n=\ell^{i-1}$ et $\deg(A,Y)<\ell$. On calcule alors à l'aide de l'algorithme \ref{alg:Compose} le polynôme univarié en $Y$ $A^*=A[f,g,n]$ et $\gamma = g^{n-1}$ le tout à l'aide de $O(M(\ell^i)\log(\ell^i))$ opérations dans $\mathbb{F}_q$. Le relevé de $\alpha$ sera alors $A^*/\gamma$ modulo $S$. L'inversion de $\gamma$ coûte $O(M(\ell n)\log(\ell n))$ opérations, et la multiplication ajoute un côut de $O(M(\ell n))$.
 \end{proof}
 
 \paragraph{Descente}
