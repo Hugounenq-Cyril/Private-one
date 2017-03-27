@@ -3237,7 +3237,7 @@ c\ell^{k-1} & \mu  \end{smallmatrix} \right) \pmod {\ell^{k}}.$
   \textbf{else} solve equation
  $y\ell^{k-1}(\mu - \lambda) + c \ell^{k-1}$; \textbf{end if}.
 \STATE
-  $P \leftarrow P' + y Q'$.
+  $P \leftarrow P' + y \ell^{k-1} Q'$.
 \ENDFOR
 \RETURN $(P_{k},Q_{k},\lambda,\mu).$
 \end{algorithmic}
@@ -3278,7 +3278,79 @@ La preuve est la même que la précédente la seule différence est que à chaqu
 \end{proof}
 Cette discussion sur la rationnalité de la $\ell^k$-torsion pour une courbe située en desous du cratère montre la nécessité dés lors que l'on sait à l'aide du calcul de l'action du Frobenius dans une une base de la $\ell^i$ torsion qu'une courbe est située en dessous du cratère de faire de suite une remontée afin d'éviter de travailler dans des extensions de corps supplémentaires, l'algorithme suivant est donc proposé pour palier à cette éventualité.
 
-
+\begin{algorithm}
+\caption{\label{alg:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
+\begin{algorithmic}[1]
+\REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan de $\ell$-isogénies avec cratère cyclique;
+$k$: une entier positif;
+\ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
+$\lambda, \mu, b \in \mathbb{Z}/\ell^k \mathbb{Z}$
+tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)= \mu Q_k + b P_k$.
+% \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$;$i \leftarrow 0$; $\mathsf{trigonal} \leftarrow \mathsf{Vrai} $; $P', Q' \leftarrow $ deux éléments tels que~$\langle P',Q' \rangle =  E[\ell]$.}
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i}\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+\WHILE {$\pi|(P',Q')= (\lambda + a\ell^i) \cdot I_2$}
+\STATE $i \leftarrow i+1$.
+\STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
+\STATE\label{alg:identical:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i}\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+\ENDWHILE 
+\STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{end if}.
+\WHILE{ $\mathsf{trigonal}$}
+\STATE \textbf{if} $c = 0$ \textbf{then} $y \leftarrow 0$;
+\STATE \textbf{else}  résoudre equation 
+$ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
+\STATE\label{alg:trigonal:upd-P}
+  $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow Q'$.
+\STATE{$\lambda \leftarrow \lambda + a \ell^{i} + \delta y$; $\mu \leftarrow \mu + d \ell^{i} $; $ \mathsf{trigonal} \leftarrow !(v_{\ell}(\lambda - \mu)==v_{\ell}(\delta)) $ .} %$\delta \leftarrow \delta + b \ell^i$
+\STATE\label{alg:rem:iso}  $\widehat{\varphi} \leftarrow $ isogénie de noyau $\langle \ell^{i}P_{i+1} \rangle$
+\STATE\label{alg:rem:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, \widehat{\varphi}(P_{i+1}))$; $Q' \leftarrow  \widehat{\varphi}(Q_{i+1})$.
+\STATE\label{alg:rem:frobenius}
+  compute $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda  & \ell \delta \\
+c\ell^{i} & \mu  \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+\STATE 
+  \textbf{if} $c=0$ \textbf{then} $y \leftarrow 0 $; 
+\STATE\label{alg:rem:solve1}
+  \textbf{else} solve equation
+ $y\ell^{i}(\mu - \lambda) + c \ell^{i}$; \textbf{end if}.
+\STATE
+  $P' \leftarrow P' + y \ell^{i} Q'$.
+\STATE\label{alg:trigonal:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, P')$; $Q' \leftarrow \mathsf{divise} (\ell, Q')$; $\delta \leftarrow \ell \delta $.
+\STATE $i \leftarrow i+1$.
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i} + \delta\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
+\STATE $\delta \leftarrow \delta + b \ell^i$
+\ENDWHILE
+\WHILE{$i<k $}
+\STATE\label{alg:trigonal:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i} \\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
+\STATE\label{alg:diagonal:solve1}
+  \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
+  réoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
+\STATE\label{alg:diagonal:solve2}
+  \textbf{else} résoudre équation
+  $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
+  $y \leftarrow -cx/b$; \textbf{end if}.
+\STATE\label{alg:diagonal:upd-P}
+  $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow x P' + Q'$.
+\STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
+\STATE $i \leftarrow i+1$. 
+\ENDWHILE
+\RETURN $(P_{k},Q_{k},\lambda,\mu, \delta).$
+\end{algorithmic}
+\end{algorithm}
 
 Il est possible que la courbe elliptique $E$ avec laquelle on travaille soit déjà située sur le cratère alors dans un tel cas on peut directement utiliser l'algorithme suivant qui permet de calculer une base diagonale de la $\ell^k$ torsion.
 
