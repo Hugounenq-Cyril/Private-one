@@ -3330,6 +3330,10 @@ c\ell^{i} & \mu  \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
 \STATE $\delta \leftarrow \delta + b \ell^i$
 \ENDWHILE
+\STATE \label{alg:ult:init:dia}
+réoudre équation~$\delta + x(\lambda - \mu) = 0$;
+\STATE 
+$Q_{i} \leftarrow Q_{i}+[x]P_{i}$
 \WHILE{$i<k $}
 \STATE\label{alg:trigonal:divide}
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
