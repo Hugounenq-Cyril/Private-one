@@ -3353,7 +3353,23 @@ opérations en utilisant l'algorithme de Cantor-Zassenhaus.
   compléxité annoncée.
 \end{proof}
 
-Maintenant on présente l'algorithme qui prend en entrée une courbe située sous le cratère et qui retourne une base diagonale de sa courbe sommet.
+Dès lors que l'on a vu comment calculer séparément une base de la $\ell^k$ 
+torsion dans laquelle la matrice représentant l'action du Frobenius est 
+trigonalisable (algorithme~\ref{alg:bas:tri}) et une base de la $\ell^k$ 
+torsion dans laquelle la matrice représentant l'action du Frobenius est 
+diagonalisable (algorithme~\ref{alg:bas:diag}), alors on peut traiter ces deux 
+cas de façon uniforme avec l'algorithme \ref{alg:app:bas:fro} présenté en 
+appendice. Cet algorithme reprend les deux algorithmes sus-cités il faut juste 
+noter que pour distinguer si l'on est sur une courbe située au niveau du 
+cratère il faut lorsque la matrice représentant l'action du Frobenius sur la 
+$\ell^i$ torsion n'est plus égale à une matrice scalaire tester l'égalité entre
+ les deux valeurs propres de la matrice. En effet par la 
+ proposition~\ref{pro:mat:fro}  si les deux valeurs propres sont égales alors 
+ on est sur une courbe située en dessous du niveau du cratère, sinon on est au 
+ niveau du cratère, dans les deux cas le niveau de la courbe dans le volcan de 
+ $\ell$-isogénies est $i-1$.
+
+Maintenant on présente l'algorithme~\ref{alg:ulti:fro} qui prend en entrée une courbe située à un niveau $h-e$ dans le volcan de $\ell$-isogénies et qui retourne une base diagonale de sa courbe sommet.
 
 \begin{algorithm}
 \caption{\label{alg:ulti:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
@@ -3368,7 +3384,7 @@ tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k$.
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
-\WHILE {$\pi|(P',Q')= (\lambda + a\ell^i) \cdot I_2$}
+\WHILE {$\pi|(P',Q')= (\lambda + a\ell^i) \cdot I_2$} \label{alg:ult:scalaire:debut}
 \STATE $i \leftarrow i+1$.
 \STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
 \STATE\label{alg:ult:identical:divide}
@@ -3376,16 +3392,16 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
-\ENDWHILE 
+\ENDWHILE \label{alg:ult:scalaire:fin}
 \STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{end if}.
 \STATE $h-e \leftarrow i-1$; $i \leftarrow 0$
-\WHILE{ $\mathsf{trigonal}$}
+\WHILE{ $\mathsf{trigonal}$} \label{alg:ult:trigonal:debut}
 \STATE \textbf{if} $c = 0$ \textbf{then} $y \leftarrow 0$;
 \STATE\label{alg:ult:trigonal:solve1} \textbf{else}  résoudre equation 
 $ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
 \STATE\label{alg:ult:trigonal:upd-P}
   $P_{h-e+i+1}^{(h-e+i)} \leftarrow P' + y Q'$; $Q_{h-e+i+1}^{(h-e+i)} \leftarrow Q'$.
-\STATE{$\lambda \leftarrow \lambda + a \ell^{h-e+i} + \delta y$; $\mu \leftarrow \mu + d \ell^{h-e+i} $; $ \mathsf{trigonal} \leftarrow !(v_{\ell}(\lambda - \mu)==v_{\ell}(\delta)) $ .} %$\delta \leftarrow \delta + b \ell^i$
+\STATE{$\lambda \leftarrow \lambda + a \ell^{h-e+i} + \delta y$; $\mu \leftarrow \mu + d \ell^{h-e+i} $; $ \mathsf{trigonal} \leftarrow !(v_{\ell}(\lambda - \mu)==v_{\ell}(\delta))$.} %$\delta \leftarrow \delta + b \ell^i$
 \STATE\label{alg:ult:rem:iso}  $\widehat{\varphi} \leftarrow $ isogénie de noyau $\langle [\ell^{h-e+i}]P_{h-e+i+1}^{(h-e+i)} \rangle$
 \STATE\label{alg:ult:rem:divide}
   $P' \leftarrow \mathsf{divise}(\ell, \widehat{\varphi}(P_{h-e+i+1}^{(h-e+i)}))$; $Q' \leftarrow  \widehat{\varphi}(Q_{h-e+i+1}^{(h-e+i)})$.
@@ -3407,35 +3423,61 @@ c\ell^{h-e+i} & \mu  \end{smallmatrix} \right) \pmod {\ell^{h-e+i+1}}.$
 \lambda + a\ell^{h-e+i} & b\ell^{h-e+i} + \delta\\
 c\ell^{h-e+i} & \mu + d\ell^{h-e+i} \end{smallmatrix} \right) \pmod {\ell^{h-e+i+1}}.$  
 \STATE $\delta \leftarrow \delta + b \ell^{h-e+i-1}$
-\ENDWHILE
+\ENDWHILE \label{alg:ult:trigonal:fin}
 \STATE \label{alg:ult:init:dia}
 résoudre équation~$\delta + x(\lambda - \mu) = 0$;
 \STATE 
 $Q_{i} \leftarrow Q_{i}+[x \ell^h]P_{i}$
-\WHILE{$i<k $}
-\STATE\label{alg:ult:trigonal:divide}
+\WHILE{$i<k $} \label{alg:ult:diagonal:debut}
+\STATE
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i} \\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
-\STATE\label{alg:ult:diagonal:solve1}
+\STATE
   \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
   réoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
-\STATE\label{alg:ult:diagonal:solve2}
+\STATE
   \textbf{else} résoudre équation
   $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
   $y \leftarrow -cx/b$; \textbf{end if}.
-\STATE\label{alg:ult:diagonal:upd-P}
+\STATE
   $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow [x] P' + Q'$.
 \STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
 \STATE $i \leftarrow i+1$. 
-\ENDWHILE
+\ENDWHILE \label{alg:ult:diagonal:fin}
 \RETURN $(P_{k},Q_{k},\lambda,\mu).$
 \end{algorithmic}
 \end{algorithm}
 
+Avant d'énoncer et démontrer la complexité de l'algorithme~\ref{alg:ulti:fro}, il y a un résultat important et intéressant de l'algorithme qui sera énoncé ici afin d'éviter de surcharger la preuve.
+
+\begin{lem}
+\label{lem:alg:rat}
+Dans l'algorithme~\ref{alg:ulti:fro} avec comme entrée une courbe située sur un volcan de $\ell$-isogénie régulier les points utilisés et calculés entre les étapes \ref{alg:ult:trigonal:debut} et \ref{alg:ult:trigonal:fin} sont définis dans $\mathsf{F}_{h+1-\beta}$.
+\end{lem}
+
+\begin{proof}
+Lors de la boucle $h-e+i$ qui commence à l'étape \ref{alg:ult:trigonal:debut} 
+et se termine à l'étape \ref{alg:ult:trigonal:fin} les points $P_{h-e+i+1}^{(h-e+i)}$ et 
+$Q_{h-e+i+1}^{(h-e+i)}$ situés sur une courbe au niveau $h-(e-i)$ sont d'ordre 
+$\ell^{h-e+i+1}$ et définis dans $\mathsf{F}_{h-(e-i)+1-\beta+(e-i)}=
+\mathsf{F}_{h+1-\beta}$ par la proposition \ref{pro:niv:str}. En particulier les 
+ antécédents de $P_{h-e+i+1}^{(h-e+i)}$ d'ordre $\ell^{h+1}$ sont définis dans 
+ $ \mathsf{F}_{h+1-\beta}$ or cette boucle s'arrête lorsque l'on atteint
+ la $\ell^{h+1}$ torsion pour la courbe au niveau du cratère, les opérations 
+ $\mathsf{divise}(\ell, P')$ et $\pi(P')=[u]P'+[v]Q'$ sont donc faites dans 
+ $ \mathsf{F}_{h+1-\beta}$. De même pour les points $Q'$ car à l'étape 
+ \ref{alg:ult:rem:divide} on transporte la base sur une courbe située un niveau
+ au-dessus dans le cratère et dès lors les points de $\ell$-divsion de 
+ $\widehat{\varphi}(Q_{h-e+i+1}^{(h-e+i)})$ sont aussi définis dans 
+ $\mathsf{F}_{h+1-\beta}$. Ainsi on vérifie bien qu'à la fin de la boucle on a
+ des points d'ordre $\ell^{h-e+i+2}$ définis sur une courbe au niveau 
+ $h-(e-i)+1$ et donc encore définis dans $\mathsf{F}_{h+1-\beta}$.
+\end{proof}
+
 \begin{prop}
-L'algorithme \ref{alg:ulti:fro} a une complexité de
+L'algorithme~\ref{alg:ulti:fro} a une complexité de
 \begin{enumerate}
 \item 
  $O(R(h-\beta)+\ell M(\ell^{h-\beta})+\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+e(R(h+1-\beta)+\ell^{h-\beta}M(\ell)+\ell^2 M(\ell^{h+1-\beta}))+\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}))$ opérations sur $\mathbb{F}_q$ pour une courbe en entrée située sur un volcan de $\ell$-isogénies régulier,  
@@ -3445,9 +3487,11 @@ L'algorithme \ref{alg:ulti:fro} a une complexité de
 \end{prop}
 \begin{proof}
 \begin{enumerate}
+
+
 \item 
 Pour une courbe située sur un volcan régulier si l'on a $E$ qui se trouve au 
-niveau $h-e$ alors la première étape de l'algorithme, celle où l'action du 
+niveau $h-e$ alors la première boucle de l'algorithme entre les étapes \ref{alg:ult:scalaire:debut} et \ref{alg:ult:scalaire:fin}, celle où l'action du 
 Frobenius est représentable à l'aide d'une matrice scalaire, dure jusqu'à ce 
 que l'on travaille avec des points d'ordre $\ell^{h-e+1}$, ainsi cette première
  boucle est répétée $h-e+1$ fois. Pour une boucle $i$ qui calcule l'action du 
@@ -3464,10 +3508,11 @@ que l'on travaille avec des points d'ordre $\ell^{h-e+1}$, ainsi cette première
   de calcul de la base de $\ell$-torsion: 
   $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
 
-Ensuite on passe à la partie où l'on calcule à chaque boucle une base de la $\ell^i$ torsion dans laquelle l'action du Frobenius est triangulaire, et l'on remonte d'un niveau dans le volcan et l'on trigonalise à nouveau la $\ell^i$ torsion. Cette étape est répétée du niveau $h-e$ où l'on exprime l'action du Frobenius dans une base de la $\ell^{h-e+1}$ torsion au niveau $h$ où l'on exprime l'action du Frobenius dans une base de la $\ell^{h+1}$ torsion. Il est important de noter qu'à chacune des itérations de cette boucle les points avec lesquels on travaille sont toujours définis dans le même corps $\mathsf{F}_{h+1-\beta}$ \todo{faire un lemme sur cela ????}.
-Lors de la boucle $h-e+i$, les étapes \ref{alg:ult:trigonal:solve1} et \ref{alg:ult:rem:solve1} sont résolues à l'aide d'une recherche exhaustive et ont un coût négligeable par rapport aux autres opérations. Lors de la boucle $h-e+i$ les points $P_{h-e+i+1}^{(h-e+i)}$ et $Q_{h-e+i+1}^{(h-e+i)}$ situés sur une courbe au niveau $h-(e-i)$ sont d'ordre $\ell^{h-e+i+1}$ et définis dans $\mathsf{F}_{h-(e-i)+1-\beta+(e-i)}=\mathsf{F}_{h+1-\beta}$. En particulier par la structure des volcans réguliers (proposition \ref{pro:niv:str}) les antécédents de $P_{h-e+i+1}^{(h-e+i)}$ d'ordre $\ell^{h+1}$ sont définis dans  $ \mathsf{F}_{h+1-\beta}$ or comme cette boucle s'arrête lorsque l'on atteint la $\ell^{h+1}$ torsion pour la courbe au niveau du cratère, les opérations $\mathsf{divise}, \pi(P')$ et $\pi(P')=[u]P'+[v]Q'$ sont faites dans $ \mathsf{F}_{h+1-\beta}$. De même pour les points $Q,Q'$ car à l'étape \ref{alg:ult:rem:divide} on transporte la base sur une courbe située un niveau au-dessu dans le cratère et dès lors les points de $\ell$ divions de $\widehat{\varphi}(Q_{h-e+i+1}^{(h-e+i)})$ sont aussi définis dans $ \mathsf{F}_{h+1-\beta}$. Ainsi le coût des étapes \ref{alg:ult:rem:divide} et \ref{alg:ult:trigonal:divide} est de $R(h+1-\beta)$, le coût de calcul de $\pi(P)$ est de $O(\ell^{h-\beta}M(\ell))$. L'écriture de $\pi(P)=[u]P+[v]Q$ aux étapes \ref{alg:ult:rem:frobenius} \ref{alg:ult:trigonal:frob} a un coût de $O(\ell^2 M(\ell^{h+1-\beta}))$. Le coût étant le même pour chaque boucle on a un coût total pour cette boucle de trigonalisation de $O(e(R(h+1-\beta)+\ell^{h-\beta}M(\ell)+\ell^2 M(\ell^{h+1-\beta})))$.
+Ensuite on passe à la partie entre les étapes \ref{alg:ult:trigonal:debut} et \ref{alg:ult:trigonal:fin} où l'on calcule à chaque boucle une base de la $\ell^{h-e+i}$ torsion dans laquelle l'action du Frobenius est triangulaire, et l'on remonte d'un niveau dans le volcan et l'on trigonalise à nouveau la $\ell^{h-e+i}$ torsion. Cette étape est répétée du niveau $h-e$ où l'on exprime l'action du Frobenius dans une base de la $\ell^{h-e+1}$ torsion au niveau $h$ où l'on exprime l'action du Frobenius dans une base de la $\ell^{h+1}$ torsion. Par le lemme~\ref{lem:alg:rat} les points avec lesquels on travaille sont toujours définis dans le même corps $\mathsf{F}_{h+1-\beta}$.
+Ainsi le coût des étapes \ref{alg:ult:rem:divide} et \ref{alg:ult:trigonal:divide} est de $R(h+1-\beta)$, le coût de calcul de $\pi(P)$ est de $O(\ell^{h-\beta}M(\ell))$. L'écriture de $\pi(P)=[u]P+[v]Q$ aux étapes \ref{alg:ult:rem:frobenius} \ref{alg:ult:trigonal:frob} a un coût de $O(\ell^2 M(\ell^{h+1-\beta}))$. Lors de la boucle $h-e+i$, les étapes \ref{alg:ult:trigonal:solve1} et \ref{alg:ult:rem:solve1} sont résolues à l'aide d'une recherche exhaustive et ont un coût négligeable par rapport aux autres opérations. 
+ Le coût étant le même pour chaque boucle on a un coût total pour cette boucle de trigonalisation de $O(e(R(h+1-\beta)+\ell^{h-\beta}M(\ell)+\ell^2 M(\ell^{h+1-\beta})))$.
 
-Pour la dernière boucle par une analyse similaire à celle faite dans la preuve de la proposition \ref{pro:alg:diagonal}, cette boucle a un coût de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) )$ opérations sur $\mathbb{F}_q$.
+Pour la dernière boucle entre les étapes \ref{alg:ult:diagonal:debut} et \ref{alg:ult:diagonal:fin} par une analyse similaire à celle faite dans la preuve de la proposition \ref{pro:alg:diagonal}, cette boucle a un coût de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) )$ opérations sur $\mathbb{F}_q$.
 
 \item 
 Pour une courbe située au dessus du niveau de stabilité, le corps de définition des points ne dépend que de  leur ordre et non pas de la courbe sur laquelle ils sont situés dans ces conditions, on peut faire une analyse de complexité de cet algorithme similaire à celle donnée dans la preuve de la proposition \ref{pro:alg:diagonal} pour obtenir une complexité totale de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
@@ -3527,7 +3572,7 @@ On rappelle que pour $P \in \mathsf{F}_{k-\beta}$ point horizontal alors on a  $
 \end{proof}
 
 \begin{rem}
-Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne pas en compte le calcul des isogénies descendantes $\varphi_i$ car si l'on veut calculer un point partiellement horizontal pour une courbe non située sur le cratère alors il est raisonnable de penser que l'un des deux algorithmes  \ref{alg:rem:tri} ou \ref{alg:ulti:fro} a été utilisé pour obtenir une base diagonale pour la courbe située sur le cratère, ainsi on a calculé les duales des $\varphi_i$ dans l'algorithme \ref{alg:rem:tri} ou \ref{alg:ulti:fro}.
+Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne pas en compte le calcul des isogénies descendantes $\varphi_i$ car si l'on veut calculer un point partiellement horizontal pour une courbe non située sur le cratère alors il est raisonnable de penser que l'un des deux algorithmes  \ref{alg:rem:tri} ou \ref{alg:ulti:fro} a été utilisé pour obtenir une base diagonale pour la courbe située sur le cratère, ainsi on a calculé les duales des isogénies $\varphi_i$ dans l'algorithme \ref{alg:rem:tri} ou \ref{alg:ulti:fro}.
 \end{rem}
 
 \section{Atkin}
@@ -4261,23 +4306,24 @@ Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra 
 
 \section{Algorithm for computing a trigonalisation or a diagonalisation at the same time}
 
-Le premier objet à calculer afin d'obtenir une base horizontale est donc le calcul de la valeur de $h$. En particulier on sait que le polynôme caractéristique du Frobenius se scinde pour modulo la $\ell^h$ torsion mais pas sur la $\ell^{h-1}$ torsion on va dés lors avec l'algorithme \ref{alg:bas:fro} calculer une base de la $\ell^k$-torsion et la valeur des deux valeurs propres modulo $\ell^k$. Ainsi si celles-ci ne sont pas dictinctes on recommence l'algorithme pour une base de la $\ell^{k+1}$ torsion, sinon on calcule la valeur de $h$. De plus par la proposition \ref{pro:mat:fro} on connaît la hauteur de $E$ dans le volcan de $\ell$-isogénies. 
-
-Lorsque l'on est en dessous du niveau de stabilité et que l'on connaît une base dans laquelle le Frobenius se trigonalise on est alors capable à l'aide du point $P_k$ vecteur propre, qui correspond au point d'ordre $\ell^k$ défini dans la plus petite extension, de calculer des isogénies montantes (voir proposition \ref{pro:iso:mon}) et donc de déterminer une chemin montant pour obtenir $E_c$ la courbe la plus proche de $E$ sur le cratère. Lorsque l'on est au-dessus du niveau de stabilité on peut éventuellement utiliser une méthode utilisant le couplage \cite{Ionica-Joux10} ou sinon la détermination d'isogénie montante à l'aide des méthodes décrites dans \cite{FouquetMorain02}, celles-ci ont un coût de $O()$ opérations sur $\mathbb{F}_q$. Ainsi l'isogénie montante $\widehat{\varphi}$ que l'on calcule étant rationnelle, elle commute avec le Frobenius et donc la matrice du Frobenius dans l'image de la base est la même, on va supposer sans perte de généralité que celle-ci a son noyau qui est engendré par $[\ell^{k-1}]P$. \`A chaque montée de niveau on calculera alors une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est trigonalisée (voire diagonalisée pour la courbe située sur le cratère).
-
-On voit que cet algorithme \ref{alg:bas:diag} est très similaire à celui de \ref{alg:bas:tri}, ainsi lorsque l'on cherche à calculer une base horizontale on ne sait pas forcément le niveau de la courbe dans le volcan de $\ell$-isogénies, faire un algorithme qui traite donc ces deux possibilités peut s'avérer utile, une version d'un tel algorithme \ref{alg:bas:fro} est donc proposé dans l'appendice car celui-ci ne propose pas de grandes différences par rapport aux algorithmes \ref{alg:bas:diag} et  \ref{alg:bas:tri}.
 
 \todo{Algorithme appendice intéressant seulement pour la condition qui distingue horizontal de trigonal}
+
+\bibliographystyle{plain}
+\bibliography{Biblio}
+
+\appendix
+
 \begin{algorithm}
-\caption{\label{alg:fin:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
+\caption{\label{alg:app:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan de $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif;
 \ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
-$\lambda, \mu, b \in \mathbb{Z}/\ell^k \mathbb{Z}$
-tels que $\pi(P_k)= \lambda P_k$, $ \pi(Q_k)= \mu Q_k + b P_k$.
+$\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
+tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k + [\delta] P_k$.
 % \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$;$i \leftarrow 0$; $P', Q' \leftarrow $ deux éléments tels que~$\langle P',Q' \rangle =  E[\ell]$.}
+\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$;$i \leftarrow 0$; $\delta \leftarrow 0$;$P', Q' \leftarrow $ tels que~$\langle P',Q' \rangle =  E[\ell]$.}
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
@@ -4286,7 +4332,6 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \STATE\label{alg:fin:identical:divide}
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE $i \leftarrow i+1$.
-\STATE   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
@@ -4296,13 +4341,13 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \WHILE{$i<k $}
 \STATE\label{alg:app:diagonal:solve1}
   \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
-  réoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
+  résoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
 \STATE\label{alg:app:diagonal:solve2}
   \textbf{else} résoudre équation
   $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
   $y \leftarrow -cx/b$; \textbf{end if}.
 \STATE\label{alg:app:diagonal:upd-P}
-  $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow x P' + Q'$.
+  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow [x] P' + Q'$.
 \STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
 \STATE $i \leftarrow i+1$.
 \STATE\label{alg:app:diagonal:divide}
@@ -4312,13 +4357,13 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
 \ENDWHILE
 \ELSE 
-\STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta) \leftarrow (Q',P', c \ell^i)$; \textbf{end if}.
+\STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{end if}.
 \WHILE{$i<k$}
 \STATE \textbf{if} $c = 0$ \textbf{then} $y \leftarrow 0$;
 \STATE \textbf{else}  résoudre equation 
 $ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
 \STATE\label{alg:app:trigonal:upd-P}
-  $P_{i+1} \leftarrow P' + y Q'$; $Q_{i+1} \leftarrow Q'$.
+  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow Q'$.
 \STATE{$\lambda \leftarrow \lambda + a \ell^{i} + \delta y$; $\mu \leftarrow \mu + d \ell^{i} $.}
 \STATE\label{alg:app:trigonal:divide}
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
@@ -4333,6 +4378,4 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \end{algorithmic}
 \end{algorithm}
 
-\bibliographystyle{plain}
-\bibliography{Biblio}
 \end{document}
