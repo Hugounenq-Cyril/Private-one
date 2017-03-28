@@ -2194,6 +2194,12 @@ Une implantation de construction de tours dyadiques et des opérations du Froben
 
 \section{Calcul de polynôme d'interpolation}
 
+multiplication and Euclidean division of polynomials of degree
+  at most $d$ in $\mathsf{F}_i[x]$ using $O(\mathsf{M}(d\ell^i))$ operations, via
+  Kronecker's
+  substitution, as already done in e.g.~\cite{vzgathen+shoup92};
+  \todo{Rediger cela}
+
 \label{sec:interpolation}
 
 Cette section reprend les travaux effectués en collaboration avec Luca De Feo,
@@ -2248,150 +2254,140 @@ T^{(i+1)}=\prod_{j=0}^bT^{(i,j)} \qquad\text{avec}\qquad
     d/\ell^{n-1} &\text{sinon.}
   \end{cases}
 \end{equation*}
+Il est alors évident que $T^{(i+1)}$ est le polynôme minimal de $v$ sur 
+$\mathsf{F}_{n-i+1}$.
 
+\begin{lem}\label{lemma:interpolation:minpoly}
+  Le coût de calcul de $T=T^{(n)}$ est de $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
+  operations dans $\mathbb{F}_q$.
+\end{lem}
 
+\begin{proof}
+  \`A l'étape $i$, à partir de la connaissance de $T^{(i)}$ on  calcule toutes 
+  les $T^{(i,j)}$ en utilisant le théorème~\ref{thm:frob-ell}. Le cout du 
+  Frobenius pour un polynome $T^{(i,j)}$ est de 
+  $O(\ell^i\ell^{n-i-1}\mathsf{M}(\ell))$ opérations,
+  \emph{i.e.} $O(\ell^n\mathsf{M}(\ell))$ pour chacun des $O(\ell)$ calculs.
+  \`A partir des $T^{(i,j)}$ on calcule $T^{(i+1)}$ en utilisant un arbre de 
+  sous-produits, comme décrit dans~\cite[Lemma~10.4]{vzGJG03}. Le polynôme 
+  résultant de cette opération est de degré $O(\ell^{i+1})$ et a ses 
+  coefficients définis dans $\mathsf{F}_{n-i}$, le coût total est donc 
+  $O(\mathsf{M}(\ell^{n+1})\log(\ell))$ opérations sur $\mathbb{F}_q$. Une fois
+   que $T^{(i+1)}$ a été calculé de cette manière, on opère une \emph{descente}
+  sur ses coefficients dans $\mathsf{F}_{n-i-1}$ à l'aide d'une réécriture 
+  qui n'a aucun coût algébrique.
+  On additionne ces résultats pour tous les $i$ pour obtenir le résultat 
+  énoncé. 
+\end{proof}
 
-
-si l'on note $\sigma$ l'action de $\pi \in 
-\mathsf{Gal}(\mathsf{F_n}:\mathbb{F}_q)$ sur un polynôme représentant l'action 
-de $\pi$ sur chacun des coefficients du polynôme on doit avoir:
+Il reste maintenant à calculer le polynôme d'interpolation. Supposons que l'on 
+ait calculé un tel polynôme d'interpolation $A^{(i)}$ défini sur 
+$\mathsf{F}_{n-i}$. On calcule alors le polynôme $L \in \mathsf{F}_{n}[x]/ 
+\langle T^{(i)} \rangle$ tel que 
+\begin{equation}
+\label{eq:crt:int}
+L= \sigma(L^{(i)}) \bmod \sigma(T^{(i)}) \quad \text{pour tout} \sigma \in 
+\mathsf{Gal}(\mathsf{F}_{n-i}/ \mathsf{F}_{n-i-1}) 
+\end{equation} 
+ce polynôme $P$ étant invariant sous l'action du groupe de Galois: 
+$\mathsf{Gal}(\mathsf{F}_{n-i}/ \mathsf{F}_{n-i-1})$, il est alors défini dans
+ $\mathsf{F}_{n-i-1}$. Par \ref{eq:crt:int} on a bien $L(v)=A^{(i)}(v)=w$, 
+ ainsi on a $L=A^{(i+1)}$. 
+ 
+ Cette discussion nous permet donc de définir la suite de polynômes $A^{(i)}$ 
+ définie pour $i \in [0, n]$, $A^{(0)}=w/T'(v)$. En 
+ supposant que l'on connaisse un $A^{(i)}$ pour $i < n$ de degré inférieur à $\ell^i$ à 
+ coefficients dans $\mathsf{F}_{n-i}$ alors pour $j \in [0, \ell-1]$ on définit
+ $A^{(i,j)}=\sigma_j(A^{(i)})$, et l'on pose:  
 \begin{equation*}
-\sigma(A(v))=\pi(w)
-\end{equation*} 
+A^{(i+1)}=\sum_{j=0}^bA^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} \qquad\text{avec}\qquad
+  b = \begin{cases}
+    \ell-1 &\text{if $i<n-1$,}\\
+    d/\ell^{n-1} &\text{sinon.}
+  \end{cases}
+\end{equation*}
+on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A} 
+défini dans $\mathsf{F}_{n-i}$.
 
+\begin{prop}
+  Soient $v,w\in F_n\setminus F_{n-1}$, le coût de calcul du polynôme minimal
+  $T\in \mathbb{F}_q[x]$ de $v$ et le polynôme d'interpolation $A\in 
+  \mathbb{F}_q[x]$ tel que $A(v)=w$ est $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
+  opérations dans $\mathbb{F}_q$.
+\end{prop}
+\begin{proof}
+  Une fois que les polynômes $T^{(i)}$ ont été calculé, on doit tout d'abord 
+  calculer $T'(v)$. Cette opération est faite à l'aide de calculs de restes de 
+  division Euclidiennes, en effet
+  $T'(v) = (((T' \bmod T^{(1)}) \bmod T^{(2)}) \cdots \bmod T^{(n)})$.
+  \`A l'étape $i$, on calcule la division Euclidienne d'un polynôme de degré
+   $O(\ell^{n-i+1})$ par un polynôme de degré $O(\ell^{n-i})$ dans  $F_i[x]$. 
+   On a alors le coût de chaque division qui est de $O(\mathsf{M}(\ell^{n+1}))$ par \todo{Rediger référence !!!}, 
+   ce qui donne un coût total de $O(n\mathsf{M}(\ell^{n+1}))$ opérations.
+   Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(\ell^n)\log(\ell^n))$ opérations.
 
+  \`A chaque étape $i$, les polynômes $A^{(i,j)}$ sont calculés à un coût de
+  $O(\ell^n\mathsf{M}(\ell))$ opérations, comme dans la preuve du  
+  lemme~\ref{lemma:interpolation:minpoly}.  Le calcul de $L^{(i+1)}$ utilise 
+  le meme arbre de produit que celui utilisé pour $T^{(i)}$ 
+  $T^{(i)}$, requiring $O(\log \ell)$ additions, multiplications and
+  utilisant $O(\log \ell)$ additions, multiplications et divisions de polynômes
+  de degré $O(\ell^{i+1})$ à coefficients dans $\mathsf{F}_{n-i}$, pour un coût
+   total de $O(\mathsf{M}(\ell^{n+1})\log(\ell))$. En additionnant pour tous les
+  $i$on obtient la complexité annoncée.
+\end{proof}
 
+On énonce alors un porblème plus général de calcul de polynôme d'interpolation 
+à l'aide de plusieurs couples de points de $\mathsf{F}_n$.
 
+\begin{prop}\label{prop:interpol}
+  Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathsf{F}_n$, 
+  $t_i$ le degré des polynômes minimaux de $v_i$, et l'on note  $t=\sum t_i$. 
+  Les polynômes
+  \begin{itemize}
+  \item $T\in \mathbb{F}_q[x]$ de degré $t$ tel que $T(v_i)=0$ pour tout $i$,
+    et
+  \item $A\in \mathbb{F}_q[x]$ de degré inférieur à $t$ tel que $A(v_i)=w_i$ pour
+    tout $i$
+  \end{itemize}
+  sont calculés avec un coût de
+  $O\bigl(\mathsf{M}(t)\log(s) + n\mathsf{M}(\ell^2t)\log(\ell)\bigr)$ opérations dans $\mathbb{F}_q$.
+\end{prop}
+\begin{proof}
+  Le polynôme $T$ est le produit de tous les polynômes minimaux $T_i$. Soit 
+  $n_i=v_\ell(t_i)$, de telle sorte que $v_i,w_i\in F_{n_i+1}\setminus F_{n_i}$,
+  et $\ell^{n_i}\leqslant t_i<\ell^{n_i+1}$.
+  On effectue une \emph{descente} sur $(v_i,w_i)$ pour les écrire comme des 
+  éléments de $\mathsf{F}_{n_i+1}$, cette opération étant juste une réécriture
+  elle a un coût algébrique nul. On calcule les $T_i$ utilisant à l'aide 
+   $O(n\mathsf{M}(\ell^{n_i+2})\log(\ell))$ opérations par 
+   \ref{lemma:interpolation:minpoly} . En bornant 
+  $\ell^{n_i}$ par $t_i$, en additionnant cela pour tout $i$, et en utilisant 
+  la superlinéarité de $\mathsf{M}$ on obtient un coût total de 
+  $O(n\mathsf{M}(\ell^2t)\log(\ell))$ opérations.
+  De la même manière on calcule les polynômes $A_i$ tels que $A_i(v_i)=w_i$
+  au même coût.
 
- et $L$:
- \begin{itemize}
-\item $T \in \mathbb{F}_q[x]$ est le polynôme minimal de $v$, de degré
-  $d=\deg T<\ell^n$;
-\item $L \in \mathbb{F}_q[x]$, de degré inférieur à $d$, tel que $L(v)=w$.
-\end{itemize}
+  Then we arrange the $T_i$'s into a binary subproduct tree and
+  On ordonne ensuite les $T_i$ dans une arbre de sous-produit binaire et 
+  on les multiplie entre eux. Un arbre équilibré, pas nécessairement optimal,
+  a une profondeur de $O(\log (s))$ et nécessite $O(\mathsf{M}(t))$ opérations
+   par niveau. Ainsi le coût de calcul de $T$ ests borné par 
+   $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
+  
+  Enfin, en utilisant la même strucutre d'arbre de sous-produit on applique le 
+  théorème des restes chinois proposé dans~\cite[Chapter~10]{vzGJG03} pour 
+  calculer $A$ au coût de $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
+\end{proof}
+
 Comme $v,w \not \in F_{n-1}$, on a forcément $v_\ell(d)=n-1$,ainsi $\ell^{n-1}
  \leqslant d<\ell^n$. L'utilisation d'un algorithme d'interpolation rapide 
- tel que  ceux présentés dans \cite[Chapter~10.2]{vzGG} nous donnerait un temps
+ tel que  ceux présentés dans \cite[Chapter~10.2]{vzGJG03} nous donnerait un temps
  de calcul de  $O\bigl(n\mathsf{M}(\ell^{2n})\log(\ell)\bigr)$ opérations sur 
  $\mathbb{F}_q$. Nous pouvons obtenir de meilleurs résultats en utilisant la 
  forme de la tour d'extensions $\ell$-adiques, et en particulier l'algorithme 
  de calcul du Frobenius donné dans le théorème~\ref{thm:fro-ell}.
- 
-Following~\cite{df10}, we first compute $T$, starting from
-$T^{(0)}=x-v$.  We let $\sigma_i$ be the map that takes all the
-coefficients of a polynomial in $F_{n-i}[x]$ to the power
-$\#F_{n-i-1}$. For $i=0,\dots,n-1$, suppose we know a polynomial
-$T^{(i)}$ of degree $\ell^i$ in $F_{n-i}[x]$. Then, compute the
-polynomials $T^{(i,j)}$ given by
-$T^{(i,j)}= \sigma_i^j\bigl (T^{(i)} \bigr)$
-for $0 \le j \le \ell-1$,
-and define
-\begin{equation}
-  \label{eq:interp}
-  T^{(i+1)}=\prod_{j=0}^{b} T^{(i,j)}
-  \qquad\text{with}\qquad
-  b = \begin{cases}
-    \ell-1 &\text{if $i<n-1$,}\\
-    d/\ell^{n-1} &\text{otherwise.}
-  \end{cases}
-\end{equation}
-One easily sees that
-$T^{(i+1)}$ is the minimal polynomial of $v$ over $F_{n-i+1}$.
 
-\begin{lem}\label{lemma:interpolation:minpoly}
-  The cost of computing $T$ is $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
-  operations in $\mathbb{F}_q$.
-\end{lem}
-
-\begin{proof}
-  At each step $i$, from the knowledge of $T^{(i)}$ we compute all
-  $T^{(i,j)}$ using Lemma~\ref{lemma:frob-ell}. The cost for a single
-  polynomial $T^{(i,j)}$ is of $O(\ell^i\ell^{n-i-1}\mathsf{M}(\ell))$ operations,
-  \emph{i.e.} $O(\ell^n\mathsf{M}(\ell))$ for all $O(\ell)$ of them.
-  From the $T^{(i,j)}$'s we compute $T^{(i+1)}$ using a subproduct
-  tree, as in~\cite[Lemma~10.4]{vzGG}. The result has degree
-  $O(\ell^{i+1})$ and coefficients in $F_{n-i}$, thus the overall cost is
-  $O(\mathsf{M}(\ell^{n+1})\log(\ell))$. After $T^{(i+1)}$ is computed this way, we
-  can convert its coefficients to $F_{n-i-1}$ at no algebraic cost.
-  Summing over all $i$, we obtain the stated complexity.
-\end{proof}
-
-We can finally proceed with the interpolation itself. First, compute
-$w' = w/T'(v)$ and let $L^{(0)}=w'$.  Next, for $i=0,\dots,n-2$,
-suppose we know a polynomial $L^{(i)}$ in $F_{n-i}[x]$ of degree less
-than $\ell^i$. We compute the polynomials $L^{(i,j)}$ given by
-$L^{(i,j)}= \sigma_i^j\bigl(L^{(i)}\bigr)$ and
-\[L^{(i+1)} = \sum_{j=0}^{b} L^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}},
-  \qquad\text{$b$ defined as in Eq.~\eqref{eq:interp}}.\]
-As shown in~\cite{df10}, $L^{(n)}$ is the
-polynomial $L$ we are looking for.
-
-\begin{prop}
-  Given $v,w\in F_n\setminus F_{n-1}$, the cost of computing the
-  minimal polynomial $T\in \mathbb{F}_q[x]$ of $v$ and the interpolating
-  polynomial $L\in \mathbb{F}_q[x]$ such that $L(v)=w$ is $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
-  operations in $\mathbb{F}_q$.
-\end{prop}
-\begin{proof}
-  After the polynomials $T^{(i)}$ have been computed, we need to
-  compute $T'(v)$. This is done by means of successive Euclidean
-  remainders, since
-  $T'(v) = (((T' \bmod T^{(1)}) \bmod T^{(2)}) \cdots \bmod T^{(n)})$.
-  At stage $i$, we have to compute the Euclidean division of a
-  polynomial of degree $O(\ell^{n-i+1})$ by one of degree $O(\ell^{n-i})$ in
-  $F_i[x]$. Using the complexities from Section~\ref{sub:towers} we
-  deduce that each division can be done in time $O(\mathsf{M}(\ell^{n+1}))$, for
-  a total of $O(n\mathsf{M}(\ell^{n+1}))$ operations. Then, computing
-  $w' = w/T'(v)$ takes $O(\mathsf{M}(\ell^n)\log(\ell^n))$ operations.
-
-  Finally, at each step $i$, the polynomials $L^{(i,j)}$ are computed
-  at a cost of $O(\ell^n\mathsf{M}(\ell))$, as in the proof of
-  Lemma~\ref{lemma:interpolation:minpoly}.  The computation of
-  $L^{(i+1)}$ uses the same subproduct tree as for the computation of
-  $T^{(i)}$, requiring $O(\log \ell)$ additions, multiplications and
-  divisions of polynomials of degree $O(\ell^{i+1})$ with coefficients in
-  $F_{n-i}$, for a total of $O(\mathsf{M}(\ell^{n+1})\log(\ell))$. Summing over all
-  $i$, the complexity statement follows readily.
-\end{proof}
-
-We end with the general problem of interpolating a polynomial in
-$\mathbb{F}_q[x]$ at points of $F_n$.
-
-\begin{prop}\label{prop:interpol}
-  Let $(v_1,w_1),\dots,(v_s,w_s)$ be pairs of elements of $F_n$, let
-  $t_i$ be the degree of the minimal polynomial of $v_i$, and let
-  $t=\sum t_i$. The polynomials
-  \begin{itemize}
-  \item $T\in \mathbb{F}_q[x]$ of degree $t$ such that $T(v_i)=0$ for all $i$,
-    and
-  \item $L\in \mathbb{F}_q[x]$ of degree less than $t$ such that $L(v_i)=w_i$ for
-    all $i$
-  \end{itemize}
-  can be computed using
-  $O\bigl(\mathsf{M}(t)\log(s) + n\mathsf{M}(\ell^2t)\log(\ell)\bigr)$ operations in $\mathbb{F}_q$.
-\end{prop}
-\begin{proof}
-  The polynomial $T$ is simply the product of all the minimal
-  polynomials $T_i$. Let $n_i=v_\ell(t_i)$, so that
-  $v_i,w_i\in F_{n_i+1}\setminus F_{n_i}$, and $\ell^{n_i}\leqslant t_i<\ell^{n_i+1}$.
-  We convert $(v_i,w_i)$ to a pair of elements of $F_{n_i+1}$ at no
-  algebraic cost, then we compute $T_i$ as explained previously at a
-  cost of $O(n\mathsf{M}(\ell^{n_i+2})\log(\ell))$ operations. Bounding $\ell^{n_i}$ by
-  $t_i$, summing over all $i$, and using the superlinearity of $\mathsf{M}$,
-  we obtain a total cost of $O(n\mathsf{M}(\ell^2t)\log(\ell))$ operations.
-  Simultaneously, we compute all the polynomials $L_i$ such that
-  $L_i(v_i)=w_i$, at the same cost.
-
-  Then we arrange the $T_i$'s into a binary subproduct tree and
-  multiply them together. A balanced binary
-  tree, though not necessarily optimal, has a depth of
-  $O(\log (s))$, and requires $O(\mathsf{M}(t))$ operations per level. Thus
-  we can bound the cost of computing $T$ by $O(\mathsf{M}(t)\log(s))$.
-
-  Finally, using the same subproduct tree structure, we apply the
-  Chinese remainder algorithm of~\cite[Chapter~10]{vzGG} to compute
-  the polynomial $L$ at the same cost $O(\mathsf{M}(t)\log(s))$.
-\end{proof}
 
 \chapter{Volcans d'isog\'enies}
 Les deux documents à citer pour cette section sont \cite{Kohel96} qui a introduit les graphes d'isogénie et   \cite{Fouquet01} qui a développé ces idées pour donner une structure à ces graphes.
