@@ -2211,11 +2211,45 @@ Dans cette section on s'intéresse au calcul d'un polynôme d'interpolation déf
  l'adapter à notre contexte pour l'analyse de complexité. 
 
 
-Le contexte de notre travail est le suivant, on travaille sur une tour 
-d'extensions $\ell$-adiques telle que $\mathbb{F}_q=F_0 \subset F_1 \subset 
-\cdots \subset F_n$, avec $[F_1:F_0]\mid(\ell-1)$, et $[F_{i+1}:F_i]=\ell$ pour
- tout $i>0$. Soit alors deux éléments $v,w \in F_n\setminus F_{n-1}$ on veut 
- alors calculer les polynômes $T$ et $L$:
+Le contexte de notre travail est le suivant, soit deux éléments $v,w \in F_n
+\setminus F_{n-1}$ on veut alors calculer le polynôme $A \in \mathbb{F}_q[x]$ 
+tel que:
+\begin{equation}
+\label{eq:int:A}
+A(v)=w
+\end{equation}
+en particulier si l'on note $T$ le polynôme minimal de $v$ il est clair que 
+l'on $A(v)+T(v)=w$ on va donc chercher à calculer le représentant minimal de 
+$A$ dans la classe de polynômes $\mathsf{F}_n[x]/ \langle T \rangle$.
+Pour un polynôme $A$ solution de ~\ref{eq:int:A} pour tout 
+$\pi \in \mathsf{Gal}(\mathsf{F}_n / \mathbb{F}_q)$:$A(\pi(v))=\pi(w)$. De même
+tout polynôme interpolant $\pi(v)$ sur $\pi(w)$ pour tout 
+$\pi \in \mathsf{Gal}(\mathsf{F}_n / \mathbb{F}_q)$ est invariant sous l'action
+de tout élément de de $\mathsf{Gal}(\mathsf{F}_n / \mathbb{F}_q)$ et est donc 
+défini dans $\mathbb{F}_q$. On peut donc construire un tel polynôme $A$ par 
+interpolation. 
+
+La première étape est donc de calculer $T$, on pourrait faire  cela simplement 
+à l'aide d'un arbre de produit binaire mais comme abordé dans dans la sous 
+section \ref{sub:fro:int} qui fait référence au travail de \cite[8.7]{DeFeo10}
+on utilise un arbre de produit tronqué qui prend avantage du faible coût du 
+Frobenius.
+
+
+
+
+si l'on note $\sigma$ l'action de $\pi \in 
+\mathsf{Gal}(\mathsf{F_n}:\mathbb{F}_q)$ sur un polynôme représentant l'action 
+de $\pi$ sur chacun des coefficients du polynôme on doit avoir:
+\begin{equation*}
+\sigma(A(v))=\pi(w)
+\end{equation*} 
+
+
+
+
+
+ et $L$:
  \begin{itemize}
 \item $T \in \mathbb{F}_q[x]$ est le polynôme minimal de $v$, de degré
   $d=\deg T<\ell^n$;
