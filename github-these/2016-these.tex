@@ -2235,6 +2235,20 @@ section \ref{sub:fro:int} qui fait référence au travail de \cite[8.7]{DeFeo10}
 on utilise un arbre de produit tronqué qui prend avantage du faible coût du 
 Frobenius.
 
+Ainsi on note $T^{(0)}=(x-v)$, $\sigma_i$ l'application qui applique à tous les
+ coefficients d'un polynôme à coefficients dans $\mathsf{F}_{n-i}$ l'action 
+ d'un élément générateur de $\mathsf{Gal}(F_{n-i-1} / \mathsf{F}_q)$. En 
+ supposant que l'on connaisse un $T^{(i)}$ pour $i < n$ de degré $\ell^i$ à 
+ coefficients dans $\mathsf{F}_{n-i}$ alors pour $j \in [0, \ell-1]$ on définit
+ $T^{(i,j)}=\sigma_j(T^{(i)})$, et l'on pose:  
+\begin{equation*}
+T^{(i+1)}=\prod_{j=0}^bT^{(i,j)} \qquad\text{avec}\qquad
+  b = \begin{cases}
+    \ell-1 &\text{if $i<n-1$,}\\
+    d/\ell^{n-1} &\text{sinon.}
+  \end{cases}
+\end{equation*}
+
 
 
 
