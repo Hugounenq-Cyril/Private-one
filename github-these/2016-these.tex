@@ -3794,18 +3794,105 @@ Pour savoir le coût des algorithmes dépendant de la profondeur de la courbe da
 \chapter{Algorithme de Couveignes $\ell$-adique}
 
 On rappelle que l'on se place dans le contexte suivant:
-\begin{localblock}{Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
-Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, calculer les courbes $E$, $E'$ telles que $j(E)=i$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
-\end{localblock}
+%\begin{block}
+%Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
+%Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, calculer les courbes $E$, $E'$ telles que $j(E)=i$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
+%\end{block}
 
 
 \section{Elkies}
 Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont été publié \cite{Defeo_Plut_Schost_2016}.
 
-Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une isogénie $\phi$ de degré $r$, alors pour deux bases diagoanles $(P,Q),(P',Q')$ de $E$ de $E[\ell^k]$ et $E'[\ell^k]$
+Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une isogénie $\phi$ de degré $r$, alors pour deux bases diagonales $(P,Q),(P',Q')$ de $E$ de $E[\ell^k]$ et $E'[\ell^k]$
 on pourrait croire que cela est suffisant cependant comme l'action du Frobenius sur la $\ell^h$ torsion est égal à l'action d'une matrice scalaire alors
- alors pour deux bases $(P,Q),(P',Q')$ (partiellement) horizontales de $E[\ell^k]$ et $E'[\ell^k]$ on a l'action de $\phi$ sur la base $(P,Q)$ qui peut être représentée comme une matrice diagonale car par la proposition~\ref{pro:par:iso} et le corollaire~\ref{cor:par:hor} les points de même direction sont mis en correspondance.
- On énumère donc toutes les $\ell^{2k-2}$ matrices possibles $M$. Pour chaque matrice $M$ on interpole l'action de $M$ sur les bases $(P,Q)$, $(P',Q')$ et l'on obient alors un polynôme d'interpolation $A$ dont on se sert pour calculer à l'aide d'une interpolation de Cauchy la fraction rationnelle représentant l'action de l'isogénie, on teste alors si l'on obtient bien une $r$-isogénie. En effet on cherche à calculer une fraction de degré $(r,r-1)$ à l'aide des abscisses des points d'ordre $\ell^k$ (voir discussion sur les points partiellement horizontaux dans la section \ref{sub:ss-gr}) il y en a $\ell^{2k-2}(\ell+1)$ or la fracion rationnelle est déterminée par $2r$ coefficients on a donc besoin d'avoir $k$ tel que $k\geqslant h+1$ et $\ell^{2k-2}(\ell+1)> 2r$.
+ alors pour deux bases $(\color{red}P_{\lambda} \color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q'_{\mu}\color{black})$ (partiellement) horizontales de $E[\ell^k]$ et $E'[\ell^k]$ on a l'action de $\phi$ sur la base $(\color{red}P_{\lambda} \color{black},\color{blue}Q_{\mu}\color{black})$ qui peut être représentée comme une matrice diagonale car par la proposition~\ref{pro:par:iso} et le corollaire~\ref{cor:par:hor} les points de même direction sont mis en correspondance:
+\[
+\left(
+\begin{matrix}
+\color{red} P'_{\lambda} \\
+\color{blue} Q'_{\mu} \color{black}
+\end{matrix}
+\right)= \left(\begin{matrix}
+a & 0 \\
+0 & b
+\end{matrix} \right)
+\left(
+\begin{matrix}
+\color{red} P_{\lambda} \\
+\color{blue} Q_{\mu} \color{black}
+\end{matrix}
+\right)
+\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^*
+\]
+ 
+ On énumère donc toutes les $\ell^{2k-2}$ matrices $M$ possibles $\left( 
+ \begin{smallmatrix} a & 0 \\ 0 & b \end{smallmatrix} \right)$. Pour chaque 
+matrice $M$ on interpole l'action de $M$ sur les bases $(\color{red}P_{\lambda}
+ \color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}
+\color{black},\color{blue}Q'_{\mu}\color{black})$ en calculant le 
+polynôme d'interpolation $A$ tel que 
+\[
+A(x([u]\color{red}P_{\lambda}
+ \color{black}+[v]\color{blue}Q_{\mu}\color{black}))=x([au]\color{red}P'_{\lambda}
+ \color{black}+[bv]\color{blue}Q'_{\mu}\color{black}) \quad \text{pour tout $[u]\color{red}P_{\lambda}
+ \color{black}+[v]\color{blue}Q_{\mu}\color{black}$ d'ordre $\ell^k$} 
+\]
+on se sert ensuite du polynôme $A$ pour calculer la fraction rationnelle $F$ telle que:
+\[
+F=A \bmod T
+\]
+avec $T$ le polynôme minimal qui s'annule sur tout point $[u]\color{red}
+P_{\lambda} \color{black}+[v]\color{blue}Q_{\mu}\color{black}$ d'ordre 
+$\ell^k$. C'est la fraction rationnelle $F$ qui lorsque l'on a bien choisi 
+$M$ doit représenter l'action de la $r$-isogénie $\phi$, on cherche donc à 
+calculer $F$ de degré $(r,r-1)$. Or une telle fraction rationnelle est 
+déterminée par $2r$ coefficients on doit donc avoir
+le nombre d'abscisses de points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}
+{2}$ strictement plus grand que $2r$ pour avoir suffisamment d'informations.
+On doit également avoir $k \geqslant h +1$ pour pouvoir calculer des points 
+(partiellement) horizontaux sur le volcan de $\ell$-isogénies par la 
+proposition~\ref{pro:dia:hor}.
+
+On peut donc maintenant énoncer l'algorithme complet pour calculer une 
+$r$-isogénie entre deux courbes elliptiques $E$, $E'$ définis sur des volcans 
+de $\ell$-isogénies à cratère cyclique: 
+
+\begin{algorithm}
+\caption{\label{alg:cou:ell-adique} Algorithme de Couveignes $\ell$-adique.}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique.
+\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE Calcul du plus petit $k$ tel que $\ell^{2k-2}(\ell+1)>4r$;
+\STATE Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide l'algorithme \ref{alg:ulti:fro};
+\STATE Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black})$ bases horizontales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide l'algorithme \ref{alg:hor:poi};
+\IF{$(E_s,E'_s) \neq (E_s,E'_s)$}
+\STATE Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black})=(),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black})=()$ bases partiellement horizontales de $E[\ell^k],E'[\ell^k]$ avec ...;
+\ENDIF
+\STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
+\RETURN $(P_{k},Q_{k},\lambda,\mu).$
+\end{algorithmic}
+\end{algorithm}
+
+
+ à l'aide d'une 
+interpolation de Cauchy la fraction rationnelle représentant l'action de 
+l'isogénie. La fraction rationnelle représentant une isogénie de degré $r$ 
+étant de de degré $(r,r-1)$ alors elle est entièrement déterminée par $2r$ 
+coefficients. En particulier on teste si la matrice $M$ est bonne en regardant si 
+le résultat de l'interpolation de Cauchy nous donne une fraction rationnelle de
+ degré $(r,r-1)$ ensuite on regarde si le dénominateur est un carré, enfin on 
+peut éventuellement regarder si le dénominateur est un facteur du polynôme de 
+$\ell$-divisions. Comme on calcule le polynôme d'interpolation à partir de
+ couples de points (et plus particulièrement d'abscisses) 
+de $E$ et $E'$ d'ordre $\ell^k$ et qu'il y a $\ell^{2k-2}(\ell+1)$ tels 
+points alors on a besoin de choisir $k$ tel que le nombre d'abscisses de points
+ d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}{2}$soit strictement plus grand 
+que $2r$ pour avoir suffisament d'information. On doit également avoir 
+$k \geqslant h +1$ pour pouvoir calculer des points (partiellement) horizontaux
+ sur le volcan de $\ell$-isogénies par la proposition~\ref{pro:dia:hor}.
+ 
+ , on teste donc si l'on obtient bien une $r$-isogénie. En effet on cherche à calculer une fraction de degré $(r,r-1)$ à l'aide des abscisses des points d'ordre $\ell^k$ (voir discussion sur les points partiellement horizontaux dans la section \ref{sub:ss-gr}) il y en a $\ell^{2k-2}(\ell+1)$ or la fracion rationnelle est déterminée par $2r$ coefficients on a donc besoin d'avoir $k$ tel que $k\geqslant h+1$ et $\ell^{2k-2}(\ell+1)> 2r$.
 \section{Analyse générale}
 
 
