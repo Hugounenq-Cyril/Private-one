@@ -3045,8 +3045,8 @@ On pourra noter qu'avec cette proposition on retrouve bien la proposition \ref{p
 
 On voit aussi que cette détermination n'est pas sujette à l'existence de niveau de stabilité vu que la preuve ne se fait pas à l'aide de la structure de la $\ell$-torsion.
 
-\subsection{Determination de sous groupes cycliques à l'aide du Frobenius}
-
+\subsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
+\label{sub:ss-gr}
 On va maintenant se focaliser sur la détermination de l'espace propre du Frobenius et voir comment le déterminer à précision finie. On travaille donc sur des courbes situées sur le cratère car c'est le seul cas où l'on peut diagonaliser le Frobenius. On verra par la suite comment utiliser cette diagonalisation pour avoir une détermination de sous-groupes cycliques de la $\ell^k$-torsion pour des courbes situées en dehors du cratère.
 
 On travaille donc avec points spécifiques :
@@ -3194,6 +3194,7 @@ Soient $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère
 \end{defi}
 
 \begin{cor}
+\label{cor:par:hor}
 Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se situent à une profondeur $e$ du cratère, $P \in E,P' \in E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in \langle P' \rangle$. 
 \end{cor}
 
@@ -3790,6 +3791,22 @@ Pour savoir le coût des algorithmes dépendant de la profondeur de la courbe da
 
 \section{Atkin}
 
+\chapter{Algorithme de Couveignes $\ell$-adique}
+
+On rappelle que l'on se place dans le contexte suivant:
+\begin{localblock}{Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
+Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, calculer les courbes $E$, $E'$ telles que $j(E)=i$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
+\end{localblock}
+
+
+\section{Elkies}
+Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont été publié \cite{Defeo_Plut_Schost_2016}.
+
+Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une isogénie $\phi$ de degré $r$, alors pour deux bases diagoanles $(P,Q),(P',Q')$ de $E$ de $E[\ell^k]$ et $E'[\ell^k]$
+on pourrait croire que cela est suffisant cependant comme l'action du Frobenius sur la $\ell^h$ torsion est égal à l'action d'une matrice scalaire alors
+ alors pour deux bases $(P,Q),(P',Q')$ (partiellement) horizontales de $E[\ell^k]$ et $E'[\ell^k]$ on a l'action de $\phi$ sur la base $(P,Q)$ qui peut être représentée comme une matrice diagonale car par la proposition~\ref{pro:par:iso} et le corollaire~\ref{cor:par:hor} les points de même direction sont mis en correspondance.
+ On énumère donc toutes les $\ell^{2k-2}$ matrices possibles $M$. Pour chaque matrice $M$ on interpole l'action de $M$ sur les bases $(P,Q)$, $(P',Q')$ et l'on obient alors un polynôme d'interpolation $A$ dont on se sert pour calculer à l'aide d'une interpolation de Cauchy la fraction rationnelle représentant l'action de l'isogénie, on teste alors si l'on obtient bien une $r$-isogénie. En effet on cherche à calculer une fraction de degré $(r,r-1)$ à l'aide des abscisses des points d'ordre $\ell^k$ (voir discussion sur les points partiellement horizontaux dans la section \ref{sub:ss-gr}) il y en a $\ell^{2k-2}(\ell+1)$ or la fracion rationnelle est déterminée par $2r$ coefficients on a donc besoin d'avoir $k$ tel que $k\geqslant h+1$ et $\ell^{2k-2}(\ell+1)> 2r$.
+\section{Analyse générale}
 
 
 \chapter{Rebus}
