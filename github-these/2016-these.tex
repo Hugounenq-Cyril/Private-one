@@ -3581,7 +3581,7 @@ $\ell^i$ torsion n'est plus égale à une matrice scalaire tester l'égalité en
 Maintenant on présente l'algorithme~\ref{alg:ulti:fro} qui prend en entrée une courbe située à un niveau $h-e$ dans le volcan de $\ell$-isogénies et qui retourne une base diagonale de sa courbe sommet.
 
 \begin{algorithm}
-\caption{\label{alg:ulti:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
+\caption{\label{alg:ulti:fro}Calcul d'une base de $E_s[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan de $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif;
@@ -3785,7 +3785,7 @@ Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne
 \end{rem}
 
 \begin{rem}
-Pour savoir le coût des algorithmes dépendant de la profondeur de la courbe dans le volcan de $\ell$-iogénies régulier appliqué à une courbe sur un volcan non-régulier il faut prendre en compte le nombre de niveaux en dessous du premier niveau de stabilité de la courbe 
+Pour savoir le coût des algorithmes dépendant de la profondeur de la courbe dans le volcan de $\ell$-iogénies régulier tels que les algorithmes~\ref{alg:bas:tri}, \ref{alg:rem:tri} et \ref{alg:ulti:fro}  appliqué à une courbe sur un volcan non-régulier il suffit uniquement de prendre en compte le nombre de niveaux en dessous du premier niveau de stabilité de la courbe. Si l'on utilise un algorithme qui monte de niveaux dans le volcan tels que les algorithmes~\ref{alg:rem:tri} et \ref{alg:ulti:fro} il faut alors faire une distinction des cas et adapter la complexité lorsque la courbe avec laquelle on travaille se situe au-dessus du premier niveau de stabilité.
 \end{rem}
 
 \section{Atkin}
