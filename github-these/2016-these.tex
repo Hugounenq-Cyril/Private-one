@@ -3467,22 +3467,22 @@ c\ell^{k-1} & \mu  \end{smallmatrix} \right) \pmod {\ell^{k}}.$
 \end{algorithm}
 
 \begin{prop}
-Soit $E$ une courbe au niveau $h-e$ dans le volcan, soit $E_s$ sa courbe sommet associée, alors l'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O( \mathsf{R}(k-\beta+e) + \ell\mathsf{M}(\ell^{k-\beta+e})+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ oéprations sur $\mathbb{F}_q$.
+Soit $E$ une courbe au niveau $h-e$ dans le volcan, soit $E_s$ sa courbe sommet associée, alors l'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O( \mathsf{R}(k-\beta+e) + \ell^{k-\beta+e}\mathsf{M}(\ell) + \ell\mathsf{M}(\ell^{k-\beta+e}))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
 L'équation à l'étape \ref{alg:rem:solve1} peut déjà être simplifiée par $\ell^{k-1}$ avant d'être résolue modulo $\ell$. Un calcul direct montre qu'à chaque étape $(P_i,Q_i)$ est une base dans laquelle le coefficient en haut à droite de la matrice de $\pi$ a sa valuation $\ell$-adique qui augmente de $1$. 
 
 
-\`A l'étape~\ref{alg:rem:divide} dans le pire des cas où l'on serait sur un volcan régulier on aurait les points $P$ et $Q$ situés au niveau $h-e+i$ définis dans $E(\mathsf{F}_{k-\beta+e-i})$ 
-alors le côut de $\mathsf{divise}$ est de $O(\mathsf{R}(k+\beta+e-i))$
+\`A l'étape~\ref{alg:rem:divide} dans le cas où l'on serait sur un volcan régulier on aurait les points $P$ et $Q$ situés au niveau $h-e+i$ définis dans $E(\mathsf{F}_{k-\beta+e-i})$ 
+alors le côut de $\mathsf{divise}$ est de $O(\mathsf{R}(k+\beta+e+1-i))$
   opérations.
 
   L'évaluation de~$\pi(Q')$ et $\pi(P')$ à l'étape~\ref{alg:rem:frobenius} a un côut
-  de~$O(\ell^{k-\beta+e-i}\mathsf{M}(\ell))$ par le théoèreme \ref{thm:frob-ell}.
+  de~$O(\ell^{k-\beta+e+1-i}\mathsf{M}(\ell))$ par le théoèreme \ref{thm:frob-ell}.
   L'écriture~$\pi(P')$ comme une combinaison linéaire~$\lambda P' + [v] Q'$ nécessite au
   plus~$\ell$ additions de points, avec un côut de~$\ell
-  \mathsf{M}(\ell^{k-\beta+e-i})$.
+  \mathsf{M}(\ell^{k-\beta+e+1-i})$.
   Le côut de résolution de l'équation à l'étape~\ref{alg:trigonal:solve1}
   par recherche exhaustive est négligeable, comme les 
   opérations restantes dont l'étape \ref{alg:rem:iso}.
@@ -3490,10 +3490,10 @@ alors le côut de $\mathsf{divise}$ est de $O(\mathsf{R}(k+\beta+e-i))$
   la première boucle domine la complexité et donne le résultat.
 \end{proof}
 
-Le résultat énoncé précédemment est valide aussi bien pour les volcans réguliers que non réguliers, pour les volcans non réguliers on a le résultat spécifique suivant:
+Le résultat énoncé précédemment est valide aussi bien pour les volcans réguliers que non réguliers, cependant pour les volcans non réguliers on a le résultat spécifique suivant:
 
 \begin{prop}
-Soit $E$ une courbe au niveau $h-e$, situé au-dessus du premier niveau de stabilité dans le volcan alors l'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O(e( \mathsf{R}(k-\beta) + \ell\mathsf{M}(\ell^{k-\beta}))+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q) )$ oéprations sur $\mathbb{F}_q$.
+Soit $E$ une courbe au niveau $h-e$, situé au-dessus du premier niveau de stabilité dans le volcan alors l'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O(e( \mathsf{R}(k-\beta) + \ell^{k-\beta}\mathsf{M}(\ell) + \ell\mathsf{M}(\ell^{k-\beta})))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
