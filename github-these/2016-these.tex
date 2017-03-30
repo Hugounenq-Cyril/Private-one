@@ -3860,14 +3860,21 @@ de $\ell$-isogénies à cratère cyclique:
 \begin{algorithm}
 \caption{\label{alg:cou:ell-adique} Algorithme de Couveignes $\ell$-adique.}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique.
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $e$ d'un volcan de $\ell$-isogénies avec cratère cyclique.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE Calcul du plus petit $k$ tel que $\ell^{2k-2}(\ell+1)>4r$;
 \STATE Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide l'algorithme \ref{alg:ulti:fro};
 \STATE Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black})$ bases horizontales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide l'algorithme \ref{alg:hor:poi};
 \IF{$(E_s,E'_s) \neq (E_s,E'_s)$}
-\STATE Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black})=(),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black})=()$ bases partiellement horizontales de $E[\ell^k],E'[\ell^k]$ avec ...;
+\STATE Calcul de $((\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black}))=((\varphi(\color{red}P_{\lambda}\color{black}),\varphi(\color{blue}Q_{\mu}\color{black})),(\varphi'(\color{red}P'_{\lambda}\color{black}),\varphi'(\color{blue}Q_{\mu}'\color{black})))$ bases partiellement horizontales de $E[\ell^k],E'[\ell^k]$ avec les $\ell^e$ isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
+\ENDIF
+\STATE Calcul des liste de représentants $L,L'$ des orbites des points d'ordre $\ell^k$ sous l'action de $\pi$;
+\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\ell^{k}\mathbb{Z} \right)^*$}
+\STATE Calcul des des polynômes $A$ et $T$ par la méthode décrite dans la proposition~\ref{prop:interpol}section \ref{sec:interpolation});
+\STATE Calcul de la fraction rationnelle $F=A \bmod T$ à l'aide d'une interpolation de Cauchy;
+\IF{$\mathsf{Test}(F)==Faux$}
+\STATE $A$
 \ENDIF
 \STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
 \RETURN $(P_{k},Q_{k},\lambda,\mu).$
