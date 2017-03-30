@@ -3691,8 +3691,8 @@ $\ell^{h-e+i+1}$ et définis dans $\mathsf{F}_{h-(e-i)+1-\beta+(e-i)}=
 L'algorithme~\ref{alg:ulti:fro} a une complexité de
 \begin{enumerate}
 \item 
- $O(R(h-\beta)+\ell M(\ell^{h-\beta})+\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+e(R(h+1-\beta)+\ell^{h-\beta}M(\ell)+\ell^2 M(\ell^{h+1-\beta}))+\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}))$ opérations sur $\mathbb{F}_q$ pour une courbe en entrée située sur un volcan de $\ell$-isogénies régulier,  
-\item  $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ pour une courbe en entrée située au dessus du niveau de stabilité.
+ $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+(e+1)(R(h+1-\beta)+\ell^{h+1-\beta}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{h+1-\beta}))+\mathsf{R}(k-\beta) + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta}))$ opérations sur $\mathbb{F}_q$ pour une courbe en entrée située sur un volcan de $\ell$-isogénies régulier,  
+\item  $O(\mathsf{R}(k-\beta) + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ pour une courbe en entrée située au dessus du premier niveau de stabilité.
 
 \end{enumerate}
 \end{prop}
@@ -3700,7 +3700,9 @@ L'algorithme~\ref{alg:ulti:fro} a une complexité de
 \begin{enumerate}
 
 
-\item 
+\item On décompose l'algorithme selon les 3 boucles qui le compose:
+\begin{enumerate}
+\item[\'Etapes \ref{alg:ult:scalaire:debut} à \ref{alg:ult:scalaire:fin}]
 Pour une courbe située sur un volcan régulier si l'on a $E$ qui se trouve au 
 niveau $h-e$ alors la première boucle de l'algorithme entre les étapes \ref{alg:ult:scalaire:debut} et \ref{alg:ult:scalaire:fin}, celle où l'action du 
 Frobenius est représentable à l'aide d'une matrice scalaire, dure jusqu'à ce 
@@ -3709,24 +3711,26 @@ que l'on travaille avec des points d'ordre $\ell^{h-e+1}$, ainsi cette première
  Frobenius sur la $\ell^{i+1}$ torsion, on a les points d'ordre $\ell^{i+1}$ 
  qui sont définis dans $\mathsf{F}_{i+1+e-\beta}$ par la proposition 
  \ref{pro:niv:str}, ainsi le coût de calcul d'un tel point $P$ à l'étape 
- \ref{alg:ult:identical:divide} est de $R(i+1+e-\beta)$. Le coût de calcul de 
- $\pi(P)$ est de $O(\ell^{i+e-\beta}M(\ell))$. L'écriture de $\pi(P)=[u]P$, on 
+ \ref{alg:ult:identical:divide} est de $\mathsf{R}(i+1+e-\beta)$. Le coût de calcul de 
+ $\pi(P)$ est de $O(\ell^{i+1+e-\beta}\mathsf{M}(\ell))$ par le théorème 
+ \ref{thm:frob-ell}. L'écriture de $\pi(P)=[u]P$, on 
  se limite à ce cas là car on est dans le cas où la matrice représentant 
- l'action du Frobenius est scalaire, a un coût de $O(\ell M(\ell^{i+1+e-\beta}))$. 
+ l'action du Frobenius est scalaire, a un coût de $O(\ell \mathsf{M}(\ell^{i+1+e-\beta}))$. 
  Comme chaque boucle a un coût géométrique, c'est la dernière qui domine et 
  donne la complexité. Ainsi cette première partie de l'algorithme a un coût 
- total de $O(R(h-\beta)+\ell M(\ell^{h-\beta}))$ auquel il faut ajouter le coût
+ total de $O(\mathsf{R}(h+1-\beta)+\ell^{h+1-\beta}M(\ell)+\ell\mathsf{M}(\ell^{h+1-\beta}))$ auquel il faut ajouter le coût
   de calcul de la base de $\ell$-torsion: 
   $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
 
-Ensuite on passe à la partie entre les étapes \ref{alg:ult:trigonal:debut} et \ref{alg:ult:trigonal:fin} où l'on calcule à chaque boucle une base de la $\ell^{h-e+i}$ torsion dans laquelle l'action du Frobenius est triangulaire, et l'on remonte d'un niveau dans le volcan et l'on trigonalise à nouveau la $\ell^{h-e+i}$ torsion. Cette étape est répétée du niveau $h-e$ où l'on exprime l'action du Frobenius dans une base de la $\ell^{h-e+1}$ torsion au niveau $h$ où l'on exprime l'action du Frobenius dans une base de la $\ell^{h+1}$ torsion. Par le lemme~\ref{lem:alg:rat} les points avec lesquels on travaille sont toujours définis dans le même corps $\mathsf{F}_{h+1-\beta}$.
-Ainsi le coût des étapes \ref{alg:ult:rem:divide} et \ref{alg:ult:trigonal:divide} est de $R(h+1-\beta)$, le coût de calcul de $\pi(P)$ est de $O(\ell^{h-\beta}M(\ell))$. L'écriture de $\pi(P)=[u]P+[v]Q$ aux étapes \ref{alg:ult:rem:frobenius} \ref{alg:ult:trigonal:frob} a un coût de $O(\ell^2 M(\ell^{h+1-\beta}))$. Lors de la boucle $h-e+i$, les étapes \ref{alg:ult:trigonal:solve1} et \ref{alg:ult:rem:solve1} sont résolues à l'aide d'une recherche exhaustive et ont un coût négligeable par rapport aux autres opérations. 
- Le coût étant le même pour chaque boucle on a un coût total pour cette boucle de trigonalisation de $O(e(R(h+1-\beta)+\ell^{h-\beta}M(\ell)+\ell^2 M(\ell^{h+1-\beta})))$.
+\item[\'Etapes \ref{alg:ult:trigonal:debut} à \ref{alg:ult:trigonal:fin}] Ensuite on passe à la partie entre les étapes \ref{alg:ult:trigonal:debut} et \ref{alg:ult:trigonal:fin} où l'on calcule à chaque boucle une base de la $\ell^{h-e+i}$ torsion dans laquelle l'action du Frobenius est triangulaire, et l'on remonte d'un niveau dans le volcan et l'on trigonalise à nouveau la $\ell^{h-e+i}$ torsion. Cette étape est répétée du niveau $h-e$ où l'on exprime l'action du Frobenius dans une base de la $\ell^{h-e+1}$ torsion au niveau $h$ où l'on exprime l'action du Frobenius dans une base de la $\ell^{h+1}$ torsion. Par le lemme~\ref{lem:alg:rat} les points avec lesquels on travaille sont toujours définis dans le même corps $\mathsf{F}_{h+1-\beta}$.
+Ainsi le coût des étapes \ref{alg:ult:rem:divide} et \ref{alg:ult:trigonal:divide} est de $\mathsf{R}(h+1-\beta)$, le coût de calcul de $\pi(P)$ est de $O(\ell^{h+1-\beta}\mathsf{M}(\ell))$. L'écriture de $\pi(P)=[u]P+[v]Q$ aux étapes \ref{alg:ult:rem:frobenius} et \ref{alg:ult:trigonal:frob} a un coût de $O(\ell^2 \mathsf{M}(\ell^{h+1-\beta}))$. Lors de la boucle $h-e+i$, les étapes \ref{alg:ult:trigonal:solve1} et \ref{alg:ult:rem:solve1} sont résolues à l'aide d'une recherche exhaustive et ont un coût négligeable par rapport aux autres opérations. 
+ Le coût étant le même pour chaque boucle on a un coût total pour cette boucle de trigonalisation de $O(e(\mathsf{R}(h+1-\beta)+\ell^{h+1-\beta}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{h+1-\beta})))$.
 
-Pour la dernière boucle entre les étapes \ref{alg:ult:diagonal:debut} et \ref{alg:ult:diagonal:fin} par une analyse similaire à celle faite dans la preuve de la proposition \ref{pro:alg:diagonal}, cette boucle a un coût de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) )$ opérations sur $\mathbb{F}_q$.
+\item[\'Etapes \ref{alg:ult:diagonal:debut} à \ref{alg:ult:diagonal:fin}]	Pour la dernière boucle entre les étapes \ref{alg:ult:diagonal:debut} et \ref{alg:ult:diagonal:fin} par une analyse similaire à celle faite dans la preuve de la proposition \ref{pro:alg:diagonal}, cette boucle a un coût de $O(\mathsf{R}(k-\beta) + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta}) )$ opérations sur $\mathbb{F}_q$.
 
+\end{enumerate}
 \item 
-Pour une courbe située au dessus du niveau de stabilité, le corps de définition des points ne dépend que de  leur ordre et non pas de la courbe sur laquelle ils sont situés dans ces conditions, on peut faire une analyse de complexité de cet algorithme similaire à celle donnée dans la preuve de la proposition \ref{pro:alg:diagonal} pour obtenir une complexité totale de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
+Pour une courbe située au dessus du premier niveau de stabilité, le corps de définition des points ne dépend que de  leur ordre et non pas de la courbe sur laquelle ils sont situés. Dans ces conditions on peut faire une analyse de complexité de cet algorithme similaire à celle donnée dans la preuve de la proposition \ref{pro:alg:diagonal} pour obtenir une complexité totale de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell^{k-\beta}\mathsf{M}(\ell) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
 \end{enumerate}
 \end{proof}
 
@@ -3867,14 +3871,15 @@ de $\ell$-isogénies à cratère cyclique:
 \STATE Calcul du plus petit $k$ tel que $\ell^{2k-2}(\ell+1)>4r$;
 \STATE  \label{alg:cou-ell:bdiag}
 Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide l'algorithme \ref{alg:ulti:fro};
-\STATE Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black})$ bases horizontales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide l'algorithme \ref{alg:hor:poi};
+\STATE \label{alg:cou-ell:bhor}
+Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black})$ bases horizontales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide l'algorithme \ref{alg:hor:poi};
 \IF{$(E_s,E'_s) \neq (E_s,E'_s)$}
 \STATE Calcul de $((\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black}))=((\varphi(\color{red}P_{\lambda}\color{black}),\varphi(\color{blue}Q_{\mu}\color{black})),(\varphi'(\color{red}P'_{\lambda}\color{black}),\varphi'(\color{blue}Q_{\mu}'\color{black})))$ bases partiellement horizontales de $E[\ell^k],E'[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
 \ENDIF
 \STATE Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\ell^{k}\mathbb{Z} \right)^*$}
 \STATE Réordonancement de la liste $L'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
-\STATE Calcul des des polynômes $A_{a,b}$ et $T$ par la méthode décrite dans la proposition~\ref{prop:interpol}section (\ref{sec:interpolation});
+\STATE Calcul des des polynômes $A_{a,b}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
 \STATE Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
 \IF{$\mathsf{Test}(F)$}
 \RETURN $F$
@@ -3899,21 +3904,28 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   $O(\ell\mathsf{M}(\ell)\log(q))$. Ces étapes sont faites en pratique au cours
   de l'étape~\ref{alg:cou-ell:bdiag}.
   
-  Le coût de calcul des bases diagonales de courbes sommets à 
-  l'étape~\ref{alg:cou-ell:bdiag} se fait à l'aide de 
-  l'algorithme~\ref{alg:ulti:fro} qui a un coût de $O()$ par la proposition~\ref{pro:alg:ulti}.
+  On se place désormais dans le cas où $k$ strictement plus grand que $h$ 
+  le coût de calcul des bases 
+  diagonales de courbes sommets à l'étape~\ref{alg:cou-ell:bdiag} se fait à 
+  l'aide de l'algorithme~\ref{alg:ulti:fro} qui a un coût dans le pire des cas
+  de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+k(\mathsf{R}(k-\beta) + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta})))$ 
+  par la proposition~\ref{pro:alg:ulti} dans le cas où la courbe se situe sur 
+  un volcan régulier et de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+\mathsf{R}(k-\beta) 
+  + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta}))$ dans le
+   cas où la courbe se situe au-dessus du premier niveau de stabilité.
 
-  Pour $h$ inférieur à $k-1$, l'étape ~\ref{alg:hor:poi} coûte en moyenne 
+  L'étape~\ref{alg:cou-ell:bhor} qui utilise 
+  l'algorithme~\ref{alg:hor:poi} coûte en moyenne 
   $O(k\mathsf{R}(k-\beta) + k\ell^2\mathsf{M}(\ell\sqrt{r}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ d'après la 
   proposition~\ref{pro:alg:hor} et le théorème~\ref{th:horizontal}.
-  En utilisant le  résultat  donné par ~\cite[Chapter~14.5]{vzGJG03} pour le coût de $R$, 
-  on a alors un coût borné par 
+  En utilisant le  résultat  donné par ~\cite[Chapter~14.5]{vzGJG03} pour le 
+  coût de $\mathsf{R}$, on a alors un coût borné par 
   $O(\mathsf{M}(r\ell^3)\log(r)\log(\ell)\log(\ell q))$.
   
   Il faut éventuellement rajouter le coût de calcul des points partiellement 
-  horizontaux si les courbes en entrée ne se situent pas sur le cratère celui-ci est de
-  $O()$ 
-  par la proposition~\ref{pro:par:hor}.
+  horizontaux si les courbes en entrée ne se situent pas sur le cratère 
+  celui-ci est dans le pire des cas de
+  $O(k\mathsf{M}(\ell^{k-\beta+1}))$ par la proposition~\ref{pro:par:hor}.
 
   Par la proposition~\ref{pro:clas:fro}(~\ref{prop:classes:count}), il y a au 
   plus~$O(k \cdot \ell^{k+\beta})$ classes de Galois dans~$E[\ell^k]$. 
@@ -3933,30 +3945,13 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   est $s \in O(k \cdot \ell^{k+\beta})$, on calcule alors les polynômes~$T$
   et~$A_{a,b}$ à un coût de~$O(\mathsf{M}(r \ell^4)\log(r)\log(\ell))$.  Le coût
   de calcul de $F_{a,b}$, et l'identification de l'isogénie, est dominé par
-  celui du calcul de~$L_{a,b}$~\cite[§3.3]{defeo10}.  Enfin, 
-  approximately ${\ell^{2k}=O(r \ell^2)}$~matrices candidates doivent être testées
+  celui du calcul de~$L_{a,b}$~\cite[§3.3]{DeFeo10}.  Enfin, en moyenne 
+   ${\ell^{2k}=O(r \ell^2)}$~matrices candidates doivent être testées
    avant de trouver l'isogénie.
 \end{proof}
 
 
- à l'aide d'une 
-interpolation de Cauchy la fraction rationnelle représentant l'action de 
-l'isogénie. La fraction rationnelle représentant une isogénie de degré $r$ 
-étant de de degré $(r,r-1)$ alors elle est entièrement déterminée par $2r$ 
-coefficients. En particulier on teste si la matrice $M$ est bonne en regardant si 
-le résultat de l'interpolation de Cauchy nous donne une fraction rationnelle de
- degré $(r,r-1)$ ensuite on regarde si le dénominateur est un carré, enfin on 
-peut éventuellement regarder si le dénominateur est un facteur du polynôme de 
-$\ell$-divisions. Comme on calcule le polynôme d'interpolation à partir de
- couples de points (et plus particulièrement d'abscisses) 
-de $E$ et $E'$ d'ordre $\ell^k$ et qu'il y a $\ell^{2k-2}(\ell+1)$ tels 
-points alors on a besoin de choisir $k$ tel que le nombre d'abscisses de points
- d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}{2}$soit strictement plus grand 
-que $2r$ pour avoir suffisament d'information. On doit également avoir 
-$k \geqslant h +1$ pour pouvoir calculer des points (partiellement) horizontaux
- sur le volcan de $\ell$-isogénies par la proposition~\ref{pro:dia:hor}.
- 
- , on teste donc si l'on obtient bien une $r$-isogénie. En effet on cherche à calculer une fraction de degré $(r,r-1)$ à l'aide des abscisses des points d'ordre $\ell^k$ (voir discussion sur les points partiellement horizontaux dans la section \ref{sub:ss-gr}) il y en a $\ell^{2k-2}(\ell+1)$ or la fracion rationnelle est déterminée par $2r$ coefficients on a donc besoin d'avoir $k$ tel que $k\geqslant h+1$ et $\ell^{2k-2}(\ell+1)> 2r$.
+
 \section{Analyse générale}
 
 
