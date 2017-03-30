@@ -3396,7 +3396,7 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \end{algorithm}
 
 \begin{prop}
-L'algorithme \ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ située au niveau $h-e<h$ dans le volcan de $\ell$-isogénies avec une complexité espérée de $O(\mathsf{R}(k-\beta+e) + \ell^2\mathsf{M}(\ell^{k-\beta+e}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ lorsque $E$ est située sur un volcan régulier et de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ lorsque $E$ est au dessus du niveau de stabilité.
+L'algorithme \ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ située au niveau $h-e<h$ dans un volcan de $\ell$-isogénies régulier avec une complexité espérée de $O(\mathsf{R}(k-\beta+e) + \ell^2\mathsf{M}(\ell^{k-\beta+e})+ \ell^{k-\beta+e}\mathsf{M}(\ell) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ et de $O(\mathsf{R}(k-\beta)+ \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ lorsque $E$ est au dessus du niveau de stabilité.
 \end{prop}
 
 \begin{proof}
@@ -3426,6 +3426,14 @@ opérations en utilisant l'algorithme de Cantor-Zassenhaus.
   opérations restantes. Comme le côut de chaque boucle est géométrique
   la dernière boucle domine la complexité et donne le résultat.
 \end{proof}
+
+\begin{rem}
+Il est important de noter que dans le cas des volcans réguliers on a $\beta=h$ voir proposition~\ref{pro:niv:str} et l'on a $e \leqslant h$, ainsi certains algorithmes dépendant de la profondeur  ne seront pas forcéments plus coûteux à cause d'une hauteur élevée notamment dans les algorithmes qui remontent dans le volcan (tels \ref{alg:rem:tri}, \ref{alg:ulti:fro}), le lemme~\ref{lem:alg:rat} en est une illustration.
+\end{rem}
+
+\begin{rem}
+Pour savoir le coût des algorithmes dépendant de la profondeur de la courbe dans le volcan de $\ell$-iogénies régulier tels que les algorithmes~\ref{alg:bas:tri}, \ref{alg:rem:tri} et \ref{alg:ulti:fro}  appliqué à une courbe sur un volcan non-régulier il suffit uniquement de prendre en compte le nombre de niveaux en dessous du premier niveau de stabilité de la courbe. Si l'on utilise un algorithme qui monte de niveaux dans le volcan tels que les algorithmes~\ref{alg:rem:tri} et \ref{alg:ulti:fro} il faut alors faire une distinction des cas et adapter la complexité lorsque la courbe franchit le premier niveau de stabilité. Dans ce cas-là de volcans non-réguliers la distinction entre $h$ et $\beta$ est tout à fait pertinente.
+\end{rem}
 
 \`A partir d'une base de la $\ell^k$ torsion pour une courbe $E$ située en dessous du cratère on peut se servir de celle-ci pour calculer une base diagonale de la $\ell^k$ torsion pour la courbe sommet (voir définition \ref{def:cou:som} pour un rappel) $E_s$. Afin de permettre au lecteur de se rendre compte du niveau dans le volcan auquel les points sont définis on notera $P^{(h-e+i)}$ pour signifier que le point $P$ appartient à une courbe elliptique située au niveau $h-e+i$ du volcan de $\ell$-isogénies quand cela n'est pas évident de par le contexte. \todo{A mettre dans une définition ???} Nous présentons maintennant l'algorithme qui calcule une base la $\ell^k$ torsion de $E_s$:
 
@@ -3485,7 +3493,7 @@ alors le côut de $\mathsf{divise}$ est de $O(\mathsf{R}(k+\beta+e-i))$
 Le résultat énoncé précédemment est valide aussi bien pour les volcans réguliers que non réguliers, pour les volcans non réguliers on a le résultat spécifique suivant:
 
 \begin{prop}
-Soit $E$ une courbe au niveau $h-e$, situé au-dessus du premier niveau de stabilité dans le volcan alors l'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_c[\ell^k]$ avec une complexité espérée de $O(e( \mathsf{R}(k-\beta) + \ell\mathsf{M}(\ell^{k-\beta}))+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q) )$ oéprations sur $\mathbb{F}_q$.
+Soit $E$ une courbe au niveau $h-e$, situé au-dessus du premier niveau de stabilité dans le volcan alors l'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O(e( \mathsf{R}(k-\beta) + \ell\mathsf{M}(\ell^{k-\beta}))+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q) )$ oéprations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
@@ -3790,9 +3798,6 @@ On rappelle que pour $P \in \mathsf{F}_{k-\beta}$ point horizontal alors on a  $
 Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne pas en compte le calcul des isogénies descendantes $\varphi_i$ car si l'on veut calculer un point partiellement horizontal pour une courbe non située sur le cratère alors il est raisonnable de penser que l'un des deux algorithmes  \ref{alg:rem:tri} ou \ref{alg:ulti:fro} a été utilisé pour obtenir une base diagonale pour la courbe située sur le cratère, ainsi on a calculé les duales des isogénies $\varphi_i$ dans l'algorithme \ref{alg:rem:tri} ou \ref{alg:ulti:fro}.
 \end{rem}
 
-\begin{rem}
-Pour savoir le coût des algorithmes dépendant de la profondeur de la courbe dans le volcan de $\ell$-iogénies régulier tels que les algorithmes~\ref{alg:bas:tri}, \ref{alg:rem:tri} et \ref{alg:ulti:fro}  appliqué à une courbe sur un volcan non-régulier il suffit uniquement de prendre en compte le nombre de niveaux en dessous du premier niveau de stabilité de la courbe. Si l'on utilise un algorithme qui monte de niveaux dans le volcan tels que les algorithmes~\ref{alg:rem:tri} et \ref{alg:ulti:fro} il faut alors faire une distinction des cas et adapter la complexité lorsque la courbe avec laquelle on travaille se situe au-dessus du premier niveau de stabilité.
-\end{rem}
 
 \section{Atkin}
 
@@ -3909,7 +3914,10 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   diagonales de courbes sommets à l'étape~\ref{alg:cou-ell:bdiag} se fait à 
   l'aide de l'algorithme~\ref{alg:ulti:fro} qui a un coût dans le pire des cas
   de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+k(\mathsf{R}(k-\beta) + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta})))$ 
-  par la proposition~\ref{pro:alg:ulti} dans le cas où la courbe se situe sur 
+  par la proposition~\ref{pro:alg:ulti}. Cette borne est très grossière car 
+  elle est prise pour la cas où l'on aurait $e=h=k-1$ et dans ce cas où le 
+  volcan est régulier on devrait avoir $\beta \geqslant h-1$. 
+  Dans le cas où la courbe se situe sur 
   un volcan régulier et de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+\mathsf{R}(k-\beta) 
   + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta}))$ dans le
    cas où la courbe se situe au-dessus du premier niveau de stabilité.
