@@ -4064,9 +4064,10 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   possibles) dont les opérations 
   les plus coûteuses sont regarder si le dénominateur de $F$ est un carré ou 
   encore si il divise le polynôme de $r$-division cela coûte $O(\mathsf{M}(r)
-  \log(r))$ opérations auquel il faut ajouter le coût de calcul du polynôme de 
-  $r$-division  de $r\mathsf{M}(r^2)\log(r)\log(r q)$. Tous ces coûts sont dominés par
-  celui du calcul de~$A_{a,b}$.  Enfin, en moyenne 
+  \log(r))$ opérations, on ne prend pas en compte toutefois le coût de calcul
+   du polynôme de $r$-division  de $r\mathsf{M}(r^2)\log(r)\log(r q)$ car 
+  les autres tests suffisent en général pour conclure. Tous ces coûts sont donc
+  dominés par celui du calcul de~$A_{a,b}$.  Enfin, en moyenne 
    ${\ell^{2k}=O(r \ell^2)}$~matrices candidates doivent être testées
    avant de trouver l'isogénie.
 \end{proof}
