@@ -5,8 +5,8 @@
 \usepackage[francais]{babel}
 \usepackage{hyperref}
 \usepackage{amssymb,amsthm,amsmath,amsfonts}
-\usepackage{algorithmic}
 \usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage{units}
 \usepackage{lmodern}
 \usepackage{fp}
@@ -51,8 +51,6 @@
 \theoremstyle{definition}
 \newtheorem{nota}[thm]{Notation}
 
-\def\algorithmicrequire{\textbf{Entrée:}}
-\def\algorithmicensure{\textbf{Sortie:}}
 
 \newcommand{\defeq}{\mathrel{\mathop:}=}
 
@@ -81,7 +79,6 @@
 
 
 
-
 \renewcommand{\headrulewidth}{1pt}% 1pt header rule
 \renewcommand{\headrule}{\hbox to\headwidth{%
   \color{orange}\leaders\hrule height \headrulewidth\hfill}}
@@ -104,6 +101,43 @@
 %Texte 
 %\end{abstract}
 \selectlanguage{french}% french si rapport en français
+
+
+%\renewcommand{\ALG@name}{Algorithme} %Redéfintion du  nom Algorithm
+%\renewcommand{\listalgorithmname}{Liste des \ALG@name s} \makeatother
+%
+%\newcommand{\newalgname}[1]{%
+%  \renewcommand{\ALG@name}{#1}%
+%}
+%\newalgname{Algorithme}% All algorithms will be called "Algorithme"
+%\renewcommand{\listalgorithmname}{Liste des \ALG@name s}
+%\newcommand{\algorithmicend}{\textbf{fin}}
+%\newcommand{\algorithmicif}{\textbf{si}}
+%\newcommand{\algorithmicthen}{\textbf{alors}
+\floatname{algorithm}{Algorithme}
+\def\algorithmicrequire{\textbf{Entrée:}}
+\def\algorithmicensure{\textbf{Sortie:}}
+
+\renewcommand{\algorithmicend}{\textbf{fin}}
+\renewcommand{\algorithmicif}{\textbf{si}}
+\renewcommand{\algorithmicthen}{\textbf{alors}}
+\renewcommand{\algorithmicelse}{\textbf{sinon}}
+\renewcommand{\algorithmicelsif}{\algorithmicelse\ \algorithmicif}
+\renewcommand{\algorithmicendif}{\algorithmicend\ \algorithmicif}
+\renewcommand{\algorithmicfor}{\textbf{pour}}
+\renewcommand{\algorithmicforall}{\textbf{pour tout}}
+\renewcommand{\algorithmicdo}{\textbf{faire}}
+\renewcommand{\algorithmicendfor}{\algorithmicend\ \algorithmicfor}
+\renewcommand{\algorithmicwhile}{\textbf{tant que}}
+\renewcommand{\algorithmicendwhile}{\algorithmicend\ \algorithmicwhile}
+\renewcommand{\algorithmicloop}{\textbf{boucle}}
+\renewcommand{\algorithmicendloop}{\algorithmicend\ \algorithmicloop}
+\renewcommand{\algorithmicrepeat}{\textbf{repéter}}
+\renewcommand{\algorithmicuntil}{\textbf{jusqu'à}}
+\renewcommand{\algorithmicprint}{\textbf{imprimer}}
+\renewcommand{\algorithmicreturn}{\textbf{retourner}}
+\renewcommand{\algorithmictrue}{\textbf{Vrai}}
+\renewcommand{\algorithmicfalse}{\textbf{Faux}}
 
 
 
@@ -462,7 +496,7 @@ Soit $\varphi:E_1 \rightarrow E_2$ une isogénie.
 \begin{equation*}
 [\widehat{m}]=[m] \text{ et } \deg[m]=m^2.
 \end{equation*}
-\item $\deg( \varphi)=\deg(\widehat{\varphi})$,
+Hu\item $\deg( \varphi)=\deg(\widehat{\varphi})$,
 \item $\widehat{\widehat{\varphi}}=\varphi$.
 \end{enumerate}
  
@@ -3398,7 +3432,7 @@ $\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)=[\delta] P_k +  [\mu] Q_k$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$; $\delta \leftarrow 0$; $P_0, Q_0 \leftarrow $ éléments neutres de~$E[\ell]$.}
-\FOR {$i=0$  to  $k-1$}
+\FOR {$i=0$  à  $k-1$}
 \STATE\label{alg:point:divide}
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE\label{alg:trigonal:frobenius}
@@ -3406,12 +3440,12 @@ tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)=[\delta] P_k +  [\mu] Q_k$.
 \lambda + a\ell^{i} & b\ell^{i} + \delta \\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \STATE 
-  \textbf{if} $b \ell^i + \delta=0$ \textbf{then} $(P',Q',a,b,c,d) \leftarrow (Q',P',d,c,b,a) $  \textbf{end if}.
+  \textbf{si} $b \ell^i + \delta=0$ \textbf{alors} $(P',Q',a,b,c,d) \leftarrow (Q',P',d,c,b,a) $  \textbf{fin si}.
 \STATE
-  \textbf{if} $b = 0$ et $c=0$ \textbf{then} $y \leftarrow 0$;
+  \textbf{si} $b = 0$ et $c=0$ \textbf{alors} $y \leftarrow 0$;
 \STATE\label{alg:trigonal:solve1}
-  \textbf{else} résoudre equation
- $( \delta + b \ell^i) y^2 + (\ell^i(a-d)+\lambda - \mu)y - c\ell^i $; \textbf{end if}.
+  \textbf{sinon} résoudre equation
+ $( \delta + b \ell^i) y^2 + (\ell^i(a-d)+\lambda - \mu)y - c\ell^i $; \textbf{fin si}.
 \STATE
   $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow  Q'$.
 \STATE{$\lambda \leftarrow \lambda + \ell^{i} a + y (b \ell^i + \delta)$; $\mu \leftarrow \mu + \ell^{i} d $; $\delta \leftarrow \delta + b \ell^i$.}
@@ -3486,10 +3520,10 @@ tels que $\pi(P^{(h)})= [\lambda] P^{(h)}$, $ \pi(Q^{(h)})= [\mu] Q^{(h)}$.
 \lambda  & \ell \delta \\
 c\ell^{k-1} & \mu  \end{smallmatrix} \right) \pmod {\ell^{k}}.$
 \STATE 
-  \textbf{if} $c=0$ \textbf{then} $y \leftarrow 0 $; 
+  \textbf{si} $c=0$ \textbf{alors} $y \leftarrow 0 $; 
 \STATE\label{alg:rem:solve1}
-  \textbf{else} résoudre équation
- $y\ell^{k-1}(\mu - \lambda) + c \ell^{k-1}=0$; \textbf{end if}.
+  \textbf{alors} résoudre équation
+ $y\ell^{k-1}(\mu - \lambda) + c \ell^{k-1}=0$; \textbf{fin si}.
 \STATE
   $P^{(h-e+i+1)} \leftarrow P' + [y \ell^{k-1}] Q'$; $Q^{(h-e+i+1)} \leftarrow Q'$.
 \ENDFOR
@@ -3550,7 +3584,7 @@ $\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$; $P_0, Q_0 \leftarrow $ éléments neutres de~$ E[\ell]$.}
-\FOR {$i=0$  to  $k-1$}
+\FOR {$i=0$  à  $k-1$}
 \STATE\label{alg:diagonal:divide}
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE\label{alg:diagonal:frobenius}
@@ -3558,12 +3592,12 @@ tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k$.
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \STATE\label{alg:diagonal:solve1}
-  \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
+  \textbf{si} $b = 0$ \textbf{alors} $x \leftarrow 0$;
   résoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
 \STATE\label{alg:diagonal:solve2}
-  \textbf{else} résoudre équation
+  \textbf{sinon} résoudre équation
   $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
-  $y \leftarrow -cx/b$; \textbf{end if}.
+  $y \leftarrow -cx/b$; \textbf{fin si}.
 \STATE\label{alg:diagonal:upd-P}
   $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow [x] P' + Q'$.
 \STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
@@ -3638,12 +3672,12 @@ $k$: une entier positif;
 $\lambda, \mu, b \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE$(\lambda, \mu, i) \leftarrow (0,0,0)$; $\mathsf{trigonal} \leftarrow \mathsf{Vrai} $; $\mathsf{scalaire} \leftarrow \mathsf{Vrai}$ ;$P', Q' \leftarrow $ tels que~$\langle P',Q' \rangle =  E[\ell]$. %; $\mu \leftarrow 0$;$i \leftarrow 0$
+\STATE$(\lambda, \mu, i) \leftarrow (0,0,0)$; $\mathsf{trigonal} \leftarrow \TRUE $; $\mathsf{scalaire} \leftarrow \TRUE$ ;$P', Q' \leftarrow $ tels que~$\langle P',Q' \rangle =  E[\ell]$. %; $\mu \leftarrow 0$;$i \leftarrow 0$
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \WHILE {$\mathsf{scalaire}$} \label{alg:ult:scalaire:debut} %\COMMENT{ Les points de cette boucle sont définis sur $E$}
-\STATE $i \leftarrow i+1$.
+\STATE $i \leftarrow i+1$. \COMMENT Les points de cette boucle sont définis sur $E$
 \STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
 \STATE\label{alg:ult:identical:divide}
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
@@ -3651,12 +3685,12 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}; \mathsf{scalaire} \leftarrow (\pi=(\lambda + a\ell^{i}) \cdot I_2) .$
 \ENDWHILE \label{alg:ult:scalaire:fin}
-\STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{end if}.
+\STATE \textbf{si} $b \neq 0$ \textbf{alors} $\delta \leftarrow b \ell^i$ \textbf{sinon} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{fin si}.
 \STATE $h-e \leftarrow i-1$; $i \leftarrow 0$
 \WHILE{ $\mathsf{trigonal}$} \label{alg:ult:trigonal:debut} %\COMMENT{On monte dans le volcan et trigonalise le Frobenius }
-\STATE \textbf{if} $c = 0$ \textbf{then} $y \leftarrow 0$;
-\STATE\label{alg:ult:trigonal:solve1} \textbf{else}  résoudre equation 
-$ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
+\STATE \textbf{si} $c = 0$ \textbf{alors} $y \leftarrow 0$;
+\STATE\label{alg:ult:trigonal:solve1} \textbf{sinon}  résoudre equation 
+$ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{fin  si}.
 \STATE\label{alg:ult:trigonal:upd-P}
   $P_{h-e+i+1}^{(h-e+i)} \leftarrow P' + y Q'$; $Q_{h-e+i+1}^{(h-e+i)} \leftarrow Q'$.
 \STATE $\lambda \leftarrow \lambda + a \ell^{h-e+i} + \delta y$; $\mu \leftarrow \mu + d \ell^{h-e+i} $; $ \mathsf{trigonal} \leftarrow !(v_{\ell}(\lambda - \mu)=v_{\ell}(\delta))$ %$\delta \leftarrow \delta + b \ell^i$
@@ -3668,10 +3702,10 @@ $ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
 \lambda  & \ell \delta \\
 c\ell^{h-e+i} & \mu  \end{smallmatrix} \right) \pmod {\ell^{h-e+i+1}}.$
 \STATE 
-  \textbf{if} $c=0$ \textbf{then} $y \leftarrow 0 $; 
+  \textbf{si} $c=0$ \textbf{alors} $y \leftarrow 0 $; 
 \STATE\label{alg:ult:rem:solve1}
-  \textbf{else} résoudre équation
- $y\ell^{h-e+i}(\mu - \lambda) + c \ell^{h-e+i}$; \textbf{end if}.
+  \textbf{sinon} résoudre équation
+ $y\ell^{h-e+i}(\mu - \lambda) + c \ell^{h-e+i}$; \textbf{fin si}.
 \STATE
   $P' \leftarrow P' + [y \ell^{h-e+i}] Q'$.
 \STATE\label{alg:ult:trigonal:divide}
@@ -3693,12 +3727,12 @@ $Q_{i} \leftarrow Q_{i}+[x \ell^h]P_{i}$
 \lambda + a\ell^{i} & b\ell^{i} \\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
 \STATE
-  \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
+  \textbf{si} $b = 0$ \textbf{alors} $x \leftarrow 0$;
   réoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
 \STATE
-  \textbf{else} résoudre équation
+  \textbf{sinon} résoudre équation
   $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
-  $y \leftarrow -cx/b$; \textbf{end if}.
+  $y \leftarrow -cx/b$; \textbf{fin si}.
 \STATE
   $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow [x] P' + Q'; \lambda \leftarrow \lambda + \ell^{i} (a + bx)$;$ \mu \leftarrow \mu + \ell^{i}(d+cy)$
 \STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
