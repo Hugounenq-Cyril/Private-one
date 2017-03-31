@@ -496,7 +496,7 @@ Soit $\varphi:E_1 \rightarrow E_2$ une isogénie.
 \begin{equation*}
 [\widehat{m}]=[m] \text{ et } \deg[m]=m^2.
 \end{equation*}
-Hu\item $\deg( \varphi)=\deg(\widehat{\varphi})$,
+\item $\deg( \varphi)=\deg(\widehat{\varphi})$,
 \item $\widehat{\widehat{\varphi}}=\varphi$.
 \end{enumerate}
  
@@ -1578,7 +1578,8 @@ Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation
 %Ensuite il faut calculer le polynôme d'interpolation de degré $f$ avec $f \in O(p^k)$ sur des points définis dans une extension de $\mathbb{F}_q$ de taille $f$ .
 %\end{proof}
 
-\paragraph{Validation de l'isogénie} On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=\ell$ et $\deg(V)=\ell-1$. Ensuite on vérifie que $V$ est bien un carré (ou si $\ell$ est pair que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(\ell) \log(\ell))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $\ell$-division, pour cela on calcule le polynôme de $\ell$ division en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$. 
+\paragraph{Validation de l'isogénie} \label{par:val:iso}
+ On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=\ell$ et $\deg(V)=\ell-1$. Ensuite on vérifie que $V$ est bien un carré (ou si $\ell$ est pair que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(\ell) \log(\ell))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $\ell$-division, pour cela on calcule le polynôme de $\ell$ division en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$. 
 
 
 \subsection{Apports de l'utilisation de tours d'extensions p-adiques à l'algorithme de Couveignes}
@@ -3249,8 +3250,8 @@ On se place dans le cas où la courbe elliptique ordinaire $E$ admet un anneau d
  Pour $\ell$ premier impair, on note~$\alpha
 = v_{\ell}(\lambda^{\ell-1}-1)$ et~$\beta=v_{\ell}(\mu^{\ell-1}-1)$; pour $\ell=2$,
 on note~$\alpha=v_2(\lambda^2-1)-1$ et~$\beta = v_2(\mu^2-1)-1$, on suppose 
-sans perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces valeurs-là car pour n'importe quel corps fini $\mathbb{F}_q$ on a $E[\ell] \subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[4] \subset E(\mathbb{F}_q^{2})$ pour $\ell=2$.  Comme $\lambda \neq \mu \pmod{\ell^{h+1}}$, il est
-impossible que $\lambda \equiv \mu \equiv 1 \pmod{\ell^h}$ par la structure 
+sans perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces valeurs-là car pour n'importe quel corps fini $\mathbb{F}_q$ on a $E[\ell] \subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[4] \subset E(\mathbb{F}_q^{2})$ pour $\ell=2$.  Comme $\lambda \neq \mu \bmod{\ell^{h+1}}$, il est
+impossible que $\lambda \equiv \mu \equiv 1 \bmod{\ell^h}$ par la structure 
 d'un volcan de $\ell$-isogénies (voir section \ref{sec:lie:niv}), ainsi au moins une des deux
 valuations~$\alpha, \beta$ est~$\leqslant h$, par conséquent on va supposer sans perte de généralité que~$\beta \leqslant h$.
 
@@ -3391,9 +3392,7 @@ Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets
 
 \section{Elkies}
 
-\todo{enlever les pmod et mettre des bmod ou l'inverse...}
-
-On travaille avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, on se place dans le contexte de l'algorithme de Couveignes et on veut calculer une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. En particulier on ne connaît pas la cardinalité de la courbe. On verra dans un autre chapitre \todo{spécifier ce chapitre} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu à la proposition \ref{pro:dia:hor} que l'on devait avoir $k \geqslant h+1$, on rappelle aussi que $\beta$ représente la plus grande valuation de la $\ell$-torsion rationnelle pour une courbe située sur le sommet du cratère du volcan de $\ell$-isogénies(voir sous section \ref{sub:classes}).
+On travaille avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, on se place dans le contexte de l'algorithme de Couveignes et on veut calculer une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. En particulier on ne connaît pas la cardinalité de la courbe. On verra dans un autre chapitre~\ref{cha:alg:fin} \todo{spécifier ce chapitre} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu à la proposition \ref{pro:dia:hor} que l'on devait avoir $k \geqslant h+1$, on rappelle aussi que $\beta$ représente la plus grande valuation de la $\ell$-torsion rationnelle pour une courbe située sur le sommet du cratère du volcan de $\ell$-isogénies(voir sous section \ref{sub:classes}).
 
 Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère (proposition \ref{pro:mat:fro}), le calcul d'une base de la $\ell^k$ torsion diffère donc dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
 
@@ -3421,7 +3420,6 @@ décrite dans ~\cite[Chapter~14.5]{vzGJG03}.
    coefficients dans $\mathsf{F}_i$ (voir section \ref{cha:tour}).  
 \end{proof}
 
-\todo{Franciser les algorithmes au moins pour le nom Algorithm}
 \begin{algorithm}
 \caption{\label{alg:bas:tri}Calcul d'une base de $E[\ell^k]$ dans laquelle l'action du Frobenius est triangulaire pour $E$ situéee au niveau $h-e \neq h$ d'un volcan de $\ell$-isogénies à cratère cyclique}
 \begin{algorithmic}[1]
@@ -3438,7 +3436,7 @@ tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)=[\delta] P_k +  [\mu] Q_k$.
 \STATE\label{alg:trigonal:frobenius}
   caclcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i} + \delta \\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \STATE 
   \textbf{si} $b \ell^i + \delta=0$ \textbf{alors} $(P',Q',a,b,c,d) \leftarrow (Q',P',d,c,b,a) $  \textbf{fin si}.
 \STATE
@@ -3518,7 +3516,7 @@ tels que $\pi(P^{(h)})= [\lambda] P^{(h)}$, $ \pi(Q^{(h)})= [\mu] Q^{(h)}$.
 \STATE\label{alg:rem:frobenius}
   calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda  & \ell \delta \\
-c\ell^{k-1} & \mu  \end{smallmatrix} \right) \pmod {\ell^{k}}.$
+c\ell^{k-1} & \mu  \end{smallmatrix} \right) \bmod {\ell^{k}}.$
 \STATE 
   \textbf{si} $c=0$ \textbf{alors} $y \leftarrow 0 $; 
 \STATE\label{alg:rem:solve1}
@@ -3590,7 +3588,7 @@ tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k$.
 \STATE\label{alg:diagonal:frobenius}
   Calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \STATE\label{alg:diagonal:solve1}
   \textbf{si} $b = 0$ \textbf{alors} $x \leftarrow 0$;
   résoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
@@ -3662,7 +3660,7 @@ $\ell^i$ torsion n'est plus égale à une matrice scalaire tester l'égalité en
  $\ell$-isogénies est $i-1$.
 
 Maintenant on présente l'algorithme~\ref{alg:ulti:fro} qui prend en entrée une courbe située à un niveau $h-e$ dans le volcan de $\ell$-isogénies et qui retourne une base diagonale de sa courbe sommet.
-
+\todo{regarder comment commenter l'algorithme}
 \begin{algorithm}
 \caption{\label{alg:ulti:fro}Calcul d'une base de $E_s[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
 \begin{algorithmic}[1]
@@ -3677,7 +3675,7 @@ tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k$.
 \lambda + a\ell^{i} & b\ell^{i}\\
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \WHILE {$\mathsf{scalaire}$} \label{alg:ult:scalaire:debut} %\COMMENT{ Les points de cette boucle sont définis sur $E$}
-\STATE $i \leftarrow i+1$. \COMMENT Les points de cette boucle sont définis sur $E$
+\STATE $i \leftarrow i+1$. %\COMMENT Les points de cette boucle sont définis sur $E$
 \STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
 \STATE\label{alg:ult:identical:divide}
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
@@ -3686,7 +3684,7 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}; \mathsf{scalaire} \leftarrow (\pi=(\lambda + a\ell^{i}) \cdot I_2) .$
 \ENDWHILE \label{alg:ult:scalaire:fin}
 \STATE \textbf{si} $b \neq 0$ \textbf{alors} $\delta \leftarrow b \ell^i$ \textbf{sinon} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{fin si}.
-\STATE $h-e \leftarrow i-1$; $i \leftarrow 0$
+\STATE $h-e \leftarrow i-1$; $i \leftarrow 0$;
 \WHILE{ $\mathsf{trigonal}$} \label{alg:ult:trigonal:debut} %\COMMENT{On monte dans le volcan et trigonalise le Frobenius }
 \STATE \textbf{si} $c = 0$ \textbf{alors} $y \leftarrow 0$;
 \STATE\label{alg:ult:trigonal:solve1} \textbf{sinon}  résoudre equation 
@@ -3700,7 +3698,7 @@ $ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{fin  si}.
 \STATE\label{alg:ult:rem:frobenius}
   Calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda  & \ell \delta \\
-c\ell^{h-e+i} & \mu  \end{smallmatrix} \right) \pmod {\ell^{h-e+i+1}}.$
+c\ell^{h-e+i} & \mu  \end{smallmatrix} \right) \bmod {\ell^{h-e+i+1}}.$
 \STATE 
   \textbf{si} $c=0$ \textbf{alors} $y \leftarrow 0 $; 
 \STATE\label{alg:ult:rem:solve1}
@@ -3713,7 +3711,7 @@ c\ell^{h-e+i} & \mu  \end{smallmatrix} \right) \pmod {\ell^{h-e+i+1}}.$
 \STATE $i \leftarrow i+1$.
 \STATE\label{alg:ult:trigonal:frob}  calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{h-e+i} & b\ell^{h-e+i} + \delta\\
-c\ell^{h-e+i} & \mu + d\ell^{h-e+i} \end{smallmatrix} \right) \pmod {\ell^{h-e+i+1}}.$  
+c\ell^{h-e+i} & \mu + d\ell^{h-e+i} \end{smallmatrix} \right) \bmod {\ell^{h-e+i+1}}.$  
 \STATE $\delta \leftarrow \delta + b \ell^{h-e+i-1}$
 \ENDWHILE \label{alg:ult:trigonal:fin}
 \STATE \label{alg:ult:init:dia}
@@ -3725,10 +3723,10 @@ $Q_{i} \leftarrow Q_{i}+[x \ell^h]P_{i}$
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i} \\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
 \STATE
   \textbf{si} $b = 0$ \textbf{alors} $x \leftarrow 0$;
-  réoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
+  résoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
 \STATE
   \textbf{sinon} résoudre équation
   $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
@@ -3878,7 +3876,7 @@ Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne
 \section{Atkin}
 
 \chapter{Algorithme de Couveignes $\ell$-adique}
-
+\label{cha:alg:fin}
 On rappelle que l'on se place dans le contexte suivant:
 %\begin{block}
 %Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
@@ -3889,16 +3887,42 @@ On rappelle que l'on se place dans le contexte suivant:
 \section{Elkies}
 Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont été publié \cite{Defeo_Plut_Schost_2016}.
 
-Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une isogénie $\phi$ de degré $r$, alors pour deux bases diagonales $(P,Q),(P',Q')$ de $E$ de $E[\ell^k]$ et $E'[\ell^k]$ telles que 
+Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une isogénie $\phi$ de degré $r$, deux bases diagonales $(P,Q),(P',Q')$ de $E$ de $E[\ell^k]$ et $E'[\ell^k]$ telles que 
 \[
 (\pi|P,Q)=(\pi|P',Q')= \left( \begin{matrix}
 \lambda & 0 \\
 0 & \mu
 \end{matrix} \right) 
 \]
-alors comme l'isogénie $\phi$ commute avec le Frobenius on a $\phi(P) \in \langle P' \rangle $ et $\phi(Q) \in \langle Q' \rangle $, cependant comme la matrice $\pi$ est scalaire modulo la $\ell^{h-1}$ torsion alors on a $\phi(P) \in \langle P'+[\ell^{k-h}]Q' \rangle $ et $\phi(Q) \in \langle Q'+[\ell^{k-h}]P' \rangle $,
-on pourrait croire que cela est suffisant cependant comme l'action du Frobenius sur la $\ell^h$ torsion est égal à l'action d'une matrice scalaire alors l'information
- alors pour deux bases $(\color{red}P_{\lambda} \color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q'_{\mu}\color{black})$ (partiellement) horizontales de $E[\ell^k]$ et $E'[\ell^k]$ on a l'action de $\phi$ sur la base $(\color{red}P_{\lambda} \color{black},\color{blue}Q_{\mu}\color{black})$ qui peut être représentée comme une matrice diagonale car par la proposition~\ref{pro:par:iso} et le corollaire~\ref{cor:par:hor} les points de même direction sont mis en correspondance:
+alors comme l'isogénie $\phi$ commute avec le Frobenius on a $\phi(P) \in \langle P' \rangle $ et $\phi(Q) \in \langle Q' \rangle $, cependant comme la matrice $\pi$ est scalaire modulo la $\ell^{h}$ torsion alors la représentation de $\phi$ dans les bases $(P,Q)$ et $(P',Q')$ n'est pas diagonale:
+\[
+\left(
+\begin{matrix}
+P' \\
+Q'
+\end{matrix}
+\right)
+\left( 
+\begin{matrix}
+a &  c\ell^{k-h} \\
+d\ell^{k-h} & b
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
+P \\
+Q
+\end{matrix}
+\right) \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^*; c,d \in \mathbb{Z}/\ell^{h}\mathbb{Z}
+\]
+ On travaille donc avec deux bases $(\color{red}P_{\lambda} \color{black},
+ \color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},
+ \color{blue}Q'_{\mu}\color{black})$ (partiellement) horizontales de 
+ $E[\ell^k]$ et $E'[\ell^k]$ pour lesquelles l'action de $\phi$ sur la base 
+ $(\color{red}P_{\lambda} \color{black},\color{blue}Q_{\mu}\color{black})$ qui 
+ peut être représentée comme une matrice diagonale car par la 
+ proposition~\ref{pro:par:iso} et le corollaire~\ref{cor:par:hor} les points de
+  même direction sont mis en correspondance:
 \[
 \left(
 \begin{matrix}
@@ -3917,7 +3941,6 @@ a & 0 \\
 \right)
 \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^*
 \]
- 
  On énumère donc toutes les $\ell^{2k-2}$ matrices $M$ possibles $\left( 
  \begin{smallmatrix} a & 0 \\ 0 & b \end{smallmatrix} \right)$. Pour chaque 
 matrice $M$ on interpole l'action de $M$ sur les bases $(\color{red}P_{\lambda}
@@ -4035,8 +4058,15 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   ~$t = (\ell^{2k-2}(\ell+1))/2\in O(r \ell^2)$, et le nombre de points d'interpolations
   est $s \in O(k \cdot \ell^{k+\beta})$, on calcule alors les polynômes~$T$
   et~$A_{a,b}$ à un coût de~$O(\mathsf{M}(r \ell^4)\log(r)\log(\ell))$.  Le coût
-  de calcul de $F_{a,b}$, et l'identification de l'isogénie, est dominé par
-  celui du calcul de~$A_{a,b}$~\cite[§3.3]{DeFeo10}.  Enfin, en moyenne 
+  de calcul de $F_{a,b}$ est de $O(\mathsf{M}(r)\log(r))$ par 
+  \cite[Théorème 7.5]{algeff17}. Le coût de calcul du test de l'isogénie (voir
+  paragraphe~\cite{par:val:iso} pour une description détaillée des tests 
+  possibles) dont les opérations 
+  les plus coûteuses sont regarder si le dénominateur de $F$ est un carré ou 
+  encore si il divise le polynôme de $r$-division cela coûte $O(\mathsf{M}(r)
+  \log(r))$ opérations auquel il faut ajouter le coût de calcul du polynôme de 
+  $r$-division  de $r\mathsf{M}(r^2)\log(r)\log(r q)$. Tous ces coûts sont dominés par
+  celui du calcul de~$A_{a,b}$.  Enfin, en moyenne 
    ${\ell^{2k}=O(r \ell^2)}$~matrices candidates doivent être testées
    avant de trouver l'isogénie.
 \end{proof}
@@ -4642,7 +4672,7 @@ tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k + [\delta] P_k$.
 \STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$;$i \leftarrow 0$; $\delta \leftarrow 0$;$P', Q' \leftarrow $ tels que~$\langle P',Q' \rangle =  E[\ell]$.}
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \WHILE {$\pi|(P',Q')= (\lambda + a\ell^i) \cdot I_2$}
 \STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
 \STATE\label{alg:fin:identical:divide}
@@ -4650,7 +4680,7 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
 \STATE $i \leftarrow i+1$.
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \ENDWHILE 
 \IF{$\lambda + a \ell^i \neq \mu + d \ell^i$}
 %\STATE $\delta \leftarrow 0$;
@@ -4670,7 +4700,7 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i}\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
 \ENDWHILE
 \ELSE 
 \STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{end if}.
@@ -4686,7 +4716,7 @@ $ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
 \STATE $i \leftarrow i+1$.
 \STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{i} & b\ell^{i} + \delta\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \pmod {\ell^{i+1}}.$  
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
 \STATE $\delta \leftarrow \delta + b \ell^i$
 \ENDWHILE
 \ENDIF
