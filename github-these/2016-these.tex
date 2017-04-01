@@ -4075,6 +4075,53 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
 
 
 \section{Analyse générale}
+Un résultat de Shparlinski et 
+Sutherland~\cite[Theorem~1]{ShparlinskiSutherland14}
+nous permet de savoir dans quelle mesure on peut trouver des nompres premiers 
+$l$ de Elkies pour une courbe quelconque. Plus précisément pour presque 
+tous les nombres premiers $q$ et courbes $E/\mathbb{F}_q$, pour 
+$L\geqslant\log(q)^\epsilon$ pour n'importe quel $\epsilon>0$,
+on obtient asymptotiquement que la moitié des nombres premiers $\ell \leqslant 
+L$ sont des nombres premiers de Elkies.
+Ainsi on espère avoir des nombres de Elkies suffisamment petits pour les 
+utiliser avec notre algorithme.
+Le théorème suivant donne une borne sur le pire des cas en fonction uniquement
+ de $r$ et $q$.
+\begin{thm}
+  For almost all primes $q$ and curves $E,E'$ over $\mathbb{F}_q$, it is
+  possible to solve the “Explicit Isogeny Problem” in expected time
+  $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
+\end{thm}
+
+\begin{proof}
+  Given a curve $E$, we search for the smallest Elkies prime
+  satisfying the conditions of Proposition~\ref{prop:full-complexity}.
+  As a special case of~\cite[Theorem~1]{shparlinski2014distribution},
+  we can take $L \in O(\log(q))$ such that the product of all
+  Elkies primes $\ell \leqslant L$ exceeds $\Omega(\sqrt{q})$.
+On the other hand, we discard those primes~$\ell \leqslant L$ for which
+the height~$h$ satisfies~$\ell^{h} > \sqrt{r}$;
+since those discarded primes are divisors of~$\sqrt{d_K}$,
+their product is at most~$O(\sqrt{q})$.
+This shows that there remains enough “good” Elkies primes
+in~$[ 1,L]$,
+so that in the worst case $\ell \in O(\log(q))$.
+%   For any such~$\ell$, the
+%   corresponding height~$h = h_\ell$
+%   is~$h_\ell = \frac 12 v_\ell(d_K)$, so that $\prod \ell^{h_\ell}\leqslant2√q$.
+%   Hence, even discarding those primes such that~$\ell^{h_\ell} > √r$,
+%   there will be enough good Elkies primes left in the interval $\llbracket 1,L\rrbracket$.
+%   Therefore in the worst case~$\ell = O(\log(q))$.
+
+  The most expensive steps in Section~\ref{sub:shape-volcano} are
+  the computation and the factorization of the modular polynomials
+  for all primes up to $\ell$.
+  This is well within~$O(\log(q)^6)$.
+  The stated complexity follows then from
+  substituting~$\ell = O(\log(q))$
+  in Proposition~\ref{prop:full-complexity}.
+\end{proof}
+
 
 
 \chapter{Rebus}
