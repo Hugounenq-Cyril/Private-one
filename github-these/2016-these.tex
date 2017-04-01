@@ -4008,15 +4008,17 @@ $O\Bigl(\bigl(r \ell^2\mathsf{M}(r\ell^4) +  \mathsf{M}(r\ell^3)\log(\ell q)\big
 \begin{proof}
 Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   Par la proposition~\ref{pro:clas:fro}, il existe $\beta<h$ tel que
-  $E[\ell^k]$ est inclus dans $E(F_n)$ avec $n=k-\beta$.On construit donc une
-  tour d'extension $\ell$-adiques $\mathsf{F}_0\subset\cdots\subset 
-  \mathsf{F}_n$, et l'on effectue les précalculs nécessaires au 
+  $E[\ell^k]$ est inclus dans $E(F_{k-\beta})$. On construit donc une
+  tour d'extensions $\ell$-adiques $\mathsf{F}_0\subset\cdots\subset 
+  \mathsf{F}_{k-\beta}$, et l'on effectue les précalculs nécessaires au 
   théorème~\ref{thm:frob-ell} avec un coût de 
   $O(\ell\mathsf{M}(\ell)\log(q))$. Ces étapes sont faites en pratique au cours
   de l'étape~\ref{alg:cou-ell:bdiag}.
   
-  On se place désormais dans le cas où $k$ strictement plus grand que $h$ 
-  le coût de calcul des bases 
+  On attire l'attention sur le fait que la condition $\ell^h<\sqrt{r}$ se traduit par 
+  le fait que $k$ strictement plus grand que $h$ par définition de $k$.
+ 
+  On va utiliser ce résultat tout au long de la preuve. Le coût de calcul des bases 
   diagonales de courbes sommets à l'étape~\ref{alg:cou-ell:bdiag} se fait à 
   l'aide de l'algorithme~\ref{alg:ulti:fro} qui a un coût dans le pire des cas
   de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+k(\mathsf{R}(k-\beta) + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta})))$ 
@@ -4084,14 +4086,14 @@ afin de montrer que notre algorithme est utilisable en pratique.
 
 Un résultat de Shparlinski et 
 Sutherland~\cite[Theorem~1]{ShparlinskiSutherland14}
-nous permet de savoir dans quelle mesure on peut trouver des nompres premiers 
-$\ell$ de Elkies pour une courbe quelconque et par conséquent donner une borne sur
+nous permet de savoir dans quelle mesure on peut trouver des nombres premiers 
+$\ell$ de Elkies \todo{regarder si nombre de Elkies c'est défini quelque part} pour une courbe quelconque et par conséquent donner une borne sur
  $\ell$. Plus précisément pour presque 
 tous les nombres premiers $q$ et courbes $E/\mathbb{F}_q$, pour 
 $L\geqslant\log(q)^\epsilon$ pour n'importe quel $\epsilon>0$,
 on obtient asymptotiquement que la moitié des nombres premiers $\ell \leqslant 
 L$ sont des nombres premiers de Elkies.
-On déduit donc de ce résultat le théorème suivant qui nous donne une borne une 
+On utilise donc ce résultat pour démontrer le théorème suivant, notamment en donnat une 
 borne sur $\ell$ pour le pire des cas en fonction uniquement de $r$ et $q$.
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
@@ -4104,7 +4106,9 @@ en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) 
 
 \begin{proof}
   Given a curve $E$, we search for the smallest Elkies prime
-  satisfying the conditions of Proposition~\ref{prop:full-complexity}.
+  satisfying the conditions of Proposition~\ref{pro:full-complexity}.
+  Soit une courbe $E$, on cherche le plus petit nombre premier de Elkies qui 
+  vérifie les conditions de la proposition~\ref{pro:full-complexity}.
   As a special case of~\cite[Theorem~1]{shparlinski2014distribution},
   we can take $L \in O(\log(q))$ such that the product of all
   Elkies primes $\ell \leqslant L$ exceeds $\Omega(\sqrt{q})$.
