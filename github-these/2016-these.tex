@@ -4000,7 +4000,7 @@ Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}
 \end{algorithm}
 
 \begin{prop}
-  \label{prop:full-complexity}
+  \label{pro:full-complexity}
   Assuming that $\ell^h<\sqrt{r}$, the algorithm~\ref{alg:cou:ell-adique} above
   computes an isogeny ${\phi:E \rightarrow E'}$ in expected time
 $O\Bigl(\bigl(r \ell^2\mathsf{M}(r\ell^4) +  \mathsf{M}(r\ell^3)\log(\ell q)\bigr)\log(r)\log(\ell) \Bigr).$
@@ -4075,22 +4075,31 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
 
 
 \section{Analyse générale}
+La complexité donnée pour résoudre le problème du calcul explicite de 
+l'isogénie dans la proposition~\ref{pro:full-complexity} a une dépendance 
+polynomiale en $\ell$, en pratique on souhaiterait avoir $\ell$ petit 
+(voir chapitre expérimentation \todo{mettre référence et écrire ce chapitre !})
+et donc on veut borner $\ell$ à l'aide des paramètres d'entrée du problème: $r,q$
+afin de montrer que notre algorithme est utilisable en pratique. 
+
 Un résultat de Shparlinski et 
 Sutherland~\cite[Theorem~1]{ShparlinskiSutherland14}
 nous permet de savoir dans quelle mesure on peut trouver des nompres premiers 
-$l$ de Elkies pour une courbe quelconque. Plus précisément pour presque 
+$\ell$ de Elkies pour une courbe quelconque et par conséquent donner une borne sur
+ $\ell$. Plus précisément pour presque 
 tous les nombres premiers $q$ et courbes $E/\mathbb{F}_q$, pour 
 $L\geqslant\log(q)^\epsilon$ pour n'importe quel $\epsilon>0$,
 on obtient asymptotiquement que la moitié des nombres premiers $\ell \leqslant 
 L$ sont des nombres premiers de Elkies.
-Ainsi on espère avoir des nombres de Elkies suffisamment petits pour les 
-utiliser avec notre algorithme.
-Le théorème suivant donne une borne sur le pire des cas en fonction uniquement
- de $r$ et $q$.
+On déduit donc de ce résultat le théorème suivant qui nous donne une borne une 
+borne sur $\ell$ pour le pire des cas en fonction uniquement de $r$ et $q$.
 \begin{thm}
-  For almost all primes $q$ and curves $E,E'$ over $\mathbb{F}_q$, it is
-  possible to solve the “Explicit Isogeny Problem” in expected time
-  $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
+Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
+$\mathbb{F}_q$, il est possible de résoudre "Calcul de l'isogénie explicite" 
+en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
+%  For almost all primes $q$ and curves $E,E'$ over $\mathbb{F}_q$, it is
+%  possible to solve the “Explicit Isogeny Problem” in expected time
+%  $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
 \end{thm}
 
 \begin{proof}
