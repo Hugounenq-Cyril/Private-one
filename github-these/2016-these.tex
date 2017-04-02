@@ -4001,9 +4001,10 @@ Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}
 
 \begin{prop}
   \label{pro:full-complexity}
-  Assuming that $\ell^h<\sqrt{r}$, the algorithm~\ref{alg:cou:ell-adique} above
-  computes an isogeny ${\phi:E \rightarrow E'}$ in expected time
-$O\Bigl(\bigl(r \ell^2\mathsf{M}(r\ell^4) +  \mathsf{M}(r\ell^3)\log(\ell q)\bigr)\log(r)\log(\ell) \Bigr).$
+  En supposant que l'on a $\ell^h<\sqrt{r}$, 
+  l'algorithme~\ref{alg:cou:ell-adique} calcule une $r$-isogénie 
+  ${\phi:E \rightarrow E'}$ en un temps espéré de 
+ $O\Bigl(\bigl(r \ell^2\mathsf{M}(r\ell^4) +  \mathsf{M}(r\ell^3)\log(\ell q)\bigr)\log(r)\log(\ell) \Bigr).$
 \end{prop}
 \begin{proof}
 Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
@@ -4115,26 +4116,16 @@ en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) 
   on fixe $L \in O(\log(q))$ tel que le produit de tous les nombres premiers 
   de Elkies dépasse $\Omega(\sqrt{q})$. On enlève alors les nombres premiers 
   de Elkies $\ell \leqslant L$ tels que $\ell^{h} > \sqrt{r}$, cette condition
-  empêche d'utiliser notre algorithme, pour de tels nombres premiers ceux-ci sont des diviseurs. 
-  porte sur la hauteur $h$ du volcan de $\ell$-isogénies)
-  $\ell$-isogénies 
-  As a special case of~\cite[Theorem~1]{shparlinski2014distribution},
-  we can take $L \in O(\log(q))$ such that the product of all
-  Elkies primes $\ell \leqslant L$ exceeds $\Omega(\sqrt{q})$.
-On the other hand, we discard those primes~$\ell \leqslant L$ for which
-the height~$h$ satisfies~$\ell^{h} > \sqrt{r}$;
-since those discarded primes are divisors of~$\sqrt{d_K}$,
-their product is at most~$O(\sqrt{q})$.
-This shows that there remains enough “good” Elkies primes
-in~$[ 1,L]$,
-so that in the worst case $\ell \in O(\log(q))$.
-%   For any such~$\ell$, the
-%   corresponding height~$h = h_\ell$
-%   is~$h_\ell = \frac 12 v_\ell(d_K)$, so that $\prod \ell^{h_\ell}\leqslant2√q$.
-%   Hence, even discarding those primes such that~$\ell^{h_\ell} > √r$,
-%   there will be enough good Elkies primes left in the interval $\llbracket 1,L\rrbracket$.
-%   Therefore in the worst case~$\ell = O(\log(q))$.
-
+  empêche d'utiliser notre algorithme~\ref{alg:cou:ell-adique}, 
+  pour de tels nombres premiers ceux-ci sont des diviseurs de $d_{K}$ et leur 
+  produit est donc borné par $O(\sqrt{q})$. Ainsi il reste suffisamment de 
+  nombres premier de Elkies satisfaisant $\ell^{h} < \sqrt{r}$ dans 
+  l'intervalle  $[1,L]$, ainsi dans le pire des cas on a un nombre premier de
+  Elkies $\ell \in O(\log(q))$ que l'on peut utiliser dans 
+  l'algorithme~\ref{alg:cou:ell-adique}. On a alors la complexité annoncée en 
+  remplaçant $\ell$ par $O(\log(q))$.
+  
+  
   The most expensive steps in Section~\ref{sub:shape-volcano} are
   the computation and the factorization of the modular polynomials
   for all primes up to $\ell$.
