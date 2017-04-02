@@ -4074,7 +4074,9 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
    avant de trouver l'isogénie.
 \end{proof}
 
-
+signifie que dans ce cas la hauteur $h$
+  du volcan de $\ell$-isogénies est supérieure au $k$ spécifié dans 
+  l'algorithme~\ref{alg:cou:ell-adique}
 
 \section{Analyse générale}
 La complexité donnée pour résoudre le problème du calcul explicite de 
@@ -4090,7 +4092,7 @@ nous permet de savoir dans quelle mesure on peut trouver des nombres premiers
 $\ell$ de Elkies \todo{regarder si nombre de Elkies c'est défini quelque part} pour une courbe quelconque et par conséquent donner une borne sur
  $\ell$. Plus précisément pour presque 
 tous les nombres premiers $q$ et courbes $E/\mathbb{F}_q$, pour 
-$L\geqslant\log(q)^\epsilon$ pour n'importe quel $\epsilon>0$,
+$L\geqslant\log(q)^\varepsilon$ pour n'importe quel $\varepsilon>0$,
 on obtient asymptotiquement que la moitié des nombres premiers $\ell \leqslant 
 L$ sont des nombres premiers de Elkies.
 On utilise donc ce résultat pour démontrer le théorème suivant, notamment en donnat une 
@@ -4109,6 +4111,13 @@ en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) 
   satisfying the conditions of Proposition~\ref{pro:full-complexity}.
   Soit une courbe $E$, on cherche le plus petit nombre premier de Elkies qui 
   vérifie les conditions de la proposition~\ref{pro:full-complexity}.
+  En appliquant le~\cite[Theorem~1]{shparlinski2014distribution},
+  on fixe $L \in O(\log(q))$ tel que le produit de tous les nombres premiers 
+  de Elkies dépasse $\Omega(\sqrt{q})$. On enlève alors les nombres premiers 
+  de Elkies $\ell \leqslant L$ tels que $\ell^{h} > \sqrt{r}$, cette condition
+  empêche d'utiliser notre algorithme, pour de tels nombres premiers ceux-ci sont des diviseurs. 
+  porte sur la hauteur $h$ du volcan de $\ell$-isogénies)
+  $\ell$-isogénies 
   As a special case of~\cite[Theorem~1]{shparlinski2014distribution},
   we can take $L \in O(\log(q))$ such that the product of all
   Elkies primes $\ell \leqslant L$ exceeds $\Omega(\sqrt{q})$.
