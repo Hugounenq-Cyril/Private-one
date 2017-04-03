@@ -3391,7 +3391,6 @@ Ce chapitre comme le précédent s'inspire de travaux effectués en collaboratio
 Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets présentés dans le chapitre \ref{cha:act:fro}. Sont aussi utilisés les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les extensions de corps de définies dans la définition \ref{def:tour-ell}.
 
 \section{Elkies}
-
 On travaille avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, on se place dans le contexte de l'algorithme de Couveignes et on veut calculer une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. En particulier on ne connaît pas la cardinalité de la courbe. On verra dans un autre chapitre~\ref{cha:alg:fin} \todo{spécifier ce chapitre} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu à la proposition \ref{pro:dia:hor} que l'on devait avoir $k \geqslant h+1$, on rappelle aussi que $\beta$ représente la plus grande valuation de la $\ell$-torsion rationnelle pour une courbe située sur le sommet du cratère du volcan de $\ell$-isogénies(voir sous section \ref{sub:classes}).
 
 Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère (proposition \ref{pro:mat:fro}), le calcul d'une base de la $\ell^k$ torsion diffère donc dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
@@ -3859,6 +3858,10 @@ répétées $k$ fois. Enfin, l'étape~\ref{alg:horizontal:final} est
 dominée par la dernière opération $\mathsf{divise}$ qui coûte $O(\mathsf{R}(k-\beta))$.
 \end{proof}
 
+\begin{rem}
+Le calcul de point horizontal d'ordre $\ell^k$ aurait pu être fait en calculant une base diagonale de la base de la $\ell^{k+h}$ , mais alors on aurait été obligé de travailler sur une extension $\ell$-adique plus grande et l'on aurait alors obtenu une complexité trop élevée: . \todo{compléter complexité} 
+\end{rem}
+
 \begin{prop}
 \label{pro:par:hor}
 Soit $E$ une courbe située au niveau $h-e$ dans un volcan de $\ell$-isogénies soit $E_s$ sa courbe sommet dont on connaît un point horizontal $P_h$ d'ordre $\ell^k$, soit $\varphi_s:Es \rightarrow E $ la $\ell^{e}$ isogénie descendante dont on connaît une décomposition en $e$ $\ell$-isogénies descendantes: $\varphi=\varphi_1 \circ \varphi_{e}$ alors le coût de calculer $\varphi(P)$ est de $O(e\mathsf{M}(\ell^{k-\beta+1}))$ opérations sur $\mathbb{F}_q$.
@@ -3887,21 +3890,23 @@ On rappelle que l'on se place dans le contexte suivant:
 \section{Elkies}
 Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont été publié \cite{Defeo_Plut_Schost_2016}.
 \todo{C'est là qu'on doit parler de la hauteur du volcan}
-Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une $r$-isogénie $\phi$, alors pour $k$ plus grand que $h$ la hauteur du volcan de $\ell$-isogénies on peut calculer deux bases diagonales $(P,Q),(P',Q')$ de $E_c[\ell^k]$ et $E'_c[\ell^k]$ les courbes sommets respectives de $E$ et $E'$
+
+
+Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une $r$-isogénie $\phi$, alors par la proposition~\ref{pro:mat:fro} pour $k$ plus grand que $h$ la hauteur du volcan de $\ell$-isogénies on peut calculer deux bases diagonales $(P,Q),(P',Q')$ de $E_s[\ell^k]$ et $E'_s[\ell^k]$ les courbes sommets respectives de $E$ et $E'$ 
 \[
 (\pi|P,Q)=(\pi|P',Q')= \left( \begin{matrix}
 \lambda & 0 \\
 0 & \mu
-\end{matrix} \right) 
+\end{matrix} \right).
 \]
-alors comme l'isogénie $\phi$ commute avec le Frobenius on a $\phi(P) \in \langle P' \rangle $ et $\phi(Q) \in \langle Q' \rangle $, cependant comme la matrice $\pi$ est scalaire modulo la $\ell^{h}$ torsion alors la représentation de $\phi$ dans les bases $(P,Q)$ et $(P',Q')$ n'est pas diagonale:
+Comme la $r$-isogénie $\phi$ commute avec le Frobenius on devrait avoir $\phi(P) \in \langle P' \rangle $ et $\phi(Q) \in \langle Q' \rangle $, or la matrice $\pi$ est scalaire modulo la $\ell^{h}$ torsion ainsi la représentation de $\phi$ dans les bases $(P,Q)$ et $(P',Q')$ n'est pas diagonale:
 \[
 \left(
 \begin{matrix}
 P' \\
 Q'
 \end{matrix}
-\right)
+\right)=
 \left( 
 \begin{matrix}
 a &  c\ell^{k-h} \\
@@ -3913,13 +3918,16 @@ d\ell^{k-h} & b
 P \\
 Q
 \end{matrix}
-\right) \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^*; c,d \in \mathbb{Z}/\ell^{h}\mathbb{Z}
+\right) \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^*; c,d \in \mathbb{Z}/\ell^{h}\mathbb{Z}.
 \]
  On travaille donc avec deux bases $(\color{red}P_{\lambda} \color{black},
  \color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},
  \color{blue}Q'_{\mu}\color{black})$ (partiellement) horizontales de 
- $E[\ell^k]$ et $E'[\ell^k]$ pour lesquelles l'action de $\phi$ sur la base 
- $(\color{red}P_{\lambda} \color{black},\color{blue}Q_{\mu}\color{black})$ qui 
+ $E[\ell^k]$ et $E'[\ell^k]$.
+ On doit à nouveau avoir $k \geqslant h +1$ pour pouvoir calculer ces bases 
+(partiellement) horizontales par la proposition~\ref{pro:dia:hor}.
+ Dans ces bases l'action de $\phi$ sur la base 
+ $(\color{red}P_{\lambda} \color{black},\color{blue}Q_{\mu}\color{black})$ 
  peut être représentée comme une matrice diagonale car par la 
  proposition~\ref{pro:par:iso} et le corollaire~\ref{cor:par:hor} les points de
   même direction sont mis en correspondance:
@@ -3946,16 +3954,16 @@ a & 0 \\
 matrice $M$ on interpole l'action de $M$ sur les bases $(\color{red}P_{\lambda}
  \color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}
 \color{black},\color{blue}Q'_{\mu}\color{black})$ en calculant le 
-polynôme d'interpolation $A$ tel que 
+polynôme d'interpolation $A_{a,b}$ tel que 
 \[
-A(x([u]\color{red}P_{\lambda}
+A_{a,b}(x([u]\color{red}P_{\lambda}
  \color{black}+[v]\color{blue}Q_{\mu}\color{black}))=x([au]\color{red}P'_{\lambda}
  \color{black}+[bv]\color{blue}Q'_{\mu}\color{black}) \quad \text{pour tout $[u]\color{red}P_{\lambda}
- \color{black}+[v]\color{blue}Q_{\mu}\color{black}$ d'ordre $\ell^k$} 
+ \color{black}+[v]\color{blue}Q_{\mu}\color{black}$ d'ordre $\ell^k$}.
 \]
-on se sert ensuite du polynôme $A$ pour calculer la fraction rationnelle $F$ telle que:
+Ensuite à l'aide du polynôme $A_{a,b}$ on calcule la fraction rationnelle $F$ telle que:
 \[
-F=A \bmod T
+F=A_{a,b} \bmod T
 \]
 avec $T$ le polynôme minimal qui s'annule sur tout point $[u]\color{red}
 P_{\lambda} \color{black}+[v]\color{blue}Q_{\mu}\color{black}$ d'ordre 
@@ -3965,25 +3973,23 @@ calculer $F$ de degré $(r,r-1)$. Or une telle fraction rationnelle est
 déterminée par $2r$ coefficients on doit donc avoir
 le nombre d'abscisses de points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}
 {2}$ strictement plus grand que $2r$ pour avoir suffisamment d'informations.
-On doit également avoir $k \geqslant h +1$ pour pouvoir calculer des points 
-(partiellement) horizontaux sur le volcan de $\ell$-isogénies par la 
-proposition~\ref{pro:dia:hor}.
+
 
 On peut donc maintenant énoncer l'algorithme complet pour calculer une 
-$r$-isogénie entre deux courbes elliptiques $E$, $E'$ définis sur des volcans 
+$r$-isogénie entre deux courbes elliptiques $E$, $E'$ définies sur des volcans 
 de $\ell$-isogénies à cratère cyclique: 
 
 \begin{algorithm}
 \caption{\label{alg:cou:ell-adique} Algorithme de Couveignes $\ell$-adique.}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $e$ d'un volcan de $\ell$-isogénies avec cratère cyclique.
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE Calcul du plus petit $k$ tel que $\ell^{2k-2}(\ell+1)>4r$;
 \STATE  \label{alg:cou-ell:bdiag}
-Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide l'algorithme \ref{alg:ulti:fro};
+Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
 \STATE \label{alg:cou-ell:bhor}
-Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black})$ bases horizontales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide l'algorithme \ref{alg:hor:poi};
+Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black})$ bases horizontales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide de l'algorithme \ref{alg:hor:poi};
 \IF{$(E_s,E'_s) \neq (E_s,E'_s)$}
 \STATE Calcul de $((\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black}))=((\varphi(\color{red}P_{\lambda}\color{black}),\varphi(\color{blue}Q_{\mu}\color{black})),(\varphi'(\color{red}P'_{\lambda}\color{black}),\varphi'(\color{blue}Q_{\mu}'\color{black})))$ bases partiellement horizontales de $E[\ell^k],E'[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
 \ENDIF
@@ -4074,10 +4080,9 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
    ${\ell^{2k}=O(r \ell^2)}$~matrices candidates doivent être testées
    avant de trouver l'isogénie.
 \end{proof}
-
-signifie que dans ce cas la hauteur $h$
-  du volcan de $\ell$-isogénies est supérieure au $k$ spécifié dans 
-  l'algorithme~\ref{alg:cou:ell-adique}
+ 
+  Il est à noter que la condition $\ell^h<\sqrt{r}$ est en fait une condition 
+  permettant d'avoir $k \geqslant h+1$.
 
 \section{Analyse générale}
 La complexité donnée pour résoudre le problème du calcul explicite de 
@@ -4108,21 +4113,35 @@ en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) 
 \end{thm}
 
 \begin{proof}
-  Given a curve $E$, we search for the smallest Elkies prime
-  satisfying the conditions of Proposition~\ref{pro:full-complexity}.
   Soit une courbe $E$, on cherche le plus petit nombre premier de Elkies qui 
   vérifie les conditions de la proposition~\ref{pro:full-complexity}.
-  En appliquant le~\cite[Theorem~1]{shparlinski2014distribution},
+  En appliquant le résultat de~\cite[Theorem~1]{shparlinski2014distribution},
   on fixe $L \in O(\log(q))$ tel que le produit de tous les nombres premiers 
   de Elkies dépasse $\Omega(\sqrt{q})$. On enlève alors les nombres premiers 
   de Elkies $\ell \leqslant L$ tels que $\ell^{h} > \sqrt{r}$, cette condition
-  empêche d'utiliser notre algorithme~\ref{alg:cou:ell-adique}, 
+  empéchant d'utiliser notre algorithme~\ref{alg:cou:ell-adique}, 
   pour de tels nombres premiers ceux-ci sont des diviseurs de $d_{K}$ et leur 
   produit est donc borné par $O(\sqrt{q})$. Ainsi il reste suffisamment de 
-  nombres premier de Elkies satisfaisant $\ell^{h} < \sqrt{r}$ dans 
-  l'intervalle  $[1,L]$, ainsi dans le pire des cas on a un nombre premier de
+  nombres premiers de Elkies satisfaisant $\ell^{h} < \sqrt{r}$ dans 
+  l'intervalle  $[1,L]$, dans le pire des cas on a donc un nombre premier de
   Elkies $\ell \in O(\log(q))$ que l'on peut utiliser dans 
-  l'algorithme~\ref{alg:cou:ell-adique}. On a alors la complexité annoncée en 
+  l'algorithme~\ref{alg:cou:ell-adique}.
+  
+  Il reste encore à prendre en compte le coût de calcul d'identification d'un
+  tel nombre de Elkies satisfaisant $\ell^{h}< \sqrt{r}$, ainsi à l'aide des
+  algorithmes décrits dans \cite{FouquetMorain02} et abordés dans la 
+  sous-section~\ref{sub:alg:FM} on peut faire cela. Ces 
+  algorithmes utilisent $\ell h^2$ 
+  factorisations du $\ell$-ème polynôme moduaire, le coût de calcul de celui-ci
+  est de $O(\ell^3\log(\ell))$ sa factorisation de 
+  $O(\mathsf{M}(\ell)\log(\ell)\log(\ell q))$ par l'algorithme de 
+  Cantor-Zassenhaus décrit dans \cite[Chapter~14.5]{vzGJG03}. Le coût de test 
+  des différents $\ell$ avant d'en trouver un permettant d'utiliser 
+   l'algorithme~\ref{alg:cou:ell-adique} est donc borné par $O(\log(q)^6)$. Ces 
+   algorithmes sont moins efficace que ceux de
+  \cite{Ionica-Joux10} et \cite{MiretMRV05} mais ils ont l'avantage de 
+  fonctionner sur tous types de volcans non réguliers compris. 
+  On a alors la complexité annoncée en 
   remplaçant $\ell$ par $O(\log(q))$.
   
   
