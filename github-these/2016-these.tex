@@ -4106,6 +4106,7 @@ borne sur $\ell$ pour le pire des cas en fonction uniquement de $r$ et $q$.
 
 \todo{faire un résultat uniquement sur $\ell \in \log(q)$)}
 \begin{prop}
+\label{pro:bor:ell}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
 $\mathbb{F}_q$, il existe un nombre premier $\ell$ de Elkies 
 dans l'intervalle $[1,L]$ tel que $\ell^h < \sqrt{r}$ pour $L \in O(\log(q))$.
@@ -4128,28 +4129,35 @@ Soit une courbe $E$, on cherche le plus petit nombre premier de Elkies qui
 \end{proof}
 
 \begin{prop}
-Le coût de trouver un nombre premier $\ell$ de Elkies dans l'intervalle  
-$[1,L]$ tel que $\ell^h < \sqrt{r}$ pour $L \in O(\log(q))$ est majoré par:
-$O(\log(q)^6)$.
+\label{pro:cou:dec}
+Le coût de trouver un courbe sur le cratère d'un volcan de $\ell$-isogénies 
+pour un nombre premier $\ell$ de Elkies dans l'intervalle $[1,L]$ 
+pour $L \in O(\log(q))$ est majoré par:
+$O(\log(q)^5)$.
 \end{prop}
 
 \begin{proof}
-à l'aide des
 En utilisant les algorithmes décrits dans \cite{FouquetMorain02} et abordés 
 dans la sous-section~\ref{sub:alg:FM} on peut déterminer une courbe sur le 
-sommet du volcan de $\ell$-isogénies à l'aide de $\ell h^2$ 
-  factorisations du $\ell$-ème polynôme moduaire. Or $h$ est plus petite que $\log(q)$. Ces algorithmes 
-utilisent $\ell h^2$ 
-  factorisations du $\ell$-ème polynôme moduaire, le coût de calcul de celui-ci
-  est de $O(\ell^3\log(\ell))$ sa factorisation de 
+sommet du volcan de $\ell$-isogénies à l'aide de $O(\ell h^2)$ 
+  factorisations du $\ell$-ème polynôme moduaire. Or $h \in O(\log(q))$ et
+  le coût de calcul du polynôme modulaire est de $O(\ell^3\log(\ell))$ sa factorisation de 
   $O(\mathsf{M}(\ell)\log(\ell)\log(\ell q))$ par l'algorithme de 
-  Cantor-Zassenhaus décrit dans \cite[Chapter~14.5]{vzGJG03}. Le coût de test 
-  des différents $\ell$ avant d'en trouver un permettant d'utiliser 
-   l'algorithme~\ref{alg:cou:ell-adique} est donc borné par $O(\log(q)^6)$. Ces 
-   algorithmes sont moins efficace que ceux de
-  \cite{Ionica-Joux10} et \cite{MiretMRV05} mais ils ont l'avantage de 
-  fonctionner sur tous types de volcans non réguliers compris. 
+  Cantor-Zassenhaus décrit dans \cite[Chapter~14.5]{vzGJG03}. Ainsi le coût 
+  total pour trouver un nombre premier de $\ell$ de Elkies tel que $\ell^h<\sqrt{r}$  est de
+  $O(\log(q)^5)$ en bornant $\ell$ par $\log(q)$.
+	
 \end{proof}
+
+\begin{rem}
+Les algorithmes de \cite{FouquetMorain02} utilisés pour trouver une courbe sur 
+le volcan de $\ell$-isogénies  dans la preuve de la 
+proposition~\ref{pro:cou:dec} sont moins efficace que ceux de 
+\cite{Ionica-Joux10} et \cite{MiretMRV05} mais ils ont l'avantage de 
+fonctionner sur tous types de volcans non-réguliers compris, d'où le fait que
+l'on ne considère que ceux-ci.
+\end{rem}
+
 
 \todo{faire un résultat sur le coût de trouver un bon $\ell$}
 
@@ -4163,6 +4171,8 @@ en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) 
 \end{thm}
 
 \begin{proof}
+Par la proposition~\ref{pro:bor:ell} on sait qu'il existe un nombre premier 
+$\ell$ de Elkies $\ell$ appartenant à $[1,L]$ pour $L \in O(\log(q))$. Pour chacun de ces
   Soit une courbe $E$, on cherche le plus petit nombre premier de Elkies qui 
   vérifie les conditions de la proposition~\ref{pro:full-complexity}.
   En appliquant le résultat de~\cite[Theorem~1]{shparlinski2014distribution},
