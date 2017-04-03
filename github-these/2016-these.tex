@@ -4101,8 +4101,58 @@ tous les nombres premiers $q$ et courbes $E/\mathbb{F}_q$, pour
 $L\geqslant\log(q)^\varepsilon$ pour n'importe quel $\varepsilon>0$,
 on obtient asymptotiquement que la moitié des nombres premiers $\ell \leqslant 
 L$ sont des nombres premiers de Elkies.
-On utilise donc ce résultat pour démontrer le théorème suivant, notamment en donnat une 
+On utilise donc ce résultat pour démontrer le théorème suivant, notamment en donnant une 
 borne sur $\ell$ pour le pire des cas en fonction uniquement de $r$ et $q$.
+
+\todo{faire un résultat uniquement sur $\ell \in \log(q)$)}
+\begin{prop}
+Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
+$\mathbb{F}_q$, il existe un nombre premier $\ell$ de Elkies 
+dans l'intervalle $[1,L]$ tel que $\ell^h < \sqrt{r}$ pour $L \in O(\log(q))$.
+\end{prop}
+
+\begin{proof}
+Soit une courbe $E$, on cherche le plus petit nombre premier de Elkies qui 
+  vérifie les conditions de la proposition~\ref{pro:full-complexity}.
+  En appliquant le résultat de~\cite[Theorem~1]{shparlinski2014distribution},
+  on fixe $L \in O(\log(q))$ tel que le produit de tous les nombres premiers 
+  de Elkies dépasse $\Omega(\sqrt{q})$. On enlève alors les nombres premiers 
+  de Elkies $\ell \leqslant L$ tels que $\ell^{h} > \sqrt{r}$, cette condition
+  empêchant d'utiliser notre algorithme~\ref{alg:cou:ell-adique}, 
+  pour de tels nombres premiers ceux-ci sont des diviseurs de $d_{K}$ et leur 
+  produit est donc borné par $O(\sqrt{q})$. Ainsi il reste suffisamment de 
+  nombres premiers de Elkies satisfaisant $\ell^{h} < \sqrt{r}$ dans 
+  l'intervalle  $[1,L]$, dans le pire des cas on a donc un nombre premier de
+  Elkies $\ell \in O(\log(q))$ que l'on peut utiliser dans 
+  l'algorithme~\ref{alg:cou:ell-adique}.
+\end{proof}
+
+\begin{prop}
+Le coût de trouver un nombre premier $\ell$ de Elkies dans l'intervalle  
+$[1,L]$ tel que $\ell^h < \sqrt{r}$ pour $L \in O(\log(q))$ est majoré par:
+$O(\log(q)^6)$.
+\end{prop}
+
+\begin{proof}
+à l'aide des
+En utilisant les algorithmes décrits dans \cite{FouquetMorain02} et abordés 
+dans la sous-section~\ref{sub:alg:FM} on peut déterminer une courbe sur le 
+sommet du volcan de $\ell$-isogénies à l'aide de $\ell h^2$ 
+  factorisations du $\ell$-ème polynôme moduaire. Or $h$ est plus petite que $\log(q)$. Ces algorithmes 
+utilisent $\ell h^2$ 
+  factorisations du $\ell$-ème polynôme moduaire, le coût de calcul de celui-ci
+  est de $O(\ell^3\log(\ell))$ sa factorisation de 
+  $O(\mathsf{M}(\ell)\log(\ell)\log(\ell q))$ par l'algorithme de 
+  Cantor-Zassenhaus décrit dans \cite[Chapter~14.5]{vzGJG03}. Le coût de test 
+  des différents $\ell$ avant d'en trouver un permettant d'utiliser 
+   l'algorithme~\ref{alg:cou:ell-adique} est donc borné par $O(\log(q)^6)$. Ces 
+   algorithmes sont moins efficace que ceux de
+  \cite{Ionica-Joux10} et \cite{MiretMRV05} mais ils ont l'avantage de 
+  fonctionner sur tous types de volcans non réguliers compris. 
+\end{proof}
+
+\todo{faire un résultat sur le coût de trouver un bon $\ell$}
+
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
 $\mathbb{F}_q$, il est possible de résoudre "Calcul de l'isogénie explicite" 
