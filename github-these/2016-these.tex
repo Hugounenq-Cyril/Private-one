@@ -4010,7 +4010,8 @@ Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}
   En supposant que l'on a $\ell^h<\sqrt{r}$, 
   l'algorithme~\ref{alg:cou:ell-adique} calcule une $r$-isogénie 
   ${\phi:E \rightarrow E'}$ en un temps espéré de 
- $O\Bigl(\bigl(r \ell^2\mathsf{M}(r\ell^4) +  \mathsf{M}(r\ell^3)\log(\ell q)\bigr)\log(r)\log(\ell) \Bigr).$
+\[
+ O\Bigl(\bigl(r \ell^2\mathsf{M}(r\ell^4) +  \mathsf{M}(r\ell^3)\log(\ell q)\bigr)\log(r)\log(\ell) \Bigr).\]
 \end{prop}
 \begin{proof}
 Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
@@ -4172,46 +4173,22 @@ en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) 
 
 \begin{proof}
 Par la proposition~\ref{pro:bor:ell} on sait qu'il existe un nombre premier 
-$\ell$ de Elkies $\ell$ appartenant à $[1,L]$ pour $L \in O(\log(q))$. Pour chacun de ces
-  Soit une courbe $E$, on cherche le plus petit nombre premier de Elkies qui 
-  vérifie les conditions de la proposition~\ref{pro:full-complexity}.
-  En appliquant le résultat de~\cite[Theorem~1]{shparlinski2014distribution},
-  on fixe $L \in O(\log(q))$ tel que le produit de tous les nombres premiers 
-  de Elkies dépasse $\Omega(\sqrt{q})$. On enlève alors les nombres premiers 
-  de Elkies $\ell \leqslant L$ tels que $\ell^{h} > \sqrt{r}$, cette condition
-  empéchant d'utiliser notre algorithme~\ref{alg:cou:ell-adique}, 
-  pour de tels nombres premiers ceux-ci sont des diviseurs de $d_{K}$ et leur 
-  produit est donc borné par $O(\sqrt{q})$. Ainsi il reste suffisamment de 
-  nombres premiers de Elkies satisfaisant $\ell^{h} < \sqrt{r}$ dans 
-  l'intervalle  $[1,L]$, dans le pire des cas on a donc un nombre premier de
-  Elkies $\ell \in O(\log(q))$ que l'on peut utiliser dans 
-  l'algorithme~\ref{alg:cou:ell-adique}.
-  
-  Il reste encore à prendre en compte le coût de calcul d'identification d'un
-  tel nombre de Elkies satisfaisant $\ell^{h}< \sqrt{r}$, ainsi à l'aide des
-  algorithmes décrits dans \cite{FouquetMorain02} et abordés dans la 
-  sous-section~\ref{sub:alg:FM} on peut faire cela. Ces 
-  algorithmes utilisent $\ell h^2$ 
-  factorisations du $\ell$-ème polynôme moduaire, le coût de calcul de celui-ci
-  est de $O(\ell^3\log(\ell))$ sa factorisation de 
-  $O(\mathsf{M}(\ell)\log(\ell)\log(\ell q))$ par l'algorithme de 
-  Cantor-Zassenhaus décrit dans \cite[Chapter~14.5]{vzGJG03}. Le coût de test 
-  des différents $\ell$ avant d'en trouver un permettant d'utiliser 
-   l'algorithme~\ref{alg:cou:ell-adique} est donc borné par $O(\log(q)^6)$. Ces 
-   algorithmes sont moins efficace que ceux de
-  \cite{Ionica-Joux10} et \cite{MiretMRV05} mais ils ont l'avantage de 
-  fonctionner sur tous types de volcans non réguliers compris. 
-  On a alors la complexité annoncée en 
-  remplaçant $\ell$ par $O(\log(q))$.
-  
-  
-  The most expensive steps in Section~\ref{sub:shape-volcano} are
-  the computation and the factorization of the modular polynomials
-  for all primes up to $\ell$.
-  This is well within~$O(\log(q)^6)$.
-  The stated complexity follows then from
-  substituting~$\ell = O(\log(q))$
-  in Proposition~\ref{prop:full-complexity}.
+$\ell$ de Elkies appartenant à $[1;L]$ pour $L \in O(\log(q))$ et qui vérifie
+$\ell^{h} < \sqrt{r}$. Pour trouver un nombre de premier de Elkies qui vérifie 
+cette condition on doit tester tous les nombres premier de l'intervalle $[1;L]$
+avec $L \in O(\log(q))$. On a vu dans la proposition~\ref{pro:cou:dec} que pour 
+chacun de ces nombres premiers de Elkies on trouvait une courbe sur le cratère
+en au plus $O(\log(q)^5)$ opérations, une fois qu'une telle courbe est trouvée
+sur le cratère alors on calcule une base diagonale de la $\ell^k$ torsion à 
+l'aide des méthodes utilisées dans l'algorithme~\ref{alg:bas:diag} et l'on 
+regarde alors si les valeurs propres sont distinctes, si c'est le cas alors le
+nombre premier testé est valide pour appliquer 
+l'algorithme~\ref{alg:cou:ell-adique}.
+Ainsi en bornant $\ell$ par $\log(q)$ dans la complexité obtenue à la 
+proposition~\ref{pro:full-complexity} on obtient un résultat qui majore la 
+complexité obtenue pour la recherche et validation d'un nombre premier de 
+Elkies pour l'algorithme~\ref{alg:cou:ell-adique}, cette complexité nous donne 
+le résultat. 
 \end{proof}
 
 
