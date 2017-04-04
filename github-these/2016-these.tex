@@ -2203,9 +2203,9 @@ Il est à noter que en pratique pour le calcul de racine carrée de $\delta$ on 
 %\begin{prop}[Doliskani-Schost'15]
 %Soit $q=1 \bmod 4$, étant donné un résidu non quadratique $\alpha$ de $\mathbb{F}_q$, alors pour $k\geqslant 0$ et $n=2^k$, les temps de calculs pour les opérations dans $\mathbb{F}_q$ énoncés dans le tableau \ref{tab:complexite-degre2} sont vérifiés.
 %\end{prop}
-\begin{defi}
+\begin{nota}
 On note $\mathsf{R}(i)$ une borne sur le coût espéré du calcul de racine d'un polynôme de degré $\ell$ à coefficients dans $\mathsf{F}_i$.
-\end{defi}
+\end{nota}
 
 Les coûts des différentes opérations dans de telles tours d'extensions $\ell$-adiques sont résumés dans le tableau  \ref{tab:complexite-degre2}.
 \begin{figure}
@@ -3902,7 +3902,7 @@ On rappelle que l'on se place dans le contexte suivant:
 %Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
 %Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, calculer les courbes $E$, $E'$ telles que $j(E)=i$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
 %\end{block}
-
+\todo{Faire apparaitre le block !}
 
 \section{Elkies}
 Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont été publié \cite{Defeo_Plut_Schost_2016}.
@@ -4027,8 +4027,11 @@ Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}
   En supposant que l'on a $\ell^h<\sqrt{r}$, 
   l'algorithme~\ref{alg:cou:ell-adique} calcule une $r$-isogénie 
   ${\phi:E \rightarrow E'}$ en un temps espéré de 
-\[
- O\Bigl(\bigl(r \ell^2\mathsf{M}(r\ell^4) +  \mathsf{M}(r\ell^3)\log(\ell q)\bigr)\log(r)\log(\ell) \Bigr).\]
+%\[
+% O\Bigl(\bigl(r \ell^2\mathsf{M}(r\ell^4) +  \mathsf{M}(r\ell^3)\log(\ell q)\bigr)\log(r)\log(\ell) \Bigr).\]
+ \[
+O\Bigl( \mathsf{M}(r \ell^2) \log(r) \log(\ell) \bigl( r + \log(\ell q) \bigr) \Bigr) 
+ \]
 \end{prop}
 \begin{proof}
 Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
@@ -4041,33 +4044,29 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   de l'étape~\ref{alg:cou-ell:bdiag}.
   
   On attire l'attention sur le fait que la condition $\ell^h<\sqrt{r}$ se traduit par 
-  le fait que $k$ est strictement plus grand que $h$ par définition de $k$.
+  $k$ strictement plus grand que $h$ par définition de $k$.
   On va utiliser ce résultat tout au long de la preuve. 
  
-  Le coût de calcul des bases 
-  diagonales de courbes sommets à l'étape~\ref{alg:cou-ell:bdiag} se fait à 
-  l'aide de l'algorithme~\ref{alg:ulti:fro} qui a un coût dans le pire des cas
-  de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+k(\mathsf{R}(k-\beta) + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta})))$ 
-  par la proposition~\ref{pro:alg:ulti}. Cette borne est très grossière car 
-  elle est prise pour la cas où l'on aurait $e=h=k-1$ et dans ce cas où le 
-  volcan est régulier on devrait avoir $\beta \geqslant h-1$. 
-  Dans le cas où la courbe se situe sur 
-  un volcan régulier et de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+\mathsf{R}(k-\beta) 
-  + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta}))$ dans le
-   cas où la courbe se situe au-dessus du premier niveau de stabilité.
+  Le coût de calcul des bases diagonales de courbes sommets à 
+  l'étape~\ref{alg:cou-ell:bdiag} se fait à l'aide de 
+  l'algorithme~\ref{alg:ulti:fro} qui a un coût dans le pire des cas
+  de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+k(\mathsf{R}(k-\beta) +  \ell^2\mathsf{M}(\ell^{k-\beta})))$ 
+  par la proposition~\ref{pro:alg:ulti}. Cette borne est prise pour la cas où 
+  la courbe en entrée se situerait en bas du volcan de $\ell$-isogénies. 
 
   L'étape~\ref{alg:cou-ell:bhor} qui utilise 
-  l'algorithme~\ref{alg:hor:poi} coûte en moyenne 
-  $O(k\mathsf{R}(k-\beta) + k\ell^2\mathsf{M}(\ell\sqrt{r}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ d'après la 
-  proposition~\ref{pro:alg:hor} et le théorème~\ref{th:horizontal}.
+  l'algorithme~\ref{alg:hor:poi} coûte dans le pire des cas un coût espéré de
+  $O(k\mathsf{R}(k-\beta) + k\ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ d'après la 
+  proposition~\ref{pro:alg:hor}.
   En utilisant le  résultat  donné par ~\cite[Chapter~14.5]{vzGJG03} pour le 
   coût de $\mathsf{R}$, on a alors un coût borné par 
-  $O(\mathsf{M}(r\ell^3)\log(r)\log(\ell)\log(\ell q))$.
+  $O(\mathsf{M}(r\ell^2)\log(r)\log(\ell)\log(\ell q))$.
   
   Il faut éventuellement rajouter le coût de calcul des points partiellement 
   horizontaux si les courbes en entrée ne se situent pas sur le cratère 
   celui-ci est dans le pire des cas de
-  $O(k\mathsf{M}(\ell^{k-\beta+1}))$ par la proposition~\ref{pro:par:hor}.
+  $O(k\mathsf{M}(\ell^{k-\beta+1})) \subset O(\log(r) \mathsf{M}(r) )$ par la proposition~\ref{pro:par:hor}, ce 
+  coût est donc majoré par le calcul de la base horizontale sur le cratère.
 
   Par la proposition~\ref{pro:clas:fro}(~\ref{prop:classes:count}), il y a au 
   plus~$O(k \cdot \ell^{k+\beta})$ classes de Galois dans~$E[\ell^k]$. 
@@ -4078,14 +4077,14 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   dans $\mathsf{F}_{k-\beta}$ par des entiers définis dans 
   $\left( \mathbb{Z}/\ell^{k}\mathbb{Z}\right)^*$ ce qui coûte 
   $O(\mathsf{M}(\ell^{k-\beta})\log(\ell^k))$ opérations. On a donc un coût total de 
-  $O(k\mathsf{M}(\ell^{2k})\log(\ell^k)) \subset O(\mathsf{M}(r\ell^2)\log(r)^2)$
+  $O(k\mathsf{M}(\ell^{2k})\log(\ell^k)) \subset O(\mathsf{M}(r\ell)\log(r)^2)$
   pour calculer tous les représentants.
   
   
   On utilise ensuite la proposition~\ref{prop:interpol}, avec un degré total
-  ~$t = (\ell^{2k-2}(\ell+1))/2\in O(r \ell^2)$, et le nombre de points d'interpolations
+  ~$t = (\ell^{2k-2}(\ell+1))/2\in O(r)$, et le nombre de points d'interpolations
   est $s \in O(k \cdot \ell^{k+\beta})$, on calcule alors les polynômes~$T$
-  et~$A_{a,b}$ à un coût de~$O(\mathsf{M}(r \ell^4)\log(r)\log(\ell))$.  Le coût
+  et~$A_{a,b}$ avec un coût de~$O(\mathsf{M}(r \ell^2)\log(r)\log(\ell))$.  Le coût
   de calcul de $F_{a,b}$ est de $O(\mathsf{M}(r)\log(r))$ par 
   \cite[Théorème 7.5]{algeff17}. Le coût de calcul du test de l'isogénie (voir
   paragraphe~\cite{par:val:iso} pour une description détaillée des tests 
@@ -4096,7 +4095,7 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
    du polynôme de $r$-division  de $r\mathsf{M}(r^2)\log(r)\log(r q)$ car 
   les autres tests suffisent en général pour conclure. Tous ces coûts sont donc
   dominés par celui du calcul de~$A_{a,b}$.  Enfin, en moyenne 
-   ${\ell^{2k}=O(r \ell^2)}$~matrices candidates doivent être testées
+   ${\ell^{2k-2}=O(r )}$~matrices candidates doivent être testées
    avant de trouver l'isogénie.
 \end{proof}
  
