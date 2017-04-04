@@ -67,6 +67,7 @@
 \hrule\@width\headwidth\@height
 \footrulewidth\vskip\footruleskip
 }}
+
 \makeatother
 
 %%% BEGIN DOCUMENT
@@ -1162,6 +1163,7 @@ L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires
 
 
 \subsection{Algorithme original de Couveignes}
+\label{sub:ori:cou}
 Soit $I$ la $\ell$-isogénie qui relie deux courbes elliptiques ordinaires $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$ on a: $I(E[p^k])=E'[p^k]$.
 C'est cette correspondance qui, lorsque $k$ est assez grand, donne une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement, l'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle avec les formules de Vélu (voir \ref{sse:Vel}) on a:
 \begin{equation}
@@ -3392,7 +3394,7 @@ Ce chapitre comme le précédent s'inspire de travaux effectués en collaboratio
 Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets présentés dans le chapitre \ref{cha:act:fro}. Sont aussi utilisés les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les extensions de corps de définies dans la définition \ref{def:tour-ell}.
 
 \section{Elkies}
-On travaille avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, on se place dans le contexte de l'algorithme de Couveignes et on veut calculer une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. En particulier on ne connaît pas la cardinalité de la courbe. On verra dans un autre chapitre~\ref{cha:alg:fin} \todo{spécifier ce chapitre} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu à la proposition \ref{pro:dia:hor} que l'on devait avoir $k \geqslant h+1$, on rappelle aussi que $\beta$ représente la plus grande valuation de la $\ell$-torsion rationnelle pour une courbe située sur le sommet du cratère du volcan de $\ell$-isogénies(voir sous section \ref{sub:classes}).
+On travaille avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, on se place dans le contexte de l'algorithme de Couveignes et on veut calculer une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. En particulier on ne connaît pas la cardinalité de la courbe. On verra dans un autre chapitre~\ref{cha:alg:fin} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu à la proposition \ref{pro:dia:hor} que l'on devait avoir $k \geqslant h+1$, on rappelle aussi que $\beta$ représente la plus grande valuation de la $\ell$-torsion rationnelle pour une courbe située sur le sommet du cratère du volcan de $\ell$-isogénies(voir sous section \ref{sub:classes}).
 
 Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère (proposition \ref{pro:mat:fro}), le calcul d'une base de la $\ell^k$ torsion diffère donc dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
 
@@ -3899,15 +3901,13 @@ Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne
 \chapter{Algorithme de Couveignes $\ell$-adique}
 \label{cha:alg:fin}
 On rappelle que l'on se place dans le contexte suivant:
-%\begin{block}
-%Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
-%Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, calculer les courbes $E$, $E'$ telles que $j(E)=i$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
-%\end{block}
-\todo{Faire apparaitre le block !}
+
+\paragraph{Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
+
+Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est de calculer les courbes $E$, $E'$ telles que $j(E)=i$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
 
 \section{Elkies}
-Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont été publié \cite{Defeo_Plut_Schost_2016}.
-\todo{C'est là qu'on doit parler de la hauteur du volcan}
+Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
 
 Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une $r$-isogénie $\phi$, alors par la proposition~\ref{pro:mat:fro} pour $k$ plus grand que $h$ la hauteur du volcan de $\ell$-isogénies on peut calculer deux bases diagonales $(P,Q),(P',Q')$ de $E_s[\ell^k]$ et $E'_s[\ell^k]$ les courbes sommets respectives de $E$ et $E'$ 
@@ -3917,7 +3917,7 @@ Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées
 0 & \mu
 \end{matrix} \right).
 \]
-Comme la $r$-isogénie $\phi$ commute avec le Frobenius on devrait avoir $\phi(P) \in \langle P' \rangle $ et $\phi(Q) \in \langle Q' \rangle $, or la matrice $\pi$ est scalaire modulo la $\ell^{h}$ torsion ainsi la représentation de $\phi$ dans les bases $(P,Q)$ et $(P',Q')$ n'est pas diagonale:
+Comme la $r$-isogénie $\phi$ commute avec le Frobenius (et que $E_s$ et $E'_s$ sont encore $r$-isogènes par la proposition~\ref{pro:par:iso}) on devrait avoir $\phi(P) \in \langle P' \rangle $ et $\phi(Q) \in \langle Q' \rangle $, or la matrice $\pi$ est scalaire modulo la $\ell^{h}$ torsion ainsi la représentation de $\phi$ dans les bases $(P,Q)$ et $(P',Q')$ n'est pas diagonale:
 \[
 \left(
 \begin{matrix}
@@ -4060,12 +4060,13 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   $O(k\mathsf{R}(k-\beta) + k\ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ d'après la 
   proposition~\ref{pro:alg:hor}.
   En utilisant le  résultat  donné par ~\cite[Chapter~14.5]{vzGJG03} pour le 
-  coût de $\mathsf{R}$, on a alors un coût borné par 
+  coût de $\mathsf{R}$, on a alors un coût borné pour les 
+  étapes~\ref{alg:cou-ell:bhor} et \ref{alg:cou-ell:bdiag} par 
   $O(\mathsf{M}(r\ell^2)\log(r)\log(\ell)\log(\ell q))$.
   
   Il faut éventuellement rajouter le coût de calcul des points partiellement 
-  horizontaux si les courbes en entrée ne se situent pas sur le cratère 
-  celui-ci est dans le pire des cas de
+  horizontaux si les courbes en entrée ne se situent pas sur le cratère. 
+  Celui-ci est dans le pire des cas de
   $O(k\mathsf{M}(\ell^{k-\beta+1})) \subset O(\log(r) \mathsf{M}(r) )$ par la proposition~\ref{pro:par:hor}, ce 
   coût est donc majoré par le calcul de la base horizontale sur le cratère.
 
@@ -4074,7 +4075,8 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   Pour les polynômes d'interpolation on a besoin d'un représentant de chaque 
   classe que l'on stocke dans les listes $L$ et $L'$. Chaque représentant est
   calculé à partir de la base $(\color{red}P_{\lambda}\color{black},
-  \color{blue}Q_{\mu}\color{black})$ en multipliant les deux points définis 
+  \color{blue}Q_{\mu}\color{black})$ et $(\color{red}P'_{\lambda}\color{black},
+  \color{blue}Q'_{\mu}\color{black})$ en multipliant les deux points définis 
   dans $\mathsf{F}_{k-\beta}$ par des entiers définis dans 
   $\left( \mathbb{Z}/\ell^{k}\mathbb{Z}\right)^*$ ce qui coûte 
   $O(\mathsf{M}(\ell^{k-\beta})\log(\ell^k))$ opérations. On a donc un coût total de 
@@ -4088,15 +4090,17 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   et~$A_{a,b}$ avec un coût de~$O(\mathsf{M}(r \ell^2)\log(r)\log(\ell))$.  Le coût
   de calcul de $F_{a,b}$ est de $O(\mathsf{M}(r)\log(r))$ par 
   \cite[Théorème 7.5]{algeff17}. Le coût de calcul du test de l'isogénie (voir
-  paragraphe~\cite{par:val:iso} pour une description détaillée des tests 
-  possibles) dont les opérations 
-  les plus coûteuses sont regarder si le dénominateur de $F$ est un carré ou 
-  encore si il divise le polynôme de $r$-division cela coûte $O(\mathsf{M}(r)
+  paragraphe dans la sous-section~\cite{sub:ori:cou} pour une description 
+  détaillée des tests possibles) dont les opérations 
+  les plus coûteuses sont regarder si le dénominateur de $F$ est un carré (dans
+  le cas où $r$ est pair que c’est le produit d’un facteur du polynôme de 
+  2-division et d’un carré) ou 
+  encore si il divise le polynôme de $r$-division. Cela coûte $O(\mathsf{M}(r)
   \log(r))$ opérations, on ne prend pas en compte toutefois le coût de calcul
    du polynôme de $r$-division  de $r\mathsf{M}(r^2)\log(r)\log(r q)$ car 
   les autres tests suffisent en général pour conclure. Tous ces coûts sont donc
   dominés par celui du calcul de~$A_{a,b}$.  Enfin, en moyenne 
-   ${\ell^{2k-2}=O(r )}$~matrices candidates doivent être testées
+   ${\ell^{2k-2}=O(r)}$~matrices candidates doivent être testées
    avant de trouver l'isogénie.
 \end{proof}
  
@@ -4114,7 +4118,7 @@ afin de montrer que notre algorithme est utilisable en pratique.
 Un résultat de Shparlinski et 
 Sutherland~\cite[Theorem~1]{ShparlinskiSutherland14}
 nous permet de savoir dans quelle mesure on peut trouver des nombres premiers 
-$\ell$ de Elkies \todo{regarder si nombre de Elkies c'est défini quelque part} pour une courbe quelconque et par conséquent donner une borne sur
+$\ell$ de Elkies pour une courbe quelconque et par conséquent donner une borne sur
  $\ell$. Plus précisément pour presque 
 tous les nombres premiers $q$ et courbes $E/\mathbb{F}_q$, pour 
 $L\geqslant\log(q)^\varepsilon$ pour n'importe quel $\varepsilon>0$,
@@ -4123,7 +4127,6 @@ L$ sont des nombres premiers de Elkies.
 On utilise donc ce résultat pour démontrer le théorème suivant, notamment en donnant une 
 borne sur $\ell$ pour le pire des cas en fonction uniquement de $r$ et $q$.
 
-\todo{faire un résultat uniquement sur $\ell \in \log(q)$)}
 \begin{prop}
 \label{pro:bor:ell}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
@@ -4180,7 +4183,7 @@ l'on ne considère que ceux-ci.
 
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
-$\mathbb{F}_q$, il est possible de résoudre "Calcul de l'isogénie explicite" 
+$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
 en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^2) \log(r) \log \log(q)  + \log(q)^5\bigr)$.
 
 %  $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
@@ -4189,7 +4192,7 @@ en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^2) \log(r) \log \log(q) 
 \begin{proof}
 Par la proposition~\ref{pro:bor:ell} on sait qu'il existe un nombre premier 
 $\ell$ de Elkies appartenant à $[1;L]$ pour $L \in O(\log(q))$ et qui vérifie
-$\ell^{h} < \sqrt{r}$. Pour trouver un nombre de premier de Elkies qui vérifie 
+$\ell^{h} < \sqrt{r}$. Pour trouver un nombre premier de Elkies qui vérifie 
 cette condition on doit tester tous les nombres premier de l'intervalle $[1;L]$
 avec $L \in O(\log(q))$. On a vu dans la proposition~\ref{pro:cou:dec} que pour 
 chacun de ces nombres premiers de Elkies on trouvait une courbe sur le cratère
@@ -4207,6 +4210,7 @@ est lui majoré par la complexité donnée dans la
 proposition~\ref{pro:full-complexity}.
 \end{proof}
 
+\section{Partie expérimentale}
 
 
 \chapter{Rebus}
