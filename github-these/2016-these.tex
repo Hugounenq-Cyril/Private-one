@@ -35,7 +35,7 @@
 
 
 \theoremstyle{plain}
-\newtheorem{thm}{Théorème}
+\newtheorem{thm}{Théorème}[chapter]
 \theoremstyle{definition} 
 \newtheorem{lem}[thm]{Lemme}
 \theoremstyle{definition} 
@@ -3018,7 +3018,8 @@ A l'aide du lemme \ref{lem:val:ext} et de la proposition \ref{pro:niv:str} on ne
 \section{Cas Elkies}
 La majeure partie du travail présenté dans cette section a été effectué en collaboration avec Luca De Feo, Jérome Plut et Eric Schost. Il a fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
-On se place dans le cas Elkies où l'on va étudier une courbe elliptique ordinaire pour laquelle le polynôme caractéristique du Frobenius se scinde modulo la $\ell^k$-torsion:
+
+On va appeler cas Elkies, le fait que $\ell$ est un nombre de Elkies pour la courbe elliptique ordinaire $E$ avec laquelle on travaille, c'est à dire que l'on a le polynôme caractéristique du Frobenius qui se scinde dans  $\mathbb{Z}_{\ell}$:
 \begin{equation*}
 \pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \bmod \ell^k.
 \end{equation*}
@@ -4133,7 +4134,7 @@ dans l'intervalle $[1,L]$ tel que $\ell^h < \sqrt{r}$ pour $L \in O(\log(q))$.
 \begin{proof}
 Soit une courbe $E$, on cherche le plus petit nombre premier de Elkies qui 
   vérifie les conditions de la proposition~\ref{pro:full-complexity}.
-  En appliquant le résultat de~\cite[Theorem~1]{shparlinski2014distribution},
+  En appliquant le résultat de~\cite[Theorem~1]{ShparlinskiSutherland14},
   on fixe $L \in O(\log(q))$ tel que le produit de tous les nombres premiers 
   de Elkies dépasse $\Omega(\sqrt{q})$. On enlève alors les nombres premiers 
   de Elkies $\ell \leqslant L$ tels que $\ell^{h} > \sqrt{r}$, cette condition
@@ -4172,19 +4173,16 @@ Les algorithmes de \cite{FouquetMorain02} utilisés pour trouver une courbe sur
 le volcan de $\ell$-isogénies  dans la preuve de la 
 proposition~\ref{pro:cou:dec} sont moins efficace que ceux de 
 \cite{Ionica-Joux10} et \cite{MiretMRV05} mais ils ont l'avantage de 
-fonctionner sur tous types de volcans non-réguliers compris, d'où le fait que
+fonctionner sur tous types de volcans, non-réguliers compris, d'où le fait que
 l'on ne considère que ceux-ci.
 \end{rem}
 
 
-\todo{faire un résultat sur le coût de trouver un bon $\ell$}
-
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
 $\mathbb{F}_q$, il est possible de résoudre "Calcul de l'isogénie explicite" 
-en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
-%  For almost all primes $q$ and curves $E,E'$ over $\mathbb{F}_q$, it is
-%  possible to solve the “Explicit Isogeny Problem” in expected time
+en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^2) \log(r) \log \log(q)  + \log(q)^5\bigr)$.
+
 %  $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
 \end{thm}
 
@@ -4199,13 +4197,14 @@ en au plus $O(\log(q)^5)$ opérations, une fois qu'une telle courbe est trouvée
 sur le cratère alors on calcule une base diagonale de la $\ell^k$ torsion à 
 l'aide des méthodes utilisées dans l'algorithme~\ref{alg:bas:diag} et l'on 
 regarde alors si les valeurs propres sont distinctes, si c'est le cas alors le
-nombre premier testé est valide pour appliquer 
+nombre premier testé est de Elkies et valide pour appliquer 
 l'algorithme~\ref{alg:cou:ell-adique}.
 Ainsi en bornant $\ell$ par $\log(q)$ dans la complexité obtenue à la 
-proposition~\ref{pro:full-complexity} on obtient un résultat qui majore la 
-complexité obtenue pour la recherche et validation d'un nombre premier de 
-Elkies pour l'algorithme~\ref{alg:cou:ell-adique}, cette complexité nous donne 
-le résultat. 
+proposition~\ref{pro:full-complexity} on obtient un résultat auquel il faut 
+rajouter le cout de la recherche de courbe sur le volcan: $O(\log(q)^5)$ par la 
+proposition~\ref{pro:cou:dec}, le test pour savoir si le nombre est de Elkies 
+est lui majoré par la complexité donnée dans la 
+proposition~\ref{pro:full-complexity}.
 \end{proof}
 
 
