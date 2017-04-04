@@ -4211,7 +4211,39 @@ proposition~\ref{pro:full-complexity}.
 \end{proof}
 
 \section{Partie expérimentale}
+Les résultats expérimentaux ont été obtenu à partir de code implanté pour le 
+logiciel SageMath~\ref{steinsagemath}, le code est disponible sur le projet 
+github:\href{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. La 
+partie expérimentale a été faite uniquement pour le cas $\ell=2$ et des courbes
+en entrée se situant sur le cratère.
 
+La construction des tours d'extensions $2$-adiques a été faite selon la méthode
+décrite dans l'article~\cite{Doliskani-Schost15}, l'étude s'est restreinte au 
+cas favorable où $p=1 \bmod 4$.
+
+En pratique la recherche d'exemples s'est faite à l'aide des méthodes décrites
+dans les algorithmes de l'article~\cite{FouquetMorain02} en résolvant donc les
+polynômes modulaires utilisés d'après la base de données "database-kohel" 
+implantée par David Kohel. Un module a été fait par Sébastien Besnier sur 
+Sagemath celui-ci permet d'afficher directement les volcans de $\ell$-isogénies
+à partir d'une courbe et il est disponible \todo{trouver référence}.
+
+Pour l'analyse des temps de calcul de notre algorithmes de Couveignes 
+$\ell$-adique, on a décomposé notre algorithme en 3 parties:
+\begin{enumerate}
+\item[Tate Module] est la première partie qui calcule une base diagonale de la 
+$\ell^k$ torsion avec $k$ le plus petit entier tel que $2^{2k-2}(2+1)> 2r$,
+cela représente donc les étapes à de l'algorithme~\ref{alg:cou:ell-adique};
+\item[Calcul Isogenie Init] est la seconde partie qui calcule les listes de 
+représentants $L,L'$ ainsi que le polynôme $T$, mais aussi le polynôme 
+$A_{1,1}$ et certains pré-calculs pour les Théorème des Restes Chinois dans 
+l'algorithme sont aussi effectués, cela représente donc les étapes à 
+de l'algorithme~\ref{alg:cou:ell-adique};
+\item[Calcul Isogenie Step] est la troisième partie qui calcule uniquement 
+les différentes polynômes d'interpolation $A_{i,j}$ puis l'interpolation de 
+Cauchy, cela représente donc les étapes à de 
+l'algorithme~\ref{alg:cou:ell-adique}.
+\end{enumerate}
 
 \chapter{Rebus}
 \subsubsection{Couveignes-Morain Bonne place ?}
