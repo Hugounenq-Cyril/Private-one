@@ -4011,11 +4011,11 @@ Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}
 \IF{$(E_s,E'_s) \neq (E_s,E'_s)$}
 \STATE Calcul de $((\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black}))=((\varphi(\color{red}P_{\lambda}\color{black}),\varphi(\color{blue}Q_{\mu}\color{black})),(\varphi'(\color{red}P'_{\lambda}\color{black}),\varphi'(\color{blue}Q_{\mu}'\color{black})))$ bases partiellement horizontales de $E[\ell^k],E'[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
 \ENDIF
-\STATE Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
+\STATE \label{alg:cou-ell:rep} Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\ell^{k}\mathbb{Z} \right)^*$}
-\STATE Réordonancement de la liste $L'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
-\STATE Calcul des des polynômes $A_{a,b}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
-\STATE Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\STATE \label{alg:cou-ell:ord} Réordonancement de la liste $L'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
+\STATE \label{alg:cou-ell:int} Calcul des des polynômes $A_{a,b}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
+\STATE \label{alg:cou-ell:Cauchy} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
 \IF{$\mathsf{Test}(F)$}
 \RETURN $F$
 \ENDIF
@@ -4212,12 +4212,13 @@ proposition~\ref{pro:full-complexity}.
 
 \section{Partie expérimentale}
 Les résultats expérimentaux ont été obtenu à partir de code implanté pour le 
-logiciel SageMath~\ref{steinsagemath}, le code est disponible sur le projet 
-github:\href{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. La 
+logiciel SageMath~\cite{Sage}, le code est disponible sur le projet 
+github:\url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. La 
 partie expérimentale a été faite uniquement pour le cas $\ell=2$ et des courbes
-en entrée se situant sur le cratère.
+en entrée se situant sur le cratère cyclique d'un volcan de $2$-isogénies.
 
-La construction des tours d'extensions $2$-adiques a été faite selon la méthode
+La construction des tours d'extensions $2$-adiques, implantée elle ausi en 
+SageMath a été faite selon la méthode
 décrite dans l'article~\cite{Doliskani-Schost15}, l'étude s'est restreinte au 
 cas favorable où $p=1 \bmod 4$.
 
@@ -4226,24 +4227,68 @@ dans les algorithmes de l'article~\cite{FouquetMorain02} en résolvant donc les
 polynômes modulaires utilisés d'après la base de données "database-kohel" 
 implantée par David Kohel. Un module a été fait par Sébastien Besnier sur 
 Sagemath celui-ci permet d'afficher directement les volcans de $\ell$-isogénies
-à partir d'une courbe et il est disponible \todo{trouver référence}.
+à partir d'une courbe et il est disponible à cette adresse 
+\url{https://trac.sagemath.org/ticket/16942}.
 
 Pour l'analyse des temps de calcul de notre algorithmes de Couveignes 
-$\ell$-adique, on a décomposé notre algorithme en 3 parties:
+$2$-adique, on a décomposé notre algorithme en 3 parties:
 \begin{enumerate}
 \item[Tate Module] est la première partie qui calcule une base diagonale de la 
-$\ell^k$ torsion avec $k$ le plus petit entier tel que $2^{2k-2}(2+1)> 2r$,
-cela représente donc les étapes à de l'algorithme~\ref{alg:cou:ell-adique};
+$\ell^k$ torsion avec $k$ le plus petit entier tel que $2^{2k-2}(2+1)> 4r$,
+cela représente donc les étapes \ref{alg:cou-ell:bdiag} à \ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \item[Calcul Isogenie Init] est la seconde partie qui calcule les listes de 
 représentants $L,L'$ ainsi que le polynôme $T$, mais aussi le polynôme 
 $A_{1,1}$ et certains pré-calculs pour les Théorème des Restes Chinois dans 
-l'algorithme sont aussi effectués, cela représente donc les étapes à 
-de l'algorithme~\ref{alg:cou:ell-adique};
+l'algorithme sont aussi effectués, cela représente donc en partie les étapes 
+\ref{alg:cou-ell:rep} à \ref{alg:cou-ell:int} de 
+l'algorithme~\ref{alg:cou:ell-adique};
 \item[Calcul Isogenie Step] est la troisième partie qui calcule uniquement 
-les différentes polynômes d'interpolation $A_{i,j}$ puis l'interpolation de 
-Cauchy, cela représente donc les étapes à de 
-l'algorithme~\ref{alg:cou:ell-adique}.
+un polynôme d'interpolation $A_{i,j}$ puis l'interpolation de 
+Cauchy, cela représente une itération des étapes \ref{alg:cou-ell:ord} à 
+\ref{alg:cou-ell:Cauchy} de l'algorithme~\ref{alg:cou:ell-adique}.
 \end{enumerate}
+
+On a donc regroupé les deux premières parties qui sont en fait du précalcul pour la troisième partie. Encore une fois le détail des timings pour les différentes parties est disponible sur le projet github: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. 
+
+On présente donc une première série de tests qui ont été réalisé sur des 
+courbes qui ont toutes leur $\beta=h=2$, ainsi notre algorithme a calculé de la 
+$2^3$ jusqu'à la $2^8$ torsion sur des courbes elliptiques définies sur corps 
+finis de taille $p$ allant d'une taille de $7$ bits à $252$ bits.
+
+Le comportement en escalier observé est tout à fait normal car pour toutes les 
+isogénies de degré 
+$\frac{\ell^{2k-2}(\ell+1)}{4} \leqslant r \leqslant \frac{\ell^{2k}(\ell+1)}{4}$ 
+on a besoin de travailler avec la même taille de $\ell^{k}$ torsion, ainsi on 
+aura en particulier les polynômes $A_{a,b}$ et $T$ de même degré ce qui fait 
+que la complexité et le temps de calcul sont les mêmes. Ceci est une raison 
+suffisante pour motiver la recherche du plus petit nombre $\ell$ de Elkies car
+alors on aura des paliers plus petits pour l'algorithme. Il pourrait toutefois 
+s'avérer que pour un autre nombre de Elkies $\ell'$ plus grand que $\ell$, $r$ 
+se trouve à la fin du palier $\frac{\ell'^{2k-2}(\ell+1)}{4} \leqslant r 
+\leqslant \frac{\ell'^{2k}(\ell+1)}{4}$, ainsi il serait plus utile de 
+travailler avec $\ell$ plutôt que $\ell'$.
+
+La deuxième série de tests a été réalisé sur des courbes qui ont 
+toutes leur $\beta=h=3$ définies sur des corps finis de taille $p$ allant de 
+$9$ bits à $62$ bits, notre algorithme a calculé de la $2^4$ jusqu'à $2^7$ 
+torsion des courbes elliptiques. On voit ici que comme on a $h=3$ alors on a 
+pas comme avec les précédents tests un palier où l'on calcule travaille avec la 
+$\ell^{3}$ mais la $\ell^4$ torsion, car il est nécessaire d'avoir $k$ 
+strictement supérieur à $h$.
+
+\subsection{Développements possibles de l'algorithme}
+
+On pourrait penser à utiliser notre algorithme avec une approche multimodulaire
+de façon similaire à un CRT, c'est à dire pour différents nombres de Elkies 
+$\ell_1, \ell_2, \ell_3, \dots$, pour une isogénie de degré $r$ on 
+calcule des bases horizontales de la $\ell_i^{k_i}$ torsion avec $k_i>h_i$ et 
+$k_i$ tel que $\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}<r$ mais dès lors il faudrait 
+trouver un autre moyen que celui déjà utilisé pour valider une correspondance 
+entre deux bases horizontales de la $\ell_i^{h_i}$ torsion.
+
+
+une $\ell^k$ torsion par rapport à l'action de la $r$-isogénie  de plus il ne 
+faut pas oublier que l'on a la contrainte $k>h$.
 
 \chapter{Rebus}
 \subsubsection{Couveignes-Morain Bonne place ?}
