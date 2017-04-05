@@ -4280,12 +4280,54 @@ strictement supérieur à $h$.
 
 On pourrait penser à utiliser notre algorithme avec une approche multimodulaire
 de façon similaire à un CRT, c'est à dire pour différents nombres de Elkies 
-$\ell_1, \ell_2, \ell_3, \dots$, pour une isogénie de degré $r$ on 
+$\ell_1, \ell_2, \ell_3, \dots, \ell_{n}$, pour une isogénie de degré $r$ on 
 calcule des bases horizontales de la $\ell_i^{k_i}$ torsion avec $k_i>h_i$ et 
-$k_i$ tel que $\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}<r$ mais dès lors il faudrait 
-trouver un autre moyen que celui déjà utilisé pour valider une correspondance 
-entre deux bases horizontales de la $\ell_i^{h_i}$ torsion.
+$k_i$ tel que $\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}<r$. 
 
+Il y a alors deux approches possibles:
+\subsubsection{Aprroche 1 la somme}
+La première approche est de considérer l'ensemble de points $S$ isomorphe à: 
+$\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $
+dés lors il faudrait fixer comme condition  $\sum_{i=1}^n\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$
+afin que le polynôme d'interpolation que l'on cherche à construire puisse 
+définir la fraction rationnelle $F$ censé représenter la $r$-isogénie $\phi$ 
+que l'on veut calculer. On aurait alors à travailler sur diverses tours 
+d'extensions $\ell_i$-adiques sur chacune d'elles on calculerait des polynômes
+d'interpolation $A_{a,b,i}$ et $T_i$ définis dans $\mathbb{F}_q$ à l'aide des 
+méthodes du chapitre~\ref{cha:tour} auxquels on 
+appliquerait un théorème des restes chinois pour obtenir une fraction 
+rationnelle $F$ à tester comme candidate pour être la représentante de la 
+$r$-isogénie. L'un des points les plus génants avec cette approche est que l'on
+doit considérer en moyenne les $\prod_{i=1}^n \ell_i^{2k_i-2}$ choix possibles 
+pour le polynôme d'interpolation et que ceci a une complexité supérieure à 
+$O(r)$. Cependant le calcul des polynômes d'interpolations 
+$A_{a,b,i}$ et $T_i$ devrait être dans un tel cas inférieur à ce que l'on a 
+dans l'algorithme~\ref{alg:cou:ell-adique} car pour tout $i_0$ on a plus 
+$\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$ mais $\prod_{i=1}^{n}\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$.
+
+Une telle approche serait meilleure que l'algorithme~\ref{alg:cou:ell-adique} 
+si l'on avait un moyen de préciser si un polynôme $A_{a,b,i_0}$ était correct 
+sans connaître la valeur des autres $A_{a,b,i}$ dans un cas comme celui-ci on 
+aurait à tester $\sum_{i=1}^n \ell_i^{2k_i-2} \in O(r)$ choix possibles pour le polynôme 
+d'interpolation, comme dans l'algorithme~\ref{alg:cou:ell-adique}.
+
+
+
+\subsubsection{Approche 2 le produit}
+Mais avec une telle approche il faudrait définir les 
+points dans un composita de tour d'extensions $\ell$-adiques à la manière de \cite{DeFeoDoliskaniSchost14}. On pourrait dés lors
+à l'aide des plongements utiliser les résultats du chapitre~\ref{cha:tour} et 
+\ref{cha:act:fro} et travailler avec l 
+$\prod_{i=1}^n\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$. 'ensemble de points $S$ isomorphe à: $\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $
+dés lors il faudrait fixer comme condition  $\sum_{i=1}^n\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$
+et construire le polynôme d'interpolations qui agit sur $S$ de façon similaire 
+à celle décrite dans le chapitre~\ref{cha:tour}.
+faudrait revoir le coût d'une opération telle que le Frobenius dans un tel 
+contexte, certes les méthodes de 
+plongement permettent d'utiliser les résultats du chapitre \ref{cha:tour} pour 
+une tour d'extensions $\ell$-adiques mais il faut prendre en compte le p
+faudrait trouver un autre moyen que celui déjà utilisé pour valider une 
+correspondance entre deux bases horizontales de la $\ell_i^{h_i}$ torsion.
 
 une $\ell^k$ torsion par rapport à l'action de la $r$-isogénie  de plus il ne 
 faut pas oublier que l'on a la contrainte $k>h$.
