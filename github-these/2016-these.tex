@@ -17,8 +17,7 @@
 \usepackage{makeidx}
 \usepackage{gloss}
 \usepackage{xcolor}
-\def\glossname{Glossaire}
-\usepackage{ragged2e}
+%\usepackage[toc]{glossaries}
 \usepackage{changepage}
 \usepackage{tikz}
 \usepackage{array}
@@ -27,7 +26,7 @@
 \usetikzlibrary{calc}
 \usetikzlibrary{fixedpointarithmetic}
 \usepackage{todonotes}
-
+\usepackage[intoc]{nomencl}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 
@@ -52,12 +51,14 @@
 \newtheorem{nota}[thm]{Notation}
 
 
+
 \newcommand{\defeq}{\mathrel{\mathop:}=}
 
 \author{Hugounenq Cyril}
 \title{Arithmétique Rapide appliqué à la Géométrie et à la Cryptologie}
+\makenomenclature
 \makeindex
-\makegloss
+
 
 
 \makeatletter
@@ -69,6 +70,18 @@
 }}
 
 \makeatother
+%\makeglossaries
+ 
+%\newglossaryentry{PI}{
+%		name=$\pi$,
+%		description={L'endomorphisme de Frobenius}% 
+%		}
+
+% 
+
+\renewcommand{\nomname}{Nomenclature 10000}
+ 
+\renewcommand{\nompreamble}{The next list describes several symbols that will be later used within the body of the document}
 
 %%% BEGIN DOCUMENT
 \begin{document}
@@ -152,8 +165,62 @@
 
 \tableofcontents*
 \listoftodos
+
+\nomenclature{$\pi$}{L'endomorphisme de Frobenius}
+\nomenclature{$[n]P$}{Multiplication scalaire par $n$ d'un point $P$ d'une courbe elliptique}
+\nomenclature{$E[n]$}{Ensemble des points de $n$-torsion d'une courbe elliptique}
+\nomenclature{$\mathsf{F}_i$}{$i$-ème corps de la tour d'extensions $\ell$-adiques}
+\nomenclature{$\varphi$}{isogénie descendante}
+\nomenclature{$\widehat{\varphi}$}{isogénie montante/ascendante}
+\nomenclature{$\phi$}{une $r$-isogénie}
+\nomenclature{$\psi$}{une isogénie horizontale}
+\nomenclature{$\widehat{\psi}$}{isogénie duale de $\psi$}
+\nomenclature{$\Phi_{\ell}$}{$\ell$-ème polynôme modulaire}
+\nomenclature{$d_0$}{A remplir}
+%\newglossaryentry{ScalarMult}{
+%		name=$[n]P$,
+%		description={Multiplication scalaire par $n$ d'un point d'une courbe elliptique}% 
+%		}
+%\newglossaryentry{Torsion}{
+%		name=$E[n]$,
+%		description={Ensemble des points de $n$-torsion d'une courbe elliptique}% 
+%}
+%\newglossaryentry{TowerElement}{
+%		name=$\mathsf{F}_i$,
+%		description={$i$-ème corps de la tour d'extensions $\ell$-adiques}%
+%}
+%\newglossaryentry{IsoDes}{
+%		name=$\varphi$,
+%		description={isogénie descendante}%
+%}
+%\newglossaryentry{IsoMon}{
+%		name=$\widehat{\varphi}$,
+%		description={isogénie montante/ ascendante}
+%}
+%\newglossaryentry{Riso}{
+%		name=$\phi$,
+%		description={une $r$-isogénie}
+%}
+%\newglossaryentry{Hiso}{
+%		name=$\psi$,
+%		description={isogénie horizontale}
+%}
+%\newglossaryentry{Diso}{
+%		name=$\widehat{\psi}$,
+%		description={isognie duale de l'isogénie $\psi$}
+%}
+%\newglossaryentry{PolMod}{
+%		name=$\Phi_{\ell}$,
+%		description={$\ell$-ème polynôme modulaire}
+%}
+
+
+\printnomenclature
+
+
 \chapter{Rappels théoriques}
 \section{Notations} \todo{A enrichir}
+
 La multiplication scalaire d'un point $P$ par $x$ se note $[x]P$. Les isogénies horizontales sont notées $\psi$, ascendantes $\widehat{\varphi}$, descendantes $\varphi$, l'isogénie de degré $r$ que l'on veut calculer est notée $\phi$. On note $\mathsf{F}_i$ la tour d'extension sur laquelle on travaille.
 \todo{Faire une liste de notations}
 \label{cha:Rappels theoriques}
@@ -4211,6 +4278,8 @@ proposition~\ref{pro:full-complexity}.
 \end{proof}
 
 \section{Partie expérimentale}
+\todo{ajouter figure volcan exemple avec structure}
+
 Les résultats expérimentaux ont été obtenu à partir de code implanté pour le 
 logiciel SageMath v7.1~\cite{Sage}, le code est disponible sur le projet 
 github:\url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}, les 
@@ -4317,8 +4386,41 @@ Le détail des timings pour les
 différentes parties est disponible sur le projet github: 
 \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. 
 
+\subsection{Variante avec un seul sous-groupe cyclique}
+
+Reflechir a la variante proposée par François disant que l'on peut se contenter de calculer une vecteur propre pour le Frobenius, déjà pour calculer des points horizontaux on est obligé de calculer une base diagonale de la $\ell^{h+1}$ torsion.
+
+Comme proposé par François Morain on pourrait uniquement travailler avec un 
+point horizontal au lieu de travailler avec une base horizontale.
+
+Dés lors on devrait fixer $k$ tel que le nombre d'abscisses de points d'ordre 
+$\ell^k:$ $\frac{ell^{k-1}}{2}$ est strictement plus grand que $2r$.
+
+Pour le calcul du point horizontal d'ordre $\ell^k$ on est tout de même obligé 
+de calculer une base horizontale de la $\ell^{h+1}$-torsion et de travailler 
+dans l'élément $\mathsf{F}_{h+1-\beta}$ de la tour d'extensions $\ell$-adiques.
+En rappelant que l'on travaille avec la convetion $\alpha \geqslant \beta$, 
+avec $\alpha$ et $\beta$ définis comme dans la proposition~\ref{}
+Donc le coût de calcul de la base horizontale est de:.
+
+Pour le calcul du polynôme d'interpolation on utilise donc des méthodes 
+similaires à celles de la section~\ref{sec:interpolation} mais plus proches de 
+celles de \cite{DeFeo11} vu qu'ici on travaille uniquement avec un sous-groupe 
+cyclique. Ainsi on travaille avec le sous-groupe cyclique d'ordre $\ell^k$ 
+défini dans la plus petite extension $\ell$-adique: $\mathsf{F}_{k-\alpha}$. 
+On a alors $\frac{\ell^{k-1}}{d_0\ell^{k-\alpha}}=O(\ell^{\alpha-1})$ représentants 
+des orbites selon l'action du Frobenius à calculer dans $\mathsf{F}_{k-\alpha}$.
+Le calcul de ces représentants a un coût de $O()$.
+
+Ensuite on doit calculer le polynôme d'interpolation avec $t=$, $s=$...
+
+Ainsi pour le calcul du polynôme 
+
+
 
 \subsection{Développements possibles de l'algorithme}
+
+
 
 On pourrait penser à utiliser notre algorithme avec une approche multimodulaire
 de façon similaire à un CRT, c'est à dire pour différents nombres de Elkies 
@@ -4956,6 +5058,7 @@ Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra 
 \bibliographystyle{plain}
 \bibliography{Biblio}
 
+
 \appendix
 
 \begin{algorithm}
@@ -5022,5 +5125,6 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \end{algorithmic}
 \end{algorithm}
 
+%\printglossary[title=Glossaire, toctitle=Glossaire]
 
 \end{document}
