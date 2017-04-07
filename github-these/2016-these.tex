@@ -177,45 +177,8 @@
 \nomenclature{$\widehat{\psi}$}{isogénie duale de $\psi$}
 \nomenclature{$\Phi_{\ell}$}{$\ell$-ème polynôme modulaire}
 \nomenclature{$d_0$}{A remplir}
-%\newglossaryentry{ScalarMult}{
-%		name=$[n]P$,
-%		description={Multiplication scalaire par $n$ d'un point d'une courbe elliptique}% 
-%		}
-%\newglossaryentry{Torsion}{
-%		name=$E[n]$,
-%		description={Ensemble des points de $n$-torsion d'une courbe elliptique}% 
-%}
-%\newglossaryentry{TowerElement}{
-%		name=$\mathsf{F}_i$,
-%		description={$i$-ème corps de la tour d'extensions $\ell$-adiques}%
-%}
-%\newglossaryentry{IsoDes}{
-%		name=$\varphi$,
-%		description={isogénie descendante}%
-%}
-%\newglossaryentry{IsoMon}{
-%		name=$\widehat{\varphi}$,
-%		description={isogénie montante/ ascendante}
-%}
-%\newglossaryentry{Riso}{
-%		name=$\phi$,
-%		description={une $r$-isogénie}
-%}
-%\newglossaryentry{Hiso}{
-%		name=$\psi$,
-%		description={isogénie horizontale}
-%}
-%\newglossaryentry{Diso}{
-%		name=$\widehat{\psi}$,
-%		description={isognie duale de l'isogénie $\psi$}
-%}
-%\newglossaryentry{PolMod}{
-%		name=$\Phi_{\ell}$,
-%		description={$\ell$-ème polynôme modulaire}
-%}
 
 
-\printnomenclature
 
 
 \chapter{Rappels théoriques}
@@ -3856,7 +3819,7 @@ $\ell^{h-e+i+1}$ et définis dans $\mathsf{F}_{h-(e-i)+1-\beta+(e-i)}$ \emph{i.e
 L'algorithme~\ref{alg:ulti:fro} a une complexité espérée de
 \begin{enumerate}
 \item 
- $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+(e+1)(R(h+1-\beta)+\ell^2 \mathsf{M}(\ell^{h+1-\beta}))+\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}))$ opérations sur $\mathbb{F}_q$ pour une courbe en entrée située sur un volcan de $\ell$-isogénies régulier,  
+ $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+(e+1)(R(h+1-\beta)+\ell^2 \mathsf{M}(\ell^{h+1-\beta}))+\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}))$ opérations sur $\mathbb{F}_q$ pour une courbe en entrée située au niveau $h-e$ sur un volcan de $\ell$-isogénies régulier,  
 \item  $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ pour une courbe en entrée située au dessus du premier niveau de stabilité.
 \end{enumerate}
 \end{prop}
@@ -3971,7 +3934,7 @@ On rappelle que l'on se place dans le contexte suivant:
 
 \paragraph{Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
 
-Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est de calculer les courbes $E$, $E'$ telles que $j(E)=i$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
+Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
 
 \section{Elkies}
 Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
@@ -4119,7 +4082,7 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   l'étape~\ref{alg:cou-ell:bdiag} se fait à l'aide de 
   l'algorithme~\ref{alg:ulti:fro} qui a un coût dans le pire des cas
   de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+k(\mathsf{R}(k-\beta) +  \ell^2\mathsf{M}(\ell^{k-\beta})))$ 
-  par la proposition~\ref{pro:alg:ulti}. Cette borne est prise pour la cas où 
+  par la proposition~\ref{pro:alg:ulti}. Cette borne est prise pour le cas où 
   la courbe en entrée se situerait en bas du volcan de $\ell$-isogénies. 
 
   L'étape~\ref{alg:cou-ell:bhor} qui utilise 
@@ -4385,36 +4348,72 @@ nécessaire d'avoir $k$ strictement supérieur à $h$.
 Le détail des timings pour les 
 différentes parties est disponible sur le projet github: 
 \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. 
-
+\section{Ouverture 1812}
 \subsection{Variante avec un seul sous-groupe cyclique}
-
-Reflechir a la variante proposée par François disant que l'on peut se contenter de calculer une vecteur propre pour le Frobenius, déjà pour calculer des points horizontaux on est obligé de calculer une base diagonale de la $\ell^{h+1}$ torsion.
-
 Comme proposé par François Morain on pourrait uniquement travailler avec un 
 point horizontal au lieu de travailler avec une base horizontale.
 
 Dés lors on devrait fixer $k$ tel que le nombre d'abscisses de points d'ordre 
-$\ell^k:$ $\frac{ell^{k-1}}{2}$ est strictement plus grand que $2r$.
+$\ell^k:$ $\frac{\ell^{k-1}}{2}$ soit strictement plus grand que $2r$.
 
 Pour le calcul du point horizontal d'ordre $\ell^k$ on est tout de même obligé 
 de calculer une base horizontale de la $\ell^{h+1}$-torsion et de travailler 
 dans l'élément $\mathsf{F}_{h+1-\beta}$ de la tour d'extensions $\ell$-adiques.
-En rappelant que l'on travaille avec la convetion $\alpha \geqslant \beta$, 
-avec $\alpha$ et $\beta$ définis comme dans la proposition~\ref{}
-Donc le coût de calcul de la base horizontale est de:.
+
+\begin{prop}
+Soit $k$ tel que $\ell^k \in O(r)$, alors pour $h<k$ le coût de calcul d'une 
+base diagonale de la $\ell^{h+1}$ torsion à l'aide de 
+l'algorithme~\ref{alg:ulti:fro} est de:
+$O(\mathsf{M}(r\ell^2)r\ell^2\log(\ell)\log(\ell q) \log(r))$.
+\end{prop}
+
+\begin{proof}
+On rappelle que l'on travaille avec la convention $\alpha \geqslant \beta$, 
+avec $\alpha$ et $\beta$ définis comme dans la proposition~\ref{pro:clas:fro}.
+Le coût de calcul de la base horizontale est par la proposition~\ref{pro:alg:ulti}:
+$O((h+1)\mathsf{R}(h+1-\beta)+(h+1)\ell^2 \mathsf{M}(\ell^{h+1-\beta})+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$, 
+et donc en bornant $h$ par $k$ on a $\ell^h \in O(r)$ ce qui en utilisant cette
+borne et le coût de $\mathsf{R}(i)$ donné par~\cite[chapter 14.5]{vzGJG03} nous 
+donne une complexité de :
+$O(\mathsf{M}(r\ell^2)r\ell^2\log(\ell)\log(\ell q) \log(r))$.
+\end{proof}
+Ce qui comparé au résultat dans la preuve de la 
+proposition~\ref{pro:full-complexity} nous donne un résultat quadratique en $r$
+contre un résultat quasi linéaire auparavant.
+
+Ensuite on calcule un point horizontal d'ordre $\ell^k$ à l'aide de 
+l'algorithme~\ref{alg:hor:poi} qui a un coût de 
+$O(\mathsf{R}(k-\alpha) + k\mathsf{R}(h-\alpha+1) + k\ell^2\mathsf{M}(\ell^{h-\alpha+1}))$
+d'après la proposition~\ref{pro:alg:hor}, ce qui appliqué à notre cas donne 
+une complexité de: $O(r \mathsf{M}(r \ell)\log(\ell)\log(\ell q) \log(r))$.
 
 Pour le calcul du polynôme d'interpolation on utilise donc des méthodes 
 similaires à celles de la section~\ref{sec:interpolation} mais plus proches de 
-celles de \cite{DeFeo11} vu qu'ici on travaille uniquement avec un sous-groupe 
+celles de \cite[§5]{DeFeo11} vu qu'ici on travaille uniquement avec un sous-groupe 
 cyclique. Ainsi on travaille avec le sous-groupe cyclique d'ordre $\ell^k$ 
 défini dans la plus petite extension $\ell$-adique: $\mathsf{F}_{k-\alpha}$. 
-On a alors $\frac{\ell^{k-1}}{d_0\ell^{k-\alpha}}=O(\ell^{\alpha-1})$ représentants 
+On a alors au plus $\frac{\ell^{k-1}}{\ell^{k-\alpha}}=\ell^{\alpha-1}$ représentants 
 des orbites selon l'action du Frobenius à calculer dans $\mathsf{F}_{k-\alpha}$.
-Le calcul de ces représentants a un coût de $O()$.
+Le calcul de ces représentants a un coût de 
+$O(\ell^{\alpha-1}\mathsf{M}(\ell^{k-\alpha})\log(\ell^k))=O(\mathsf{M}(r)\log(r))$ opérations.
 
-Ensuite on doit calculer le polynôme d'interpolation avec $t=$, $s=$...
+Ensuite on doit calculer le polynôme d'interpolation en appliquant le résultat
+ de la proposition~\ref{prop:interpol} avec $t \in O(r)$, $s=\ell^{\alpha-1}$, 
+ $n=k-\alpha$ on obtient un complexité de 
+ $O(\mathsf{M}(\ell^2r)\log(\ell)\log(r))$qui est l'étape dominante dans les
+ étapes \ref{alg:cou-ell:ord} à \ref{alg:cou-ell:Cauchy} de 
+ l'algorithme~\ref{alg:cou:ell-adique}.
 
-Ainsi pour le calcul du polynôme 
+Ainsi pour le calcul du polynôme on doit répéter l'étape d'interpolation 
+$\ell^{k-1}$ fois ce qui nous donne un coût total de: 
+$O(\mathsf{M}(\ell^2r)\log(\ell)\log(r))$ opérations sur $\mathbb{F}_q$.
+
+Le coût de cette variante de Couveignes $\ell$-adique a donc une complexité de
+$O(\mathsf{M}(r\ell^2)r\ell^2 \log(r) \log(\ell) \log(\ell q)$ qui est donc un 
+peu plus élevé que le résultat obtenu à la 
+proposition~\ref{pro:full-complexity}, la différence notable c'est qu'ici la 
+complexité est dominée par la phase de calcul d'une base diagonale de la 
+$\ell^{h+1}$ torsion.
 
 
 
@@ -5124,6 +5123,9 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \RETURN $(P_{k},Q_{k},\lambda,\mu, \delta).$
 \end{algorithmic}
 \end{algorithm}
+
+\printnomenclature
+
 
 %\printglossary[title=Glossaire, toctitle=Glossaire]
 
