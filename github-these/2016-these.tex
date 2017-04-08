@@ -182,13 +182,25 @@
 
 
 \chapter{Rappels théoriques}
-\section{Notations} \todo{A enrichir}
+\section{Complexite}
+Dans ce document on va utiliser la notation classique $O$ pour mesurer la 
+complexité des algorithmes présentés. Soient deux fonctions $f,g: \mathbb{N} \rightarrow \mathbb{N}$ on dit alors que $f \in O(g)$ si il existe deux constantes $x_0$ et $M$ telles que:
+\[
+f(x)<Mg(x) \quad \text{pour} \quad x>x_0.
+\]
+On définit aussi la notation $f \in \Omega(g)$ de la façon suivante à l'aide de deux constantes $x_0$ et $M$ telles que: 
+\[
+f(x)>Mg(x) \quad \text{pour} \quad x>x_0.
+\]
+On défnit alors la définition $\Theta$ en disant que $f \in \Theta(g)$ si et seulement si $f \in O(g)$ et $f \in \Omega(g)$.
 
-La multiplication scalaire d'un point $P$ par $x$ se note $[x]P$. Les isogénies horizontales sont notées $\psi$, ascendantes $\widehat{\varphi}$, descendantes $\varphi$, l'isogénie de degré $r$ que l'on veut calculer est notée $\phi$. On note $\mathsf{F}_i$ la tour d'extension sur laquelle on travaille.
-\todo{Faire une liste de notations}
-\label{cha:Rappels theoriques}
+Dans ce document beaucoup d'algorithmes vont utiliser la multiplication rapide, on définit donc celle-ci: $\mathsf{M}:\mathbb{N} \rightarrow \mathbb{N}$ la \emph{fonction de multiplication} tel que le coût de la multiplication de deux polynôme de de degré $n$ définis dans $\mathbb{F}_q[x]$ coûte $M(n)$ opérations arithmétiques dans $\mathbb{F}_q$. En utilisant les résultats de \cite[§8.3]{vzGJG03} \todo{vérifier référence} on peut supposer que l'on a:
+\begin{itemize}
+\item $\mathsf{M}(n)$ est superlinéaire, c'est à dire $\frac{\mathsf{M}(n)}{n} \geqslant \frac{\mathsf{M}(m)}{m}$ si $n \geqslant m$,
+\item $\mathsf{M}(n)$ est au plus quadratique: $\mathsf{M}(mn) \leqslant m^2 \mathsf{M}(n)$.
+\end{itemize} 
 
-
+\`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} , une complexité de $O(n\log(n) \log \log (n))$ pour multiplier des polynômes de degré $n$ à coefficients dans un anneau $R$ quelconque est atteinte.
 \section{Théorie des ordres dans un corps quadratique imaginaire}
 
 \section{Courbes Elliptiques}
