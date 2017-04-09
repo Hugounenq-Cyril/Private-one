@@ -4053,7 +4053,7 @@ de $\ell$-isogénies à cratère cyclique:
 Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
 \STATE \label{alg:cou-ell:bhor}
 Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black})$ bases horizontales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide de l'algorithme \ref{alg:hor:poi};
-\IF{$(E_s,E'_s) \neq (E_s,E'_s)$}
+\IF{$(E_s,E'_s) \neq (E,E')$}
 \STATE Calcul de $((\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black}))=((\varphi(\color{red}P_{\lambda}\color{black}),\varphi(\color{blue}Q_{\mu}\color{black})),(\varphi'(\color{red}P'_{\lambda}\color{black}),\varphi'(\color{blue}Q_{\mu}'\color{black})))$ bases partiellement horizontales de $E[\ell^k],E'[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
 \ENDIF
 \STATE \label{alg:cou-ell:rep} Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
@@ -4135,7 +4135,7 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   et~$A_{a,b}$ avec un coût de~$O(\mathsf{M}(r \ell^2)\log(r)\log(\ell))$.  Le coût
   de calcul de $F_{a,b}$ est de $O(\mathsf{M}(r)\log(r))$ par 
   \cite[Théorème 7.5]{algeff17}. Le coût de calcul du test de l'isogénie (voir
-  paragraphe dans la sous-section~\cite{sub:ori:cou} pour une description 
+  paragraphe dans la sous-section~\ref{sub:ori:cou} pour une description 
   détaillée des tests possibles) dont les opérations 
   les plus coûteuses sont regarder si le dénominateur de $F$ est un carré (dans
   le cas où $r$ est pair que c’est le produit d’un facteur du polynôme de 
@@ -4433,7 +4433,7 @@ complexité est dominée par la phase de calcul d'une base diagonale de la
 $\ell^{h+1}$ torsion et non pas par la partie interpolation de l'algorithme qui
 peut être répétée jusqu'à $\Theta(r)$ fois.
 
-\subsection{Développements possibles de l'algorithme}
+\subsection{Approche multi modulaire de l'algorithme}
 
 
 
@@ -4441,37 +4441,98 @@ On pourrait penser à utiliser notre algorithme avec une approche multimodulaire
 de façon similaire à un théorème des restes chinois, c'est à dire pour 
 différents nombres de Elkies $\ell_1, \ell_2, \ell_3, \dots, \ell_{n}$, pour 
 une isogénie de degré $r$ on calcule des bases horizontales de la 
-$\ell_i^{k_i}$ torsion avec $k_i>h_i$ et $k_i$ tel que 
-$\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}<r$. 
+$\ell_i^{k_i}$ torsion, on peut alors travailler avec les deux groupes de 
+points isomorphes:
+\begin{itemize}
+\item $\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$, 
+\item $\prod_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $.
+\end{itemize}
+On va détailler chacune de ces approches dans les deux sous-sections qui suivent.
 
-Il y a alors deux approches possibles:
 \subsubsection{Aprroche 1 la somme}
 La première approche est de considérer l'ensemble de points $S$ isomorphe à: 
 $\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $
-dés lors il faudrait fixer comme condition  $\sum_{i=1}^n\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$
+dés lors il faut fixer comme condition  $\sum_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 afin que le polynôme d'interpolation que l'on cherche à construire puisse 
-définir la fraction rationnelle $F$ censé représenter la $r$-isogénie $\phi$ 
-que l'on veut calculer. On aurait alors à travailler sur diverses tours 
-d'extensions $\ell_i$-adiques sur chacune d'elles on calculerait des polynômes
-d'interpolation $A_{a,b,i}$ et $T_i$ définis dans $\mathbb{F}_q$ à l'aide des 
-méthodes du chapitre~\ref{cha:tour} auxquels on 
-appliquerait un théorème des restes chinois pour obtenir une fraction 
-rationnelle $F$ à tester comme candidate pour être la représentante de la 
-$r$-isogénie. L'un des points les plus génants avec cette approche est que l'on
-doit considérer en moyenne les $\prod_{i=1}^n \ell_i^{2k_i-2}$ choix possibles 
-pour le polynôme d'interpolation et que ceci a une complexité supérieure à 
-$O(r)$. Cependant le calcul des polynômes d'interpolations 
-$A_{a,b,i}$ et $T_i$ devrait être dans un tel cas inférieur à ce que l'on a 
-dans l'algorithme~\ref{alg:cou:ell-adique} car pour tout $i_0$ on a plus 
-$\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$ mais $\prod_{i=1}^{n}\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$.
+définir la fraction rationnelle $F$ candidate pour représenter la $r$-isogénie 
+$\phi$ que l'on veut calculer. 
+L'avantage de cette approche c'est que bien que l'on soit obligé de travailler
+sur différentes tours d'extensions $\ell$-adiques, on a pas besoin de 
+travailler avec des composita de tours d'extensions $\ell$-adiques.
+
+Détaillons comment on procède avec un tel algorithme:
+
+\begin{algorithm}
+\caption{\label{alg:cou:mult-adique:short} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire.}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique.
+\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE Calcul des $k_i$ tel que $\sum_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
+\STATE Calcul de $((\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black}))$ bases (partiellement) horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ 
+\STATE \label{alg:mult-ell:rep} Calcul des liste de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
+\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
+\STATE \label{alg:cou-ell:int} Calcul des des polynômes $A_{a,b,i}$ et $T_i$ par les méthodes décrites dans la section~\ref{sec:interpolation};
+\STATE Calcul des polynômes $A_{a,b}$ et $T$ à l'aide d'un théorème des restes chinois appliqué sur tous les $A_{a,b,i}$ et $T_i$;
+\STATE \label{alg:cou-ell:Cauchy} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\IF{$\mathsf{Test}(F)$}
+\RETURN $F$
+\ENDIF
+\ENDFOR 
+\end{algorithmic}
+\end{algorithm}
+
+Les étapes \ref{alg:cou-ell:bdiag} à \ref{alg:cou-ell:rep} de 
+l'algorithme~\ref{alg:cou:ell-adique} qui calculent une base (partiellement) 
+horizontale et des représentants des orbites de points (partiellement) 
+horizontaux d'ordre $\ell_i^{k_i}$ sous l'action du Frobenius sont faites en 
+parallèle sur chacune des tours d'extension $\ell_i$-adiques.
+ Ici pour le calcul du polynôme d'interpolation
+on définit à l'aide du théorème des restes chinois deux coefficients $a,b \in 
+\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z}$ tels que 
+$a=a_i \bmod \ell_i^{k_i}$ et $b=b_i \bmod \ell_i^{k_i}$ pour $i\in [1,n]$, 
+avec $a_i,b_i$ choisis comme dans l'algorithme~\ref{alg:cou:ell-adique} c'est 
+à dire inversibles dans $\mathbb{Z}/\ell_i^{k_i}\mathbb{Z}$.
+On calcule ensuite à l'aide des méthodes de la section~\ref{sec:interpolation} 
+sur chacune des tours d'extensions $\ell_i$-adiques les polynômes 
+d'interpolation $A_{a,b,i}$ et $T_i$ définis dans $\mathbb{F}_q$.
+ On applique alors le théorème des restes chinois à ces polynômes pour obtenir 
+ les polynômes $A_{a,b},T \in \mathbb{F}_q$.
+On fait le calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une
+interpolation de Cauchy. Et l'on teste si celle-ci est bien une $r$-isogénie,
+si cela n'est pas le cas alors on recommence avec d'autres coeffcients $a,b \in 
+(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^*$.
+
+
+Une telle approche a forcément des coûts de pré-calcul (pour le calcul des bases 
+horizontales et des représentants) plus faibles que notre approche dans 
+l'algorithme~\ref{alg:cou:ell-adique}. De même dans la boucle que l'on effectue
+ pour chaque choix de coefficients $a,b \in \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z}$
+le calcul des polynômes $A_{a,b,i}$ et $T_i$ définis dans $\mathbb{F}_q$ est 
+inférieur à l'étape~\ref{alg:cou-ell:int} de 
+l'algorithme~\ref{alg:cou:ell-adique} mais toutefois on a le calcul de 
+l'interpolation de Cauchy qui lui est au moins de $O(\mathsf{M}(r)\log(r))$ par
+ \cite[Théorème 7.5]{algeff17}. Sachant que l'on doit répéter en moyenne cette 
+boucle pour tous les $a,b$ possibles appartenant à $(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^*$.
+ le coût d'un tel algorithme serait de 
+$\Omega(r\mathsf{M}(r)\log(r))$. 
+
+Le principal inconvénient de cette approche 
+c'est que l'on fixe comme condition sur les $k_i: \sum_{i=1}^n\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$
+à cause du théorème des restes chinois à appliquer sur tous les $A_{a,b,i}$. 
+On voudrait dés lors travailler avec des $k_i$ sur lesquels on aurait comme 
+condition nécessaire: $\prod_{i=1}^n\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$
+c'est ce que l'on va aborder dans la seconde approche.
+
+L'algorithme décrit dans cette sous-section est disponible en appendice, c'est 
+l'algorithme~\ref{alg:cou:mult-adique}.
+
 
 Une telle approche serait meilleure que l'algorithme~\ref{alg:cou:ell-adique} 
 si l'on avait un moyen de préciser si un polynôme $A_{a,b,i_0}$ était correct 
 sans connaître la valeur des autres $A_{a,b,i}$ dans un cas comme celui-ci on 
-aurait à tester $\sum_{i=1}^n \ell_i^{2k_i-2} \in O(r)$ choix possibles pour le polynôme 
+aurait à tester $\sum_{i=1}^n \ell_i^{2k_i-2} \in \Theta(r)$ choix possibles pour le polynôme 
 d'interpolation, comme dans l'algorithme~\ref{alg:cou:ell-adique}.
-
-
 
 \subsubsection{Approche 2 le produit}
 Mais avec une telle approche il faudrait définir les 
@@ -5138,6 +5199,38 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \ENDWHILE
 \ENDIF
 \RETURN $(P_{k},Q_{k},\lambda,\mu, \delta).$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{\label{alg:cou:mult-adique} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire.}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique.
+\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE Calcul des $k_i$ tel que $\sum_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
+\FOR{$i=1$ à $n$}
+\STATE  \label{alg:cou-mult:bdiag:long}
+Calcul de $(P_i,Q_i),(P_i',Q_i')$ bases diagonales de $E_s[\ell_i^{k_i}],E'_s[\ell_i^{k_i}]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
+\STATE \label{alg:cou-mult:bhor:long}
+Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q'_{\mu,i}\color{black})$ bases horizontales de $E_s[\ell_i^{k_i}],E'_s[\ell_i^{k_i}]$ à l'aide de l'algorithme \ref{alg:hor:poi};
+\IF{$(E_s,E'_s) \neq (E,E')$}
+\STATE Calcul de 
+~$((\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black}))=((\varphi(\color{red}P_{\lambda,i}\color{black}),\varphi(\color{blue}Q_{\mu,i}\color{black})),(\varphi'(\color{red}P'_{\lambda,i}\color{black}),\varphi'(\color{blue}Q_{\mu,i}'\color{black})))$ bases partiellement horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ avec les $\ell_i^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
+\ENDIF
+\STATE \label{alg:mult-ell:rep:long} Calcul des liste de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
+\ENDFOR
+\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
+\FOR{$M_i \in \mathsf{diag}(a_i,b_i)$  avec $a=a_i \bmod \ell_i^{k_i},b=b_i \bmod \ell_i^{k_i}$}
+\STATE \label{alg:mult-ell:ord:long} Réordonancement de la liste $L_i'$ en $L'_{a_i,b_i,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
+\STATE \label{alg:mult-ell:int:long} Calcul des des polynômes $A_{a,b,i}$ et $T_i$ par les méthodes décrites dans la section~\ref{sec:interpolation};
+\ENDFOR
+\STATE Calcul des polynômes $A_{a,b}$ et $T$ à l'aide d'un théorème des restes chinois appliqué sur tous les $A_{a,b,i}$ et $T_i$;
+\STATE \label{alg:mult-ell:Cauchy:long} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\IF{$\mathsf{Test}(F)$}
+\RETURN $F$
+\ENDIF
+\ENDFOR 
 \end{algorithmic}
 \end{algorithm}
 
