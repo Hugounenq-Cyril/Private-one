@@ -4566,8 +4566,32 @@ Ainsi dans cette approche on veut travailler avec des points d'ordre
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'informations donnée par 
 les  bases (partiellement) horizontales 
 $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black})$ de 
-$E[\ell_i^{k_i}]$.
+$E[\ell_i^{k_i}]$, pour faire cela on a besoin de définir quelques notions.
 
+\begin{defi}
+Soient $\ell_1, \ell_2$ deux nombres premiers distincts, $E$ une courbe elliptique. On appelle Théorème des Restes Chinois d'une courbe elliptique l'énoncé suivant:
+
+Soient $P_1$ un point d'ordre $\ell_1^{k_1}$ de $E$ et $P_2$ un point d'ordre $\ell_2^{k_2}$ de $E$ alors ces deux points associés isomorphiquement à un point $P$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$ tel que $\ell_1^{k_1}P=P_2$ et $\ell_1^{k_2}P=P_1$.
+\end{defi}
+
+Maintenant que l'on a défini le théorème des restes chinois pour une courbe elliptique montrons comment on le résoud à l'aide de l'algorithme suivant:
+\begin{algorithm}
+\label{alg:TRC:init}
+\caption{Théorème des restes chinois sur une courbe elliptique}
+\begin{algorithmic}[1]
+\REQUIRE $E$: une courbe elliptique, $\ell_1,\ell_2$ deux nombres premiers distincts, $P_1$ un point d'ordre $\ell_1^{k_1}$.
+\ENSURE $P$ un point de $E$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  tel que $\ell_1^{h_1}P=0_E$ et $\ell_2^{k_2}P=P_1$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE Calcul de $P'=\mathsf{divise}(P_1,\ell_2^{k_2})$;
+\STATE Calcul de $Q=\ell_1^{k_1}P'$ un point d'ordre $\ell_2^{k_2}$;
+\STATE Calcul de $R$ la pré-image de $Q$ par $\ell_1^{k_1}$;
+\RETURN $P'-R$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{prop}
+L'algorithme~\ref{alg:TRC:init} est correct.
+\end{prop}
 
 Mais avec une telle approche il faudrait définir les 
 points dans un composita de tour d'extensions $\ell$-adiques à la manière de \cite{DeFeoDoliskaniSchost14}. On pourrait dés lors
