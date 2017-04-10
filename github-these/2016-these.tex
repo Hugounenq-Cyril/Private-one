@@ -3238,6 +3238,7 @@ deux des points générateurs d'isogénies ascendantes, ou horizontales de même
 direction alors $E/\langle P \rangle$ et~$E'/\langle P' \rangle$ sont encore $r$-isogènes.
 \end{enumerate}
 \end{prop}
+
 \begin{proof}
 Les points (1) et (2) découlent de la proposition \ref{pro:mat:fro} et du fait que pour $\phi$ isogénie rationnelle de degré $r$ premier avec $\ell$ on a un isomorphisme de modules de Tate qui commutent avec le Frobenius. Pour le point (3) il suffit de remarquer qu'il existe un unique sous-groupe d'ordre $\ell$ qui génère soit une isogénie ascendante soit une isogénie de direction fixée, ainsi on doit avoir $\langle P' \rangle=\langle \phi(P) \rangle$.
 
@@ -4577,7 +4578,7 @@ Soient $P_1$ un point d'ordre $\ell_1^{k_1}$ de $E$ et $P_2$ un point d'ordre $\
 Maintenant que l'on a défini le théorème des restes chinois pour une courbe elliptique montrons comment on le résoud à l'aide de l'algorithme suivant:
 \todo{trouver un meilleur nom pour cet algorithme}
 \begin{algorithm}
-\caption{\label{alg:TRC:init}Lemme pour Théorème des restes chinois sur une courbe elliptique }
+\caption{\label{alg:TRC:init}Calcul de  représentant de $P_1$ dans $E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$}
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique, $\ell_1,\ell_2$ deux nombres premiers distincts, $P_1$ un point d'ordre $\ell_1^{k_1}$.
 \ENSURE $P$ un point de $E$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  tel que $[\ell_1^{k_1}]P=0_E$ et $[\ell_2^{k_2}]P=P_1$.
@@ -4590,7 +4591,7 @@ Maintenant que l'on a défini le théorème des restes chinois pour une courbe e
 \end{algorithm}
 
 \begin{prop}
-L'algorithme~\ref{alg:TRC:init} est correct et coûte $2k_2$ inversions d'un polynôme de degré $\ell_2$  $2k_1 \bmod o_{\ell_2^{k_2}}(\eta_1)$ fois la multiplication scalaire d'un point d'ordre $\ell_2^{k_2}$ par un coefficient $\eta$ défini dans $\mathbb{Z}/\ell_2^{k_2} \mathbb{Z}$, avec $o_{\ell_2^{k_2}}(\eta)$ l'ordre multiplicatif de $\eta$ dans $(\mathbb{Z}/\ell_2^{k_2} \mathbb{Z})^*$.
+L'algorithme~\ref{alg:TRC:init} est correct et coûte $2k_2$ inversions d'un polynôme de degré $\ell_2$, $2k_1 \bmod o_{\ell_2^{k_2}}(\eta_1)$ fois la multiplication scalaire d'un point d'ordre $\ell_2^{k_2}$ par un coefficient $\eta$ défini dans $\mathbb{Z}/\ell_2^{k_2} \mathbb{Z}$, avec $o_{\ell_2^{k_2}}(\eta)$ l'ordre multiplicatif de $\eta$ dans $(\mathbb{Z}/\ell_2^{k_2} \mathbb{Z})^*$.
 \end{prop}
 
 \begin{proof}
@@ -4638,9 +4639,28 @@ La sortie de l'algorithme~\ref{alg:TRC:init} est unique.
 Soient $P,S$ deux points d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  obtenus par l'algorithme~\ref{alg:TRC:init}  tels que $[\ell_2^{k_2}]P=[\ell_2^{k_2}]S=P_1$ et  $[\ell_1^{k_1}]P=[\ell_1^{k_1}]S=0_E$. Alors on a $[\ell_2^{k_2}](P-S)=0$ et $[\ell_1^{k_1}](P-S)=0$ ce qui veut dire que l'ordre de $P-S$ divise à la fois $\ell_1^{k_1}$ et $\ell_2^{k_2}$ d'où le résultat. On vérifie donc bien le théorème des restes chinois.
 \end{proof}
 
+Ainsi une solution du prolbème des restes chinois pour $P \in E[\mathbb{Z}/\ell_1^{k_1} \ell_2^{k_2}\mathbb{Z}]$ tel que $\ell_1^{k_1}P=P_2 \in E[\ell_2^{k_2}]$ et $\ell_2^{k_2}P=P_1 \in E[\ell_1^{k_1}]$ est donné par $P=Q+R$ avec:
+\begin{itemize}
+\item $Q$ la sortie de l'algorithme~\ref{alg:TRC:init} qui a pour entrées
+$\ell_1^{k_1}, \ell_2^{k_2}$ et $P1$ d'ordre $\ell_1^{k_1}$,
+\item  $R$ la sortie de l'algorithme~\ref{alg:TRC:init} qui a pour entrées
+$\ell_1^{k_1}, \ell_2^{k_2}$ et $P2$ d'ordre $\ell_2^{k_2}$.
+\end{itemize}
+
+\'Enonçons une généralisation du thèorème des restes chinois pour une courbe 
+elliptique à $n$ nombres premiers distincts.
+
 On peut maintenant énoncer un algorithme qui résoud le problème des restes 
 chinois généralisé sur une courbe elliptique.
 
+\paragraph{Théorème des Restes chinois généralisés sur une courbe Elliptique $E$}
+Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 \in E[\ell_1^{k_1}], \dots, P_n \in E[\ell_n^{k_n}]$, alors le théorème des restes chinois revient à déterminer un point $P \in E[\prod_{i=1}^n \ell_i^{k_i}]$ tel que $[\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i}] P=P_{i_0}$ pour $i_0 \in [1,n]$.
+
+
+On présente en appendice une généralisation de 
+l'algorithme~\ref{alg:TRC:init} dans l'algorithme~\ref{alg:TRC:init:gen} à 
+l'aide de celui-ci on peut résoudre la généralisation du théorème des restes 
+chinois d'une courbe elliptique comme présenté dans l'algorithme~\ref{alg:TRC}.
 \begin{algorithm}
 \caption{\label{alg:TRC} Théorème des restes chinois sur une courbe elliptique}
 \begin{algorithmic}[1]
@@ -4649,15 +4669,39 @@ chinois généralisé sur une courbe elliptique.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE $P \leftarrow 0_E$;
 \FOR{$i=1$ à $n$}
-\STATE $Q$ sortie de l'algorithme~\ref{alg:TRC:init} généralisé tel que $\ell_i^{k_i}Q=0$ et $[\overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod}}}\ell_j^{k_j}]Q=P_i$;
+\STATE $Q$ sortie de l'algorithme~\ref{alg:TRC:init:gen} tel que $\ell_i^{k_i}Q=0$ et $[\overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod}}}\ell_j^{k_j}]Q=P_i$;
 \STATE $P \leftarrow P+Q$; 
 \ENDFOR
-\RETURN P;
+\RETURN $P$;
 \end{algorithmic}
 \end{algorithm}
 
-Un exemple de l'algorithme~\ref{alg:TRC:init} généralisé est disponible en 
-annexe \todo{faire algorithme + référence}.
+Ainsi cette approche de théorème des restes chinois a été motivée pour 
+l'appliquer à des points horizontaux d'ordre $\ell_i^{k_i}$ voyons si celle-ci
+fait sens dans le contexte de l'algorithme de Couveignes.
+
+\begin{prop}
+Soient $\ell_1, \ell_2$ deux nombres premiers distincts, 
+$P_1 \in E[\ell_1^{k_1}]$ un point horizontal d'ordre $\ell_1^{k_1}$ et de 
+direction $\lambda_1$, $P_2 \in E[\ell_2^{k_2}]$ un point horizontal d'ordre 
+$\ell_2^{k_2}$ et de direction $\lambda_2$. Soit 
+$P \in E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$ un point d'ordre 
+$\ell_1^{k_1}\ell_2^{k_2}$ tel que $\ell_1^{k_1}P=P_2$ et $\ell_2^{k_2}P=P_1$.
+Soit $\phi$ une isogénie de degré $r$ premier avec $\ell_1, \ell_2$ alors 
+$\phi(P)$ est tel que
+\begin{itemize}
+\item $\ell_1^{k_1}\phi(P)$ est un point horizontal d'ordre 
+$\ell_2^{k_2}$ et de direction $\lambda_2$,  
+\item $\ell_2^{k_2}\phi(P)$ est un point horizontal d'ordre 
+$\ell_1^{k_1}$ et de direction $\lambda_1$,
+\end{itemize}
+\end{prop}
+
+\begin{proof}
+Par un raisonnement similaire à la preuve de la proposition~\ref{pro:par:iso}, 
+vu que $\phi$ est de degré $r$ premier avec $\ell_1$ et $\ell_2$ alors on a un 
+isomorphisme de modules de Tate qui commutent avec le Frobenius.
+\end{proof}
 
 Mais avec une telle approche il faudrait définir les 
 points dans un composita de tour d'extensions $\ell$-adiques à la manière de \cite{DeFeoDoliskaniSchost14}. On pourrait dés lors
@@ -5360,23 +5404,23 @@ Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{bl
 
 \todo{trouver un meilleur nom pour cet algorithme}
 \begin{algorithm}
-\caption{\label{alg:TRC:init}Lemme pour Théorème des restes chinois généralisé sur une courbe elliptique }
+\caption{\label{alg:TRC:init:gen}Lemme pour Théorème des restes chinois généralisé sur une courbe elliptique }
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique, $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, un point $P_{i_0}$ d'ordre $\ell_i^{k_{i_0}}$ pour $i_0 \in [1,n]$.
-\ENSURE $P$ un point de $E$ d'ordre $\prod_{i=1}^n \ell_i^{k_i}$  tel que $[\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i} ]P=P_{i_0}$ et $[\ell_i^{k_i}]P=0_E$ pour $i \in [1,n] i \neq i_0$.
+\ENSURE $P$ un point de $E$ d'ordre $\prod_{i=1}^n \ell_i^{k_i}$  tel que $[\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i} ]P=P_{i_0}$ et $[\ell_{i_0}^{k_{i_0}}]P=0_E$.
 \STATE $P \leftarrow P_{i_0}$;
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
-\FOR{$i=0$ à $n$ $i \neq i_0$}
-\STATE \label{alg:TRC:init:div} Calcul de $P'=\mathsf{divise}(P,\ell_i^{k_i})$;
-\STATE \label{alg:TRC:init:mul} Calcul de $Q=[\ell_{i_0}^{k_{i_0}}]P'$ un point d'ordre $\overset{i}{\underset{i \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$;
-\STATE \label{alg:TRC:init:prim} Calcul de $R$ la pré-image de $Q$ d'ordre $\overset{i}{\underset{i \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$ par $[\ell_{i_0}^{k_{i_0}}]$;
+\STATE \label{alg:TRC:init:gen:div} Calcul de $P'=\mathsf{divise}(P_{i_0},\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j})$;
+\STATE \label{alg:TRC:init:gen:mul} Calcul de $Q=[\ell_{i_0}^{k_{i_0}}]P'$ un point d'ordre $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$;
+\STATE \label{alg:TRC:init:gen:prim} Calcul de $R$ la pré-image de $Q$ d'ordre $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$ par $[\ell_{i_0}^{k_{i_0}}]$;
 \STATE $P \leftarrow P'-R$
-\STATE
-\ENDFOR
 \RETURN $P'-R$
 \end{algorithmic}
 \end{algorithm}
 
+\begin{rem}
+Pour le calcul de chacune des étapes~\ref{alg:TRC:init:gen:div} à \ref{alg:TRC:init:gen:prim} il est bien évidemment recommandé de travailler itérativement avec les produits de nombre premier: $\overset{i}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j})$ pour $i$ allant de $1$ à $n$.
+\end{rem}
 \printnomenclature
 
 
