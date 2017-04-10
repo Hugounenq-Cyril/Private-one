@@ -3435,6 +3435,7 @@ en remplaçant le corps de base par une extension quadratique.
 \section{Cas Atkin}
 
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
+\label{cha:con:poi}
 Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
 Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets présentés dans le chapitre \ref{cha:act:fro}. Sont aussi utilisés les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les extensions de corps de définies dans la définition \ref{def:tour-ell}.
@@ -4563,6 +4564,7 @@ condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 c'est ce que l'on va aborder dans la seconde approche.}
 
 \subsubsection{Approche avec le groupe de points isomorphe à $\prod_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $}
+\todo{Verifier que j'ai mis nombre de Elkies un peu partout ...}
 Ainsi dans cette approche on veut travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'informations donnée par 
 les  bases (partiellement) horizontales 
@@ -4681,6 +4683,7 @@ l'appliquer à des points horizontaux d'ordre $\ell_i^{k_i}$ voyons si celle-ci
 fait sens dans le contexte de l'algorithme de Couveignes.
 
 \begin{prop}
+\label{pro:par:TRC}
 Soient $\ell_1, \ell_2$ deux nombres premiers distincts, 
 $P_1 \in E[\ell_1^{k_1}]$ un point horizontal d'ordre $\ell_1^{k_1}$ et de 
 direction $\lambda_1$, $P_2 \in E[\ell_2^{k_2}]$ un point horizontal d'ordre 
@@ -4702,6 +4705,97 @@ Par un raisonnement similaire à la preuve de la proposition~\ref{pro:par:iso},
 vu que $\phi$ est de degré $r$ premier avec $\ell_1$ et $\ell_2$ alors on a un 
 isomorphisme de modules de Tate qui commutent avec le Frobenius.
 \end{proof}
+
+\begin{nota}
+Soit $P$ un point d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de $E$ construit à l'aide de 
+l'algorithme~\ref{alg:TRC} tel que 
+$[\overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod}}}\ell_j^{k_j}]P=P_i$ 
+avec $P_i$ des points (partiellement) horizontaux direction $\lambda_i$, alors 
+on dit que $P$ est de direction $(\lambda_1, \dots, \lambda_n)$. 
+\end{nota}
+
+\begin{rem}
+Une application de la proposition~\ref{pro:par:TRC} et de la notation 
+précédente est que pour deux courbes elliptiques $E,E'$ $r$-isogènes avec $r$ 
+premier avec les nombres premiers $\ell_1, \dots, \ell_n$ un point $P \in E$ 
+d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ et de direction 
+$(\lambda_1, \dots, \lambda_n)$ a pour image par $\phi$ un point $[a]P' \in E'$
+avec $a \in (\mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i} \mathbb{Z})^*$ et $P'$ un 
+point d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ et de direction 
+$(\lambda_1, \dots, \lambda_n)$.
+\end{rem}
+\todo{réfléchir au fait qu'un point horizontal est aussi partiellement horizontal}
+On a donc bien une correspondance entre les points définis à l'aide du Théorème
+ des Restes Chinois appliqué à des points (partiellement) horizontaux. 
+ Cependant il nous reste à voir comment la représentation de composita avec une
+  méthode telle que celle préconisée dans~\cite{DeFeoDoliskaniSchost14} nous 
+  permet ou pas d'avoir des résultats similaire sur les optimisations de calcul
+  dues à la construction des tours d'extension $\ell$-adiques utilisées pour 
+  l'algorithme~\ref{alg:cou:ell-adique}. 
+ 
+ Premièrement on peut calculer les points (partiellement) horizontaux sur les 
+ volcans de $\ell_i$-isogénies à l'aide des méthodes vues dans le 
+ chapitre~\ref{cha:con:poi}, on doit alors les exprimer dans la composita afin
+ de les utiliser pour le TRC Ellipique, or le plongement dans un composita a un
+ coût de $O()$ \todo{trouver complexité}. Le coût de résolutions de polynômes 
+ de degré $d$ dans une composita de taille  est de $O()$ \todo{trouver 
+ complexité bis}. Enfin pour les étapes concernant les méthodes décrites dans 
+ la section~\ref{sec:interpolation}, on a besoin de:
+ \begin{itemize}
+ \item calculer successivement l'action de 
+ $\mathsf{Gal}(\mathbb{F}_q:\mathbb{F}_q)$ sur un polynôme à coefficients dans
+ $\mathbb{F}_q)$,
+ \item savoir l'action afin de calculer les représentants de l'action de 
+ $\mathsf{Gal}(\mathbb{F}_q:\mathbb{F}_q)$.
+ \end{itemize}
+ Ainsi  pour faire ces étapes de façon optimisée il est crucial de calculer 
+ l'action de $\mathsf{Gal}(\mathbb{F}_q:\mathbb{F}_q)$ à un coût raisonnable.
+ Or en l'état actuel celui-ci est de $O()$ \todo{trouver complexité à nouveau}
+ 
+ Une fois que toutes ces étapes ont été traité on peut modifier 
+ l'algorithme~\ref{alg:cou:ell-adique} de telle que l'on travaille avec 
+deux points d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de même direction.
+
+\begin{algorithm}
+\caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire à l'aide du TRC.}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique pour $i$ allant de $1$ à $n$.
+\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE Calcul des $k_i$ tel que $\prod_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
+\FOR{$i=1$ à $n$}
+\STATE \label{alg:cou:TRC-adique:bhor} Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black})$ bases (partiellement) horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
+\ENDFOR
+\STATE Calcul de $P,Q \in E$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tel que $P$ est de direction $(\lambda_1, \dots, \lambda_n)$ et $Q$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
+\STATE Calcul de $P',Q' \in E'$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tel que $P'$ est de direction $(\lambda_1, \dots, \lambda_n)$ et $Q'$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
+\STATE \label{alg:mult-ell:rep} Calcul des listes de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
+\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
+\STATE \label{alg:mult-ell:ord} Réordonancement de la liste $L_i'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
+\STATE \label{alg:mult-ell:int} Calcul des des polynômes $A_{a,b}$ et $T$ par des méthodes similaires à celles décrites dans la section~\ref{sec:interpolation};
+\STATE \label{alg:mult-ell:Cauchy} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\IF{$\mathsf{Test}(F)$}
+\RETURN $F$
+\ENDIF
+\ENDFOR 
+\end{algorithmic}
+\end{algorithm}
+
+ si l'on peut appliquer les méthodes de la 
+ section~\ref{sec:interpolation} pour optimiser le calcul de la même manière 
+ que dans l'algorithme~\ref{alg:cou:ell-adique}. 
+ 
+ Tout d'abord
+ 
+Ainsi pour s'intéresser à l'application des méthodes de la 
+section~\ref{sec:interpolation} il faut s'intéresser à la représentantion des 
+points avec lesquels on travaille. Comme dit précédemmennt pour définir des 
+points d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ on a besoin de travailler avec des
+composita de tours d'extensions $\ell$-adiques. Ainsi une implantation telle 
+que celle de l'article~\cite{DeFeoDoliskaniSchost14} permet déjà de représenter
+les points horizontaux $P_i,Q_i$ dans la composita, mais le plongement a déjà 
+un coût de $O()$\todo{Complexité à compléter}. En plus des coûts de calcul de
+résolution de polynôme à coefficients dans la composita qui entrent dans les 
+calculs de CRT il reste aussi.
 
 Mais avec une telle approche il faudrait définir les 
 points dans un composita de tour d'extensions $\ell$-adiques à la manière de \cite{DeFeoDoliskaniSchost14}. On pourrait dés lors
