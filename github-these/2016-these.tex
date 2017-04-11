@@ -4743,14 +4743,74 @@ On a donc bien une correspondance entre les points définis à l'aide du Théor�
  la section~\ref{sec:interpolation}, on a besoin de:
  \begin{itemize}
  \item calculer successivement l'action de 
- $\mathsf{Gal}(\mathbb{F}_q:\mathbb{F}_q)$ sur un polynôme à coefficients dans
+ $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^i\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{i-1}\ell_j^{k_j}})$ sur un polynôme à coefficients dans $\mathsf{F}_{\prod_{j=1}^i\ell_j^{k_j}}$,
  $\mathbb{F}_q)$,
- \item savoir l'action afin de calculer les représentants de l'action de 
- $\mathsf{Gal}(\mathbb{F}_q:\mathbb{F}_q)$.
+ \item savoir l'action afin de calculer les représentants de l'action de \todo{verifier cela aussi}
+ $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^i\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{i-1}\ell_j^{k_j}})$.
  \end{itemize}
+ 
+ Le contexte de notre travail est le suivant, soit deux éléments primitifs $v,w 
+\in \mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$ on veut alors calculer le polynôme $A \in \mathbb{F}_q[x]$ 
+tel que:
+\begin{equation}
+A(v)=w
+\end{equation}
+en particulier si l'on note $T$ le polynôme minimal de $v$ il est clair que 
+ $A(v)+T(v)=w$, on va donc chercher à calculer le représentant minimal de 
+$A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$.
+
+ 
+ En s'inspirant des travaux de \cite{DeFeo10} et de façon similaire à ce qui a 
+ été fait dans la section~\ref{sec:interpolation}, on cherche à calculer tout 
+ d'abord $T$. On définit la suite de polynômes suivante $T_i$ d'ordre $xxx$ \todo{a compléter}
+ et à coefficients définis dans $xxxx$\todo{a compléter}. On
+ définit $T^{(1)}(x)=(x-u)$. Supposons que l'on ait calculé un élément $T_i$ 
+ alors on définit $T^{(i,j)}=\sigma_{\mathsf{Gal}(j)}(T^{(i)})$ avec 
+ $\sigma_{\mathsf{Gal}(j)}$ l'application qui à tous
+ les coefficients du polynôme $T^{(i)}$ applique $j$ fois l'action d'un 
+ élément générateur fixé de $\mathsf{Gal}(\mathsf{F}_{\prod_{r=i}^n\ell_r^{k_r}}:\mathsf{F}_{\prod_{r=i+1}^n\ell_r^{k_r}})$, 
+ on définit alors récursivement $T^{(i)}$ de la façon suivante:
+ \begin{equation*}
+T^{(i+1)}=\prod_{j=0}^{\ell_i^{k_i}-1}T^{(i,j)}    
+\end{equation*}
+\todo{Faire un dessin à nouveau !}
+ On a alors $T^{(n+1)}$ qui est le polynôme minimal de $u$ sur $\mathbb{F}_q$. On peut alors 
+ appliquer les méthodes simlaires à celles employées dans \cite{DeFeo10} et 
+ \ref{sec:interpolation} pour calculer un polynôme d'interpolation 
+ $A \in \mathbb{F}_q[x]$ tel que $A(u)=v$ pour $u,v$ deux éléments primitifs de
+ $\mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$. 
+ \todo{peut etre utilisé la notation $\mathsf{L}_n$ au lieu de $\mathsf{F}_n$}
+ \todo{dire que par souci de simplicité on considére que $E[\ell_i] \subset E(\mathbb{F}_q)$}
  Ainsi  pour faire ces étapes de façon optimisée il est crucial de calculer 
  l'action de $\mathsf{Gal}(\mathbb{F}_q:\mathbb{F}_q)$ à un coût raisonnable.
- Or en l'état actuel celui-ci est de $O()$ \todo{trouver complexité à nouveau}
+ Or en l'état actuel celui-ci est de $O()$ \todo{trouver complexité à nouveau}.
+
+ Attardons-nous maintenant sur le second point. Afin de simplifier les 
+ explications on va se concentrer sur la détermination de représentants d'un  unique point et non d'un couple de points. 
+ 
+ Déterminons tout d'abord l'action de 
+ $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}})$.
+ Soit $P$ un point de direction $(\lambda_1, \dots, \lambda_n)$ calculé à 
+ l'aide de l'algorithme~\ref{alg:TRC} ayant pour entrées des points $P_i$
+ (partiellement) horizontaux de direction $\lambda_i$ et d'ordre 
+ $\ell_i^{k_i}$. Alors $P$ est isomorphe à l'aide du \todo{se mettre d'accord  sur TRC} théorème des 
+ restes chinois à $\mathbb{Z}/\prod_{i=1}^{n-1}\ell_i^{k_i}\mathbb{Z} \times 
+ \mathbb{Z}/\ell_n^{k_n}\mathbb{Z}$, alors l'action de $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$ 
+ sur $P$ est donc déterminée par l'action de $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$
+ sur $Q=[\ell_1^{k_1}]P$ un point d'ordre $\prod_{i=1}^{n-1}\ell_i^{k_i}$ défini 
+ sur $\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$ et sur 
+ $P_n=[\prod_{j=1}^{n-1}\ell_j^{k_j}]P$ un point d'ordre $\ell_1^{k_1}$ défini 
+ sur $\mathsf{F}_{\ell_1^{k_1}}$. L'action de 
+ $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$ 
+ est triviale sur $Q$ car celui-ci est défini sur 
+ $\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}}$.  L'action de 
+ $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$
+ sur $P_n$ est quant à elle d'ordre $\ell_n^{k_n}$ et donc équivalente à 
+ l'action de $\mathsf{Gal}(\mathsf{F}_{\ell_k^{k_n}}\mathbb{F}_q)$. Ainsi pour
+ prendre un représentant de $P$ sous l'action de Galois il faut en construire  
+ à l'aide du théorème des restes chinois pour chaque représentant de $P_n$.
+
+
  
  Une fois que toutes ces étapes ont été traité on peut modifier 
  l'algorithme~\ref{alg:cou:ell-adique} de telle que l'on travaille avec 
