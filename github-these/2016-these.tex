@@ -542,8 +542,8 @@ Soit $\varphi:E_1 \rightarrow E_2$ une isogénie.
 \begin{equation*}
 [\widehat{m}]=[m] \text{ et } \deg[m]=m^2.
 \end{equation*}
-\item $\deg( \varphi)=\deg(\widehat{\varphi})$,
-\item $\widehat{\widehat{\varphi}}=\varphi$.
+\item $\widehat{\widehat{\varphi}}=\varphi$,
+\item $\deg(\varphi)=\deg(\widehat{\varphi})$.
 \end{enumerate}
  
 \end{thm}
@@ -3279,6 +3279,11 @@ Pour le point (2) il suffit d'écrire que $\widehat{\varphi}(P')=\widehat{\varph
 Soient $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère, $E_c$ la courbe la plus proche de $E$ sur le cratère, $P \in E$ un point d'ordre $\ell^k$ avec $k>e$ tel que $[\ell^e]P$ soit horizontal de direction $\lambda$ (resp. $\mu$), $\varphi$ la $\ell^e$-isogénie $\varphi:E_c \rightarrow E$, alors $\varphi(P)$ est appelé point \emph{partiellement horizontal} de direction $\lambda$ (resp. $\mu$) et de profondeur $e$.
 \end{defi}
 
+\begin{rem}
+Il est porté à l'attention du lecteur qu'un point horizontal est aussi un point
+ \emph{partiellement horizontal} de profondeur $0$.
+\end{rem}
+
 \begin{cor}
 \label{cor:par:hor}
 Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se situent à une profondeur $e$ du cratère, $P \in E,P' \in E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in \langle P' \rangle$. 
@@ -4568,8 +4573,10 @@ c'est ce que l'on va aborder dans la seconde approche.}
 Ainsi dans cette approche on veut travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'informations donnée par 
 les  bases (partiellement) horizontales 
-$(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black})$ de 
-$E[\ell_i^{k_i}]$, pour faire cela on a besoin de définir quelques notions.
+$(\color{red}P_{\lambda_i}\color{black},\color{blue}Q_{\mu_i}\color{black})$ de 
+$E[\ell_i^{k_i}]$, pour faire cela on a besoin de définir quelques notions. On
+va supposer sans perte de généralités que les $k_i$ pour $i \in [1,n]$ sont 
+fixés tels que l'on ait $\prod_{i=1}^{n} \ell_i^{2k_i-2}(\ell_i+1)>4r$.
 
 \begin{defi}
 Soient $\ell_1, \ell_2$ deux nombres premiers distincts, $E$ une courbe elliptique. On appelle Théorème des Restes Chinois d'une courbe elliptique l'énoncé suivant:
@@ -4580,7 +4587,7 @@ Soient $P_1$ un point d'ordre $\ell_1^{k_1}$ de $E$ et $P_2$ un point d'ordre $\
 Maintenant que l'on a défini le théorème des restes chinois pour une courbe elliptique montrons comment on le résoud à l'aide de l'algorithme suivant:
 \todo{trouver un meilleur nom pour cet algorithme}
 \begin{algorithm}
-\caption{\label{alg:TRC:init}Calcul de  représentant de $P_1$ dans $E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$}
+\caption{\label{alg:TRC:init}Calcul de  représentant de $P_1$ dans $E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$ ou TRC simplifié...}
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique, $\ell_1,\ell_2$ deux nombres premiers distincts, $P_1$ un point d'ordre $\ell_1^{k_1}$.
 \ENSURE $P$ un point de $E$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  tel que $[\ell_1^{k_1}]P=0_E$ et $[\ell_2^{k_2}]P=P_1$.
@@ -4613,8 +4620,10 @@ $\mathbb{Z}/ \ell_2^{k_2}$ telle que l'action de $\eta \ell_1^{k_1-o_1}$ sur le
  $a \in \mathbb{Z}/ \ell_2 \mathbb{Z}$. On énumère alors toutes les 
  possibilités afin de déterminer le coefficient $a$ tel que l'action de  
  $[\ell_1^{k_1-o_1}(\eta_{i_0} + \ell_2^{i_0} a)]$ soit l'identité sur les 
- points d'ordre $\ell_2^{i_0+1}$. Ainsi le coût de calcul de $\eta$ est majoré 
- par le coût de $\ell_2$ fois la multiplication d'un point d'ordre $\ell_2^{k_2}$ par un coefficient dans $\mathbb{Z}/ \ell_2^{k_2} \mathbb{Z}$.
+ points d'ordre $\ell_2^{i_0+1}$ appartenant à $\langle Q \rangle$. Ainsi le 
+ coût de calcul de $\eta$ est majoré par le coût de $\ell_2$ fois la 
+ multiplication d'un point d'ordre $\ell_2^{k_2}$ par un coefficient dans 
+ $\mathbb{Z}/ \ell_2^{k_2} \mathbb{Z}$.
  
  Le calcul de l'étape~\ref{alg:TRC:init:div} se fait elle aussi itérativement à 
  l'aide $k_1$ calculs de division par $\ell_2$. La division par $\ell_2$ se 
@@ -4641,19 +4650,19 @@ La sortie de l'algorithme~\ref{alg:TRC:init} est unique.
 Soient $P,S$ deux points d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  obtenus par l'algorithme~\ref{alg:TRC:init}  tels que $[\ell_2^{k_2}]P=[\ell_2^{k_2}]S=P_1$ et  $[\ell_1^{k_1}]P=[\ell_1^{k_1}]S=0_E$. Alors on a $[\ell_2^{k_2}](P-S)=0$ et $[\ell_1^{k_1}](P-S)=0$ ce qui veut dire que l'ordre de $P-S$ divise à la fois $\ell_1^{k_1}$ et $\ell_2^{k_2}$ d'où le résultat. On vérifie donc bien le théorème des restes chinois.
 \end{proof}
 
-Ainsi une solution du prolbème des restes chinois pour $P \in E[\mathbb{Z}/\ell_1^{k_1} \ell_2^{k_2}\mathbb{Z}]$ tel que $\ell_1^{k_1}P=P_2 \in E[\ell_2^{k_2}]$ et $\ell_2^{k_2}P=P_1 \in E[\ell_1^{k_1}]$ est donné par $P=Q+R$ avec:
+Ainsi une solution du problème des restes chinois pour $P \in E[\mathbb{Z}/
+\ell_1^{k_1} \ell_2^{k_2}\mathbb{Z}]$ tel que $\ell_1^{k_1}P=P_2 \in 
+E[\ell_2^{k_2}]$ et $\ell_2^{k_2}P=P_1 \in E[\ell_1^{k_1}]$ est donné par 
+$P=Q+R$ avec:
 \begin{itemize}
 \item $Q$ la sortie de l'algorithme~\ref{alg:TRC:init} qui a pour entrées
 $\ell_1^{k_1}, \ell_2^{k_2}$ et $P1$ d'ordre $\ell_1^{k_1}$,
 \item  $R$ la sortie de l'algorithme~\ref{alg:TRC:init} qui a pour entrées
-$\ell_1^{k_1}, \ell_2^{k_2}$ et $P2$ d'ordre $\ell_2^{k_2}$.
+$\ell_2^{k_2}, \ell_1^{k_1}$ et $P2$ d'ordre $\ell_2^{k_2}$.
 \end{itemize}
 
 \'Enonçons une généralisation du thèorème des restes chinois pour une courbe 
 elliptique à $n$ nombres premiers distincts.
-
-On peut maintenant énoncer un algorithme qui résoud le problème des restes 
-chinois généralisé sur une courbe elliptique.
 
 \paragraph{Théorème des Restes chinois généralisés sur une courbe Elliptique $E$}
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 \in E[\ell_1^{k_1}], \dots, P_n \in E[\ell_n^{k_n}]$, alors le théorème des restes chinois revient à déterminer un point $P \in E[\prod_{i=1}^n \ell_i^{k_i}]$ tel que $[\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i}] P=P_{i_0}$ pour $i_0 \in [1,n]$.
@@ -4662,7 +4671,7 @@ Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 \
 On présente en appendice une généralisation de 
 l'algorithme~\ref{alg:TRC:init} dans l'algorithme~\ref{alg:TRC:init:gen} à 
 l'aide de celui-ci on peut résoudre la généralisation du théorème des restes 
-chinois d'une courbe elliptique comme présenté dans l'algorithme~\ref{alg:TRC}.
+chinois d'une courbe elliptique à l'aide de l'algorithme~\ref{alg:TRC}.
 \begin{algorithm}
 \caption{\label{alg:TRC} Théorème des restes chinois sur une courbe elliptique}
 \begin{algorithmic}[1]
@@ -4678,17 +4687,18 @@ chinois d'une courbe elliptique comme présenté dans l'algorithme~\ref{alg:TRC}
 \end{algorithmic}
 \end{algorithm}
 
-Ainsi cette approche de théorème des restes chinois a été motivée pour 
-l'appliquer à des points horizontaux d'ordre $\ell_i^{k_i}$ voyons si celle-ci
-fait sens dans le contexte de l'algorithme de Couveignes.
+Cette approche du théorème des restes chinois a été motivée pour l'appliquer à 
+des points (partiellement) horizontaux d'ordre $\ell_i^{k_i}$, la proposition 
+suivante montre que cette utilisation du théorème des restes chinois fait sens 
+dans le contexte de l'algorithme de Couveignes.
 
 \begin{prop}
 \label{pro:par:TRC}
-Soient $\ell_1, \ell_2$ deux nombres premiers distincts, 
-$P_1 \in E[\ell_1^{k_1}]$ un point horizontal d'ordre $\ell_1^{k_1}$ et de 
-direction $\lambda_1$, $P_2 \in E[\ell_2^{k_2}]$ un point horizontal d'ordre 
-$\ell_2^{k_2}$ et de direction $\lambda_2$. Soit 
-$P \in E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$ un point d'ordre 
+Soient $\ell_1, \ell_2$ deux nombres premiers distincts de Elkies, 
+$P_1 \in E[\ell_1^{k_1}]$ un point (partiellement) horizontal d'ordre 
+$\ell_1^{k_1}$ et de direction $\lambda_1$, $P_2 \in E[\ell_2^{k_2}]$ un point 
+horizontal d'ordre $\ell_2^{k_2}$ et de direction $\lambda_2$. Soit $P \in 
+E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$ un point d'ordre 
 $\ell_1^{k_1}\ell_2^{k_2}$ tel que $\ell_1^{k_1}P=P_2$ et $\ell_2^{k_2}P=P_1$.
 Soit $\phi$ une isogénie de degré $r$ premier avec $\ell_1, \ell_2$ alors 
 $\phi(P)$ est tel que
@@ -4706,13 +4716,35 @@ vu que $\phi$ est de degré $r$ premier avec $\ell_1$ et $\ell_2$ alors on a un
 isomorphisme de modules de Tate qui commutent avec le Frobenius.
 \end{proof}
 
+Cette proposition se généralise à $n$ nombres de Elkies $\ell_1, \dots, \ell_n$
+distincts.
+
 \begin{nota}
-Soit $P$ un point d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de $E$ construit à l'aide de 
-l'algorithme~\ref{alg:TRC} tel que 
+Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers de Elkies distincts, $P$ un
+ point d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de $E$ construit à l'aide du 
+ théorème des restes chinois (voir algorithme~\ref{alg:TRC}) tel que 
 $[\overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod}}}\ell_j^{k_j}]P=P_i$ 
 avec $P_i$ des points (partiellement) horizontaux direction $\lambda_i$, alors 
-on dit que $P$ est de direction $(\lambda_1, \dots, \lambda_n)$. 
+on dit que $P$ est de direction $(\lambda_1, \dots, \lambda_n)$ et de 
+profondeur $(e_1, \dots, e_n)$. 
 \end{nota}
+
+\begin{cor}
+Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers de Elkies distincts et 
+premiers avec $r$, $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ 
+qui se situent à une profondeur $e_i$ du cratère du volcan de 
+$\ell_i$-isogénies pour $i \in [1,n]$. Alors pour $P$ un
+ point d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de $E$ construit à l'aide de 
+l'algorithme~\ref{alg:TRC} tel que 
+$[\overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod}}}\ell_j^{k_j}]P=P_i$ 
+avec $P_i$ des points (partiellement) horizontaux direction $\lambda_i$, et 
+$P'$ un point d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de $E'$ construit à l'aide de 
+l'algorithme~\ref{alg:TRC} tel que 
+$[\overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod}}}\ell_j^{k_j}]P'=P'_i$ 
+avec $P'_i$ des points (partiellement) horizontaux direction $\lambda_i$
+ alors $\phi(P) \in \langle P' \rangle$. 
+\end{cor}
+
 
 \begin{rem}
 Une application de la proposition~\ref{pro:par:TRC} et de la notation 
@@ -4726,59 +4758,67 @@ $(\lambda_1, \dots, \lambda_n)$.
 \end{rem}
 \todo{réfléchir au fait qu'un point horizontal est aussi partiellement horizontal}
 On a donc bien une correspondance entre les points définis à l'aide du Théorème
- des Restes Chinois appliqué à des points (partiellement) horizontaux. 
- Cependant il nous reste à voir comment la représentation de composita avec une
-  méthode telle que celle préconisée dans~\cite{DeFeoDoliskaniSchost14} nous 
-  permet ou pas d'avoir des résultats similaire sur les optimisations de calcul
-  dues à la construction des tours d'extension $\ell$-adiques utilisées pour 
-  l'algorithme~\ref{alg:cou:ell-adique}. 
+ des Restes Chinois appliqué à des points (partiellement) horizontaux définis 
+ sur deux courbes elliptiques $r$-isogènes avec $r$ premier avec $\ell_1, \dots
+ , \ell_n$. Cependant il nous reste à voir dans quelle mesure la représentation
+  de composita avec une méthode telle que celle préconisée 
+ dans~\cite{DeFeoDoliskaniSchost14} nous permet d'avoir des résultats 
+ similaires sur les optimisations de calcul dues à la construction des tours 
+ d'extension $\ell$-adiques utilisées pour 
+ l'algorithme~\ref{alg:cou:ell-adique}. 
+
+\begin{nota}
+Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, on va noter par 
+$\mathsf{F}_{\prod_{i=1}^n \ell_i^{k_i}}$ une extension de corps de 
+$\mathbb{F}_q$ de degré $\prod_{i=1}^n \ell_i^{k_i}$.
+\end{nota}
+
+ On va supposer sans perte de généralité que pour tout $i \in [1,n]$ on a 
+ $E[\ell_i] \subset E(\mathbb{F}_q)$ afin de simplifier les raisonnements pour
+ l'interolation à l'aide de l'action de groupe de Galois, le cas où l'on a
+ $E[\ell_{i_0}] \not \subset E(\mathbb{F}_q)$ pour $i_0 \in [1,n]$ a déjà été
+ traité dans la section~\ref{sec:interpolation}.
  
  Premièrement on peut calculer les points (partiellement) horizontaux sur les 
  volcans de $\ell_i$-isogénies à l'aide des méthodes vues dans le 
- chapitre~\ref{cha:con:poi}, on doit alors les exprimer dans la composita afin
- de les utiliser pour le TRC Ellipique, or le plongement dans un composita a un
- coût de $O()$ \todo{trouver complexité}. Le coût de résolutions de polynômes 
- de degré $d$ dans une composita de taille  est de $O()$ \todo{trouver 
+ chapitre~\ref{cha:con:poi}, on doit alors ensuite les exprimer dans la 
+ composita afin de les utiliser pour le TRC Ellipique, or le plongement dans un
+ composita a un coût de $O()$ \todo{trouver complexité}. Le coût de résolutions 
+ de polynômes de degré $d$ dans une composita de taille $XXX$ est de $O()$ \todo{trouver 
  complexité bis}. Enfin pour les étapes concernant les méthodes décrites dans 
- la section~\ref{sec:interpolation}, on a besoin de:
- \begin{itemize}
- \item calculer successivement l'action de 
- $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^i\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{i-1}\ell_j^{k_j}})$ sur un polynôme à coefficients dans $\mathsf{F}_{\prod_{j=1}^i\ell_j^{k_j}}$,
- $\mathbb{F}_q)$,
- \item savoir l'action afin de calculer les représentants de l'action de \todo{verifier cela aussi}
- $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^i\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{i-1}\ell_j^{k_j}})$.
- \end{itemize}
- 
- Le contexte de notre travail est le suivant, soit deux éléments primitifs $v,w 
-\in \mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$ on veut alors calculer le polynôme $A \in \mathbb{F}_q[x]$ 
-tel que:
+ la section~\ref{sec:interpolation}, on a besoin de les détailler pour montrer 
+ comment elles s'appliquent à ce contexte. 
+  
+ Le contexte de notre travail est donc le suivant, soit deux éléments primitifs
+  $v,w \in \mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$ on veut alors calculer le 
+  polynôme $A \in \mathbb{F}_q[x]$ tel que:
 \begin{equation}
-A(v)=w
+A(v)=w \bmod T(v)
 \end{equation}
-en particulier si l'on note $T$ le polynôme minimal de $v$ il est clair que 
- $A(v)+T(v)=w$, on va donc chercher à calculer le représentant minimal de 
-$A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$.
+avec $T$ le polynôme minimal de $v$. On chercher à calculer le représentant 
+minimal de $A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$.
 
  
  En s'inspirant des travaux de \cite{DeFeo10} et de façon similaire à ce qui a 
  été fait dans la section~\ref{sec:interpolation}, on cherche à calculer tout 
- d'abord $T$. On définit la suite de polynômes suivante $T_i$ d'ordre $xxx$ \todo{a compléter}
- et à coefficients définis dans $xxxx$\todo{a compléter}. On
- définit $T^{(1)}(x)=(x-u)$. Supposons que l'on ait calculé un élément $T_i$ 
- alors on définit $T^{(i,j)}=\sigma_{\mathsf{Gal}(j)}(T^{(i)})$ avec 
- $\sigma_{\mathsf{Gal}(j)}$ l'application qui à tous
- les coefficients du polynôme $T^{(i)}$ applique $j$ fois l'action d'un 
- élément générateur fixé de $\mathsf{Gal}(\mathsf{F}_{\prod_{r=i}^n\ell_r^{k_r}}:\mathsf{F}_{\prod_{r=i+1}^n\ell_r^{k_r}})$, 
+ d'abord $T$. On définit la suite de polynômes suivante $T_i$ d'ordre 
+ $\prod_{j=1}^i\ell_i^{k_i}$ et à coefficients définis dans 
+ $\mathsf{F}_{\prod_{j=i}^n\ell_j^{k_j}}[x]$. On définit $T^{(1)}(x)=(x-v)$. 
+ Supposons que l'on ait calculé un élément $T_i$ alors on définit 
+ $T^{(i,j)}=\sigma_{\mathsf{Gal}(j)}(T^{(i)})$ avec $\sigma_{\mathsf{Gal}(j)}$ 
+ l'application qui à tous les coefficients du polynôme $T^{(i)}$ applique $j$ 
+ fois l'action d'un élément générateur fixé de $\mathsf{Gal}(\mathsf{F}_{
+ \prod_{r=i}^n\ell_r^{k_r}}:\mathsf{F}_{\prod_{r=i+1}^n\ell_r^{k_r}})$, 
  on définit alors récursivement $T^{(i)}$ de la façon suivante:
  \begin{equation*}
 T^{(i+1)}=\prod_{j=0}^{\ell_i^{k_i}-1}T^{(i,j)}    
 \end{equation*}
 \todo{Faire un dessin à nouveau !}
- On a alors $T^{(n+1)}$ qui est le polynôme minimal de $u$ sur $\mathbb{F}_q$. On peut alors 
- appliquer les méthodes simlaires à celles employées dans \cite{DeFeo10} et 
- \ref{sec:interpolation} pour calculer un polynôme d'interpolation 
- $A \in \mathbb{F}_q[x]$ tel que $A(u)=v$ pour $u,v$ deux éléments primitifs de
- $\mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$. 
+ On a alors $T^{(n+1)}$ qui est le polynôme minimal de $v$ sur $\mathbb{F}_q$. 
+ On peut alors appliquer les méthodes simlaires à celles employées dans 
+ \cite{DeFeo10} et \ref{sec:interpolation} pour calculer un polynôme 
+ d'interpolation $A \in \mathbb{F}_q[x]$ tel que $A(v)=w$ pour $v,w$ deux 
+ éléments primitifs de $\mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$. 
  \todo{peut etre utilisé la notation $\mathsf{L}_n$ au lieu de $\mathsf{F}_n$}
  \todo{dire que par souci de simplicité on considére que $E[\ell_i] \subset E(\mathbb{F}_q)$}
  Ainsi  pour faire ces étapes de façon optimisée il est crucial de calculer 
@@ -4789,7 +4829,9 @@ T^{(i+1)}=\prod_{j=0}^{\ell_i^{k_i}-1}T^{(i,j)}
  explications on va se concentrer sur la détermination de représentants 
  d'orbite sous l'action de groupes de Galois de points définis dans un groupe
  généré par un unique point de direction $(\lambda_1, \dots, \lambda_n)$. 
- 
+ \todo{faire du contexte quelque part...}
+ Maintenant énonçons un résultat qui nous permette de déterminer les 
+ représentants d'orbite sous l'action de groupes de Galois.
 \begin{prop}\todo{definir a un endroit ce qu'est un représentant pour l'orbite du Frobenius}
 Soit $P$ un point d'ordre $\prod_{i=1}^n \ell_i^{k_i}$ de $E$ obetnu à l'aide 
 du théorème des restes chinois appliqué aux points de $E$ $P_i$ d'ordre 
@@ -4810,33 +4852,27 @@ $P_{i_0}$ étant maximal par construction alors il ne peut être stable que sous
 l'action d'un élément générateur de $\mathsf{Gal}(\mathsf{F}_{\ell_{i_0}\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod \ell_j^{k_j}}}}}:\mathsf{F}_{\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}})$
 à la puissance $o_{i_0}$, ainsi $r_0$ doit être un multiple de $o_{i_0}$.
 \end{proof}
- 
- Déterminons tout d'abord l'action de 
- $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}})$.
- Soit $P$ un point de direction $(\lambda_1, \dots, \lambda_n)$ calculé à 
- l'aide de l'algorithme~\ref{alg:TRC} ayant pour entrées des points $P_i$
- (partiellement) horizontaux de direction $\lambda_i$ et d'ordre 
- $\ell_i^{k_i}$. Alors $P$ est isomorphe à l'aide du \todo{se mettre d'accord  sur TRC} théorème des 
- restes chinois à $\mathbb{Z}/\prod_{i=1}^{n-1}\ell_i^{k_i}\mathbb{Z} \times 
- \mathbb{Z}/\ell_n^{k_n}\mathbb{Z}$, alors l'action de $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$ 
- sur $P$ est donc déterminée par l'action de $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$
- sur $Q=[\ell_1^{k_1}]P$ un point d'ordre $\prod_{i=2}^{n}\ell_i^{k_i}$ défini 
- sur $\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}}$ et sur 
- $P_1=[\prod_{j=2}^{n}\ell_j^{k_j}]P$ un point d'ordre $\ell_1^{k_1}$ défini 
- sur $\mathsf{F}_{\ell_1^{k_1}}$. L'action de 
- $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}})$ 
- est triviale sur $Q$ car celui-ci est défini sur 
- $\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}}$.  L'action de 
- $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}})$
- sur $P_n$ est quant à elle d'ordre $\ell_1^{k_1}$ et équivalente à 
- l'action de $\mathsf{Gal}(\mathsf{F}_{\ell_k^{k_n}}\mathbb{F}_q)$. Ainsi pour
- prendre un représentant de $P$ sous l'action de Galois il faut en construire  
- à l'aide du théorème des restes chinois pour chaque représentant de $P_1$.
- 
- \todo{faire une proposition de cela}
 
+\begin{nota}
+Soient $\ell_1, \dots \ell_n$ $n$ nombres premier de Elkies, alors on note 
+$\epsilon_i$ le nombre de représentants de points d'ordre $\ell_i^{k_i}$ sous 
+l'action d'un générateur de $\mathsf{Gal}(\mathsf{F}_{\ell_i^{k_i}}\mathbb{F}_q)$.
+\end{nota}
 
- 
+On voit donc avec cette proposition que pour déterminer des représentants pour
+l'orbite selon l'action du groupe de Galois pour des points d'ordre 
+$\prod_{i=1}^{n}\ell_i^{k_i}$ il suffit de calculer à l'aide du théorème des 
+restes chinois tous les points $P$ d'ordre $\prod_{i=1}^{n}\ell_i^{k_i}$ 
+tels que tous les choix possibles de représentants $P_i=[\overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod}}}\ell_j^{k_j}]P_j$
+ aiént été effectué. Ainsi le nombre de représentants est multiplicatif et est
+ donc de $\prod_{i=1}^{n} \epsilon_i$. On calcule donc 
+ tout d'abord les représentants d'ordre $\ell_i^{k_i}$ dans les tours 
+ d'extensions $\ell_i$ adiques, puis on les exprime dans le composita et enfin
+ on applique $\prod_{i=1}^{n} \epsilon_i$ fois le théorème des restes chinois. 
+ Pour le théorème des restes chinois on a besoin d'appliquer 
+ l'algorithme~\ref{alg:TRC:init:gen} $\sum_{i=1}^{n} \epsilon_i$ fois, une fois
+ pour chaque représentant d'ordre $\ell_i^{k_i}$.
+  
  Une fois que toutes ces étapes ont été traité on peut modifier 
  l'algorithme~\ref{alg:cou:ell-adique} de telle que l'on travaille avec 
 deux points d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de même direction.
@@ -4853,7 +4889,7 @@ deux points d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de même direction.
 \ENDFOR
 \STATE Calcul de $P,Q \in E$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tel que $P$ est de direction $(\lambda_1, \dots, \lambda_n)$ et $Q$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
 \STATE Calcul de $P',Q' \in E'$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tel que $P'$ est de direction $(\lambda_1, \dots, \lambda_n)$ et $Q'$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
-\STATE \label{alg:mult-ell:rep} Calcul des listes de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
+\STATE \label{alg:mult-ell:rep} Calcul des listes de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}:\mathbb{F}_q)$;
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
 \STATE \label{alg:mult-ell:ord} Réordonancement de la liste $L_i'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
 \STATE \label{alg:mult-ell:int} Calcul des des polynômes $A_{a,b}$ et $T$ par des méthodes similaires à celles décrites dans la section~\ref{sec:interpolation};
