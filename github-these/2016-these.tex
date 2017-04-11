@@ -4786,7 +4786,30 @@ T^{(i+1)}=\prod_{j=0}^{\ell_i^{k_i}-1}T^{(i,j)}
  Or en l'état actuel celui-ci est de $O()$ \todo{trouver complexité à nouveau}.
 
  Attardons-nous maintenant sur le second point. Afin de simplifier les 
- explications on va se concentrer sur la détermination de représentants d'un  unique point et non d'un couple de points. 
+ explications on va se concentrer sur la détermination de représentants 
+ d'orbite sous l'action de groupes de Galois de points définis dans un groupe
+ généré par un unique point de direction $(\lambda_1, \dots, \lambda_n)$. 
+ 
+\begin{prop}\todo{definir a un endroit ce qu'est un représentant pour l'orbite du Frobenius}
+Soit $P$ un point d'ordre $\prod_{i=1}^n \ell_i^{k_i}$ de $E$ obetnu à l'aide 
+du théorème des restes chinois appliqué aux points de $E$ $P_i$ d'ordre 
+$\ell_i^{k_i}$ tel que l'orbite généré par l'action de $\mathsf{Gal}(\mathsf{F}_{\ell_i^{k_i}}:\mathbb{F}_q)$ sur $P_i$ soit de taille maximale:$\ell_i^{o_i}$.  Alors l'orbite de $P$ est elle aussi de taille maximale:$\prod_{i=1}^n\ell_i^{o_i}$.
+\end{prop} 
+
+\begin{proof}
+Soit $P$ un point de $E$ respectant les conditions de l'énoncé, supposons par 
+l'absurde qu'il existe $i_0 \in [1,n]$ et $r_0 \in [1,o_{i_0}-1]$ 
+tel quel'action d'un élément générateur de 
+$\mathsf{Gal}(\mathsf{F}_{\ell_{i_0}\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod \ell_j^{k_j}}}}}:\mathsf{F}_{\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}})$ 
+à la puissance $r_0$ laisse fixe $P$. Par le théorème des restes chinois on 
+peut représenter cette action sur $\mathbb{Z}/\ell_{i_0}^{k_{i_0}}\mathbb{Z} 
+\times mathbb{Z}/\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod \ell_j^{k_j}}}}\mathbb{Z}$
+à l'aide des deux points $P_{i_0}=[\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod \ell_j^{k_j}}}}]P$  et $Q=\ell_i^{k_i}P$. $Q$ étant définis dans $\mathsf{\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod \ell_j^{k_j}}}}}$ il est stable par l'action d'un élément générateur de 
+$\mathsf{Gal}(\mathsf{F}_{\ell_{i_0}\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod \ell_j^{k_j}}}}}:\mathsf{F}_{\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}})$.
+$P_{i_0}$ étant maximal par construction alors il ne peut être stable que sous 
+l'action d'un élément générateur de $\mathsf{Gal}(\mathsf{F}_{\ell_{i_0}\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod \ell_j^{k_j}}}}}:\mathsf{F}_{\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}})$
+à la puissance $o_{i_0}$, ainsi $r_0$ doit être un multiple de $o_{i_0}$.
+\end{proof}
  
  Déterminons tout d'abord l'action de 
  $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}})$.
@@ -4797,18 +4820,20 @@ T^{(i+1)}=\prod_{j=0}^{\ell_i^{k_i}-1}T^{(i,j)}
  restes chinois à $\mathbb{Z}/\prod_{i=1}^{n-1}\ell_i^{k_i}\mathbb{Z} \times 
  \mathbb{Z}/\ell_n^{k_n}\mathbb{Z}$, alors l'action de $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$ 
  sur $P$ est donc déterminée par l'action de $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$
- sur $Q=[\ell_1^{k_1}]P$ un point d'ordre $\prod_{i=1}^{n-1}\ell_i^{k_i}$ défini 
- sur $\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$ et sur 
- $P_n=[\prod_{j=1}^{n-1}\ell_j^{k_j}]P$ un point d'ordre $\ell_1^{k_1}$ défini 
+ sur $Q=[\ell_1^{k_1}]P$ un point d'ordre $\prod_{i=2}^{n}\ell_i^{k_i}$ défini 
+ sur $\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}}$ et sur 
+ $P_1=[\prod_{j=2}^{n}\ell_j^{k_j}]P$ un point d'ordre $\ell_1^{k_1}$ défini 
  sur $\mathsf{F}_{\ell_1^{k_1}}$. L'action de 
- $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$ 
+ $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}})$ 
  est triviale sur $Q$ car celui-ci est défini sur 
- $\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}}$.  L'action de 
- $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=1}^{n-1}\ell_j^{k_j}})$
- sur $P_n$ est quant à elle d'ordre $\ell_n^{k_n}$ et donc équivalente à 
+ $\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}}$.  L'action de 
+ $\mathsf{Gal}(\mathsf{F}_{\prod_{j=1}^{n}\ell_j^{k_j}}:\mathsf{F}_{\prod_{j=2}^{n}\ell_j^{k_j}})$
+ sur $P_n$ est quant à elle d'ordre $\ell_1^{k_1}$ et équivalente à 
  l'action de $\mathsf{Gal}(\mathsf{F}_{\ell_k^{k_n}}\mathbb{F}_q)$. Ainsi pour
  prendre un représentant de $P$ sous l'action de Galois il faut en construire  
- à l'aide du théorème des restes chinois pour chaque représentant de $P_n$.
+ à l'aide du théorème des restes chinois pour chaque représentant de $P_1$.
+ 
+ \todo{faire une proposition de cela}
 
 
  
