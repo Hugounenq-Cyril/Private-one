@@ -4587,6 +4587,7 @@ va supposer sans perte de généralités que les $k_i$ pour $i \in [1,n]$ sont
 fixés tels que l'on ait $\prod_{i=1}^{n} \ell_i^{2k_i-2}(\ell_i+1)>4r$.
 
 \subsubsection{Théorème des Restes Chinois Elliptique et son application à l'algorithme de Couveignes $\ell$-adique}
+\label{sub:TRCE:cou}
 \begin{defi}
 Soient $\ell_1, \ell_2$ deux nombres premiers distincts, $E$ une courbe elliptique. On appelle Théorème des Restes Chinois d'une courbe elliptique l'énoncé suivant:
 
@@ -4861,7 +4862,21 @@ deux points d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de même direction.
 
 
 \subsubsection{Construction de compositas d'extensions $\ell_i$-adiques}
+Cette partie s'appuie sur la construction de composita de 
+\cite{DeFeoDoliskaniSchost14} et montre quelques résultats sur une telle 
+construction appliquée à des tours d'extensions $\ell_i$-adiques.
 
+Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, 
+on va supposer dans le reste de ce document que les différentes tours 
+d'extensions $\ell_i$-adiques définies comme dans le chapitre~\ref{cha:tour} 
+dont on note les éléments $\mathbb{F}_q \subset \mathsf{F}_{(i,0)} \subset \dots \subset  \mathsf{F}_{(i,j)}$ ont chacune des degrés $d_i=[\mathsf{F}_{(i,0)}:\mathbb{F}_q]$ distincts.
+
+On veut donc tout d'abord définir un composita de tours d'extensions 
+$\ell_i$-adiques, en particulier on veut calculer un composita qui contient 
+tous les éléments des tours d'extensions $\ell_i$-adiques suivant:
+$\mathsf{F}_{(1,n_1)}, \dots \mathsf{F}_{(n,n_n)}$.
+
+On introduit un objet nécesaire à la construction de composita.
 \begin{defi}
 Soient $P$ un polynômes irréductible de degré $d_p$ de racines $r_i$ pour 
 $i \in [1,d_p]$, $Q$ un polynômes irréductible de degré $d_q$ de racines $s_j$,
@@ -4871,7 +4886,10 @@ le polynôme de degré $d_pd_q$ unitaire et de racines $r_is_j$ avec $i \in
 [1,d_p], j \in [1,d_q]$. On note $R= P\bigodot Q$.  
 \end{defi}
 
+On peut alors montrer comment on construit un composita à l'aide de la 
+proposition suivante: 
 \begin{prop}[Dire comment on définit une composita de deux tours $\ell_i$-adiques]
+\label{pro:init:com}
 Soient $\ell_1, \ell_2$ deux nombres premiers distincts, soient $P$, $Q$ deux 
 polynômes irréductibles de degré $d_1\ell_1^{n_1}$ et $d_2\ell_2^{n_2}$ 
 premiers entre eux tels que $\mathbb{F}_q[x]/\langle P \rangle \cong 
@@ -4890,48 +4908,39 @@ Voir \cite[Theorem 2]{BrawleyCarlitz87}
 \end{proof}
 
 \todo{Corriger un jour les erreurs de biblio....}
-Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts 
-On va supposer dans le reste de ce document que 
+On peut alors définir les composita dans notre cas particulier.
+\todo{dire ici comment on contourne cette difficulté}
 \begin{defi}
-Définir la notation...
-On note
+\label{def:con:com}
+On note $\mathbb{K}_1$ le corps isomorphe à $\mathsf{F}_{1,n_1}$. Soit 
+$i \in [1,n]$ supposons que $\mathbb{K}_{i}$ est défini alors par récurrence à 
+l'aide de la proposition~\ref{pro:init:com} $\mathbb{K}_{i+1}$ le 
+corps défini comme le composita de $\mathbb{K}_i$ et $\mathsf{F}_{(i+1,n_{i+1})}$.
 \end{defi}
+\begin{rem}
+Ici le cas où l'on aurait $d_i=d_j$ pour $i<j$ entraîne dés lors que l'on a pas
+les conditions pour appliquer la proposition~\ref{pro:init:com}. \todo{fixer cela 
+regarder autre article de Luca} 
+En pratique il est raisonnable de penser que l'on a pas $d_i=d_j=1$ car cela 
+voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$ \todo{reflechir a cela}
+\end{rem}
 
-Dire tout d'abord comment on construit un simple composita 
-
-\begin{defi}
-Composita de tours d'extensions $\ell_i$-adiques
-\end{defi}
-
-\begin{nota}
-Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, on va noter par 
-$\mathbb{K}_m=\otimes_{i=1}^n \mathbb{K}_{d_i\ell_i^{n_i}}$ une extension de corps de 
-$\mathbb{F}_q$ de degré $m=\prod_{i=1}^n d_i\ell_i^{n_i}$ (voir par exemple 
-\cite{Schost15} pour un contexte), telle que celle-ci soit 
-construite de façon compatible avec des plongements dans des sous-corps 
-$\mathbb{K}_n \subset \mathbb{K}_m$ avec $n | m$ \todo{retravailler cela pour l'adapter à notre contexte}. De plus $n_i$ est défini pour
- tout $i \in [1,n]$ comme étant le degré de l'extension $\ell_i$-adique tel que
- $E[\ell_i^k] \subset E(\mathbb{K}_{\ell_i^{n_i}})$, en utilisant les notations
- de la proposition~\ref{pro:clas:fro} on a $n_i=k_i-\beta_i$. On va travailler
- avec la construction de composita montrée dans 
- \cite{DeFeoDoliskaniSchost14} qui permet notamment de représenter ses éléments
-  sous forme univariée.Enfin afin de simplifier les notations on va 
- noter $m_i=\prod_{i=j}^n\ell_j^{n_j}/\ell_i^{n_i}$.
+(voir par exemple 
+\cite{Schost15} pour un contexte) \todo{surement plus utile}
+\begin{nota} Afin de simplifier les notations on va 
+ noter $m_i=\prod_{i=j}^n\ell_j^{n_j}/\ell_i^{n_i}$. \todo{encore utile ?}
 %$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
 \end{nota}
+\todo{justifier que l'on a $\mathsf{F}_{j,n_j} \subset \mathbb{K}_n$}
 
- On va supposer sans perte de généralité que pour tout $i \in [1,n]$ on a 
- $E[\ell_i] \subset E(\mathbb{F}_q)$ afin de simplifier les raisonnements pour
- l'interpolation à l'aide de l'action de groupe de Galois, le cas où l'on a
- $E[\ell_{i_0}] \not \subset E(\mathbb{F}_q)$ pour $i_0 \in [1,n]$ a déjà été
- traité dans la section~\ref{sec:interpolation}.
- 
- Premièrement on peut calculer les points (partiellement) horizontaux sur les 
- volcans de $\ell_i$-isogénies à l'aide des méthodes vues dans le 
+ Comme motivé dans la sous sous section précédente~\ref{sub:TRCE:cou} on peut 
+ calculer les points (partiellement) horizontaux sur les volcans de 
+ $\ell_i$-isogénies à l'aide des méthodes vues dans le 
  chapitre~\ref{cha:con:poi}, on doit alors ensuite les exprimer dans la 
  composita afin de les utiliser pour le théorème des restes chinois Ellipique,
- on utilise donc le résultat suivant issu de \cite[Theorem 1]{DeFeoDoliskaniSchost14}
+ on a donc besoin du résultat suivant issu de \cite[Theorem 1]{DeFeoDoliskaniSchost14}
  \begin{prop}[De Feo, Doliskani, Schost]
+ \label{pro:com:inj}
  Soient $i \in [1,n] $, $\mathbb{K}_{\ell_i^{n_i}}\cong \mathbb{F}_q[x]/\langle P \rangle$, 
  $\mathbb{K}_{m} \cong \mathbb{F}_q[z]/\langle Q \rangle$ 
  des extensions de corps de $\mathbb{F}_q$ de degré $\ell_i^{n_i}$ 
@@ -4948,6 +4957,12 @@ $\mathbb{K}_n \subset \mathbb{K}_m$ avec $n | m$ \todo{retravailler cela pour l'
  \begin{proof}
  Voir \cite{DeFeoDoliskaniSchost14}.
 \end{proof}  
+
+On voit qu'avec la construction de la définition~\ref{def:con:com} on connaît 
+seulement le polynôme, avec la notation de la proposition~\ref{pro:com:inj}, $Q$
+qui définit l'extension de degré $\prod_{i=1}^{n-1}d_i\ell_i^{k_i}$ de 
+$\mathbb{F}_q$. Ainsi pour connaître tous les 
+
  On sera aussi ammené à multiplier des polynômes à coefficients dans une 
  composita, ainsi on a besoin du résultat suivant.
 
