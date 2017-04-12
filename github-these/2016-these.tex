@@ -202,6 +202,12 @@ Dans ce document beaucoup d'algorithmes vont utiliser la multiplication rapide, 
 
 \`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} utlisant des transformation de Fourrier rapides, la multiplication de polynômes de degré $n$ appartenant à $R[x]$ pour un anneau $R$ quelconque est de $O(n\log(n) \log \log (n))$ opérations arithmétiques dans $R$.
 
+Dans ce document on va noter par $\omega$ un constante telle que l'on peut 
+multiplier des matrices de taille $m$ définies sur un anneau $A$ quelconque en
+utilisant $O(m^{\omega})$ opérations $(+,\times)$ dans $A$, en utilisant les 
+algorithmes de \cite{CoppersmithWinograd90} et \cite{Williams12} on peut 
+prendre $\omega \leqslant 2,38$.
+
 Enfin des algorithmes de Las Vegas vont être utilisé dans ce document. Ces algorithmes sont des algorithmes probabilistes qui produisent un résultat correct, dés lors qu'on utilise un algorithme de Las Vegas on parlera de probabilité espérée.
 
 \section{Théorie des ordres dans un corps quadratique imaginaire}
@@ -2250,6 +2256,26 @@ Il est à noter que en pratique pour le calcul de racine carrée de $\delta$ on 
 %\begin{prop}[Doliskani-Schost'15]
 %Soit $q=1 \bmod 4$, étant donné un résidu non quadratique $\alpha$ de $\mathbb{F}_q$, alors pour $k\geqslant 0$ et $n=2^k$, les temps de calculs pour les opérations dans $\mathbb{F}_q$ énoncés dans le tableau \ref{tab:complexite-degre2} sont vérifiés.
 %\end{prop}
+On propose les résultats suivant concernant les opérations sur les 
+polynômes à coefficients dans la tour d'extensions $\ell$-adiques:
+
+\begin{prop}
+\label{pro:mult:pol}
+La multiplication et la division euclidienne de polynômes de degré au plus $d$ 
+appartenant à $\mathsf{F}_i[x]$ coûte $O(\mathsf{M}(d\ell^{i+1}))$ opérations sur 
+$\mathbb{F}_q$.
+\end{prop}
+
+\begin{proof}
+On utilise la substitution de Kronecker déjà apparue 
+dans~\cite[Lemma 2.2]{vzGShoup92}, une description est tout de même faite dans 
+cette preuve. Soit $f$ un polynôme de $\mathsf{F}_{i}[x]$ de degré $d$ alors on 
+peut représenter $f$ comme un polynôme de $\mathbb{F}_q[x,y]$, avec 
+$\mathsf{F}_i=\mathbb{F}_q[y]$, en utilisant la substitution de 
+Kronecker $x \rightarrow y^{2\ell^{i}d_0-1}$. On a alors $f$ qui est représenté
+ comme un polynôme univarié de degré au plus $2\ell^{i+1} d$, d'où le résultat.
+\end{proof}
+
 \begin{nota}
 On note $\mathsf{R}(i)$ une borne sur le coût espéré du calcul de racine d'un polynôme de degré $\ell$ à coefficients dans $\mathsf{F}_i$.
 \end{nota}
@@ -2274,25 +2300,7 @@ Les coûts des différentes opérations dans de telles tours d'extensions $\ell$
 On a $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$ en utilisant la variante de l'algorithme de Cantor-Zassenhaus décrite dans ~\cite[Chapter~14.5]{vzGJG03}.
 Il est à noter que pour le calcul d'une racine le coût est un coût en moyenne, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
 
-Enfin on propose le résultat suivant concernant les opérations sur les 
-polynômes à coefficients dans la tour d'extensions $\ell$-adiques:
 
-\begin{prop}
-\label{pro:mult:pol}
-La multiplication et la division euclidienne de polynômes de degré au plus $d$ 
-appartenant à $\mathsf{F}_i[x]$ coûte $O(\mathsf{M}(d\ell^{i+1}))$ opérations sur 
-$\mathbb{F}_q$.
-\end{prop}
-
-\begin{proof}
-On utilise la substitution de Kronecker déjà apparue 
-dans~\cite[Lemma 2.2]{vzGShoup92}, une description est tout de même faite dans 
-cette preuve. Soit $f$ un polynôme de $\mathsf{F}_{i}[x]$ de degré $d$ alors on 
-peut représenter $f$ comme un polynôme de $\mathbb{F}_q[x,y]$, avec 
-$\mathsf{F}_i=\mathbb{F}_q[y]$, en utilisant la substitution de 
-Kronecker $x \rightarrow y^{2\ell^{i}d_0-1}$. On a alors $f$ qui est représenté
- comme un polynôme univarié de degré au plus $2\ell^{i+1} d$, d'où le résultat.
-\end{proof}
 
 Une implantation de construction de tours dyadiques et des opérations du Frobenius et du calcul de racine carrée ont été réalisé en SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
@@ -4370,8 +4378,8 @@ nécessaire d'avoir $k$ strictement supérieur à $h$.
 Le détail des timings pour les 
 différentes parties est disponible sur le projet github: 
 \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. 
-\section{Ouverture 1812}
-\subsection{Variante avec un seul sous-groupe cyclique}
+\chapter{Ouverture 1812}
+\section{Variante avec un seul sous-groupe cyclique}
 Comme proposé par François Morain on pourrait uniquement travailler avec un 
 point horizontal au lieu de travailler avec une base horizontale.
 
@@ -4440,7 +4448,7 @@ complexité est dominée par la phase de calcul d'une base diagonale de la
 $\ell^{h+1}$ torsion et non pas par la partie interpolation de l'algorithme qui
 peut être répétée jusqu'à $\Theta(r)$ fois.
 
-\subsection{Approche multi modulaire de l'algorithme}
+\section{Approche multi modulaire de l'algorithme}
 
 
 
@@ -4456,7 +4464,7 @@ deux groupes de points isomorphes:
 \end{itemize}
 On va détailler chacune de ces approches dans les deux sous-sections qui suivent.
 
-\subsubsection{Aprroche avec le groupe de points isomorphe à $\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$}
+\subsection{Aprroche avec le groupe de points isomorphe à $\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$}
 La première approche est de considérer l'ensemble de points $S$ isomorphe à: 
 $\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $
 dés lors il faut fixer comme condition  $\sum_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
@@ -4568,7 +4576,7 @@ On voudrait dés lors travailler avec des $k_i$ sur lesquels on aurait comme
 condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 c'est ce que l'on va aborder dans la seconde approche.}
 
-\subsubsection{Approche avec le groupe de points isomorphe à $\prod_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $}
+\subsection{Approche avec le groupe de points isomorphe à $\prod_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $}
 \todo{Verifier que j'ai mis nombre de Elkies un peu partout ...}
 Ainsi dans cette approche on veut travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'informations donnée par 
@@ -4578,6 +4586,7 @@ $E[\ell_i^{k_i}]$, pour faire cela on a besoin de définir quelques notions. On
 va supposer sans perte de généralités que les $k_i$ pour $i \in [1,n]$ sont 
 fixés tels que l'on ait $\prod_{i=1}^{n} \ell_i^{2k_i-2}(\ell_i+1)>4r$.
 
+\subsubsection{Théorème des Restes Chinois Elliptique et son application à l'algorithme de Couveignes $\ell$-adique}
 \begin{defi}
 Soient $\ell_1, \ell_2$ deux nombres premiers distincts, $E$ une courbe elliptique. On appelle Théorème des Restes Chinois d'une courbe elliptique l'énoncé suivant:
 
@@ -4647,7 +4656,13 @@ La sortie de l'algorithme~\ref{alg:TRC:init} est unique.
 \end{prop}
 
 \begin{proof}
-Soient $P,S$ deux points d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  obtenus par l'algorithme~\ref{alg:TRC:init}  tels que $[\ell_2^{k_2}]P=[\ell_2^{k_2}]S=P_1$ et  $[\ell_1^{k_1}]P=[\ell_1^{k_1}]S=0_E$. Alors on a $[\ell_2^{k_2}](P-S)=0$ et $[\ell_1^{k_1}](P-S)=0$ ce qui veut dire que l'ordre de $P-S$ divise à la fois $\ell_1^{k_1}$ et $\ell_2^{k_2}$ d'où le résultat. On vérifie donc bien le théorème des restes chinois.
+Soient $P,S$ deux points d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  obtenus par 
+l'algorithme~\ref{alg:TRC:init}  tels que 
+$[\ell_2^{k_2}]P=[\ell_2^{k_2}]S=P_1$ et  
+$[\ell_1^{k_1}]P=[\ell_1^{k_1}]S=0_E$. Alors on a $[\ell_2^{k_2}](P-S)=0$ et 
+$[\ell_1^{k_1}](P-S)=0$ ce qui veut dire que l'ordre de $P-S$ divise à la fois 
+$\ell_1^{k_1}$ et $\ell_2^{k_2}$ d'où le résultat. On vérifie donc bien le 
+théorème des restes chinois.
 \end{proof}
 
 Ainsi une solution du problème des restes chinois pour $P \in E[\mathbb{Z}/
@@ -4767,64 +4782,6 @@ On a donc bien une correspondance entre les points définis à l'aide du Théor�
  d'extension $\ell$-adiques utilisées pour 
  l'algorithme~\ref{alg:cou:ell-adique}. 
 
-\begin{nota}
-Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, on va noter par 
-$\mathsf{F}_{\prod_{i=1}^n \ell_i^{k_i}}$ une extension de corps de 
-$\mathbb{F}_q$ de degré $\prod_{i=1}^n \ell_i^{k_i}$.
-\end{nota}
-
- On va supposer sans perte de généralité que pour tout $i \in [1,n]$ on a 
- $E[\ell_i] \subset E(\mathbb{F}_q)$ afin de simplifier les raisonnements pour
- l'interolation à l'aide de l'action de groupe de Galois, le cas où l'on a
- $E[\ell_{i_0}] \not \subset E(\mathbb{F}_q)$ pour $i_0 \in [1,n]$ a déjà été
- traité dans la section~\ref{sec:interpolation}.
- 
- Premièrement on peut calculer les points (partiellement) horizontaux sur les 
- volcans de $\ell_i$-isogénies à l'aide des méthodes vues dans le 
- chapitre~\ref{cha:con:poi}, on doit alors ensuite les exprimer dans la 
- composita afin de les utiliser pour le TRC Ellipique, or le plongement dans un
- composita a un coût de $O()$ \todo{trouver complexité}. Le coût de résolutions 
- de polynômes de degré $d$ dans une composita de taille $XXX$ est de $O()$ \todo{trouver 
- complexité bis}. Enfin pour les étapes concernant les méthodes décrites dans 
- la section~\ref{sec:interpolation}, on a besoin de les détailler pour montrer 
- comment elles s'appliquent à ce contexte. 
-  
- Le contexte de notre travail est donc le suivant, soit deux éléments primitifs
-  $v,w \in \mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$ on veut alors calculer le 
-  polynôme $A \in \mathbb{F}_q[x]$ tel que:
-\begin{equation}
-A(v)=w \bmod T(v)
-\end{equation}
-avec $T$ le polynôme minimal de $v$. On chercher à calculer le représentant 
-minimal de $A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$.
-
- 
- En s'inspirant des travaux de \cite{DeFeo10} et de façon similaire à ce qui a 
- été fait dans la section~\ref{sec:interpolation}, on cherche à calculer tout 
- d'abord $T$. On définit la suite de polynômes suivante $T_i$ d'ordre 
- $\prod_{j=1}^i\ell_i^{k_i}$ et à coefficients définis dans 
- $\mathsf{F}_{\prod_{j=i}^n\ell_j^{k_j}}[x]$. On définit $T^{(1)}(x)=(x-v)$. 
- Supposons que l'on ait calculé un élément $T_i$ alors on définit 
- $T^{(i,j)}=\sigma_{\mathsf{Gal}(j)}(T^{(i)})$ avec $\sigma_{\mathsf{Gal}(j)}$ 
- l'application qui à tous les coefficients du polynôme $T^{(i)}$ applique $j$ 
- fois l'action d'un élément générateur fixé de $\mathsf{Gal}(\mathsf{F}_{
- \prod_{r=i}^n\ell_r^{k_r}}:\mathsf{F}_{\prod_{r=i+1}^n\ell_r^{k_r}})$, 
- on définit alors récursivement $T^{(i)}$ de la façon suivante:
- \begin{equation*}
-T^{(i+1)}=\prod_{j=0}^{\ell_i^{k_i}-1}T^{(i,j)}    
-\end{equation*}
-\todo{Faire un dessin à nouveau !}
- On a alors $T^{(n+1)}$ qui est le polynôme minimal de $v$ sur $\mathbb{F}_q$. 
- On peut alors appliquer les méthodes simlaires à celles employées dans 
- \cite{DeFeo10} et \ref{sec:interpolation} pour calculer un polynôme 
- d'interpolation $A \in \mathbb{F}_q[x]$ tel que $A(v)=w$ pour $v,w$ deux 
- éléments primitifs de $\mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$. 
- \todo{peut etre utilisé la notation $\mathsf{L}_n$ au lieu de $\mathsf{F}_n$}
- \todo{dire que par souci de simplicité on considére que $E[\ell_i] \subset E(\mathbb{F}_q)$}
- Ainsi  pour faire ces étapes de façon optimisée il est crucial de calculer 
- l'action de $\mathsf{Gal}(\mathbb{F}_q:\mathbb{F}_q)$ à un coût raisonnable.
- Or en l'état actuel celui-ci est de $O()$ \todo{trouver complexité à nouveau}.
-
  Attardons-nous maintenant sur le second point. Afin de simplifier les 
  explications on va se concentrer sur la détermination de représentants 
  d'orbite sous l'action de groupes de Galois de points définis dans un groupe
@@ -4877,6 +4834,7 @@ tels que tous les choix possibles de représentants $P_i=[\overset{n}{\underset{
  l'algorithme~\ref{alg:cou:ell-adique} de telle que l'on travaille avec 
 deux points d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de même direction.
 
+
 \begin{algorithm}
 \caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire à l'aide du TRC.}
 \begin{algorithmic}[1]
@@ -4900,6 +4858,236 @@ deux points d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de même direction.
 \ENDFOR 
 \end{algorithmic}
 \end{algorithm}
+
+
+\subsubsection{Construction de compositas d'extensions $\ell_i$-adiques}
+
+\begin{defi}
+Soient $P$ un polynômes irréductible de degré $d_p$ de racines $r_i$ pour 
+$i \in [1,d_p]$, $Q$ un polynômes irréductible de degré $d_q$ de racines $s_j$,
+tels que $P$ et $Q$ aient des racines distinctes et des degrés $d_p,d_q$ 
+premiers entre eux, alors on définit $R$ le \emph{produit composé} comme étant 
+le polynôme de degré $d_pd_q$ unitaire et de racines $r_is_j$ avec $i \in 
+[1,d_p], j \in [1,d_q]$. On note $R= P\bigodot Q$.  
+\end{defi}
+
+\begin{prop}[Dire comment on définit une composita de deux tours $\ell_i$-adiques]
+Soient $\ell_1, \ell_2$ deux nombres premiers distincts, soient $P$, $Q$ deux 
+polynômes irréductibles de degré $d_1\ell_1^{n_1}$ et $d_2\ell_2^{n_2}$ 
+premiers entre eux tels que $\mathbb{F}_q[x]/\langle P \rangle \cong 
+\mathsf{F}_{(1,n_1)}$ le $n_1$ ème élément de la tour d'extensions 
+$\ell_1$-adique vu dans \ref{cha:tour}, $\mathbb{F}_q[y]/\langle Q \rangle 
+\cong \mathsf{F}_{(2,n_2)}$ le $n_2$  ème élément de la tour d'extension 
+$\ell_1$-adique vu dans \ref{cha:tour}.
+ Soit $R=P\bigodot Q$  le produit composé de $P$ et $Q$, alors 
+ $\mathbb{F}_q[z]/\langle R \rangle$ est un corps fini de taille 
+ $q^{d_1d_2\ell_1^{n_1}\ell_2^{n_2}}$ et est isomorphe à $\mathbb{F}_q[x,y]/
+ \langle P,Q \rangle$.
+\end{prop}
+
+
+\begin{defi}
+Définir la notation...
+\end{defi}
+
+Dire tout d'abord comment on construit un simple composita 
+
+\begin{defi}
+Composita de tours d'extensions $\ell_i$-adiques
+\end{defi}
+
+\begin{nota}
+Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, on va noter par 
+$\mathbb{K}_m=\otimes_{i=1}^n \mathbb{K}_{d_i\ell_i^{n_i}}$ une extension de corps de 
+$\mathbb{F}_q$ de degré $m=\prod_{i=1}^n d_i\ell_i^{n_i}$ (voir par exemple 
+\cite{Schost15} pour un contexte), telle que celle-ci soit 
+construite de façon compatible avec des plongements dans des sous-corps 
+$\mathbb{K}_n \subset \mathbb{K}_m$ avec $n | m$ \todo{retravailler cela pour l'adapter à notre contexte}. De plus $n_i$ est défini pour
+ tout $i \in [1,n]$ comme étant le degré de l'extension $\ell_i$-adique tel que
+ $E[\ell_i^k] \subset E(\mathbb{K}_{\ell_i^{n_i}})$, en utilisant les notations
+ de la proposition~\ref{pro:clas:fro} on a $n_i=k_i-\beta_i$. On va travailler
+ avec la construction de composita montrée dans 
+ \cite{DeFeoDoliskaniSchost14} qui permet notamment de représenter ses éléments
+  sous forme univariée.Enfin afin de simplifier les notations on va 
+ noter $m_i=\prod_{i=j}^n\ell_j^{n_j}/\ell_i^{n_i}$.
+%$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
+\end{nota}
+
+ On va supposer sans perte de généralité que pour tout $i \in [1,n]$ on a 
+ $E[\ell_i] \subset E(\mathbb{F}_q)$ afin de simplifier les raisonnements pour
+ l'interpolation à l'aide de l'action de groupe de Galois, le cas où l'on a
+ $E[\ell_{i_0}] \not \subset E(\mathbb{F}_q)$ pour $i_0 \in [1,n]$ a déjà été
+ traité dans la section~\ref{sec:interpolation}.
+ 
+ Premièrement on peut calculer les points (partiellement) horizontaux sur les 
+ volcans de $\ell_i$-isogénies à l'aide des méthodes vues dans le 
+ chapitre~\ref{cha:con:poi}, on doit alors ensuite les exprimer dans la 
+ composita afin de les utiliser pour le théorème des restes chinois Ellipique,
+ on utilise donc le résultat suivant issu de \cite[Theorem 1]{DeFeoDoliskaniSchost14}
+ \begin{prop}[De Feo, Doliskani, Schost]
+ Soient $i \in [1,n] $, $\mathbb{K}_{\ell_i^{n_i}}\cong \mathbb{F}_q[x]/\langle P \rangle$, 
+ $\mathbb{K}_{m} \cong \mathbb{F}_q[z]/\langle Q \rangle$ 
+ des extensions de corps de $\mathbb{F}_q$ de degré $\ell_i^{n_i}$ 
+ et $m$ avec $\ell_i | m$ et $P$ et $Q$ des polynômes irréductibles de degré 
+ $\ell_i^{n_i}$ et $m$. Alors le plongement d'un élément de 
+ $\mathbb{K}_{\ell_i^{n_i}} $  dans $\mathbb{K}_{m}$ a un coût de 
+ $O\ell_i^{n_i}\mathsf{M}(m_i)+m_i\mathsf{M}(\ell_i^{n_i}))$ opérations sur 
+ $\mathbb{F}_q$.
+ La descente d'un élémént de 
+ $\mathbb{K}_{m} $ vers un élément de $\mathbb{K}_{\ell_i^{n_i}} $  a un coût
+ identique. 
+ \end{prop}
+
+ \begin{proof}
+ Voir \cite{DeFeoDoliskaniSchost14}.
+\end{proof}  
+ On sera aussi ammené à multiplier des polynômes à coefficients dans une 
+ composita, ainsi on a besoin du résultat suivant.
+
+ \begin{prop}
+ La multiplication et la division euclidienne de polynômes de degré au plus $d$
+ à coefficients dans $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
+ avec $P$ un polynôme irréductible de degré $n$ est de $O(\mathsf{M}(nd))$ 
+ opérations sur $\mathbb{F}_q$.
+ \end{prop} 
+ 
+ \begin{proof}
+  \`A l'aide d'une substituion de Kronecker comme vue dans la preuve de la 
+  proposition~\ref{pro:mult:pol} et utilisée auparavant dans 
+ \cite[Lemma 2.2]{vzGShoup92} on peut représenter un polynôme de degré $d$ à 
+ coefficients dans $\mathbb{K}_n$ comme un polynôme univarié de degré $2nd$ à 
+ coefficients dans $\mathbb{F}_q$ dés lors la multiplication a un coût de 
+ $O(\mathsf{M}(nd))$ opérations sur $\mathbb{F}_q$.
+ \end{proof}
+ 
+ On sera aussi ammené à trouvé une racine d'un polynôme de degré $d$ à 
+ coefficients dans une composita de degré $n$, d'où le résultat suivant:
+ 
+\begin{prop}
+ Le coût de résolution  de polynômes de degré $d$ dans une composita de 
+ taille $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
+ avec $P$ un polynôme irréductible de degré $n$ a un coût espéré de 
+ $O(n \mathsf{M}(nd)\log(d)\log(dq))$ opérations sur $\mathbb{F}_q$ \todo{trouver complexité bis}.
+\end{prop}
+ 
+\begin{proof}
+Pour trouver ce résultat on applique les résultats de \cite[Chapter 14.5]{vzGJG03}
+\end{proof}
+
+\begin{prop}
+\label{pro:iso:fie}
+Soient $P(x),Q(y)$ deux polynômes irréductibles de degré $m,n$ premiers entre 
+eux à coefficients dans $\mathbb{F}_q$ tels que $m \leqslant n$, $R=P \bigodot 
+Q$ le produit composé de $P$ et $Q$, les corps$\mathbb{F}_q[x,y]/\langle P,Q 
+\rangle, \mathbb{F}_q[x]/\langle R \rangle$ alors l'application de 
+l'isomorphisme:
+\begin{equation*}
+\begin{alignedat}{1}
+\varrho : \mathbb{F}_q[x,y]/\langle P, Q \rangle & \rightarrow \mathbb{F}_q[z]/\langle R \rangle \\
+xy & \mapsto z
+\end{alignedat}
+\end{equation*}
+a un coût de $O(m^2\mathsf{M}(n))$ opérations sur $\mathbb{F}_q$ et 
+l'application de son inverse a un coût de $O(\mathsf{M}(mn)n^{1/2}+
+\mathsf{M}(m)n^{(\omega+1)/2})$ opérations sur $\mathbb{F}_q$.
+\end{prop}
+
+Ainsi on peut travailler avec 
+
+\begin{prop}
+Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i$ tel que 
+$\mathsf{F}_i=\mathbb{F}_q[x]/\langle P \rangle$, avec $\mathsf{F}_i$ un 
+élément de la tour d'extensions $\ell_i$-adiques tel que vu dans le 
+chapitre~\ref{cha:tour}, $Q$ un polynôme de irréductible de degré 
+$p_j=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$, alors pour un élément $a$ de 
+$\mathbb{K}_{p_j}$ le coût de calcul de $a$ à une puissance $q^{r p_j}$ est de
+$O(p_{i+1})$) opérations dans $\mathbb{F}_q$ avec un précalclul qui a un coût 
+booléen de $O(\log(rp_j)\log(\ell_i^{n_i}qd_i))$ et  
+de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
+\end{prop}
+
+\begin{proof}
+Par la proposition~\ref{pro:iso:fie} on peut écrire $a$ comme un élément de 
+$\mathbb{F}_q[x,y]/\langle P,Q \rangle \cong \mathbb{F}_q[z]/\langle R \rangle$
+ avec $P$ un polynôme irréductible de degré  $d_i\ell_i^{n_i}$ tel que $\mathsf{F}_{(i,n_i)}=\mathbb{F}_q[x]/\langle P \rangle=\mathbb{F}_q(x_i)$, 
+avec $\mathsf{F}_{(i,n_i)}$ un élément de la tour d'extensions $\ell_i$-adiques tel que
+ vu dans le chapitre~\ref{cha:tour}, $Q$ un polynôme de irréductible de degré 
+$p_i=\prod_{j=1}^{i-1}d_j\ell_j^{n_j}$ et $R$ le produit composé de $P$ et $Q$.\todo{définir cela quelque part}
+Ainsi en réécrivant $a$ de la façon suivante:
+\begin{equation*}
+a=\sum_{j=0}^{p_i-1}x_i^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, x_i \in \mathsf{F}_{(i,n_i)}.
+\end{equation*}
+On a alors l'élévation à la puissance $q^{r p_j}$ de $a$ qui s'écrit:
+\begin{equation*}
+a^{q^{r p_j}}=\sum_{j=0}^{p_i-1}(x_i^{j})^{q^{r p_j}}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, x_i \in \mathsf{F}_{(i,n_i)}.
+\end{equation*} 
+On se concentre donc sur le calcul de $w=x_i^{q^{r p_j}}$ comme abordé dans la 
+preuve du théorème~\ref{thm:frob-ell} on note $x_0=x_i^{\ell_i^{n_i}d_i}$. 
+Calculons donc $x_i^{q^{r p_j}}$, on écrit $q^{r p_j}= u \ell_i^{n_i}+v$ avec 
+$0 \leqslant v<\ell_i^{n_i}$. On a alors $w=x_0^{u \bmod qd_i-1}x_i^{v}$ (on 
+rappelle que $|\mathsf{F}_{(i,0)}|=q^{d_i}$). Par la même méthode que dans la 
+preuve du théorème~\ref{thm:frob-ell} on calcule $u$ et $v$ avec un coût 
+booléen de $O(\log(rp_j)\log(\ell_i^{n_i}qd_i))$. Le calcul de $x_0^{u \bmod q^d_i-1}$ 
+se fait en utilisant $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$. On 
+conserve $w$ sous la forme d'un monôme dans $\mathbb{F}_q[x_i]$ (et non de 
+$\mathsf{F}_{(i,0)}[x_i]$ comme dans le théorème~\ref{thm:frob-ell}).
+
+On écrit $a^{q^{r p_j}}$ sous la forme:
+\begin{equation*}
+\sum_{j=0}^{p_i-1}(w)^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, w \in \mathbb{F}_{q}[x_i].
+\end{equation*}
+
+On calcule alors $a(w)$ par la méthode de Horner. Les puissances $w^k$ étant 
+des monômes dans $\mathbb{F}_q[x_i]$, on calcule chacune des puissances 
+successives à l'aide de la précédente en $O(p_j)$ opérations sur 
+$\mathbb{F}_q$. On a alors un coût total de $O(d_i\ell^{i}(p_i))$ 
+($\mathsf{i.e.}O(p_{i+1})$) opérations dans $\mathbb{F}_q$.
+
+\end{proof}
+
+
+ 
+ Enfin pour les étapes concernant les méthodes décrites dans 
+ la section~\ref{sec:interpolation}, on a besoin de les détailler pour montrer 
+ comment elles s'appliquent à ce contexte. 
+  
+ Le contexte de notre travail est donc le suivant, soit deux éléments primitifs
+  $v,w \in \mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$ on veut alors calculer le 
+  polynôme $A \in \mathbb{F}_q[x]$ tel que:
+\begin{equation}
+A(v)=w \bmod T(v)
+\end{equation}
+avec $T$ le polynôme minimal de $v$. On chercher à calculer le représentant 
+minimal de $A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$.
+
+ 
+ En s'inspirant des travaux de \cite{DeFeo10} et de façon similaire à ce qui a 
+ été fait dans la section~\ref{sec:interpolation}, on cherche à calculer tout 
+ d'abord $T$. On définit la suite de polynômes suivante $T_i$ d'ordre 
+ $\prod_{j=1}^i\ell_i^{k_i}$ et à coefficients définis dans 
+ $\mathsf{F}_{\prod_{j=i}^n\ell_j^{k_j}}[x]$. On définit $T^{(1)}(x)=(x-v)$. 
+ Supposons que l'on ait calculé un élément $T_i$ alors on définit 
+ $T^{(i,j)}=\sigma_{\mathsf{Gal}(j)}(T^{(i)})$ avec $\sigma_{\mathsf{Gal}(j)}$ 
+ l'application qui à tous les coefficients du polynôme $T^{(i)}$ applique $j$ 
+ fois l'action d'un élément générateur fixé de $\mathsf{Gal}(\mathsf{F}_{
+ \prod_{r=i}^n\ell_r^{k_r}}:\mathsf{F}_{\prod_{r=i+1}^n\ell_r^{k_r}})$, 
+ on définit alors récursivement $T^{(i)}$ de la façon suivante:
+ \begin{equation*}
+T^{(i+1)}=\prod_{j=0}^{\ell_i^{k_i}-1}T^{(i,j)}    
+\end{equation*}
+\todo{Faire un dessin à nouveau !}
+ On a alors $T^{(n+1)}$ qui est le polynôme minimal de $v$ sur $\mathbb{F}_q$. 
+ On peut alors appliquer les méthodes simlaires à celles employées dans 
+ \cite{DeFeo10} et \ref{sec:interpolation} pour calculer un polynôme 
+ d'interpolation $A \in \mathbb{F}_q[x]$ tel que $A(v)=w$ pour $v,w$ deux 
+ éléments primitifs de $\mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$. 
+ \todo{peut etre utilisé la notation $\mathsf{L}_n$ au lieu de $\mathsf{F}_n$}
+ \todo{dire que par souci de simplicité on considére que $E[\ell_i] \subset E(\mathbb{F}_q)$}
+ Ainsi  pour faire ces étapes de façon optimisée il est crucial de calculer 
+ l'action de $\mathsf{Gal}(\mathbb{F}_q:\mathbb{F}_q)$ à un coût raisonnable.
+ Or en l'état actuel celui-ci est de $O()$ \todo{trouver complexité à nouveau}.
+
+\subsubsection{Coût de l'algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois elliptique}
 
  si l'on peut appliquer les méthodes de la 
  section~\ref{sec:interpolation} pour optimiser le calcul de la même manière 
