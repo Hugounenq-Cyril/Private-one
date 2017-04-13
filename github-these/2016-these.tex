@@ -5030,13 +5030,13 @@ xy & \mapsto z
 \end{equation*}
 a un coût de:
 \begin{enumerate}
-\item $O((d_i\ell_i^{n_i})^2\mathsf{M}(p_{i_1}))$ opérations sur $\mathbb{F}_q$ lorsque 
-$d_i\ell_i^{n_i} \leqslant p_{i_1}$ et l'application de l'inverse de $\varrho$ 
+\item $O((d_i\ell_i^{n_i})^2\mathsf{M}(p_{i-1}))$ opérations sur $\mathbb{F}_q$ lorsque 
+$d_i\ell_i^{n_i} \leqslant p_{i-1}$ et l'application de l'inverse de $\varrho$ 
 a un coût de $O(\mathsf{M}(p_i)p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{n_i})p_{i-1}^{(\omega+1)/2})$ 
 opérations sur $\mathbb{F}_q$,
 \item $O(p_{i-1}^2\mathsf{M}(d_i\ell_i^{n_i}))$ opérations sur $\mathbb{F}_q$ lorsque 
-$d_i\ell_i^{n_i} \geqslant p_{i_1}$ et l'application de l'inverse de $\varrho$ 
-a un coût de $O(\mathsf{M}(p_i)(d_i\ell_i^{n_i})^{1/2}+\mathsf{M}(p_{i_1})(d_i\ell_i^{n_i})^{(\omega+1)/2})$ 
+$d_i\ell_i^{n_i} \geqslant p_{i-1}$ et l'application de l'inverse de $\varrho$ 
+a un coût de $O(\mathsf{M}(p_i)(d_i\ell_i^{n_i})^{1/2}+\mathsf{M}(p_{i-1})(d_i\ell_i^{n_i})^{(\omega+1)/2})$ 
 opérations sur $\mathbb{F}_q$.
 \end{enumerate}
 \end{prop}
@@ -5063,27 +5063,29 @@ de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
 \begin{proof}
 Par la proposition~\ref{pro:iso:fie} on peut écrire $a$ comme un élément de 
 $\mathbb{F}_q[x,y]/\langle P,Q \rangle \cong \mathbb{F}_q[z]/\langle R \rangle$
- avec un coût de  opérations sur $\mathbb{F}_q$.
+ avec un coût de 
+ $O(\mathsf{M}(p_i)p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{n_i})p_{i-1}^{(\omega+1)/2})$ 
+ opérations sur $\mathbb{F}_q$.
 Ainsi en réécrivant $a$ de la façon suivante:
 \begin{equation*}
-a=\sum_{j=0}^{p_i-1}x_i^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, x_i \in \mathsf{F}_{(i,n_i)}.
+a=\sum_{j=0}^{d_i\ell_i^{n_i}-1}x_i^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,n_i)}.
 \end{equation*}
 On a alors l'élévation à la puissance $q^{r p_j}$ de $a$ qui s'écrit:
 \begin{equation*}
-a^{q^{r p_j}}=\sum_{j=0}^{p_i-1}(x_i^{j})^{q^{r p_j}}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, x_i \in \mathsf{F}_{(i,n_i)}.
+a^{q^{r p_j}}=\sum_{j=0}^{d_i\ell_i^{n_i}-1}(x_i^{j})^{q^{r p_j}}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,n_i)}.
 \end{equation*} 
-On se concentre donc sur le calcul de $w=x_i^{q^{r p_j}}$ comme abordé dans la 
-preuve du théorème~\ref{thm:frob-ell} on note $x_0=x_i^{\ell_i^{n_i}d_i}$. 
-Calculons donc $x_i^{q^{r p_j}}$, on écrit $q^{r p_j}= u \ell_i^{n_i}+v$ avec 
-$0 \leqslant v<\ell_i^{n_i}$. On a alors $w=x_0^{u \bmod qd_i-1}x_i^{v}$ (on 
+On se concentre donc sur le calcul de $w=x_i^{q^{r p_{i-1}}}$ comme abordé dans la 
+preuve du théorème~\ref{thm:frob-ell} on note $x_0=x_i^{\ell_i^{n_i}}$. 
+Calculons donc $x_i^{q^{r p_{i-1}}}$, on écrit $q^{r p_{i-1}}= u \ell_i^{n_i}+v$ avec 
+$0 \leqslant v<\ell_i^{n_i}$. On a alors $w=x_0^{u \bmod q^{d_i}-1}x_i^{v}$ (on 
 rappelle que $|\mathsf{F}_{(i,0)}|=q^{d_i}$). Par la même méthode que dans la 
 preuve du théorème~\ref{thm:frob-ell} on calcule $u$ et $v$ avec un coût 
-booléen de $O(\log(rp_j)\log(\ell_i^{n_i}qd_i))$. Le calcul de $x_0^{u \bmod q^d_i-1}$ 
+booléen de $O(\log(rp_{i-1})\log(\ell_i^{n_i}qd_i))$. Le calcul de $x_0^{u \bmod q^{d_i}-1}$ 
 se fait en utilisant $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$. On 
 conserve $w$ sous la forme d'un monôme dans $\mathbb{F}_q[x_i]$ (et non de 
 $\mathsf{F}_{(i,0)}[x_i]$ comme dans le théorème~\ref{thm:frob-ell}).
 
-On écrit $a^{q^{r p_j}}$ sous la forme:
+On écrit $a^{q^{r p_{i-1}}}$ sous la forme:
 \begin{equation*}
 \sum_{j=0}^{p_i-1}(w)^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, w \in \mathbb{F}_{q}[x_i].
 \end{equation*}
