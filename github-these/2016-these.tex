@@ -4862,44 +4862,52 @@ deux points d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de même direction.
 
 
 \subsubsection{Construction de compositas d'extensions $\ell_i$-adiques}
-Cette partie s'appuie sur la construction de composita de 
-\cite{DeFeoDoliskaniSchost14} et montre quelques résultats sur une telle 
-construction appliquée à des tours d'extensions $\ell_i$-adiques.
+\todo{Ajouter notations dans la liste de nomenclatures}
+
+Cette partie s'appuie sur la construction de compositas à partir d'une idée 
+originale de \cite{BrawleyCarlitz87} reprise dans
+\cite{DeFeoDoliskaniSchost14} qui donne le moyen de calculer à un coût quasi 
+linéaire le changement de représentation d'éléments du composita. On montre 
+donc ici quelques résultats sur une telle construction appliquée à des tours 
+d'extensions $\ell_i$-adiques.
 
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, 
 on va supposer dans le reste de ce document que les différentes tours 
-d'extensions $\ell_i$-adiques définies comme dans le chapitre~\ref{cha:tour} 
-dont on note les éléments $\mathbb{F}_q \subset \mathsf{F}_{(i,0)} \subset \dots \subset  \mathsf{F}_{(i,j)}$ ont chacune des degrés $d_i=[\mathsf{F}_{(i,0)}:\mathbb{F}_q]$ distincts.
+d'extensions $\ell_i$-adiques sont définies comme dans le 
+chapitre~\ref{cha:tour} dont on note les éléments 
+$\mathbb{F}_q \subset \mathsf{F}_{(i,0)} \subset \dots \subset  \mathsf{F}_{(i,j)}$ 
+ont chacune des degrés $d_i=[\mathsf{F}_{(i,0)}:\mathbb{F}_q]$ qui lorsqu'ils 
+ne sont pas égaux à $1$ doivent être premiers entre eux.
 
 On veut donc tout d'abord définir un composita de tours d'extensions 
 $\ell_i$-adiques, en particulier on veut calculer un composita qui contient 
 tous les éléments des tours d'extensions $\ell_i$-adiques suivant:
-$\mathsf{F}_{(1,n_1)}, \dots \mathsf{F}_{(n,n_n)}$.
+$\mathsf{F}_{(1,n_1)}, \dots \mathsf{F}_{(n,n_n)}$. On suppose de plus que les
+$\ell_i$ sont ordonnés de telle sorte que pour tout $i \in [2,n]$ 
+$\prod_{j=1}^{i-1}d_j\ell_j^{k_j} \geqslant d_i\ell_i^{n_i}$.
 
 On introduit un objet nécesaire à la construction de composita.
 \begin{defi}
-Soient $P$ un polynômes irréductible de degré $d_p$ de racines $r_i$ pour 
-$i \in [1,d_p]$, $Q$ un polynômes irréductible de degré $d_q$ de racines $s_j$,
-tels que $P$ et $Q$ aient des racines distinctes et des degrés $d_p,d_q$ 
+Soient $P$ un polynômes irréductible de degré $\deg(P)$ de racines $r_i$ pour 
+$i \in [1,\deg(P)]$, $Q$ un polynômes irréductible de degré $\deg(Q)$ de racines $s_j$,
+tels que $P$ et $Q$ aient des racines distinctes et des degrés $\deg(P),\deg(Q)$ 
 premiers entre eux, alors on définit $R$ le \emph{produit composé} comme étant 
-le polynôme de degré $d_pd_q$ unitaire et de racines $r_is_j$ avec $i \in 
-[1,d_p], j \in [1,d_q]$. On note $R= P\bigodot Q$.  
-\end{defi}
-
+le polynôme de degré $\deg(P)\deg(Q)$ unitaire et de racines $r_is_j$ avec $i \in 
+[1,\deg(P)], j \in [1,\deg(Q)]$. On note $R= P\bigodot Q$.  
+\end{defi}\todo{changer notation des degrés!}
 On peut alors montrer comment on construit un composita à l'aide de la 
 proposition suivante: 
 \begin{prop}[Dire comment on définit une composita de deux tours $\ell_i$-adiques]
 \label{pro:init:com}
-Soient $\ell_1, \ell_2$ deux nombres premiers distincts, soient $P$, $Q$ deux 
-polynômes irréductibles de degré $d_1\ell_1^{n_1}$ et $d_2\ell_2^{n_2}$ 
+Soient $\ell_1$ un nombres premier, soient $P$, $Q$ deux 
+polynômes irréductibles de degré $d_1\ell_1^{n_1}$ et $\deg(Q)$ 
 premiers entre eux tels que $\mathbb{F}_q[x]/\langle P \rangle \cong 
 \mathsf{F}_{(1,n_1)}$ le $n_1$ ème élément de la tour d'extensions 
-$\ell_1$-adique vu dans \ref{cha:tour}, $\mathbb{F}_q[y]/\langle Q \rangle 
-\cong \mathsf{F}_{(2,n_2)}$ le $n_2$  ème élément de la tour d'extension 
-$\ell_1$-adique vu dans \ref{cha:tour}.
+$\ell_1$-adique vu dans \ref{cha:tour}, $\mathbb{F}_q[y]/\langle Q \rangle$ 
+une extension degré $\deg(Q)$ de $\mathbb{F}_q$.
  Soit $R=P\bigodot Q$  le produit composé de $P$ et $Q$, alors 
  $\mathbb{F}_q[z]/\langle R \rangle$ est un corps fini de taille 
- $q^{d_1d_2\ell_1^{n_1}\ell_2^{n_2}}$ et est isomorphe à $\mathbb{F}_q[x,y]/
+ $q^{d_1\ell_1^{n_1}\deg(Q)}$ et est isomorphe à $\mathbb{F}_q[x,y]/
  \langle P,Q \rangle$.
 \end{prop}
 
@@ -4912,23 +4920,25 @@ On peut alors définir les composita dans notre cas particulier.
 \todo{dire ici comment on contourne cette difficulté}
 \begin{defi}
 \label{def:con:com}
-On note $\mathbb{K}_1$ le corps isomorphe à $\mathsf{F}_{1,n_1}$. Soit 
-$i \in [1,n]$ supposons que $\mathbb{K}_{i}$ est défini alors par récurrence à 
-l'aide de la proposition~\ref{pro:init:com} $\mathbb{K}_{i+1}$ le 
-corps défini comme le composita de $\mathbb{K}_i$ et $\mathsf{F}_{(i+1,n_{i+1})}$.
+On note $\mathbb{K}_1$ le corps $\mathsf{F}_{1,n_1}$. Soit $i \in [1,n-1]$ 
+supposons que $\mathbb{K}_{i}$ est défini alors à 
+l'aide de la proposition~\ref{pro:init:com} $\mathbb{K}_{i+1}$ est défini comme
+ le composita de $\mathbb{K}_i$ et $\mathsf{F}_{(i+1,n_{i+1})}$.
 \end{defi}
 \begin{rem}
 Ici le cas où l'on aurait $d_i=d_j$ pour $i<j$ entraîne dés lors que l'on a pas
 les conditions pour appliquer la proposition~\ref{pro:init:com}. \todo{fixer cela 
 regarder autre article de Luca} 
 En pratique il est raisonnable de penser que l'on a pas $d_i=d_j=1$ car cela 
-voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$ \todo{reflechir a cela}
+voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$ \todo{reflechir a cette remarque qui est fausse}
 \end{rem}
 
 (voir par exemple 
-\cite{Schost15} pour un contexte) \todo{surement plus utile}
+\cite{Schost15} pour un contexte) \todo{surement plus du tout utile}
 \begin{nota} Afin de simplifier les notations on va 
- noter $m_i=\prod_{i=j}^n\ell_j^{n_j}/\ell_i^{n_i}$. \todo{encore utile ?}
+ noter $m_i=\prod_{i=j}^nd_j\ell_j^{n_j}/d_i\ell_i^{n_i}$ et 
+ $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$, en particulier $p_{i}$ est le 
+ degré du composita $\mathbb{K}_i$ comme extension de $\mathbb{F}_q$.
 %$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
 \end{nota}
 \todo{justifier que l'on a $\mathsf{F}_{j,n_j} \subset \mathbb{K}_n$}
@@ -4941,17 +4951,15 @@ voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$ \todo{reflec
  on a donc besoin du résultat suivant issu de \cite[Theorem 1]{DeFeoDoliskaniSchost14}
  \begin{prop}[De Feo, Doliskani, Schost]
  \label{pro:com:inj}
- Soient $i \in [1,n] $, $\mathbb{K}_{\ell_i^{n_i}}\cong \mathbb{F}_q[x]/\langle P \rangle$, 
- $\mathbb{K}_{m} \cong \mathbb{F}_q[z]/\langle Q \rangle$ 
- des extensions de corps de $\mathbb{F}_q$ de degré $\ell_i^{n_i}$ 
- et $m$ avec $\ell_i | m$ et $P$ et $Q$ des polynômes irréductibles de degré 
- $\ell_i^{n_i}$ et $m$. Alors le plongement d'un élément de 
- $\mathbb{K}_{\ell_i^{n_i}} $  dans $\mathbb{K}_{m}$ a un coût de 
- $O\ell_i^{n_i}\mathsf{M}(m_i)+m_i\mathsf{M}(\ell_i^{n_i}))$ opérations sur 
- $\mathbb{F}_q$.
- La descente d'un élémént de 
- $\mathbb{K}_{m} $ vers un élément de $\mathbb{K}_{\ell_i^{n_i}} $  a un coût
- identique. 
+ Soient $i \in [2,n] $ $P,Q$ deux polynômes irréductibles de degrés premiers 
+  entre eux $d_i\ell_i^{n_i}$ et $p_{i-1}$ avec
+   $\mathbb{F}_q[x]/\langle P \rangle \cong \mathsf{F}_{(i,n_i)}$ et 
+   $\mathbb{F}_q[y]/\langle Q \rangle \cong \mathsf{K}_{i-1}$. Alors le 
+   plongement d'un élément de $\mathsf{F}_{(i,n_i)} $  dans $\mathbb{K}_{i}$ a un
+   coût de 
+   $O(d_i\ell_i^{n_i}\mathsf{M}(p_{i-1})+p_{i-1}\mathsf{M}(d_i\ell_i^{n_i}))$ 
+   opérations sur $\mathbb{F}_q$. La descente d'un élémént de $\mathbb{K}_{i} $
+   vers un élément de $\mathsf{F}_{(i,n_i)}$  a un coût identique. 
  \end{prop}
 
  \begin{proof}
@@ -4960,20 +4968,21 @@ voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$ \todo{reflec
 
 On voit qu'avec la construction de la définition~\ref{def:con:com} on connaît 
 seulement le polynôme, avec la notation de la proposition~\ref{pro:com:inj}, $Q$
-qui définit l'extension de degré $\prod_{i=1}^{n-1}d_i\ell_i^{k_i}$ de 
+qui définit l'extension $\mathsf{K}_{i-1}$ de degré $p_{i-1}$ de 
 $\mathbb{F}_q$. Ainsi pour connaître tous les polynômes qui définissent les 
 extensions de degé $\frac{\prod_{i=1}^{n}d_i\ell_i^{k_i}}{d_j \ell_j^{k_j}}$ de
 $\mathbb{F}_q$ on doit changer l'ordre des $\ell_i$ dans la construction de la 
-définition~\ref{def:con:com}, on doit donc calculer $n$ constructions de 
-composita. 
+définition~\ref{def:con:com}, on doit donc calculer $n$ constructions 
+différentes de composita pour pouvoir calculer le plongement de tous les 
+$\mathsf{F}_{(i,n_i)}$ dans $\mathsf{K}_{n}$. 
 
- On sera aussi ammené à multiplier des polynômes à coefficients dans une 
+ On sera ammené à multiplier des polynômes à coefficients dans une 
  composita, ainsi on a besoin du résultat suivant.
 
  \begin{prop}
  La multiplication et la division euclidienne de polynômes de degré au plus $d$
  à coefficients dans $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
- avec $P$ un polynôme irréductible de degré $n$ est de $O(\mathsf{M}(nd))$ 
+ avec $P$ un polynôme irréductible de degré $p_n$ est de $O(\mathsf{M}(p_nd))$ 
  opérations sur $\mathbb{F}_q$.
  \end{prop} 
  
@@ -4981,64 +4990,80 @@ composita.
   \`A l'aide d'une substituion de Kronecker comme vue dans la preuve de la 
   proposition~\ref{pro:mult:pol} et utilisée auparavant dans 
  \cite[Lemma 2.2]{vzGShoup92} on peut représenter un polynôme de degré $d$ à 
- coefficients dans $\mathbb{K}_n$ comme un polynôme univarié de degré $2nd$ à 
+ coefficients dans $\mathbb{K}_n$ comme un polynôme univarié de degré $2p_nd$ à 
  coefficients dans $\mathbb{F}_q$ dés lors la multiplication a un coût de 
- $O(\mathsf{M}(nd))$ opérations sur $\mathbb{F}_q$.
+ $O(\mathsf{M}(p_nd))$ opérations sur $\mathbb{F}_q$.
  \end{proof}
  
- On sera aussi ammené à trouvé une racine d'un polynôme de degré $d$ à 
- coefficients dans une composita de degré $n$, d'où le résultat suivant:
+ On sera aussi amené à trouvé une racine d'un polynôme de degré $d$ à 
+ coefficients dans une composita $\mathbb{K}_n$, d'où le résultat suivant:
  
 \begin{prop}
- Le coût de résolution  de polynômes de degré $d$ dans une composita de 
- taille $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
- avec $P$ un polynôme irréductible de degré $n$ a un coût espéré de 
- $O(n \mathsf{M}(nd)\log(d)\log(dq))$ opérations sur $\mathbb{F}_q$ \todo{trouver complexité bis}.
+ Le coût de calcul de racine de polynômes de degré $d$ à coefficients dans une 
+ composita $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
+ avec $P$ un polynôme irréductible de degré $p_n$ a un coût espéré de 
+ $O(p_n \mathsf{M}(p_nd)\log(d)\log(dq))$ opérations sur $\mathbb{F}_q$. \todo{trouver complexité bis}.
 \end{prop}
  
 \begin{proof}
 Pour trouver ce résultat on applique les résultats de \cite[Chapter 14.5]{vzGJG03}
 \end{proof}
 
+\begin{nota}
+On va noter par $R(i,j)$ le coût de trouver la racine d'un polynôme de degré 
+$i$ à coefficients dans la composita $\mathbb{K}_j$, donc 
+$R(i,j)=O(p_j \mathsf{M}(p_ji)\log(i)\log(iq))$.
+\end{nota}
+
 \begin{prop}
 \label{pro:iso:fie}
-Soient $P(x),Q(y)$ deux polynômes irréductibles de degré $m,n$ premiers entre 
-eux à coefficients dans $\mathbb{F}_q$ tels que $m \leqslant n$, $R=P \bigodot 
-Q$ le produit composé de $P$ et $Q$, les corps$\mathbb{F}_q[x,y]/\langle P,Q 
-\rangle, \mathbb{F}_q[x]/\langle R \rangle$ alors l'application de 
-l'isomorphisme:
+Soient $i \in [1,n]$, $P(x),Q(y)$ deux polynômes irréductibles de degrés 
+$d_i\ell_i^{n_i},p_{i-1}$ premiers entre eux à coefficients dans $\mathbb{F}_q$
+qui définissent $\mathbb{F}_q[x]/\langle P \rangle \cong \mathsf{F}_{(i,n_i)}$,
+$\mathbb{F}_q[x]/\langle Q \rangle \cong \mathbb{K}_{i-1}$. Soit $R=P \bigodot 
+Q$ le produit composé de $P$ et $Q$ alors l'application de l'isomorphisme:
 \begin{equation*}
 \begin{alignedat}{1}
 \varrho : \mathbb{F}_q[x,y]/\langle P, Q \rangle & \rightarrow \mathbb{F}_q[z]/\langle R \rangle \\
 xy & \mapsto z
 \end{alignedat}
 \end{equation*}
-a un coût de $O(m^2\mathsf{M}(n))$ opérations sur $\mathbb{F}_q$ et 
-l'application de son inverse a un coût de $O(\mathsf{M}(mn)n^{1/2}+
-\mathsf{M}(m)n^{(\omega+1)/2})$ opérations sur $\mathbb{F}_q$.
+a un coût de:
+\begin{enumerate}
+\item $O((d_i\ell_i^{n_i})^2\mathsf{M}(p_{i_1}))$ opérations sur $\mathbb{F}_q$ lorsque 
+$d_i\ell_i^{n_i} \leqslant p_{i_1}$ et l'application de l'inverse de $\varrho$ 
+a un coût de $O(\mathsf{M}(p_i)p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{n_i})p_{i-1}^{(\omega+1)/2})$ 
+opérations sur $\mathbb{F}_q$,
+\item $O(p_{i-1}^2\mathsf{M}(d_i\ell_i^{n_i}))$ opérations sur $\mathbb{F}_q$ lorsque 
+$d_i\ell_i^{n_i} \geqslant p_{i_1}$ et l'application de l'inverse de $\varrho$ 
+a un coût de $O(\mathsf{M}(p_i)(d_i\ell_i^{n_i})^{1/2}+\mathsf{M}(p_{i_1})(d_i\ell_i^{n_i})^{(\omega+1)/2})$ 
+opérations sur $\mathbb{F}_q$.
+\end{enumerate}
 \end{prop}
+\todo{on pourrait éventuellement faire un restriction sur les $\ell_i$ pour que cela soit toujours vérifié}
+\begin{proof}
+Voir \cite{DeFeoDoliskaniSchost14}.
+\end{proof}
+
 
 Ainsi on peut travailler avec 
 
 \begin{prop}
 Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i$ tel que 
-$\mathsf{F}_i=\mathbb{F}_q[x]/\langle P \rangle$, avec $\mathsf{F}_i$ un 
-élément de la tour d'extensions $\ell_i$-adiques tel que vu dans le 
-chapitre~\ref{cha:tour}, $Q$ un polynôme de irréductible de degré 
-$p_j=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$, alors pour un élément $a$ de 
-$\mathbb{K}_{p_j}$ le coût de calcul de $a$ à une puissance $q^{r p_j}$ est de
-$O(p_{i+1})$) opérations dans $\mathbb{F}_q$ avec un précalclul qui a un coût 
-booléen de $O(\log(rp_j)\log(\ell_i^{n_i}qd_i))$ et  
+$\mathsf{F}_{(i,n_i)}=\mathbb{F}_q[x]/\langle P \rangle$, $Q$ un polynôme 
+irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
+tel que $\mathbb{K}_{i-1}=\mathbb{F}_q[y]/\langle Q \rangle$, $R=P \odot Q$ 
+tel que  $\mathbb{K}_{i}=\mathbb{F}_q[z]/\langle R \rangle$, alors pour un 
+élément $a$ de $\mathbb{K}_{i}$ le coût de calcul de $a$ à une puissance 
+$q^{r p_{i-1}}$ est de $O(p_{i})$) opérations dans $\mathbb{F}_q$ avec un 
+précalcul qui a un coût booléen de $O(\log(rp_{i-1})\log(\ell_i^{n_i}qd_i))$ et  
 de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
 Par la proposition~\ref{pro:iso:fie} on peut écrire $a$ comme un élément de 
 $\mathbb{F}_q[x,y]/\langle P,Q \rangle \cong \mathbb{F}_q[z]/\langle R \rangle$
- avec $P$ un polynôme irréductible de degré  $d_i\ell_i^{n_i}$ tel que $\mathsf{F}_{(i,n_i)}=\mathbb{F}_q[x]/\langle P \rangle=\mathbb{F}_q(x_i)$, 
-avec $\mathsf{F}_{(i,n_i)}$ un élément de la tour d'extensions $\ell_i$-adiques tel que
- vu dans le chapitre~\ref{cha:tour}, $Q$ un polynôme de irréductible de degré 
-$p_i=\prod_{j=1}^{i-1}d_j\ell_j^{n_j}$ et $R$ le produit composé de $P$ et $Q$.\todo{définir cela quelque part}
+ avec un coût de  opérations sur $\mathbb{F}_q$.
 Ainsi en réécrivant $a$ de la façon suivante:
 \begin{equation*}
 a=\sum_{j=0}^{p_i-1}x_i^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, x_i \in \mathsf{F}_{(i,n_i)}.
