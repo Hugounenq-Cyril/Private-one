@@ -2351,14 +2351,14 @@ Frobenius.
 
 Ainsi on note $T^{(0)}=(x-v)$, $\sigma_i$ l'application qui applique à tous les
  coefficients d'un polynôme à coefficients dans $\mathsf{F}_{n-i}$ l'action 
- d'un élément générateur de $\mathsf{Gal}(F_{n-i-1} / \mathsf{F}_q)$. En 
+ d'un élément générateur de $\mathsf{Gal}(\mathsf{F}_{n-i} / \mathsf{F}_{n-i-1})$. En 
  supposant que l'on connaisse un $T^{(i)}$ pour $i < n$ de degré $\ell^i$ à 
  coefficients dans $\mathsf{F}_{n-i}$ alors pour $j \in [0 ; \ell-1]$ on définit
- $T^{(i,j)}=\sigma^j(T^{(i)})$, et l'on pose:  
+ $T^{(i,j)}=\sigma_i^j(T^{(i)})$, et l'on pose:  
 \begin{equation*}
 T^{(i+1)}=\prod_{j=0}^bT^{(i,j)} \qquad\text{avec}\qquad
   b = \begin{cases}
-    \ell-1 &\text{if $i<n-1$,}\\
+    \ell-1 &\text{si $i<n-1$,}\\
     d_0 &\text{sinon.}
   \end{cases}
 \end{equation*}
@@ -4893,7 +4893,7 @@ $i \in [1,\deg(P)]$, $Q$ un polynômes irréductible de degré $\deg(Q)$ de raci
 tels que $P$ et $Q$ aient des racines distinctes et des degrés $\deg(P),\deg(Q)$ 
 premiers entre eux, alors on définit $R$ le \emph{produit composé} comme étant 
 le polynôme de degré $\deg(P)\deg(Q)$ unitaire et de racines $r_is_j$ avec $i \in 
-[1,\deg(P)], j \in [1,\deg(Q)]$. On note $R= P\bigodot Q$.  
+[1,\deg(P)], j \in [1,\deg(Q)]$. On note $R= P\odot Q$.  
 \end{defi}\todo{changer notation des degrés!}
 On peut alors montrer comment on construit un composita à l'aide de la 
 proposition suivante: 
@@ -4905,7 +4905,7 @@ premiers entre eux tels que $\mathbb{F}_q[x]/\langle P \rangle \cong
 \mathsf{F}_{(1,n_1)}$ le $n_1$ ème élément de la tour d'extensions 
 $\ell_1$-adique vu dans \ref{cha:tour}, $\mathbb{F}_q[y]/\langle Q \rangle$ 
 une extension degré $\deg(Q)$ de $\mathbb{F}_q$.
- Soit $R=P\bigodot Q$  le produit composé de $P$ et $Q$, alors 
+ Soit $R=P\odot Q$  le produit composé de $P$ et $Q$, alors 
  $\mathbb{F}_q[z]/\langle R \rangle$ est un corps fini de taille 
  $q^{d_1\ell_1^{n_1}\deg(Q)}$ et est isomorphe à $\mathbb{F}_q[x,y]/
  \langle P,Q \rangle$.
@@ -4938,7 +4938,8 @@ voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$ \todo{reflec
 \begin{nota} Afin de simplifier les notations on va 
  noter $m_i=\prod_{i=j}^nd_j\ell_j^{n_j}/d_i\ell_i^{n_i}$ et 
  $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$, en particulier $p_{i}$ est le 
- degré du composita $\mathbb{K}_i$ comme extension de $\mathbb{F}_q$.
+ degré du composita $\mathbb{K}_i$ comme extension de $\mathbb{F}_q$, par 
+ ailleurs on pose $p_0=1$.
 %$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
 \end{nota}
 \todo{justifier que l'on a $\mathsf{F}_{j,n_j} \subset \mathbb{K}_n$}
@@ -5020,7 +5021,7 @@ $R(i,j)=O(p_j \mathsf{M}(p_ji)\log(i)\log(iq))$.
 Soient $i \in [1,n]$, $P(x),Q(y)$ deux polynômes irréductibles de degrés 
 $d_i\ell_i^{n_i},p_{i-1}$ premiers entre eux à coefficients dans $\mathbb{F}_q$
 qui définissent $\mathbb{F}_q[x]/\langle P \rangle \cong \mathsf{F}_{(i,n_i)}$,
-$\mathbb{F}_q[x]/\langle Q \rangle \cong \mathbb{K}_{i-1}$. Soit $R=P \bigodot 
+$\mathbb{F}_q[x]/\langle Q \rangle \cong \mathbb{K}_{i-1}$. Soit $R=P \odot 
 Q$ le produit composé de $P$ et $Q$ alors l'application de l'isomorphisme:
 \begin{equation*}
 \begin{alignedat}{1}
@@ -5049,18 +5050,21 @@ Voir \cite{DeFeoDoliskaniSchost14}.
 Ainsi on peut travailler avec 
 
 \begin{prop}
+\label{pro:fro:com}
 Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i$ tel que 
 $\mathsf{F}_{(i,n_i)}=\mathbb{F}_q[x]/\langle P \rangle$, $Q$ un polynôme 
 irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
 tel que $\mathbb{K}_{i-1}=\mathbb{F}_q[y]/\langle Q \rangle$, $R=P \odot Q$ 
 tel que  $\mathbb{K}_{i}=\mathbb{F}_q[z]/\langle R \rangle$, alors pour un 
 élément $a$ de $\mathbb{K}_{i}$ le coût de calcul de $a$ à une puissance 
-$q^{r p_{i-1}}$ est de $O(p_{i})$) opérations dans $\mathbb{F}_q$ avec un 
-précalcul qui a un coût booléen de $O(\log(rp_{i-1})\log(\ell_i^{n_i}qd_i))$ et  
+$q^{r p_{i-1}}$ est de $O(\mathsf{M}(p_i)p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{n_i})p_{i-1}^{(\omega+1)/2})$ opérations dans $\mathbb{F}_q$ avec un 
+précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{n_i}qd_i))$ et  
 de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
+Vu que $a \in \mathbb{K}_{p_i}$ alors on a pour $s=r \bmod d_i \ell_i^{n_i}$ 
+$a^{q^{r p_j}}=a^{q^{s p_j}}$ ainsi on considère que $r<d_i \ell_i^{n_i}$.
 Par la proposition~\ref{pro:iso:fie} on peut écrire $a$ comme un élément de 
 $\mathbb{F}_q[x,y]/\langle P,Q \rangle \cong \mathbb{F}_q[z]/\langle R \rangle$
  avec un coût de 
@@ -5087,26 +5091,25 @@ $\mathsf{F}_{(i,0)}[x_i]$ comme dans le théorème~\ref{thm:frob-ell}).
 
 On écrit $a^{q^{r p_{i-1}}}$ sous la forme:
 \begin{equation*}
-\sum_{j=0}^{p_i-1}(w)^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, w \in \mathbb{F}_{q}[x_i].
+\sum_{j=0}^{d_i\ell_i^{k_i}-1}(w)^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, w \in \mathbb{F}_{q}[x_i].
 \end{equation*}
 
 On calcule alors $a(w)$ par la méthode de Horner. Les puissances $w^k$ étant 
 des monômes dans $\mathbb{F}_q[x_i]$, on calcule chacune des puissances 
-successives à l'aide de la précédente en $O(p_j)$ opérations sur 
-$\mathbb{F}_q$. On a alors un coût total de $O(d_i\ell^{i}(p_i))$ 
-($\mathsf{i.e.}O(p_{i+1})$) opérations dans $\mathbb{F}_q$.
-
+successives à l'aide de la précédente en $\mathsf{M}(p_{i-1})$ opérations sur 
+$\mathbb{F}_q$. On a alors un coût total de 
+$O(d_i\ell_i^{n_i}\mathsf{M}(p_{i-1}))$ opérations dans $\mathbb{F}_q$. 
+Pour ce calcul-là l'opération dominante est donc la conversion de 
+$a \in \mathbb{K}_i$ en un élément de 
+$\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$.
 \end{proof}
 
-
+Détaillons maintenant comment on adapte les méthodes décrites dans la 
+section~\ref{sec:interpolation} à ce contexte.
  
- Enfin pour les étapes concernant les méthodes décrites dans 
- la section~\ref{sec:interpolation}, on a besoin de les détailler pour montrer 
- comment elles s'appliquent à ce contexte. 
   
- Le contexte de notre travail est donc le suivant, soit deux éléments primitifs
-  $v,w \in \mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$ on veut alors calculer le 
-  polynôme $A \in \mathbb{F}_q[x]$ tel que:
+ Soient deux éléments $v,w \in \mathbb{K}_{i} \setminus \mathbb{K}_{i-1}$ on veut
+ alors calculer le polynôme $A \in \mathbb{F}_q[x]$ tel que:
 \begin{equation}
 A(v)=w \bmod T(v)
 \end{equation}
@@ -5116,28 +5119,72 @@ minimal de $A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$
  
  En s'inspirant des travaux de \cite{DeFeo10} et de façon similaire à ce qui a 
  été fait dans la section~\ref{sec:interpolation}, on cherche à calculer tout 
- d'abord $T$. On définit la suite de polynômes suivante $T_i$ d'ordre 
- $\prod_{j=1}^i\ell_i^{k_i}$ et à coefficients définis dans 
- $\mathsf{F}_{\prod_{j=i}^n\ell_j^{k_j}}[x]$. On définit $T^{(1)}(x)=(x-v)$. 
- Supposons que l'on ait calculé un élément $T_i$ alors on définit 
- $T^{(i,j)}=\sigma_{\mathsf{Gal}(j)}(T^{(i)})$ avec $\sigma_{\mathsf{Gal}(j)}$ 
- l'application qui à tous les coefficients du polynôme $T^{(i)}$ applique $j$ 
- fois l'action d'un élément générateur fixé de $\mathsf{Gal}(\mathsf{F}_{
- \prod_{r=i}^n\ell_r^{k_r}}:\mathsf{F}_{\prod_{r=i+1}^n\ell_r^{k_r}})$, 
- on définit alors récursivement $T^{(i)}$ de la façon suivante:
+ d'abord $T$. On définit la suite de polynôme $T_i$ d'ordre $\frac{p_n}{p_{n-i}}$ 
+ et à coefficients définis dans $\mathbb{K}_{n-i}$. On définit $T^{(0)}(x)=(x-v)$. 
+ Supposons que l'on ait calculé un élément $T^{(i)}$ pour $i \in [0,n-1]$ alors on définit 
+ $T^{(i,j)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}(T^{(i)})$ avec
+  $\sigma_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}$ 
+ l'application qui à tous les coefficients du polynôme $T^{(i)}$ définis dans 
+ $\mathbb{K}_{n-i}$ applique l'action d'un élément générateur de 
+ $\mathsf{Gal}(\mathbb{K}_{n-i-1}: \mathbb{F}_q)$. 
+ On définit alors récursivement $T^{(i)}$ de la façon suivante:
  \begin{equation*}
-T^{(i+1)}=\prod_{j=0}^{\ell_i^{k_i}-1}T^{(i,j)}    
+T^{(i+1)}=\prod_{j=0}^{d_i\ell_i^{n_i}-1}T^{(i,j)}    
 \end{equation*}
-\todo{Faire un dessin à nouveau !}
- On a alors $T^{(n+1)}$ qui est le polynôme minimal de $v$ sur $\mathbb{F}_q$. 
+On peut faire mieux que cela toutefois en appliquant récursivement la méthode 
+employée dans la section~\ref{sec:interpolation} pour le calcul de $T$. On pose
+$T^{(i)}_{(0)}=T^{(i)}$, supposons que l'on connaisse  $T^{(i)}_{(j)}$ pour 
+$i \in [0,n-1], j \in [0,n_i]$. La notation $T^{(i,k)}_{(j)}$ est définie comme
+ auparavant par $T^{(i,k)}_{(j)}=\sigma^k_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}
+ (T^{(i)}_{(j)})$, on définit alors:
+ \begin{equation*}
+T^{(i)}_{(j+1)}=\prod_{k=0}^bT^{(i,k)}_{(j)} \qquad\text{avec}\qquad
+  b = \begin{cases}
+    \ell_i-1 &\text{si $j<n_i-1$,}\\
+    d_i &\text{sinon.}
+  \end{cases}
+\end{equation*}
+ainsi on a $T^{(i)}_{(j)}$ défini dans $\mathbb{K}_{n-i} \otimes \mathsf{F}_{(n-i+1,n_i-j)}$
+en particulier on a $T^{(i)}_{(n_i+1)}=T^{(i+1)}_{(0)}=T^{(i+1)}$.  
+\todo{ Faire un dessin à nouveau !}
+ On a alors $T^{(n+1)}$ qui est le polynôme minimal de $v$ sur $\mathbb{F}_q$.
+ \todo{Dire que cette deuxième décomposition ne fait pas forcément baisser la complexité du calcul du frobenius, mais par contre le nombre d'opération à effectuer oui!}
+Il est alors évident que $T^{(i+1)}$ est le polynôme minimal de $v$ sur 
+$\mathsf{F}_{n-i-1}$.
+
+\begin{lem}\label{lem:interpolation:minpoly:ult}
+  Le coût de calcul de $T=T^{(n)}$ est de $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
+  opérations dans $\mathbb{F}_q$.
+\end{lem}
+
+\begin{proof}
+  \`A l'étape $i$, à partir de la connaissance de $T^{(i)}$ on  calcule tous 
+  les $T^{(i,j)}$ en utilisant la proposition~\ref{pro:fro:com}. Le coût du 
+  Frobenius pour un polynome $T^{(i,j)}_{(k)}$ est de 
+  $O(\frac{p_n}{p_{n-i}}(\mathsf{M}(p_{n_i})p_{n-i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{n_i})p_{n-i-1}^{(\omega+1)/2}))$ opérations,
+  \emph{i.e.} $O(\ell^n\mathsf{M}(\ell))$ pour chacun des $O(\ell)$ calculs.
+  \`A partir des $T^{(i,j)}$ on calcule $T^{(i+1)}$ en utilisant un arbre de 
+  sous-produits comme décrit dans~\cite[Lemma~10.4]{vzGJG03}. Le polynôme 
+  résultant de cette opération est de degré $O(\ell^{i+1})$ et a ses 
+  coefficients définis dans $\mathsf{F}_{n-i}$, le coût total est donc 
+  $O(\mathsf{M}(\ell^{n+1})\log(\ell))$ opérations sur $\mathbb{F}_q$. Une fois
+   que $T^{(i+1)}$ a été calculé de cette manière, on opère une \emph{descente}
+  sur ses coefficients dans $\mathsf{F}_{n-i-1}$ à l'aide d'une réécriture 
+  qui n'a aucun coût algébrique.
+  On additionne ces coûts pour tous les $i$ pour obtenir le résultat 
+  énoncé. 
+\end{proof}
+ 
+ 
+ 
+ 
+  
  On peut alors appliquer les méthodes simlaires à celles employées dans 
  \cite{DeFeo10} et \ref{sec:interpolation} pour calculer un polynôme 
  d'interpolation $A \in \mathbb{F}_q[x]$ tel que $A(v)=w$ pour $v,w$ deux 
- éléments primitifs de $\mathsf{F}_{\prod_{i=1}^n\ell_i^{k_i}}$. 
- \todo{peut etre utilisé la notation $\mathsf{L}_n$ au lieu de $\mathsf{F}_n$}
- \todo{dire que par souci de simplicité on considére que $E[\ell_i] \subset E(\mathbb{F}_q)$}
+ éléments de $\mathbb{K}_{n} \setminus \mathbb{K}_{n-1}$. 
  Ainsi  pour faire ces étapes de façon optimisée il est crucial de calculer 
- l'action de $\mathsf{Gal}(\mathbb{F}_q:\mathbb{F}_q)$ à un coût raisonnable.
+ l'action de $\mathsf{Gal}(\mathbb{K}_i:\mathbb{F}_{q})$ à un coût raisonnable.
  Or en l'état actuel celui-ci est de $O()$ \todo{trouver complexité à nouveau}.
 
 \subsubsection{Coût de l'algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois elliptique}
