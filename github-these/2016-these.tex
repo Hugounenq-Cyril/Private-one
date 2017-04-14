@@ -2289,7 +2289,7 @@ Les coûts des différentes opérations dans de telles tours d'extensions $\ell$
    \hline
   \text{addition/soustraction}  & $O(\ell^kd_0)$ \\
   \text{multiplication}  & $\mathsf{M}(\ell^kd_0)+ O(\ell^kd_0)$  \\
-  \text{division} & $O(\mathsf{M}(\ell^kd_0))$ \\
+  \text{division} & $O(\mathsf{M}(\ell^kd_0)\log(\ell^k)d_0)$ \\
   \text{Frobenius} & $O(\ell^k \mathsf{M}(d_0) + d_0 \mathsf{M}(d_0)\log(q))$  \\
   \text{racine carrée} & $ O(\mathsf{M}(\ell^kd_0)\log(\ell^kq)) (\text{en moyenne}) $ \\
   \text{racine $\ell$-ème} & $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$\\
@@ -2304,7 +2304,7 @@ Il est à noter que pour le calcul d'une racine le coût est un coût en moyenne
 
 Une implantation de construction de tours dyadiques et des opérations du Frobenius et du calcul de racine carrée ont été réalisé en SageMath le code est disponible à cette adresse: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano/blob/master/Code/extension_corps.sage}.
 
-\section{Calcul de polynôme d'interpolation}
+\section{Calcul de polynômes d'interpolations}
 
 \label{sec:interpolation}
 
@@ -2427,8 +2427,8 @@ on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A}
   Une fois que les polynômes $T^{(i)}$ ont été calculé, on doit tout d'abord 
   calculer $T'(v)$. Cette opération est faite à l'aide de calculs de restes de 
   division Euclidiennes, en effet
-  $T'(v) = (((T' \bmod T^{(1)}) \bmod T^{(2)}) \cdots \bmod T^{(n)})$.
-  \`A l'étape $i$, on calcule la division Euclidienne d'un polynôme de degré
+  $T'(v) = (((T' \bmod T^{(n)}) \bmod T^{(n-1)}) \cdots \bmod T^{(0)})$.
+  \`A l'étape $n-i$, on calcule la division Euclidienne d'un polynôme de degré
    $O(\ell^{n-i+1})$ par un polynôme de degré $O(\ell^{n-i})$ dans  $F_i[x]$. 
    On a alors le coût de chaque division qui est de $O(\mathsf{M}(\ell^{n+1}))$ 
    par la proposition~\ref{pro:mult:pol} 
@@ -4981,6 +4981,7 @@ $\mathsf{F}_{(i,n_i)}$ dans $\mathsf{K}_{n}$.
  composita, ainsi on a besoin du résultat suivant.
 
  \begin{prop}
+ \label{pro:mul:com}
  La multiplication et la division euclidienne de polynômes de degré au plus $d$
  à coefficients dans $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
  avec $P$ un polynôme irréductible de degré $p_n$ est de $O(\mathsf{M}(p_nd))$ 
@@ -5226,7 +5227,7 @@ de degré $\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}$ pour $k \in [0,n_{n-i}]$ en
 particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.  
 
 \begin{prop}
-  Soient $v,w\in F_n\setminus F_{n-1}$, le coût de calcul du polynôme minimal
+  Soient $v,w\in \mathbb{K}_n\setminus \mathbb{K}_{n-1}$, le coût de calcul du polynôme minimal
   $T\in \mathbb{F}_q[x]$ de $v$ et le polynôme d'interpolation $A\in 
   \mathbb{F}_q[x]$ tel que $A(v)=w$ est $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
   opérations dans $\mathbb{F}_q$.
@@ -5235,11 +5236,12 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
   Une fois que les polynômes $T^{(i)}$ ont été calculé, on doit tout d'abord 
   calculer $T'(v)$. Cette opération est faite à l'aide de calculs de restes de 
   division Euclidiennes, en effet
-  $T'(v) = (((T' \bmod T^{(1)}) \bmod T^{(2)}) \cdots \bmod T^{(n)})$.
-  \`A l'étape $i$, on calcule la division Euclidienne d'un polynôme de degré
-   $O(\ell^{n-i+1})$ par un polynôme de degré $O(\ell^{n-i})$ dans  $F_i[x]$. 
+  $T'(v) = (((T' \bmod T^{(n)}) \bmod T^{(n-1)}) \cdots \bmod T^{(0)})$.
+  \`A l'étape $n-i$, on calcule la division Euclidienne d'un polynôme de degré
+   $O(\frac{p_n}{p_i})$ par un polynôme de degré $O(\frac{p_n}{p_{i+1}})$ dans  $\mathbb{K}_i[x]$. 
    On a alors le coût de chaque division qui est de $O(\mathsf{M}(\ell^{n+1}))$ 
-   par la proposition~\ref{pro:mult:pol} 
+   par la proposition~\ref{pro:mul:com} sans oublier le coût de descente des 
+   coefficients dans $\mathbb{K}_{i-1}$.
    ce qui donne un coût total de $O(n\mathsf{M}(\ell^{n+1}))$ opérations.
    Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(\ell^n)\log(\ell^n))$ opérations.
 
