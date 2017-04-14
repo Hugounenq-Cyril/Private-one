@@ -5239,11 +5239,11 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
   $T'(v) = (((T' \bmod T^{(n)}) \bmod T^{(n-1)}) \cdots \bmod T^{(0)})$.
   \`A l'étape $n-i$, on calcule la division Euclidienne d'un polynôme de degré
    $O(\frac{p_n}{p_i})$ par un polynôme de degré $O(\frac{p_n}{p_{i+1}})$ dans  $\mathbb{K}_i[x]$. 
-   On a alors le coût de chaque division qui est de $O(\mathsf{M}(\ell^{n+1}))$ 
+   On a alors le coût de chaque division qui est de $O(\mathsf{M}(p_n)$ 
    par la proposition~\ref{pro:mul:com} sans oublier le coût de descente des 
-   coefficients dans $\mathbb{K}_{i-1}$.
+   coefficients dans $\mathbb{K}_{i-1}$ .
    ce qui donne un coût total de $O(n\mathsf{M}(\ell^{n+1}))$ opérations.
-   Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(\ell^n)\log(\ell^n))$ opérations.
+   Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(p_n)\log(p_n)$ opérations.
 
   \`A chaque étape $i$, les polynômes $A^{(i,j)}$ sont calculés à un coût de
   $O(\ell^n\mathsf{M}(\ell))$ opérations, comme dans la preuve du  
