@@ -5019,8 +5019,8 @@ $R(i,j)=O(p_j \mathsf{M}(p_ji)\log(i)\log(iq))$.
 \begin{prop}
 \label{pro:iso:fie}
 Soient $i \in [1,n]$, $P(x),Q(y)$ deux polynômes irréductibles de degrés 
-$d_i\ell_i^{n_i},p_{i-1}$ premiers entre eux à coefficients dans $\mathbb{F}_q$
-qui définissent $\mathbb{F}_q[x]/\langle P \rangle \cong \mathsf{F}_{(i,n_i)}$,
+$d_i\ell_i^{k},p_{i-1}$ premiers entre eux à coefficients dans $\mathbb{F}_q$
+qui définissent $\mathbb{F}_q[x]/\langle P \rangle \cong \mathsf{F}_{(i,k)}$,
 $\mathbb{F}_q[x]/\langle Q \rangle \cong \mathbb{K}_{i-1}$. Soit $R=P \odot 
 Q$ le produit composé de $P$ et $Q$ alors l'application de l'isomorphisme:
 \begin{equation*}
@@ -5031,14 +5031,15 @@ xy & \mapsto z
 \end{equation*}
 a un coût de:
 \begin{enumerate}
-\item $O((d_i\ell_i^{n_i})^2\mathsf{M}(p_{i-1}))$ opérations sur $\mathbb{F}_q$ lorsque 
-$d_i\ell_i^{n_i} \leqslant p_{i-1}$ et l'application de l'inverse de $\varrho$ 
-a un coût de $O(\mathsf{M}(p_i)p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{n_i})p_{i-1}^{(\omega+1)/2})$ 
-opérations sur $\mathbb{F}_q$,
-\item $O(p_{i-1}^2\mathsf{M}(d_i\ell_i^{n_i}))$ opérations sur $\mathbb{F}_q$ lorsque 
-$d_i\ell_i^{n_i} \geqslant p_{i-1}$ et l'application de l'inverse de $\varrho$ 
-a un coût de $O(\mathsf{M}(p_i)(d_i\ell_i^{n_i})^{1/2}+\mathsf{M}(p_{i-1})(d_i\ell_i^{n_i})^{(\omega+1)/2})$ 
-opérations sur $\mathbb{F}_q$.
+\item $O((d_i\ell_i^{k})^2\mathsf{M}(p_{i-1}))$ opérations sur $\mathbb{F}_q$
+ et l'application de l'inverse de $\varrho$ a un coût de 
+ $O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
+opérations sur $\mathbb{F}_q$ lorsque 
+$d_i\ell_i^{k} \leqslant p_{i-1}$,
+\item $O(p_{i-1}^2\mathsf{M}(d_i\ell_i^{k}))$ opérations sur $\mathbb{F}_q$ 
+et l'application de l'inverse de $\varrho$ a un coût de 
+$O(\mathsf{M}(p_{i-1}d_i\ell_i^{k})(d_i\ell_i^{k})^{1/2}+\mathsf{M}(p_{i-1})(d_i\ell_i^{k})^{(\omega+1)/2})$ 
+opérations sur $\mathbb{F}_q$ lorsque $d_i\ell_i^{n_i} \geqslant p_{i-1}$.
 \end{enumerate}
 \end{prop}
 \todo{on pourrait éventuellement faire un restriction sur les $\ell_i$ pour que cela soit toujours vérifié}
@@ -5051,40 +5052,43 @@ Ainsi on peut travailler avec
 
 \begin{prop}
 \label{pro:fro:com}
-Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i$ tel que 
-$\mathsf{F}_{(i,n_i)}=\mathbb{F}_q[x]/\langle P \rangle$, $Q$ un polynôme 
-irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
+Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{k}$ avec 
+$k \in [1,n_i]$ tel que $\mathsf{F}_{(i,k)}=\mathbb{F}_q[x]/\langle P \rangle$,
+$Q$ un polynôme irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
 tel que $\mathbb{K}_{i-1}=\mathbb{F}_q[y]/\langle Q \rangle$, $R=P \odot Q$ 
-tel que  $\mathbb{K}_{i}=\mathbb{F}_q[z]/\langle R \rangle$, alors pour un 
-élément $a$ de $\mathbb{K}_{i}$ le coût de calcul de $a$ à une puissance 
+tel que  $\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}=\mathbb{F}_q[z]/\langle R
+\rangle$, alors pour un élément $a$ de $\mathbb{K}_{i-1} \otimes 
+\mathsf{F}_{(i,k)}$ le coût de calcul de $a$ à une puissance 
 $q^{r p_{i-1}}$ est de $O(\mathsf{M}(p_i)p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{n_i})p_{i-1}^{(\omega+1)/2})$ opérations dans $\mathbb{F}_q$ avec un 
 précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{n_i}qd_i))$ et  
 de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
-Vu que $a \in \mathbb{K}_{p_i}$ alors on a pour $s=r \bmod d_i \ell_i^{n_i}$ 
-$a^{q^{r p_j}}=a^{q^{s p_j}}$ ainsi on considère que $r<d_i \ell_i^{n_i}$.
-Par la proposition~\ref{pro:iso:fie} on peut écrire $a$ comme un élément de 
+Vu que $a \in \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$ alors on a pour $s=r \bmod d_i \ell_i^{k}$ 
+$a^{q^{r p_j}}=a^{q^{s p_j}}$ ainsi on considère que $r<d_i \ell_i^{k}$.
+Par la proposition~\ref{pro:iso:fie} et le fait que l'on se soit restreint au 
+cas où l'on a $d_i\ell_i^{n_i} \leqslant p_{i-1}$ on peut écrire $a$ comme un 
+élément de 
 $\mathbb{F}_q[x,y]/\langle P,Q \rangle \cong \mathbb{F}_q[z]/\langle R \rangle$
  avec un coût de 
- $O(\mathsf{M}(p_i)p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{n_i})p_{i-1}^{(\omega+1)/2})$ 
+ $O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
  opérations sur $\mathbb{F}_q$.
 Ainsi en réécrivant $a$ de la façon suivante:
 \begin{equation*}
-a=\sum_{j=0}^{d_i\ell_i^{n_i}-1}x_i^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,n_i)}.
+a=\sum_{j=0}^{d_i\ell_i^{k}-1}x_i^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,k)}.
 \end{equation*}
 On a alors l'élévation à la puissance $q^{r p_j}$ de $a$ qui s'écrit:
 \begin{equation*}
-a^{q^{r p_j}}=\sum_{j=0}^{d_i\ell_i^{n_i}-1}(x_i^{j})^{q^{r p_j}}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,n_i)}.
+a^{q^{r p_j}}=\sum_{j=0}^{d_i\ell_i^{k}-1}(x_i^{j})^{q^{r p_j}}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,k)}.
 \end{equation*} 
 On se concentre donc sur le calcul de $w=x_i^{q^{r p_{i-1}}}$ comme abordé dans la 
-preuve du théorème~\ref{thm:frob-ell} on note $x_0=x_i^{\ell_i^{n_i}}$. 
-Calculons donc $x_i^{q^{r p_{i-1}}}$, on écrit $q^{r p_{i-1}}= u \ell_i^{n_i}+v$ avec 
-$0 \leqslant v<\ell_i^{n_i}$. On a alors $w=x_0^{u \bmod q^{d_i}-1}x_i^{v}$ (on 
+preuve du théorème~\ref{thm:frob-ell} on note $x_0=x_i^{\ell_i^{k}}$. 
+Calculons donc $x_i^{q^{r p_{i-1}}}$, on écrit $q^{r p_{i-1}}= u \ell_i^{k}+v$ avec 
+$0 \leqslant v<\ell_i^{k}$. On a alors $w=x_0^{u \bmod q^{d_i}-1}x_i^{v}$ (on 
 rappelle que $|\mathsf{F}_{(i,0)}|=q^{d_i}$). Par la même méthode que dans la 
 preuve du théorème~\ref{thm:frob-ell} on calcule $u$ et $v$ avec un coût 
-booléen de $O(\log(rp_{i-1})\log(\ell_i^{n_i}qd_i))$. Le calcul de $x_0^{u \bmod q^{d_i}-1}$ 
+booléen de $O(\log(rp_{i-1})\log(\ell_i^{k}qd_i))$. Le calcul de $x_0^{u \bmod q^{d_i}-1}$ 
 se fait en utilisant $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$. On 
 conserve $w$ sous la forme d'un monôme dans $\mathbb{F}_q[x_i]$ (et non de 
 $\mathsf{F}_{(i,0)}[x_i]$ comme dans le théorème~\ref{thm:frob-ell}).
@@ -5098,10 +5102,9 @@ On calcule alors $a(w)$ par la méthode de Horner. Les puissances $w^k$ étant
 des monômes dans $\mathbb{F}_q[x_i]$, on calcule chacune des puissances 
 successives à l'aide de la précédente en $\mathsf{M}(p_{i-1})$ opérations sur 
 $\mathbb{F}_q$. On a alors un coût total de 
-$O(d_i\ell_i^{n_i}\mathsf{M}(p_{i-1}))$ opérations dans $\mathbb{F}_q$. 
-Pour ce calcul-là l'opération dominante est donc la conversion de 
-$a \in \mathbb{K}_i$ en un élément de 
-$\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$.
+$O(d_i\ell_i^{k}\mathsf{M}(p_{i-1}))$ opérations dans $\mathbb{F}_q$. 
+Pour ce calcul-là l'opération dominante est donc le changement de 
+représentation de $a \in \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$.
 \end{proof}
 
 Détaillons maintenant comment on adapte les méthodes décrites dans la 
@@ -5119,7 +5122,7 @@ minimal de $A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$
  
  En s'inspirant des travaux de \cite{DeFeo10} et de façon similaire à ce qui a 
  été fait dans la section~\ref{sec:interpolation}, on cherche à calculer tout 
- d'abord $T$. On définit la suite de polynôme $T_i$ d'ordre $\frac{p_n}{p_{n-i}}$ 
+ d'abord $T$. On définit la suite de polynôme $T_i$ de degré$\frac{p_n}{p_{n-i}}$ 
  et à coefficients définis dans $\mathbb{K}_{n-i}$. On définit $T^{(0)}(x)=(x-v)$. 
  Supposons que l'on ait calculé un élément $T^{(i)}$ pour $i \in [0,n-1]$ alors on définit 
  $T^{(i,j)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}(T^{(i)})$ avec
@@ -5144,8 +5147,9 @@ T^{(i)}_{(j+1)}=\prod_{k=0}^bT^{(i,k)}_{(j)} \qquad\text{avec}\qquad
     d_i &\text{sinon.}
   \end{cases}
 \end{equation*}
-ainsi on a $T^{(i)}_{(j)}$ défini dans $\mathbb{K}_{n-i} \otimes \mathsf{F}_{(n-i+1,n_i-j)}$
-en particulier on a $T^{(i)}_{(n_i+1)}=T^{(i+1)}_{(0)}=T^{(i+1)}$.  
+ainsi on a $T^{(i)}_{(j)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-j)}$
+de degré $\frac{p_n}{p_{n-i}}\ell_{n-i}^{j}$ pour $j \in [0,n_{n-i}]$ en 
+particulier on a $T^{(i)}_{(n_{n-i}+1)}=T^{(i+1)}_{(0)}=T^{(i+1)}$.  
 \todo{ Faire un dessin à nouveau !}
  On a alors $T^{(n+1)}$ qui est le polynôme minimal de $v$ sur $\mathbb{F}_q$.
  \todo{Dire que cette deuxième décomposition ne fait pas forcément baisser la complexité du calcul du frobenius, mais par contre le nombre d'opération à effectuer oui!}
@@ -5159,11 +5163,15 @@ $\mathsf{F}_{n-i-1}$.
 
 \begin{proof}
   \`A l'étape $i$, à partir de la connaissance de $T^{(i)}$ on  calcule tous 
-  les $T^{(i,j)}$ en utilisant la proposition~\ref{pro:fro:com}. Le coût du 
-  Frobenius pour un polynome $T^{(i,j)}_{(k)}$ est de 
-  $O(\frac{p_n}{p_{n-i}}(\mathsf{M}(p_{n_i})p_{n-i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{n_i})p_{n-i-1}^{(\omega+1)/2}))$ opérations,
-  \emph{i.e.} $O(\ell^n\mathsf{M}(\ell))$ pour chacun des $O(\ell)$ calculs.
-  \`A partir des $T^{(i,j)}$ on calcule $T^{(i+1)}$ en utilisant un arbre de 
+  les $T^{(i,j)}_{(k)}$ en utilisant la proposition~\ref{pro:fro:com}. Le coût du 
+  Frobenius pour un polynome $T^{(i)}_{(k)}$ est de 
+  $O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{1/2}+\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega+1)/2}))$ 
+  $\subset O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}(\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k}p_{n-i-1})p_{n-i-1}^{(\omega-1)/2}))$ 
+  $\subset O(\mathsf{M}(p_n)p_{n-i-1}^{(\omega - 1)/2})$ opérations sur 
+  $\mathbb{F}_q$,
+  \emph{i.e.} $O(\mathsf{M}(p_{n-i})p_n\ell_{n-i}^{-n_{n-i}})$ pour chacun des 
+  $\ell_{n-i}n_{n_i}+d_{n_i}$ calculs.
+  \`A partir des $T^{(i,j)}_{(k)}$ on calcule $T^{(i+1)}$ en utilisant un arbre de 
   sous-produits comme décrit dans~\cite[Lemma~10.4]{vzGJG03}. Le polynôme 
   résultant de cette opération est de degré $O(\ell^{i+1})$ et a ses 
   coefficients définis dans $\mathsf{F}_{n-i}$, le coût total est donc 
