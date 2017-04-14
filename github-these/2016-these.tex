@@ -2359,7 +2359,7 @@ Ainsi on note $T^{(0)}=(x-v)$, $\sigma_i$ l'application qui applique à tous les
 T^{(i+1)}=\prod_{j=0}^bT^{(i,j)} \qquad\text{avec}\qquad
   b = \begin{cases}
     \ell-1 &\text{si $i<n-1$,}\\
-    d_0 &\text{sinon.}
+    d_0-1 &\text{sinon.}
   \end{cases}
 \end{equation*}
 Il est alors évident que $T^{(i+1)}$ est le polynôme minimal de $v$ sur 
@@ -2406,12 +2406,12 @@ $\mathsf{Gal}(\mathsf{F}_{n-i}/ \mathsf{F}_{n-i-1})$, il est alors défini dans
  définie pour $i \in [0, n]$, $A^{(0)}=w/T'(v)$. En 
  supposant que l'on connaisse un $A^{(i)}$ pour $i < n$ de degré inférieur à $\ell^i$ à 
  coefficients dans $\mathsf{F}_{n-i}$ alors pour $j \in [0 ; \ell-1]$ on définit
- $A^{(i,j)}=\sigma^j(A^{(i)})$, et l'on pose:  
+ $A^{(i,j)}=\sigma_i^j(A^{(i)})$, et l'on pose:  
 \begin{equation*}
-A^{(i+1)}=\sum_{j=0}^bA^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} \qquad\text{avec}\qquad
+A^{(i+1)}=\sum_{j=0}^{b}A^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} \qquad\text{avec}\qquad
   b = \begin{cases}
-    \ell-1 &\text{if $i<n-1$,}\\
-    d_0 &\text{sinon.}
+    \ell-1 &\text{si $i<n-1$,}\\
+    d_0 -1 &\text{sinon.}
   \end{cases}
 \end{equation*}
 on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A} 
@@ -5122,39 +5122,41 @@ minimal de $A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$
  
  En s'inspirant des travaux de \cite{DeFeo10} et de façon similaire à ce qui a 
  été fait dans la section~\ref{sec:interpolation}, on cherche à calculer tout 
- d'abord $T$. On définit la suite de polynôme $T_i$ de degré$\frac{p_n}{p_{n-i}}$ 
+ d'abord $T$. On définit la suite de polynôme $T^{(i)}$ de degré$\frac{p_n}{p_{n-i}}$ 
  et à coefficients définis dans $\mathbb{K}_{n-i}$. On définit $T^{(0)}(x)=(x-v)$. 
  Supposons que l'on ait calculé un élément $T^{(i)}$ pour $i \in [0,n-1]$ alors on définit 
  $T^{(i,j)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}(T^{(i)})$ avec
   $\sigma_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}$ 
  l'application qui à tous les coefficients du polynôme $T^{(i)}$ définis dans 
  $\mathbb{K}_{n-i}$ applique l'action d'un élément générateur de 
- $\mathsf{Gal}(\mathbb{K}_{n-i-1}: \mathbb{F}_q)$. 
+ $\mathsf{Gal}(\mathbb{K}_{n-i}: \mathbb{K}_{n-i-1})$. 
  On définit alors récursivement $T^{(i)}$ de la façon suivante:
  \begin{equation*}
-T^{(i+1)}=\prod_{j=0}^{d_i\ell_i^{n_i}-1}T^{(i,j)}    
+T^{(i+1)}=\prod_{j=0}^{d_{n-i}\ell_{n-i}^{n_{n-i}}-1}T^{(i,j)}    
 \end{equation*}
 On peut faire mieux que cela toutefois en appliquant récursivement la méthode 
 employée dans la section~\ref{sec:interpolation} pour le calcul de $T$. On pose
-$T^{(i)}_{(0)}=T^{(i)}$, supposons que l'on connaisse  $T^{(i)}_{(j)}$ pour 
-$i \in [0,n-1], j \in [0,n_i]$. La notation $T^{(i,k)}_{(j)}$ est définie comme
- auparavant par $T^{(i,k)}_{(j)}=\sigma^k_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}
- (T^{(i)}_{(j)})$, on définit alors:
- \begin{equation*}
-T^{(i)}_{(j+1)}=\prod_{k=0}^bT^{(i,k)}_{(j)} \qquad\text{avec}\qquad
-  b = \begin{cases}
-    \ell_i-1 &\text{si $j<n_i-1$,}\\
-    d_i &\text{sinon.}
-  \end{cases}
-\end{equation*}
-ainsi on a $T^{(i)}_{(j)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-j)}$
-de degré $\frac{p_n}{p_{n-i}}\ell_{n-i}^{j}$ pour $j \in [0,n_{n-i}]$ en 
+$T^{(i)}_{(0)}=T^{(i)}$, supposons que l'on connaisse  $T^{(i)}_{(k)}$ pour 
+$i \in [0,n-1], k \in [0,n_{n-i}]$. La notation $T^{(i,j)}_{(k)}$ est définie comme
+ auparavant par $T^{(i,j)}_{(k)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}
+ (T^{(i)}_{(k)})$, on définit alors pour:
+\begin{itemize}
+ \item[$k < n_{n-i}$ ]
+ \[
+T^{(i)}_{(k+1)}=\prod_{j=0}^{\ell_i-1}T^{(i,\ell_{i}^{n_{n-i}-1-k}j)}_{(k)}\]
+\item[$k= n_{n-i}$]
+\[
+T^{(i)}_{(n_{n-i}+1)}=\prod_{j=0}^{d_{n-i}-1}T^{(i,j)}_{(n_{n-i})}
+\]
+\end{itemize}
+ainsi on a $T^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
+de degré $\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}$ pour $k \in [0,n_{n-i}]$ en 
 particulier on a $T^{(i)}_{(n_{n-i}+1)}=T^{(i+1)}_{(0)}=T^{(i+1)}$.  
 \todo{ Faire un dessin à nouveau !}
  On a alors $T^{(n+1)}$ qui est le polynôme minimal de $v$ sur $\mathbb{F}_q$.
  \todo{Dire que cette deuxième décomposition ne fait pas forcément baisser la complexité du calcul du frobenius, mais par contre le nombre d'opération à effectuer oui!}
 Il est alors évident que $T^{(i+1)}$ est le polynôme minimal de $v$ sur 
-$\mathsf{F}_{n-i-1}$.
+$\mathbb{K}_{n-i-1}$.
 
 \begin{lem}\label{lem:interpolation:minpoly:ult}
   Le coût de calcul de $T=T^{(n)}$ est de $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
@@ -5162,35 +5164,99 @@ $\mathsf{F}_{n-i-1}$.
 \end{lem}
 
 \begin{proof}
-  \`A l'étape $i$, à partir de la connaissance de $T^{(i)}$ on  calcule tous 
-  les $T^{(i,j)}_{(k)}$ en utilisant la proposition~\ref{pro:fro:com}. Le coût du 
-  Frobenius pour un polynome $T^{(i)}_{(k)}$ est de 
+  \`A l'étape $i$, à partir de la connaissance de $T^{(i)}_{(0)}$ on  calcule tous 
+  les $T^{(i,j)}_{(0)}$ en utilisant la proposition~\ref{pro:fro:com}. Le coût du 
+  Frobenius pour un polynôme $T^{(i)}_{(k)}$ est de 
   $O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{1/2}+\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega+1)/2}))$ 
   $\subset O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}(\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k}p_{n-i-1})p_{n-i-1}^{(\omega-1)/2}))$ 
   $\subset O(\mathsf{M}(p_n)p_{n-i-1}^{(\omega - 1)/2})$ opérations sur 
-  $\mathbb{F}_q$,
-  \emph{i.e.} $O(\mathsf{M}(p_{n-i})p_n\ell_{n-i}^{-n_{n-i}})$ pour chacun des 
-  $\ell_{n-i}n_{n_i}+d_{n_i}$ calculs.
-  \`A partir des $T^{(i,j)}_{(k)}$ on calcule $T^{(i+1)}$ en utilisant un arbre de 
+  $\mathbb{F}_q$, on a donc à l'étape $i$ un coût de $O(\ell_{n-i}(n_{n-i}+1)\mathsf{M}(p_n)(p_{n-i-1})^{(\omega - 1)/2})$ 
+  pour effectuer tous les calculs de Frobenius nécessaires.
+  \`A partir des $T^{(i,j)}_{(k)}$ on calcule $T^{(i)}_{k+1}$ en utilisant un arbre de 
   sous-produits comme décrit dans~\cite[Lemma~10.4]{vzGJG03}. Le polynôme 
-  résultant de cette opération est de degré $O(\ell^{i+1})$ et a ses 
-  coefficients définis dans $\mathsf{F}_{n-i}$, le coût total est donc 
-  $O(\mathsf{M}(\ell^{n+1})\log(\ell))$ opérations sur $\mathbb{F}_q$. Une fois
-   que $T^{(i+1)}$ a été calculé de cette manière, on opère une \emph{descente}
-  sur ses coefficients dans $\mathsf{F}_{n-i-1}$ à l'aide d'une réécriture 
-  qui n'a aucun coût algébrique.
+  $T^{(i)}_{k+1}$ résultant de cette opération est de degré 
+  $O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k+1})$ et a ses 
+  coefficients définis dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k-1)}$,
+  le coût total est donc de 
+  $O(\mathsf{M}(p_n)\log(\ell_{i}))$ opérations sur $\mathbb{F}_q$. 
+  Le calcul des $T^{(i)}_{(0)},T^{(i)}_{(1)}, \dots, T^{(i)}_{(n_i+1)}$ se fait
+  donc en $O((n_i+1) \log(\ell_{i})\mathsf{M}(p_n))$ opérations sur 
+  $\mathbb{F}_{q}$.
+  
+  
+  Une fois que $T^{(i+1)}$ a été calculé de cette manière, on opère une 
+  \emph{descente} sur ses coefficients dans $\mathbb{K}_{n-i-1}$ lors du calcul
+  du Frobenius sur chacun de ses éléments car on a vu dans la preuve de la 
+  proposition~\ref{pro:fro:com} que c'était préconisé.
   On additionne ces coûts pour tous les $i$ pour obtenir le résultat 
   énoncé. 
 \end{proof}
  
- 
- 
- 
-  
  On peut alors appliquer les méthodes simlaires à celles employées dans 
  \cite{DeFeo10} et \ref{sec:interpolation} pour calculer un polynôme 
  d'interpolation $A \in \mathbb{F}_q[x]$ tel que $A(v)=w$ pour $v,w$ deux 
- éléments de $\mathbb{K}_{n} \setminus \mathbb{K}_{n-1}$. 
+ éléments de $\mathbb{K}_{n} \setminus \mathbb{K}_{n-1}$.
+ 
+On définit la suite de polynômes $A^{(i)}$ 
+ définie pour $i \in [0, n]$, $A^{(0)}=w/T'(v)$. En 
+ supposant que l'on connaisse un $A^{(i)}$ pour $i < n$ de degré inférieur à $\frac{p_n}{p_{n-i}}$ à 
+ coefficients dans $\mathsf{K}_{n-i}$ alors pour $j \in [0 ; \ell-1]$ on définit
+ $A^{(i,j)}=\sigma_i^j(A^{(i)})$, et l'on pose:  
+\begin{equation*}
+A^{(i+1)}=\sum_{j=0}^{d_{n-i}\ell_{n-i}^{n_{n-i}-1}}A^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} 
+\end{equation*}
+on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A} 
+à coefficients dans $\mathbb{K}_{n-i}$ et de degré $\frac{p_n}{p_{n-i}}$.
+On peut faire à nouveau mieux que cela toutefois, on pose
+$A^{(i)}_{(0)}=A^{(i)}$, supposons que l'on connaisse  $A^{(i)}_{(k)}$ pour 
+$i \in [0,n-1], k \in [0,n_i]$. La notation $A^{(i,j)}_{(k)}$ est définie comme
+ auparavant par $A^{(i,j)}_{(k)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}
+ (A^{(i)}_{(k)})$, on définit alors:
+ \begin{itemize}
+ 
+\item[$k<n_{n-i}$]
+\[
+A^{(i)}_{(k+1)}=\sum_{j=0}^{\ell_i-1 }A^{(i,\ell_{i}^{n_{n-i}-1-k}j)}_{(k)}\frac{1}{T^{(i,\ell_{i}^{n_{n-i}-1-k}j)}}  \]
+ \item[$k=n_{n-i}$] \[
+ A^{(i)}_{(n_{n-i})}=\sum_{j=0}^b A^{(i,j)}_{(n_{n-i})}\frac{T^{(i+1)}}{T^{(i,j)}}  
+  \]
+ \end{itemize}
+ainsi on a $A^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
+de degré $\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}$ pour $k \in [0,n_{n-i}]$ en 
+particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.  
+
+\begin{prop}
+  Soient $v,w\in F_n\setminus F_{n-1}$, le coût de calcul du polynôme minimal
+  $T\in \mathbb{F}_q[x]$ de $v$ et le polynôme d'interpolation $A\in 
+  \mathbb{F}_q[x]$ tel que $A(v)=w$ est $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
+  opérations dans $\mathbb{F}_q$.
+\end{prop}
+\begin{proof}
+  Une fois que les polynômes $T^{(i)}$ ont été calculé, on doit tout d'abord 
+  calculer $T'(v)$. Cette opération est faite à l'aide de calculs de restes de 
+  division Euclidiennes, en effet
+  $T'(v) = (((T' \bmod T^{(1)}) \bmod T^{(2)}) \cdots \bmod T^{(n)})$.
+  \`A l'étape $i$, on calcule la division Euclidienne d'un polynôme de degré
+   $O(\ell^{n-i+1})$ par un polynôme de degré $O(\ell^{n-i})$ dans  $F_i[x]$. 
+   On a alors le coût de chaque division qui est de $O(\mathsf{M}(\ell^{n+1}))$ 
+   par la proposition~\ref{pro:mult:pol} 
+   ce qui donne un coût total de $O(n\mathsf{M}(\ell^{n+1}))$ opérations.
+   Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(\ell^n)\log(\ell^n))$ opérations.
+
+  \`A chaque étape $i$, les polynômes $A^{(i,j)}$ sont calculés à un coût de
+  $O(\ell^n\mathsf{M}(\ell))$ opérations, comme dans la preuve du  
+  lemme~\ref{lemma:interpolation:minpoly}.  Le calcul de $L^{(i+1)}$ utilise 
+  le meme arbre de produit que celui utilisé pour $T^{(i)}$, 
+  utilisant $O(\log \ell)$ additions, multiplications et divisions de polynômes
+  de degré $O(\ell^{i+1})$ à coefficients dans $\mathsf{F}_{n-i}$, pour un coût
+   total de $O(\mathsf{M}(\ell^{n+1})\log(\ell))$. En additionnant pour tous les
+  $i$ on obtient la complexité annoncée.
+\end{proof}
+
+ 
+ 
+  
+  
  Ainsi  pour faire ces étapes de façon optimisée il est crucial de calculer 
  l'action de $\mathsf{Gal}(\mathbb{K}_i:\mathbb{F}_{q})$ à un coût raisonnable.
  Or en l'état actuel celui-ci est de $O()$ \todo{trouver complexité à nouveau}.
