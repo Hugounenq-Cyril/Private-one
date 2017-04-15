@@ -5219,13 +5219,13 @@ $i \in [0,n-1], k \in [0,n_i]$. La notation $A^{(i,j)}_{(k)}$ est définie comme
 A^{(i)}_{(1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{i}^{n_{n-i}-1}j)}_{(0)}\frac{T^{(i+1)}}{T^{(i,\ell_{i}^{n_{n-i}-1}j)}}  \]
 \item[$0<k<n_{n-i}$]
 \[
-A^{(i)}_{(k+1)}=\sum_{j=0}^{\ell_{n-i}-1 }\frac{A^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}}{T^{(i,\ell_{i}^{n_{n-i}-1-k}j)}}  \]
+A^{(i)}_{(k+1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}  \]
  \item[$k=n_{n-i}$] \[
  A^{(i)}_{(n_{n-i}+1)}=\sum_{j=0}^{d_{n-i}-1} A^{(i,j)}_{(n_{n-i})}  
   \]
  \end{itemize}
 ainsi on a $A^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
-de degré $\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}$ pour $k \in [0,n_{n-i}]$ en 
+de degré $\frac{p_n}{p_{n-i-1}}$ pour $k \in [0,n_{n-i}]$ en 
 particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.  
 
 \begin{prop}
@@ -5248,14 +5248,28 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
    Ce qui donne un coût total de $O(n\mathsf{M}(\ell^{n+1}))$ opérations.
    Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(p_n)\log(p_n)$ opérations.
 
-  \`A chaque étape $i$, les polynômes $A^{(i,j)}$ sont calculés à un coût de
-  $O(\ell^n\mathsf{M}(\ell))$ opérations, comme dans la preuve du  
-  lemme~\ref{lemma:interpolation:minpoly}.  Le calcul de $L^{(i+1)}$ utilise 
-  le meme arbre de produit que celui utilisé pour $T^{(i)}$, 
-  utilisant $O(\log \ell)$ additions, multiplications et divisions de polynômes
-  de degré $O(\ell^{i+1})$ à coefficients dans $\mathsf{F}_{n-i}$, pour un coût
-   total de $O(\mathsf{M}(\ell^{n+1})\log(\ell))$. En additionnant pour tous les
-  $i$ on obtient la complexité annoncée.
+  \`A chaque étape $i$, les polynômes $A^{(i,j)}_{(k)}$ sont calculés à un coût de
+  $\frac{p_n}{p_{n-i-1}}O(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{1/2}+\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega+1)/2}))$
+  $\subset O(\frac{p_n}{p_{n-i-1}}(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega-1)/2})) $
+  $\subset O(\mathsf{M}(p_{n}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega-1)/2}))$
+  opérations sur $\mathbb{F}_q$, comme dans la preuve du  
+  lemme~\ref{lem:interpolation:minpoly:ult}. On répète cette étape 
+  $O(\ell_{n-1})$ fois pour $k \in [0,n_{n-i}]$, cela a donc un coût total de 
+  $O(\log(\ell_{n-i})n_{n-i})\mathsf{M}(p_nd_{n-i}\ell_{n-i}^{n_{n-i}})p_{n-i-1}^{(\omega-1)/2})$
+  par superlinéarité de $\mathsf{M}$.
+  
+  
+  Le coût de calcul de $\frac{T^{(i+1)}}{T^{(i,j)}}$ est de 
+  $O(\mathsf{M}(p_n))$ opérations  par la proposition~\ref{pro:mul:com}.
+  \`A partir des $A^{(i,j)}_{(k)}$ on calcule $A^{(i)}_{k+1}$ en utilisant un arbre de 
+  sous-produits comme décrit dans~\cite[Lemma~10.4]{vzGJG03}, celui-ci 
+  utilisant $\log(\ell_{n-i})$ additions de coût unitaire 
+  $O(p_n \ell_{n_i}^{n_{n-i}-k})$. Le polynôme $A^{(i)}_{k+1}$ résultant de 
+  cette opération est de degré $O(\frac{p_n}{p_{n-i-1}})$ et a ses coefficients
+  définis dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k-1)}$,
+  le coût total est donc de $O(\mathsf{M}(p_n)\log(\ell_{i}))$ opérations sur 
+  $\mathbb{F}_q$. 
+    
 \end{proof}
 
  
