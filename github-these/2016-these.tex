@@ -5242,7 +5242,7 @@ On a donc bien une correspondance entre les points définis à l'aide du Théor�
  Maintenant énonçons un résultat qui nous permette de déterminer les 
  représentants d'orbite sous l'action de groupes de Galois en rappelant que 
  l'on note $\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$ le composita 
- qui contient tous les éléments $\mathsf{F}_{(i,k_i)}$ des tours d'extension
+ qui contient tous les éléments $\mathsf{F}_{(i,k_i)}$ des tours d'extensions
  $\ell_i$-adiques.
 \begin{prop}\todo{définir a un endroit ce qu'est un représentant pour l'orbite du Frobenius}
 \label{pro:rep:com}
@@ -5250,16 +5250,16 @@ Soit $P$ un point d'ordre $\upsilon_n$ de $E(\mathbb{K}_n)$ obetnu à l'aide
 du théorème des restes chinois appliqué aux points $P_i$ de $E$ d'ordre 
 $\ell_i^{k_i}$ tels que l'orbite générée par l'action de 
 $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$ sur $P_i$ soit de taille
- maximale:$d_i\ell_i^{o_i}$.  Alors l'orbite de $P$ selon l'action de 
+ maximale:$d_i\ell_i^{k_i}$.  Alors l'orbite de $P$ selon l'action de 
  $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$ est elle aussi de taille maximale:
- $\prod_{i=1}^nd_i\ell_i^{o_i}$.
+ $\prod_{i=1}^nd_i\ell_i^{k_i}$.
 \end{prop} 
 
 \begin{proof}
 Soit $P$ un point de $E$ respectant les conditions de l'énoncé, supposons par 
-l'absurde qu'il existe $i_0 \in [1,n]$ et $r_0 \in [1,o_{i_0}-1]$ 
+l'absurde qu'il existe $i_0 \in [1,n]$ et $r_0 \in [1,d_{i_0}\ell_{i_0}^{k_{i_0}}-1]$ 
 tel que l'action d'un élément générateur de 
-$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,1)}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$ 
+$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$ 
 à la puissance $r_0$ laisse fixe $P$. Par le théorème des restes chinois on 
 peut représenter cette action sur $\mathbb{Z}/\ell_{i_0}^{k_{i_0}}\mathbb{Z} 
 \times \mathbb{Z}/\vartheta_{i_0}\mathbb{Z}$
@@ -5267,11 +5267,14 @@ peut représenter cette action sur $\mathbb{Z}/\ell_{i_0}^{k_{i_0}}\mathbb{Z}
 $Q=[\ell_{i_0}^{k_{i_0}}]P$. $Q$ étant défini dans 
 $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\otimes}}} \mathsf{F}_{(j,k_j)}$ 
 il est stable par l'action d'un élément générateur de 
-$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,1)}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$.
-$P_{i_0}$ étant maximal par construction alors il ne peut être stable que sous 
-l'action d'un élément générateur de 
-$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,1)}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$
-à la puissance $o_{i_0}$, ainsi $r_0$ doit être un multiple de $o_{i_0}$.
+$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$.
+$P_{i_0}$ étant le représentant d'une orbite de taille maximale
+sous l'action de $\mathsf{Gal}(\mathsf{F}_{(i_0,k_{i_0})}:\mathbb{F}_q)$ par 
+construction alors il ne peut être stable que sous l'action d'un élément 
+générateur de 
+$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$
+à la puissance $d_{i_0}\ell{i_0}^{k_{i_0}}$, ainsi $r_0$ doit être un multiple 
+de $d_{i_0}\ell{i_0}^{k_{i_0}}$.
 \end{proof}
 
 \begin{nota}
@@ -5284,8 +5287,9 @@ On voit donc avec la proposition~\ref{pro:rep:com} que pour déterminer des
 représentants pour l'orbite selon l'action du groupe de Galois pour des points 
 d'ordre $\upsilon_n$ il suffit de calculer à l'aide du théorème des 
 restes chinois tous les points $P$ d'ordre $\upsilon_n$ 
-tels que tous les choix possibles de représentants $P_i=[\overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod}}}\ell_j^{k_j}]P_j$
- aiént été effectué. Ainsi le nombre de représentants est
+tels que tous les choix possibles de représentants $P_i=[\vartheta_i]P$
+par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,n_i)}:\mathbb{F}_q)$
+ aient été effectué. Ainsi le nombre de représentants est
  donc de $\prod_{i=1}^{n} \epsilon_i$. On calcule donc 
  tout d'abord les représentants d'ordre $\ell_i^{k_i}$ dans les tours 
  d'extensions $\ell_i$-adiques, puis on les exprime dans le composita et enfin
