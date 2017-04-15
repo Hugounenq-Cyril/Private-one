@@ -5214,12 +5214,14 @@ $i \in [0,n-1], k \in [0,n_i]$. La notation $A^{(i,j)}_{(k)}$ est définie comme
  auparavant par $A^{(i,j)}_{(k)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}
  (A^{(i)}_{(k)})$, on définit alors:
  \begin{itemize}
- 
-\item[$k<n_{n-i}$]
+ \item[$k=0$]
+ \[
+A^{(i)}_{(1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{i}^{n_{n-i}-1}j)}_{(0)}\frac{T^{(i+1)}}{T^{(i,\ell_{i}^{n_{n-i}-1}j)}}  \]
+\item[$0<k<n_{n-i}$]
 \[
-A^{(i)}_{(k+1)}=\sum_{j=0}^{\ell_i-1 }A^{(i,\ell_{i}^{n_{n-i}-1-k}j)}_{(k)}\frac{1}{T^{(i,\ell_{i}^{n_{n-i}-1-k}j)}}  \]
+A^{(i)}_{(k+1)}=\sum_{j=0}^{\ell_{n-i}-1 }\frac{A^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}}{T^{(i,\ell_{i}^{n_{n-i}-1-k}j)}}  \]
  \item[$k=n_{n-i}$] \[
- A^{(i)}_{(n_{n-i})}=\sum_{j=0}^b A^{(i,j)}_{(n_{n-i})}\frac{T^{(i+1)}}{T^{(i,j)}}  
+ A^{(i)}_{(n_{n-i}+1)}=\sum_{j=0}^{d_{n-i}-1} A^{(i,j)}_{(n_{n-i})}  
   \]
  \end{itemize}
 ainsi on a $A^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
@@ -5241,8 +5243,9 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
    $O(\frac{p_n}{p_i})$ par un polynôme de degré $O(\frac{p_n}{p_{i+1}})$ dans  $\mathbb{K}_i[x]$. 
    On a alors le coût de chaque division qui est de $O(\mathsf{M}(p_n)$ 
    par la proposition~\ref{pro:mul:com} sans oublier le coût de descente des 
-   coefficients dans $\mathbb{K}_{i-1}$ .
-   ce qui donne un coût total de $O(n\mathsf{M}(\ell^{n+1}))$ opérations.
+   coefficients du polynôme de $\mathbb{K}_i$ dans $\mathbb{K}_{i-1}$ qui est 
+   de $O(\mathsf{M}(p_{i-1})d_i\ell_i^{n_i})$ par la proposition~\ref{pro:com:inj}.
+   Ce qui donne un coût total de $O(n\mathsf{M}(\ell^{n+1}))$ opérations.
    Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(p_n)\log(p_n)$ opérations.
 
   \`A chaque étape $i$, les polynômes $A^{(i,j)}$ sont calculés à un coût de
