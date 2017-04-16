@@ -5312,7 +5312,18 @@ utilisation de construction de $\mathbb{K}_n$ tel que $\mathbb{K}_1=
 successive par $\ell_i$ on va successivement travailler dans les corps 
 $\mathbb{K}_2, \mathbb{K}_3, \dots, \mathbb{K}_n$. Ainsi on suppose sans perte 
 de généralités que l'on a $i_0=1$. Ainsi on décompose cette étape en $n-1$ 
-étapes 
+étapes, on appelle $P^{(0)}=P_{1}$ et on définit par récurrence 
+$P^{(i+1)}=\mathsf{divise}(P^{(i)},\ell_{i+1}^{n_{i+1}})$, on a alors 
+$P^{(i+1)}$ d'ordre $\upsilon_{i+1}$ et défini dans $\mathbb{K}_{i+1}$. 
+Calculons le coût de l'étape $i$, on décompose tout d'abord 
+$\mathsf{divise}(P^{(i)},\ell_{i+1}^{n_{i+1}})$ à l'aide de $2*n_{i+1}$ 
+$\ell_{i+1}$-isogénies. Ainsi on pose $P^{(i)}_O=P^{(i)}$ et on définit par 
+récurrence $P^{(i)}_{j+1}=\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$, ce qui nous
+ donne $P^{(i+1)}=P^{(i)}_{n_{i+1}}$. On a $P^{(i)}_{j}$ défini dans 
+ $\mathbb{K}_i\otimes \mathsf{F}_{(i+1,j)}$ et donc le coût de 
+ $\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$ est $R()$ c'est à dire 
+ $O(\mathsf{M}(p_i d_{i+1} \ell_{i+1}^{j+1}))$. Ainsi par superlinéarité de 
+ $\mathsf{M}$ le coût de calcul de $P^{(i+1)}$ est de $O(\mathsf{M}(p_i \ell_{i+1}))$.
 
 L'étape~\ref{alg:TRC:init:prim} étant la moins triviale on se concentre tout 
 d'abord sur elle. L'étape~\ref{alg:TRC:init:prim} est bien définie car 
