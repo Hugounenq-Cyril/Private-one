@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{hyperref}
+\usepackage{natbib}
 \usepackage[francais]{babel}
 \usepackage{hyperref}
 \usepackage{amssymb,amsthm,amsmath,amsfonts}
@@ -11,7 +12,6 @@
 \usepackage{lmodern}
 \usepackage{fp}
 \usepackage{graphicx}
-\bibliographystyle{plain}
 \usepackage{epsfig}
 \usepackage{epstopdf}
 \usepackage{makeidx}
@@ -29,8 +29,7 @@
 \usepackage[intoc]{nomencl}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-
-
+\usepackage{apalike}
 
 
 \theoremstyle{plain}
@@ -83,6 +82,7 @@
  
 \renewcommand{\nompreamble}{The next list describes several symbols that will be later used within the body of the document}
 
+\bibliographystyle{apalike}
 %%% BEGIN DOCUMENT
 \begin{document}
 \fancyhf{}%␣efface␣tout␣ce␣qu'il␣y␣avait␣avant
@@ -216,7 +216,21 @@ prendre $\omega \leqslant 2,38$.
 
 Enfin des algorithmes de Las Vegas vont être utilisé dans ce document. Ces algorithmes sont des algorithmes probabilistes qui produisent un résultat correct, dés lors qu'on utilise un algorithme de Las Vegas on parlera de probabilité espérée.
 
-\section{Actions de groupes de Galois}
+\section{Théorie de Galois}
+
+On définit tout d'abord un \emph{corps de décomposition}.
+\begin{defi}
+Soit $\mathbb{K}$ un corps, soit un ensemble fini de polynômes 
+$(P_i)_{i \in I}$ alors on dit que $\mathbb{L}$ est le 
+\emph{corps de décomposition} de cet ensemble de polynômes si l'on a tout polynôme
+ $P_i$ qui se factorise en un produit de facteurs linéaires et tel que 
+ $\mathbb{L}$ est généré sur $\mathbb{K}$ par les racines des polynômes $P_i$.
+ Le \emph{corps de décomposition} est unique à isomorphisme près. 
+\end{defi}
+
+\begin{defi}
+Un 
+\end{defi}
 
 
 \section{Théorie des ordres dans un corps quadratique imaginaire}
@@ -6070,7 +6084,7 @@ Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra 
 
 \todo{Algorithme appendice intéressant seulement pour la condition qui distingue horizontal de trigonal}
 
-\bibliographystyle{plain}
+
 \bibliography{Biblio}
 
 
