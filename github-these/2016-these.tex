@@ -229,9 +229,39 @@ $(P_i)_{i \in I}$ alors on dit que $\mathbb{L}$ est le
 \end{defi}
 
 \begin{defi}
-Un 
+Un extension de corps $\mathbb{L}/\mathbb{K}$ est dite \emph{normale} ou 
+quasi-galoisienne lorsque tout polynôme défini sur celle-ci se scinde ou 
+n'admet aucune racine.
 \end{defi}
 
+\begin{defi}
+Soit une extension de corps $\mathbb{L}/\mathbb{K}$, un élément $x$ de 
+$\mathbb{L}$ est dit séparable sur $\mathbb{K}$ si son polynôme minimal défini
+sur $\mathbb{K}$ admet aucune racine multiple. Une extension de corps 
+$\mathbb{L}/\mathbb{K}$ est dite \emph{séparable} si tout élément $x \in 
+\mathbb{L}$ est séparable.
+\end{defi}
+
+\begin{defi}
+Une extension de corps $\mathbb{L}/\mathbb{K}$ est dite une \emph{extension 
+Galoisienne}si elle est à la fois séparable et normale.
+\end{defi}
+
+\begin{thm}
+Soit $\mathbb{L}/\mathbb{K}$ une extension Galoisienne, alors il existe un 
+élément $x \in \mathbb{L}$ appelé \emph{élément primitif} tel que $\mathbb{L}=\mathbb{K}[x]$. 
+\end{thm}
+
+Soit $\mathbb{L}/\mathbb{K}$ une extension Galoisienne alors on appelle 
+\emph{groupe de Galois} de $\mathbb{L}/\mathbb{K}$ le groupe d'automorphisme de
+ $\mathbb{L}$ qui laisse fixe $\mathbb{K}$, on le note $\mathsf{Gal}(\mathbb{L}:
+ \mathbb{K})$.
+ 
+ Soit $x \in \mathbb{L}$, soit $\sigma \in \mathsf{Gal}(\mathbb{L}:\mathbb{K})$
+ alors on appelle $\sigma(x)$ les conjugués de $x$ et ils constituent les 
+ racines du polynôme minimal de $x$ défini sur $\mathbb{K}$. On appelle 
+ représentant de l'orbite de $x$ sous l'action d'un élément de $\mathsf{Gal}
+ (\mathbb{L}:\mathbb{K})$ n'importe quel élément de l'orbite.
 
 \section{Théorie des ordres dans un corps quadratique imaginaire}
 
