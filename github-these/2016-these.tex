@@ -5117,20 +5117,7 @@ On présente en appendice une généralisation de
 l'algorithme~\ref{alg:TRC:init} dans l'algorithme~\ref{alg:TRC:init:gen} à 
 l'aide de celui-ci on peut résoudre la généralisation du théorème des restes 
 chinois d'une courbe elliptique à l'aide de l'algorithme~\ref{alg:TRC}.
-\begin{algorithm}
-\caption{\label{alg:TRC} Théorème des restes chinois sur une courbe elliptique}
-\begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique, $\ell_1,\ell_2, \dots \ell_n$ $n$ nombres premiers distincts, des points $P_i$ d'ordre $\ell_i^{k_i}$ pour $i \in [1,n]$.
-\ENSURE $P$ un point de $E$ d'ordre $\upsilon_n$  tel que $[\vartheta_{i_0} ] P=P_{i_0}$ pour $i_0 \in [1,n]$.
-% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE $P \leftarrow 0_E$;
-\FOR{$i=1$ à $n$}
-\STATE $Q$ sortie de l'algorithme~\ref{alg:TRC:init:gen} tel que $\ell_i^{k_i}Q=0$ et $[\vartheta_i]Q=P_i$;
-\STATE $P \leftarrow P+Q$; 
-\ENDFOR
-\RETURN $P$;
-\end{algorithmic}
-\end{algorithm}
+
 
 Cette approche du théorème des restes chinois a été motivée pour l'appliquer à 
 des points (partiellement) horizontaux d'ordre $\ell_i^{k_i}$, la proposition 
@@ -5244,7 +5231,7 @@ de $d_{i_0}\ell{i_0}^{k_{i_0}}$.
 \begin{nota}
 Soient $\ell_1, \dots \ell_n$ $n$ nombres premier de Elkies, alors on note 
 $\epsilon_i$ le nombre de représentants de points d'ordre $\ell_i^{k_i}$ sous 
-l'action d'un générateur de $\mathsf{Gal}(\mathsf{F}_{\ell_i^{k_i}}\mathbb{F}_q)$.
+l'action d'un générateur de $\mathsf{Gal}(\mathsf{F}_{\ell_i^{k_i}}:\mathbb{F}_q)$.
 \end{nota}
 
 On voit donc avec la proposition~\ref{pro:rep:com} que pour déterminer des 
@@ -5281,7 +5268,8 @@ de Théorème des Restes Chinois Elliptique appliqués sur de telles constructio
 \subsubsection{Coût des algorithmes de calcul de Théorème des Restes Chinois Elliptique}
 
 On présente ici la généralisation de l'algorithme~\ref{alg:TRC:init} avant 
-d'analyser sa complexité: 
+d'analyser sa complexité en reprenant les résultats de la 
+sous-section~\ref{sub:con:com}: 
 
 
 \todo{trouver un meilleur nom pour cet algorithme}
@@ -5324,52 +5312,94 @@ récurrence $P^{(i)}_{j+1}=\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$, ce qui nous
  $\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$ est $R()$ c'est à dire 
  $O(\mathsf{M}(p_i d_{i+1} \ell_{i+1}^{j+1}))$. Ainsi par superlinéarité de 
  $\mathsf{M}$ le coût de calcul de $P^{(i+1)}$ est de $O(\mathsf{M}(p_i \ell_{i+1}))$.
+ Le coût de l'étape~\ref{alg:TRC:init:gen:div} est donc $O(\sum_{i=0}^{n-1}\mathsf{M}(p_i \ell_{i+1}))$. 
 
-L'étape~\ref{alg:TRC:init:prim} étant la moins triviale on se concentre tout 
-d'abord sur elle. L'étape~\ref{alg:TRC:init:prim} est bien définie car 
-$\ell_1$ étant premier avec $\ell_2$, la multiplication par $\ell_1$ est un 
-automorphisme du groupe $(\mathbb{Z}/ \ell_2^{k_2})^*$. La première chose à faire 
-est de calculer l'ordre $o_1$ de $\ell_1$ dans 
-$(\mathbb{Z}/\ell_2^{k_2} \mathbb{Z})^*$. On définit $\eta$ comme l'élément de 
-$\mathbb{Z}/ \ell_2^{k_2}$ telle que l'action de $\eta \ell_1^{k_1-o_1}$ sur le
- groupe de poins d'ordre $\ell_2^{k_2}$ soit l'identité. On détermine 
- itérativement l'action de $\ell_1^{k_1}$ sur les points d'ordre 
- $\ell_2^{k_2}$.  La détermination de $\eta$ se fait elle aussi itérativement, 
- détaillons-la. Supposons que l'on ait calculé $\eta_{i_0} \bmod \ell_2^{i_0}$ 
- on veut alors calculer $\eta_{i_0+1} \bmod \ell_2^{i_0+1}$ on sait que 
- $\eta_{i_0+1} = \eta_{i_0} + \ell_2^{i_0} a $ avec 
- $a \in \mathbb{Z}/ \ell_2 \mathbb{Z}$. On énumère alors toutes les 
- possibilités afin de déterminer le coefficient $a$ tel que l'action de  
- $[\ell_1^{k_1-o_1}(\eta_{i_0} + \ell_2^{i_0} a)]$ soit l'identité sur les 
- points d'ordre $\ell_2^{i_0+1}$ appartenant à $\langle Q \rangle$. Ainsi le 
- coût de calcul de $\eta$ est majoré par le coût de $\ell_2$ fois la 
- multiplication d'un point d'ordre $\ell_2^{k_2}$ par un coefficient dans 
- $\mathbb{Z}/ \ell_2^{k_2} \mathbb{Z}$.
- 
- Le calcul de l'étape~\ref{alg:TRC:init:div} se fait elle aussi itérativement à 
- l'aide $k_1$ calculs de division par $\ell_2$. La division par $\ell_2$ se 
- fait elle aussi en décomposant la multiplication par $\ell_2$ en produit de 
- deux isogénies de degré $\ell_2$ comme décrit dans le lemme~\ref{lem:div:cou}. 
- On peut raisonnablement supposer vu le contexte d'application (un théorème des
- restes chinois sur une courbe elliptique) que $E[\ell_2]$ a déjà été calculé 
- et donc que ce coût n'est pas à prendre en compte. Le calcul de 
- l'étape~\ref{alg:TRC:init:mul} se fait elle aussi itérativement à l'aide de 
- $2*k_1$ applications de $\ell_1$-isogénies, car on décompose la multiplication
- par $\ell_1$ comme le produit de deux isogénies de degré $\ell_1$, vu que l'on
- a comme paramètre d'entrée un point d'ordre $\ell_1^{k_1}$ il est tout à fait 
- raisonnable de supposer que l'on connaisse $E[\ell_1]$.
+Pour le calcul de l'étape~\ref{alg:TRC:init:gen:mul} on décompose la 
+multiplication par $\ell_{i_0}^{k_{i_0}}$ en $k_{i_0}$ multiplications par 
+$\ell_{i_0}$ que l'on décompose chacune en deux $\ell_{i_0}$-isogénies. $P'$ 
+étant défini dans $\mathbb{K}_{m}$ cela coûte 
+$O(k_{i_0}(\mathsf{M}(p_n)(\log(p_n)+\ell_{i_0})))$.
+
+L'étape~\ref{alg:TRC:init:gen:prim} se décompose comme 
+l'étape~\ref{alg:TRC:init:gen:mul}, on décompose la multiplication par 
+$\ell_{i_0}^{k_{i_0}}$ en $k_{i_0}$ multiplications par $\ell_{i_0}$ que l'on 
+décompose chacune en deux $\ell_{i_0}$-isogénies, sauf que cette fois-ci on va
+devoir inverser chacune des $\ell_{i_0}$-isogénies. On peut alors soit résoudre
+des polynômes de degré $\ell_{i_0}$ pour calculer les antécédents des 
+$\ell_{i_0}$-isogénies, ou alors on peut déterminer l'action de la 
+mutliplication par $\ell_{i_0}$ sur les points d'odre $\vartheta_{i_0}$ 
+mais une telle recherche exhaustive dans l'état actuel où le coût de plongement
+n'est pas négligeable ne rend pas celle-ci intéresante d'un point de vue 
+pratique. Ainsi le coût d'une telle étape est de $O(k_{i_0}R())$ soit $O()$ 
+opérations sur $\mathbb{F}_q$.
 \end{proof}
 
- Cependant il nous reste à voir dans quelle mesure la représentation
+\begin{algorithm}
+\caption{\label{alg:TRC} Théorème des restes chinois sur une courbe elliptique}
+\begin{algorithmic}[1]
+\REQUIRE $E$: une courbe elliptique, $\ell_1,\ell_2, \dots \ell_n$ $n$ nombres premiers distincts, des points $P_i$ d'ordre $\ell_i^{k_i}$ pour $i \in [1,n]$.
+\ENSURE $P$ un point de $E$ d'ordre $\upsilon_n$  tel que $[\vartheta_{i_0} ] P=P_{i_0}$ pour $i_0 \in [1,n]$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE $P \leftarrow 0_E$;
+\FOR{$i=1$ à $n$}
+\STATE $Q$ sortie de l'algorithme~\ref{alg:TRC:init:gen} tel que $\ell_i^{k_i}Q=0$ et $[\vartheta_i]Q=P_i$;
+\STATE $P \leftarrow P+Q$; 
+\ENDFOR
+\RETURN $P$;
+\end{algorithmic}
+\end{algorithm}
+
+\begin{prop}
+L'algorithme~\ref{alg:TRC} a une complexité de $O()$ opérations sur $\mathbb{F}_q$
+\end{prop}
+
+ On peut désormais voir dans quelle mesure la représentation
   de composita avec une méthode telle que celle préconisée 
  dans~\cite{DeFeoDoliskaniSchost14} nous permet d'avoir des résultats 
  similaires sur les optimisations de calcul dues à la construction des tours 
  d'extension $\ell$-adiques utilisées pour 
- l'algorithme~\ref{alg:cou:ell-adique}. 
+ l'algorithme~\ref{alg:cou:ell-adique} dont on présente une modification et une
+ analyse dans la sous-sous-section suivante. 
 
 
 \subsubsection{Coût total de l'algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois elliptique}
-
+\todo{definir la dimension des directions}
+Nous avons abordé dans la sous-sous-section~\ref{sub:TRCE:cou} l'intérêt 
+d'utiliser un théorème des restes chinois sur une courbe elliptique par rapport
+à l'algorithme de Couveignes. En effet on a vu qu'un point construit à l'aide 
+du théorème des restes chinois elliptique appliqué à des points $P_i,Q_i$ d'ordre 
+$\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux, (partiellement) horizontaux de directions $\lambda_i,\mu_i$ 
+était mis en correspondance avec un autre point de même direction.
+Ainsi avec deux bases de points (partiellement) horizontaux $(\color{red}P_{\lambda_1,
+ \dots, \lambda_n}\color{black},\color{blue}Q_{\mu_1, \dots, 
+ \mu_n}\color{black}),(\color{red}P'_{\lambda_1, \dots, \lambda_n}\color{black}
+ ,\color{blue}
+ Q'_{\mu_1, \dots, \mu_n}\color{black})$ de $E[\prod_{i=1}^n\ell_i^{k_i}]$ et 
+ $E'[\prod_{i=1}^n\ell_i^{k_i}]$ l'action de la $r$-isogénie peut être 
+ représentée de la façon suivante:  
+ \begin{equation*}
+\left(
+\begin{matrix}
+\color{red} P'_{\lambda_1,
+ \dots, \lambda_n} \\
+\color{blue} Q'_{\mu_1, \dots, 
+ \mu_n} \color{black}
+\end{matrix}
+\right)= \left(\begin{matrix}
+a & 0 \\
+0 & b
+\end{matrix} \right)
+\left(
+\begin{matrix}
+\color{red} P_{\lambda_1, 
+\dots, \lambda_n} \\
+\color{blue} Q_{\mu_1, \dots, 
+ \mu_n} \color{black}
+\end{matrix}
+\right)
+\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\prod_{i=i}^n\ell_i^{k_i}\mathbb{Z} \right)^*
+\end{equation*}
+ 
 \begin{algorithm}
 \caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire à l'aide du TRC.}
 \begin{algorithmic}[1]
