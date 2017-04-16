@@ -152,7 +152,7 @@
 \renewcommand{\algorithmicreturn}{\textbf{retourner}}
 \renewcommand{\algorithmictrue}{\textbf{Vrai}}
 \renewcommand{\algorithmicfalse}{\textbf{Faux}}
-
+\renewcommand{\listalgorithmname}{Liste des algorithmes}
 
 
 %\cleardoublepage
@@ -164,19 +164,25 @@
 % \SingleSpace
 
 \tableofcontents*
+\listofalgorithms
 \listoftodos
 
 \nomenclature{$\pi$}{L'endomorphisme de Frobenius}
 \nomenclature{$[n]P$}{Multiplication scalaire par $n$ d'un point $P$ d'une courbe elliptique}
 \nomenclature{$E[n]$}{Ensemble des points de $n$-torsion d'une courbe elliptique}
 \nomenclature{$\mathsf{F}_i$}{$i$-ème corps de la tour d'extensions $\ell$-adiques}
+\nomenclature{$d_0$}{Le degré de l'extension $F_{0}$ par rapport à $\mathbb{F}_q$}
+\nomenclature{$\mathsf{F}_{(i,j)}$}{$j$-ème corps de la tour d'extensions $\ell_i$-adiques}
+\nomenclature{$d_i$}{Le degré de l'extension $F_{(i,0)}$ par rapport à $\mathbb{F}_q$}
+\nomenclature{$\mathbb{K}_{j}$}{Le composita isomorphe à $\otimes_{i=1}^{j}\mathsf{F}_{(i,n_i)}$}
+\nomenclature{$p_j$}{Le degré de l'extension $\mathbb{K}_{j}$ par rapport à $\mathbb{F}_q$}
 \nomenclature{$\varphi$}{isogénie descendante}
 \nomenclature{$\widehat{\varphi}$}{isogénie montante/ascendante}
 \nomenclature{$\phi$}{une $r$-isogénie}
 \nomenclature{$\psi$}{une isogénie horizontale}
 \nomenclature{$\widehat{\psi}$}{isogénie duale de $\psi$}
 \nomenclature{$\Phi_{\ell}$}{$\ell$-ème polynôme modulaire}
-\nomenclature{$d_0$}{A remplir}
+
 
 
 
@@ -209,6 +215,9 @@ algorithmes de \cite{CoppersmithWinograd90} et \cite{Williams12} on peut
 prendre $\omega \leqslant 2,38$.
 
 Enfin des algorithmes de Las Vegas vont être utilisé dans ce document. Ces algorithmes sont des algorithmes probabilistes qui produisent un résultat correct, dés lors qu'on utilise un algorithme de Las Vegas on parlera de probabilité espérée.
+
+\section{Actions de groupes de Galois}
+
 
 \section{Théorie des ordres dans un corps quadratique imaginaire}
 
@@ -3967,6 +3976,7 @@ On rappelle que l'on se place dans le contexte suivant:
 Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
 
 \section{Elkies}
+\label{sec:cou:elk}
 Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
 
@@ -5367,8 +5377,9 @@ L'algorithme~\ref{alg:TRC} a une complexité de $O()$ opérations sur $\mathbb{F
 Nous avons abordé dans la sous-sous-section~\ref{sub:TRCE:cou} l'intérêt 
 d'utiliser un théorème des restes chinois sur une courbe elliptique par rapport
 à l'algorithme de Couveignes. En effet on a vu qu'un point construit à l'aide 
-du théorème des restes chinois elliptique appliqué à des points $P_i,Q_i$ d'ordre 
-$\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux, (partiellement) horizontaux de directions $\lambda_i,\mu_i$ 
+du théorème des restes chinois elliptique appliqué à des points $P_i,Q_i$ 
+(partiellement) horizontaux de directions $\lambda_i,\mu_i$  d'ordre 
+$\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux, 
 était mis en correspondance avec un autre point de même direction.
 Ainsi avec deux bases de points (partiellement) horizontaux $(\color{red}P_{\lambda_1,
  \dots, \lambda_n}\color{black},\color{blue}Q_{\mu_1, \dots, 
@@ -5397,11 +5408,17 @@ a & 0 \\
  \mu_n} \color{black}
 \end{matrix}
 \right)
-\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\prod_{i=i}^n\ell_i^{k_i}\mathbb{Z} \right)^*
+\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\prod_{i=i}^n\ell_i^{k_i}\mathbb{Z} \right)^*.
 \end{equation*}
  
+On applique alors un raisonnement similaire à celui de la 
+section~\ref{sec:cou:elk} qui nous permet alors de décrire dans 
+l'algorithme~\ref{alg:cou:TRC-adique} un algorithme de Couveignes 
+$\ell_i$-adiques avec approche multi-modulaire à l'aide du Théorème des Restes 
+Chinois Elliptique.
+ 
 \begin{algorithm}
-\caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire à l'aide du TRC.}
+\caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire à l'aide du TRC Elliptique.}
 \begin{algorithmic}[1]
 \REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique pour $i$ allant de $1$ à $n$.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
@@ -5423,41 +5440,13 @@ a & 0 \\
 \end{algorithmic}
 \end{algorithm}
 
+\begin{prop}
+L'algorithme~\ref{alg:cou:TRC-adique}
+\end{prop}
 
- si l'on peut appliquer les méthodes de la 
- section~\ref{sec:interpolation} pour optimiser le calcul de la même manière 
- que dans l'algorithme~\ref{alg:cou:ell-adique}. 
- 
- Tout d'abord
- 
-Ainsi pour s'intéresser à l'application des méthodes de la 
-section~\ref{sec:interpolation} il faut s'intéresser à la représentantion des 
-points avec lesquels on travaille. Comme dit précédemmennt pour définir des 
-points d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ on a besoin de travailler avec des
-composita de tours d'extensions $\ell$-adiques. Ainsi une implantation telle 
-que celle de l'article~\cite{DeFeoDoliskaniSchost14} permet déjà de représenter
-les points horizontaux $P_i,Q_i$ dans la composita, mais le plongement a déjà 
-un coût de $O()$\todo{Complexité à compléter}. En plus des coûts de calcul de
-résolution de polynôme à coefficients dans la composita qui entrent dans les 
-calculs de CRT il reste aussi.
-
-Mais avec une telle approche il faudrait définir les 
-points dans un composita de tour d'extensions $\ell$-adiques à la manière de \cite{DeFeoDoliskaniSchost14}. On pourrait dés lors
-à l'aide des plongements utiliser les résultats du chapitre~\ref{cha:tour} et 
-\ref{cha:act:fro} et travailler avec l 
-$\prod_{i=1}^n\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$. 'ensemble de points $S$ isomorphe à: $\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $
-dés lors il faudrait fixer comme condition  $\sum_{i=1}^n\frac{\ell_i^{2k_{i}-2}(\ell_i+1)}{4}>r$
-et construire le polynôme d'interpolations qui agit sur $S$ de façon similaire 
-à celle décrite dans le chapitre~\ref{cha:tour}.
-faudrait revoir le coût d'une opération telle que le Frobenius dans un tel 
-contexte, certes les méthodes de 
-plongement permettent d'utiliser les résultats du chapitre \ref{cha:tour} pour 
-une tour d'extensions $\ell$-adiques mais il faut prendre en compte le p
-faudrait trouver un autre moyen que celui déjà utilisé pour valider une 
-correspondance entre deux bases horizontales de la $\ell_i^{h_i}$ torsion.
-
-une $\ell^k$ torsion par rapport à l'action de la $r$-isogénie  de plus il ne 
-faut pas oublier que l'on a la contrainte $k>h$.
+\begin{proof}
+Blabla...
+\end{proof}
 
 \chapter{Rebus}
 \subsubsection{TRC ELLiptique}
