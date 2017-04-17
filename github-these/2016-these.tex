@@ -1017,27 +1017,33 @@ avec $c \in \overline{\mathbb{F}_q}$. Ainsi on énonce les définitions suivante
 
 
 \begin{defi}
-Soit $I$ une isogénie de la forme \eqref{eq:iso:gen} avec $c=1$, on dit alors que cette isogénie est \emph{normalisée}. 
+Soit $I$ une isogénie de la forme \eqref{eq:iso:gen} avec $c=1$, on dit alors 
+que cette isogénie est \emph{normalisée}, l'isogénie est alors séparable. 
 
-Pour deux courbes $\ell$-isogènes exprimées sous forme de Weierstrass telle que l'isogénie associée à ces courbes est une isogénie normale on dit que ces courbes ont des équations de Weierstrass \emph{normalisées}. 
+Pour deux courbes $\ell$-isogènes exprimées sous forme de Weierstrass telle que
+la $\ell$-isogénie associée à ces courbes est normalisée on dit que ces 
+courbes ont des équations de Weierstrass \emph{normalisées}. 
 \end{defi}
+
 \section{Elkies 1998}
-Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p >> \ell$.
+Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p \gg \ell$.
 Dans le modèle de Elkies on travaille avec des courbes à équations de Weierstrass normalisées, celles-ci sont calculées à l'aide du $\ell$-ème polynôme modulaire (voir proposition \ref{prop:elk:nor} pour la construction et \cite{Schoof95} pour plus de détails).
-L'idée de Elkies est d'à partir des équations de Weierstrass normalisées de $E:$
+Les idées présentées ici sont issues du travail de Elkies~\cite[§The kernel of
+ the isogeny]{elkies1998}, celui-ci commence à partir des équations de 
+ Weierstrass normalisées de $E$
 \begin{equation}
 y^2=x^3+Ax+B
 \end{equation}
- et $\tilde{E}:$
+ et $\tilde{E}$
 \begin{equation}
 y^2=x^3+\tilde{A}x+\tilde{B}
 \end{equation}
-injecter l'équation de l'isogénie \textbf{normalisée}:
+et de l'équation de l'isogénie \textbf{normalisée}:
 \begin{equation} 
 \label{eq:velu:gh}
 I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right) 
 \end{equation}
-et celle de $E$ dans celle de $\tilde{E}$:
+on injecte l'équation de $E$ et $I$ dans l'équation de $\tilde{E}$:
 \begin{equation}
 (x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
 \end{equation}
@@ -1062,13 +1068,21 @@ h_1=\frac{A-\tilde{A}}{5} \quad h_2={\frac{B-\tilde{B}}{7}}.
 \end{equation}
 Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{\ell-2}$ est de $O(\ell^2)$ opérations sur $\mathbb{F}_q$. 
 
+Il est à noter que la condition $p \gg \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir appliquer la remarque \ref{rem:pol:rec}, ainsi que l'équation \eqref{eq:rec:h_k}.
+
+On peut alors énoncer le théorème suivant
+\begin{thm}
+Soient $E$ et $\tilde{E}$ deux courbes elliptiques $\ell$-isogènes définies sur $\mathbb{K}$ alors l'algorithme de Elkies calcule la $\ell$-isogénie en $O(\ell^2)$ opérations sur $\mathbb{K}$.
+\end{thm}
+
+
 \begin{rem}
 \label{rem:pol:rec}
 Soit $P$ un polynôme de degré $d$ défini sur $\mathbb{F}_q[X]$ de caratéristique $p>d$ ou $p=0$. Alors $P$ peut être déterminé à l'aide de la formule:
 \begin{equation}
 P=\exp\left(\int{\frac{P'}{P}}\right)
 \end{equation} 
-On a alors à l'aide des sommes de Newton:$p_0=d,p_1, \cdots, p_d$:
+On a alors à l'aide des sommes de Newton (somme des puissances successives des racines de $P$):$p_0=d,p_1, \cdots, p_d$:
 \begin{equation}
 \label{eq:pol:new}
 \frac{P'}{P}= \frac{d}{X} + \sum_{i = 1}^d \frac{p_i}{X^{i+1}}
@@ -1078,11 +1092,20 @@ Ce qui nous donne:
 P=\exp\left( d \log(X) - \sum_{i = 1}^{d} \frac{p_i}{i!X^i} \right)
 \end{equation} 
 Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton on est capable d'exprimer $P$.
-\end{rem}
 
-\begin{rem}
-\label{rem:ELK:h-p}
-On peut calculer $h(x)$ sans faire une reconstruction rationnelle, en effet on peut déterminer les sommes de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de $p_0=\ell-1, p_1$ et $\frac{g(x)}{h(x)}=x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$. Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer la connaissance de $p_1$. En effet comme le calcul du $\ell$-ème polynôme modulaire $\phi_{\ell}$ a été effectué (voir \ref{sub:Elkies} pour plus de contexte), alors à l'aide des dérivées partielles de $\phi_{\ell}$ on peut calculer celui-ci. Une formule explicite de ce calcul est donnée dans \cite[Theorem 17.22]{ehcc05} et sa preuve est dans \cite[§7]{Schoof95}. En utilisant \eqref{eq:iso:frac} et \eqref{eq:pol:new} dans \eqref{eq:vel:elk} on établit la récurrence:
+On peut calculer $h(x)$ sans faire une reconstruction rationnelle, déterminer 
+la fraction $\frac{g(x)}{h(x)}$ à partir de son développement en série 
+$x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$, en effet on peut déterminer les sommes
+de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de 
+$p_0=\ell-1, p_1$ et $\frac{g(x)}{h(x)}=x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$.
+Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer 
+la connaissance de $p_1$. En effet comme le calcul du $\ell$-ème polynôme 
+modulaire $\Phi_{\ell}$ a été effectué (voir \ref{sub:Elkies} pour plus de 
+contexte), alors à l'aide des dérivées partielles de $\Phi_{\ell}$ on peut 
+calculer celui-ci. Une formule explicite de ce calcul est donnée dans 
+\cite[Theorem 17.22]{ehcc05} et sa preuve est dans \cite[§7]{Schoof95}. En 
+utilisant \eqref{eq:iso:frac} et \eqref{eq:pol:new} dans \eqref{eq:vel:elk} on 
+établit la récurrence:
 \begin{equation}
 \label{eq:p:rec}
 h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
@@ -1090,31 +1113,35 @@ h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
 à l'aide de laquelle on calcule tous les $p_i$ en $O(\ell)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$ par \cite[§2.2]{BMSS08}.
 Enfin à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
 \end{rem}
-
-Il est à noter que la condition $p >> \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir appliquer la remarque \ref{rem:pol:rec}, ainsi que l'équation \eqref{eq:rec:h_k}.
-
-On peut alors énoncer le théorème suivant
-\begin{thm}
-Soient $E$ et $\tilde{E}$ deux courbes elliptiques $\ell$-isogènes définies sur $\mathbb{K}$ alors l'algorithme de Elkies calcule la $\ell$-isogénie en $O(\ell^2)$ opérations sur $\mathbb{K}$.
-\end{thm}
  
-\section{BMSS}
-L'algorithme BMSS \cite{BMSS08} propose de résoudre le même problème que l'algorihtme de Elkies \cite{elkies1998} et a une meilleure complexité car celui-ci change notamment de méthode pour le calcul des $h_i$:
+\section{Bostan-Morain-Salvy-Schost}
+L'algorithme BMSS \cite{BMSS08} propose de résoudre le même problème que 
+l'algorithme de Elkies \cite{elkies1998} et a une meilleure complexité car 
+il change notamment de méthode pour le calcul des $h_i$:
 \begin{thm}
 \label{thm:BMSS}
-Soient $E, \tilde{E}$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{K}$ sous forme de Weierstrass normalisées, avec $\ell$ différent de $p$ la caractéristique de $\mathbb{K}$ qui peut être nulle ou doit vérifier $p >> \ell$. Alors:
+Soient $E, \tilde{E}$ deux courbes elliptiques $\ell$-isogènes définies sur 
+$\mathbb{K}$ sous forme de Weierstrass normalisées, avec $\ell$ différent de 
+$p$, la caractéristique de $\mathbb{K}$, qui peut être nulle ou doit vérifier 
+$p \gg \ell$, alors:
 \begin{itemize}
-\item  si la somme des abscisses des points du noyau de l'isogénie est connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$,
-\item si la somme des abscisses des points du noyau de l'isogénie n'est pas connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les deux courbes en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{K}$.
+\item  si la somme des abscisses des points du noyau de l'isogénie est connue 
+l'algorithme BMSS  calcule l'isogénie qui relie les deux courbes en 
+$O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$,
+\item si la somme des abscisses des points du noyau de l'isogénie n'est pas 
+connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les 
+deux courbes en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{K}$.
 \end{itemize}
 \end{thm}
 
-L'algorithme BMSS part du même postulat que Elkies1998, à savoir, en reprenant les notations de la section précédente, trouver le développement en série de la solution de l'équation différentielle suivante:   
+L'algorithme BMSS part du même principe que Elkies1998, à savoir, en reprenant 
+les notations de la section précédente, trouver le développement en série de la
+solution de l'équation différentielle suivante:   
 \begin{equation}
 \label{eq:BMSS:ED1}
 (x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
 \end{equation}
-Cependant on ne connaît pas des conditions initiales en $0$ pour cette équation différentielle vérifiée par $\frac{g(x)}{h(x)}$ et comme $\deg(g)=\ell> \deg(h)= \ell-1$ alors on ne peut travailler avec des conditions à l'infini. On pose donc:
+Cependant on ne connaît pas des conditions initiales en $0$ pour cette équation différentielle vérifiée par $\frac{g(x)}{h(x)}$ et, comme $\deg(g)=\ell> \deg(h)= \ell-1$ alors on ne peut travailler avec des conditions à l'infini. On pose donc:
 \begin{equation}
 S(x)=\sqrt{\frac{h(1/x^2)}{g(1/x^2)}} \quad \text{équivalent à} \quad \frac{g(x)}{h(x)}=\frac{1}{S(1/\sqrt{x})}
 \end{equation} 
@@ -1157,7 +1184,7 @@ Le développement en série de Taylor de $H$ en $f_1$ nous donne l'équation dif
 \begin{equation}
 2f_1'f_2'+f_1'^2=G(x)H(f_1)+G(x)H'(f_1)f_2 \bmod x^{2k}
 \end{equation}
-avec la condition initiale $f_2(0)=0$. Que l'on peut reformuler:
+avec la condition initiale $f_2(0)=0$. On peut reformuler ainsi:
 \begin{equation}
 \label{eq:LS08:diflin}
 f'_2-\frac{G(x)H'(f_1)}{2f_1'}f_2=\frac{G(x)H(f_1')-f_1'^2}{2f_1'}
@@ -1172,8 +1199,8 @@ avec
 \label{eq:LS08:J}
 J=\exp \left( -\int \frac{G(x)H'(f_1)}{2f_1'}dx \right).
 \end{equation}
-Il est à noter que comme on souhaite uniquement calculer une solution à précision $x^{2k+1}$, on a besoin uniquement de calculer $J$ et son inverse à précision $x^k$.
-Comme $f_1'$ est une solution de \eqref{eq:BMSS:ED3} alors on peut réexprimer $f_1'$ à l'aide de celle-ci dans \eqref{eq:LS08:J} et obtenir:
+Il est à noter que, comme on souhaite uniquement calculer une solution à précision $x^{2k+1}$, on a besoin uniquement de calculer $J$ et son inverse à précision $x^k$.
+Comme $f_1'$ est une solution de \eqref{eq:BMSS:ED3} alors on peut réexprimer $f_1'$ à l'aide de \eqref{eq:BMSS:ED3} dans \eqref{eq:LS08:J} et obtenir:
 \begin{equation}
 \frac{G(x)H'(f_1)}{2f_1'}=\frac{H'(f_1)f_1'}{2H(f_1)} \bmod x^k,
 \end{equation}
@@ -1181,11 +1208,15 @@ ainsi
 \begin{equation}
 J=\exp \left(-\frac{1}{2}\log H(f_1) \right)= \frac{1}{\sqrt{H(f_1)}}.
 \end{equation}
-\'A chaque nouvelle itération pour résoudre \eqref{eq:BMSS:ED3} on a uniquement besoin de calculer les quantités suivantes:
+\`A chaque nouvelle itération pour résoudre \eqref{eq:BMSS:ED3} on a uniquement besoin de calculer les quantités suivantes:
 \begin{equation}
 S, \quad U=1/S', \quad V=\sqrt{H \circ S}, \quad J=1/V.
 \end{equation}
-La précision de ces quantités est doublée dès lors àchaque itération de Newton utilisée pour les calculer. Les uniques opérations effectuées étant des inversions et des multiplications de séries alors la $i$-ème itération coûte $O(\mathsf{M}(2^i))$ opérations sur $\mathbb{K}$, et donc par la superlinéarité de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération. 
+La précision de ces quantités est doublée dès lors à chaque itération de 
+Newton. Les uniques opérations effectuées étant des inversions et des 
+multiplications de séries, alors la $i$-ème itération coûte 
+$O(\mathsf{M}(2^i))$ opérations sur $\mathbb{K}$, et donc par la superlinéarité
+de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération. 
 \end{proof}
 
 
@@ -1200,7 +1231,7 @@ La précision de ces quantités est doublée dès lors àchaque itération de Ne
 \STATE $U \gets U(2-S'U) \bmod x^{2i}$
 \STATE $V \gets (V+(H \circ S)J(2-VJ))/2 \bmod x^{i}$
 \STATE $J \gets J(2-VJ) \bmod {x^i}$
-\STATE $S \gets S+V \int ((H \circ S)G-S'^2)UJ/2 \bmod x^{2i+1}$
+\STATE \label{alg:BMSS:eqdiff:int} $S \gets S+V \int ((H \circ S)G-S'^2)UJ/2 \bmod x^{2i+1}$
 \ENDFOR
 \RETURN$S$. 
 \end{algorithmic}
@@ -1218,7 +1249,7 @@ que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La de
 \REQUIRE $\ell>1$, deux courbes $E,\tilde{E}$ $\ell$-normalizées  ,%\\
 \ENSURE La fraction rationnelle $\frac{g(x)}{h(x)}$ qui représente la $\ell$-isogénie
 \STATE Calculer $G(x)=1/(1+Ax^4+Bx^6) \bmod x^{4\ell-1}$.
-\STATE Calculer $S(x)$ $\bmod x^{4\ell-1}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}.
+\STATE \label{alg:BMSS:total:eqdiff} Calculer $S(x)$ $\bmod x^{4\ell-1}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}.
 \STATE Soit $T(x)=\sum_{i=0}^{2\ell-1}s_{2i+1}x^i$.
 \STATE Calculer $R(x)=1/T(x)^2 \bmod(x^{2\ell-1})$.
 \STATE Calculer $\frac{g(x)}{h(x)}$ à l'aide de reconstruction rationnelle. 
@@ -1226,11 +1257,11 @@ que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La de
 \end{algorithm}
 
 \begin{rem}
-Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction rationnelle avec la méthode  précisée dans les remarques \ref{rem:pol:rec} et \ref{rem:ELK:h-p}. Il est dés lors suffisant de calculer $S$ à précision $x^{2\ell}$ car la connaissance $\frac{g(x)}{h(x)}$ à précision $\ell-2$ est suffisante pour connaître $p_0,p_1,\cdots ,p_{\ell-1}$. Ainsi avec la connaissance de $p_1$ la complexité de l'étape $5$ de l'algorithme \ref{alg:BMSS:total} est de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$ et donne la complexité de celui-ci.
+Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction rationnelle avec la méthode  précisée dans la remarque~\ref{rem:pol:rec} et \ref{rem:ELK:h-p}. Il est dés lors suffisant de calculer $S$ à précision $x^{2\ell}$ car la connaissance $\frac{g(x)}{h(x)}$ à précision $\ell-2$ est suffisante pour connaître $p_0,p_1,\cdots ,p_{\ell-1}$. Ainsi avec la connaissance de $p_1$ la complexité de l'étape $5$ de l'algorithme~\ref{alg:BMSS:total} est de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$ et donne la complexité de celui-ci.
 \end{rem}
 
 \begin{rem}
-L'algorithme BMSS impose le fait d'avoir $p>>\ell$ car à l'étape $7$ de l'algorithme $\ref{alg:BMSS:eqdiff}$ une intégration est nécessaire ce qui entraîne des divisions pas les entiers compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ sinon. Cela pose donc des limites aux applications de BMSS.
+L'algorithme BMSS impose le fait d'avoir $p \gg \ell$ car à l'étape~\ref{alg:BMSS:eqdiff:int} de l'algorithme~\ref{alg:BMSS:eqdiff} une intégration est nécessaire ce qui entraîne des divisions par les entiers compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ sinon. Cela pose donc des limites aux applications de BMSS.
 \end{rem}
 
 
@@ -1258,11 +1289,13 @@ L'algorithme BMSS impose le fait d'avoir $p>>\ell$ car à l'étape $7$ de l'algo
 
 
 \section{Algorithme de Lercier Sirvent}
-L'algorithme de Lercier Sirvent répond à la problématique posée par le fait que BMSS ne peut pas s'utiliser sur des corps de petite caractéristique à cause de possibles division par $0$, une solution naturelle envisagée est donc de résoudre ce problème en travaillant dans les entiers entiers $p$-adiques.
+L'algorithme de Lercier Sirvent répond à la problématique posée par le fait que BMSS ne peut pas s'utiliser sur des corps de petite caractéristique à cause de possibles division par $0$, une solution naturelle envisagée est donc de résoudre ce problème en travaillant dans les entiers $p$-adiques.
 
-Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les nombres $p$-adiques et spécifie quelle précision on a besoin sur les entrées de l'algorithme. Cependant l'algorithme  BMSS travaille avec des courbes elliptiques sous forme de Weierstrass normalisées, il est donc nécessaire de calculer des équations normalisées des relevés des courbes dans les $p$-adiques. L'algorithme est énoncé dans le cas où l'on a $p \geqslant 5$, les calculs ont lieu dans $\mathbb{Q}_q$ une extension non ramifiée de degré $d$ de $\mathbb{Q}_p$.
+Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les nombres $p$-adiques et spécifie de quelle précision on a besoin sur les entrées de l'algorithme. Cependant l'algorithme  BMSS travaille avec des courbes elliptiques sous forme de Weierstrass normalisée, il est donc nécessaire de calculer des équations normalisées des relevés des courbes dans les $p$-adiques. L'algorithme est énoncé dans le cas où l'on a $p \geqslant 5$, les calculs ont lieu dans $\mathbb{Q}_q$ une extension non ramifiée de degré $d$ de $\mathbb{Q}_p$.
 
-L'algorithme de Lercier Sirvent \ref{alg:LS08:modified} calcule un relevé $\overline{E}$ de $E$ dans $\mathbb{Q}_p$, un relèvement$\overline{j_{E''}}$ du $j$-invariant $j'$ de la courbe $\ell$-isogène $E'$ est calculé. Ensuite les formules de Elkies \cite{elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors $\overline{I}$ et $\overline{E''}$, enfin on calcule $I: E \rightarrow E' $ à l'aide de l'isomorphisme $E' \cong E''$. 
+L'algorithme de Lercier Sirvent calcule un relevé $\overline{E}$ de $E$ dans 
+$\mathbb{Q}_p$ et un relèvement $\overline{j_{E'}}$ du $j$-invariant $j'$ de la
+courbe $\ell$-isogène $E'$. Ensuite les formules de Elkies \cite{elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors $\overline{I}$ et $\overline{E''}$, enfin on calcule $I: E \rightarrow E' $ à l'aide de l'isomorphisme $E' \cong E''$. 
 
 \begin{algorithm}
 \caption{\label{alg:LS08:modified} Algorithme de Lercier-Sirvent}
@@ -1270,8 +1303,8 @@ L'algorithme de Lercier Sirvent \ref{alg:LS08:modified} calcule un relevé $\ove
 \REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{F}_q$,%\\
 \ENSURE $I$ une $\ell$-isogénie telle que $I:E \rightarrow E'$
 \STATE Calculer un relèvement de l'équation de Weierstrass de $E$ dans $\mathbb{Q}_p$
-\STATE Calculer un relevé $\overline{j_{E'}}$ de la solution de $\phi_{\ell}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
-\STATE Calculer une equation de Weierstrass normalisée de $\overline{E''}$ de $j$-invariant $\overline{j_{E'}}$ à l'aide des formules de Elkies
+\STATE \label{alg:LS08:modified:rel:polmod} Calculer un relevé $\overline{j_{E'}}$ de la solution de $\phi_{\ell}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
+\STATE Calculer une equation de Weierstrass normalisée de $\overline{E''}$ de $j$-invariant $\overline{j_{E'}}$ à l'aide des formules de Elkies (voir proposition~\ref{prop:elk:nor})
 \STATE Utiliser l'algorithme BMSS pour calculer l'isogénie $\overline{I}$
 \STATE Réduire modulo $p$ $\overline{E''}$ et $\overline{I}$ vers $E''$ et $I$
 \STATE Utiliser l'isomorphisme:$E' \rightarrow E''$ pour calculer l'isogénie $I: E \rightarrow E'$.
@@ -1282,21 +1315,21 @@ L'algorithme de Lercier Sirvent \ref{alg:LS08:modified} calcule un relevé $\ove
 \begin{prop}[Lairez-Vaccon]
 Soient deux courbes $\ell$-isogènes $E,E'$ définies sur $\mathbb{F}_q$ de caractéristique $p$ avec $p \geqslant 5$, l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus: 
 \begin{itemize}
-\item $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $ nombres p-adiques si l'on ne connaît pas $p_1$ la somme des abscisses du noyau,
-\item  $ 1 + \lfloor \log_p(2 \ell - 1) \rfloor $ nombres $p$-adiques si l'on connaît $p_1$ la somme des abscisses du noyau.
+\item $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $ coefficients p-adiques si l'on ne connaît pas $p_1$ la somme des abscisses du noyau,
+\item  $ 1 + \lfloor \log_p(2 \ell - 1) \rfloor $ coefficients $p$-adiques si l'on connaît $p_1$ la somme des abscisses du noyau.
 \end{itemize}
 \end{prop}
 
-Ce résultat issu de \cite{LairezVaccon16} est une amélioration du résultat original de Lercier Sirvent \cite{Lercier-Sirvent2008}. Cette amélioration porte notamment sur la précision de la solution de l'équation différentielle que l'on doit résoudre à l'étape 2 de l'algorithme BMSS \ref{alg:BMSS:total} qui est décrite dans l'algorithme \ref{alg:BMSS:eqdiff}.
+Ce résultat issu de \cite{LairezVaccon16} est une amélioration du résultat original de Lercier et Sirvent \cite{Lercier-Sirvent2008}. Cette amélioration porte notamment sur la précision de la solution de l'équation différentielle que l'on doit résoudre à l'étape~\ref{alg:BMSS:total:eqdiff} de l'algorithme BMSS  qui est décrite dans l'algorithme~\ref{alg:BMSS:eqdiff}.
 
-\begin{proof}
-Une preuve détaillée pour calculer une solution de l'équation différentielle à précision donnée est dans \cite{LairezVaccon16}, cette méthode repose notamment sur la différentitation précisionnelle qui repose sur une analyse du premier ordre de la propagation des erreurs. 
+
+Une preuve détaillée pour calculer une solution de l'équation différentielle à précision donnée est dans \cite{LairezVaccon16}, cette méthode repose notamment sur la différenciation précisionnelle qui repose sur une analyse du premier ordre de la propagation des erreurs. 
 
 Comme vu précédemment on a besoin de calculer une solution de l'équation différentielle linéaire \eqref{eq:LS08:diflin} de précision $4\ell-1$ si l'on ne connaît pas $p_1$ la somme des abscisses des points du noyau de l'isogénie. Dans ce cas on applique le résultat de Lairez-Vaccon: pour obtenir une solution $p$-adique de précision $4 \ell-1$ on a besoin d'avoir en entrée des éléments de précision $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $. Tandis que dans le cas où l'on connaît $p_1$ on a besoin de calculer une solution de \eqref{eq:LS08:diflin} de précision $2\ell - 1$ et avec le résultat de Lairez-Vaccon on a besoin d'avoir une précision en entrée de $ 1 + \lfloor \log_p(2 \ell - 1) \rfloor $ nombres $p$-adiques.
-\end{proof}
+
 
 \begin{rem}
-Lors de l'étape $2$ de l'algorithme de  Lercier Sirvent (\ref{alg:LS08:modified}) on a besoin de connaître l'évaluation du $\ell$ème polynôme modulaire en $j_E$: $\phi_{\ell}(X,j_E)$ et on a aussi besoin de connaître des dérivées partielles de $\phi_{\ell}$ lors de l'étape $3$ (voit \ref{sub:Elkies}), ceci suppose donc la connaissance de $\phi_{\ell}$ qui à l'aide de formules (voir \cite[Theoreme 17.22]{ehcc05}) peut nous permettre de connaître $p_1$. Ainsi il est très raisonnable de penser que l'algorithme de Lercier Sirvent peut être utilisé dans certains cas avec une précision d'au plus $1 + \lfloor \log_{p}(2\ell - 1) \rfloor$.
+Lors de l'étape~\ref{alg:LS08:modified:rel:polmod} de l'algorithme de Lercier Sirvent (decrit dans l'algorithme~\ref{alg:LS08:modified}) on a besoin de connaître l'évaluation du $\ell$-ème polynôme modulaire en $j_E$: $\Phi_{\ell}(X,j_E)$ et on a aussi besoin de connaître des dérivées partielles de $\Phi_{\ell}$ lors de l'étape $3$ (voit \ref{sub:Elkies}), ceci suppose donc la connaissance de $\Phi_{\ell}$ qui à l'aide de formules (voir \cite[Theoreme 17.22]{ehcc05}) peut nous permettre de connaître $p_1$. Ainsi il est très raisonnable de penser que l'algorithme de Lercier Sirvent peut être utilisé dans certains cas avec une précision d'au plus $1 + \lfloor \log_{p}(2\ell - 1) \rfloor$.
 \end{rem}
 
 \begin{prop}
@@ -1308,8 +1341,8 @@ On ne considère pas dans cette analyse le coût de la construction de $\mathbb{
 L'étape $1$ de relèvement de la courbe $E$ dans $\mathbb{Q}_q$ est considéré comme nul car on prend un relevé trivial de $E$.
 L'étape $2$ peut être faite en $\tilde{O}(\ell)$ opérations sur $\mathbb{F}_q$ à l'aide d'un relèvement de Hensel. 
 L'étape $3$ du calcul d'une équation de Weierstrass normalisée a une complexité de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$ à l'aide des formules de Elkies \cite{elkies1998} (voir \ref{sub:Elkies}).
-L'étape $4$ est l'algorithme BMSS \ref{alg:BMSS:total} et a une complexité de $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{Q}_q$ si on ne connaît pas la valeur de $p_1$ (somme des abscisses des points du noyau de l'isogénie). L'étape $4$ a un coût de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{Q}_q)$ si on connaît la valeur de $p_1$ ce qui est envisageable dès lors que l'on se sert des dérivées du polynôme modulaire à l'étape $3$ et d'une évaluation du polynôme modulaire à l'étape $2$.
-Les deux dernières étapes ont elles un coup négligeable par rapport au reste des opérations, d'où le coût total de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$.
+L'étape $4$ est l'algorithme BMSS et a une complexité de $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{Q}_q$ si on ne connaît pas la valeur de $p_1$ (somme des abscisses des points du noyau de l'isogénie). L'étape $4$ a un coût de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{Q}_q$ si on connaît la valeur de $p_1$ ce qui est envisageable dès lors que l'on se sert des dérivées du polynôme modulaire à l'étape $3$ et d'une évaluation du polynôme modulaire à l'étape $2$.
+Les deux dernières étapes ont, elles, un coup négligeable par rapport au reste des opérations, d'où le coût total de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$.
 \end{proof}
 
 \begin{rem}
