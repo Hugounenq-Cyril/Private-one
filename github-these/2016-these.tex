@@ -285,7 +285,7 @@ Une courbe elliptique $E$ peut être définie comme la variété projective asso
 \label{eq:weierstrass-proj}
 E:Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3
 \end{equation}
-avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le point $[0:1:0]$ est appelé le \emph{point à l'infini} et sera noté $O_E$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
+avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le point $[0:1:0]$ est appelé le \emph{point à l'infini} et sera noté $0_E$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
 \end{defi}
 
 L'équation \eqref{eq:weierstrass-proj} est dite forme homogène de l'équation de Weierstrass. En appliquant le changement de variables $x=\frac{X}{Z}$, $y=\frac{Y}{Z}$, on passe alors en coordonnées affines et on obtient l'équation de Weierstrass suivante:
@@ -320,12 +320,16 @@ j=\frac{(b_2^2-24b_4)^3}{\Delta}
 \end{equation*}
 La constante $j$ est appelée \emph{$j$-invariant} de la courbe.
 
-Une question naturelle est de se demander à quel point l'équation de Weierstrass définit de façon unique une courbe elliptique. En considèrant les changements de variable qui préservent le point à l'infini $O_E$, il est montré \cite[III.3.1b]{Silv1} que le seul changement de variable préservant la forme de l'équation de Weierstrass et $O_E$ est:
+Une question naturelle est de se demander à quel point l'équation de 
+Weierstrass définit de façon unique une courbe elliptique. En considèrant les 
+changements de variables qui préservent le point à l'infini $0_E$, il est 
+montré \cite[III.3.1b]{Silv1} que le seul changement de variables préservant la
+forme de l'équation de Weierstrass et $0_E$ est:
 
 \begin{equation*}
 x=u^2x'+r    \quad  y=u^3y'+u^2sx'+t
 \end{equation*}
-avec $u,r,s,t$ des éléments de $\overline{\mathbb{K}}$ et $u$ différent de $0$. En calculant alors les coefficients $a'_i$ de la nouvelle équation de Weierstrass obtenu par le changement de variables, on obtient un $j$-invariant identique ce qui justifie alors la dénomination de celui-ci.
+avec $u,r,s,t$ des éléments de $\overline{\mathbb{K}}$ et $u$ différent de $0$. En calculant alors les coefficients $a'_i$ de la nouvelle équation de Weierstrass obtenue par le changement de variables, on obtient un $j$-invariant identique, ce qui justifie alors la dénomination de celui-ci.
 \newline
 
 
@@ -334,13 +338,15 @@ Soit une courbe $E$ définie sur $\mathbb{K}$ on définit $E(\mathbb{K})$, l'ens
 \begin{equation*}
 E(\mathbb{K})=\{(X:Y:Z)\in \mathbb{P}^2(\mathbb{K}) \setminus (0,0,0) : Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3 \}
 \end{equation*}
-Le seul point correspondant à $Z=0$ est le point à l'infini $O_E=(0:1:0)$, chaque classe différente de $O_E$ a un unique représentant $(X:Y:1)$ ce qui nous donne la notation équivalente suivante:
+Le seul point correspondant à $Z=0$ est le point à l'infini $0_E=(0:1:0)$, chaque classe différente de $0_E$ a un unique représentant $(X:Y:1)$ ce qui nous donne la notation équivalente suivante:
 \begin{equation*}
 E(\mathbb{K})=\{(x,y)\in \mathbb{K}^2  : y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6 \} \cup {O_E}
 \end{equation*}
 \end{defi}
 
-On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une courbe elliptique $E$ définie sur $\mathbb{K}$, alors son corps de fonction $\mathbb{K}(E)$ est le corps des fractions de l'anneau des coordonnées:
+On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une 
+courbe elliptique $E$ définie sur $\mathbb{K}$, alors son corps des fonctions 
+$\mathbb{K}(E)$ est le corps des fractions de l'anneau des coordonnées:
 \begin{equation*}
 \mathbb{K}[x,y]/(f(x,y)).
 \end{equation*}
@@ -418,7 +424,7 @@ On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une 
 On peut définir sur $E(\mathbb{K})$ une loi de groupe abélienne à l'aide de la méthode dite de la \emph{corde et de la tangente}
 
 \begin{defi}[Loi d'addition]
-Soient $P,Q \in E(\mathbb{K})$, $L$ la droite reliant $P$ à $Q$ (ou tangente si $P=Q$) et $R$ le troisième point d'intersection de $L$ avec $E$. Soit $L'$ la droite reliant $R$ à $O_E$ cette droite intersecte alors la courbe en un troisième point $P+Q$.
+Soient $P,Q \in E(\mathbb{K})$, $L$ la droite reliant $P$ à $Q$ (ou tangente à la courbe en $P$ si $P=Q$) et $R$ le troisième point d'intersection de $L$ avec $E$. Soit $L'$ la droite reliant $R$ à $0_E$ cette droite intersecte alors la courbe en un troisième point $P+Q$.
 \end{defi}
 
 Une preuve que cette loi définit bien une loi de groupe abélienne est montrée dans \cite[III.2.2]{Silv1}.
@@ -448,7 +454,7 @@ on peut alors exprimer les coordonnées de $P+Q$:
 \newline
 
 
-\'A l'aide de la loi additive on peut définir la multiplication scalaire par l'entier naturel $m$ comme suit:
+\`A l'aide de la loi additive on peut définir la multiplication scalaire par l'entier naturel $m$ comme suit:
 
 \begin{equation}
 \begin{alignedat}{1}
@@ -470,7 +476,7 @@ Soient $E_1$ et $E_2$ deux courbes elliptiques, une isogénie $\varphi$ de $E_1$
 \begin{equation*}
 \varphi:E_1 \rightarrow E_2
 \end{equation*}
-En particulier on a $\varphi(O_{E_1})=O_{E_2}$.
+En particulier on a $\varphi(0_{E_1})=0_{E_2}$.
 \end{defi}
 On dira que $E_1$ et $E_2$ sont isogènes si il existe une isogénie $\varphi$ qui va de $E_1$ dans $E_2$. 
 
@@ -508,9 +514,13 @@ Soit $\varphi$ une isogénie de $E_1$ dans $E_2$, alors:
 Voir \cite[III.4.10]{Silv1}
 \end{proof}
 
-Comme les isogénies peuvent être décomposées de façon unique en un produit d'isogénie inséparable et séparable, alors on va se concentrer à la détermination d'isogénies séparables par la suite.
+Comme les isogénies peuvent être décomposées de façon unique en un produit 
+d'isogénies inséparables et séparables, alors on va se concentrer à la 
+détermination d'isogénies séparables par la suite.
 
-Voyons maintenant plus en détail le lien entre une isogénie séparable et son noyau, pour cela on va d'abord rappeler les formules de Vélu et une application de celle-ci.
+Voyons maintenant plus en détail le lien entre une isogénie séparable et son 
+noyau, pour cela on va d'abord rappeler les formules de Vélu et une application
+de celles-ci.
 
 \subsubsection{Formules de Vélu}
 \label{sse:Vel}
@@ -549,7 +559,7 @@ t= \sum_{Q \in G \setminus \{0_E\}} f'(Q) \quad u=\sum_{Q \in G \setminus \{0_E\
 \end{equation*}
 
 \begin{rem}
-On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisé par Elkies \cite{elkies1998} \textcolor{red}{ref a mettre} qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
+On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisé par Elkies \cite{elkies1998} \todo{ref a mettre Kohel???} qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
 \begin{equation*}
 \frac{g(x)}{h(x)}= x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
 \end{equation*}
@@ -579,7 +589,10 @@ Pour $E$ une courbe elliptique et $C$ un sous-groupe fini des points de $E$ la n
 L'ensemble des isogénies de $E_1$ vers $E_2$ adjoint à l'application nulle est appelé groupe des homomorphismes et est noté \emph{$\mathrm{Hom}(E_1,E_2)$}. L'ensemble des isogénies de $E_1$ vers $E_1$ adjoint à l'application nulle est appelé anneau des endomorphismes et est noté \emph{$\mathrm{End}(E_1)=\mathrm{Hom}(E_1,E_1)$}, les éléments de $\mathrm{End}(E_1)$ inversibles sont appelés automorphismes et sont notés \emph{$\mathrm{Aut}(E_1)$}. Une isogénie définie sur $\mathbb{K}$ sera dite \emph{$\mathbb{K}$-rationnelle} ou simplement \emph{rationnelle} quand il n'y a pas d'ambiguïtés.
 
 \begin{thm}[Isogénie duale]
-Soit $\varphi$ une isogénie définie sur $\mathbb{K}$ d'une courbe elliptique $E_1$ vers une courbe elliptique $E_2$, alors l'unique isogénie $\widehat{\varphi}$ qui va de $E_2$ ver $E_1$ telle que $\widehat{\varphi}\circ\varphi=[\deg(\varphi)]_{E_1}$ est appelée \emph{isogénie duale}.
+Soit $\varphi$ une isogénie définie sur $\mathbb{K}$ d'une courbe elliptique 
+$E_1$ vers une courbe elliptique $E_2$, alors il existe une unique isogénie 
+$\widehat{\varphi}$ qui va de $E_2$ ver $E_1$ telle que $\widehat{\varphi}\circ
+\varphi=[\deg(\varphi)]_{E_1}$ est appelée \emph{isogénie duale}.
 \end{thm}
 
 \begin{proof}
@@ -621,9 +634,9 @@ E[m]=\nicefrac{\mathbb{Z}}{m\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{m\mathbb{Z}
 \item Si $\mathrm{car}(\mathbb{K})=p>0$ alors:
 \begin{equation*}
 \begin{alignedat}{1}
-&\text{Soit } E[p^e]=\{O_E\} \text{ pour tout } e \geqslant 1 \text{alors $E$ est dite supersingulière }\\
+&\text{Soit } E[p^e]=\{O_E\} \text{ pour tout } e \geqslant 1 \text{ alors $E$ est dite \emph{supersingulière} }\\
 &\text{Soit } E[p^e]=\nicefrac{\mathbb{Z}}{p^e\mathbb{Z}} \text{ pour tout } e \geqslant 1
-\text{alors $E$ est dite ordinaire }\end{alignedat}
+\text{ alors $E$ est dite \emph{ordinaire} }\end{alignedat}
 \end{equation*}
 \end{enumerate}
 \end{cor}
@@ -632,9 +645,9 @@ E[m]=\nicefrac{\mathbb{Z}}{m\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{m\mathbb{Z}
 Voir \cite[Corrolary III.6.4]{Silv1}.
 \end{proof}
 
-\begin{defi}
-Une courbe elliptique $E$ définie sur un corps $\mathbb{K}$ de caractéristique $p$ différente de $0$ est dite \emph{supersingulière} si $E[p^e]=\{O_E\}$ pour tout $e$ entier naturel non nul, elle est dite \emph{ordinaire} sinon. 
-\end{defi}
+%\begin{defi}
+%Une courbe elliptique $E$ définie sur un corps $\mathbb{K}$ de caractéristique $p$ différente de $0$ est dite \emph{supersingulière} si $E[p^e]=\{O_E\}$ pour tout $e$ entier naturel non nul, elle est dite \emph{ordinaire} sinon. 
+%\end{defi}
 
 \begin{defi}[Module de Tate]
 Soit $E$ une courbe elliptique et $\ell$ un nombre premier. Le \emph{module de Tate $\ell$-adique} de $E$ est le groupe:
@@ -653,8 +666,8 @@ En tant que $\mathbb{Z}_{\ell}$ module, le module de Tate a la structure suivant
 T_{\ell} \cong 
 \begin{cases} 
 \mathbb{Z}_{\ell} \times \mathbb{Z}_{\ell} &\text{ si } \ell \neq \mathrm{car}(\mathbb{K}). \\
-\mathbb{Z}_{\ell} &\text{ si } \ell=\mathrm{car}(\mathbb{K})  \text{et E est ordinaire}. \\
-\{O_E\} &\text{ si } \ell=\mathrm{car}(\mathbb{K})  \text{et E est supersingulière}.
+\mathbb{Z}_{\ell} &\text{ si } \ell=\mathrm{car}(\mathbb{K})  \text{ et E est \emph{ordinaire}}. \\
+\{O_E\} &\text{ si } \ell=\mathrm{car}(\mathbb{K})  \text{ et E est \emph{supersingulière}}.
 \end{cases}
 \end{equation*}
 \end{prop}
@@ -667,7 +680,7 @@ T_{\ell} \cong
 
 \subsection{Endomorphismes}
 
-Soit $E$ une courbe elliptique, alors si l'on adjoint à $\mathrm{End}(E)=\mathcal{O}$, la composition et l'addition d'endomorphismes cela forme un anneau. De plus la multiplication scalaire fournit une injection de $\mathbb{Z}$ dans $\mathrm{End}(E)$. Cependant $\mathrm{End}(E)$ n'est pas nécessairement réduit à $\mathbb{Z}$.
+Soit $E$ une courbe elliptique, alors si l'on munit $\mathrm{End}(E)=\mathcal{O}$ de la composition et l'addition d'endomorphismes cela forme un anneau. De plus la multiplication scalaire fournit une injection de $\mathbb{Z}$ dans $\mathrm{End}(E)$. Cependant $\mathrm{End}(E)$ n'est pas nécessairement réduit à $\mathbb{Z}$.
 
 \begin{defi}
 Une courbe elliptique $E$ est dite à multiplication complexe si $\mathrm{End}(E)$ n'est pas réduit à $\mathbb{Z}$.
@@ -679,7 +692,7 @@ $\mathrm{End}(E)$ est
 \begin{itemize}
 \item soit isomorphe à $\mathbb{Z}$ dans ce cas la courbe est \emph{ordinaire}, 
 \item soit isomorphe à un ordre dans un corps quadratique imaginaire dans ce cas la courbe est \emph{ordinaire}, 
-\item soit isomorphe à un ordre dans une algèbre de quaternions la courbe est \emph{supersingulière}. 
+\item soit isomorphe à un ordre dans une algèbre de quaternions, la courbe est \emph{supersingulière}. 
 \end{itemize}
 \end{thm}
 
@@ -694,7 +707,13 @@ Parler entre autres du polynome modulaire à cette occasion-là.
 
 \section{Courbes elliptiques définies sur un corps fini}
 
-Soit $p$ un nombre premier, on notera $\mathbb{F}_q=\mathbb{F}_{p^e}$ le corps fini à $q$ éléments. Travailler sur un corps fini entraîne le fait que le nombre de points d'une courbe elliptiqe est fini, ainsi nous travaillons avec un groupe abélien fini. Afin d'étudier ce groupe et en particulier d'établir sa cardinalité nous allons introduire l'endomorphisme de Frobenius. Dans la suite de ce document nous considérerons que les courbes elliptiques mentionnées sont définies sur un corps fini.
+Soit $p$ un nombre premier, on notera $\mathbb{F}_q=\mathbb{F}_{p^e}$ le corps 
+fini à $q$ éléments. Travailler sur un corps fini entraîne le fait que le 
+nombre de points d'une courbe elliptiqe est fini, ainsi nous travaillons avec 
+un groupe abélien fini. Afin d'étudier ce groupe, et en particulier d'établir 
+sa cardinalité, nous allons introduire l'endomorphisme de Frobenius. Dans la 
+suite de ce document nous considérerons que les courbes elliptiques mentionnées
+ sont définies sur un corps fini.
 
 On a tout d'abord le résultat suivant sur la structure des points d'une courbe elliptique:
 \begin{prop}
@@ -704,7 +723,7 @@ Le groupe abélien $E(\mathbb{F}_q$) est isomorphe à $\nicefrac{\mathbb{Z}}{n_1
 \begin{proof}
 Voir \cite[Theorem 4.1]{Washington2008}
 \end{proof}
-On a le résultat suivant qui ne donne pas l'égalité entre les structures de groupe de deux courbes elliptiques isogènes mais entre leur cardinalité.
+On a le résultat suivant qui donne l'égalité entre la cardinalité de deux courbes elliptiques isogènes.
 
 \begin{prop}
 \label{pro:iso:ega}
@@ -731,7 +750,7 @@ Comme le groupe de points d'une courbe elliptique  $E(\mathbb{F}_q$) est isomorp
 
 \begin{prop}
 \label{pro:fro:dis}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Les conditions suivantes sont équivantes:
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Les conditions suivantes sont équivalentes:
 \begin{enumerate}
 \item $E$ est supersingulière,
 \item $E[p^e]=\{O_E\}$ pour tout $e > 0$,
@@ -745,7 +764,7 @@ si ces conditions ne sont pas vérifiées alors on a les conditions équivalente
 \item $E[p^e]=\mathbb{Z}/p^e\mathbb{Z}$ pour tout $e > 0$,
 \item la duale $\widehat{\pi}$ de l'endomorphisme de Frobenius est séparable,
 \item la trace $t_{\pi}$ de l'endomorphisme de Frobenius est première avec $p$,
-\item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombre quadratique imaginaire.
+\item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombres quadratique imaginaire.
 \end{enumerate}
 \end{prop}
 
@@ -757,7 +776,7 @@ L'endomorphisme de Frobenius relatif à $\mathbb{F}_q$ admet pour polynôme cara
 \begin{equation}
 \pi^2-t_{\pi}+q=0
 \end{equation}
-avec $t$ la trace de l'endomorphisme de Frobenius. Cette équation a un rôle important dans le calcul de cardinalité de courbes elliptiques \cite{Schoof85}.
+avec $t_{\pi}$ la trace de l'endomorphisme de Frobenius. Cette équation a un rôle important dans le calcul de cardinalité de courbes elliptiques \cite{Schoof85}.
 
 \begin{prop}
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $t_{\pi}$ la trace de l'endomorphisme de Frobenius relatif à $ \mathbb{F}_q$ alors on a:
@@ -773,7 +792,7 @@ Voir \cite[Theorem V.1.1]{Silv1}
 \begin{thm}[Hasse]
 Soit $E$ une courbe définie sur $\mathbb{F}_q$, alors 
 \begin{equation}
-|t| \leqslant 2 \sqrt{q}
+|t_{\pi}| \leqslant 2 \sqrt{q}
 \end{equation}
 \end{thm}
 
@@ -816,7 +835,8 @@ Des améliorations ont donc été apportées à l'algorithme de Schoof par Atkin
 \begin{equation*}
 X^2-t_{\pi}X+q = 0 \bmod \ell
 \end{equation*} 
-on veut voir quand il est possible de déterminer des sous-groupes de la $\ell$-torsion \emph{définis} sur $\mathbb{F}_q$.
+on veut voir quand il est possible de déterminer des sous-groupes de la 
+$\ell$-torsion stables par $\pi$.
 On a plusieurs cas possibles selon les propriétés du discriminant $d_{\pi}=t_{\pi}^2-4q$.
 
 \begin{defi}\label{def:dif-Atk-Elk}
@@ -837,14 +857,19 @@ Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Soit $C$ u
 	\item Si $d_{\pi} \neq 0 \bmod \ell$ alors il y a deux valeurs propres $\lambda$, $\mu$ et les espaces propres sont définis sur $\mathbb{F}_q$.
 \end{itemize}
 
-	Dans le cas Atkin les valeurs propres ne sont pas définie sur $\mathbb{F}_\ell$ mais sur $\mathbb{F}_{\ell^2}$, les espaces propres sont alors définis sur $\mathbb{F}_{q^r}$ avec $r \mid \ell+1$.
+	Dans le cas Atkin les valeurs propres ne sont pas définies sur $\mathbb{F}_\ell$ mais sur $\mathbb{F}_{\ell^2}$, les espaces propres sont alors définis sur $\mathbb{F}_{q^r}$ avec $r \mid \ell+1$.
 	
 	
-	On ne peut connaître à priori ce résultat, car il suppose la connaissance de $t_{\pi}$ et donc la cardinalité de la courbe. On doit donc travailler avec un autre objet le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ de degré $\ell+1$ et symétrique. 
+	On ne peut appliquer à priori ce résultat, car il suppose la connaissance de $t_{\pi}$ et donc la cardinalité de la courbe. On doit donc travailler avec un autre objet: le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $, de degré $\ell+1$ et symétrique. 
  
-\begin{defi}
+\begin{prop}
 Soient $j_0 \in \mathbb{F}_q$ le $j$-invariant d'une courbe elliptique $E_0$ définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0,1728$ et  $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ le $\ell$-ème polynôme modulaire. Les $\ell+1$ racines du polynôme $\Phi_{\ell}(X,j_0)$ sont les $j$-invariants de courbes $\ell$-isogénes à $E_0$. 
-\end{defi} 
+\end{prop}
+
+\begin{proof}
+\todo{chercher référence}
+\end{proof}
+ 
 Les $j$ invariants des courbes $\ell$-isogènes à $E_0$, racines du polynôme modulaire évalué en $j_0$, correspondent exactement aux $j$-invariants des  courbes générées par les $\ell$ isogénies $E \to E/C$ avec $C$(noyau de l'isogénie) un des $\ell+1$ sous-groupes cycliques de la $\ell$-torsion. 
 
 On montre alors le lien entre l'existence des espaces propres et les racines du $\ell$-ième polynôme modulaire $\Phi_{\ell}$ par la proposition suivante. 
@@ -860,7 +885,7 @@ On montre alors le lien entre l'existence des espaces propres et les racines du 
 \begin{prop}\label{pro:def-ss-grp}
 Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0, 1728$. Alors:
 \begin{enumerate}
-\item le polynôme $\Phi_{\ell}(X,j)$ a une racine $j_0 \in \mathbb{F}_{q}^r$ si et seulement si le noyau $C$ de l'isogénie $E \to E/C$ avec $j(E/C)=j_0$ est un espace propre de dimension $1$ pour $\pi^r$ appliqué à $E[\ell]$
+\item le polynôme $\Phi_{\ell}(X,j)$ a une racine $j_0 \in \mathbb{F}_{q}^r$ si et seulement si le noyau $C$ de l'isogénie $E \to E/C$ avec $j(E/C)=j_0$ est un espace propre de dimension $1$ pour $\pi^r$ appliqué à $E[\ell]$;
 \item le polynôme $\Phi_{\ell}(X,j)$ se scinde complètement sur $ \mathbb{F}_{q}^r[X]$ si et seulement si $\pi^r$ agit comme une matrice scalaire sur $E[\ell]$.
 \end{enumerate}
 \end{prop}
@@ -891,7 +916,7 @@ X^2-t_{\pi}X+q = 0 \bmod g_{\ell}
 avec $g_{\ell}$ le polynôme qui s'annule sur les abscisses des points de $C$.
 Ce groupe $C$ étant plus petit que celui de la $\ell$-torsion, on va diminuer la complexité du calcul à effectuer pour trouver la trace modulo $\ell$. En effet la $\ell$-torsion étant isomorphe à un produit de deux groupes cycliques, une fois une valeur propre trouvée $\lambda$, alors l'autre valeur propre est $\mu=q/\lambda \bmod \ell$ et l'on obtient alors la trace $t_{\pi}=\lambda+\mu \bmod \ell$. 
 
-Par contre pour les nombres premiers $\ell$ de Atkin, comme un sous groupe cylcique de la $\ell$-torsion ne peut être déterminé dans $\mathbb{F}_q$ alors on ne peut déterminer les valeurs exactes de $t_{\pi}$ modulo $\ell$. On doit donc considérer toutes les valeurs possibles données par \eqref{eq:sea:tra}. On répète alors cette opération pour  différents nombres premiers de Atkin, puis on utilise un algorithme à pas de bébé pas de géant pour déterminer la trace du Frobenius. Il existe des améliorations sur l'algorithme à pas de bébé pas de géant proposées par \cite{Ler97a}, ces améloriations utilisent notamment un tri sur les nombres premiers de Atkin en fonction de leur côut. Ce coût est dû au nombre de racines primites $r$-ième de l'unité, qui donnent le nombre de solutions possibles de \eqref{eq:sea:tra}.
+Par contre pour les nombres premiers $\ell$ de Atkin, comme un sous groupe cylcique de la $\ell$-torsion ne peut être déterminé dans $\mathbb{F}_q$ alors on ne peut déterminer les valeurs exactes de $t_{\pi}$ modulo $\ell$. On doit donc considérer toutes les valeurs possibles données par \eqref{eq:sea:tra}. On répète alors cette opération pour  différents nombres premiers de Atkin, puis on utilise un algorithme pas de bébé pas de géant pour déterminer la trace du Frobenius. Il existe des améliorations sur l'algorithme pas de bébé pas de géant proposées par \cite{Ler97a}, ces améloriations utilisent notamment un tri sur les nombres premiers de Atkin en fonction de leur côut. Ce coût est dû au nombre de racines primites $r$-ième de l'unité, qui donnent le nombre de solutions possibles de \eqref{eq:sea:tra}.
 
 
 On va donc dans la suite de ce document se concentrer sur le cas où $\ell$ est un nombre de Elkies car cela nous permettra de déterminer un sous espace particulier de la $\ell$-torsion et de la $\ell^k$ torsion en général avec $k$ un entier.
