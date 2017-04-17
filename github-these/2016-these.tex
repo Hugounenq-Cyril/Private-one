@@ -334,7 +334,7 @@ avec $u,r,s,t$ des éléments de $\overline{\mathbb{K}}$ et $u$ différent de $0
 
 
 \begin{defi}
-Soit une courbe $E$ définie sur $\mathbb{K}$ on définit $E(\mathbb{K})$, l'ensemble des points d'une courbe elliptique $E$ défini sur $\mathbb{K}$, comme étant l'ensemble:
+Soit une courbe $E$ définie sur $\mathbb{K}$ on note $E(\mathbb{K})$, l'ensemble des points d'une courbe elliptique $E$ défini sur $\mathbb{K}$, c'est l'ensemble:
 \begin{equation*}
 E(\mathbb{K})=\{(X:Y:Z)\in \mathbb{P}^2(\mathbb{K}) \setminus (0,0,0) : Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3 \}
 \end{equation*}
@@ -472,12 +472,32 @@ On appelle points de \emph{$m$-torsion} l'ensemble des points de $E$ qui sont en
 \subsection{Isogénies}
 
 \begin{defi}
-Soient $E_1$ et $E_2$ deux courbes elliptiques, une isogénie $\varphi$ de $E_1$ dans $E_2$ est un morphisme de groupes surjectif et de noyau fini noté:
+Soient $E_1$ et $E_2$ deux courbes elliptiques, une isogénie $\varphi$ de $E_1$ dans $E_2$ est un morphisme de variété surjectif:
 \begin{equation*}
 \varphi:E_1 \rightarrow E_2
 \end{equation*}
-En particulier on a $\varphi(0_{E_1})=0_{E_2}$.
+avec $\varphi(0_{E_1})=0_{E_2}$.
 \end{defi}
+En particulier on a le résultat suivant qui nous permet de spécifier le lien 
+entre les isogénies et les homomorphismes:
+
+\begin{thm}
+Soit $\varphi:E_1 \rightarrow E_2$ une isogénie alors pour tous points $P,Q$ de $E_1$ on a:
+\begin{equation*}
+\varphi(P+Q)=\varphi(P)+\varphi(Q)
+\end{equation*}
+\end{thm}
+
+\begin{proof}
+Voir \cite[Theoreme III.4.8]{Silv1}
+\end{proof}
+
+\begin{defi}
+Soit $\varphi: E_1 \rightarrow E_2$ une isogénie, on dira que $\varphi$ est une
+isogénie définie sur $\mathbb{K}$ si sa restriction sur $E_1(\mathbb{K}),
+E_2(\mathbb{K})$ est encore un morphisme de variétés.
+\end{defi}
+
 On dira que $E_1$ et $E_2$ sont isogènes si il existe une isogénie $\varphi$ qui va de $E_1$ dans $E_2$. 
 
 \begin{exe}
@@ -524,7 +544,7 @@ de celles-ci.
 
 \subsubsection{Formules de Vélu}
 \label{sse:Vel}
-Pour un sous-groupe $C$ de $E(\mathbb{K})$ les formules de Vélu \cite{velu1971} permettent d'exprimer de façon canonique une isogénie séparable $E \rightarrow E'$ de noyau $C$ et de codomaine $E'$.  L'isogénie est $\mathbb{K}$-rationnelle si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{K}[X]$.
+Pour un sous-groupe $C$ de $E(\mathbb{K})$ les formules de Vélu \cite{velu1971} permettent d'exprimer de façon canonique une isogénie séparable $E \rightarrow E'$ de noyau $C$ et de codomaine $E'$.  L'isogénie est définie sur $\mathbb{K}$ si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{K}[X]$.
 
 Soit $P$ un point de $E$ alors les formules de Vélu nous donnent l'isogénie $I$ de noyau $C$ par: 
 \begin{equation}
@@ -559,7 +579,7 @@ t= \sum_{Q \in G \setminus \{0_E\}} f'(Q) \quad u=\sum_{Q \in G \setminus \{0_E\
 \end{equation*}
 
 \begin{rem}
-On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisé par Elkies \cite{elkies1998} \todo{ref a mettre Kohel???} qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
+On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisé par Elkies \cite{elkies1998} et \cite[Section 2.4]{Kohel96} \todo{ref a mettre Kohel???} qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
 \begin{equation*}
 \frac{g(x)}{h(x)}= x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
 \end{equation*}
@@ -971,7 +991,7 @@ Dans ce chapitre vont être présentés différents algorithmes pour résoudre l
 On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$, bien que certains algorithmes présentés peuvent aussi s'utiliser sur des corps de caractéristique nulle.
 
 \section{Rappel et applications des formules de Vélu}
-Comme vu dans le chapitre \ref{cha:Rappels theoriques} à l'aide des formules de Vélu on peut expliciter une isogénie séparable de degré $\ell$ sous la forme:
+Comme vu dans la sous-section~\ref{sse:Vel} à l'aide des formules de Vélu on peut expliciter une isogénie séparable $I$ de degré $\ell$ sous la forme:
 \begin{equation} 
 \label{eq:velu:gh}
 I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
