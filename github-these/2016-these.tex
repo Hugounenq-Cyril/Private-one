@@ -4755,18 +4755,18 @@ $\prod_{j=1}^{i-1}d_j\ell_j^{k_j} \geqslant d_i\ell_i^{n_i}$.
 
 On introduit un objet nécesaire à la construction de composita.
 \begin{defi}
-Soient $P$ un polynômes irréductible de degré $\deg(P)$ de racines $r_i$ pour 
-$i \in [1,\deg(P)]$, $Q$ un polynômes irréductible de degré $\deg(Q)$ de racines $s_j$,
+Soient $P$ un polynôme irréductible de degré $\deg(P)$ de racines $r_i$ pour 
+$i \in [1,\deg(P)]$, $Q$ un polynôme irréductible de degré $\deg(Q)$ de racines $s_j$,
 tels que $P$ et $Q$ aient des racines distinctes et des degrés $\deg(P),\deg(Q)$ 
 premiers entre eux, alors on définit $R$ le \emph{produit composé} comme étant 
 le polynôme de degré $\deg(P)\deg(Q)$ unitaire et de racines $r_is_j$ avec $i \in 
 [1,\deg(P)], j \in [1,\deg(Q)]$. On note $R= P\odot Q$.  
-\end{defi}\todo{changer notation des degrés!}
+\end{defi}
 On peut alors montrer comment on construit un composita à l'aide de la 
 proposition suivante: 
-\begin{prop}[Dire comment on définit une composita de deux tours $\ell_i$-adiques]
+\begin{prop}
 \label{pro:init:com}
-Soient $\ell_1$ un nombres premier, soient $P$, $Q$ deux 
+Soient $\ell_1$ un nombre premier, $P$, $Q$ deux 
 polynômes irréductibles de degré $d_1\ell_1^{n_1}$ et $\deg(Q)$ 
 premiers entre eux tels que $\mathbb{F}_q[x]/\langle P \rangle \cong 
 \mathsf{F}_{(1,n_1)}$ le $n_1$ ème élément de la tour d'extensions 
@@ -4782,29 +4782,27 @@ une extension degré $\deg(Q)$ de $\mathbb{F}_q$.
 Voir \cite[Theorem 2]{BrawleyCarlitz87}
 \end{proof}
 
-\todo{Corriger un jour les erreurs de biblio....}
+
 On peut alors définir les composita dans notre cas particulier.
-\todo{dire ici comment on contourne cette difficulté}
 \begin{defi}
 \label{def:con:com}
-On note $\mathbb{K}_1$ le corps $\mathsf{F}_{1,n_1}$. Soit $i \in [1,n-1]$ 
-supposons que $\mathbb{K}_{i}$ est défini alors à 
+On note $\mathbb{K}_1$ le corps $\mathsf{F}_{(1,n_1)}$. Soit $i \in [1,n-1]$ 
+supposons que $\mathbb{K}_{i}$ est défini, alors à 
 l'aide de la proposition~\ref{pro:init:com} $\mathbb{K}_{i+1}$ est défini comme
  le composita de $\mathbb{K}_i$ et $\mathsf{F}_{(i+1,n_{i+1})}$.
 \end{defi}
 \begin{rem}
 Ici le cas où l'on aurait $d_i=d_j$ pour $i<j$ entraîne dés lors que l'on a pas
-les conditions pour appliquer la proposition~\ref{pro:init:com}. \todo{fixer cela 
-regarder autre article de Luca} 
+les conditions pour appliquer la proposition~\ref{pro:init:com}. \todo{voir si on peut pas améliorer cette remarque} 
 En pratique il est raisonnable de penser que l'on a pas $d_i=d_j=1$ car cela 
-voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$ \todo{reflechir a cette remarque qui est fausse}
+voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$ 
 \end{rem}
 
 (voir par exemple 
 \cite{Schost15} pour un contexte) \todo{surement plus du tout utile}
 \begin{nota} Afin de simplifier les notations on va 
  noter $m_i=\prod_{i=j}^nd_j\ell_j^{n_j}/d_i\ell_i^{n_i}$ et 
- $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$, en particulier $p_{i}$ est le 
+ $p_{i}=\prod_{j=1}^{i}d_j\ell_j^{k_j}$, en particulier $p_{i}$ est le 
  degré du composita $\mathbb{K}_i$ comme extension de $\mathbb{F}_q$, par 
  ailleurs on pose $p_0=1$.
 %$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
@@ -4816,7 +4814,15 @@ voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$ \todo{reflec
  $\ell_i$-isogénies à l'aide des méthodes vues dans le 
  chapitre~\ref{cha:con:poi}, on doit alors ensuite les exprimer dans la 
  composita afin de les utiliser pour le théorème des restes chinois Ellipique,
- on a donc besoin du résultat suivant issu de \cite[Theorem 1]{DeFeoDoliskaniSchost14}
+ 
+ 
+ Maintenant que l'on a montré comment construire un tel composita 
+ $\mathbb{K}_n=\otimes_{i=1}^n\mathsf{F}_{(i,n_i)}$, voyons à quel coût on peut
+ exprimer un élément de $\mathsf{F}_{(i,n_i)}$ dans $\mathbb{K}_n$. En 
+ particulier ce résultat nous permet d'exprimer la \emph{descente} d'un élément
+ de $\mathbb{K}_i$ vers une représentation dans $\mathbb{K}_{i-1}$ et de faire 
+ l'opération inverse appelée\emph{relèvement}.  On a donc 
+ besoin du résultat suivant issu de \cite[Theorem 1]{DeFeoDoliskaniSchost14}
  \begin{prop}[De Feo, Doliskani, Schost]
  \label{pro:com:inj}
  Soient $i \in [2,n] $ $P,Q$ deux polynômes irréductibles de degrés premiers 
@@ -4856,12 +4862,7 @@ $\mathsf{F}_{(i,n_i)}$ dans $\mathsf{K}_{n}$.
  \end{prop} 
  
  \begin{proof}
-  \`A l'aide d'une substituion de Kronecker comme vue dans la preuve de la 
-  proposition~\ref{pro:mult:pol} et utilisée auparavant dans 
- \cite[Lemma 2.2]{vzGShoup92} on peut représenter un polynôme de degré $d$ à 
- coefficients dans $\mathbb{K}_n$ comme un polynôme univarié de degré $2p_nd$ à 
- coefficients dans $\mathbb{F}_q$ dés lors la multiplication a un coût de 
- $O(\mathsf{M}(p_nd))$ opérations sur $\mathbb{F}_q$.
+ La preuve est la même que celle de la proposition~\ref{pro:mult:pol}.
  \end{proof}
  
  On sera aussi amené à trouvé une racine d'un polynôme de degré $d$ à 
@@ -4871,7 +4872,7 @@ $\mathsf{F}_{(i,n_i)}$ dans $\mathsf{K}_{n}$.
  Le coût de calcul de racine de polynômes de degré $d$ à coefficients dans une 
  composita $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
  avec $P$ un polynôme irréductible de degré $p_n$ a un coût espéré de 
- $O(p_n \mathsf{M}(p_nd)\log(d)\log(dq))$ opérations sur $\mathbb{F}_q$. \todo{trouver complexité bis}.
+ $O(p_n \mathsf{M}(p_nd)\log(d)\log(dq))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
  
 \begin{proof}
@@ -4883,6 +4884,10 @@ On va noter par $R(i,j)$ le coût de trouver la racine d'un polynôme de degré
 $i$ à coefficients dans la composita $\mathbb{K}_j$, donc 
 $R(i,j)=O(p_j \mathsf{M}(p_ji)\log(i)\log(iq))$.
 \end{nota}
+
+Maintenant voyons un autre résultat qui nous permet de changer la 
+représentation d'un élément de $\mathbb{K}_i$ afin de le représenter comme un 
+élément de $\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$. 
 
 \begin{prop}
 \label{pro:iso:fie}
@@ -4907,7 +4912,7 @@ $d_i\ell_i^{k} \leqslant p_{i-1}$,
 \item $O(p_{i-1}^2\mathsf{M}(d_i\ell_i^{k}))$ opérations sur $\mathbb{F}_q$ 
 et l'application de l'inverse de $\varrho$ a un coût de 
 $O(\mathsf{M}(p_{i-1}d_i\ell_i^{k})(d_i\ell_i^{k})^{1/2}+\mathsf{M}(p_{i-1})(d_i\ell_i^{k})^{(\omega+1)/2})$ 
-opérations sur $\mathbb{F}_q$ lorsque $d_i\ell_i^{n_i} \geqslant p_{i-1}$.
+opérations sur $\mathbb{F}_q$ lorsque $d_i\ell_i^{k} \geqslant p_{i-1}$.
 \end{enumerate}
 \end{prop}
 \todo{on pourrait éventuellement faire un restriction sur les $\ell_i$ pour que cela soit toujours vérifié}
@@ -4915,9 +4920,8 @@ opérations sur $\mathbb{F}_q$ lorsque $d_i\ell_i^{n_i} \geqslant p_{i-1}$.
 Voir \cite{DeFeoDoliskaniSchost14}.
 \end{proof}
 
-
-Ainsi on peut travailler avec 
-
+Ainsi on peut appliquer ce résultat pour calculer le coût du Frobenius avec 
+une méhtode similaire à celle du théorème~\ref{thm:frob-ell}
 \begin{prop}
 \label{pro:fro:com}
 Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{k}$ avec 
@@ -4975,8 +4979,15 @@ Pour ce calcul-là l'opération dominante est donc le changement de
 représentation de $a \in \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$.
 \end{proof}
 
-Détaillons maintenant comment on adapte les méthodes décrites dans la 
-section~\ref{sec:interpolation} à ce contexte.
+On voit dans cette preuve que le coût de changement de représentation des 
+éléments de $\mathbb{K}_i$ vers une représentation de la forme 
+$\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$ est crucial dans le coût total
+du Frobenius. En effet si on compare ce résultat avec celui du 
+théorème~\ref{thm:frob-ell} on voit l'influence du changement de représentation
+à coût nul.
+
+Détaillons maintenant comment on adapte les méthodes de calcul de polynôme 
+d'interpolation décrites dans la section~\ref{sec:interpolation} à ce contexte.
  
   
  Soient deux éléments $v,w \in \mathbb{K}_{i} \setminus \mathbb{K}_{i-1}$ on veut
