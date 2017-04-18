@@ -5184,8 +5184,13 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
     tout $i$
   \end{itemize}
   sont calculés avec un coût de
-  $O\bigl(\mathsf{M}(t)\log(s) + n\mathsf{M}(\ell^2t)\log(\ell)\bigr)$ opérations dans $\mathbb{F}_q$.
+  $O\bigl(\mathsf{M}(t)\log(s) + n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i})\bigr)$ 
+  opérations dans $\mathbb{F}_q$ avec un coût de 
+  $O(nsM(p_n)p_{n-1}^{(\omega-1)/2})$ opérations dans $\mathbb{F}_q$ pour 
+  l'expression des éléments dans le sous-corps de $\mathbb{K}_n$ le plus petit 
+  au sens de l'inclusion.
 \end{prop}
+\todo{dire a un endroit que $p_{i-1}$ est choisi d'une certaine manière...}
 \begin{proof}
 \todo{rediger cette preuve}
   Le polynôme $T$ est le produit de tous les polynômes minimaux $T_i$. 
@@ -5195,13 +5200,20 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
   %on effectue une \emph{descente} sur $(v_i,w_i)$ pour les écrire comme des 
   %éléments de $\mathsf{F}_{n_i+1}$, cette opération étant juste une réécriture
   %elle a un coût algébrique nul. 
+  Soit $t_j$ la cardinalité du sous-corps de $\mathbb{K}_n$ le plus petit au 
+  sens  de l'inclusion tel que $v_j,w_j$ soient inclus dedans, alors le coût de
+  la descente d'éléments $v_j,w_j$ sur le composita inclus dans $\mathbb{K}_n$ 
+  isomorphe à $\otimes_{k=1}^n\mathsf{F}_{(k,r_{k,i})}$ avec 
+  $r_{k,j}=v_{\ell_k}(t_j)$ est majoré par $O(M(p_n)p_{n-1}^{(\omega-1)/2})$ à 
+  l'aide de la proposition~\ref{pro:iso:fie}. Ainsi le coût total de descente 
+  de tous ces éléments est de $O(nsM(p_n)p_{n-1}^{(\omega-1)/2})$.
   On calcule les $T_j$ à l'aide de
-   $O(n\mathsf{M}(t_j)(p_{n-1})^{(\omega-1)/2} \max_{i,j}(\ell_{n-i}n_{n-i}))$ 
+   $O(n\mathsf{M}(t_j)(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i}n_{n-i}))$ 
   opérations par le lemme~\ref{lem:interpolation:minpoly:ult}.En additionnant 
   cela pour tout $j$, %et en utilisant la superlinéarité de $\mathsf{M}$  
-  on obtient un coût total de $O(n\mathsf{M}(t)(p_{n-1})^{(\omega-1)/2} \max_{i,j}(\ell_{n-i}n_{n-i}))$ opérations.
+  on obtient un coût total de $O(n\mathsf{M}(t)(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i}n_{n-i}))$ opérations.
   De la même manière on calcule les polynômes $A_i$ tels que $A_i(v_i)=w_i$
-  au coût de $O(n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i,j}(\ell_{n-i}))$
+  au coût de $O(n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i}))$
   opérations sur $\mathbb{F}_q$.
   On ordonne ensuite les $T_j$ dans une arbre de sous-produit binaire et 
   on les multiplie entre eux. Un arbre équilibré, pas nécessairement optimal,
