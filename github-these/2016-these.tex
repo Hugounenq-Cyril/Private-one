@@ -5499,26 +5499,31 @@ récurrence $P^{(i)}_{j+1}=\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$, ce qui nous
  par la proposition~\ref{pro:rac:com}. Ainsi par superlinéarité de 
  $\mathsf{M}$ le coût de calcul de $P^{(i+1)}$ est de 
  $O(p_{i+1} \mathsf{M}(p_{i+1} \ell_{i+1})\log(\ell_{i+1})\log(\ell_{i+1}q))$.
- Le coût de l'étape~\ref{alg:TRC:init:gen:div} est donc $O(\sum_{i=0}^{n-1}\mathsf{M}(p_i \ell_{i+1}))$. 
+ On majore ce coût par $O(p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$
+ Le coût de l'étape~\ref{alg:TRC:init:gen:div} est donc majoré par 
+ $O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$. 
 
 Pour le calcul de l'étape~\ref{alg:TRC:init:gen:mul} on décompose la 
 multiplication par $\ell_{i_0}^{k_{i_0}}$ en $k_{i_0}$ multiplications par 
 $\ell_{i_0}$ que l'on décompose chacune en deux $\ell_{i_0}$-isogénies. $P'$ 
-étant défini dans $\mathbb{K}_{m}$ cela coûte 
+étant défini dans $\mathbb{K}_{n}$ cela coûte 
 $O(k_{i_0}(\mathsf{M}(p_n)(\log(p_n)+\ell_{i_0})))$.
 
 L'étape~\ref{alg:TRC:init:gen:prim} se décompose comme 
-l'étape~\ref{alg:TRC:init:gen:mul}, on décompose la multiplication par 
-$\ell_{i_0}^{k_{i_0}}$ en $k_{i_0}$ multiplications par $\ell_{i_0}$ que l'on 
-décompose chacune en deux $\ell_{i_0}$-isogénies, sauf que cette fois-ci on va
-devoir inverser chacune des $\ell_{i_0}$-isogénies. On peut alors soit résoudre
-des polynômes de degré $\ell_{i_0}$ pour calculer les antécédents des 
-$\ell_{i_0}$-isogénies, ou alors on peut déterminer l'action de la 
-mutliplication par $\ell_{i_0}$ sur les points d'odre $\vartheta_{i_0}$ 
-mais une telle recherche exhaustive dans l'état actuel où le coût de plongement
+l'étape~\ref{alg:TRC:init:gen:mul} en $k_{i_0}$ multiplications par 
+$\ell_{i_0}$ que l'on décompose chacune en deux $\ell_{i_0}$-isogénies, sauf 
+que cette fois-ci on va devoir inverser chacune des $\ell_{i_0}$-isogénies. On 
+peut alors soit résoudre des polynômes de degré $\ell_{i_0}$ pour calculer les 
+antécédents des $\ell_{i_0}$-isogénies, ou alors on peut déterminer l'action de
+la mutliplication par $\ell_{i_0}$ sur les points d'odre $\vartheta_{i_0}$ mais
+une telle recherche exhaustive dans l'état actuel où le coût de plongement 
 n'est pas négligeable ne rend pas celle-ci intéresante d'un point de vue 
-pratique. Ainsi le coût d'une telle étape est de $O(k_{i_0}R())$ soit $O()$ 
-opérations sur $\mathbb{F}_q$.
+pratique. Ainsi le coût d'une telle étape est de $O(k_{i_0}R(\ell_{i_0},p_n)$ 
+soit $O(k_{i_0}p_n\mathsf{M}(p_n\ell_{i_0})\log(\ell_{i_0})\log(\ell_{i_0q}))$ 
+opérations sur $\mathbb{F}_q$ auquel il faut ajouter le coût pour identifier la
+bonne racine, un moyen rapide de faire cela est d'exprimer les racines dans la 
+représentation $\underset{i\neq i_0}\otimes_{i=1}^n \mathsf{F}_{(i,k_i)} \otimes \mathsf{F}_{(i_0,k_{i_0})}$
+ce qui a un coût majoré par $O(\mathsf{M}(p_n)(\frac{p_n}{d_{i_0}\ell_{i_0}^{k_{i_0}}})^{(\omega-1)/2})$ par la proposition~\ref{pro:iso:fie} donc un coût total de $O(\ell_{i_0}^2\mathsf{M}(p_n)(\frac{p_n}{d_{i_0}\ell_{i_0}^{k_{i_0}}})^{(\omega-1)/2})$.
 \end{proof}
 
 \begin{algorithm}
