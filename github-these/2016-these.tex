@@ -5174,8 +5174,8 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
 
 \begin{prop}\label{prop:interpol}
   Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n 
-  \setminus \mathbb{K}_{n-1}$, $p_n$ le degré des polynômes minimaux de $v_i$, 
-  et l'on note  $t=\sum p_n$. 
+  \setminus \mathbb{K}_{n-1}$, $t_i$ le degré des polynômes minimaux de $v_i$, 
+  et l'on note  $t=\sum t_i$. 
   Les polynômes
   \begin{itemize}
   \item $T\in \mathbb{F}_q[x]$ de degré $t$ tel que $T(v_i)=0$ pour tout $i$,
@@ -5195,14 +5195,15 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
   %on effectue une \emph{descente} sur $(v_i,w_i)$ pour les écrire comme des 
   %éléments de $\mathsf{F}_{n_i+1}$, cette opération étant juste une réécriture
   %elle a un coût algébrique nul. 
-  On calcule les $T_i$ à l'aide de
-   $O(n\mathsf{M}(p_n)(p_{n-1})^{(\omega-1)/2} \max_i(\ell_{n-i}n_{n-i}))$ 
+  On calcule les $T_j$ à l'aide de
+   $O(n\mathsf{M}(t_j)(p_{n-1})^{(\omega-1)/2} \max_{i,j}(\ell_{n-i}n_{n-i}))$ 
   opérations par le lemme~\ref{lem:interpolation:minpoly:ult}.En additionnant 
-  cela pour tout $i$, %et en utilisant la superlinéarité de $\mathsf{M}$  
-  on obtient un coût total de $O(sn\mathsf{M}(p_n)(p_{n-1})^{(\omega-1)/2} \max_i(\ell_{n-i}n_{n-i}))$ opérations.
+  cela pour tout $j$, %et en utilisant la superlinéarité de $\mathsf{M}$  
+  on obtient un coût total de $O(n\mathsf{M}(t)(p_{n-1})^{(\omega-1)/2} \max_{i,j}(\ell_{n-i}n_{n-i}))$ opérations.
   De la même manière on calcule les polynômes $A_i$ tels que $A_i(v_i)=w_i$
-  au même coût.
-  On ordonne ensuite les $T_i$ dans une arbre de sous-produit binaire et 
+  au coût de $O(n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i,j}(\ell_{n-i}))$
+  opérations sur $\mathbb{F}_q$.
+  On ordonne ensuite les $T_j$ dans une arbre de sous-produit binaire et 
   on les multiplie entre eux. Un arbre équilibré, pas nécessairement optimal,
   a une profondeur de $O(\log (s))$ et nécessite $O(\mathsf{M}(t))$ opérations
    par niveau. Ainsi le coût de calcul de $T$ est borné par 
