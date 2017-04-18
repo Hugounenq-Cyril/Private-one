@@ -5042,7 +5042,8 @@ sur $\mathbb{F}_q$.
 
 
 \begin{lem}\label{lem:interpolation:minpoly:ult}
-  Le coût de calcul de $T=T^{(n)}$ est de $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
+  Le coût de calcul de $T=T^{(n)}$ est de 
+  $O(n\mathsf{M}(p_n)(p_{n-1})^{(\omega-1)/2} \max_i(\ell_{n-i}n_{n-i}))$
   opérations dans $\mathbb{F}_q$.
 \end{lem}
 
@@ -5066,7 +5067,9 @@ sur $\mathbb{F}_q$.
   donc en $O((n_{n-i}+1) \log(\ell_{n-i})\mathsf{M}(p_n))$ opérations sur 
   $\mathbb{F}_{q}$.
   Le coût total de l'étape $i$ est donc de 
-  $O(\ell_{n-i}(n_{n-i}+1)\mathsf{M}(p_n)(p_{n-i-1})^{(\omega-1)/2})$.
+  $O(\ell_{n-i}(n_{n-i}+1)\mathsf{M}(p_n)(p_{n-i-1})^{(\omega-1)/2})$,
+  on majore celui-ci par 
+  $O(\mathsf{M}(p_n)(p_{n-1})^{(\omega-1)/2} \max_i(\ell_{n-i}n_{n-i}))$.
   
   Une fois que $T^{(i+1)}$ a été calculé de cette manière, on opère une 
   \emph{descente} sur ses coefficients dans $\mathbb{K}_{n-i-1}$ lors du calcul
@@ -5076,18 +5079,18 @@ sur $\mathbb{F}_q$.
   énoncé. 
 \end{proof}
  
- On peut alors appliquer les méthodes simlaires à celles employées dans 
- \cite{DeFeo10} et \ref{sec:interpolation} pour calculer un polynôme 
+ On continue alors d'appliquer les méthodes similaires à celles employées dans 
+ \cite{DeFeo10} et la section~\ref{sec:interpolation} pour calculer un polynôme 
  d'interpolation $A \in \mathbb{F}_q[x]$ tel que $A(v)=w$ pour $v,w$ deux 
  éléments de $\mathbb{K}_{n} \setminus \mathbb{K}_{n-1}$.
  
-On définit la suite de polynômes $A^{(i)}$ 
- définie pour $i \in [0, n]$, $A^{(0)}=w/T'(v)$. En 
- supposant que l'on connaisse un $A^{(i)}$ pour $i < n$ de degré inférieur à $\frac{p_n}{p_{n-i}}$ à 
- coefficients dans $\mathsf{K}_{n-i}$ alors pour $j \in [0 ; \ell-1]$ on définit
- $A^{(i,j)}=\sigma_i^j(A^{(i)})$, et l'on pose:  
+On définit la suite de polynômes $A^{(i)}$ pour $i \in [0, n]$ avec
+ $A^{(0)}=w/T'(v)$. En  supposant que l'on connaisse $A^{(i)}$ pour $i < n$ 
+ de degré inférieur à $\frac{p_n}{p_{n-i}}$ à coefficients dans 
+ $\mathsf{K}_{n-i}$ alors pour $j \in [0 ; \ell-1]$ on définit
+ $A^{(i,j)}=\sigma_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}^j(A^{(i)})$, et l'on pose:  
 \begin{equation*}
-A^{(i+1)}=\sum_{j=0}^{d_{n-i}\ell_{n-i}^{n_{n-i}-1}}A^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} 
+A^{(i+1)}=\sum_{j=0}^{d_{n-i}\ell_{n-i}^{n_{n-i}}-1}A^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} 
 \end{equation*}
 on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A} 
 à coefficients dans $\mathbb{K}_{n-i}$ et de degré $\frac{p_n}{p_{n-i}}$.
@@ -5099,7 +5102,7 @@ $i \in [0,n-1], k \in [0,n_i]$. La notation $A^{(i,j)}_{(k)}$ est définie comme
  \begin{itemize}
  \item[$k=0$]
  \[
-A^{(i)}_{(1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{i}^{n_{n-i}-1}j)}_{(0)}\frac{T^{(i+1)}}{T^{(i,\ell_{i}^{n_{n-i}-1}j)}}  \]
+A^{(i)}_{(1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{n-i}^{n_{n-i}-1}j)}_{(0)}\frac{T^{(i+1)}}{T^{(i,\ell_{n-i}^{n_{n-i}-1}j)}}  \]
 \item[$0<k<n_{n-i}$]
 \[
 A^{(i)}_{(k+1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}  \]
@@ -5108,13 +5111,13 @@ A^{(i)}_{(k+1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)
   \]
  \end{itemize}
 ainsi on a $A^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
-de degré $\frac{p_n}{p_{n-i-1}}$ pour $k \in [0,n_{n-i}]$ en 
+de degré inférieur à $\frac{p_n}{p_{n-i-1}}$ pour $k \in [0,n_{n-i}]$ en 
 particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.  
 
 \begin{prop}
   Soient $v,w\in \mathbb{K}_n\setminus \mathbb{K}_{n-1}$, le coût de calcul du polynôme minimal
   $T\in \mathbb{F}_q[x]$ de $v$ et le polynôme d'interpolation $A\in 
-  \mathbb{F}_q[x]$ tel que $A(v)=w$ est $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
+  \mathbb{F}_q[x]$ tel que $A(v)=w$ est $O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2}))$ 
   opérations dans $\mathbb{F}_q$.
 \end{prop}
 \begin{proof}
@@ -5124,12 +5127,13 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
   $T'(v) = (((T' \bmod T^{(n)}) \bmod T^{(n-1)}) \cdots \bmod T^{(0)})$.
   \`A l'étape $n-i$, on calcule la division Euclidienne d'un polynôme de degré
    $O(\frac{p_n}{p_i})$ par un polynôme de degré $O(\frac{p_n}{p_{i+1}})$ dans  $\mathbb{K}_i[x]$. 
-   On a alors le coût de chaque division qui est de $O(\mathsf{M}(p_n)$ 
+   On a alors le coût de chaque division qui est de $O(\mathsf{M}(p_n))$ 
    par la proposition~\ref{pro:mul:com} sans oublier le coût de descente des 
    coefficients du polynôme de $\mathbb{K}_i$ dans $\mathbb{K}_{i-1}$ qui est 
    de $O(\mathsf{M}(p_{i-1})d_i\ell_i^{n_i})$ par la proposition~\ref{pro:com:inj}.
-   Ce qui donne un coût total de $O(n\mathsf{M}(\ell^{n+1}))$ opérations.
-   Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(p_n)\log(p_n)$ opérations.
+   Ce qui donne un coût total de $O(n\mathsf{M}(p_n))$ opérations.
+   Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(p_n)\log(p_n))$ opérations ce
+   qui domine le coût total de cette étape.
 
   \`A chaque étape $i$, les polynômes $A^{(i,j)}_{(k)}$ sont calculés à un coût de
   $\frac{p_n}{p_{n-i-1}}O(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{1/2}+\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega+1)/2}))$
@@ -5138,8 +5142,9 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
   opérations sur $\mathbb{F}_q$, comme dans la preuve du  
   lemme~\ref{lem:interpolation:minpoly:ult}. On répète cette étape 
   $O(\ell_{n-1})$ fois pour $k \in [0,n_{n-i}]$, cela a donc un coût total de 
-  $O(\log(\ell_{n-i})n_{n-i})\mathsf{M}(p_nd_{n-i}\ell_{n-i}^{n_{n-i}})p_{n-i-1}^{(\omega-1)/2})$
-  par superlinéarité de $\mathsf{M}$.
+  $O(\ell_{n-i}\mathsf{M}(p_nd_{n-i}\ell_{n-i}^{n_{n-i}})p_{n-i-1}^{(\omega-1)/2})$
+  par superlinéarité de $\mathsf{M}$, on majore alors celui-ci par:
+  $O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2}))$.
   
   
   Le coût de calcul de $\frac{T^{(i+1)}}{T^{(i,j)}}$ est de 
@@ -5147,26 +5152,30 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
   \`A partir des $A^{(i,j)}_{(k)}$ on calcule $A^{(i)}_{k+1}$ en utilisant un arbre de 
   sous-produits comme décrit dans~\cite[Lemma~10.4]{vzGJG03}, celui-ci 
   utilisant $\log(\ell_{n-i})$ additions de coût unitaire 
-  $O(p_n \ell_{n_i}^{n_{n-i}-k})$. Le polynôme $A^{(i)}_{k+1}$ résultant de 
+  $O(p_n \ell_{n_i}^{n_{n-i}-k})$ son coût est négligeable par rapport aux 
+  autres opérations. Le polynôme $A^{(i)}_{n_{n-i}+1}$ résultant de 
   cette opération est de degré $O(\frac{p_n}{p_{n-i-1}})$ et a ses coefficients
-  définis dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k-1)}$,
-  le coût total est donc de $O(\mathsf{M}(p_n)\log(\ell_{i}))$ opérations sur 
-  $\mathbb{F}_q$. 
+  définis dans $\mathbb{K}_{n-i-1}$.
+  Le coût total est donc de 
+  $O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2}))$ 
+  opérations sur $\mathbb{F}_q$. 
     
 \end{proof}
 
  
  Ce résultat est à comparer aux algorithmes d'interpolations rapides 
  tel que  celui présenté dans \cite[Chapter~10.2]{vzGJG03} il donnerait un temps
- de calcul de  $O\bigl(n\mathsf{M}(\ell^{2n})\log(\ell)\bigr)$ opérations sur 
+ de calcul de  $O\bigl(\mathsf{M}(p_n)\log(p_n)\bigr)$ opérations sur 
+ $\mathbb{K}_n$ et donc $O\bigl(\mathsf{M}(p_n^2)\log^2(p_n)\bigr)$ opérations sur
  $\mathbb{F}_q$. 
 
 On énonce un problème plus général de calcul de polynôme d'interpolation 
 à l'aide de plusieurs couples de points de $\mathsf{F}_n$.
 
 \begin{prop}\label{prop:interpol}
-  Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n$, 
-  $t_i$ le degré des polynômes minimaux de $v_i$, et l'on note  $t=\sum t_i$. 
+  Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n 
+  \setminus \mathbb{K}_{n-1}$, $p_n$ le degré des polynômes minimaux de $v_i$, 
+  et l'on note  $t=\sum p_n$. 
   Les polynômes
   \begin{itemize}
   \item $T\in \mathbb{F}_q[x]$ de degré $t$ tel que $T(v_i)=0$ pour tout $i$,
@@ -5179,17 +5188,18 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
 \end{prop}
 \begin{proof}
 \todo{rediger cette preuve}
-  Le polynôme $T$ est le produit de tous les polynômes minimaux $T_i$. Soit 
-  $n_i=v_\ell(t_i)$, de telle sorte que $v_i,w_i\in F_{n_i+1}\setminus F_{n_i}$,
-  et $\ell^{n_i}\leqslant t_i<\ell^{n_i+1}$,
-  on effectue une \emph{descente} sur $(v_i,w_i)$ pour les écrire comme des 
-  éléments de $\mathsf{F}_{n_i+1}$, cette opération étant juste une réécriture
-  elle a un coût algébrique nul. On calcule les $T_i$ à l'aide de
-   $O(n\mathsf{M}(\ell^{n_i+2})\log(\ell))$ opérations par 
-   le lemme~\ref{lemma:interpolation:minpoly}. En bornant 
-  $\ell^{n_i}$ par $t_i$, en additionnant cela pour tout $i$, et en utilisant 
-  la superlinéarité de $\mathsf{M}$ on obtient un coût total de 
-  $O(n\mathsf{M}(\ell^2t)\log(\ell))$ opérations.
+  Le polynôme $T$ est le produit de tous les polynômes minimaux $T_i$. 
+  %Soit 
+  %$s_i$, de telle sorte que $v_i,w_i\in K_{n_i+1}\setminus F_{n_i}$,
+  %et $\ell^{n_i}\leqslant t_i<\ell^{n_i+1}$,
+  %on effectue une \emph{descente} sur $(v_i,w_i)$ pour les écrire comme des 
+  %éléments de $\mathsf{F}_{n_i+1}$, cette opération étant juste une réécriture
+  %elle a un coût algébrique nul. 
+  On calcule les $T_i$ à l'aide de
+   $O(n\mathsf{M}(p_n)(p_{n-1})^{(\omega-1)/2} \max_i(\ell_{n-i}n_{n-i}))$ 
+  opérations par le lemme~\ref{lem:interpolation:minpoly:ult}.En additionnant 
+  cela pour tout $i$, %et en utilisant la superlinéarité de $\mathsf{M}$  
+  on obtient un coût total de $O(sn\mathsf{M}(p_n)(p_{n-1})^{(\omega-1)/2} \max_i(\ell_{n-i}n_{n-i}))$ opérations.
   De la même manière on calcule les polynômes $A_i$ tels que $A_i(v_i)=w_i$
   au même coût.
   On ordonne ensuite les $T_i$ dans une arbre de sous-produit binaire et 
