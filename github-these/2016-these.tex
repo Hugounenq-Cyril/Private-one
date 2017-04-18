@@ -4869,6 +4869,7 @@ $\mathsf{F}_{(i,n_i)}$ dans $\mathsf{K}_{n}$.
  coefficients dans une composita $\mathbb{K}_n$, d'où le résultat suivant:
  
 \begin{prop}
+\label{pro:rac:com}
  Le coût de calcul de racine de polynômes de degré $d$ à coefficients dans une 
  composita $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
  avec $P$ un polynôme irréductible de degré $p_n$ a un coût espéré de 
@@ -5028,7 +5029,7 @@ $i \in [0,n-1], k \in [0,n_{n-i}]$. La notation $T^{(i,j)}_{(k)}$ est définie c
 T^{(i)}_{(k+1)}=\prod_{j=0}^{\ell_{n-i}-1}T^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}\]
 \item[$k= n_{n-i}$]
 \[
-T^{(i)}_{(n_{n-i}+1)}=\prod_{j=0}^{d_{n-i}-1}T^{(i,j)}_{(n_{n-i})}
+T^{(i+1)}_{(0)}=T^{(i)}_{(n_{n-i}+1)}=\prod_{j=0}^{d_{n-i}-1}T^{(i,j)}_{(n_{n-i})}
 \]
 \end{itemize}
 ainsi on a $T^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
@@ -5107,7 +5108,7 @@ A^{(i)}_{(1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{n-i}^{n_{n-i}-1}j)}_{(0)}\fr
 \[
 A^{(i)}_{(k+1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}  \]
  \item[$k=n_{n-i}$] \[
- A^{(i)}_{(n_{n-i}+1)}=\sum_{j=0}^{d_{n-i}-1} A^{(i,j)}_{(n_{n-i})}  
+ A^{(i+1)}_{(0)}=A^{(i)}_{(n_{n-i}+1)}=\sum_{j=0}^{d_{n-i}-1} A^{(i,j)}_{(n_{n-i})}  
   \]
  \end{itemize}
 ainsi on a $A^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
@@ -5231,7 +5232,7 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
 \begin{defi}
 Soient $\ell_1, \ell_2$ deux nombres premiers distincts, $E$ une courbe elliptique. On appelle Théorème des Restes Chinois d'une courbe elliptique l'énoncé suivant:
 
-Soient $P_1$ un point d'ordre $\ell_1^{k_1}$ de $E$ et $P_2$ un point d'ordre $\ell_2^{k_2}$ de $E$ alors ces deux points sont associés isomorphiquement à un point $P$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$ tel que $[\ell_1^{k_1}]P=P_2$ et $[\ell_1^{k_2}]P=P_1$.
+Soient $P_1$ un point d'ordre $\ell_1^{k_1}$ de $E$ et $P_2$ un point d'ordre $\ell_2^{k_2}$ de $E$ alors ces deux points sont associés isomorphiquement à un point $P$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$ tel que $[\ell_1^{k_1}]P=P_2$ et $[\ell_2^{k_2}]P=P_1$.
 \end{defi}
 
 Maintenant que l'on a défini le théorème des restes chinois pour une courbe elliptique montrons comment on le résoud à l'aide de l'algorithme suivant:
@@ -5293,13 +5294,13 @@ $\vartheta_i=\frac{\upsilon_n}{\ell_i^{k_i}}$.
 elliptique à $n$ nombres premiers distincts.
 
 \paragraph{Théorème des Restes chinois généralisés sur une courbe Elliptique $E$}
-Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 \in E[\ell_1^{k_1}], \dots, P_n \in E[\ell_n^{k_n}]$, alors le théorème des restes chinois revient à déterminer un point $P \in E[\upsilon_n]$ tel que $[\vartheta_i] P=P_{i_0}$ pour $i_0 \in [1,n]$.
+Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 \in E[\ell_1^{k_1}], \dots, P_n \in E[\ell_n^{k_n}]$, alors le théorème des restes chinois revient à déterminer un point $P \in E[\upsilon_n]$ tel que $[\vartheta_{i_0}] P=P_{i_0}$ pour $i_0 \in [1,n]$.
 
 %\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i}
-On présente en appendice une généralisation de 
-l'algorithme~\ref{alg:TRC:init} dans l'algorithme~\ref{alg:TRC:init:gen} à 
-l'aide de celui-ci on peut résoudre la généralisation du théorème des restes 
-chinois d'une courbe elliptique à l'aide de l'algorithme~\ref{alg:TRC}.
+On présente une généralisation de l'algorithme~\ref{alg:TRC:init} dans 
+l'algorithme~\ref{alg:TRC:init:gen} à l'aide de celui-ci on peut résoudre la 
+généralisation du théorème des restes chinois d'une courbe elliptique à l'aide 
+de l'algorithme~\ref{alg:TRC}.
 
 
 Cette approche du théorème des restes chinois a été motivée pour l'appliquer à 
@@ -5351,11 +5352,11 @@ qui se situent à une profondeur $e_i$ du cratère du volcan de
 $\ell_i$-isogénies pour $i \in [1,n]$. Alors pour $P$ un
  point d'ordre $\upsilon_n$ de $E$ construit à l'aide de 
 l'algorithme~\ref{alg:TRC} tel que $[\vartheta_i]P=P_i$ 
-avec $P_i$ des points (partiellement) horizontaux direction $\lambda_i$, et 
-$P'$ un point d'ordre $\upsilon$ de $E'$ construit à l'aide de 
-l'algorithme~\ref{alg:TRC} tel que $[\vartheta_i]P'=P'_i$ 
-avec $P'_i$ des points (partiellement) horizontaux direction $\lambda_i$
- alors $\phi(P) \in \langle P' \rangle$. 
+avec $P_i$ des points (partiellement) horizontaux direction $\lambda_i$ et 
+profondeur $e_i$, et $P'$ un point d'ordre $\upsilon$ de $E'$ construit à 
+l'aide de l'algorithme~\ref{alg:TRC} tel que $[\vartheta_i]P'=P'_i$ avec $P'_i$
+des points (partiellement) horizontaux direction $\lambda_i$ et profondeur 
+$e_i$ alors $\phi(P) \in \langle P' \rangle$. 
 \end{cor}
 
 
@@ -5378,9 +5379,9 @@ On a donc bien une correspondance entre les points définis à l'aide du Théor�
  l'on note $\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$ le composita 
  qui contient tous les éléments $\mathsf{F}_{(i,k_i)}$ des tours d'extensions
  $\ell_i$-adiques.
-\begin{prop}\todo{définir a un endroit ce qu'est un représentant pour l'orbite du Frobenius}
+\begin{prop}
 \label{pro:rep:com}
-Soit $P$ un point d'ordre $\upsilon_n$ de $E(\mathbb{K}_n)$ obetnu à l'aide 
+Soit $P$ un point d'ordre $\upsilon_n$ de $E(\mathbb{K}_n)$ obtenu à l'aide 
 du théorème des restes chinois appliqué aux points $P_i$ de $E$ d'ordre 
 $\ell_i^{k_i}$ tels que l'orbite générée par l'action de 
 $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$ sur $P_i$ soit de taille
@@ -5393,7 +5394,7 @@ $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$ sur $P_i$ soit de taille
 Soit $P$ un point de $E$ respectant les conditions de l'énoncé, supposons par 
 l'absurde qu'il existe $i_0 \in [1,n]$ et $r_0 \in [1,d_{i_0}\ell_{i_0}^{k_{i_0}}-1]$ 
 tel que l'action d'un élément générateur de 
-$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$ 
+$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$ 
 à la puissance $r_0$ laisse fixe $P$. Par le théorème des restes chinois on 
 peut représenter cette action sur $\mathbb{Z}/\ell_{i_0}^{k_{i_0}}\mathbb{Z} 
 \times \mathbb{Z}/\vartheta_{i_0}\mathbb{Z}$
@@ -5482,19 +5483,22 @@ utilisation de construction de $\mathbb{K}_n$ tel que $\mathbb{K}_1=
 \mathsf{F}_{(i_0,k_{i_0})}$, dés lorsque lorsque l'on va calculer la division 
 successive par $\ell_i$ on va successivement travailler dans les corps 
 $\mathbb{K}_2, \mathbb{K}_3, \dots, \mathbb{K}_n$. Ainsi on suppose sans perte 
-de généralités que l'on a $i_0=1$. Ainsi on décompose cette étape en $n-1$ 
+de généralités que l'on a $i_0=1$. On décompose cette étape en $n-1$ 
 étapes, on appelle $P^{(0)}=P_{1}$ et on définit par récurrence 
 $P^{(i+1)}=\mathsf{divise}(P^{(i)},\ell_{i+1}^{n_{i+1}})$, on a alors 
 $P^{(i+1)}$ d'ordre $\upsilon_{i+1}$ et défini dans $\mathbb{K}_{i+1}$. 
 Calculons le coût de l'étape $i$, on décompose tout d'abord 
 $\mathsf{divise}(P^{(i)},\ell_{i+1}^{n_{i+1}})$ à l'aide de $2*n_{i+1}$ 
-$\ell_{i+1}$-isogénies. Ainsi on pose $P^{(i)}_O=P^{(i)}$ et on définit par 
+$\ell_{i+1}$-isogénies. Ainsi on pose $P^{(i)}_0=P^{(i)}$ et on définit par 
 récurrence $P^{(i)}_{j+1}=\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$, ce qui nous
  donne $P^{(i+1)}=P^{(i)}_{n_{i+1}}$. On a $P^{(i)}_{j}$ défini dans 
  $\mathbb{K}_i\otimes \mathsf{F}_{(i+1,j)}$ et donc le coût de 
- $\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$ est $R()$ c'est à dire 
- $O(\mathsf{M}(p_i d_{i+1} \ell_{i+1}^{j+1}))$. Ainsi par superlinéarité de 
- $\mathsf{M}$ le coût de calcul de $P^{(i+1)}$ est de $O(\mathsf{M}(p_i \ell_{i+1}))$.
+ $\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$ est 
+ $R(\ell_{i+1},p_id_{i+1}\ell_{i+1}^{i+1})$ c'est à dire 
+ $O(p_i d_{i+1} \ell_{i+1}^{j+1}\mathsf{M}(p_i d_{i+1} \ell_{i+1}^{j+2})\log(\ell_{i+1})\log(\ell_{i+1}q))$
+ par la proposition~\ref{pro:rac:com}. Ainsi par superlinéarité de 
+ $\mathsf{M}$ le coût de calcul de $P^{(i+1)}$ est de 
+ $O(p_{i+1} \mathsf{M}(p_{i+1} \ell_{i+1})\log(\ell_{i+1})\log(\ell_{i+1}q))$.
  Le coût de l'étape~\ref{alg:TRC:init:gen:div} est donc $O(\sum_{i=0}^{n-1}\mathsf{M}(p_i \ell_{i+1}))$. 
 
 Pour le calcul de l'étape~\ref{alg:TRC:init:gen:mul} on décompose la 
