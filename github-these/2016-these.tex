@@ -4751,7 +4751,7 @@ $\ell_i$-adiques, en particulier on veut calculer un composita qui contient
 tous les éléments des tours d'extensions $\ell_i$-adiques suivant:
 $\mathsf{F}_{(1,n_1)}, \dots \mathsf{F}_{(n,n_n)}$. On suppose de plus que les
 $\ell_i$ sont ordonnés de telle sorte que pour tout $i \in [2,n]$ 
-$\prod_{j=1}^{i-1}d_j\ell_j^{k_j} \geqslant d_i\ell_i^{n_i}$.
+$\prod_{j=1}^{i-1}d_j\ell_j^{n_j} \geqslant d_i\ell_i^{n_i}$.
 
 On introduit un objet nécesaire à la construction de composita.
 \begin{defi}
@@ -4802,7 +4802,7 @@ voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$
 \cite{Schost15} pour un contexte) \todo{surement plus du tout utile}
 \begin{nota} Afin de simplifier les notations on va 
  noter $m_i=\prod_{i=j}^nd_j\ell_j^{n_j}/d_i\ell_i^{n_i}$ et 
- $p_{i}=\prod_{j=1}^{i}d_j\ell_j^{k_j}$, en particulier $p_{i}$ est le 
+ $p_{i}=\prod_{j=1}^{i}d_j\ell_j^{n_j}$, en particulier $p_{i}$ est le 
  degré du composita $\mathbb{K}_i$ comme extension de $\mathbb{F}_q$, par 
  ailleurs on pose $p_0=1$.
 %$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
@@ -4844,7 +4844,7 @@ On voit qu'avec la construction de la définition~\ref{def:con:com} on connaît
 seulement le polynôme, avec la notation de la proposition~\ref{pro:com:inj}, $Q$
 qui définit l'extension $\mathsf{K}_{i-1}$ de degré $p_{i-1}$ de 
 $\mathbb{F}_q$. Ainsi pour connaître tous les polynômes qui définissent les 
-extensions de degé $\frac{\prod_{i=1}^{n}d_i\ell_i^{k_i}}{d_j \ell_j^{k_j}}$ de
+extensions de degé $\frac{\prod_{i=1}^{n}d_i\ell_i^{n_i}}{d_j \ell_j^{n_j}}$ de
 $\mathbb{F}_q$ on doit changer l'ordre des $\ell_i$ dans la construction de la 
 définition~\ref{def:con:com}, on doit donc calculer $n$ constructions 
 différentes de composita pour pouvoir calculer le plongement de tous les 
@@ -4928,16 +4928,18 @@ Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{k}$ ave
 $k \in [1,n_i]$ tel que $\mathsf{F}_{(i,k)}=\mathbb{F}_q[x]/\langle P \rangle$,
 $Q$ un polynôme irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
 tel que $\mathbb{K}_{i-1}=\mathbb{F}_q[y]/\langle Q \rangle$, $R=P \odot Q$ 
-tel que  $\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}=\mathbb{F}_q[z]/\langle R
-\rangle$, alors pour un élément $a$ de $\mathbb{K}_{i-1} \otimes 
-\mathsf{F}_{(i,k)}$ le coût de calcul de $a$ à une puissance 
-$q^{r p_{i-1}}$ est de $O(\mathsf{M}(p_i)p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{n_i})p_{i-1}^{(\omega+1)/2})$ opérations dans $\mathbb{F}_q$ avec un 
+tel que  $\mathbb{K}_{i}=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un 
+élément $a$ de $\mathbb{K}_{i}$ le coût de calcul de $a$ à une puissance 
+$q^{r p_{i-1}}$ est de 
+$O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
+opérations dans $\mathbb{F}_q$ avec un 
 précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{n_i}qd_i))$ et  
 de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
-Vu que $a \in \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$ alors on a pour $s=r \bmod d_i \ell_i^{k}$ 
+Vu que $a \in \mathbb{K}_{i} \cong \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$
+ alors on a pour $s=r \bmod d_i \ell_i^{k}$ 
 $a^{q^{r p_j}}=a^{q^{s p_j}}$ ainsi on considère que $r<d_i \ell_i^{k}$.
 Par la proposition~\ref{pro:iso:fie} et le fait que l'on se soit restreint au 
 cas où l'on a $d_i\ell_i^{n_i} \leqslant p_{i-1}$ on peut écrire $a$ comme un 
@@ -4954,7 +4956,7 @@ On a alors l'élévation à la puissance $q^{r p_j}$ de $a$ qui s'écrit:
 \begin{equation*}
 a^{q^{r p_j}}=\sum_{j=0}^{d_i\ell_i^{k}-1}(x_i^{j})^{q^{r p_j}}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,k)}.
 \end{equation*} 
-On se concentre donc sur le calcul de $w=x_i^{q^{r p_{i-1}}}$ comme abordé dans la 
+On se concentre donc sur le calcul de $w=x_i^{q^{r p_{i-1}}}$, comme abordé dans la 
 preuve du théorème~\ref{thm:frob-ell} on note $x_0=x_i^{\ell_i^{k}}$. 
 Calculons donc $x_i^{q^{r p_{i-1}}}$, on écrit $q^{r p_{i-1}}= u \ell_i^{k}+v$ avec 
 $0 \leqslant v<\ell_i^{k}$. On a alors $w=x_0^{u \bmod q^{d_i}-1}x_i^{v}$ (on 
@@ -4976,7 +4978,8 @@ successives à l'aide de la précédente en $\mathsf{M}(p_{i-1})$ opérations su
 $\mathbb{F}_q$. On a alors un coût total de 
 $O(d_i\ell_i^{k}\mathsf{M}(p_{i-1}))$ opérations dans $\mathbb{F}_q$. 
 Pour ce calcul-là l'opération dominante est donc le changement de 
-représentation de $a \in \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$.
+représentation de $a \in \mathbb{K}_i$ vers une représentation dans 
+$\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$.
 \end{proof}
 
 On voit dans cette preuve que le coût de changement de représentation des 
@@ -5022,7 +5025,7 @@ $i \in [0,n-1], k \in [0,n_{n-i}]$. La notation $T^{(i,j)}_{(k)}$ est définie c
 \begin{itemize}
  \item[$k < n_{n-i}$ ]
  \[
-T^{(i)}_{(k+1)}=\prod_{j=0}^{\ell_i-1}T^{(i,\ell_{i}^{n_{n-i}-1-k}j)}_{(k)}\]
+T^{(i)}_{(k+1)}=\prod_{j=0}^{\ell_{n-i}-1}T^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}\]
 \item[$k= n_{n-i}$]
 \[
 T^{(i)}_{(n_{n-i}+1)}=\prod_{j=0}^{d_{n-i}-1}T^{(i,j)}_{(n_{n-i})}
@@ -5032,10 +5035,11 @@ ainsi on a $T^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{
 de degré $\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}$ pour $k \in [0,n_{n-i}]$ en 
 particulier on a $T^{(i)}_{(n_{n-i}+1)}=T^{(i+1)}_{(0)}=T^{(i+1)}$.  
 \todo{ Faire un dessin à nouveau !}
- On a alors $T^{(n+1)}$ qui est le polynôme minimal de $v$ sur $\mathbb{F}_q$.
- \todo{Dire que cette deuxième décomposition ne fait pas forcément baisser la complexité du calcul du frobenius, mais par contre le nombre d'opération à effectuer oui!}
 Il est alors évident que $T^{(i+1)}$ est le polynôme minimal de $v$ sur 
-$\mathbb{K}_{n-i-1}$.
+$\mathbb{K}_{n-i-1}$ et en particulier $T^{(n)}$ est le polynôme minimal de $v$
+sur $\mathbb{F}_q$.
+ \todo{Dire que cette deuxième décomposition ne fait pas forcément baisser la complexité du calcul du frobenius, mais par contre le nombre d'opération à effectuer oui!}
+
 
 \begin{lem}\label{lem:interpolation:minpoly:ult}
   Le coût de calcul de $T=T^{(n)}$ est de $O(n\mathsf{M}(\ell^{n+1})\log(\ell))$
@@ -5057,11 +5061,12 @@ $\mathbb{K}_{n-i-1}$.
   $O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k+1})$ et a ses 
   coefficients définis dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k-1)}$,
   le coût total est donc de 
-  $O(\mathsf{M}(p_n)\log(\ell_{i}))$ opérations sur $\mathbb{F}_q$. 
+  $O(\mathsf{M}(p_n)\log(\ell_{n-i}))$ opérations sur $\mathbb{F}_q$. 
   Le calcul des $T^{(i)}_{(0)},T^{(i)}_{(1)}, \dots, T^{(i)}_{(n_i+1)}$ se fait
-  donc en $O((n_i+1) \log(\ell_{i})\mathsf{M}(p_n))$ opérations sur 
+  donc en $O((n_{n-i}+1) \log(\ell_{n-i})\mathsf{M}(p_n))$ opérations sur 
   $\mathbb{F}_{q}$.
-  
+  Le coût total de l'étape $i$ est donc de 
+  $O(\ell_{n-i}(n_{n-i}+1)\mathsf{M}(p_n)(p_{n-i-1})^{(\omega-1)/2})$.
   
   Une fois que $T^{(i+1)}$ a été calculé de cette manière, on opère une 
   \emph{descente} sur ses coefficients dans $\mathbb{K}_{n-i-1}$ lors du calcul
