@@ -5467,14 +5467,16 @@ sous-section~\ref{sub:con:com}:
 \STATE \label{alg:TRC:init:gen:div} Calcul de $P'=\mathsf{divise}(P_{i_0},\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j})$;
 \STATE \label{alg:TRC:init:gen:mul} Calcul de $Q=[\ell_{i_0}^{k_{i_0}}]P'$ un point d'ordre $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$;
 \STATE \label{alg:TRC:init:gen:prim} Calcul de $R$ la pré-image de $Q$ d'ordre $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$ par $[\ell_{i_0}^{k_{i_0}}]$;
-\STATE $P \leftarrow P'-R$
+\STATE \label{alg:TRC:init:gen:add}$P \leftarrow P'-R$
 \RETURN $P'-R$
 \end{algorithmic}
 \end{algorithm}
 
 
 \begin{prop}
-L'algorithme a une complexité espérée de opérations sur $\mathbb{F}_q$.
+L'algorithme a une complexité espérée de 
+$O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$ 
+opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
@@ -5524,6 +5526,11 @@ opérations sur $\mathbb{F}_q$ auquel il faut ajouter le coût pour identifier l
 bonne racine, un moyen rapide de faire cela est d'exprimer les racines dans la 
 représentation $\underset{i\neq i_0}\otimes_{i=1}^n \mathsf{F}_{(i,k_i)} \otimes \mathsf{F}_{(i_0,k_{i_0})}$
 ce qui a un coût majoré par $O(\mathsf{M}(p_n)(\frac{p_n}{d_{i_0}\ell_{i_0}^{k_{i_0}}})^{(\omega-1)/2})$ par la proposition~\ref{pro:iso:fie} donc un coût total de $O(\ell_{i_0}^2\mathsf{M}(p_n)(\frac{p_n}{d_{i_0}\ell_{i_0}^{k_{i_0}}})^{(\omega-1)/2})$.
+
+L'étape~\ref{alg:TRC:init:gen:add} a elle un coût de $O(\mathsf{M}(p_n)\log(p_n))$.
+
+On voit alors que le coût total de l'algorithme est dominé par 
+l'étape~\ref{alg:TRC:init:gen:div}.
 \end{proof}
 
 \begin{algorithm}
@@ -5542,7 +5549,9 @@ ce qui a un coût majoré par $O(\mathsf{M}(p_n)(\frac{p_n}{d_{i_0}\ell_{i_0}^{k
 \end{algorithm}
 
 \begin{prop}
-L'algorithme~\ref{alg:TRC} a une complexité de $O()$ opérations sur $\mathbb{F}_q$
+L'algorithme~\ref{alg:TRC} a une complexité espérée de 
+$O(n^2 p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$ 
+opérations sur $\mathbb{F}_q$.
 \end{prop}
 
  On peut désormais voir dans quelle mesure la représentation
