@@ -5474,8 +5474,10 @@ sous-section~\ref{sub:con:com}:
 
 
 \begin{prop}
-L'algorithme a une complexité espérée de 
-$O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$ 
+L'algorithme a une complexité espérée de:
+\[
+O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_{i}\log(\ell_{i})\log(\ell_{i}q)))
+\] 
 opérations sur $\mathbb{F}_q$.
 \end{prop}
 
@@ -5558,7 +5560,9 @@ l'étape~\ref{alg:TRC:init:gen:div}.
 
 \begin{prop}
 L'algorithme~\ref{alg:TRC} a une complexité espérée de 
-$O(n^2 p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$ 
+\[
+O(n^2 p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_i\log(\ell_{i})\log(\ell_{i}q))) 
+\]
 opérations sur $\mathbb{F}_q$.
 \end{prop}
 
@@ -5646,7 +5650,7 @@ opérations sur $\mathbb{F}_q$.
 
 \begin{proof}
 L'étape~\ref{alg:cou:TRC-adique:bhor} appliquée à une tour d'extensions 
-$\ell_i$-adiques est majoré par les coûts données par la 
+$\ell_i$-adiques est majoré par les coûts donnés par la 
 proposition~\ref{pro:alg:ulti} et 
 a un coût de 
 $O((k_i+1)(\ell_i^{k_i+1}\mathsf{M}(\ell_i^{k_i+2})\log(\ell_i)\log(\ell_iq)))$ 
@@ -5673,7 +5677,7 @@ Une fois que l'on a calculé tous ces représentants dans les tours d'extensions
 $\ell_i$-adiques il nous reste à les calculer dans le corps $\mathbb{K}_n$.
 On doit donc au total appliquer $\sum_{i=1}^n k_i\ell_i^{k_i-\beta_i}$ fois 
 l'algorithme~\ref{alg:TRC:init:gen} avec un coût de 
-$O((\sum_{i=1}^n k_i\ell_i^{k_i-\beta_i})n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$ 
+$O((\sum_{i=1}^n k_i\ell_i^{k_i-\beta_i})n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_i\log(\ell_{i})\log(\ell_{i}q)))$ 
 pour ensuite utiliser directement ces résultats dans l'algorithme~\ref{alg:TRC}
 qui ne fait plus que $n$ additions de points avec un coût de 
 $O(n\mathsf{M}(p_n)\log(p_n))$, donc au total pour toutes les additions: 
