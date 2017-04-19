@@ -5468,7 +5468,7 @@ sous-section~\ref{sub:con:com}:
 \STATE \label{alg:TRC:init:gen:mul} Calcul de $Q=[\ell_{i_0}^{k_{i_0}}]P'$ un point d'ordre $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$;
 \STATE \label{alg:TRC:init:gen:prim} Calcul de $R$ la pré-image de $Q$ d'ordre $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$ par $[\ell_{i_0}^{k_{i_0}}]$;
 \STATE \label{alg:TRC:init:gen:add}$P \leftarrow P'-R$
-\RETURN $P'-R$
+\RETURN $P$
 \end{algorithmic}
 \end{algorithm}
 
@@ -5618,7 +5618,7 @@ Chinois Elliptique.
 \FOR{$i=1$ à $n$}
 \STATE \label{alg:cou:TRC-adique:bhor} Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black})$ bases (partiellement) horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \ENDFOR
-\STATE Calcul de $(P,Q),(P',Q') \in E^2 \times E'^2$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tels que $P$ et $P'$ sont de direction $(\lambda_1, \dots, \lambda_n)$ et $Q$ et $Q'$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
+\STATE \label{alg:mult-ell:TRC} Calcul de $(P,Q),(P',Q') \in E^2 \times E'^2$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tels que $P$ et $P'$ sont de direction $(\lambda_1, \dots, \lambda_n)$ et $Q$ et $Q'$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
 \STATE \label{alg:mult-ell:rep} Calcul des listes de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$;
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
 \STATE \label{alg:mult-ell:ord} Réordonancement de la liste $L_i'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
@@ -5632,11 +5632,32 @@ Chinois Elliptique.
 \end{algorithm}
 
 \begin{prop}
-L'algorithme~\ref{alg:cou:TRC-adique}
+L'algorithme~\ref{alg:cou:TRC-adique} a un coût espéré de $O()$
+opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
-Blabla...
+L'étape~\ref{alg:mult-ell:rep} de l'algorithme est la seule qui n'a pas été 
+étudié dans des propositions précédentes, il est à noter que d'un point de vue 
+pratique les étapes~\ref{alg:mult-ell:TRC} et ~\ref{alg:mult-ell:rep} doivent 
+être effectuées en même temps. En effet sur chacune des tours $\ell_i$-adiques 
+on a $k_i\ell_i^{k_i-\beta_i}$ classes de conjugaisons on calcule les 
+représentants comme dans la preuve de la proposition~\ref{pro:full-complexity} 
+avec un coût de $O(k_i\mathsf{M}(\ell^{2k_i})\log(\ell^{k_i}))$.
+Ainsi au total on calcule tous les représentants des tours $\ell_i$-adiques en
+$O(\sum_{i=1}^nk_i\mathsf{M}(\ell^{2k_i})\log(\ell^{k_i}))$ opérations sur 
+$\mathbb{F}_q$ ce coût peut être majoré grossièrement par 
+$O(n\max_i(k_i\mathsf{M}(\ell^{2k_i})\log(\ell^{k_i})))$ opérations sur 
+$\mathbb{F}_q$.
+
+Une fois que l'on a calculé tous ces représentants dans les tours d'extensions
+$\ell_i$-adiques il nous reste à les calculer dans le corps $\mathbb{K}_n$.
+On doit donc au total appliquer $\sum_{i=1}^n k_i\ell_i^{k_i-\beta_i}$ fois 
+l'algorithme~\ref{alg:TRC:init:gen} avec un coût de 
+$O((\sum_{i=1}^n k_i\ell_i^{k_i-\beta_i})n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$ 
+pour ensuite utiliser directement ces résultats dans l'algorithme~\ref{alg:TRC}
+qui ne fait plus que $n$ additions de points avec un coût de 
+$O(n\mathsf{M}(p_n)\log(p_n))$.  
 \end{proof}
 
 \chapter{Rebus}
