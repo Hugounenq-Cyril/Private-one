@@ -5482,28 +5482,36 @@ opérations sur $\mathbb{F}_q$.
 \begin{proof}
 Pour le calcul de l'étape~\ref{alg:TRC:init:gen:div} on préconise une 
 utilisation de construction de $\mathbb{K}_n$ tel que $\mathbb{K}_1=
-\mathsf{F}_{(i_0,k_{i_0})}$, dés lorsque lorsque l'on va calculer la division 
-successive par $\ell_i$ on va successivement travailler dans les corps 
-$\mathbb{K}_2, \mathbb{K}_3, \dots, \mathbb{K}_n$. Ainsi on suppose sans perte 
-de généralités que l'on a $i_0=1$. On décompose cette étape en $n-1$ 
+\mathsf{F}_{(i_0,k_{i_0})}$ et les 
+$\mathbb{K}_i \cong \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k_i)}$, dés lors lorsque 
+l'on va calculer la division successive par les différents $\ell_i$ on va 
+successivement travailler dans les corps 
+$\mathbb{K}_2, \mathbb{K}_3, \dots, \mathbb{K}_n$. On suppose sans perte 
+de généralités que l'on a $i_0=1$. On décompose 
+l'étape~\ref{alg:TRC:init:gen:div} en $n-1$ 
 étapes, on appelle $P^{(0)}=P_{1}$ et on définit par récurrence 
 $P^{(i+1)}=\mathsf{divise}(P^{(i)},\ell_{i+1}^{n_{i+1}})$, on a alors 
 $P^{(i+1)}$ d'ordre $\upsilon_{i+1}$ et défini dans $\mathbb{K}_{i+1}$. 
 Calculons le coût de l'étape $i$, on décompose tout d'abord 
-$\mathsf{divise}(P^{(i)},\ell_{i+1}^{n_{i+1}})$ à l'aide de $2*n_{i+1}$ 
+$\mathsf{divise}(P^{(i)},\ell_{i+1}^{k_{i+1}})$ à l'aide de $2k_{i+1}$ 
 $\ell_{i+1}$-isogénies. Ainsi on pose $P^{(i)}_0=P^{(i)}$ et on définit par 
 récurrence $P^{(i)}_{j+1}=\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$, ce qui nous
- donne $P^{(i+1)}=P^{(i)}_{n_{i+1}}$. On a $P^{(i)}_{j}$ défini dans 
- $\mathbb{K}_i\otimes \mathsf{F}_{(i+1,j)}$ et donc le coût de 
- $\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$ est 
- $R(\ell_{i+1},p_id_{i+1}\ell_{i+1}^{i+1})$ c'est à dire 
- $O(p_i d_{i+1} \ell_{i+1}^{j+1}\mathsf{M}(p_i d_{i+1} \ell_{i+1}^{j+2})\log(\ell_{i+1})\log(\ell_{i+1}q))$
- par la proposition~\ref{pro:rac:com}. Ainsi par superlinéarité de 
- $\mathsf{M}$ le coût de calcul de $P^{(i+1)}$ est de 
- $O(p_{i+1} \mathsf{M}(p_{i+1} \ell_{i+1})\log(\ell_{i+1})\log(\ell_{i+1}q))$.
- On majore ce coût par $O(p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$
+ donne $P^{(i+1)}=P^{(i)}_{k_{i+1}}$. On a $P^{(i)}_{j}$ défini dans 
+ $\mathbb{K}_i\otimes \mathsf{F}_{(i+1,j)}$ et représenté comme un élément de 
+ $\mathbb{K}_{i+1}$ donc le coût de  $\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$ 
+ est $R(\ell_{i+1},p_{i+1})$ c'est à dire 
+ $O(p_{i+1} \mathsf{M}(p_{i+1}  \ell_{i+1})\log(\ell_{i+1})\log(\ell_{i+1}q))$
+ par la proposition~\ref{pro:rac:com}. Ainsi le coût de calcul de $P^{(i+1)}$ 
+ est de 
+ $O(k_{i+1}p_{i+1} \mathsf{M}(p_{i+1}  \ell_{i+1})\log(\ell_{i+1})\log(\ell_{i+1}q))$.
+ On majore ce coût par $O(p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_{i+1}\log(\ell_{i+1})\log(\ell_{i+1}q)))$
+ Il faut alors ajouter le coût de l'expression de $P^{(i+1)}$ dans 
+ $\mathbb{K}_{i+2}$ par la proposition~\ref{pro:iso:fie}
+ cela a un coût de $O((d_{i+2}\ell_{i+2}^{k_{i+2}})^2\mathsf{M}(p_{i+1}))$,
+ ce coût sera alors majoré par le coût de $R(\ell_{i+2},p_{i+2})$ on ne le 
+ prend donc pas en compte. 
  Le coût de l'étape~\ref{alg:TRC:init:gen:div} est donc majoré par 
- $O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$. 
+ $O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_{i+1}\log(\ell_{i+1})\log(\ell_{i+1}q)))$. 
 
 Pour le calcul de l'étape~\ref{alg:TRC:init:gen:mul} on décompose la 
 multiplication par $\ell_{i_0}^{k_{i_0}}$ en $k_{i_0}$ multiplications par 
@@ -5670,6 +5678,9 @@ pour ensuite utiliser directement ces résultats dans l'algorithme~\ref{alg:TRC}
 qui ne fait plus que $n$ additions de points avec un coût de 
 $O(n\mathsf{M}(p_n)\log(p_n))$, donc au total pour toutes les additions: 
 $O(\prod_{i=1}^n(k_i\ell_i^{k_i-\beta_i})n\max_i(k_i\mathsf{M}(\ell^{2k_i})\log(\ell^{k_i})))$.
+On fera remarquer que lors de l'algorithme~\ref{alg:TRC:init:gen} la complexité
+exprimée prend en compte le fait que l'on exprime les points des tours 
+$\ell_i$-adiques dans le composita.
 
 L'étape~\ref{alg:mult-ell:ord} demande à chaque étape de recalculer tous les 
 représentants des orbites, on en a $\prod_{i=1}^n k_i\ell_i^{k_i-\beta_i}$. 
