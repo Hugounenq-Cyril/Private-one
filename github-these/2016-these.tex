@@ -5624,7 +5624,7 @@ Chinois Elliptique.
 \STATE \label{alg:mult-ell:ord} Réordonancement de la liste $L_i'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
 \STATE \label{alg:mult-ell:int} Calcul des des polynômes $A_{a,b}$ et $T$ par des méthodes similaires à celles décrites dans la section~\ref{sec:interpolation};
 \STATE \label{alg:mult-ell:Cauchy} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
-\IF{$\mathsf{Test}(F)$}
+\IF{$\mathsf{Test}(F)$} \label{alg:mult-ell:test}
 \RETURN $F$
 \ENDIF
 \ENDFOR 
@@ -5637,6 +5637,17 @@ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
+L'étape~\ref{alg:cou:TRC-adique:bhor} appliquée à une tour d'extensions 
+$\ell_i$-adiques est majoré par les coûts données par la 
+proposition~\ref{pro:alg:ulti} et 
+a un coût de 
+$O((k_i+1)(\ell_i^{k_i+1}\mathsf{M}(\ell_i^{k_i+2})\log(\ell_i)\log(\ell_iq)))$ 
+opérations sur $\mathbb{F}_q$ en utilisant le  résultat  donné par 
+~\cite[Chapter~14.5]{vzGJG03} pour le coût de $\mathsf{R}$.
+On peut donc majorer le coût total de cette étape par 
+$O(n\max_i((k_i+1)(\ell_i^{k_i+1}\mathsf{M}(\ell_i^{k_i+2})\log(\ell_i)\log(\ell_iq))))$
+opérations sur $\mathbb{F}_q$.
+
 L'étape~\ref{alg:mult-ell:rep} de l'algorithme est la seule qui n'a pas été 
 étudié dans des propositions précédentes, il est à noter que d'un point de vue 
 pratique les étapes~\ref{alg:mult-ell:TRC} et ~\ref{alg:mult-ell:rep} doivent 
@@ -5657,7 +5668,30 @@ l'algorithme~\ref{alg:TRC:init:gen} avec un coût de
 $O((\sum_{i=1}^n k_i\ell_i^{k_i-\beta_i})n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(\log(\ell_{i+1})\log(\ell_{i+1}q)))$ 
 pour ensuite utiliser directement ces résultats dans l'algorithme~\ref{alg:TRC}
 qui ne fait plus que $n$ additions de points avec un coût de 
-$O(n\mathsf{M}(p_n)\log(p_n))$.  
+$O(n\mathsf{M}(p_n)\log(p_n))$, donc au total pour toutes les additions: 
+$O(\prod_{i=1}^n(k_i\ell_i^{k_i-\beta_i})n\max_i(k_i\mathsf{M}(\ell^{2k_i})\log(\ell^{k_i})))$.
+
+L'étape~\ref{alg:mult-ell:ord} demande à chaque étape de recalculer tous les 
+représentants des orbites, on en a $\prod_{i=1}^n k_i\ell_i^{k_i-\beta_i}$. 
+On doit donc calculer des multiplications scalaires à coefficients dans 
+$\mathbb{Z}/\upsilon_n \mathbb{Z}$ à l'aide d'exponentiation rapide appliqué à
+des points définis dans $\mathbb{K}_n$ cela a donc un coût de 
+$O(\prod_{i=1}^n (k_i\ell_i^{k_i-\beta_i})\log(\upsilon_n) \mathsf{M}(p_n)\log(p_n))$
+
+Pour l'étape~\ref{alg:mult-ell:int} cela a un coût de 
+$O\bigl(\mathsf{M}(t)\log(s) + n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{i})\bigr)$ 
+ par la proposition~\ref{prop:interpol}.
+
+Pour l'étape~\ref{alg:mult-ell:Cauchy} le coût de calcul de $F_{a,b}$ est de 
+$O(\mathsf{M}(r)\log(r))$ par \cite[Théorème 7.5]{algeff17}.
+
+L'étape~\ref{alg:mult-ell:test} a son coût qui est majoré par les 
+étapes~\ref{alg:mult-ell:int} et \ref{alg:mult-ell:Cauchy}, pour plus de 
+détails le lecteur peut aller voir la preuve de la 
+proposition~\ref{pro:full-complexity}.
+
+Sachant que l'on répète les étapes~\ref{alg:mult-ell:int} et 
+\ref{alg:mult-ell:Cauchy}  $O(r)$ fois cela donne la complexité.
 \end{proof}
 
 \chapter{Rebus}
@@ -5703,6 +5737,8 @@ $\mathbb{Z}/ \ell_2^{k_2}$ telle que l'action de $\eta \ell_1^{k_1-o_1}$ sur le
  
  Enfin un calcul direct montre que $[\ell_1^{k_1}](P'-R)=Q-Q=0_E$ et 
  $[\ell_2^{k_2}](P'-R)=P_1-0_E$.
+ 
+ 
 \end{proof}
 
 \subsubsection{Couveignes-Morain Bonne place ?}
