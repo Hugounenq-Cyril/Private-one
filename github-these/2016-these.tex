@@ -4218,7 +4218,7 @@ Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}
 \ENDIF
 \STATE \label{alg:cou-ell:rep} Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\ell^{k}\mathbb{Z} \right)^*$}
-\STATE \label{alg:cou-ell:ord} Réordonancement de la liste $L'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
+\STATE \label{alg:cou-ell:ord} Actualisation des représentants de la liste $L'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
 \STATE \label{alg:cou-ell:int} Calcul des des polynômes $A_{a,b}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
 \STATE \label{alg:cou-ell:Cauchy} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
 \IF{$\mathsf{Test}(F)$}
@@ -4379,7 +4379,7 @@ sommet du volcan de $\ell$-isogénies à l'aide de $O(\ell h^2)$
 \begin{rem}
 Les algorithmes de \cite{FouquetMorain02} utilisés pour trouver une courbe sur 
 le volcan de $\ell$-isogénies  dans la preuve de la 
-proposition~\ref{pro:cou:dec} sont moins efficace que ceux de 
+proposition~\ref{pro:cou:dec} sont moins efficaces que ceux de 
 \cite{Ionica-Joux10} et \cite{MiretMRV05} mais ils ont l'avantage de 
 fonctionner sur tous types de volcans, non-réguliers compris, d'où le fait que
 l'on ne considère que ceux-ci.
@@ -4585,6 +4585,15 @@ Ainsi pour le calcul du polynôme on doit répéter l'étape d'interpolation
 $\ell^{k-1}$ fois ce qui nous donne un coût total de: 
 $O(r\mathsf{M}(\ell^2r)\log(\ell)\log(r))$ opérations sur $\mathbb{F}_q$.
 
+\todo{ecrire en appendice l'algorithme de Couveignes avec un seul point}
+\begin{prop}
+Soit $\ell$ un nombre de Elkies tel que $\ell^h<r$ alors le coût de la 
+variante de l'algorithme de Couveignes $\ell$-adique présenté dans 
+l'algorithme~\ref{alg:app:cou:var} 
+est de: 
+$O(r\mathsf{M}(\ell^2r)\log(\ell)\log(r))$ opérations sur $\mathbb{F}_q$.
+\end{prop}
+
 Le coût de cette variante de Couveignes $\ell$-adique a donc une complexité de
 $O(\mathsf{M}(r\ell^2)r\ell^2 \log(r) \log(\ell) \log(\ell q)$ qui est donc un 
 peu plus élevé que le résultat obtenu à la 
@@ -4594,12 +4603,12 @@ $\ell^{h+1}$ torsion et non pas par la partie interpolation de l'algorithme qui
 peut être répétée jusqu'à $\Theta(r)$ fois.
 
 
-On pourrait penser à utiliser notre algorithme avec une approche multimodulaire
-de façon similaire à un théorème des restes chinois, c'est à dire pour 
-différents nombres de Elkies $\ell_1, \ell_2, \ell_3, \dots, \ell_{n}$, pour 
-une isogénie de degré $r$ premier avec tous les $\ell_i$ on calcule des bases 
-horizontales de la $\ell_i^{k_i}$ torsion, on peut alors travailler avec les 
-deux groupes de points isomorphes:
+On pourrait penser à utiliser l'algorithme de Couveignes $\ell$-adique avec une
+approche multimodulaire de façon similaire à un théorème des restes chinois, 
+c'est à dire pour différents nombres de Elkies $\ell_1, \ell_2, \ell_3, \dots, 
+\ell_{n}$, pour une isogénie de degré $r$ premier avec tous les $\ell_i$ on 
+calcule des bases horizontales de la $\ell_i^{k_i}$ torsion, on peut alors 
+travailler avec les deux groupes de points isomorphes:
 \begin{itemize}
 \item $\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$, 
 \item $\prod_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $.
@@ -4827,12 +4836,13 @@ Voir \cite{BostanFlajoletSalvySchost06}.
 \end{proof}
 
 \begin{prop}
-Le coût de construire $\mathbb{K}_n$ est 
+\label{pro:con:comp}
+Le coût de construire $\mathbb{K}_n$
 \begin{enumerate}
 \item pour $p$, la caractéristique de $\mathbb{F}_q$, tel que $p>p_n$
 est majoré par $O(n\mathsf{M}(p_n))$;
 \item pour $p$ tel que $p<p_n$ est majoré par 
-$O(np\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n))$.
+$O(n(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$.
 \end{enumerate}
 \end{prop}
 
@@ -4866,8 +4876,9 @@ $O(p\mathsf{M}(\frac{p_i}{p})\log(\frac{p_i}{p})+\mathsf{M}(p_i))$
 opérations sur $\mathbb{F}_q$. Ainsi en majorant grossièrement le coût de cette
 étape par $O(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n))$
 le coût de construction du compositum $\mathbb{K}_n$ est majoré par 
-$O(np\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n))$.
+$O(n(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$.
 \end{proof}
+
 
 \todo{changer tous les composita en compositum}
 
@@ -4910,10 +4921,12 @@ extensions de degé $\frac{\prod_{i=1}^{n}d_i\ell_i^{n_i}}{d_j \ell_j^{n_j}}$ de
 $\mathbb{F}_q$ on doit changer l'ordre des $\ell_i$ dans la construction de la 
 définition~\ref{def:con:com}, on doit donc calculer $n$ constructions 
 différentes de composita pour pouvoir calculer le plongement de tous les 
-$\mathsf{F}_{(i,n_i)}$ dans $\mathsf{K}_{n}$. 
+$\mathsf{F}_{(i,n_i)}$ dans $\mathsf{K}_{n}$ cela a un coût majoré par 
+$O(n^2(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$ 
+opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:con:comp}.
 
- On sera ammené à multiplier des polynômes à coefficients dans une 
- composita, ainsi on a besoin du résultat suivant.
+ On sera ammené à multiplier des polynômes à coefficients dans un 
+ compositum, ainsi on a besoin du résultat suivant.
 
  \begin{prop}
  \label{pro:mul:com}
@@ -5235,7 +5248,7 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
 On énonce un problème plus général de calcul de polynôme d'interpolation 
 à l'aide de plusieurs couples de points de $\mathsf{F}_n$.
 
-\begin{prop}\label{prop:interpol}
+\begin{prop}\label{prop:interpol:comp}
   Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n 
   \setminus \mathbb{K}_{n-1}$, $t_i$ le degré des polynômes minimaux de $v_i$, 
   et l'on note  $t=\sum t_i$. 
@@ -5758,7 +5771,7 @@ $O(\prod_{i=1}^n (k_i\ell_i^{k_i-\beta_i})\log(\upsilon_n) \mathsf{M}(p_n)\log(p
 
 Pour l'étape~\ref{alg:mult-ell:int} cela a un coût de 
 $O\bigl(\mathsf{M}(t)\log(s) + n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{i})\bigr)$ 
- par la proposition~\ref{prop:interpol}.
+ par la proposition~\ref{prop:interpol:comp}.
 
 Pour l'étape~\ref{alg:mult-ell:Cauchy} le coût de calcul de $F_{a,b}$ est de 
 $O(\mathsf{M}(r)\log(r))$ par \cite[Théorème 7.5]{algeff17}.
@@ -6502,6 +6515,33 @@ Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{bl
 \ENDFOR 
 \end{algorithmic}
 \end{algorithm}
+
+\begin{algorithm}
+\caption{\label{alg:app:cou:var} Couveignes $\ell$-adique avec un seul sous-groupe cyclique.}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique.
+\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE Calcul du plus petit $k$ tel que $\ell^{k-1}>4r$;
+\STATE  
+Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^{h+1}],E'_s[\ell^{h+1}]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
+\STATE Calcul de $\color{red}P_{\lambda}\color{black} \in E_s[\ell^k]$, $\color{red}P'_{\lambda}\color{black} \in E_s'[\ell^k]$ points horizontaux  à l'aide de l'algorithme \ref{alg:hor:poi};
+\IF{$(E_s,E'_s) \neq (E,E')$}
+\STATE 
+Calcul de $\color{red}P_{\lambda}\color{black},\color{red}P'_{\lambda}\color{black}$ points partiellement horizontaux de $E_s[\ell^k],E'_s[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
+\ENDIF
+\STATE Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
+\FOR{ $a \in \left( \mathbb{Z}/\ell^{k}\mathbb{Z} \right)^*$}
+\STATE Actualisation de la liste des représentants $L'$ en $L'_{a}$ afin de respecter la correspondance induite par le choix de $a$;
+\STATE Calcul des des polynômes $A_{a}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
+\STATE Calcul de la fraction rationnelle $F=A_{a} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\IF{$\mathsf{Test}(F)$}
+\RETURN $F$
+\ENDIF
+\ENDFOR 
+\end{algorithmic}
+\end{algorithm}
+
 
 \printnomenclature
 
