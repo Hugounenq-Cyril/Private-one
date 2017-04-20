@@ -993,7 +993,6 @@ On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$
 \section{Rappel et applications des formules de Vélu}
 Comme vu dans la sous-section~\ref{sse:Vel} à l'aide des formules de Vélu on peut expliciter une isogénie séparable $I$ de degré $\ell$ sous la forme:
 \begin{equation} 
-\label{eq:velu:gh}
 I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
 \end{equation}
 avec 
@@ -1040,7 +1039,6 @@ y^2=x^3+\tilde{A}x+\tilde{B}
 \end{equation}
 et de l'équation de l'isogénie \textbf{normalisée}:
 \begin{equation} 
-\label{eq:velu:gh}
 I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right) 
 \end{equation}
 on injecte l'équation de $E$ et $I$ dans l'équation de $\tilde{E}$:
@@ -4608,16 +4606,16 @@ approche multimodulaire de façon similaire à un théorème des restes chinois,
 c'est à dire pour différents nombres de Elkies $\ell_1, \ell_2, \ell_3, \dots, 
 \ell_{n}$, pour une isogénie de degré $r$ premier avec tous les $\ell_i$ on 
 calcule des bases horizontales de la $\ell_i^{k_i}$ torsion, on peut alors 
-travailler avec les deux groupes de points isomorphes:
+travailler avec les deux groupes de points:
 \begin{itemize}
-\item $\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$, 
+\item $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$, 
 \item $\prod_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $.
 \end{itemize}
 On va détailler chacune de ces approches dans les deux sous-sections qui suivent.
 
-\section{Aprroche avec le groupe de points isomorphe à $\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$}
+\section{Aprroche avec le groupe de points isomorphe à $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$}
 La première approche est de considérer l'ensemble de points $S$ isomorphe à: 
-$\oplus_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $
+$\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $
 dés lors il faut fixer comme condition  $\sum_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 afin que le polynôme d'interpolation que l'on cherche à construire puisse 
 définir la fraction rationnelle $F$ candidate pour représenter la $r$-isogénie 
@@ -4644,7 +4642,7 @@ l'algorithme~\ref{alg:cou:mult-adique:short} est disponible en annexe.
 \ENDFOR
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
 \FOR{$M_i \in \mathsf{diag}(a_i,b_i)$  avec $a=a_i \bmod \ell_i^{k_i},b=b_i \bmod \ell_i^{k_i}$}
-\STATE \label{alg:mult-ell:ord} Réordonancement de la liste $L_i'$ en $L'_{a_i,b_i,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
+\STATE \label{alg:mult-ell:ord} Actualisation de la liste des représentants $L_i'$ en $L'_{a_i,b_i,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
 \STATE \label{alg:mult-ell:int} Calcul des des polynômes $A_{a,b,i}$ et $T_i$ par les méthodes décrites dans la section~\ref{sec:interpolation};
 \ENDFOR
 \STATE Calcul des polynômes $A_{a,b}$ et $T$ à l'aide d'un théorème des restes chinois appliqué sur tous les $A_{a,b,i}$ et $T_i$;
@@ -4689,7 +4687,7 @@ méthodes de la section~\ref{sec:interpolation} appliquées
 à chacune des tours d'extensions $\ell_i$-adiques les polynômes 
 d'interpolation $A_{a,b,i}$ et $T_i$ définis dans $\mathbb{F}_q$.
  On applique alors le théorème des restes chinois à ces polynômes pour obtenir 
- les polynômes $A_{a,b},T \in \mathbb{F}_q$ tels que:
+ les polynômes $A_{a,b},T \in \mathbb{F}_q[x]$ tels que:
  \[
 A_{a,b}=A_{a_i,b_i} \bmod T_i \text{ pour tout } i \in [1,n] \text{ et } \quad T=\prod_{i=1}^nT_i 
  \]
@@ -4709,7 +4707,7 @@ inférieur au calcul de $A_{a,b}$ et $T$ à l'étape~\ref{alg:cou-ell:int} de
 l'algorithme~\ref{alg:cou:ell-adique} cependant le coût de calcul de 
 l'interpolation de Cauchy  est de $O(\mathsf{M}(r)\log(r))$ par
  \cite[Théorème 7.5]{algeff17}. Sachant que l'on doit répéter en moyenne cette 
-boucle pour tous les $a,b$ possibles appartenant à $(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^*$.
+boucle pour tous les $a,b$ possibles appartenant à $(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^*$
  le coût d'un tel algorithme est minoré par 
 $\Omega(r\mathsf{M}(r)\log(r))$. 
 
@@ -5705,13 +5703,13 @@ Chinois Elliptique.
 \FOR{$i=1$ à $n$}
 \STATE \label{alg:cou:TRC-adique:bhor} Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black})$ bases (partiellement) horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \ENDFOR
-\STATE \label{alg:mult-ell:TRC} Calcul de $(P,Q),(P',Q') \in E^2 \times E'^2$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tels que $P$ et $P'$ sont de direction $(\lambda_1, \dots, \lambda_n)$ et $Q$ et $Q'$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
-\STATE \label{alg:mult-ell:rep} Calcul des listes de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$;
+\STATE \label{alg:cou:TRC-adique:TRC} Calcul de $(P,Q),(P',Q') \in E^2 \times E'^2$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tels que $P$ et $P'$ sont de direction $(\lambda_1, \dots, \lambda_n)$ et $Q$ et $Q'$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
+\STATE \label{alg:cou:TRC-adique:rep} Calcul des listes de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$;
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
-\STATE \label{alg:mult-ell:ord} Réordonancement de la liste $L_i'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
-\STATE \label{alg:mult-ell:int} Calcul des des polynômes $A_{a,b}$ et $T$ par des méthodes similaires à celles décrites dans la section~\ref{sec:interpolation};
-\STATE \label{alg:mult-ell:Cauchy} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
-\IF{$\mathsf{Test}(F)$} \label{alg:mult-ell:test}
+\STATE \label{alg:cou:TRC-adique:ord} Réordonancement de la liste $L_i'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
+\STATE \label{alg:cou:TRC-adique:int} Calcul des des polynômes $A_{a,b}$ et $T$ par des méthodes similaires à celles décrites dans la section~\ref{sec:interpolation};
+\STATE \label{alg:cou:TRC-adique:Cauchy} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\IF{$\mathsf{Test}(F)$} \label{alg:cou:TRC-adique:test}
 \RETURN $F$
 \ENDIF
 \ENDFOR 
@@ -5735,9 +5733,9 @@ On peut donc majorer le coût total de cette étape par
 $O(n\max_i((k_i+1)(\ell_i^{k_i+1}\mathsf{M}(\ell_i^{k_i+2})\log(\ell_i)\log(\ell_iq))))$
 opérations sur $\mathbb{F}_q$.
 
-L'étape~\ref{alg:mult-ell:rep} de l'algorithme est la seule qui n'a pas été 
+L'étape~\ref{alg:cou:TRC-adique:rep} de l'algorithme est la seule qui n'a pas été 
 étudié dans des propositions précédentes, il est à noter que d'un point de vue 
-pratique les étapes~\ref{alg:mult-ell:TRC} et ~\ref{alg:mult-ell:rep} doivent 
+pratique les étapes~\ref{alg:cou:TRC-adique:TRC} et ~\ref{alg:cou:TRC-adique:rep} doivent 
 être effectuées en même temps. En effet sur chacune des tours $\ell_i$-adiques 
 on a $k_i\ell_i^{k_i-\beta_i}$ classes de conjugaisons on calcule les 
 représentants comme dans la preuve de la proposition~\ref{pro:full-complexity} 
@@ -5761,7 +5759,7 @@ On fera remarquer que lors de l'algorithme~\ref{alg:TRC:init:gen} la complexité
 exprimée prend en compte le fait que l'on exprime les points des tours 
 $\ell_i$-adiques dans le composita.
 
-L'étape~\ref{alg:mult-ell:ord} demande à chaque étape de recalculer tous les 
+L'étape~\ref{alg:cou:TRC-adique:ord} demande à chaque étape de recalculer tous les 
 représentants des orbites, on en a $\prod_{i=1}^n k_i\ell_i^{k_i-\beta_i}$ par
 la proposition~\ref{pro:rep:com}. 
 On doit donc calculer des multiplications scalaires à coefficients dans 
@@ -5769,23 +5767,23 @@ $\mathbb{Z}/\upsilon_n \mathbb{Z}$ à l'aide d'exponentiation rapide appliqué �
 des points définis dans $\mathbb{K}_n$ cela a donc un coût de 
 $O(\prod_{i=1}^n (k_i\ell_i^{k_i-\beta_i})\log(\upsilon_n) \mathsf{M}(p_n)\log(p_n))$
 
-Pour l'étape~\ref{alg:mult-ell:int} cela a un coût de 
+Pour l'étape~\ref{alg:cou:TRC-adique:int} cela a un coût de 
 $O\bigl(\mathsf{M}(t)\log(s) + n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{i})\bigr)$ 
  par la proposition~\ref{prop:interpol:comp}.
 
-Pour l'étape~\ref{alg:mult-ell:Cauchy} le coût de calcul de $F_{a,b}$ est de 
+Pour l'étape~\ref{alg:cou:TRC-adique:Cauchy} le coût de calcul de $F_{a,b}$ est de 
 $O(\mathsf{M}(r)\log(r))$ par \cite[Théorème 7.5]{algeff17}.
 
-L'étape~\ref{alg:mult-ell:test} a son coût qui est majoré par les 
-étapes~\ref{alg:mult-ell:int} et \ref{alg:mult-ell:Cauchy}, pour plus de 
+L'étape~\ref{alg:cou:TRC-adique:test} a son coût qui est majoré par les 
+étapes~\ref{alg:cou:TRC-adique:int} et \ref{alg:cou:TRC-adique:Cauchy}, pour plus de 
 détails le lecteur peut aller voir la preuve de la 
 proposition~\ref{pro:full-complexity}.
 
 Comme on a $\prod_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$ alors on a 
 $p_n=\prod_{i=1}^nd_i\ell_i^{k_i} \in O(\sqrt{r})$. 
 
-Sachant que l'on répète les étapes~\ref{alg:mult-ell:ord}, 
-~\ref{alg:mult-ell:int} et \ref{alg:mult-ell:Cauchy}  $O(r)$fois cela donne la 
+Sachant que l'on répète les étapes~\ref{alg:cou:TRC-adique:ord}, 
+~\ref{alg:cou:TRC-adique:int} et \ref{alg:cou:TRC-adique:Cauchy}  $O(r)$fois cela donne la 
 complexité.
 \end{proof}
 
@@ -6504,7 +6502,7 @@ Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{bl
 \ENDFOR
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
 \FOR{$M_i \in \mathsf{diag}(a_i,b_i)$  avec $a=a_i \bmod \ell_i^{k_i},b=b_i \bmod \ell_i^{k_i}$}
-\STATE \label{alg:mult-ell:ord:long} Réordonancement de la liste $L_i'$ en $L'_{a_i,b_i,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
+\STATE \label{alg:mult-ell:ord:long} Actualisation de la liste des représentants $L_i'$ en $L'_{a_i,b_i,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
 \STATE \label{alg:mult-ell:int:long} Calcul des des polynômes $A_{a,b,i}$ et $T_i$ par les méthodes décrites dans la section~\ref{sec:interpolation};
 \ENDFOR
 \STATE Calcul des polynômes $A_{a,b}$ et $T$ à l'aide d'un théorème des restes chinois appliqué sur tous les $A_{a,b,i}$ et $T_i$;
