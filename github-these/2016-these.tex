@@ -2135,6 +2135,7 @@ L'idée de base de \cite{Doliskani-Schost15} est de permettre un passage efficac
 L'objectif est de calculer une tour d'extensions $\ell$-adiques du corps fini $\mathbb{F}_q$, avec $q \wedge \ell =1$. 
 
 \begin{thm}
+\label{thm:init:tow}
 Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$, soit $\ell$ un nombre premier différent de $p$,  alors une tour d'extensions $\ell$-adiques du corps $\mathbb{F}_q$: $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1, \mathsf{F}_2, \cdots$ est initialisée en $O(d_0\mathsf{M}(d_0)\log(d_0)\log(d_0q)+\mathsf{M}(\ell)\log(\ell)+d_0^2)$ opérations en moyenne sur $\mathbb{F}_q$.
 \end{thm}
  
@@ -4813,12 +4814,62 @@ Il reste à voir en pratique le coût de la construction d'un tel composita pour
 cela on se sert du résultat suivant issu de \cite[Theorem 1]{BostanFlajoletSalvySchost06}
 
 \begin{prop}[Bostan Flajolet Salvy Schost]
+\label{pro:comp:prod}
 Soient $f$ et $g$ deux polynômes unitaires de $\mathbb{F}_q[z]$ de degré $m$ et $n$, on note alors $D=mn$
 \begin{enumerate}
-\item Pour $p$, la caractéristique de $\mathbb{F}_q$, tel que $p>D$ alors le produit composé de $f$ et $g: f \odot g$ peut être calculé à l'aide $O(\mathsf{M}(D))$ opérations sur $\mathbb{F}_q$,
-\item Pour $p$, tel que $p<D$ et $p$ plus grand que la multiplicité des racines 
+\item Pour $p$, la caractéristique de $\mathbb{F}_q$, tel que $p>D$ alors le produit composé de $f$ et $g: f \odot g$ peut être calculé à l'aide de  $O(\mathsf{M}(D))$ opérations sur $\mathbb{F}_q$,
+\item Pour $p$, tel que $p<D$ et $p$ plus grand que la multiplicité des racines de $f \odot g$, alors $f \odot g$ peut être calculé à l'aide de $O(p\mathsf{M}(\frac{D}{p})\log(\frac{D}{p})+\mathsf{M}(D))$
 \end{enumerate}
 \end{prop}
+
+\begin{proof}
+Voir \cite{BostanFlajoletSalvySchost06}.
+\end{proof}
+
+\begin{prop}
+Le coût de construire $\mathbb{K}_n$ est 
+\begin{enumerate}
+\item pour $p$, la caractéristique de $\mathbb{F}_q$, tel que $p>p_n$
+est majoré par $O(n\mathsf{M}(p_n))$;
+\item pour $p$ tel que $p<p_n$ est majoré par 
+$O(np\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n))$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+La construction des différentes tours $\ell_i$-adiques se fait à l'aide de 
+$O(d_i\mathsf{M}(d_i)\log(d_i)\log(d_iq)+\mathsf{M}(\ell_i)\log(\ell_i)+d_i^2)$ 
+opérations sur $\mathbb{F}_q$ on peut majorer cela grossièrement par 
+$O(n \max_i(\ell_i\mathsf{M}(\ell_i)\log(\ell_i)\log(\ell_iq))$.
+On va alors simplifier l'analyse de complexité en ne considérant que deux cas:
+\begin{enumerate}
+\item $p>p_n$,
+\item $p<p_n$.
+\end{enumerate}
+On travaille donc tout d'abord avec le premier cas, le plus favorable, $p>p_n$.
+Supposons que $\mathbb{K}_i$ ait été construit alors calculons le coût de 
+construire $\mathbb{K}_{i+1}$, on applique alors la 
+proposition~\ref{pro:comp:prod} avec deux polynômes irréductibles de degré 
+$p_i$ et $d_{i+1}\ell_i^{n_i}$ par la proposition~\ref{pro:comp:prod} cela 
+coûte $O(\mathsf{M}(p_i+1))$ opérations sur $\mathbb{F}_q$.
+Ainsi en majorant grossièrement le coût de cette étape par $O(\mathsf{M}(p_n))$
+le coût de construction du compositum $O(\mathbb{K}_n)$ est majoré par 
+$O(n\mathbb{K}_n)$.
+
+On travaille maintenant avec le second cas, le moins favorable, $p<p_n$.
+Supposons que $\mathbb{K}_i$ ait été construit alors calculons le coût de 
+construire $\mathbb{K}_{i+1}$, on applique alors la 
+proposition~\ref{pro:comp:prod} avec deux polynômes irréductibles de degré 
+$p_i$ et $d_{i+1}\ell_i^{n_i}$ tels que $p>p_n$ alors le calcul de 
+$\mathbb{K}_i$ coûte 
+$O(p\mathsf{M}(\frac{p_i}{p})\log(\frac{p_i}{p})+\mathsf{M}(p_i))$
+opérations sur $\mathbb{F}_q$. Ainsi en majorant grossièrement le coût de cette
+étape par $O(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n))$
+le coût de construction du compositum $\mathbb{K}_n$ est majoré par 
+$O(np\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n))$.
+\end{proof}
+
+\todo{changer tous les composita en compositum}
 
  Comme motivé dans la sous sous section précédente~\ref{sub:TRCE:cou} on peut 
  calculer les points (partiellement) horizontaux sur les volcans de 
