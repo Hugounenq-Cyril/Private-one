@@ -1369,17 +1369,63 @@ L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires
 
 \subsection{Algorithme original de Couveignes}
 \label{sub:ori:cou}
-Soit $I$ la $\ell$-isogénie qui relie deux courbes elliptiques ordinaires $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$ on a: $I(E[p^k])=E'[p^k]$.
-C'est cette correspondance qui, lorsque $k$ est assez grand, donne une information suffisante pour interpoler l'isogénie. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une correspondance entre deux groupes cycliques. Soient $P$ un générateur de $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement, l'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point $P'$ par l'isogénie $I$. Ainsi si l'on représente $I$ à l'aide d'une fraction rationnelle avec les formules de Vélu (voir \ref{sse:Vel}) on a:
+Soit $I$ la $\ell$-isogénie qui relie deux courbes elliptiques ordinaires 
+$E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$
+on a: $I(E[p^k])=E'[p^k]$. C'est cette correspondance qui, lorsque $k$ est 
+assez grand, donne une information suffisante pour interpoler l'isogénie. Comme
+la $p^k$-torsion est cyclique, alors cette correspondance est une 
+correspondance entre deux groupes cycliques. Soient $P$ un générateur de 
+$E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement, 
+l'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point 
+$[a]P'$ par l'isogénie $I$ avec $a \in (\mathbb{Z}/p^k\mathbb{Z})^*$. Ainsi si
+l'on représente $I$ à l'aide d'une fraction rationnelle on a:
 \begin{equation}
-\frac{g(x([k] P))}{h(x([k] P))}=x([k] P') \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
+\frac{g(x([k] P))}{h(x([k] P))}=x([ka] P') \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
 \end{equation}
 avec $\deg g = \ell$ et $\deg h = \ell-1$.
-Pour calculer l'isogénie l'algorithme de Couveignes calcule un polynome $A \in \mathbb{F}_q[X]$ tel que l'on ait 
+Pour calculer l'isogénie, l'algorithme de Couveignes calcule un polynome $A_a \in \mathbb{F}_q[X]$ tel que l'on ait 
 \begin{equation}
-A(x([k] P))= x([k] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
+A_a(x([k] P))= x([ka] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
 \end{equation} 
-avec $T \in \mathbb{F}_q[x]$ qui s'annule sur les abscisses des points de $E[p^k]$ car on travaille sur la $p^k$ torsion. La valeur de $k$ est en pratique choisie telle que $p^k \geqslant 4 \ell+1$. En effet on veut faire une interpolation de Cauchy pour calculer la forme explicite de Vélu, normalement on a besoin de $p^k \geqslant 2 \ell +1$ mais comme tout point d'ordre différent de $2$ a son opposé de même abscisse on doit doubler le nombre de points à considérer. On vérifie alors si la fraction rationnelle obtenue est bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on choisit alors un autre générateur $P'_2$ (par exemple $P'_2=\alpha P'$ avec $\alpha \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^* $) de $E'[p^k]$ et l'on recommence l'algorithme en supposant que $I(P)=P'_2$.
+avec $T \in \mathbb{F}_q[x]$ qui s'annule sur les abscisses des points de 
+$E[p^k]$ car on travaille sur la $p^k$ torsion.
+
+On définit alors l'interpolation de Cauchy:
+\begin{defi}
+Soit $T \in \mathbb{F}_q[x]$ un polynôme de degré $n>0$ avec 
+$T=\prod_{i=1}^n(x-u_i)$ et les $u_i$ distincts deux à deux, 
+$A \in \mathbb{F}_q[x]$ un polynôme de degré $<n$. Pour $k \in [1,n]$ une 
+\emph{interpolation de Cauchy} est la recherche de polynômes $R,V \in \mathbb{F}_q[x]$
+tels que:
+\[
+\mathsf{pgcd(V,T)=1 \quad \deg(R)<k \quad \deg(V)<n-k \quad \frac{R}{V}=A\bmod T}
+\]
+\end{defi}
+On veut donc faire une interpolation de Cauchy appliquée à $A_a$ et $T$ pour 
+calculer la forme explicite de l'isogénie de degré $\ell$, la valeur de $k$ 
+devrait donc être choisie telle que $p^k \geqslant 2 \ell +1$ mais comme tout 
+point d'ordre différent de $2$ a son opposé de même abscisse on doit doubler le
+nombre de points à considérer et donc choisir $k$ tel que 
+$p^k \geqslant 4 \ell+1$. On vérifie alors si la fraction rationnelle obtenue est 
+bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on
+choisit alors un autre coefficient $b \neq a \in 
+\left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ et l'on 
+recommence l'algorithme en supposant que $I(P)=[b] P'$.
+
+\begin{algorithm}
+\caption{\label{alg:LS08:modified} Algorithme original de Couveignes}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{F}_q$,%\\
+\ENSURE $I$ une $\ell$-isogénie telle que $I:E \rightarrow E'$
+\STATE Calculer le plus petit $k$ tel que $p^k>4\ell-1$
+\STATE \label{alg:LS08:modified:rel:polmod} Calculer un relevé $\overline{j_{E'}}$ de la solution de $\phi_{\ell}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
+\STATE Calculer une equation de Weierstrass normalisée de $\overline{E''}$ de $j$-invariant $\overline{j_{E'}}$ à l'aide des formules de Elkies (voir proposition~\ref{prop:elk:nor})
+\STATE Utiliser l'algorithme BMSS pour calculer l'isogénie $\overline{I}$
+\STATE Réduire modulo $p$ $\overline{E''}$ et $\overline{I}$ vers $E''$ et $I$
+\STATE Utiliser l'isomorphisme:$E' \rightarrow E''$ pour calculer l'isogénie $I: E \rightarrow E'$.
+\RETURN$S$. 
+\end{algorithmic}
+\end{algorithm}
 
 \subsubsection{Coût de Couveignes}
 
