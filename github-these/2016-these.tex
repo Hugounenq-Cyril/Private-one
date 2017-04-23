@@ -1413,157 +1413,82 @@ choisit alors un autre coefficient $b \neq a \in
 recommence l'algorithme en supposant que $I(P)=[b] P'$.
 
 \begin{algorithm}
-\caption{\label{alg:LS08:modified} Algorithme original de Couveignes}
+\caption{\label{alg:orig:Couv} Algorithme original de Couveignes}
 \begin{algorithmic}[1]
 \REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{F}_q$,%\\
 \ENSURE $I$ une $\ell$-isogénie telle que $I:E \rightarrow E'$
-\STATE Calculer le plus petit $k$ tel que $p^k>4\ell-1$
-\STATE \label{alg:LS08:modified:rel:polmod} Calculer un relevé $\overline{j_{E'}}$ de la solution de $\phi_{\ell}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
-\STATE Calculer une equation de Weierstrass normalisée de $\overline{E''}$ de $j$-invariant $\overline{j_{E'}}$ à l'aide des formules de Elkies (voir proposition~\ref{prop:elk:nor})
-\STATE Utiliser l'algorithme BMSS pour calculer l'isogénie $\overline{I}$
-\STATE Réduire modulo $p$ $\overline{E''}$ et $\overline{I}$ vers $E''$ et $I$
-\STATE Utiliser l'isomorphisme:$E' \rightarrow E''$ pour calculer l'isogénie $I: E \rightarrow E'$.
-\RETURN$S$. 
+\STATE Calculer du plus petit $k$ tel que $p^k>4\ell-1$;
+\STATE Calcul de $P,P'$ générateurs de $E[p^k],E'[p^k]$;
+\FOR{$a \in (\mathbb{Z}/p^k\mathbb{Z})^*$}
+\STATE Calcul de $A_a$ et $T$ tels que $A_a(x([k]P))=x([ka]P) \bmod T$
+\STATE Calcul de la fraction rationnelle $F=A \bmod T$ à l'aide d'une 
+interpolation de Cauchy
+\IF{$\mathsf{Test}(F)$}
+\RETURN $F$
+\ENDIF
+\ENDFOR
 \end{algorithmic}
 \end{algorithm}
 
 \subsubsection{Coût de Couveignes}
-
+On va donner ici la démarche à utiliser pour effectuer une utilisation 
+pratique de l'algorithme de Couveignes afin de permettre de voir les différences
+avec notre approche $\ell$-adique de l'algorithme de Couveignes, pour les 
+détails le lecteur interessé peut se reporter à \cite{Couveignes96} et 
+\cite{DeFeo11}.
 \paragraph{Calcul de la $p$-torsion}
-La première étape de l'algorithme est le calcul de générateurs de la $p^k$ torsion. On a tout d'abord besoin de définir les points de $p$-torsion pour cela on se sert du travail de Gunji \cite{Gunji76} et on se place dans le cas où $p \neq 2$. Le lecteur intéressé par le cas $p=2$ pourra se référer à \cite[3.2]{DeFeo11}.
+La première étape de l'algorithme est le calcul de générateurs de la $p^k$ 
+torsion. On a tout d'abord besoin de définir les points de $p$-torsion pour 
+cela on se sert du travail de Gunji \cite{Gunji76} et on se place dans le cas 
+où $p \neq 2$. Le lecteur intéressé par le cas $p=2$ pourra se référer à 
+\cite[3.2]{DeFeo11}.
 
-\begin{defi}
-Soit $E$ une courbe elliptique définie par l'équation: $y^2=f(x)$. L'\emph{invariant de Hasse} est le coefficient de $X^{p-1}$ dans $f(X)^{\frac{p-1}{2}}$ on le note $H_{E}$.
-\end{defi}
+Le travail de Gunji \cite[Theorem 4]{Gunji76} permet donc de déterminer les 
+abscisses de points d'odre $p$ à l'aide d'éléments définis dans une extension 
+de degré au plus $p-1$.  
 
-Gunji a alors démontré le résultat suivant:
-
-\begin{thm}
-\label{thm:Gunji}
-Soient $c_p, c_{p-1}, \cdots, c_{0}$ les racines de $X^{p-1}-H_{E}$ dans son corps de décomposition. Les abscisses des points de $p$-torsion de $E$ sont données par: 
-\begin{equation*}
-X^{p}_i=\frac{\Delta_0^2-a_6c_i^2\Delta_1^2}{4c_i^2}
-\end{equation*}
-avec $\Delta_0$ et $\Delta_1$ les detérminants des matrices données dans la figure \ref{fig:gun:det} avec $r=\frac{p-1}{2}, \alpha_{\nu}=\nu (\nu -1 ) a_6, \beta_{\nu}=\nu(\nu-\frac{1}{2})a_4 \nu_{\nu}=\nu^2a_2$ et $\delta_{\nu}=\gamma(\nu + \frac{1}{2})$ avec $\Delta_1=1$ lorsque $r=1$.
-\end{thm}
-
-\begin{figure}
-\label{fig:gun:det}
-\begin{equation*}
-\begin{alignedat}{1}
-\Delta_0 &=\left| 
-\begin{matrix}
-\beta_1 & \alpha_2 & 0 & 0 & \cdots & 0\\
-\delta_1 & \gamma_2 - c^2 & \beta_3 & \alpha_4 & \ddots & \vdots \\
-0 & \delta_2 & \gamma_3 - c^2 & \beta_4 & \ddots & 0 \\
-\vdots & \ddots & \delta_3 & \ddots & \ddots & \alpha_r \\
-\vdots & & \ddots  & \ddots & \ddots & \beta_r \\
-0 & \cdots & \cdots & 0 & \delta_{r-1} & \gamma_r - c^2 
-\end{matrix}
-\right| \\
-\Delta_1 &= \left| 
-\begin{matrix}
-\gamma_2-c^2 & \beta_3 & \alpha_4 & \cdots & 0 \\
-\delta_2 & \gamma_3 - c^2 & \beta_4 & \ddots & \vdots \\
-0 & \delta_3 & \ddots & \ddots & \alpha_r \\
-\vdots & \ddots & \ddots & \ddots & \beta_r \\
-0 & \cdots & 0 & \delta_{r-1} & \gamma_r-c^2
-\end{matrix}
-\right|.
-\end{alignedat}
-\end{equation*}
-\caption{Les déterminants $\Delta_0$ et $\Delta_1$ apparaissant dans la formule de Gunji.}
-\end{figure}
-
-En notant $c$ l'une des racinces $p-1$ ème de $H_E$, ce résultat implique que les points de $p$-torsion sont définis dans $\mathbb{F}_q[c]$ et leurs abscisses sont incluses dans $\mathbb{F}_q[c^2]$.
-
-
-Le calcul de la $p^k$-torsion est effectué itérativement à l'aide de la $p$-descente, pour celle-ci on se sert de la décomposition de la multiplication par $p$: 
+Le calcul de la $p^k$-torsion est alors effectué itérativement à l'aide d'une 
+$p$-descente, pour celle-ci on se sert de la décomposition de la multiplication
+par $p$: 
 \begin{equation}
 [p]=\pi \circ V
 \end{equation}
-avec $\pi$ le Frobenius défini sur $\mathbb{F}_q$ et $V$ le Verschiebung. L'idée originale est donc d'inverser chacune  de ces isogénies pour calculer itérativement des antécédents de point d'ordre $p^i$ par $[p]$. Inverser l'isogénie séparable $V$ revient notamment à factoriser un polynôme de degré $p$ dans une extension de $\mathbb{F}_q$, $V$ peut être explicité à l'aide de la $p$-torsion de $E: E[p]$. 
+avec $\pi$ le Frobenius défini sur $\mathbb{F}_q$ et $V$ le Verschiebung. 
+L'idée originale est donc d'inverser chacune  de ces isogénies pour calculer 
+itérativement des antécédents de points d'ordre $p^i$ par $[p]$. Inverser 
+l'isogénie séparable $V$ revient notamment à factoriser un polynôme de degré 
+$p$ dans une extension de $\mathbb{F}_q$, $V$ pouvant être explicité à l'aide 
+de la $p$-torsion de $E$. 
 
-Une autre approche a été proposé par De Feo pour prendre avantage notamment des constructions de tour d'Artin Schreier en s'appuyant sur les travaux de Voloch \cite{Voloch90} celle-ci a été suggéré dans l'article original \cite{Couveignes96}. On suppose $p\neq 2$ et l'on pose $E$ et $\widehat{E}$ d'équations respectives:
-\begin{equation}
-\begin{alignedat}{1}
-y^2 &= f(x)x^3+a_2x^2+a_4x+a_6 \\
-\widehat{y}^2 &= \widehat{f}(\widehat{x})=\widehat{x}^3+\sqrt[p]{a_2}\widehat{x}^2+\sqrt[p]{a_4}\widehat{x}+\sqrt[p]{a_6}
-\end{alignedat}
-\end{equation}
-on pose alors:
-\begin{equation}
-\widehat{f}(x)^{\frac{p-1}{2}}=\alpha(x)+H_{\widehat{E}}X^{p-1}+X^{p}\beta(x)
-\end{equation}
-aec $\deg  \alpha <p-1$ et $H_{\widehat{E}}$ l'invariant de Hasse de $\widehat{E}$. Voloch a alors démontré le résultat suivant:
-\begin{prop}
-Soit $\widehat{c}$ une racine $p-1$ ème de $H_{\widehat{E}}$, le recouvrement de $\widehat{E}$ défini par:
-\begin{equation}
-\label{eq:vol:cov}
-C:\widehat{z}^p-\widehat{z}=\frac{\widehat{y}\beta( \widehat{x})}{\widehat{c}^p}
-\end{equation}
-est un recouvrement étale de degré $p$ et est isomorphe à $E$ sur $\mathbb{F}_q[c]$ à l'aide de l'isomorphisme suivant:
-\begin{equation}
-\label{eq:vol:iso}
-\begin{alignedat}{1}
-(\widehat{x},\widehat{y}) &= V(x,y) \\
-\widehat{z} &= \frac{-y}{\widehat{c}^p}\sum_{i=1}^{p-1}\frac{1}{x-x([i]P_1)}
-\end{alignedat}{1}
-\end{equation}
-avec $P_1$ un point d'ordre $p$ de $E$.
-\end{prop}
+Une autre approche a été proposé par De Feo pour prendre avantage notamment des
+constructions de tour d'Artin Schreier en s'appuyant sur les travaux de 
+$p$-descente de Voloch dont notamment \cite[Lemma 1.1]{Voloch90}, cette 
+approche a été suggéré dans l'article original \cite{Couveignes96}. 
 
-La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré-images sur $C$ en résolvant l'équation \eqref{eq:vol:cov}. On résoud alors l'équation \eqref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition précédente nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \ref{fig:dra:des}.
+Cette méthode est plus efficace que la méthode standard car à l'aide des 
+constructions de Tour d'Artin-Schreier on peut effectuer plus rapidement cette 
+$p$-descente qui nécessite en particulier de résoudre une équation 
+d'Artin-Schreier (équation de la forme $x^p-x=\alpha$ avec $\alpha \in 
+\mathbb{F}_q$ de caractéristique $p$) qui peut être résolue à l'aide de 
+méthodes de \cite[§6.1]{DeFeo-Shost'12} ou par algèbre linéaire comme dans 
+\cite{Couveignes96}. 
 
-\begin{figure}
-\begin{center}
-\label{fig:dra:des}
-\begin{tikzpicture}
-\begin{scope}
-    \coordinate (E) at (0, 0) ;
-   	\coordinate (E') at (5, 0);
-   	\coordinate (C) at (0, -3) ;
-   	%\draw (E) node {$\bullet$};
-   	%\draw (E) node[left] {$E$};
-   	%\draw (E') node {$\bullet$};
-   	%\draw (C) node {$\bullet$};
-   	%\draw (E') node[right] {$\widehat{E}$};
-   	%\draw (C) node[below] {$C$};
-   	\node (C) at (0,-3) {$C$};
-   	\node (E) at (0,0) {$E$};
-   	\node (E') at (5,0) {$\widehat{E}$};
-   	\draw[ thick,<-] (E) to[bend left=20] node[above left] {$\pi$} (E');
-   	\draw[ thick,<-] (E') to[bend right=-20] node[below right] {$V$} (E);
-    \draw[thick,->] (E) to node [midway, left] {$\cong$} (C);
-    \draw[thick,->] (C) to (E');
-\end{scope}
-\end{tikzpicture}
-\caption{Descente d'un point de $p$-torsion sur $E$.}
-\end{center}
-\end{figure}
-
-Cette méthode est plus efficace que la méthode standard car à l'aide des constructions de Tour d'Artin-Schreier on peut résoudre plus rapidement l'équation \eqref{eq:vol:cov} qui est une équation d'Artin-Schreier cette équation peut être résolue à l'aide de méthodes de \cite[§6.1]{DeFeo-Shost'12} ou par algèbre linéaire comme dans \cite{Couveignes96}. Une fois qu'une solution $\tilde{z}$ de \eqref{eq:vol:cov} est trouvée il faut alors résoudre en $x$ et en $y$ le système de \eqref{eq:vol:iso} à l'aide d'un calcul de $\mathrm{pgcd}$ plus de détails peuvent être trouvés dans \cite[§6.2]{Ler97a} ou dans \cite[§7]{DeFeo11} alors que dans la méthode préconisée auparavant on devait factoriser un polynôme.
-
-Comme le travail de \cite{DeFeo11} repose sur les constructions de tour d'Artin Schreier, (\textcolor{red}{finalement pas apparemment})dont une brève description sera faite \textcolor{red}{ref. à mettre} pour plus de détails voir \cite{DeFeo-Shost'12}, et que celles-ci sont construites comme des extensions de $\mathbb{F}_p$ alors les complexités seront exprimées en terme d'opérations sur $\mathbb{F}_p$ en rappelant la convention que l'on a $q=p^d$.
-
-\begin{lem}
-Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
-\end{lem}
-
-\begin{proof}
-Le côut de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\widehat{c}$ racines $p-1$ ème de $H_{E}$ et $H_{\widehat{E}}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
-\end{proof}
-
-Pour la calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille du corps dans lequel on est amené à effectuer les calculs. On introduit donc la définition de tours d'extensions $p$-adique, le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement la valuation $p$-adique de la torsion rationnelle de la courbe de $1$.
+Pour le calcul de la $p^k$-torsion on a tout d'abord besoin de savoir la taille
+du corps dans lequel on est amené à effectuer les calculs. %On introduit donc la définition de tours d'extensions $p$-adique, 
+Le résultat suivant issu de \cite{DeFeo10} est une généralisation de \cite[Proposition 26]{Ler97a} il montre en particulier que prendre une extension de degré $p$ dans une telle tour augmente exactement de $1$ la valuation $p$-adique de la torsion rationnelle de la courbe.
 
 \begin{defi}
 \label{def:p-adic:level}
-Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour de \emph{niveau} $p$-adique  $\mathbb{L}_0,  \mathbb{L}_1, \mathbb{L}_2, \cdots \mathbb{L}_i$ telle que $\mathbb{L}_i$ soit la plus petite extension de corps de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{L}_i)$. On pose $\mathbb{L}_0=\mathbb{F}_q$.
+Soit $\mathbb{F}_q$ un corps fini sur lequel on définit la tour de corps finis 
+$\mathbb{L}_0 \subset  \mathbb{L}_1 \subset \mathbb{L}_2 \subset \cdots \subset
+\mathbb{L}_i$ telle que $\mathbb{L}_i$ soit la plus petite extension de corps 
+de $\mathbb{F}_q$ dans laquelle on a $E[p^i] \subset E(\mathbb{L}_i)$. On pose 
+$\mathbb{L}_0=\mathbb{F}_q$.
 \end{defi}
 
 \begin{prop}
 \label{pro:ord:fro}
-Pour une tour de \emph{niveau} $p$-adique de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic:level} on a:
+Pour une tour de corps finis de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic:level} on a:
 \begin{itemize}
 \item $[\mathbb{L}_1:\mathbb{F}_q] \mid p-1$
 \item Pour tout $i \geqslant 1$ on a soit $[\mathbb{L}_{i+1}:\mathbb{L}_{i}]=p$ soit $\mathbb{L}_{i+1}=\mathbb{L}_{i}=\cdots = \mathbb{L}_{1}$.
@@ -1585,7 +1510,7 @@ on rappelle tout d'abord l'équation caractéristique du Frobenius:
 \begin{equation}
 X^2 - t_{\pi}X + q = 0
 \end{equation}
-Maintenant si l'on regarde cette équation restreinte à la $p$-torsion, on a alors l'équation qui a deux solutions: $0 \bmod p$ et $t_{\pi} \bmod p$. La solution $0 \bmod p$ est écartée car le Frobenius ne peut avoir de noyau non trivial. Ainsi l'action du Frobenius sur la $p$-torsion revient à une multiplication par $t_{\pi} \bmod p$. Dés lors si l'on regarde cette équation sur $T_{p}(E)$ on voit que l'action du Frobenius peut être représentée par une multiplication par $\mathfrak{t}_{\pi} \in \mathbb{Z}_{p} $. 
+Maintenant si l'on regarde cette équation restreinte à la $p$-torsion, on voit que l'équation a deux solutions: $0 \bmod p$ et $t_{\pi} \bmod p$. La solution $0 \bmod p$ est écartée car le Frobenius ne peut avoir de noyau non trivial. Ainsi l'action du Frobenius sur la $p$-torsion revient à une multiplication par $t_{\pi} \bmod p$. Dés lors si l'on regarde cette équation sur $T_{p}(E)$ on voit que l'action du Frobenius peut être représentée par une multiplication par $\mathfrak{t}_{\pi} \in \mathbb{Z}_{p} $. 
 Regardons alors l'action du groupe de Galois $G$ de $\mathbb{F}_q$ sur $T_{p}(E)$. Comme $G$ est engendré par l'automorphisme de $\mathbb{F}_q$, la restriction de son action à $E[p^k]$ peut être représentée par la multiplication de $t_k=\mathfrak{t}_{\pi} \bmod p^k$. Ainsi on a $[\mathbb{L}_k:\mathbb{F}_q]=\mathrm{ord}(t_k)$.
 
 Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
@@ -5847,6 +5772,126 @@ complexité.
 \end{proof}
 
 \chapter{Rebus}
+\section{Algorithme de Couveignes}
+
+\begin{defi}
+Soit $E$ une courbe elliptique définie par l'équation: $y^2=f(x)$. L'\emph{invariant de Hasse} est le coefficient de $X^{p-1}$ dans $f(X)^{\frac{p-1}{2}}$ on le note $H_{E}$.
+\end{defi}
+
+Gunji a alors démontré le résultat suivant:
+
+\begin{thm}
+\label{thm:Gunji}
+Soient $c_p, c_{p-1}, \cdots, c_{0}$ les racines de $X^{p-1}-H_{E}$ dans son corps de décomposition. Les abscisses des points de $p$-torsion de $E$ sont données par: 
+\begin{equation*}
+X^{p}_i=\frac{\Delta_0^2-a_6c_i^2\Delta_1^2}{4c_i^2}
+\end{equation*}
+avec $\Delta_0$ et $\Delta_1$ les detérminants des matrices données dans la figure \ref{fig:gun:det} avec $r=\frac{p-1}{2}, \alpha_{\nu}=\nu (\nu -1 ) a_6, \beta_{\nu}=\nu(\nu-\frac{1}{2})a_4 \nu_{\nu}=\nu^2a_2$ et $\delta_{\nu}=\gamma(\nu + \frac{1}{2})$ avec $\Delta_1=1$ lorsque $r=1$.
+\end{thm}
+
+
+\begin{equation*}
+\begin{alignedat}{1}
+\Delta_0 &=\left| 
+\begin{matrix}
+\beta_1 & \alpha_2 & 0 & 0 & \cdots & 0\\
+\delta_1 & \gamma_2 - c^2 & \beta_3 & \alpha_4 & \ddots & \vdots \\
+0 & \delta_2 & \gamma_3 - c^2 & \beta_4 & \ddots & 0 \\
+\vdots & \ddots & \delta_3 & \ddots & \ddots & \alpha_r \\
+\vdots & & \ddots  & \ddots & \ddots & \beta_r \\
+0 & \cdots & \cdots & 0 & \delta_{r-1} & \gamma_r - c^2 
+\end{matrix}
+\right| \\
+\Delta_1 &= \left| 
+\begin{matrix}
+\gamma_2-c^2 & \beta_3 & \alpha_4 & \cdots & 0 \\
+\delta_2 & \gamma_3 - c^2 & \beta_4 & \ddots & \vdots \\
+0 & \delta_3 & \ddots & \ddots & \alpha_r \\
+\vdots & \ddots & \ddots & \ddots & \beta_r \\
+0 & \cdots & 0 & \delta_{r-1} & \gamma_r-c^2
+\end{matrix}
+\right|.
+\end{alignedat}
+\end{equation*}
+
+
+En notant $c$ l'une des racinces $p-1$ ème de $H_E$, ce résultat implique que les points de $p$-torsion sont définis dans $\mathbb{F}_q[c]$ et leurs abscisses sont incluses dans $\mathbb{F}_q[c^2]$.
+
+On suppose $p\neq 2$ et l'on pose $E$ et $\widehat{E}$ 
+d'équations respectives:
+\begin{equation}
+\begin{alignedat}{1}
+y^2 &= f(x)x^3+a_2x^2+a_4x+a_6 \\
+\widehat{y}^2 &= \widehat{f}(\widehat{x})=\widehat{x}^3+\sqrt[p]{a_2}\widehat{x}^2+\sqrt[p]{a_4}\widehat{x}+\sqrt[p]{a_6}
+\end{alignedat}
+\end{equation}
+on pose alors:
+\begin{equation}
+\widehat{f}(x)^{\frac{p-1}{2}}=\alpha(x)+H_{\widehat{E}}X^{p-1}+X^{p}\beta(x)
+\end{equation}
+aec $\deg  \alpha <p-1$ et $H_{\widehat{E}}$ l'invariant de Hasse de $\widehat{E}$. Voloch a alors démontré le résultat suivant:
+\begin{prop}
+Soit $\widehat{c}$ une racine $p-1$ ème de $H_{\widehat{E}}$, le recouvrement de $\widehat{E}$ défini par:
+\begin{equation}
+\label{eq:vol:cov}
+C:\widehat{z}^p-\widehat{z}=\frac{\widehat{y}\beta( \widehat{x})}{\widehat{c}^p}
+\end{equation}
+est un recouvrement étale de degré $p$ et est isomorphe à $E$ sur $\mathbb{F}_q[c]$ à l'aide de l'isomorphisme suivant:
+\begin{equation}
+\label{eq:vol:iso}
+\begin{alignedat}{1}
+(\widehat{x},\widehat{y}) &= V(x,y) \\
+\widehat{z} &= \frac{-y}{\widehat{c}^p}\sum_{i=1}^{p-1}\frac{1}{x-x([i]P_1)}
+\end{alignedat}{1}
+\end{equation}
+avec $P_1$ un point d'ordre $p$ de $E$.
+\end{prop}
+
+La descente est alors effectuée de la façon suivante, à partir d'un point $P$ de $E$ on calcule un antécédent par $\pi$ ensuite on prend une de ses pré-images sur $C$ en résolvant l'équation \eqref{eq:vol:cov}. On résoud alors l'équation \eqref{eq:vol:iso} pour obtenir un point $P'$ sur $E$. La proposition précédente nous assure que l'on a $[p]P'=P$. La descente est schématisée dans le dessin \ref{fig:dra:des}.
+
+\begin{figure}
+\begin{center}
+\label{fig:dra:des}
+\begin{tikzpicture}
+\begin{scope}
+    \coordinate (E) at (0, 0) ;
+   	\coordinate (E') at (5, 0);
+   	\coordinate (C) at (0, -3) ;
+   	%\draw (E) node {$\bullet$};
+   	%\draw (E) node[left] {$E$};
+   	%\draw (E') node {$\bullet$};
+   	%\draw (C) node {$\bullet$};
+   	%\draw (E') node[right] {$\widehat{E}$};
+   	%\draw (C) node[below] {$C$};
+   	\node (C) at (0,-3) {$C$};
+   	\node (E) at (0,0) {$E$};
+   	\node (E') at (5,0) {$\widehat{E}$};
+   	\draw[ thick,<-] (E) to[bend left=20] node[above left] {$\pi$} (E');
+   	\draw[ thick,<-] (E') to[bend right=-20] node[below right] {$V$} (E);
+    \draw[thick,->] (E) to node [midway, left] {$\cong$} (C);
+    \draw[thick,->] (C) to (E');
+\end{scope}
+\end{tikzpicture}
+\caption{Descente d'un point de $p$-torsion sur $E$.}
+\end{center}
+\end{figure}
+
+Une fois qu'une solution $\tilde{z}$ de \eqref{eq:vol:cov}
+est trouvée il faut alors résoudre en $x$ et en $y$ le système de 
+\eqref{eq:vol:iso} à l'aide d'un calcul de $\mathrm{pgcd}$ plus de détails 
+peuvent être trouvés dans \cite[§6.2]{Ler97a} ou dans \cite[§7]{DeFeo11} alors 
+que dans la méthode préconisée auparavant on devait factoriser un polynôme.
+
+Comme le travail de \cite{DeFeo11} repose sur les constructions de tour d'Artin Schreier, (\textcolor{red}{finalement pas apparemment})dont une brève description sera faite \textcolor{red}{ref. à mettre} pour plus de détails voir \cite{DeFeo-Shost'12}, et que celles-ci sont construites comme des extensions de $\mathbb{F}_p$ alors les complexités seront exprimées en terme d'opérations sur $\mathbb{F}_p$ en rappelant la convention que l'on a $q=p^d$.
+
+\begin{lem}
+Le coût de calcul de la $p$-torsion est supérieur à  $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
+\end{lem}
+
+\begin{proof}
+Le côut de calcul de la $p$-torsion nécessite tout d'abord, d'après les formules de Gunji de calculer $c$ et $\widehat{c}$ racines $p-1$ ème de $H_{E}$ et $H_{\widehat{E}}$. On doit ensuite construire les corps $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$, dans le pire des cas $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$ sont des extensions de degré $p-1$ ainsi on aura besoin jusqu'à $p-1$ éléments de $\mathbb{F}_q$ pour représenter des éléments de $\mathbb{F}_q[c]$ et $\mathbb{F}_q[\widehat{c}]$. Le coût le plus important des formules de Gunji étant le calcul des déterminants d'une matrice $\frac{p-1}{2} \times \frac{p-1}{2}$ avec quatres diagonales non nulles cela a donc un coût de $\theta(p^2)$ opérations sur $\mathbb{F}_q[c]$ par élimination de Gauss ce qui a un coût de $\Omega(p^3d)$ opérations sur $\mathbb{F}_p$.
+\end{proof}
+
 \subsubsection{TRC ELLiptique}
 \begin{prop}
 L'algorithme~\ref{alg:TRC:init} est correct et coûte $2k_2$ inversions d'un polynôme de degré $\ell_2$, $2k_1 \bmod o_{\ell_2^{k_2}}(\eta_1)$ fois la multiplication scalaire d'un point d'ordre $\ell_2^{k_2}$ par un coefficient $\eta$ défini dans $\mathbb{Z}/\ell_2^{k_2} \mathbb{Z}$, avec $o_{\ell_2^{k_2}}(\eta)$ l'ordre multiplicatif de $\eta$ dans $(\mathbb{Z}/\ell_2^{k_2} \mathbb{Z})^*$.
