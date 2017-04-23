@@ -1070,7 +1070,9 @@ Il est à noter que la condition $p \gg \ell$ est là pour nous assurer que $2, 
 
 On peut alors énoncer le théorème suivant
 \begin{thm}
-Soient $E$ et $\tilde{E}$ deux courbes elliptiques $\ell$-isogènes définies sur $\mathbb{K}$ de caractéristique nulle ou avec $p>2\ell-1$ alors l'algorithme de Elkies calcule la $\ell$-isogénie en $O(\ell^2)$ opérations sur $\mathbb{K}$.
+Soient $E$ et $\tilde{E}$ deux courbes elliptiques $\ell$-isogènes définies sur
+$\mathbb{F}_q$ avec $p>2\ell-1$ alors l'algorithme de Elkies calcule la 
+$\ell$-isogénie en $O(\ell^2)$ opérations sur $\mathbb{F}_q$.
 \end{thm}
 
 
@@ -1119,16 +1121,16 @@ il change notamment de méthode pour le calcul des $h_i$:
 \begin{thm}
 \label{thm:BMSS}
 Soient $E, \tilde{E}$ deux courbes elliptiques $\ell$-isogènes définies sur 
-$\mathbb{K}$ sous forme de Weierstrass normalisées, avec $\ell$ différent de 
-$p$, la caractéristique de $\mathbb{K}$, qui peut être nulle ou doit vérifier 
+$\mathbb{F}_q$ sous forme de Weierstrass normalisée, avec $\ell$ différent de 
+$p$, la caractéristique de $\mathbb{F}_q$, qui doit vérifier 
 $p \gg \ell$, alors:
 \begin{itemize}
 \item  si la somme des abscisses des points du noyau de l'isogénie est connue 
 l'algorithme BMSS  calcule l'isogénie qui relie les deux courbes en 
-$O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$,
+$O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$,
 \item si la somme des abscisses des points du noyau de l'isogénie n'est pas 
 connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les 
-deux courbes en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{K}$.
+deux courbes en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$.
 \end{itemize}
 \end{thm}
 
@@ -1162,7 +1164,7 @@ On va d'abord exposer une solution pour résoudre cette équation différentiell
 
 \begin{lem}
 \label{lem:BMSS}
-Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ telles que $G(0)H(\alpha)=\beta^2$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ définie modulo $x^{k+1}$ avec $S(0)=\alpha$ et $S'(0)=\beta$, une solution de cette même équation définie modulo $x^{2k}$ peut être calculée à l'aide de l'algorithme \ref{alg:BMSS:eqdiff} en utilisant $O(\mathsf{M}(2^k))$ opérations sur $\mathbb{K}$.
+Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ telles que $G(0)H(\alpha)=\beta^2$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ définie modulo $x^{k+1}$ avec $S(0)=\alpha$ et $S'(0)=\beta$, une solution de cette même équation définie modulo $x^{2k}$ peut être calculée à l'aide de l'algorithme \ref{alg:BMSS:eqdiff} en utilisant $O(\mathsf{M}(2^k))$ opérations sur $\mathbb{F}_q$ avec $p \gg \ell$.
 \end{lem}
 
 \begin{proof}
@@ -1255,11 +1257,22 @@ que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La de
 \end{algorithm}
 
 \begin{rem}
-Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction rationnelle avec la méthode  précisée dans la remarque~\ref{rem:pol:rec} et \ref{rem:ELK:h-p}. Il est dés lors suffisant de calculer $S$ à précision $x^{2\ell}$ car la connaissance $\frac{g(x)}{h(x)}$ à précision $\ell-2$ est suffisante pour connaître $p_0,p_1,\cdots ,p_{\ell-1}$. Ainsi avec la connaissance de $p_1$ la complexité de l'étape $5$ de l'algorithme~\ref{alg:BMSS:total} est de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{K}$ et donne la complexité de celui-ci.
+Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction
+rationnelle avec la méthode énoncée pour l'algorithme de Elkies et précisée 
+dans la remarque~\ref{rem:pol:rec}. Il est dés lors suffisant de calculer $S$ à
+précision $x^{2\ell}$ car la connaissance $\frac{g(x)}{h(x)}$ à précision 
+$\ell-2$ est suffisante pour connaître $p_0,p_1,\cdots ,p_{\ell-1}$. Ainsi avec
+la connaissance de $p_1$ la complexité de l'étape $5$ de 
+l'algorithme~\ref{alg:BMSS:total} est de $O(\mathsf{M}(\ell))$ opérations sur 
+$\mathbb{F}_q$ et donne la complexité de celui-ci.
 \end{rem}
 
 \begin{rem}
-L'algorithme BMSS impose le fait d'avoir $p \gg \ell$ car à l'étape~\ref{alg:BMSS:eqdiff:int} de l'algorithme~\ref{alg:BMSS:eqdiff} une intégration est nécessaire ce qui entraîne des divisions par les entiers compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ sinon. Cela pose donc des limites aux applications de BMSS.
+L'algorithme BMSS impose le fait d'avoir $p \gg \ell$ car à 
+l'étape~\ref{alg:BMSS:eqdiff:int} de l'algorithme~\ref{alg:BMSS:eqdiff} une 
+intégration est nécessaire, ce qui entraîne des divisions par les entiers 
+compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ 
+sinon. Cela pose donc des limites aux applications de BMSS.
 \end{rem}
 
 
