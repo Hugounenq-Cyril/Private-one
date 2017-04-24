@@ -200,7 +200,7 @@ f(x)>Mg(x) \quad \text{pour} \quad x>x_0.
 \]
 On défnit alors la définition $\Theta$ en disant que $f \in \Theta(g)$ si et seulement si $f \in O(g)$ et $f \in \Omega(g)$.
 
-Dans ce document beaucoup d'algorithmes vont utiliser la multiplication rapide, on définit donc celle-ci: $\mathsf{M}:\mathbb{N} \rightarrow \mathbb{N}$ la \emph{fonction de multiplication} tel que le coût de la multiplication de deux polynôme de de degré $n$ définis dans $\mathbb{F}_q[x]$ coûte $M(n)$ opérations arithmétiques dans $\mathbb{F}_q$. En utilisant les résultats de \cite[§8.3]{vzGJG03} \todo{vérifier référence} on peut supposer que l'on a:
+Dans ce document beaucoup d'algorithmes vont utiliser la multiplication rapide, on définit donc celle-ci: $\mathsf{M}:\mathbb{N} \rightarrow \mathbb{N}$ la \emph{fonction de multiplication} tel que le coût de la multiplication de deux polynôme de de degré $n$ définis dans $\mathbb{F}_q[x]$ coûte $M(n)$ opérations arithmétiques dans $\mathbb{F}_q$. En utilisant les résultats de \cite[§8.3]{vzGJG03} on peut supposer que l'on a:
 \begin{itemize}
 \item $\mathsf{M}(n)$ est superlinéaire, c'est à dire $\frac{\mathsf{M}(n)}{n} \geqslant \frac{\mathsf{M}(m)}{m}$ si $n \geqslant m$,
 \item $\mathsf{M}(n)$ est au plus quadratique: $\mathsf{M}(mn) \leqslant m^2 \mathsf{M}(n)$.
@@ -579,7 +579,7 @@ t= \sum_{Q \in G \setminus \{0_E\}} f'(Q) \quad u=\sum_{Q \in G \setminus \{0_E\
 \end{equation*}
 
 \begin{rem}
-On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisé par Elkies \cite{elkies1998} et \cite[Section 2.4]{Kohel96} \todo{ref a mettre Kohel???} qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
+On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisé par Elkies \cite{elkies1998} et \cite[Section 2.4]{Kohel96}  qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
 \begin{equation*}
 \frac{g(x)}{h(x)}= x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
 \end{equation*}
@@ -899,7 +899,7 @@ Soient $j_0 \in \mathbb{F}_q$ le $j$-invariant d'une courbe elliptique $E_0$ dé
 \end{prop}
 
 \begin{proof}
-\todo{chercher référence}
+Voir \cite[Théorème 4.1.1]{Fouquet01} qui utilise notamment le résultat de \cite[Theorem 11.23]{Cox89}.
 \end{proof}
  
 Les $j$ invariants des courbes $\ell$-isogènes à $E_0$, racines du polynôme modulaire évalué en $j_0$, correspondent exactement aux $j$-invariants des  courbes générées par les $\ell$ isogénies $E \to E/C$ avec $C$(noyau de l'isogénie) un des $\ell+1$ sous-groupes cycliques de la $\ell$-torsion. 
@@ -991,7 +991,7 @@ Dans ce chapitre vont être présentés différents algorithmes pour résoudre l
 On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$, bien que certains algorithmes présentés peuvent aussi s'utiliser sur des corps de caractéristique nulle.
 
 \section{Rappel et applications des formules de Vélu}
-Comme vu dans la sous-section~\ref{sse:Vel} à l'aide des formules de Vélu on peut expliciter une isogénie séparable $I$ de degré $\ell$ sous la forme:
+Comme vu dans la sous-section~\ref{sse:Vel} à l'aide des formules de Vélu on peut expliciter une isogénie séparable $I$ de degré $r$ sous la forme:
 \begin{equation} 
 I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
 \end{equation}
@@ -1004,7 +1004,7 @@ avec $G=\ker(I)$, $g$ un polynôme. On rappelle qu'en plus à l'aide de la refor
 \label{eq:vel:elk}
 \frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
 \end{equation}
-avec $f$ donné par l'équation de Weierstrass de $E$: $y^2=f(x)$, $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{\ell-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
+avec $f$ donné par l'équation de Weierstrass de $E$: $y^2=f(x)$, $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{r-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
 
 
 Il est important de noter qu'il existe des isogénies de la forme:
@@ -1019,14 +1019,14 @@ avec $c \in \overline{\mathbb{F}_q}$. Ainsi on énonce les définitions suivante
 Soit $I$ une isogénie de la forme \eqref{eq:iso:gen} avec $c=1$, on dit alors 
 que cette isogénie est \emph{normalisée}, l'isogénie est alors séparable. 
 
-Pour deux courbes $\ell$-isogènes exprimées sous forme de Weierstrass telle que
-la $\ell$-isogénie associée à ces courbes est normalisée on dit que ces 
+Pour deux courbes $r$-isogènes exprimées sous forme de Weierstrass telle que
+la $r$-isogénie associée à ces courbes est normalisée on dit que ces 
 courbes ont des équations de Weierstrass \emph{normalisées}. 
 \end{defi}
 
 \section{Elkies 1998}
-Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p \gg \ell$.
-Dans le modèle de Elkies on travaille avec des courbes à équations de Weierstrass normalisées, celles-ci sont calculées à l'aide du $\ell$-ème polynôme modulaire (voir proposition \ref{prop:elk:nor} pour la construction et \cite{Schoof95} pour plus de détails).
+Ici on va se restreindre au cas où la caractéristique $p$ de $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p \gg r$.
+Dans le modèle de Elkies on travaille avec des courbes à équations de Weierstrass normalisées, celles-ci sont calculées à l'aide du $r$-ème polynôme modulaire (voir proposition \ref{prop:elk:nor} pour la construction et \cite{Schoof95} pour plus de détails).
 Les idées présentées ici sont issues du travail de Elkies~\cite[§The kernel of
  the isogeny]{elkies1998}, celui-ci commence à partir des équations de 
  Weierstrass normalisées de $E$
@@ -1064,15 +1064,15 @@ les termes $h_1,h_2$ étant déterminés par:
 \begin{equation}
 h_1=\frac{A-\tilde{A}}{5} \quad h_2={\frac{B-\tilde{B}}{7}}.
 \end{equation}
-Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{\ell-2}$ est de $O(\ell^2)$ opérations sur $\mathbb{F}_q$. 
+Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{r-2}$ est de $O(r^2)$ opérations sur $\mathbb{F}_q$. 
 
-Il est à noter que la condition $p \gg \ell$ est là pour nous assurer que $2, \cdots, 2\ell-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir appliquer la remarque \ref{rem:pol:rec}, ainsi que l'équation \eqref{eq:rec:h_k}.
+Il est à noter que la condition $p \gg r$ est là pour nous assurer que $2, \cdots, 2r-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir appliquer la remarque \ref{rem:pol:rec}, ainsi que l'équation \eqref{eq:rec:h_k}.
 
 On peut alors énoncer le théorème suivant
 \begin{thm}
-Soient $E$ et $\tilde{E}$ deux courbes elliptiques $\ell$-isogènes définies sur
-$\mathbb{F}_q$ avec $p>2\ell-1$ alors l'algorithme de Elkies calcule la 
-$\ell$-isogénie en $O(\ell^2)$ opérations sur $\mathbb{F}_q$.
+Soient $E$ et $\tilde{E}$ deux courbes elliptiques $r$-isogènes définies sur
+$\mathbb{F}_q$ avec $p>2r-1$ alors l'algorithme de Elkies calcule la 
+$r$-isogénie en $O(r^2)$ opérations sur $\mathbb{F}_q$.
 \end{thm}
 
 
@@ -1097,11 +1097,11 @@ On peut calculer $h(x)$ sans faire une reconstruction rationnelle, déterminer
 la fraction $\frac{g(x)}{h(x)}$ à partir de son développement en série 
 $x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$, en effet on peut déterminer les sommes
 de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de 
-$p_0=\ell-1, p_1$ et $\frac{g(x)}{h(x)}=x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$.
+$p_0=r-1, p_1$ et $\frac{g(x)}{h(x)}=x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$.
 Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer 
 la connaissance de $p_1$. En effet comme le calcul du $\ell$-ème polynôme 
-modulaire $\Phi_{\ell}$ a été effectué (voir \ref{sub:Elkies} pour plus de 
-contexte), alors à l'aide des dérivées partielles de $\Phi_{\ell}$ on peut 
+modulaire $\Phi_{r}$ a été effectué (voir \ref{sub:Elkies} pour plus de 
+contexte), alors à l'aide des dérivées partielles de $\Phi_{r}$ on peut 
 calculer celui-ci. Une formule explicite de ce calcul est donnée dans 
 \cite[Theorem 17.22]{ehcc05} et sa preuve est dans \cite[§7]{Schoof95}. En 
 utilisant \eqref{eq:iso:frac} et \eqref{eq:pol:new} dans \eqref{eq:vel:elk} on 
@@ -1110,8 +1110,12 @@ utilisant \eqref{eq:iso:frac} et \eqref{eq:pol:new} dans \eqref{eq:vel:elk} on
 \label{eq:p:rec}
 h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
 \end{equation}
-à l'aide de laquelle on calcule tous les $p_i$ en $O(\ell)$ opérations sur $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$ par \cite[§2.2]{BMSS08}.
-Enfin à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$.
+à l'aide de laquelle on calcule tous les $p_i$ en $O(r)$ opérations sur 
+$\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes
+de Newton de $h$ on calcule $h$ en $O(\mathsf{M}(r))$ opérations sur 
+$\mathbb{F}_q$ par \cite[§2.2]{BMSS08}.
+Enfin à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(r))$ opérations sur
+$\mathbb{F}_q$.
 \end{rem}
  
 \section{Bostan-Morain-Salvy-Schost}
@@ -1120,17 +1124,17 @@ l'algorithme de Elkies \cite{elkies1998} et a une meilleure complexité car
 il change notamment de méthode pour le calcul des $h_i$:
 \begin{thm}
 \label{thm:BMSS}
-Soient $E, \tilde{E}$ deux courbes elliptiques $\ell$-isogènes définies sur 
-$\mathbb{F}_q$ sous forme de Weierstrass normalisée, avec $\ell$ différent de 
+Soient $E, \tilde{E}$ deux courbes elliptiques $r$-isogènes définies sur 
+$\mathbb{F}_q$ sous forme de Weierstrass normalisée, avec $r$ différent de 
 $p$, la caractéristique de $\mathbb{F}_q$, qui doit vérifier 
-$p \gg \ell$, alors:
+$p \gg r$, alors:
 \begin{itemize}
 \item  si la somme des abscisses des points du noyau de l'isogénie est connue 
 l'algorithme BMSS  calcule l'isogénie qui relie les deux courbes en 
-$O(\mathsf{M}(\ell))$ opérations sur $\mathbb{F}_q$,
+$O(\mathsf{M}(r))$ opérations sur $\mathbb{F}_q$,
 \item si la somme des abscisses des points du noyau de l'isogénie n'est pas 
 connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les 
-deux courbes en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$.
+deux courbes en $O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$.
 \end{itemize}
 \end{thm}
 
@@ -1141,7 +1145,9 @@ solution de l'équation différentielle suivante:
 \label{eq:BMSS:ED1}
 (x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
 \end{equation}
-Cependant on ne connaît pas des conditions initiales en $0$ pour cette équation différentielle vérifiée par $\frac{g(x)}{h(x)}$ et, comme $\deg(g)=\ell> \deg(h)= \ell-1$ alors on ne peut travailler avec des conditions à l'infini. On pose donc:
+Cependant on ne connaît pas des conditions initiales en $0$ pour cette équation
+différentielle vérifiée par $\frac{g(x)}{h(x)}$ et, comme $\deg(g)=r> \deg(h)= 
+r-1$ alors on ne peut travailler avec des conditions à l'infini. On pose donc:
 \begin{equation}
 S(x)=\sqrt{\frac{h(1/x^2)}{g(1/x^2)}} \quad \text{équivalent à} \quad \frac{g(x)}{h(x)}=\frac{1}{S(1/\sqrt{x})}
 \end{equation} 
@@ -1164,7 +1170,7 @@ On va d'abord exposer une solution pour résoudre cette équation différentiell
 
 \begin{lem}
 \label{lem:BMSS}
-Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ telles que $G(0)H(\alpha)=\beta^2$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ définie modulo $x^{k+1}$ avec $S(0)=\alpha$ et $S'(0)=\beta$, une solution de cette même équation définie modulo $x^{2k}$ peut être calculée à l'aide de l'algorithme \ref{alg:BMSS:eqdiff} en utilisant $O(\mathsf{M}(2^k))$ opérations sur $\mathbb{F}_q$ avec $p \gg \ell$.
+Soient $H(t)=1+\tilde{A}t^4+\tilde{B}t^6$, $G(x)=\frac{1}{1+Ax^4+Bx^6}$ telles que $G(0)H(\alpha)=\beta^2$ alors à partir de $S$ une solution de l'équation différentielle $(S')^2=(H \circ S) G$ définie modulo $x^{k+1}$ avec $S(0)=\alpha$ et $S'(0)=\beta$, une solution de cette même équation définie modulo $x^{2k}$ peut être calculée à l'aide de l'algorithme \ref{alg:BMSS:eqdiff} en utilisant $O(\mathsf{M}(2^k))$ opérations sur $\mathbb{F}_q$ avec $p \gg r$.
 \end{lem}
 
 \begin{proof}
@@ -1215,7 +1221,7 @@ S, \quad U=1/S', \quad V=\sqrt{H \circ S}, \quad J=1/V.
 La précision de ces quantités est doublée dès lors à chaque itération de 
 Newton. Les uniques opérations effectuées étant des inversions et des 
 multiplications de séries, alors la $i$-ème itération coûte 
-$O(\mathsf{M}(2^i))$ opérations sur $\mathbb{K}$, et donc par la superlinéarité
+$O(\mathsf{M}(2^i))$ opérations sur $\mathbb{F}_q$, et donc par la superlinéarité
 de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération. 
 \end{proof}
 
@@ -1237,21 +1243,21 @@ de $\mathsf{M}$, l'algorithme a la même complexité que la dernière itération
 \end{algorithmic}
 \end{algorithm}
 
-Une solution $S$ de l'équation différentielle \eqref{eq:BMSS:ED3} est calculée à précision $x^{4\ell}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}. On définit les valeurs suivantes:
+Une solution $S$ de l'équation différentielle \eqref{eq:BMSS:ED3} est calculée à précision $x^{4r}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}. On définit les valeurs suivantes:
 \begin{equation}
 S(x)=xT(x^2), \quad R(x)=\frac{1}{T(x)^2} \quad \text{tel que } \frac{g(x)}{h(x)}=xR(1/x)
 \end{equation}
-que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle qui a un coût de $O(\mathsf{M}(\ell)\log(\ell))$ \cite[11]{vzGJG03} et domine toutes les autres.
+que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle qui a un coût de $O(\mathsf{M}(r)\log(r))$ \cite[11]{vzGJG03} et domine toutes les autres.
 
 \begin{algorithm}
 \caption{\label{alg:BMSS:total} BMSS}
 \begin{algorithmic}[1]
-\REQUIRE $\ell>1$, deux courbes $E,\tilde{E}$ $\ell$-normalizées  ,%\\
-\ENSURE La fraction rationnelle $\frac{g(x)}{h(x)}$ qui représente la $\ell$-isogénie
-\STATE Calculer $G(x)=1/(1+Ax^4+Bx^6) \bmod x^{4\ell-1}$.
-\STATE \label{alg:BMSS:total:eqdiff} Calculer $S(x)$ $\bmod x^{4\ell-1}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}.
-\STATE Soit $T(x)=\sum_{i=0}^{2\ell-1}s_{2i+1}x^i$.
-\STATE Calculer $R(x)=1/T(x)^2 \bmod(x^{2\ell-1})$.
+\REQUIRE $r>1$, deux courbes $E,\tilde{E}$ $r$-normalisées  ,%\\
+\ENSURE La fraction rationnelle $\frac{g(x)}{h(x)}$ qui représente la $r$-isogénie
+\STATE Calculer $G(x)=1/(1+Ax^4+Bx^6) \bmod x^{4r-1}$.
+\STATE \label{alg:BMSS:total:eqdiff} Calculer $S(x)$ $\bmod x^{4r-1}$ à l'aide de l'algorithme \ref{alg:BMSS:eqdiff}.
+\STATE Soit $T(x)=\sum_{i=0}^{2r-1}s_{2i+1}x^i$.
+\STATE Calculer $R(x)=1/T(x)^2 \bmod(x^{2r-1})$.
 \STATE Calculer $\frac{g(x)}{h(x)}$ à l'aide de reconstruction rationnelle. 
 \end{algorithmic}
 \end{algorithm}
@@ -1260,18 +1266,18 @@ que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La de
 Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction
 rationnelle avec la méthode énoncée pour l'algorithme de Elkies et précisée 
 dans la remarque~\ref{rem:pol:rec}. Il est dés lors suffisant de calculer $S$ à
-précision $x^{2\ell}$ car la connaissance $\frac{g(x)}{h(x)}$ à précision 
-$\ell-2$ est suffisante pour connaître $p_0,p_1,\cdots ,p_{\ell-1}$. Ainsi avec
+précision $x^{2r}$ car la connaissance $\frac{g(x)}{h(x)}$ à précision 
+$\ell-2$ est suffisante pour connaître $p_0,p_1,\cdots ,p_{r-1}$. Ainsi avec
 la connaissance de $p_1$ la complexité de l'étape $5$ de 
-l'algorithme~\ref{alg:BMSS:total} est de $O(\mathsf{M}(\ell))$ opérations sur 
+l'algorithme~\ref{alg:BMSS:total} est de $O(\mathsf{M}(r))$ opérations sur 
 $\mathbb{F}_q$ et donne la complexité de celui-ci.
 \end{rem}
 
 \begin{rem}
-L'algorithme BMSS impose le fait d'avoir $p \gg \ell$ car à 
+L'algorithme BMSS impose le fait d'avoir $p \gg r$ car à 
 l'étape~\ref{alg:BMSS:eqdiff:int} de l'algorithme~\ref{alg:BMSS:eqdiff} une 
 intégration est nécessaire, ce qui entraîne des divisions par les entiers 
-compris entre $1$ et $2\ell$ lorsque $p_1$ est connu, entre $1$ et $4\ell-1$ 
+compris entre $1$ et $2r$ lorsque $p_1$ est connu, entre $1$ et $4r-1$ 
 sinon. Cela pose donc des limites aux applications de BMSS.
 \end{rem}
 
@@ -1311,10 +1317,10 @@ courbe $\ell$-isogène $E'$. Ensuite les formules de Elkies \cite{elkies1998} so
 \begin{algorithm}
 \caption{\label{alg:LS08:modified} Algorithme de Lercier-Sirvent}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{F}_q$,%\\
-\ENSURE $I$ une $\ell$-isogénie telle que $I:E \rightarrow E'$
+\REQUIRE $E,E'$ deux courbes elliptiques ordinaires $r$-isogènes définies sur $\mathbb{F}_q$,%\\
+\ENSURE $I$ une $r$-isogénie telle que $I:E \rightarrow E'$
 \STATE Calculer un relèvement de l'équation de Weierstrass de $E$ dans $\mathbb{Q}_p$
-\STATE \label{alg:LS08:modified:rel:polmod} Calculer un relevé $\overline{j_{E'}}$ de la solution de $\phi_{\ell}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
+\STATE \label{alg:LS08:modified:rel:polmod} Calculer un relevé $\overline{j_{E'}}$ de la solution de $\Phi_{r}(X,j_E)$ dans $\mathbb{Q}_p$ à partir de $j_{E'}$
 \STATE Calculer une equation de Weierstrass normalisée de $\overline{E''}$ de $j$-invariant $\overline{j_{E'}}$ à l'aide des formules de Elkies (voir proposition~\ref{prop:elk:nor})
 \STATE Utiliser l'algorithme BMSS pour calculer l'isogénie $\overline{I}$
 \STATE Réduire modulo $p$ $\overline{E''}$ et $\overline{I}$ vers $E''$ et $I$
@@ -1324,10 +1330,10 @@ courbe $\ell$-isogène $E'$. Ensuite les formules de Elkies \cite{elkies1998} so
 \end{algorithm}
 
 \begin{prop}[Lairez-Vaccon]
-Soient deux courbes $\ell$-isogènes $E,E'$ définies sur $\mathbb{F}_q$ de caractéristique $p$ avec $p \geqslant 5$, l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus: 
+Soient deux courbes $r$-isogènes $E,E'$ définies sur $\mathbb{F}_q$ de caractéristique $p$ avec $p \geqslant 5$, l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus: 
 \begin{itemize}
-\item $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $ coefficients p-adiques si l'on ne connaît pas $p_1$ la somme des abscisses du noyau,
-\item  $ 1 + \lfloor \log_p(2 \ell - 1) \rfloor $ coefficients $p$-adiques si l'on connaît $p_1$ la somme des abscisses du noyau.
+\item $ 1 + \lfloor \log_p(4 r - 1) \rfloor $ coefficients p-adiques si l'on ne connaît pas $p_1$ la somme des abscisses du noyau,
+\item  $ 1 + \lfloor \log_p(2 r - 1) \rfloor $ coefficients $p$-adiques si l'on connaît $p_1$ la somme des abscisses du noyau.
 \end{itemize}
 \end{prop}
 
@@ -1336,40 +1342,40 @@ Ce résultat issu de \cite{LairezVaccon16} est une amélioration du résultat or
 
 Une preuve détaillée pour calculer une solution de l'équation différentielle à précision donnée est dans \cite{LairezVaccon16}, cette méthode repose notamment sur la différenciation précisionnelle qui repose sur une analyse du premier ordre de la propagation des erreurs. 
 
-Comme vu précédemment on a besoin de calculer une solution de l'équation différentielle linéaire \eqref{eq:LS08:diflin} de précision $4\ell-1$ si l'on ne connaît pas $p_1$ la somme des abscisses des points du noyau de l'isogénie. Dans ce cas on applique le résultat de Lairez-Vaccon: pour obtenir une solution $p$-adique de précision $4 \ell-1$ on a besoin d'avoir en entrée des éléments de précision $ 1 + \lfloor \log_p(4 \ell - 1) \rfloor $. Tandis que dans le cas où l'on connaît $p_1$ on a besoin de calculer une solution de \eqref{eq:LS08:diflin} de précision $2\ell - 1$ et avec le résultat de Lairez-Vaccon on a besoin d'avoir une précision en entrée de $ 1 + \lfloor \log_p(2 \ell - 1) \rfloor $ nombres $p$-adiques.
+Comme vu précédemment on a besoin de calculer une solution de l'équation différentielle linéaire \eqref{eq:LS08:diflin} de précision $4r-1$ si l'on ne connaît pas $p_1$ la somme des abscisses des points du noyau de l'isogénie. Dans ce cas on applique le résultat de Lairez-Vaccon: pour obtenir une solution $p$-adique de précision $4 r-1$ on a besoin d'avoir en entrée des éléments de précision $ 1 + \lfloor \log_p(4 r - 1) \rfloor $. Tandis que dans le cas où l'on connaît $p_1$ on a besoin de calculer une solution de \eqref{eq:LS08:diflin} de précision $2r - 1$ et avec le résultat de Lairez-Vaccon on a besoin d'avoir une précision en entrée de $ 1 + \lfloor \log_p(2 r - 1) \rfloor $ nombres $p$-adiques.
 
 
 \begin{rem}
-Lors de l'étape~\ref{alg:LS08:modified:rel:polmod} de l'algorithme de Lercier Sirvent (decrit dans l'algorithme~\ref{alg:LS08:modified}) on a besoin de connaître l'évaluation du $\ell$-ème polynôme modulaire en $j_E$: $\Phi_{\ell}(X,j_E)$ et on a aussi besoin de connaître des dérivées partielles de $\Phi_{\ell}$ lors de l'étape $3$ (voit \ref{sub:Elkies}), ceci suppose donc la connaissance de $\Phi_{\ell}$ qui à l'aide de formules (voir \cite[Theoreme 17.22]{ehcc05}) peut nous permettre de connaître $p_1$. Ainsi il est très raisonnable de penser que l'algorithme de Lercier Sirvent peut être utilisé dans certains cas avec une précision d'au plus $1 + \lfloor \log_{p}(2\ell - 1) \rfloor$.
+Lors de l'étape~\ref{alg:LS08:modified:rel:polmod} de l'algorithme de Lercier Sirvent (decrit dans l'algorithme~\ref{alg:LS08:modified}) on a besoin de connaître l'évaluation du $r$-ème polynôme modulaire en $j_E$: $\Phi_{r}(X,j_E)$ et on a aussi besoin de connaître des dérivées partielles de $\Phi_{\ell}$ lors de l'étape $3$ (voit \ref{sub:Elkies}), ceci suppose donc la connaissance de $\Phi_{r}$ qui à l'aide de formules (voir \cite[Theoreme 17.22]{ehcc05}) peut nous permettre de connaître $p_1$. Ainsi il est très raisonnable de penser que l'algorithme de Lercier Sirvent peut être utilisé dans certains cas avec une précision d'au plus $1 + \lfloor \log_{p}(2r - 1) \rfloor$.
 \end{rem}
 
 \begin{prop}
-L'algorithme \ref{alg:LS08:modified} calcule une $\ell$-isogénie à l'aide de $O(\ell^2)$  opérations sur $\mathbb{Q}_q$.
+L'algorithme \ref{alg:LS08:modified} calcule une $r$-isogénie à l'aide de $O(r^2)$  opérations sur $\mathbb{Q}_q$.
 \end{prop}
 
 \begin{proof}
 On ne considère pas dans cette analyse le coût de la construction de $\mathbb{Q}_q$.
 L'étape $1$ de relèvement de la courbe $E$ dans $\mathbb{Q}_q$ est considéré comme nul car on prend un relevé trivial de $E$.
-L'étape $2$ peut être faite en $\tilde{O}(\ell)$ opérations sur $\mathbb{F}_q$ à l'aide d'un relèvement de Hensel. 
+L'étape $2$ peut être faite en $\tilde{O}(r)$ opérations sur $\mathbb{F}_q$ à l'aide d'un relèvement de Hensel. 
 L'étape $3$ du calcul d'une équation de Weierstrass normalisée a une complexité de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$ à l'aide des formules de Elkies \cite{elkies1998} (voir \ref{sub:Elkies}).
-L'étape $4$ est l'algorithme BMSS et a une complexité de $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{Q}_q$ si on ne connaît pas la valeur de $p_1$ (somme des abscisses des points du noyau de l'isogénie). L'étape $4$ a un coût de $O(\mathsf{M}(\ell))$ opérations sur $\mathbb{Q}_q$ si on connaît la valeur de $p_1$ ce qui est envisageable dès lors que l'on se sert des dérivées du polynôme modulaire à l'étape $3$ et d'une évaluation du polynôme modulaire à l'étape $2$.
-Les deux dernières étapes ont, elles, un coup négligeable par rapport au reste des opérations, d'où le coût total de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$.
+L'étape $4$ est l'algorithme BMSS et a une complexité de $O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{Q}_q$ si on ne connaît pas la valeur de $p_1$ (somme des abscisses des points du noyau de l'isogénie). L'étape $4$ a un coût de $O(\mathsf{M}(r))$ opérations sur $\mathbb{Q}_q$ si on connaît la valeur de $p_1$ ce qui est envisageable dès lors que l'on se sert des dérivées du polynôme modulaire à l'étape $3$ et d'une évaluation du polynôme modulaire à l'étape $2$.
+Les deux dernières étapes ont, elles, un coup négligeable par rapport au reste des opérations, d'où le coût total de $O(r^2)$ opérations sur $\mathbb{Q}_q$.
 \end{proof}
 
 \begin{rem}
-Le coût de calcul des coefficients de $\phi_{\ell}$ à précision $p^{1+\log(4\ell -1)}$ est de $O(\ell^3 \log^3\ell \log\log\ell)$ opérations binaires et $O(\ell^2 \log \ell)$ d'espace binaire pour stocker les $O(\ell^2)$ coefficients de $\phi_{\ell} \in \mathbb{Z}_p[X,Y]$ d'après \cite[Algorithm 6.1, Theorem 1]{BLS12} en utilisant la précision $1+ \lfloor \log_p(4\ell-1) \rfloor$ préconisée par \cite{LairezVaccon16}.
+Le coût de calcul des coefficients de $\phi_{r}$ à précision $p^{1+\log(4r -1)}$ est de $O(r^3 \log^3r \log\log r)$ opérations binaires et $O(r^2 \log r)$ d'espace binaire pour stocker les $O(r^2)$ coefficients de $\phi_{r} \in \mathbb{Z}_p[X,Y]$ d'après \cite[Algorithm 6.1, Theorem 1]{BLS12} en utilisant la précision $1+ \lfloor \log_p(4r-1) \rfloor$ préconisée par \cite{LairezVaccon16}.
 \end{rem}
 
 
 \section{Algorithme de Couveignes et ses améliorations}
 Dans cette section nous présentons tout d'abord l'algorithme de Couveignes \cite{Couveignes96}, puis ensuite les différentes améliorations apportées par De Feo dans \cite{DeFeo10}.
 
-L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires $\ell$-isogènes définies sur un corps fini $\mathbb{F}_q$ avec $\ell$ premier avec $p$ et calcule la $\ell$-isogénie $\mathbb{F}_q$-rationnelle qui les relie. L'algorithme est présenté ici uniquement en caractéristique $p$ impaire, par simplification.
+L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires $r$-isogènes définies sur un corps fini $\mathbb{F}_q$ avec $r$ premier avec $p$ et calcule la $r$-isogénie $\mathbb{F}_q$-rationnelle qui les relie. L'algorithme est présenté ici uniquement en caractéristique $p$ impaire, par simplification.
 
 
 \subsection{Algorithme original de Couveignes}
 \label{sub:ori:cou}
-Soit $I$ la $\ell$-isogénie qui relie deux courbes elliptiques ordinaires 
+Soit $I$ la $r$-isogénie qui relie deux courbes elliptiques ordinaires 
 $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$
 on a: $I(E[p^k])=E'[p^k]$. C'est cette correspondance qui, lorsque $k$ est 
 assez grand, donne une information suffisante pour interpoler l'isogénie. Comme
@@ -1382,7 +1388,7 @@ l'on représente $I$ à l'aide d'une fraction rationnelle on a:
 \begin{equation}
 \frac{g(x([k] P))}{h(x([k] P))}=x([ka] P') \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
 \end{equation}
-avec $\deg g = \ell$ et $\deg h = \ell-1$.
+avec $\deg g = r$ et $\deg h = r-1$.
 Pour calculer l'isogénie, l'algorithme de Couveignes calcule un polynome $A_a \in \mathbb{F}_q[X]$ tel que l'on ait 
 \begin{equation}
 A_a(x([k] P))= x([ka] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
@@ -1402,11 +1408,11 @@ tels que:
 \]
 \end{defi}
 On veut donc faire une interpolation de Cauchy appliquée à $A_a$ et $T$ pour 
-calculer la forme explicite de l'isogénie de degré $\ell$, la valeur de $k$ 
-devrait donc être choisie telle que $p^k \geqslant 2 \ell +1$ mais comme tout 
+calculer la forme explicite de l'isogénie de degré $r$, la valeur de $k$ 
+devrait donc être choisie telle que $p^k \geqslant 2 r +1$ mais comme tout 
 point d'ordre différent de $2$ a son opposé de même abscisse on doit doubler le
 nombre de points à considérer et donc choisir $k$ tel que 
-$p^k \geqslant 4 \ell+1$. On vérifie alors si la fraction rationnelle obtenue est 
+$p^k \geqslant 4 r+1$. On vérifie alors si la fraction rationnelle obtenue est 
 bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on
 choisit alors un autre coefficient $b \neq a \in 
 \left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ et l'on 
@@ -1415,9 +1421,9 @@ recommence l'algorithme en supposant que $I(P)=[b] P'$.
 \begin{algorithm}
 \caption{\label{alg:orig:Couv} Algorithme original de Couveignes}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{F}_q$,%\\
-\ENSURE $I$ une $\ell$-isogénie telle que $I:E \rightarrow E'$
-\STATE Calculer du plus petit $k$ tel que $p^k \geqslant 4\ell+1$;
+\REQUIRE $E,E'$ deux courbes elliptiques ordinaires $r$-isogènes définies sur $\mathbb{F}_q$,%\\
+\ENSURE $I$ une $r$-isogénie telle que $I:E \rightarrow E'$
+\STATE Calculer du plus petit $k$ tel que $p^k \geqslant 4r+1$;
 \STATE Calcul de $P,P'$ générateurs de $E[p^k],E'[p^k]$;
 \FOR{$a \in (\mathbb{Z}/p^k\mathbb{Z})^*$}
 \STATE Calcul de $A_a$ et $T$ tels que $A_a(x([k]P))=x([ka]P) \bmod T$
@@ -1780,9 +1786,19 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 \label{fig:p-tor:fro}
 \end{figure}
 
-Ainsi asymptotiquement la taille des orbites $e$ est dans $O(p^k)$, dés lors ne serait-ce que pour représenter un polynôme d'interpolation défini sur une orbite on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$, et donc à minima un nombre de $O(p^{2k})=O(\ell^2)$ opérations à effectuer sur $\mathbb{F}_q$. De plus il faut calculer tous les points primitifs de $p^k$-torsion et donc effectuer $p^k$ additions de points de courbes elliptiques définies sur une extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))$. Il faut donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette question et seront présentées dans la sous section~\ref{sub:fro:int}. \todo{remplacer $\ell$ par r}
+Ainsi asymptotiquement la taille des orbites $e$ est dans $O(p^k)$, dés lors ne
+serait-ce que pour représenter un polynôme d'interpolation défini sur une 
+orbite on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$, et donc à minima 
+un nombre de $O(p^{2k})=O(r^2)$ opérations à effectuer sur $\mathbb{F}_q$. De 
+plus il faut calculer tous les points primitifs de $p^k$-torsion et donc 
+effectuer $p^k$ additions de points de courbes elliptiques définies sur une 
+extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a 
+un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))=O(r\mathsf{M}(r)\log(r))$. Il faut 
+donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul 
+trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette 
+question et seront présentées dans la sous section~\ref{sub:fro:int}.
 
-Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation $A$ et du polynome $T$ qui s'annule sur les abscisses des points d'ordre $p^k$ est fait à l'aide de $O(\mathsf{M}(p^{k})\log(p^k))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03}.
+Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation $A$ et du polynome $T$ qui s'annule sur les abscisses des points d'ordre $p^k$ est fait à l'aide de $O(\mathsf{M}(p^{k})\log(p^k))=O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03}.
 %En pratique on travaille avec les points primitifs de $p^k$-torsion afin de pouvoir se servir de l'action du Frobenius pour parcourir tous les éléments à l'aide des représentants et de l'action du Frobenius.
 
 %\begin{lem}
@@ -1795,16 +1811,17 @@ Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation
 %\end{proof}
 
 \paragraph{Validation de l'isogénie} \label{par:val:iso}
- On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=\ell$ et $\deg(V)=\ell-1$. Ensuite on vérifie que $V$ est bien un carré (ou, si $\ell$ est pair, que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(\ell) \log(\ell))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $\ell$-division, pour cela on calcule le polynôme de $\ell$ division en $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$. 
+ On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=r$ et $\deg(V)=r-1$. Ensuite on vérifie que $V$ est bien un carré (ou, si $r$ est pair, que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(r) \log(r))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $r$-division, pour cela on calcule le polynôme de $r$ division en $O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$. 
 
 
 \subsection{Apports de l'utilisation de l'action du Frobenius sur des tours $p$-adiques à l'algorithme de Couveignes}
 \label{sub:fro:int}
 On va se placer dans toute cette section dans le cas où l'on a la tour de corps
 finis de la définition~\ref{def:p-adic:level} qui correspond au pire des cas où
-l'on a $\mathbb{F}_q \not \simeq \mathbb{L}_1 \not \simeq \mathbb{L}_2$. En 
-pratique une telle tour est implémentée à l'aide d'une tour d'Artin-Schreier
-(voir \cite{DeFeo11} et \cite{DeFeo-Shost'12} pour plus de détails).
+l'on a $\mathbb{F}_q \not \simeq \mathbb{L}_1$et $\mathbb{L}_1 \not \simeq 
+\mathbb{L}_2$. En pratique une telle tour est implémentée à l'aide d'une tour 
+d'Artin-Schreier (voir \cite{DeFeo11} et \cite{DeFeo-Shost'12} pour plus de 
+détails).
 
 Cette partie sur le calcul du polynôme d'interpolation est cruciale car, comme vu précédemment, c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{L}_k$ entraîne un côut minimal de $O(p^{2k})=O(r^2)$ opérations sur $\mathbb{F}_q$ à l'aide de la méthode précédemment présentée. 
 
@@ -2021,16 +2038,24 @@ La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-
 L'algorithme de Couveignes avec les modifications apportées par l'utilisation de tours d'Artin-Schreier et du Frobenius pour le calcul du polynôme d'interpolation a alors la complexité suivante:
 
 \begin{thm}
-Soient $E$ et $E'$ deux courbes $\ell$-isogènes, l'algorithme de Couveignes a une complexité de:
+Soient $E$ et $E'$ deux courbes $r$-isogènes, l'algorithme de Couveignes a une complexité de:
 \[
-\tilde{O}_{p,d,\log \ell}(p^2d^3+\mathsf{C}(p)pd+(pd)^{\omega}\log^2 \ell + p^3 \ell^2 d \log^3 \ell + p^2\ell^2d^2+(\frac{\ell^2}{p}+p)\mathsf{C}(pd))
+\tilde{O}_{p,d,\log r}(p^2d^3+\mathsf{C}(p)pd+(pd)^{\omega}\log^2 r + p^3 r^2 d \log^3 r + p^2r^2d^2+(\frac{r^2}{p}+p)\mathsf{C}(pd))
 \]
-opérations sur $\mathbb{F}_q$.
+opérations sur $\mathbb{F}_p$ avec $\mathsf{C}(n)$ le nombres d'opérations à effectuer dans $\mathbb{F}_q$ pour effectuer la composition de deux polynômes de degré au plus $n$, par \cite{BrentKung78} on a $\mathsf{C}(n) \in O(n^{(\omega+1)/2})$.
 \end{thm}
 
 \begin{proof}
 Voir section $5.2$ de \cite{DeFeo11}.
 \end{proof}
+
+\begin{rem}
+La complexité ici est donnée en terms d'opérations sur $\mathbb{F}_p$ car les 
+tours d'Artin-Schreier sur lesquelles sont utililisées les améliorations 
+apportées à l'algorithme de Couveignes sont construites comme des extensions de
+corps sur $\mathbb{F}_p$ et ainsi tout élément d'une tour d'Artin-Schreier est
+exprimé à l'aide d'un polynôme à coefficients dans $\mathbb{F}_p$.
+\end{rem}
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
 \label{cha:tour}
@@ -5576,7 +5601,6 @@ opérations sur $\mathbb{F}_q$.
 
 
 \subsubsection{Coût total de l'algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois elliptique}
-\todo{definir la dimension des directions}
 Nous avons abordé dans la sous-sous-section~\ref{sub:TRCE:cou} l'intérêt 
 d'utiliser un théorème des restes chinois sur une courbe elliptique par rapport
 à l'algorithme de Couveignes. En effet on a vu qu'un point construit à l'aide 
