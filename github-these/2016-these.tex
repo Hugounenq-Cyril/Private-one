@@ -2073,7 +2073,7 @@ Soit $\mathbb{F}_q$ un corps fini à $q$ éléments de caractéristique $p$, soi
 Une façon naturelle de  construire une extension d'un corps fini $\mathbb{F}_q$ est de trouver un polynôme $P$ irréductible défini sur $\mathbb{F}_q$ et de degré égal à celui de l'extension désirée et de quotienter ensuite $\mathbb{F}_q[X]$ par celui-ci.
 Ainsi les éléments des tours d'extensions seront toujours représentés comme des polynômes à coefficients dans $\mathbb{F}_q$, la taille des éléments de $\mathsf{F}_{k}$ sera donc $O(d_0\ell^k)$ éléments de $\mathbb{F}_q$. 
 
-Les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert la voie à d'autres travaux sur les tours $2$-adiques \cite{Doliskani-Schost15} et les tours $\ell$-adiques \cite{DeFeo-Doliskani-Schost13}. Dans ces travaux l'idée pour obtenir des constructions de tours de corps finis compatibles est le passage de représentation \textit{univariée} à \textit{bivariée}. Ici représentation univariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i]$ avec $x_i$ un élément générateur de $\mathsf{F}_i$ sur $\mathbb{F}_q$, de même une représentation bivariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i, x_{i-1}]$ avec $x_i$(resp. $x_{i-1}$) élément générateur de $\mathsf{F}_i$ (resp. $\mathsf{F}_{i-1}$) sur $\mathbb{F}_q$. Ces idées ont permis d'obtenir des résultats satisfaisants en terme de complexité, comparés aux résultats obtenus en utilisant de l'algèbre linéaire dans les constructions préconisées par \cite{BosmaCS97} et implantées dans le système de calcul formel Magma \cite{magma97}. Ainsi certains algorithmes tels que le \textit{relèvement} ou la \textit{descente} d'éléments dans les corps de la tour $\ell$-adique ont des complexités optimales et correspondent seulement à une réécriture des éléments. Le relèvement correspond au fait de prendre un élément de $\mathsf{F}_{i-1}$ et de l'écrire comme un élément de $\mathsf{F}_i$, la descente correspond à l'opération inverse. Il y a aussi des opérations comme le Frobenius, crucial pour l'algorithme \textcolor{red}{ref à mettre plus tard}, ou le calcul de racine carrée qui ont des coûts satisfaisants. Tout cela va être détaillé dans ce qui suit. Les travaux de  \cite{DeFeo-Shost'12} sur les tours $p$-adiques ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
+Les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert la voie à d'autres travaux sur les tours $2$-adiques \cite{Doliskani-Schost15} et les tours $\ell$-adiques \cite{DeFeo-Doliskani-Schost13}. Dans ces travaux l'idée pour obtenir des constructions de tours de corps finis compatibles est le passage de représentation \textit{univariée} à \textit{bivariée}. Ici représentation univariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i]$ avec $x_i$ un élément générateur de $\mathsf{F}_i$ sur $\mathbb{F}_q$, de même une représentation bivariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i, x_{i-1}]$ avec $x_i$(resp. $x_{i-1}$) élément générateur de $\mathsf{F}_i$ (resp. $\mathsf{F}_{i-1}$) sur $\mathbb{F}_q$. Ces idées ont permis d'obtenir des résultats satisfaisants en terme de complexité, comparés aux résultats obtenus en utilisant de l'algèbre linéaire dans les constructions préconisées par \cite{BosmaCS97} et implantées dans le système de calcul formel Magma \cite{magma97}. Ainsi certains algorithmes tels que le \textit{relèvement} ou la \textit{descente} d'éléments dans les corps de la tour $\ell$-adique ont des complexités optimales et correspondent seulement à une réécriture des éléments. Le relèvement correspond au fait de prendre un élément de $\mathsf{F}_{i-1}$ et de l'écrire comme un élément de $\mathsf{F}_i$, la descente correspond à l'opération inverse. Il y a aussi des opérations comme le Frobenius, crucial pour l'algorithme de Couveignes $\ell$-adique présenté dans le chapitre~\ref{cha:alg:fin}, ou le calcul de racine carrée qui ont des coûts satisfaisants. Tout cela va être détaillé dans ce qui suit. Les travaux de  \cite{DeFeo-Shost'12} sur les tours $p$-adiques ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
 
 Les complexités sont calculées en nombre d'opérations ($+, \times,\div$) dans $\mathbb{F}_q$, indépendamment de la construction de $\mathbb{F}_q$. 
 
@@ -4266,7 +4266,7 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
 La complexité donnée pour résoudre le problème du calcul explicite de 
 l'isogénie dans la proposition~\ref{pro:full-complexity} a une dépendance 
 polynomiale en $\ell$, en pratique on souhaiterait avoir $\ell$ petit 
-(voir chapitre expérimentation \todo{mettre référence et écrire ce chapitre !})
+(voir section~\ref{sec:exp:cou})
 et donc on veut borner $\ell$ à l'aide des paramètres d'entrée du problème: $r,q$
 afin de montrer que notre algorithme est utilisable en pratique. 
 
@@ -4366,6 +4366,7 @@ proposition~\ref{pro:full-complexity}.
 \end{proof}
 
 \section{Partie expérimentale}
+\label{sec:exp:cou}
 \todo{ajouter figure volcan exemple avec structure}
 
 Les résultats expérimentaux ont été obtenu à partir de code implanté pour le 
@@ -4535,7 +4536,6 @@ Ainsi pour le calcul du polynôme on doit répéter l'étape d'interpolation
 $\ell^{k-1}$ fois ce qui nous donne un coût total de: 
 $O(r\mathsf{M}(\ell^2r)\log(\ell)\log(r))$ opérations sur $\mathbb{F}_q$.
 
-\todo{ecrire en appendice l'algorithme de Couveignes avec un seul point}
 \begin{prop}
 Soit $\ell$ un nombre de Elkies tel que $\ell^h<r$ alors le coût de la 
 variante de l'algorithme de Couveignes $\ell$-adique présenté dans 
@@ -4567,8 +4567,9 @@ On va détailler chacune de ces approches dans les deux sous-sections qui suiven
 
 \section{Aprroche avec le groupe de points isomorphe à $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$}
 La première approche est de considérer l'ensemble de points $S$ isomorphe à: 
-$\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $
-dés lors il faut fixer comme condition  $\sum_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
+$\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $,
+avec les $\ell_i$ tous des nombres premiers de Elkies, dés lors il faut fixer comme 
+condition  $\sum_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 afin que le polynôme d'interpolation que l'on cherche à construire puisse 
 définir la fraction rationnelle $F$ candidate pour représenter la $r$-isogénie 
 $\phi$ que l'on veut calculer. 
@@ -4577,9 +4578,9 @@ sur différentes tours d'extensions $\ell$-adiques, on a pas besoin de
 travailler avec des composita de tours d'extensions $\ell$-adiques.
 
 Détaillons comment on procède, la méthode est restranscrite dans 
-l'algorithme~\ref{alg:cou:mult-adique:short}, 
-l'algorithme~\ref{alg:cou:mult-adique} détaillant un peu plus 
-l'algorithme~\ref{alg:cou:mult-adique:short} est disponible en annexe.
+l'algorithme~\ref{alg:cou:mult-adique:short}.%, 
+%l'algorithme~\ref{alg:cou:mult-adique} détaillant un peu plus 
+%l'algorithme~\ref{alg:cou:mult-adique:short} est disponible en annexe.
 
 \begin{algorithm}
 \caption{\label{alg:cou:mult-adique:short} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire.}
@@ -4594,7 +4595,7 @@ l'algorithme~\ref{alg:cou:mult-adique:short} est disponible en annexe.
 \ENDFOR
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
 \FOR{$M_i \in \mathsf{diag}(a_i,b_i)$  avec $a=a_i \bmod \ell_i^{k_i},b=b_i \bmod \ell_i^{k_i}$}
-\STATE \label{alg:mult-ell:ord} Actualisation de la liste des représentants $L_i'$ en $L'_{a_i,b_i,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
+\STATE \label{alg:mult-ell:ord} Actualisation de la liste des représentants $L_i'$ en $L'_{a,b,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
 \STATE \label{alg:mult-ell:int} Calcul des des polynômes $A_{a,b,i}$ et $T_i$ par les méthodes décrites dans la section~\ref{sec:interpolation};
 \ENDFOR
 \STATE Calcul des polynômes $A_{a,b}$ et $T$ à l'aide d'un théorème des restes chinois appliqué sur tous les $A_{a,b,i}$ et $T_i$;
@@ -4641,7 +4642,7 @@ d'interpolation $A_{a,b,i}$ et $T_i$ définis dans $\mathbb{F}_q$.
  On applique alors le théorème des restes chinois à ces polynômes pour obtenir 
  les polynômes $A_{a,b},T \in \mathbb{F}_q[x]$ tels que:
  \[
-A_{a,b}=A_{a_i,b_i} \bmod T_i \text{ pour tout } i \in [1,n] \text{ et } \quad T=\prod_{i=1}^nT_i 
+A_{a,b}=A_{a,b,i} \bmod T_i \text{ pour tout } i \in [1,n] \text{ et } \quad T=\prod_{i=1}^nT_i 
  \]
 On fait le calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une
 interpolation de Cauchy. On teste si celle-ci est bien une $r$-isogénie,
@@ -4660,8 +4661,9 @@ l'algorithme~\ref{alg:cou:ell-adique} cependant le coût de calcul de
 l'interpolation de Cauchy  est de $O(\mathsf{M}(r)\log(r))$ par
  \cite[Théorème 7.5]{algeff17}. Sachant que l'on doit répéter en moyenne cette 
 boucle pour tous les $a,b$ possibles appartenant à $(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^*$
- le coût d'un tel algorithme est minoré par 
-$\Omega(r\mathsf{M}(r)\log(r))$. 
+ le coût d'un tel algorithme est minoré par $\Omega(\prod_{i=1}^n\ell_i^{2k_i-2}
+ \mathsf{M}(r)\log(r))$ et donc en particulier par $\Omega(r\mathsf{M}(r)
+ \log(r))$. 
 
 Une telle approche serait bien évidemment meilleure que 
 l'algorithme~\ref{alg:cou:ell-adique} si l'on avait un moyen de préciser si un 
@@ -4683,7 +4685,8 @@ Ainsi dans cette approche on veut travailler avec des points d'ordre
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'informations donnée par 
 les  bases (partiellement) horizontales 
 $(\color{red}P_{\lambda_i}\color{black},\color{blue}Q_{\mu_i}\color{black})$ de 
-$E[\ell_i^{k_i}]$, pour faire cela on a besoin de définir quelques notions. On
+$E[\ell_i^{k_i}]$ avec $\ell_i$ un nombre premier de Elkies, pour faire cela on
+a besoin de définir quelques notions. On
 va supposer sans perte de généralités que les $k_i$ pour $i \in [1,n]$ sont 
 fixés tels que l'on ait $\prod_{i=1}^{n} \ell_i^{2k_i-2}(\ell_i+1)>4r$.
 
@@ -4691,12 +4694,14 @@ fixés tels que l'on ait $\prod_{i=1}^{n} \ell_i^{2k_i-2}(\ell_i+1)>4r$.
 \label{sub:con:com}
 \todo{Ajouter notations dans la liste de nomenclatures}
 
-Cette partie s'appuie sur la construction de compositas à partir d'une idée 
-originale de \cite{BrawleyCarlitz87} reprise dans
+Cette partie s'appuie sur la construction de compositum à partir d'une idée de
+%originale de \cite{BrawleyCarlitz87} reprise dans
 \cite{DeFeoDoliskaniSchost14} qui donne le moyen de calculer à un coût quasi 
-linéaire le changement de représentation d'éléments du composita. On montre 
+linéaire le changement de représentation d'éléments du compositum. On montre 
 donc ici quelques résultats sur une telle construction appliquée à des tours 
-d'extensions $\ell_i$-adiques.
+d'extensions $\ell_i$-adiques. Afin de ne pas surcharger la lecture de ce 
+document de nombreuses preuves étant l'adaptations de techniques présentées 
+dans le chapitre~\ref{cha:tour} elles sont présentées dans l'annexe.
 
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, 
 on va supposer dans le reste de ce document que les différentes tours 
@@ -4706,23 +4711,23 @@ $\mathbb{F}_q \subset \mathsf{F}_{(i,0)} \subset \dots \subset  \mathsf{F}_{(i,j
 ont chacune des degrés $d_i=[\mathsf{F}_{(i,0)}:\mathbb{F}_q]$ qui lorsqu'ils 
 ne sont pas égaux à $1$ doivent être premiers entre eux.
 
-On veut donc tout d'abord définir un composita de tours d'extensions 
-$\ell_i$-adiques, en particulier on veut calculer un composita qui contient 
+On veut donc tout d'abord définir un compositum de tours d'extensions 
+$\ell_i$-adiques, en particulier on veut calculer un compositum qui contient 
 tous les éléments des tours d'extensions $\ell_i$-adiques suivant:
 $\mathsf{F}_{(1,n_1)}, \dots \mathsf{F}_{(n,n_n)}$. On suppose de plus que les
 $\ell_i$ sont ordonnés de telle sorte que pour tout $i \in [2,n]$ 
 $\prod_{j=1}^{i-1}d_j\ell_j^{n_j} \geqslant d_i\ell_i^{n_i}$.
 
-On introduit un objet nécesaire à la construction de composita.
+On introduit un objet nécesaire à la construction de compositum.
 \begin{defi}
-Soient $P$ un polynôme irréductible de degré $\deg(P)$ de racines $r_i$ pour 
-$i \in [1,\deg(P)]$, $Q$ un polynôme irréductible de degré $\deg(Q)$ de racines $s_j$,
+Soient $P$ un polynôme de degré $\deg(P)$ de racines $r_i$ pour 
+$i \in [1,\deg(P)]$, $Q$ un polynôme de degré $\deg(Q)$ de racines $s_j$,
 tels que $P$ et $Q$ aient des racines distinctes et des degrés $\deg(P),\deg(Q)$ 
 premiers entre eux, alors on définit $R$ le \emph{produit composé} comme étant 
 le polynôme de degré $\deg(P)\deg(Q)$ unitaire et de racines $r_is_j$ avec $i \in 
 [1,\deg(P)], j \in [1,\deg(Q)]$. On note $R= P\odot Q$.  
 \end{defi}
-On peut alors montrer comment on construit un composita à l'aide de la 
+On peut alors montrer comment on construit un compositum à l'aide de la 
 proposition suivante: 
 \begin{prop}
 \label{pro:init:com}
@@ -5997,7 +6002,41 @@ Voir section $5.2$ de \cite{DeFeo11}.
 \end{proof}
 
 
-\subsection{TRC ELLiptique}
+\subsection{TRC ELLiptique + obertura 1812}
+
+\begin{algorithm}
+\caption{\label{alg:cou:mult-adique} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire.}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique.
+\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE Calcul des $k_i$ tel que $\sum_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
+\FOR{$i=1$ à $n$}
+\STATE  \label{alg:cou-mult:bdiag:long}
+Calcul de $(P_i,Q_i),(P_i',Q_i')$ bases diagonales de $E_s[\ell_i^{k_i}],E'_s[\ell_i^{k_i}]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
+\STATE \label{alg:cou-mult:bhor:long}
+Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q'_{\mu,i}\color{black})$ bases horizontales de $E_s[\ell_i^{k_i}],E'_s[\ell_i^{k_i}]$ à l'aide de l'algorithme \ref{alg:hor:poi};
+\IF{$(E_s,E'_s) \neq (E,E')$}
+\STATE Calcul de 
+~$((\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black}))=((\varphi(\color{red}P_{\lambda,i}\color{black}),\varphi(\color{blue}Q_{\mu,i}\color{black})),(\varphi'(\color{red}P'_{\lambda,i}\color{black}),\varphi'(\color{blue}Q_{\mu,i}'\color{black})))$ bases partiellement horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ avec les $\ell_i^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
+\ENDIF
+\STATE \label{alg:mult-ell:rep:long} Calcul des liste de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
+\ENDFOR
+\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
+\FOR{$M_i \in \mathsf{diag}(a_i,b_i)$  avec $a=a_i \bmod \ell_i^{k_i},b=b_i \bmod \ell_i^{k_i}$}
+\STATE \label{alg:mult-ell:ord:long} Actualisation de la liste des représentants $L_i'$ en $L'_{a_i,b_i,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
+\STATE \label{alg:mult-ell:int:long} Calcul des des polynômes $A_{a,b,i}$ et $T_i$ par les méthodes décrites dans la section~\ref{sec:interpolation};
+\ENDFOR
+\STATE Calcul des polynômes $A_{a,b}$ et $T$ à l'aide d'un théorème des restes chinois appliqué sur tous les $A_{a,b,i}$ et $T_i$;
+\STATE \label{alg:mult-ell:Cauchy:long} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\IF{$\mathsf{Test}(F)$}
+\RETURN $F$
+\ENDIF
+\ENDFOR 
+\end{algorithmic}
+\end{algorithm}
+
+
 \begin{prop}
 L'algorithme~\ref{alg:TRC:init} est correct et coûte $2k_2$ inversions d'un polynôme de degré $\ell_2$, $2k_1 \bmod o_{\ell_2^{k_2}}(\eta_1)$ fois la multiplication scalaire d'un point d'ordre $\ell_2^{k_2}$ par un coefficient $\eta$ défini dans $\mathbb{Z}/\ell_2^{k_2} \mathbb{Z}$, avec $o_{\ell_2^{k_2}}(\eta)$ l'ordre multiplicatif de $\eta$ dans $(\mathbb{Z}/\ell_2^{k_2} \mathbb{Z})^*$.
 \end{prop}
@@ -6694,37 +6733,6 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
-\caption{\label{alg:cou:mult-adique} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire.}
-\begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique.
-\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
-% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE Calcul des $k_i$ tel que $\sum_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
-\FOR{$i=1$ à $n$}
-\STATE  \label{alg:cou-mult:bdiag:long}
-Calcul de $(P_i,Q_i),(P_i',Q_i')$ bases diagonales de $E_s[\ell_i^{k_i}],E'_s[\ell_i^{k_i}]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
-\STATE \label{alg:cou-mult:bhor:long}
-Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q'_{\mu,i}\color{black})$ bases horizontales de $E_s[\ell_i^{k_i}],E'_s[\ell_i^{k_i}]$ à l'aide de l'algorithme \ref{alg:hor:poi};
-\IF{$(E_s,E'_s) \neq (E,E')$}
-\STATE Calcul de 
-~$((\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black}))=((\varphi(\color{red}P_{\lambda,i}\color{black}),\varphi(\color{blue}Q_{\mu,i}\color{black})),(\varphi'(\color{red}P'_{\lambda,i}\color{black}),\varphi'(\color{blue}Q_{\mu,i}'\color{black})))$ bases partiellement horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ avec les $\ell_i^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
-\ENDIF
-\STATE \label{alg:mult-ell:rep:long} Calcul des liste de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
-\ENDFOR
-\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
-\FOR{$M_i \in \mathsf{diag}(a_i,b_i)$  avec $a=a_i \bmod \ell_i^{k_i},b=b_i \bmod \ell_i^{k_i}$}
-\STATE \label{alg:mult-ell:ord:long} Actualisation de la liste des représentants $L_i'$ en $L'_{a_i,b_i,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
-\STATE \label{alg:mult-ell:int:long} Calcul des des polynômes $A_{a,b,i}$ et $T_i$ par les méthodes décrites dans la section~\ref{sec:interpolation};
-\ENDFOR
-\STATE Calcul des polynômes $A_{a,b}$ et $T$ à l'aide d'un théorème des restes chinois appliqué sur tous les $A_{a,b,i}$ et $T_i$;
-\STATE \label{alg:mult-ell:Cauchy:long} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
-\IF{$\mathsf{Test}(F)$}
-\RETURN $F$
-\ENDIF
-\ENDFOR 
-\end{algorithmic}
-\end{algorithm}
 
 \begin{algorithm}
 \caption{\label{alg:app:cou:var} Couveignes $\ell$-adique avec un seul sous-groupe cyclique.}
