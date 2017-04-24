@@ -1388,7 +1388,7 @@ Pour calculer l'isogénie, l'algorithme de Couveignes calcule un polynome $A_a \
 A_a(x([k] P))= x([ka] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
 \end{equation} 
 avec $T \in \mathbb{F}_q[x]$ qui s'annule sur les abscisses des points de 
-$E[p^k]$ car on travaille sur la $p^k$ torsion.
+$E[p^k]$.
 
 On définit alors l'interpolation de Cauchy:
 \begin{defi}
@@ -1417,7 +1417,7 @@ recommence l'algorithme en supposant que $I(P)=[b] P'$.
 \begin{algorithmic}[1]
 \REQUIRE $E,E'$ deux courbes elliptiques ordinaires $\ell$-isogènes définies sur $\mathbb{F}_q$,%\\
 \ENSURE $I$ une $\ell$-isogénie telle que $I:E \rightarrow E'$
-\STATE Calculer du plus petit $k$ tel que $p^k>4\ell-1$;
+\STATE Calculer du plus petit $k$ tel que $p^k \geqslant 4\ell+1$;
 \STATE Calcul de $P,P'$ générateurs de $E[p^k],E'[p^k]$;
 \FOR{$a \in (\mathbb{Z}/p^k\mathbb{Z})^*$}
 \STATE Calcul de $A_a$ et $T$ tels que $A_a(x([k]P))=x([ka]P) \bmod T$
@@ -1507,11 +1507,21 @@ La preuve suivante de la proposition \ref{pro:ord:fro} n'est pas différente de 
 \begin{proof}[Démonstration de la proposition~\ref{pro:ord:fro}]
 On a $[\mathbb{L}_1:\mathbb{F}_q] \mid p-1$ par \cite[Theorem 4]{Gunji76}. Prouvons maintenant le second point,
 on rappelle tout d'abord l'équation caractéristique du Frobenius:
-\begin{equation}
+\begin{equation*}
 X^2 - t_{\pi}X + q = 0
-\end{equation}
-Maintenant si l'on regarde cette équation restreinte à la $p$-torsion, on voit que l'équation a deux solutions: $0 \bmod p$ et $t_{\pi} \bmod p$. La solution $0 \bmod p$ est écartée car le Frobenius ne peut avoir de noyau non trivial. Ainsi l'action du Frobenius sur la $p$-torsion revient à une multiplication par $t_{\pi} \bmod p$. Dés lors si l'on regarde cette équation sur $T_{p}(E)$ on voit que l'action du Frobenius peut être représentée par une multiplication par $\mathfrak{t}_{\pi} \in \mathbb{Z}_{p} $. 
-Regardons alors l'action du groupe de Galois $G$ de $\mathbb{F}_q$ sur $T_{p}(E)$. Comme $G$ est engendré par l'automorphisme de $\mathbb{F}_q$, la restriction de son action à $E[p^k]$ peut être représentée par la multiplication de $t_k=\mathfrak{t}_{\pi} \bmod p^k$. Ainsi on a $[\mathbb{L}_k:\mathbb{F}_q]=\mathrm{ord}(t_k)$.
+\end{equation*}
+Maintenant si l'on regarde cette équation restreinte à la $p$-torsion, on voit 
+que l'équation a deux solutions: $0 \bmod p$ et $t_{\pi} \bmod p$. La solution 
+$0 \bmod p$ est écartée car le Frobenius ne peut avoir de noyau non trivial. 
+Ainsi l'action du Frobenius sur la $p$-torsion revient à une multiplication par
+$t_{\pi} \bmod p$. Dés lors si l'on regarde cette équation sur $T_{p}(E)$ on 
+voit que l'action du Frobenius peut être représentée par une multiplication par
+$\mathfrak{t}_{\pi} \in \mathbb{Z}_{p} $. Regardons alors l'action du groupe de
+Galois $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_q)$ sur $T_{p}(E)$. Comme 
+$\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_q)$ est engendré par l'automorphisme de 
+$\mathbb{F}_q$, la restriction de son action à $E[p^k]$ peut être représentée 
+par la multiplication de $t_k=\mathfrak{t}_{\pi}\bmod p^k$. Ainsi on a 
+$[\mathbb{L}_k:\mathbb{F}_q]=\mathrm{ord}(t_k)$.
 
 Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
 \end{proof}
@@ -1554,8 +1564,8 @@ chapitre~\ref{cha:alg:fin}.
 On étudie seulement les points d'ordre $p^k$ et non de $p^k$-torsion car une 
 généralisation de cette étude peut être faite pour avoir un résultat sur les 
 points de $p^k$-torsion. D'un point de vue pratique prendre $k$ tel que 
-$p^{k-1}(p-1) > 4 \ell +1$ est suffisant, asymptotiquement le résultat reste le 
-même.
+$p^{k-1}(p-1) \geqslant 4 \ell +1$ est suffisant, asymptotiquement le résultat 
+reste le même.
 \end{rem}
 
 L'ensemble des abscisses des points primitifs de $p^k$-torsion est de taille 
@@ -1569,7 +1579,7 @@ Etudions maintenant plus en détail les orbites des abscisses de points d'ordre 
 
 \begin{cor}
 Soit $k$ tel que que $\mathbb{L}_k \neq \mathbb{F}_q$ avec $\mathbb{L}_k$ défini comme dans \ref{def:p-adic:level}, 
-la taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $[\mathbb{L}_k:\mathbb{F}_q]$  est égale à:
+la taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_q)$  est égale à:
 \begin{enumerate} 
 \item $[\mathbb{L}_k:\mathbb{F}_q]$ si $2 \nmid [\mathbb{L}_k:\mathbb{F}_q]$,
 \item $[\mathbb{L}_k:\mathbb{F}_q]/2$ si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$.
@@ -1627,8 +1637,8 @@ argument de cardinalité on montre que l'on a déterminé tous les points de
 l'orbite. Les opposés des points ayant la même abscisse, alors les abscisses 
 des points $[n]P$ avec $n=-1 \bmod p^{v_p(E(\mathbb{L}_1))}$ appartiennent 
 aussi à l'orbite de $x(P)$ sous l'action d'un élément générateur de 
-$\mathsf{Gal}(\mathbb{U}_{k-v_p(E(\mathbb{L}_1))}:
-\mathbb{U}_{v_p(E(\mathbb{L}_1))})$, mais on préférera éviter dans les calculs 
+$\mathsf{Gal}(\mathbb{L}_{k-v_p(E(\mathbb{L}_1))}:
+\mathbb{L}_{v_p(E(\mathbb{L}_1))})$, mais on préférera éviter dans les calculs 
 ces doublons inutiles.
 \end{proof}
 
@@ -1766,7 +1776,7 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 		\end{scope}             
 \end{tikzpicture}
 \end{center}
-\caption{Classification des points de $p^k$-torsion selon l'action du Frobenius, en particulier on a une décomposition des $(p-1)/2$ abscisses de points d'ordre $p$ en $f$ orbites de taille $d_1$ chacune et $e=e'd_1$.}
+\caption{Classification des points de $p^k$-torsion selon l'action du Frobenius, en particulier on a une décomposition des $(p-1)/2$ abscisses de points d'ordre $p$ en $f$ orbites de taille $d_1$ chacune.}
 \label{fig:p-tor:fro}
 \end{figure}
 
@@ -1790,13 +1800,19 @@ Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation
 
 \subsection{Apports de l'utilisation de l'action du Frobenius sur des tours $p$-adiques à l'algorithme de Couveignes}
 \label{sub:fro:int}
-Cette partie sur le calcul du polynôme d'interpolation est cruciale car, comme vu précédemment, c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{U}_k$ entraîne un côut minimal de $O(p^k p^kd)$ opérations sur $\mathbb{F}_p$ à l'aide de la méthode précédemment présentée. 
+On va se placer dans toute cette section dans le cas où l'on a la tour de corps
+finis de la définition~\ref{def:p-adic:level} qui correspond au pire des cas où
+l'on a $\mathbb{F}_q \not \simeq \mathbb{L}_1 \not \simeq \mathbb{L}_2$. En 
+pratique une telle tour est implémentée à l'aide d'une tour d'Artin-Schreier
+(voir \cite{DeFeo11} et \cite{DeFeo-Shost'12} pour plus de détails).
+
+Cette partie sur le calcul du polynôme d'interpolation est cruciale car, comme vu précédemment, c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{L}_k$ entraîne un côut minimal de $O(p^{2k})=O(r^2)$ opérations sur $\mathbb{F}_q$ à l'aide de la méthode précédemment présentée. 
 
 Bien que le polynôme $A$ que l'on souhaite calculer soit de degré $p^{k-1}
 (p-1)-1$, il est possible avec moins d'informations de le calculer. Le polynôme
-$A$ étant censé représenter l'action d'une isogénie sur les points d'ordre 
-$p^k$ alors $A$, comme l'isogénie, doit commuter avec le Frobenius et être 
-défini sur $\mathbb{F}_q$. Couveignes \cite{Couveignes96} ne tirait pas 
+$A$ étant à coefficients dans $\mathbb{F}_q$ alors $A$, comme l'isogénie dont 
+il est censé représenter l'action sur les points d'ordre $p^k$, doit commuter 
+avec le Frobenius. Couveignes \cite{Couveignes96} ne tirait pas 
 pleinement parti du fait que connaître l'image d'un générateur d'une orbite 
 selon l'action du Frobenius fixait la valeur des autres points de l'orbite. 
 Il manquait pour l'algorithme original des techniques efficaces pour faire agir
@@ -1805,13 +1821,12 @@ le Frobenius ce que les constructions de tours d'Artin Schreier de
 
 On va montrer dans cette section les idées directrices pour obtenir à partir 
 d'un polynôme d'interpolation défini uniquement à l'aide de l'image d'un 
-représentant de l'orbite défini dans $\mathbb{U}_k \setminus \mathbb{U}_{k-1}$ 
+représentant de l'orbite défini dans $\mathbb{L}_k \setminus \mathbb{L}_{k-1}$ 
 le polynôme d'interpolation défini sur toute l'orbite avec des coefficients 
 dans $\mathbb{F}_q$. Ceci est l'une des raisons pour travailler uniquement avec
 des points primitifs de $p^k$-torsion, puisque que eux seuls sont définis dans 
-$\mathbb{U}_k \setminus \mathbb{U}_{k-1}$ (on s'est placé dans le cas où 
-$\mathbb{L}_k = \mathbb{U}_k$), et sont donc tous dans des orbites de tailles 
-identiques.
+$\mathbb{L}_k \setminus \mathbb{L}_{k-1}$, et sont donc tous dans des orbites 
+de tailles identiques.
 
 Soient $P$ et $P'$ deux points primitifs de $p^k$-torsion de $E$ et $E'$. On veut calculer le polynôme d'interpolation de degré minimal $A \in \mathbb{F}_q[X]$ tel que:
 \begin{equation}
@@ -1825,7 +1840,7 @@ Comme on souhaite travailler distinctement sur les différentes orbites du Frobe
 \begin{equation*}
 T(X)=\prod_{i=1}^fT_{i}(X)
 \end{equation*}
-avec $\deg(T_i)=e=[\mathbb{U}_k:\mathbb{F}_q]$ (ou $e=[\mathbb{U}_k:\mathbb{F}_q]/2$ voir corollaire \ref{cor:orb:fro}) et $ef=p^{k-1}(p-1)/2$.
+avec $\deg(T_i)=e=[\mathbb{L}_k:\mathbb{F}_q]$ (ou $e=[\mathbb{L}_k:\mathbb{F}_q]/2$ voir corollaire \ref{cor:orb:fro}) et $ef=p^{k-1}(p-1)/2$.
 
 \`A l'aide du théorème des restes chinois on réduit le problème au calcul de chacun des $T_{i}$ et l'on définit:
 
@@ -1836,26 +1851,25 @@ A_{i}=A \bmod{T_{i}}.
 Dés lors on va se concentrer sur le calcul de $A_{0}$.
 
 
-Par construction de la tour d'Artin-Schreier on a $x(P) \in \mathbb{U}_k \setminus \mathbb{U}_{k-1}$
- tel que $\mathbb{U}_k=\mathbb{F}_q[x(P)]$, 
- dés lors on veut calculer: 
+On a $x(P) \in \mathbb{L}_k \setminus \mathbb{L}_{k-1}$ dés lors on veut 
+calculer: 
 \begin{enumerate}
 \item le polynôme minimal $T_{0}$ de $x(P)$ défini sur $\mathbb{F}_q$ de degré égal à $e$,
 \item le polynôme d'interpolation $A_0$ défini sur $\mathbb{F}_q$ de degré strictement inférieur à $e$ tel que $A_0(x(P))=x(P')$.
 \end{enumerate}
 
 \begin{defi}
-Soient $j > k \geqslant 0$, $\sigma \in \mathsf{Gal}(\mathbb{U}_j:\mathbb{U}_k)$, $T=\sum_{i=0}^{d}t_iX^i \in \mathbb{U}_k[X]$ alors:
+Soient $j > k \geqslant 0$, $\sigma \in \mathsf{Gal}(\mathbb{L}_j:\mathbb{L}_k)$, $T=\sum_{i=0}^{d}t_iX^i \in \mathbb{L}_k[X]$ alors:
 \[
 \sigma(T)=\sum_{i=0}^{d}\sigma(t_i)X^i.
 \]   
 \end{defi}
 
-Soit $A_0$ un polynôme d'interpolation défini sur $\mathbb{F}_q$, alors on a pour tout $\sigma \in \mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$:
+Soit $A_0$ un polynôme d'interpolation défini sur $\mathbb{F}_q$, alors on a pour tout $\sigma \in \mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_q)$:
 \begin{equation*}
 A_0(\sigma(x(P))=\sigma(A_0(x(P)))=\sigma(x(P')).
 \end{equation*}
-L'information de l'image de $x(P) \in \mathbb{U}_k$ entraîne bien la connaissance des images des éléments de l'orbite de $x(P)$ sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_q)$, ainsi on prend avantage du faible coût du Frobenius dans une tour d'Artin-Schreier à l'aide de l'algorithme \cite[Iter Frobenius,Theorem 17 et 18]{DeFeo-Shost'12}.% qui a une complexité de $O((i-j)L(i))$ pour le calcul d'une puissance $p^{p^{jd}}$ d'un élément de $\mathbb{U}_i$.
+L'information de l'image de $x(P) \in \mathbb{L}_k$ entraîne bien la connaissance des images des éléments de l'orbite de $x(P)$ sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_q)$, ainsi dans \cite{DeFeo11} l'auteur prend avantage du faible coût du Frobenius dans une tour d'Artin-Schreier à l'aide de l'algorithme \cite[Iter Frobenius,Theorem 17 et 18]{DeFeo-Shost'12}.% qui a une complexité de $O((i-j)L(i))$ pour le calcul d'une puissance $p^{p^{jd}}$ d'un élément de $\mathbb{U}_i$.
 
 
 %On va donc se servir de l'action du Frobenius sur le polynôme d'interpolation défini uniquement pour un représentant de l'orbite (en l'occurence $L(x(P))=x(P')$) pour déterminer $L$ alors que les méthodes classiques \cite[10.1-2]{vzGJG03} préconisent un arbre de produit binaire avec la connaissance des $x([n]P)$ avec $n \in (\mathbb{Z}/p^k\mathbb{Z})^*$. 
@@ -1866,18 +1880,16 @@ $A_0$ et les idées développées par \cite{DeFeo11} et auparavant par
 section~\ref{sec:interpolation} ils seront plus détaillés à cette occasion.
 
 
-Ainsi on s'est placé dans le cas où $\mathbb{L}_1 \not \cong \mathbb{F}_q$  et 
-$\mathbb{L}_2 \not \cong \mathbb{L}_1$ qui correspond au pire des cas en 
-pratique. \todo{déjà dit} Pour plus de détails sur la description des orbites selon les cas 
+Pour plus de détails sur la description des orbites selon les cas 
 possibles le lecteur peut regarder le  lemme~\ref{lem:bij:ord}, le 
 théorème~\ref{thm:orb:fro} ainsi que le corollaire~\ref{cor:orb:fro}.
 
-Soient $k \geqslant 1$, $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{U}_{k} \setminus \mathbb{U}_{k-1}$ par définition de $\mathbb{U}_{k}$. On note $\mathsf{orb}(x(P))$ l'ensemble des abscisses des points de l'orbite créée par l'action d'un élément générateur $\pi$ de $\mathsf{Gal}(\mathbb{U}_k:\mathbb{F}_{q})$ sur l'élément $x(P) \in \mathbb{U}_k$. On a donc:
+Soient $k \geqslant 1$, $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{L}_{k} \setminus \mathbb{L}_{k-1}$. On note $\mathsf{orb}(x(P))$ l'ensemble des abscisses des points de l'orbite créée par l'action d'un élément générateur $\pi$ de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_{q})$ sur l'élément $x(P) \in \mathbb{L}_k$. On a donc:
 \begin{equation*}
 T_{0}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P)), n \leqslant p^k-1/2}(x-x([n]P))=\prod_{i=0}^{p^{k-1}d_1-1}(x-\pi^i(x(P)))=\prod_{i=0}^{{p^{k-1}d_1-1}}\pi^i(x-x(P))
 \end{equation*}
 
-On note $T_0^{(0)}=x-x(P)$, soit $k \geqslant i\geqslant 0$ $\sigma_i$ un élément générateur de $\mathsf{Gal}(\mathbb{U}_{k-i+1}:\mathbb{U}_{k-i})$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
+On note $T_0^{(0)}=x-x(P)$, soit $k \geqslant i\geqslant 0$ $\sigma_i$ un élément générateur de $\mathsf{Gal}(\mathbb{L}_{k-i+1}:\mathbb{L}_{k-i})$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
 \[
 T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
     p-1 &\text{si $i<k-1$,}\\
@@ -1992,21 +2004,19 @@ Une représentation de ce calcul sur un arbre binaire permet de voir sur la figu
 		\draw (A2) node{$\bullet$};
 		\draw (A3) node{$\bullet$};
 		\draw (A4) node{$\bullet$};
-		\draw (A1) node[left]{$\mathbb{F}_q=\mathbb{U}_0$};
-		\draw (A2) node[left]{$\mathbb{U}_1$};
-		\draw (A3) node[left]{$\mathbb{U}_{2}$};
-		\draw (A4) node[left]{$\mathbb{U}_{3}$};
+		\draw (A1) node[left]{$\mathbb{F}_q=\mathbb{L}_0$};
+		\draw (A2) node[left]{$\mathbb{L}_1$};
+		\draw (A3) node[left]{$\mathbb{L}_{2}$};
+		\draw (A4) node[left]{$\mathbb{L}_{3}$};
 \end{tikzpicture}
 \end{center}
-\caption{Arbre de sous produits pour le calcul de $T_0^{(0)}$ dans le cas d'une tour d'extension quadratique. Seul les éléments en rouge de l'arbre sont pris en compte pour le calcul, $\sigma$ peut être n'importe quel élément générateur de $\mathsf{Gal}(\mathbb{U}_3:\mathbb{U}_0)$.}
+\caption{Arbre de sous produits pour le calcul de $T_0^{(0)}$ dans le cas d'une tour d'extension quadratique. Seul les éléments en rouge de l'arbre sont pris en compte pour le calcul, $\sigma$ peut être n'importe quel élément générateur de $\mathsf{Gal}(\mathbb{L}_3:\mathbb{L}_0)$.}
 \label{fig:orb:T}
 \end{figure}
 
 \begin{rem}
 La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-tor:fro} puisque l'arbre \ref{fig:orb:T} représente un seul des $fd_1$ arbres de \ref{fig:p-tor:fro} et que les extrémités de l'arbre \ref{fig:orb:T} représentent les polynômes qui s'annulent en les abscisses de points des extrémités d'un des arbres de \ref{fig:p-tor:fro}.
 \end{rem}
-
-Ainsi avec l'utilisation du Frobenius on obtient le résultat suivant pour le calcul du polynôme d'interpolation sur les points d'ordre $p^k$:
 
 L'algorithme de Couveignes avec les modifications apportées par l'utilisation de tours d'Artin-Schreier et du Frobenius pour le calcul du polynôme d'interpolation a alors la complexité suivante:
 
@@ -5948,6 +5958,8 @@ On va donc voir dans la prochaine sous-section les améliorations apportées par
 Soient $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[p]=\{O_E\}$, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:\mathbb{F}_q]=d_1$ avec $d_1 \mid p-1$, alors les orbites des points d'ordre $p$ sous l'action de $\mathsf{Gal}(\mathbb{L}_1:\mathbb{F}_q)$ est de taille de $d_1 $ et il y a $f$ orbites telles que $f \times d_1  = (p-1)/2$.
 \end{prop}
 
+Ainsi avec l'utilisation du Frobenius on obtient le résultat suivant pour le calcul du polynôme d'interpolation sur les points d'ordre $p^k$:
+
 \begin{thm}
 Soient $P$ un point d'ordre $p^k$ de $E$ et $P'$ un point d'ordre $p^k$ de $E'$ alors le calcul du polynôme d'interpolation $A$ tel que $A(x([n]P))=x([n]P')$ pour tout $n \in \left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ a une complexité de:
 \[
@@ -5961,7 +5973,7 @@ Voir section $5.2$ de \cite{DeFeo11}.
 \end{proof}
 
 
-\subsubsection{TRC ELLiptique}
+\subsection{TRC ELLiptique}
 \begin{prop}
 L'algorithme~\ref{alg:TRC:init} est correct et coûte $2k_2$ inversions d'un polynôme de degré $\ell_2$, $2k_1 \bmod o_{\ell_2^{k_2}}(\eta_1)$ fois la multiplication scalaire d'un point d'ordre $\ell_2^{k_2}$ par un coefficient $\eta$ défini dans $\mathbb{Z}/\ell_2^{k_2} \mathbb{Z}$, avec $o_{\ell_2^{k_2}}(\eta)$ l'ordre multiplicatif de $\eta$ dans $(\mathbb{Z}/\ell_2^{k_2} \mathbb{Z})^*$.
 \end{prop}
