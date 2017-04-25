@@ -4033,7 +4033,7 @@ dominée par la dernière opération $\mathsf{divise}$ qui coûte $O(\mathsf{R}(
 \end{proof}
 
 \begin{rem}
-Le calcul de point horizontal d'ordre $\ell^k$ aurait pu être fait en calculant une base diagonale de la $\ell^{k+h}$ torsion, mais alors on aurait été obligé de travailler sur une extension $\ell$-adique plus grande et l'on aurait alors obtenu une complexité trop élevée en fonction de $h$. Par exemple pour une courbe située sur le cratère à l'aide de l'algorithme~\ref{alg:bas:diag} on obtiendrait une complexité espérée de: $O(\mathsf{R}((k+h)-\beta)+\ell^{2}\mathsf{M}(\ell^{k+h-\beta})+\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)$. \todo{compléter complexité} 
+Le calcul de point horizontal d'ordre $\ell^k$ aurait pu être fait en calculant une base diagonale de la $\ell^{k+h}$ torsion, mais alors on aurait été obligé de travailler sur une extension $\ell$-adique plus grande et l'on aurait alors obtenu une complexité trop élevée en fonction de $h$. Par exemple pour une courbe située sur le cratère à l'aide de l'algorithme~\ref{alg:bas:diag} on obtiendrait une complexité espérée de: $O(\mathsf{R}((k+h)-\beta)+\ell^{2}\mathsf{M}(\ell^{k+h-\beta})+\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)$.
 \end{rem}
 
 \begin{prop}
@@ -4680,7 +4680,6 @@ condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 c'est ce que l'on va aborder dans la seconde approche.}
 
 \section{Approche avec le groupe de points isomorphe à $\prod_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $}
-\todo{Verifier que j'ai mis nombre de Elkies un peu partout ...}
 Ainsi dans cette approche on veut travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'informations donnée par 
 les  bases (partiellement) horizontales 
@@ -4772,7 +4771,6 @@ voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$
  ailleurs on pose $p_0=1$.
 %$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
 \end{nota}
-\todo{justifier que l'on a $\mathsf{F}_{j,n_j} \subset \mathbb{K}_n$}
 
 Il reste à voir en pratique le coût de la construction d'un tel composita pour 
 cela on se sert du résultat suivant issu de \cite[Theorem 1]{BostanFlajoletSalvySchost06}
@@ -6408,7 +6406,7 @@ Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra 
 
 
 
-\todo{Algorithme appendice intéressant seulement pour la condition qui distingue horizontal de trigonal}
+
 
 
 \bibliography{Biblio}
@@ -6417,7 +6415,7 @@ Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra 
 \appendix
 \chapter{Algorithmes}
 \section{Algorithm for computing a trigonalisation or a diagonalisation at the same time}
-
+\todo{Algorithme appendice intéressant seulement pour la condition qui distingue horizontal de trigonal}
 \begin{algorithm}
 \caption{\label{alg:app:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
 \begin{algorithmic}[1]
@@ -6755,7 +6753,7 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
 On énonce un problème plus général de calcul de polynôme d'interpolation 
 à l'aide de plusieurs couples de points de $\mathsf{F}_n$.
 
-\begin{prop}\label{prop:interpol:comp}
+\begin{prop}
   Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n 
   \setminus \mathbb{K}_{n-1}$, $t_i$ le degré des polynômes minimaux de $v_i$, 
   et l'on note  $t=\sum t_i$. 
