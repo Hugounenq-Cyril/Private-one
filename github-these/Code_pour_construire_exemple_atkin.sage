@@ -76,7 +76,28 @@ def volcan_atkin(p,r,j0):
 	while (D%4)==0:
 		D=D/4
 	if D%8==5:
-		print 'D%5==',D%5
+		return True
+	else:
+		print 'D%8==',D%8
+		return False
+
+def volcan_atkin_two_torsion(p,r,j0):
+	'''
+	Input:
+	-j0 le j invariant d'une courbe définie sur Fp^r
+	-p un nombre premier
+	-r un entier
+
+	Output:
+	Dit si le volcan est atkin ou pas 
+	'''
+	F.<a>=FiniteField(p^r)
+	E=EllipticCurve(j=F(j0))
+	t=E.trace_of_frobenius()
+	D=t^2-4*(p^r)
+	while (D%4)==0:
+		D=D/4
+	if (D%8==5 and (E.two_torsion_rank()!=0 or E.quadratic_twist().two_torsion_rank()!=0)):
 		return True
 	else:
 		print 'D%8==',D%8
@@ -109,11 +130,16 @@ def Construction_Descente(p,r,b,u):
 	j4=E.j_invariant()
 	BRAP=ClassicalModularPolynomialDatabase()
 	f=BRAP[2]
+	print "on en est là"
 	f=f.subs(j1=x) # pour avoir le classical modular polynome exprimé directement en l'indéterminé
 	g=f.subs(j0=j4) # pour calculer les courbes 2 isogenes à partir de celle de départ 
 	F=g.roots(ring=k)
 	L=[[],[],[]]
 	c=[0,0,0]
+	print "on en est là bis"
+	if (len(F)==0):
+		print "pas de courbes isogénes"
+		return False
 	if (len(F)<=2 and E.two_torsion_rank()==1):
 		print "echec longueur"
                 return [[j4,1],[j4,1],[j4,1]]
