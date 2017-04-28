@@ -125,6 +125,28 @@ def liste_j_invariant_Atkin_two_torsion(p,r):
 			L.append(j0);
 	return L
 
+def test_courbe_autour(E,l,order,b):
+	'''
+	Teste les l_isogénies autour de E et regarde la cardinalité de la 
+	l**order torsion
+	Input:
+	-b a boolean saying if we print or not the results
+	'''
+	LP=E(0).division_points(l)
+	L=[]
+	for P in LP:
+		Ec=E.isogeny(P).codomain()
+		j=Ec.j_invariant()
+		L1=Ec(0).division_points(l**order)
+		L2=filter(lambda x: x.order()==l**order, L1)
+		L.append([j,len(L1),len(L2)])
+		if b and l==2:
+			print [j,len(L1),len(L2),Ec.two_torsion_rank()]
+		elif b:
+			print [j,len(L1),len(L2)]
+	return [L,LP]
+		
+
 def Construction_Descente(p,r,b,u):
 	'''
 	Input:
