@@ -103,6 +103,27 @@ def volcan_atkin_two_torsion(p,r,j0):
 		print 'D%8==',D%8
 		return False
 
+def liste_j_invariant_Atkin_two_torsion(p,r):
+	'''
+	Liste de j-invariants de courbes Atkin telle qu'elles aient de la 
+	2-torsion rationnelle
+	Input:
+	-p a prime
+	-r an integer
+	Output:
+	
+	'''
+	F.<a>=FiniteField(p^r)
+	L=[]
+	for j0 in range(p):
+		E=EllipticCurve(j=F(j0))
+		t=E.trace_of_frobenius()
+		D=t^2-4*(p^r)
+		while (D%4)==0:
+			D=D/4
+		if (D%8==5 and (E.two_torsion_rank()!=0 or E.quadratic_twist().two_torsion_rank()!=0)):
+			L.append(j0);
+	return L
 
 def Construction_Descente(p,r,b,u):
 	'''
