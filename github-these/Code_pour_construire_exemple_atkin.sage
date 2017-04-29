@@ -90,7 +90,7 @@ def volcan_atkin(p,r,j0,l):
 		else:
 			return False
 
-def volcan_atkin_cratere(p,r,j0,l):
+def volcan_atkin_cratere_l_torsion(p,r,j0,l):
 	'''
 	Input:
 	-j0 le j invariant d'une courbe définie sur Fp^r
@@ -103,19 +103,20 @@ def volcan_atkin_cratere(p,r,j0,l):
 	'''
 	F.<a>=FiniteField(p^r)
 	E=EllipticCurve(j=F(j0))
-	t=E.trace_of_frobenius()
-	D=t^2-4*(p^r)
-	if(l==2):
-		if D%8==5:
-			return True
-		else:
-			print 'D%8==',D%8
-			return False
-	else:
-		if(kronecker_symbol(D,l)==-1):
-			return True
-		else:
-			return False
+	if(len(E(0).division_points(l))==l**2):
+		t=E.trace_of_frobenius()
+		D=t^2-4*(p^r)
+		if(l==2):
+			if D%8==5:
+				return True
+			else:
+				print 'D%8==',D%8
+				return False
+		else:	
+			if(kronecker_symbol(D,l)==-1):
+				return True
+			else:
+				return False
 
 def liste_j_invariant_volcan_atkin(p,r,l):
 	'''
@@ -135,7 +136,7 @@ def liste_j_invariant_volcan_atkin(p,r,l):
 			L.append(j)
 	return L
 
-def liste_j_invariant_cratere_atkin(p,r,l):
+def liste_j_invariant_cratere_atkin_l_torsion(p,r,l):
 	'''
 	Returns a list of j-invariants of curves located on the crater of an 
 	Atkin volcano of \ell-isogenies
@@ -149,7 +150,7 @@ def liste_j_invariant_cratere_atkin(p,r,l):
 	'''
 	L=[]
 	for j in range(p):
-		if(volcan_atkin_cratere(p,r,j,l)):
+		if(volcan_atkin_cratere_l_torsion(p,r,j,l)):
 			L.append(j)
 	return L
 
