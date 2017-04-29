@@ -43,15 +43,6 @@ for r in range(3):
     Q1=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]			
 #R.<c> = Zq(4, prec = 20); 
 #Contruction de l'extension 2-adic non ramifiée à l'aide de Sage
-def constructor_isogeny(E,l,q):
-	'''
-	A function to compute an \ell isogeny starting from E and defined over
-	F_{q}
-	'''
-	L=E(0).division_points(l);
-	L=filter(lambda x: x.order()==l, L)
-	L=filter(lambda x: ((x[0]^q==x[0]) and (x[1]^q==x[1])), L)
-	return E.isogeny(L[randint(0,len(L)-1)])
 
 
 #Pour travailler avec la 32 torsion
@@ -62,12 +53,12 @@ if(E2.cardinality()!=242935033147223040):
 L=filter(lambda x: x.order()==2, E2(0).division_points(2))
 P2=L[randint(0,len(L)-1)]
 M=filter(lambda x: x.weil_pairing(P2,2).multiplicative_order()==2,L)
-Q2=M[randint(0,len(L)-1)]
+Q2=M[randint(0,len(M)-1)]
 for r in range(4):
-    L=P2.division_points(2)
-    P2=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]
-    L=Q2.division_points(2)
-    Q2=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]	
+    	L=P2.division_points(2)
+    	P2=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]
+    	L=Q2.division_points(2)
+  	Q2=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]	
 
 #Pour travailler sur une courbe plus bas dans le volcan
 Lb=E1(0).division_points(2);
@@ -82,4 +73,19 @@ for r in range(2):
 	Pb=filter(lambda x: x.order()==2**(r+2),Lb)[randint(0,len(Lb)-1)]
 	Lb=Qb.division_points(2)
 	Qb=filter(lambda x: x.order()==2**(r+2),Lb)[randint(0,len(Lb)-1)]
+
+#Test pour l iosgenie avec le Frobenius
+Ma=etude_action_Frobenius(P,Q,149)
+print Matrice
+#On calcule la matrice associée à la base dont on cherche un candidat pour l'image
+phi=constructor_isogeny(P.curve(),3,149)
+print phi, phi.codomain().j_invariant()
+Pc=phi(P)
+Qc=phi(Q)
+Pcache=Pc
+Qcache=Qc
+Pc,Qc=Qc,Pc
+Qc=3*Qc+4*Pc
+print Qc.weil_pairing(Pc,Pc.order()).multiplicative_order()==Pc.order()
+Listest=retrouve_points_matrice(Ma,149,Pc,Qc)
 

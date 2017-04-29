@@ -120,7 +120,17 @@ def test_matrices_possibles(L,P,Q,q,profondeur):
 				J=[]
 	return [Test,L,L2]
 
-def retrouve_points_matrice(M,q,P,Q):
+def constructor_isogeny(E,l,q):
+	'''
+	A function to compute an \ell isogeny starting from E and defined over
+	F_{q}
+	'''
+	L=E(0).division_points(l);
+	L=filter(lambda x: x.order()==l, L)
+	L=filter(lambda x: ((x[0]^q==x[0]) and (x[1]^q==x[1])), L)
+	return E.isogeny(L[randint(0,len(L)-1)])
+
+def retrouve_points_matrice(Ma,q,P,Q):
 	'''
 	Input:
 	-M a matrix that represents the action of the Frobenius
@@ -132,11 +142,31 @@ def retrouve_points_matrice(M,q,P,Q):
 	'''	
 	E=P.curve()
 	M=list(Q.order().factor())[0]
+	Mi=matrix([[0,1],[1,0]])*Ma*matrix([[0,1],[1,0]])
+	LMa=[]
+	LMi=[]
 	for b in range(Q.order()):
 		if (b%M[0]!=0):
 			for a in range(P.order()):
 				Matrix=etude_action_Frobenius(P,a*P+b*Q,q)
-				if(Matrix==M):
-					return P,a*P+b*Q,q
-	return False 
-	
+				if(Matrix==Ma):
+					#on teste si les points ne sont pas des multiples d'autres déjà présents
+					test=True
+					for l in LMa:
+						if(l[0].weil_pairing(P,P.order()).multiplicative_order()==1 and l[1].weil_pairing(a*P+b*Q,(a*P+b*Q).order()).multiplicative_order()==1):
+							test=False
+					#si des multiples ne sont pas deja presents on les ajoute a la liste					
+					if(test):
+						LMa.append([P,a*P+b*Q])
+				if(Matrix==Mi):
+					test=True
+					for l in LMi:
+						if(l[1].weil_pairing(P,P.order()).multiplicative_order()==1 and l[0].weil_pairing(a*P+b*Q,(a*P+b*Q).order()).multiplicative_order()==1):
+							test=False
+					#si des multiples ne sont pas deja presents on les ajoute a la liste					
+					if(test):
+						LMi.append([a*P+b*Q,P])
+	if(len(LMa)==0 and len(LMi)==0):	
+		return False
+	else:
+		return [LMa,LMi]
