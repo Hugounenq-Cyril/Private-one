@@ -90,6 +90,69 @@ def volcan_atkin(p,r,j0,l):
 		else:
 			return False
 
+def volcan_atkin_cratere(p,r,j0,l):
+	'''
+	Input:
+	-j0 le j invariant d'une courbe définie sur Fp^r
+	-p un nombre premier
+	-r un entier
+	-l an integer to test the l_isogeny volcano 
+
+	Output:
+	Dit si la courbe est sur le cratere d un volcan de atkin ou pas 
+	'''
+	F.<a>=FiniteField(p^r)
+	E=EllipticCurve(j=F(j0))
+	t=E.trace_of_frobenius()
+	D=t^2-4*(p^r)
+	if(l==2):
+		if D%8==5:
+			return True
+		else:
+			print 'D%8==',D%8
+			return False
+	else:
+		if(kronecker_symbol(D,l)==-1):
+			return True
+		else:
+			return False
+
+def liste_j_invariant_volcan_atkin(p,r,l):
+	'''
+	Returns a list of j-invariants of curves located on a Atkin volcano of
+	\ell-isogenies 
+
+	Input;
+	-p a prime
+	-r such that we work on the finite field F_{p^r}
+	-l the degree of the volcano we want to study
+
+	Output:
+	'''
+	L=[]
+	for j in range(p):
+		if(volcan_atkin(p,r,j,l)):
+			L.append(j)
+	return L
+
+def liste_j_invariant_cratere_atkin(p,r,l):
+	'''
+	Returns a list of j-invariants of curves located on the crater of an 
+	Atkin volcano of \ell-isogenies
+
+	Input;
+	-p a prime
+	-r such that we work on the finite field F_{p^r}
+	-l the degree of the volcano we want to study
+
+	Output: 
+	'''
+	L=[]
+	for j in range(p):
+		if(volcan_atkin_cratere(p,r,j,l)):
+			L.append(j)
+	return L
+
 def volcan_atkin_two_torsion(p,r,j0):
 	'''
 	Input:
