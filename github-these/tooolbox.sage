@@ -119,3 +119,24 @@ def test_matrices_possibles(L,P,Q,q,profondeur):
 					Test=True
 				J=[]
 	return [Test,L,L2]
+
+def retrouve_points_matrice(M,q,P,Q):
+	'''
+	Input:
+	-M a matrix that represents the action of the Frobenius
+	-q the power of the Frobenius
+	-P, Q two basis points of the torsion of the curve
+
+	Ouput:
+	-Two points in which the Frobenius acts according to the matrix
+	'''	
+	E=P.curve()
+	M=list(Q.order().factor())[0]
+	for b in range(Q.order()):
+		if (b%M[0]!=0):
+			for a in range(P.order()):
+				Matrix=etude_action_Frobenius(P,a*P+b*Q,q)
+				if(Matrix==M):
+					return P,a*P+b*Q,q
+	return False 
+	

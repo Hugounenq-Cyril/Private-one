@@ -318,4 +318,3 @@ def Conversion(t,p,r): # fonction auxilaire qui permet de prendre au hasard un Ã
 		else :
 			t=l[1]
 	return res
-	
