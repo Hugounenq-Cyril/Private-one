@@ -83,9 +83,9 @@ def volcan_atkin(p,r,j0,l):
 			print 'D%8==',D%8
 			return False
 	else:
-		while (D%l**2)==0:
+		while ((D%l**2)==0):
 			D=D/(l**2)
-		if(kronecker_symbol(D,l)=-1):
+		if(kronecker_symbol(D,l)==-1):
 			return True
 		else:
 			return False
