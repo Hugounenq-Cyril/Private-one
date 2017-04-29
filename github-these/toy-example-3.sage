@@ -12,14 +12,14 @@ E=EllipticCurve(j=F(56))
 if(E.cardinality()!=22464):
 	E=E.quadratic_twist()
 L=filter(lambda x: x.order()==2, E(0).division_points(2))
-P=L[1]
+P=L[randint(0,len(L)-1)]
 M=filter(lambda x: x.weil_pairing(P,2).multiplicative_order()==2,L)
-Q=M[1]
+Q=M[randint(0,len(M)-1)]
 for r in range(2):
     L=P.division_points(2)
-    P=filter(lambda x: x.order()==2**(r+2),L)[0]
+    P=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]
     L=Q.division_points(2)
-    Q=filter(lambda x: x.order()==2**(r+2),L)[0]
+    Q=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]
 #Maintenant on a une base de la 8-torsion, plus grande torsion rationnelle sur F_{109**2} et non définie sur F_{109}
 #Remarque la 4 torsion est définie sur F_{109}
 #Le polynome characterisitique du Frobenius est ******
@@ -33,14 +33,14 @@ E1=EllipticCurve(j=F1(56))
 if(E1.cardinality()!=492860160):
 	E1=E1.quadratic_twist()
 L=filter(lambda x: x.order()==2, E1(0).division_points(2))
-P1=L[1]
+P1=L[randint(0,len(L)-1)]
 M=filter(lambda x: x.weil_pairing(P1,2).multiplicative_order()==2,L)
-Q1=M[1]
+Q1=M[randint(0,len(M)-1)]
 for r in range(3):
     L=P1.division_points(2)
-    P1=filter(lambda x: x.order()==2**(r+2),L)[0]
+    P1=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]
     L=Q1.division_points(2)
-    Q1=filter(lambda x: x.order()==2**(r+2),L)[0]			
+    Q1=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]			
 #R.<c> = Zq(4, prec = 20); 
 #Contruction de l'extension 2-adic non ramifiée à l'aide de Sage
 def constructor_isogeny(E,l,q):
@@ -51,7 +51,7 @@ def constructor_isogeny(E,l,q):
 	L=E(0).division_points(l);
 	L=filter(lambda x: x.order()==l, L)
 	L=filter(lambda x: ((x[0]^q==x[0]) and (x[1]^q==x[1])), L)
-	return E.isogeny(L[0])
+	return E.isogeny(L[randint(0,len(L)-1)])
 
 
 #Pour travailler avec la 32 torsion
@@ -60,26 +60,26 @@ E2=EllipticCurve(j=F2(56))
 if(E2.cardinality()!=242935033147223040):
 	E2=E2.quadratic_twist()
 L=filter(lambda x: x.order()==2, E2(0).division_points(2))
-P2=L[1]
+P2=L[randint(0,len(L)-1)]
 M=filter(lambda x: x.weil_pairing(P2,2).multiplicative_order()==2,L)
-Q2=M[1]
+Q2=M[randint(0,len(L)-1)]
 for r in range(4):
     L=P2.division_points(2)
-    P2=filter(lambda x: x.order()==2**(r+2),L)[0]
+    P2=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]
     L=Q2.division_points(2)
-    Q2=filter(lambda x: x.order()==2**(r+2),L)[0]	
+    Q2=filter(lambda x: x.order()==2**(r+2),L)[randint(0,len(L)-1)]	
 
 #Pour travailler sur une courbe plus bas dans le volcan
 Lb=E1(0).division_points(2);
 Lb=filter(lambda x: x.order()==2, Lb)
 Eb=E1.isogeny(Lb[-1]).codomain()
 Lb=filter(lambda x: x.order()==2 ,Eb(0).division_points(2))
-Pb=Lb[0]
+Pb=Lb[randint(0,len(Lb)-1)]
 Lb=filter(lambda x: x.weil_pairing(Pb,2).multiplicative_order()==2, Lb)
-Qb=Lb[0]
+Qb=Lb[randint(0,len(Lb)-1)]
 for r in range(2):
 	Lb=Pb.division_points(2)
-	Pb=filter(lambda x: x.order()==2**(r+2),Lb)[0]
+	Pb=filter(lambda x: x.order()==2**(r+2),Lb)[randint(0,len(Lb)-1)]
 	Lb=Qb.division_points(2)
-	Qb=filter(lambda x: x.order()==2**(r+2),Lb)[0]
+	Qb=filter(lambda x: x.order()==2**(r+2),Lb)[randint(0,len(Lb)-1)]
 
