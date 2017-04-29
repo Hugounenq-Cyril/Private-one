@@ -73,10 +73,16 @@ def volcan_atkin(p,r,j0,l):
 	F.<a>=FiniteField(p^r)
 	E=EllipticCurve(j=F(j0))
 	t=E.trace_of_frobenius()
+	t2=E.quadratic_twist().trace_of_frobenius()
+	D2=t2^2-4*(p^r)
 	D=t^2-4*(p^r)
 	if(l==2):
 		while (D%4)==0:
 			D=D/4
+		while (D2%4)==0:
+			D2=D2/4
+		if D2%8==5:
+			return True
 		if D%8==5:
 			return True
 		else:
@@ -85,6 +91,10 @@ def volcan_atkin(p,r,j0,l):
 	else:
 		while ((D%l**2)==0):
 			D=D/(l**2)
+		while ((D2%l**2)==0):
+			D2=D2/(l**2)
+		if(kronecker_symbol(D2,l)==-1):
+			return True
 		if(kronecker_symbol(D,l)==-1):
 			return True
 		else:
@@ -103,6 +113,7 @@ def volcan_atkin_cratere_l_torsion(p,r,j0,l):
 	'''
 	F.<a>=FiniteField(p^r)
 	E=EllipticCurve(j=F(j0))
+	EQ=E.quadratic_twist()
 	if(len(E(0).division_points(l))==l**2):
 		t=E.trace_of_frobenius()
 		D=t^2-4*(p^r)
@@ -111,12 +122,25 @@ def volcan_atkin_cratere_l_torsion(p,r,j0,l):
 				return True
 			else:
 				print 'D%8==',D%8
-				return False
 		else:	
 			if(kronecker_symbol(D,l)==-1):
 				return True
+	elif(len(EQ(0).division_points(l))==l**2):
+		t2=EQ.trace_of_frobenius()
+		D2=t2^2-4*(p^r)
+		if(l==2):
+			if D2%8==5:
+				return True
+			else:
+				print 'D%8==',D2%8
+				return False
+		else:	
+			if(kronecker_symbol(D2,l)==-1):
+				return True
 			else:
 				return False
+	else:		
+		return False
 
 def liste_j_invariant_volcan_atkin(p,r,l):
 	'''
