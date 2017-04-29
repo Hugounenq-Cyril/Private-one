@@ -59,12 +59,13 @@ def volcan_atkin_et_courbes_isogenes(p,r,j4,p1):
 		print "volcan pas cyclique"
 		return False
 
-def volcan_atkin(p,r,j0):
+def volcan_atkin(p,r,j0,l):
 	'''
 	Input:
 	-j0 le j invariant d'une courbe définie sur Fp^r
 	-p un nombre premier
 	-r un entier
+	-l an integer to test the l_isogeny volcano 
 
 	Output:
 	Dit si le volcan est atkin ou pas 
@@ -73,13 +74,21 @@ def volcan_atkin(p,r,j0):
 	E=EllipticCurve(j=F(j0))
 	t=E.trace_of_frobenius()
 	D=t^2-4*(p^r)
-	while (D%4)==0:
-		D=D/4
-	if D%8==5:
-		return True
+	if(l==2):
+		while (D%4)==0:
+			D=D/4
+		if D%8==5:
+			return True
+		else:
+			print 'D%8==',D%8
+			return False
 	else:
-		print 'D%8==',D%8
-		return False
+		while (D%l**2)==0:
+			D=D/(l**2)
+		if(kronecker_symbol(D,l)=-1):
+			return True
+		else:
+			return False
 
 def volcan_atkin_two_torsion(p,r,j0):
 	'''
