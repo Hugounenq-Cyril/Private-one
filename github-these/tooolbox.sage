@@ -171,6 +171,68 @@ def retrouve_points_matrice(Ma,q,P,Q):
 	else:
 		return [LMa,LMi]
 
+def retrouve_points_matrice_improved(Ma,q,P,Q):
+	'''
+	Input:
+	-M a matrix that represents the action of the Frobenius
+	-q the power of the Frobenius
+	-P, Q two basis points of the torsion of the curve
+
+	Ouput:
+	-Two points in which the Frobenius acts according to the matrix
+	'''	
+	E=P.curve()
+	M=list(Q.order().factor())[0]
+	Mi=matrix([[0,1],[1,0]])*Ma*matrix([[0,1],[1,0]])
+	LMa=[]
+	LMi=[]
+	for b in range(Q.order()):
+		if (b%M[0]!=0):
+			for a in range(P.order()):
+				Matrix=etude_action_Frobenius(P,a*P+b*Q,q)
+				if(Matrix==Ma):
+					#on teste si les points ne sont pas des multiples d'autres déjà présents
+					test=True
+					for l in LMa:
+						if(l[0].weil_pairing(P,P.order()).multiplicative_order()==1 and l[1].weil_pairing(a*P+b*Q,(a*P+b*Q).order()).multiplicative_order()==1):
+							test=False
+					#si des multiples ne sont pas deja presents on les ajoute a la liste					
+					if(test):
+						LMa.append([P,a*P+b*Q])
+				if(Matrix==Mi):
+					test=True
+					for l in LMi:
+						if(l[1].weil_pairing(P,P.order()).multiplicative_order()==1 and l[0].weil_pairing(a*P+b*Q,(a*P+b*Q).order()).multiplicative_order()==1):
+							test=False
+					#si des multiples ne sont pas deja presents on les ajoute a la liste					
+					if(test):
+						LMi.append([a*P+b*Q,P])
+	for b in range(P.order()):
+		if (b%M[0]!=0):
+			for a in range(Q.order()):
+				Matrix=etude_action_Frobenius(Q,a*Q+b*P,q)
+				if(Matrix==Ma):
+					#on teste si les points ne sont pas des multiples d'autres déjà présents
+					test=True
+					for l in LMa:
+						if(l[0].weil_pairing(Q,Q.order()).multiplicative_order()==1 and l[1].weil_pairing(a*Q+b*P,(a*Q+b*P).order()).multiplicative_order()==1):
+							test=False
+					#si des multiples ne sont pas deja presents on les ajoute a la liste					
+					if(test):
+						LMa.append([Q,a*Q+b*P])
+				if(Matrix==Mi):
+					test=True
+					for l in LMi:
+						if(l[1].weil_pairing(Q,Q.order()).multiplicative_order()==1 and l[0].weil_pairing(a*Q+b*P,(a*Q+b*P).order()).multiplicative_order()==1):
+							test=False
+					#si des multiples ne sont pas deja presents on les ajoute a la liste					
+					if(test):
+						LMi.append([a*Q+b*P,Q])	
+	if(len(LMa)==0 and len(LMi)==0):	
+		return False
+	else:
+		return [LMa,LMi]
+
 def test_liste(L,P,Q):
 	'''
 	Fonction pour tester la sortie de retrouve matrice
@@ -194,13 +256,14 @@ def test_liste(L,P,Q):
 		print l[1].weil_pairing(Q,Q.order()).multiplicative_order(), 'test avec P avec l[1] L0'
 		print 'on teste un nouveau couple de points', '\n'
 
-def test_liste_profondeur(L,P,Q,profondeur):
+def test_liste_profondeur(L,P,Q,profondeur,b=False):
 	'''
 	Fonction pour tester la sortie de retrouve matrice
 	Input:
 	-L a list composed of 2 lists of points
 	-P,Q two basis points that we are looking for in the list
 	-profondeur an integer that represent the degree of the l-torsion we want to find
+	-b a boolean to compute a full test
 	'''
 	L0=L[0]
 	L1=L[1]
@@ -212,8 +275,9 @@ def test_liste_profondeur(L,P,Q,profondeur):
 		Qt=Q*M[0]**(M[1]-profondeur)
 		print (l0).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec P avec l[0] L0'
 		print (l1).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec Q avec l[1] L0'
-		print (l0).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec Q avec l[0] L0'
-		print (l1).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec P avec l[1] L0'
+		if (b):
+			print (l0).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec Q avec l[0] L0'
+			print (l1).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec P avec l[1] L0'
 		print 'on teste un nouveau couple de points', '\n'
 	print '\n', 'on teste la partie symétrique', '\n';
 	for l in L1:
@@ -221,8 +285,9 @@ def test_liste_profondeur(L,P,Q,profondeur):
 		l1=l[1]*M[0]**(M[1]-profondeur)
 		Pt=P*M[0]**(M[1]-profondeur)
 		Qt=Q*M[0]**(M[1]-profondeur)
-		print (l0).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec Q avec l[0] L1'
-		print (l1).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec P avec l[1] L1'
-		print (l0).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec Q avec l[0] L0'
-		print (l1).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec P avec l[1] L0'
+		if (b):
+			print (l0).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec Q avec l[0] L1'
+			print (l1).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec P avec l[1] L1'
+		print (l0).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec P avec l[0] L0'
+		print (l1).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec Q avec l[1] L0'
 		print 'on teste un nouveau couple de points', '\n'

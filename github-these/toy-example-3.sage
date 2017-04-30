@@ -74,7 +74,7 @@ for r in range(2):
 	Lb=Qb.division_points(2)
 	Qb=filter(lambda x: x.order()==2**(r+2),Lb)[randint(0,len(Lb)-1)]
 
-#Test pour l iosgenie avec le Frobenius
+#Test pour l isogenie avec le Frobenius sur la 8 torsion
 Ma=etude_action_Frobenius(P,Q,149)
 print Ma
 #On calcule la matrice associée à la base dont on cherche un candidat pour l'image
@@ -84,10 +84,40 @@ Pc=phi(P)
 Qc=phi(Q)
 Pcache=Pc
 Qcache=Qc
-Pc,Qc=Qc,Pc
-Qc=3*Qc+4*Pc
+Pc,Qc=Qc,Pc #on permute l ordre de la base pour brouiller les pistes
+Qc=3*Qc+2*Pc
 print Qc.weil_pairing(Pc,Pc.order()).multiplicative_order()==Pc.order()
 Listest=retrouve_points_matrice(Ma,149,Pc,Qc)
 Listest2=retrouve_points_matrice(Ma,149,Qc,Pc)
 Listest3=retrouve_points_matrice(Ma,149,Qc,Pc+Qc)
+Listest4=retrouve_points_matrice(Ma,149,Pc+Qc,Qc)
+
+#Listesti=retrouve_points_matrice_improved(Ma,149,Pc,Qc)
+#Listesti2=retrouve_points_matrice_improved(Ma,149,Qc,Pc)
+#Listesti3=retrouve_points_matrice_improved(Ma,149,Qc,Pc+Qc)
+#Listesti4=retrouve_points_matrice_improved(Ma,149,Pc+Qc,Qc)
+
+
+#Test pour l isogenie avec le Frobenius sur la 16 torsion
+Ma1=etude_action_Frobenius(P1,Q1,149)
+print Ma1
+#On calcule la matrice associée à la base dont on cherche un candidat pour l'image
+phi1=constructor_isogeny(P1.curve(),3,149)
+print phi1, phi1.codomain().j_invariant()
+Pc1=phi1(P1)
+Qc1=phi1(Q1)
+Pcache1=Pc1
+Qcache1=Qc1
+Pc1,Qc1=Qc1,Pc1 #on permute l ordre de la base pour brouiller les pistes
+Qc1=3*Qc1+2*Pc1
+print Qc1.weil_pairing(Pc1,Pc1.order()).multiplicative_order()==Pc1.order()
+Listest1=retrouve_points_matrice(Ma,149,Pc1,Qc1)
+Listest12=retrouve_points_matrice(Ma,149,Qc1,Pc1)
+Listest13=retrouve_points_matrice(Ma,149,Qc1,Pc1+Qc1)
+Listest14=retrouve_points_matrice(Ma,149,Pc1+Qc1,Qc1)
+
+#Listesti1=retrouve_points_matrice_improved(Ma,149,Pc,Qc)
+#Listesti12=retrouve_points_matrice_improved(Ma,149,Qc,Pc)
+#Listesti13=retrouve_points_matrice_improved(Ma,149,Qc,Pc+Qc)
+#Listesti14=retrouve_points_matrice_improved(Ma,149,Pc+Qc,Qc)
 
