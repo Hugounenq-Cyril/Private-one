@@ -76,7 +76,6 @@ for r in range(2):
 
 #Test pour l isogenie avec le Frobenius sur la 8 torsion
 Ma=etude_action_Frobenius(P,Q,149)
-print Ma
 #On calcule la matrice associée à la base dont on cherche un candidat pour l'image
 phi=constructor_isogeny(P.curve(),3,149)
 print phi, phi.codomain().j_invariant()
@@ -100,7 +99,6 @@ Listest4=retrouve_points_matrice(Ma,149,Pc+Qc,Qc)
 
 #Test pour l isogenie avec le Frobenius sur la 16 torsion
 Ma1=etude_action_Frobenius(P1,Q1,149)
-print Ma1
 #On calcule la matrice associée à la base dont on cherche un candidat pour l'image
 phi1=constructor_isogeny(P1.curve(),3,149)
 print phi1, phi1.codomain().j_invariant()
@@ -116,8 +114,32 @@ Listest12=retrouve_points_matrice(Ma,149,Qc1,Pc1)
 Listest13=retrouve_points_matrice(Ma,149,Qc1,Pc1+Qc1)
 Listest14=retrouve_points_matrice(Ma,149,Pc1+Qc1,Qc1)
 
-#Listesti1=retrouve_points_matrice_improved(Ma,149,Pc,Qc)
-#Listesti12=retrouve_points_matrice_improved(Ma,149,Qc,Pc)
-#Listesti13=retrouve_points_matrice_improved(Ma,149,Qc,Pc+Qc)
-#Listesti14=retrouve_points_matrice_improved(Ma,149,Pc+Qc,Qc)
+#Listesti1=retrouve_points_matrice_improved(Ma,149,Pc1,Qc1)
+#Listesti12=retrouve_points_matrice_improved(Ma,149,Qc1,Pc1)
+#Listesti13=retrouve_points_matrice_improved(Ma,149,Qc1,Pc1+Qc1)
+#Listesti14=retrouve_points_matrice_improved(Ma,149,Pc1+Qc1,Qc1)
+
+#Test avec la connaissance d'une corresepondance de sous groupe
+#L=(2*Pcache1).division_points(2)
+Pc1=phi1(P1)
+Qc1=phi1(Q1)
+L=(2*(Pc1+2*Qc1)).division_points(2)
+L1=filter(lambda x: x.weil_pairing(Pcache1,x.order()).multiplicative_order()==1, L)
+L2=filter(lambda x: x.weil_pairing(Pcache1,x.order()).multiplicative_order()!=1, L)
+
+Pc1=phi1(P1)
+Qc1=phi1(Q1)
+
+Qc1=3*Qc1+2*Pc1
+if(len(L1)>1):
+	Listestame1=retrouve_points_matrice(Ma,149,L1[0],Qc1)
+	Listestame12=retrouve_points_matrice(Ma,149,L1[1],Qc1)
+	Listestame13=retrouve_points_matrice(Ma,149,Qc1,L1[0])
+	Listestame14=retrouve_points_matrice(Ma,149,Qc1,L1[1])
+
+if(len(L2)>1):
+	Listestameb1=retrouve_points_matrice(Ma,149,L2[0],Qc1)
+	Listestameb12=retrouve_points_matrice(Ma,149,L2[1],Qc1)
+	Listestameb13=retrouve_points_matrice(Ma,149,Qc1,L2[0])
+	Listestameb14=retrouve_points_matrice(Ma,149,Qc1,L2[1])
 
