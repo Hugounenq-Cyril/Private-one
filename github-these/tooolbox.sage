@@ -170,3 +170,59 @@ def retrouve_points_matrice(Ma,q,P,Q):
 		return False
 	else:
 		return [LMa,LMi]
+
+def test_liste(L,P,Q):
+	'''
+	Fonction pour tester la sortie de retrouve matrice
+	Input:
+	-L a list composed of 2 lists of points
+	-P,Q two basis points that we are looking for in the list
+	'''
+	L0=L[0]
+	L1=L[1]
+	for l in L0:
+		print l[0].weil_pairing(P,P.order()).multiplicative_order(), 'test avec P avec l[0] L0'
+		print l[1].weil_pairing(Q,Q.order()).multiplicative_order(), 'test avec Q avec l[1] L0'
+		print l[0].weil_pairing(Q,Q.order()).multiplicative_order(), 'test avec Q avec l[0] L0'
+		print l[1].weil_pairing(P,P.order()).multiplicative_order(), 'test avec P avec l[1] L0'
+		print 'on teste un nouveau couple de points', '\n'
+	print '\n', 'on teste la partie symétrique', '\n';
+	for l in L1:
+		print l[0].weil_pairing(Q,Q.order()).multiplicative_order(), 'test avec Q avec l[0] L1'
+		print l[1].weil_pairing(P,P.order()).multiplicative_order(), 'test avec P avec l[1] L1'
+		print l[0].weil_pairing(P,P.order()).multiplicative_order(), 'test avec Q avec l[0] L0'
+		print l[1].weil_pairing(Q,Q.order()).multiplicative_order(), 'test avec P avec l[1] L0'
+		print 'on teste un nouveau couple de points', '\n'
+
+def test_liste_profondeur(L,P,Q,profondeur):
+	'''
+	Fonction pour tester la sortie de retrouve matrice
+	Input:
+	-L a list composed of 2 lists of points
+	-P,Q two basis points that we are looking for in the list
+	-profondeur an integer that represent the degree of the l-torsion we want to find
+	'''
+	L0=L[0]
+	L1=L[1]
+	M=list(P.order().factor())[0]
+	for l in L0:
+		l0=l[0]*M[0]**(M[1]-profondeur)
+		l1=l[1]*M[0]**(M[1]-profondeur)
+		Pt=P*M[0]**(M[1]-profondeur)
+		Qt=Q*M[0]**(M[1]-profondeur)
+		print (l0).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec P avec l[0] L0'
+		print (l1).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec Q avec l[1] L0'
+		print (l0).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec Q avec l[0] L0'
+		print (l1).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec P avec l[1] L0'
+		print 'on teste un nouveau couple de points', '\n'
+	print '\n', 'on teste la partie symétrique', '\n';
+	for l in L1:
+		l0=l[0]*M[0]**(M[1]-profondeur)
+		l1=l[1]*M[0]**(M[1]-profondeur)
+		Pt=P*M[0]**(M[1]-profondeur)
+		Qt=Q*M[0]**(M[1]-profondeur)
+		print (l0).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec Q avec l[0] L1'
+		print (l1).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec P avec l[1] L1'
+		print (l0).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec Q avec l[0] L0'
+		print (l1).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec P avec l[1] L0'
+		print 'on teste un nouveau couple de points', '\n'

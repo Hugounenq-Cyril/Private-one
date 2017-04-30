@@ -76,7 +76,7 @@ for r in range(2):
 
 #Test pour l iosgenie avec le Frobenius
 Ma=etude_action_Frobenius(P,Q,149)
-print Matrice
+print Ma
 #On calcule la matrice associée à la base dont on cherche un candidat pour l'image
 phi=constructor_isogeny(P.curve(),3,149)
 print phi, phi.codomain().j_invariant()
@@ -88,4 +88,6 @@ Pc,Qc=Qc,Pc
 Qc=3*Qc+4*Pc
 print Qc.weil_pairing(Pc,Pc.order()).multiplicative_order()==Pc.order()
 Listest=retrouve_points_matrice(Ma,149,Pc,Qc)
+Listest2=retrouve_points_matrice(Ma,149,Qc,Pc)
+Listest3=retrouve_points_matrice(Ma,149,Qc,Pc+Qc)
 
