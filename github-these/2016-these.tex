@@ -3216,7 +3216,7 @@ Ainsi avec la proposition \ref{pro:mat:fro} on a un moyen de déterminer la haut
 
 \begin{prop}
 \label{pro:tri:dir}
-Soient $E$ une courbe elliptique ordinaire située à une profondeur $e \leqslant h$ du cratère cyclique du volcan de $\ell$-isogénie, $P,Q \in E$ tels que $\langle P,Q \rangle = E[\ell^k]$ avec $k>h-e$ pour lesquels la matrice du Frobenius est de la forme $\left( \begin{smallmatrix} \lambda & \delta \ell^{h-e} \\ 0 & \mu \end{smallmatrix} \right)$ avec $\delta \wedge \ell=1$ alors la $\ell$-isogénie montante de domaine $E$ a pour noyau le groupe engendré par  $[\ell^{k-1}]P$, les descendantes étant alors engendrées par des isogénies qui pour noyau le groupe engendré par $[\ell^{k-1}](Q+[a]P)$ avec $a \in \mathbb{Z}/\ell \mathbb{Z}$.
+Soient $E$ une courbe elliptique ordinaire située à une profondeur $e \leqslant h$ du cratère cyclique du volcan de $\ell$-isogénie, $P,Q \in E$ tels que $\langle P,Q \rangle = E[\ell^k]$ avec $k>h-e$ pour lesquels la matrice du Frobenius est de la forme $\left( \begin{smallmatrix} \lambda & \delta \ell^{h-e} \\ 0 & \mu \end{smallmatrix} \right)$ avec $\delta \wedge \ell=1$ alors la $\ell$-isogénie montante de domaine $E$ a pour noyau le groupe engendré par  $[\ell^{k-1}]P$, les descendantes étant alors engendrées par des isogénies qui ont pour noyau le groupe engendré par $[\ell^{k-1}](Q+[a]P)$ avec $a \in \mathbb{Z}/\ell \mathbb{Z}$.
 \end{prop}
 
 \begin{proof}
@@ -3540,6 +3540,28 @@ en remplaçant le corps de base par une extension quadratique.
 
 
 \section{Cas Atkin}
+
+\begin{prop}\label{pro:mat:fro:atk}
+Soit~$E$ une courbe elliptique ordinaire d'endomorphisme de Frobenius~$\pi$
+telle que le polynôme caractérisitque de $\pi$
+soit irréductible (non ramifié) dans $\mathbb{Z}_{\ell}$,
+ainsi le volcan de $\ell$-isogénies de $E$ a un cratère réduit à un point.
+Il existe un unique $e \in [ 0, h]$
+tel que $\pi|T_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
+à la matrice 
+\begin{equation*}
+\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
+\end{matrix}\right ) \quad \text{avec }a=b \bmod \ell^{h-e}.
+\end{equation*}
+% where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
+De plus $e = 0$ si~$E$ se situe sur le cratère,
+sinon $e$~est la profondeur de~$E$ dans le volcan.
+\todo{notations un peu perturbantes par rapport au cas Elkies, n'est-ce pas ?}
+\end{prop}
+
+\begin{proof}
+Il faut dire blabla
+\end{proof}
 
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
 \label{cha:con:poi}
