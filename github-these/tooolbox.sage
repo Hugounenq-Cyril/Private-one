@@ -207,6 +207,7 @@ def retrouve_points_matrice_improved(Ma,q,P,Q):
 					#si des multiples ne sont pas deja presents on les ajoute a la liste					
 					if(test):
 						LMi.append([a*P+b*Q,P])
+	P=P+Q
 	for b in range(P.order()):
 		if (b%M[0]!=0):
 			for a in range(Q.order()):

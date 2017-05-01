@@ -3551,11 +3551,13 @@ tel que $\pi|T_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
 à la matrice 
 \begin{equation*}
 \left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-\end{matrix}\right ) \quad \text{avec }a=d \bmod \ell^{h-e}, c\wedge \ell=1,d \wedge \ell=1.
+\end{matrix}\right ) \quad \text{avec }a,b,d \text{ premiers avec }\ell, \ell^{h} |a-d.
 \end{equation*}
 % where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
 De plus $e = 0$ si~$E$ se situe sur le cratère,
 sinon $e$~est la profondeur de~$E$ dans le volcan.
+Lorsque $e \neq 0$ on a $c=0$, sinon $c$ est premier avec $\ell$.
+Lorsque $e=0$ on a $\ell^{h} || a-d$.
 \todo{notations un peu perturbantes par rapport au cas Elkies, n'est-ce pas ?}
 \end{prop}
 
@@ -3564,13 +3566,27 @@ Soit $E$ une courbe située au niveau $h-e$ du volcan de $\ell$-isogénies, alor
 comme les $\ell$-isogénies sont rationnelles, alors les $\ell^{h-e}$-isogénies 
 sont rationnelles, ainsi l'action du Frobenius sur une base de la 
 $\ell^{h-e}$-isogénie est diagonale, mais comme le polynôme caractéristique de 
-$\pi$ est irréductible alors l'action du Frobenius doit être scalaire.
+$\pi$ est irréductible alors l'action du Frobenius doit être scalaire, ainsi on
+a $a=b \bmod \ell^{h-e}$.
+On a alors la matrice du Frobenius modulo la $\ell^{h-e+i}$ torsion qui  
+\begin{itemize}
+\item lorsque $h-e=h$ est de la forme $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
+\end{smallmatrix}\right )$ avec $b \wedge \ell=1$ et $c \wedge \ell=1$, en 
+effet si l'on avait $\ell | b$ ou $\ell |c$ alors cela voudrait dire que l'on a
+des $\ell^{h+1}$-isogénies définies sur $\mathbb{F}_q$. Par un argument sur
+le discriminant on montre que $a \neq  d \bmod \ell^{h+1}$. \todo{doit-on expliciter que $\mathsf{discriminant}=\det/\ell^{2h}$}
+\item lorsque $h-e \neq h$ est de la forme  $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\ c\ell^{h-e}  & d
+\end{smallmatrix}\right )$ avec soit $b, c$ premiers avec $\ell$ soit $b$ ou $c$ premier avec $\ell$ l'autre étant nul. Ce second cas correspond au cas où l'on a un sous-groupe isomorphe à $\mathbb{Z}/\ell^{h-e+1} \mathbb{Z} \times \mathbb{Z}/\ell^{X}\mathbb{Z}$ qui définit des $\ell^{h-e+i}$isogénies 
+rationnelles. Par un argument sur le discriminant on montre que $a \neq  d \bmod \ell^{h+1}$.
+\end{itemize}
+
 La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
 \end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & \beta \\0 & 1
 \end{smallmatrix} \right )$   nous donne la matrice $\left ( \begin{smallmatrix}a + 
-\beta (c\ell^{h-e}) &  \beta(d-a) +\ell^{h-e} (b-c\beta)\\c\ell^{h-e} & d - c\ell^{h-e}
+\beta (c\ell^{h-e}) & -\beta^2c\ell^{h-e} + \beta(d-a) +\ell^{h-e} b\\c\ell^{h-e} & d - \beta c\ell^{h-e}
 \end{smallmatrix}\right )$ pour laquelle les coefficients diagonaux sont encore
-égaux modulo $\ell^{h-e}$. Le coefficient $\beta(d-a) +\ell^{h-e} (b-c\beta)$ 
+égaux modulo $\ell^{h-e}$. Le coefficient $-\beta^2c\ell^{h-e} + \beta(d-a) +\ell^{h-e} b$ 
+s'annule seulement si $\frac{d-a}{\ell^{h-e}}-4bc$ est un résidu quadratique.
 est intéressant à analyser... \todo{est non nul, mais qu est ce que cela veut dire}
 La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
 \end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix} \gamma & 0 \\0 & 1
