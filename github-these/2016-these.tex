@@ -3551,7 +3551,7 @@ tel que $\pi|T_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
 à la matrice 
 \begin{equation*}
 \left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-\end{matrix}\right ) \quad \text{avec }a=b \bmod \ell^{h-e}.
+\end{matrix}\right ) \quad \text{avec }a=d \bmod \ell^{h-e}.
 \end{equation*}
 % where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
 De plus $e = 0$ si~$E$ se situe sur le cratère,
@@ -3560,7 +3560,22 @@ sinon $e$~est la profondeur de~$E$ dans le volcan.
 \end{prop}
 
 \begin{proof}
-Il faut dire blabla
+Soit $E$ une courbe située au niveau $h-e$ du volcan de $\ell$-isogénies, alors
+comme les $\ell$-isogénies sont rationnelles, alors les $\ell^{h-e}$-isogénies 
+sont rationnelles, ainsi l'action du Frobenius sur une base de la 
+$\ell^{h-e}$-isogénie est diagonale, mais comme le polynôme caractéristique de 
+$\pi$ est irréductible alors l'action du Frobenius doit être scalaire.
+La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & \beta \\0 & 1
+\end{smallmatrix} \right )$   nous donne la matrice $\left ( \begin{smallmatrix}a + 
+\beta (c\ell^{h-e}) &  \beta(d-a) +\ell^{h-e} (b-c\beta)\\c\ell^{h-e} & d - c\ell^{h-e}
+\end{smallmatrix}\right )$ pour laquelle les coefficients diagonaux sont encore
+égaux modulo $\ell^{h-e}$. Le coefficient $\beta(d-a) +\ell^{h-e} (b-c\beta)$ \todo{est non nul, mais qu est ce que cela veut dire}
+La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix} \gamma & 0 \\0 & 1
+\end{smallmatrix} \right )$   nous donne la matrice $\left ( \begin{smallmatrix}a
+ & b\gamma^{-1} \ell^{h-e} \\c \gamma \ell^{h-e} & d 
+\end{smallmatrix}\right )$
 \end{proof}
 
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
