@@ -3641,17 +3641,9 @@ Ainsi les seuls changement qui respectent cela sont les changements de la forme,
 \end{proof}
 
 \begin{prop}
-Soient $P,R,R'$ trois points de $E$ définie au niveau du cratère du volcan de 
-$\ell$-isogénies tels que $\langle P, R \rangle = \langle P,R' \rangle= 
-E[\ell^{h+i}]$ et $\pi(P,R)=\pi(P,R')$ alors $R$ et $R'$ engendrent la même 
-$\ell^i$-isogénie.
-\end{prop}
-
-\begin{prop}
-Comme énoncé dans la proposition \ref{pro:cla:fro:mat} on a jusqu'à 
-$\ell^{h+i-1} \times \ell^{h+i}$ choix possible de second point pour compléter 
-une base de la $\ell^{h+i}$-torsion de $E$ or pour ces choix de matrice seule 
-compte la valeur de $x\ell^h$ et $y\ell^h$.
+Soient $P $ et $R=[x]P+[y]Q$ tels que $\langle P ,R \rangle=E[\ell^{h+i}]$ 
+alors la forme de la matrice $\pi(P,R)$ ne dépend que des valeurs de 
+$x\ell^h \bmod \ell^i$ et $y\ell^h \bmod \ell^i$
 \end{prop}
 
 \begin{proof}
@@ -3661,6 +3653,38 @@ $\pi([x']P+[y']Q)=[b\ell^h]P+[d]([x']P+[y']Q)$. On a alors
 $\pi([x-x']P+[y-y']Q)=[d]([x-x']P+[y-y']Q)$ ainsi $[x-x']P+[y-y']Q$ est un 
 espace propre pour le Frobenius c'est donc par la proposition \todo{mettre référence}
 un point de $\ell^h$ torsion. On a donc le résultat.
+\end{proof}
+
+\begin{prop}
+Soient $P,R,R'$ trois points de $E$ définie au niveau du cratère du volcan de 
+$\ell$-isogénies tels que $\langle P, R \rangle = \langle P,R' \rangle= 
+E[\ell^{h+i}]$ et $\pi(P,R)=\pi(P,R')$ alors $R$ et $R'$ engendrent la même 
+$\ell^i$-isogénie.
+\end{prop}
+
+\begin{proof}
+Comme énoncé dans la proposition \ref{pro:cla:fro:mat} on a jusqu'à 
+$\ell^{h+i-1} \times \ell^{h+i}$ choix possible de second point pour compléter 
+une base de la $\ell^{h+i}$-torsion de $E$ or pour ces choix de matrice seul 
+compte la valeur de $x\ell^h$ et $y\ell^h$ par la proposition \todo{mettre référence}.
+On a donc $\ell^{i-1} \times \ell^i$ matrices possibles, or chaque 
+$\ell^i$-isogénie est associée à $\ell^{i-1}$ matrices distinctes par la 
+proposition \todo{mettre référence}. Ainsi par la cardinalité on a donc chaque 
+matrice à classe de conjugaison près par $\left( 
+ \begin{smallmatrix}1 & 0 \\0  & \beta \end{smallmatrix} \right)$ qui 
+représente une $\ell^i$-isogénie différente.
+\end{proof}
+
+\begin{lem}
+$\pi(P+\gamma \ell^{h+i-1}R,R)=\pi(P,R)$ 
+\todo{pas faux mais à fixer...}
+\end{lem}
+
+\begin{proof}
+La matrice $\left( \begin{smallmatrix}a & b\ell^h \\c\ell^h  & d \end{smallmatrix} 
+\right)$ est invariante par action de la matrice $\left( 
+\begin{smallmatrix}1 & 0 \\-\gamma\ell^{h+i-1}  & \beta \end{smallmatrix} 
+\right)$
 \end{proof}
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
 \label{cha:con:poi}
