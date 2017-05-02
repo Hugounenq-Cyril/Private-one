@@ -3595,6 +3595,50 @@ La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^
 \end{smallmatrix}\right )$
 \end{proof}
 
+Voyons maintenant le lien entre l'action du Frobenius et les isogénies engendrées par les points de la base.
+
+\begin{prop}
+Soient $P,Q$ deux points définis sur une courbe elliptique $E$ située au niveau
+du cratère du volcan de $\ell$-isogénies tels que 
+$E[\ell^{h+i}]=\langle P,Q \rangle$.
+Alors la matrice 
+\[
+\pi(P,[x]P+[y]Q)=\left ( \begin{matrix}a & b\ell^{h} \\ c\ell^{h} & d
+\end{matrix}\right ) 
+\] représentant l'action du Frobenius dans la base $\langle P,Q \rangle$ est 
+conjuguée aux matrices de la forme:
+\[
+\pi(P,Q')=\left ( \begin{matrix}a & b\ell^{h} \\ c\ell^{h} & d
+\end{matrix}\right ) 
+\]
+avec $Q'=[x']P+[y']Q$. De plus tous les points qui forment des matrices 
+conjuguées à celle de $\pi(P,[x]P+[y]Q)$ engendrent tous la même $\ell^i$-isogénie.
+\end{prop}
+
+\begin{proof}
+Deux points $Q,Q'$ engendrent la même $\ell^i$-isogénie si ils vérifient $x'y'^{-1}=xy^{-1} \bmod \ell^{i}$
+On va distinguer les cas selon que l'on ait $y \wedge \ell=1$ ou $y \wedge \ell=\ell$.
+\begin{itemize}
+\item[$y \wedge \ell=1$] soit le point de $\ell^i$ torsion $[\ell^h](xP+yQ)$, 
+le groupe $\langle [\ell^h]([x]P+[y]Q) \rangle$ engendré par ce point peut aussi s'écrire:$\langle [x]([\ell^h]P)+ [y]([\ell^h]Q) \rangle=\langle [xy^{-1}]([\ell^h]P)+ ([\ell^h]Q) \rangle$. De même on peut écrire le groupe engendré par $[x']P+[y']Q$ comme $\langle [x'y'^{-1}]([\ell^h]P)+ ([\ell^h]Q) \rangle$, ainsi on a égalité des $\ell^i$-isogénies engendrées par $[x']P+[y']Q$ et $[x]P+[y]Q$ si et seulement si $xy^{-1}=x'y'^{-1}\bmod \ell^{i}$. AInsi on voit que seul compte les valeurs de $x$ et $y$ modulo $\ell^i$.
+On peut vérifier cela en voyant que la conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & 0 \\0 & 1 + k \ell^i
+\end{smallmatrix} \right )$   laisse la matrice invariante modulo $\ell^{h+i}$. De même la conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & k \ell^i \\0 & 1
+\end{smallmatrix} \right )$   laisse la matrice invariante modulo $\ell^{h+i}$.
+Par la discussion précédente les seuls changements (modulo blabla...) qui 
+préservent l'isogénie générée par $[x]P+[y]Q$ sont les changements de la forme 
+$[x]P+[y]Q \rightarrow [\beta x]P+[\beta y]Q$ avec 
+$\beta \in \left( \mathbb{Z}/\ell^i\mathbb{Z}\right)^{\times}$. On voir alors 
+que matriciellement cela nous donne la matrice 
+$\left( \begin{smallmatrix}a & b \ell^h \beta \\c \ell^{h} \beta^{-1} & d
+\end{smallmatrix} \right)$  par conjugaison de $\left( \begin{smallmatrix}a & b
+ \ell^h \\c \ell^{h} & d \end{smallmatrix} \right)$ par $\left( 
+ \begin{smallmatrix}1 & 0 \\0  & beta \end{smallmatrix} \right)$.
+Ainsi les seuls changement qui respectent cela sont les changements de la forme, ce qui nous donne les matrices de l'énoncé.
+\end{itemize}
+\end{proof}
+
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
 \label{cha:con:poi}
 Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
