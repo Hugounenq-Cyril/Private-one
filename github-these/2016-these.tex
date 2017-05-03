@@ -3662,6 +3662,34 @@ $x\ell^{h-e} \bmod \ell^i$ et $y\ell^{h-e} \bmod \ell^i$
 \end{cor}
 
 \begin{prop}
+Soient $P,R,R'$ trois points de $E$ située au niveau $h-e$ du volcan de 
+$\ell$-isogénies tels que $\langle P,R \rangle = \langle P,R' \rangle = 
+E[\ell^{h-e+i}]$ et $\pi(P,R)=\pi(P,R')$ alors $R-R'$ est un point de 
+$E[\ell^{h+e}]$.
+\end{prop}
+
+\begin{proof}
+On note $\pi(P,R)=\pi(P,R')= \left(  \begin{smallmatrix}a & b \ell^{h-e} \\ 
+c\ell^{h-e}  & d \end{smallmatrix} \right)$. Ainsi si on exprime l'égalité de 
+l'expression de $\pi(P)$ dans les deux bases on obtient:
+\[
+[c\ell^{h-e}](R-R')=0_{E}
+\]
+on a alors deux cas possibles soit $ \ell^{2e} || c $ soit $c \wedge \ell=1$.
+Dans le premier cas on a bien $R-R'$ un point de  $E[\ell^{h+e}]$ et cela 
+conclut la preuve pour ce cas, dans le second cas on a $R-R'$ un point de 
+$E[\ell^{h-e}]$. On regarde alors dans le second cas la différence de $\pi(R)$
+et $\pi(R')$, cela nous donne:
+\[
+\pi(R-R')=d(R-R')
+\]
+ainsi le sous-groupe cyclique engendré par $R-R'$ définit une isogénie 
+rationnelle or les plus grands degrés isogénies rationnelles ayant pour domaine
+sont les isogénies de degré $\ell^{h+e}$, on a donc $R-R'$ un point de 
+$E[\ell^{h+e}]$.
+\end{proof}
+
+\begin{prop}
 \label{pro:atk:fro:iso}
 Soient $P,R,R'$ trois points de $E$ définis au niveau $h-e$ du cratère du volcan de 
 $\ell$-isogénies tels que $\langle P, R \rangle = \langle P,R' \rangle= 
@@ -3669,7 +3697,7 @@ E[\ell^{h-e+i}]$ et $\pi(P,R)= \left(  \begin{smallmatrix}1 & 0 \\0  & \beta
 \end{smallmatrix} \right)^{-1} \pi(P,R') \left(  \begin{smallmatrix}1 & 0 \\0  & \beta 
 \end{smallmatrix} \right)$ pour $\beta \in (\mathbb{Z}/\ell^i\mathbb{Z})^
 {\times}$ alors $R$ et $R'$ engendrent la même 
-$\ell^i$-isogénie.\todo{je regarde un truc plus fort que ce que je veux montrer}
+$\ell^i$-isogénie.\todo{Reformuler car déjà dit dans la proposition d'avant..}
 \end{prop}
 
 \begin{proof}
@@ -3679,7 +3707,7 @@ une base de la $\ell^{h+i}$-torsion de $E$ or pour ces choix de matrice seul
 compte la valeur de $x\ell^{h-e}$ et $y\ell^{h-e} \bmod \ell^{i}$ par le 
 corollaire~\ref{cor:atk:fro:dis}. On a donc $\ell^{i-1} \times \ell^i$ matrices
 possibles, or chaque $\ell^i$-isogénie est associée à $\ell^{i-1}$ matrices 
-distinctes par la proposition~\ref{pro:cla:fro:mat}. Ainsi par la cardinalité 
+distinctes par la proposition~\ref{pro:cla:fro:mat}. Comme deux points qui engendrent deux $\ell^i$ isogénies idstinctes n'ont pas la même matrie \todo{A verifier a prouver..} Ainsi par la cardinalité 
 on a donc chaque matrice à classe de conjugaison près par $\left( 
  \begin{smallmatrix}1 & 0 \\0  & \beta \end{smallmatrix} \right)$ qui 
 représente une $\ell^i$-isogénie différente.
@@ -3703,14 +3731,14 @@ La matrice $\left( \begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{sm
 \begin{prop}
 Soient $P,P'$ deux points d'ordre $\ell^{h-e+i}$ de $E$ une courbe elliptique 
 située au niveau $h-e$ du volcan de $\ell$-isogénies tels que $[\ell^{h-e}]P=
-[\ell^{h-e}]P'$ alors pour deux points $Q,Q'$ tels que $\langle P, Q \rangle = 
-\langle P', Q' \rangle=E[\ell^{h-e+i}]$ et $\pi(P,Q)=\pi(P',Q')$ on a 
-$[\ell^{h-e}]Q=[\ell^{h-e}]Q'$.
+[\ell^{h-e}]P'$ alors pour deux points $R,R$ tels que $\langle P, R \rangle = 
+\langle P', R' \rangle=E[\ell^{h-e+i}]$ et $\pi(P,R)=\pi(P',R')$ on a 
+$[\ell^{h-e}]R=[\ell^{h-e}]R'$.
 \end{prop}
 
 \begin{proof}
-Par le lemme~\ref{lem:fro:atk} on a $\pi(P',Q')=\pi(P,Q')$, l'égalité 
-$\pi(P,Q')=\pi(P,Q)$ permet de conclure.
+Par le lemme~\ref{lem:fro:atk} on a $\pi(P',R')=\pi(P,R')$, l'égalité 
+$\pi(P,R')=\pi(P,R)$ permet de conclure.
 \end{proof}
 
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
