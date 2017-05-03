@@ -66,9 +66,9 @@ F3.<a>=FiniteField(149^16)
 E1b=EllipticCurve(j=F3(56))
 if E1b.cardinality()!=59017430136820283374698267657154560:
 	E1b=E1b.quadratic_twist()
-Lb2=E1b(0).division_points(2)
+L2b=E1b(0).division_points(2)
 L2b=filter(lambda x: x.order()==2, L2b)
-E2b=E1b.isogeny(Lb[-1]).codomain()
+E2b=E1b.isogeny(L2b[-1]).codomain()
 L2b=filter(lambda x: x.order()==2 ,E2b(0).division_points(2))
 P2b=L2b[randint(0,len(L2b)-1)]
 L2b=filter(lambda x: x.weil_pairing(P2b,2).multiplicative_order()==2, L2b)
