@@ -3541,6 +3541,8 @@ en remplaçant le corps de base par une extension quadratique.
 
 \section{Cas Atkin}
 
+\todo{Dire ce qu'est le cas Atkin}
+
 \begin{prop}\label{pro:mat:fro:atk}
 Soit~$E$ une courbe elliptique ordinaire d'endomorphisme de Frobenius~$\pi$
 telle que le polynôme caractérisitque de $\pi$
@@ -3601,29 +3603,30 @@ Voyons maintenant le lien entre l'action du Frobenius et les isogénies engendr�
 \label{pro:cla:fro:mat}
 Soient $P,Q$ deux points définis sur une courbe elliptique $E$ située au niveau
 $h-e$ du cratère du volcan de $\ell$-isogénies tels que 
-$E[\ell^{h-e+i}]=\langle P,Q \rangle$.
-Alors la matrice 
+$E[\ell^{h-e+i}]=\langle P,Q \rangle$. On pose $R=[x]P+[y]Q$ avec $y\wedge 
+\ell=1$, alors la matrice 
 \[
-\pi(P,[x]P+[y]Q)=\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
+\pi(P,R)=\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
 \end{matrix}\right ) 
-\] représentant l'action du Frobenius dans la base $\langle P,Q \rangle$ est 
+\] représentant l'action du Frobenius dans la base $\langle P,R \rangle$ est 
 conjuguée aux matrices de la forme:
 \[
-\pi(P,Q')=\left ( \begin{matrix}a & b\ell^{h-e}\beta \\ c\ell^{h-e}\beta & d
+\pi(P,R')=\left ( \begin{matrix}a & b\ell^{h-e}\beta \\ c\ell^{h-e}\beta & d
 \end{matrix}\right ) 
 \]
-avec $Q'=[\beta x]P+[\beta y]Q$, $\beta \in \left( \mathbb{Z}/\ell^{i} \mathbb{Z} 
-\right)^{\times}$. De plus tous les points qui forment des matrices 
-conjuguées à celle de $\pi(P,[x]P+[y]Q)$ engendrent tous la même $\ell^i$-isogénie.
+avec $R'=[\beta x]P+[\beta y]Q$, $\beta \in \left( \mathbb{Z}/\ell^{i} \mathbb{Z} 
+\right)^{\times}$. De plus tous les points $S$ tels que la matrice $\pi(P,S)$ 
+est conjuguée à la matrice $\pi(P,R)$ engendrent tous la même $\ell^i$-isogénie.
 \end{prop}
 
 \begin{proof}
 Montrons que deux points $R=[x]P+[y]Q,R'=[x']P+[y']Q$ dans le cas où l'on a 
-$y,y' \wedge \ell=1$, car seulement dans ce cas $R$ et $R'$ formenet avec $P$ 
+$y,y' \wedge \ell=1$, car seulement dans ce cas $R$ et $R'$ forment avec $P$ 
 une base de la $\ell^{h-e+i}$ torsion, $R$ et $R'$ engendrent la même 
 $\ell^i$-isogénie si ils vérifient $\ell^{h-e}x'y'^{-1}=\ell^{h-e}xy^{-1} 
 \bmod \ell^{i}$.
-Soit $[\ell^{h-e}]([x]P+[y]Q)$ un point de $\ell^i$ torsion engendré par $R$, 
+
+En effet, soit $[\ell^{h-e}]([x]P+[y]Q)$ un point d'ordre $\ell^i$ engendré par $R$, 
 le groupe $\langle [\ell^{h-e}]([x]P+[y]Q) \rangle$ engendré par ce point peut 
 aussi s'écrire:$\langle [x]([\ell^{h-e}]P)+ [y]([\ell^{h-e}]Q) \rangle=\langle 
 [xy^{-1}]([\ell^{h-e}]P)+ ([\ell^{h-e}]Q) \rangle$. De même on peut écrire le 
@@ -3649,48 +3652,67 @@ matrice $\left( \begin{smallmatrix}a & b \ell^h \\c  \ell^{h} & d
 \mathbb{Z}\right)^*$ nous donne une matrice de la forme 
 $\left( \begin{smallmatrix}a & b \ell^h \beta \\c \ell^{h} \beta^{-1} &
  d \end{smallmatrix} \right)$ d'où le résultat.
-\end{itemize}
 \end{proof}
 
 \begin{cor}
 \label{cor:atk:fro:dis}
 Soient $P $ et $R=[x]P+[y]Q$ tels que $\langle P ,R \rangle=E[\ell^{h-e+i}]$ 
-alors la forme de la matrice $\pi(P,R)$ ne dépend que des valeurs de 
+alors la forme de la matrice $\pi(P,R)$ à $P$ fixé ne dépend que des valeurs de 
 $x\ell^{h-e} \bmod \ell^i$ et $y\ell^{h-e} \bmod \ell^i$
 \end{cor}
 
 \begin{prop}
 \label{pro:atk:fro:iso}
-Soient $P,R,R'$ trois points de $E$ définie au niveau du cratère du volcan de 
+Soient $P,R,R'$ trois points de $E$ définis au niveau $h-e$ du cratère du volcan de 
 $\ell$-isogénies tels que $\langle P, R \rangle = \langle P,R' \rangle= 
-E[\ell^{h+i}]$ et $\pi(P,R)=\pi(P,R')$ alors $R$ et $R'$ engendrent la même 
+E[\ell^{h-e+i}]$ et $\pi(P,R)= \left(  \begin{smallmatrix}1 & 0 \\0  & \beta 
+\end{smallmatrix} \right)^{-1} \pi(P,R') \left(  \begin{smallmatrix}1 & 0 \\0  & \beta 
+\end{smallmatrix} \right)$ pour $\beta \in (\mathbb{Z}/\ell^i\mathbb{Z})^
+{\times}$ alors $R$ et $R'$ engendrent la même 
 $\ell^i$-isogénie.\todo{je regarde un truc plus fort que ce que je veux montrer}
 \end{prop}
 
 \begin{proof}
 Comme énoncé dans la proposition \ref{pro:cla:fro:mat} on a jusqu'à 
-$\ell^{h+i-1} \times \ell^{h+i}$ choix possible de second point pour compléter 
+$\ell^{h-e+i-1} \times \ell^{h-e+i}$ choix possible de second point pour compléter 
 une base de la $\ell^{h+i}$-torsion de $E$ or pour ces choix de matrice seul 
-compte la valeur de $x\ell^h$ et $y\ell^h$ par la proposition \todo{mettre référence}.
-On a donc $\ell^{i-1} \times \ell^i$ matrices possibles, or chaque 
-$\ell^i$-isogénie est associée à $\ell^{i-1}$ matrices distinctes par la 
-proposition \todo{mettre référence}. Ainsi par la cardinalité on a donc chaque 
-matrice à classe de conjugaison près par $\left( 
+compte la valeur de $x\ell^{h-e}$ et $y\ell^{h-e} \bmod \ell^{i}$ par le 
+corollaire~\ref{cor:atk:fro:dis}. On a donc $\ell^{i-1} \times \ell^i$ matrices
+possibles, or chaque $\ell^i$-isogénie est associée à $\ell^{i-1}$ matrices 
+distinctes par la proposition~\ref{pro:cla:fro:mat}. Ainsi par la cardinalité 
+on a donc chaque matrice à classe de conjugaison près par $\left( 
  \begin{smallmatrix}1 & 0 \\0  & \beta \end{smallmatrix} \right)$ qui 
 représente une $\ell^i$-isogénie différente.
 \end{proof}
 
 \begin{lem}
-$\pi(P+\gamma \ell^{i}R,R)=\pi(P,R)$ 
+\label{lem:fro:atk}
+Soient $P,R$ deux points de $E$ une courbe elliptique située au 
+niveau $h-e$ du volcan de $\ell$-isogénies tels que $\langle P,R \rangle= 
+E[\ell^{h-e+i}]$ alors $\pi(P+\gamma \ell^{i}R,R)=\pi(P,R)$.
 \todo{au max mais à fixer...}
 \end{lem}
 
 \begin{proof}
-La matrice $\left( \begin{smallmatrix}a & b\ell^h \\c\ell^h  & d \end{smallmatrix} 
+La matrice $\left( \begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{smallmatrix} 
 \right)$ est invariante par action de la matrice $\left( 
 \begin{smallmatrix}1 & 0 \\\gamma\ell^{i}  & 1 \end{smallmatrix} 
-\right)$
+\right)$ modulo $\ell^{i+h}$
 \end{proof}
+
+\begin{prop}
+Soient $P,P'$ deux points d'ordre $\ell^{h-e+i}$ de $E$ une courbe elliptique 
+située au niveau $h-e$ du volcan de $\ell$-isogénies tels que $[\ell^{h-e}]P=
+[\ell^{h-e}]P'$ alors pour deux points $Q,Q'$ tels que $\langle P, Q \rangle = 
+\langle P', Q' \rangle=E[\ell^{h-e+i}]$ et $\pi(P,Q)=\pi(P',Q')$ on a 
+$[\ell^{h-e}]Q=[\ell^{h-e}]Q'$.
+\end{prop}
+
+\begin{proof}
+Par le lemme~\ref{lem:fro:atk} on a $\pi(P',Q')=\pi(P,Q')$, l'égalité 
+$\pi(P,Q')=\pi(P,Q)$ permet de conclure.
+\end{proof}
+
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
 \label{cha:con:poi}
 Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
