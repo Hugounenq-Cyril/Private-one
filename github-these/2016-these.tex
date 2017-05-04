@@ -3541,8 +3541,8 @@ en remplaçant le corps de base par une extension quadratique.
 
 \section{Cas Atkin}
 
-\todo{Dire ce qu'est le cas Atkin}
-
+\todo{Dire ce qu'est le cas Atkin et contextualiser toute cette partie...}
+\subsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
 \begin{prop}\label{pro:mat:fro:atk}
 Soit~$E$ une courbe elliptique ordinaire d'endomorphisme de Frobenius~$\pi$
 telle que le polynôme caractérisitque de $\pi$
@@ -3712,7 +3712,7 @@ représente une $\ell^i$-isogénie différente.
 \label{lem:fro:atk}
 Soient $P,R$ deux points de $E$ une courbe elliptique située au 
 niveau $h-e$ du volcan de $\ell$-isogénies tels que $\langle P,R \rangle= 
-E[\ell^{h-e+i}]$ alors $\pi(P+\gamma \ell^{i}R,R)=\pi(P,R)$.
+E[\ell^{h+i}]$ alors $\pi(P+\gamma \ell^{i}R,R)=\pi(P,R)$.
 \todo{au max mais à fixer...}
 \end{lem}
 
@@ -3724,16 +3724,39 @@ La matrice $\left( \begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{sm
 \end{proof}
 
 \begin{prop}
-Soient $P,P'$ deux points d'ordre $\ell^{h-e+i}$ de $E$ une courbe elliptique 
-située au niveau $h-e$ du volcan de $\ell$-isogénies tels que $[\ell^{h-e}]P=
-[\ell^{h-e}]P'$ alors pour deux points $R,R$ tels que $\langle P, R \rangle = 
-\langle P', R' \rangle=E[\ell^{h-e+i}]$ et $\pi(P,R)=\pi(P',R')$ on a 
-$[\ell^{h-e}]R=[\ell^{h-e}]R'$.
+Soient $P,P'$ deux points d'ordre $\ell^{h+i}$ de $E$ une courbe elliptique 
+située au niveau du cratère du volcan de $\ell$-isogénies tels que $[\ell^{h}]P=
+[\ell^{h}]P'$ alors pour deux points $R,R$ tels que $\langle P, R \rangle = 
+\langle P', R' \rangle=E[\ell^{h+i}]$ et $\pi(P,R)=\pi(P',R')$ on a 
+$[\ell^{h}]R=[\ell^{h}]R'$.
 \end{prop}
 
 \begin{proof}
 Par le lemme~\ref{lem:fro:atk} on a $\pi(P',R')=\pi(P,R')$, l'égalité 
-$\pi(P,R')=\pi(P,R)$ permet de conclure.
+$\pi(P,R')=\pi(P,R)$ permet de conclure à l'aide de la 
+proposition~\ref{pro:atk:fro:iso}.
+\end{proof}
+
+\subsection{Décomposition de la $\ell^{h+i}$ torsion sous l'action du Frobenius}
+L'action du Frobenius sur la $\ell^{h+i}$ torsion d'une courbe située au niveau
+du cratère peut être représentée à l'aide d'une matrice de la forme $\left( 
+\begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{smallmatrix} \right)
+$ avec $a,b,c,d$ tous premiers avec $\ell$ et $\ell^h||a-d$. On cherche alors à
+déterminer la taille des orbites pour les points $Q$ et par conséquent leur 
+nombre de représentants.  
+
+\begin{prop}
+Soient $R,R'$ deux points d'ordre $\ell^{h+i}$ de $E$ située au niveau du 
+cratère du volcan de $\ell$-isogénies, alors si l'on a $\pi^x(R)=R'$ alors
+$[\ell^i]R$ et $[\ell^i]R'$ engendrent la même $\ell^h$-isogénie.
+\end{prop} 
+
+\begin{proof}
+A partir de $\pi^x(R)=R'$ on a $[\ell^{i}]\pi^x(R)=\pi^x([\ell^i]R)=[\ell^i]R'$
+or l'action du Frobenius sur les points de $\ell^h$-torsion est diagonale ainsi
+il existe $\alpha \in (\mathbb{Z}/\ell^h\mathbb{Z})^{\times}$ tel que 
+$\pi([\ell^i]R)=[\alpha]([\ell^i]R)$ on obtient alors l'égalité suivante entre
+$R$ et $R'$: $[\alpha^x]([\ell^i]R)=[\ell^i]R'$ et donc on a le résultat.
 \end{proof}
 
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
@@ -4246,6 +4269,13 @@ Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne
 
 
 \section{Atkin}
+
+Cela va être super court.
+
+\begin{prop}
+Soient $P,P'$ deux points de la courbe elliptique $E$ située au niveau du 
+cratère du volcan de $\ell$-isogénies
+\end{prop}
 
 \chapter{Algorithme de Couveignes $\ell$-adique}
 \label{cha:alg:fin}
