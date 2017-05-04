@@ -3746,6 +3746,20 @@ déterminer la taille des orbites pour les points $Q$ et par conséquent leur
 nombre de représentants.  
 
 \begin{prop}
+Soit $P$ un point d'ordre $\ell^{h+i}$ de la courbe elliptique $E$ située au 
+niveau du cratère du volcan de $\ell$-isogénies alors la taille de l'orbite de 
+$P$ selon l'action du Frobenius est de taille $\ell^i$.
+\end{prop}
+
+\begin{proof}
+Dire que l'orbite du point $P$ soit de taille $x$ inférieure à $\ell^i$ revient 
+à dire que le volcan de $\ell$-isogénies a pour hauteur $h+i$ sur l'extension 
+de degré $x$ de $\mathbb{F}_q$, or le seul moyen pour avoir un volcan de 
+hauteur $h+i$ est de prendre une extension de degré multiple à $\ell^i$.
+\todo{Faire une distinction cas $\ell=2$}
+\end{proof}
+
+\begin{prop}
 Soient $R,R'$ deux points d'ordre $\ell^{h+i}$ de $E$ située au niveau du 
 cratère du volcan de $\ell$-isogénies, alors si l'on a $\pi^x(R)=R'$ alors
 $[\ell^i]R$ et $[\ell^i]R'$ engendrent la même $\ell^h$-isogénie.
@@ -3758,6 +3772,11 @@ il existe $\alpha \in (\mathbb{Z}/\ell^h\mathbb{Z})^{\times}$ tel que
 $\pi([\ell^i]R)=[\alpha]([\ell^i]R)$ on obtient alors l'égalité suivante entre
 $R$ et $R'$: $[\alpha^x]([\ell^i]R)=[\ell^i]R'$ et donc on a le résultat.
 \end{proof}
+
+Ainsi avec ce résultat on a un critère pour savoir si deux points sont dans des
+orbites distinctes.
+
+On a $\ell^{h-1}(\ell+1)$ représentants d'orbites.
 
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
 \label{cha:con:poi}
