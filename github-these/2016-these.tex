@@ -4486,7 +4486,10 @@ Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}
 %\[
 % O\Bigl(\bigl(r \ell^2\mathsf{M}(r\ell^4) +  \mathsf{M}(r\ell^3)\log(\ell q)\bigr)\log(r)\log(\ell) \Bigr).\]
  \[
-O\Bigl( \mathsf{M}(r \ell^2) \log(r) \log(\ell) \bigl( r + \log(\ell q) \bigr) \Bigr) 
+O\Bigl(r \ell( \mathsf{M}(r \ell^4) \log(r) \log(\ell) + \mathsf{M}(r \ell^{1,5}) \log(r)^2) + \mathsf{M}(r \ell^4) \log(r) \log(\ell) \log(\ell q) \Bigr) 
+ \]
+  \[
+O\Bigl( (r \ell + \log(\ell q) ) \mathsf{M}(r \ell^4) \log(r) \log(\ell) +  r\ell \mathsf{M}(r \ell^{1,5}) \log(r)^2 \Bigr) 
  \]
 \end{prop}
 \begin{proof}
@@ -4639,8 +4642,9 @@ l'on ne considère que ceux-ci.
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
 $\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
-en un temps espéré de $O \bigl( r \mathsf{M}(r\log(q)^2) \log(r) \log \log(q)  + \log(q)^5\bigr)$.
-
+en un temps espéré de   \[
+O\Bigl( r \log(q) \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) +  r\log(q) \mathsf{M}(r \log(q)^{1,5}) \log(r)^2 \Bigr).
+ \]
 %  $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
 \end{thm}
 
