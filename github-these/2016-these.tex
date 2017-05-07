@@ -743,6 +743,13 @@ Le groupe abélien $E(\mathbb{F}_q$) est isomorphe à $\nicefrac{\mathbb{Z}}{n_1
 \begin{proof}
 Voir \cite[Theorem 4.1]{Washington2008}
 \end{proof}
+
+\begin{nota}
+On notera par $E(\mathbb{F}_q)[\ell^{\infty}]$ le plus grand groupe de points 
+de la courbe $E$, au sens de l'inclusion, qui contient les points de 
+$\ell$-torsion définis sur $\mathbb{F}_q$.
+\end{nota}
+
 On a le résultat suivant qui donne l'égalité entre la cardinalité de deux courbes elliptiques isogènes.
 
 \begin{prop}
@@ -981,12 +988,13 @@ avec $\Phi_{\ell,X}$(resp. $\Phi_{\ell,Y}$) la dérivée partielle de $\Phi_{\el
 Voir \cite{Schoof95}[§7]
 \end{proof}
 
-Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci à l'aide d'algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008} qui cherchent à résoudre ce problème dans un tel contexte. Une présentation de ces algorithmes est faite \textcolor{red}{ref à mettre plus tard}.
+Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci à l'aide d'algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008} qui cherchent à résoudre ce problème dans un tel contexte. Une présentation de ces algorithmes est faite dans le chapitre~\ref{cha:iso:computing}
 
 
 \subsection{Lien entre isogénie et son action sur le module de Tate}
 
 \chapter{Calcul d'isogénies sur les corps finis}
+\label{cha:iso:computing}
 Dans ce chapitre vont être présentés différents algorithmes pour résoudre le problème suivant: soient $E, E'$ deux courbes elliptiques définies sur $\mathbb{K}$, on cherche alors à calculer la fraction $\mathbb{K}$-rationnelle qui a pour domaine $E(\mathbb{K})$ et pour codomaine $E'(\mathbb{K})$  telle que  cette application  définisse une isogénie.
 On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$, bien que certains algorithmes présentés peuvent aussi s'utiliser sur des corps de caractéristique nulle.
 
@@ -3159,12 +3167,12 @@ Supposons que $\min(v_{\ell}(g),v_{\ell}(|E(\mathbb{F}_q)|)/2)= v_{\ell}(g)$, on
 
 Dés lors quand on descend d'un niveau dans le volcan la valuation $\ell$-adique de $f$ augmente de $1$ et par conséquent $v_{\ell}(n_2)=v_{\ell}(g/f)$ diminue de $1$ aussi, en particulier cela implique que la valuation $\ell$-adique de $n_2$ pour une courbe en bas du volcan est nulle. Ainsi on voit bien la bijection entre la valuation $\ell$-adique de $n_2$ et le niveau de la courbe dans le volcan.
 
-\item On se place désormais dans le cas où l'on a $v_{\ell}(n_1)=v_{\ell}(n_2)$ (et par conséquent $2 \mid v_{\ell}(|E(\mathbb{F}_q)|)$) alors dans ce cas la structure de la $\ell$ torsion qui ne change pas du cratère jusqu'à un niveau où l'on tombe dans le premier cas, ainsi $E$ se trouve à un niveau supérieur à $v_{\ell}(|E(\mathbb{F}_q)|)/2$.
+\item On se place désormais dans le cas où l'on a $v_{\ell}(n_1)=v_{\ell}(n_2)$ (et par conséquent $2 \mid v_{\ell}(|E(\mathbb{F}_q)|)$). Dans ce cas la structure de la $\ell$-torsion ne change pas du cratère jusqu'à un niveau appelé premier niveau de stabilité. Dés lors pour le niveau en dessous du premier niveau de stabilité on a $v_{\ell}(n_1) \neq v_{\ell}(n_2)$ en appliquant alors le résultat du premier point on a le premier niveau de stabilité qui se trouve au niveau $v_{\ell}(|E(\mathbb{F}_q)|)/2$, par conséquent $E$ se trouve à un niveau supérieur à $v_{\ell}(|E(\mathbb{F}_q)|)/2$.
 \end{itemize}
 \end{proof}
 
 \begin{defi}
-Sur un volcan de $\ell$-isogénie on appelle le niveau à partir duquel la structure de la $\ell$-torsion ne change pas en même temps que les niveaux du volcan le \emph{premier niveau de stabilité}.
+Sur un volcan de $\ell$-isogénies on appelle le niveau à partir duquel la structure de la $\ell$-torsion ne change pas en même temps que les niveaux du volcan le \emph{premier niveau de stabilité}.
 
 Un volcan dont tous les niveaux ont des structures de $\ell$-torsion disctinctes est dit un \emph{volcan régulier}.
 \end{defi}
@@ -3181,9 +3189,9 @@ Il existe un second niveau de stabilité introduit et développé dans
 
 \begin{prop} 
 \label{pro:iso:mon}
-Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ avec: $E(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/\ell^{r}\mathbb{Z} \times \mathbb{Z}/\ell^{s}\mathbb{Z}= \langle P,Q \rangle $, $r>s +1 \geqslant  1$ et $P$ un point d'ordre $n_1$, alors on a:
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ avec: $E(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/\ell^{r}\mathbb{Z} \times \mathbb{Z}/\ell^{s}\mathbb{Z}= \langle P,Q \rangle $, $r>s +1 \geqslant  1$ et $P$ un point d'ordre $\ell^r$, alors:
 \begin{enumerate}
-\item la $l$-isogénie engendrée par $\ell^{r-1}P$ est une isogénie montante avec codomaine un courbe elliptique $E'$ telle que: \[E'(\mathbb{F}_q)[\ell^{\infty}]=\nicefrac{\mathbb{Z}}{\ell^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{\ell^{s+1}\mathbb{Z}}, \]
+\item la $\ell$-isogénie engendrée par $\ell^{r-1}P$ est une isogénie montante avec pour codomaine un courbe elliptique $E'$ telle que: \[E'(\mathbb{F}_q)[\ell^{\infty}]=\nicefrac{\mathbb{Z}}{\ell^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{\ell^{s+1}\mathbb{Z}}, \]
 \item les autres $\ell$-isogénies sont descendantes.
 \end{enumerate}
 \end{prop}
@@ -3194,7 +3202,7 @@ Par le corollaire \ref{cor:tab:vol} on sait que l'on a $\ell+1$ $\ell$-isogénie
 \\
 Considérons l'isogénie $\phi$ engendrée par $\ell^{r-1}P$. L'image de $P:\widetilde{P}$ par l'isogénie $\phi$ est alors d'ordre $\ell^{r-1}$. 
 
-Montrons par l'absurde que l'on n'a pas $\nicefrac{\mathbb{Z}}{\ell^{r}\mathbb{Z}} \subset \phi(E)(\mathbb{F}_q)[\ell^{\infty}]$. Supposons qu'il existe un point $\widetilde{R}$ d'ordre $\ell^n$ avec $n \geqslant r$. Cela implique donc que l'on ait l'existence de $R \in E(\mathbb{F}_q)$ tel que $R$ soit d'ordre $\ell^n$ et $R \notin \langle P \rangle$ ou  $\ell^nR =\ell^{r-1}P$. La deuxième hypothèse est impossible car cela implique qu'il existe $S \in E(\mathbb{F}_q)$ tel que $l S=P$ et contredirait donc l'hypothèse de la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. De même la première hypothèse: $\ell^nR = \mathcal{O}$ contredit elle aussi la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. On a donc:
+Montrons par l'absurde que l'on n'a pas $\nicefrac{\mathbb{Z}}{\ell^{r}\mathbb{Z}} \subset \phi(E)(\mathbb{F}_q)[\ell^{\infty}]$. Supposons qu'il existe un point $\widetilde{R}$ d'ordre $\ell^n$ avec $n \geqslant r$. Cela implique donc que l'on ait l'existence de $R \in E(\mathbb{F}_q)$ tel que $R$ soit d'ordre $\ell^n$ et $R \notin \langle P \rangle$ ou  $[\ell^n]R =[\ell^{r-1}]P$. La deuxième hypothèse est impossible car cela implique qu'il existe $S \in E(\mathbb{F}_q)$ tel que $[\ell] S=P$ et contredirait donc l'hypothèse de la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. De même la première hypothèse: $[\ell^n]R = \mathcal{O}$ contredit elle aussi la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. On a donc:
 \[\phi(E)(\mathbb{F}_q)[\ell^{\infty}]=\nicefrac{\mathbb{Z}}{\ell^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{\ell^{s+1}\mathbb{Z}}. \]
 
 On observe bien que c'est une isogénie montante par le corollaire \ref{cor:des:str}.
