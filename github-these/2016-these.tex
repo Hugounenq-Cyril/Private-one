@@ -2596,11 +2596,11 @@ Les deux documents à citer pour cette section sont \cite{Kohel96} qui a introdu
 Dans cette section on va aborder les anneaux d'endomorphismes, car c'est cet objet qu'a étudié Kohel dans sa thèse \cite{Kohel96} qui a permis ensuite de définir les volcans de $l$-isogénies. On a tout d'abord besoin de faire quelques rappels sur les ordres d'un corps quadratique imaginaire car on a vu que ceux-ci correspondent à isomorphisme près aux anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini.
 
 \subsection{Rappel sur les ordres d'un corps quadratique}
-\textcolor{red}{A eventuellement mettre dans le chapitre d'introduction j'ai laissé une place vide pour cette sous-section.}
+\todo{A eventuellement mettre dans le chapitre d'introduction j'ai laissé une place vide pour cette sous-section.}
 
-Soit $K$ un corps quadratique, alors il existe un entier $N$ sans facteur carré tel que l'on peut écrire $K=\mathbb{Q}\sqrt{N}$. On donne la définition suivante:
+Soit $K$ un corps quadratique, alors il existe un entier $N$ sans facteur carré tel que l'on peut écrire $K=\mathbb{Q}[\sqrt{N}]$. On donne la définition suivante:
 \begin{defi}
-Soit $K=\mathbb{Q}\sqrt{N}$, on définit le discriminant $d_K$ de $K$ de la façon suivante: 
+Soit $K=\mathbb{Q}[\sqrt{N}]$, on définit le discriminant $d_K$ de $K$ de la façon suivante: 
 \begin{equation*}
 d_K=\begin{cases}
 N & \text{ si }  N \equiv 1 \bmod 4 \\
@@ -2610,13 +2610,16 @@ N & \text{ si }  N \equiv 1 \bmod 4 \\
 \end{defi}
 
 \begin{defi}
-Un corps quadratique $K=\mathbb{Q}\sqrt{N}$ est dit imaginaire si l'on a $N<0$. 
+Un corps quadratique $K=\mathbb{Q}[\sqrt{N}]$ est dit imaginaire si $N<0$. 
 \end{defi}
 
 On va dés lors se restreindre à ce cas.
 
 \begin{defi}
-Soit $K$ un corps quadratique imaginaire, on note $\mathcal{O}_K$ l'ensemble des entiers algébriques de $K$. $\mathcal{O}_K$ est aussi appelé l'anneau des entiers de $K$.
+Soit $K$ un corps quadratique imaginaire, on note $\mathcal{O}_K$ l'ensemble 
+des entiers algébriques de $K$ c'est à dire les $\alpha \in K$ qui sont 
+solution de polynômes unitaires à coefficients dans les entiers relatifs. 
+$\mathcal{O}_K$ est aussi appelé l'anneau des entiers de $K$.
 \end{defi}
 
 \begin{prop}
@@ -2645,7 +2648,7 @@ Soit $K$ un corps quadratique imaginaire, $\mathcal{O}_K$ l'anneau des entiers d
 \end{prop}
 
 \begin{proof}
-Soit $\mathcal{O}$ un ordre de $K$ et soit $\alpha \in \mathcal{O}$, comme $\mathcal{O}$ est sous-anneau de $K$, on a $\alpha \in K$. $\mathcal{O}$ étant un $\mathbb{Z}$-module libre de rang 2 alors $\alpha$ est un entier algébrique et donc $\alpha \in \mathcal{O}_K$.
+Soit $\mathcal{O}$ un ordre de $K$ et soit $\alpha \in \mathcal{O}$. Comme $\mathcal{O}$ est sous-anneau de $K$, on a $\alpha \in K$. $\mathcal{O}$ étant un $\mathbb{Z}$-module libre de rang 2 alors $\alpha$ est un entier algébrique et donc $\alpha \in \mathcal{O}_K$.
 \end{proof}
 
 
@@ -2690,23 +2693,29 @@ Soit $\alpha \mapsto \overline{\alpha}$ l'automorphisme non-trivial d'un corps q
 \right) \right)^2. \]
 Le discriminant de $\mathcal{O}_K$ est noté $d_K$.
 \end{defi}
-Le discriminant ne dépendant pas de la base, pour la base $[1, f \omega_K]$ de $\mathcal{O}$ on a:
+Le discriminant est un invariant de la base chosie, en prenant la base $[1, f 
+\omega_K]$ de $\mathcal{O}$, on a:
 \[D=f^2d_K.\]
 
 \begin{rem}
-$d_{\pi}=t_{\pi}^2-4q$ le discriminant de l'équation caractéristique du Frobenius est aussi le discriminant de l'ordre $\mathbb{Z}[\pi]$.
+$d_{\pi}=t_{\pi}^2-4q$ le discriminant de l'équation caractéristique du 
+Frobenius pour une courbe elliptique dont l'anneau d'endomorphisme est 
+isomorphe à $\mathbb{Z}[\pi]$ est aussi le discriminant de l'ordre $\mathbb{Z}
+[\pi]$.
 \end{rem}
 
 
 
 \subsection{Anneau d'endomorphisme de courbes elliptiques ordinaires}
-Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini qui sont comme vus dans la proposition \ref{pro:fro:dis} isomorphes à des ordres dans un corps quadratique imaginaire. On va voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
+Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini qui sont, comme vu dans la proposition \ref{pro:fro:dis}, isomorphes à des ordres dans un corps quadratique imaginaire. On va voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
 
 La première remarque à faire c'est que pour toute courbe elliptique ordinaire définie sur un corps fini pour $\mathcal{O}$ l'ordre associé à isomorphisme près à $\mathrm{End}(E)$ on a: 
 \[
 \mathbb{Z}[\pi] \subset \mathcal{O} \subset \mathcal{O}_K.
 \]
-Ainsi pour tout ordre associé à isomorphisme près à un anneau d'endomorphisme on a un ordre minimal au sens de l'inclusion celui qui contient toutes les multiplications scalaires et l'endomorphisme de Frobenius.
+Ainsi pour tout ordre associé à un anneau d'endomorphisme on a un ordre minimal
+au sens de l'inclusion celui qui contient toutes les multiplications scalaires 
+et l'endomorphisme de Frobenius.
 
 \begin{rem}
 On va noter désormais $\mathcal{O}$(resp. $\mathcal{O}'$) pour l'ordre défini à isomorphisme près associé à $\mathrm{End}(E)$ (resp. $\mathrm{End}(E')$).
@@ -2740,8 +2749,7 @@ On a alors le résultat suivant sur les duales des isogénies:
 \label{lem:dua:vol}
 Soit $\phi : E \mapsto E'$ une isogénie et sa duale $\widehat{\phi}$. Alors:
 \begin{enumerate}
-\item $\phi$ est une isogénie montante si et seulement si $\widehat{\phi}$ est une isogénie descendante.
-\item $\phi$ est une isogénie descendante si et seulement si $\widehat{\phi}$ est une isogénie montante.
+\item $\phi$ est une isogénie montante si et seulement si $\widehat{\phi}$ est une isogénie descendante,
 \item $\phi$ est une isogénie horizontale si et seulement si $\widehat{\phi}$ est une isogénie horizontale.
 \end{enumerate}
 \end{lem}
@@ -2835,10 +2843,12 @@ Voir \cite[Lemma 2.1]{FouquetMorain02}
 Sur la figure \ref{fig:ord:vol} on a les différents ordres qui sont représentés, ils est à noter qu'avec la convention donnée par la définition \ref{def:iso:nom} les ordres qui apparaissent dans un même niveau du graphe ont le même conducteur par rapport à l'ordre maximal. Ce graphe n'est pas orienté comme le précise le lemme \ref{lem:dua:vol}.
 
 \begin{defi}
-Soit $\ell$ un nombre premier, soit $D$ un discriminant associé à un ordre dans un corps quadratique imaginaire, on définit alors:
+Soit $\ell$ un nombre premier, soit $D$ un discriminant associé à un ordre dans
+un corps quadratique imaginaire, on définit alors le symbole de Kronecker en 
+particulier pour le cas $\ell=2$:
 \begin{equation*}
 \left( \frac{D}{\ell} \right)= \begin{cases}
-  \text{symbole de Legendre} & \text{si } \ell\neq 2 \\
+  \text{symbole de Kronecker} & \text{si } \ell\neq 2 \\
 0 & \text{si } \ell=2 \text{ et } D=0 \bmod 4 \\
 1 & \text{si } \ell=2 \text{ et } D=1 \bmod 8 \\
 -1 & \text{si } \ell=2 \text{ et } D=5 \bmod 8 \\
@@ -2851,10 +2861,10 @@ Soit $\ell$ un nombre premier, soit $D$ un discriminant associé à un ordre dan
 Soit $E$ une courbe elliptique ordinaire définie sur un corps fini $\mathbb{F}_q$ et soit $\ell$ un nombre premier différent de la caractéristique de $\mathbb{F}_q$
 \begin{enumerate}
 \item Si $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $ 1 + \left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies horizontales
-\item Si $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet une $l$ isogénie montante
-\item Si $\ell \nmid [\mathcal{O} : \mathbb{Z}[\pi]]$ alors $E$ n'admet pas de $l$-isogénie descendante
-\item Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell-\left( \frac{d_K}{\ell} \right)$ isogénies descendantes
-\item  Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell$ $\ell$-isogénies descendantes.
+\item Si $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet une $\ell$-isogénie montante
+\item Si $\ell \nmid [\mathcal{O} : \mathbb{Z}[\pi]]$ alors $E$ n'admet pas de $\ell$-isogénie descendante
+\item Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell-\left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies descendantes
+\item  Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell$ isogénies de degré $\ell$ descendantes.
 \end{enumerate}
 \end{thm}
 
@@ -2884,7 +2894,7 @@ $1$ & cas 1: $\rightarrow$ & $\ell\,\nmid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell
 $\ell+1$ & cas 1:$\left\{ \begin{array}{cc}
 1+\left(\frac{D}{\ell}\right) & \rightarrow\\
 \ell-\left(\frac{D}{\ell}\right) & \downarrow
-\end{array}\right.$ & $\ell \,\mid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell \,\nmid[\mathcal{O}:\mathbb{Z}[\pi]]$  & inconnu & $0$\\
+\end{array}\right.$ & $\ell \,\mid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell \,\nmid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $0$,$1$ ou $-1$ & $0$\\
  
 \cline{2-5} & cas 2:$\left\{ \begin{array}{cc}
 1 & \uparrow\\
@@ -2899,20 +2909,20 @@ $\ell+1$ & cas 1:$\left\{ \begin{array}{cc}
 Voir \cite[§2.3]{FouquetMorain02}.
 \end{proof}
 
-Maintenant que l'on a introduit les relations possibles entre les ordres on définit certains termes de la littérature:
+Maintenant que l'on a introduit les relations possibles entre les ordres on définit certains termes de la littérature.
 
 \begin{defi}
 Soit $\ell$ un nombre premier, le terme volcan de $\ell$-isogénies désigne le graphe composé de courbes $\ell$-isogènes entre elles.
 
-Le terme cratère du volcan de $\ell$-isogénies désigne le sous-graphe composé uniquement de courbes dont l'anneau d'endomorphismes est isomorphe à un ordre $\mathcal{O}$ tel que $[\mathcal{O}: \mathcal{O}_K]=1$, c'est à dire l'ordre est maximal par rapport à l'indice $\ell$.
+Le terme cratère du volcan de $\ell$-isogénies désigne le sous-graphe composé uniquement de courbes dont la valuation $\ell$-adique du conducteur est $0$.
 \end{defi}
 
 \begin{defi}
-Soit $\ell$ un nombre premier, soit $\varphi$ une $\ell^k$-isogénie, alors $\varphi$ est dite une $\ell^k$-isogénie descendante si il existe $k$ $\ell$-isogénies descendantes $\varphi_i, i \in [1,k]$ telles que $\varphi=\varphi_1 \circ \cdots \circ \varphi_k$. De même pour la $\ell^k$-isogénie $\widehat{\varphi}$ elle est dite ascendante si il existe $k$ $\ell$-isogénies ascendantes $\widehat{\varphi_i}, i \in [1,k]$ telles que $\widehat{\varphi}=\widehat{\varphi_1} \circ \cdots \circ \widehat{\varphi_k}$. Enfin on dit que la $\ell^k$-isogénie $\psi$ est horizontale si il existe $k$ $\ell$-isogénies horizontales $\psi_i, i \in [1,k]$ telles que $\psi=\psi_1 \circ \cdots \circ \psi_k$.
+Soit $\ell$ un nombre premier, soit $\varphi$ une $\ell^k$-isogénie, alors $\varphi$ est dite une $\ell^k$-isogénie descendante si il existe $k$ isogénies de degré $\ell$ descendantes $\varphi_i, i \in [1,k]$ telles que $\varphi=\varphi_1 \circ \cdots \circ \varphi_k$. De même pour la $\ell^k$-isogénie $\widehat{\varphi}$ elle est dite ascendante si il existe $k$ $\ell$-isogénies ascendantes $\widehat{\varphi_i}, i \in [1,k]$ telles que $\widehat{\varphi}=\widehat{\varphi_1} \circ \cdots \circ \widehat{\varphi_k}$. Enfin on dit que la $\ell^k$-isogénie $\psi$ est horizontale si il existe $k$ $\ell$-isogénies horizontales $\psi_i, i \in [1,k]$ telles que $\psi=\psi_1 \circ \cdots \circ \psi_k$.
 \end{defi}
 
 \begin{defi}
-Soit $\ell$ un nombre premier, un chemin descendant sur un volcan de $\ell$-isogénies d'une courbe elliptique $E$ est une suite de courbes elliptiques $\ell$-isogènes $E=E_0 \rightarrow E_1 \rightarrow E_2 \rightarrow ... \rightarrow E_m$ telles que $E_i \mapsto E_{i+1}$ est une $l$ -isogénie descendante et que l'on ait $l \nmid [ \mathcal{O}_m : \mathbb{Z}[\pi]]$. 
+Soit $\ell$ un nombre premier, un chemin descendant sur un volcan de $\ell$-isogénies d'une courbe elliptique $E$ est une suite de courbes elliptiques $\ell$-isogènes $E=E_0 \rightarrow E_1 \rightarrow E_2 \rightarrow ... \rightarrow E_m$ telles que $E_i \mapsto E_{i+1}$ est une $\ell$ -isogénie descendante et que l'on ait $\ell \nmid [ \mathcal{O}_m : \mathbb{Z}[\pi]]$. 
 \end{defi}
 
 \begin{defi}
