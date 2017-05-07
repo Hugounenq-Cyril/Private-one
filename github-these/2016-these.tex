@@ -3197,12 +3197,12 @@ Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ avec: $E(\m
 \end{prop}
 
 \begin{proof}
-Une preuve est disponible dans\cite[Proposition 4]{MiretMSTV08} pour le cas $\ell=2$, mais on va proposer ici une preuve plus directe et générale.
-Par le corollaire \ref{cor:tab:vol} on sait que l'on a $\ell+1$ $\ell$-isogénies et que si l'on a une $\ell$ isogénie montante alors les  autres sont descendantes.
+Une preuve est disponible dans~\cite[Proposition 4]{MiretMSTV08} pour le cas $\ell=2$, mais on va proposer ici une preuve plus directe et générale.
+Par le corollaire \ref{cor:tab:vol} on sait que l'on a $\ell+1$ isogénies de degré $\ell$ et que si l'on a une $\ell$-isogénie montante alors les autres sont descendantes.
 \\
-Considérons l'isogénie $\phi$ engendrée par $\ell^{r-1}P$. L'image de $P:\widetilde{P}$ par l'isogénie $\phi$ est alors d'ordre $\ell^{r-1}$. 
+Considérons l'isogénie $\phi$ engendrée par $[\ell^{r-1}]P$. L'image $\widetilde{P}$ de $P$ par l'isogénie $\phi$ est alors d'ordre $\ell^{r-1}$. 
 
-Montrons par l'absurde que l'on n'a pas $\nicefrac{\mathbb{Z}}{\ell^{r}\mathbb{Z}} \subset \phi(E)(\mathbb{F}_q)[\ell^{\infty}]$. Supposons qu'il existe un point $\widetilde{R}$ d'ordre $\ell^n$ avec $n \geqslant r$. Cela implique donc que l'on ait l'existence de $R \in E(\mathbb{F}_q)$ tel que $R$ soit d'ordre $\ell^n$ et $R \notin \langle P \rangle$ ou  $[\ell^n]R =[\ell^{r-1}]P$. La deuxième hypothèse est impossible car cela implique qu'il existe $S \in E(\mathbb{F}_q)$ tel que $[\ell] S=P$ et contredirait donc l'hypothèse de la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. De même la première hypothèse: $[\ell^n]R = \mathcal{O}$ contredit elle aussi la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. On a donc:
+Montrons par l'absurde que l'on n'a pas $\nicefrac{\mathbb{Z}}{\ell^{r}\mathbb{Z}} \subset \phi(E)(\mathbb{F}_q)[\ell^{\infty}]$. Supposons qu'il existe un point $\widetilde{R}$ d'ordre $\ell^n$ avec $n \geqslant r$. Cela implique donc qu'il existe $R \in E(\mathbb{F}_q)$ tel que $R$ soit d'ordre $\ell^n$ et $R \notin \langle P \rangle$ ou  $[\ell^n]R =[\ell^{r-1}]P$. La deuxième hypothèse est impossible car cela implique qu'il existe $S \in E(\mathbb{F}_q)$ tel que $[\ell] S=P$ et contredit donc l'hypothèse sur la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. De même la première hypothèse: $[\ell^n]R = \mathcal{O}$ contredit elle aussi la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. On a donc:
 \[\phi(E)(\mathbb{F}_q)[\ell^{\infty}]=\nicefrac{\mathbb{Z}}{\ell^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{\ell^{s+1}\mathbb{Z}}. \]
 
 On observe bien que c'est une isogénie montante par le corollaire \ref{cor:des:str}.
@@ -3214,8 +3214,8 @@ Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ avec $E(\ma
 \end{cor}
 
 \begin{proof}
-%A l'aide des propositions \ref{desc-io} et \ref{ext-volc} le résultat est démontré dans \cite{IonicaJ10}
-A l'aide du lemme \ref{lem:val:ext} et de la proposition \ref{pro:niv:str} on ne peut que montrer que l'on a  $E(\mathbb{F}_{q^{\ell}})[l^{\infty}]=\mathbb{Z} / \ell^{r+\delta} \mathbb{Z} \times \mathbb{Z} / \ell^{s+1} \mathbb{Z}$ avec $\delta \geqslant 1$, pour prouver l'égalité on a besoin d'utiliser les couplages, pour plus de détails le lecteur peut aller voir \cite[§5.3.1]{Ionica2010}.
+Le résultat est démontré dans \cite[§5.3.1]{Ionica2010}.
+%A l'aide du lemme \ref{lem:val:ext} et de la proposition \ref{pro:niv:str} on ne peut que montrer que l'on a  $E(\mathbb{F}_{q^{\ell}})[l^{\infty}]=\mathbb{Z} / \ell^{r+\delta} \mathbb{Z} \times \mathbb{Z} / \ell^{s+1} \mathbb{Z}$ avec $\delta \geqslant 1$, pour prouver l'égalité on a besoin d'utiliser les couplages, pour plus de détails le lecteur peut aller voir \cite[§5.3.1]{Ionica2010}.
 \end{proof}
 
 \chapter{Action du Frobenius sur un volcan de $\ell$-isogénies}
@@ -4490,7 +4490,7 @@ O\Bigl( \mathsf{M}(r \ell^2) \log(r) \log(\ell) \bigl( r + \log(\ell q) \bigr) \
  \]
 \end{prop}
 \begin{proof}
-Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
+Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   Par la proposition~\ref{pro:clas:fro}, il existe $\beta \leqslant h$ tel que
   $E[\ell^k]$ est inclus dans $E(F_{k-\beta})$. On construit donc une
   tour d'extensions $\ell$-adiques $\mathsf{F}_0\subset\cdots\subset 
@@ -4540,9 +4540,9 @@ Par définition de ~$k$, on a ~$\ell^{2k+1} \in O(r\ell^2)$.
   
   
   On utilise ensuite la proposition~\ref{prop:interpol}, avec un degré total
-  ~$t = (\ell^{2k-2}(\ell+1))/2\in O(r)$, et le nombre de points d'interpolations
+  ~$t = (\ell^{2k}(\ell+1))/2\in O(r\ell^2)$, et le nombre de points d'interpolations
   est $s \in O(k \cdot \ell^{k+\beta})$, on calcule alors les polynômes~$T$
-  et~$A_{a,b}$ avec un coût de~$O(\mathsf{M}(r \ell^2)\log(r)\log(\ell))$.  Le coût
+  et~$A_{a,b}$ avec un coût de~$O(\mathsf{M}(r \ell^4)\log(r)\log(\ell))$.  Le coût
   de calcul de $F_{a,b}$ est de $O(\mathsf{M}(r)\log(r))$ par 
   \cite[Théorème 7.5]{algeff17}. Le coût de calcul du test de l'isogénie (voir
   paragraphe dans la sous-section~\ref{sub:ori:cou} pour une description 
