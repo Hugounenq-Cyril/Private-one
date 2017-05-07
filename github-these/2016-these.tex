@@ -4517,12 +4517,12 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   En utilisant le  résultat  donné par ~\cite[Chapter~14.5]{vzGJG03} pour le 
   coût de $\mathsf{R}$, on a alors un coût borné pour les 
   étapes~\ref{alg:cou-ell:bhor} et \ref{alg:cou-ell:bdiag} par 
-  $O(\mathsf{M}(r\ell^2)\log(r)\log(\ell)\log(\ell q))$.
+  $O(\mathsf{M}(r\ell^{2,5})\log(r)\log(\ell)\log(\ell q))$. \todo{ou ecrire $\sqrt{\ell^5}$}
   
   Il faut éventuellement rajouter le coût de calcul des points partiellement 
   horizontaux si les courbes en entrée ne se situent pas sur le cratère. 
   Celui-ci est dans le pire des cas de
-  $O(k\mathsf{M}(\ell^{k-\beta+1})) \subset O(\log(r) \mathsf{M}(r) )$ par la proposition~\ref{pro:par:hor}, ce 
+  $O(k\mathsf{M}(\ell^{k-\beta+1})) \subset O(\log(r) \mathsf{M}(r \ell^{2,5}) )$ par la proposition~\ref{pro:par:hor}, ce 
   coût est donc majoré par le calcul de la base horizontale sur le cratère.
 
   Par la proposition~\ref{pro:clas:fro}(~\ref{prop:classes:count}), il y a au 
@@ -4533,9 +4533,9 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   \color{blue}Q_{\mu}\color{black})$ et $(\color{red}P'_{\lambda}\color{black},
   \color{blue}Q'_{\mu}\color{black})$ en multipliant les deux points définis 
   dans $\mathsf{F}_{k-\beta}$ par des entiers définis dans 
-  $\left( \mathbb{Z}/\ell^{k}\mathbb{Z}\right)^*$ ce qui coûte 
+  $\left( \mathbb{Z}/\ell^{k}\mathbb{Z}\right)^*$ une telle multiplication coûte 
   $O(\mathsf{M}(\ell^{k-\beta})\log(\ell^k))$ opérations. On a donc un coût total de 
-  $O(k\mathsf{M}(\ell^{2k})\log(\ell^k)) \subset O(\mathsf{M}(r\ell)\log(r)^2)$
+  $O(k\mathsf{M}(\ell^{2k})\log(\ell^k)) \subset O(\mathsf{M}(r\ell^{1,5})\log(r)^2)$
   pour calculer tous les représentants.
   
   
@@ -4555,7 +4555,7 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
    du polynôme de $r$-division  de $r\mathsf{M}(r^2)\log(r)\log(r q)$ car 
   les autres tests suffisent en général pour conclure. Tous ces coûts sont donc
   dominés par celui du calcul de~$A_{a,b}$.  Enfin, en moyenne 
-   ${\ell^{2k-2}=O(r)}$~matrices candidates doivent être testées
+   ${\ell^{2k-2}=O(r\ell)}$~matrices candidates doivent être testées
    avant de trouver l'isogénie.
 \end{proof}
  
