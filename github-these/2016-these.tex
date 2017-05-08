@@ -5729,14 +5729,14 @@ opérations sur $\mathbb{F}_q$ avec un précalcul de $O(\sum_{i=1}^nk_i\ell_i^{k
 
 \begin{proof}
 L'étape~\ref{alg:cou:TRC-adique:bhor} appliquée à une tour d'extensions 
-$\ell_i$-adiques est majoré par les coûts donnés par la 
+$\ell_i$-adiques est majorée par les coûts donnés par la 
 proposition~\ref{pro:alg:ulti} et 
 a un coût de 
-$O((k_i+1)(\ell_i^{k_i+1}\mathsf{M}(\ell_i^{k_i+2})\log(\ell_i)\log(\ell_iq)))$ 
+$O((k_i+1)\ell_i^{k_i+1}\mathsf{M}(\ell_i^{k_i+2})\log(\ell_i)\log(\ell_iq))$ 
 opérations sur $\mathbb{F}_q$ en utilisant le  résultat  donné par 
 ~\cite[Chapter~14.5]{vzGJG03} pour le coût de $\mathsf{R}$.
 On peut donc majorer le coût total de cette étape par 
-$O(n\max_i((k_i+1)(\ell_i^{k_i+1}\mathsf{M}(\ell_i^{k_i+2})\log(\ell_i)\log(\ell_iq))))$
+$O(n\max_i((k_i+1)\ell_i^{k_i+1}\mathsf{M}(\ell_i^{k_i+2})\log(\ell_i)\log(\ell_iq)))$
 opérations sur $\mathbb{F}_q$.
 
 L'étape~\ref{alg:cou:TRC-adique:rep} de l'algorithme est la seule qui n'a pas été 
@@ -5763,7 +5763,7 @@ $O(n\mathsf{M}(p_n)\log(p_n))$, donc au total pour toutes les additions:
 $O(\prod_{i=1}^n(k_i\ell_i^{k_i-\beta_i}n\mathsf{M}(p_n)\log(p_n))$.
 On fera remarquer que lors de l'algorithme~\ref{alg:TRC:init:gen} la complexité
 exprimée prend en compte le fait que l'on exprime les points des tours 
-$\ell_i$-adiques dans le composita.
+$\ell_i$-adiques dans le compositum.
 
 L'étape~\ref{alg:cou:TRC-adique:ord} demande à chaque étape de recalculer tous les 
 représentants des orbites, on en a $\prod_{i=1}^n k_i\ell_i^{k_i-\beta_i}$ par
@@ -5775,7 +5775,11 @@ $O(\prod_{i=1}^n (k_i\ell_i^{k_i-\beta_i})\log(\upsilon_n) \mathsf{M}(p_n)\log(p
 
 Pour l'étape~\ref{alg:cou:TRC-adique:int} cela a un coût de 
 $O\bigl(\mathsf{M}(t)\log(s) + n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{i})\bigr)$ 
- par la proposition~\ref{prop:interpol:comp}.
+ par la proposition~\ref{prop:interpol:comp}. On a alors 
+ $s=\sum_{i=1}^n\ell_i^{k_i}$ et $t \in O(r \prod_{i=1}^n\ell_i^{2})$, on 
+ pourrait faire dans cette approche multi-modulaire une hypothèse plus 
+ optimiste telle que $t \in O(r \prod_{i=1}^n\ell_i)$ mais on garde l'yphothèse
+ précédente qui reste le pire des cas.
 
 Pour l'étape~\ref{alg:cou:TRC-adique:Cauchy} le coût de calcul de $F_{a,b}$ est de 
 $O(\mathsf{M}(r)\log(r))$ par \cite[Théorème 7.5]{algeff17}.
