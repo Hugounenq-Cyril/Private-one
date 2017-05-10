@@ -3605,7 +3605,7 @@ telle que le polynôme caractérisitque de $\pi$
 soit irréductible (non ramifié) dans $\mathbb{Z}_{\ell}$,
 ainsi le volcan de $\ell$-isogénies de $E$ a un cratère réduit à un point.
 Il existe un unique $e \in [ 0, h]$
-tel que $\pi|T_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
+tel que $\pi|T_{\ell}(E)$~est égale, sur~$\mathbb{Z}_{\ell}$,
 à la matrice 
 \begin{equation*}
 \left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
@@ -4373,6 +4373,29 @@ Cela va être super court.
 Soient $P,P'$ deux points de la courbe elliptique $E$ située au niveau du 
 cratère du volcan de $\ell$-isogénies
 \end{prop}
+
+\begin{algorithm}
+\caption{\label{alg:atk:bas:mat}Calcul d'un point $R$ d'ordre~$\ell^{h-e+i}$ tel que $\pi(P,R)=M$}
+\begin{algorithmic}[1]
+\REQUIRE $(P, Q)$: une base de~$E[\ell^{h-e+i}]$ avec $P$ un point fixé de $E$, $E$ une courbe située au niveau $h-e$; $i$: un entier,$i \geqslant e$; $M$ une matrice représentant l'action du Frobenius dans une base de la $\ell^{h-e+i}$-torsion d'une courbe elliptique située au niveau $h-e$.\\
+\ENSURE $R=[\alpha]P+ [\beta]Q $: un point d'ordre $\ell^{h-e+i}$ de $E$ tel que $\pi(P,R)=M$.
+\STATE $(\alpha, \beta ) \leftarrow (0,0)$
+\FOR{$j = 1$ to~$h-e+i$}
+\STATE Calcul de $P_j=[\ell^{h-e+i-j}]P, Q_j=[\ell^{h-e+i-j}]P$;
+\STATE Calcul de $R_j=[\alpha + x\ell^{j-1}]P_j+ [\beta +y\ell^{j-1}]Q_j$ tel que $\pi(P_j,R_j)=M$;
+\STATE $(\alpha, \beta) \leftarrow (\alpha + x\ell^{j-1}, \beta +y\ell^{j-1})$;
+\ENDFOR
+\RETURN\label{alg:atk:horizontal:final} $R =[\alpha]P+ [\beta]Q$. 
+\end{algorithmic}
+\end{algorithm}
+
+\begin{prop}
+L'algorithme~\ref{alg:atk:bas:mat} a une complexité de $O()$ opérations sur $\mathbb{F}_q$.
+\end{prop}
+
+\begin{proof}
+\todo{preuve a faire}Question la plus importante dans quelle extension sont définis les points d'ordre $\ell^{h-i+e}$
+\end{proof}
 
 \chapter{Algorithme de Couveignes $\ell$-adique}
 \label{cha:alg:fin}
