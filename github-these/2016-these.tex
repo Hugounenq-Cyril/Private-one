@@ -3474,12 +3474,12 @@ telle que~$E[\ell^k]\subset E(F)$. On  a alors:
 \begin{enumerate}
 \item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
 et $d_1$ qui divise~$(\ell-1)$.
-\item Si $\ell$~est impair alors pour tout $k \geqslant 1$,
-$ d_k = \ell^{\min (v_{\ell} (d_1), k - \beta)}$.
+\item Si $\ell$~est impair alors pour tout $k > 1$,
+$ d_k = \ell^{\max (v_{\ell} (d_1), k - \beta)}d_1$.
 % $d_k = \mathrm {lcm} (d_1, \ell^{k-\beta})$.
-\item Si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k \geqslant 2$,
+\item Si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k > 2$,
 % $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
-$d_k = \ell^{\min (v_{\ell} (d_2), k - \beta)}$.
+$d_k = \ell^{\max (v_{\ell} (d_2), k - \beta)}d_2$.
 \item Soit $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\alpha} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
 \item\label{prop:classes:count} Le groupe~$E[\ell^k]$ contient au plus
 $k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}_{q^{d_1}}$.
