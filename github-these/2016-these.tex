@@ -3824,14 +3824,14 @@ hauteur $h+i$ est de prendre une extension de degré multiple à $\ell^i$.
 
 \begin{prop}
 \label{pro:atk:dist:orb}
-Soient $R,R'$ deux points d'ordre $\ell^{h+i}$ de $E$ située au niveau du 
-cratère du volcan de $\ell$-isogénies, alors si l'on a $\pi^x(R)=R'$ alors
-$[\ell^i]R$ et $[\ell^i]R'$ engendrent la même $\ell^h$-isogénie.
+Soient $R,R'$ deux points d'ordre $\ell^{h-e+i}$ de $E$ située au niveau $h-e$ 
+du volcan de $\ell$-isogénies, alors si l'on a $\pi^x(R)=R'$ alors
+$[\ell^i]R$ et $[\ell^i]R'$ engendrent la même $\ell^{h-e}$-isogénie.
 \end{prop} 
 
 \begin{proof}
 A partir de $\pi^x(R)=R'$ on a $[\ell^{i}]\pi^x(R)=\pi^x([\ell^i]R)=[\ell^i]R'$
-or l'action du Frobenius sur les points de $\ell^h$-torsion est diagonale ainsi
+or l'action du Frobenius sur les points de $\ell^{h-e}$-torsion est diagonale ainsi
 il existe $\alpha \in (\mathbb{Z}/\ell^h\mathbb{Z})^{\times}$ tel que 
 $\pi([\ell^i]R)=[\alpha]([\ell^i]R)$ on obtient alors l'égalité suivante entre
 $R$ et $R'$: $[\alpha^x]([\ell^i]R)=[\ell^i]R'$ et donc on a le résultat.
@@ -3841,18 +3841,18 @@ Ainsi avec ce résultat on a un critère pour savoir si deux points sont dans de
 orbites distinctes.
 
 \begin{prop}
-Soit $E$ une courbe située au niveau du cratère d'un volcan de $\ell$-isogénies
-alors il existe $\ell^{h-1}(\ell+1)$ représentants d'orbites distinctes de la 
-$\ell^{h+i}$-torsion.
+Soit $E$ une courbe située au niveau $h-e$ d'un volcan de $\ell$-isogénies
+alors il existe $\ell^{h-e-1}(\ell+1)$ représentants d'orbites distinctes des 
+points d'ordre $\ell^{h-e+i}$.
 \end{prop}
 
 \begin{proof}
 A l'aide de la proposition~\ref{pro:atk:dist:orb} pour trouver différents 
 représentants d'orbites selon l'action du Frobenius il suffit de prendre des 
 points qui engendrent tous des $\ell^h$-isogénies distinctes. Ainsi en fixant 
-une base $(P,Q)$ de la $\ell^{h+i}$-torsion, on cherche tous les points de la
+une base $(P,Q)$ de la $\ell^{h-e+i}$-torsion, on cherche tous les points de la
 forme $[a]P+[b]Q$ tels que les points $[\ell^i]([a]P+[b]Q)$ engendrent des 
-$\ell^h$-isogénies distinctes. On a alors $\ell^{h-1}(\ell+1)$ représentants 
+$\ell^h-e$-isogénies distinctes. On a alors $\ell^{h-e-1}(\ell+1)$ représentants 
 d'orbites distinctes.
 \end{proof}
 
