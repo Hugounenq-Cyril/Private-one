@@ -3666,24 +3666,46 @@ $E[\ell^{h-e+i}]=\langle P,Q \rangle$. On pose $R=[x]P+[y]Q$ avec $y\wedge
 \[
 \pi(P,R)=\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
 \end{matrix}\right ) 
-\] représentant l'action du Frobenius dans la base $\langle P,R \rangle$ est 
+\] représentant l'action du Frobenius dans la base $\langle P,R \rangle$ ne 
+dépend que de la valeur de $[\ell^{h-e}]R$ et est 
 conjuguée aux matrices de la forme:
 \[
-\pi(P,R')=\left ( \begin{matrix}a & b\ell^{h-e}\beta \\ c\ell^{h-e}\beta & d
+\pi(P,R')=\left ( \begin{matrix}a & b\ell^{h-e}\beta^{-1} \\ c\ell^{h-e}\beta & d
 \end{matrix}\right ) 
 \]
-avec $R'=[\beta x]P+[\beta y]Q$, $\beta \in \left( \mathbb{Z}/\ell^{i} \mathbb{Z} 
+si et seulement si $\beta \ell^{h-e}R= \ell^{h-e}R'$avec $\beta \in \left( \mathbb{Z}/\ell^{i} \mathbb{Z} 
 \right)^{\times}$. De plus tous les points $S$ tels que la matrice $\pi(P,S)$ 
 est conjuguée à la matrice $\pi(P,R)$ engendrent tous la même $\ell^i$-isogénie
 de noyau $\langle [\ell^{h-e}]S \rangle$.
 \end{prop}
 
 \begin{proof}
+Matriciellement on peut vérifier cela en voyant que la conjugaison de la 
+matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & k' \ell^i \\
+0 & 1 + k \ell^i \end{smallmatrix} \right )$  laisse la matrice invariante 
+modulo $\ell^{h-e+i}$. 
+
+Montrons maintenant que pour deux points $R,R'$ tels que $\pi(P,R)=\pi(P,R')$
+alors $[\ell^{h-e}]R=[\ell^{h-e}]R'$.
+Soient $R,R'$ deux points tels que $\pi(P,R)=\pi(P,R')=\left ( 
+\begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d \end{smallmatrix}\right )$ 
+alors cette égalité nous donne:
+\begin{enumerate}
+\item $\pi(P)=[a]P+[\beta^{-1}c\ell^{h-e}]R=[a]P+[\beta^{-1}c\ell^{h-e}]R'$, de
+cette égalité on déduit  lorsqe $c \wedge \ell = 1$ que $[\ell^{h-e}]R=
+[\ell^{h-e}]R'$ et lorsque $\ell^{2e} || c$ que $[\ell^{h+e}]R=[\ell^{h+e}]R'$,
+on se place donc dans le second cas pour la suite de la preuve.
+\item $[d]P=[b\ell^{h-e}\beta]R-\pi(R)=[b\ell^{h-e}\beta]R-\pi(R')$, on obtient
+alors $\pi(R-R')=[b\ell^{h-e}\beta](R-R')$, ainsi $R-R'$ est point de 
+$\ell^i$-torsion et l'on a donc $[\ell^{h-e}(R-R')]=0_E$.
+\end{enumerate}
+
 On travaille avec deux points $R=[x]P+[y]Q,R'=[x']P+[y']Q$ avec $y,y' \wedge 
 \ell=1$, car seulement dans ce cas $R$ et $R'$ forment avec $P$ une base de la 
 $\ell^{h-e+i}$-torsion. Nous allonrs alors montrer que $R$ et $R'$ engendrent 
 la même $\ell^i$-isogénie si ils vérifient 
-$\ell^{h-e}x'y'^{-1}=\ell^{h-e}xy^{-1} \bmod \ell^{i}$.
+$\ell^{h-e}x'y'^{-1}=\ell^{h-e}xy^{-1} \bmod \ell^{h-e+i}$.
 
 En effet, soit $[\ell^{h-e}]([x]P+[y]Q)$ un point d'ordre $\ell^i$ engendré par $R$, 
 le groupe $\langle [\ell^{h-e}]([x]P+[y]Q) \rangle$ engendré par ce point peut 
@@ -3692,19 +3714,13 @@ même on peut écrire le groupe engendré par $[\ell^{h-e}]([x']P+[y']Q)$ comme
 $\langle [x'y'^{-1}]([\ell^{h-e}]P)+ ([\ell^{h-e}]Q) \rangle$, ainsi on a 
 égalité des $\ell^i$-isogénies engendrées par $[\ell^{h-e}]([x']P+[y']Q)$ et 
 $[\ell^{h-e}]([x]P+[y]Q)$ si et seulement si $\ell^{h-e}xy^{-1}=\ell^{h-e}
-x'y'^{-1}\bmod \ell^{i}$. On voit donc que seul compte les valeurs de 
-$\ell^{h-e}x$ et $\ell^{h-e}y$ modulo $\ell^i$ pour la détermination de la 
+x'y'^{-1}\bmod \ell^{h-e+i}$. On voit donc que seul compte les valeurs de 
+$\ell^{h-e}x$ et $\ell^{h-e}y$ modulo $\ell^{h-e+i}$ pour la détermination de la 
 $\ell^i$-isogénie.
-
-Matriciellement on peut vérifier cela en voyant que la conjugaison de la 
-matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
-\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & k' \ell^i \\
-0 & 1 + k \ell^i \end{smallmatrix} \right )$  laisse la matrice invariante 
-modulo $\ell^{h-e+i}$. 
 
 Les seuls changements qui préservent la $\ell^i$-isogénie générée par 
 $R=[x]P+[y]Q$ sont les seuls changements qui préservent la valeur de 
-$\ell^{h-e}xy^{-1} \bmod \ell^{i}$ ce sont donc les changements de la forme 
+$\ell^{h-e}xy^{-1} \bmod \ell^{h-e+i}$ ce sont donc les changements de la forme 
 $[x]P+[y]Q \rightarrow [\beta x]P+[\beta y]Q$ avec $\beta \in \left( \mathbb{Z}
 /\ell^i\mathbb{Z} \right)^{\times}$. Matriciellement la conjugaison de la
 matrice $\left( \begin{smallmatrix}a & b \ell^h \\c  \ell^{h} & d 
