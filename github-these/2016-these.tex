@@ -3658,6 +3658,54 @@ La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^
 Voyons maintenant le lien entre l'action du Frobenius et les isogénies engendrées par les points de la base.
 
 \begin{prop}
+Soient $P,R$ deux points de $E$ située au niveau $h-e$ tels que $\langle P,R 
+\rangle = E[\ell^{h-e+i}]$ alors $\pi(P,R)$ ne dépend que de $[\ell^{h-e}]R$
+\end{prop}
+
+\begin{proof}
+Matriciellement on peut vérifier cela en voyant que la conjugaison de la 
+matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & k' \ell^i \\
+0 & 1 + k \ell^i \end{smallmatrix} \right )$  laisse la matrice invariante 
+modulo $\ell^{h-e+i}$. 
+\end{proof}
+
+\begin{prop}
+Soient $P,R,R'$ trois points de $E$ située au niveau $h-e$ tels que $\langle 
+P,R \rangle = \langle P,R' \rangle$ alors $\pi(P,R)=\pi(P,R') $ si et seulement
+si $[\ell^{h-e}]R=[\ell^{h-e}]R'$.
+\end{prop}
+
+\begin{proof}
+Montrons tout d'abord que pour deux points $R,R'$ tels que $\pi(P,R)=\pi(P,R')$
+alors $[\ell^{h-e}]R=[\ell^{h-e}]R'$.
+Soient $R,R'$ deux points tels que $\pi(P,R)=\pi(P,R')=\left ( 
+\begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d \end{smallmatrix}\right )$ 
+alors cette égalité nous donne:
+\begin{enumerate}
+\item $\pi(P)=[a]P+[\beta^{-1}c\ell^{h-e}]R=[a]P+[\beta^{-1}c\ell^{h-e}]R'$, de
+cette égalité on déduit  lorsqe $c \wedge \ell = 1$ que $[\ell^{h-e}]R=
+[\ell^{h-e}]R'$ et lorsque $\ell^{2e} || c$ que $[\ell^{h+e}]R=[\ell^{h+e}]R'$,
+on se place donc dans le second cas pour la suite de la preuve.
+\item $[d]P=[b\ell^{h-e}\beta]R-\pi(R)=[b\ell^{h-e}\beta]R-\pi(R')$, on obtient
+alors $\pi(R-R')=[b\ell^{h-e}\beta](R-R')$, ainsi $R-R'$ est point de 
+$\ell^i$-torsion et l'on a donc $R-R'=0_E$.
+\end{enumerate}
+
+Supposons maintenant que $[\ell^{h-e}]R=[\ell^{h-e}]R'$ et prouvons par 
+l'absurde que $\pi(P,R) \neq \pi(P,R')$. On suppose donc que $\pi(P,R)= \left ( 
+\begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d \end{smallmatrix}\right)$
+et que $\pi(P,R')= \left( \begin{smallmatrix}a' & b'\ell^{h-e}\\c'\ell^{h-e} & 
+d' \end{smallmatrix}\right)$, alors on a $\pi(P)=[a]P+[c\ell^{h-e}]R=[a']P+[c'\ell^{h-e}]R'$
+que l'on peut réécrire $\pi(P)=[a-a']P+[c-c']([\ell^{h-e}]R)$
+et donc comme $P$ et $R$ forment une base alors  $a=a' \bmod \ell^{h-e+i}$ et
+$c\ell^{h-e} =c'\ell^{h-e} \bmod \ell^{h-e+i}$. Le déterminant et la trace du 
+Frobenius étant invariants selon le choix de la base on a alors $d=d' \bmod 
+\ell^{h-e+i}$ et $b\ell^{h-e} =b'\ell^{h-e} \bmod \ell^{h-e+i}$ on obtient donc
+ une contradiction, on a donc $\pi(P,R)=\pi(P,R')$.
+\end{proof}
+
+\begin{prop}
 \label{pro:cla:fro:mat}
 Soient $P,Q$ deux points définis sur une courbe elliptique $E$ située au niveau
 $h-e$ du cratère du volcan de $\ell$-isogénies tels que 
@@ -3680,27 +3728,6 @@ de noyau $\langle [\ell^{h-e}]S \rangle$.
 \end{prop}
 
 \begin{proof}
-Matriciellement on peut vérifier cela en voyant que la conjugaison de la 
-matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
-\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & k' \ell^i \\
-0 & 1 + k \ell^i \end{smallmatrix} \right )$  laisse la matrice invariante 
-modulo $\ell^{h-e+i}$. 
-
-Montrons maintenant que pour deux points $R,R'$ tels que $\pi(P,R)=\pi(P,R')$
-alors $[\ell^{h-e}]R=[\ell^{h-e}]R'$.
-Soient $R,R'$ deux points tels que $\pi(P,R)=\pi(P,R')=\left ( 
-\begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d \end{smallmatrix}\right )$ 
-alors cette égalité nous donne:
-\begin{enumerate}
-\item $\pi(P)=[a]P+[\beta^{-1}c\ell^{h-e}]R=[a]P+[\beta^{-1}c\ell^{h-e}]R'$, de
-cette égalité on déduit  lorsqe $c \wedge \ell = 1$ que $[\ell^{h-e}]R=
-[\ell^{h-e}]R'$ et lorsque $\ell^{2e} || c$ que $[\ell^{h+e}]R=[\ell^{h+e}]R'$,
-on se place donc dans le second cas pour la suite de la preuve.
-\item $[d]P=[b\ell^{h-e}\beta]R-\pi(R)=[b\ell^{h-e}\beta]R-\pi(R')$, on obtient
-alors $\pi(R-R')=[b\ell^{h-e}\beta](R-R')$, ainsi $R-R'$ est point de 
-$\ell^i$-torsion et l'on a donc $[\ell^{h-e}(R-R')]=0_E$.
-\end{enumerate}
-
 On travaille avec deux points $R=[x]P+[y]Q,R'=[x']P+[y']Q$ avec $y,y' \wedge 
 \ell=1$, car seulement dans ce cas $R$ et $R'$ forment avec $P$ une base de la 
 $\ell^{h-e+i}$-torsion. Nous allonrs alors montrer que $R$ et $R'$ engendrent 
