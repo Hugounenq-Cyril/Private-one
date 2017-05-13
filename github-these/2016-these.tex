@@ -2597,6 +2597,7 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
 
 
 \chapter{Volcans d'isog\'enies}
+\label{cha:volc:iso}
 Les deux documents à citer pour cette section sont \cite{Kohel96} qui a introduit les graphes d'isogénie et   \cite{Fouquet01} qui a développé ces idées pour donner une structure à ces graphes.
 
 \section{Anneau d'endomorphismes}
@@ -3798,6 +3799,23 @@ proposition~\ref{pro:atk:equi}.
 \end{proof}
 
 \subsection{Décomposition de la $\ell^{h+i}$ torsion sous l'action du Frobenius}
+
+On met tout d'abord en avant un résultat qui est une conséquence du 
+chapitre~\ref{cha:volc:iso}. 
+
+\begin{prop}
+Soit $E(\mathbb{F}_q)$ une courbe elliptique située au niveau du cratère d'un volcan de 
+$\ell$-isogénies alors:
+\[
+E(\mathbb{F}_q)[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z} 
+\]
+et $\beta=h$ si et seulement si le volcan est \emph{régulier}.
+\end{prop}
+
+\begin{proof}
+Voir \cite[§5.3.1]{Ionica2010}.
+\end{proof}
+
 L'action du Frobenius sur la $\ell^{h+i}$ torsion d'une courbe située au niveau
 du cratère peut être représentée à l'aide d'une matrice de la forme $\left( 
 \begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{smallmatrix} \right)
@@ -3871,6 +3889,9 @@ Le plus dur est ici...
 Parmi les $\ell+1$ sous-groupes cycliques de $E[\ell]$ il n'en existe qu'un $G$ tel 
 que $G=\langle \ell^{i-1}P \rangle$ dés lors le seul groupe 
 \end{proof}
+
+Sur un volcan régulier de Atkin la $\ell$ torsion au niveau du cratère est paritaire...
+en fait elle l'est quoiqu'il arrive (non régulier ou régulier...)
 
 \begin{prop}
 Soit $P$ un point d'ordre $\ell^{h+i}$ de la courbe elliptique $E$ située au 
