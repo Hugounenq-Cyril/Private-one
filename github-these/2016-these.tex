@@ -3816,29 +3816,13 @@ et $\beta=h$ si et seulement si le volcan est \emph{régulier}.
 Voir \cite[§5.3.1]{Ionica2010}.
 \end{proof}
 
-L'action du Frobenius sur la $\ell^{h+i}$ torsion d'une courbe située au niveau
-du cratère peut être représentée à l'aide d'une matrice de la forme $\left( 
-\begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{smallmatrix} \right)
-$ avec $a,b,c,d$ tous premiers avec $\ell$ et $\ell^h||a-d$. On cherche alors à
-déterminer la taille des orbites pour les points $Q$ et par conséquent leur 
-nombre de représentants.  
-
-\todo{ecrire pourquoi on se restreint au cas du cratere...}
-
-On se place dans le cas où la courbe elliptique ordinaire $E$ se situe au 
-niveau $h-e>0$ du volcan de $\ell$-isogénies.
- Pour $\ell$ premier impair, on note~$\alpha
-= v_{\ell}(a^{\ell-1}-1)$ et~$\beta=v_{\ell}(d^{\ell-1}-1)$; pour $\ell=2$,
-on note~$\alpha=v_2(a^2-1)-1$ et~$\beta = v_2(b^2-1)-1$, on suppose 
-sans perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces valeurs-là car pour n'importe quel corps fini $\mathbb{F}_q$ on a $E[\ell] \subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[4] \subset E(\mathbb{F}_q^{2})$ pour $\ell=2$. Comme $\lambda \neq \mu \bmod{\ell^{h+1}}$, il est
-impossible que $a \equiv d \equiv 1 \bmod{\ell^h+1}$ par la structure 
-d'un volcan de $\ell$-isogénies (voir section \ref{sec:lie:niv}), ainsi au moins une des deux
-valuations~$\alpha, \beta$ est~$\leqslant h-e$, par conséquent on va supposer sans perte de généralité que~$\beta \leqslant h-e$. \todo{est-ce vraiment utile cette dernière remarque ? A retravailler celle-ci}
+Dire juste après comment cela se comporte sur les extensions $\ell$-adiques...
 
 \begin{prop}\label{pro:clas:fro:atk} \todo{nécessaire}
-Soit $E$ une courbe elliptique ordinaire située au niveau $h-e>0$ d'un volcan de $\ell$-isogénies.
-Pour tout~$k$, on note~$d_k$ le degré de la plus petite extension de corps $F/\mathbb{F}_q$
-telle que~$E[\ell^k]\subset E(F)$. On  a alors:
+Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
+volcan de $\ell$-isogénies. Pour tout~$k$, on note~$d_k$ le degré de la plus 
+petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell^k]\subset E(F)$. 
+On  a alors:
 \begin{enumerate}
 \item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
 et $d_1$ qui divise~$(\ell-1)$.
@@ -3848,7 +3832,7 @@ $ d_k = \ell^{\max (v_{\ell} (d_1), k - \beta)}d_1$.
 \item Si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k > 2$,
 % $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
 $d_k = \ell^{\max (0, k - \beta)}d_2$.
-\item Soit $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\alpha} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
+\item Soit $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
 %\item\label{prop:classes:count} Le groupe~$E[\ell^k]$ contient au plus
 %$k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}_{q^{d_1}}$.
 \end{enumerate}
@@ -3876,6 +3860,47 @@ par conséquent il y a $\ell^{\min(\alpha+i, k) + \min(\beta, k-i)} \leqslant \e
  classes correspondantes.
 En additionnant ce résultat pour tous les ~$i$ on prouve~(5).
 \end{proof}
+
+\begin{lem}
+Soit $P$ un point d'ordre $\ell^{\beta+i}$ de $E$ situé au niveau du cratère du 
+volcan de $\ell$-isogénies telle que $E(\mathsf{F}_1)[\ell^{\infty}] \simeq 
+\mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$,
+alors la taille de l'orbite de $P$ selon l'action de $\mathsf{Gal}(
+\mathsf{F}_{\beta+i}:\mathsf{F}_1)$ est $\ell^i$. 
+\end{lem}
+
+\begin{prop}
+Soit $E$ une courbe elliptique située au niveau du cratère du volcan de 
+$\ell$-isogénies telle que $E(\mathsf{F}_1)[\ell^{infty}] \simeq 
+\mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$,
+alors il y a $\ell^{2\beta + i -2}(\ell+1)$ classes de conjugaison de points 
+d'ordre $\ell^{\beta+i}$ selon l'action de $\mathsf{Gal}(
+\mathsf{F}_{\beta+i}:\mathsf{F}_1)$.
+\end{prop}
+
+On travaille tout d'abord avec une extension $\mathsf{F}_0$ sur laquelle on a 
+$E[\ell]$ défini afin de faire cela 
+
+L'action du Frobenius sur la $\ell^{h+i}$ torsion d'une courbe située au niveau
+du cratère peut être représentée à l'aide d'une matrice de la forme $\left( 
+\begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{smallmatrix} \right)
+$ avec $a,b,c,d$ tous premiers avec $\ell$ et $\ell^h||a-d$. On cherche alors à
+déterminer la taille des orbites pour les points $Q$ et par conséquent leur 
+nombre de représentants.  
+
+\todo{ecrire pourquoi on se restreint au cas du cratere...}
+
+On se place dans le cas où la courbe elliptique ordinaire $E$ se situe au 
+niveau $h-e>0$ du volcan de $\ell$-isogénies.
+ Pour $\ell$ premier impair, on note~$\alpha
+= v_{\ell}(a^{\ell-1}-1)$ et~$\beta=v_{\ell}(d^{\ell-1}-1)$; pour $\ell=2$,
+on note~$\alpha=v_2(a^2-1)-1$ et~$\beta = v_2(b^2-1)-1$, on suppose 
+sans perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces valeurs-là car pour n'importe quel corps fini $\mathbb{F}_q$ on a $E[\ell] \subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[4] \subset E(\mathbb{F}_q^{2})$ pour $\ell=2$. Comme $\lambda \neq \mu \bmod{\ell^{h+1}}$, il est
+impossible que $a \equiv d \equiv 1 \bmod{\ell^h+1}$ par la structure 
+d'un volcan de $\ell$-isogénies (voir section \ref{sec:lie:niv}), ainsi au moins une des deux
+valuations~$\alpha, \beta$ est~$\leqslant h-e$, par conséquent on va supposer sans perte de généralité que~$\beta \leqslant h-e$. \todo{est-ce vraiment utile cette dernière remarque ? A retravailler celle-ci}
+
+
 
 \begin{lem}
 Soit $P$ un point d'ordre $\ell^i$ de $E(\mathbb{F}_q)$ tel que $\phi$ la $\ell^i$-isogénie 
