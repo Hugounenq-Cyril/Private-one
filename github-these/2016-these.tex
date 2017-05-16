@@ -3617,8 +3617,8 @@ tel que $\pi|T_{\ell}(E)$~est égale, sur~$\mathbb{Z}_{\ell}$,
 De plus $e = 0$ si~$E$ se situe sur le cratère,
 sinon $e$~est la profondeur de~$E$ dans le volcan.
 On a soit $b$ et $c$ premiers avec $\ell$ soit l'un des deux est premier avec 
-$\ell$ et l'autre est exactement divisible par $\ell^{2e}$.
-Lorsque $\ell=2$ on a $2^{h} || a-d$.
+$\ell$ et l'autre a sa valuation $\ell$-adique appartiennt à l'intervalle 
+$[1,2e]$. Lorsque $\ell=2$ et $e=0$ on a $2^{h} || a-d$.
 \todo{notations un peu perturbantes par rapport au cas Elkies, n'est-ce pas ?}
 \end{prop}
 
@@ -3629,32 +3629,40 @@ sont rationnelles, ainsi l'action du Frobenius sur une base de la
 $\ell^{h-e}$-torsion est diagonale, mais comme le polynôme caractéristique de 
 $\pi$ est irréductible sur $\mathbb{Z}_{\ell}$ alors l'action du Frobenius doit
 être scalaire, ainsi on a $a=d \bmod \ell^{h-e}$.
-On a alors la matrice du Frobenius modulo la $\ell^{h-e+i}$ torsion qui  
+On a alors la matrice du Frobenius sur $\mathbb{Z}_{\ell}$ qui  
 \begin{itemize}
 \item lorsque $h-e=h$ est de la forme $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
 \end{smallmatrix}\right )$ avec $b \wedge \ell=1$ et $c \wedge \ell=1$. En 
 effet on a $\left(\frac{d_K}{\ell}\right)=\left(\frac{d_{\pi}/\ell^{2h}}{\ell}
 \right)$ or $d_{\pi}=\frac{(a-d)^2}{\ell^{2h}}+4bc$ ainsi on doit avoir $bc 
 \wedge \ell=1$. Comme dans le cas $\ell=2$ on a $d_K=5 \bmod 8$ alors on a 
-$(\frac{a-d}{\ell})^2 \neq 0 \bmod 2$.
-\item lorsque $h-e \neq h$ est de la forme  $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\ c\ell^{h-e}  & d
-\end{smallmatrix}\right )$ avec soit $b, c$ premiers avec $\ell$ soit $b$ ou $c$ premier avec $\ell$ l'autre étant divisible par $\ell^{2e}$. Ce second cas correspond au cas où l'on a un point de la base dans laquelle est exprimée l'action du Frobenius qui est un générateur de l'isogénie "montante" sous-groupe isomorphe à $\mathbb{Z}/\ell^{h-e+1} \mathbb{Z} \times \mathbb{Z}/\ell^{X}\mathbb{Z}$ qui définit des $\ell^{h-e+i}$isogénies 
-rationnelles. \todo{retravailler cela...} Il faut dire que l'on a $a=d \bmod \ell^h$ par transport à l'aide d'isogénie descendante...
+$(\frac{a-d}{\ell^{h}})^2 \neq 0 \bmod 2$.
+\item lorsque $h-e \neq h$ est de la forme  $\left ( \begin{smallmatrix}a & 
+b\ell^{h-e}\\ c\ell^{h-e}  & d \end{smallmatrix}\right )$ avec soit $b, c$ 
+premiers avec $\ell$ soit $b$ ou $c$ premier avec $\ell$ l'autre ayant une 
+valuation $\ell$-adique comprise entre $1$ et $2e$. Ce second cas correspond au
+cas où l'on a un point de la base dans laquelle est exprimée l'action du 
+Frobenius qui est un générateur de l'unique $\ell$-isogénie montante, le plus 
+grand degré d'isogénie définie sur $\mathbb{F}_q$ ayant pour domaine $E$ étant 
+une $\ell^{h+e}$ on a alors le résultat. Comme vu précédemment on doit avoir 
+$\ell^{2h} | d_{\pi}=(a-d)^2+4bc\ell^{2h-2e}$, on a alors en particulier 
+$\ell^{2h-2e} | d_{\pi}$ et donc $\ell^{2h-2e} | (a-d)^2$.
 \end{itemize}
-
-La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
-\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & \beta \\0 & 1
-\end{smallmatrix} \right )$   nous donne la matrice $\left ( \begin{smallmatrix}a + 
-\beta (c\ell^{h-e}) & -\beta^2c\ell^{h-e} + \beta(d-a) +\ell^{h-e} b\\c\ell^{h-e} & d - \beta c\ell^{h-e}
+On peut alors montrer matriciellement que le changement de base préserve les 
+propriétés énoncées. La conjugaison de la matrice $\left ( \begin{smallmatrix}a
+& b\ell^{h-e}\\c\ell^{h-e} & d \end{smallmatrix}\right )$ par~$\left ( 
+\begin{smallmatrix}1 & \beta \\0 & 1 \end{smallmatrix} \right )$ nous donne la
+matrice $\left ( \begin{smallmatrix}a + \beta (c\ell^{h-e}) & \ell^{h-e}(
+-\beta^2c + \beta(d-a)/\ell^{h-e} + b)\\c\ell^{h-e} & d - \beta c\ell^{h-e}
 \end{smallmatrix}\right )$ pour laquelle les coefficients diagonaux sont encore
-égaux modulo $\ell^{h-e}$. Le coefficient $-\beta^2c\ell^{h-e} + \beta(d-a) +\ell^{h-e} b$ 
-s'annule seulement si $\frac{d-a}{\ell^{h-e}}-4bc$ est un résidu quadratique.
-est intéressant à analyser... On a $d_{\pi}/\ell^{2h}=(d-a)^2/{\ell^{2h}} + 4 bc$ \todo{est non nul, mais qu est ce que cela veut dire}
+égaux modulo $\ell^{h-e}$. Le coefficient $(-\beta^2c + \beta(d-a)/
+\ell^{h-e} + b)$ peut être divisible par $\ell$ seulement si $\frac{d-a}{\ell^{h-e}}+4bc=
+d_{\pi}/{\ell^{2h-2e}}$ est un résidu quadratique dans $\mathbb{Z}_{\ell}$. 
 La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
 \end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix} \gamma & 0 \\0 & 1
-\end{smallmatrix} \right )$   nous donne la matrice $\left ( \begin{smallmatrix}a
- & b\gamma^{-1} \ell^{h-e} \\c \gamma \ell^{h-e} & d 
-\end{smallmatrix}\right )$
+\end{smallmatrix} \right )$ avec $\gamma \wedge \ell=1$  a pour résultat la 
+matrice $\left ( \begin{smallmatrix}a  & b\gamma^{-1} \ell^{h-e} \\c \gamma 
+\ell^{h-e} & d \end{smallmatrix}\right )$.
 \end{proof}
 
 Voyons maintenant le lien entre l'action du Frobenius et les isogénies engendrées par les points de la base.
