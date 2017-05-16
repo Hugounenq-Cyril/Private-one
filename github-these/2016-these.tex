@@ -3618,7 +3618,7 @@ De plus $e = 0$ si~$E$ se situe sur le cratère,
 sinon $e$~est la profondeur de~$E$ dans le volcan.
 On a soit $b$ et $c$ premiers avec $\ell$ soit l'un des deux est premier avec 
 $\ell$ et l'autre est exactement divisible par $\ell^{2e}$.
-Lorsque $e=0$ on a $\ell^{h} || a-d$.
+Lorsque $\ell=2$ on a $2^{h} || a-d$.
 \todo{notations un peu perturbantes par rapport au cas Elkies, n'est-ce pas ?}
 \end{prop}
 
@@ -3627,18 +3627,19 @@ Soit $E$ une courbe située au niveau $h-e$ du volcan de $\ell$-isogénies, alor
 comme les $\ell$-isogénies sont rationnelles, alors les $\ell^{h-e}$-isogénies 
 sont rationnelles, ainsi l'action du Frobenius sur une base de la 
 $\ell^{h-e}$-torsion est diagonale, mais comme le polynôme caractéristique de 
-$\pi$ est irréductible alors l'action du Frobenius doit être scalaire, ainsi on
-a $a=b \bmod \ell^{h-e}$.
+$\pi$ est irréductible sur $\mathbb{Z}_{\ell}$ alors l'action du Frobenius doit
+être scalaire, ainsi on a $a=d \bmod \ell^{h-e}$.
 On a alors la matrice du Frobenius modulo la $\ell^{h-e+i}$ torsion qui  
 \begin{itemize}
 \item lorsque $h-e=h$ est de la forme $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
-\end{smallmatrix}\right )$ avec $b \wedge \ell=1$ et $c \wedge \ell=1$, en 
-effet si l'on avait $\ell | b$ ou $\ell |c$ alors cela voudrait dire que l'on a
-des $\ell^{h+1}$-isogénies définies sur $\mathbb{F}_q$. Par un argument sur
-le discriminant on montre que $a \neq  d \bmod \ell^{h+1}$. \todo{doit-on expliciter que $\mathsf{discriminant}_K*\ell^{2h}=\det$}
+\end{smallmatrix}\right )$ avec $b \wedge \ell=1$ et $c \wedge \ell=1$. En 
+effet on a $\left(\frac{d_K}{\ell}\right)=\left(\frac{d_{\pi}/\ell^{2h}}{\ell}
+\right)$ or $d_{\pi}=\frac{(a-d)^2}{\ell^{2h}}+4bc$ ainsi on doit avoir $bc 
+\wedge \ell=1$. Comme dans le cas $\ell=2$ on a $d_K=5 \bmod 8$ alors on a 
+$(\frac{a-d}{\ell})^2 \neq 0 \bmod 2$.
 \item lorsque $h-e \neq h$ est de la forme  $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\ c\ell^{h-e}  & d
-\end{smallmatrix}\right )$ avec soit $b, c$ premiers avec $\ell$ soit $b$ ou $c$ premier avec $\ell$ l'autre étant nul. Ce second cas correspond au cas où l'on a un sous-groupe isomorphe à $\mathbb{Z}/\ell^{h-e+1} \mathbb{Z} \times \mathbb{Z}/\ell^{X}\mathbb{Z}$ qui définit des $\ell^{h-e+i}$isogénies 
-rationnelles. \todo{retravailler cela...} Par un argument sur le discriminant on montre que $a \neq  d \bmod \ell^{h+1}$. Il faut dire que l'on a $a=d \bmod \ell^h$ par transport à l'aide d'isogénie descendante...
+\end{smallmatrix}\right )$ avec soit $b, c$ premiers avec $\ell$ soit $b$ ou $c$ premier avec $\ell$ l'autre étant divisible par $\ell^{2e}$. Ce second cas correspond au cas où l'on a un point de la base dans laquelle est exprimée l'action du Frobenius qui est un générateur de l'isogénie "montante" sous-groupe isomorphe à $\mathbb{Z}/\ell^{h-e+1} \mathbb{Z} \times \mathbb{Z}/\ell^{X}\mathbb{Z}$ qui définit des $\ell^{h-e+i}$isogénies 
+rationnelles. \todo{retravailler cela...} Il faut dire que l'on a $a=d \bmod \ell^h$ par transport à l'aide d'isogénie descendante...
 \end{itemize}
 
 La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
@@ -3691,7 +3692,7 @@ $\pi(P,R)=\pi(P,R') \Rightarrow [\ell^{h-e}]R=[\ell^{h-e}]R'$ n'est plus
 assurée on peut seulement montrer que $\pi(P,R)=\pi(P,R') \Rightarrow 
 [\ell^{h+e}]R=[\ell^{h+e}]R'$.
 \end{rem}
-
+\todo{choisir entre la remarque et la proposition}
 \begin{prop}
 \label{pro:atk:inv:mat}
 Soient $P,R,R'$ trois points de la courbe elliptique $E$ située au niveau $h-e$
@@ -3723,8 +3724,8 @@ $E[\ell^{h+i}]=\langle P,Q \rangle$. On pose $R=[x]P+[y]Q$ avec $y\wedge
 \[
 \pi(P,R)=\left ( \begin{matrix}a & b\ell^{h} \\ c\ell^{h} & d
 \end{matrix}\right ) 
-\] représentant l'action du Frobenius dans la base $\langle P,R \rangle$ 
-alors:
+\] représentant l'action du Frobenius dans la base $\langle P,R \rangle$ est
+conjuguée aux matrices de la forme:
 \[
 \pi(P,R')=\left ( \begin{matrix}a & b\ell^{h}\beta^{-1} \\ c\ell^{h}\beta & d
 \end{matrix}\right ) 
@@ -3767,7 +3768,7 @@ $[x]P+[y]Q \rightarrow [\beta x]P+[\beta y]Q$ avec $\beta \in \left( \mathbb{Z}
 \end{proof}
 
 Il est intéressant de noter que ce résultat nous permet de distinguer les 
-différents générateurs de la $\ell^i$ isogénie générée par le second point qui
+différents générateurs de la $\ell^i$-isogénie générée par le second point qui
 forme une base avec $P$. \todo{a re rédiger}
 
 \begin{lem}
