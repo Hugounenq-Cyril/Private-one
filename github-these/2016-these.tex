@@ -3843,7 +3843,7 @@ on a alors:
 E(F)[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z} 
 \]
 avec pour $\ell \neq 2$ $\beta \in [1,h]$ et pour $\ell=2$ $\beta \in [2,h]$. De 
-plus $\beta=h$ si et seulement si le volcan est \emph{régulier}.
+plus $\beta=h$ la hauteur du volcan sur $F$ si et seulement si le volcan est \emph{régulier}.
 \end{prop}
 
 \begin{proof}
@@ -3855,7 +3855,7 @@ valuation $\ell$-adique de la torsion rationnelle sur $F$ la plus petite
 extension de  $\mathbb{F}_q$ telle que $E[\ell] \subset E(F)$ lorsque $\ell 
 \neq 2$ et $E[4] \subset E(F)$ lorsque $\ell = 2$.
 
-\begin{prop}\label{pro:clas:fro:atk} \todo{nécessaire}
+\begin{prop}\label{pro:clas:fro:atk}
 Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
 volcan de $\ell$-isogénies. En reprenant les notations de la 
 proposition~\ref{pro:atk:d1} pour tout~$k$, on note~$d_k$ le degré de la plus 
@@ -3870,122 +3870,50 @@ $ d_k = \ell^{\max (0, k - \beta)}d_1$.
 \item Si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k > 2$,
 % $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
 $d_k = \ell^{\max (0, k - \beta)}d_2$.
-\item Soit $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
+\item Si $\ell \neq 2$ pour $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
+\item Si $\ell = 2$ pour $[F:\mathbb{F}_q]=d_2\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
 %\item\label{prop:classes:count} Le groupe~$E[\ell^k]$ contient au plus
 %$k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}_{q^{d_1}}$.
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
-Ces résultats viennent du fait que'avec une extension $\ell$-adique on augmente
-seulement de $1$ la hauteur du volcan.
+Le premier résultat a déjà été montré dans la proposition~\ref{pro:atk:d1}.
+Les résultats suivants viennent du fait que pour augmenter de $1$ la hauteur du
+volcan de $\ell$-isogénies on est obligé de travailler avec une extension 
+$\ell$-adique par \cite[Lemme 6.5.2]{Fouquet01}. Dés lors que l'on augmente de 
+$1$ la hauteur du volcan en travaillant sur $\mathsf{F}_{\ell}$ l'extensiont de
+degré $\ell$ de $\mathsf{F}$ on a pour $E[\ell^{\infty}](\mathsf{F})= \mathbb{Z}/
+\ell^{n_1} \mathbb{Z} \times \mathbb{Z}/\ell^{n_2} \mathbb{Z}$, $E[\ell^{\infty}
+](\mathsf{F}_{\ell})= \mathbb{Z}/\ell^{n_1+1} \mathbb{Z} \times \mathbb{Z}/\ell^{n_2+1} 
+\mathbb{Z}$ comme montré dans \cite[§5.3.1]{Ionica2010}.
 \end{proof}
 
-\begin{lem}
-Soit $P$ un point d'ordre $\ell^{\beta+i}$ de $E$ situé au niveau du cratère du 
-volcan de $\ell$-isogénies telle que $E(\mathsf{F}_1)[\ell^{\infty}] \simeq 
-\mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$,
-alors la taille de l'orbite de $P$ selon l'action de $\mathsf{Gal}(
-\mathsf{F}_{\beta+i}:\mathsf{F}_1)$ est $\ell^i$. 
-\end{lem}
+\begin{nota}
+On note par $\mathsf{F}_i$ la plus petite extension de corps de 
+$\mathbb{F}_q$ de degré $d_i$ avec $d_i$ défini comme dans la 
+proposition~\ref{pro:clas:fro:atk}.
+\end{nota}
 
-\begin{prop}
+Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité.
+
+\begin{cor}
+Soit $P$ un point d'ordre $\ell^{\beta+i}$ de la courbe elliptique $E$ située 
+au niveau du cratère du volcan de $\ell$-isogénies telle que $E(\mathsf{F}_
+{1})[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times 
+\mathbb{Z}/ \ell^{\beta}\mathbb{Z}$, alors la taille de l'orbite de $P$ selon 
+l'action de $\mathsf{Gal}(\mathsf{F}_{\beta+i}:\mathsf{F}_{1})$ est 
+$\ell^i$. 
+\end{cor}
+
+\begin{cor}
 Soit $E$ une courbe elliptique située au niveau du cratère du volcan de 
 $\ell$-isogénies telle que $E(\mathsf{F}_1)[\ell^{\infty}] \simeq 
 \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$,
 alors il y a $\ell^{2\beta + i -2}(\ell+1)$ classes de conjugaison de points 
 d'ordre $\ell^{\beta+i}$ selon l'action de $\mathsf{Gal}(
-\mathsf{F}_{\beta+i}:\mathsf{F}_1)$.
-\end{prop}
-
-On travaille tout d'abord avec une extension $\mathsf{F}_0$ sur laquelle on a 
-$E[\ell]$ défini afin de faire cela 
-
-L'action du Frobenius sur la $\ell^{h+i}$ torsion d'une courbe située au niveau
-du cratère peut être représentée à l'aide d'une matrice de la forme $\left( 
-\begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{smallmatrix} \right)
-$ avec $a,b,c,d$ tous premiers avec $\ell$ et $\ell^h||a-d$. On cherche alors à
-déterminer la taille des orbites pour les points $Q$ et par conséquent leur 
-nombre de représentants.  
-
-\todo{ecrire pourquoi on se restreint au cas du cratere...}
-
-On se place dans le cas où la courbe elliptique ordinaire $E$ se situe au 
-niveau $h-e>0$ du volcan de $\ell$-isogénies.
- Pour $\ell$ premier impair, on note~$\alpha
-= v_{\ell}(a^{\ell-1}-1)$ et~$\beta=v_{\ell}(d^{\ell-1}-1)$; pour $\ell=2$,
-on note~$\alpha=v_2(a^2-1)-1$ et~$\beta = v_2(b^2-1)-1$, on suppose 
-sans perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces valeurs-là car pour n'importe quel corps fini $\mathbb{F}_q$ on a $E[\ell] \subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[4] \subset E(\mathbb{F}_q^{2})$ pour $\ell=2$. Comme $\lambda \neq \mu \bmod{\ell^{h+1}}$, il est
-impossible que $a \equiv d \equiv 1 \bmod{\ell^h+1}$ par la structure 
-d'un volcan de $\ell$-isogénies (voir section \ref{sec:lie:niv}), ainsi au moins une des deux
-valuations~$\alpha, \beta$ est~$\leqslant h-e$, par conséquent on va supposer sans perte de généralité que~$\beta \leqslant h-e$. \todo{est-ce vraiment utile cette dernière remarque ? A retravailler celle-ci}
-
-
-
-\begin{lem}
-Soit $P$ un point d'ordre $\ell^i$ de $E(\mathbb{F}_q)$ tel que $\phi$ la $\ell^i$-isogénie 
-de noyau $\langle P \rangle$ ait pour codomaine $E_c$ tel que $E_c(\mathbb{F}_q)[\ell] \simeq 
-\mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$. Alors il existe
-$\ell$ points $A_i$, $i \in (1,\ell)$ de $E$ tels que $\ell A_i=P$.
-\end{lem}
-
-\begin{proof}
-Le plus dur est ici...
-Parmi les $\ell+1$ sous-groupes cycliques de $E[\ell]$ il n'en existe qu'un $G$ tel 
-que $G=\langle \ell^{i-1}P \rangle$ dés lors le seul groupe 
-\end{proof}
-
-Sur un volcan régulier de Atkin la $\ell$ torsion au niveau du cratère est paritaire...
-en fait elle l'est quoiqu'il arrive (non régulier ou régulier...)
-
-\begin{prop}
-Soit $P$ un point d'ordre $\ell^{h+i}$ de la courbe elliptique $E$ située au 
-niveau du cratère du volcan de $\ell$-isogénies alors la taille de l'orbite de 
-$P$ selon l'action du Frobenius est de taille $\ell^i$.
-\end{prop}
-
-\begin{proof}
-Dire que l'orbite du point $P$ de la courbe elliptique $E$ située au niveau du 
-cratère soit de taille $x$ inférieure à $\ell^i$ revient 
-à dire que le volcan de $\ell$-isogénies a pour hauteur $h+i$ sur l'extension 
-de degré $x$ de $\mathbb{F}_q$, or le seul moyen pour avoir un volcan de 
-hauteur $h+i$ est de prendre une extension de degré multiple à $\ell^i$.
-\todo{Faire une distinction cas $\ell=2$}
-\end{proof}
-
-\begin{prop}
-\label{pro:atk:dist:orb}
-Soient $R,R'$ deux points d'ordre $\ell^{h-e+i}$ de $E$ située au niveau $h-e$ 
-du volcan de $\ell$-isogénies, alors si l'on a $\pi^x(R)=R'$ alors
-$[\ell^i]R$ et $[\ell^i]R'$ engendrent la même $\ell^{h-e}$-isogénie.
-\end{prop} 
-
-\begin{proof}
-A partir de $\pi^x(R)=R'$ on a $[\ell^{i}]\pi^x(R)=\pi^x([\ell^i]R)=[\ell^i]R'$
-or l'action du Frobenius sur les points de $\ell^{h-e}$-torsion est diagonale ainsi
-il existe $\alpha \in (\mathbb{Z}/\ell^h\mathbb{Z})^{\times}$ tel que 
-$\pi([\ell^i]R)=[\alpha]([\ell^i]R)$ on obtient alors l'égalité suivante entre
-$R$ et $R'$: $[\alpha^x]([\ell^i]R)=[\ell^i]R'$ et donc on a le résultat.
-\end{proof}
-
-Ainsi avec ce résultat on a un critère pour savoir si deux points sont dans des
-orbites distinctes.
-
-\begin{prop}
-Soit $E$ une courbe située au niveau $h-e$ d'un volcan de $\ell$-isogénies
-alors il existe $\ell^{h-e-1}(\ell+1)$ représentants d'orbites distinctes des 
-points d'ordre $\ell^{h-e+i}$.
-\end{prop}
-
-\begin{proof}
-A l'aide de la proposition~\ref{pro:atk:dist:orb} pour trouver différents 
-représentants d'orbites selon l'action du Frobenius il suffit de prendre des 
-points qui engendrent tous des $\ell^h$-isogénies distinctes. Ainsi en fixant 
-une base $(P,Q)$ de la $\ell^{h-e+i}$-torsion, on cherche tous les points de la
-forme $[a]P+[b]Q$ tels que les points $[\ell^i]([a]P+[b]Q)$ engendrent des 
-$\ell^h-e$-isogénies distinctes. On a alors $\ell^{h-e-1}(\ell+1)$ représentants 
-d'orbites distinctes.
-\end{proof}
+\mathsf{F}_{\beta+i}:\mathsf{F}_{1})$.
+\end{cor}
 
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
 \label{cha:con:poi}
