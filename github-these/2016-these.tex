@@ -3809,34 +3809,63 @@ proposition~\ref{pro:atk:equi}.
 
 \subsection{Décomposition de la $\ell^{h+i}$ torsion sous l'action du Frobenius}
 
-On met tout d'abord en avant un résultat qui est une conséquence du 
+\begin{prop}
+Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
+volcan de $\ell$-isogénies. On note~$d_1$ le degré de la plus 
+petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell]\subset E(F)$. 
+On  a alors l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
+et $d_1$ qui divise~$(\ell-1)$.
+\end{prop}
+
+\begin{proof}
+On procède de manière similaire à la preuve de la proposition~\ref{pro:clas:fro}.
+Le degré ~$d_1$ correspond à l'ordre de la matrice~$\pi|E[\ell]$.
+On obtient donc le résultat en utilisant le fait que~$a \cdot d = q$.
+\end{proof}
+
+On met en avant un résultat qui est une conséquence du 
 chapitre~\ref{cha:volc:iso}. 
 
 \begin{prop}
-Soit $E(\mathbb{F}_q)$ une courbe elliptique située au niveau du cratère d'un volcan de 
-$\ell$-isogénies alors:
+\label{pro:atk:d1}
+Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
+volcan de $\ell$-isogénies,
+\begin{itemize}
+\item pour $\ell \neq 2$ on définit $F/\mathbb{F}_q$ la 
+plus petite extension de corps de $\mathbb{F}_q$ de degré $d_1$ telle que 
+$E[\ell] \subset E(F)$,
+\item pour $\ell=2$ on définit $F/\mathbb{F}_q$ la 
+plus petite extension de corps de $\mathbb{F}_q$ de degré $d_2 \in {1,2}$ telle
+que $E[4] \subset E(F)$,
+\end{itemize}
+on a alors:
 \[
-E(\mathbb{F}_q)[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z} 
+E(F)[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z} 
 \]
-et $\beta=h$ si et seulement si le volcan est \emph{régulier}.
+avec pour $\ell \neq 2$ $\beta \in [1,h]$ et pour $\ell=2$ $\beta \in [2,h]$. De 
+plus $\beta=h$ si et seulement si le volcan est \emph{régulier}.
 \end{prop}
 
 \begin{proof}
 Voir \cite[§5.3.1]{Ionica2010}.
 \end{proof}
 
-Dire juste après comment cela se comporte sur les extensions $\ell$-adiques...
+Dorénavant on va garder cette notation de $\beta$ représentant la plus grande 
+valuation $\ell$-adique de la torsion rationnelle sur $F$ la plus petite 
+extension de  $\mathbb{F}_q$ telle que $E[\ell] \subset E(F)$ lorsque $\ell 
+\neq 2$ et $E[4] \subset E(F)$ lorsque $\ell = 2$.
 
 \begin{prop}\label{pro:clas:fro:atk} \todo{nécessaire}
 Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
-volcan de $\ell$-isogénies. Pour tout~$k$, on note~$d_k$ le degré de la plus 
+volcan de $\ell$-isogénies. En reprenant les notations de la 
+proposition~\ref{pro:atk:d1} pour tout~$k$, on note~$d_k$ le degré de la plus 
 petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell^k]\subset E(F)$. 
 On  a alors:
 \begin{enumerate}
 \item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
 et $d_1$ qui divise~$(\ell-1)$.
 \item Si $\ell$~est impair alors pour tout $k > 1$,
-$ d_k = \ell^{\max (v_{\ell} (d_1), k - \beta)}d_1$.
+$ d_k = \ell^{\max (0, k - \beta)}d_1$.
 % $d_k = \mathrm {lcm} (d_1, \ell^{k-\beta})$.
 \item Si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k > 2$,
 % $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
@@ -3848,26 +3877,8 @@ $d_k = \ell^{\max (0, k - \beta)}d_2$.
 \end{prop}
 
 \begin{proof}
-De manière similaire à la preuve de la proposition~\ref{pro:clas:fro}.
-Le degré ~$d_k$ correspond à l'ordre de la matrice~$\pi|E[\ell^k]$.
-%$d_k$ est donc le plus petit multiple commmun des ordres multiplicatifs
-%de~$\lambda, \mu$ modulo~$\ell^k$,
-On obtient donc~(1) en utilisant le fait que~$a \cdot d = q$.
-Pour les points~(2)--(5) on peut supposer que l'on a $d_1 = 1$,
-alors pour tout entier~$N$, $v_{\ell}(\lambda^{2N}-1) = \alpha + v_{\ell} (2N)$.
-Soit~$(P, Q)$ une base diagonale de~$E[\ell^k]$,
-le point $(\pi^N - 1) ([x] P + [y] Q) = [(\lambda^N-1) x] P + [(\mu^N-1) y] Q$
-est nul si et seulement si $v_{\ell} (x) + \alpha + v_{\ell} (N) \geq k$
-et~$v_{\ell} (y) + \beta + v_{\ell} (N) \geq k$, cela montre~(4).
-Les plus grandes classes de Galois sont celles pour lesquelles
-on a~$v_{\ell} (y) = 0$ et leur taille est~$\ell^{k - \beta}$,
-ce qui prouve~(2) et~(3).
-De plus, pour tout~$i \leq k-\beta$ les points dans une orbite de taille~$\leqslant \ell^i$
-sont ceux pour lesquels~$v_{\ell} (x) \geqslant k - \alpha - i$ et~$v_{\ell} (y) \geqslant k - \beta - i$;
-il y a au plus $\ell^{\min(\alpha+i, k) + \min (\beta+i, k)}$ tels points,
-par conséquent il y a $\ell^{\min(\alpha+i, k) + \min(\beta, k-i)} \leqslant \ell^{k-i+\beta}$
- classes correspondantes.
-En additionnant ce résultat pour tous les ~$i$ on prouve~(5).
+Ces résultats viennent du fait que'avec une extension $\ell$-adique on augmente
+seulement de $1$ la hauteur du volcan.
 \end{proof}
 
 \begin{lem}
