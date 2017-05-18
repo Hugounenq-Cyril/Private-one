@@ -7222,6 +7222,67 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
   calculer $A$ au coût de $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
 \end{proof}
 
+\chapter{Pourquoi la méthode Atkin ne marche pas sur le cas Elkies}
+Ces travaux s'inspirent de ceux de mon mémoire.
+
+\begin{lem} \label{lem:app:eq}
+Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ sur un volcan de $\ell$-isogénies à cratère cyclique ($\ell$ est donc un nombre de Elkies). Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$ tel que:
+\begin{equation}
+  \label{eq:mat}
+ \pi(P,R)= \left(\begin{array}{cc}
+      \lambda & \beta \ell^{h}\\
+      0 & \mu
+    \end{array}\right) \bmod \ell^{h+i}
+\end{equation}
+Alors pour les transformations:
+\begin{equation*}
+R=[a]P+[b]Q \rightarrow R'=[xa]P+[yb]Q
+\end{equation*}
+tels que $\pi(P,R)=\pi(P,R')$ on obtient l'équation suivante:
+\[  (* - b' \cdot b^{-1} \cdot a ) \cdot (1-q)  \equiv \alpha \cdot (1-b' \cdot b^{-1}) \bmod l^h \]
+\end{lem}
+
+\begin{proof}
+Traduisons le fait que le point $a \cdot P_2 + b \cdot Q_2$ avec le point $P_2$  forme une base dans laquelle la matrice de l'action de l'endomorphisme de Frobenius soit de la forme \ref{eq:mat}, on a alors:
+\[
+\pi([a]  P + [b]  Q) = [\beta \ell^h] P + [\mu] ([a] P + [b]  Q) 
+\]
+Comme $\pi$ est un morphisme on a: 
+\[
+\pi([a]  P + [b]  Q)= [a]  \pi(P) + [b] \pi(Q) 
+\]
+Comme  $\pi(P)=[\lambda]P$, on obtient: 
+\[
+\pi([a]  P + [b]  Q)= [a \lambda]  P + [b] \pi(Q)
+\]
+Ainsi avec cette égalité et la première, on en déduit la valeur de $ [b]\pi(Q)$
+\[
+[b] \pi (Q) = [a(\mu -\lambda) + \beta \ell^h]  P + [\mu b] Q
+\]
+Maintenant exprimons l'action du Frobenius sur $R'$:
+\begin{eqnarray*}
+\pi( [xa] P + [yb] Q) &=& [xa] \pi (P) + [ yb] \pi (Q) \\
+&=&  [xa \lambda ] P + [y]([b] \pi (Q)) 
+\end{eqnarray*}
+Ainsi en remplaçant  $[b]\pi (Q)$ on obtient: 
+\begin{eqnarray*}
+\pi( [xa] P + [yb] Q) &=& [xa \lambda ] P + [y] ( [a(\mu -\lambda) + \beta \ell^h]  P + [\mu b] Q) \\
+&=& [xa\lambda + y a (\mu - \lambda)+ y \beta \ell^h ] P + [y \mu b ] Q
+\end{eqnarray*}
+Or comme on suppose que $\pi(P,R)=\pi(P,R')$ on obtient:
+\begin{eqnarray*}
+\pi( [xa] P + [yb] Q) &=&  [\beta \ell^h] \cdot P + [\mu] ([xa] P + [yb] Q ) \\
+&=& [xa\lambda + y a (\mu - \lambda)+ y \beta \ell^h ] P + [y \mu b ] Q
+\end{eqnarray*}
+Ainsi on doit avoir 
+\[
+(* + b' \cdot b^{-1} \cdot (\alpha + a \cdot (q-1))  =( \alpha + q \cdot * ) \cdot P_2 \bmod \ell^{h+i}
+\]
+Ainsi comme $P_2$ est un point d'ordre $l^k$ pour avoir l'égalité on doit avoir: 
+\[ \alpha + q \cdot * \equiv  * + b' \cdot b^{-1} \cdot ( \alpha  + a \cdot (q-1))) \bmod l^h\]
+Ce qui nous amène à l'équation: 
+\[ \alpha \cdot (1-b' \cdot b^{-1}) \equiv (* - b' \cdot b^{-1} \cdot a ) \cdot (1-q)  \bmod l^h \]
+\end{proof}
 \printnomenclature
 
 
