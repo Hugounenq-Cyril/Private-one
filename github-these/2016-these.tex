@@ -7239,7 +7239,12 @@ Alors pour les transformations:
 R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
 \end{equation*}
 tels que $\pi(P,R)=\pi(P,R')$ on obtient l'équation suivante:
+\[  (* - b' \cdot b^{-1} \cdot a ) \cdot (1-q)  \equiv \alpha \cdot (1-b' \cdot b^{-1}) \bmod l^h \].
+Réciproquement pour une transformation:
+$R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q$
+ qui vérifie l'équation:
 \[  (* - b' \cdot b^{-1} \cdot a ) \cdot (1-q)  \equiv \alpha \cdot (1-b' \cdot b^{-1}) \bmod l^h \]
+ on a $\pi(P,R)=\pi(P,R')$.
 \end{lem}
 
 \begin{proof}
@@ -7248,13 +7253,10 @@ Traduisons le fait que le point $a \cdot P_2 + b \cdot Q_2$ avec le point $P_2$ 
 \pi([a]  P + [b]  Q) = [\beta \ell^h] P + [\mu] ([a] P + [b]  Q) 
 \]
 Comme $\pi$ est un morphisme on a: 
-\[
-\pi([a]  P + [b]  Q)= [a]  \pi(P) + [b] \pi(Q) 
-\]
-Comme  $\pi(P)=[\lambda]P$, on obtient: 
-\[
-\pi([a]  P + [b]  Q)= [a \lambda]  P + [b] \pi(Q)
-\]
+\begin{eqnarray}
+\pi([a]  P + [b]  Q) &=& [a]  \pi(P) + [b] \pi(Q) \\
+					 &=& [a \lambda]  P + [b] \pi(Q)
+\end{eqnarray}
 Ainsi avec cette égalité et la première, on en déduit la valeur de $ [b]\pi(Q)$
 \[
 [b] \pi (Q) = [a(\mu -\lambda) + \beta \ell^h]  P + [\mu b] Q
@@ -7272,7 +7274,7 @@ Ainsi en remplaçant  $[b]\pi (Q)$ on obtient:
 Or comme on suppose que $\pi(P,R)=\pi(P,R')$ on obtient:
 \begin{eqnarray*}
 \pi( [*] P + [yb] Q) &=&  [\beta \ell^h] \cdot P + [\mu] ([*] P + [yb] Q ) \\
-&=& [*\lambda + y a (\mu - \lambda)+ y \beta \ell^h ] P + [y \mu b ] Q
+&=& [\mu * + \beta \ell^h ] P + [y \mu b ] Q
 \end{eqnarray*}
 Ainsi on doit avoir 
 \[
@@ -7280,6 +7282,17 @@ Ainsi on doit avoir
 \]
 Ce qui nous amène à l'équation: 
 \[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
+\end{proof}
+
+\begin{prop}
+Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ sur un volcan de $\ell$-isogénies à cratère cyclique ($\ell$ est donc un nombre de Elkies). Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$, alors pour toute $\ell^i$-isogénie descendante il existe une transformation \begin{equation*}
+R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
+\end{equation*}
+telle que $\pi(P,R)=\pi(P,R')$
+\end{prop}
+
+\begin{proof}
+Comme vu précédemment \todo{préciser les références} toute $\ell^i$-isogénie engendrée par $R'$ est déterminée par la valeur de $\ell^{h}b^{-1}y^{-1}*$, on rappelle que l'on est obligé d'avoir $y \wedge \ell =1$ pour avoir une $\ell^{h+i}$-isogénie descendante. 
 \end{proof}
 \printnomenclature
 
