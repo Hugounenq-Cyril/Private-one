@@ -7292,8 +7292,50 @@ telle que $\pi(P,R)=\pi(P,R')$
 \end{prop}
 
 \begin{proof}
-Comme vu précédemment \todo{préciser les références} toute $\ell^i$-isogénie engendrée par $R'$ est déterminée par la valeur de $\ell^{h}b^{-1}y^{-1}*$, on rappelle que l'on est obligé d'avoir $y \wedge \ell =1$ pour avoir une $\ell^{h+i}$-isogénie descendante. 
+Comme vu précédemment \todo{préciser les références} toute $\ell^i$-isogénie 
+engendrée par $R'$ est déterminée par la valeur de $\ell^{h}b^{-1}y^{-1}*$, on 
+rappelle de plus que l'on est obligé d'avoir $*y \wedge \ell =1$ pour avoir une
+$\ell^{h+i}$-isogénie descendante. 
+On a alors l'équation suivante qui doit être vérifiée: 
+\[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
+or comme $\ell^{h}|| (\mu - \lambda)$ et $\beta \wedge \ell =1$ si l'on a 
+$\ell^{h}b^{-1}y^{-1}*=\ell^{h}b^{-1}a$ alors on doit avoir 
+$\ell^{h}b=\ell^{h}by \bmod \ell^{h+i}$ et $\ell^{h}a=\ell^{h}* \bmod 
+\ell^{h+i}$.
+
+Ainsi si l'on souhaite avoir $[\ell^{h}]R$ générateur d'une $\ell^i$ isogénie 
+descendante particulière celle-ci est déterminée par la valeur de 
+$\ell^{h}b^{-1}y^{-1}*$. Fixons par exemple $\gamma = \ell^{h}b^{-1}y^{-1}*$
+avec $\ell^{h}\gamma \neq \ell^{h}b^{-1}a \bmod \ell^{h+i}$.
+On a alors $\ell^{h}*=\ell^{h}\gamma(by)^{-1} \bmod \ell^{h+i}$ et l'on 
+détermine la valeur de $y$ à l'aide de l'équation:
+\[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \].
+On pose $\alpha \ell^h = (\mu -\lambda) \bmod \ell^{h+i}$ avec $\alpha \wedge 
+\ell =1$. Ainsi on a:
+\begin{eqnarray*}
+\beta \ell^h (1-y) 	&=& \alpha \ell^{h} (ay-*)  \bmod \ell^{h+i} \\
+\ell^{h}y(-\beta -\alpha a)	&=& \ell^{h}(\beta - \alpha *) \bmod \ell^{h+i}
+\end{eqnarray*}
+on multiplie alors cette égalité par $(by)^{-1}$:
+\begin{eqnarray*}
+\ell^{h}b(-\beta - \alpha a)			&=& \ell^{h}(\beta (by)^{-1}- \alpha \gamma) \bmod \ell^{h+i} \\
+\ell^{h}(b(-\beta - \alpha a)+ \alpha \gamma)	&=& \ell^{h}(\beta(by)^{-1}) \bmod \ell^{h+i}
+\end{eqnarray*}
+On peut alors déterminer $\ell^h y \bmod \ell^{h+i}$ on utilise ensuite 
+$\ell^{h}*=\ell^{h}\gamma(by)^{-1} \bmod \ell^{h+i}$ pour déterminer totalement
+la transformation.
 \end{proof}
+
+On voit donc avec cette proposition que pour une courbe située sur le cratère 
+cyclique d'un volcan de $\ell$-isogénies ayant une base diagonale $(P,Q)$ de la
+$\ell^{h+i}$-torsion. Alors pour tout point $R=[a]P+[b]Q$ tel que $\langle P,R 
+\rangle=E[\ell^{h+i}]$, l'étude de l'action de $\pi$ dans une telle base à $P$
+fixé ne donne aucune information sur la $\ell^{i}$-isogénie engendrée par 
+$\ell^{h}R$.
+
+Maintenant on va énoncer un résultat similaire pour des courbes situées plus 
+bas dans un volcan de $\ell$-isogénies pour le cas Elkies. 
+
 \printnomenclature
 
 
