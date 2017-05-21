@@ -3671,18 +3671,19 @@ Voyons maintenant le lien entre l'action du Frobenius et les isogénies engendr�
 \begin{prop}
 \label{pro:atk:equi}
 Soient $P,R,R'$ trois points de $E$ située au niveau du cratère tels que $\langle 
-P,R \rangle = \langle P,R' \rangle$ alors $\pi(P,R)=\pi(P,R') $ si et seulement
+P,R \rangle = \langle P,R' \rangle= E[\ell^{h+i}]$ alors $\pi(P,R)=\pi(P,R') $ si et seulement
 si $[\ell^{h}]R=[\ell^{h}]R'$.
 \end{prop}
 
 \begin{proof}
 Montrons tout d'abord le sens direct.
 Soient $R,R'$ deux points tels que $\pi(P,R)=\pi(P,R')=\left ( 
-\begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d \end{smallmatrix}\right )$ 
+\begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d \end{smallmatrix}\right )$ 
 alors cette égalité nous donne:
  $\pi(P)=[a]P+[c\ell^{h}]R=[a]P+[c\ell^{h}]R'$, de
-cette égalité on déduit avec $c \wedge \ell = 1$ que $[\ell^{h}]R=
-[\ell^{h}]R'$ ce qui permet de conclure pour ce sens de l'équivalence.
+cette égalité on déduit avec $c \wedge \ell = 1$ et de l'invariance de la trace
+et du déterminant du Frobenius que $[\ell^{h}]R=[\ell^{h}]R'$ ce qui permet de 
+conclure pour ce sens de l'équivalence.
 
 Matriciellement on prouve que $[\ell^{h}]R=[\ell^{h}]R' \Rightarrow 
 \pi(P,R)=\pi(P,R')$ en voyant que la conjugaison de la 
@@ -3695,8 +3696,8 @@ modulo $\ell^{h+i}$.
 \begin{rem}
 Ce résultat ne peut se généraliser aux niveaux inférieurs du volcan car pour 
 les niveaux inférieurs du volcan de $\ell$-isogénies on a la possibilité 
-d'avoir $\ell^{2e}||c$ ou $\ell^{2e}||b$ ce qui fait que l'implication 
-$\pi(P,R)=\pi(P,R') \Rightarrow [\ell^{h-e}]R=[\ell^{h-e}]R'$ n'est plus 
+d'avoir $v_{\ell}(c)$ ou $v_{\ell}(b)$ qui appartient à $[2,2e]$ ce qui fait 
+que l'implication $\pi(P,R)=\pi(P,R') \Rightarrow [\ell^{h-e}]R=[\ell^{h-e}]R'$ n'est plus 
 assurée on peut seulement montrer que $\pi(P,R)=\pi(P,R') \Rightarrow 
 [\ell^{h+e}]R=[\ell^{h+e}]R'$.
 \end{rem}
@@ -3746,7 +3747,7 @@ de noyau $\langle [\ell^{h}]S \rangle$.
 
 \begin{proof}
 Par la propsition~\ref{pro:atk:equi} on a $\pi(P,R')=\pi(P,
-\beta R)$ si et seulement si $[\ell^{h-e}]\beta R=[\ell^{h-e}]R'$ or en 
+\beta R)$ si et seulement si $[\ell^{h}]\beta R=[\ell^{h}]R'$ or en 
 observant que la conjugaison de la matrice $\left( \begin{smallmatrix}a & b 
 \ell^h \\c  \ell^{h} & d \end{smallmatrix} \right)$ par $\left( 
 \begin{smallmatrix}1 & 0 \\0 & \beta \end{smallmatrix} \right)$ avec $\beta \in
@@ -3756,11 +3757,11 @@ forme $\left( \begin{smallmatrix}a & b \ell^h \beta \\c \ell^{h} \beta^{-1} &
 \begin{smallmatrix}a & b \ell^h \beta \\c \ell^{h} \beta^{-1} & d 
 \end{smallmatrix} \right)$ ce qui nous donne le résultat.
 
-Montrons maintenant le second point. Soit $[\ell^{h-e}]([x]P+[y]Q)$ un point 
+Montrons maintenant le second point. Soit $[\ell^{h}]([x]P+[y]Q)$ un point 
 d'ordre $\ell^i$ engendré par $R$, 
-le groupe $\langle [\ell^{h-e}]([x]P+[y]Q) \rangle$ engendré par ce point peut 
-aussi s'écrire:$\langle [xy^{-1}]([\ell^{h-e}]P)+ ([\ell^{h-e}]Q) \rangle$. De 
-même on peut écrire le groupe engendré par $[\ell^{h-e}]([x']P+[y']Q)$ comme 
+le groupe $\langle [\ell^{h}]([x]P+[y]Q) \rangle$ engendré par ce point peut 
+aussi s'écrire:$\langle [xy^{-1}]([\ell^{h-e}]P)+ ([\ell^{h}]Q) \rangle$. De 
+même on peut écrire le groupe engendré par $[\ell^{h}]([x']P+[y']Q)$ comme 
 $\langle [x'y'^{-1}]([\ell^{h}]P)+ ([\ell^{h}]Q) \rangle$, ainsi on a 
 égalité des $\ell^i$-isogénies engendrées par $[\ell^{h}]([x']P+[y']Q)$ et 
 $[\ell^{h}]([x]P+[y]Q)$ si et seulement si $\ell^{h}xy^{-1}=\ell^{h}
@@ -7293,10 +7294,10 @@ telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
 \end{prop}
 
 \begin{proof}
-Comme vu précédemment \todo{préciser les références} toute $\ell^i$-isogénie 
-engendrée par $R'$ est déterminée par la valeur de $\ell^{h}b^{-1}y^{-1}*$, on 
-rappelle de plus que l'on est obligé d'avoir $*y \wedge \ell =1$ pour avoir une
-$\ell^{h+i}$-isogénie descendante. 
+Comme vu dans la preuve de la proposition~\ref{pro:cla:fro:mat} toute 
+$\ell^i$-isogénie de noyau $\langle \ell^{h}R' \rangle$ est déterminée par la 
+valeur de $\ell^{h}b^{-1}y^{-1}*$, on rappelle de plus que l'on est obligé 
+d'avoir $*y \wedge \ell =1$ pour avoir une $\ell^{h+i}$-isogénie descendante. 
 On a alors l'équation suivante qui doit être vérifiée: 
 \[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
 or comme $\ell^{h}|| (\mu - \lambda)$ et $\beta \wedge \ell =1$ si l'on a 
@@ -7331,8 +7332,8 @@ On voit donc avec cette proposition que pour une courbe située sur le cratère
 cyclique d'un volcan de $\ell$-isogénies ayant une base diagonale $(P,Q)$ de la
 $\ell^{h+i}$-torsion. Alors pour tout point $R=[a]P+[b]Q$ tel que $\langle P,R 
 \rangle=E[\ell^{h+i}]$, l'étude de l'action de $\pi$ dans une telle base à $P$
-fixé ne donne aucune information sur la $\ell^{i}$-isogénie engendrée par 
-$\ell^{h}R$.
+fixé ne donne aucune information sur la $\ell^{i}$-isogénie de noyau $\langle 
+\ell^{h}R \rangle$.
 
 Maintenant on va énoncer un résultat similaire pour des courbes situées plus 
 bas dans un volcan de $\ell$-isogénies pour le cas Elkies. 
