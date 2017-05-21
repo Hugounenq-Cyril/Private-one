@@ -3722,7 +3722,8 @@ Dans le premier cas on a bien $R-R'$ un point de  $E[\ell^{h+e}]$ et cela
 conclut la preuve pour ce cas, dans le second cas on a $R-R'$ un point de 
 $E[\ell^{h-e}]$.
 \end{proof}
-
+Dés lors on va se concentrer à l'étude des points situés sur une courbe qui se 
+situe sur le cratère.
 
 \begin{prop}
 \label{pro:cla:fro:mat}
@@ -4437,12 +4438,12 @@ cratère du volcan de $\ell$-isogénies
 \begin{algorithm}
 \caption{\label{alg:atk:bas:mat}Calcul d'un point $R$ d'ordre~$\ell^{h-e+i}$ tel que $\pi(P,R)=M$}
 \begin{algorithmic}[1]
-\REQUIRE $(P, Q)$: une base de~$E[\ell^{h-e+i}]$ avec $P$ un point fixé de $E$, $E$ une courbe située au niveau $h-e$; $i$: un entier,$i \geqslant e$; $M$ une matrice représentant l'action du Frobenius dans une base de la $\ell^{h-e+i}$-torsion d'une courbe elliptique située au niveau $h-e$.\\
+\REQUIRE $(P, Q)$: une base de~$E[\ell^{h-e+i}]$ avec $P$ un point fixé de $E$, $E$ une courbe située au niveau $h-e$;  un entier $i \geqslant e$; $M$ une matrice représentant l'action du Frobenius dans une base de la $\ell^{h-e+i}$-torsion d'une courbe elliptique située au niveau $h-e$.\\
 \ENSURE $R=[\alpha]P+ [\beta]Q $: un point d'ordre $\ell^{h-e+i}$ de $E$ tel que $\pi(P,R)=M$.
 \STATE $(\alpha, \beta ) \leftarrow (0,0)$
 \FOR{$j = 1$ to~$h-e+i$}
-\STATE Calcul de $P_j=[\ell^{h-e+i-j}]P, Q_j=[\ell^{h-e+i-j}]P$;
-\STATE Calcul de $R_j=[\alpha + x\ell^{j-1}]P_j+ [\beta +y\ell^{j-1}]Q_j$ tel que $\pi(P_j,R_j)=M$;
+\STATE Calcul de $P_j=[\ell^{h-e+i-j}]P, Q_j=[\ell^{h-e+i-j}]P$; \label{alg:atk:bas:niv}
+\STATE Calcul de $R_j=[\alpha + x\ell^{j-1}]P_j+[\beta +y\ell^{j-1}]Q_j$ avec $\pi(P_j,R_j)=M\bmod \ell^{j}$;
 \STATE $(\alpha, \beta) \leftarrow (\alpha + x\ell^{j-1}, \beta +y\ell^{j-1})$;
 \ENDFOR
 \RETURN\label{alg:atk:horizontal:final} $R =[\alpha]P+ [\beta]Q$. 
@@ -4454,6 +4455,14 @@ L'algorithme~\ref{alg:atk:bas:mat} a une complexité de $O()$ opérations sur $\
 \end{prop}
 
 \begin{proof}
+Par la proposition~\ref{pro:clas:fro:atk} les points $P_j,R_j$ sont définis
+dans $\mathsf{F}_{i-j}$ lorsque $i-j>1$ et définis dans $\mathsf{F}_1$ sinon.
+L'étape~\ref{alg:atk:bas:niv} est fait en tant que pré-calcul, ainsi on calcule
+successivement des multiplications de points définis dans $\mathbb{F}_{i-j}$ 
+à $\mathbb{F}_{1}$, la multiplication par $\ell$ d'un point dans 
+Ainsi à l'étape $j$ de la boucle pour,
+
+
 \todo{preuve a faire}Question la plus importante dans quelle extension sont définis les points d'ordre $\ell^{h-i+e}$
 \end{proof}
 
