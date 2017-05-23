@@ -4467,37 +4467,52 @@ cratère du volcan de $\ell$-isogénies
 \end{algorithm}
 
 \begin{prop}
-L'algorithme~\ref{alg:atk:bas:mat} a une complexité de $O(\ell^4(\mathsf{M}(\ell^{i+1})+(h-e)\mathsf{M}(\ell)))$ opérations sur $\mathbb{F}_q$.
+\label{pro:atk:comp:alg}
+L'algorithme~\ref{alg:atk:bas:mat} a une complexité de 
+$O(\ell^4(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta-e)\mathsf{M}(\ell)))$ opérations sur 
+$\mathbb{F}_q$ lorsque la courbe $E$ se trouve sur un volcan \emph{régulier} et
+une complexité de 
+$O(\ell^4(\mathsf{M}(\ell^{h-\beta-e+i+1})+(\beta)\mathsf{M}(\ell)))$
+lorsque $E$ se situe au-dessus du premier niveau de stabilité.
 \end{prop}
 
 \begin{proof}
+On traite tout d'abord le cas de volcan \emph{régulier}.
 Par la proposition~\ref{pro:clas:fro:atk} les points $P_j,R_j$ sont définis
-dans $\mathsf{F}_{i-j}$ lorsque $i-j>1$ et définis dans $\mathsf{F}_1$ sinon.
-L'étape~\ref{alg:atk:bas:niv} est fait en tant que pré-calcul, ainsi on calcule
+dans $\mathsf{F}_{j-\beta+e}$ lorsque $j-\beta+e>1$ et définis dans $\mathsf{F}_1$ sinon.
+L'étape~\ref{alg:atk:bas:niv} est faite en tant que pré-calcul, ainsi on calcule
 successivement des multiplications par $\ell$ de points définis dans 
-$\mathsf{F}_{i-j}$ à $\mathsf{F}_{1}$ en décomposant la multiplication par 
+$\mathsf{F}_{j-\beta+e}$ à $\mathsf{F}_{1}$ en décomposant la multiplication par 
 $\ell$ par deux isogénies de degré $\ell$ qui coûte chacune 
-$O(\mathsf{M}(\ell^{\max(i-j+1,1)}))$ opérations sur $\mathbb{F}_q$. On a donc 
+$O(\mathsf{M}(\ell^{1+\max(j-\beta+e,1)}))$ opérations sur $\mathbb{F}_q$. On a donc 
 un coût total pour l'étape~\ref{alg:atk:bas:niv} de 
-$O(\mathsf{M}(\ell^{i+1})+(h-e)\mathsf{M}(\ell))$.
+$O(\mathsf{M}(\ell^{h-\beta+i+2})+(\beta-e)\mathsf{M}(\ell))$.
 \`A l'étape~\ref{alg:atk:coef:int} le calcul de $R_j$ peut être actualisé à 
 chaque itération de la boucle pour à l'aide 
-de $\ell^2$ additions de points définis dans $\mathsf{F}_{i-j}$ lorsque $i-j>1$
-ou $\mathsf{F}_1$ sinon. Ainsi le calcul de $R_j$ a un coût total de 
-$O(\ell^{2}(\mathsf{M}(\ell^{i+1})+(h-e)\mathsf{M}(\ell)))$. Le calcul du 
-Frobenius sur un point $R_j$ fixé défini dans $\mathsf{F}_{i-j}$ lorsque $i-j>1$, 
-$\mathsf{F}_1$ sinon a un coût total de $O(\ell^{\max(i-j,1)}\mathsf{M}(\ell))$ par le 
-théorème~\ref{thm:frob-ell}. Le coût total du Frobenius pour cet algorithme est
-donc de $O(\ell^2\mathsf{M}(\ell)(\ell^{i+1}+(h-e)\ell))$ opérations sur 
+de $\ell^2$ additions de points définis dans $\mathsf{F}_{j-\beta+e}$ 
+lorsque $j-\beta+e>1$ ou $\mathsf{F}_1$ sinon. Ainsi le calcul de $R_j$ a 
+un coût total de 
+$O(\ell^{2}(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta-e)\mathsf{M}(\ell)))$. Le 
+calcul du Frobenius sur un point $R_j$ fixé défini dans 
+$\mathsf{F}_{j-\beta+e}$ lorsque $j-\beta+e>1$, 
+$\mathsf{F}_1$ sinon a un coût total de $O(\ell^{\max(j-\beta+e,1)}
+\mathsf{M}(\ell))$ par le théorème~\ref{thm:frob-ell}. Le coût total du 
+Frobenius pour cet algorithme est donc de 
+$O(\ell^2\mathsf{M}(\ell)(\ell^{h-\beta+i+1}+(\beta-e)\ell))$ opérations sur 
 $\mathbb{F}_q$.
 
 A $R_j$ fixé pour le test d'égalité $\pi(P_j,R_j)= M \bmod \ell^j$, on 
 actualise à chaque itération la valeur de $MP_j$ et $MR_j$. Pour cela on est 
 ammené à effectuer jusqu'à $\ell^2$ additions de points d'ordre 
-$\ell^{j}$ définis dans dans $\mathsf{F}_{i-j}$ lorsque $i-j>1$, $\mathsf{F}_1$
-sinon. Ce test d'égalité a donc un coût total de 
-$O(\ell^4(\mathsf{M}(\ell^{i+1})+(h-e)\mathsf{M}(\ell)))$ opérations sur 
+$\ell^{j}$ définis dans dans $\mathsf{F}_{j-\beta+e}$ lorsque $j-\beta+e>1$, 
+$\mathsf{F}_1$ sinon. Ce test d'égalité a donc un coût total de 
+$O(\ell^4(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta-e)\mathsf{M}(\ell)))$ opérations sur 
 $\mathbb{F}_q$.
+
+L'analyse du coût de l'algorithme pour une courbe située au dessus du premier
+niveau de stabilité est la même excepté le fait que un point d'ordre 
+$\ell^{j}$ est défini dans $\mathsf{F}_{j-\beta}$ lorsque $j-\beta>1$ et 
+$\mathsf{F}_1$ sinon.
 
 \todo{preuve a faire}Question la plus importante dans quelle extension sont définis les points d'ordre $\ell^{h-i+e}$
 \end{proof}
@@ -4972,9 +4987,9 @@ Couveignes dans le cas Atkin:
 \STATE Calcul du plus petit $k$ tel que $\ell^{2k-2}(\ell+1)>4r$;
 \STATE \label{alg:cou:atk:bas} 
 Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
-\STATE Calcul de $\pi(P,Q)$;
+\STATE \label{alg:cou:atk:frob:bas} Calcul de $\pi(P,Q)$;
 \FOR{$S' \in E'$ d'ordre $\ell^k$}
-\STATE Calcul de $R' \in E'$ tel que $\pi(S',R')=\pi(P,Q)$ à l'aide de l'algorithme~\ref{alg:atk:bas:mat}
+\STATE \label{alg:cou:atk:matc:fro} Calcul de $R' \in E'$ tel que $\pi(S',R')=\pi(P,Q)$ à l'aide de l'algorithme~\ref{alg:atk:bas:mat}
 \FOR{$U' \in E'$  tel que $[\ell^{h}]U'=[\ell^{h}]R'$}
 
 \STATE Calcul des listes de représentants pour les orbites selon l'action du Frobenius $L$ et $L'_{U',R'}$ afin de respecter la correspondance induite par le choix de $U'$ et $R'$;
@@ -4996,7 +5011,35 @@ Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
 
 \end{prop}
 \begin{proof}
-Le coût de calcul des bases de la $\ell^k$-torsion se fait à partir d'une base de la $\ell$-torsion puis on inverse la multiplication l'aide de deux isogénies de degré $\ell$
+\`A l'étape~\ref{alg:cou:atk:bas} le coût de calcul des bases de la 
+$\ell^k$-torsion se fait à partir d'une base de la $\ell$-torsion puis on 
+inverse la multiplication par $\ell$ l'aide de deux $\ell$-isogénies qui 
+composent la multiplication par $\ell$. Par le lemme~\ref{lem:div:cou} le coût 
+de calcul de $E[\ell]$ est de 
+$O(\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur 
+$\mathbb{F}_q$, ensuite le coût de calcul de $\mathrm{divise}(\ell,P)$ pour 
+$P \in E(F_n)$ est de $\mathsf{R}(n+1)$, ce coût est donc dominé par la 
+dernière étape
+$O(\mathsf{R}(k-\beta+1)+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
+
+Le coût de calcul de l'étape~\ref{alg:cou:atk:frob:bas} s'effectue 
+itérativement en effet à la manière de l'algorithme~\ref{alg:atk:bas:mat} on 
+calcule itérativement l'action du Frobenius sur $\ell^j$-torsion pour $j$ 
+allant de $1$ à $k$, ainsi à l'étape $i \in [1;k]$ on a le coût du Frobenius
+appliqué à un point de $\mathsf{F}_{i-\beta}$ lorsque $i>\beta$, $\mathsf{F}_1$
+sinon qui est de $O(\ell^{\max(i-\beta,1)}\mathsf{M}(\ell))$ opérations sur 
+$\mathbb{F}_q$ d'après le théorème~\ref{thm:frob-ell}, on effectue alors 
+jusqu'à $2\ell^2$ additions de points définis sur $\mathsf{F}_{i-\beta}$ afin 
+d'identifier l'action du Frobenius. Chaque étape a donc un coût de 
+$O(\ell^2 \mathsf{M}(\ell^{\max(1,i-\beta)}))$,
+le coût total de l'étape~\ref{alg:cou:atk:frob:bas} est donc de 
+$O(\ell^2(\beta \mathsf{M}(\ell)+\mathsf{M}(\ell^{i-\beta+1})))$ 
+opérations sur $\mathbb{F}_q$.
+
+
+L'étape~\ref{alg:cou:atk:matc:fro} elle a un coût de 
+$O(\ell^4(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta-e)\mathsf{M}(\ell)))$ 
+opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:atk:comp:alg}.
 \end{proof}
 
 \chapter{Ouverture 1812}
