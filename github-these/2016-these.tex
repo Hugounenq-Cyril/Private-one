@@ -5011,6 +5011,7 @@ Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
 
 \end{prop}
 \begin{proof}
+Par définition de $k$ on a $\ell^{2k-1} \in O(r\ell^2)$.
 \`A l'étape~\ref{alg:cou:atk:bas} le coût de calcul des bases de la 
 $\ell^k$-torsion se fait à partir d'une base de la $\ell$-torsion puis on 
 inverse la multiplication par $\ell$ l'aide de deux $\ell$-isogénies qui 
@@ -5021,6 +5022,11 @@ $\mathbb{F}_q$, ensuite le coût de calcul de $\mathrm{divise}(\ell,P)$ pour
 $P \in E(F_n)$ est de $\mathsf{R}(n+1)$, ce coût est donc dominé par la 
 dernière étape
 $O(\mathsf{R}(k-\beta+1)+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
+Par ~\cite[Chapter~14.5]{vzGJG03} on a $\mathsf{R}(n)=
+O(\ell^n\mathsf{M}(\ell^{n+1})\log(\ell)\log(\ell q))$. 
+L'étape~\ref{alg:cou:atk:bas} a donc un coût total de $O(\ell^k \mathsf{M}
+(\ell^{k+1})\log(\ell)\log(\ell q))$ 
+dans le pire des cas où l'on aurait $\beta=1$.
 
 Le coût de calcul de l'étape~\ref{alg:cou:atk:frob:bas} s'effectue 
 itérativement en effet à la manière de l'algorithme~\ref{alg:atk:bas:mat} on 
@@ -5037,10 +5043,10 @@ $O(\ell^2(\beta \mathsf{M}(\ell)+\mathsf{M}(\ell^{i-\beta+1})))$
 opérations sur $\mathbb{F}_q$.
 
 L'étape~\ref{alg:cou:atk:matc:fro} a un coût de 
-$O(\ell^4(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta-e)\mathsf{M}(\ell)))$ 
+$O(\ell^4(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta)\mathsf{M}(\ell)))$ 
 opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:atk:comp:alg}.
 
-Par le corollaire~\ref{cor:atk:orb:rep} on a $\ell^{k+\beta-2}(\ell+1)$ 
+Par le corollaire~\ref{cor:atk:orb:rep} on a $\ell^{k+\beta-2}(\ell+1)/2$ 
 représentants à calculer, chaque représentant étant 
 calculé comme la multiplication scalaire d'un point d'ordre $\ell^k$ défini 
 dans $\mathsf{F}_{k-\beta}$ par un coefficient dans 
@@ -5048,7 +5054,11 @@ $(\mathbb{Z}/\ell^k\mathbb{Z})^{\times}$ une telle multiplication a un coût
 de $O(\log(\ell^k)\mathsf{M}(\ell^{k-\beta}))$. On a donc un coût total de 
 $O(\mathsf{M}(\ell^{2k})\log(\ell^k))$ opérations sur $\mathbb{F}_q$. 
 
-Pour l'étape~\ref{alg:cou:atk:int} par la proposition~\ref{prop:interpol}
+Pour l'étape~\ref{alg:cou:atk:int} on utilise la 
+proposition~\ref{prop:interpol} avec $t=\ell^{2k-2}(\ell+1)/2 \in O(r\ell^2)$ 
+et le nombre de points d'interpolations $s=\ell^{k+\beta-2}(\ell+1)$, on 
+calcule alors les polynômes $T$ et $A_{U',R'}$ avec un coût de 
+$O(\mathsf{M}(r\ell^4)\log(r)\log(\ell))$. 
 
 L'étape~\ref{alg:cou:atk:Cauchy} a une complexité de $O(r\log(r))$ d'après
 \cite[Théorème 7.5]{algeff17}. Le coût du test de la fraction rationnelle est
