@@ -3702,6 +3702,22 @@ assurée on peut seulement montrer que $\pi(P,R)=\pi(P,R') \Rightarrow
 [\ell^{h+e}]R=[\ell^{h+e}]R'$.
 \end{rem}
 \todo{choisir entre la remarque et la proposition}
+
+\begin{cor}\label{cor:atk:ess}
+Soit $\phi:E \rightarrow E'$ une $r$-isogénie avec $r \wedge \ell=1$ et $E$ et 
+$E'$ deux courbes situées au niveau du cratère du volcan de $\ell$-isogénies, 
+soient $P \in E$ et $P' \in E'$ deux points d'ordre $\ell^k$ avec $k>h$ tels 
+que $P'=\phi(P)$ alors pour deux base $(P,Q),(P',Q')$ de $E[\ell^k]$ et 
+$E'[\ell^k]$ telles que $\pi(P,Q)=\pi(P',Q')$ on a $[\ell^h]Q'=[\ell^h]\phi(Q)$. 
+\end{cor}
+
+\begin{proof}
+Comme le Frobenius commute avec $\phi$ alors on a $\pi(P,Q)=\pi(\phi(P),\phi(Q))$
+or comme $P'=\phi(P)$ pour $Q'$ tel que $\pi(P,Q)=\pi(P',Q')$ on a l'égalité 
+$\pi(P',Q')=\pi(\phi(P),\phi(Q))$ et la proposition~\ref{pro:atk:equi} nous 
+permet de conclure.
+\end{proof}
+
 \begin{prop}
 \label{pro:atk:inv:mat}
 Soient $P,R,R'$ trois points de la courbe elliptique $E$ située au niveau $h-e$
@@ -3781,7 +3797,7 @@ Il est intéressant de noter que ce résultat nous permet de distinguer les
 différents générateurs de la $\ell^i$-isogénie générée par le second point qui
 forme une base avec $P$. \todo{a re rédiger}
 
-\begin{lem}
+\begin{lem}\todo{lemme et propotisition intéressantes mais inexploitées...}
 \label{lem:fro:atk}
 Soient $P,R$ deux points de $E$ une courbe elliptique située au 
 niveau $h-e$ du volcan de $\ell$-isogénies tels que $\langle P,R \rangle= 
@@ -4451,7 +4467,7 @@ cratère du volcan de $\ell$-isogénies
 \end{algorithm}
 
 \begin{prop}
-L'algorithme~\ref{alg:atk:bas:mat} a une complexité de $O()$ opérations sur $\mathbb{F}_q$.
+L'algorithme~\ref{alg:atk:bas:mat} a une complexité de $O(\ell^4(\mathsf{M}(\ell^{i+1})+(h-e)\mathsf{M}(\ell)))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
@@ -4459,17 +4475,18 @@ Par la proposition~\ref{pro:clas:fro:atk} les points $P_j,R_j$ sont définis
 dans $\mathsf{F}_{i-j}$ lorsque $i-j>1$ et définis dans $\mathsf{F}_1$ sinon.
 L'étape~\ref{alg:atk:bas:niv} est fait en tant que pré-calcul, ainsi on calcule
 successivement des multiplications par $\ell$ de points définis dans 
-$\mathbb{F}_{i-j}$ à $\mathbb{F}_{1}$ en décomposant la multiplication par 
+$\mathsf{F}_{i-j}$ à $\mathsf{F}_{1}$ en décomposant la multiplication par 
 $\ell$ par deux isogénies de degré $\ell$ qui coûte chacune 
 $O(\mathsf{M}(\ell^{\max(i-j+1,1)}))$ opérations sur $\mathbb{F}_q$. On a donc 
 un coût total pour l'étape~\ref{alg:atk:bas:niv} de 
 $O(\mathsf{M}(\ell^{i+1})+(h-e)\mathsf{M}(\ell))$.
-\`A l'étape~\ref{alg:atk:coef:int} le calcul de $R_j$ peut être fait à l'aide 
+\`A l'étape~\ref{alg:atk:coef:int} le calcul de $R_j$ peut être actualisé à 
+chaque itération de la boucle pour à l'aide 
 de $\ell^2$ additions de points définis dans $\mathsf{F}_{i-j}$ lorsque $i-j>1$
 ou $\mathsf{F}_1$ sinon. Ainsi le calcul de $R_j$ a un coût total de 
 $O(\ell^{2}(\mathsf{M}(\ell^{i+1})+(h-e)\mathsf{M}(\ell)))$. Le calcul du 
-Frobenius sur un point $R_j$ défini dans $\mathsf{F}_{i-j}$ lorsque $i-j>1$ 
-$\mathsf{F}_1$ sinon a un coût total de $O(\ell^{i-j}\mathsf{M}(\ell))$ par le 
+Frobenius sur un point $R_j$ fixé défini dans $\mathsf{F}_{i-j}$ lorsque $i-j>1$, 
+$\mathsf{F}_1$ sinon a un coût total de $O(\ell^{\max(i-j,1)}\mathsf{M}(\ell))$ par le 
 théorème~\ref{thm:frob-ell}. Le coût total du Frobenius pour cet algorithme est
 donc de $O(\ell^2\mathsf{M}(\ell)(\ell^{i+1}+(h-e)\ell))$ opérations sur 
 $\mathbb{F}_q$.
@@ -4481,14 +4498,6 @@ $\ell^{j}$ définis dans dans $\mathsf{F}_{i-j}$ lorsque $i-j>1$, $\mathsf{F}_1$
 sinon. Ce test d'égalité a donc un coût total de 
 $O(\ell^4(\mathsf{M}(\ell^{i+1})+(h-e)\mathsf{M}(\ell)))$ opérations sur 
 $\mathbb{F}_q$.
-d'abord $MP$ et $MQ$ cela se fait à l'aide de $O(\ell^{h-e+i})$ additions de 
-points définis dans $\mathsf{F}_{i}$, cela a donc un coût de $O(\ell^{h-e+i}
-\mathsf{\ell^{i}})$ opérations sur $\mathbb{F}_q$, ensuite on calcule avec le 
-même coût que .
-Le coût de calcul de $M_jP_j, M_j Q_j$ est lui de 
- , la multiplication par $\ell$ 
-d'un point dans Ainsi à l'étape $j$ de la boucle pour,
-
 
 \todo{preuve a faire}Question la plus importante dans quelle extension sont définis les points d'ordre $\ell^{h-i+e}$
 \end{proof}
@@ -4919,8 +4928,44 @@ nécessaire d'avoir $k$ strictement supérieur à $h$.
 Le détail des timings pour les 
 différentes parties est disponible sur le projet github: 
 \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. 
+
+\section{Atkin}
+On se restreint tout d'abord au cas où l'on travaille avec deux courbes 
+$r$-isogènes, avec $r \wedge \ell=1$ qui se situent au sommet d'un volcan de 
+$\ell$-isogénies de hauteur $h$, on verra par la suite comment généraliser cela
+à des courbes non situées sur le cratère.
+
+Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées
+par une $r$-isogénie $\phi$, telles que $E$ et $E'$ se situent au sommet d'un 
+volcan de $\ell$-isogénies avec cratère réduit à une courbe (on est donc dans 
+le cas Atkin) alors pour $k$  plus grand que $h$ la hauteur du volcan de 
+$\ell$-isogénies avec $P \in E$ et $P' \in E'$ deux points d'ordre $\ell^{k}$ 
+tels que $\phi(P)=P'$ deux bases $(P,Q),(P',Q')$ de $E[\ell^k]$ et $E'[\ell^k]$
+telles que $\pi(P,Q)=\pi(P',Q')$ par la proposition~\ref{pro:atk:equi} cela 
+détermine de façon unique $[\ell^h]Q$ et $[\ell^{h}]Q'$ or comme $\phi$ est une
+$r$-isogénie qui commute avec le Frobenius on a $\phi([\ell^h]Q)=[\ell^h]Q'$ 
+comme énoncé dans le corollaire~\ref{cor:atk:ess}. On détermine alors le point 
+$\phi(Q)$ en testant pour tout point $R$ antécédent par $[\ell^h]$ de 
+$[\ell^h]Q'$ si la correspondance $(P,Q) \rightarrow (P',R')$ premet de définir
+une $r$-isogénie. Ce test consiste comme dans le cas Elkies à calculer le 
+polynôme d'interpolation $A_{R'}$ tel que 
+\[
+A_{R'}(x([u]P+[v]Q))=x([u]P'+[v]R') \quad \text{pour tout $[u]P+[v]Q$ d'ordre $\ell^k$}.
+\]
+Ensuite à l'aide du polynôme $A_{R'}$ on calcule la fraction rationnelle $F$ telle que:
+\[
+F=A_{R'} \bmod T
+\]
+avec $T$ le polynôme minimal qui s'annule sur tout point $[u]P +[v]Q_{\mu}$ 
+d'ordre $\ell^k$. C'est la fraction rationnelle $F$ qui lorsque l'on a bien 
+choisi $R'$ doit représenter l'action de la $r$-isogénie $\phi$, on cherche 
+donc à calculer $F$ de degré $(r,r-1)$. Or une telle fraction rationnelle est 
+déterminée par $2r$ coefficients on doit donc avoir le nombre d'abscisses de 
+points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}{2}$ strictement plus grand
+que $2r$ pour avoir suffisamment d'informations.
+
 \chapter{Ouverture 1812}
-\section{Variante avec un seul sous-groupe cyclique}
+\section{Variante de Elkies avec un seul sous-groupe cyclique}
 Comme proposé par François Morain on pourrait uniquement travailler avec un 
 point horizontal au lieu de travailler avec une base horizontale.
 
