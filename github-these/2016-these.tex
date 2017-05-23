@@ -3920,17 +3920,17 @@ Soit $P$ un point d'ordre $\ell^{\beta+i}$ de la courbe elliptique $E$ située
 au niveau du cratère du volcan de $\ell$-isogénies telle que $E(\mathsf{F}_
 {1})[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times 
 \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$, alors la taille de l'orbite de $P$ selon 
-l'action de $\mathsf{Gal}(\mathsf{F}_{\beta+i}:\mathsf{F}_{1})$ est 
+l'action de $\mathsf{Gal}(\mathsf{F}_{i+1}:\mathsf{F}_{1})$ est 
 $\ell^i$. 
 \end{cor}
 
-\begin{cor}
+\begin{cor} \label{cor:atk:orb:rep}
 Soit $E$ une courbe elliptique située au niveau du cratère du volcan de 
 $\ell$-isogénies telle que $E(\mathsf{F}_1)[\ell^{\infty}] \simeq 
 \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$,
 alors il y a $\ell^{2\beta + i -2}(\ell+1)$ classes de conjugaison de points 
 d'ordre $\ell^{\beta+i}$ selon l'action de $\mathsf{Gal}(
-\mathsf{F}_{\beta+i}:\mathsf{F}_{1})$.
+\mathsf{F}_{i+1}:\mathsf{F}_{1})$.
 \end{cor}
 
 \chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
@@ -5036,10 +5036,24 @@ le coût total de l'étape~\ref{alg:cou:atk:frob:bas} est donc de
 $O(\ell^2(\beta \mathsf{M}(\ell)+\mathsf{M}(\ell^{i-\beta+1})))$ 
 opérations sur $\mathbb{F}_q$.
 
-
-L'étape~\ref{alg:cou:atk:matc:fro} elle a un coût de 
+L'étape~\ref{alg:cou:atk:matc:fro} a un coût de 
 $O(\ell^4(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta-e)\mathsf{M}(\ell)))$ 
 opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:atk:comp:alg}.
+
+Par le corollaire~\ref{cor:atk:orb:rep} on a $\ell^{k+\beta-2}(\ell+1)$ 
+représentants à calculer, chaque représentant étant 
+calculé comme la multiplication scalaire d'un point d'ordre $\ell^k$ défini 
+dans $\mathsf{F}_{k-\beta}$ par un coefficient dans 
+$(\mathbb{Z}/\ell^k\mathbb{Z})^{\times}$ une telle multiplication a un coût
+de $O(\log(\ell^k)\mathsf{M}(\ell^{k-\beta}))$. On a donc un coût total de 
+$O(\mathsf{M}(\ell^{2k})\log(\ell^k))$ opérations sur $\mathbb{F}_q$. 
+
+Pour l'étape~\ref{alg:cou:atk:int} par la proposition~\ref{prop:interpol}
+
+L'étape~\ref{alg:cou:atk:Cauchy} a une complexité de $O(r\log(r))$ d'après
+\cite[Théorème 7.5]{algeff17}. Le coût du test de la fraction rationnelle est
+dominé par les autres opérations (pour plus de détails le lecteur peut voir 
+la preuve de la proposition~\ref{pro:full-complexity}).
 \end{proof}
 
 \chapter{Ouverture 1812}
