@@ -4603,7 +4603,7 @@ $r$-isogénie entre deux courbes elliptiques $E$, $E'$ définies sur des volcans
 de $\ell$-isogénies à cratère cyclique: 
 
 \begin{algorithm}
-\caption{\label{alg:cou:ell-adique} Algorithme de Couveignes $\ell$-adique.}
+\caption{\label{alg:cou:ell-adique} Algorithme de Couveignes $\ell$-adique dans le cas Elkies.}
 \begin{algorithmic}[1]
 \REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
@@ -4931,20 +4931,17 @@ différentes parties est disponible sur le projet github:
 
 \section{Atkin}
 On se restreint tout d'abord au cas où l'on travaille avec deux courbes 
-$r$-isogènes, avec $r \wedge \ell=1$ qui se situent au sommet d'un volcan de 
-$\ell$-isogénies de hauteur $h$, on verra par la suite comment généraliser cela
-à des courbes non situées sur le cratère.
+$r$-isogènes, avec $r \wedge \ell=1$ qui se situent au cratère d'un volcan de 
+$\ell$-isogénies de hauteur $h$, réduit à une courbe car on se place dans le 
+cas Atkin. On verra par la suite comment généraliser cela
+à des courbes non situées sur le cratère. \todo{Le faire!}
 
 Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées
-par une $r$-isogénie $\phi$, telles que $E$ et $E'$ se situent au sommet d'un 
-volcan de $\ell$-isogénies avec cratère réduit à une courbe (on est donc dans 
-le cas Atkin) alors pour $k$  plus grand que $h$ la hauteur du volcan de 
-$\ell$-isogénies avec $P \in E$ et $P' \in E'$ deux points d'ordre $\ell^{k}$ 
-tels que $\phi(P)=P'$ deux bases $(P,Q),(P',Q')$ de $E[\ell^k]$ et $E'[\ell^k]$
-telles que $\pi(P,Q)=\pi(P',Q')$ par la proposition~\ref{pro:atk:equi} cela 
-détermine de façon unique $[\ell^h]Q$ et $[\ell^{h}]Q'$ or comme $\phi$ est une
-$r$-isogénie qui commute avec le Frobenius on a $\phi([\ell^h]Q)=[\ell^h]Q'$ 
-comme énoncé dans le corollaire~\ref{cor:atk:ess}. On détermine alors le point 
+par une $r$-isogénie $\phi$ alors pour $k$  plus grand que $h$, $P \in E$ et 
+$P' \in E'$ deux points d'ordre $\ell^{k}$ tels que $\phi(P)=P'$. Pour deux 
+bases $(P,Q),(P',Q')$ de $E[\ell^k]$ et $E'[\ell^k]$ telles que $\pi(P,Q)=
+\pi(P',Q')$ on détermine de façon unique $\phi([\ell^h]Q)=[\ell^h]Q'$ par le 
+corollaire~\ref{cor:atk:ess}. On détermine alors le point 
 $\phi(Q)$ en testant pour tout point $R$ antécédent par $[\ell^h]$ de 
 $[\ell^h]Q'$ si la correspondance $(P,Q) \rightarrow (P',R')$ premet de définir
 une $r$-isogénie. Ce test consiste comme dans le cas Elkies à calculer le 
@@ -4963,6 +4960,44 @@ donc à calculer $F$ de degré $(r,r-1)$. Or une telle fraction rationnelle est
 déterminée par $2r$ coefficients on doit donc avoir le nombre d'abscisses de 
 points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}{2}$ strictement plus grand
 que $2r$ pour avoir suffisamment d'informations.
+
+On peut dès lors énoncer une version $\ell$-adique de l'algorithme de 
+Couveignes dans le cas Atkin:
+\begin{algorithm}
+\caption{\label{alg:cou:atk} Algorithme de Couveignes $\ell$-adique dans le cas Atkin.}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau du cratère d'un volcan de $\ell$-isogénies avec cratère réduit à une courbe.
+\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE Calcul du plus petit $k$ tel que $\ell^{2k-2}(\ell+1)>4r$;
+\STATE \label{alg:cou:atk:bas} 
+Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
+\STATE Calcul de $\pi(P,Q)$;
+\FOR{$S' \in E'$ d'ordre $\ell^k$}
+\STATE Calcul de $R' \in E'$ tel que $\pi(S',R')=\pi(P,Q)$ à l'aide de l'algorithme~\ref{alg:atk:bas:mat}
+\FOR{$U' \in E'$  tel que $[\ell^{h}]U'=[\ell^{h}]R'$}
+
+\STATE Calcul des listes de représentants pour les orbites selon l'action du Frobenius $L$ et $L'_{U',R'}$ afin de respecter la correspondance induite par le choix de $U'$ et $R'$;
+\STATE \label{alg:cou:atk:int} Calcul des des polynômes $A_{U',R'}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
+\STATE \label{alg:cou:atk:Cauchy} Calcul de la fraction rationnelle $F=A_{U',R'} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\IF{$\mathsf{Test}(F)$}
+\RETURN $F$
+\ENDIF
+\ENDFOR
+\ENDFOR 
+\end{algorithmic}
+\end{algorithm}
+
+\begin{prop}
+  \label{pro:atk:full-complexity}
+  En supposant que l'on a $\ell^h<\sqrt{r}$ \todo{trouver similaire}, 
+  l'algorithme~\ref{alg:cou:atk} calcule une $r$-isogénie 
+  ${\phi:E \rightarrow E'}$ en un temps espéré de 
+
+\end{prop}
+\begin{proof}
+Le coût de calcul des bases de la $\ell^k$-torsion se fait à partir d'une base de la $\ell$-torsion puis on inverse la multiplication l'aide de deux isogénies de degré $\ell$
+\end{proof}
 
 \chapter{Ouverture 1812}
 \section{Variante de Elkies avec un seul sous-groupe cyclique}
