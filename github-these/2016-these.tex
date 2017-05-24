@@ -5007,8 +5007,10 @@ Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
   \label{pro:atk:full-complexity}
   En supposant que l'on a $\ell^h<\sqrt{r}$ \todo{trouver similaire}, 
   l'algorithme~\ref{alg:cou:atk} calcule une $r$-isogénie 
-  ${\phi:E \rightarrow E'}$ en un temps espéré de 
-
+  ${\phi:E \rightarrow E'}$ en un temps espéré de \[
+  O(r(\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))\]
+auquel il faut ajouter un temps de pré-calcul de:
+$O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\ell)\log(\ell q))$.
 \end{prop}
 \begin{proof}
 Par définition de $k$ on a $\ell^{2k-1} \in O(r\ell^2)$.
@@ -5025,7 +5027,7 @@ $O(\mathsf{R}(k-\beta+1)+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
 Par ~\cite[Chapter~14.5]{vzGJG03} on a $\mathsf{R}(n)=
 O(\ell^n\mathsf{M}(\ell^{n+1})\log(\ell)\log(\ell q))$. 
 L'étape~\ref{alg:cou:atk:bas} a donc un coût total de $O(\ell^k \mathsf{M}
-(\ell^{k+1})\log(\ell)\log(\ell q))=O(\sqrt{r}\mathsf{M}(\sqrt{r})\log(\ell)\log(\ell q))$ 
+(\ell^{k+1})\log(\ell)\log(\ell q))=O(\sqrt{r}\mathsf{M}(\sqrt{r}\ell)\log(\ell)\log(\ell q))$ 
 dans le pire des cas où l'on aurait $\beta=1$.
 
 Le coût de calcul de l'étape~\ref{alg:cou:atk:frob:bas} s'effectue 
@@ -5040,13 +5042,13 @@ d'identifier l'action du Frobenius. Chaque étape a donc un coût de
 $O(\ell^2 \mathsf{M}(\ell^{\max(1,i-\beta)}))$,
 le coût total de l'étape~\ref{alg:cou:atk:frob:bas} est donc de 
 $O(\ell^2(\beta \mathsf{M}(\ell)+\mathsf{M}(\ell^{k-\beta+1})))=
-O((\ell^2( \mathsf{M}(\ell)+\mathsf{M}(\sqrt{r})))$ 
+O(\ell^2( \mathsf{M}(\ell)+\mathsf{M}(\sqrt{r}))$ 
 opérations sur $\mathbb{F}_q$ dans le pire des cas où $\beta=1$.
 
 Le calcul de tous les points d'ordre $\ell^k$ à 
 l'étape~\ref{alg:cou:atk:parc:poi} à partir d'une base de $E'[\ell^k]$ coûte 
-$O(\mathsf{M}(\ell^k)\log(\ell^k)\ell^k)=
-O(\mathsf{M}(\sqrt{r})\sqrt{r}\log(r)\log(\ell))$ ce coût est considéré comme 
+$O(\mathsf{M}(\ell^k)\log(\ell^k)\ell^{2k-2})=
+O(\mathsf{M}(\sqrt{r})r\log(r)\log(\ell))$ ce coût est considéré comme 
 un pré-calcul.
 
 L'étape~\ref{alg:cou:atk:matc:fro} a un coût de 
@@ -5085,10 +5087,20 @@ la preuve de la proposition~\ref{pro:full-complexity}).
 
 Les étapes~\ref{alg:cou:atk:rep} à ~\ref{alg:cou:atk:test} étant répétées 
 $\ell^{k-h}$ fois cela a un coût de 
-$O(\ell^{k-h}\mathsf{M}(r\ell^4)\log(r)\log(\ell))$ à $S'$ fixé.
+$O(\ell^{k-h}(\mathsf{M}(r\ell^4)\log(r)\log(\ell))+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ 
+à $S'$ fixé.
 
-Enfin l'étape à et la boucle étant répétées $\ell^k$ fois cela donne la complexité totale.
+Enfin l'étape~\ref{alg:cou:atk:frob:bas} et la boucle commençant à 
+l'étape~\ref{alg:cou:atk:parc:poi} étant répétées $\ell^{2k-2}$ fois cela donne
+une complexité de $O(r(\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))$ à laquelle il faut ajouter les précalculs pour obtenir 
+le résultat.
 \end{proof}
+
+\begin{rem}
+Il est intéressant de noter que la complexité d'un tel algorithme sur un volcan
+\emph{régulier} est de:
+$O()$
+\end{rem}
 
 \chapter{Ouverture 1812}
 \section{Variante de Elkies avec un seul sous-groupe cyclique}
