@@ -4648,11 +4648,15 @@ Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}
   ${\phi:E \rightarrow E'}$ en un temps espéré de 
 %\[
 % O\Bigl(\bigl(r \ell^2\mathsf{M}(r\ell^4) +  \mathsf{M}(r\ell^3)\log(\ell q)\bigr)\log(r)\log(\ell) \Bigr).\]
+% \[
+%O\Bigl(r \ell( \mathsf{M}(r \ell^4) \log(r) \log(\ell) + \mathsf{M}(r \ell^{1,5}) \log(r)^2) + \mathsf{M}(r \ell^4) \log(r) \log(\ell) \log(\ell q) \Bigr) 
+% \]
+%  \[
+%O\Bigl( (r \ell + \log(\ell q) ) \mathsf{M}(r \ell^4) \log(r) \log(\ell) +  r\ell \mathsf{M}(r \ell^{1,5}) \log(r)^2 \Bigr) 
+ %\]
+ 
  \[
-O\Bigl(r \ell( \mathsf{M}(r \ell^4) \log(r) \log(\ell) + \mathsf{M}(r \ell^{1,5}) \log(r)^2) + \mathsf{M}(r \ell^4) \log(r) \log(\ell) \log(\ell q) \Bigr) 
- \]
-  \[
-O\Bigl( (r \ell + \log(\ell q) ) \mathsf{M}(r \ell^4) \log(r) \log(\ell) +  r\ell \mathsf{M}(r \ell^{1,5}) \log(r)^2 \Bigr) 
+O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\ell^{1,5})\log(r)\log(\ell)\log(\ell q) + r \ell ( \mathsf{M}(r)\log(r)+ \mathsf{M}(r \ell^4) \log(r) \log(\ell) + \mathsf{M}(r \ell^3) \log(r)^2 \log(\ell) )  \Bigr)
  \]
 \end{prop}
 \begin{proof}
@@ -4683,12 +4687,12 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   En utilisant le  résultat  donné par ~\cite[Chapter~14.5]{vzGJG03} pour le 
   coût de $\mathsf{R}$, on a alors un coût borné pour les 
   étapes~\ref{alg:cou-ell:bhor} et \ref{alg:cou-ell:bdiag} par 
-  $O(\mathsf{M}(r\ell^{2,5})\log(r)\log(\ell)\log(\ell q))$. \todo{ou ecrire $\sqrt{\ell^5}$}
+  $O(\sqrt{r}\mathsf{M}(\sqrt{r}\ell^{1,5})\log(r)\log(\ell)\log(\ell q))$. \todo{ou ecrire $\sqrt{\ell^5}$}
   
   Il faut éventuellement rajouter le coût de calcul des points partiellement 
   horizontaux si les courbes en entrée ne se situent pas sur le cratère. 
   Celui-ci est dans le pire des cas de
-  $O(k\mathsf{M}(\ell^{k-\beta+1})) \subset O(\log(r) \mathsf{M}(r \ell^{2,5}) )$ par la proposition~\ref{pro:par:hor}, ce 
+  $O(k\mathsf{M}(\ell^{k-\beta+1})) = O(\log(r) \mathsf{M}(\sqrt{r} \ell^{1,5}) )$ par la proposition~\ref{pro:par:hor}, ce 
   coût est donc majoré par le calcul de la base horizontale sur le cratère.
 
   Par la proposition~\ref{pro:clas:fro}(~\ref{prop:classes:count}), il y a au 
@@ -4701,12 +4705,12 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   dans $\mathsf{F}_{k-\beta}$ par des entiers définis dans 
   $\left( \mathbb{Z}/\ell^{k}\mathbb{Z}\right)^*$ une telle multiplication coûte 
   $O(\mathsf{M}(\ell^{k-\beta})\log(\ell^k))$ opérations. On a donc un coût total de 
-  $O(k\mathsf{M}(\ell^{2k})\log(\ell^k)) \subset O(\mathsf{M}(r\ell^{1,5})\log(r)^2)$
+  $O(k\mathsf{M}(\ell^{2k})\log(\ell^k)) \subset O(\mathsf{M}(r\ell^{3})\log(r)^2 \log(\ell))$
   pour calculer tous les représentants.
   
   
   On utilise ensuite la proposition~\ref{prop:interpol}, avec un degré total
-  ~$t = (\ell^{2k}(\ell+1))/2\in O(r\ell^2)$, et le nombre de points d'interpolations
+  ~$t = (\ell^{2k-2}(\ell+1))/2\in O(r\ell^2)$, et le nombre de points d'interpolations
   est $s \in O(k \cdot \ell^{k+\beta})$, on calcule alors les polynômes~$T$
   et~$A_{a,b}$ avec un coût de~$O(\mathsf{M}(r \ell^4)\log(r)\log(\ell))$.  Le coût
   de calcul de $F_{a,b}$ est de $O(\mathsf{M}(r)\log(r))$ par 
@@ -4720,7 +4724,7 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   \log(r))$ opérations, on ne prend pas en compte toutefois le coût de calcul
    du polynôme de $r$-division  de $r\mathsf{M}(r^2)\log(r)\log(r q)$ car 
   les autres tests suffisent en général pour conclure. Tous ces coûts sont donc
-  dominés par celui du calcul de~$A_{a,b}$.  Enfin, en moyenne 
+  dominés par celui du calcul de~$A_{a,b}$ et $T$.  Enfin, en moyenne 
    ${\ell^{2k-2}=O(r\ell)}$~matrices candidates doivent être testées
    avant de trouver l'isogénie.
 \end{proof}
@@ -4809,7 +4813,7 @@ l'on ne considère que ceux-ci.
 Le coût pour trouver un nombre de Elkies est de:
 \[O(\sqrt{r}\mathsf{M}(\sqrt{r})\log(q)\log(\log(q) q)+\log(q)^6)\]
 opérations sur $\mathbb{F}_q$, le coût pour trouver un nombre de Atkin est 
-identique
+identique.
 \end{cor}
 
 \begin{proof}
@@ -4835,18 +4839,26 @@ par la proposition~\ref{pro:alg:diagonal}, en appliquant les résultats de
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
 $\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
-en un temps espéré de   \[
-O\Bigl( r \log(q) \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) +  r\log(q) \mathsf{M}(r \log(q)^{1,5}) \log(r)^2 \Bigr).
- \]
+en un temps espéré de 
+
+ \begin{eqnarray}
+O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\log(q)^{1,5})\log(r)\log(\ell)\log(\log(q) q) &+& \\ 
+r \ell ( \mathsf{M}(r)\log(r)+ \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) + \mathsf{M}(r \log(q)^3) \log(r)^2 \log(\log(q)) + \log(q)^6 )  &\Bigr)&
+
+ \end{eqnarray}
+%  \[
+%O\Bigl( r \log(q) \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) +  r\log(q) \mathsf{M}(r \log(q)^{1,5}) \log(r)^2 \Bigr).
+% \]
 %  $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
 \end{thm}
 
 \begin{proof}
 Par le corollaire~\ref{cor:atk:elk:dist} on trouve un nombre premier de Elkies 
-avec une complexité de $O()$ opérations sur $\mathbb{F}_q$.
+avec une complexité de $O(\sqrt{r}\mathsf{M}(\sqrt{r})\log(q)\log(\log(q) q)+\log(q)^6)$ 
+opérations sur $\mathbb{F}_q$.
 Ainsi en bornant $\ell$ par $\log(q)$ dans la complexité obtenue à la 
 proposition~\ref{pro:full-complexity} on obtient un résultat auquel il faut 
-rajouter le cout de la recherche de courbe sur le volcan: $O(\log(q)^5)$ par la 
+rajouter le cout de la recherche de courbe sur le volcan: $O(\log(q)^6)$ par la 
 proposition~\ref{pro:cou:dec}, le test pour savoir si le nombre est de Elkies 
 est lui majoré par la complexité donnée dans la 
 proposition~\ref{pro:full-complexity}.
