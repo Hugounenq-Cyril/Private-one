@@ -4472,7 +4472,7 @@ L'algorithme~\ref{alg:atk:bas:mat} a une complexité de
 $O(\ell^4(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta-e)\mathsf{M}(\ell)))$ opérations sur 
 $\mathbb{F}_q$ lorsque la courbe $E$ se trouve sur un volcan \emph{régulier} et
 une complexité de 
-$O(\ell^4(\mathsf{M}(\ell^{h-\beta-e+i+1})+(\beta)\mathsf{M}(\ell)))$
+$O(\ell^4(\mathsf{M}(\ell^{h-e+i+1-\beta})+(\beta)\mathsf{M}(\ell)))$
 lorsque $E$ se situe au-dessus du premier niveau de stabilité.
 \end{prop}
 
@@ -4513,8 +4513,6 @@ L'analyse du coût de l'algorithme pour une courbe située au dessus du premier
 niveau de stabilité est la même excepté le fait que un point d'ordre 
 $\ell^{j}$ est défini dans $\mathsf{F}_{j-\beta}$ lorsque $j-\beta>1$ et 
 $\mathsf{F}_1$ sinon.
-
-\todo{preuve a faire}Question la plus importante dans quelle extension sont définis les points d'ordre $\ell^{h-i+e}$
 \end{proof}
 
 \chapter{Algorithme de Couveignes $\ell$-adique}
@@ -4773,6 +4771,11 @@ Soit une courbe $E$, on cherche le plus petit nombre premier de Elkies qui
   l'algorithme~\ref{alg:cou:ell-adique}.
 \end{proof}
 
+\begin{rem}
+Ce résultat comme le \cite[Theorem~1]{ShparlinskiSutherland14} s'applique aussi
+aux nombres premiers de Atkin.
+\end{rem}
+
 \begin{prop}
 \label{pro:cou:dec}
 Le coût de trouver un courbe sur le cratère d'un volcan de $\ell$-isogénies 
@@ -4946,35 +4949,41 @@ différentes parties est disponible sur le projet github:
 
 \section{Atkin}
 On se restreint tout d'abord au cas où l'on travaille avec deux courbes 
-$r$-isogènes, avec $r \wedge \ell=1$ qui se situent au cratère d'un volcan de 
-$\ell$-isogénies de hauteur $h$, réduit à une courbe car on se place dans le 
-cas Atkin. On verra par la suite comment généraliser cela
+$r$-isogènes, avec $r \wedge \ell=1$ qui se situent au niveau d'un cratère d'un
+volcan de $\ell$-isogénies de hauteur $h$, réduit à une courbe car on se place 
+dans le cas Atkin. On verra par la suite comment généraliser cela
 à des courbes non situées sur le cratère. \todo{Le faire!}
 
 Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées
-par une $r$-isogénie $\phi$ alors pour $k$  plus grand que $h$, $P \in E$ et 
-$P' \in E'$ deux points d'ordre $\ell^{k}$ tels que $\phi(P)=P'$. Pour deux 
-bases $(P,Q),(P',Q')$ de $E[\ell^k]$ et $E'[\ell^k]$ telles que $\pi(P,Q)=
-\pi(P',Q')$ on détermine de façon unique $\phi([\ell^h]Q)=[\ell^h]Q'$ par le 
+par une $r$-isogénie $\phi$, $P \in E$ et $S' \in E'$ deux points d'ordre 
+$\ell^{k}$, avec $k$  plus grand que $h$, tels que $\phi(P)=S'$. Pour deux 
+bases $(P,Q),(S',R')$ de $E[\ell^k]$ et $E'[\ell^k]$ telles que $\pi(P,Q)=
+\pi(S',R')$ on détermine de façon unique $\phi([\ell^h]Q)=[\ell^h]R'$ par le 
 corollaire~\ref{cor:atk:ess}. On détermine alors le point 
-$\phi(Q)$ en testant pour tout point $R$ antécédent par $[\ell^h]$ de 
-$[\ell^h]Q'$ si la correspondance $(P,Q) \rightarrow (P',R')$ premet de définir
+$\phi(Q)$ en testant pour tout point $U'$ antécédent par $[\ell^h]$ de 
+$[\ell^h]R'$ si la correspondance $(P,Q) \rightarrow (S',U')$ premet de définir
 une $r$-isogénie. Ce test consiste comme dans le cas Elkies à calculer le 
-polynôme d'interpolation $A_{R'}$ tel que 
+polynôme d'interpolation $A_{S',U'}$ tel que 
 \[
-A_{R'}(x([u]P+[v]Q))=x([u]P'+[v]R') \quad \text{pour tout $[u]P+[v]Q$ d'ordre $\ell^k$}.
+A_{R'}(x([u]P+[v]Q))=x([u]S'+[v]U') \quad \text{pour tout $[u]P+[v]Q$ d'ordre $\ell^k$}.
 \]
-Ensuite à l'aide du polynôme $A_{R'}$ on calcule la fraction rationnelle $F$ telle que:
+Ensuite à l'aide du polynôme $A_{S',U'}$ on calcule la fraction rationnelle $F$ telle que:
 \[
-F=A_{R'} \bmod T
+F=A_{S',U'} \bmod T
 \]
 avec $T$ le polynôme minimal qui s'annule sur tout point $[u]P +[v]Q_{\mu}$ 
 d'ordre $\ell^k$. C'est la fraction rationnelle $F$ qui lorsque l'on a bien 
-choisi $R'$ doit représenter l'action de la $r$-isogénie $\phi$, on cherche 
+choisi $U''$ doit représenter l'action de la $r$-isogénie $\phi$, on cherche 
 donc à calculer $F$ de degré $(r,r-1)$. Or une telle fraction rationnelle est 
 déterminée par $2r$ coefficients on doit donc avoir le nombre d'abscisses de 
 points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}{2}$ strictement plus grand
 que $2r$ pour avoir suffisamment d'informations.
+
+Comme la seule information que l'on ait sur l'image de $P$ par $\phi$ est que 
+c'est un point d'ordre $\ell^k$, on propose donc de faire la procédure décrite 
+dans le paragraphe précédent en testant toutes les valeurs possibles pour 
+l'image de $P$ par $\phi$ c'est à dire tous les points d'ordre $\ell^k$ de 
+$E'$.
 
 On peut dès lors énoncer une version $\ell$-adique de l'algorithme de 
 Couveignes dans le cas Atkin:
@@ -4993,8 +5002,8 @@ Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
 \FOR{$U' \in E'$  tel que $[\ell^{h}]U'=[\ell^{h}]R'$} \label{alg:cou:atk:div:h}
 
 \STATE Calcul des listes de représentants pour les orbites selon l'action du Frobenius $L$ et $L'_{U',R'}$ afin de respecter la correspondance induite par le choix de $U'$ et $R'$; \label{alg:cou:atk:rep}
-\STATE \label{alg:cou:atk:int} Calcul des des polynômes $A_{U',R'}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
-\STATE \label{alg:cou:atk:Cauchy} Calcul de la fraction rationnelle $F=A_{U',R'} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\STATE \label{alg:cou:atk:int} Calcul des des polynômes $A_{S',U'}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
+\STATE \label{alg:cou:atk:Cauchy} Calcul de la fraction rationnelle $F=A_{S',U'} \bmod T$ à l'aide d'une interpolation de Cauchy;
 \IF{$\mathsf{Test}(F)$} \label{alg:cou:atk:test}
 \RETURN $F$
 \ENDIF
@@ -5014,6 +5023,11 @@ $O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\e
 \end{prop}
 \begin{proof}
 Par définition de $k$ on a $\ell^{2k-1} \in O(r\ell^2)$.
+Par la proposition~\ref{pro:clas:fro:atk}, il existe $\beta \leqslant h$ tel que
+$E[\ell^k]$ est inclus dans $E(F_{k-\beta})$. On construit donc une
+tour d'extensions $\ell$-adiques $\mathsf{F}_0\subset\cdots\subset 
+\mathsf{F}_{k-\beta}$, et l'on effectue les précalculs nécessaires au 
+théorème~\ref{thm:frob-ell} avec un coût de $O(\ell\mathsf{M}(\ell)\log(q))$.
 \`A l'étape~\ref{alg:cou:atk:bas} le coût de calcul des bases de la 
 $\ell^k$-torsion se fait à partir d'une base de la $\ell$-torsion puis on 
 inverse la multiplication par $\ell$ l'aide de deux $\ell$-isogénies qui 
@@ -5087,7 +5101,7 @@ la preuve de la proposition~\ref{pro:full-complexity}).
 
 Les étapes~\ref{alg:cou:atk:rep} à ~\ref{alg:cou:atk:test} étant répétées 
 $\ell^{k-h}$ fois cela a un coût de 
-$O(\ell^{k-h}(\mathsf{M}(r\ell^4)\log(r)\log(\ell))+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ 
+$O(\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell))+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ 
 à $S'$ fixé.
 
 Enfin l'étape~\ref{alg:cou:atk:frob:bas} et la boucle commençant à 
@@ -5096,11 +5110,24 @@ une complexité de $O(r(\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}
 le résultat.
 \end{proof}
 
-\begin{rem}
-Il est intéressant de noter que la complexité d'un tel algorithme sur un volcan
-\emph{régulier} est de:
-$O()$
-\end{rem}
+On fait encore remarquer que la condition $\ell^h < \sqrt{r}$ signifie que l'on
+a $k>h$.
+
+Comme dit précédemment le résultat de la proposition~\ref{pro:bor:ell} est 
+aussi valable dans le cas Atkin, on peut donc trouver un $\ell \in O(\log(q))$
+nombre premier de Atkin \todo{regarder si c'est défini} tel que 
+$\ell^h<\sqrt{r}$. 
+
+Faire la généralisation aux courbes en dessous du cratère. \todo{Faire aussi cela}
+
+\begin{thm}
+Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
+$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
+en un temps espéré de   \[
+O\Bigl( r \log(q) \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) +  r\log(q) \mathsf{M}(r \log(q)^{1,5}) \log(r)^2 \Bigr).
+ \]
+%  $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
+\end{thm}
 
 \chapter{Ouverture 1812}
 \section{Variante de Elkies avec un seul sous-groupe cyclique}
