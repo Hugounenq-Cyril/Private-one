@@ -4779,9 +4779,8 @@ aux nombres premiers de Atkin.
 \begin{prop}
 \label{pro:cou:dec}
 Le coût de trouver un courbe sur le cratère d'un volcan de $\ell$-isogénies 
-pour un nombre premier $\ell$ de Elkies dans l'intervalle $[1,L]$ 
-pour $L \in O(\log(q))$ est majoré par:
-$O(\log(q)^5)$.
+pour un nombre premier $\ell$ dans l'intervalle $[1,L]$ pour $L \in O(\log(q))$
+est majoré par: $O(\log(q)^5)$.
 \end{prop}
 
 \begin{proof}
@@ -4794,7 +4793,6 @@ sommet du volcan de $\ell$-isogénies à l'aide de $O(\ell h^2)$
   Cantor-Zassenhaus décrit dans \cite[Chapter~14.5]{vzGJG03}. Ainsi le coût 
   total pour trouver un nombre premier de $\ell$ de Elkies tel que $\ell^h<\sqrt{r}$  est de
   $O(\log(q)^5)$ en bornant $\ell$ par $\log(q)$.
-	
 \end{proof}
 
 \begin{rem}
@@ -4806,6 +4804,33 @@ fonctionner sur tous types de volcans, non-réguliers compris, d'où le fait que
 l'on ne considère que ceux-ci.
 \end{rem}
 
+\begin{cor}
+\label{cor:atk:elk:dist}
+Le coût pour trouver un nombre de Elkies est de:
+$O()$
+opérations sur $\mathbb{F}_q$, le coût pour trouver un nombre de Atkin est 
+identique
+\end{cor}
+
+\begin{proof}
+Par la proposition~\ref{pro:bor:ell} on sait qu'il existe un nombre premier 
+$\ell$ de Elkies (Atkin) appartenant à $[1;L]$ pour $L \in O(\log(q))$ et qui 
+vérifie $\ell^{h} < \sqrt{r}$. Pour trouver un nombre premier de Elkies qui 
+vérifie cette condition on doit tester tous les nombres premier de l'intervalle
+$[1;L]$ avec $L \in O(\log(q))$. On a vu dans la proposition~\ref{pro:cou:dec} 
+que pour chacun de ces nombres premiers de Elkies on trouvait une courbe sur le
+cratère en au plus $O(\log(q)^5)$ opérations, une fois qu'une telle courbe est 
+trouvée sur le cratère alors on calcule une base diagonale de la $\ell^k$ 
+torsion à l'aide des méthodes utilisées dans l'algorithme~\ref{alg:bas:diag} si
+l'on arrive à diagonaliser la base c'est que le nombre premier testé est de 
+Elkies et valide pour appliquer l'algorithme~\ref{alg:cou:ell-adique} sinon 
+c'est un nombre premier de Atkin et l'algorithme~\ref{alg:cou:atk} peut 
+s'appliquer. L'algorithme~\ref{alg:bas:diag} ayant une complexité de 
+$O(\mathsf{R}(k-\beta)+\ell^2\mathsf{M}(\ell^{k-\beta})+\ell 
+\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ par la 
+proposition~\ref{pro:alg:diagonal}, en appliquant les résultats de 
+~\cite[Chapter~14.5]{vzGJG03} on obtient le résultat.
+\end{proof}
 
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
@@ -4817,18 +4842,8 @@ O\Bigl( r \log(q) \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) +  r\log(q) \mat
 \end{thm}
 
 \begin{proof}
-Par la proposition~\ref{pro:bor:ell} on sait qu'il existe un nombre premier 
-$\ell$ de Elkies appartenant à $[1;L]$ pour $L \in O(\log(q))$ et qui vérifie
-$\ell^{h} < \sqrt{r}$. Pour trouver un nombre premier de Elkies qui vérifie 
-cette condition on doit tester tous les nombres premier de l'intervalle $[1;L]$
-avec $L \in O(\log(q))$. On a vu dans la proposition~\ref{pro:cou:dec} que pour 
-chacun de ces nombres premiers de Elkies on trouvait une courbe sur le cratère
-en au plus $O(\log(q)^5)$ opérations, une fois qu'une telle courbe est trouvée
-sur le cratère alors on calcule une base diagonale de la $\ell^k$ torsion à 
-l'aide des méthodes utilisées dans l'algorithme~\ref{alg:bas:diag} et l'on 
-regarde alors si les valeurs propres sont distinctes, si c'est le cas alors le
-nombre premier testé est de Elkies et valide pour appliquer 
-l'algorithme~\ref{alg:cou:ell-adique}.
+Par le corollaire~\ref{cor:atk:elk:dist} on trouve un nombre premier de Elkies 
+avec une complexité de $O()$ opérations sur $\mathbb{F}_q$.
 Ainsi en bornant $\ell$ par $\log(q)$ dans la complexité obtenue à la 
 proposition~\ref{pro:full-complexity} on obtient un résultat auquel il faut 
 rajouter le cout de la recherche de courbe sur le volcan: $O(\log(q)^5)$ par la 
@@ -6151,6 +6166,575 @@ Sachant que l'on répète les étapes~\ref{alg:cou:TRC-adique:ord},
 complexité.
 \end{proof}
 
+\bibliography{Biblio}
+
+
+\appendix
+\chapter{Algorithmes}
+\section{Algorithm for computing a trigonalisation or a diagonalisation at the same time}
+\todo{Algorithme appendice intéressant seulement pour la condition qui distingue horizontal de trigonal}
+\begin{algorithm}
+\caption{\label{alg:app:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
+\begin{algorithmic}[1]
+\REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan de $\ell$-isogénies avec cratère cyclique;
+$k$: une entier positif;
+\ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
+$\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
+tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k + [\delta] P_k$.
+% \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$;$i \leftarrow 0$; $\delta \leftarrow 0$;$P', Q' \leftarrow $ tels que~$\langle P',Q' \rangle =  E[\ell]$.}
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i}\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
+\WHILE {$\pi|(P',Q')= (\lambda + a\ell^i) \cdot I_2$}
+\STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
+\STATE\label{alg:fin:identical:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
+\STATE $i \leftarrow i+1$.
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i}\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
+\ENDWHILE 
+\IF{$\lambda + a \ell^i \neq \mu + d \ell^i$}
+%\STATE $\delta \leftarrow 0$;
+\WHILE{$i<k $}
+\STATE\label{alg:app:diagonal:solve1}
+  \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
+  résoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
+\STATE\label{alg:app:diagonal:solve2}
+  \textbf{else} résoudre équation
+  $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
+  $y \leftarrow -cx/b$; \textbf{end if}.
+\STATE\label{alg:app:diagonal:upd-P}
+  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow [x] P' + Q'$.
+\STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
+\STATE $i \leftarrow i+1$.
+\STATE\label{alg:app:diagonal:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i}\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
+\ENDWHILE
+\ELSE 
+\STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{end if}.
+\WHILE{$i<k$}
+\STATE \textbf{if} $c = 0$ \textbf{then} $y \leftarrow 0$;
+\STATE \textbf{else}  résoudre equation 
+$ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
+\STATE\label{alg:app:trigonal:upd-P}
+  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow Q'$.
+\STATE{$\lambda \leftarrow \lambda + a \ell^{i} + \delta y$; $\mu \leftarrow \mu + d \ell^{i} $.}
+\STATE\label{alg:app:trigonal:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
+\STATE $i \leftarrow i+1$.
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i} + \delta\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
+\STATE $\delta \leftarrow \delta + b \ell^i$
+\ENDWHILE
+\ENDIF
+\RETURN $(P_{k},Q_{k},\lambda,\mu, \delta).$
+\end{algorithmic}
+\end{algorithm}
+
+
+\begin{algorithm}
+\caption{\label{alg:app:cou:var} Couveignes $\ell$-adique avec un seul sous-groupe cyclique.}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique.
+\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE Calcul du plus petit $k$ tel que $\ell^{k-1}>4r$;
+\STATE  
+Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^{h+1}],E'_s[\ell^{h+1}]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
+\STATE Calcul de $\color{red}P_{\lambda}\color{black} \in E_s[\ell^k]$, $\color{red}P'_{\lambda}\color{black} \in E_s'[\ell^k]$ points horizontaux  à l'aide de l'algorithme \ref{alg:hor:poi};
+\IF{$(E_s,E'_s) \neq (E,E')$}
+\STATE 
+Calcul de $\color{red}P_{\lambda}\color{black},\color{red}P'_{\lambda}\color{black}$ points partiellement horizontaux de $E_s[\ell^k],E'_s[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
+\ENDIF
+\STATE Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
+\FOR{ $a \in \left( \mathbb{Z}/\ell^{k}\mathbb{Z} \right)^*$}
+\STATE Actualisation de la liste des représentants $L'$ en $L'_{a}$ afin de respecter la correspondance induite par le choix de $a$;
+\STATE Calcul des des polynômes $A_{a}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
+\STATE Calcul de la fraction rationnelle $F=A_{a} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\IF{$\mathsf{Test}(F)$}
+\RETURN $F$
+\ENDIF
+\ENDFOR 
+\end{algorithmic}
+\end{algorithm}
+
+\chapter{Calculs dans un compositum}
+\label{cha:ann:comp}
+\begin{prop}
+
+Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{k}$ avec 
+$k \in [1,n_i]$ tel que $\mathsf{F}_{(i,k)}=\mathbb{F}_q[x]/\langle P \rangle$,
+$Q$ un polynôme irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
+tel que $\mathbb{K}_{i-1}=\mathbb{F}_q[y]/\langle Q \rangle$, $R=P \odot Q$ 
+tel que  $\mathbb{K}_{i}=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un 
+élément $a$ de $\mathbb{K}_{i}$ le coût de calcul de $a$ à une puissance 
+$q^{r p_{i-1}}$ est de 
+$O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
+opérations dans $\mathbb{F}_q$ avec un 
+précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{n_i}qd_i))$ et  
+de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
+\end{prop}
+
+\begin{proof}
+Vu que $a \in \mathbb{K}_{i} \cong \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$
+ alors on a pour $s=r \bmod d_i \ell_i^{k}$ 
+$a^{q^{r p_j}}=a^{q^{s p_j}}$ ainsi on considère que $r<d_i \ell_i^{k}$.
+Par la proposition~\ref{pro:iso:fie} et le fait que l'on se soit restreint au 
+cas où l'on a $d_i\ell_i^{n_i} \leqslant p_{i-1}$ on peut écrire $a$ comme un 
+élément de 
+$\mathbb{F}_q[x,y]/\langle P,Q \rangle \cong \mathbb{F}_q[z]/\langle R \rangle$
+ avec un coût de 
+ $O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
+ opérations sur $\mathbb{F}_q$.
+Ainsi en réécrivant $a$ de la façon suivante:
+\begin{equation*}
+a=\sum_{j=0}^{d_i\ell_i^{k}-1}x_i^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,k)}.
+\end{equation*}
+On a alors l'élévation à la puissance $q^{r p_j}$ de $a$ qui s'écrit:
+\begin{equation*}
+a^{q^{r p_j}}=\sum_{j=0}^{d_i\ell_i^{k}-1}(x_i^{j})^{q^{r p_j}}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,k)}.
+\end{equation*} 
+On se concentre donc sur le calcul de $w=x_i^{q^{r p_{i-1}}}$, comme abordé dans la 
+preuve du théorème~\ref{thm:frob-ell} on note $x_0=x_i^{\ell_i^{k}}$. 
+Calculons donc $x_i^{q^{r p_{i-1}}}$, on écrit $q^{r p_{i-1}}= u \ell_i^{k}+v$ avec 
+$0 \leqslant v<\ell_i^{k}$. On a alors $w=x_0^{u \bmod q^{d_i}-1}x_i^{v}$ (on 
+rappelle que $|\mathsf{F}_{(i,0)}|=q^{d_i}$). Par la même méthode que dans la 
+preuve du théorème~\ref{thm:frob-ell} on calcule $u$ et $v$ avec un coût 
+booléen de $O(\log(rp_{i-1})\log(\ell_i^{k}qd_i))$. Le calcul de $x_0^{u \bmod q^{d_i}-1}$ 
+se fait en utilisant $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$. On 
+conserve $w$ sous la forme d'un monôme dans $\mathbb{F}_q[x_i]$ (et non de 
+$\mathsf{F}_{(i,0)}[x_i]$ comme dans le théorème~\ref{thm:frob-ell}).
+
+On écrit $a^{q^{r p_{i-1}}}$ sous la forme:
+\begin{equation*}
+\sum_{j=0}^{d_i\ell_i^{k_i}-1}(w)^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, w \in \mathbb{F}_{q}[x_i].
+\end{equation*}
+
+On calcule alors $a(w)$ par la méthode de Horner. Les puissances $w^k$ étant 
+des monômes dans $\mathbb{F}_q[x_i]$, on calcule chacune des puissances 
+successives à l'aide de la précédente en $\mathsf{M}(p_{i-1})$ opérations sur 
+$\mathbb{F}_q$. On a alors un coût total de 
+$O(d_i\ell_i^{k}\mathsf{M}(p_{i-1}))$ opérations dans $\mathbb{F}_q$. 
+Pour ce calcul-là l'opération dominante est donc le changement de 
+représentation de $a \in \mathbb{K}_i$ vers une représentation dans 
+$\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$.
+\end{proof}
+
+
+Détaillons maintenant comment on adapte les méthodes de calcul de polynôme 
+d'interpolation décrites dans la section~\ref{sec:interpolation} à ce contexte.
+ 
+  
+ Soient deux éléments $v,w \in \mathbb{K}_{i} \setminus \mathbb{K}_{i-1}$ on veut
+ alors calculer le polynôme $A \in \mathbb{F}_q[x]$ tel que:
+\begin{equation}
+A(v)=w \bmod T(v)
+\end{equation}
+avec $T$ le polynôme minimal de $v$. On chercher à calculer le représentant 
+minimal de $A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$.
+
+ 
+ En s'inspirant des travaux de \cite{DeFeo10} et de façon similaire à ce qui a 
+ été fait dans la section~\ref{sec:interpolation}, on cherche à calculer tout 
+ d'abord $T$. On définit la suite de polynôme $T^{(i)}$ de degré$\frac{p_n}{p_{n-i}}$ 
+ et à coefficients définis dans $\mathbb{K}_{n-i}$. On définit $T^{(0)}(x)=(x-v)$. 
+ Supposons que l'on ait calculé un élément $T^{(i)}$ pour $i \in [0,n-1]$ alors on définit 
+ $T^{(i,j)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}(T^{(i)})$ avec
+  $\sigma_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}$ 
+ l'application qui à tous les coefficients du polynôme $T^{(i)}$ définis dans 
+ $\mathbb{K}_{n-i}$ applique l'action d'un élément générateur de 
+ $\mathsf{Gal}(\mathbb{K}_{n-i}: \mathbb{K}_{n-i-1})$. 
+ On définit alors récursivement $T^{(i)}$ de la façon suivante:
+ \begin{equation*}
+T^{(i+1)}=\prod_{j=0}^{d_{n-i}\ell_{n-i}^{n_{n-i}}-1}T^{(i,j)}    
+\end{equation*}
+On peut faire mieux que cela toutefois en appliquant récursivement la méthode 
+employée dans la section~\ref{sec:interpolation} pour le calcul de $T$. On pose
+$T^{(i)}_{(0)}=T^{(i)}$, supposons que l'on connaisse  $T^{(i)}_{(k)}$ pour 
+$i \in [0,n-1], k \in [0,n_{n-i}]$. La notation $T^{(i,j)}_{(k)}$ est définie comme
+ auparavant par $T^{(i,j)}_{(k)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}
+ (T^{(i)}_{(k)})$, on définit alors pour:
+\begin{itemize}
+ \item[$k < n_{n-i}$ ]
+ \[
+T^{(i)}_{(k+1)}=\prod_{j=0}^{\ell_{n-i}-1}T^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}\]
+\item[$k= n_{n-i}$]
+\[
+T^{(i+1)}_{(0)}=T^{(i)}_{(n_{n-i}+1)}=\prod_{j=0}^{d_{n-i}-1}T^{(i,j)}_{(n_{n-i})}
+\]
+\end{itemize}
+ainsi on a $T^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
+de degré $\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}$ pour $k \in [0,n_{n-i}]$ en 
+particulier on a $T^{(i)}_{(n_{n-i}+1)}=T^{(i+1)}_{(0)}=T^{(i+1)}$.  
+\todo{ Faire un dessin à nouveau !}
+Il est alors évident que $T^{(i+1)}$ est le polynôme minimal de $v$ sur 
+$\mathbb{K}_{n-i-1}$ et en particulier $T^{(n)}$ est le polynôme minimal de $v$
+sur $\mathbb{F}_q$.
+ \todo{Dire que cette deuxième décomposition ne fait pas forcément baisser la complexité du calcul du frobenius, mais par contre le nombre d'opération à effectuer oui!}
+
+
+\begin{lem}\label{lem:interpolation:minpoly:ult}
+  Le coût de calcul de $T=T^{(n)}$ est de 
+  $O(n\mathsf{M}(p_n)(p_{n-1})^{(\omega-1)/2} \max_i(\ell_{n-i}n_{n-i}))$
+  opérations dans $\mathbb{F}_q$.
+\end{lem}
+
+\begin{proof}
+  \`A l'étape $i$, à partir de la connaissance de $T^{(i)}_{(0)}$ on  calcule tous 
+  les $T^{(i,j)}_{(0)}$ en utilisant la proposition~\ref{pro:fro:com}. Le coût du 
+  Frobenius pour un polynôme $T^{(i)}_{(k)}$ est de 
+  $O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{1/2}+\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega+1)/2}))$ 
+  $\subset O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}(\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k}p_{n-i-1})p_{n-i-1}^{(\omega-1)/2}))$ 
+  $\subset O(\mathsf{M}(p_n)p_{n-i-1}^{(\omega - 1)/2})$ opérations sur 
+  $\mathbb{F}_q$, on a donc à l'étape $i$ un coût de $O(\ell_{n-i}(n_{n-i}+1)\mathsf{M}(p_n)(p_{n-i-1})^{(\omega - 1)/2})$ 
+  pour effectuer tous les calculs de Frobenius nécessaires.
+  \`A partir des $T^{(i,j)}_{(k)}$ on calcule $T^{(i)}_{k+1}$ en utilisant un arbre de 
+  sous-produits comme décrit dans~\cite[Lemma~10.4]{vzGJG03}. Le polynôme 
+  $T^{(i)}_{k+1}$ résultant de cette opération est de degré 
+  $O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k+1})$ et a ses 
+  coefficients définis dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k-1)}$,
+  le coût total est donc de 
+  $O(\mathsf{M}(p_n)\log(\ell_{n-i}))$ opérations sur $\mathbb{F}_q$. 
+  Le calcul des $T^{(i)}_{(0)},T^{(i)}_{(1)}, \dots, T^{(i)}_{(n_i+1)}$ se fait
+  donc en $O((n_{n-i}+1) \log(\ell_{n-i})\mathsf{M}(p_n))$ opérations sur 
+  $\mathbb{F}_{q}$.
+  Le coût total de l'étape $i$ est donc de 
+  $O(\ell_{n-i}(n_{n-i}+1)\mathsf{M}(p_n)(p_{n-i-1})^{(\omega-1)/2})$,
+  on majore celui-ci par 
+  $O(\mathsf{M}(p_n)(p_{n-1})^{(\omega-1)/2} \max_i(\ell_{n-i}n_{n-i}))$.
+  
+  Une fois que $T^{(i+1)}$ a été calculé de cette manière, on opère une 
+  \emph{descente} sur ses coefficients dans $\mathbb{K}_{n-i-1}$ lors du calcul
+  du Frobenius sur chacun de ses éléments car on a vu dans la preuve de la 
+  proposition~\ref{pro:fro:com} que c'était préconisé.
+  On additionne ces coûts pour tous les $i$ pour obtenir le résultat 
+  énoncé. 
+\end{proof}
+ 
+ On continue alors d'appliquer les méthodes similaires à celles employées dans 
+ \cite{DeFeo10} et la section~\ref{sec:interpolation} pour calculer un polynôme 
+ d'interpolation $A \in \mathbb{F}_q[x]$ tel que $A(v)=w$ pour $v,w$ deux 
+ éléments de $\mathbb{K}_{n} \setminus \mathbb{K}_{n-1}$.
+ 
+On définit la suite de polynômes $A^{(i)}$ pour $i \in [0, n]$ avec
+ $A^{(0)}=w/T'(v)$. En  supposant que l'on connaisse $A^{(i)}$ pour $i < n$ 
+ de degré inférieur à $\frac{p_n}{p_{n-i}}$ à coefficients dans 
+ $\mathsf{K}_{n-i}$ alors pour $j \in [0 ; \ell-1]$ on définit
+ $A^{(i,j)}=\sigma_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}^j(A^{(i)})$, et l'on pose:  
+\begin{equation*}
+A^{(i+1)}=\sum_{j=0}^{d_{n-i}\ell_{n-i}^{n_{n-i}}-1}A^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} 
+\end{equation*}
+on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A} 
+à coefficients dans $\mathbb{K}_{n-i}$ et de degré $\frac{p_n}{p_{n-i}}$.
+On peut faire à nouveau mieux que cela toutefois, on pose
+$A^{(i)}_{(0)}=A^{(i)}$, supposons que l'on connaisse  $A^{(i)}_{(k)}$ pour 
+$i \in [0,n-1], k \in [0,n_i]$. La notation $A^{(i,j)}_{(k)}$ est définie comme
+ auparavant par $A^{(i,j)}_{(k)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}
+ (A^{(i)}_{(k)})$, on définit alors:
+ \begin{itemize}
+ \item[$k=0$]
+ \[
+A^{(i)}_{(1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{n-i}^{n_{n-i}-1}j)}_{(0)}\frac{T^{(i+1)}}{T^{(i,\ell_{n-i}^{n_{n-i}-1}j)}}  \]
+\item[$0<k<n_{n-i}$]
+\[
+A^{(i)}_{(k+1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}  \]
+ \item[$k=n_{n-i}$] \[
+ A^{(i+1)}_{(0)}=A^{(i)}_{(n_{n-i}+1)}=\sum_{j=0}^{d_{n-i}-1} A^{(i,j)}_{(n_{n-i})}  
+  \]
+ \end{itemize}
+ainsi on a $A^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
+de degré inférieur à $\frac{p_n}{p_{n-i-1}}$ pour $k \in [0,n_{n-i}]$ en 
+particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.  
+
+\begin{prop}
+  Soient $v,w\in \mathbb{K}_n\setminus \mathbb{K}_{n-1}$, le coût de calcul du polynôme minimal
+  $T\in \mathbb{F}_q[x]$ de $v$ et le polynôme d'interpolation $A\in 
+  \mathbb{F}_q[x]$ tel que $A(v)=w$ est $O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2}))$ 
+  opérations dans $\mathbb{F}_q$.
+\end{prop}
+\begin{proof}
+  Une fois que les polynômes $T^{(i)}$ ont été calculé, on doit tout d'abord 
+  calculer $T'(v)$. Cette opération est faite à l'aide de calculs de restes de 
+  division Euclidiennes, en effet
+  $T'(v) = (((T' \bmod T^{(n)}) \bmod T^{(n-1)}) \cdots \bmod T^{(0)})$.
+  \`A l'étape $n-i$, on calcule la division Euclidienne d'un polynôme de degré
+   $O(\frac{p_n}{p_i})$ par un polynôme de degré $O(\frac{p_n}{p_{i+1}})$ dans  $\mathbb{K}_i[x]$. 
+   On a alors le coût de chaque division qui est de $O(\mathsf{M}(p_n))$ 
+   par la proposition~\ref{pro:mul:com} sans oublier le coût de descente des 
+   coefficients du polynôme de $\mathbb{K}_i$ dans $\mathbb{K}_{i-1}$ qui est 
+   de $O(\mathsf{M}(p_{i-1})d_i\ell_i^{n_i})$ par la proposition~\ref{pro:com:inj}.
+   Ce qui donne un coût total de $O(n\mathsf{M}(p_n))$ opérations.
+   Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(p_n)\log(p_n))$ opérations ce
+   qui domine le coût total de cette étape.
+
+  \`A chaque étape $i$, les polynômes $A^{(i,j)}_{(k)}$ sont calculés à un coût de
+  $\frac{p_n}{p_{n-i-1}}O(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{1/2}+\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega+1)/2}))$
+  $\subset O(\frac{p_n}{p_{n-i-1}}(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega-1)/2})) $
+  $\subset O(\mathsf{M}(p_{n}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega-1)/2}))$
+  opérations sur $\mathbb{F}_q$, comme dans la preuve du  
+  lemme~\ref{lem:interpolation:minpoly:ult}. On répète cette étape 
+  $O(\ell_{n-1})$ fois pour $k \in [0,n_{n-i}]$, cela a donc un coût total de 
+  $O(\ell_{n-i}\mathsf{M}(p_nd_{n-i}\ell_{n-i}^{n_{n-i}})p_{n-i-1}^{(\omega-1)/2})$
+  par superlinéarité de $\mathsf{M}$, on majore alors celui-ci par:
+  $O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2}))$.
+  
+  
+  Le coût de calcul de $\frac{T^{(i+1)}}{T^{(i,j)}}$ est de 
+  $O(\mathsf{M}(p_n))$ opérations  par la proposition~\ref{pro:mul:com}.
+  \`A partir des $A^{(i,j)}_{(k)}$ on calcule $A^{(i)}_{k+1}$ en utilisant un arbre de 
+  sous-produits comme décrit dans~\cite[Lemma~10.4]{vzGJG03}, celui-ci 
+  utilisant $\log(\ell_{n-i})$ additions de coût unitaire 
+  $O(p_n \ell_{n_i}^{n_{n-i}-k})$ son coût est négligeable par rapport aux 
+  autres opérations. Le polynôme $A^{(i)}_{n_{n-i}+1}$ résultant de 
+  cette opération est de degré $O(\frac{p_n}{p_{n-i-1}})$ et a ses coefficients
+  définis dans $\mathbb{K}_{n-i-1}$.
+  Le coût total est donc de 
+  $O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2}))$ 
+  opérations sur $\mathbb{F}_q$. 
+    
+\end{proof}
+
+ 
+ Ce résultat est à comparer aux algorithmes d'interpolations rapides 
+ tel que  celui présenté dans \cite[Chapter~10.2]{vzGJG03} il donnerait un temps
+ de calcul de  $O\bigl(\mathsf{M}(p_n)\log(p_n)\bigr)$ opérations sur 
+ $\mathbb{K}_n$ et donc $O\bigl(\mathsf{M}(p_n^2)\log^2(p_n)\bigr)$ opérations sur
+ $\mathbb{F}_q$. 
+
+On énonce un problème plus général de calcul de polynôme d'interpolation 
+à l'aide de plusieurs couples de points de $\mathsf{F}_n$.
+
+\begin{prop}
+  Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n 
+  \setminus \mathbb{K}_{n-1}$, $t_i$ le degré des polynômes minimaux de $v_i$, 
+  et l'on note  $t=\sum t_i$. 
+  Les polynômes
+  \begin{itemize}
+  \item $T\in \mathbb{F}_q[x]$ de degré $t$ tel que $T(v_i)=0$ pour tout $i$,
+    et
+  \item $A\in \mathbb{F}_q[x]$ de degré inférieur à $t$ tel que $A(v_i)=w_i$ pour
+    tout $i$
+  \end{itemize}
+  sont calculés avec un coût de
+  $O\bigl(\mathsf{M}(t)\log(s) + n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i})\bigr)$ 
+  opérations dans $\mathbb{F}_q$ avec un coût de 
+  $O(nsM(p_n)p_{n-1}^{(\omega-1)/2})$ opérations dans $\mathbb{F}_q$ pour 
+  l'expression des éléments dans le sous-corps de $\mathbb{K}_n$ le plus petit 
+  au sens de l'inclusion.
+\end{prop}
+\todo{dire a un endroit que $p_{i-1}$ est choisi d'une certaine manière...}
+\begin{proof}
+\todo{rediger cette preuve}
+  Le polynôme $T$ est le produit de tous les polynômes minimaux $T_i$. 
+  %Soit 
+  %$s_i$, de telle sorte que $v_i,w_i\in K_{n_i+1}\setminus F_{n_i}$,
+  %et $\ell^{n_i}\leqslant t_i<\ell^{n_i+1}$,
+  %on effectue une \emph{descente} sur $(v_i,w_i)$ pour les écrire comme des 
+  %éléments de $\mathsf{F}_{n_i+1}$, cette opération étant juste une réécriture
+  %elle a un coût algébrique nul. 
+  Soit $t_j$ la cardinalité du sous-corps de $\mathbb{K}_n$ le plus petit au 
+  sens  de l'inclusion tel que $v_j,w_j$ soient inclus dedans, alors le coût de
+  la descente d'éléments $v_j,w_j$ sur le composita inclus dans $\mathbb{K}_n$ 
+  isomorphe à $\otimes_{k=1}^n\mathsf{F}_{(k,r_{k,i})}$ avec 
+  $r_{k,j}=v_{\ell_k}(t_j)$ est majoré par $O(M(p_n)p_{n-1}^{(\omega-1)/2})$ à 
+  l'aide de la proposition~\ref{pro:iso:fie}. Ainsi le coût total de descente 
+  de tous ces éléments est de $O(nsM(p_n)p_{n-1}^{(\omega-1)/2})$.
+  On calcule les $T_j$ à l'aide de
+   $O(n\mathsf{M}(t_j)(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i}n_{n-i}))$ 
+  opérations par le lemme~\ref{lem:interpolation:minpoly:ult}.En additionnant 
+  cela pour tout $j$, %et en utilisant la superlinéarité de $\mathsf{M}$  
+  on obtient un coût total de $O(n\mathsf{M}(t)(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i}n_{n-i}))$ opérations.
+  De la même manière on calcule les polynômes $A_i$ tels que $A_i(v_i)=w_i$
+  au coût de $O(n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i}))$
+  opérations sur $\mathbb{F}_q$.
+  On ordonne ensuite les $T_j$ dans une arbre de sous-produit binaire et 
+  on les multiplie entre eux. Un arbre équilibré, pas nécessairement optimal,
+  a une profondeur de $O(\log (s))$ et nécessite $O(\mathsf{M}(t))$ opérations
+   par niveau. Ainsi le coût de calcul de $T$ est borné par 
+   $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
+  
+  Enfin, en utilisant la même strucutre d'arbre de sous-produit on applique le 
+  théorème des restes chinois proposé dans~\cite[Chapter~10]{vzGJG03} pour 
+  calculer $A$ au coût de $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
+\end{proof}
+
+\chapter{Pourquoi la méthode Atkin ne marche pas sur le cas Elkies}
+Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Master13} et sont une 
+généralisation de ceux-ci.
+
+\begin{lem} \label{lem:app:eq}
+Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ sur un volcan de $\ell$-isogénies à cratère cyclique ($\ell$ est donc un nombre de Elkies). Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$ tel que:
+\begin{equation}
+  \label{eq:mat}
+ \pi(P,R)= \left(\begin{array}{cc}
+      \lambda & \beta \ell^{h}\\
+      0 & \mu
+    \end{array}\right) \bmod \ell^{h+i}
+\end{equation}
+Alors pour les transformations:
+\begin{equation*}
+R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
+\end{equation*}
+tels que $\pi(P,R)=\pi(P,R')$ on obtient l'équation suivante:
+\[  (* - b' \cdot b^{-1} \cdot a ) \cdot (1-q)  \equiv \alpha \cdot (1-b' \cdot b^{-1}) \bmod l^h \].
+Réciproquement pour une transformation:
+$R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q$
+ qui vérifie l'équation:
+\[  (* - b' \cdot b^{-1} \cdot a ) \cdot (1-q)  \equiv \alpha \cdot (1-b' \cdot b^{-1}) \bmod l^h \]
+ on a $\pi(P,R)=\pi(P,R')$.
+\end{lem}
+
+\begin{proof}
+Traduisons le fait que le point $a \cdot P_2 + b \cdot Q_2$ avec le point $P_2$  forme une base dans laquelle la matrice de l'action de l'endomorphisme de Frobenius soit de la forme \ref{eq:mat}, on a alors:
+\[
+\pi([a]  P + [b]  Q) = [\beta \ell^h] P + [\mu] ([a] P + [b]  Q) 
+\]
+Comme $\pi$ est un morphisme on a: 
+\begin{eqnarray}
+\pi([a]  P + [b]  Q) &=& [a]  \pi(P) + [b] \pi(Q) \\
+					 &=& [a \lambda]  P + [b] \pi(Q)
+\end{eqnarray}
+Ainsi avec cette égalité et la première, on en déduit la valeur de $ [b]\pi(Q)$
+\[
+[b] \pi (Q) = [a(\mu -\lambda) + \beta \ell^h]  P + [\mu b] Q
+\]
+Maintenant exprimons l'action du Frobenius sur $R'$:
+\begin{eqnarray*}
+\pi( [*] P + [yb] Q) &=& [*] \pi (P) + [ yb] \pi (Q) \\
+&=&  [* \lambda ] P + [y]([b] \pi (Q)) 
+\end{eqnarray*}
+Ainsi en remplaçant  $[b]\pi (Q)$ on obtient: 
+\begin{eqnarray*}
+\pi( [*] P + [yb] Q) &=& [* \lambda ] P + [y] ( [a(\mu -\lambda) + \beta \ell^h]  P + [\mu b] Q) \\
+&=& [*\lambda + y a (\mu - \lambda)+ y \beta \ell^h ] P + [y \mu b ] Q
+\end{eqnarray*}
+Or comme on suppose que $\pi(P,R)=\pi(P,R')$ on obtient:
+\begin{eqnarray*}
+\pi( [*] P + [yb] Q) &=&  [\beta \ell^h] \cdot P + [\mu] ([*] P + [yb] Q ) \\
+&=& [\mu * + \beta \ell^h ] P + [y \mu b ] Q
+\end{eqnarray*}
+Ainsi on doit avoir 
+\[
+*\lambda + y a (\mu - \lambda)+ y \beta \ell^h  =* \mu + \beta \ell^h \bmod \ell^{h+i}
+\]
+Ce qui nous amène à l'équation: 
+\[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
+\end{proof}
+
+\begin{prop}\label{pro:app:inv:fro}
+Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ sur un volcan de $\ell$-isogénies à cratère cyclique ($\ell$ est donc un nombre de Elkies). Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il existe une transformation \begin{equation*}
+R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
+\end{equation*}
+telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
+\end{prop}
+
+\begin{proof}
+Comme vu dans la preuve de la proposition~\ref{pro:cla:fro:mat} toute 
+$\ell^i$-isogénie de noyau $\langle \ell^{h}R' \rangle$ est déterminée par la 
+valeur de $\ell^{h}b^{-1}y^{-1}*$, on rappelle de plus que l'on est obligé 
+d'avoir $*y \wedge \ell =1$ pour avoir une $\ell^{h+i}$-isogénie descendante. 
+On a alors l'équation suivante qui doit être vérifiée: 
+\[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
+or comme $\ell^{h}|| (\mu - \lambda)$ et $\beta \wedge \ell =1$ si l'on a 
+$\ell^{h}b^{-1}y^{-1}*=\ell^{h}b^{-1}a$ alors on doit avoir 
+$\ell^{h}b=\ell^{h}by \bmod \ell^{h+i}$ et $\ell^{h}a=\ell^{h}* \bmod 
+\ell^{h+i}$.
+
+Ainsi si l'on souhaite avoir $[\ell^{h}]R$ générateur d'une $\ell^i$ isogénie 
+descendante particulière celle-ci est déterminée par la valeur de 
+$\ell^{h}b^{-1}y^{-1}*$. Fixons par exemple $\ell^h\gamma = \ell^{h}b^{-1}y^{-1}* \bmod \ell^{h+i}$
+avec $\ell^{h}\gamma \neq \ell^{h}b^{-1}a \bmod \ell^{h+i}$.
+On a alors $\ell^{h}*=\ell^{h}\gamma(by)^{-1} \bmod \ell^{h+i}$ et l'on 
+détermine la valeur de $y$ à l'aide de l'équation:
+\[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \].
+On pose $\alpha \ell^h = (\mu -\lambda) \bmod \ell^{h+i}$ avec $\alpha \wedge 
+\ell =1$. Ainsi on a:
+\begin{eqnarray*}
+\beta \ell^h (1-y) 	&=& \alpha \ell^{h} (ay-*)  \bmod \ell^{h+i} \\
+\ell^{h}y(-\beta -\alpha a)	&=& \ell^{h}(\beta - \alpha *) \bmod \ell^{h+i}
+\end{eqnarray*}
+on multiplie alors cette égalité par $(by)^{-1}$:
+\begin{eqnarray*}
+\ell^{h}b(-\beta - \alpha a)			&=& \ell^{h}(\beta (by)^{-1}- \alpha \gamma) \bmod \ell^{h+i} \\
+\ell^{h}(b(-\beta - \alpha a)+ \alpha \gamma)	&=& \ell^{h}(\beta(by)^{-1}) \bmod \ell^{h+i}
+\end{eqnarray*}
+On peut alors déterminer $\ell^h y \bmod \ell^{h+i}$ on utilise ensuite 
+$\ell^{h}*=\ell^{h}\gamma(by)^{-1} \bmod \ell^{h+i}$ pour déterminer totalement
+la transformation.
+\end{proof}
+
+On voit donc avec cette proposition que pour une courbe située sur le cratère 
+cyclique d'un volcan de $\ell$-isogénies ayant une base diagonale $(P,Q)$ de la
+$\ell^{h+i}$-torsion. Alors pour tout point $R=[a]P+[b]Q$ tel que $\langle P,R 
+\rangle=E[\ell^{h+i}]$, l'étude de l'action de $\pi$ dans une telle base à $P$
+fixé ne donne aucune information sur la $\ell^{i}$-isogénie de noyau $\langle 
+\ell^{h}R \rangle$.
+
+Maintenant on va énoncer un résultat similaire pour des courbes situées plus 
+bas dans un volcan de $\ell$-isogénies pour le cas Elkies. 
+
+\begin{prop}
+Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan de 
+$\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,Q$ tels 
+que $\langle P,Q \rangle=E[\ell^{h-e+i}]$, $R=[a]P+[b]Q$ tel que $\pi(P,R)
+= \left( \begin{matrix}\lambda & \beta \ell^{h-e} \\0 & \mu \end{matrix}\right)
+\bmod \ell^{h-e+i}$ avec $\beta \wedge \ell=1$ alors pour toute $\ell^i$-isogénie descendante $\phi$ de 
+domaine $E$ il existe une transformation \begin{equation*}
+R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
+\end{equation*}
+telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
+\end{prop}
+
+\begin{proof}
+La preuve est similaire a celle de la proposition~\ref{pro:app:inv:fro}, il 
+faut cependant faire une distinction avec le cas où l'on a $h-e+i \leqslant h$ 
+et $h-e+i > h$ car on a $\lambda = \mu \bmod \ell^{h}$.
+
+Par la forme de la matrice $\pi(P,R)$ on a:
+\[ \pi([a]P+[b]Q)=[\ell^{h-e} \beta] P + [\mu] ([a]P+[b]Q)\]
+de plus comme $\pi([a]P+[b]Q)=[a \lambda ]P + [b] \pi(Q)$ on en déduit 
+l'expression suivante de $b\pi(Q)$:
+\[ b \pi(Q)=[\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q. \]
+On a alors $\pi([*]P+[by]Q)=[*\lambda]P+[y]([b]\pi(Q))$, or la condition 
+$\pi(P,R')=\pi(P,R)$ est vérifiée si et seulement si:
+\begin{eqnarray*}
+\pi([*]P+[by]Q) &=& [\beta \ell^{h-e}] P + [\mu]([*]P+[by]Q) \\
+				&=& [\lambda *]P + [y]([\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q)
+\end{eqnarray*}
+Cela se traduit donc par l'égalité suivante:
+\[ \beta \ell^{h-e} + *(\mu-\lambda)=y(\beta \ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
+Ainsi pour $h-e+i \leqslant h$ on obtient l'équation suivante:
+\[\beta \ell^{h-e} + y\beta \ell^{h-e}  \]
+et donc la valeur de la matrice ne dépend que que de $y$ ainsi en faisant 
+varier la valeur de $*$ on peut faire en sorte que $[\ell^h-e]R'$ soit le 
+générateur de n'importe quelle $\ell^{i}$-isogénie descendante.
+
+On regarde donc maintenant le cas où $h-e+i>h$, montrons comment on détermine
+$y$ et $*$ tels que $\ell^{h-e}\gamma=\ell^{h-e}*(by)^{-1}$ et que $\pi(P,R)=\pi(P,R')$.
+On pose à nouveau $\ell^{h} \alpha = \lambda - \mu$ avec $\alpha \wedge \ell=1$
+, l'égalité $\pi(P,R)=\pi(P,R')$ se traduit donc par:
+\[ \beta \ell^{h-e} + \ell^{h}\alpha *=y(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}, \]
+on multiplie alors cette équation par $(by)^{-1}$
+\begin{eqnarray*}
+\beta \ell^{h-e}(by)^{-1} + \ell^{e}\alpha \ell^{h-e} \gamma &=& b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \\
+\beta \ell^{h-e}(by)^{-1} &=& - \ell^{e}\alpha \ell^{h-e} \gamma + b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a)
+\end{eqnarray*}
+On peut alors déterminer $y$ puis $*$ afin d'avoir une transformation qui nous 
+donne un point $R$ tel que $\ell^{h-e}R$ soit un générateur de l'isogénie 
+spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
+\end{proof}
+
+On voit donc que la méthode appliquée sur un volcan de Atkin n'est pas 
+applicable que ce soit au niveau du cratère ou pour des courbes situées en 
+dessous du niveau du cratère.
+
+\printnomenclature
 \chapter{Rebus}
 \section{Algorithme de Couveignes}
 
@@ -7071,575 +7655,6 @@ Ainsi pour le calcul d'opérations dans de telles tours $\ell$-adiques on devra 
 
 
 
-\bibliography{Biblio}
-
-
-\appendix
-\chapter{Algorithmes}
-\section{Algorithm for computing a trigonalisation or a diagonalisation at the same time}
-\todo{Algorithme appendice intéressant seulement pour la condition qui distingue horizontal de trigonal}
-\begin{algorithm}
-\caption{\label{alg:app:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
-\begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan de $\ell$-isogénies avec cratère cyclique;
-$k$: une entier positif;
-\ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
-$\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
-tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k + [\delta] P_k$.
-% \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$;$i \leftarrow 0$; $\delta \leftarrow 0$;$P', Q' \leftarrow $ tels que~$\langle P',Q' \rangle =  E[\ell]$.}
-\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i}\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
-\WHILE {$\pi|(P',Q')= (\lambda + a\ell^i) \cdot I_2$}
-\STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
-\STATE\label{alg:fin:identical:divide}
-  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
-\STATE $i \leftarrow i+1$.
-\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i}\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
-\ENDWHILE 
-\IF{$\lambda + a \ell^i \neq \mu + d \ell^i$}
-%\STATE $\delta \leftarrow 0$;
-\WHILE{$i<k $}
-\STATE\label{alg:app:diagonal:solve1}
-  \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
-  résoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
-\STATE\label{alg:app:diagonal:solve2}
-  \textbf{else} résoudre équation
-  $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
-  $y \leftarrow -cx/b$; \textbf{end if}.
-\STATE\label{alg:app:diagonal:upd-P}
-  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow [x] P' + Q'$.
-\STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
-\STATE $i \leftarrow i+1$.
-\STATE\label{alg:app:diagonal:divide}
-  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
-\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i}\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
-\ENDWHILE
-\ELSE 
-\STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{end if}.
-\WHILE{$i<k$}
-\STATE \textbf{if} $c = 0$ \textbf{then} $y \leftarrow 0$;
-\STATE \textbf{else}  résoudre equation 
-$ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
-\STATE\label{alg:app:trigonal:upd-P}
-  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow Q'$.
-\STATE{$\lambda \leftarrow \lambda + a \ell^{i} + \delta y$; $\mu \leftarrow \mu + d \ell^{i} $.}
-\STATE\label{alg:app:trigonal:divide}
-  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
-\STATE $i \leftarrow i+1$.
-\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i} + \delta\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
-\STATE $\delta \leftarrow \delta + b \ell^i$
-\ENDWHILE
-\ENDIF
-\RETURN $(P_{k},Q_{k},\lambda,\mu, \delta).$
-\end{algorithmic}
-\end{algorithm}
-
-
-\begin{algorithm}
-\caption{\label{alg:app:cou:var} Couveignes $\ell$-adique avec un seul sous-groupe cyclique.}
-\begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique.
-\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
-% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE Calcul du plus petit $k$ tel que $\ell^{k-1}>4r$;
-\STATE  
-Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^{h+1}],E'_s[\ell^{h+1}]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
-\STATE Calcul de $\color{red}P_{\lambda}\color{black} \in E_s[\ell^k]$, $\color{red}P'_{\lambda}\color{black} \in E_s'[\ell^k]$ points horizontaux  à l'aide de l'algorithme \ref{alg:hor:poi};
-\IF{$(E_s,E'_s) \neq (E,E')$}
-\STATE 
-Calcul de $\color{red}P_{\lambda}\color{black},\color{red}P'_{\lambda}\color{black}$ points partiellement horizontaux de $E_s[\ell^k],E'_s[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
-\ENDIF
-\STATE Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
-\FOR{ $a \in \left( \mathbb{Z}/\ell^{k}\mathbb{Z} \right)^*$}
-\STATE Actualisation de la liste des représentants $L'$ en $L'_{a}$ afin de respecter la correspondance induite par le choix de $a$;
-\STATE Calcul des des polynômes $A_{a}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
-\STATE Calcul de la fraction rationnelle $F=A_{a} \bmod T$ à l'aide d'une interpolation de Cauchy;
-\IF{$\mathsf{Test}(F)$}
-\RETURN $F$
-\ENDIF
-\ENDFOR 
-\end{algorithmic}
-\end{algorithm}
-
-\chapter{Calculs dans un compositum}
-\label{cha:ann:comp}
-\begin{prop}
-
-Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{k}$ avec 
-$k \in [1,n_i]$ tel que $\mathsf{F}_{(i,k)}=\mathbb{F}_q[x]/\langle P \rangle$,
-$Q$ un polynôme irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
-tel que $\mathbb{K}_{i-1}=\mathbb{F}_q[y]/\langle Q \rangle$, $R=P \odot Q$ 
-tel que  $\mathbb{K}_{i}=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un 
-élément $a$ de $\mathbb{K}_{i}$ le coût de calcul de $a$ à une puissance 
-$q^{r p_{i-1}}$ est de 
-$O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
-opérations dans $\mathbb{F}_q$ avec un 
-précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{n_i}qd_i))$ et  
-de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
-\end{prop}
-
-\begin{proof}
-Vu que $a \in \mathbb{K}_{i} \cong \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$
- alors on a pour $s=r \bmod d_i \ell_i^{k}$ 
-$a^{q^{r p_j}}=a^{q^{s p_j}}$ ainsi on considère que $r<d_i \ell_i^{k}$.
-Par la proposition~\ref{pro:iso:fie} et le fait que l'on se soit restreint au 
-cas où l'on a $d_i\ell_i^{n_i} \leqslant p_{i-1}$ on peut écrire $a$ comme un 
-élément de 
-$\mathbb{F}_q[x,y]/\langle P,Q \rangle \cong \mathbb{F}_q[z]/\langle R \rangle$
- avec un coût de 
- $O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
- opérations sur $\mathbb{F}_q$.
-Ainsi en réécrivant $a$ de la façon suivante:
-\begin{equation*}
-a=\sum_{j=0}^{d_i\ell_i^{k}-1}x_i^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,k)}.
-\end{equation*}
-On a alors l'élévation à la puissance $q^{r p_j}$ de $a$ qui s'écrit:
-\begin{equation*}
-a^{q^{r p_j}}=\sum_{j=0}^{d_i\ell_i^{k}-1}(x_i^{j})^{q^{r p_j}}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{i-1}, x_i \in \mathsf{F}_{(i,k)}.
-\end{equation*} 
-On se concentre donc sur le calcul de $w=x_i^{q^{r p_{i-1}}}$, comme abordé dans la 
-preuve du théorème~\ref{thm:frob-ell} on note $x_0=x_i^{\ell_i^{k}}$. 
-Calculons donc $x_i^{q^{r p_{i-1}}}$, on écrit $q^{r p_{i-1}}= u \ell_i^{k}+v$ avec 
-$0 \leqslant v<\ell_i^{k}$. On a alors $w=x_0^{u \bmod q^{d_i}-1}x_i^{v}$ (on 
-rappelle que $|\mathsf{F}_{(i,0)}|=q^{d_i}$). Par la même méthode que dans la 
-preuve du théorème~\ref{thm:frob-ell} on calcule $u$ et $v$ avec un coût 
-booléen de $O(\log(rp_{i-1})\log(\ell_i^{k}qd_i))$. Le calcul de $x_0^{u \bmod q^{d_i}-1}$ 
-se fait en utilisant $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$. On 
-conserve $w$ sous la forme d'un monôme dans $\mathbb{F}_q[x_i]$ (et non de 
-$\mathsf{F}_{(i,0)}[x_i]$ comme dans le théorème~\ref{thm:frob-ell}).
-
-On écrit $a^{q^{r p_{i-1}}}$ sous la forme:
-\begin{equation*}
-\sum_{j=0}^{d_i\ell_i^{k_i}-1}(w)^{j}f_{j}(y) \quad \text{avec } f_{j}(y) \in \mathbb{K}_{p_i}, w \in \mathbb{F}_{q}[x_i].
-\end{equation*}
-
-On calcule alors $a(w)$ par la méthode de Horner. Les puissances $w^k$ étant 
-des monômes dans $\mathbb{F}_q[x_i]$, on calcule chacune des puissances 
-successives à l'aide de la précédente en $\mathsf{M}(p_{i-1})$ opérations sur 
-$\mathbb{F}_q$. On a alors un coût total de 
-$O(d_i\ell_i^{k}\mathsf{M}(p_{i-1}))$ opérations dans $\mathbb{F}_q$. 
-Pour ce calcul-là l'opération dominante est donc le changement de 
-représentation de $a \in \mathbb{K}_i$ vers une représentation dans 
-$\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$.
-\end{proof}
-
-
-Détaillons maintenant comment on adapte les méthodes de calcul de polynôme 
-d'interpolation décrites dans la section~\ref{sec:interpolation} à ce contexte.
- 
-  
- Soient deux éléments $v,w \in \mathbb{K}_{i} \setminus \mathbb{K}_{i-1}$ on veut
- alors calculer le polynôme $A \in \mathbb{F}_q[x]$ tel que:
-\begin{equation}
-A(v)=w \bmod T(v)
-\end{equation}
-avec $T$ le polynôme minimal de $v$. On chercher à calculer le représentant 
-minimal de $A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$.
-
- 
- En s'inspirant des travaux de \cite{DeFeo10} et de façon similaire à ce qui a 
- été fait dans la section~\ref{sec:interpolation}, on cherche à calculer tout 
- d'abord $T$. On définit la suite de polynôme $T^{(i)}$ de degré$\frac{p_n}{p_{n-i}}$ 
- et à coefficients définis dans $\mathbb{K}_{n-i}$. On définit $T^{(0)}(x)=(x-v)$. 
- Supposons que l'on ait calculé un élément $T^{(i)}$ pour $i \in [0,n-1]$ alors on définit 
- $T^{(i,j)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}(T^{(i)})$ avec
-  $\sigma_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}$ 
- l'application qui à tous les coefficients du polynôme $T^{(i)}$ définis dans 
- $\mathbb{K}_{n-i}$ applique l'action d'un élément générateur de 
- $\mathsf{Gal}(\mathbb{K}_{n-i}: \mathbb{K}_{n-i-1})$. 
- On définit alors récursivement $T^{(i)}$ de la façon suivante:
- \begin{equation*}
-T^{(i+1)}=\prod_{j=0}^{d_{n-i}\ell_{n-i}^{n_{n-i}}-1}T^{(i,j)}    
-\end{equation*}
-On peut faire mieux que cela toutefois en appliquant récursivement la méthode 
-employée dans la section~\ref{sec:interpolation} pour le calcul de $T$. On pose
-$T^{(i)}_{(0)}=T^{(i)}$, supposons que l'on connaisse  $T^{(i)}_{(k)}$ pour 
-$i \in [0,n-1], k \in [0,n_{n-i}]$. La notation $T^{(i,j)}_{(k)}$ est définie comme
- auparavant par $T^{(i,j)}_{(k)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}
- (T^{(i)}_{(k)})$, on définit alors pour:
-\begin{itemize}
- \item[$k < n_{n-i}$ ]
- \[
-T^{(i)}_{(k+1)}=\prod_{j=0}^{\ell_{n-i}-1}T^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}\]
-\item[$k= n_{n-i}$]
-\[
-T^{(i+1)}_{(0)}=T^{(i)}_{(n_{n-i}+1)}=\prod_{j=0}^{d_{n-i}-1}T^{(i,j)}_{(n_{n-i})}
-\]
-\end{itemize}
-ainsi on a $T^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
-de degré $\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}$ pour $k \in [0,n_{n-i}]$ en 
-particulier on a $T^{(i)}_{(n_{n-i}+1)}=T^{(i+1)}_{(0)}=T^{(i+1)}$.  
-\todo{ Faire un dessin à nouveau !}
-Il est alors évident que $T^{(i+1)}$ est le polynôme minimal de $v$ sur 
-$\mathbb{K}_{n-i-1}$ et en particulier $T^{(n)}$ est le polynôme minimal de $v$
-sur $\mathbb{F}_q$.
- \todo{Dire que cette deuxième décomposition ne fait pas forcément baisser la complexité du calcul du frobenius, mais par contre le nombre d'opération à effectuer oui!}
-
-
-\begin{lem}\label{lem:interpolation:minpoly:ult}
-  Le coût de calcul de $T=T^{(n)}$ est de 
-  $O(n\mathsf{M}(p_n)(p_{n-1})^{(\omega-1)/2} \max_i(\ell_{n-i}n_{n-i}))$
-  opérations dans $\mathbb{F}_q$.
-\end{lem}
-
-\begin{proof}
-  \`A l'étape $i$, à partir de la connaissance de $T^{(i)}_{(0)}$ on  calcule tous 
-  les $T^{(i,j)}_{(0)}$ en utilisant la proposition~\ref{pro:fro:com}. Le coût du 
-  Frobenius pour un polynôme $T^{(i)}_{(k)}$ est de 
-  $O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{1/2}+\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega+1)/2}))$ 
-  $\subset O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}(\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k}p_{n-i-1})p_{n-i-1}^{(\omega-1)/2}))$ 
-  $\subset O(\mathsf{M}(p_n)p_{n-i-1}^{(\omega - 1)/2})$ opérations sur 
-  $\mathbb{F}_q$, on a donc à l'étape $i$ un coût de $O(\ell_{n-i}(n_{n-i}+1)\mathsf{M}(p_n)(p_{n-i-1})^{(\omega - 1)/2})$ 
-  pour effectuer tous les calculs de Frobenius nécessaires.
-  \`A partir des $T^{(i,j)}_{(k)}$ on calcule $T^{(i)}_{k+1}$ en utilisant un arbre de 
-  sous-produits comme décrit dans~\cite[Lemma~10.4]{vzGJG03}. Le polynôme 
-  $T^{(i)}_{k+1}$ résultant de cette opération est de degré 
-  $O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k+1})$ et a ses 
-  coefficients définis dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k-1)}$,
-  le coût total est donc de 
-  $O(\mathsf{M}(p_n)\log(\ell_{n-i}))$ opérations sur $\mathbb{F}_q$. 
-  Le calcul des $T^{(i)}_{(0)},T^{(i)}_{(1)}, \dots, T^{(i)}_{(n_i+1)}$ se fait
-  donc en $O((n_{n-i}+1) \log(\ell_{n-i})\mathsf{M}(p_n))$ opérations sur 
-  $\mathbb{F}_{q}$.
-  Le coût total de l'étape $i$ est donc de 
-  $O(\ell_{n-i}(n_{n-i}+1)\mathsf{M}(p_n)(p_{n-i-1})^{(\omega-1)/2})$,
-  on majore celui-ci par 
-  $O(\mathsf{M}(p_n)(p_{n-1})^{(\omega-1)/2} \max_i(\ell_{n-i}n_{n-i}))$.
-  
-  Une fois que $T^{(i+1)}$ a été calculé de cette manière, on opère une 
-  \emph{descente} sur ses coefficients dans $\mathbb{K}_{n-i-1}$ lors du calcul
-  du Frobenius sur chacun de ses éléments car on a vu dans la preuve de la 
-  proposition~\ref{pro:fro:com} que c'était préconisé.
-  On additionne ces coûts pour tous les $i$ pour obtenir le résultat 
-  énoncé. 
-\end{proof}
- 
- On continue alors d'appliquer les méthodes similaires à celles employées dans 
- \cite{DeFeo10} et la section~\ref{sec:interpolation} pour calculer un polynôme 
- d'interpolation $A \in \mathbb{F}_q[x]$ tel que $A(v)=w$ pour $v,w$ deux 
- éléments de $\mathbb{K}_{n} \setminus \mathbb{K}_{n-1}$.
- 
-On définit la suite de polynômes $A^{(i)}$ pour $i \in [0, n]$ avec
- $A^{(0)}=w/T'(v)$. En  supposant que l'on connaisse $A^{(i)}$ pour $i < n$ 
- de degré inférieur à $\frac{p_n}{p_{n-i}}$ à coefficients dans 
- $\mathsf{K}_{n-i}$ alors pour $j \in [0 ; \ell-1]$ on définit
- $A^{(i,j)}=\sigma_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}^j(A^{(i)})$, et l'on pose:  
-\begin{equation*}
-A^{(i+1)}=\sum_{j=0}^{d_{n-i}\ell_{n-i}^{n_{n-i}}-1}A^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} 
-\end{equation*}
-on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A} 
-à coefficients dans $\mathbb{K}_{n-i}$ et de degré $\frac{p_n}{p_{n-i}}$.
-On peut faire à nouveau mieux que cela toutefois, on pose
-$A^{(i)}_{(0)}=A^{(i)}$, supposons que l'on connaisse  $A^{(i)}_{(k)}$ pour 
-$i \in [0,n-1], k \in [0,n_i]$. La notation $A^{(i,j)}_{(k)}$ est définie comme
- auparavant par $A^{(i,j)}_{(k)}=\sigma^j_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}
- (A^{(i)}_{(k)})$, on définit alors:
- \begin{itemize}
- \item[$k=0$]
- \[
-A^{(i)}_{(1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{n-i}^{n_{n-i}-1}j)}_{(0)}\frac{T^{(i+1)}}{T^{(i,\ell_{n-i}^{n_{n-i}-1}j)}}  \]
-\item[$0<k<n_{n-i}$]
-\[
-A^{(i)}_{(k+1)}=\sum_{j=0}^{\ell_{n-i}-1 }A^{(i,\ell_{n-i}^{n_{n-i}-1-k}j)}_{(k)}  \]
- \item[$k=n_{n-i}$] \[
- A^{(i+1)}_{(0)}=A^{(i)}_{(n_{n-i}+1)}=\sum_{j=0}^{d_{n-i}-1} A^{(i,j)}_{(n_{n-i})}  
-  \]
- \end{itemize}
-ainsi on a $A^{(i)}_{(k)}$ défini dans $\mathbb{K}_{n-i-1} \otimes \mathsf{F}_{(n-i,n_{n-i}-k)}$
-de degré inférieur à $\frac{p_n}{p_{n-i-1}}$ pour $k \in [0,n_{n-i}]$ en 
-particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.  
-
-\begin{prop}
-  Soient $v,w\in \mathbb{K}_n\setminus \mathbb{K}_{n-1}$, le coût de calcul du polynôme minimal
-  $T\in \mathbb{F}_q[x]$ de $v$ et le polynôme d'interpolation $A\in 
-  \mathbb{F}_q[x]$ tel que $A(v)=w$ est $O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2}))$ 
-  opérations dans $\mathbb{F}_q$.
-\end{prop}
-\begin{proof}
-  Une fois que les polynômes $T^{(i)}$ ont été calculé, on doit tout d'abord 
-  calculer $T'(v)$. Cette opération est faite à l'aide de calculs de restes de 
-  division Euclidiennes, en effet
-  $T'(v) = (((T' \bmod T^{(n)}) \bmod T^{(n-1)}) \cdots \bmod T^{(0)})$.
-  \`A l'étape $n-i$, on calcule la division Euclidienne d'un polynôme de degré
-   $O(\frac{p_n}{p_i})$ par un polynôme de degré $O(\frac{p_n}{p_{i+1}})$ dans  $\mathbb{K}_i[x]$. 
-   On a alors le coût de chaque division qui est de $O(\mathsf{M}(p_n))$ 
-   par la proposition~\ref{pro:mul:com} sans oublier le coût de descente des 
-   coefficients du polynôme de $\mathbb{K}_i$ dans $\mathbb{K}_{i-1}$ qui est 
-   de $O(\mathsf{M}(p_{i-1})d_i\ell_i^{n_i})$ par la proposition~\ref{pro:com:inj}.
-   Ce qui donne un coût total de $O(n\mathsf{M}(p_n))$ opérations.
-   Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(p_n)\log(p_n))$ opérations ce
-   qui domine le coût total de cette étape.
-
-  \`A chaque étape $i$, les polynômes $A^{(i,j)}_{(k)}$ sont calculés à un coût de
-  $\frac{p_n}{p_{n-i-1}}O(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{1/2}+\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega+1)/2}))$
-  $\subset O(\frac{p_n}{p_{n-i-1}}(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega-1)/2})) $
-  $\subset O(\mathsf{M}(p_{n}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega-1)/2}))$
-  opérations sur $\mathbb{F}_q$, comme dans la preuve du  
-  lemme~\ref{lem:interpolation:minpoly:ult}. On répète cette étape 
-  $O(\ell_{n-1})$ fois pour $k \in [0,n_{n-i}]$, cela a donc un coût total de 
-  $O(\ell_{n-i}\mathsf{M}(p_nd_{n-i}\ell_{n-i}^{n_{n-i}})p_{n-i-1}^{(\omega-1)/2})$
-  par superlinéarité de $\mathsf{M}$, on majore alors celui-ci par:
-  $O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2}))$.
-  
-  
-  Le coût de calcul de $\frac{T^{(i+1)}}{T^{(i,j)}}$ est de 
-  $O(\mathsf{M}(p_n))$ opérations  par la proposition~\ref{pro:mul:com}.
-  \`A partir des $A^{(i,j)}_{(k)}$ on calcule $A^{(i)}_{k+1}$ en utilisant un arbre de 
-  sous-produits comme décrit dans~\cite[Lemma~10.4]{vzGJG03}, celui-ci 
-  utilisant $\log(\ell_{n-i})$ additions de coût unitaire 
-  $O(p_n \ell_{n_i}^{n_{n-i}-k})$ son coût est négligeable par rapport aux 
-  autres opérations. Le polynôme $A^{(i)}_{n_{n-i}+1}$ résultant de 
-  cette opération est de degré $O(\frac{p_n}{p_{n-i-1}})$ et a ses coefficients
-  définis dans $\mathbb{K}_{n-i-1}$.
-  Le coût total est donc de 
-  $O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2}))$ 
-  opérations sur $\mathbb{F}_q$. 
-    
-\end{proof}
-
- 
- Ce résultat est à comparer aux algorithmes d'interpolations rapides 
- tel que  celui présenté dans \cite[Chapter~10.2]{vzGJG03} il donnerait un temps
- de calcul de  $O\bigl(\mathsf{M}(p_n)\log(p_n)\bigr)$ opérations sur 
- $\mathbb{K}_n$ et donc $O\bigl(\mathsf{M}(p_n^2)\log^2(p_n)\bigr)$ opérations sur
- $\mathbb{F}_q$. 
-
-On énonce un problème plus général de calcul de polynôme d'interpolation 
-à l'aide de plusieurs couples de points de $\mathsf{F}_n$.
-
-\begin{prop}
-  Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n 
-  \setminus \mathbb{K}_{n-1}$, $t_i$ le degré des polynômes minimaux de $v_i$, 
-  et l'on note  $t=\sum t_i$. 
-  Les polynômes
-  \begin{itemize}
-  \item $T\in \mathbb{F}_q[x]$ de degré $t$ tel que $T(v_i)=0$ pour tout $i$,
-    et
-  \item $A\in \mathbb{F}_q[x]$ de degré inférieur à $t$ tel que $A(v_i)=w_i$ pour
-    tout $i$
-  \end{itemize}
-  sont calculés avec un coût de
-  $O\bigl(\mathsf{M}(t)\log(s) + n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i})\bigr)$ 
-  opérations dans $\mathbb{F}_q$ avec un coût de 
-  $O(nsM(p_n)p_{n-1}^{(\omega-1)/2})$ opérations dans $\mathbb{F}_q$ pour 
-  l'expression des éléments dans le sous-corps de $\mathbb{K}_n$ le plus petit 
-  au sens de l'inclusion.
-\end{prop}
-\todo{dire a un endroit que $p_{i-1}$ est choisi d'une certaine manière...}
-\begin{proof}
-\todo{rediger cette preuve}
-  Le polynôme $T$ est le produit de tous les polynômes minimaux $T_i$. 
-  %Soit 
-  %$s_i$, de telle sorte que $v_i,w_i\in K_{n_i+1}\setminus F_{n_i}$,
-  %et $\ell^{n_i}\leqslant t_i<\ell^{n_i+1}$,
-  %on effectue une \emph{descente} sur $(v_i,w_i)$ pour les écrire comme des 
-  %éléments de $\mathsf{F}_{n_i+1}$, cette opération étant juste une réécriture
-  %elle a un coût algébrique nul. 
-  Soit $t_j$ la cardinalité du sous-corps de $\mathbb{K}_n$ le plus petit au 
-  sens  de l'inclusion tel que $v_j,w_j$ soient inclus dedans, alors le coût de
-  la descente d'éléments $v_j,w_j$ sur le composita inclus dans $\mathbb{K}_n$ 
-  isomorphe à $\otimes_{k=1}^n\mathsf{F}_{(k,r_{k,i})}$ avec 
-  $r_{k,j}=v_{\ell_k}(t_j)$ est majoré par $O(M(p_n)p_{n-1}^{(\omega-1)/2})$ à 
-  l'aide de la proposition~\ref{pro:iso:fie}. Ainsi le coût total de descente 
-  de tous ces éléments est de $O(nsM(p_n)p_{n-1}^{(\omega-1)/2})$.
-  On calcule les $T_j$ à l'aide de
-   $O(n\mathsf{M}(t_j)(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i}n_{n-i}))$ 
-  opérations par le lemme~\ref{lem:interpolation:minpoly:ult}.En additionnant 
-  cela pour tout $j$, %et en utilisant la superlinéarité de $\mathsf{M}$  
-  on obtient un coût total de $O(n\mathsf{M}(t)(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i}n_{n-i}))$ opérations.
-  De la même manière on calcule les polynômes $A_i$ tels que $A_i(v_i)=w_i$
-  au coût de $O(n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i}))$
-  opérations sur $\mathbb{F}_q$.
-  On ordonne ensuite les $T_j$ dans une arbre de sous-produit binaire et 
-  on les multiplie entre eux. Un arbre équilibré, pas nécessairement optimal,
-  a une profondeur de $O(\log (s))$ et nécessite $O(\mathsf{M}(t))$ opérations
-   par niveau. Ainsi le coût de calcul de $T$ est borné par 
-   $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
-  
-  Enfin, en utilisant la même strucutre d'arbre de sous-produit on applique le 
-  théorème des restes chinois proposé dans~\cite[Chapter~10]{vzGJG03} pour 
-  calculer $A$ au coût de $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
-\end{proof}
-
-\chapter{Pourquoi la méthode Atkin ne marche pas sur le cas Elkies}
-Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Master13} et sont une 
-généralisation de ceux-ci.
-
-\begin{lem} \label{lem:app:eq}
-Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ sur un volcan de $\ell$-isogénies à cratère cyclique ($\ell$ est donc un nombre de Elkies). Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$ tel que:
-\begin{equation}
-  \label{eq:mat}
- \pi(P,R)= \left(\begin{array}{cc}
-      \lambda & \beta \ell^{h}\\
-      0 & \mu
-    \end{array}\right) \bmod \ell^{h+i}
-\end{equation}
-Alors pour les transformations:
-\begin{equation*}
-R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
-\end{equation*}
-tels que $\pi(P,R)=\pi(P,R')$ on obtient l'équation suivante:
-\[  (* - b' \cdot b^{-1} \cdot a ) \cdot (1-q)  \equiv \alpha \cdot (1-b' \cdot b^{-1}) \bmod l^h \].
-Réciproquement pour une transformation:
-$R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q$
- qui vérifie l'équation:
-\[  (* - b' \cdot b^{-1} \cdot a ) \cdot (1-q)  \equiv \alpha \cdot (1-b' \cdot b^{-1}) \bmod l^h \]
- on a $\pi(P,R)=\pi(P,R')$.
-\end{lem}
-
-\begin{proof}
-Traduisons le fait que le point $a \cdot P_2 + b \cdot Q_2$ avec le point $P_2$  forme une base dans laquelle la matrice de l'action de l'endomorphisme de Frobenius soit de la forme \ref{eq:mat}, on a alors:
-\[
-\pi([a]  P + [b]  Q) = [\beta \ell^h] P + [\mu] ([a] P + [b]  Q) 
-\]
-Comme $\pi$ est un morphisme on a: 
-\begin{eqnarray}
-\pi([a]  P + [b]  Q) &=& [a]  \pi(P) + [b] \pi(Q) \\
-					 &=& [a \lambda]  P + [b] \pi(Q)
-\end{eqnarray}
-Ainsi avec cette égalité et la première, on en déduit la valeur de $ [b]\pi(Q)$
-\[
-[b] \pi (Q) = [a(\mu -\lambda) + \beta \ell^h]  P + [\mu b] Q
-\]
-Maintenant exprimons l'action du Frobenius sur $R'$:
-\begin{eqnarray*}
-\pi( [*] P + [yb] Q) &=& [*] \pi (P) + [ yb] \pi (Q) \\
-&=&  [* \lambda ] P + [y]([b] \pi (Q)) 
-\end{eqnarray*}
-Ainsi en remplaçant  $[b]\pi (Q)$ on obtient: 
-\begin{eqnarray*}
-\pi( [*] P + [yb] Q) &=& [* \lambda ] P + [y] ( [a(\mu -\lambda) + \beta \ell^h]  P + [\mu b] Q) \\
-&=& [*\lambda + y a (\mu - \lambda)+ y \beta \ell^h ] P + [y \mu b ] Q
-\end{eqnarray*}
-Or comme on suppose que $\pi(P,R)=\pi(P,R')$ on obtient:
-\begin{eqnarray*}
-\pi( [*] P + [yb] Q) &=&  [\beta \ell^h] \cdot P + [\mu] ([*] P + [yb] Q ) \\
-&=& [\mu * + \beta \ell^h ] P + [y \mu b ] Q
-\end{eqnarray*}
-Ainsi on doit avoir 
-\[
-*\lambda + y a (\mu - \lambda)+ y \beta \ell^h  =* \mu + \beta \ell^h \bmod \ell^{h+i}
-\]
-Ce qui nous amène à l'équation: 
-\[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
-\end{proof}
-
-\begin{prop}\label{pro:app:inv:fro}
-Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ sur un volcan de $\ell$-isogénies à cratère cyclique ($\ell$ est donc un nombre de Elkies). Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il existe une transformation \begin{equation*}
-R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
-\end{equation*}
-telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
-\end{prop}
-
-\begin{proof}
-Comme vu dans la preuve de la proposition~\ref{pro:cla:fro:mat} toute 
-$\ell^i$-isogénie de noyau $\langle \ell^{h}R' \rangle$ est déterminée par la 
-valeur de $\ell^{h}b^{-1}y^{-1}*$, on rappelle de plus que l'on est obligé 
-d'avoir $*y \wedge \ell =1$ pour avoir une $\ell^{h+i}$-isogénie descendante. 
-On a alors l'équation suivante qui doit être vérifiée: 
-\[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
-or comme $\ell^{h}|| (\mu - \lambda)$ et $\beta \wedge \ell =1$ si l'on a 
-$\ell^{h}b^{-1}y^{-1}*=\ell^{h}b^{-1}a$ alors on doit avoir 
-$\ell^{h}b=\ell^{h}by \bmod \ell^{h+i}$ et $\ell^{h}a=\ell^{h}* \bmod 
-\ell^{h+i}$.
-
-Ainsi si l'on souhaite avoir $[\ell^{h}]R$ générateur d'une $\ell^i$ isogénie 
-descendante particulière celle-ci est déterminée par la valeur de 
-$\ell^{h}b^{-1}y^{-1}*$. Fixons par exemple $\ell^h\gamma = \ell^{h}b^{-1}y^{-1}* \bmod \ell^{h+i}$
-avec $\ell^{h}\gamma \neq \ell^{h}b^{-1}a \bmod \ell^{h+i}$.
-On a alors $\ell^{h}*=\ell^{h}\gamma(by)^{-1} \bmod \ell^{h+i}$ et l'on 
-détermine la valeur de $y$ à l'aide de l'équation:
-\[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \].
-On pose $\alpha \ell^h = (\mu -\lambda) \bmod \ell^{h+i}$ avec $\alpha \wedge 
-\ell =1$. Ainsi on a:
-\begin{eqnarray*}
-\beta \ell^h (1-y) 	&=& \alpha \ell^{h} (ay-*)  \bmod \ell^{h+i} \\
-\ell^{h}y(-\beta -\alpha a)	&=& \ell^{h}(\beta - \alpha *) \bmod \ell^{h+i}
-\end{eqnarray*}
-on multiplie alors cette égalité par $(by)^{-1}$:
-\begin{eqnarray*}
-\ell^{h}b(-\beta - \alpha a)			&=& \ell^{h}(\beta (by)^{-1}- \alpha \gamma) \bmod \ell^{h+i} \\
-\ell^{h}(b(-\beta - \alpha a)+ \alpha \gamma)	&=& \ell^{h}(\beta(by)^{-1}) \bmod \ell^{h+i}
-\end{eqnarray*}
-On peut alors déterminer $\ell^h y \bmod \ell^{h+i}$ on utilise ensuite 
-$\ell^{h}*=\ell^{h}\gamma(by)^{-1} \bmod \ell^{h+i}$ pour déterminer totalement
-la transformation.
-\end{proof}
-
-On voit donc avec cette proposition que pour une courbe située sur le cratère 
-cyclique d'un volcan de $\ell$-isogénies ayant une base diagonale $(P,Q)$ de la
-$\ell^{h+i}$-torsion. Alors pour tout point $R=[a]P+[b]Q$ tel que $\langle P,R 
-\rangle=E[\ell^{h+i}]$, l'étude de l'action de $\pi$ dans une telle base à $P$
-fixé ne donne aucune information sur la $\ell^{i}$-isogénie de noyau $\langle 
-\ell^{h}R \rangle$.
-
-Maintenant on va énoncer un résultat similaire pour des courbes situées plus 
-bas dans un volcan de $\ell$-isogénies pour le cas Elkies. 
-
-\begin{prop}
-Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan de 
-$\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,Q$ tels 
-que $\langle P,Q \rangle=E[\ell^{h-e+i}]$, $R=[a]P+[b]Q$ tel que $\pi(P,R)
-= \left( \begin{matrix}\lambda & \beta \ell^{h-e} \\0 & \mu \end{matrix}\right)
-\bmod \ell^{h-e+i}$ avec $\beta \wedge \ell=1$ alors pour toute $\ell^i$-isogénie descendante $\phi$ de 
-domaine $E$ il existe une transformation \begin{equation*}
-R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
-\end{equation*}
-telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
-\end{prop}
-
-\begin{proof}
-La preuve est similaire a celle de la proposition~\ref{pro:app:inv:fro}, il 
-faut cependant faire une distinction avec le cas où l'on a $h-e+i \leqslant h$ 
-et $h-e+i > h$ car on a $\lambda = \mu \bmod \ell^{h}$.
-
-Par la forme de la matrice $\pi(P,R)$ on a:
-\[ \pi([a]P+[b]Q)=[\ell^{h-e} \beta] P + [\mu] ([a]P+[b]Q)\]
-de plus comme $\pi([a]P+[b]Q)=[a \lambda ]P + [b] \pi(Q)$ on en déduit 
-l'expression suivante de $b\pi(Q)$:
-\[ b \pi(Q)=[\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q. \]
-On a alors $\pi([*]P+[by]Q)=[*\lambda]P+[y]([b]\pi(Q))$, or la condition 
-$\pi(P,R')=\pi(P,R)$ est vérifiée si et seulement si:
-\begin{eqnarray*}
-\pi([*]P+[by]Q) &=& [\beta \ell^{h-e}] P + [\mu]([*]P+[by]Q) \\
-				&=& [\lambda *]P + [y]([\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q)
-\end{eqnarray*}
-Cela se traduit donc par l'égalité suivante:
-\[ \beta \ell^{h-e} + *(\mu-\lambda)=y(\beta \ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
-Ainsi pour $h-e+i \leqslant h$ on obtient l'équation suivante:
-\[\beta \ell^{h-e} + y\beta \ell^{h-e}  \]
-et donc la valeur de la matrice ne dépend que que de $y$ ainsi en faisant 
-varier la valeur de $*$ on peut faire en sorte que $[\ell^h-e]R'$ soit le 
-générateur de n'importe quelle $\ell^{i}$-isogénie descendante.
-
-On regarde donc maintenant le cas où $h-e+i>h$, montrons comment on détermine
-$y$ et $*$ tels que $\ell^{h-e}\gamma=\ell^{h-e}*(by)^{-1}$ et que $\pi(P,R)=\pi(P,R')$.
-On pose à nouveau $\ell^{h} \alpha = \lambda - \mu$ avec $\alpha \wedge \ell=1$
-, l'égalité $\pi(P,R)=\pi(P,R')$ se traduit donc par:
-\[ \beta \ell^{h-e} + \ell^{h}\alpha *=y(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}, \]
-on multiplie alors cette équation par $(by)^{-1}$
-\begin{eqnarray*}
-\beta \ell^{h-e}(by)^{-1} + \ell^{e}\alpha \ell^{h-e} \gamma &=& b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \\
-\beta \ell^{h-e}(by)^{-1} &=& - \ell^{e}\alpha \ell^{h-e} \gamma + b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a)
-\end{eqnarray*}
-On peut alors déterminer $y$ puis $*$ afin d'avoir une transformation qui nous 
-donne un point $R$ tel que $\ell^{h-e}R$ soit un générateur de l'isogénie 
-spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
-\end{proof}
-
-On voit donc que la méthode appliquée sur un volcan de Atkin n'est pas 
-applicable que ce soit au niveau du cratère ou pour des courbes situées en 
-dessous du niveau du cratère.
-
-\printnomenclature
 
 
 %\printglossary[title=Glossaire, toctitle=Glossaire]
