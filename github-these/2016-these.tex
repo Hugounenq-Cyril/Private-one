@@ -4988,14 +4988,14 @@ Couveignes dans le cas Atkin:
 \STATE \label{alg:cou:atk:bas} 
 Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
 \STATE \label{alg:cou:atk:frob:bas} Calcul de $\pi(P,Q)$;
-\FOR{$S' \in E'$ d'ordre $\ell^k$}
+\FOR{$S' \in E'$ d'ordre $\ell^k$} \label{alg:cou:atk:parc:poi}
 \STATE \label{alg:cou:atk:matc:fro} Calcul de $R' \in E'$ tel que $\pi(S',R')=\pi(P,Q)$ à l'aide de l'algorithme~\ref{alg:atk:bas:mat}
-\FOR{$U' \in E'$  tel que $[\ell^{h}]U'=[\ell^{h}]R'$}
+\FOR{$U' \in E'$  tel que $[\ell^{h}]U'=[\ell^{h}]R'$} \label{alg:cou:atk:div:h}
 
-\STATE Calcul des listes de représentants pour les orbites selon l'action du Frobenius $L$ et $L'_{U',R'}$ afin de respecter la correspondance induite par le choix de $U'$ et $R'$;
+\STATE Calcul des listes de représentants pour les orbites selon l'action du Frobenius $L$ et $L'_{U',R'}$ afin de respecter la correspondance induite par le choix de $U'$ et $R'$; \label{alg:cou:atk:rep}
 \STATE \label{alg:cou:atk:int} Calcul des des polynômes $A_{U',R'}$ et $T$ par les méthodes décrites dans la section~\ref{sec:interpolation};
 \STATE \label{alg:cou:atk:Cauchy} Calcul de la fraction rationnelle $F=A_{U',R'} \bmod T$ à l'aide d'une interpolation de Cauchy;
-\IF{$\mathsf{Test}(F)$}
+\IF{$\mathsf{Test}(F)$} \label{alg:cou:atk:test}
 \RETURN $F$
 \ENDIF
 \ENDFOR
@@ -5025,26 +5025,43 @@ $O(\mathsf{R}(k-\beta+1)+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
 Par ~\cite[Chapter~14.5]{vzGJG03} on a $\mathsf{R}(n)=
 O(\ell^n\mathsf{M}(\ell^{n+1})\log(\ell)\log(\ell q))$. 
 L'étape~\ref{alg:cou:atk:bas} a donc un coût total de $O(\ell^k \mathsf{M}
-(\ell^{k+1})\log(\ell)\log(\ell q))$ 
+(\ell^{k+1})\log(\ell)\log(\ell q))=O(\sqrt{r}\mathsf{M}(\sqrt{r})\log(\ell)\log(\ell q))$ 
 dans le pire des cas où l'on aurait $\beta=1$.
 
 Le coût de calcul de l'étape~\ref{alg:cou:atk:frob:bas} s'effectue 
 itérativement en effet à la manière de l'algorithme~\ref{alg:atk:bas:mat} on 
-calcule itérativement l'action du Frobenius sur $\ell^j$-torsion pour $j$ 
+calcule itérativement l'action du Frobenius sur la $\ell^j$-torsion pour $j$ 
 allant de $1$ à $k$, ainsi à l'étape $i \in [1;k]$ on a le coût du Frobenius
 appliqué à un point de $\mathsf{F}_{i-\beta}$ lorsque $i>\beta$, $\mathsf{F}_1$
 sinon qui est de $O(\ell^{\max(i-\beta,1)}\mathsf{M}(\ell))$ opérations sur 
-$\mathbb{F}_q$ d'après le théorème~\ref{thm:frob-ell}, on effectue alors 
+$\mathbb{F}_q$ d'après le théorème~\ref{thm:frob-ell}. On effectue ensuite 
 jusqu'à $2\ell^2$ additions de points définis sur $\mathsf{F}_{i-\beta}$ afin 
 d'identifier l'action du Frobenius. Chaque étape a donc un coût de 
 $O(\ell^2 \mathsf{M}(\ell^{\max(1,i-\beta)}))$,
 le coût total de l'étape~\ref{alg:cou:atk:frob:bas} est donc de 
-$O(\ell^2(\beta \mathsf{M}(\ell)+\mathsf{M}(\ell^{i-\beta+1})))$ 
-opérations sur $\mathbb{F}_q$.
+$O(\ell^2(\beta \mathsf{M}(\ell)+\mathsf{M}(\ell^{k-\beta+1})))=
+O((\ell^2( \mathsf{M}(\ell)+\mathsf{M}(\sqrt{r})))$ 
+opérations sur $\mathbb{F}_q$ dans le pire des cas où $\beta=1$.
+
+Le calcul de tous les points d'ordre $\ell^k$ à 
+l'étape~\ref{alg:cou:atk:parc:poi} à partir d'une base de $E'[\ell^k]$ coûte 
+$O(\mathsf{M}(\ell^k)\log(\ell^k)\ell^k)=
+O(\mathsf{M}(\sqrt{r})\sqrt{r}\log(r)\log(\ell))$ ce coût est considéré comme 
+un pré-calcul.
 
 L'étape~\ref{alg:cou:atk:matc:fro} a un coût de 
-$O(\ell^4(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta)\mathsf{M}(\ell)))$ 
+$O(\ell^4(\mathsf{M}(\ell^{k+1-\beta})+(\beta)\mathsf{M}(\ell)))$ 
 opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:atk:comp:alg}.
+Ce qui donne un coût de $O(\ell^4(\mathsf{M}(\sqrt{r})+\mathsf{M}(\ell)))$.
+
+L'étape~\ref{alg:cou:atk:div:h} calcule les antécédents d'un point d'ordre
+$\ell^{k-h}$ par $[\ell^h]$ ainsi on utilise successivement la fonction 
+$\mathrm{divise}(\ell,P)$ sur des points définis dans $\mathsf{F}_{h-\beta}$ à
+$\mathsf{F}_{k-\beta}$, chaque itération de $\mathrm{divise}(\ell,P)$ a un coût
+de $R(n+1)$ pour $P \in \mathsf{F}_n$ par le lemme~\ref{lem:div:cou}. Ainsi 
+par ~\cite[Chapter~14.5]{vzGJG03} cette étape a un coût total de: 
+$O(\mathsf{M}(\ell^{k-\beta + 2})\ell^{k-\beta+1}\log(\ell)\log(\ell q))=
+O(\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$.
 
 Par le corollaire~\ref{cor:atk:orb:rep} on a $\ell^{k+\beta-2}(\ell+1)/2$ 
 représentants à calculer, chaque représentant étant 
@@ -5052,7 +5069,8 @@ calculé comme la multiplication scalaire d'un point d'ordre $\ell^k$ défini
 dans $\mathsf{F}_{k-\beta}$ par un coefficient dans 
 $(\mathbb{Z}/\ell^k\mathbb{Z})^{\times}$ une telle multiplication a un coût
 de $O(\log(\ell^k)\mathsf{M}(\ell^{k-\beta}))$. On a donc un coût total de 
-$O(\mathsf{M}(\ell^{2k})\log(\ell^k))$ opérations sur $\mathbb{F}_q$. 
+$O(\mathsf{M}(\ell^{2k})\log(\ell^k))=O(\mathsf{M}(r)\log(r))$ opérations sur 
+$\mathbb{F}_q$.
 
 Pour l'étape~\ref{alg:cou:atk:int} on utilise la 
 proposition~\ref{prop:interpol} avec $t=\ell^{2k-2}(\ell+1)/2 \in O(r\ell^2)$ 
@@ -5064,6 +5082,12 @@ L'étape~\ref{alg:cou:atk:Cauchy} a une complexité de $O(r\log(r))$ d'après
 \cite[Théorème 7.5]{algeff17}. Le coût du test de la fraction rationnelle est
 dominé par les autres opérations (pour plus de détails le lecteur peut voir 
 la preuve de la proposition~\ref{pro:full-complexity}).
+
+Les étapes~\ref{alg:cou:atk:rep} à ~\ref{alg:cou:atk:test} étant répétées 
+$\ell^{k-h}$ fois cela a un coût de 
+$O(\ell^{k-h}\mathsf{M}(r\ell^4)\log(r)\log(\ell))$ à $S'$ fixé.
+
+Enfin l'étape à et la boucle étant répétées $\ell^k$ fois cela donne la complexité totale.
 \end{proof}
 
 \chapter{Ouverture 1812}
