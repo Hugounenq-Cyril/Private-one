@@ -447,9 +447,6 @@ on peut alors exprimer les coordonnées de $P+Q$:
 \end{equation*}
 \end{itemize}
 
-
-
-
 \paragraph*{Multiplication scalaire}\   {
 \newline
 
@@ -4656,7 +4653,7 @@ Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}
  %\]
  
  \[
-O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\ell^{1,5})\log(r)\log(\ell)\log(\ell q) + r \ell ( \mathsf{M}(r)\log(r)+ \mathsf{M}(r \ell^4) \log(r) \log(\ell) + \mathsf{M}(r \ell^3) \log(r)^2 \log(\ell) )  \Bigr)
+O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\ell^{1,5})\log(r)\log(\ell)\log(\ell q) + r \ell ( \mathsf{M}(r \ell^4) \log(r) \log(\ell) + \mathsf{M}(r \ell^3) \log(r)^2 \log(\ell) )  \Bigr)
  \]
 \end{prop}
 \begin{proof}
@@ -4840,12 +4837,13 @@ par la proposition~\ref{pro:alg:diagonal}, en appliquant les résultats de
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
 $\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
 en un temps espéré de 
-
- \begin{eqnarray}
-O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\log(q)^{1,5})\log(r)\log(\ell)\log(\log(q) q) &+& \\ 
-r \ell ( \mathsf{M}(r)\log(r)+ \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) + \mathsf{M}(r \log(q)^3) \log(r)^2 \log(\log(q)) + \log(q)^6 )  &\Bigr)&
-
- \end{eqnarray}
+\todo{moche à modifier}
+ \begin{equation*}
+ \begin{alignedat}{1}
+& O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\log(q)^{1,5})\log(r)\log(\ell)\log(\log(q) q) + \\ 
+& r \ell (\mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) + \mathsf{M}(r \log(q)^3) \log(r)^2 \log(\log(q)) + \log(q)^6 )  \Bigr)
+\end{alignedat}{1}
+ \end{equation*}
 %  \[
 %O\Bigl( r \log(q) \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) +  r\log(q) \mathsf{M}(r \log(q)^{1,5}) \log(r)^2 \Bigr).
 % \]
@@ -5146,6 +5144,20 @@ nombre premier de Atkin \todo{regarder si c'est défini} tel que
 $\ell^h<\sqrt{r}$. 
 
 Faire la généralisation aux courbes en dessous du cratère. \todo{Faire aussi cela}
+
+Par la proposition~\ref{prop:parallel}, la profondeur de ~$E$ et $E'$ sous
+leur cratère respectif est la même.  Par la
+proposition~\ref{prop:parallel}~\ref{prop:parallel:ascent}, les
+courbes sommets~$E_{\max}$ et~$E'_{\max}$ sont encore $r$-isogèness; on utilise
+alors l'algorithme~\ref{alg:cou:atk} pour calculer une $r$-isogénie~$\psi_{s}$.  
+Ensuite comme $\ell \wedge r =1$ alors $\psi = (\alpha ') \circ \psi_{s} \circ 
+\alpha$ est bien définie et est la $r$-isogénie cherchée.
+Le noyau de cette isogénie peut être calculé en $O(h\mathsf{\ell r}\log(\ell r))$
+opérations en évaluant l'isogénie duale $\widehat{\alpha}$ sur le noyau de 
+$\psi_s$ à l'aide d'une suite de résultants.
+
+
+
 
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
