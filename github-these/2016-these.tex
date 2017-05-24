@@ -4807,7 +4807,7 @@ l'on ne considère que ceux-ci.
 \begin{cor}
 \label{cor:atk:elk:dist}
 Le coût pour trouver un nombre de Elkies est de:
-$O()$
+\[O(\sqrt{r}\mathsf{M}(\sqrt{r})\log(q)\log(\log(q) q)+\log(q)^6)\]
 opérations sur $\mathbb{F}_q$, le coût pour trouver un nombre de Atkin est 
 identique
 \end{cor}
@@ -4827,8 +4827,8 @@ Elkies et valide pour appliquer l'algorithme~\ref{alg:cou:ell-adique} sinon
 c'est un nombre premier de Atkin et l'algorithme~\ref{alg:cou:atk} peut 
 s'appliquer. L'algorithme~\ref{alg:bas:diag} ayant une complexité de 
 $O(\mathsf{R}(k-\beta)+\ell^2\mathsf{M}(\ell^{k-\beta})+\ell 
-\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ par la 
-proposition~\ref{pro:alg:diagonal}, en appliquant les résultats de 
+\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ (avec ~$\ell^{2k-1} \in O(r\ell^2)$)
+par la proposition~\ref{pro:alg:diagonal}, en appliquant les résultats de 
 ~\cite[Chapter~14.5]{vzGJG03} on obtient le résultat.
 \end{proof}
 
