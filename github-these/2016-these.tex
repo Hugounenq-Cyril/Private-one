@@ -5197,7 +5197,7 @@ O(r \ell^2 (\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\el
 \end{thm}
 
 \chapter{Ouverture 1812}
-\section{Variante de Elkies avec un seul sous-groupe cyclique}
+\section{Variante de l'algorihme de Couveignes $\ell$-adique dans le cas Elkies avec un seul sous-groupe cyclique}
 Comme proposé par François Morain on pourrait uniquement travailler avec un 
 point horizontal au lieu de travailler avec une base horizontale.
 
@@ -5210,10 +5210,12 @@ travailler dans l'élément $\mathsf{F}_{h+1-\beta}$ de la tour d'extensions
 $\ell$-adiques.
 
 \begin{prop}
-Soit $k$ tel que $\ell^k \in O(r\ell)$, alors pour $h<k$ le coût de calcul d'une 
+Soit $k$ tel que $\ell^{k-1} \in O(r\ell)$, alors pour $h<k$ le coût de calcul d'une 
 base diagonale de la $\ell^{h+1}$ torsion à l'aide de 
 l'algorithme~\ref{alg:ulti:fro} est de:
-$O(\mathsf{M}(r\ell)r\log(\ell)\log(\ell q) \log(r))$.
+\[
+O(r \ell \mathsf{M}(r\ell^{2})\log(\ell)\log(\ell q) \log(r))
+\]
 \end{prop}
 
 \begin{proof}
@@ -5221,10 +5223,10 @@ On rappelle que l'on travaille avec la convention $\alpha \geqslant \beta$,
 avec $\alpha$ et $\beta$ définis comme dans la proposition~\ref{pro:clas:fro}.
 Le coût de calcul de la base horizontale est par la proposition~\ref{pro:alg:ulti}:
 $O((h+1)(\mathsf{R}(h+1-\beta)+\ell^2 \mathsf{M}(\ell^{h+1-\beta}))+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$. 
-En bornant $h$ par $k$ on a $\ell^h \in O(r)$ ce qui en utilisant cette
+En bornant $h$ par $k$ on a $\ell^h \in O(r\ell)$ ce qui en utilisant cette
 borne et le coût de $\mathsf{R}(i)$ donné par~\cite[chapter 14.5]{vzGJG03} nous 
 donne une complexité de :
-$O(\mathsf{M}(r\ell)r\log(\ell)\log(\ell q) \log(r))$.
+$O(r \ell \mathsf{M}(r\ell^{2})\log(\ell)\log(\ell q) \log(r))$.
 \end{proof}
 On observe donc que dans ce cas-là on a un coût quadratique en $r$ pour le 
 calcul d'une base diagonale de la $\ell^{h+1}$ alors que dans le cas de la 
@@ -5239,7 +5241,7 @@ fait que l'on ait $\alpha$ ici et non $\beta$ (pour rappel $\alpha$ et $\beta$
 ont été définis dans la sous-section~\ref{sub:classes}). Ce calcul a un coût de 
 $O(\mathsf{R}(k-\alpha) + k\mathsf{R}(h-\alpha+1) + k\ell^2\mathsf{M}(\ell^{h-\alpha+1}))$
 d'après la proposition~\ref{pro:alg:hor}, ce qui appliqué à notre cas donne 
-une complexité de: $O(r \mathsf{M}(r \ell)\log(\ell)\log(\ell q) \log(r))$.
+une complexité de: $O(r \ell \mathsf{M}(r \ell^{2})\log(\ell)\log(\ell q) \log(r))$.
 
 Pour le calcul du polynôme d'interpolation on utilise des méthodes 
 similaires à celles de la section~\ref{sec:interpolation} mais plus proches de 
@@ -5248,44 +5250,59 @@ cyclique défini dans $\mathsf{F}_{k-\alpha}$.
 On a alors au plus $\frac{\ell^{k-1}}{\ell^{k-\alpha}}=\ell^{\alpha-1}$ représentants 
 des orbites selon l'action du Frobenius à calculer dans $\mathsf{F}_{k-\alpha}$.
 Le calcul de ces représentants a un coût de 
-$O(\ell^{\alpha-1}\mathsf{M}(\ell^{k-\alpha})\log(\ell^k)) \subset O(\mathsf{M}(r)\log(r))$ opérations.
+$O(\ell^{\alpha-1}\mathsf{M}(\ell^{k-\alpha})\log(\ell^k)) \subset O(\mathsf{M}(r\ell)\log(r)\log(\ell))$ opérations.
 
 Ensuite on doit calculer le polynôme d'interpolation en appliquant le résultat
- de la proposition~\ref{prop:interpol} avec $t \in \Theta(r)$, $s=\ell^{\alpha-1}$, 
+ de la proposition~\ref{prop:interpol} avec $t=\ell^{k-1} \in O(r \ell)$, $s=\ell^{\alpha-1}$, 
  $n=k-\alpha$ on obtient une complexité de 
- $O(\mathsf{M}(\ell^2r)\log(\ell)\log(r))$ qui est l'étape dominante dans les
+ $O(\mathsf{M}(\ell^3r)\log(\ell)\log(r))$ qui est l'étape dominante dans les
  étapes \ref{alg:cou-ell:ord} à \ref{alg:cou-ell:Cauchy} de 
  l'algorithme~\ref{alg:cou:ell-adique}.
 
 Ainsi pour le calcul du polynôme on doit répéter l'étape d'interpolation 
 $\ell^{k-1}$ fois ce qui nous donne un coût total de: 
-$O(r\mathsf{M}(\ell^2r)\log(\ell)\log(r))$ opérations sur $\mathbb{F}_q$.
+$O(r \ell \mathsf{M}(\ell^3r)\log(\ell)\log(r))$ opérations sur $\mathbb{F}_q$.
 
 L'algorithme décrit ici est retranscrit dans l'algorithme~\ref{alg:app:cou:var}
-en appendice afin de ne pas surcharger ce document car comme vu juste au dessus
+en appendice afin de ne pas surcharger ce document car comme vu juste au-dessus
 il est très similaire à l'algorithme~\ref{alg:cou:ell-adique}.
-l'algorithme
 
 \begin{prop}
-Soit $\ell$ un nombre de Elkies tel que $\ell^h<r$ alors le coût de la 
-variante de l'algorithme de Couveignes $\ell$-adique présenté dans 
-l'algorithme~\ref{alg:app:cou:var} 
+Soit $\ell$ un nombre de Elkies tel que $\ell^h<r$ alors le coût espéré de la 
+variante de l'algorithme de Couveignes $\ell$-adique avec détermination d'un 
+seul sous-groupe cyclique présenté dans l'algorithme~\ref{alg:app:cou:var} 
 est de: 
-$O(r\mathsf{M}(\ell^2r)\log(\ell)\log(r))$ opérations sur $\mathbb{F}_q$.
+\[
+O(r \ell (\mathsf{M}(r\ell)\log(\ell)\log(\ell q) \log(r) + \mathsf{M}(\ell^3r)\log(\ell)\log(r) ))
+\]
+opérations sur $\mathbb{F}_q$.
 \end{prop}
 
-Le coût de cette variante de Couveignes $\ell$-adique a donc une complexité de
-$O(\mathsf{M}(r\ell^2)r\ell^2 \log(r) \log(\ell) \log(\ell q)$ qui est donc un 
-peu plus élevé que le résultat obtenu à la 
-proposition~\ref{pro:full-complexity}, la différence notable c'est qu'ici la 
-complexité est dominée par la phase de calcul d'une base diagonale de la 
-$\ell^{h+1}$ torsion et non pas par la partie interpolation de l'algorithme qui
-peut être répétée jusqu'à $\Theta(r)$ fois.
+Le coût de cette variante de Couveignes $\ell$-adique dans le cas Elkies a donc
+une complexité qui est un peu plus faible que le résultat obtenu à la 
+proposition~\ref{pro:full-complexity} avec un facteur $\ell$ en moins dans le 
+calcul du polynôme d'interpolation. Ce facteur en moins vient du fait que l'on
+cherche $k$ tel que $\ell^{k-1} >4r$ au lieu de $\ell^{2k-2}(\ell+1)>4r$ dés 
+lors on obtient une meilleure précision dans le cas de cette variante pour le 
+choix de $k$ ce qui fait que le coût du calcul du polynôme d'interpolation est
+moins élevé de ce facteur $\ell$. 
 
-On voit bien ici à travers cette variante de 
-l'algorithme~\ref{alg:cou:ell-adique} non transposable à 
-l'algorithme~\ref{alg:cou:atk} proposé dans le cas Atkin, que l'étude de 
-l'action du Frobenius dans le cas Elkies nous permet de spécifier des sous
+Une différence notable c'est que dans cette variante la complexité pour le 
+calcul d'une base diagonale de la $\ell^{h+1}$ torsion est quadratique alors 
+que dans l'algorithme~\ref{alg:cou:ell-adique} cette partie est seulement 
+quasi-linéaire en $r$.  Ainsi l'algorithme~\ref{alg:cou:ell-adique} présente
+l'avantage d'avoir une partie quasi-linéaire fixe et une partie variable 
+quasi-quadratiqe en $r$ avec un aléa qui varie dans $O(r\ell)$ d'où le fait que
+cette variante ne propose pas de grand avantage par rapport à 
+l'algorithme~\ref{alg:cou:ell-adique}.
+
+Cette variante de l'algorithme~\ref{alg:cou:ell-adique}  proposé dans le cas 
+Elkies non transposable à l'algorithme~\ref{alg:cou:atk} proposé dans le cas 
+Atkin souligne le fait que l'étude de l'action du Frobenius dans le cas Elkies 
+nous permet de spécifier des sous-groupe cycliques invariants par l'action de 
+$r$-isogénies (avec $r \wedge \ell = 1$) alors que dans le cas Atkin on ne peut
+que déterminer un sous-groupe cyclique à partir de la connaissance d'un autre 
+sous-groupe cyclique.
 
 
 On pourrait penser à utiliser l'algorithme de Couveignes $\ell$-adique avec une
@@ -5293,14 +5310,14 @@ approche multimodulaire de façon similaire à un théorème des restes chinois,
 c'est à dire pour différents nombres de Elkies $\ell_1, \ell_2, \ell_3, \dots, 
 \ell_{n}$, pour une isogénie de degré $r$ premier avec tous les $\ell_i$ on 
 calcule des bases horizontales de la $\ell_i^{k_i}$ torsion, on peut alors 
-travailler avec les deux groupes de points:
+travailler avec les deux ensembles de points:
 \begin{itemize}
 \item $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$, 
 \item $\prod_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $.
 \end{itemize}
 On va détailler chacune de ces approches dans les deux sous-sections qui suivent.
 
-\section{Aprroche avec le groupe de points isomorphe à $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$}
+\section{Approche avec l'ensemble de points isomorphe à $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$}
 La première approche est de considérer l'ensemble de points $S$ isomorphe à: 
 $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $,
 avec les $\ell_i$ tous des nombres premiers de Elkies, dés lors il faut fixer comme 
@@ -5310,7 +5327,7 @@ définir la fraction rationnelle $F$ candidate pour représenter la $r$-isogéni
 $\phi$ que l'on veut calculer. 
 L'avantage de cette approche est que bien que l'on soit obligé de travailler
 sur différentes tours d'extensions $\ell$-adiques, on a pas besoin de 
-travailler avec des composita de tours d'extensions $\ell$-adiques.
+travailler avec des compositum de tours d'extensions $\ell$-adiques.
 
 Détaillons comment on procède, la méthode est restranscrite dans 
 l'algorithme~\ref{alg:cou:mult-adique:short}.%, 
@@ -5318,7 +5335,7 @@ l'algorithme~\ref{alg:cou:mult-adique:short}.%,
 %l'algorithme~\ref{alg:cou:mult-adique:short} est disponible en annexe.
 
 \begin{algorithm}
-\caption{\label{alg:cou:mult-adique:short} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire.}
+\caption{\label{alg:cou:mult-adique:short} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire dans le cas Elkies.}
 \begin{algorithmic}[1]
 \REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
@@ -5435,7 +5452,8 @@ linéaire le changement de représentation d'éléments du compositum. On montre
 donc ici quelques résultats sur une telle construction appliquée à des tours 
 d'extensions $\ell_i$-adiques. Afin de ne pas surcharger la lecture de ce 
 document de nombreuses preuves étant l'adaptations de techniques présentées 
-dans le chapitre~\ref{cha:tour} elles sont présentées dans l'annexe.
+dans le chapitre~\ref{cha:tour} elles sont présentées dans 
+l'annexe~\ref{cha:ann:comp}.
 
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, 
 on va supposer dans le reste de ce document que les différentes tours 
@@ -5443,7 +5461,8 @@ d'extensions $\ell_i$-adiques sont définies comme dans le
 chapitre~\ref{cha:tour} dont on note les éléments 
 $\mathbb{F}_q \subset \mathsf{F}_{(i,0)} \subset \dots \subset  \mathsf{F}_{(i,j)}$ 
 ont chacune des degrés $d_i=[\mathsf{F}_{(i,0)}:\mathbb{F}_q]$ qui lorsqu'ils 
-ne sont pas égaux à $1$ doivent être premiers entre eux.
+ne sont pas égaux à $1$ doivent être premiers entre eux (cette dernière 
+restriction sera justifiée plus tard dans le document).
 
 On veut donc tout d'abord définir un compositum de tours d'extensions 
 $\ell_i$-adiques, en particulier on veut calculer un compositum qui contient 
@@ -5468,8 +5487,8 @@ proposition suivante:
 Soient $\ell_1$ un nombre premier, $P$, $Q$ deux 
 polynômes unitaires irréductibles de degré $d_1\ell_1^{n_1}$ et $\deg(Q)$ 
 premiers entre eux tels que $\mathbb{F}_q[x]/\langle P \rangle \cong 
-\mathsf{F}_{(1,n_1)}$ le $n_1$ ème élément de la tour d'extensions 
-$\ell_1$-adique vu dans le chapitre \ref{cha:tour}, $\mathbb{F}_q[y]/\langle Q 
+\mathsf{F}_{(1,n_1)}$ (le $n_1$ ème élément de la tour d'extensions 
+$\ell_1$-adique vu dans le chapitre \ref{cha:tour}), $\mathbb{F}_q[y]/\langle Q 
 \rangle$ une extension degré $\deg(Q)$ de $\mathbb{F}_q$.
  Soit $R=P\odot Q$  le produit composé de $P$ et $Q$, alors 
  $\mathbb{F}_q[z]/\langle R \rangle$ est un corps fini de taille 
@@ -5493,11 +5512,14 @@ l'aide de la proposition~\ref{pro:init:com} $\mathbb{K}_{i+1}$ est défini comme
 \begin{rem}
 Ici le cas où l'on aurait $d_i=d_j$ pour $i<j$ entraîne dés lors que l'on a pas
 les conditions pour appliquer la proposition~\ref{pro:init:com}. \todo{voir si on peut pas améliorer cette remarque} 
-En pratique il est raisonnable de penser que l'on a pas $d_i=d_j=1$ car cela 
-voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$ 
+Cette condition est assez restrictive car comme vu dans le 
+chapitre~\ref{cha:tour} on a $d_i | \ell_i-1$ et ainsi il est possible que l'on
+ait $d_i=\ell_i-1$ et $d_j=\ell_j-1$ pour deux nombres premiers impairs 
+$2 | \mathrm(pgcd)(d_i,d_j)$. Une solution pour contourner ce problème serait
+alors de construire le compositum à partir d'une extension de $\mathbb{F}_q$.
 \end{rem}
 
-(voir par exemple 
+
 %\cite{Schost15} pour un contexte) \todo{surement plus du tout utile}
 \begin{nota} Afin de simplifier les notations on va 
  noter $m_i=\prod_{i=j}^nd_j\ell_j^{n_j}/d_i\ell_i^{n_i}$ et 
@@ -5507,7 +5529,7 @@ voudrait dire que l'on a $E[\ell_i \ell_j] \subset E(\mathbb{F}_q)$
 %$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
 \end{nota}
 
-Il reste à voir en pratique le coût de la construction d'un tel composita pour 
+Il reste à voir en pratique le coût de la construction d'un tel compositum pour 
 cela on se sert du résultat suivant issu de \cite[Theorem 1]{BostanFlajoletSalvySchost06}
 
 \begin{prop}[Bostan Flajolet Salvy Schost]
@@ -5547,18 +5569,18 @@ On travaille donc tout d'abord avec le premier cas, le plus favorable, $p>p_n$.
 Supposons que $\mathbb{K}_i$ ait été construit alors calculons le coût de 
 construire $\mathbb{K}_{i+1}$, on applique alors la 
 proposition~\ref{pro:comp:prod} avec deux polynômes irréductibles de degré 
-$p_i$ et $d_{i+1}\ell_i^{n_i}$ cela coûte $O(\mathsf{M}(p_i+1))$ opérations sur
-$\mathbb{F}_q$.Ainsi en majorant grossièrement le coût de cette étape par 
-$O(\mathsf{M}(p_n))$ le coût de construction du compositum $\mathbb{K}_n$ 
-est majoré par $O(n\mathsf{M}(p_n))$.
+$p_i$ et $d_{i+1}\ell_{i+1}^{n_{i+1}}$ cela coûte $O(\mathsf{M}(p_{i+1}))$ 
+opérations sur $\mathbb{F}_q$.Ainsi en majorant grossièrement le coût de cette 
+étape par $O(\mathsf{M}(p_n))$ le coût de construction du compositum 
+$\mathbb{K}_n$ est majoré par $O(n\mathsf{M}(p_n))$.
 
 On travaille maintenant avec le second cas, le moins favorable, $p<p_n$.
 Supposons que $\mathbb{K}_i$ ait été construit alors calculons le coût de 
 construire $\mathbb{K}_{i+1}$, on applique alors la 
 proposition~\ref{pro:comp:prod} avec deux polynômes irréductibles de degré 
-$p_i$ et $d_{i+1}\ell_i^{n_i}$ tels que $p>p_n$ alors le calcul de 
+$p_i$ et $d_{i+1}\ell_{i+1}^{n_{i+1}}$ tels que $p<p_{i+1}$ alors le calcul de 
 $\mathbb{K}_i$ coûte 
-$O(p\mathsf{M}(\frac{p_i}{p})\log(\frac{p_i}{p})+\mathsf{M}(p_i))$
+$O(p\mathsf{M}(\frac{p_{i+1}}{p})\log(\frac{p_{i+1}}{p})+\mathsf{M}(p_{i+1}))$
 opérations sur $\mathbb{F}_q$. Ainsi en majorant grossièrement le coût de cette
 étape par $O(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n))$
 le coût de construction du compositum $\mathbb{K}_n$ est majoré par 
