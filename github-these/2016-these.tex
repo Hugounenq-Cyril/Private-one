@@ -3794,6 +3794,33 @@ Il est intéressant de noter que ce résultat nous permet de distinguer les
 différents générateurs de la $\ell^i$-isogénie générée par le second point qui
 forme une base avec $P$. \todo{a re rédiger}
 
+Maintenant énonçons un résultat qui est une transposition de la 
+proposition~\ref{pro:par:iso} qui s'appliquait au cas Elkies.
+
+\begin{prop}\label{pro:par:iso:atk}
+Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
+\begin{enumerate}
+\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan de
+ $\ell$-isogénies,
+\item\label{pro:par:fun:atk} pour tout point~$P \in E[\ell^k]$,
+les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de
+même type (ascendantes, descendantes, ou horizontales de même direction),
+\item\label{pro:par:asc:atk} si $P \in E[\ell]$ et $P' \in E'[\ell]$ sont tous 
+les deux des points générateurs d'isogénies ascendantes alors $E/\langle P 
+\rangle$ et~$E'/\langle P' \rangle$ sont encore $r$-isogènes.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+La preuve est exactement la même que celle de la proposition~\ref{pro:par:iso}
+toutefois ici on fait référence à la proposition~\ref{pro:mat:fro:atk} pour la
+preuve.
+\end{proof}
+
+Ces résultats sur la détermination du second point ne necéssitent pas forcément
+la détermination complète du premier point de la base comme le montrent les 
+résultats suivants.
+
 \begin{lem}\todo{lemme et propotisition intéressantes mais inexploitées...}
 \label{lem:fro:atk}
 Soient $P,R$ deux points de $E$ une courbe elliptique située au 
@@ -3821,6 +3848,8 @@ Par le lemme~\ref{lem:fro:atk} on a $\pi(P',R')=\pi(P,R')$, l'égalité
 $\pi(P,R')=\pi(P,R)$ permet de conclure à l'aide de la 
 proposition~\ref{pro:atk:equi}.
 \end{proof}
+
+
 
 \subsection{Décomposition de la $\ell^{h+i}$ torsion sous l'action du Frobenius}
 
@@ -5042,7 +5071,7 @@ Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
   En supposant que l'on a $\ell^h<\sqrt{r}$ \todo{trouver similaire}, 
   l'algorithme~\ref{alg:cou:atk} calcule une $r$-isogénie 
   ${\phi:E \rightarrow E'}$ en un temps espéré de \[
-  O(r(\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))\]
+  O(r \ell^2 (\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))\]
 auquel il faut ajouter un temps de pré-calcul de:
 $O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\ell)\log(\ell q))$.
 \end{prop}
@@ -5130,8 +5159,8 @@ $O(\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell))+\mathsf{M}(\sqrt{r}\ell)\sqrt{
 à $S'$ fixé.
 
 Enfin l'étape~\ref{alg:cou:atk:frob:bas} et la boucle commençant à 
-l'étape~\ref{alg:cou:atk:parc:poi} étant répétées $\ell^{2k-2}$ fois cela donne
-une complexité de $O(r(\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))$ à laquelle il faut ajouter les précalculs pour obtenir 
+l'étape~\ref{alg:cou:atk:parc:poi} étant répétées $\ell^{2k-2}(\ell+1)/2 \in 
+O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 (\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))$ à laquelle il faut ajouter les précalculs pour obtenir 
 le résultat.
 \end{proof}
 
@@ -5145,10 +5174,10 @@ $\ell^h<\sqrt{r}$.
 
 Faire la généralisation aux courbes en dessous du cratère. \todo{Faire aussi cela}
 
-Par la proposition~\ref{prop:parallel}, la profondeur de ~$E$ et $E'$ sous
+Par la proposition~\ref{pro:par:iso:atk}, la profondeur de ~$E$ et $E'$ sous
 leur cratère respectif est la même.  Par la
-proposition~\ref{prop:parallel}~\ref{prop:parallel:ascent}, les
-courbes sommets~$E_{\max}$ et~$E'_{\max}$ sont encore $r$-isogèness; on utilise
+proposition~\ref{pro:par:iso:atk}~\ref{pro:par:asc:atk}, les
+courbes sommets~$E_{s}$ et~$E'_{s}$ sont encore $r$-isogèness; on utilise
 alors l'algorithme~\ref{alg:cou:atk} pour calculer une $r$-isogénie~$\psi_{s}$.  
 Ensuite comme $\ell \wedge r =1$ alors $\psi = (\alpha ') \circ \psi_{s} \circ 
 \alpha$ est bien définie et est la $r$-isogénie cherchée.
@@ -5157,15 +5186,13 @@ opérations en évaluant l'isogénie duale $\widehat{\alpha}$ sur le noyau de
 $\psi_s$ à l'aide d'une suite de résultants.
 
 
-
-
-\begin{thm}
+\begin{thm} \todo{resultat totaement inintéressant}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
-$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
-en un temps espéré de   \[
-O\Bigl( r \log(q) \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) +  r\log(q) \mathsf{M}(r \log(q)^{1,5}) \log(r)^2 \Bigr).
- \]
-%  $O \bigl( r \mathsf{M}(r\log(q)^6) \log(r) \log \log(q) \bigr)$.
+$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de 
+l'isogénie explicite" avec l'algorithme~\ref{alg:cou:atk} en un temps espéré de
+\[
+O(r \ell^2 (\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))
+\]
 \end{thm}
 
 \chapter{Ouverture 1812}
