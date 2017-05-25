@@ -5511,7 +5511,7 @@ l'aide de la proposition~\ref{pro:init:com} $\mathbb{K}_{i+1}$ est défini comme
 \end{defi}
 \begin{rem}
 Ici le cas où l'on aurait $d_i=d_j$ pour $i<j$ entraîne dés lors que l'on a pas
-les conditions pour appliquer la proposition~\ref{pro:init:com}. \todo{voir si on peut pas améliorer cette remarque} 
+les conditions pour appliquer la proposition~\ref{pro:init:com}. 
 Cette condition est assez restrictive car comme vu dans le 
 chapitre~\ref{cha:tour} on a $d_i | \ell_i-1$ et ainsi il est possible que l'on
 ait $d_i=\ell_i-1$ et $d_j=\ell_j-1$ pour deux nombres premiers impairs 
@@ -5626,7 +5626,7 @@ $\mathbb{F}_q$. Ainsi pour connaître tous les polynômes qui définissent les
 extensions de degé $\frac{\prod_{i=1}^{n}d_i\ell_i^{n_i}}{d_j \ell_j^{n_j}}$ de
 $\mathbb{F}_q$ on doit changer l'ordre des $\ell_i$ dans la construction de la 
 définition~\ref{def:con:com}, on doit donc calculer $n$ constructions 
-différentes de composita pour pouvoir calculer le plongement de tous les 
+différentes de compositum pour pouvoir calculer le plongement de tous les 
 $\mathsf{F}_{(i,n_i)}$ dans $\mathbb{K}_{n}$ cela a un coût majoré par 
 $O(n^2(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$ 
 opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:con:comp}.
@@ -5671,7 +5671,7 @@ Maintenant voyons un résultat qui nous permet de changer la
 représentation d'un élément de $\mathbb{K}_i$ afin de le représenter comme un 
 élément de $\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$. 
 
-\begin{prop}
+\begin{prop}[De Feo, Doliskani, Schost]
 \label{pro:iso:fie}
 Soient $i \in [1,n]$, $P(x),Q(y)$ deux polynômes irréductibles unitaires de degrés 
 $d_i\ell_i^{k},p_{i-1}$ premiers entre eux à coefficients dans $\mathbb{F}_q$
@@ -5710,8 +5710,8 @@ Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{k}$ ave
 $k \in [1,n_i]$ tel que $\mathsf{F}_{(i,k)}=\mathbb{F}_q[x]/\langle P \rangle$,
 $Q$ un polynôme irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
 tel que $\mathbb{K}_{i-1}=\mathbb{F}_q[y]/\langle Q \rangle$, $R=P \odot Q$ 
-tel que  $\mathbb{K}_{i}=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un 
-élément $a$ de $\mathbb{K}_{i}$ le coût de calcul de $a$ à une puissance 
+tel que  $\mathsf{K}=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un 
+élément $a$ du corps $\mathsf{K}$ le coût de calcul de $a$ à une puissance 
 $q^{r p_{i-1}}$ est de 
 $O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
 opérations dans $\mathbb{F}_q$ avec un 
@@ -5732,12 +5732,11 @@ théorème~\ref{thm:frob-ell} on voit l'influence du changement de représentati
 à coût nul.
 
 Une adaptation des méthodes de calcul de polynôme d'interpolation décrites dans
-la section~\ref{sec:interpolation} à ce contexte est développée en annexe, on
-ne retranscrit ici que le résultat final suivant.
+la section~\ref{sec:interpolation} à ce contexte est développée en 
+annexe~\ref{cha:ann:comp}, on ne retranscrit ici que le résultat final suivant.
 
 \begin{prop}\label{prop:interpol:comp}
-  Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n 
-  \setminus \mathbb{K}_{n-1}$, $t_i$ le degré des polynômes minimaux de $v_i$, 
+  Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n~\setminus~\mathbb{K}_{n-1}$, $t_i$ le degré des polynômes minimaux de $v_i$, 
   et l'on note  $t=\sum t_i$. 
   Les polynômes
   \begin{itemize}
@@ -5771,7 +5770,7 @@ Soient $P_1$ un point d'ordre $\ell_1^{k_1}$ de $E$ et $P_2$ un point d'ordre $\
 Maintenant que l'on a énoncé le théorème des restes chinois pour une courbe elliptique montrons comment on le résoud à l'aide de l'algorithme~\ref{alg:TRC:init}.
 \todo{trouver un meilleur nom pour cet algorithme}
 \begin{algorithm}
-\caption{\label{alg:TRC:init}Calcul de  représentant de $P_1$ dans $E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$ ou TRC simplifié...}
+\caption{\label{alg:TRC:init}Calcul de $P \in E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$ tel que $[\ell_1^{k_1}]P=0_E$ et $[\ell_2^{k_2}]P=P_1$}
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique, $\ell_1,\ell_2$ deux nombres premiers distincts, $P_1$ un point d'ordre $\ell_1^{k_1}$.
 \ENSURE $P$ un point de $E$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  tel que $[\ell_1^{k_1}]P=0_E$ et $[\ell_2^{k_2}]P=P_1$.
@@ -5910,8 +5909,8 @@ On a donc bien une correspondance entre les points définis à l'aide du Théor�
  sur deux courbes elliptiques $r$-isogènes avec $r$ premier avec $\ell_1, \dots
  , \ell_n$.
  Maintenant énonçons un résultat qui nous permette de déterminer les 
- représentants d'orbite sous l'action de groupes de Galois en rappelant que 
- l'on note $\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$ le composita 
+ représentants d'orbites sous l'action de groupes de Galois en rappelant que 
+ l'on note $\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$ le compositum
  qui contient tous les éléments $\mathsf{F}_{(i,k_i)}$ des tours d'extensions
  $\ell_i$-adiques construit d'après les restrictions énoncées dans la 
  sous-section~\ref{sub:con:com}.
@@ -5991,10 +5990,12 @@ sous-section~\ref{sub:con:com}:
 
 \todo{trouver un meilleur nom pour cet algorithme}
 \begin{algorithm}
-\caption{\label{alg:TRC:init:gen}Lemme pour Théorème des restes chinois généralisé sur une courbe elliptique }
+\caption{ \label{alg:TRC:init:gen}  Calcul de $P \in E[\ell_i^{k_{i_0}}]$ tel que 
+$[\upsilon_{i_0}]P=P_{i_0}$ 
+et $[\ell_{i_0}^{k_{i_0}}]P=0_E$}
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique, $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, un point $P_{i_0}$ d'ordre $\ell_i^{k_{i_0}}$ pour $i_0 \in [1,n]$.
-\ENSURE $P$ un point de $E$ d'ordre $\prod_{i=1}^n \ell_i^{k_i}$  tel que $[\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i} ]P=P_{i_0}$ et $[\ell_{i_0}^{k_{i_0}}]P=0_E$.
+\ENSURE $P$ un point de $E$ d'ordre $\prod_{i=1}^n \ell_i^{k_i}$  tel que $[\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i} ]P=P_{i_0}$ et $[\ell_{i_0}^{k_{i_0}}]P~=~0_E$.
 \STATE $P \leftarrow P_{i_0}$;
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE \label{alg:TRC:init:gen:div} Calcul de $P'=\mathsf{divise}(P_{i_0},\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j})$;
@@ -6359,8 +6360,8 @@ Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{k}$ ave
 $k \in [1,n_i]$ tel que $\mathsf{F}_{(i,k)}=\mathbb{F}_q[x]/\langle P \rangle$,
 $Q$ un polynôme irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
 tel que $\mathbb{K}_{i-1}=\mathbb{F}_q[y]/\langle Q \rangle$, $R=P \odot Q$ 
-tel que  $\mathbb{K}_{i}=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un 
-élément $a$ de $\mathbb{K}_{i}$ le coût de calcul de $a$ à une puissance 
+tel que  $\mathsf{K}_=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un 
+élément $a$ de $\mathsf{K}$ le coût de calcul de $a$ à une puissance 
 $q^{r p_{i-1}}$ est de 
 $O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
 opérations dans $\mathbb{F}_q$ avec un 
