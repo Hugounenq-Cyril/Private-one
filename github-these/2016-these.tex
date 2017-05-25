@@ -2227,7 +2227,7 @@ Le coût d'une inversion d'un élément de $\mathsf{F}_k$ est le coût d'une add
 
 \subsection*{Calcul du Frobenius}
 
-Cette opération est très importante pour déterminer des ensembles spécifiques de points d'une courbe elliptique (voir \todo{ref à mettre plus tard}), c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable. Le résultat ici est une généralisation de \cite{Doliskani-Schost15}.
+Cette opération est très importante pour déterminer des ensembles spécifiques de points d'une courbe elliptique (voir chapitre~\ref{cha:act:fro} \todo{ref à mettre plus tard}), c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable. Le résultat ici est une généralisation de \cite{Doliskani-Schost15}.
 
 \begin{thm} \label{thm:frob-ell}
 Soit $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1,  \cdots \mathsf{F}_n$ une tour d'extensions $\ell$-adiques
@@ -3991,7 +3991,7 @@ décrite dans ~\cite[Chapter~14.5]{vzGJG03}.
    ces antécédents on a donc besoin de calculer les racines d'un polynôme de 
    degré $\ell$, ainsi le coût de $\mathsf{divise}(\ell,P)$ est $O(R(n))$ car 
    $R(i)$ est défini comme le coût de résoudre un polynôme de degré $\ell$ à 
-   coefficients dans $\mathsf{F}_i$ (voir section \ref{cha:tour}).  
+   coefficients dans $\mathsf{F}_i$ (voir chapitre~\ref{cha:tour}).  
 \end{proof}
 
 \begin{algorithm}
@@ -5167,12 +5167,8 @@ le résultat.
 On fait encore remarquer que la condition $\ell^h < \sqrt{r}$ signifie que l'on
 a $k>h$.
 
-Comme dit précédemment le résultat de la proposition~\ref{pro:bor:ell} est 
-aussi valable dans le cas Atkin, on peut donc trouver un $\ell \in O(\log(q))$
-nombre premier de Atkin \todo{regarder si c'est défini} tel que 
-$\ell^h<\sqrt{r}$. 
 
-Faire la généralisation aux courbes en dessous du cratère. \todo{Faire aussi cela}
+
 
 Par la proposition~\ref{pro:par:iso:atk}, la profondeur de ~$E$ et $E'$ sous
 leur cratère respectif est la même.  Par la
@@ -5183,7 +5179,12 @@ Ensuite comme $\ell \wedge r =1$ alors $\psi = (\alpha ') \circ \psi_{s} \circ
 \alpha$ est bien définie et est la $r$-isogénie cherchée.
 Le noyau de cette isogénie peut être calculé en $O(h\mathsf{\ell r}\log(\ell r))$
 opérations en évaluant l'isogénie duale $\widehat{\alpha}$ sur le noyau de 
-$\psi_s$ à l'aide d'une suite de résultants.
+$\psi_s$ à l'aide d'une suite de résultants. \todo{Faire aussi cela}
+
+Comme dit précédemment le résultat de la proposition~\ref{pro:bor:ell} est 
+aussi valable dans le cas Atkin, on peut donc trouver un $\ell \in O(\log(q))$
+nombre premier de Atkin \todo{regarder si c'est défini} tel que 
+$\ell^h<\sqrt{r}$. 
 
 
 \begin{thm} \todo{resultat totaement inintéressant}
@@ -5209,10 +5210,10 @@ travailler dans l'élément $\mathsf{F}_{h+1-\beta}$ de la tour d'extensions
 $\ell$-adiques.
 
 \begin{prop}
-Soit $k$ tel que $\ell^k \in O(r)$, alors pour $h<k$ le coût de calcul d'une 
+Soit $k$ tel que $\ell^k \in O(r\ell)$, alors pour $h<k$ le coût de calcul d'une 
 base diagonale de la $\ell^{h+1}$ torsion à l'aide de 
 l'algorithme~\ref{alg:ulti:fro} est de:
-$O(\mathsf{M}(r\ell^2)r\ell^2\log(\ell)\log(\ell q) \log(r))$.
+$O(\mathsf{M}(r\ell)r\log(\ell)\log(\ell q) \log(r))$.
 \end{prop}
 
 \begin{proof}
@@ -5223,7 +5224,7 @@ $O((h+1)(\mathsf{R}(h+1-\beta)+\ell^2 \mathsf{M}(\ell^{h+1-\beta}))+\ell \mathsf
 En bornant $h$ par $k$ on a $\ell^h \in O(r)$ ce qui en utilisant cette
 borne et le coût de $\mathsf{R}(i)$ donné par~\cite[chapter 14.5]{vzGJG03} nous 
 donne une complexité de :
-$O(\mathsf{M}(r\ell^2)r\ell^2\log(\ell)\log(\ell q) \log(r))$.
+$O(\mathsf{M}(r\ell)r\log(\ell)\log(\ell q) \log(r))$.
 \end{proof}
 On observe donc que dans ce cas-là on a un coût quadratique en $r$ pour le 
 calcul d'une base diagonale de la $\ell^{h+1}$ alors que dans le cas de la 
@@ -5231,7 +5232,11 @@ proposition~\ref{pro:full-complexity} on montrait dans la preuve que le coût
 d'une telle opération était quasi-linéaire.
 
 Ensuite on calcule un point horizontal d'ordre $\ell^k$ à l'aide de 
-l'algorithme~\ref{alg:hor:poi} qui a un coût de 
+l'algorithme~\ref{alg:hor:poi}, on rappelle qu'ici comme on détermine un seul 
+sous-groupe cyclique on choisit de travailler avec celui défini 
+sur la plus petite extension $\ell$-adique: $\mathsf{F}_{k-\alpha}$ d'où le 
+fait que l'on ait $\alpha$ ici et non $\beta$ (pour rappel $\alpha$ et $\beta$ 
+ont été définis dans la sous-section~\ref{sub:classes}). Ce calcul a un coût de 
 $O(\mathsf{R}(k-\alpha) + k\mathsf{R}(h-\alpha+1) + k\ell^2\mathsf{M}(\ell^{h-\alpha+1}))$
 d'après la proposition~\ref{pro:alg:hor}, ce qui appliqué à notre cas donne 
 une complexité de: $O(r \mathsf{M}(r \ell)\log(\ell)\log(\ell q) \log(r))$.
@@ -5239,23 +5244,27 @@ une complexité de: $O(r \mathsf{M}(r \ell)\log(\ell)\log(\ell q) \log(r))$.
 Pour le calcul du polynôme d'interpolation on utilise des méthodes 
 similaires à celles de la section~\ref{sec:interpolation} mais plus proches de 
 celles de \cite[§5]{DeFeo11} vu qu'ici on travaille uniquement avec un sous-groupe 
-cyclique. En effet on travaille avec le sous-groupe cyclique d'ordre $\ell^k$ 
-défini dans la plus petite extension $\ell$-adique: $\mathsf{F}_{k-\alpha}$. 
+cyclique défini dans $\mathsf{F}_{k-\alpha}$. 
 On a alors au plus $\frac{\ell^{k-1}}{\ell^{k-\alpha}}=\ell^{\alpha-1}$ représentants 
 des orbites selon l'action du Frobenius à calculer dans $\mathsf{F}_{k-\alpha}$.
 Le calcul de ces représentants a un coût de 
-$O(\ell^{\alpha-1}\mathsf{M}(\ell^{k-\alpha})\log(\ell^k))=O(\mathsf{M}(r)\log(r))$ opérations.
+$O(\ell^{\alpha-1}\mathsf{M}(\ell^{k-\alpha})\log(\ell^k)) \subset O(\mathsf{M}(r)\log(r))$ opérations.
 
 Ensuite on doit calculer le polynôme d'interpolation en appliquant le résultat
  de la proposition~\ref{prop:interpol} avec $t \in \Theta(r)$, $s=\ell^{\alpha-1}$, 
- $n=k-\alpha$ on obtient un complexité de 
- $O(\mathsf{M}(\ell^2r)\log(\ell)\log(r))$qui est l'étape dominante dans les
+ $n=k-\alpha$ on obtient une complexité de 
+ $O(\mathsf{M}(\ell^2r)\log(\ell)\log(r))$ qui est l'étape dominante dans les
  étapes \ref{alg:cou-ell:ord} à \ref{alg:cou-ell:Cauchy} de 
  l'algorithme~\ref{alg:cou:ell-adique}.
 
 Ainsi pour le calcul du polynôme on doit répéter l'étape d'interpolation 
 $\ell^{k-1}$ fois ce qui nous donne un coût total de: 
 $O(r\mathsf{M}(\ell^2r)\log(\ell)\log(r))$ opérations sur $\mathbb{F}_q$.
+
+L'algorithme décrit ici est retranscrit dans l'algorithme~\ref{alg:app:cou:var}
+en appendice afin de ne pas surcharger ce document car comme vu juste au dessus
+il est très similaire à l'algorithme~\ref{alg:cou:ell-adique}.
+l'algorithme
 
 \begin{prop}
 Soit $\ell$ un nombre de Elkies tel que $\ell^h<r$ alors le coût de la 
@@ -5272,6 +5281,11 @@ proposition~\ref{pro:full-complexity}, la différence notable c'est qu'ici la
 complexité est dominée par la phase de calcul d'une base diagonale de la 
 $\ell^{h+1}$ torsion et non pas par la partie interpolation de l'algorithme qui
 peut être répétée jusqu'à $\Theta(r)$ fois.
+
+On voit bien ici à travers cette variante de 
+l'algorithme~\ref{alg:cou:ell-adique} non transposable à 
+l'algorithme~\ref{alg:cou:atk} proposé dans le cas Atkin, que l'étude de 
+l'action du Frobenius dans le cas Elkies nous permet de spécifier des sous
 
 
 On pourrait penser à utiliser l'algorithme de Couveignes $\ell$-adique avec une
