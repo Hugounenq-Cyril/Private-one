@@ -184,7 +184,7 @@
 \nomenclature{$\Phi_{\ell}$}{$\ell$-ème polynôme modulaire}
 
 
-
+\chapter*{Introduction}
 
 
 \chapter{Rappels théoriques}
@@ -5002,6 +5002,7 @@ différentes parties est disponible sur le projet github:
 \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. 
 
 \section{Atkin}
+\label{sec:Atk:Con}
 On se restreint tout d'abord au cas où l'on travaille avec deux courbes 
 $r$-isogènes, avec $r \wedge \ell=1$ qui se situent au niveau d'un cratère d'un
 volcan de $\ell$-isogénies de hauteur $h$, réduit à une courbe car on se place 
@@ -6007,6 +6008,7 @@ et $[\ell_{i_0}^{k_{i_0}}]P=0_E$}
 
 
 \begin{prop}
+\label{pro:alg:TRC:init:gen}
 L'algorithme~\ref{alg:TRC:init:gen} a une complexité espérée de:
 \[
 O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_{i}\log(\ell_{i})\log(\ell_{i}q)))
@@ -6179,8 +6181,10 @@ Théorème des Restes Chinois.
 \end{algorithm}
 
 \begin{prop}
-L'algorithme~\ref{alg:cou:TRC-adique} a un coût espéré de \[ O(r\prod_{i=1}^n\ell_i(\mathsf{M}(r)\log(r)+\sqrt{r} \mathsf{M}(\sqrt{r})\prod_{i=1}^nk_i\log(r)^2+n \mathsf{M}(r \prod_{i=1}^n\ell_i^2 \max_i(d_i\ell_i^{k_i}))\sqrt{r}^{(\omega-1)/2}\max_i\ell_i)) \]
-opérations sur $\mathbb{F}_q$ avec un précalcul de $O(\sum_{i=1}^nk_i\ell_i^{k_i}n\sqrt{r}\mathsf{M}(\sqrt{r}\ell_n)\max_i(k_i\log(\ell_i)\log(\ell_iq)))$.
+L'algorithme~\ref{alg:cou:TRC-adique} a un coût espéré de 
+\[ O \bigl( r\prod_{i=1}^n\ell_i(\sqrt{r} \mathsf{M}(\sqrt{r}\prod_{i=1}^n\ell_i^{2})\prod_{i=1}^n(k_i\ell_i^{1,5})\log(r)^2+n \mathsf{M}(r \prod_{i=1}^n\ell_i^2 \max_i(d_i\ell_i^{k_i}))(\sqrt{r}\prod_{i=1}^n\ell_i^{2,5})^{(\omega-1)/2}\max_i\ell_i) \bigr) \]
+opérations sur $\mathbb{F}_q$ avec un précalcul de 
+\[O(\sum_{i=1}^nk_i\ell_i^{k_i}n\sqrt{r}\prod_{i=1}^{n}\ell_i^{2,5}\mathsf{M}(\sqrt{r}\prod_{i=1}^{n}\ell_i^{2,5})\max_i(k_i\log(\ell_i)\log(\ell_iq))).\]
 \end{prop}
 
 \begin{proof}
@@ -6217,11 +6221,12 @@ Une fois que l'on a calculé tous ces représentants dans les tours d'extensions
 $\ell_i$-adiques il nous reste à les calculer dans le corps $\mathbb{K}_n$.
 On doit donc au total appliquer $\sum_{i=1}^n k_i\ell_i^{k_i-\beta_i}$ fois 
 l'algorithme~\ref{alg:TRC:init:gen} avec un coût de 
-$O((\sum_{i=1}^n k_i\ell_i^{k_i-\beta_i})n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_i\log(\ell_{i})\log(\ell_{i}q)))$ 
-pour ensuite utiliser directement ces résultats dans l'algorithme~\ref{alg:TRC}
+$O((\sum_{i=1}^n k_i\ell_i^{k_i-\beta_i})n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_i\log(\ell_{i})\log(\ell_{i}q)))$  
+par la proposition~\ref{pro:alg:TRC:init:gen}. 
+On utilise ensuite directement ces résultats dans l'algorithme~\ref{alg:TRC}
 qui ne fait plus que $n$ additions de points avec un coût de 
-$O(n\mathsf{M}(p_n)\log(p_n))$, donc pour toutes les 
-$\prod_{i=1}^nk_i\ell_i^{k_i-\beta_i}$ additions on a un coût de: 
+$O(n\mathsf{M}(p_n)\log(p_n))$, pour toutes les 
+$n\prod_{i=1}^nk_i\ell_i^{k_i-\beta_i}$ additions on a un coût de: 
 $O((\prod_{i=1}^nk_i\ell_i^{k_i-\beta_i})n\mathsf{M}(p_n)\log(p_n))$.
 On fera remarquer que lors de l'algorithme~\ref{alg:TRC:init:gen} la complexité
 exprimée prend en compte le fait que l'on exprime les points des tours 
@@ -6257,13 +6262,29 @@ Sachant que l'on répète les étapes~\ref{alg:cou:TRC-adique:ord},
 ~\ref{alg:cou:TRC-adique:int} et \ref{alg:cou:TRC-adique:Cauchy}  $O(r \prod_{i=1}^n\ell_i)$fois cela donne la 
 complexité.
 \end{proof}
+On voit donc que l'on obtient une complexité inférieure à un coût cubique mais 
+au dessus du coût quadratique, cette apport au dessus du quadratique provient
+uniquement de l'étape du calcul de polynômes d'interpolations à 
+l'étape~\ref{alg:cou:TRC-adique:int} de l'algorithme~\ref{alg:cou:TRC-adique}. 
+En effet les autres étapes n'apportent qu'un coût au maximum quasi-quadratique. 
+Pour espérer avoir une complexité quadratique dans cette approche il faudrait 
+dés lors réussir à avoir des opérations de changement de représentations dans 
+un compositum plus efficaces que celles de \cite{DeFeoDoliskaniSchost14}. Cette
+approche peut aussi selon les choix des paramètres s'avérer plus efficace que
+celle du cas Atkin proposé dans la section~\ref{sec:Atk:Con}
 
+\chapter{Conclusion}
+Blabla 
+
+\todo{Probleme biblio reférence double}
 \bibliography{Biblio}
 
 
 \appendix
 \chapter{Algorithmes}
-\section{Algorithm for computing a trigonalisation or a diagonalisation at the same time}
+Dans ce chapitre sont présentés des algorithmes qui n'ont pas été laissé dans le manuscrit pour ne pas surcharger celui-ci.
+\section{Algorithme dans un volcan de type Elkies}
+On présente ici un algorithme qui propose de 
 \todo{Algorithme appendice intéressant seulement pour la condition qui distingue horizontal de trigonal}
 \begin{algorithm}
 \caption{\label{alg:app:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
