@@ -5199,6 +5199,7 @@ O(r \ell^2 (\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\el
 
 \chapter{Ouverture 1812}
 \section{Variante de l'algorihme de Couveignes $\ell$-adique dans le cas Elkies avec un seul sous-groupe cyclique}
+\label{sec:var:cou:uni}
 Comme proposé par François Morain on pourrait uniquement travailler avec un 
 point horizontal au lieu de travailler avec une base horizontale.
 
@@ -6350,9 +6351,12 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \end{algorithmic}
 \end{algorithm}
 
-
+\section{Couveignes $\ell$-adique dans le cas Elkies avec un seul sous-groupe cyclique}
+On présente ici l'algorithme analysé dans la section~{sec:var:cou:uni}, cet 
+algorithme est très similaire à l'algorithme~\ref{alg:cou:ell-adique} présenté 
+dans la section~\ref{sec:cou:elk}.
 \begin{algorithm}
-\caption{\label{alg:app:cou:var} Couveignes $\ell$-adique avec un seul sous-groupe cyclique.}
+\caption{\label{alg:app:cou:var} Couveignes $\ell$-adique dans le cas Elkies avec un seul sous-groupe cyclique.}
 \begin{algorithmic}[1]
 \REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
@@ -6378,6 +6382,14 @@ Calcul de $\color{red}P_{\lambda}\color{black},\color{red}P'_{\lambda}\color{bla
 \end{algorithm}
 
 \chapter{Calculs dans un compositum}
+Dans cette section sont présentés les résultats énoncés dans la section, ils 
+n'ont pas été présenté dans le document car en plus d'être technique ils sont 
+juste une adaptation des résultats présentés dans la section et n'utilise 
+aucune nouvelle idée. L'objectif de ce chapitre est donc de déterminer dans 
+la proposition~\ref{pro:app:int} le coût de
+calcul d'un polynôme d'interpolation à partir d'un ensemble de points qui 
+sont des représentants sous l'action de groupes de Galois, ce résultat est le 
+pendant de la proposition~\ref{prop:interpol} dans le cas du compositum.
 \label{cha:ann:comp}
 \begin{prop}
 
@@ -6587,9 +6599,13 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
    qui domine le coût total de cette étape.
 
   \`A chaque étape $i$, les polynômes $A^{(i,j)}_{(k)}$ sont calculés à un coût de
-  $\frac{p_n}{p_{n-i-1}}O(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{1/2}+\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega+1)/2}))$
-  $\subset O(\frac{p_n}{p_{n-i-1}}(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega-1)/2})) $
-  $\subset O(\mathsf{M}(p_{n}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega-1)/2}))$
+  \begin{equation*}
+  \begin{alignedat}{1}
+  &\frac{p_n}{p_{n-i-1}}O(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{1/2}+\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega+1)/2})) \\
+  \subset & O(\frac{p_n}{p_{n-i-1}}(\mathsf{M}(p_{n-i-1}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega-1)/2})) \\
+  \subset & O(\mathsf{M}(p_{n}d_{n-i}\ell_{n-i}^{n_{n-i}-k})p_{n-i-1}^{(\omega-1)/2}))
+  \end{alignedat}
+  \end{equation*}
   opérations sur $\mathbb{F}_q$, comme dans la preuve du  
   lemme~\ref{lem:interpolation:minpoly:ult}. On répète cette étape 
   $O(\ell_{n-1})$ fois pour $k \in [0,n_{n-i}]$, cela a donc un coût total de 
@@ -6624,6 +6640,7 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
 à l'aide de plusieurs couples de points de $\mathsf{F}_n$.
 
 \begin{prop}
+\label{pro:app:int}
   Soit $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n 
   \setminus \mathbb{K}_{n-1}$, $t_i$ le degré des polynômes minimaux de $v_i$, 
   et l'on note  $t=\sum t_i$. 
