@@ -4549,10 +4549,16 @@ On rappelle que l'on se place dans le contexte suivant:
 
 Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
 
-\section{Elkies}
-\label{sec:cou:elk}
-Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
+\section{Cas Elkies}
+Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo,
+J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication 
+\cite{Defeo_Plut_Schost_2016}.
 
+On s'intéresse ici au cas plus spécifique du "\emph{Problème du calcul 
+explicite d'isogénie}" où les deux courbes en entrée sont situées sur un volcan
+de $\ell$-isogénies à cratère cyclique, ce qui correspond au cas Elkies.
+\subsection{Présentation du cas spécifique où l'on connaît un premier $\ell$ de Elkies}
+\label{ssec:cou:elk}
 
 Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une $r$-isogénie $\phi$, alors par la proposition~\ref{pro:mat:fro} pour $k$ plus grand que $h$ la hauteur du volcan de $\ell$-isogénies on peut calculer deux bases diagonales $(P,Q),(P',Q')$ de $E_s[\ell^k]$ et $E'_s[\ell^k]$ les courbes sommets respectives de $E$ et $E'$ 
 \[
@@ -4713,7 +4719,7 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   En utilisant le  résultat  donné par ~\cite[Chapter~14.5]{vzGJG03} pour le 
   coût de $\mathsf{R}$, on a alors un coût borné pour les 
   étapes~\ref{alg:cou-ell:bhor} et \ref{alg:cou-ell:bdiag} par 
-  $O(\sqrt{r}\mathsf{M}(\sqrt{r}\ell^{1,5})\log(r)\log(\ell)\log(\ell q))$. \todo{ou ecrire $\sqrt{\ell^5}$}
+  $O(\sqrt{r}\mathsf{M}(\sqrt{r}\ell^{1,5})\log(r)\log(\ell)\log(\ell q))$.
   
   Il faut éventuellement rajouter le coût de calcul des points partiellement 
   horizontaux si les courbes en entrée ne se situent pas sur le cratère. 
@@ -4758,11 +4764,11 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   Il est à noter que la condition $\ell^h<\sqrt{r}$ est en fait une condition 
   permettant d'avoir $k \geqslant h+1$.
 
-\section{Analyse générale}
+\subsection{Analyse générale}
 La complexité donnée pour résoudre le problème du calcul explicite de 
 l'isogénie dans la proposition~\ref{pro:full-complexity} a une dépendance 
 polynomiale en $\ell$, en pratique on souhaiterait avoir $\ell$ petit 
-(voir section~\ref{sec:exp:cou})
+(voir sous-section~\ref{ssec:exp:cou})
 et donc on veut borner $\ell$ à l'aide des paramètres d'entrée du problème: $r,q$
 afin de montrer que notre algorithme est utilisable en pratique. 
 
@@ -4863,6 +4869,7 @@ par la proposition~\ref{pro:alg:diagonal}, en appliquant les résultats de
 \end{proof}
 
 \begin{thm}
+\label{thm:gen:elk:fin}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
 $\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
 en un temps espéré de 
@@ -4870,8 +4877,8 @@ en un temps espéré de
  \begin{equation*}
  \begin{alignedat}{1}
 & O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\log(q)^{1,5})\log(r)\log(\ell)\log(\log(q) q) + \\ 
-& r \ell (\mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) + \mathsf{M}(r \log(q)^3) \log(r)^2 \log(\log(q)) + \log(q)^6 )  \Bigr)
-\end{alignedat}{1}
+& r \log(q) (\mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) + \mathsf{M}(r \log(q)^3) \log(r)^2 \log(\log(q)) + \log(q)^6 )  \Bigr)
+\end{alignedat}
  \end{equation*}
 %  \[
 %O\Bigl( r \log(q) \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) +  r\log(q) \mathsf{M}(r \log(q)^{1,5}) \log(r)^2 \Bigr).
@@ -4891,8 +4898,8 @@ est lui majoré par la complexité donnée dans la
 proposition~\ref{pro:full-complexity}.
 \end{proof}
 
-\section{Partie expérimentale}
-\label{sec:exp:cou}
+\subsection{Partie expérimentale}
+\label{ssec:exp:cou}
 \todo{ajouter figure volcan exemple avec structure}
 
 Les résultats expérimentaux ont été obtenu à partir de code implanté pour le 
@@ -5001,13 +5008,15 @@ Le détail des timings pour les
 différentes parties est disponible sur le projet github: 
 \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. 
 
-\section{Atkin}
+\section{Cas Atkin}
 \label{sec:Atk:Con}
 On se restreint tout d'abord au cas où l'on travaille avec deux courbes 
-$r$-isogènes, avec $r \wedge \ell=1$ qui se situent au niveau d'un cratère d'un
-volcan de $\ell$-isogénies de hauteur $h$, réduit à une courbe car on se place 
-dans le cas Atkin. On verra par la suite comment généraliser cela
-à des courbes non situées sur le cratère. \todo{Le faire!}
+$r$-isogènes, avec $r \wedge \ell=1$ qui se situent sur un
+volcan de $\ell$-isogénies de hauteur $h$, dont le cratère est réduit à une 
+courbe car on se place dans le cas Atkin. De plus on va dans un premier temps
+se restreindre au cas où les courbes avec lesquelles on travaille se situent 
+sur le cratère d'un volcande $\ell$-isogénies, on verra par la suite comment 
+généraliser notre problème à des courbes non situées sur le cratère.
 
 Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées
 par une $r$-isogénie $\phi$, $P \in E$ et $S' \in E'$ deux points d'ordre 
@@ -5041,7 +5050,7 @@ l'image de $P$ par $\phi$ c'est à dire tous les points d'ordre $\ell^k$ de
 $E'$.
 
 On peut dès lors énoncer une version $\ell$-adique de l'algorithme de 
-Couveignes dans le cas Atkin:
+Couveignes dans le cas Atkin dans l'algorithme~\ref{alg:cou:atk}.
 \begin{algorithm}
 \caption{\label{alg:cou:atk} Algorithme de Couveignes $\ell$-adique dans le cas Atkin.}
 \begin{algorithmic}[1]
@@ -5069,14 +5078,17 @@ Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
 
 \begin{prop}
   \label{pro:atk:full-complexity}
-  En supposant que l'on a $\ell^h<\sqrt{r}$ \todo{trouver similaire}, 
+  En supposant que l'on a $\ell^h<\sqrt{r}$, 
   l'algorithme~\ref{alg:cou:atk} calcule une $r$-isogénie 
   ${\phi:E \rightarrow E'}$ en un temps espéré de \[
   O(r \ell^2 (\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))\]
 auquel il faut ajouter un temps de pré-calcul de:
 $O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\ell)\log(\ell q))$.
 \end{prop}
+
 \begin{proof}
+On fait remarquer que la condition $\ell^h < \sqrt{r}$ signifie que l'on
+a $k>h$, on va utiliser cette condition tout au long de la preuve.
 Par définition de $k$ on a $\ell^{2k-1} \in O(r\ell^2)$.
 Par la proposition~\ref{pro:clas:fro:atk}, il existe $\beta \leqslant h$ tel que
 $E[\ell^k]$ est inclus dans $E(F_{k-\beta})$. On construit donc une
@@ -5165,11 +5177,6 @@ O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 (\sqrt{r}(\mathsf{M}(
 le résultat.
 \end{proof}
 
-On fait encore remarquer que la condition $\ell^h < \sqrt{r}$ signifie que l'on
-a $k>h$.
-
-
-
 
 Par la proposition~\ref{pro:par:iso:atk}, la profondeur de ~$E$ et $E'$ sous
 leur cratère respectif est la même.  Par la
@@ -5182,23 +5189,30 @@ Le noyau de cette isogénie peut être calculé en $O(h\mathsf{\ell r}\log(\ell 
 opérations en évaluant l'isogénie duale $\widehat{\alpha}$ sur le noyau de 
 $\psi_s$ à l'aide d'une suite de résultants. \todo{Faire aussi cela}
 
-Comme dit précédemment le résultat de la proposition~\ref{pro:bor:ell} est 
-aussi valable dans le cas Atkin, on peut donc trouver un $\ell \in O(\log(q))$
-nombre premier de Atkin \todo{regarder si c'est défini} tel que 
-$\ell^h<\sqrt{r}$. 
+Comme dit précédemment les résultats de la proposition~\ref{pro:bor:ell},
+~\ref{pro:cou:dec} et du corollaire~\ref{cor:atk:elk:dist} sont 
+aussi valables dans le cas Atkin, on peut donc trouver un $\ell \in O(\log(q))$
+nombre premier de Atkin tel que $\ell^h<\sqrt{r}$ et énoncer un résultat 
+similaire à celui de du théorème~{thm:gen:elk:fin}, vu le peu d'intérêt d'un 
+tel résultat on ne l'énoncera pas. 
 
 
-\begin{thm} \todo{resultat totaement inintéressant}
-Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
-$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de 
-l'isogénie explicite" avec l'algorithme~\ref{alg:cou:atk} en un temps espéré de
-\[
-O(r \ell^2 (\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))
-\]
-\end{thm}
+%\begin{thm} \todo{resultat totaement inintéressant}
+%Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
+%$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de 
+%l'isogénie explicite" avec l'algorithme~\ref{alg:cou:atk} en un temps espéré de
+%\[
+%O(r \ell^2 (\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))
+%\]
+%\end{thm}
 
-\chapter{Ouverture 1812}
-\section{Variante de l'algorihme de Couveignes $\ell$-adique dans le cas Elkies avec un seul sous-groupe cyclique}
+\chapter{Variantes de l'algorithme de Couveignes $\ell$-adique}
+Dans les améliorations de l'algorithme de Couveignes que l'on a présentées 
+seules celles concernant le cas Elkies ont un intérêt en terme de complexité. 
+On va donc étudier des variantes à l'algorithme de Couveignes avec 
+approche $\ell$ adique que dans le cas Elkies y compris lorsque celles-ci
+auraient pu être appliquées à notre approche proposée pour le cas Atkin.
+\section{Algorihme de Couveignes $\ell$-adique dans le cas Elkies avec un seul sous-groupe cyclique}
 \label{sec:var:cou:uni}
 Comme proposé par François Morain on pourrait uniquement travailler avec un 
 point horizontal au lieu de travailler avec une base horizontale.
@@ -5261,13 +5275,13 @@ Ensuite on doit calculer le polynôme d'interpolation en appliquant le résultat
  étapes \ref{alg:cou-ell:ord} à \ref{alg:cou-ell:Cauchy} de 
  l'algorithme~\ref{alg:cou:ell-adique}.
 
-Ainsi pour le calcul du polynôme on doit répéter l'étape d'interpolation 
+Ainsi pour le calcul de la $r$-isogénie on doit répéter l'étape d'interpolation 
 $\ell^{k-1}$ fois ce qui nous donne un coût total de: 
 $O(r \ell \mathsf{M}(\ell^3r)\log(\ell)\log(r))$ opérations sur $\mathbb{F}_q$.
 
 L'algorithme décrit ici est retranscrit dans l'algorithme~\ref{alg:app:cou:var}
-en appendice afin de ne pas surcharger ce document car comme vu juste au-dessus
-il est très similaire à l'algorithme~\ref{alg:cou:ell-adique}.
+en appendice~\ref{cha:alg} afin de ne pas surcharger ce document car comme vu 
+juste au-dessus il est très similaire à l'algorithme~\ref{alg:cou:ell-adique}.
 
 \begin{prop}
 Soit $\ell$ un nombre de Elkies tel que $\ell^h<r$ alors le coût espéré de la 
@@ -5319,7 +5333,7 @@ travailler avec les deux ensembles de points:
 \end{itemize}
 On va détailler chacune de ces approches dans les deux sous-sections qui suivent.
 
-\section{Approche avec l'ensemble de points isomorphe à $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$}
+\section{Approche multi-moduaire de l'algorithme de Couveignes $\ell$-adique avec l'ensemble de points (partiellement) horizontaux isomorphe à $\cup_{i=1}^n \left( \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \right)^{2}$}
 La première approche est de considérer l'ensemble de points $S$ isomorphe à: 
 $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $,
 avec les $\ell_i$ tous des nombres premiers de Elkies, dés lors il faut fixer comme 
@@ -5433,9 +5447,9 @@ On voudrait dés lors travailler avec des $k_i$ sur lesquels on aurait comme
 condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 c'est ce que l'on va aborder dans la seconde approche.}
 
-\section{Approche avec le groupe de points isomorphe à $\prod_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $}
+\section{Approche multi-moduaire de l'algorithme de Couveignes $\ell$-adique avec l'ensemble de points (partiellement) horizontaux isomorphe à $\prod{i=1}^n \left( \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \right)^{2}$}
 Ainsi dans cette approche on veut travailler avec des points d'ordre 
-$\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'informations donnée par 
+$\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'information donnée par 
 les  bases (partiellement) horizontales 
 $(\color{red}P_{\lambda_i}\color{black},\color{blue}Q_{\mu_i}\color{black})$ de 
 $E[\ell_i^{k_i}]$ avec $\ell_i$ un nombre premier de Elkies, pour faire cela on
@@ -5450,10 +5464,11 @@ fixés tels que l'on ait $\prod_{i=1}^{n} \ell_i^{2k_i-2}(\ell_i+1)>4r$.
 Cette partie s'appuie sur la construction de compositum à partir d'une idée de
 %originale de \cite{BrawleyCarlitz87} reprise dans
 \cite{DeFeoDoliskaniSchost14} qui donne le moyen de calculer à un coût quasi 
-linéaire le changement de représentation d'éléments du compositum. On montre 
-donc ici quelques résultats sur une telle construction appliquée à des tours 
-d'extensions $\ell_i$-adiques. Afin de ne pas surcharger la lecture de ce 
-document de nombreuses preuves étant l'adaptations de techniques présentées 
+linéaire le changement de représentation d'éléments du compositum. On veut donc
+construire un corps dans lequel on pourrait représenter de tels points. On 
+montre donc ici quelques résultats sur une telle construction appliquée à des 
+tours d'extensions $\ell_i$-adiques. Afin de ne pas surcharger la lecture de ce 
+document de nombreuses preuves étant l'adaptation de techniques présentées 
 dans le chapitre~\ref{cha:tour} elles sont présentées dans 
 l'annexe~\ref{cha:ann:comp}.
 
@@ -5517,7 +5532,7 @@ les conditions pour appliquer la proposition~\ref{pro:init:com}.
 Cette condition est assez restrictive car comme vu dans le 
 chapitre~\ref{cha:tour} on a $d_i | \ell_i-1$ et ainsi il est possible que l'on
 ait $d_i=\ell_i-1$ et $d_j=\ell_j-1$ pour deux nombres premiers impairs 
-$2 | \mathrm(pgcd)(d_i,d_j)$. Une solution pour contourner ce problème serait
+$2 | \mathrm{pgcd}(d_i,d_j)$. Une solution pour contourner ce problème serait
 alors de construire le compositum à partir d'une extension de $\mathbb{F}_q$.
 \end{rem}
 
@@ -5699,7 +5714,7 @@ $O(\mathsf{M}(p_{i-1}d_i\ell_i^{k})(d_i\ell_i^{k})^{1/2}+\mathsf{M}(p_{i-1})(d_i
 opérations sur $\mathbb{F}_q$ lorsque $d_i\ell_i^{k} \geqslant p_{i-1}$.
 \end{enumerate}
 \end{prop}
-\todo{on pourrait éventuellement faire un restriction sur les $\ell_i$ pour que cela soit toujours vérifié}
+
 \begin{proof}
 Voir \cite{DeFeoDoliskaniSchost14}.
 \end{proof}
@@ -5758,6 +5773,10 @@ annexe~\ref{cha:ann:comp}, on ne retranscrit ici que le résultat final suivant.
 \begin{proof}
 Voir annexe~\ref{cha:ann:comp}.
 \end{proof}
+
+On va présenter dans la prochaine sous-section les points que l'on veut 
+construire sur un tel compositum ainsi que leur intérêt par rapport à 
+l'algorithme de Couveignes.
 
 \subsection{Théorème des Restes Chinois Elliptique et son application à l'algorithme de Couveignes $\ell$-adique}
 \label{sub:TRCE:cou}
@@ -5974,6 +5993,9 @@ par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,n_i)}:\mathbb{F}_q)$
  que l'on travaille avec deux couples de points d'ordre 
  $\prod_{i=1}^n\ell_i^{k_i}$ de même direction au lieu de deux points d'ordre
  $\ell^k$ de même direction comme dans l'algorithme~\ref{alg:cou:ell-adique}.
+ 
+ On va donc présenter dans la prochaine sous-section l'algorithme qui résulte 
+ de cette approche ainsi que son coût.
 
 \subsection{Algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois}
 
@@ -6283,6 +6305,7 @@ Blabla
 
 \appendix
 \chapter{Algorithmes}
+\label{cha:alg}
 Dans ce chapitre sont présentés des algorithmes qui n'ont pas été laissé dans le manuscrit pour ne pas surcharger celui-ci.
 \section{Algorithme dans un volcan de type Elkies}
 On présente ici un algorithme qui propose de 
@@ -6382,19 +6405,20 @@ Calcul de $\color{red}P_{\lambda}\color{black},\color{red}P'_{\lambda}\color{bla
 \end{algorithm}
 
 \chapter{Calculs dans un compositum}
-Dans cette section sont présentés les résultats énoncés dans la section, ils 
-n'ont pas été présenté dans le document car en plus d'être technique ils sont 
-juste une adaptation des résultats présentés dans la section et n'utilise 
-aucune nouvelle idée. L'objectif de ce chapitre est donc de déterminer dans 
-la proposition~\ref{pro:app:int} le coût de
-calcul d'un polynôme d'interpolation à partir d'un ensemble de points qui 
-sont des représentants sous l'action de groupes de Galois, ce résultat est le 
-pendant de la proposition~\ref{prop:interpol} dans le cas du compositum.
 \label{cha:ann:comp}
+Dans ce chapitre sont présentés les résultats énoncés dans la 
+section~\ref{sub:con:com}, ils n'ont pas été présenté dans le document car en 
+plus d'être technique ils sont juste une adaptation des résultats présentés 
+dans la section~\ref{sec:interpolation} et n'utilise aucune nouvelle idée. 
+L'objectif de ce chapitre est donc de déterminer dans la 
+proposition~\ref{pro:app:int} le coût de calcul d'un polynôme d'interpolation à
+partir d'un ensemble de points qui sont des représentants sous l'action de 
+groupes de Galois, ce résultat est le pendant de la 
+proposition~\ref{prop:interpol} dans le cas du compositum.
 \begin{prop}
 
 Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{k}$ avec 
-$k \in [1,n_i]$ tel que $\mathsf{F}_{(i,k)}=\mathbb{F}_q[x]/\langle P \rangle$,
+$k \in [1,k_i]$ tel que $\mathsf{F}_{(i,k)}=\mathbb{F}_q[x]/\langle P \rangle$,
 $Q$ un polynôme irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
 tel que $\mathbb{K}_{i-1}=\mathbb{F}_q[y]/\langle Q \rangle$, $R=P \odot Q$ 
 tel que  $\mathsf{K}_=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un 
@@ -6402,12 +6426,12 @@ tel que  $\mathsf{K}_=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un
 $q^{r p_{i-1}}$ est de 
 $O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
 opérations dans $\mathbb{F}_q$ avec un 
-précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{n_i}qd_i))$ et  
+précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{k_i}qd_i))$ et  
 de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
-Vu que $a \in \mathbb{K}_{i} \cong \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$
+Vu que $a \in \mathsf{K} \cong \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k)}$
  alors on a pour $s=r \bmod d_i \ell_i^{k}$ 
 $a^{q^{r p_j}}=a^{q^{s p_j}}$ ainsi on considère que $r<d_i \ell_i^{k}$.
 Par la proposition~\ref{pro:iso:fie} et le fait que l'on se soit restreint au 
@@ -6518,7 +6542,7 @@ sur $\mathbb{F}_q$.
   $\subset O(\frac{p_n}{p_{n-i}}\ell_{n-i}^{k}(\mathsf{M}(d_{n-i}\ell_{n-i}^{n_{n-i}-k}p_{n-i-1})p_{n-i-1}^{(\omega-1)/2}))$ 
   $\subset O(\mathsf{M}(p_n)p_{n-i-1}^{(\omega - 1)/2})$ opérations sur 
   $\mathbb{F}_q$, on a donc à l'étape $i$ un coût de $O(\ell_{n-i}(n_{n-i}+1)\mathsf{M}(p_n)(p_{n-i-1})^{(\omega - 1)/2})$ 
-  pour effectuer tous les calculs de Frobenius nécessaires.
+  pour effectuer tous les $O(\ell_{n-i}(n_{n-i}+1))$ calculs de Frobenius nécessaires.
   \`A partir des $T^{(i,j)}_{(k)}$ on calcule $T^{(i)}_{k+1}$ en utilisant un arbre de 
   sous-produits comme décrit dans~\cite[Lemma~10.4]{vzGJG03}. Le polynôme 
   $T^{(i)}_{k+1}$ résultant de cette opération est de degré 
@@ -6550,7 +6574,7 @@ sur $\mathbb{F}_q$.
 On définit la suite de polynômes $A^{(i)}$ pour $i \in [0, n]$ avec
  $A^{(0)}=w/T'(v)$. En  supposant que l'on connaisse $A^{(i)}$ pour $i < n$ 
  de degré inférieur à $\frac{p_n}{p_{n-i}}$ à coefficients dans 
- $\mathsf{K}_{n-i}$ alors pour $j \in [0 ; \ell-1]$ on définit
+ $\mathbb{K}_{n-i}$ alors pour $j \in [0 ; d_{n-i}\ell_{n-i}^{n_{n-i}}-1]$ on définit
  $A^{(i,j)}=\sigma_{\mathsf{Gal}(\mathbb{K}_{n-i-1})}^j(A^{(i)})$, et l'on pose:  
 \begin{equation*}
 A^{(i+1)}=\sum_{j=0}^{d_{n-i}\ell_{n-i}^{n_{n-i}}-1}A^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} 
@@ -6611,8 +6635,9 @@ particulier on a $A^{(i)}_{(n_{n-i}+1)}=A^{(i+1)}_{(0)}=A^{(i+1)}$.
   $O(\ell_{n-1})$ fois pour $k \in [0,n_{n-i}]$, cela a donc un coût total de 
   $O(\ell_{n-i}\mathsf{M}(p_nd_{n-i}\ell_{n-i}^{n_{n-i}})p_{n-i-1}^{(\omega-1)/2})$
   par superlinéarité de $\mathsf{M}$, on majore alors celui-ci par:
-  $O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2}))$.
-  
+  \[
+  O(n\max_i(\ell_{n-i})\mathsf{M}(p_{n}\max_i(d_{n-i}\ell_{n-i}^{n_{n-i}}))p_{n-1}^{(\omega-1)/2})).
+  \]
   
   Le coût de calcul de $\frac{T^{(i+1)}}{T^{(i,j)}}$ est de 
   $O(\mathsf{M}(p_n))$ opérations  par la proposition~\ref{pro:mul:com}.
@@ -6658,10 +6683,7 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
   l'expression des éléments dans le sous-corps de $\mathbb{K}_n$ le plus petit 
   au sens de l'inclusion.
 \end{prop}
-\todo{dire a un endroit que $p_{i-1}$ est choisi d'une certaine manière...}
 \begin{proof}
-\todo{rediger cette preuve}
-  Le polynôme $T$ est le produit de tous les polynômes minimaux $T_i$. 
   %Soit 
   %$s_i$, de telle sorte que $v_i,w_i\in K_{n_i+1}\setminus F_{n_i}$,
   %et $\ell^{n_i}\leqslant t_i<\ell^{n_i+1}$,
@@ -6684,10 +6706,10 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
   au coût de $O(n\mathsf{M}(t \max_i(d_i\ell_i^{n_i}))(p_{n-1})^{(\omega-1)/2} \max_{i}(\ell_{n-i}))$
   opérations sur $\mathbb{F}_q$.
   On ordonne ensuite les $T_j$ dans une arbre de sous-produit binaire et 
-  on les multiplie entre eux. Un arbre équilibré, pas nécessairement optimal,
-  a une profondeur de $O(\log (s))$ et nécessite $O(\mathsf{M}(t))$ opérations
-   par niveau. Ainsi le coût de calcul de $T$ est borné par 
-   $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
+  on les multiplie entre eux pour obtenir le polynôme $T$. Un arbre équilibré, 
+  pas nécessairement optimal, a une profondeur de $O(\log (s))$ et nécessite 
+  $O(\mathsf{M}(t))$ opérations par niveau. Ainsi le coût de calcul de $T$ est 
+  borné par $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
   
   Enfin, en utilisant la même strucutre d'arbre de sous-produit on applique le 
   théorème des restes chinois proposé dans~\cite[Chapter~10]{vzGJG03} pour 
