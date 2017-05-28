@@ -6740,7 +6740,7 @@ $R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$ tel que:
       0 & \mu
     \end{array}\right) \bmod \ell^{h+i}
 \end{equation}
-Alors pour les transformations:
+avec $\beta \wedge \ell =1$. Alors pour les transformations:
 \begin{equation*}
 R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
 \end{equation*}
@@ -6806,8 +6806,9 @@ horizontale générée par un vecteur propre pour l'action du Frobenius.
 Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ au niveau du cratère 
 cyclique ($\ell$ est donc un nombre de Elkies) d'un volcan de $\ell$-isogénies.
 Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point
-d'ordre $\ell^{h+i}$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de 
-domaine $E$ il existe une transformation 
+d'ordre $\ell^{h+i}$ tel que $\langle R \rangle$ soit le noyau d'une 
+$\ell^{h+i}$-isogénie descendante, alors pour toute $\ell^i$-isogénie 
+descendante $\phi$ de domaine $E$ il existe une transformation 
 \begin{equation*}
 R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
 \end{equation*}
@@ -6817,8 +6818,8 @@ telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
 \begin{proof}
 Comme vu dans la preuve de la proposition~\ref{pro:cla:fro:mat} toute 
 $\ell^i$-isogénie de noyau $\langle \ell^{h}R' \rangle$ est déterminée par la 
-valeur de $\ell^{h}b^{-1}y^{-1}*$, on rappelle de plus que l'on est obligé 
-d'avoir $*y \wedge \ell =1$ pour avoir une $\ell^{h+i}$-isogénie descendante. \todo{Vraiment ?} 
+valeur de $\ell^{h}b^{-1}y^{-1}* \bmod \ell^{h+i}$, on rappelle de plus que l'on est obligé 
+d'avoir $*y \wedge \ell =1$ pour avoir une $\ell^{h+i}$-isogénie descendante.
 On a alors l'équation suivante qui doit être vérifiée: 
 \[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
 or comme $\ell^{h}|| (\mu - \lambda)$ et $\beta \wedge \ell =1$, si l'on a 
@@ -6894,7 +6895,7 @@ Ainsi pour $h-e+i \leqslant h$ on obtient l'équation suivante:
 et donc la valeur de la matrice ne dépend que que de $y$. Or on a vu dans la
 preuve de la proposition~\ref{pro:cla:fro:mat} que la
 $\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle$ est déterminée par la 
-valeur de $\ell^{h}b^{-1}y^{-1}* \bmod \ell^{h-e+i}$, ainsi en faisant 
+valeur de $\ell^{h-e}b^{-1}y^{-1}* \bmod \ell^{h-e+i}$, ainsi en faisant 
 varier la valeur de $*$ on peut faire en sorte que $[\ell^h-e]R'$ soit le 
 générateur de n'importe quelle $\ell^{i}$-isogénie descendante.
 
@@ -6918,8 +6919,8 @@ spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
 On voit donc que la méthode appliquée sur un volcan de Atkin n'est pas 
 applicable que ce soit au niveau du cratère ou pour des courbes situées en 
 dessous du niveau du cratère dans le cas Elkies. On montre aussi que l'étude de
-l'action du Frobenius ne permet de distinguer les isogénies descendantes entre
-elles.
+l'action du Frobenius ne permet de distinguer les $\ell$-isogénies descendantes
+entre elles.
 
 \printnomenclature
 \chapter{Rebus}
