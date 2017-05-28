@@ -3596,17 +3596,21 @@ en remplaçant le corps de base par une extension quadratique.
 
 
 \section{Cas Atkin}
-
+Dans cette section on s'intéresse aux courbes situées sur un volcan de 
+$\ell$-isogénies dont le cratère est réduit à un point. Ce cas-là correspond 
+au cas Atkin et l'on dira que $\ell$ est un nombre premier d'Atkin pour une 
+courbe si l'on a un tel type de volcan de $\ell$-isogénies. On va donc étudier 
+dans cette partie les groupes de points de $E[\ell^{\infty}]$ que l'on peut 
+déterminer à l'aide de l'étude de l'action du Frobenius.
 \todo{Dire ce qu'est le cas Atkin et contextualiser toute cette partie...}
 \subsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
 \begin{prop}\label{pro:mat:fro:atk}
 Soit~$E$ une courbe elliptique ordinaire d'endomorphisme de Frobenius~$\pi$
 telle que le polynôme caractérisitque de $\pi$
 soit irréductible (non ramifié) dans $\mathbb{Z}_{\ell}$,
-ainsi le volcan de $\ell$-isogénies de $E$ a un cratère réduit à un point.
-Il existe un unique $e \in [ 0, h]$
-tel que $\pi|T_{\ell}(E)$~est égale, sur~$\mathbb{Z}_{\ell}$,
-à la matrice 
+ainsi le volcan de $\ell$-isogénies de $E$ de hauteur $h$ a un cratère réduit à
+un point. Il existe un unique $e \in [ 0, h]$ tel que $\pi|T_{\ell}(E)$ est 
+égale, sur~$\mathbb{Z}_{\ell}$, à la matrice 
 \begin{equation*}
 \left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
 \end{matrix}\right ) \quad \text{avec }a,d \text{ premiers avec }\ell, \ell^{h} |a-d.
@@ -3615,8 +3619,8 @@ tel que $\pi|T_{\ell}(E)$~est égale, sur~$\mathbb{Z}_{\ell}$,
 De plus $e = 0$ si~$E$ se situe sur le cratère,
 sinon $e$~est la profondeur de~$E$ dans le volcan.
 On a soit $b$ et $c$ premiers avec $\ell$ soit l'un des deux est premier avec 
-$\ell$ et l'autre a sa valuation $\ell$-adique appartiennt à l'intervalle 
-$[1,2e]$. Lorsque $\ell=2$ et $e=0$ on a $2^{h} || a-d$.
+$\ell$ et l'autre a sa valuation $\ell$-adique qui appartient à l'intervalle 
+$[2,2e]$. Lorsque $\ell=2$ et $e=0$ on a $2^{h} || a-d$.
 \todo{notations un peu perturbantes par rapport au cas Elkies, n'est-ce pas ?}
 \end{prop}
 
@@ -3632,13 +3636,13 @@ On a alors la matrice du Frobenius sur $\mathbb{Z}_{\ell}$ qui
 \item lorsque $h-e=h$ est de la forme $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
 \end{smallmatrix}\right )$ avec $b \wedge \ell=1$ et $c \wedge \ell=1$. En 
 effet on a $\left(\frac{d_K}{\ell}\right)=\left(\frac{d_{\pi}/\ell^{2h}}{\ell}
-\right)$ or $d_{\pi}=\frac{(a-d)^2}{\ell^{2h}}+4bc$ ainsi on doit avoir $bc 
-\wedge \ell=1$. Comme dans le cas $\ell=2$ on a $d_K=5 \bmod 8$ alors on a 
-$(\frac{a-d}{\ell^{h}})^2 \neq 0 \bmod 2$.
+\right)$ or $\frac{d_{\pi}}{\ell^{2h}}=\frac{(a-d)^2}{\ell^{2h}}+4bc$ ainsi on 
+doit avoir $bc \wedge \ell=1$. Comme dans le cas $\ell=2$ on a $d_K=5 \bmod 8$ 
+alors on a $(\frac{a-d}{\ell^{h}})^2 \neq 0 \bmod 2$.
 \item lorsque $h-e \neq h$ est de la forme  $\left ( \begin{smallmatrix}a & 
 b\ell^{h-e}\\ c\ell^{h-e}  & d \end{smallmatrix}\right )$ avec soit $b, c$ 
 premiers avec $\ell$ soit $b$ ou $c$ premier avec $\ell$ l'autre ayant une 
-valuation $\ell$-adique comprise entre $1$ et $2e$. Ce second cas correspond au
+valuation $\ell$-adique comprise entre $2$ et $2e$. Ce second cas correspond au
 cas où l'on a un point de la base dans laquelle est exprimée l'action du 
 Frobenius qui est un générateur de l'unique $\ell$-isogénie montante, le plus 
 grand degré d'isogénie définie sur $\mathbb{F}_q$ ayant pour domaine $E$ étant 
@@ -3663,9 +3667,15 @@ matrice $\left ( \begin{smallmatrix}a  & b\gamma^{-1} \ell^{h-e} \\c \gamma
 \ell^{h-e} & d \end{smallmatrix}\right )$.
 \end{proof}
 
-Voyons maintenant le lien entre l'action du Frobenius et les isogénies engendrées par les points de la base.
 
 \todo{fixer le problème de profondeur et de hauteur}
+
+Maintenant nous allons voir quelles informations on peut tirer de l'étude de 
+l'action du Frobenius. Vu que l'on ne peut comme dans le cas Elkies distinguer 
+deux sous-groupes cycliques de la $\ell$-torsion, on va voir quelles
+informations on peut tirer lorsque l'on fixe arbitrairement un point de la base
+de la $\ell$-torsion.
+
 \begin{prop}
 \label{pro:atk:equi}
 Soient $P,R,R'$ trois points de $E$ située au niveau du cratère tels que $\langle 
@@ -3679,9 +3689,8 @@ Soient $R,R'$ deux points tels que $\pi(P,R)=\pi(P,R')=\left (
 \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d \end{smallmatrix}\right )$ 
 alors cette égalité nous donne:
  $\pi(P)=[a]P+[c\ell^{h}]R=[a]P+[c\ell^{h}]R'$, de
-cette égalité on déduit avec $c \wedge \ell = 1$ et de l'invariance de la trace
-et du déterminant du Frobenius que $[\ell^{h}]R=[\ell^{h}]R'$ ce qui permet de 
-conclure pour ce sens de l'équivalence.
+cette égalité on déduit avec $c \wedge \ell = 1$ que $[\ell^{h}]R=[\ell^{h}]R'$
+ce qui permet de conclure pour ce sens de l'équivalence.
 
 Matriciellement on prouve que $[\ell^{h}]R=[\ell^{h}]R' \Rightarrow 
 \pi(P,R)=\pi(P,R')$ en voyant que la conjugaison de la 
@@ -3699,43 +3708,7 @@ que l'implication $\pi(P,R)=\pi(P,R') \Rightarrow [\ell^{h-e}]R=[\ell^{h-e}]R'$ 
 assurée on peut seulement montrer que $\pi(P,R)=\pi(P,R') \Rightarrow 
 [\ell^{h+e}]R=[\ell^{h+e}]R'$.
 \end{rem}
-\todo{choisir entre la remarque et la proposition}
 
-\begin{cor}\label{cor:atk:ess}
-Soit $\phi:E \rightarrow E'$ une $r$-isogénie avec $r \wedge \ell=1$ et $E$ et 
-$E'$ deux courbes situées au niveau du cratère du volcan de $\ell$-isogénies, 
-soient $P \in E$ et $P' \in E'$ deux points d'ordre $\ell^k$ avec $k>h$ tels 
-que $P'=\phi(P)$ alors pour deux base $(P,Q),(P',Q')$ de $E[\ell^k]$ et 
-$E'[\ell^k]$ telles que $\pi(P,Q)=\pi(P',Q')$ on a $[\ell^h]Q'=[\ell^h]\phi(Q)$. 
-\end{cor}
-
-\begin{proof}
-Comme le Frobenius commute avec $\phi$ alors on a $\pi(P,Q)=\pi(\phi(P),\phi(Q))$
-or comme $P'=\phi(P)$ pour $Q'$ tel que $\pi(P,Q)=\pi(P',Q')$ on a l'égalité 
-$\pi(P',Q')=\pi(\phi(P),\phi(Q))$ et la proposition~\ref{pro:atk:equi} nous 
-permet de conclure.
-\end{proof}
-
-\begin{prop}
-\label{pro:atk:inv:mat}
-Soient $P,R,R'$ trois points de la courbe elliptique $E$ située au niveau $h-e$
-du volcan de $\ell$-isogénies tels que $\langle P,R \rangle = \langle P,R' 
-\rangle = E[\ell^{h-e+i}]$ et $\pi(P,R)=\pi(P,R')$ alors $R-R'$ est un point de 
-$E[\ell^{h+e}]$.
-\end{prop}
-
-\begin{proof}
-On note $\pi(P,R)=\pi(P,R')= \left(  \begin{smallmatrix}a & b \ell^{h-e} \\ 
-c\ell^{h-e}  & d \end{smallmatrix} \right)$. Ainsi si on exprime l'égalité de 
-l'expression de $\pi(P)$ dans les deux bases on obtient:
-\[
-[c\ell^{h-e}](R-R')=0_{E}
-\]
-on a alors deux cas possibles soit $ \ell^{2e} || c $ soit $c \wedge \ell=1$.
-Dans le premier cas on a bien $R-R'$ un point de  $E[\ell^{h+e}]$ et cela 
-conclut la preuve pour ce cas, dans le second cas on a $R-R'$ un point de 
-$E[\ell^{h-e}]$.
-\end{proof}
 Dés lors on va se concentrer à l'étude des points situés sur une courbe qui se 
 situe sur le cratère.
 
@@ -3795,6 +3768,50 @@ Il est intéressant de noter que ce résultat nous permet de distinguer les
 différents générateurs de la $\ell^i$-isogénie générée par le second point qui
 forme une base avec $P$. \todo{a re rédiger}
 
+Voyons maintenant un résultat qui est une conséquence de la 
+proposition~\ref{pro:atk:equi} et qui étudie donc l'invariance des groupes 
+de point de $E[\ell^{\infty}]$ déterminé par l'action du Frobenius 
+par rapport aux actions de $r$-isogénies rationnelles avec $r$ premier avec 
+$\ell$.
+
+\begin{cor}\label{cor:atk:ess}
+Soit $\phi:E \rightarrow E'$ une $r$-isogénie avec $r \wedge \ell=1$ et $E$ et 
+$E'$ deux courbes situées au niveau du cratère du volcan de $\ell$-isogénies, 
+soient $P \in E$ et $P' \in E'$ deux points d'ordre $\ell^k$ avec $k>h$ tels 
+que $P'=\phi(P)$ alors pour deux base $(P,Q),(P',Q')$ de $E[\ell^k]$ et 
+$E'[\ell^k]$ telles que $\pi(P,Q)=\pi(P',Q')$ on a $[\ell^h]Q'=[\ell^h]\phi(Q)$. 
+\end{cor}
+
+\begin{proof}
+Comme le Frobenius commute avec $\phi$ alors on a $\pi(P,Q)=\pi(\phi(P),\phi(Q))$
+or comme $P'=\phi(P)$ pour $Q'$ tel que $\pi(P,Q)=\pi(P',Q')$ on a l'égalité 
+$\pi(P',Q')=\pi(\phi(P),\phi(Q))$ et la proposition~\ref{pro:atk:equi} nous 
+permet de conclure.
+\end{proof}
+
+%\begin{prop}
+%\label{pro:atk:inv:mat}
+%Soient $P,R,R'$ trois points de la courbe elliptique $E$ située au niveau $h-e$
+%du volcan de $\ell$-isogénies tels que $\langle P,R \rangle = \langle P,R' 
+%\rangle = E[\ell^{h-e+i}]$ et $\pi(P,R)=\pi(P,R')$ alors $R-R'$ est un point de 
+%$E[\ell^{h+e}]$.
+%\end{prop}
+%
+%\begin{proof}
+%On note $\pi(P,R)=\pi(P,R')= \left(  \begin{smallmatrix}a & b \ell^{h-e} \\ 
+%c\ell^{h-e}  & d \end{smallmatrix} \right)$. Ainsi si on exprime l'égalité de 
+%l'expression de $\pi(P)$ dans les deux bases on obtient:
+%\[
+%[c\ell^{h-e}](R-R')=0_{E}
+%\]
+%on a alors deux cas possibles soit $ \ell^{2e} || c $ soit $c \wedge \ell=1$.
+%Dans le premier cas on a bien $R-R'$ un point de  $E[\ell^{h+e}]$ et cela 
+%conclut la preuve pour ce cas, dans le second cas on a $R-R'$ un point de 
+%$E[\ell^{h-e}]$.
+%\end{proof}
+
+
+
 Maintenant énonçons un résultat qui est une transposition de la 
 proposition~\ref{pro:par:iso} qui s'appliquait au cas Elkies.
 
@@ -3820,9 +3837,10 @@ preuve.
 
 Ces résultats sur la détermination du second point ne necéssitent pas forcément
 la détermination complète du premier point de la base comme le montrent les 
-résultats suivants.
+résultats suivants, cependant ces résultats ne seront pas exploités par la 
+suite.
 
-\begin{lem}\todo{lemme et propotisition intéressantes mais inexploitées...}
+\begin{lem}
 \label{lem:fro:atk}
 Soient $P,R$ deux points de $E$ une courbe elliptique située au 
 niveau $h-e$ du volcan de $\ell$-isogénies tels que $\langle P,R \rangle= 
