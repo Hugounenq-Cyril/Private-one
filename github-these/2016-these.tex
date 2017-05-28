@@ -6818,10 +6818,10 @@ telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
 Comme vu dans la preuve de la proposition~\ref{pro:cla:fro:mat} toute 
 $\ell^i$-isogénie de noyau $\langle \ell^{h}R' \rangle$ est déterminée par la 
 valeur de $\ell^{h}b^{-1}y^{-1}*$, on rappelle de plus que l'on est obligé 
-d'avoir $*y \wedge \ell =1$ pour avoir une $\ell^{h+i}$-isogénie descendante. 
+d'avoir $*y \wedge \ell =1$ pour avoir une $\ell^{h+i}$-isogénie descendante. \todo{Vraiment ?} 
 On a alors l'équation suivante qui doit être vérifiée: 
 \[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
-or comme $\ell^{h}|| (\mu - \lambda)$ et $\beta \wedge \ell =1$ si l'on a 
+or comme $\ell^{h}|| (\mu - \lambda)$ et $\beta \wedge \ell =1$, si l'on a 
 $\ell^{h}b^{-1}y^{-1}*=\ell^{h}b^{-1}a$ alors on doit avoir 
 $\ell^{h}b=\ell^{h}by \bmod \ell^{h+i}$ et $\ell^{h}a=\ell^{h}* \bmod 
 \ell^{h+i}$.
@@ -6832,7 +6832,7 @@ $\ell^{h}b^{-1}y^{-1}*$. Fixons par exemple $\ell^h\gamma = \ell^{h}b^{-1}y^{-1}
 avec $\ell^{h}\gamma \neq \ell^{h}b^{-1}a \bmod \ell^{h+i}$.
 On a alors $\ell^{h}*=\ell^{h}\gamma(by)^{-1} \bmod \ell^{h+i}$ et l'on 
 détermine la valeur de $y$ à l'aide de l'équation:
-\[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \].
+\[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i}. \]
 On pose $\alpha \ell^h = (\mu -\lambda) \bmod \ell^{h+i}$ avec $\alpha \wedge 
 \ell =1$. Ainsi on a:
 \begin{eqnarray*}
@@ -6851,7 +6851,7 @@ la transformation.
 
 On voit donc avec cette proposition que pour une courbe située sur le cratère 
 cyclique d'un volcan de $\ell$-isogénies ayant une base diagonale $(P,Q)$ de la
-$\ell^{h+i}$-torsion. Alors pour tout point $R=[a]P+[b]Q$ tel que $\langle P,R 
+$\ell^{h+i}$-torsion, alors pour tout point $R=[a]P+[b]Q$ tel que $\langle P,R 
 \rangle=E[\ell^{h+i}]$, l'étude de l'action de $\pi$ dans une telle base à $P$
 fixé ne donne aucune information sur la $\ell^{i}$-isogénie de noyau $\langle 
 \ell^{h}R \rangle$.
@@ -6874,7 +6874,7 @@ telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
 \begin{proof}
 La preuve est similaire a celle de la proposition~\ref{pro:app:inv:fro}, il 
 faut cependant faire une distinction avec le cas où l'on a $h-e+i \leqslant h$ 
-et $h-e+i > h$ car on a $\lambda = \mu \bmod \ell^{h}$.
+et $h-e+i > h$ car on a $\ell^h || \lambda - \mu$.
 
 Par la forme de la matrice $\pi(P,R)$ on a:
 \[ \pi([a]P+[b]Q)=[\ell^{h-e} \beta] P + [\mu] ([a]P+[b]Q)\]
@@ -6890,20 +6890,25 @@ $\pi(P,R')=\pi(P,R)$ est vérifiée si et seulement si:
 Cela se traduit donc par l'égalité suivante:
 \[ \beta \ell^{h-e} + *(\mu-\lambda)=y(\beta \ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
 Ainsi pour $h-e+i \leqslant h$ on obtient l'équation suivante:
-\[\beta \ell^{h-e} + y\beta \ell^{h-e}  \]
-et donc la valeur de la matrice ne dépend que que de $y$ ainsi en faisant 
+\[\beta \ell^{h-e} = y\beta \ell^{h-e}  \bmod \ell^{h-e+i} \]
+et donc la valeur de la matrice ne dépend que que de $y$. Or on a vu dans la
+preuve de la proposition~\ref{pro:cla:fro:mat} que la
+$\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle$ est déterminée par la 
+valeur de $\ell^{h}b^{-1}y^{-1}* \bmod \ell^{h-e+i}$, ainsi en faisant 
 varier la valeur de $*$ on peut faire en sorte que $[\ell^h-e]R'$ soit le 
 générateur de n'importe quelle $\ell^{i}$-isogénie descendante.
 
 On regarde donc maintenant le cas où $h-e+i>h$, montrons comment on détermine
-$y$ et $*$ tels que $\ell^{h-e}\gamma=\ell^{h-e}*(by)^{-1}$ et que $\pi(P,R)=\pi(P,R')$.
+$y$ et $*$,  tels que $\ell^{h-e}\gamma=\ell^{h-e}*(by)^{-1} \bmod 
+\ell^{h-e+i}$ avec $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$ qui représente une 
+$\ell^i$-isogénie descendante spécifique tout en ayant $\pi(P,R)=\pi(P,R')$.
 On pose à nouveau $\ell^{h} \alpha = \lambda - \mu$ avec $\alpha \wedge \ell=1$
 , l'égalité $\pi(P,R)=\pi(P,R')$ se traduit donc par:
 \[ \beta \ell^{h-e} + \ell^{h}\alpha *=y(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}, \]
 on multiplie alors cette équation par $(by)^{-1}$
 \begin{eqnarray*}
-\beta \ell^{h-e}(by)^{-1} + \ell^{e}\alpha \ell^{h-e} \gamma &=& b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \\
-\beta \ell^{h-e}(by)^{-1} &=& - \ell^{e}\alpha \ell^{h-e} \gamma + b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a)
+\beta \ell^{h-e}(by)^{-1} + \ell^{e}\alpha \ell^{h-e} \gamma &=& b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell{h-e+i} \\
+\beta \ell^{h-e}(by)^{-1} &=& - \ell^{e}\alpha \ell^{h-e} \gamma + b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}
 \end{eqnarray*}
 On peut alors déterminer $y$ puis $*$ afin d'avoir une transformation qui nous 
 donne un point $R$ tel que $\ell^{h-e}R$ soit un générateur de l'isogénie 
@@ -6912,7 +6917,9 @@ spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
 
 On voit donc que la méthode appliquée sur un volcan de Atkin n'est pas 
 applicable que ce soit au niveau du cratère ou pour des courbes situées en 
-dessous du niveau du cratère.
+dessous du niveau du cratère dans le cas Elkies. On montre aussi que l'étude de
+l'action du Frobenius ne permet de distinguer les isogénies descendantes entre
+elles.
 
 \printnomenclature
 \chapter{Rebus}
