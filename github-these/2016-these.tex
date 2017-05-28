@@ -3311,6 +3311,7 @@ Avant montrer les liens entre bases horizontales et diagonales on a besoin du r�
 \label{lem:iso:con}
 Soient $\langle P, Q \rangle$ une base de $E[\ell^k]$, $\phi$ l'isogénie de noyau engendré par $R=[x]P+[y]Q$  avec $x\wedge \ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau engendré par $R$,  $\Pi$ la matrice du Frobenius sur $T_{\ell}(E)$ alors la matrice du Frobenius sur $T_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi \cdot M_R$ à conjugaison près.
 \end{lem}
+\todo{harmoniser les notations pour la matrice de $\pi$}
 
 \begin{proof}
 Le sous-groupe $\langle R \rangle$ définit un point dans l'espace projectif de $E[\ell^k]$,
@@ -6716,12 +6717,22 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
   calculer $A$ au coût de $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
 \end{proof}
 
-\chapter{Pourquoi la méthode Atkin ne marche pas sur le cas Elkies}
+\chapter{\'Etude de l'application de la méthode Atkin dans le cas Elkies}
 Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Master13} et sont une 
-généralisation de ceux-ci.
+généralisation de ceux-ci, ils montrent en particulier pourquoi la méthode 
+utilisée dans le cas Atkin n'est pas utilisable dans le cas Elkies. On 
+travaille donc durant tout ce chapitre dans le cas Elkies et on utilise tout
+particulièrement la proposition~\ref{pro:mat:fro}. On va donc étudier l'action
+du Frobenius dans une base de la $\ell^{h+i}$-torsion avec un sous-groupe 
+d'ordre $\ell^{h+i}$ fixé et voir si selon la forme de cette action on peut 
+déterminer la $\ell^{i}$-isogénie engendreé par le second point qui forme la 
+base de la $\ell^{h+i}$-torsion.
 
 \begin{lem} \label{lem:app:eq}
-Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ sur un volcan de $\ell$-isogénies à cratère cyclique ($\ell$ est donc un nombre de Elkies). Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$ tel que:
+Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ située au niveau du
+cratère cyclique ($\ell$ est donc un nombre de Elkies) d'un volcan de 
+$\ell$-isogénies. Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit 
+$R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$ tel que:
 \begin{equation}
   \label{eq:mat}
  \pi(P,R)= \left(\begin{array}{cc}
@@ -6733,12 +6744,13 @@ Alors pour les transformations:
 \begin{equation*}
 R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
 \end{equation*}
-tels que $\pi(P,R)=\pi(P,R')$ on obtient l'équation suivante:
-\[  (* - b' \cdot b^{-1} \cdot a ) \cdot (1-q)  \equiv \alpha \cdot (1-b' \cdot b^{-1}) \bmod l^h \].
+avec $y\wedge \ell=1$ tels que $\pi(P,R)=\pi(P,R')$ on obtient l'équation 
+suivante:
+\[  \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
 Réciproquement pour une transformation:
-$R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q$
- qui vérifie l'équation:
-\[  (* - b' \cdot b^{-1} \cdot a ) \cdot (1-q)  \equiv \alpha \cdot (1-b' \cdot b^{-1}) \bmod l^h \]
+$R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q$ avec $y \wedge \ell =1$ qui vérifie 
+l'équation:
+\[   \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
  on a $\pi(P,R)=\pi(P,R')$.
 \end{lem}
 
@@ -6748,10 +6760,10 @@ Traduisons le fait que le point $a \cdot P_2 + b \cdot Q_2$ avec le point $P_2$ 
 \pi([a]  P + [b]  Q) = [\beta \ell^h] P + [\mu] ([a] P + [b]  Q) 
 \]
 Comme $\pi$ est un morphisme on a: 
-\begin{eqnarray}
+\begin{eqnarray*}
 \pi([a]  P + [b]  Q) &=& [a]  \pi(P) + [b] \pi(Q) \\
 					 &=& [a \lambda]  P + [b] \pi(Q)
-\end{eqnarray}
+\end{eqnarray*}
 Ainsi avec cette égalité et la première, on en déduit la valeur de $ [b]\pi(Q)$
 \[
 [b] \pi (Q) = [a(\mu -\lambda) + \beta \ell^h]  P + [\mu b] Q
@@ -6778,9 +6790,25 @@ Ainsi on doit avoir
 Ce qui nous amène à l'équation: 
 \[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
 \end{proof}
+La condition $y \wedge \ell=1$ est là pour s'assurer qu'après la transformation 
+On ait encore une base de la $\ell^{h+i}$-torsion.
+
+
+Maintenant nous allons nous servir de cette caractérisation afin de montrer que
+l'on ne peut établir de lien, lorsque le premier point de la base de la 
+$\ell^{h+i}$-torsion est fixé, entre la $\ell^i$-isogénie générée par le second
+point de la base et la forme de l'action du Frobenius dans une telle base. Bien 
+évidemment ce résultat ne s'applique pas dans le cas de la 
+proposition~\ref{pro:dia:hor} qui lui permet de déterminer la $\ell^i$-isogénie
+horizontale générée par un vecteur propre pour l'action du Frobenius.
 
 \begin{prop}\label{pro:app:inv:fro}
-Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ sur un volcan de $\ell$-isogénies à cratère cyclique ($\ell$ est donc un nombre de Elkies). Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il existe une transformation \begin{equation*}
+Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ au niveau du cratère 
+cyclique ($\ell$ est donc un nombre de Elkies) d'un volcan de $\ell$-isogénies.
+Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point
+d'ordre $\ell^{h+i}$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de 
+domaine $E$ il existe une transformation 
+\begin{equation*}
 R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
 \end{equation*}
 telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
@@ -6798,7 +6826,7 @@ $\ell^{h}b^{-1}y^{-1}*=\ell^{h}b^{-1}a$ alors on doit avoir
 $\ell^{h}b=\ell^{h}by \bmod \ell^{h+i}$ et $\ell^{h}a=\ell^{h}* \bmod 
 \ell^{h+i}$.
 
-Ainsi si l'on souhaite avoir $[\ell^{h}]R$ générateur d'une $\ell^i$ isogénie 
+Ainsi si l'on souhaite avoir $[\ell^{h}]R$ générateur d'une $\ell^i$-isogénie 
 descendante particulière celle-ci est déterminée par la valeur de 
 $\ell^{h}b^{-1}y^{-1}*$. Fixons par exemple $\ell^h\gamma = \ell^{h}b^{-1}y^{-1}* \bmod \ell^{h+i}$
 avec $\ell^{h}\gamma \neq \ell^{h}b^{-1}a \bmod \ell^{h+i}$.
