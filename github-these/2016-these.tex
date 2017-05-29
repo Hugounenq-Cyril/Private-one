@@ -3265,12 +3265,12 @@ Il existe un unique $e \in [ 0, h]$
 tel que $\pi|T_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
 à la matrice 
 \begin{equation*}
-\left ( \begin{matrix}\lambda & \ell^e \\ 0 & \mu
+\left ( \begin{matrix}\lambda & \ell^{h-e} \\ 0 & \mu
 \end{matrix}\right ).
 \end{equation*}
 % where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
-De plus $e = h$ si~$E$ se situe sur le cratère,
-sinon $h - e$~est la profondeur de~$E$ dans le volcan.
+De plus $e = 0$ si~$E$ se situe sur le cratère,
+sinon $h - e$~est le niveau de~$E$ dans le volcan.
 \end{prop}
 
 On souligne le fait que $\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
@@ -3283,19 +3283,33 @@ La conjugaison de la matrice $\left ( \begin{smallmatrix}\lambda & a\\0 & \mu
 \end{smallmatrix} \right )$ change le coefficient $a$ en $a-b (\lambda - \mu)$, 
 et la conjugaison par ~$\left(\begin{smallmatrix} c & 0 \\ 0 &
 1\end{smallmatrix}\right)$ change~$a$ en~$c \cdot a$,
-ainsi la valuation $\ell$-adique~$e = v_{\ell}(a)$ est invariante sous la conjugaison matricielle.
-Cela prouve la première partie de la proposition. 
+ainsi la valuation $\ell$-adique~$h-e = v_{\ell}(a)$ est invariante sous la 
+conjugaison matricielle. Cela prouve la première partie de la proposition. 
 
-Pour la seconde partie par le thèorème de Tate \cite[Isogeny theorem III.7.7 (a)]{Silv1},$\mathcal{O} \otimes \mathbb{Z}_{\ell}$~est isomorphe à l'ordre dans~$\mathbb{Q}_{\ell}[\pi_{\ell}]$
-des matrices avec coefficients entiers, cet ordre est généré par la matrice identité et la matrice 
-$\ell^{-\min (h, e)} (\pi_{\ell}-\lambda)$.
+Pour la seconde partie par le thèorème de 
+Tate~\cite[Isogeny theorem III.7.7 (a)]{Silv1},$\mathcal{O} \otimes 
+\mathbb{Z}_{\ell}$~est isomorphe à l'ordre dans~$\mathbb{Q}_{\ell}[\pi_{\ell}]$
+des matrices avec coefficients entiers, cet ordre est généré par la matrice 
+identité et la matrice $\ell^{-\min (h, v_\ell(a))} (\pi_{\ell}-\lambda)$, dés 
+lors les endomorphismes de la courbe(dont le Frobenius) exprimés dans cet ordre
+ne peuvent s'exprimer qu'à l'aide de ces deux matrices et on ne peut alors 
+avoir le coefficient triangulaire supérieur de valuation différente de  
+$\min (h, v_\ell(a))$.
 \end{proof}
 
-Ainsi avec la proposition \ref{pro:mat:fro} on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion comme le montre le résultat suivant qui nous donne un moyen de savoir comment monter et descendre à l'intérieur d'un volcan de $\ell$-isogénies.
+Ainsi avec la proposition \ref{pro:mat:fro} on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion. Le résultat suivant qui nous donne un moyen de savoir comment monter et descendre à l'intérieur d'un volcan de $\ell$-isogénies.
 
 \begin{prop}
 \label{pro:tri:dir}
-Soient $E$ une courbe elliptique ordinaire située à une profondeur $e \leqslant h$ du cratère cyclique du volcan de $\ell$-isogénie, $P,Q \in E$ tels que $\langle P,Q \rangle = E[\ell^k]$ avec $k>h-e$ pour lesquels la matrice du Frobenius est de la forme $\left( \begin{smallmatrix} \lambda & \delta \ell^{h-e} \\ 0 & \mu \end{smallmatrix} \right)$ avec $\delta \wedge \ell=1$ alors la $\ell$-isogénie montante de domaine $E$ a pour noyau le groupe engendré par  $[\ell^{k-1}]P$, les descendantes étant alors engendrées par des isogénies qui ont pour noyau le groupe engendré par $[\ell^{k-1}](Q+[a]P)$ avec $a \in \mathbb{Z}/\ell \mathbb{Z}$.
+Soient $E$ une courbe elliptique située au niveau $h-e$ du volcan de 
+$\ell$-isogénies avec $\ell$ nombre premier de Elkies, $P,Q \in E$ tels que 
+$\langle P,Q \rangle = E[\ell^k]$ avec $k>h-e$, pour lesquels la matrice du 
+Frobenius est de la forme $\left( \begin{smallmatrix} \lambda & \delta 
+\ell^{h-e} \\ 0 & \mu \end{smallmatrix} \right) \bmod \ell^k $ avec $\delta 
+\wedge \ell=1$. Alors la $\ell$-isogénie montante de domaine $E$ a pour noyau 
+le groupe  $\langle [\ell^{k-1}]P \rangle$, les isogénies descendantes ont pour
+noyau les groupes $\langle [\ell^{k-1}](Q+[a]P) \rangle$ avec $a \in 
+\mathbb{Z}/\ell \mathbb{Z}$.
 \end{prop}
 
 \begin{proof}
@@ -3307,7 +3321,6 @@ De même on peut montrer que pour $\varphi$ une $\ell$-isogénie de noyau $\lang
 %Dire que par la taille des orbites on doit avoir celui qui est diagonalisé est celui de plus grande orbite  et l'autre non, ça dit quelque chose sur le fait que le point appartienne à un certain corps
 
 On pourra noter qu'avec cette proposition on retrouve bien la proposition \ref{pro:iso:mon} qui nous disait que la $\ell$-isogénie engendrée par un point appartenant au strictement plus grand groupe de torsion cyclique rationnel était montante.
-
 
 On voit aussi que cette détermination n'est pas sujette à l'existence de niveau de stabilité vu que la preuve ne se fait pas à l'aide de la structure de la $\ell$-torsion.
 
@@ -3326,7 +3339,7 @@ On travaille donc avec points spécifiques :
   on appelle un point de $E[\ell^k]$ \emph{horizontal} 
   si il génère le noyau d'une isogénie horizontale. 
   On appelle une base de $E[\ell^k]$ \emph{diagonale} 
-  si $\pi$ est diagonale dedans, \emph{horizontale} si 
+  si $\pi$ est diagonale dans cette base, \emph{horizontale} si 
   les deux points de la base sont horizontaux.
 \end{defi}
 
