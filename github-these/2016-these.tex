@@ -3276,19 +3276,19 @@ sinon $h - e$~est la profondeur de~$E$ dans le volcan.
 On souligne le fait que $\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
 \mu \end{smallmatrix}\right)$ est conjugée à $\left(\begin{smallmatrix} \lambda & 0 \\ 0 & \mu\end{smallmatrix}\right)$ sur~$\mathbb{Z}_{\ell}$.
 \begin{proof}
-Comme le polynôme caractéristique de $\pi$ se scinde sur $\mathbb{Z}_{\ell}$ 
-alors la matrice $\pi|T_{\ell}(E)$ est triangulaire.
+Comme le polynôme caractéristique de $\pi$ admet deux valeurs propres sur 
+$\mathbb{Z}_{\ell}$ alors la matrice $\pi|T_{\ell}(E)$ est trigonalisable. \todo{justifier cela Morris Newman Integral Matrices III.16}
 La conjugaison de la matrice $\left ( \begin{smallmatrix}\lambda & a\\0 & \mu
 \end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & b\\0 & 1
-\end{smallmatrix} \right )$ change le coefficient $a$ par $a-b (\lambda - \mu)$, 
+\end{smallmatrix} \right )$ change le coefficient $a$ en $a-b (\lambda - \mu)$, 
 et la conjugaison par ~$\left(\begin{smallmatrix} c & 0 \\ 0 &
-1\end{smallmatrix}\right)$ change~$a$ par~$c \cdot a$,
+1\end{smallmatrix}\right)$ change~$a$ en~$c \cdot a$,
 ainsi la valuation $\ell$-adique~$e = v_{\ell}(a)$ est invariante sous la conjugaison matricielle.
 Cela prouve la première partie de la proposition. 
 
 Pour la seconde partie par le thèorème de Tate \cite[Isogeny theorem III.7.7 (a)]{Silv1},$\mathcal{O} \otimes \mathbb{Z}_{\ell}$~est isomorphe à l'ordre dans~$\mathbb{Q}_{\ell}[\pi_{\ell}]$
-de matrices avec coefficients entiers, cet ordre est généré par la matrice identité et la matrice 
-$\ell^{-\min (h, v_{\ell}(a))} (\pi_{\ell}-\lambda)$.
+des matrices avec coefficients entiers, cet ordre est généré par la matrice identité et la matrice 
+$\ell^{-\min (h, e)} (\pi_{\ell}-\lambda)$.
 \end{proof}
 
 Ainsi avec la proposition \ref{pro:mat:fro} on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion comme le montre le résultat suivant qui nous donne un moyen de savoir comment monter et descendre à l'intérieur d'un volcan de $\ell$-isogénies.
