@@ -3237,17 +3237,28 @@ Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell$ est dit un no
 On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi$ admet deux valeurs propres distinctes modulo la $\ell^k$ torsion avec $k > h$,
 
 \begin{prop}
-Soit $E$ une courbe elliptique $\ell$ un nombre premier de Elkies de On a $h$
+Soit $E$ une courbe elliptique $\ell$ un nombre premier de Elkies alors on a 
+$h=v_{\ell}(\lambda - \mu)$ qui est la hauteur du volcan de $\ell$-isogénies 
+sur $\mathbb{F}_q$.
 \end{prop}
 
- $h$ représente ici la hauteur du volcan de $\ell$-isogénies défini sur $\mathbb{F}_q$, on rappelle que l'on a $h=\frac{v_{\ell}(d_{\pi})-v_{\ell}(d_K)}{2}$ (voir section \ref{sec:ann:end}).
+\begin{proof}
+Dans la section~\ref{sec:ann:end} on a vu que l'on avait $d_{\pi}=\ell^{2h'}d_K$ 
+avec $\ell^2 \nmid d_K$ pour un volcan de $\ell$-isogénies de hauteur $h'$ sur 
+$\mathbb{F}_q$. Ainsi comme $\ell^{2} \nmid  \frac{d_\pi}{\ell^{2 v_{\ell}
+(\lambda - \mu)}}=\frac{(\lambda - \mu)^2}{\ell^{2 v_{\ell}(\lambda - \mu)}}$ 
+alors on a bien $h=h'$ et $h$ représente bien la hauteur du volcan. 
+\end{proof}
+ 
+Désormais lorsque l'on parlera de hauteur $h$ du volcan on fera référence à la
+hauteur du volcan de $\ell$-isogénies défini sur $\mathbb{F}_q$ sauf mention 
+explicite contraire.
 
 Comme on travaille sur l'action du Frobenius sur la $\ell$-torsion sur une courbe elliptique alors on réprésente l'action du Frobenius sur $T_{\ell}(E)$ à l'aide d'une matrice $2 \times 2$. On a le résultat suivant qui nous donne la forme de ces matrices à conjugaison près.
 
 
 \begin{prop}\label{pro:mat:fro}
-Soit~$E$ une courbe elliptique ordinaire d'endomorphisme de Frobenius~$\pi$
-telle que le polynôme caractérisitque de $\pi$
+Soit~$E$ une courbe elliptique ordinaire tel que $\ell$ est un nombre Elkies
 a deux racines distinctes $\lambda$, $\mu$ appartenant à $\mathbb{Z}_{\ell}$,
 ainsi le volcan de $\ell$-isogénies de $E$ a un cratère cyclique.
 Il existe un unique $e \in [ 0, h]$
