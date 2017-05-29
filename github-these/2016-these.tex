@@ -3219,14 +3219,23 @@ Le résultat est démontré dans \cite[§5.3.1]{Ionica2010}.
 \chapter{Action du Frobenius sur un volcan de $\ell$-isogénies}
 \label{cha:act:fro}
 \section{Cas Elkies}
-La majeure partie du travail présenté dans cette section a été effectué en collaboration avec Luca De Feo, Jérome Plut et Eric Schost. Il a fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
+La majeure partie du travail présenté dans cette section a été effectué en collaboration avec Luca De Feo, Jér\^ome Pl\^ut et \'Eric Schost. Il a fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
+Dans cette partie on va étudier sur une courbe elliptique $E$ les sous-groupes 
+de $E[\ell^{\infty}]$ que l'on peut déterminer à l'aide de l'action du 
+Frobenius. On se place tout d'abord dans un cas particulier le cas Elkies que 
+l'on définit de suite: 
 
-On va appeler cas Elkies, le fait que $\ell$ est un nombre de Elkies pour la courbe elliptique ordinaire $E$ avec laquelle on travaille, c'est à dire que l'on a le polynôme caractéristique du Frobenius qui se scinde dans  $\mathbb{Z}_{\ell}$:
+\begin{defi}
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell$ est dit un nombre premier de Elkies si le polynôme caractéristique du Frobenius: $\pi^2-t_{\pi}\pi + q$ se factorise dans $\mathbb{Z}_{\ell}$ à l'aide de deux valeurs propres distinctes notées dans le document $\lambda$ et $\mu$. On a donc dans ce cas
 \begin{equation*}
-\pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \bmod \ell^k.
+\pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \bmod \mathbb{Z}_{ell} \text{avec } \lambda \neq \mu.
 \end{equation*}
-On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi$ se scinde modulo la $\ell^k$ torsion avec $k \geqslant h$, $h$ représente ici la hauteur du volcan, on rappelle que l'on a $h=\frac{v_{\ell}(d_{\pi})-v_{\ell}(d_K)}{2}$ (voir section \ref{sec:ann:end}).
+\end{defi}
+
+On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi$ admet deux valeurs propres distinctes modulo la $\ell^k$ torsion avec $k \geqslant h$,
+
+ $h$ représente ici la hauteur du volcan de $\ell$-isogénies défini sur $\mathbb{F}_q$, on rappelle que l'on a $h=\frac{v_{\ell}(d_{\pi})-v_{\ell}(d_K)}{2}$ (voir section \ref{sec:ann:end}).
 
 Comme on travaille sur l'action du Frobenius sur la $\ell$-torsion sur une courbe elliptique alors on réprésente l'action du Frobenius sur $T_{\ell}(E)$ à l'aide d'une matrice $2 \times 2$. On a le résultat suivant qui nous donne la forme de ces matrices à conjugaison près.
 
@@ -3886,7 +3895,7 @@ et $d_1$ qui divise~$(\ell-1)$.
 \begin{proof}
 On procède de manière similaire à la preuve de la proposition~\ref{pro:clas:fro}.
 Le degré ~$d_1$ correspond à l'ordre de la matrice~$\pi|E[\ell]$.
-On obtient donc le résultat en utilisant le fait que~$a \cdot d = q$. \todo{je ne pense pas que cela soit juste...}
+On obtient donc le résultat en utilisant le fait que~$a \cdot d = q$. 
 \end{proof}
 
 On met en avant un résultat qui est une conséquence du 
