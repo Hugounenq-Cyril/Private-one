@@ -3496,6 +3496,7 @@ Soit $E$ une courbe située sur le cratère, $k\geqslant i \geqslant 1$, $\langl
 Il est important de noter que le seul critère restricitf pour obtenir ce résultat est d'avoir la $\ell$-isogénie engendrée par $\langle [a \ell^{k-1}]P+ [b \ell^{k-1}]Q \rangle $ de type descendant (pour plus de détails voir sous-section \ref{sub:alg:FM} ou \cite{FouquetMorain02}).
 
 \begin{defi}
+\label{def:par:hor}
 Soient $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère,
 $E_s$ la courbe sommet de $E$ (voir définition~\ref{def:cou:som}), $P \in E_s$ 
 un point d'ordre $\ell^k$ avec $k>e$ tel que $[\ell^e]P$ soit horizontal de 
@@ -3528,26 +3529,58 @@ noyau de $\widehat{\phi}$.
 Pour le point (2) il suffit d'écrire que $\widehat{\varphi}(P')=\widehat{\varphi}\circ \varphi (P)= [\ell^i] P$ on conclut alors à l'aide des hypothèses sur $P$.
 \end{proof}
 
-
-\begin{cor}
-\label{cor:par:hor}
+\todo{faire un beau dessin}
+\begin{prop}
+\label{pro:par:hor:par}
 Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se situent à une profondeur $e$ du cratère, $P \in E,P' \in E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in \langle P' \rangle$. 
-\end{cor}
+\end{prop}
 
 \begin{proof}
-\todo{rédiger cette preuve}
-Par la proposition~\ref{pro:elk:par:hor} on peut construire $P$ et $P'$ à partir de $R \in E_S$ et $R' \in E'_s$ des antécédents pas $[\ell^{e}]$ des points horizontaux $P_s \in E_s$, $P'_s \in E'_s$.
+Par définition(~\ref{def:par:hor}) on peut construire $P$ et $P'$ à 
+partir de $R \in E_S$ et $R' \in E'_s$ tels que $[\ell^e]R$ et $[\ell^e]R'$ 
+soient des points horizontaux de même direction avec deux $\ell^e$-isogénies 
+$\psi:E_s \rightarrow E$ et $\psi':E'_s \rightarrow E'$ telles que $\psi(R)=P$ 
+et $\psi'(R')=P'$. On a tout d'abord $ \phi([\ell^{k-e}]P) \in \langle 
+[\ell^{k-e}]P' \rangle$  par la proposition~\ref{pro:par:iso}(2) car par la 
+proposition~\ref{pro:elk:par:hor}(1) on a $\ker(\widehat{\psi})= \langle 
+[\ell^{k-e}]P \rangle$ et $\ker(\widehat{\psi'})= \langle [\ell^{k-e}]P' 
+\rangle$. Ensuite on a $\langle [\ell^e]R \rangle = \langle 
+\widehat{\psi}(P) \rangle $ et $\langle [\ell^e]R' \rangle = \langle 
+\widehat{\psi'}(P') \rangle$ et donc les $\ell^{k}$-isogénies engendrées par 
+$P$ et $P'$ sont du même type: une composition d'une $\ell^e$ isogénie montante 
+et d'une $\ell^{k-e}$-isogénie horizontale de direction identique, donc par la 
+proposition~\ref{pro:par:iso}(2) on a $\phi(P) \in \langle P' \rangle$.
 \end{proof}
 
-Ainsi on est capable à l'aide de bases horizontales et d'isogénies montantes de déterminer une correspondance entre deux groupes cycliques d'ordre $\ell^k$ de courbes $r$-isogénes qui respectent l'action de la $r$-isogénie et qui ne se situent pas forcément sur le cratère. 
+Ainsi on est capable à l'aide de bases horizontales et d'isogénies montantes de
+déterminer une correspondance entre deux groupes cycliques d'ordre $\ell^k$ de 
+courbes $r$-isogénes qui respectent l'action de la $r$-isogénie et qui ne se 
+situent pas forcément sur le cratère. 
 
-La différence entre des points horizontaux $P_{\lambda}, Q_{\mu}$ d'ordre $\ell^k$ et des points partiellement horizontaux c'est que pour deux points partiellement horizontaux $R_{\lambda}, R_{\mu}$ de profondeur $e$ de direction opposées on a $\langle [\ell^{e}]R_{\lambda} \rangle = \langle [\ell^{e}]R_{\mu} \rangle$ alors que l'on a vu que pour deux points horizontaux de direction opposées on avait $\langle [\ell^{k-1}]P_{\lambda} \rangle \neq \langle [\ell^{k-1}]Q_{\mu} \rangle $. 
+La différence entre des points horizontaux $P_{\lambda}, Q_{\mu} \in E_s$ d'ordre $\ell^k$ et des points partiellement horizontaux $R_{\lambda}, R_{\mu} \in E$ d'ordre $\ell^k$ de profondeur $e>0$ de direction opposées c'est que l'on a $\langle R_{\lambda}, R_{\mu} \rangle \neq E[\ell^k]$ (en particulier$\langle [\ell^{k-e}]R_{\lambda} \rangle = \langle [\ell^{k-e}]R_{\mu} \rangle$) alors que pour deux points horizontaux de direction opposées on avait $E_s[\ell^k]= \langle P_{\lambda}, Q_{\mu} \rangle $. 
 
-Ainsi en pratique on est obligé de travailler avec les points d'ordre $\ell^{h+i}$ avec $i>0$, cette précédente discussion justifie l'utilité de se concentrer sur les points d'ordre $\ell^{k}$ avec $k \geqslant h+1$ plutôt que sur la $\ell^k$ torsion dans le contexte de l'algorithme de Couveignes~\cite{Couveignes96}.
+Afin d'avoir une présentation uniforme avec les points horizontaux et les 
+points partiellement horizontaux on choisit de travailler avec les points 
+d'ordre $\ell^k$(avec $k>h$), car avec deux points partiellement horizontaux 
+d'ordre $\ell^k$ on peut tous les générer au contraire points de la 
+$\ell^{e}$-torsion. En effet on ne peut pas générer tous les point de 
+$\ell^e$-torsion et donc pour éviter toute redondance on ne travaille qu'avec 
+les points d'ordre $\ell^k$. Si l'on souhaitait travailler avec les points de 
+la $\ell^e$-torsion on utiliserait dans le cas de deux points partiellements 
+horizontaux $R_{\lambda}, R_{\mu}$ (avec les notations du paragraphe précédent)
+par exemple le groupe $\langle [\ell^{k-e}]R_{\lambda} \rangle$. 
+
+
+
+
+cette précédente discussion justifie l'utilité de se concentrer sur les points d'ordre $\ell^{k}$ avec $k \geqslant h+1$ plutôt que sur la $\ell^k$ torsion dans le contexte de l'algorithme de Couveignes~\cite{Couveignes96}.
 
 \subsection{Décomposition de la $\ell^k$ torsion sous l'action du Frobenius}
 \label{sub:classes}
-On va maintenant voir la décomposition de la $\ell^k$ torsion en orbites selon l'action du Frobenius, afin de pouvoir ultérieurement calculer toute la $\ell^k$ torsion à partir des représentants des orbites et de l'action du Frobenius. 
+On va maintenant voir la décomposition de la $\ell^k$-torsion en orbites selon 
+l'action du Frobenius, afin de pouvoir ultérieurement calculer toute la 
+$\ell^k$-torsion à partir des représentants des orbites et de l'action du 
+Frobenius. 
 %On a tout d'abord le premier résultat qui nous précise dans quel extension de corps on sera ammené à travailler pour avoir de la $\ell^k$ torsion qui soit définie.
 
 On se place dans le cas où la courbe elliptique ordinaire $E$ admet un anneau d'endomorphisme maximal par rapport à $\ell$.
@@ -5562,7 +5595,7 @@ On voudrait dés lors travailler avec des $k_i$ sur lesquels on aurait comme
 condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 c'est ce que l'on va aborder dans la seconde approche.}
 
-\section{Approche multi-moduaire de l'algorithme de Couveignes $\ell$-adique avec l'ensemble de points (partiellement) horizontaux isomorphe à $\prod{i=1}^n \left( \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \right)^{2}$}
+\section{Approche multi-moduaire de l'algorithme de Couveignes $\ell$-adique avec l'ensemble de points (partiellement) horizontaux isomorphe à $\prod_{i=1}^n \left( \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \right)^{2}$}
 Ainsi dans cette approche on veut travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'information donnée par 
 les  bases (partiellement) horizontales 
