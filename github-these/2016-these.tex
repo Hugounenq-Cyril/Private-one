@@ -3555,42 +3555,32 @@ proposition~\ref{pro:par:iso}(2) on a $\phi(P) \in \langle P' \rangle$.
 Ainsi on est capable à l'aide de bases horizontales et d'isogénies montantes de
 déterminer une correspondance entre deux groupes cycliques d'ordre $\ell^k$ de 
 courbes $r$-isogénes qui respectent l'action de la $r$-isogénie et qui ne se 
-situent pas forcément sur le cratère. 
+situent pas forcément sur le cratère du volcan de $\ell$-isogénies. 
 
 La différence entre des points horizontaux $P_{\lambda}, Q_{\mu} \in E_s$ d'ordre $\ell^k$ et des points partiellement horizontaux $R_{\lambda}, R_{\mu} \in E$ d'ordre $\ell^k$ de profondeur $e>0$ de direction opposées c'est que l'on a $\langle R_{\lambda}, R_{\mu} \rangle \neq E[\ell^k]$ (en particulier$\langle [\ell^{k-e}]R_{\lambda} \rangle = \langle [\ell^{k-e}]R_{\mu} \rangle$) alors que pour deux points horizontaux de direction opposées on avait $E_s[\ell^k]= \langle P_{\lambda}, Q_{\mu} \rangle $. 
 
-Afin d'avoir une présentation uniforme avec les points horizontaux et les 
-points partiellement horizontaux on choisit de travailler avec les points 
-d'ordre $\ell^k$(avec $k>h$), car avec deux points partiellement horizontaux 
-d'ordre $\ell^k$ on peut tous les générer au contraire points de la 
-$\ell^{e}$-torsion. En effet on ne peut pas générer tous les point de 
-$\ell^e$-torsion et donc pour éviter toute redondance on ne travaille qu'avec 
-les points d'ordre $\ell^k$. Si l'on souhaitait travailler avec les points de 
-la $\ell^e$-torsion on utiliserait dans le cas de deux points partiellements 
-horizontaux $R_{\lambda}, R_{\mu}$ (avec les notations du paragraphe précédent)
-par exemple le groupe $\langle [\ell^{k-e}]R_{\lambda} \rangle$. 
-
-
-
-
-cette précédente discussion justifie l'utilité de se concentrer sur les points d'ordre $\ell^{k}$ avec $k \geqslant h+1$ plutôt que sur la $\ell^k$ torsion dans le contexte de l'algorithme de Couveignes~\cite{Couveignes96}.
 
 \subsection{Décomposition de la $\ell^k$ torsion sous l'action du Frobenius}
 \label{sub:classes}
-On va maintenant voir la décomposition de la $\ell^k$-torsion en orbites selon 
-l'action du Frobenius, afin de pouvoir ultérieurement calculer toute la 
+On va maintenant étudier la décomposition de la $\ell^k$-torsion en orbites 
+selon l'action du Frobenius, afin de pouvoir ultérieurement calculer toute la 
 $\ell^k$-torsion à partir des représentants des orbites et de l'action du 
 Frobenius. 
 %On a tout d'abord le premier résultat qui nous précise dans quel extension de corps on sera ammené à travailler pour avoir de la $\ell^k$ torsion qui soit définie.
 
-On se place dans le cas où la courbe elliptique ordinaire $E$ admet un anneau d'endomorphisme maximal par rapport à $\ell$.
- Pour $\ell$ premier impair, on note~$\alpha
-= v_{\ell}(\lambda^{\ell-1}-1)$ et~$\beta=v_{\ell}(\mu^{\ell-1}-1)$; pour $\ell=2$,
-on note~$\alpha=v_2(\lambda^2-1)-1$ et~$\beta = v_2(\mu^2-1)-1$, on suppose 
-sans perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces valeurs-là car pour n'importe quel corps fini $\mathbb{F}_q$ on a $E[\ell] \subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[4] \subset E(\mathbb{F}_q^{2})$ pour $\ell=2$.  Comme $\lambda \neq \mu \bmod{\ell^{h+1}}$, il est
-impossible que $\lambda \equiv \mu \equiv 1 \bmod{\ell^h}$ par la structure 
-d'un volcan de $\ell$-isogénies (voir section \ref{sec:lie:niv}), ainsi au moins une des deux
-valuations~$\alpha, \beta$ est~$\leqslant h$, par conséquent on va supposer sans perte de généralité que~$\beta \leqslant h$.
+On se place dans le cas où la courbe elliptique ordinaire $E$ admet un anneau 
+des endomorphismes localement maximal par rapport à $\ell$.
+Pour $\ell$ premier impair, on note~$\alpha= v_{\ell}(\lambda^{\ell-1}-1)$ 
+et~$\beta=v_{\ell}(\mu^{\ell-1}-1)$; pour $\ell=2$, on 
+note~$\alpha=v_2(\lambda^2-1)-1$ et~$\beta = v_2(\mu^2-1)-1$, on suppose sans 
+perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces 
+valeurs-là car pour n'importe quel corps fini $\mathbb{F}_q$ on a $E[\ell] 
+\subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[4] \subset 
+E(\mathbb{F}_q^{2})$ pour $\ell=2$.  Comme $\lambda \neq \mu \bmod{\ell^{h+1}}$
+et que $\lambda = \mu \bmod \ell^h$, il est impossible que $\lambda^{\ell-1} 
+\equiv \mu^{\ell-1} \equiv 1 \bmod{\ell^{h+1}}$ ainsi au moins une des deux 
+valuations~$\alpha, \beta$ est~$\leqslant h$, par conséquent on va supposer 
+sans perte de généralité que~$\beta \leqslant h$.
 
 \begin{prop}\label{pro:clas:fro}
 Soit $E$ une courbe elliptique ordinaire telle que son anneau d'endomorphisme 
@@ -3641,7 +3631,7 @@ Soit~$E$ une courbe elliptique ordinaire avec un anneau d'endomorphisme maximal
 Supposons que $\ell \neq 2$, $\lambda \equiv \mu \equiv 1 \bmod \ell$ et posons~$\alpha = v_{\ell}(\lambda-1), \beta=v_{\ell}(\mu-1)$.
 On écrit~$\nu(x, y) = \min (x+y, x+\beta-1, y+\alpha-1)$
 et~$\rho(x, y) = x+y - \nu(x, y) = \max (0, x-\alpha+1, y-\beta+1)$.
-La décomposition du groupe~$E[\ell^k]$ en calsse de Galois est comme suit:
+La décomposition du groupe~$E[\ell^k]$ en calsse de Galois est la suivante:
 \begin{enumerate}
 \item pour~$i, j = 1, …, k-1$:
 $(\ell-1)^2 \cdot \ell^{\nu(i,j)}$ classes de taille~$\ell^{\rho(i,j)}$;
@@ -4698,6 +4688,25 @@ On rappelle que l'on se place dans le contexte suivant:
 Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
 
 \section{Cas Elkies}
+
+\todo{Déplacer au bon endroit}
+Afin d'avoir une présentation uniforme avec les points horizontaux et les 
+points partiellement horizontaux on choisit de travailler avec les points 
+d'ordre $\ell^k$(avec $k>h$), car avec deux points partiellement horizontaux 
+d'ordre $\ell^k$ on peut tous les générer au contraire points de la 
+$\ell^{e}$-torsion. En effet on ne peut pas générer tous les point de 
+$\ell^e$-torsion et donc pour éviter toute redondance on ne travaille qu'avec 
+les points d'ordre $\ell^k$. Si l'on souhaitait travailler avec les points de 
+la $\ell^e$-torsion on utiliserait dans le cas de deux points partiellements 
+horizontaux $R_{\lambda}, R_{\mu}$ (de profondeur $e>0$)
+par exemple le groupe $\langle [\ell^{k-e}]R_{\lambda} \rangle$. 
+
+
+
+
+cette précédente discussion justifie l'utilité de se concentrer sur les points d'ordre $\ell^{k}$ avec $k \geqslant h+1$ plutôt que sur la $\ell^k$ torsion dans le contexte de l'algorithme de Couveignes~\cite{Couveignes96}.
+
+
 Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo,
 J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication 
 \cite{Defeo_Plut_Schost_2016}.
