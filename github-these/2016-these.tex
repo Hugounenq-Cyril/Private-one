@@ -3510,6 +3510,192 @@ Il est porté à l'attention du lecteur qu'un point horizontal est aussi un poin
  \emph{partiellement horizontal} de profondeur $0$.
 \end{rem}
 
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.50]
+\begin{scope}%[yshift=10cm]
+	\begin{scope}[xshift=4.3cm]
+		%Cratere
+		\node (A) at (-3,0) {$\bullet$};
+		\node (B) at (3,0) {$\bullet$};
+		\node (C) at (270:1.2) {$\bullet$};
+		\node (D) at (125:1.2) {$\bullet$};
+		\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-] (D.center) to[bend right=20] (A.center);	
+		\draw[line width=1.5pt,blue,->] (D.center) to[bend left=18] (B.center);
+		
+		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
+		%\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
+
+		
+			\begin{scope}[xshift=-3cm] %sous-volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw  (C)--(A);
+			\draw  (C)--(CA);
+			%just to have a 6th slide
+			
+			\draw (C)--(A);
+			\draw (C)--(CA);
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=3cm] %sous-volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (A) node[fill=white]{$\bullet$};
+			%\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (A) node[fill=white]{$E_s$};
+			%\only<1>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};}
+			\draw (C) node[fill=white]{$E$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\coordinate (G) at (0.7,-1);
+			\coordinate (H) at (0.7,-3.5);
+			\draw [line width=1.3pt,black,->] (G)--(H) node[midway,right] {$\psi$};
+			\end{scope}
+			\begin{scope}[shift={(D)}] %sous volcan du haut
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw [dashed] (C)--(CA);
+			\draw [dashed] (C)--(CB);
+			\draw [dashed] (A)--(C);
+			%\draw (C) node[color=black!90]{$\bullet$};
+			\draw (CA) node[color=black!90]{$\bullet$};
+			\draw (CB) node[color=black!90]{$\bullet$};
+			%\only<3>{
+			\draw [line width=1.5pt,blue,<-] (C)--(A);
+			\draw (C)--(CA);
+			\end{scope}
+	\end{scope}
+\end{scope}
+\begin{scope}[xshift=9cm]
+	\begin{scope}[xshift=4.3cm]
+		%Cratere
+		\node (A) at (-3,0) {$\bullet$};
+		\node (B) at (3,0) {$\bullet$};
+		\node (C) at (270:1.2) {$\bullet$};
+		\node (D) at (125:1.2) {};
+		\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-] (D.center) to[bend right=20] (A.center);	
+		\draw[line width=1.5pt,blue,<-] (D.center) to[bend left=18] (B.center);
+		
+		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
+		%\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
+
+		
+			\begin{scope}[xshift=-3cm] %sous-volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw  (C)--(A);
+			\draw  (C)--(CA);
+			%just to have a 6th slide
+			
+			\draw (C)--(A);
+			\draw (C)--(CA);
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=3cm] %sous-volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (A) node[fill=white]{$\bullet$};
+			%\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw [line width=1.5pt,blue](A)--(C);
+			\draw (A) node[fill=white]{$E_s$};
+			%\only<1>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};}
+			\draw (C) node[fill=white]{$E$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[shift={(D)}] %sous volcan du haut
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw [dashed] (C)--(CA);
+			\draw [dashed] (C)--(CB);
+			\draw [dashed] (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[color=black!90]{$\bullet$};
+			\draw (CB) node[color=black!90]{$\bullet$};
+			%\only<3>{
+			\draw (C)--(A);
+			\draw (C)--(CA);
+			\end{scope}
+	\end{scope}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+\caption{ \label{fig:par:hor:con} Construction d'un point partiellement horizontal à partir d'un point $P$ d'ordre $2^3$ tel que $[2]P$ soit horizontal de direction $\color{blue}{\mu}$ et $\psi:E_s \rightarrow E$ une $2$-isogénie descendante.}
+\end{figure}
+
+On voit sur la figure~\ref{fig:par:hor:con} la construction d'un point 
+partiellement horizontal sur un volcan de $2$-isogénies. Sur la figure de 
+gauche est représentée l'isogénie de noyau $\langle P \rangle$ avec $P \in E_s$
+tel que $[\ell]P$ est horizontal de direction  $\color{blue}{\mu}$. On calcule 
+alors l'image de $P$ par la $2$-isogénie descendante $\psi:E_s \rightarrow E$
+pour construire le point partiellement horizontal $R=\psi(P) \in E$. Sur la 
+figure de droite est représenté l'isogénie de noyau $\langle R \rangle$.
+
+\todo{faire un dessin de construction}
+
 \begin{prop}
 \label{pro:elk:par:hor}
 Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que $[\ell^i]P$ soit horizontal de direction $\lambda$, $\varphi:E \mapsto E_i$ une isogénie descendante de degré $\ell^i$, on note $P'=\varphi(P)$, alors:
@@ -3529,7 +3715,7 @@ noyau de $\widehat{\phi}$.
 Pour le point (2) il suffit d'écrire que $\widehat{\varphi}(P')=\widehat{\varphi}\circ \varphi (P)= [\ell^i] P$ on conclut alors à l'aide des hypothèses sur $P$.
 \end{proof}
 
-\todo{faire un beau dessin}
+\todo{faire un beau dessin de correspondance}
 \begin{prop}
 \label{pro:par:hor:par}
 Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se situent à une profondeur $e$ du cratère, $P \in E,P' \in E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in \langle P' \rangle$. 
