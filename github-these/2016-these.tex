@@ -3270,7 +3270,8 @@ tel que $\pi|T_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
 \end{equation*}
 % where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
 De plus $e = 0$ si~$E$ se situe sur le cratère,
-sinon $h - e$~est le niveau de~$E$ dans le volcan.
+sinon $h - e$~est le niveau de~$E$ dans le volcan, $e$ est appelé la profondeur
+de la courbe dans le volcan.
 \end{prop}
 
 On souligne le fait que $\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
@@ -3292,7 +3293,7 @@ Tate~\cite[Isogeny theorem III.7.7 (a)]{Silv1},$\mathcal{O} \otimes
 des matrices avec coefficients entiers, cet ordre est généré par la matrice 
 identité et la matrice $\ell^{-\min (h, v_\ell(a))} (\pi_{\ell}-\lambda)$, dés 
 lors l'indice de cet ordre par rapport à $\mathbb{Z}[\pi_{\ell}]$ est de 
-$\ell^{\min (h, v_\ell(a))}$ lui donnant la hauteur $\min (h, v_\ell(a))$ dans 
+$\ell^{\min (h, v_\ell(a))}$ lui donnant son niveau $\min (h, v_\ell(a))$ dans 
 le volcan de $\ell$-isogénies.
 \end{proof}
 
@@ -3376,16 +3377,15 @@ Avant montrer les liens entre bases horizontales et diagonales on a besoin du r�
 
 \begin{lem}
 \label{lem:iso:con}
-Soient $\langle P, Q \rangle$ une base de $E[\ell^k]$ avec $k>0$, $\phi$ 
-l'isogénie de noyau engendré par $R=[x]P+[y]Q$  avec $x\wedge \ell =1$ et 
-$y=\ell^my'$ avec $y' \wedge \ell =1$, $0 \leqslant m \leqslant k$, on note 
-$E'$ le codomaine de $\phi$. $M_R$ la 
-matrice de forme normale réduite de Hermite qui correspond au réseau engendré 
-par $R$,  $\Pi$ la matrice du Frobenius sur $T_{\ell}(E)$ alors la matrice du 
-Frobenius sur $T_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi \cdot M_R$ à 
-conjugaison près.
+Soient $\langle P, Q \rangle$ une base de $E[\ell^k]$ avec $k>0$, $\phi:E 
+\rightarrow E'$ l'isogénie de noyau engendré par $R=[x]P+[y]Q$  avec $x\wedge 
+\ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $0 \leqslant m \leqslant k$.
+$M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau 
+engendré par $R$,  $\Pi$ la matrice du Frobenius sur $T_{\ell}(E)$ alors la 
+matrice du Frobenius sur $T_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi 
+\cdot M_R$ à conjugaison près.
 \end{lem}
-\todo{harmoniser les notations pour la matrice de $\pi$}
+\todo{harmoniser les notations pour la matrice de $\pi$ mettre $\Pi$ pour la matrice}
 
 \begin{proof}
 Le sous-groupe $\langle R \rangle$ définit un point dans l'espace projectif de $E[\ell^k]$,
@@ -3440,7 +3440,185 @@ un vecteur propre de $\pi$ pour la valeur propre $\mu$ alors
 ~$(\pi - \mu) P = x (\lambda - \mu) R$ et l'on obtient le résultat.
 \end{proof}
 
-En particulier il est plus facile de calculer une base diagonale qu'une base horizontale, ainsi cette proposition est très pratique pour calculer des bases horizontales. On a alors besoin du résultat suivant pour construire des isogénies horizontales de taille aussi grande que la $\ell$ torsion définie sur le corps sur lequel on travaille, cela nous permet notamment d'éviter d'avoir à travailler dans des extensions de corps supplémentaires.
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.50]
+\begin{scope}%[yshift=10cm]
+	\begin{scope}[xshift=4.3cm]
+		%Cratere
+		\node (A) at (-3,0) {$\bullet$};
+		\node (B) at (3,0) {$\bullet$};
+		\node (C) at (270:1.2) {$\bullet$};
+		\node (D) at (125:1.2) {$\bullet$};
+		\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-] (D.center) to[bend right=20] (A.center);	
+		\draw[line width=1.5pt,blue,->] (D.center) to[bend left=18] (B.center);
+		
+		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
+		%\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
+
+		
+			\begin{scope}[xshift=-3cm] %sous-volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw  (C)--(A);
+			\draw  (C)--(CA);
+			%just to have a 6th slide
+			
+			\draw (C)--(A);
+			\draw (C)--(CA);
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=3cm] %sous-volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (A) node[fill=white]{$\bullet$};
+			%\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (A) node[fill=white]{$E_s$};
+			%\only<1>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};}
+			\draw (C) node[fill=white]{$E$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\coordinate (G) at (0.7,-1);
+			\coordinate (H) at (0.7,-3.5);
+			\draw [line width=1.3pt,black,->] (G)--(H) node[midway,right] {$\psi$};
+			\end{scope}
+			\begin{scope}[shift={(D)}] %sous volcan du haut
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw [dashed] (C)--(CA);
+			\draw [dashed] (C)--(CB);
+			\draw [dashed] (A)--(C);
+			%\draw (C) node[color=black!90]{$\bullet$};
+			\draw (CA) node[color=black!90]{$\bullet$};
+			\draw (CB) node[color=black!90]{$\bullet$};
+			%\only<3>{
+			\draw [line width=1.5pt,blue,<-] (C)--(A);
+			\draw (C)--(CA);
+			\end{scope}
+	\end{scope}
+\end{scope}
+\begin{scope}[xshift=9cm]
+	\begin{scope}[xshift=4.3cm]
+		%Cratere
+		\node (A) at (-3,0) {$\bullet$};
+		\node (B) at (3,0) {$\bullet$};
+		\node (C) at (270:1.2) {$\bullet$};
+		\node (D) at (125:1.2) {};
+		\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-] (D.center) to[bend right=20] (A.center);	
+		\draw[line width=1.5pt,blue,<-] (D.center) to[bend left=18] (B.center);
+		
+		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
+		%\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
+
+		
+			\begin{scope}[xshift=-3cm] %sous-volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw  (C)--(A);
+			\draw  (C)--(CA);
+			%just to have a 6th slide
+			
+			\draw (C)--(A);
+			\draw (C)--(CA);
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=3cm] %sous-volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (A) node[fill=white]{$\bullet$};
+			%\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw [line width=1.5pt,blue](A)--(C);
+			\draw (A) node[fill=white]{$E_s$};
+			%\only<1>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};}
+			\draw (C) node[fill=white]{$E$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[shift={(D)}] %sous volcan du haut
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw [dashed] (C)--(CA);
+			\draw [dashed] (C)--(CB);
+			\draw [dashed] (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[color=black!90]{$\bullet$};
+			\draw (CB) node[color=black!90]{$\bullet$};
+			%\only<3>{
+			\draw (C)--(A);
+			\draw (C)--(CA);
+			\end{scope}
+	\end{scope}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+\caption{ \label{fig:poi:hor} Exemples de  différents points diagonaux $P \in E$ d'ordre $2^3$ selon la valeur propre $\color{blue}{\mu}$, ici sont représentées les différentes isogénies de noyau $\langle P \rangle$ }
+\end{figure}
+Sur le schéma~\ref{fig:poi:hor} sont représentés les isogénies qui ont pour noyau différents points $P \in E $ diagonaux d'ordre $2^3$ tels que $\pi(P)=[\mu]P$. On remarque tout d'abord que
+
+
+En particulier il est plus facile de calculer une base diagonale qu'une base horizontale. Le résultat suivant nous permet de construire des bases horizontales de taille aussi grande que la $\ell$-torsion définie sur le corps sur lequel on travaille sans que l'on ait à travailler dans des extensions de corps supplémentaires.
 \todo{faire un dessin pour cette proposition}
 \begin{prop}\label{pro:pus:hor}
 Soit~$\psi: E \rightarrow E'$ une $\ell$-isogénie horizontale de direction~$\lambda$,
