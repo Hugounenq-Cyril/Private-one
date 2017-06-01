@@ -3683,7 +3683,7 @@ Il est porté à l'attention du lecteur qu'un point horizontal est aussi un poin
 
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:par:hor:con} Construction d'un point partiellement horizontal à partir d'un point $P$ d'ordre $2^3$ tel que $[2]P$ soit horizontal de direction $\color{blue}{\mu}$ et $\psi:E_s \rightarrow E$ une $2$-isogénie descendante.}
+\caption{ \label{fig:par:hor:con} Construction d'un point partiellement horizontal à partir d'un point $P \in E_s$ d'ordre $2^3$ tel que $[2]P$ soit horizontal de direction $\color{blue}{\mu}$ et $\psi:E_s \rightarrow E$ une $2$-isogénie descendante. L'isogénie de noyau $\langle P \rangle$ est représentée en bleu sur le dessin de gauche, celle de noyau $\langle \psi(P) \rangle$ est représentée sur le dessin de droite.}
 \end{figure}
 
 On voit sur la figure~\ref{fig:par:hor:con} la construction d'un point 
@@ -3751,22 +3751,32 @@ La différence entre des points horizontaux $P_{\lambda}, Q_{\mu} \in E_s$ d'ord
 On va maintenant étudier la décomposition de la $\ell^k$-torsion en orbites 
 selon l'action du Frobenius, afin de pouvoir ultérieurement calculer toute la 
 $\ell^k$-torsion à partir des représentants des orbites et de l'action du 
-Frobenius. 
+Frobenius. On se place dans le cas où la courbe elliptique ordinaire $E$ admet 
+un anneau des endomorphismes localement maximal par rapport à $\ell$.
 %On a tout d'abord le premier résultat qui nous précise dans quel extension de corps on sera ammené à travailler pour avoir de la $\ell^k$ torsion qui soit définie.
-
-On se place dans le cas où la courbe elliptique ordinaire $E$ admet un anneau 
-des endomorphismes localement maximal par rapport à $\ell$.
-Pour $\ell$ premier impair, on note~$\alpha= v_{\ell}(\lambda^{\ell-1}-1)$ 
-et~$\beta=v_{\ell}(\mu^{\ell-1}-1)$; pour $\ell=2$, on 
-note~$\alpha=v_2(\lambda^2-1)-1$ et~$\beta = v_2(\mu^2-1)-1$, on suppose sans 
-perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces 
+\begin{defi}
+\label{def:alp:bet}
+On introduit la notation suivante afin de spécifier la structure de la 
+$\ell$-torsion sur une extension de $\mathsf{F}_1 /\mathbb{F}_q$ où l'on aurait
+$E[\ell] \subset E(\mathsf{F}_1)$.
+\begin{itemize}
+\item Pour $\ell$ premier impair, on note~$\alpha= v_{\ell}(\lambda^{\ell-1}-1)$ 
+et~$\beta=v_{\ell}(\mu^{\ell-1}-1)$; 
+\item pour $\ell=2$, on note~$\alpha=v_2(\lambda^2-1)-1$ et~$\beta = v_2(\mu^2-1)-1$;
+\end{itemize}
+on suppose sans perte de généralité que $\alpha \geqslant \beta$. On s'intéresse à ces 
 valeurs-là car pour n'importe quel corps fini $\mathbb{F}_q$ on a $E[\ell] 
 \subset E(\mathbb{F}_q^{\ell-1})$ pour $\ell \neq 2$ et $E[4] \subset 
-E(\mathbb{F}_q^{2})$ pour $\ell=2$.  Comme $\lambda \neq \mu \bmod{\ell^{h+1}}$
+E(\mathbb{F}_q^{2})$ pour $\ell=2$. 
+\end{defi}
+ 
+\begin{rem} 
+Comme $\lambda \neq \mu \bmod{\ell^{h+1}}$
 et que $\lambda = \mu \bmod \ell^h$, il est impossible que $\lambda^{\ell-1} 
 \equiv \mu^{\ell-1} \equiv 1 \bmod{\ell^{h+1}}$ ainsi au moins une des deux 
 valuations~$\alpha, \beta$ est~$\leqslant h$, par conséquent on va supposer 
 sans perte de généralité que~$\beta \leqslant h$.
+\end{rem}
 
 \begin{prop}\label{pro:clas:fro}
 Soit $E$ une courbe elliptique ordinaire telle que son anneau d'endomorphisme 
@@ -3774,8 +3784,8 @@ soit maximal par rapport à $\ell$. Pour tout~$k$, on note~$d_k$ le degré de la
 plus petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell^k]\subset 
 E(F)$. On  a alors:
 \begin{enumerate}
-\item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
-et $d_1$ qui divise~$(\ell-1)$.
+\item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ divise $d_1$,
+et $d_1$ divise~$(\ell-1)$.
 \item Si $\ell$~est impair alors pour tout $k > 1$,
 $ d_k = \ell^{\max (v_{\ell} (d_1), k - \beta)}d_1$.
 % $d_k = \mathrm {lcm} (d_1, \ell^{k-\beta})$.
@@ -3784,7 +3794,7 @@ $ d_k = \ell^{\max (v_{\ell} (d_1), k - \beta)}d_1$.
 $d_k = \ell^{\max (0, k - \beta)}d_2$.
 \item Soit $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\alpha} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
 \item\label{prop:classes:count} Le groupe~$E[\ell^k]$ contient au plus
-$k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}_{q^{d_1}}$.
+$k \cdot \ell^{k+\beta}$ classes de conjugaisons selon l'action de $\mathsf{Gal}(\mathsf{F}_{k-\beta}:\mathsf{F}_1)$ avec~$\mathsf{F}_1 = \mathbb{F}_{q^{d_1}}$.
 \end{enumerate}
 \end{prop}
 \begin{proof}
@@ -3792,7 +3802,7 @@ Le degré ~$d_k$ correspond à l'ordre de la matrice~$\pi|E[\ell^k]$.
 $d_k$ est donc le plus petit multiple commmun des ordres multiplicatifs
 de~$\lambda, \mu$ modulo~$\ell^k$,
 on obtient donc~(1) en utilisant le fait que~$\lambda \cdot \mu = q$.
-Pour les points~(2)--(5) on peut supposer que l'on a $d_1 = 1$,
+Pour les points~(2)--(5) on suppose sans perte de généralité que l'on a $d_1 = 1$,
 alors pour tout entier~$N$, $v_{\ell}(\lambda^{2N}-1) = \alpha + v_{\ell} (2N)$.
 Soit~$(P, Q)$ une base diagonale de~$E[\ell^k]$,
 le point $(\pi^N - 1) ([x] P + [y] Q) = [(\lambda^N-1) x] P + [(\mu^N-1) y] Q$
@@ -3809,15 +3819,38 @@ par conséquent il y a $\ell^{\min(\alpha+i, k) + \min(\beta, k-i)} \leqslant \e
 En additionnant ce résultat pour tous les ~$i$ on prouve~(5).
 \end{proof}
 
-Ainsi le point (5) nous donne une borne maximale sur le nombre de représentants des différentes orbites que l'on a à calculer pour reconstruire tout $E[\ell^{k}](F)$ à l'aide de l'action de Galois, on a le résultat suivant qui précise la décomposition des différentes orbites et leurs tailles:
+\begin{cor}
+Soit un volcan de $\ell$-isogénies défini sur $\mathsf{F}_1/\mathbb{F}_q$ tel 
+que $E[\ell] \subset E[\mathsf{F}_1]$ pour $E$ tel que son anneau des 
+endomorphismes est localement maximal par rapport à $\ell$ avec $\ell$ un 
+nombre premier de Elkies  
+\begin{itemize}
+\item lorsque ce volcan est \emph{régulier} on a $\beta=h$;
+\item lorsque ce volcan est \emph{non-régulier} on a $\beta$ qui est égal à la 
+hauteur du premier niveau de stabilité.
+\end{itemize}
+\end{cor}
 
+\begin{proof}
+Lorsque le volcan est régulier alors par la proposition~\ref{pro:niv:str} la 
+valuation $\ell$-adique $\ell$-torsion du plus petit sous-groupe de Sylow 
+augmente de $1$ à chaque fois que l'on monte d'un niveau dans le volcan sachant
+que au niveau en bas du volcan on a $E(\mathsf{F}_1)[\ell^{\infty}]$ qui est 
+cyclique alors on a $\beta=h$.
+
+Le raisonnement est le même pour un volcan non-régulier car au-dessus du 
+premier niveau de stabilité la structure de la $\ell$-torsion ne change pas et 
+en dessous elle change comme décrit juste au-dessus.
+\end{proof}
+
+\todo{utilité des deux propositions suivantes ?, elles ne sont pas utilisées ...}
 \begin{prop}\label{prop:orbites-l-torsion}
-Soit~$E$ une courbe elliptique ordinaire avec un anneau d'endomorphisme maximal
- par rapport à $\ell$.
+Soit~$E$ une courbe elliptique ordinaire avec un anneau des endomorphismes 
+localement maximal  par rapport à $\ell$.
 Supposons que $\ell \neq 2$, $\lambda \equiv \mu \equiv 1 \bmod \ell$ et posons~$\alpha = v_{\ell}(\lambda-1), \beta=v_{\ell}(\mu-1)$.
 On écrit~$\nu(x, y) = \min (x+y, x+\beta-1, y+\alpha-1)$
 et~$\rho(x, y) = x+y - \nu(x, y) = \max (0, x-\alpha+1, y-\beta+1)$.
-La décomposition du groupe~$E[\ell^k]$ en calsse de Galois est la suivante:
+La décomposition du groupe~$E[\ell^k]$ en classe de Galois est la suivante:
 \begin{enumerate}
 \item pour~$i, j = 1, …, k-1$:
 $(\ell-1)^2 \cdot \ell^{\nu(i,j)}$ classes de taille~$\ell^{\rho(i,j)}$;
@@ -3849,7 +3882,7 @@ On définit alors~$W(i,j,c,d) = [V(i, c)] P \,+\, [V(j, d)]  Q \subset E[\ell^k]
 Comme~$\lambda \equiv 1 \bmod \ell^{\alpha}$, on peut écrire~$\lambda = f(0,0,u\, \ell^{\alpha-1})$
 et~$\mu = f(0,0, v\, \ell^{\beta-1})$
 avec~$u, v \in \mathbb{Z}_{\ell}^{\times}$.
-On a alors l'ensemble~$W(i,j,c,d)$ qui est stable sous l'action du groupe de Galois.
+L'ensemble~$W(i,j,c,d)$ est alors stable sous l'action du groupe de Galois.
 Les orbites de~$W(i,j,c,d)$ correspondent de façon bijective
 aux points du domaine fondamental du réseau~$\Lambda_{i,j}$ genéré par
 les colonnes de~$\left(  \begin{smallmatrix}
