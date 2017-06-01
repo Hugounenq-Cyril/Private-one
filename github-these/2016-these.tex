@@ -3277,7 +3277,7 @@ On souligne le fait que $\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
 \mu \end{smallmatrix}\right)$ est conjugée à $\left(\begin{smallmatrix} \lambda & 0 \\ 0 & \mu\end{smallmatrix}\right)$ sur~$\mathbb{Z}_{\ell}$.
 \begin{proof}
 Comme le polynôme caractéristique de $\pi$ admet deux valeurs propres sur 
-$\mathbb{Z}_{\ell}$ alors la matrice $\pi|T_{\ell}(E)$ est trigonalisable. \todo{justifier cela Morris Newman Integral Matrices III.16}
+$\mathbb{Z}_{\ell}$ alors la matrice $\pi|T_{\ell}(E)$ est trigonalisable. \todo{justifier cela Morris Newman Integral Matrices III.\color{red}{15}}
 La conjugaison de la matrice $\left ( \begin{smallmatrix}\lambda & a\\0 & \mu
 \end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & b\\0 & 1
 \end{smallmatrix} \right )$ change le coefficient $a$ en $a-b (\lambda - \mu)$, 
@@ -3718,7 +3718,10 @@ Pour le point (2) il suffit d'écrire que $\widehat{\varphi}(P')=\widehat{\varph
 \todo{faire un beau dessin de correspondance}
 \begin{prop}
 \label{pro:par:hor:par}
-Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se situent à une profondeur $e$ du cratère, $P \in E,P' \in E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in \langle P' \rangle$. 
+Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se
+situent à une profondeur $e$ du cratère (donc au niveau $h-e$), $P \in E,P' \in
+E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in 
+\langle P' \rangle$. 
 \end{prop}
 
 \begin{proof}
@@ -4908,26 +4911,8 @@ Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-inva
 
 \section{Cas Elkies}
 
-\todo{Déplacer au bon endroit}
-Afin d'avoir une présentation uniforme avec les points horizontaux et les 
-points partiellement horizontaux on choisit de travailler avec les points 
-d'ordre $\ell^k$(avec $k>h$), car avec deux points partiellement horizontaux 
-d'ordre $\ell^k$ on peut tous les générer au contraire points de la 
-$\ell^{e}$-torsion. En effet on ne peut pas générer tous les point de 
-$\ell^e$-torsion et donc pour éviter toute redondance on ne travaille qu'avec 
-les points d'ordre $\ell^k$. Si l'on souhaitait travailler avec les points de 
-la $\ell^e$-torsion on utiliserait dans le cas de deux points partiellements 
-horizontaux $R_{\lambda}, R_{\mu}$ (de profondeur $e>0$)
-par exemple le groupe $\langle [\ell^{k-e}]R_{\lambda} \rangle$. 
-
-
-
-
-cette précédente discussion justifie l'utilité de se concentrer sur les points d'ordre $\ell^{k}$ avec $k \geqslant h+1$ plutôt que sur la $\ell^k$ torsion dans le contexte de l'algorithme de Couveignes~\cite{Couveignes96}.
-
-
 Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo,
-J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication 
+J\'erome Pl\^ut et \'Eric Schost qui ont fait l'objet d'une publication 
 \cite{Defeo_Plut_Schost_2016}.
 
 On s'intéresse ici au cas plus spécifique du "\emph{Problème du calcul 
@@ -4973,7 +4958,7 @@ Q
  Dans ces bases l'action de $\phi$ sur la base 
  $(\color{red}P_{\lambda} \color{black},\color{blue}Q_{\mu}\color{black})$ 
  peut être représentée comme une matrice diagonale car par la 
- proposition~\ref{pro:par:iso} et le corollaire~\ref{cor:par:hor} les points de
+ proposition~\ref{pro:par:iso} et la proposition~\ref{pro:par:hor:par} les points de
   même direction sont mis en correspondance:
 \[
 \left(
@@ -5005,6 +4990,18 @@ A_{a,b}(x([u]\color{red}P_{\lambda}
  \color{black}+[bv]\color{blue}Q'_{\mu}\color{black}) \quad \text{pour tout $[u]\color{red}P_{\lambda}
  \color{black}+[v]\color{blue}Q_{\mu}\color{black}$ d'ordre $\ell^k$}.
 \]
+En effet afin d'avoir une présentation uniforme avec les points horizontaux et 
+les points partiellement horizontaux on choisit de travailler avec les points 
+d'ordre $\ell^k$(avec $k>h$), car avec deux points partiellement horizontaux 
+d'ordre $\ell^k$ on peut tous les générer au contraire des points de la 
+$\ell^{e}$-torsion ($e$ représentant la profondeur de la courbe). En effet on 
+ne peut pas générer tous les point de $\ell^e$-torsion et donc pour éviter 
+toute redondance on ne travaille qu'avec les points d'ordre $\ell^k$. Si l'on 
+souhaitait travailler avec les points de la $\ell^e$-torsion on utiliserait 
+dans le cas de deux points partiellements horizontaux $R_{\lambda}, R_{\mu}$ 
+(de profondeur $e>0$)par exemple le groupe $\langle [\ell^{k-e}]R_{\lambda} 
+\rangle$. 
+
 Ensuite à l'aide du polynôme $A_{a,b}$ on calcule la fraction rationnelle $F$ telle que:
 \[
 F=A_{a,b} \bmod T
