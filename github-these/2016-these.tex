@@ -3234,6 +3234,7 @@ La majeure partie du travail présenté dans cette sous-section a été effectu�
  On se place tout d'abord dans un cas particulier le cas Elkies que l'on définit de suite: 
 \todo{cas du ordinaire à mettre partout ?}
 \begin{defi}
+\label{def:cas:elk}
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell$ est dit un nombre premier de Elkies si le polynôme caractéristique du Frobenius: $\pi^2-t_{\pi}\pi + q$ se factorise dans $\mathbb{Z}_{\ell}$ à l'aide de deux valeurs propres distinctes notées dans le document $\lambda$ et $\mu$. On a donc dans ce cas
 \begin{equation*}
 \pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \bmod \mathbb{Z}_{\ell} \text{ avec } \lambda \neq \mu.
@@ -3305,7 +3306,14 @@ $\ell^{\min (h, v_\ell(a))}$ lui donnant son niveau $\min (h, v_\ell(a))$ dans
 le volcan de $\ell$-isogénies.
 \end{proof}
 
-Ainsi avec la proposition \ref{pro:mat:fro} on a un moyen de déterminer la hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de l'action du Frobenius sur la $\ell$-torsion. Le résultat suivant nous donne un moyen de savoir comment monter et descendre à l'intérieur d'un volcan de $\ell$-isogénies.
+Ainsi avec la proposition \ref{pro:mat:fro} on a un moyen de déterminer la 
+hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de 
+l'action du Frobenius sur $\mathsf{T}_{\ell}(E)$. Le résultat suivant nous donne un 
+moyen de savoir comment monter et descendre à l'intérieur d'un volcan de 
+$\ell$-isogénies en étudiant l'action du Frobenius sur les points de la courbe 
+qui génèrent leur noyau. C'est d'ailleurs l'approche que l'on aura tout au long
+de cette section, pour déterminer les directions des isogénies on étudiera 
+l'action du Frobenius sur un point générateur de leur noyau.
 
 \begin{prop}
 \label{pro:tri:dir}
@@ -3358,15 +3366,13 @@ On voit aussi que cette détermination n'est pas sujette à l'existence de nivea
 de stabilité vu que la preuve ne se fait pas à l'aide de la structure de la 
 $\ell$-torsion.
 
-\subsubsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
-\label{sub:ss-gr}
-On va maintenant se focaliser sur la détermination des espaces propres du 
-Frobenius, et voir comment les déterminer à précision finie. On travaille donc 
-sur des courbes situées sur le cratère car c'est le seul cas où l'on peut 
-diagonaliser le Frobenius. On verra par la suite comment utiliser cette 
-diagonalisation pour avoir une détermination de sous-groupes cycliques de la 
-$\ell^k$-torsion pour des courbes situées en dehors du cratère.
-
+%\subsubsection{Détermination de directions au niveau du cratère cyclique}
+%\label{sub:ss-gr}
+On va maintenant se focaliser sur la détermination d'autres directions à l'aide
+du Frobenius, on va tout naturellement commencer par le cratère car c'est 
+l'endroit où le Frobenius se diagonalise et où l'on peut donc distinguer 
+l'action du Frobenius sur deux espaces propres distincts. Introduisons tout 
+d'abord quelques définitions nécessaires:
 
 %\begin{defi}
 %Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\phi$ une isogénie de degré $\ell^k$ de domaine $E$, alors $\phi$ est dite une isogénie horizontale si il existe $\phi_1, \cdots, \phi_k$ $k$ $\ell$-isogénies horizontales, dans le sens de la définition \ref{def:iso:nom},telles que $\phi=\phi_1 \circ \phi_2 \circ \cdots \circ \phi_k$.
@@ -3381,7 +3387,7 @@ $\ell^k$-torsion pour des courbes situées en dehors du cratère.
   les deux points de la base sont horizontaux.
 \end{defi}
 
-Avant montrer les liens entre bases horizontales et diagonales on a besoin du résultat intermédiaire suivant qui pour $\phi:E \mapsto E'$ montre comment calculer l'image de la matrice du Frobenius $\pi|T_{\ell}(E)$ dans une base de $T_{\ell}(E')$.
+Avant montrer les liens entre bases horizontales et diagonales on a besoin du résultat intermédiaire suivant qui pour $\phi:E \mapsto E'$ montre comment calculer l'image de la matrice du Frobenius $\pi|T_{\ell}(E)$ notée $\Pi$ dans une base de $T_{\ell}(E')$.
 
 \begin{lem}
 \label{lem:iso:con}
@@ -3437,8 +3443,8 @@ que $y=1$.
 
 Soit $\phi$ l'isogénie de noyau $\langle [\ell^h]P \rangle$ et $E'$ son 
 codomaine. Comme $[\ell^h]P$ est un vecteur propre de $\pi$, alors $\phi$ est 
-une isogénie rationnelle. Par le lemme \ref{lem:iso:con}, la matrice 
-$\pi|T_{\ell}(E')$ est égale à $\left ( \begin{smallmatrix}\lambda& \ell^{h-k} 
+une isogénie rationnelle. Par le lemme~\ref{lem:iso:con}, la matrice 
+$\Pi'=\pi|T_{\ell}(E')$ est égale à $\left ( \begin{smallmatrix}\lambda& \ell^{h-k} 
 x (\lambda-\mu)\\ 0 & \mu \end{smallmatrix}\right )$.  
 
 Cette matrice est diagonalisable seulement si $v_{\ell}(x) \geqslant k - h$.
@@ -3699,7 +3705,8 @@ un vecteur propre de $\pi$ pour la valeur propre $\mu$ alors
 
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:poi:dia} Exemples de  différents points diagonaux $P \in E_s$ d'ordre $2^3$ tels que $\pi(P)=[\color{blue}{\mu}\color{black}]P$, ici sont représentées les différentes isogénies de noyau $\langle P \rangle$.}
+\caption{ \label{fig:poi:dia} Exemples de  différents points diagonaux $P \in 
+E_s$ d'ordre $2^3$ tels que $\pi(P)=[\color{blue}{\mu}\color{black}]P$, ici sont représentées les différentes isogénies de noyau $\langle P \rangle$.}
 \end{figure}
 Sur le schéma~\ref{fig:poi:dia} sont représentés les isogénies qui ont pour 
 noyau différents points $P \in E_s $ diagonaux d'ordre $2^3$ tels que $\pi(P)=
@@ -3717,7 +3724,6 @@ horizontales de taille aussi grande que la $\ell$-torsion définie sur le corps
 sur lequel on travaille sans que l'on ait à travailler dans des extensions de 
 corps supplémentaires.
 
-\todo{faire un dessin pour cette proposition qui répond à l'autre dessin}
 \begin{prop}\label{pro:pus:hor}
 Soit~$\psi: E \rightarrow E'$ une $\ell$-isogénie horizontale de direction~$\lambda$,
 $Q \in E[\ell^{\infty}]$,
@@ -3768,7 +3774,7 @@ de direction~$\mu$ alors $Q'$~est horizontal de direction $\mu$.
 			
 			\draw (C)--(A);
 			\draw (C)--(CA);
-			\draw (A) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$E'_s$};
 			\draw (C) node[fill=white]{$\bullet$};
 			\draw (CA) node[fill=white]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};
@@ -3922,8 +3928,10 @@ d'ordre $2^2$. Pour obtenir un point horizontal d'ordre $2^3$ on utilise à
 nouveau la $2$-isogénie de direction $\lambda$ et de domaine $E'_s$ que l'on 
 applique à $\psi(P)$.
 
-
-Voyons tout d'abord comment déterminer à l'aide d'une base horizontale les isogénies descendantes d'une courbe située sur le cratère.
+On va donc montrer comment transporter cette information pour des courbes 
+situées en dessous du cratère. Avant cela voyons comment déterminer à l'aide 
+d'une base horizontale les isogénies descendantes d'une courbe située sur le 
+cratère.
 
 \begin{prop}
 Soit $E$ une courbe elliptique située sur le cratère cyclique d'un volcan de $\ell$-isogénies, $\langle P, Q \rangle= E[\ell]$ une base horizontale. Alors les $\ell$-isogénies descendantes sont générées par les sous-groupes $\langle [\ell]P+ [b]Q \rangle$ avec $b \wedge \ell =1$.
@@ -3944,7 +3952,8 @@ Il est important de noter que le seul critère restricitf pour obtenir ce résul
 
 \begin{defi}
 \label{def:par:hor}
-Soient $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère,
+Soient $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère 
+(id est au niveau $h-e$),
 $E_s$ la courbe sommet de $E$ (voir définition~\ref{def:cou:som}), $P \in E_s$ 
 un point d'ordre $\ell^k$ avec $k>e$ tel que $[\ell^e]P$ soit horizontal de 
 direction $\lambda$ (resp. $\mu$), $\varphi$ la $\ell^e$-isogénie $\varphi:
@@ -4042,6 +4051,7 @@ Il est porté à l'attention du lecteur qu'un point horizontal est aussi un poin
 			%\only<3>{
 			\draw [line width=1.5pt,blue,<-] (C)--(A);
 			\draw (C)--(CA);
+			\draw (A) node[fill=white]{$\bullet$};
 			\end{scope}
 	\end{scope}
 \end{scope}
@@ -4139,14 +4149,12 @@ représentée en bleu sur le dessin de gauche, celle de noyau $\langle \psi(P)
 \end{figure}
 
 On voit sur la figure~\ref{fig:par:hor:con} la construction d'un point 
-partiellement horizontal sur un volcan de $2$-isogénies. Sur la figure de 
+partiellement horizontal sur un volcan de $2$-isogénies. Sur le volcan de 
 gauche est représentée l'isogénie de noyau $\langle P \rangle$ avec $P \in E_s$
 tel que $[\ell]P$ est horizontal de direction  $\color{blue}{\mu}$. On calcule 
 alors l'image de $P$ par la $2$-isogénie descendante $\psi:E_s \rightarrow E$
-pour construire le point partiellement horizontal $R=\psi(P) \in E$. Sur la 
-figure de droite est représenté l'isogénie de noyau $\langle R \rangle$.
-
-\todo{faire un dessin de construction}
+pour construire le point partiellement horizontal $R=\psi(P) \in E$. Sur le 
+volcan de droite est représenté l'isogénie de noyau $\langle R \rangle$.
 
 \begin{prop}
 \label{pro:elk:par:hor}
@@ -4162,25 +4170,33 @@ horizontale de direction $\lambda$ de degré $\ell^{k-i}$.
 \end{prop}
 
 \begin{proof}
-Pour le point (1) montrons que l'image de $P$ par $\phi$ est encore d'ordre 
+Pour le point (1) montrons que l'image de $P$ par $\varphi$ est encore d'ordre 
 $\ell^k$, comme $P$ est un générateur d'une $\ell^{k-i}$-isogénie horizontale 
-alors $[\ell^{k-1}]P$ n'est pas dans le noyau de $\phi$ et donc $\phi(P)$ est 
-d'ordre $\ell^k$. On a alors $\langle [\ell^{k-i}]\phi(P) \rangle $ qui est le 
-noyau de $\widehat{\phi}$.  
+alors $[\ell^{k-1}]P$ n'est pas dans le noyau de $\varphi$ et donc $\varphi(P)$ est 
+d'ordre $\ell^k$. On a alors $\langle [\ell^{k-i}]\varphi(P) \rangle $ qui est le 
+noyau de $\widehat{\varphi}$.  
 
 Pour le point (2) il suffit d'écrire que $\widehat{\varphi}(P')=\widehat{\varphi}\circ \varphi (P)= [\ell^i] P$ on conclut alors à l'aide des hypothèses sur $P$.
 \end{proof}
 
+Enfin on verra si l'on peut tirer des 
+informations sur les directions dans le volcan pour des courbes situées 
+en-dessous du cratère excepté le résultat de la proposition.
+
 
 \subsection{Cas Atkin}
-Dans cette section on s'intéresse aux courbes situées sur un volcan de 
-$\ell$-isogénies dont le cratère est réduit à un point. Ce cas-là correspond 
-au cas Atkin et l'on dira que $\ell$ est un nombre premier d'Atkin pour une 
-courbe si l'on a un tel type de volcan de $\ell$-isogénies. On va donc étudier 
-dans cette partie les groupes de points de $E[\ell^{\infty}]$ que l'on peut 
-déterminer à l'aide de l'étude de l'action du Frobenius.
+Dans cette section on s'intéresse au cas particulier suivant: 
+\begin{defi}
+\label{def:cas:atk}
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell$ est dit un nombre premier de Atkin si le polynôme caractéristique du Frobenius: $\pi^2-t_{\pi}\pi + q$ est irréductible dans $\mathbb{Z}_{\ell}$
+\end{defi}
+\todo{Faire explicitement le lien avec le chapitre 4}
+Ce cas-là est donc appelé cas Atkin  si l'on a un tel type de volcan de $\ell$-isogénies. On
+va donc étudier dans cette partie l'action du Frobenius sur 
+$\mathsf{T}_{\ell}(E)$ $E[\ell^{\infty}]$ et voir si l'on peut déterminer des
+directions d'isogénies.
 \todo{Dire ce qu'est le cas Atkin et contextualiser toute cette partie...}
-\subsubsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
+%\subsubsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
 \begin{prop}\label{pro:mat:fro:atk}
 Soit~$E$ une courbe elliptique ordinaire d'endomorphisme de Frobenius~$\pi$
 telle que le polynôme caractérisitque de $\pi$
