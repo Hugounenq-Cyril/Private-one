@@ -3216,9 +3216,10 @@ Le résultat est démontré dans \cite[§5.3.1]{Ionica2010}.
 %A l'aide du lemme \ref{lem:val:ext} et de la proposition \ref{pro:niv:str} on ne peut que montrer que l'on a  $E(\mathbb{F}_{q^{\ell}})[l^{\infty}]=\mathbb{Z} / \ell^{r+\delta} \mathbb{Z} \times \mathbb{Z} / \ell^{s+1} \mathbb{Z}$ avec $\delta \geqslant 1$, pour prouver l'égalité on a besoin d'utiliser les couplages, pour plus de détails le lecteur peut aller voir \cite[§5.3.1]{Ionica2010}.
 \end{proof}
 
-\chapter{Action du Frobenius sur un volcan de $\ell$-isogénies}
+\chapter{Détermination de directions dans le volcan de $\ell$-isogénies à l'aide de l'action du Frobenius}
+\section{Etude théorique}
 \label{cha:act:fro}
-\section{Cas Elkies}
+\subsection{Cas Elkies}
 La majeure partie du travail présenté dans cette section a été effectué en collaboration avec Luca De Feo, Jér\^ome Pl\^ut et \'Eric Schost. Il a fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
 Dans cette partie on va étudier sur une courbe elliptique $E$ les sous-groupes 
@@ -3350,7 +3351,7 @@ On voit aussi que cette détermination n'est pas sujette à l'existence de nivea
 de stabilité vu que la preuve ne se fait pas à l'aide de la structure de la 
 $\ell$-torsion.
 
-\subsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
+\subsubsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
 \label{sub:ss-gr}
 On va maintenant se focaliser sur la détermination des espaces propres du 
 Frobenius, et voir comment les déterminer à précision finie. On travaille donc 
@@ -3895,7 +3896,12 @@ de direction~$\mu$ alors $Q'$~est horizontal de direction $\mu$.
 
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:poi:hor} Exemple de construction de point horizontal. Sur le volcan de gauche est représentée  l'isogénie de noyau $\langle P \rangle$ avec $P \in E_s$  tel que $[2^2]P$ est horizontal de direction $\color{blue}{\mu}$ et $\psi$ est une $2$-isogénie horizontale de direction  $\color{red}{\lambda}$. Sur le volcan de droite l'isogénie de noyau $\langle \psi(P) \rangle$ est représentée.}
+\caption{ \label{fig:poi:hor} Exemple de construction de point horizontal. 
+Sur le volcan de gauche est représentée  l'isogénie de noyau $\langle P 
+\rangle$ avec $P \in E_s$  tel que $[2^2]P$ est horizontal de direction 
+$\color{blue}{\mu}$ et $\psi$ est une $2$-isogénie horizontale de direction 
+$\color{red}{\lambda}$. Sur le volcan de droite l'isogénie de noyau $\langle 
+\psi(P) \rangle$ est représentée.}
 \end{figure}
 
 On présente donc sur la figure~\ref{fig:poi:hor} un exemple de construction de 
@@ -3909,28 +3915,6 @@ d'ordre $2^2$. Pour obtenir un point horizontal d'ordre $2^3$ on utilise à
 nouveau la $2$-isogénie de direction $\lambda$ et de domaine $E'_s$ que l'on 
 applique à $\psi(P)$.
 
-\todo{Luca a raison là on s'éloigne du cadre que l'on s'était fixé}
-La proposition suivante nous permet de faire le lien entre les bases horizontales et le contexte de l'algorithme de Couveignes~\cite{Couveignes96}.
-
-\begin{prop}\label{pro:par:iso}
-Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
-\begin{enumerate}
-\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan de
- $\ell$-isogénies;
-\item\label{pro:par:fun} pour tout point~$P \in E[\ell^k]$,
-les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de même type
-(ascendantes, descendantes, ou horizontales de même direction);
-\item\label{pro:par:asc} si $P \in E[\ell]$ et $P' \in E'[\ell]$ sont tous les 
-deux des points générateurs d'isogénies ascendantes, ou horizontales de même 
-direction alors $E/\langle P \rangle$ et~$E'/\langle P' \rangle$ sont encore $r$-isogènes.
-\end{enumerate}
-\end{prop}
-
-\begin{proof}
-Les points (1) et (2) découlent de la proposition \ref{pro:mat:fro} et du fait que pour $\phi$ isogénie rationnelle de degré $r$ premier avec $\ell$ on a un isomorphisme de modules de Tate qui commute avec le Frobenius. Pour le point (3) il suffit de remarquer qu'il existe un unique sous-groupe d'ordre $\ell$ qui génère soit une isogénie ascendante soit une isogénie de direction fixée, ainsi on doit avoir $\langle P' \rangle=\langle \phi(P) \rangle$.
-
-\end{proof}
-Le troisième point de cette proposition nous permet de réduire le problème du calcul de la $r$-isogénie entre deux courbes elliptiques au même problème pour deux courbes situées sur le cratère du volcan de $\ell$-isogénies.
 
 Voyons tout d'abord comment déterminer à l'aide d'une base horizontale les isogénies descendantes d'une courbe située sur le cratère.
 
@@ -4139,7 +4123,12 @@ Il est porté à l'attention du lecteur qu'un point horizontal est aussi un poin
 
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:par:hor:con} Construction d'un point partiellement horizontal à partir d'un point $P \in E_s$ d'ordre $2^3$ tel que $[2]P$ soit horizontal de direction $\color{blue}{\mu}$ et $\psi:E_s \rightarrow E$ une $2$-isogénie descendante. L'isogénie de noyau $\langle P \rangle$ est représentée en bleu sur le dessin de gauche, celle de noyau $\langle \psi(P) \rangle$ est représentée sur le dessin de droite.}
+\caption{ \label{fig:par:hor:con} Construction d'un point partiellement 
+horizontal à partir d'un point $P \in E_s$ d'ordre $2^3$ tel que $[2]P$ soit 
+horizontal de direction $\color{blue}{\mu}$ et $\psi:E_s \rightarrow E$ une 
+$2$-isogénie descendante. L'isogénie de noyau $\langle P \rangle$ est 
+représentée en bleu sur le dessin de gauche, celle de noyau $\langle \psi(P) 
+\rangle$ est représentée sur le dessin de droite.}
 \end{figure}
 
 On voit sur la figure~\ref{fig:par:hor:con} la construction d'un point 
@@ -4154,10 +4143,14 @@ figure de droite est représenté l'isogénie de noyau $\langle R \rangle$.
 
 \begin{prop}
 \label{pro:elk:par:hor}
-Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que $[\ell^i]P$ soit horizontal de direction $\lambda$, $\varphi:E \mapsto E_i$ une isogénie descendante de degré $\ell^i$, on note $P'=\varphi(P)$, alors:
+Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que 
+$[\ell^i]P$ soit horizontal de direction $\lambda$, $\varphi:E \mapsto E_i$ une
+isogénie descendante de degré $\ell^i$, on note $P'=\varphi(P)$, alors:
 \begin{enumerate}
-\item  $\langle [\ell^{k-i}]P' \rangle$ est le noyau d'une isogénie montante de degré $\ell^{i}$ duale de $\varphi$ notée $\widehat{\varphi}$, 
-\item  $\langle \widehat{\varphi}(P') \rangle$ est le noyau d'une isogénie horizontale de direction $\lambda$ de degré $\ell^{k-i}$.  
+\item  $\langle [\ell^{k-i}]P' \rangle$ est le noyau d'une isogénie montante de
+degré $\ell^{i}$ duale de $\varphi$ notée $\widehat{\varphi}$, 
+\item  $\langle \widehat{\varphi}(P') \rangle$ est le noyau d'une isogénie 
+horizontale de direction $\lambda$ de degré $\ell^{k-i}$.  
 \end{enumerate}
 \end{prop}
 
@@ -4171,41 +4164,271 @@ noyau de $\widehat{\phi}$.
 Pour le point (2) il suffit d'écrire que $\widehat{\varphi}(P')=\widehat{\varphi}\circ \varphi (P)= [\ell^i] P$ on conclut alors à l'aide des hypothèses sur $P$.
 \end{proof}
 
-\todo{faire un beau dessin de correspondance}
-\begin{prop}
-\label{pro:par:hor:par}
-Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se
-situent à une profondeur $e$ du cratère (donc au niveau $h-e$), $P \in E,P' \in
-E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in 
-\langle P' \rangle$. 
+
+\subsection{Cas Atkin}
+Dans cette section on s'intéresse aux courbes situées sur un volcan de 
+$\ell$-isogénies dont le cratère est réduit à un point. Ce cas-là correspond 
+au cas Atkin et l'on dira que $\ell$ est un nombre premier d'Atkin pour une 
+courbe si l'on a un tel type de volcan de $\ell$-isogénies. On va donc étudier 
+dans cette partie les groupes de points de $E[\ell^{\infty}]$ que l'on peut 
+déterminer à l'aide de l'étude de l'action du Frobenius.
+\todo{Dire ce qu'est le cas Atkin et contextualiser toute cette partie...}
+\subsubsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
+\begin{prop}\label{pro:mat:fro:atk}
+Soit~$E$ une courbe elliptique ordinaire d'endomorphisme de Frobenius~$\pi$
+telle que le polynôme caractérisitque de $\pi$
+soit irréductible (non ramifié) dans $\mathbb{Z}_{\ell}$,
+ainsi le volcan de $\ell$-isogénies de $E$ de hauteur $h$ a un cratère réduit à
+un point. Il existe un unique $e \in [ 0, h]$ tel que $\pi|T_{\ell}(E)$ est 
+égale, sur~$\mathbb{Z}_{\ell}$, à la matrice 
+\begin{equation*}
+\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
+\end{matrix}\right ) \quad \text{avec }a,d \text{ premiers avec }\ell, \ell^{h} |a-d.
+\end{equation*}
+% where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
+De plus $e = 0$ si~$E$ se situe sur le cratère,
+sinon $e$~est la profondeur de~$E$ dans le volcan.
+On a soit $b$ et $c$ premiers avec $\ell$ soit l'un des deux est premier avec 
+$\ell$ et l'autre a sa valuation $\ell$-adique qui appartient à l'intervalle 
+$[2,2e]$. Lorsque $\ell=2$ et $e=0$ on a $2^{h} || a-d$.
+\todo{notations un peu perturbantes par rapport au cas Elkies, n'est-ce pas ?}
 \end{prop}
 
 \begin{proof}
-Par définition(~\ref{def:par:hor}) on peut construire $P$ et $P'$ à 
-partir de $R \in E_S$ et $R' \in E'_s$ tels que $[\ell^e]R$ et $[\ell^e]R'$ 
-soient des points horizontaux de même direction avec deux $\ell^e$-isogénies 
-$\psi:E_s \rightarrow E$ et $\psi':E'_s \rightarrow E'$ telles que $\psi(R)=P$ 
-et $\psi'(R')=P'$. On a tout d'abord $ \phi([\ell^{k-e}]P) \in \langle 
-[\ell^{k-e}]P' \rangle$  par la proposition~\ref{pro:par:iso}(2) car par la 
-proposition~\ref{pro:elk:par:hor}(1) on a $\ker(\widehat{\psi})= \langle 
-[\ell^{k-e}]P \rangle$ et $\ker(\widehat{\psi'})= \langle [\ell^{k-e}]P' 
-\rangle$. Ensuite on a $\langle [\ell^e]R \rangle = \langle 
-\widehat{\psi}(P) \rangle $ et $\langle [\ell^e]R' \rangle = \langle 
-\widehat{\psi'}(P') \rangle$ et donc les $\ell^{k}$-isogénies engendrées par 
-$P$ et $P'$ sont du même type: une composition d'une $\ell^e$ isogénie montante 
-et d'une $\ell^{k-e}$-isogénie horizontale de direction identique, donc par la 
-proposition~\ref{pro:par:iso}(2) on a $\phi(P) \in \langle P' \rangle$.
+Soit $E$ une courbe située au niveau $h-e$ du volcan de $\ell$-isogénies, alors
+comme les $\ell$-isogénies sont rationnelles, alors les $\ell^{h-e}$-isogénies 
+sont rationnelles, ainsi l'action du Frobenius sur une base de la 
+$\ell^{h-e}$-torsion est diagonale, mais comme le polynôme caractéristique de 
+$\pi$ est irréductible sur $\mathbb{Z}_{\ell}$ alors l'action du Frobenius doit
+être scalaire, ainsi on a $a=d \bmod \ell^{h-e}$.
+On a alors la matrice du Frobenius sur $\mathbb{Z}_{\ell}$ qui  
+\begin{itemize}
+\item lorsque $h-e=h$ est de la forme $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
+\end{smallmatrix}\right )$ avec $b \wedge \ell=1$ et $c \wedge \ell=1$. En 
+effet on a $\left(\frac{d_K}{\ell}\right)=\left(\frac{d_{\pi}/\ell^{2h}}{\ell}
+\right)$ or $\frac{d_{\pi}}{\ell^{2h}}=\frac{(a-d)^2}{\ell^{2h}}+4bc$ ainsi on 
+doit avoir $bc \wedge \ell=1$. Comme dans le cas $\ell=2$ on a $d_K=5 \bmod 8$ 
+alors on a $(\frac{a-d}{\ell^{h}})^2 \neq 0 \bmod 2$.
+\item lorsque $h-e \neq h$ est de la forme  $\left ( \begin{smallmatrix}a & 
+b\ell^{h-e}\\ c\ell^{h-e}  & d \end{smallmatrix}\right )$ avec soit $b, c$ 
+premiers avec $\ell$ soit $b$ ou $c$ premier avec $\ell$ l'autre ayant une 
+valuation $\ell$-adique comprise entre $2$ et $2e$. Ce second cas correspond au
+cas où l'on a un point de la base dans laquelle est exprimée l'action du 
+Frobenius qui est un générateur de l'unique $\ell$-isogénie montante, le plus 
+grand degré d'isogénie définie sur $\mathbb{F}_q$ ayant pour domaine $E$ étant 
+une $\ell^{h+e}$ on a alors le résultat. Comme vu précédemment on doit avoir 
+$\ell^{2h} | d_{\pi}=(a-d)^2+4bc\ell^{2h-2e}$, on a alors en particulier 
+$\ell^{2h-2e} | d_{\pi}$ et donc $\ell^{2h-2e} | (a-d)^2$.
+\end{itemize}
+On peut alors montrer matriciellement que le changement de base préserve les 
+propriétés énoncées. La conjugaison de la matrice $\left ( \begin{smallmatrix}a
+& b\ell^{h-e}\\c\ell^{h-e} & d \end{smallmatrix}\right )$ par~$\left ( 
+\begin{smallmatrix}1 & \beta \\0 & 1 \end{smallmatrix} \right )$ nous donne la
+matrice $\left ( \begin{smallmatrix}a + \beta (c\ell^{h-e}) & \ell^{h-e}(
+-\beta^2c + \beta(d-a)/\ell^{h-e} + b)\\c\ell^{h-e} & d - \beta c\ell^{h-e}
+\end{smallmatrix}\right )$ pour laquelle les coefficients diagonaux sont encore
+égaux modulo $\ell^{h-e}$. Le coefficient $(-\beta^2c + \beta(d-a)/
+\ell^{h-e} + b)$ peut être divisible par $\ell$ seulement si $\frac{d-a}{\ell^{h-e}}+4bc=
+d_{\pi}/{\ell^{2h-2e}}$ est un résidu quadratique dans $\mathbb{Z}_{\ell}$. 
+La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix} \gamma & 0 \\0 & 1
+\end{smallmatrix} \right )$ avec $\gamma \wedge \ell=1$  a pour résultat la 
+matrice $\left ( \begin{smallmatrix}a  & b\gamma^{-1} \ell^{h-e} \\c \gamma 
+\ell^{h-e} & d \end{smallmatrix}\right )$.
 \end{proof}
 
-Ainsi on est capable à l'aide de bases horizontales et d'isogénies montantes de
-déterminer une correspondance entre deux groupes cycliques d'ordre $\ell^k$ de 
-courbes $r$-isogénes qui respectent l'action de la $r$-isogénie et qui ne se 
-situent pas forcément sur le cratère du volcan de $\ell$-isogénies. 
 
-La différence entre des points horizontaux $P_{\lambda}, Q_{\mu} \in E_s$ d'ordre $\ell^k$ et des points partiellement horizontaux $R_{\lambda}, R_{\mu} \in E$ d'ordre $\ell^k$ de profondeur $e>0$ de direction opposées c'est que l'on a $\langle R_{\lambda}, R_{\mu} \rangle \neq E[\ell^k]$ (en particulier$\langle [\ell^{k-e}]R_{\lambda} \rangle = \langle [\ell^{k-e}]R_{\mu} \rangle$) alors que pour deux points horizontaux de direction opposées on avait $E_s[\ell^k]= \langle P_{\lambda}, Q_{\mu} \rangle $. 
+\todo{fixer le problème de profondeur et de hauteur}
+
+Maintenant nous allons voir quelles informations on peut tirer de l'étude de 
+l'action du Frobenius. Vu que l'on ne peut comme dans le cas Elkies distinguer 
+deux sous-groupes cycliques de la $\ell$-torsion, on va voir quelles
+informations on peut tirer lorsque l'on fixe arbitrairement un point de la base
+de la $\ell$-torsion.
+
+\begin{prop}
+\label{pro:atk:equi}
+Soient $P,R,R'$ trois points de $E$ située au niveau du cratère tels que $\langle 
+P,R \rangle = \langle P,R' \rangle= E[\ell^{h+i}]$ alors $\pi(P,R)=\pi(P,R') $ si et seulement
+si $[\ell^{h}]R=[\ell^{h}]R'$.
+\end{prop}
+
+\begin{proof}
+Montrons tout d'abord le sens direct.
+Soient $R,R'$ deux points tels que $\pi(P,R)=\pi(P,R')=\left ( 
+\begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d \end{smallmatrix}\right )$ 
+alors cette égalité nous donne:
+ $\pi(P)=[a]P+[c\ell^{h}]R=[a]P+[c\ell^{h}]R'$, de
+cette égalité on déduit avec $c \wedge \ell = 1$ que $[\ell^{h}]R=[\ell^{h}]R'$
+ce qui permet de conclure pour ce sens de l'équivalence.
+
+Matriciellement on prouve que $[\ell^{h}]R=[\ell^{h}]R' \Rightarrow 
+\pi(P,R)=\pi(P,R')$ en voyant que la conjugaison de la 
+matrice $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & k' \ell^i \\
+0 & 1 + k \ell^i \end{smallmatrix} \right )$  laisse la matrice invariante 
+modulo $\ell^{h+i}$.
+\end{proof}
+
+\begin{rem}
+Ce résultat ne peut se généraliser aux niveaux inférieurs du volcan car pour 
+les niveaux inférieurs du volcan de $\ell$-isogénies on a la possibilité 
+d'avoir $v_{\ell}(c)$ ou $v_{\ell}(b)$ qui appartient à $[2,2e]$ ce qui fait 
+que l'implication $\pi(P,R)=\pi(P,R') \Rightarrow [\ell^{h-e}]R=[\ell^{h-e}]R'$ n'est plus 
+assurée on peut seulement montrer que $\pi(P,R)=\pi(P,R') \Rightarrow 
+[\ell^{h+e}]R=[\ell^{h+e}]R'$.
+\end{rem}
+
+Dés lors on va se concentrer à l'étude des points situés sur une courbe qui se 
+situe sur le cratère.
+\todo{Dire que l'on peut se passer de l'étude pour les courbes en-dessous du 
+cratère car on sait monter dans le volcan...}
+
+\begin{prop}
+\label{pro:cla:fro:mat}
+Soient $P,Q$ deux points définis sur une courbe elliptique $E$ située au niveau
+du cratère du volcan de $\ell$-isogénies tels que 
+$E[\ell^{h+i}]=\langle P,Q \rangle$. On pose $R=[x]P+[y]Q$ avec $y\wedge 
+\ell=1$, alors la matrice 
+\[
+\pi(P,R)=\left ( \begin{matrix}a & b\ell^{h} \\ c\ell^{h} & d
+\end{matrix}\right ) 
+\] représentant l'action du Frobenius dans la base $\langle P,R \rangle$ est
+conjuguée aux matrices de la forme:
+\[
+\pi(P,R')=\left ( \begin{matrix}a & b\ell^{h}\beta^{-1} \\ c\ell^{h}\beta & d
+\end{matrix}\right ) 
+\]
+si et seulement si $\beta \ell^{h}R= \ell^{h}R'$ avec $\beta \in \left( \mathbb{Z}/\ell^{i} \mathbb{Z} 
+\right)^{\times}$. De plus tous les points $S$ tels que la matrice $\pi(P,S)$ 
+est conjuguée à la matrice $\pi(P,R)$ engendrent tous la même $\ell^i$-isogénie
+de noyau $\langle [\ell^{h}]S \rangle$.
+\end{prop}
+
+\begin{proof}
+Par la propsition~\ref{pro:atk:equi} on a $\pi(P,R')=\pi(P,
+\beta R)$ si et seulement si $[\ell^{h}]\beta R=[\ell^{h}]R'$ or en 
+observant que la conjugaison de la matrice $\left( \begin{smallmatrix}a & b 
+\ell^h \\c  \ell^{h} & d \end{smallmatrix} \right)$ par $\left( 
+\begin{smallmatrix}1 & 0 \\0 & \beta \end{smallmatrix} \right)$ avec $\beta \in
+\left( \mathbb{Z}/\ell^{i} \mathbb{Z}\right)^*$ nous donne une matrice de la 
+forme $\left( \begin{smallmatrix}a & b \ell^h \beta \\c \ell^{h} \beta^{-1} &
+ d \end{smallmatrix} \right)$ on a bien $\pi(P,\beta R)=\left( 
+\begin{smallmatrix}a & b \ell^h \beta \\c \ell^{h} \beta^{-1} & d 
+\end{smallmatrix} \right)$ ce qui nous donne le résultat.
+
+Montrons maintenant le second point. Soit $[\ell^{h}]([x]P+[y]Q)$ un point 
+d'ordre $\ell^i$ engendré par $R$, 
+le groupe $\langle [\ell^{h}]([x]P+[y]Q) \rangle$ engendré par ce point peut 
+aussi s'écrire:$\langle [xy^{-1}]([\ell^{h-e}]P)+ ([\ell^{h}]Q) \rangle$. De 
+même on peut écrire le groupe engendré par $[\ell^{h}]([x']P+[y']Q)$ comme 
+$\langle [x'y'^{-1}]([\ell^{h}]P)+ ([\ell^{h}]Q) \rangle$, ainsi on a 
+égalité des $\ell^i$-isogénies engendrées par $[\ell^{h}]([x']P+[y']Q)$ et 
+$[\ell^{h}]([x]P+[y]Q)$ si et seulement si $\ell^{h}xy^{-1}=\ell^{h}
+x'y'^{-1}\bmod \ell^{h+i}$. On voit donc que seul compte les valeurs de 
+$\ell^{h}x$ et $\ell^{h}y$ modulo $\ell^{h+i}$ pour la détermination de la 
+$\ell^i$-isogénie.
+
+Les seuls changements qui préservent la $\ell^i$-isogénie générée par 
+$R=[x]P+[y]Q$ sont les seuls changements qui préservent la valeur de 
+$\ell^{h}xy^{-1} \bmod \ell^{h+i}$ ce sont donc les changements de la forme 
+$[x]P+[y]Q \rightarrow [\beta x]P+[\beta y]Q$ avec $\beta \in \left( \mathbb{Z}
+/\ell^i\mathbb{Z} \right)^{\times}$. 
+\end{proof}
+
+Il est intéressant de noter que ce résultat nous permet de distinguer les 
+différents générateurs de la $\ell^i$-isogénie générée par le second point qui
+forme une base avec $P$. \todo{a re rédiger}
+
+%\begin{prop}
+%\label{pro:atk:inv:mat}
+%Soient $P,R,R'$ trois points de la courbe elliptique $E$ située au niveau $h-e$
+%du volcan de $\ell$-isogénies tels que $\langle P,R \rangle = \langle P,R' 
+%\rangle = E[\ell^{h-e+i}]$ et $\pi(P,R)=\pi(P,R')$ alors $R-R'$ est un point de 
+%$E[\ell^{h+e}]$.
+%\end{prop}
+%
+%\begin{proof}
+%On note $\pi(P,R)=\pi(P,R')= \left(  \begin{smallmatrix}a & b \ell^{h-e} \\ 
+%c\ell^{h-e}  & d \end{smallmatrix} \right)$. Ainsi si on exprime l'égalité de 
+%l'expression de $\pi(P)$ dans les deux bases on obtient:
+%\[
+%[c\ell^{h-e}](R-R')=0_{E}
+%\]
+%on a alors deux cas possibles soit $ \ell^{2e} || c $ soit $c \wedge \ell=1$.
+%Dans le premier cas on a bien $R-R'$ un point de  $E[\ell^{h+e}]$ et cela 
+%conclut la preuve pour ce cas, dans le second cas on a $R-R'$ un point de 
+%$E[\ell^{h-e}]$.
+%\end{proof}
 
 
-\subsection{Décomposition de la $\ell^k$ torsion sous l'action du Frobenius}
+
+Maintenant énonçons un résultat qui est une transposition de la 
+proposition~\ref{pro:par:iso} qui s'appliquait au cas Elkies.
+
+\begin{prop}\label{pro:par:iso:atk}
+Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
+\begin{enumerate}
+\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan de
+ $\ell$-isogénies,
+\item\label{pro:par:fun:atk} pour tout point~$P \in E[\ell^k]$,
+les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de
+même type (ascendantes, descendantes, ou horizontales de même direction),
+\item\label{pro:par:asc:atk} si $P \in E[\ell]$ et $P' \in E'[\ell]$ sont tous 
+les deux des points générateurs d'isogénies ascendantes alors $E/\langle P 
+\rangle$ et~$E'/\langle P' \rangle$ sont encore $r$-isogènes.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+La preuve est exactement la même que celle de la proposition~\ref{pro:par:iso}
+toutefois ici on fait référence à la proposition~\ref{pro:mat:fro:atk} pour la
+preuve.
+\end{proof}
+
+Ces résultats sur la détermination du second point ne necéssitent pas forcément
+la détermination complète du premier point de la base comme le montrent les 
+résultats suivants, cependant ces résultats ne seront pas exploités par la 
+suite.
+
+\begin{lem}
+\label{lem:fro:atk}
+Soient $P,R$ deux points de $E$ une courbe elliptique située au 
+niveau $h-e$ du volcan de $\ell$-isogénies tels que $\langle P,R \rangle= 
+E[\ell^{h-e+i}]$ alors $\pi(P+\gamma \ell^{i}R,R)=\pi(P,R)$.
+\end{lem}
+
+\begin{proof}
+La matrice $\left( \begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{smallmatrix} 
+\right)$ est invariante par action de la matrice $\left( 
+\begin{smallmatrix}1 & 0 \\\gamma\ell^{i}  & 1 \end{smallmatrix} 
+\right)$ modulo $\ell^{h-e+i}$.
+\end{proof}
+
+\begin{prop}
+Soient $P,P'$ deux points d'ordre $\ell^{h+i}$ de $E$ une courbe elliptique 
+située au niveau du cratère du volcan de $\ell$-isogénies tels que $[\ell^{h}]P=
+[\ell^{h}]P'$ alors pour deux points $R,R'$ tels que $\langle P, R \rangle = 
+\langle P', R' \rangle=E[\ell^{h+i}]$ et $\pi(P,R)=\pi(P',R')$ on a 
+$[\ell^{h}]R=[\ell^{h}]R'$.
+\end{prop}
+
+\begin{proof}
+Par le lemme~\ref{lem:fro:atk} on a $\pi(P',R')=\pi(P,R')$, l'égalité 
+$\pi(P,R')=\pi(P,R)$ permet de conclure à l'aide de la 
+proposition~\ref{pro:atk:equi}.
+\end{proof}
+
+
+\section{Calcul des directions dans le volcan de $\ell$-isogénies}
+\label{cha:con:poi}
+Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
+
+Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets présentés dans le chapitre \ref{cha:act:fro}. Sont aussi utilisés les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les extensions de corps de définies dans la définition \ref{def:tour-ell}.
+
+\subsection{Elkies}
+
+\subsubsection{Décomposition de la $\ell^k$ torsion sous l'action du Frobenius}
 \label{sub:classes}
 On va maintenant étudier la décomposition de la $\ell^k$-torsion en orbites 
 selon l'action du Frobenius, afin de pouvoir ultérieurement calculer toute la 
@@ -4388,400 +4611,6 @@ on peut toujours se ramener à la condition $\lambda \equiv \mu \equiv 1 \bmod 4
 en remplaçant le corps de base par une extension quadratique.
 
 
-
-\section{Cas Atkin}
-Dans cette section on s'intéresse aux courbes situées sur un volcan de 
-$\ell$-isogénies dont le cratère est réduit à un point. Ce cas-là correspond 
-au cas Atkin et l'on dira que $\ell$ est un nombre premier d'Atkin pour une 
-courbe si l'on a un tel type de volcan de $\ell$-isogénies. On va donc étudier 
-dans cette partie les groupes de points de $E[\ell^{\infty}]$ que l'on peut 
-déterminer à l'aide de l'étude de l'action du Frobenius.
-\todo{Dire ce qu'est le cas Atkin et contextualiser toute cette partie...}
-\subsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
-\begin{prop}\label{pro:mat:fro:atk}
-Soit~$E$ une courbe elliptique ordinaire d'endomorphisme de Frobenius~$\pi$
-telle que le polynôme caractérisitque de $\pi$
-soit irréductible (non ramifié) dans $\mathbb{Z}_{\ell}$,
-ainsi le volcan de $\ell$-isogénies de $E$ de hauteur $h$ a un cratère réduit à
-un point. Il existe un unique $e \in [ 0, h]$ tel que $\pi|T_{\ell}(E)$ est 
-égale, sur~$\mathbb{Z}_{\ell}$, à la matrice 
-\begin{equation*}
-\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-\end{matrix}\right ) \quad \text{avec }a,d \text{ premiers avec }\ell, \ell^{h} |a-d.
-\end{equation*}
-% where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
-De plus $e = 0$ si~$E$ se situe sur le cratère,
-sinon $e$~est la profondeur de~$E$ dans le volcan.
-On a soit $b$ et $c$ premiers avec $\ell$ soit l'un des deux est premier avec 
-$\ell$ et l'autre a sa valuation $\ell$-adique qui appartient à l'intervalle 
-$[2,2e]$. Lorsque $\ell=2$ et $e=0$ on a $2^{h} || a-d$.
-\todo{notations un peu perturbantes par rapport au cas Elkies, n'est-ce pas ?}
-\end{prop}
-
-\begin{proof}
-Soit $E$ une courbe située au niveau $h-e$ du volcan de $\ell$-isogénies, alors
-comme les $\ell$-isogénies sont rationnelles, alors les $\ell^{h-e}$-isogénies 
-sont rationnelles, ainsi l'action du Frobenius sur une base de la 
-$\ell^{h-e}$-torsion est diagonale, mais comme le polynôme caractéristique de 
-$\pi$ est irréductible sur $\mathbb{Z}_{\ell}$ alors l'action du Frobenius doit
-être scalaire, ainsi on a $a=d \bmod \ell^{h-e}$.
-On a alors la matrice du Frobenius sur $\mathbb{Z}_{\ell}$ qui  
-\begin{itemize}
-\item lorsque $h-e=h$ est de la forme $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
-\end{smallmatrix}\right )$ avec $b \wedge \ell=1$ et $c \wedge \ell=1$. En 
-effet on a $\left(\frac{d_K}{\ell}\right)=\left(\frac{d_{\pi}/\ell^{2h}}{\ell}
-\right)$ or $\frac{d_{\pi}}{\ell^{2h}}=\frac{(a-d)^2}{\ell^{2h}}+4bc$ ainsi on 
-doit avoir $bc \wedge \ell=1$. Comme dans le cas $\ell=2$ on a $d_K=5 \bmod 8$ 
-alors on a $(\frac{a-d}{\ell^{h}})^2 \neq 0 \bmod 2$.
-\item lorsque $h-e \neq h$ est de la forme  $\left ( \begin{smallmatrix}a & 
-b\ell^{h-e}\\ c\ell^{h-e}  & d \end{smallmatrix}\right )$ avec soit $b, c$ 
-premiers avec $\ell$ soit $b$ ou $c$ premier avec $\ell$ l'autre ayant une 
-valuation $\ell$-adique comprise entre $2$ et $2e$. Ce second cas correspond au
-cas où l'on a un point de la base dans laquelle est exprimée l'action du 
-Frobenius qui est un générateur de l'unique $\ell$-isogénie montante, le plus 
-grand degré d'isogénie définie sur $\mathbb{F}_q$ ayant pour domaine $E$ étant 
-une $\ell^{h+e}$ on a alors le résultat. Comme vu précédemment on doit avoir 
-$\ell^{2h} | d_{\pi}=(a-d)^2+4bc\ell^{2h-2e}$, on a alors en particulier 
-$\ell^{2h-2e} | d_{\pi}$ et donc $\ell^{2h-2e} | (a-d)^2$.
-\end{itemize}
-On peut alors montrer matriciellement que le changement de base préserve les 
-propriétés énoncées. La conjugaison de la matrice $\left ( \begin{smallmatrix}a
-& b\ell^{h-e}\\c\ell^{h-e} & d \end{smallmatrix}\right )$ par~$\left ( 
-\begin{smallmatrix}1 & \beta \\0 & 1 \end{smallmatrix} \right )$ nous donne la
-matrice $\left ( \begin{smallmatrix}a + \beta (c\ell^{h-e}) & \ell^{h-e}(
--\beta^2c + \beta(d-a)/\ell^{h-e} + b)\\c\ell^{h-e} & d - \beta c\ell^{h-e}
-\end{smallmatrix}\right )$ pour laquelle les coefficients diagonaux sont encore
-égaux modulo $\ell^{h-e}$. Le coefficient $(-\beta^2c + \beta(d-a)/
-\ell^{h-e} + b)$ peut être divisible par $\ell$ seulement si $\frac{d-a}{\ell^{h-e}}+4bc=
-d_{\pi}/{\ell^{2h-2e}}$ est un résidu quadratique dans $\mathbb{Z}_{\ell}$. 
-La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
-\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix} \gamma & 0 \\0 & 1
-\end{smallmatrix} \right )$ avec $\gamma \wedge \ell=1$  a pour résultat la 
-matrice $\left ( \begin{smallmatrix}a  & b\gamma^{-1} \ell^{h-e} \\c \gamma 
-\ell^{h-e} & d \end{smallmatrix}\right )$.
-\end{proof}
-
-
-\todo{fixer le problème de profondeur et de hauteur}
-
-Maintenant nous allons voir quelles informations on peut tirer de l'étude de 
-l'action du Frobenius. Vu que l'on ne peut comme dans le cas Elkies distinguer 
-deux sous-groupes cycliques de la $\ell$-torsion, on va voir quelles
-informations on peut tirer lorsque l'on fixe arbitrairement un point de la base
-de la $\ell$-torsion.
-
-\begin{prop}
-\label{pro:atk:equi}
-Soient $P,R,R'$ trois points de $E$ située au niveau du cratère tels que $\langle 
-P,R \rangle = \langle P,R' \rangle= E[\ell^{h+i}]$ alors $\pi(P,R)=\pi(P,R') $ si et seulement
-si $[\ell^{h}]R=[\ell^{h}]R'$.
-\end{prop}
-
-\begin{proof}
-Montrons tout d'abord le sens direct.
-Soient $R,R'$ deux points tels que $\pi(P,R)=\pi(P,R')=\left ( 
-\begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d \end{smallmatrix}\right )$ 
-alors cette égalité nous donne:
- $\pi(P)=[a]P+[c\ell^{h}]R=[a]P+[c\ell^{h}]R'$, de
-cette égalité on déduit avec $c \wedge \ell = 1$ que $[\ell^{h}]R=[\ell^{h}]R'$
-ce qui permet de conclure pour ce sens de l'équivalence.
-
-Matriciellement on prouve que $[\ell^{h}]R=[\ell^{h}]R' \Rightarrow 
-\pi(P,R)=\pi(P,R')$ en voyant que la conjugaison de la 
-matrice $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
-\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & k' \ell^i \\
-0 & 1 + k \ell^i \end{smallmatrix} \right )$  laisse la matrice invariante 
-modulo $\ell^{h+i}$.
-\end{proof}
-
-\begin{rem}
-Ce résultat ne peut se généraliser aux niveaux inférieurs du volcan car pour 
-les niveaux inférieurs du volcan de $\ell$-isogénies on a la possibilité 
-d'avoir $v_{\ell}(c)$ ou $v_{\ell}(b)$ qui appartient à $[2,2e]$ ce qui fait 
-que l'implication $\pi(P,R)=\pi(P,R') \Rightarrow [\ell^{h-e}]R=[\ell^{h-e}]R'$ n'est plus 
-assurée on peut seulement montrer que $\pi(P,R)=\pi(P,R') \Rightarrow 
-[\ell^{h+e}]R=[\ell^{h+e}]R'$.
-\end{rem}
-
-Dés lors on va se concentrer à l'étude des points situés sur une courbe qui se 
-situe sur le cratère.
-
-\begin{prop}
-\label{pro:cla:fro:mat}
-Soient $P,Q$ deux points définis sur une courbe elliptique $E$ située au niveau
-du cratère du volcan de $\ell$-isogénies tels que 
-$E[\ell^{h+i}]=\langle P,Q \rangle$. On pose $R=[x]P+[y]Q$ avec $y\wedge 
-\ell=1$, alors la matrice 
-\[
-\pi(P,R)=\left ( \begin{matrix}a & b\ell^{h} \\ c\ell^{h} & d
-\end{matrix}\right ) 
-\] représentant l'action du Frobenius dans la base $\langle P,R \rangle$ est
-conjuguée aux matrices de la forme:
-\[
-\pi(P,R')=\left ( \begin{matrix}a & b\ell^{h}\beta^{-1} \\ c\ell^{h}\beta & d
-\end{matrix}\right ) 
-\]
-si et seulement si $\beta \ell^{h}R= \ell^{h}R'$ avec $\beta \in \left( \mathbb{Z}/\ell^{i} \mathbb{Z} 
-\right)^{\times}$. De plus tous les points $S$ tels que la matrice $\pi(P,S)$ 
-est conjuguée à la matrice $\pi(P,R)$ engendrent tous la même $\ell^i$-isogénie
-de noyau $\langle [\ell^{h}]S \rangle$.
-\end{prop}
-
-\begin{proof}
-Par la propsition~\ref{pro:atk:equi} on a $\pi(P,R')=\pi(P,
-\beta R)$ si et seulement si $[\ell^{h}]\beta R=[\ell^{h}]R'$ or en 
-observant que la conjugaison de la matrice $\left( \begin{smallmatrix}a & b 
-\ell^h \\c  \ell^{h} & d \end{smallmatrix} \right)$ par $\left( 
-\begin{smallmatrix}1 & 0 \\0 & \beta \end{smallmatrix} \right)$ avec $\beta \in
-\left( \mathbb{Z}/\ell^{i} \mathbb{Z}\right)^*$ nous donne une matrice de la 
-forme $\left( \begin{smallmatrix}a & b \ell^h \beta \\c \ell^{h} \beta^{-1} &
- d \end{smallmatrix} \right)$ on a bien $\pi(P,\beta R)=\left( 
-\begin{smallmatrix}a & b \ell^h \beta \\c \ell^{h} \beta^{-1} & d 
-\end{smallmatrix} \right)$ ce qui nous donne le résultat.
-
-Montrons maintenant le second point. Soit $[\ell^{h}]([x]P+[y]Q)$ un point 
-d'ordre $\ell^i$ engendré par $R$, 
-le groupe $\langle [\ell^{h}]([x]P+[y]Q) \rangle$ engendré par ce point peut 
-aussi s'écrire:$\langle [xy^{-1}]([\ell^{h-e}]P)+ ([\ell^{h}]Q) \rangle$. De 
-même on peut écrire le groupe engendré par $[\ell^{h}]([x']P+[y']Q)$ comme 
-$\langle [x'y'^{-1}]([\ell^{h}]P)+ ([\ell^{h}]Q) \rangle$, ainsi on a 
-égalité des $\ell^i$-isogénies engendrées par $[\ell^{h}]([x']P+[y']Q)$ et 
-$[\ell^{h}]([x]P+[y]Q)$ si et seulement si $\ell^{h}xy^{-1}=\ell^{h}
-x'y'^{-1}\bmod \ell^{h+i}$. On voit donc que seul compte les valeurs de 
-$\ell^{h}x$ et $\ell^{h}y$ modulo $\ell^{h+i}$ pour la détermination de la 
-$\ell^i$-isogénie.
-
-Les seuls changements qui préservent la $\ell^i$-isogénie générée par 
-$R=[x]P+[y]Q$ sont les seuls changements qui préservent la valeur de 
-$\ell^{h}xy^{-1} \bmod \ell^{h+i}$ ce sont donc les changements de la forme 
-$[x]P+[y]Q \rightarrow [\beta x]P+[\beta y]Q$ avec $\beta \in \left( \mathbb{Z}
-/\ell^i\mathbb{Z} \right)^{\times}$. 
-\end{proof}
-
-Il est intéressant de noter que ce résultat nous permet de distinguer les 
-différents générateurs de la $\ell^i$-isogénie générée par le second point qui
-forme une base avec $P$. \todo{a re rédiger}
-
-Voyons maintenant un résultat qui est une conséquence de la 
-proposition~\ref{pro:atk:equi} et qui étudie donc l'invariance des groupes 
-de point de $E[\ell^{\infty}]$ déterminé par l'action du Frobenius 
-par rapport aux actions de $r$-isogénies rationnelles avec $r$ premier avec 
-$\ell$.
-
-\begin{cor}\label{cor:atk:ess}
-Soit $\phi:E \rightarrow E'$ une $r$-isogénie avec $r \wedge \ell=1$ et $E$ et 
-$E'$ deux courbes situées au niveau du cratère du volcan de $\ell$-isogénies, 
-soient $P \in E$ et $P' \in E'$ deux points d'ordre $\ell^k$ avec $k>h$ tels 
-que $P'=\phi(P)$ alors pour deux base $(P,Q),(P',Q')$ de $E[\ell^k]$ et 
-$E'[\ell^k]$ telles que $\pi(P,Q)=\pi(P',Q')$ on a $[\ell^h]Q'=[\ell^h]\phi(Q)$. 
-\end{cor}
-
-\begin{proof}
-Comme le Frobenius commute avec $\phi$ alors on a $\pi(P,Q)=\pi(\phi(P),\phi(Q))$
-or comme $P'=\phi(P)$ pour $Q'$ tel que $\pi(P,Q)=\pi(P',Q')$ on a l'égalité 
-$\pi(P',Q')=\pi(\phi(P),\phi(Q))$ et la proposition~\ref{pro:atk:equi} nous 
-permet de conclure.
-\end{proof}
-
-%\begin{prop}
-%\label{pro:atk:inv:mat}
-%Soient $P,R,R'$ trois points de la courbe elliptique $E$ située au niveau $h-e$
-%du volcan de $\ell$-isogénies tels que $\langle P,R \rangle = \langle P,R' 
-%\rangle = E[\ell^{h-e+i}]$ et $\pi(P,R)=\pi(P,R')$ alors $R-R'$ est un point de 
-%$E[\ell^{h+e}]$.
-%\end{prop}
-%
-%\begin{proof}
-%On note $\pi(P,R)=\pi(P,R')= \left(  \begin{smallmatrix}a & b \ell^{h-e} \\ 
-%c\ell^{h-e}  & d \end{smallmatrix} \right)$. Ainsi si on exprime l'égalité de 
-%l'expression de $\pi(P)$ dans les deux bases on obtient:
-%\[
-%[c\ell^{h-e}](R-R')=0_{E}
-%\]
-%on a alors deux cas possibles soit $ \ell^{2e} || c $ soit $c \wedge \ell=1$.
-%Dans le premier cas on a bien $R-R'$ un point de  $E[\ell^{h+e}]$ et cela 
-%conclut la preuve pour ce cas, dans le second cas on a $R-R'$ un point de 
-%$E[\ell^{h-e}]$.
-%\end{proof}
-
-
-
-Maintenant énonçons un résultat qui est une transposition de la 
-proposition~\ref{pro:par:iso} qui s'appliquait au cas Elkies.
-
-\begin{prop}\label{pro:par:iso:atk}
-Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
-\begin{enumerate}
-\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan de
- $\ell$-isogénies,
-\item\label{pro:par:fun:atk} pour tout point~$P \in E[\ell^k]$,
-les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de
-même type (ascendantes, descendantes, ou horizontales de même direction),
-\item\label{pro:par:asc:atk} si $P \in E[\ell]$ et $P' \in E'[\ell]$ sont tous 
-les deux des points générateurs d'isogénies ascendantes alors $E/\langle P 
-\rangle$ et~$E'/\langle P' \rangle$ sont encore $r$-isogènes.
-\end{enumerate}
-\end{prop}
-
-\begin{proof}
-La preuve est exactement la même que celle de la proposition~\ref{pro:par:iso}
-toutefois ici on fait référence à la proposition~\ref{pro:mat:fro:atk} pour la
-preuve.
-\end{proof}
-
-Ces résultats sur la détermination du second point ne necéssitent pas forcément
-la détermination complète du premier point de la base comme le montrent les 
-résultats suivants, cependant ces résultats ne seront pas exploités par la 
-suite.
-
-\begin{lem}
-\label{lem:fro:atk}
-Soient $P,R$ deux points de $E$ une courbe elliptique située au 
-niveau $h-e$ du volcan de $\ell$-isogénies tels que $\langle P,R \rangle= 
-E[\ell^{h-e+i}]$ alors $\pi(P+\gamma \ell^{i}R,R)=\pi(P,R)$.
-\end{lem}
-
-\begin{proof}
-La matrice $\left( \begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{smallmatrix} 
-\right)$ est invariante par action de la matrice $\left( 
-\begin{smallmatrix}1 & 0 \\\gamma\ell^{i}  & 1 \end{smallmatrix} 
-\right)$ modulo $\ell^{h-e+i}$.
-\end{proof}
-
-\begin{prop}
-Soient $P,P'$ deux points d'ordre $\ell^{h+i}$ de $E$ une courbe elliptique 
-située au niveau du cratère du volcan de $\ell$-isogénies tels que $[\ell^{h}]P=
-[\ell^{h}]P'$ alors pour deux points $R,R'$ tels que $\langle P, R \rangle = 
-\langle P', R' \rangle=E[\ell^{h+i}]$ et $\pi(P,R)=\pi(P',R')$ on a 
-$[\ell^{h}]R=[\ell^{h}]R'$.
-\end{prop}
-
-\begin{proof}
-Par le lemme~\ref{lem:fro:atk} on a $\pi(P',R')=\pi(P,R')$, l'égalité 
-$\pi(P,R')=\pi(P,R)$ permet de conclure à l'aide de la 
-proposition~\ref{pro:atk:equi}.
-\end{proof}
-
-
-
-\subsection{Décomposition de la $\ell^{h+i}$ torsion sous l'action du Frobenius}
-
-Dans cette sous-section on va voir comment se décompose l'ensemble des 
-points d'ordre $\ell^{h+i}$ sous l'action du Frobenius dans le cas Atkin pour 
-une courbe se situant sur le cratère.
-\begin{prop}
-Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
-volcan de $\ell$-isogénies. On note~$d_1$ le degré de la plus 
-petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell]\subset E(F)$. 
-On  a alors l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
-et $d_1$ qui divise~$(\ell-1)$.
-\end{prop}
-
-\begin{proof}
-On procède de manière similaire à la preuve de la proposition~\ref{pro:clas:fro}.
-Le degré ~$d_1$ correspond à l'ordre de la matrice~$\pi|E[\ell]$.
-On obtient donc le résultat en utilisant le fait que~$a \cdot d = q$. 
-\end{proof}
-
-On met en avant un résultat qui est une conséquence du 
-chapitre~\ref{cha:volc:iso}. 
-
-\begin{prop}
-\label{pro:atk:d1}
-Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
-volcan de $\ell$-isogénies,
-\begin{itemize}
-\item pour $\ell \neq 2$ on définit $F/\mathbb{F}_q$ la 
-plus petite extension de corps de $\mathbb{F}_q$ de degré $d_1$ telle que 
-$E[\ell] \subset E(F)$,
-\item pour $\ell=2$ on définit $F/\mathbb{F}_q$ la 
-plus petite extension de corps de $\mathbb{F}_q$ de degré $d_2 \in {1,2}$ telle
-que $E[4] \subset E(F)$,
-\end{itemize}
-on a alors:
-\[
-E(F)[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z} 
-\]
-avec pour $\ell \neq 2$ $\beta \in [1,h]$ et pour $\ell=2$ $\beta \in [2,h]$. De 
-plus $\beta=h$ la hauteur du volcan sur $F$ si et seulement si le volcan est \emph{régulier}.
-\end{prop}
-
-\begin{proof}
-Voir \cite[§5.3.1]{Ionica2010}.
-\end{proof}
-
-Dorénavant on va garder cette notation de $\beta$ représentant la plus grande 
-valuation $\ell$-adique de la torsion rationnelle sur $F$ la plus petite 
-extension de  $\mathbb{F}_q$ telle que $E[\ell] \subset E(F)$ lorsque $\ell 
-\neq 2$ et $E[4] \subset E(F)$ lorsque $\ell = 2$.
-
-\begin{prop}\label{pro:clas:fro:atk}
-Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
-volcan de $\ell$-isogénies. En reprenant les notations de la 
-proposition~\ref{pro:atk:d1} pour tout~$k$, on note~$d_k$ le degré de la plus 
-petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell^k]\subset E(F)$. 
-On  a alors:
-\begin{enumerate}
-\item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
-et $d_1$ qui divise~$(\ell-1)$.
-\item Si $\ell$~est impair alors pour tout $k > 1$,
-$ d_k = \ell^{\max (0, k - \beta)}d_1$.
-% $d_k = \mathrm {lcm} (d_1, \ell^{k-\beta})$.
-\item Si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k > 2$,
-% $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
-$d_k = \ell^{\max (0, k - \beta)}d_2$.
-\item Si $\ell \neq 2$ pour $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
-\item Si $\ell = 2$ pour $[F:\mathbb{F}_q]=d_2\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
-%\item\label{prop:classes:count} Le groupe~$E[\ell^k]$ contient au plus
-%$k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}_{q^{d_1}}$.
-\end{enumerate}
-\end{prop}
-
-\begin{proof}
-Le premier résultat a déjà été montré dans la proposition~\ref{pro:atk:d1}.
-Les résultats suivants viennent du fait que pour augmenter de $1$ la hauteur du
-volcan de $\ell$-isogénies on est obligé de travailler avec une extension 
-$\ell$-adique par \cite[Lemme 6.5.2]{Fouquet01}. Dés lors que l'on augmente de 
-$1$ la hauteur du volcan en travaillant sur $\mathsf{F}_{\ell}$ l'extensiont de
-degré $\ell$ de $\mathsf{F}$ on a pour $E[\ell^{\infty}](\mathsf{F})= \mathbb{Z}/
-\ell^{n_1} \mathbb{Z} \times \mathbb{Z}/\ell^{n_2} \mathbb{Z}$, $E[\ell^{\infty}
-](\mathsf{F}_{\ell})= \mathbb{Z}/\ell^{n_1+1} \mathbb{Z} \times \mathbb{Z}/\ell^{n_2+1} 
-\mathbb{Z}$ comme montré dans \cite[§5.3.1]{Ionica2010}.
-\end{proof}
-
-\begin{nota}
-On note par $\mathsf{F}_i$ la plus petite extension de corps de 
-$\mathbb{F}_q$ de degré $d_i$ avec $d_i$ défini comme dans la 
-proposition~\ref{pro:clas:fro:atk}.
-\end{nota}
-
-Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité.
-
-\begin{cor}
-Soit $P$ un point d'ordre $\ell^{\beta+i}$ de la courbe elliptique $E$ située 
-au niveau du cratère du volcan de $\ell$-isogénies telle que $E(\mathsf{F}_
-{1})[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times 
-\mathbb{Z}/ \ell^{\beta}\mathbb{Z}$, alors la taille de l'orbite de $P$ selon 
-l'action de $\mathsf{Gal}(\mathsf{F}_{i+1}:\mathsf{F}_{1})$ est 
-$\ell^i$. 
-\end{cor}
-
-\begin{cor} \label{cor:atk:orb:rep}
-Soit $E$ une courbe elliptique située au niveau du cratère du volcan de 
-$\ell$-isogénies telle que $E(\mathsf{F}_1)[\ell^{\infty}] \simeq 
-\mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$,
-alors il y a $\ell^{2\beta + i -2}(\ell+1)$ classes de conjugaison de points 
-d'ordre $\ell^{\beta+i}$ selon l'action de $\mathsf{Gal}(
-\mathsf{F}_{i+1}:\mathsf{F}_{1})$.
-\end{cor}
-
-\chapter{Calcul de sous groupes cycliques de la $\ell$-torsion invariants selon la r-isogénie}
-\label{cha:con:poi}
-Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
-
-Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets présentés dans le chapitre \ref{cha:act:fro}. Sont aussi utilisés les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les extensions de corps de définies dans la définition \ref{def:tour-ell}.
-
-\section{Elkies}
 On travaille avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, on se place dans le contexte de l'algorithme de Couveignes et on veut calculer une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. En particulier on ne connaît pas la cardinalité de la courbe. On verra dans un autre chapitre~\ref{cha:alg:fin} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu à la proposition \ref{pro:dia:hor} que l'on devait avoir $k \geqslant h+1$, on rappelle aussi que $\beta$ représente la plus grande valuation de la $\ell$-torsion rationnelle pour une courbe située sur le sommet du cratère du volcan de $\ell$-isogénies(voir sous section \ref{sub:classes}).
 
 Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère (proposition \ref{pro:mat:fro}), le calcul d'une base de la $\ell^k$ torsion diffère donc dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
@@ -5284,9 +5113,121 @@ Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne
 \end{rem}
 
 
-\section{Atkin}
+\subsection{Atkin}
 
 Cela va être super court.
+
+\subsubsection{Décomposition de la $\ell^{h+i}$ torsion sous l'action du Frobenius}
+
+Dans cette sous-section on va voir comment se décompose l'ensemble des 
+points d'ordre $\ell^{h+i}$ sous l'action du Frobenius dans le cas Atkin pour 
+une courbe se situant sur le cratère.
+\begin{prop}
+Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
+volcan de $\ell$-isogénies. On note~$d_1$ le degré de la plus 
+petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell]\subset E(F)$. 
+On  a alors l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
+et $d_1$ qui divise~$(\ell-1)$.
+\end{prop}
+
+\begin{proof}
+On procède de manière similaire à la preuve de la proposition~\ref{pro:clas:fro}.
+Le degré ~$d_1$ correspond à l'ordre de la matrice~$\pi|E[\ell]$.
+On obtient donc le résultat en utilisant le fait que~$a \cdot d = q$. 
+\end{proof}
+
+On met en avant un résultat qui est une conséquence du 
+chapitre~\ref{cha:volc:iso}. 
+
+\begin{prop}
+\label{pro:atk:d1}
+Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
+volcan de $\ell$-isogénies,
+\begin{itemize}
+\item pour $\ell \neq 2$ on définit $F/\mathbb{F}_q$ la 
+plus petite extension de corps de $\mathbb{F}_q$ de degré $d_1$ telle que 
+$E[\ell] \subset E(F)$,
+\item pour $\ell=2$ on définit $F/\mathbb{F}_q$ la 
+plus petite extension de corps de $\mathbb{F}_q$ de degré $d_2 \in {1,2}$ telle
+que $E[4] \subset E(F)$,
+\end{itemize}
+on a alors:
+\[
+E(F)[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z} 
+\]
+avec pour $\ell \neq 2$ $\beta \in [1,h]$ et pour $\ell=2$ $\beta \in [2,h]$. De 
+plus $\beta=h$ la hauteur du volcan sur $F$ si et seulement si le volcan est \emph{régulier}.
+\end{prop}
+
+\begin{proof}
+Voir \cite[§5.3.1]{Ionica2010}.
+\end{proof}
+
+Dorénavant on va garder cette notation de $\beta$ représentant la plus grande 
+valuation $\ell$-adique de la torsion rationnelle sur $F$ la plus petite 
+extension de  $\mathbb{F}_q$ telle que $E[\ell] \subset E(F)$ lorsque $\ell 
+\neq 2$ et $E[4] \subset E(F)$ lorsque $\ell = 2$.
+
+\begin{prop}\label{pro:clas:fro:atk}
+Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
+volcan de $\ell$-isogénies. En reprenant les notations de la 
+proposition~\ref{pro:atk:d1} pour tout~$k$, on note~$d_k$ le degré de la plus 
+petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell^k]\subset E(F)$. 
+On  a alors:
+\begin{enumerate}
+\item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
+et $d_1$ qui divise~$(\ell-1)$.
+\item Si $\ell$~est impair alors pour tout $k > 1$,
+$ d_k = \ell^{\max (0, k - \beta)}d_1$.
+% $d_k = \mathrm {lcm} (d_1, \ell^{k-\beta})$.
+\item Si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k > 2$,
+% $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
+$d_k = \ell^{\max (0, k - \beta)}d_2$.
+\item Si $\ell \neq 2$ pour $[F:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
+\item Si $\ell = 2$ pour $[F:\mathbb{F}_q]=d_2\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
+%\item\label{prop:classes:count} Le groupe~$E[\ell^k]$ contient au plus
+%$k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}_{q^{d_1}}$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Le premier résultat a déjà été montré dans la proposition~\ref{pro:atk:d1}.
+Les résultats suivants viennent du fait que pour augmenter de $1$ la hauteur du
+volcan de $\ell$-isogénies on est obligé de travailler avec une extension 
+$\ell$-adique par \cite[Lemme 6.5.2]{Fouquet01}. Dés lors que l'on augmente de 
+$1$ la hauteur du volcan en travaillant sur $\mathsf{F}_{\ell}$ l'extensiont de
+degré $\ell$ de $\mathsf{F}$ on a pour $E[\ell^{\infty}](\mathsf{F})= \mathbb{Z}/
+\ell^{n_1} \mathbb{Z} \times \mathbb{Z}/\ell^{n_2} \mathbb{Z}$, $E[\ell^{\infty}
+](\mathsf{F}_{\ell})= \mathbb{Z}/\ell^{n_1+1} \mathbb{Z} \times \mathbb{Z}/\ell^{n_2+1} 
+\mathbb{Z}$ comme montré dans \cite[§5.3.1]{Ionica2010}.
+\end{proof}
+
+\begin{nota}
+On note par $\mathsf{F}_i$ la plus petite extension de corps de 
+$\mathbb{F}_q$ de degré $d_i$ avec $d_i$ défini comme dans la 
+proposition~\ref{pro:clas:fro:atk}.
+\end{nota}
+
+Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité.
+
+\begin{cor}
+Soit $P$ un point d'ordre $\ell^{\beta+i}$ de la courbe elliptique $E$ située 
+au niveau du cratère du volcan de $\ell$-isogénies telle que $E(\mathsf{F}_
+{1})[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times 
+\mathbb{Z}/ \ell^{\beta}\mathbb{Z}$, alors la taille de l'orbite de $P$ selon 
+l'action de $\mathsf{Gal}(\mathsf{F}_{i+1}:\mathsf{F}_{1})$ est 
+$\ell^i$. 
+\end{cor}
+
+\begin{cor} \label{cor:atk:orb:rep}
+Soit $E$ une courbe elliptique située au niveau du cratère du volcan de 
+$\ell$-isogénies telle que $E(\mathsf{F}_1)[\ell^{\infty}] \simeq 
+\mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$,
+alors il y a $\ell^{2\beta + i -2}(\ell+1)$ classes de conjugaison de points 
+d'ordre $\ell^{\beta+i}$ selon l'action de $\mathsf{Gal}(
+\mathsf{F}_{i+1}:\mathsf{F}_{1})$.
+\end{cor}
+
 
 \begin{prop}
 Soient $P,P'$ deux points de la courbe elliptique $E$ située au niveau du 
@@ -5366,6 +5307,63 @@ On rappelle que l'on se place dans le contexte suivant:
 Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
 
 \section{Cas Elkies}
+
+\todo{Luca a raison là on s'éloigne du cadre que l'on s'était fixé}
+La proposition suivante nous permet de faire le lien entre les bases horizontales et le contexte de l'algorithme de Couveignes~\cite{Couveignes96}.
+
+\begin{prop}\label{pro:par:iso}
+Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
+\begin{enumerate}
+\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan de
+ $\ell$-isogénies;
+\item\label{pro:par:fun} pour tout point~$P \in E[\ell^k]$,
+les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de même type
+(ascendantes, descendantes, ou horizontales de même direction);
+\item\label{pro:par:asc} si $P \in E[\ell]$ et $P' \in E'[\ell]$ sont tous les 
+deux des points générateurs d'isogénies ascendantes, ou horizontales de même 
+direction alors $E/\langle P \rangle$ et~$E'/\langle P' \rangle$ sont encore $r$-isogènes.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Les points (1) et (2) découlent de la proposition \ref{pro:mat:fro} et du fait que pour $\phi$ isogénie rationnelle de degré $r$ premier avec $\ell$ on a un isomorphisme de modules de Tate qui commute avec le Frobenius. Pour le point (3) il suffit de remarquer qu'il existe un unique sous-groupe d'ordre $\ell$ qui génère soit une isogénie ascendante soit une isogénie de direction fixée, ainsi on doit avoir $\langle P' \rangle=\langle \phi(P) \rangle$.
+
+\end{proof}
+Le troisième point de cette proposition nous permet de réduire le problème du calcul de la $r$-isogénie entre deux courbes elliptiques au même problème pour deux courbes situées sur le cratère du volcan de $\ell$-isogénies.
+
+\todo{faire un beau dessin de correspondance}
+\begin{prop}
+\label{pro:par:hor:par}
+Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se
+situent à une profondeur $e$ du cratère (donc au niveau $h-e$), $P \in E,P' \in
+E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in 
+\langle P' \rangle$. 
+\end{prop}
+
+\begin{proof}
+Par définition(~\ref{def:par:hor}) on peut construire $P$ et $P'$ à 
+partir de $R \in E_S$ et $R' \in E'_s$ tels que $[\ell^e]R$ et $[\ell^e]R'$ 
+soient des points horizontaux de même direction avec deux $\ell^e$-isogénies 
+$\psi:E_s \rightarrow E$ et $\psi':E'_s \rightarrow E'$ telles que $\psi(R)=P$ 
+et $\psi'(R')=P'$. On a tout d'abord $ \phi([\ell^{k-e}]P) \in \langle 
+[\ell^{k-e}]P' \rangle$  par la proposition~\ref{pro:par:iso}(2) car par la 
+proposition~\ref{pro:elk:par:hor}(1) on a $\ker(\widehat{\psi})= \langle 
+[\ell^{k-e}]P \rangle$ et $\ker(\widehat{\psi'})= \langle [\ell^{k-e}]P' 
+\rangle$. Ensuite on a $\langle [\ell^e]R \rangle = \langle 
+\widehat{\psi}(P) \rangle $ et $\langle [\ell^e]R' \rangle = \langle 
+\widehat{\psi'}(P') \rangle$ et donc les $\ell^{k}$-isogénies engendrées par 
+$P$ et $P'$ sont du même type: une composition d'une $\ell^e$ isogénie montante 
+et d'une $\ell^{k-e}$-isogénie horizontale de direction identique, donc par la 
+proposition~\ref{pro:par:iso}(2) on a $\phi(P) \in \langle P' \rangle$.
+\end{proof}
+
+Ainsi on est capable à l'aide de bases horizontales et d'isogénies montantes de
+déterminer une correspondance entre deux groupes cycliques d'ordre $\ell^k$ de 
+courbes $r$-isogénes qui respectent l'action de la $r$-isogénie et qui ne se 
+situent pas forcément sur le cratère du volcan de $\ell$-isogénies. 
+
+La différence entre des points horizontaux $P_{\lambda}, Q_{\mu} \in E_s$ d'ordre $\ell^k$ et des points partiellement horizontaux $R_{\lambda}, R_{\mu} \in E$ d'ordre $\ell^k$ de profondeur $e>0$ de direction opposées c'est que l'on a $\langle R_{\lambda}, R_{\mu} \rangle \neq E[\ell^k]$ (en particulier$\langle [\ell^{k-e}]R_{\lambda} \rangle = \langle [\ell^{k-e}]R_{\mu} \rangle$) alors que pour deux points horizontaux de direction opposées on avait $E_s[\ell^k]= \langle P_{\lambda}, Q_{\mu} \rangle $. 
+
 
 Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo,
 J\'erome Pl\^ut et \'Eric Schost qui ont fait l'objet d'une publication 
@@ -5839,6 +5837,28 @@ différentes parties est disponible sur le projet github:
 
 \section{Cas Atkin}
 \label{sec:Atk:Con}
+Voyons maintenant un résultat qui est une conséquence de la 
+proposition~\ref{pro:atk:equi} et qui étudie donc l'invariance des groupes 
+de point de $E[\ell^{\infty}]$ déterminé par l'action du Frobenius 
+par rapport aux actions de $r$-isogénies rationnelles avec $r$ premier avec 
+$\ell$.
+
+\begin{cor}\label{cor:atk:ess}
+Soit $\phi:E \rightarrow E'$ une $r$-isogénie avec $r \wedge \ell=1$ et $E$ et 
+$E'$ deux courbes situées au niveau du cratère du volcan de $\ell$-isogénies, 
+soient $P \in E$ et $P' \in E'$ deux points d'ordre $\ell^k$ avec $k>h$ tels 
+que $P'=\phi(P)$ alors pour deux base $(P,Q),(P',Q')$ de $E[\ell^k]$ et 
+$E'[\ell^k]$ telles que $\pi(P,Q)=\pi(P',Q')$ on a $[\ell^h]Q'=[\ell^h]\phi(Q)$. 
+\end{cor}
+
+\begin{proof}
+Comme le Frobenius commute avec $\phi$ alors on a $\pi(P,Q)=\pi(\phi(P),\phi(Q))$
+or comme $P'=\phi(P)$ pour $Q'$ tel que $\pi(P,Q)=\pi(P',Q')$ on a l'égalité 
+$\pi(P',Q')=\pi(\phi(P),\phi(Q))$ et la proposition~\ref{pro:atk:equi} nous 
+permet de conclure.
+\end{proof}
+
+
 On se restreint tout d'abord au cas où l'on travaille avec deux courbes 
 $r$-isogènes, avec $r \wedge \ell=1$ qui se situent sur un
 volcan de $\ell$-isogénies de hauteur $h$, dont le cratère est réduit à une 
