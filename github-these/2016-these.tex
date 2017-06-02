@@ -3691,9 +3691,9 @@ un vecteur propre de $\pi$ pour la valeur propre $\mu$ alors
 
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:poi:hor} Exemples de  différents points diagonaux $P \in E_s$ d'ordre $2^3$ tels que $\pi(P)=[\color{blue}{\mu}\color{black}]P$, ici sont représentées les différentes isogénies de noyau $\langle P \rangle$}
+\caption{ \label{fig:poi:dia} Exemples de  différents points diagonaux $P \in E_s$ d'ordre $2^3$ tels que $\pi(P)=[\color{blue}{\mu}\color{black}]P$, ici sont représentées les différentes isogénies de noyau $\langle P \rangle$}
 \end{figure}
-Sur le schéma~\ref{fig:poi:hor} sont représentés les isogénies qui ont pour 
+Sur le schéma~\ref{fig:poi:dia} sont représentés les isogénies qui ont pour 
 noyau différents points $P \in E_s $ diagonaux d'ordre $2^3$ tels que $\pi(P)=
 [\color{blue}\mu \color{black}]P$. On remarque tout d'abord que l'on peut avoir
 uniquement la $\ell$-isogénie de noyau $\langle [2^2]P \rangle$ qui soit 
@@ -3721,6 +3721,189 @@ Soit~$Q' = \psi(Q)$ et~$\widehat{\psi}$ l'isogénie duale de~$\psi$,
 comme $\widehat{\psi}$~et~$\widehat{\psi}(Q') = [\ell]Q$ sont horizontaux
 de direction~$\mu$ alors $Q'$~est horizontal de direction $\mu$.
 \end{proof}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.50]
+\begin{scope}%[yshift=10cm] %1 er volcan 
+	\begin{scope}[xshift=4.3cm]
+		%Cratere
+		\node (A) at (-3,0) {$\bullet$};
+		\node (B) at (3,0) {$\bullet$};
+		\node (C) at (270:1.2) {$\bullet$};
+		\node (D) at (125:1.2) {$\bullet$};
+		\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-] (D.center) to[bend right=20] (A.center);	
+		\draw[-] (D.center) to[bend left=18] (B.center);
+		
+		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
+		%\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
+		\node (E) at (252:1.78) {};
+		\node (F) at (-2.5,-1) {};
+		\node (G) at (-1.5,-2) {$\psi$};
+		\draw[line width=1.5pt,red,->] (E.center) to[bend left=20] (F.center);
+		
+		  
+		
+			\begin{scope}[xshift=-3cm] %sous-volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw  (C)--(A);
+			\draw  (C)--(CA);
+			%just to have a 6th slide
+			
+			\draw (C)--(A);
+			\draw (C)--(CA);
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (A) node[fill=white]{$E_s$};
+			%\only<1>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};}
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\coordinate (G) at (0.7,-1);
+			\coordinate (H) at (0.7,-3.5);
+			%\draw [line width=1.3pt,black,->] (G)--(H) node[midway,right] {$\psi$};
+			\end{scope}
+			\begin{scope}[shift={(D)}] %sous volcan du haut
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw [dashed] (C)--(CA);
+			\draw [dashed] (C)--(CB);
+			\draw [dashed] (A)--(C);
+			%\draw (C) node[color=black!90]{$\bullet$};
+			\draw (CA) node[color=black!90]{$\bullet$};
+			\draw (CB) node[color=black!90]{$\bullet$};
+			%\only<3>{
+			\draw (C)--(A);
+			\draw (C)--(CA);
+			\end{scope}
+			\begin{scope}[xshift=3cm] %sous-volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (CA) node[fill=white]{$\bullet$};
+			%\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
+			\draw [line width=1.8pt,blue,->](A)--(C);
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw [line width=1.5pt,blue,<-](CB)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+	\end{scope}
+\end{scope}
+\begin{scope}[xshift=10cm] %2 eme volcan a droite
+	\begin{scope}[xshift=4.3cm]
+		%Cratere
+		\node (A) at (-3,0) {$\bullet$};
+		\node (B) at (3,0) {$\bullet$};
+		\node (C) at (270:1.2) {$\bullet$};
+		\node (D) at (125:1.2) {$\bullet$};
+		\draw[line width=1.5pt,blue,->] (A.center) to[bend right=25] (C.center);
+		\draw[-] (D.center) to[bend right=20] (A.center);	
+		\draw[-] (D.center) to[bend left=18] (B.center);
+		
+		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
+
+		
+			\begin{scope}[xshift=-3cm] %sous-volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw  (C)--(A);
+			\draw  (C)--(CA);
+			%just to have a 6th slide
+			
+			\draw (C)--(A);
+			\draw (C)--(CA);
+			\draw (A) node[fill=white]{$E'_s$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			
+			\begin{scope}[xshift=3cm] %sous-volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (CA) node[fill=white]{$\bullet$};
+			%\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
+			\draw [line width=1.8pt,blue,->](A)--(C);
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw [-](CB)--(C);
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (A) node[fill=white]{$E_s$};
+			%\only<1>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};}
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[shift={(D)}] %sous volcan du haut
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw [dashed] (C)--(CB);
+			\draw [dashed] (A)--(C);
+			\draw (CA) node[color=black!90]{$\bullet$};
+			\draw (CB) node[color=black!90]{$\bullet$};
+			%\only<3>{
+			\draw [-](A)--(C);
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+	\end{scope}
+\end{scope}
+
+\end{tikzpicture}
+\end{center}
+\caption{ \label{fig:poi:hor} Exemple de construction de point horizontal. Sur le volcan de gauche le point $P \in E_s$ est représentée l'isogénie de noyau $\langle P \rangle$ tel que $[2^2]P$ est horizontal de direction $\color{blue}{\mu}$ et $\psi$ est une $2$-isogénie horizontale de direction  $\color{red}{\lambda}$. Sur le volcan de droite l'isogénie de noyau $\langle \psi(P) \rangle$ est représentée}
+\end{figure}
+
+On présente donc sur la figure~\ref{fig:poi:hor} un exemple de construction de 
+point horizontal, on a donc repris pour celui-ci le premier exemple de point 
+diagonal de la figure~\ref{fig:poi:dia} pour lequel on était certain par la 
+proposition~\ref{pro:dia:hor} que $[2^2]P$ était horizontal. On utilise alors 
+la proposition~\ref{pro:dia:hor} pour déterminer l'isogénie $\psi:E_s 
+\rightarrow E'_s$ de direction $\mu$ différente de celle de $[2^2]P$, pour trouver
+une telle i
+
 \todo{Luca a raison là on s'éloigne du cadre que l'on s'était fixé}
 La proposition suivante nous permet de faire le lien entre les bases horizontales et le contexte de l'algorithme de Couveignes~\cite{Couveignes96}.
 
@@ -3866,7 +4049,7 @@ Il est porté à l'attention du lecteur qu'un point horizontal est aussi un poin
 			\end{scope}
 	\end{scope}
 \end{scope}
-\begin{scope}[xshift=9cm]
+\begin{scope}[xshift=9cm] %volcan de droite
 	\begin{scope}[xshift=4.3cm]
 		%Cratere
 		\node (A) at (-3,0) {$\bullet$};
