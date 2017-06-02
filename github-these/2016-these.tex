@@ -3691,7 +3691,7 @@ un vecteur propre de $\pi$ pour la valeur propre $\mu$ alors
 
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:poi:dia} Exemples de  différents points diagonaux $P \in E_s$ d'ordre $2^3$ tels que $\pi(P)=[\color{blue}{\mu}\color{black}]P$, ici sont représentées les différentes isogénies de noyau $\langle P \rangle$}
+\caption{ \label{fig:poi:dia} Exemples de  différents points diagonaux $P \in E_s$ d'ordre $2^3$ tels que $\pi(P)=[\color{blue}{\mu}\color{black}]P$, ici sont représentées les différentes isogénies de noyau $\langle P \rangle$.}
 \end{figure}
 Sur le schéma~\ref{fig:poi:dia} sont représentés les isogénies qui ont pour 
 noyau différents points $P \in E_s $ diagonaux d'ordre $2^3$ tels que $\pi(P)=
@@ -3793,6 +3793,8 @@ de direction~$\mu$ alors $Q'$~est horizontal de direction $\mu$.
 			%\draw (C) node[color=black!90]{$\bullet$};
 			\draw (CA) node[color=black!90]{$\bullet$};
 			\draw (CB) node[color=black!90]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
 			%\only<3>{
 			\draw (C)--(A);
 			\draw (C)--(CA);
@@ -3893,16 +3895,19 @@ de direction~$\mu$ alors $Q'$~est horizontal de direction $\mu$.
 
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:poi:hor} Exemple de construction de point horizontal. Sur le volcan de gauche le point $P \in E_s$ est représentée l'isogénie de noyau $\langle P \rangle$ tel que $[2^2]P$ est horizontal de direction $\color{blue}{\mu}$ et $\psi$ est une $2$-isogénie horizontale de direction  $\color{red}{\lambda}$. Sur le volcan de droite l'isogénie de noyau $\langle \psi(P) \rangle$ est représentée}
+\caption{ \label{fig:poi:hor} Exemple de construction de point horizontal. Sur le volcan de gauche est représentée  l'isogénie de noyau $\langle P \rangle$ avec $P \in E_s$  tel que $[2^2]P$ est horizontal de direction $\color{blue}{\mu}$ et $\psi$ est une $2$-isogénie horizontale de direction  $\color{red}{\lambda}$. Sur le volcan de droite l'isogénie de noyau $\langle \psi(P) \rangle$ est représentée.}
 \end{figure}
 
 On présente donc sur la figure~\ref{fig:poi:hor} un exemple de construction de 
-point horizontal, on a donc repris pour celui-ci le premier exemple de point 
+point horizontal, on a donc repris le premier exemple de point 
 diagonal de la figure~\ref{fig:poi:dia} pour lequel on était certain par la 
 proposition~\ref{pro:dia:hor} que $[2^2]P$ était horizontal. On utilise alors 
 la proposition~\ref{pro:dia:hor} pour déterminer l'isogénie $\psi:E_s 
-\rightarrow E'_s$ de direction $\mu$ différente de celle de $[2^2]P$, pour trouver
-une telle i
+\rightarrow E'_s$ de direction $\mu$ différente de celle de $[2^2]P$, $\psi(P)$
+est alors un point d'ordre $[2^3]$ tel que $[2]\psi(P)$ est un point horizontal 
+d'ordre $2^2$. Pour obtenir un point horizontal d'ordre $2^3$ on utilise à 
+nouveau la $2$-isogénie de direction $\lambda$ et de domaine $E'_s$ que l'on 
+applique à $\psi(P)$.
 
 \todo{Luca a raison là on s'éloigne du cadre que l'on s'était fixé}
 La proposition suivante nous permet de faire le lien entre les bases horizontales et le contexte de l'algorithme de Couveignes~\cite{Couveignes96}.
