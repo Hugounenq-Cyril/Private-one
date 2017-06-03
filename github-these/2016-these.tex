@@ -4294,9 +4294,9 @@ de la $E[\ell^{h+i}]$-torsion.
 
 \begin{prop}
 \label{pro:atk:equi}
-Soient $P,R,R'$ trois points de $E$ située au niveau du cratère tels que $\langle 
-P,R \rangle = \langle P,R' \rangle= E[\ell^{h+i}]$ alors $\pi(P,R)=\pi(P,R') $ si et seulement
-si $[\ell^{h}]R=[\ell^{h}]R'$.
+Soient $P,R,R'$ trois points de $E$ située au niveau $h-e$ du volcan de 
+$\ell$-isogénies tels que $\langle P,R \rangle = \langle P,R' \rangle= 
+E[\ell^{h+i}]$ alors $\pi(P,R)=\pi(P,R') $ si et seulement si $[\ell^{h+e}]R=[\ell^{h+e}]R'$.
 \end{prop}
 
 \begin{proof}
@@ -4304,31 +4304,31 @@ Montrons tout d'abord le sens direct.
 Soient $R,R'$ deux points tels que $\pi(P,R)=\pi(P,R')=\left ( 
 \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d \end{smallmatrix}\right )$ 
 alors cette égalité nous donne:
- $\pi(P)=[a]P+[c\ell^{h}]R=[a]P+[c\ell^{h}]R'$, de
-cette égalité on déduit avec $c \wedge \ell = 1$ que $[\ell^{h}]R=[\ell^{h}]R'$
+ $\pi(P)=[a]P+[c\ell^{h-e}]R=[a]P+[c\ell^{h-e}]R'$, de
+cette égalité on déduit avec $c \wedge \ell = 1$ que $[\ell^{h+e}]R=[\ell^{h+e}]R'$
 ce qui permet de conclure pour ce sens de l'équivalence.
 
-Matriciellement on prouve que $[\ell^{h}]R=[\ell^{h}]R' \Rightarrow 
+Matriciellement on prouve que $[\ell^{h-e}]R=[\ell^{h-e}]R' \Rightarrow 
 \pi(P,R)=\pi(P,R')$ en voyant que la conjugaison de la 
-matrice $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
-\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & k' \ell^i \\
-0 & 1 + k \ell^i \end{smallmatrix} \right )$  laisse la matrice invariante 
+matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
+\end{smallmatrix}\right ) \bmod \ell^{h+i}$ par~$\left ( \begin{smallmatrix}1
+& k' \ell^{i+e} \\ 0 & 1 + k \ell^{i+e} \end{smallmatrix} \right )$  laisse la matrice invariante 
 modulo $\ell^{h+i}$.
 \end{proof}
 
 La proposition~\ref{pro:atk:equi} nous dit en particulier que 
 les deux points $R$ et $R'$ engendrent la même $\ell^i$-isogénie descendante de
-noyau $\langle [\ell^h]R' \rangle = \langle [\ell^h]R \rangle$.
+noyau $\langle [\ell^{h+e}]R' \rangle = \langle [\ell^{h+e}]R \rangle$.
 
-\begin{rem}
-\label{rem:atk:gen}
-La proposition~\ref{pro:atk:equi} ne peut se généraliser aux niveaux inférieurs
-du volcan car pour les niveaux inférieurs du volcan de $\ell$-isogénies on a la
-possibilité d'avoir $v_{\ell}(c)$ ou $v_{\ell}(b)$ qui appartient à $[2,2e]$ ce
-qui fait que l'implication $\pi(P,R)=\pi(P,R') \Rightarrow [\ell^{h-e}]R=
-[\ell^{h-e}]R'$ n'est plus assurée on peut seulement montrer que $\pi(P,R)=
-\pi(P,R') \Rightarrow [\ell^{h+e}]R=[\ell^{h+e}]R'$.
-\end{rem}
+%\begin{rem}
+%\label{rem:atk:gen}
+%La proposition~\ref{pro:atk:equi} ne peut se généraliser aux niveaux inférieurs
+%du volcan car pour les niveaux inférieurs du volcan de $\ell$-isogénies on a la
+%possibilité d'avoir $v_{\ell}(c)$ ou $v_{\ell}(b)$ qui appartient à $[2,2e]$ ce
+%qui fait que l'implication $\pi(P,R)=\pi(P,R') \Rightarrow [\ell^{h-e}]R=
+%[\ell^{h-e}]R'$ n'est plus assurée on peut seulement montrer que $\pi(P,R)=
+%\pi(P,R') \Rightarrow [\ell^{h+e}]R=[\ell^{h+e}]R'$.
+%\end{rem}
 
 Ainsi à l'aide du corollaire~\ref{cor:mon:atk} on sait monter dans le volcan de 
 $\ell$-isogénies pour réduire le problème de déterminations d'isogénies à celui
@@ -4336,7 +4336,7 @@ $\ell$-isogénies pour réduire le problème de déterminations d'isogénies à 
 Cependant si on travaille à partir d'une courbe située au niveau $h-e$ pour 
 étudier la direction des $\ell^i$-isogénies on aura à travailler
 avec une base de la $\ell^{h+i+e}$-torsion sur le cratère, ce qui comparé à la  
-remarque~\ref{rem:atk:gen} est le mieux que l'on puisse espérer.
+remarque est le mieux que l'on puisse espérer.
 
 Dés lors on va se concentrer à l'étude des points sur une courbe qui se 
 situe sur le cratère et montrer un résultat qui permet de distinguer les 
@@ -4347,53 +4347,53 @@ cratère car on sait monter dans le volcan...}
 \begin{prop}
 \label{pro:cla:fro:mat}
 Soient $P,Q$ deux points définis sur une courbe elliptique $E$ située au niveau
-du cratère du volcan de $\ell$-isogénies tels que 
-$E[\ell^{h+i}]=\langle P,Q \rangle$. On pose $R=[x]P+[y]Q$ avec $y\wedge 
+$h-e$ du volcan de $\ell$-isogénies tels que 
+$E[\ell^{h+i}]=\langle P,Q \rangle$ avec $i \geqslant e$. On pose $R=[x]P+[y]Q$ avec $y\wedge 
 \ell=1$, alors la matrice 
 \[
-\pi(P,R)=\left ( \begin{matrix}a & b\ell^{h} \\ c\ell^{h} & d
-\end{matrix}\right ) 
+\pi(P,R)=\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
+\end{matrix}\right ) \bmod \ell^{h+i}
 \] représentant l'action du Frobenius dans la base $\langle P,R \rangle$ est
 conjuguée aux matrices de la forme:
 \[
-\pi(P,R')=\left ( \begin{matrix}a & b\ell^{h}\beta^{-1} \\ c\ell^{h}\beta & d
-\end{matrix}\right ) 
+\pi(P,R')=\left ( \begin{matrix}a & b\ell^{h-e}\beta^{-1} \\ c\ell^{h-e}\beta & d
+\end{matrix}\right ) \bmod \ell^{h+i}
 \]
-si et seulement si $\beta \ell^{h}R= \ell^{h}R'$ avec $\beta \in \left( \mathbb{Z}/\ell^{i} \mathbb{Z} 
-\right)^{\times}$. De plus tous les points $S$ tels que la matrice $\pi(P,S)$ 
-est conjuguée à la matrice $\pi(P,R)$ engendrent tous la même $\ell^i$-isogénie
-de noyau $\langle [\ell^{h}]S \rangle$.
+si et seulement si $\beta \ell^{h+e}R= \ell^{h+e}R'$ avec $\beta \in \left( \mathbb{Z}/\ell^{i-e} \mathbb{Z} 
+\right)^{\times}$. De plus tous les points $S$ tels que $\langle [\ell^{h+e}]R \rangle = \langle [\ell^{h+e}]S \rangle$ sont obtenus à partir de tous les changements de la forme 
+$R\rightarrow [\beta]R$ avec $\beta \in \left( \mathbb{Z}/\ell^{i-e}\mathbb{Z} 
+\right)^{\times}$.
 \end{prop}
 
 \begin{proof}
-Par la propsition~\ref{pro:atk:equi} on a $\pi(P,R')=\pi(P,
-\beta R)$ si et seulement si $[\ell^{h}]\beta R=[\ell^{h}]R'$ or en 
+Par la proposition~\ref{pro:atk:equi} on a $\pi(P,R')=\pi(P,
+\beta R)$ si et seulement si $[\ell^{h+e}]\beta R=[\ell^{h+e}]R'$ or en 
 observant que la conjugaison de la matrice $\left( \begin{smallmatrix}a & b 
-\ell^h \\c  \ell^{h} & d \end{smallmatrix} \right)$ par $\left( 
+\ell^{h-e} \\c  \ell^{h-e} & d \end{smallmatrix} \right)$ par $\left( 
 \begin{smallmatrix}1 & 0 \\0 & \beta \end{smallmatrix} \right)$ avec $\beta \in
-\left( \mathbb{Z}/\ell^{i} \mathbb{Z}\right)^*$ nous donne une matrice de la 
-forme $\left( \begin{smallmatrix}a & b \ell^h \beta \\c \ell^{h} \beta^{-1} &
+\left( \mathbb{Z}/\ell^{i-e} \mathbb{Z}\right)^{\times}$ nous donne une matrice de la 
+forme $\left( \begin{smallmatrix}a & b \ell^{h-e} \beta \\c \ell^{h-e} \beta^{-1} &
  d \end{smallmatrix} \right)$ on a bien $\pi(P,\beta R)=\left( 
-\begin{smallmatrix}a & b \ell^h \beta \\c \ell^{h} \beta^{-1} & d 
+\begin{smallmatrix}a & b \ell^{h-e} \beta \\c \ell^{h-e} \beta^{-1} & d 
 \end{smallmatrix} \right)$ ce qui nous donne le résultat.
 
-Montrons maintenant le second point. Soit $[\ell^{h}]([x]P+[y]Q)$ un point 
-d'ordre $\ell^i$ engendré par $R$, 
-le groupe $\langle [\ell^{h}]([x]P+[y]Q) \rangle$ engendré par ce point peut 
-aussi s'écrire:$\langle [xy^{-1}]([\ell^{h-e}]P)+ ([\ell^{h}]Q) \rangle$. De 
-même on peut écrire le groupe engendré par $[\ell^{h}]([x']P+[y']Q)$ comme 
-$\langle [x'y'^{-1}]([\ell^{h}]P)+ ([\ell^{h}]Q) \rangle$, ainsi on a 
-égalité des $\ell^i$-isogénies engendrées par $[\ell^{h}]([x']P+[y']Q)$ et 
-$[\ell^{h}]([x]P+[y]Q)$ si et seulement si $\ell^{h}xy^{-1}=\ell^{h}
+Montrons maintenant le second point. Soit $[\ell^{h+e}]([x]P+[y]Q)$ un point 
+d'ordre $\ell^{i-e}$ engendré par $R$, 
+le groupe $\langle [\ell^{h+e}]([x]P+[y]Q) \rangle$ engendré par ce point peut 
+aussi s'écrire:$\langle [xy^{-1}]([\ell^{h+e}]P)+ ([\ell^{h+e}]Q) \rangle$. De 
+même on peut écrire le groupe engendré par $[\ell^{h+e}]([x']P+[y']Q)$ comme 
+$\langle [x'y'^{-1}]([\ell^{h+e}]P)+ ([\ell^{h+e}]Q) \rangle$, ainsi on a 
+égalité des $\ell^i$-isogénies engendrées par $[\ell^{h+e}]([x']P+[y']Q)$ et 
+$[\ell^{h+e}]([x]P+[y]Q)$ si et seulement si $\ell^{h+e}xy^{-1}=\ell^{h+e}
 x'y'^{-1}\bmod \ell^{h+i}$. On voit donc que seul compte les valeurs de 
-$\ell^{h}x$ et $\ell^{h}y$ modulo $\ell^{h+i}$ pour la détermination de la 
-$\ell^i$-isogénie.
+$\ell^{h+e}x$ et $\ell^{h+e}y$ modulo $\ell^{h+i}$ pour la détermination de la 
+$\ell^{i-e}$-isogénie.
 
-Les seuls changements qui préservent la $\ell^i$-isogénie générée par 
+Les seuls changements qui préservent la $\ell^{i-e}$-isogénie générée par 
 $R=[x]P+[y]Q$ sont les seuls changements qui préservent la valeur de 
-$\ell^{h}xy^{-1} \bmod \ell^{h+i}$ ce sont donc les changements de la forme 
+$\ell^{h+e}xy^{-1} \bmod \ell^{h+i}$ ce sont donc les changements de la forme 
 $[x]P+[y]Q \rightarrow [\beta x]P+[\beta y]Q$ avec $\beta \in \left( \mathbb{Z}
-/\ell^i\mathbb{Z} \right)^{\times}$. 
+/\ell^{i-e}\mathbb{Z} \right)^{\times}$. 
 \end{proof}
 
 %\begin{prop}
@@ -4424,24 +4424,25 @@ suite.
 
 \begin{lem}
 \label{lem:fro:atk}
-Soient $P,R$ deux points de $E$ une courbe elliptique située au 
+Soient $P,P',R$ trois points de $E$ une courbe elliptique située au 
 niveau $h-e$ du volcan de $\ell$-isogénies tels que $\langle P,R \rangle= 
-E[\ell^{h-e+i}]$ alors $\pi(P+\gamma \ell^{i}R,R)=\pi(P,R)$.
+\langle P',R \rangle=E[\ell^{h-e+i}]$ et $[\ell^{h-e}]P=[\ell^{h-e}]P'$ alors 
+$\pi(P',R)=\pi(P,R)$.
 \end{lem}
 
 \begin{proof}
 La matrice $\left( \begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{smallmatrix} 
 \right)$ est invariante par action de la matrice $\left( 
-\begin{smallmatrix}1 & 0 \\\gamma\ell^{i}  & 1 \end{smallmatrix} 
+\begin{smallmatrix}1 + \alpha \ell^{i} & 0 \\\beta\ell^{i}  & 1 \end{smallmatrix} 
 \right)$ modulo $\ell^{h-e+i}$.
 \end{proof}
 
 \begin{prop}
 Soient $P,P'$ deux points d'ordre $\ell^{h+i}$ de $E$ une courbe elliptique 
-située au niveau du cratère du volcan de $\ell$-isogénies tels que $[\ell^{h}]P=
-[\ell^{h}]P'$ alors pour deux points $R,R'$ tels que $\langle P, R \rangle = 
+située au niveau du cratère du volcan de $\ell$-isogénies tels que $[\ell^{h-e}]P=
+[\ell^{h-e}]P'$ alors pour deux points $R,R'$ tels que $\langle P, R \rangle = 
 \langle P', R' \rangle=E[\ell^{h+i}]$ et $\pi(P,R)=\pi(P',R')$ on a 
-$[\ell^{h}]R=[\ell^{h}]R'$.
+$[\ell^{h+e}]R=[\ell^{h+e}]R'$.
 \end{prop}
 
 \begin{proof}
