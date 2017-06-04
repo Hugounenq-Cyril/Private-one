@@ -4492,78 +4492,6 @@ deux points $R$ et $R'$ tels que $\pi(P,R)=\pi(P,R')$ engendrent la même
 $\ell^{i-e}$-isogénie de noyau $\langle [\ell^{h+e}]R' \rangle = \langle 
 [\ell^{h+e}]R \rangle$.
 
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}[scale=0.50]
-\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
-		\coordinate (D) at (0,0);
-		\coordinate (E) at (-6,-5);
-		\coordinate (F) at (6,-5);
-		\coordinate (G) at (-4,-11);
-		\coordinate (H) at (-8,-11);
-		\coordinate (I) at (4,-11);
-		\coordinate (J) at (8,-11);
-		\coordinate (K) at (0,-5);
-		\coordinate (L) at (-2,-11);
-		\coordinate (M) at (2,-11);
-		\draw (D) -- (E);
-		\draw (D) -- (F);
-		\draw (D) -- (K);
-		\draw (K) -- (L);
-		\draw (K) -- (M);
-		\draw (E) -- (H);
-		\draw (E) -- (G);
-		\draw (F) -- (I);
-		\draw (F) -- (J);
-		\draw (D) node[fill=white]{$\bullet$};
-		\draw (K) node[fill=white]{$\bullet$};
-		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
-\\4  & 3 \end{smallmatrix} \right)$};
-		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
-		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
-\\12  & 3 \end{smallmatrix} \right) $};
-		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
-\\4  & 11 \end{smallmatrix} \right) $};
-		\draw (L) node[fill=white]{$\bullet $};
-		\draw (M) node[fill=white]{$\bullet $};
-		\draw (I) node[fill=white]{$\left( \begin{smallmatrix}11 & 12 
-\\4 & 15 \end{smallmatrix} \right) $};
-		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
-		\coordinate (A) at (12,-5);
-		\coordinate (B) at (12,-11);
-		\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
-		\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
-\end{scope}
-\end{tikzpicture}
-\end{center}
-\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies obtenues à partir de différentes matrices du Frobenius calculées sur la courbe située au niveau du cratère du volcan de $\ell$-isogénies. Pour cet exemple on a travaillé avec une courbe de $j$-invariant $56$ définie sur $\mathbb{F}_{149}$.}
-\end{figure}
-
-La figure~\ref{fig:atk:dif:niv:iso} représente les isogénies que l'on obtient 
-selon la forme des matrices représentant l'action du Frobenius calculé sur la 
-courbe située au niveau du cratère. On a donc représenté la matrice à l'endroit
-correspondant dans le volcan du codomaine de la $\ell^{i}$-isogénie engendrée 
-par le second vecteur de la base de $E[\ell^{h+i}]$ dans laquelle est calculée 
-l'action du Frobenius. Ainsi les courbes dans le volcan atteintes
-par les isogénies engendrées par le premier point de la base ne sont pas 
-associées à des matrices du Frobenius, voilà pourquoi seulement $2$ des $3$ 
-branches descendantes ont des matrices associées à chaque courbe. Les matrices 
-sont représentées modulo $\ell^{h+1}$ pour le niveau $h-1$ car il est 
-nécessaire de calculer une base de $E[\ell^{h+1}]$ pour distinguer les 
-$\ell$-isogénies, de même pour le niveau $h-2$ une base de $E[\ell^{h+2}]$ est 
-nécessaire. On remarque de plus que pour chaque branche on a $\left( 
-\begin{smallmatrix}15 & 12 \\4  & 11 \end{smallmatrix} \right) = \left( 
-\begin{smallmatrix}7 & 12 \\12  & 3 \end{smallmatrix} \right) = \left( 
-\begin{smallmatrix}7 & 4 \\4  & 3 \end{smallmatrix} \right) \bmod \ell^{h+1}$ 
-et $\left( \begin{smallmatrix}3 & 4 \\4  & 7 \end{smallmatrix} \right)  = 
-\left( \begin{smallmatrix}11 & 12 \\4 & 15 \end{smallmatrix} \right) \bmod 
-\ell^{h+1}$ ce qui est normal car on a un seul générateur possible de la 
-$2$-isogénie et donc une seule matrice par conjugaison (voir 
-proposition~\ref{pro:atk:equi}). Pour le niveau de la base du volcan il est à 
-noter qu'une seule des matrices que l'on peut obtenir par conjugaison (voir 
-proposition~\ref{pro:atk:equi}) a été représenté.
  
 %\begin{rem}
 %\label{rem:atk:gen}
@@ -4642,6 +4570,79 @@ $[x]P+[y]Q \rightarrow [\beta x]P+[\beta y]Q$ avec $\beta \in \left( \mathbb{Z}
 /\ell^{i-e}\mathbb{Z} \right)^{\times}$. 
 \end{proof}
 
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.50]
+\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-2,-11);
+		\coordinate (M) at (2,-11);
+		\draw (D) -- (E);
+		\draw (D) -- (F);
+		\draw (D) -- (K);
+		\draw (K) -- (L);
+		\draw (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw (F) -- (I);
+		\draw (F) -- (J);
+		\draw (D) node[fill=white]{$\bullet$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
+\\4  & 3 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
+\\12  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
+\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\bullet $};
+		\draw (M) node[fill=white]{$\bullet $};
+		\draw (I) node[fill=white]{$\left( \begin{smallmatrix}11 & 12 
+\\4 & 15 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\coordinate (A) at (12,-5);
+		\coordinate (B) at (12,-11);
+		\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
+		\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies obtenues à partir de différentes matrices du Frobenius calculées sur la courbe située au niveau du cratère du volcan de $\ell$-isogénies. Pour cet exemple on a travaillé avec une courbe de $j$-invariant $56$ définie sur $\mathbb{F}_{149}$.}
+\end{figure}
+
+La figure~\ref{fig:atk:dif:niv:iso} représente les isogénies que l'on obtient 
+selon la forme des matrices représentant l'action du Frobenius calculé sur la 
+courbe située au niveau du cratère. On a donc représenté dans le volcan la 
+matrice à l'endroit correspondant au codomaine de la $\ell^{i}$-isogénie 
+engendrée par le second vecteur de la base de $E[\ell^{h+i}]$ dans laquelle est
+calculée l'action du Frobenius. Ainsi les courbes dans le volcan atteintes
+par les isogénies engendrées par le premier point de la base ne sont pas 
+associées à des matrices du Frobenius, voilà pourquoi seulement $2$ des $3$ 
+branches descendantes ont des matrices associées à chaque courbe. Les matrices 
+sont représentées modulo $\ell^{h+1}$ pour le niveau $h-1$ car il est 
+nécessaire de calculer une base de $E[\ell^{h+1}]$ pour distinguer les 
+$\ell$-isogénies, de même pour le niveau $h-2$ une base de $E[\ell^{h+2}]$ est 
+nécessaire. On remarque de plus que pour chaque branche on a $\left( 
+\begin{smallmatrix}15 & 12 \\4  & 11 \end{smallmatrix} \right) = \left( 
+\begin{smallmatrix}7 & 12 \\12  & 3 \end{smallmatrix} \right) = \left( 
+\begin{smallmatrix}7 & 4 \\4  & 3 \end{smallmatrix} \right) \bmod \ell^{h+1}$ 
+et $\left( \begin{smallmatrix}3 & 4 \\4  & 7 \end{smallmatrix} \right)  = 
+\left( \begin{smallmatrix}11 & 12 \\4 & 15 \end{smallmatrix} \right) \bmod 
+\ell^{h+1}$ ce qui est normal car on a un seul générateur possible de la 
+$2$-isogénie et donc une seule matrice par conjugaison possible (voir 
+proposition~\ref{pro:atk:equi}). Pour la base du volcan il est à 
+noter qu'une seule des matrices que l'on peut obtenir par conjugaison (voir 
+proposition~\ref{pro:atk:equi}) a été représenté.
+
 %\begin{prop}
 %\label{pro:atk:inv:mat}
 %Soient $P,R,R'$ trois points de la courbe elliptique $E$ située au niveau $h-e$
@@ -4665,8 +4666,7 @@ $[x]P+[y]Q \rightarrow [\beta x]P+[\beta y]Q$ avec $\beta \in \left( \mathbb{Z}
 
 Ces résultats sur la détermination du second point ne necéssitent pas forcément
 la détermination complète du premier point de la base comme le montrent les 
-résultats suivants, cependant ces résultats ne seront pas exploités par la 
-suite.
+résultats suivants.
 
 \begin{lem}
 \label{lem:fro:atk}
@@ -4700,7 +4700,7 @@ proposition~\ref{pro:atk:equi}.
 
 \section{Calcul des directions dans le volcan de $\ell$-isogénies}
 \label{cha:con:poi}
-Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'erome Plut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
+Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'er\^ome Pl\^ut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
 Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets présentés dans le chapitre \ref{cha:act:fro}. Sont aussi utilisés les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les extensions de corps de définies dans la définition \ref{def:tour-ell}.
 
@@ -4708,12 +4708,16 @@ Dans ce chapitre on s'intéresse à la partie algorithmique du calcul des objets
 
 \subsubsection{Décomposition de la $\ell^k$ torsion sous l'action du Frobenius}
 \label{sub:classes}
-On va maintenant étudier la décomposition de la $\ell^k$-torsion en orbites 
-selon l'action du Frobenius, afin de pouvoir ultérieurement calculer toute la 
-$\ell^k$-torsion à partir des représentants des orbites et de l'action du 
-Frobenius. On se place dans le cas où la courbe elliptique ordinaire $E$ admet 
-un anneau des endomorphismes localement maximal par rapport à $\ell$.
-%On a tout d'abord le premier résultat qui nous précise dans quel extension de corps on sera ammené à travailler pour avoir de la $\ell^k$ torsion qui soit définie.
+
+On va maintenant étudier la structure de la torsion rationnelle des courbes 
+elliptiques sur lesquelles on travaille et déterminer l'extension de corps 
+nécessaire pour avoir une torsion $\ell$-adique de valuation fixée définie.
+On va en particulier étudier cela pour une courbe située au niveau du cratère
+du volcan de $\ell$-isogénies, car c'est à ce niveau du volcan que l'on peut 
+calculer les points horizontaux. Pour les courbes inférieures dans le volcan
+le corollaire~\ref{cor:elk:bet:reg} permet d'utiliser notre résultat aux autres
+courbes. 
+
 \begin{defi}
 \label{def:alp:bet}
 On introduit la notation suivante afin de spécifier la structure de la 
@@ -4780,6 +4784,7 @@ En additionnant ce résultat pour tous les ~$i$ on prouve~(5).
 \end{proof}
 
 \begin{cor}
+\label{cor:elk:bet:reg}
 Soit un volcan de $\ell$-isogénies défini sur $\mathsf{F}_1/\mathbb{F}_q$ tel 
 que $E[\ell] \subset E[\mathsf{F}_1]$ pour $E$ tel que son anneau des 
 endomorphismes est localement maximal par rapport à $\ell$ avec $\ell$ un 
@@ -4803,97 +4808,14 @@ premier niveau de stabilité la structure de la $\ell$-torsion ne change pas et
 en dessous elle change comme décrit juste au-dessus.
 \end{proof}
 
-\todo{utilité des deux propositions suivantes ?, elles ne sont pas utilisées ...}
-\begin{prop}\label{prop:orbites-l-torsion}
-Soit~$E$ une courbe elliptique ordinaire avec un anneau des endomorphismes 
-localement maximal  par rapport à $\ell$.
-Supposons que $\ell \neq 2$, $\lambda \equiv \mu \equiv 1 \bmod \ell$ et posons~$\alpha = v_{\ell}(\lambda-1), \beta=v_{\ell}(\mu-1)$.
-On écrit~$\nu(x, y) = \min (x+y, x+\beta-1, y+\alpha-1)$
-et~$\rho(x, y) = x+y - \nu(x, y) = \max (0, x-\alpha+1, y-\beta+1)$.
-La décomposition du groupe~$E[\ell^k]$ en classe de Galois est la suivante:
-\begin{enumerate}
-\item pour~$i, j = 1, …, k-1$:
-$(\ell-1)^2 \cdot \ell^{\nu(i,j)}$ classes de taille~$\ell^{\rho(i,j)}$;
-\item pour~$i = 1, …, k-1$:
-$(\ell-1) \cdot \ell^{\min (i, \alpha-1)}$ classes de taille~$\ell^{\max (0, i-\alpha+1)}$, et
-$(\ell-1) \cdot \ell^{\min (i, \beta-1)}$ classes de taille~$\ell^{\max (0, i-\beta+1)}$;
-\item les $\ell^2$ classes de singleton de~$E[\ell]$.
-% \item \todo{le cas où $\ell=2$}
-\end{enumerate}
-\end{prop}
-\begin{proof}
-Soit~$(P, Q)$ une base de~$E[\ell^k]$ telle que~$\pi(P)=[\lambda] P$, $\pi(Q)=[\mu] Q$.
-\'Etudier les orbites de Galois de~$E[\ell^k]$
-revient à étudier l'action~$\mathbb{Z}_\ell^2 \rightarrow \mathbb{Z}_\ell^2, (x, y) \mapsto (\lambda x, \mu y)$.
-Ainsi les orbites correspondent aux éléments de~$\mathbb{Z}_\ell^2$ définis
-modulo le sous-groupe \emph{multiplicatif} genéré par~$(\lambda, \mu)$.
-Un moyen facile de représenter celui-ci est de travailler 
-avec un \emph{réseau multiplicatif} dans~$(\mathbb{Q}_{\ell}^{\times})^2$.
+\subsubsection{Coupure Algorithme}
 
-Soit~$\varepsilon$ une racine primitive $(\ell-1)$-ème de l'unité dans~$\mathbb{Z}_{\ell}$,
-alors par~\cite[Théorème II.3.2]{Serre70},
-l'application~$f(x, y, z) = \ell^x \cdot \varepsilon^y \cdot \exp (\ell z)$
-est un isomorphisme de groupe entre~$\mathbb{Z} \times (\mathbb{Z}/(\ell-1) \mathbb{Z}) \times \mathbb{Z}_{\ell}$ et~$\mathbb{Q}_{\ell}^{\times}$.
-Pour~$i \in [0,k-1 ]$ et~$c \in \mathbb{Z}/(\ell-1)\mathbb{Z}$,
-on note~$V(i,c)$ l'image dans $\mathbb{Z}/\ell^k \mathbb{Z}$ donnée par~$f(k-1-i,c,- )$, la structure multiplicative de $V(i, c)$
-est celle d'un espace homogène principal sous l'action de~$\mathbb{Z}/\ell^i \mathbb{Z}$.
-On définit alors~$W(i,j,c,d) = [V(i, c)] P \,+\, [V(j, d)]  Q \subset E[\ell^k]$.
-
-Comme~$\lambda \equiv 1 \bmod \ell^{\alpha}$, on peut écrire~$\lambda = f(0,0,u\, \ell^{\alpha-1})$
-et~$\mu = f(0,0, v\, \ell^{\beta-1})$
-avec~$u, v \in \mathbb{Z}_{\ell}^{\times}$.
-L'ensemble~$W(i,j,c,d)$ est alors stable sous l'action du groupe de Galois.
-Les orbites de~$W(i,j,c,d)$ correspondent de façon bijective
-aux points du domaine fondamental du réseau~$\Lambda_{i,j}$ genéré par
-les colonnes de~$\left(  \begin{smallmatrix}
-\ell^i & 0 & u \ell^{\alpha-1}\\ 
-0 & \ell^j & v \ell^{\beta-1}
-\end{smallmatrix} \right) $,
-il est à noter que la taille de chaque orbite est calculée modulo~$[(\mathbb{Z}/\ell^i \mathbb{Z}) \times (\mathbb{Z}/\ell^j \mathbb{Z})\::\: \Lambda_{i,j}]$.
-En utilisant des opérations élémentaires sur les colonnes 
-on trouve que  le volume fondamental de~$\Lambda_{i,j}$ est~$\ell^{\nu(i,j)}$,
-ainsi on obtient le point~(i) de la proposition.
-(Le cas~$i = j = 0$ nous donne le résultat sur les classes de singleton dans~$E[\ell]$).
-
-La réunion de tous les ensembles~$W(j,i,c,d)$
-correspond exactement à l'ensemble des~$[x] P + [y] Q$ pour~$x, y \neq 0$.
-On obtient les classes de~(ii) avec
-les ensembles~$[V(i, c)] P$ et~$[V(j,d)] Q$.
-\end{proof}
-
-En particulier pour avoir une description des orbites points d'ordre $\ell^k$, en reprenant les notations de la preuve il suffit de voir que cet ensemble de points d'ordre $\ell^k$ correspond aux sous ensembles de~$W(j,i,c,d)$ avec $i=k-1$ ou $j=k-1$. 
-
-On obtient une proposition équivalente pour~$\ell = 2$.
-
-
-\begin{prop}\label{prop:orbites-2-torsion}
-Soit~$E$ une courbe elliptique ordinaire avec un anneau d'endomorphisme maximal
- par rapport à $2$.
-Supposons que $\lambda \equiv \mu \equiv 1 \bmod4 $, soit~$\alpha = v_2(\lambda-1), \beta=v_2(\mu-1)$
-on écrit~$\nu_2(x, y) = \min (x+y, x+\beta-2, y+\alpha-2)$
-et~$\rho_2(x, y) = x+y - \nu_2(x, y) = \max (0, x-\alpha+2, y-\beta+2)$.
-La décomposition du groupe~$E[2^k]$ en classes de Galois se fait comme suit:
-\begin{enumerate}
-\item pour~$i, j = 1, …, k-2$:
-$4 \cdot 2^{\nu_2(i,j)}$ classes de taille~$2^{\rho_2(i,j)}$;
-\item pour~$i = 1, …, k-2$:
-$4 \cdot 2^{\min (i, \alpha-2)}$ classes de taille~$2^{\max (0, i-\alpha+2)}$, et
-$4 \cdot 2^{\min (i, \beta-2)}$ classes de taille~$2^{\max (0, i-\beta+2)}$.
-\item les 16 classes de singleton de~$E[4]$.
-\end{enumerate}
-\end{prop}
-La preuve étant similaire à celle du cas impair elle ne sera pas écrite.
-
-Si l'on a~$\lambda$ ou~$\mu \equiv -1 \bmod 4$ alors
-on peut toujours se ramener à la condition $\lambda \equiv \mu \equiv 1 \bmod 4$
-en remplaçant le corps de base par une extension quadratique.
-
-
-On travaille avec une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique, on se place dans le contexte de l'algorithme de Couveignes et on veut calculer une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion pour calculer une isogénie de degré $r$. En particulier on ne connaît pas la cardinalité de la courbe. On verra dans un autre chapitre~\ref{cha:alg:fin} le lien entre $k$ et $r$, dans cette section on se place dans le cas Elkies où le polynôme caractéristique du Frobenius se scinde sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu à la proposition \ref{pro:dia:hor} que l'on devait avoir $k \geqslant h+1$, on rappelle aussi que $\beta$ représente la plus grande valuation de la $\ell$-torsion rationnelle pour une courbe située sur le sommet du cratère du volcan de $\ell$-isogénies(voir sous section \ref{sub:classes}).
+On travaille sur une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique,  on veut calculer une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion. En particulier on ne connaît pas la cardinalité de la courbe. On  se place dans le cas Elkies où le polynôme caractéristique du Frobenius admet deux valeurs propres distinctes sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu à la proposition \ref{pro:dia:hor} que l'on devait avoir $k \geqslant h+1$, on rappelle aussi que $\beta$ représente la plus grande valuation de la $\ell$-torsion rationnelle pour une courbe située sur le sommet du cratère du volcan de $\ell$-isogénies(voir sous section \ref{sub:classes}). \todo{mettre à jour référence}
 
 Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère (proposition \ref{pro:mat:fro}), le calcul d'une base de la $\ell^k$ torsion diffère donc dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
 
 On note par $\mathsf{divise}(\ell,P)$ l'algorithme qui donne un des antécédents par la multiplication par $\ell$ du point $P$.
+
 
 \begin{lem}
 \label{lem:div:cou}
@@ -8073,6 +7995,92 @@ entre elles.
 
 \printnomenclature
 \chapter{Rebus}
+\section{Etude orbites Frobenius}
+\todo{utilité des deux propositions suivantes ?, elles ne sont pas utilisées ...}
+\begin{prop}\label{prop:orbites-l-torsion}
+Soit~$E$ une courbe elliptique ordinaire avec un anneau des endomorphismes 
+localement maximal  par rapport à $\ell$.
+Supposons que $\ell \neq 2$, $\lambda \equiv \mu \equiv 1 \bmod \ell$ et posons~$\alpha = v_{\ell}(\lambda-1), \beta=v_{\ell}(\mu-1)$.
+On écrit~$\nu(x, y) = \min (x+y, x+\beta-1, y+\alpha-1)$
+et~$\rho(x, y) = x+y - \nu(x, y) = \max (0, x-\alpha+1, y-\beta+1)$.
+La décomposition du groupe~$E[\ell^k]$ en classe de Galois est la suivante:
+\begin{enumerate}
+\item pour~$i, j = 1, …, k-1$:
+$(\ell-1)^2 \cdot \ell^{\nu(i,j)}$ classes de taille~$\ell^{\rho(i,j)}$;
+\item pour~$i = 1, …, k-1$:
+$(\ell-1) \cdot \ell^{\min (i, \alpha-1)}$ classes de taille~$\ell^{\max (0, i-\alpha+1)}$, et
+$(\ell-1) \cdot \ell^{\min (i, \beta-1)}$ classes de taille~$\ell^{\max (0, i-\beta+1)}$;
+\item les $\ell^2$ classes de singleton de~$E[\ell]$.
+% \item \todo{le cas où $\ell=2$}
+\end{enumerate}
+\end{prop}
+\begin{proof}
+Soit~$(P, Q)$ une base de~$E[\ell^k]$ telle que~$\pi(P)=[\lambda] P$, $\pi(Q)=[\mu] Q$.
+\'Etudier les orbites de Galois de~$E[\ell^k]$
+revient à étudier l'action~$\mathbb{Z}_\ell^2 \rightarrow \mathbb{Z}_\ell^2, (x, y) \mapsto (\lambda x, \mu y)$.
+Ainsi les orbites correspondent aux éléments de~$\mathbb{Z}_\ell^2$ définis
+modulo le sous-groupe \emph{multiplicatif} genéré par~$(\lambda, \mu)$.
+Un moyen facile de représenter celui-ci est de travailler 
+avec un \emph{réseau multiplicatif} dans~$(\mathbb{Q}_{\ell}^{\times})^2$.
+
+Soit~$\varepsilon$ une racine primitive $(\ell-1)$-ème de l'unité dans~$\mathbb{Z}_{\ell}$,
+alors par~\cite[Théorème II.3.2]{Serre70},
+l'application~$f(x, y, z) = \ell^x \cdot \varepsilon^y \cdot \exp (\ell z)$
+est un isomorphisme de groupe entre~$\mathbb{Z} \times (\mathbb{Z}/(\ell-1) \mathbb{Z}) \times \mathbb{Z}_{\ell}$ et~$\mathbb{Q}_{\ell}^{\times}$.
+Pour~$i \in [0,k-1 ]$ et~$c \in \mathbb{Z}/(\ell-1)\mathbb{Z}$,
+on note~$V(i,c)$ l'image dans $\mathbb{Z}/\ell^k \mathbb{Z}$ donnée par~$f(k-1-i,c,- )$, la structure multiplicative de $V(i, c)$
+est celle d'un espace homogène principal sous l'action de~$\mathbb{Z}/\ell^i \mathbb{Z}$.
+On définit alors~$W(i,j,c,d) = [V(i, c)] P \,+\, [V(j, d)]  Q \subset E[\ell^k]$.
+
+Comme~$\lambda \equiv 1 \bmod \ell^{\alpha}$, on peut écrire~$\lambda = f(0,0,u\, \ell^{\alpha-1})$
+et~$\mu = f(0,0, v\, \ell^{\beta-1})$
+avec~$u, v \in \mathbb{Z}_{\ell}^{\times}$.
+L'ensemble~$W(i,j,c,d)$ est alors stable sous l'action du groupe de Galois.
+Les orbites de~$W(i,j,c,d)$ correspondent de façon bijective
+aux points du domaine fondamental du réseau~$\Lambda_{i,j}$ genéré par
+les colonnes de~$\left(  \begin{smallmatrix}
+\ell^i & 0 & u \ell^{\alpha-1}\\ 
+0 & \ell^j & v \ell^{\beta-1}
+\end{smallmatrix} \right) $,
+il est à noter que la taille de chaque orbite est calculée modulo~$[(\mathbb{Z}/\ell^i \mathbb{Z}) \times (\mathbb{Z}/\ell^j \mathbb{Z})\::\: \Lambda_{i,j}]$.
+En utilisant des opérations élémentaires sur les colonnes 
+on trouve que  le volume fondamental de~$\Lambda_{i,j}$ est~$\ell^{\nu(i,j)}$,
+ainsi on obtient le point~(i) de la proposition.
+(Le cas~$i = j = 0$ nous donne le résultat sur les classes de singleton dans~$E[\ell]$).
+
+La réunion de tous les ensembles~$W(j,i,c,d)$
+correspond exactement à l'ensemble des~$[x] P + [y] Q$ pour~$x, y \neq 0$.
+On obtient les classes de~(ii) avec
+les ensembles~$[V(i, c)] P$ et~$[V(j,d)] Q$.
+\end{proof}
+
+En particulier pour avoir une description des orbites points d'ordre $\ell^k$, en reprenant les notations de la preuve il suffit de voir que cet ensemble de points d'ordre $\ell^k$ correspond aux sous ensembles de~$W(j,i,c,d)$ avec $i=k-1$ ou $j=k-1$. 
+
+On obtient une proposition équivalente pour~$\ell = 2$.
+
+
+\begin{prop}\label{prop:orbites-2-torsion}
+Soit~$E$ une courbe elliptique ordinaire avec un anneau d'endomorphisme maximal
+ par rapport à $2$.
+Supposons que $\lambda \equiv \mu \equiv 1 \bmod4 $, soit~$\alpha = v_2(\lambda-1), \beta=v_2(\mu-1)$
+on écrit~$\nu_2(x, y) = \min (x+y, x+\beta-2, y+\alpha-2)$
+et~$\rho_2(x, y) = x+y - \nu_2(x, y) = \max (0, x-\alpha+2, y-\beta+2)$.
+La décomposition du groupe~$E[2^k]$ en classes de Galois se fait comme suit:
+\begin{enumerate}
+\item pour~$i, j = 1, …, k-2$:
+$4 \cdot 2^{\nu_2(i,j)}$ classes de taille~$2^{\rho_2(i,j)}$;
+\item pour~$i = 1, …, k-2$:
+$4 \cdot 2^{\min (i, \alpha-2)}$ classes de taille~$2^{\max (0, i-\alpha+2)}$, et
+$4 \cdot 2^{\min (i, \beta-2)}$ classes de taille~$2^{\max (0, i-\beta+2)}$.
+\item les 16 classes de singleton de~$E[4]$.
+\end{enumerate}
+\end{prop}
+La preuve étant similaire à celle du cas impair elle ne sera pas écrite.
+
+Si l'on a~$\lambda$ ou~$\mu \equiv -1 \bmod 4$ alors
+on peut toujours se ramener à la condition $\lambda \equiv \mu \equiv 1 \bmod 4$
+en remplaçant le corps de base par une extension quadratique.
+
 \section{Algorithme de Couveignes}
 
 \begin{defi}
