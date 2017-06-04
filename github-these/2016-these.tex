@@ -4270,6 +4270,8 @@ matrice $\left ( \begin{smallmatrix}a  & b\gamma^{-1} \ell^{h-e} \\c \gamma
 On a vu dans la preuve de cette proposition~ un moyen de trouver un point
 générateur d'une isogénie montante, on énonce donc le résultat suivant:
 
+\todo{faire un dessin avec un exemple de volcan avec les matrices correspondantes au niveau}
+
 \begin{cor}
 \label{cor:mon:atk}
 Soit $E$ située au niveau $h-e \neq h$ d'un volcan de $\ell$-isogénies avec 
@@ -4283,14 +4285,16 @@ avec $b \wedge \ell=1$ et $\ell \mid c$, la $\ell$-isogénie montante de domaine
 $E$ a pour noyau $\langle [\ell^{k-1}P] \rangle$.
 \end{cor}
 Ce résultat peut aussi être prouvé avec la même méthode que celle employée dans
-la preuve de la proposition~\ref{pro:tri:dir}. 
+la preuve de la proposition~\ref{pro:tri:dir}. Ce corollaire permet lui aussi 
+de retrouver le résultat de la proposition~\ref{pro:iso:mon}.
 \todo{fixer le problème de profondeur et de hauteur}
 
-Maintenant nous allons voir comment on peut distinguer les $\ell$-isogénies 
-descendantes entre elles. Vu que l'on ne peut comme dans le cas Elkies distinguer 
-deux sous-groupes cycliques de la $E[\ell^{h+i}]$ pour $i>0$, on va voir quelles
+Maintenant nous allons voir comment on peut distinguer $\ell^{i-e}$ différentes 
+$\ell^{i-e}$-isogénies entre elles. Vu que l'on ne peut comme dans le 
+cas Elkies distinguer deux sous-groupes cycliques d'ordre $\ell^{h+i}$ de 
+$E[\ell^{h+i}]$ pour $i>0$ des autres sous-groupes cycliques, on va voir quelles
 informations on peut tirer lorsque l'on fixe arbitrairement un point de la base
-de la $E[\ell^{h+i}]$-torsion.
+de $E[\ell^{h+i}]$.
 
 \begin{prop}
 \label{pro:atk:equi}
@@ -4317,7 +4321,7 @@ modulo $\ell^{h+i}$.
 \end{proof}
 
 La proposition~\ref{pro:atk:equi} nous dit en particulier que 
-les deux points $R$ et $R'$ engendrent la même $\ell^i$-isogénie descendante de
+les deux points $R$ et $R'$ engendrent la même $\ell^{i-e}$-isogénie de
 noyau $\langle [\ell^{h+e}]R' \rangle = \langle [\ell^{h+e}]R \rangle$.
 
 %\begin{rem}
@@ -4330,17 +4334,18 @@ noyau $\langle [\ell^{h+e}]R' \rangle = \langle [\ell^{h+e}]R \rangle$.
 %\pi(P,R') \Rightarrow [\ell^{h+e}]R=[\ell^{h+e}]R'$.
 %\end{rem}
 
-Ainsi à l'aide du corollaire~\ref{cor:mon:atk} on sait monter dans le volcan de 
-$\ell$-isogénies pour réduire le problème de déterminations d'isogénies à celui
-énoncé sur le cratère. 
-Cependant si on travaille à partir d'une courbe située au niveau $h-e$ pour 
+Si on travaille à partir d'une courbe située au niveau $h-e$ pour 
 étudier la direction des $\ell^i$-isogénies on aura à travailler
-avec une base de la $\ell^{h+i+e}$-torsion sur le cratère, ce qui comparé à la  
-remarque est le mieux que l'on puisse espérer.
+avec une base de la $\ell^{h+i+e}$-torsion. Comme à l'aide du 
+corollaire~\ref{cor:mon:atk} on sait monter dans le volcan de 
+$\ell$-isogénies si l'on voulait étudier le même 
+problème (déterminer les $\ell^{i}$-isogénies ayant pour domaine une courbe 
+située au niveau $h-e$) à partir de la courbe sur le cratère, on aurait alors 
+à étudier la $\ell^{h+i+e}$-torsion.
 
-Dés lors on va se concentrer à l'étude des points sur une courbe qui se 
-situe sur le cratère et montrer un résultat qui permet de distinguer les 
-différents générateurs d'une même $\ell^i$-isogénie.
+
+Le résultat suivant nous permet de distinguer les 
+différents générateurs d'une même $\ell^{i-e}$-isogénie.
 \todo{Dire que l'on peut se passer de l'étude pour les courbes en-dessous du 
 cratère car on sait monter dans le volcan...}
 
