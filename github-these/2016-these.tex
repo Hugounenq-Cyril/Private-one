@@ -3312,12 +3312,113 @@ le volcan de $\ell$-isogénies.
 
 Ainsi avec la proposition \ref{pro:mat:fro} on a un moyen de déterminer la 
 hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de 
-l'action du Frobenius sur $\mathsf{T}_{\ell}(E)$. Le résultat suivant nous donne un 
-moyen de savoir comment monter et descendre à l'intérieur d'un volcan de 
-$\ell$-isogénies en étudiant l'action du Frobenius sur les points de la courbe 
-qui génèrent leur noyau. C'est d'ailleurs l'approche que l'on aura tout au long
-de cette section, pour déterminer les directions des isogénies on étudiera 
-l'action du Frobenius sur un point générateur de leur noyau.
+l'action du Frobenius sur $\mathsf{T}_{\ell}(E)$. Dans la 
+figure~\ref{fig:elk:dif:niv:mat} est représenté un volcan de $2$-isogénies 
+de hauteur $2$ où l'on observe le lien entre le niveau de la courbe dans le 
+volcan de hauteur $2$ ici et la forme de la matrice du Frobenius à conjugaison 
+près. Ainsi pour les courbes situées tout en bas du volcan on a le coefficient 
+triangulaire supérieur qui est de valuation $\ell$-adique nulle et qui augmente
+de $1$ à chaque fois que l'on monte d'un niveau dans le volcan. 
+
+Le résultat suivant nous donne un moyen de savoir comment monter et descendre à
+l'intérieur d'un volcan de $\ell$-isogénies en étudiant l'action du Frobenius 
+sur les points de la courbe qui génèrent leur noyau. C'est d'ailleurs 
+l'approche que l'on aura tout au long de cette section, pour déterminer les 
+directions des isogénies on étudiera l'action du Frobenius sur un point 
+générateur de leur noyau.
+
+
+\begin{figure}
+\begin{center}
+
+\begin{tikzpicture}[scale=0.50]
+\coordinate (A) at (0,2);
+\coordinate (B) at (0,6);
+\coordinate (C) at (0,10);
+\draw (A) node[left]{$\left( \begin{matrix}
+\color{red}{\lambda} & 1 \\
+0 & \color{blue}{\mu}
+\end{matrix} \right) \color{black} $}; %node{$\bullet$};
+\draw (B) node[left]{$ \left( \begin{matrix}
+\color{red}{\lambda} & \ell \\
+0 & \color{blue}{\mu}
+\end{matrix} \right) \color{black} $}; %node{$\bullet$};
+\draw (C) node[left]{$ \left( \begin{matrix}
+\color{red}{\lambda} & 0 \\
+0 & \color{blue}{\mu}
+\end{matrix} \right) \color{black} $}; %node{$\bullet$};
+\begin{scope}[yshift=10cm]
+	\begin{scope}[xshift=4.3cm]
+		\node (A) at (-3,0) {$  \bullet $};
+		\node (B) at (3,0) {$   \bullet$};
+		\node (C) at (270:1.2) {$ \bullet \color{black}$};
+		\node (D) at (90:1.5) {};
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[-] (A.center) to[bend right=40] (B.center);
+		\draw (A) node{$  \bullet $};
+		\draw (B) node{$  \bullet $};
+		\draw (C) node{$  \bullet $};
+		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
+			\begin{scope}[xshift=-3cm]% sous volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=3cm]% sous volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			%\draw (A) node{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};;
+			
+			
+			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};			
+			
+			\end{scope}
+			\coordinate (F) at (5,0);
+			\coordinate (G) at (5,-7);
+			\draw[dashed,<-] (F)--(G) node[midway,right]{$h$};
+	\end{scope}
+\end{scope}
+
+%faire des fleches courbees avec les indices \ell et \ell^2
+
+\end{tikzpicture}
+\end{center}
+
+\caption{\label{fig:elk:dif:niv:mat} Différentes formes de matrices du Frobenius à conjugaison près selon le niveau dans le volcan d'isogénies.}
+\end{figure}
 
 \begin{prop}
 \label{pro:tri:dir}
@@ -4267,6 +4368,71 @@ matrice $\left ( \begin{smallmatrix}a  & b\gamma^{-1} \ell^{h-e} \\c \gamma
 \ell^{h-e} & d \end{smallmatrix}\right )$.
 \end{proof}
 
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.50]
+\coordinate (A) at (0,2.5);
+\coordinate (B) at (0,6.5);
+\coordinate (C) at (0,10);
+\draw (A) node[left]{$\left( \begin{matrix}
+a_0 & b_0 \\
+c_0 & d_0
+\end{matrix} \right) \color{black} $}; %node{$\bullet$};
+\draw (B) node[left]{$ \left( \begin{matrix}
+a_1 & b\ell \\
+c_1\ell & d_1
+\end{matrix} \right) \color{black} $}; %node{$\bullet$};
+\draw (C) node[left]{$ \left( \begin{matrix}
+a_2 & b_2\ell^2 \\
+c_2\ell^2 & d_2
+\end{matrix} \right) \color{black} $}; %node{$\bullet$};
+\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-2,-11);
+		\coordinate (M) at (2,-11);
+		\draw (D) -- (E);
+		\draw (D) -- (F);
+		\draw (D) -- (K);
+		\draw (K) -- (L);
+		\draw (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw (F) -- (I);
+		\draw (F) -- (J);
+		%\coordinate (G) at (E)++(225:3);
+		\draw (D) node[fill=white]{$\bullet$};
+		\draw (J) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\bullet$};
+		\draw (F) node[fill=white]{$\bullet$};
+		\draw (G) node[fill=white]{$\bullet$};
+		\draw (H) node[fill=white]{$\bullet$};
+		\draw (I) node[fill=white]{$\bullet$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (L) node[fill=white]{$\bullet$};
+		\draw (M) node[fill=white]{$\bullet$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\caption{\label{fig:atk:dif:niv:mat} Exemples de matrices du Frobenius obtenues sur les différents niveaux d'un volcan de $\ell$-isogénies}
+\end{figure}
+Sur la figure~\ref{fig:atk:dif:niv:mat} est représenté les différentes matrices
+représentant l'action du Frobenius que l'on peut obtenir selon le niveau de la 
+courbe sur laquelle on fait agir le Frobenius. Pour une courbe située au niveau
+du cratère (ici le $2$ème niveau) on a les coefficients $b_2$ et $c_2$ qui sont
+premiers avec $\ell$ et on a la valuation $\ell$-adique des coefficients 
+anti-diagonaux qui vaut $h$. Pour les niveaux en dessous du cratère on a au 
+moins un des deux coefficients anti-diagonaux (ici $(b_1\ell,c_1\ell)$ pour le 
+niveau 1 et $(b_0,c_0)$ pour le niveau $0$) qui est de valuation $\ell$-adique 
+égal au niveau $h-e$ de la courbe, l'autre coefficient peut avoir une valuation 
+$\ell$-adique comprise entre $h-e+2$ et $h+e$ 
+
 On a vu dans la preuve de cette proposition~ un moyen de trouver un point
 générateur d'une isogénie montante, on énonce donc le résultat suivant:
 
@@ -4296,6 +4462,7 @@ $E[\ell^{h+i}]$ pour $i>0$ des autres sous-groupes cycliques, on va voir quelles
 informations on peut tirer lorsque l'on fixe arbitrairement un point de la base
 de $E[\ell^{h+i}]$.
 
+\todo{Faire un dessin avec un volcan qui représente le lien entre les isogénies et la forme de la matrice}
 \begin{prop}
 \label{pro:atk:equi}
 Soient $P,R,R'$ trois points de $E$ située au niveau $h-e$ du volcan de 
@@ -4321,9 +4488,83 @@ modulo $\ell^{h+i}$.
 \end{proof}
 
 La proposition~\ref{pro:atk:equi} nous dit en particulier que 
-les deux points $R$ et $R'$ engendrent la même $\ell^{i-e}$-isogénie de
-noyau $\langle [\ell^{h+e}]R' \rangle = \langle [\ell^{h+e}]R \rangle$.
+deux points $R$ et $R'$ tels que $\pi(P,R)=\pi(P,R')$ engendrent la même 
+$\ell^{i-e}$-isogénie de noyau $\langle [\ell^{h+e}]R' \rangle = \langle 
+[\ell^{h+e}]R \rangle$.
 
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.50]
+\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-2,-11);
+		\coordinate (M) at (2,-11);
+		\draw (D) -- (E);
+		\draw (D) -- (F);
+		\draw (D) -- (K);
+		\draw (K) -- (L);
+		\draw (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw (F) -- (I);
+		\draw (F) -- (J);
+		\draw (D) node[fill=white]{$\bullet$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
+\\4  & 3 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
+\\12  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
+\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\bullet $};
+		\draw (M) node[fill=white]{$\bullet $};
+		\draw (I) node[fill=white]{$\left( \begin{smallmatrix}11 & 12 
+\\4 & 15 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\coordinate (A) at (12,-5);
+		\coordinate (B) at (12,-11);
+		\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
+		\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies obtenues à partir de différentes matrices du Frobenius calculées sur la courbe située au niveau du cratère du volcan de $\ell$-isogénies. Pour cet exemple on a travaillé avec une courbe de $j$-invariant $56$ définie sur $\mathbb{F}_{149}$.}
+\end{figure}
+
+La figure~\ref{fig:atk:dif:niv:iso} représente les isogénies que l'on obtient 
+selon la forme des matrices représentant l'action du Frobenius calculé sur la 
+courbe située au niveau du cratère. On a donc représenté la matrice à l'endroit
+correspondant dans le volcan du codomaine de la $\ell^{i}$-isogénie engendrée 
+par le second vecteur de la base de $E[\ell^{h+i}]$ dans laquelle est calculée 
+l'action du Frobenius. Ainsi les courbes dans le volcan atteintes
+par les isogénies engendrées par le premier point de la base ne sont pas 
+associées à des matrices du Frobenius, voilà pourquoi seulement $2$ des $3$ 
+branches descendantes ont des matrices associées à chaque courbe. Les matrices 
+sont représentées modulo $\ell^{h+1}$ pour le niveau $h-1$ car il est 
+nécessaire de calculer une base de $E[\ell^{h+1}]$ pour distinguer les 
+$\ell$-isogénies, de même pour le niveau $h-2$ une base de $E[\ell^{h+2}]$ est 
+nécessaire. On remarque de plus que pour chaque branche on a $\left( 
+\begin{smallmatrix}15 & 12 \\4  & 11 \end{smallmatrix} \right) = \left( 
+\begin{smallmatrix}7 & 12 \\12  & 3 \end{smallmatrix} \right) = \left( 
+\begin{smallmatrix}7 & 4 \\4  & 3 \end{smallmatrix} \right) \bmod \ell^{h+1}$ 
+et $\left( \begin{smallmatrix}3 & 4 \\4  & 7 \end{smallmatrix} \right)  = 
+\left( \begin{smallmatrix}11 & 12 \\4 & 15 \end{smallmatrix} \right) \bmod 
+\ell^{h+1}$ ce qui est normal car on a un seul générateur possible de la 
+$2$-isogénie et donc une seule matrice par conjugaison (voir 
+proposition~\ref{pro:atk:equi}). Pour le niveau de la base du volcan il est à 
+noter qu'une seule des matrices que l'on peut obtenir par conjugaison (voir 
+proposition~\ref{pro:atk:equi}) a été représenté.
+ 
 %\begin{rem}
 %\label{rem:atk:gen}
 %La proposition~\ref{pro:atk:equi} ne peut se généraliser aux niveaux inférieurs
