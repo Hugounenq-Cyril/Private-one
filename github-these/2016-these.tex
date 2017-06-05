@@ -3217,7 +3217,7 @@ Le résultat est démontré dans \cite[§5.3.1]{Ionica2010}.
 \end{proof}
 
 \chapter{Détermination de directions dans le volcan de $\ell$-isogénies à l'aide de l'action du Frobenius}
-\section{Etude théorique}
+\section{Etude sur le module de Tate}
 \label{cha:act:fro}
 Dans cette partie on va étudier sur une courbe elliptique $E$ l'action du 
 Frobenius sur $\mathsf{T}_{\ell}(E)$ et voir comment selon cette action on 
@@ -3248,6 +3248,7 @@ par le corollaire~\ref{cor:tab:vol}.
 On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi$ admet deux valeurs propres distinctes modulo la $\ell^k$ torsion avec $k > h$.
 
 \begin{prop}
+\label{pro:hau:vol}
 Soit $E$ une courbe elliptique $\ell$ un nombre premier de Elkies alors on a 
 $h=v_{\ell}(\lambda - \mu)$ qui est la hauteur du volcan de $\ell$-isogénies 
 sur $\mathbb{F}_q$.
@@ -4783,6 +4784,9 @@ par conséquent il y a $\ell^{\min(\alpha+i, k) + \min(\beta, k-i)} \leqslant \e
 En additionnant ce résultat pour tous les ~$i$ on prouve~(5).
 \end{proof}
 
+Maintenant voyons le lien entre $\beta$ et $h$ la hauteur du volcan selon que
+celui-ci soit régulier ou non.
+
 \begin{cor}
 \label{cor:elk:bet:reg}
 Soit un volcan de $\ell$-isogénies défini sur $\mathsf{F}_1/\mathbb{F}_q$ tel 
@@ -4810,12 +4814,23 @@ en dessous elle change comme décrit juste au-dessus.
 
 \subsubsection{Coupure Algorithme}
 
-On travaille sur une courbe elliptique se trouvant sur un volcan de $\ell$-isogénies à cratère cyclique,  on veut calculer une base horizontale (ou partiellement horizontale) de la $\ell^k$-torsion. En particulier on ne connaît pas la cardinalité de la courbe. On  se place dans le cas Elkies où le polynôme caractéristique du Frobenius admet deux valeurs propres distinctes sur $\mathbb{Z}_{\ell}$, avec $h$ la valuation $\ell$-adique de la différence des valeurs propres. On a vu à la proposition \ref{pro:dia:hor} que l'on devait avoir $k \geqslant h+1$, on rappelle aussi que $\beta$ représente la plus grande valuation de la $\ell$-torsion rationnelle pour une courbe située sur le sommet du cratère du volcan de $\ell$-isogénies(voir sous section \ref{sub:classes}). \todo{mettre à jour référence}
+On travaille sur une courbe elliptique se trouvant sur un volcan de 
+$\ell$-isogénies à cratère cyclique (cas Elkies),  on veut calculer une base 
+horizontale (ou partiellement horizontale) de la $\ell^k$-torsion, on suppose 
+de plus que l'on ne connaît pas la cardinalité de la courbe. On rappelle que 
+l'on note $h$ la valuation $\ell$-adique de la différence des valeurs propres 
+du polynôme caractéristique de $\pi$ et que $h$ représente la hauteur du volcan
+de $\ell$-isogénies (voir proposition~\ref{pro:hau:vol}). On a vu à la 
+proposition~\ref{pro:dia:hor} que l'on devait avoir $k \geqslant h+1$, on 
+rappelle aussi que $\beta$ représente la plus grande valuation de la 
+$\ell$-torsion rationnelle pour une courbe située sur le cratère du volcan de 
+$\ell$-isogénies(voir définition~\ref{def:alp:bet}).
 
-Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère (proposition \ref{pro:mat:fro}), le calcul d'une base de la $\ell^k$ torsion diffère donc dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
-
-On note par $\mathsf{divise}(\ell,P)$ l'algorithme qui donne un des antécédents par la multiplication par $\ell$ du point $P$.
-
+On commence tout d'abord par énoncer un algorithme qui sera utilisée dans tous 
+les autres algorithmes par la suite c'est le calcul d'un antécédent à la 
+multiplication par $\ell$ d'un point $P$, on note cette application 
+$\mathsf{divise}(\ell,P)$. Ce résultat sera bien évidemment aussi utilisé dans
+le cas Atkin.
 
 \begin{lem}
 \label{lem:div:cou}
@@ -4839,8 +4854,12 @@ décrite dans ~\cite[Chapter~14.5]{vzGJG03}.
    coefficients dans $\mathsf{F}_i$ (voir chapitre~\ref{cha:tour}).  
 \end{proof}
 
+
+Ainsi pour une telle courbe lorsque l'on calcule l'action du Frobenius sur la $\ell^k$ torsion alors celle-ci a une forme triangulaire pour les courbes situées en dessous du cratère et diagonale pour une courbe située sur le cratère (proposition \ref{pro:mat:fro}), le calcul d'une base de la $\ell^k$ torsion diffère donc dans ces deux cas. Ainsi on va voir dans un premier temps comment calculer une base de la $\ell^k$ torsion dans laquelle l'action du Frobenius est triangulaire.
+
+
 \begin{algorithm}
-\caption{\label{alg:bas:tri}Calcul d'une base de $E[\ell^k]$ dans laquelle l'action du Frobenius est triangulaire pour $E$ situéee au niveau $h-e \neq h$ d'un volcan de $\ell$-isogénies à cratère cyclique}
+\caption{\label{alg:bas:tri}Calcul d'une base triangulaire de $E[\ell^k]$ dans le cas Elkies}
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique ordinaire au niveau $h-e \neq h$ d'un volcan de $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif;
@@ -4870,7 +4889,7 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \RETURN $(P_{k},Q_{k},\lambda,\mu).$
 \end{algorithmic}
 \end{algorithm}
-
+\todo{remplacer les complexités espérées par ... cout moyen ?}
 \begin{prop}
 L'algorithme~\ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ située au niveau $h-e<h$ dans un volcan de $\ell$-isogénies régulier avec une complexité espérée de $O(\mathsf{R}(k-\beta+e) + \ell^2\mathsf{M}(\ell^{k-\beta+e})+ \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ et de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ lorsque $E$ est au dessus du niveau de stabilité.
 \end{prop}
@@ -4933,7 +4952,7 @@ Cette notation étant très lourde elle ne sera utilisée que lorsque le niveau 
  Nous présentons maintennant l'algorithme qui calcule une base la $\ell^k$ torsion de $E_s$:
 
 \begin{algorithm}
-\caption{\label{alg:rem:tri}Calcul d'une base de $E_s[\ell^k]$ dans laquelle l'action du Frobenius est diagonale pour $E_s$ la courbe sommet de $E$ située au niveau $h-e \neq h$ pour laquelle on on connait une base triangulaire du Frobenius}
+\caption{\label{alg:rem:tri}Calcul d'une base diagonale de $E_s[\ell^k]$ à partir d'une base triangulaire de $E[\ell^k]$}
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique ordinaire située à un niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif; $(P^{(h-e)},Q^{(h-e)})$ une base de $E[\ell^k]$; $\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
@@ -5005,9 +5024,9 @@ La preuve est la même que la précédente la seule différence est que à chaqu
 Cette discussion sur la rationnalité de la $\ell^k$-torsion pour une courbe située en desous du cratère montre la nécessité dés lors que l'on sait à l'aide du calcul de l'action du Frobenius dans une une base de la $\ell^i$ torsion qu'une courbe est située en dessous du cratère de faire de suite une remontée afin d'éviter de travailler dans des extensions de corps supplémentaires et d'ensuite diagonaliser sur le cratère. On présente donc tout d'abord la diagonalisation pour une courbe sur le cratère, avant de présenter un algorithme qui à partir d'une courbe située en dessous du cratère du volcan nous donne une base diagonale de la courbe sommet.
 
 \begin{algorithm}
-\caption{\label{alg:bas:diag}Calcul d'une base diagonale de $E[\ell^k]$ pour $E$ au niveau du cratère et de l'action de $\pi$ dans celle-ci}
+\caption{\label{alg:bas:diag}Calcul d'une base diagonale de $E_s[\ell^k]$}
 \begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique;
+\REQUIRE $E_s$: une courbe elliptique ordinaire située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique;
 $k$: un entier positif;
 \ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
 $\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
@@ -5097,7 +5116,7 @@ que la liste de $\ell$-isogénies montantes qui permettent de relier $E$ à sa
 courbe sommet.
 \todo{regarder comment commenter l'algorithme}
 \begin{algorithm}
-\caption{\label{alg:ulti:fro}Calcul d'une base de $E_s[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
+\caption{\label{alg:ulti:fro}Calcul d'une base diagonale de $E_s[\ell^k]$ à partir d'une courbe $E$}
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan de $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif;
