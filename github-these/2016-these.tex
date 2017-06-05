@@ -5334,9 +5334,17 @@ Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne
 
 \subsection{Atkin}
 
-Cela va être super court.
-
 \subsubsection{Décomposition de la $\ell^{h+i}$ torsion sous l'action du Frobenius}
+
+On va maintenant étudier la structure de la torsion rationnelle des courbes 
+elliptiques situées au niveau du cratère et déterminer l'extension de corps 
+nécessaire pour avoir une torsion $\ell$-adique de valuation fixée définie.
+Pour les courbes inférieures dans le volcan la 
+proposition~\ref{pro:atk:d1} permet d'utiliser notre résultat aux autres
+courbes. 
+
+%On utilise la même définition pour $\beta$ que celle issue de la 
+%définition~\ref{def:alp:bet}.
 
 Dans cette sous-section on va voir comment se décompose l'ensemble des 
 points d'ordre $\ell^{h+i}$ sous l'action du Frobenius dans le cas Atkin pour 
@@ -5376,6 +5384,7 @@ E(F)[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}
 \]
 avec pour $\ell \neq 2$ $\beta \in [1,h]$ et pour $\ell=2$ $\beta \in [2,h]$. De 
 plus $\beta=h$ la hauteur du volcan sur $F$ si et seulement si le volcan est \emph{régulier}.
+Pour un volcan \emph{non-régulier} $\beta$ est égal au niveau du premier niveau de stabilité. 
 \end{prop}
 
 \begin{proof}
@@ -5447,11 +5456,7 @@ d'ordre $\ell^{\beta+i}$ selon l'action de $\mathsf{Gal}(
 \mathsf{F}_{i+1}:\mathsf{F}_{1})$.
 \end{cor}
 
-
-\begin{prop}
-Soient $P,P'$ deux points de la courbe elliptique $E$ située au niveau du 
-cratère du volcan de $\ell$-isogénies
-\end{prop}
+\subsubsection{Coupure algorithme}
 
 \begin{algorithm}
 \caption{\label{alg:atk:bas:mat}Calcul d'un point $R$ d'ordre~$\ell^{h-e+i}$ tel que $\pi(P,R)=M$}
@@ -5525,8 +5530,28 @@ On rappelle que l'on se place dans le contexte suivant:
 
 Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
 
-\section{Cas Elkies}
 
+Pour résoudre ce problème du calcul explicite d'isogénies on pourrait utiliser 
+les même méthodes que celles développées dans \cite{Couveignes96} et 
+\cite{DeFeo11} (voir chapitre~\ref{cha:iso:computing} pour plus de détails) en 
+remplaçant les points de $p$-torsion par ceux de $\ell$-torsion. Avec une telle
+démarche on 
+\begin{itemize}
+\item calcule une base de la $\ell^k$-torsion telle que $\ell^{2k} \in \tilde 
+O(r)$ sur chacune des $2$ courbes;
+\item teste toutes les matrices $M \in \mathsf{GL}_2(\mathbb{Z}/\ell^k
+\mathbb{Z})$ qui modélisent toutes les correspondances possibles entre les 
+deux bases de la $\ell^k$-torsion induites par la $r$-isogénie.
+\end{itemize}
+Le problème avec cette approche c'est que l'on a un nombre beaucoup trop grand
+$O(r^2)$ de matrices à tester, on doit donc travailler avec un ensemble de 
+points plus restrictifs si l'on veut obtenir une complexité quadratique comme 
+les algorithmes de \cite{DeFeo11}, on présente donc deux approches toutes les 
+deux basées sur les directions dans le volcan de $\ell$-isogénies une pour le 
+cas Elkies et une pour le cas Atkin.
+
+\section{Cas Elkies}
+ 
 \todo{Luca a raison là on s'éloigne du cadre que l'on s'était fixé}
 La proposition suivante nous permet de faire le lien entre les bases horizontales et le contexte de l'algorithme de Couveignes~\cite{Couveignes96}.
 
