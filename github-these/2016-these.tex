@@ -5687,185 +5687,318 @@ Q
 \todo{On peut faire un dessin pour expliquer en quoi c'est pas bien! Ce sera très parlant}
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}[scale=0.50]
-\begin{scope}%[yshift=10cm]
-	\begin{scope}[xshift=4.3cm]
+\begin{tikzpicture}[scale=0.20]
+\begin{scope}
 		%Cratere
-		\node (A) at (-3,0) {$\bullet$};
-		\node (B) at (3,0) {$\bullet$};
-		\node (C) at (270:1.2) {$\bullet$};
-		\node (D) at (125:1.2) {$\bullet$};
-		\draw[-] (A.center) to[bend right=25] (C.center);
-		\draw[-] (D.center) to[bend right=20] (A.center);	
-		\draw[line width=1.5pt,blue,->] (D.center) to[bend left=18] (B.center);
+		\node (A) at (-10.5,0) {$\bullet$};
+		\node (B) at (10.5,0) {$\bullet$};
+		\node (C) at (0,-4) {$\bullet$};
+		\draw[line width=1.5pt,red,->] (C.center) to[bend left=18] (A.center);
 		
 		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
 		%\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
-
+		\node[fill=white] (D) at (0,4) {$\bullet$};
+		\draw[-] (A.center) to[bend left=20] (D.center);
+		\draw[-] (D.center) to[bend left=20] (B.center);
 		
-			\begin{scope}[xshift=-3cm] %sous-volcan de gauche
+			\begin{scope}[shift={(A)}] %sous-volcan de gauche
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\draw  (C)--(A);
-			\draw  (C)--(CA);
+			\coordinate (AC) at (3,-6);
+			\coordinate (AA) at (-3,-6);
+			\coordinate (BD) at (1,-10);
+			\coordinate (BE) at (3,-10);
+			\coordinate (BF) at (5,-10);
+			\coordinate (BG) at (-1,-10);
+			\coordinate (BI) at (-3,-10);
+			\coordinate (BH) at (-5,-10);
+			\draw[line width=1.5pt,-,red] (A) to (AC);
+			\draw[line width=1.5pt,->,red]  (AC) to (BF);
+			\draw  (A) -- (AA);
+			%\draw  (A) -- (AC);
+			\draw  (AC) -- (BD);
+			\draw  (AC) -- (BE);
+			%\draw  (AC) -- (BF);
+			\draw  (AA) -- (BG);
+			\draw  (AA) -- (BH);
+			\draw  (AA) -- (BI);
 			%just to have a 6th slide
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (AA) node[fill=white]{$\bullet$};
+			\draw (AC) node[fill=white]{$\bullet$};
+			\draw (BD) node[fill=white]{$\bullet$};
+			\draw (BE) node[fill=white]{$\bullet$};
+			%\draw (BF) node[fill=white]{$\bullet$};
+			\draw (BG) node[fill=white]{$\bullet$};
+			\draw (BH) node[fill=white]{$\bullet$};
+			\draw (BI) node[fill=white]{$\bullet$};
+			\end{scope}
 			
-			\draw (C)--(A);
-			\draw (C)--(CA);
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\end{scope}
-			\begin{scope}[xshift=3cm] %sous-volcan de droite
+			\begin{scope}[shift={(B)}] %sous-volcan de droite
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\draw (C)--(CB);
-			\draw (A)--(C);
+			\coordinate (AC) at (3,-6);
+			\coordinate (AA) at (-3,-6);
+			\coordinate (BD) at (1,-10);
+			\coordinate (BE) at (3,-10);
+			\coordinate (BF) at (5,-10);
+			\coordinate (BG) at (-1,-10);
+			\coordinate (BI) at (-3,-10);
+			\coordinate (BH) at (-5,-10);
+			\draw[line width=1.5pt,-,blue] (A) to (AA);
+			\draw[line width=1.5pt,->,blue]  (AA) to (BG);
+			%\draw  (A) -- (AA);
+			\draw  (A) -- (AC);
+			\draw  (AC) -- (BD);
+			\draw  (AC) -- (BE);
+			\draw  (AC) -- (BF);
+			%\draw  (AA) -- (BG);
+			\draw  (AA) -- (BH);
+			\draw  (AA) -- (BI);
+			%just to have a 6th slide
 			\draw (A) node[fill=white]{$\bullet$};
-			%\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (AA) node[fill=white]{$\bullet$};
+			\draw (AC) node[fill=white]{$\bullet$};
+			\draw (BD) node[fill=white]{$\bullet$};
+			\draw (BE) node[fill=white]{$\bullet$};
+			\draw (BF) node[fill=white]{$\bullet$};
+			%\draw (BG) node[fill=white]{$\bullet$};
+			\draw (BH) node[fill=white]{$\bullet$};
+			\draw (BI) node[fill=white]{$\bullet$};
 			\end{scope}
-			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			
+			\begin{scope}[shift={(D)},opacity=0.5]%gray %sous-volcan du haut
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
+			\coordinate (AC) at (3,-6);
+			\coordinate (AA) at (-3,-6);
+			\coordinate (BD) at (1,-10);
+			\coordinate (BE) at (3,-10);
+			\coordinate (BF) at (5,-10);
+			\coordinate (BG) at (-1,-10);
+			\coordinate (BI) at (-3,-10);
+			\coordinate (BH) at (-5,-10);
+			%\draw[line width=1.5pt,-,red] (A) to (AC);
+			%\draw[line width=1.5pt,->,red]  (AC) to (BF);
+			\draw  (A) -- (AA);
+			\draw  (A) -- (AC);
+			\draw  (AC) -- (BD);
+			\draw  (AC) -- (BE);
+			\draw  (AC) -- (BF);
+			\draw  (AA) -- (BG);
+			\draw  (AA) -- (BH);
+			\draw  (AA) -- (BI);
+			%just to have a 6th slide
+			%\draw (A) node[fill=white]{$\bullet$};
+			\draw (AA) node[fill=white]{$\bullet$};
+			\draw (AC) node[fill=white]{$\bullet$};
+			\draw[color=gray!90] (BD) node{$\bullet$};
+			\draw (BE) node[fill=white]{$\bullet$};
+			\draw (BF) node[fill=white]{$\bullet$};
+			\draw (BH) node[fill=white]{$\bullet$};
+			\draw[color=gray!90] (BG) node{$\bullet$};
+			\draw (BI) node[fill=white]{$\bullet$};
+			\end{scope}
+			
+			\begin{scope}[shift={(C)}] %sous-volcan du milieu
+			\coordinate (A) at (0,0);
+			\coordinate (AC) at (3,-6);
+			\coordinate (AA) at (-3,-6);
+			\coordinate (BD) at (1,-10);
+			\coordinate (BE) at (3,-10);
+			\coordinate (BF) at (5,-10);
+			\coordinate (BG) at (-1,-10);
+			\coordinate (BI) at (-3,-10);
+			\coordinate (BH) at (-5,-10);
+			%\draw[line width=1.5pt,-,red] (A) to (AC);
+			%\draw[line width=1.5pt,->,red]  (AC) to (BF);
+			\draw  (A) -- (AA);
+			\draw  (A) -- (AC);
+			\draw  (AC) -- (BD);
+			\draw  (AC) -- (BE);
+			\draw  (AC) -- (BF);
+			\draw  (AA) -- (BG);
+			\draw  (AA) -- (BH);
+			\draw  (AA) -- (BI);
+			%just to have a 6th slide
 			\draw (A) node[fill=white]{$E_s$};
-			%\only<1>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};}
-			\draw (C) node[fill=white]{$E$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\coordinate (G) at (0.7,-1);
-			\coordinate (H) at (0.7,-3.5);
-			\draw [line width=1.3pt,black,->] (G)--(H) node[midway,right] {$\psi$};
+			\draw (AA) node[fill=white]{$E$};
+			\draw (AC) node[fill=white]{$\bullet$};
+			\draw (BD) node[fill=white]{$\bullet$};
+			\draw (BE) node[fill=white]{$\bullet$};
+			\draw (BF) node[fill=white]{$\bullet$};
+			\draw (BG) node[fill=white]{$\bullet$};
+			\draw (BH) node[fill=white]{$\bullet$};
+			\draw (BI) node[fill=white]{$\bullet$};
 			\end{scope}
-			\begin{scope}[shift={(D)}] %sous volcan du haut
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw [dashed] (C)--(CA);
-			\draw [dashed] (C)--(CB);
-			\draw [dashed] (A)--(C);
-			%\draw (C) node[color=black!90]{$\bullet$};
-			\draw (CA) node[color=black!90]{$\bullet$};
-			\draw (CB) node[color=black!90]{$\bullet$};
-			%\only<3>{
-			\draw [line width=1.5pt,blue,<-] (C)--(A);
-			\draw (C)--(CA);
-			\draw (A) node[fill=white]{$\bullet$};
-			\end{scope}
-	\end{scope}
+			\draw (D) node[fill=white]{$\bullet$};
 \end{scope}
-\begin{scope}[xshift=9cm] %volcan de droite
-	\begin{scope}[xshift=4.3cm]
+
+\begin{scope}[xshift=35cm]
 		%Cratere
-		\node (A) at (-3,0) {$\bullet$};
-		\node (B) at (3,0) {$\bullet$};
-		\node (C) at (270:1.2) {$\bullet$};
-		\node (D) at (125:1.2) {};
-		\draw[-] (A.center) to[bend right=25] (C.center);
-		\draw[-] (D.center) to[bend right=20] (A.center);	
-		\draw[line width=1.5pt,blue,<-] (D.center) to[bend left=18] (B.center);
+		\node (A) at (-10.5,0) {$\bullet$};
+		\node (B) at (10.5,0) {};%{$\bullet$};
+		\node (C) at (0,-4) {$\bullet$};
+		%\draw[dashed] (B.center) to[bend right=20] (A.center);	
+		\draw[line width=1.5pt,red,->] (C.center) to[bend left=18] (A.center);
 		
-		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
+		\draw[line width=1.5pt,blue,-] (C.center) to[bend right=20] (B.center); 
+		\node (D) at (0,4) {$\bullet$};
+		\draw[line width=1.5pt,red,-] (A.center) to[bend left=20] (D.center);
+		\draw[line width=1.5pt,red,->] (D.center) to[bend left=20] (B.center);
 		%\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
 
 		
-			\begin{scope}[xshift=-3cm] %sous-volcan de gauche
+			\begin{scope}[shift={(A)}] %sous-volcan de gauche
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\draw  (C)--(A);
-			\draw  (C)--(CA);
+			\coordinate (AC) at (3,-6);
+			\coordinate (AA) at (-3,-6);
+			\coordinate (BD) at (1,-10);
+			\coordinate (BE) at (3,-10);
+			\coordinate (BF) at (5,-10);
+			\coordinate (BG) at (-1,-10);
+			\coordinate (BI) at (-3,-10);
+			\coordinate (BH) at (-5,-10);
+			%\draw[line width=1.5pt,-,red] (A) to (AC);
+			%\draw[line width=1.5pt,->,red]  (AC) to (BD);
+			\draw  (A) -- (AA);
+			\draw  (A) -- (AC);
+			\draw  (AC) -- (BD);
+			\draw  (AC) -- (BE);
+			\draw  (AC) -- (BF);
+			\draw  (AA) -- (BG);
+			\draw  (AA) -- (BH);
+			\draw  (AA) -- (BI);
 			%just to have a 6th slide
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (AA) node[fill=white]{$\bullet$};
+			\draw (AC) node[fill=white]{$\bullet$};
+			\draw (BD) node[fill=white]{$\bullet$};
+			\draw (BE) node[fill=white]{$\bullet$};
+			\draw (BF) node[fill=white]{$\bullet$};
+			\draw (BG) node[fill=white]{$\bullet$};
+			\draw (BH) node[fill=white]{$\bullet$};
+			\draw (BI) node[fill=white]{$\bullet$};
+			\end{scope}
 			
-			\draw (C)--(A);
-			\draw (C)--(CA);
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\end{scope}
-			\begin{scope}[xshift=3cm] %sous-volcan de droite
+			\begin{scope}[shift={(B)}] %sous-volcan de droite
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\draw (A) node[fill=white]{$\bullet$};
-			%\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
+			\coordinate (AC) at (3,-6);
+			\coordinate (AA) at (-3,-6);
+			\coordinate (BD) at (1,-10);
+			\coordinate (BE) at (3,-10);
+			\coordinate (BF) at (5,-10);
+			\coordinate (BG) at (-1,-10);
+			\coordinate (BI) at (-3,-10);
+			\coordinate (BH) at (-5,-10);
+			\draw[line width=1.5pt,-,blue] (A) to (AC);
+			\draw[line width=1.5pt,->,blue]  (AC) to (BF);
+			\draw  (A) -- (AA);
+			%\draw  (A) -- (AC);
+			\draw  (AC) -- (BD);
+			\draw  (AC) -- (BE);
+			%\draw  (AC) -- (BF);
+			\draw  (AA) -- (BG);
+			\draw  (AA) -- (BH);
+			\draw  (AA) -- (BI);
+			%just to have a 6th slide
+			%\draw (A) node[fill=white]{$\bullet$};
+			\draw (AA) node[fill=white]{$\bullet$};
+			\draw (AC) node[fill=white]{$\bullet$};
+			\draw (BD) node[fill=white]{$\bullet$};
+			\draw (BE) node[fill=white]{$\bullet$};
+			%\draw (BF) node[fill=white]{$\bullet$};
+			\draw (BG) node[fill=white]{$\bullet$};
+			\draw (BH) node[fill=white]{$\bullet$};
+			\draw (BI) node[fill=white]{$\bullet$};
 			\end{scope}
-			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			
+			\begin{scope}[shift={(D)},opacity=0.5]%gray %sous-volcan du haut
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw [line width=1.5pt,blue](A)--(C);
-			\draw (A) node[fill=white]{$E_s$};
-			%\only<1>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};}
-			\draw (C) node[fill=white]{$E$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
+			\coordinate (AC) at (3,-6);
+			\coordinate (AA) at (-3,-6);
+			\coordinate (BD) at (1,-10);
+			\coordinate (BE) at (3,-10);
+			\coordinate (BF) at (5,-10);
+			\coordinate (BG) at (-1,-10);
+			\coordinate (BI) at (-3,-10);
+			\coordinate (BH) at (-5,-10);
+			%\draw[line width=1.5pt,-,red] (A) to (AC);
+			%\draw[line width=1.5pt,->,red]  (AC) to (BF);
+			\draw  (A) -- (AA);
+			\draw  (A) -- (AC);
+			\draw  (AC) -- (BD);
+			\draw  (AC) -- (BE);
+			\draw  (AC) -- (BF);
+			\draw  (AA) -- (BG);
+			\draw  (AA) -- (BH);
+			\draw  (AA) -- (BI);
+			%just to have a 6th slide
+			%\draw (A) node[fill=white]{$\bullet$};
+			\draw (AA) node[fill=white]{$\bullet$};
+			\draw (AC) node[fill=white]{$\bullet$};
+			\draw[color=gray!90] (BD) node{$\bullet$};
+			\draw (BE) node[fill=white]{$\bullet$};
+			\draw (BF) node[fill=white]{$\bullet$};
+			\draw (BH) node[fill=white]{$\bullet$};
+			\draw[color=gray!90] (BG) node{$\bullet$};
+			\draw (BI) node[fill=white]{$\bullet$};
 			\end{scope}
-			\begin{scope}[shift={(D)}] %sous volcan du haut
+			
+			\begin{scope}[shift={(C)}] %sous-volcan du milieu
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw [dashed] (C)--(CA);
-			\draw [dashed] (C)--(CB);
-			\draw [dashed] (A)--(C);
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[color=black!90]{$\bullet$};
-			\draw (CB) node[color=black!90]{$\bullet$};
-			%\only<3>{
-			\draw (C)--(A);
-			\draw (C)--(CA);
+			\coordinate (AC) at (3,-6);
+			\coordinate (AA) at (-3,-6);
+			\coordinate (BD) at (1,-10);
+			\coordinate (BE) at (3,-10);
+			\coordinate (BF) at (5,-10);
+			\coordinate (BG) at (-1,-10);
+			\coordinate (BI) at (-3,-10);
+			\coordinate (BH) at (-5,-10);
+			%\draw[line width=1.5pt,-,red] (A) to (AC);
+			%\draw[line width=1.5pt,->,red]  (AC) to (BF);
+			\draw  (A) -- (AA);
+			\draw  (A) -- (AC);
+			\draw  (AC) -- (BD);
+			\draw  (AC) -- (BE);
+			\draw  (AC) -- (BF);
+			\draw  (AA) -- (BG);
+			\draw  (AA) -- (BH);
+			\draw  (AA) -- (BI);
+			%just to have a 6th slide
+			\draw (A) node[fill=white]{$E'_s$};
+			\draw (AA) node[fill=white]{$E'$};
+			\draw (AC) node[fill=white]{$\bullet$};
+			\draw (BD) node[fill=white]{$\bullet$};
+			\draw (BE) node[fill=white]{$\bullet$};
+			\draw (BF) node[fill=white]{$\bullet$};
+			\draw (BG) node[fill=white]{$\bullet$};
+			\draw (BH) node[fill=white]{$\bullet$};
+			\draw (BI) node[fill=white]{$\bullet$};
 			\end{scope}
-	\end{scope}
+			\draw (D) node[fill=white]{$\bullet$};
+			
 \end{scope}
-
+%\begin{scope}[xshift=18cm]
+%	\node (H) at (0,-4){};
+%	\node (I) at (35,-4){};
+%	\draw[line width=1.3pt,->] (H) to[bend left=20] (I);
+%	\node (J) at (17,0.5) {$\phi$};
+				%\draw [line width=1.3pt,black,->] (G)--(H) node[midway,right] {$\psi$};
+%\end{scope}
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:par:hor:con} Construction d'un point partiellement 
-horizontal à partir d'un point $P \in E_s$ d'ordre $2^3$ tel que $[2]P$ soit 
-horizontal de direction $\color{blue}{\mu}$ et $\psi:E_s \rightarrow E$ une 
-$2$-isogénie descendante. L'isogénie de noyau $\langle P \rangle$ est 
-représentée en bleu sur le dessin de gauche, celle de noyau $\langle \psi(P) 
-\rangle$ est représentée sur le dessin de droite.}
+\caption{ \label{fig:ex:con:dia}Exemple de candidats pour la mise en correspondances de points diagonaux par la $r$-isgoénie $\phi$}
 \end{figure}
+
+Sur la figure~\ref{fig:ex:con:dia} on voit un exemple de mises 
+en correspondance de bases diagonales de la $3^3$-torsion. On voit en 
+particulier que cela ne permet une correspondance exacte que pour la 
+$3$-isogénie qui correspond à l'isogénie horizontale. En effet comme on a vu
+plus tôt un point diagonal d'ordre $\ell^k$ ne donne une information que sur la
+$\ell^{k-h}$-isogénie-horizontale, dès lors on ne sait dire à partir de cette 
+information si les isogénies de degré supérieur à $3$ engendrées par le point 
+diagonal sont du même type et repectent l'action de la $r$-isogénie $\phi$. En
+effet pour le choix d'un de ces points diagonaux on peut choisir comme sur l'exemple un point horizontal pour la direction $\color{red} \lambda$ pour la courbe $E_s$ et un point non horizontal pour la direction $ \color{red} \lambda$ sur la courbe $E'_s$.  Dès lors on a pas une correspondance de sous-groupes cycliques et l'on doit considérer les cominaisons linéaire avec le second point de la base diagonale de direction $\color{blue} \mu$ pour les correspondances induites par la $r$-isogénie. peuvent être horizontaux et respecter l'action de la 
+$r$-isogénie ou bien ne pas être horizontaux et du coup ne pas respecter 
+celle-ci. \todo{préciser et faire référence, cela est vu en annexe}
 
  On travaille donc avec deux bases $(\color{red}P_{\lambda} \color{black},
  \color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},
