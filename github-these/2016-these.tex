@@ -4292,6 +4292,7 @@ en-dessous du cratère excepté le résultat de la proposition.
 
 
 \subsection{Cas Atkin}
+\label{subs:atk:dir}
 Dans cette section on s'intéresse au cas particulier suivant: 
 \begin{defi}
 \label{def:cas:atk}
@@ -5651,8 +5652,8 @@ On se place tout d'abord dans le cas particulier où l'on connaît un nombre
 premier $\ell$  de Elkies.
 
 On montre tout d'abord en quoi ce n'est pas optimal de travailler avec une base
-diagonale de la $\ell^k$-torsion et donc pourquoi il faut travailler avec des
-bases horizontales.
+diagonale de la $\ell^k$-torsion et l'avantage que cela procure de travailler 
+avec des bases horizontales.
 
 Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une $r$-isogénie $\phi$, alors par la proposition~\ref{pro:mat:fro} pour $k$ plus grand que $h$ la hauteur du volcan de $\ell$-isogénies on peut calculer deux bases diagonales $(P,Q),(P',Q')$ de $E_s[\ell^k]$ et $E'_s[\ell^k]$ les courbes sommets respectives de $E$ et $E'$ \todo{pourquoi encore parler de bases diagonales alors que l'on veut parler de directions horizontales sur le volcan de $\ell$-isogénies}
 \[
@@ -5988,17 +5989,21 @@ Q
 \caption{ \label{fig:ex:con:dia}Exemple de candidats pour la mise en correspondances de points diagonaux par la $r$-isgoénie $\phi$}
 \end{figure}
 
-Sur la figure~\ref{fig:ex:con:dia} on voit un exemple de mises 
-en correspondance de bases diagonales de la $3^3$-torsion. On voit en 
-particulier que cela ne permet une correspondance exacte que pour la 
+On illustre cela avec l'exemple de bases diagonales de la $3^3$-torsion 
+choisies sur la figure~\ref{fig:ex:con:dia}. On voit en 
+particulier que ce choix ne permet une correspondance exacte que pour la 
 $3$-isogénie qui correspond à l'isogénie horizontale. En effet comme on a vu
 plus tôt un point diagonal d'ordre $\ell^k$ ne donne une information que sur la
-$\ell^{k-h}$-isogénie-horizontale, dès lors on ne sait dire à partir de cette 
-information si les isogénies de degré supérieur à $3$ engendrées par le point 
-diagonal sont du même type et repectent l'action de la $r$-isogénie $\phi$. En
-effet pour le choix d'un de ces points diagonaux on peut choisir comme sur l'exemple un point horizontal pour la direction $\color{red} \lambda$ pour la courbe $E_s$ et un point non horizontal pour la direction $ \color{red} \lambda$ sur la courbe $E'_s$.  Dès lors on a pas une correspondance de sous-groupes cycliques et l'on doit considérer les cominaisons linéaire avec le second point de la base diagonale de direction $\color{blue} \mu$ pour les correspondances induites par la $r$-isogénie. peuvent être horizontaux et respecter l'action de la 
-$r$-isogénie ou bien ne pas être horizontaux et du coup ne pas respecter 
-celle-ci. \todo{préciser et faire référence, cela est vu en annexe}
+$\ell^{k-h}$-isogénie-horizontale (voir proposition~\ref{pro:dia:hor}), dès 
+lors on ne sait dire à partir de cette information si les isogénies de degré 
+supérieur à $3$ engendrées par le point diagonal sont du même type et repectent
+l'action de la $r$-isogénie $\phi$. En effet pour le choix d'un de ces points 
+diagonaux on peut choisir comme sur l'exemple un point horizontal pour la 
+direction $\color{red} \lambda$ pour la courbe $E_s$ et un point non horizontal
+pour la direction $ \color{red} \lambda$ sur la courbe $E'_s$.  Dès lors on a 
+pas une correspondance de sous-groupes cycliques et l'on doit considérer les 
+combinaisons linéaire avec le second point de la base diagonale de direction 
+$\color{blue} \mu$ pour les correspondances induites par la $r$-isogénie.  \todo{préciser et faire référence aux isogénies descendantes pour lesquelles le Frobenius ne peut rien, cela est vu en annexe}
 
  On travaille donc avec deux bases $(\color{red}P_{\lambda} \color{black},
  \color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},
@@ -6009,8 +6014,9 @@ celle-ci. \todo{préciser et faire référence, cela est vu en annexe}
  Dans ces bases l'action de $\phi$ sur la base 
  $(\color{red}P_{\lambda} \color{black},\color{blue}Q_{\mu}\color{black})$ 
  peut être représentée comme une matrice diagonale car par la 
- proposition~\ref{pro:par:iso} et la proposition~\ref{pro:par:hor:par} les points de
-  même direction sont mis en correspondance:
+ proposition~\ref{pro:par:iso} et la proposition~\ref{pro:par:hor:par} les 
+ groupes cycliques engendrés par des points (partiellement) horizontaux de
+  même direction sont en bijection:
 \[
 \left(
 \begin{matrix}
@@ -6027,7 +6033,7 @@ a & 0 \\
 \color{blue} Q_{\mu} \color{black}
 \end{matrix}
 \right)
-\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^*
+\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^{\times}
 \]
  On énumère donc toutes les $\ell^{2k-2}$ matrices $M$ possibles $\left( 
  \begin{smallmatrix} a & 0 \\ 0 & b \end{smallmatrix} \right)$. Pour chaque 
@@ -6057,9 +6063,10 @@ le nombre d'abscisses de points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}
 {2}$ strictement plus grand que $2r$ pour avoir suffisamment d'informations.
 
 
-On peut donc maintenant énoncer l'algorithme complet pour calculer une 
-$r$-isogénie entre deux courbes elliptiques $E$, $E'$ définies sur des volcans 
-de $\ell$-isogénies à cratère cyclique: 
+On peut donc maintenant énoncer dans l'algorithme~\ref{alg:cou:ell-adique} 
+l'algorithme complet  pour calculer une $r$-isogénie entre deux
+courbes elliptiques $E$, $E'$ définies sur des volcans de $\ell$-isogénies avec
+$\ell$ un nombre premier de Elkies. 
 
 \begin{algorithm}
 \caption{\label{alg:cou:ell-adique} Algorithme de Couveignes $\ell$-adique dans le cas Elkies.}
@@ -6424,7 +6431,13 @@ différentes parties est disponible sur le projet github:
 
 \section{Cas Atkin}
 \label{sec:Atk:Con}
-Maintenant énonçons un résultat qui est une transposition de la 
+On justifie tout d'abord l'intérêt de l'étude que l'on a fait de la forme de 
+la matrice du Frobenius avec un vecteur de la base fixée par rapport à un 
+algorithme de Couveignes~\cite{Couveignes96} modifié pour travailler avec la
+$\ell$-torsion. Cette section utilise les résultats de la 
+sous-section~\ref{subs:atk:dir}.
+
+On énonce donc un résultat qui est une transposition de la 
 proposition~\ref{pro:par:iso} qui s'appliquait au cas Elkies.
 
 \begin{prop}\label{pro:par:iso:atk}
@@ -6469,13 +6482,15 @@ permet de conclure.
 \end{proof}
 
 
-On se restreint tout d'abord au cas où l'on travaille avec deux courbes 
-$r$-isogènes, avec $r \wedge \ell=1$ qui se situent sur un
-volcan de $\ell$-isogénies de hauteur $h$, dont le cratère est réduit à une 
-courbe car on se place dans le cas Atkin. De plus on va dans un premier temps
-se restreindre au cas où les courbes avec lesquelles on travaille se situent 
-sur le cratère d'un volcande $\ell$-isogénies, on verra par la suite comment 
-généraliser notre problème à des courbes non situées sur le cratère.
+On rappelle que l'on travaille avec deux courbes $r$-isogènes, avec $r \wedge 
+\ell=1$ qui se situent sur un volcan de $\ell$-isogénies de hauteur $h$, dont 
+le cratère est réduit à une courbe car on se place dans le cas Atkin, on 
+suppose de plus qu'un nombre $\ell$ de Atkin tel que $\ell^h<\sqrt{r}$ est déjà
+connu (pour plus de détails voir la proposition~\ref{pro:bor:ell}). De plus on 
+va dans un premier temps se restreindre au cas où les courbes avec lesquelles 
+on travaille se situent sur le cratère d'un volcan de $\ell$-isogénies, on 
+verra par la suite comment généraliser notre problème à des courbes non situées
+sur le cratère.
 
 Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées
 par une $r$-isogénie $\phi$, $P \in E$ et $S' \in E'$ deux points d'ordre 
@@ -6484,7 +6499,7 @@ bases $(P,Q),(S',R')$ de $E[\ell^k]$ et $E'[\ell^k]$ telles que $\pi(P,Q)=
 \pi(S',R')$ on détermine de façon unique $\phi([\ell^h]Q)=[\ell^h]R'$ par le 
 corollaire~\ref{cor:atk:ess}. On détermine alors le point 
 $\phi(Q)$ en testant pour tout point $U'$ antécédent par $[\ell^h]$ de 
-$[\ell^h]R'$ si la correspondance $(P,Q) \rightarrow (S',U')$ premet de définir
+$[\ell^h]R'$ si la correspondance $(P,Q) \rightarrow (S',U')$ permet de définir
 une $r$-isogénie. Ce test consiste comme dans le cas Elkies à calculer le 
 polynôme d'interpolation $A_{S',U'}$ tel que 
 \[
@@ -6494,9 +6509,9 @@ Ensuite à l'aide du polynôme $A_{S',U'}$ on calcule la fraction rationnelle $F
 \[
 F=A_{S',U'} \bmod T
 \]
-avec $T$ le polynôme minimal qui s'annule sur tout point $[u]P +[v]Q_{\mu}$ 
+avec $T$ le polynôme minimal qui s'annule sur tout point $[u]P +[v]Q$ 
 d'ordre $\ell^k$. C'est la fraction rationnelle $F$ qui lorsque l'on a bien 
-choisi $U''$ doit représenter l'action de la $r$-isogénie $\phi$, on cherche 
+choisi $U'$ doit représenter l'action de la $r$-isogénie $\phi$, on cherche 
 donc à calculer $F$ de degré $(r,r-1)$. Or une telle fraction rationnelle est 
 déterminée par $2r$ coefficients on doit donc avoir le nombre d'abscisses de 
 points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}{2}$ strictement plus grand
@@ -6652,7 +6667,7 @@ Comme dit précédemment les résultats de la proposition~\ref{pro:bor:ell},
 ~\ref{pro:cou:dec} et du corollaire~\ref{cor:atk:elk:dist} sont 
 aussi valables dans le cas Atkin, on peut donc trouver un $\ell \in O(\log(q))$
 nombre premier de Atkin tel que $\ell^h<\sqrt{r}$ et énoncer un résultat 
-similaire à celui de du théorème~{thm:gen:elk:fin}, vu le peu d'intérêt d'un 
+similaire à celui du théorème~\ref{thm:gen:elk:fin}, vu le peu d'intérêt d'un 
 tel résultat on ne l'énoncera pas. 
 
 
