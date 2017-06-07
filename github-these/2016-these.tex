@@ -4286,10 +4286,77 @@ noyau de $\widehat{\varphi}$.
 Pour le point (2) il suffit d'écrire que $\widehat{\varphi}(P')=\widehat{\varphi}\circ \varphi (P)= [\ell^i] P$ on conclut alors à l'aide des hypothèses sur $P$.
 \end{proof}
 
-Enfin on verra si l'on peut tirer des 
-informations sur les directions dans le volcan pour des courbes situées 
-en-dessous du cratère excepté le résultat de la proposition.
+Maintenant nous allons voir si l'on peut tirer distinguer les 
+$\ell^i$-isogénies descendantes dans le volcan à l'aide d'une étude de l'action
+du Frobenius. Pour cette étude on fixe un point d'ordre $\ell^k$ qui engendre 
+la $\ell$-isogénie montante (ou l'une des deux horizontales lorsque l'on est 
+sur le cratère) et on regarde si la forme de la matrice du Frobenius est liée à
+la $\ell^i$-isogénie descendante engendrée par le second point qui forme une 
+base de $E[\ell^k]$.  
 
+
+\begin{prop}
+Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan de 
+$\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,Q, R 
+\in E$ tels que $\langle P,Q \rangle= \langle P,R \rangle =E[\ell^{h-e+i}]$, 
+$R=[a]P+[b]Q$ et $\pi(P,R)= \left( \begin{matrix}\lambda & \beta 
+\ell^{h-e} \\0 & \mu \end{matrix}\right) \bmod \ell^{h-e+i}$ avec $\beta \wedge
+\ell=1$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il
+existe une transformation \begin{equation*}
+R=[a]P+[b]Q \mapsto R'=[*]P+[yb]Q
+\end{equation*}
+telle que $\pi(P,R)=\pi(P,R')$ et $\langle [\ell^{h-e}]R' \rangle = \ker(\phi)$.
+\end{prop}
+
+\begin{proof}
+Par la forme de la matrice $\pi(P,R)$ on a:
+\[ \pi([a]P+[b]Q)=[\ell^{h-e} \beta] P + [\mu] ([a]P+[b]Q)\]
+de plus comme $\pi([a]P+[b]Q)=[a \lambda ]P + [b] \pi(Q)$ on en déduit 
+l'expression suivante de $b\pi(Q)$:
+\[ b \pi(Q)=[\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q. \]
+On a alors $\pi([*]P+[by]Q)=[*\lambda]P+[y]([b]\pi(Q))$, la condition 
+$\pi(P,R')=\pi(P,R)$ est vérifiée si et seulement si:
+\begin{eqnarray*}
+\pi([*]P+[by]Q) &=& [\beta \ell^{h-e}] P + [\mu]([*]P+[by]Q) \\
+				&=& [\lambda *]P + [y]([\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q)
+\end{eqnarray*}
+Cela se traduit donc par l'égalité suivante:
+\[ \beta \ell^{h-e} + *(\mu-\lambda)=y(\beta \ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
+Ainsi on fait une distinction avec selon que l'on ait $h-e+i \leqslant h$ ou 
+$h-e+i > h$ car $\ell^h || \lambda - \mu$. 
+
+Pour $h-e+i \leqslant h$ on obtient l'équation suivante:
+\[\beta \ell^{h-e} = y\beta \ell^{h-e}  \bmod \ell^{h-e+i} \]
+et donc la valeur de la matrice ne dépend que de $y$. Or la
+$\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle$ est déterminée par la 
+valeur de $\ell^{h-e}b^{-1}y^{-1}* \bmod \ell^{h-e+i}$ (voir preuve de la 
+proposition~\ref{pro:cla:fro:mat} pour plus de détails), ainsi en faisant 
+varier la valeur de $*$ on peut faire en sorte que $[\ell^{h-e}]R'$ soit le 
+générateur de n'importe quelle $\ell^{i}$-isogénie descendante.
+
+On regarde donc maintenant le cas où $h-e+i>h$, montrons comment on détermine
+$y$ et $*$  tels que $\ell^{h-e}\gamma=\ell^{h-e}*(by)^{-1} \bmod 
+\ell^{h-e+i}$ avec $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$ qui représente une 
+$\ell^i$-isogénie descendante spécifique tout en ayant $\pi(P,R)=\pi(P,R')$.
+On pose $\ell^{h} \alpha = \lambda - \mu$ avec $\alpha \wedge \ell=1$
+, l'égalité $\pi(P,R)=\pi(P,R')$ se traduit donc par:
+\[ \beta \ell^{h-e} + \ell^{h}\alpha *=y(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}, \]
+on multiplie alors cette équation par $(by)^{-1}$
+\begin{eqnarray*}
+\beta \ell^{h-e}(by)^{-1} + \ell^{e}\alpha \ell^{h-e} \gamma &=& b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i} \\
+\beta \ell^{h-e}(by)^{-1} &=& - \ell^{e}\alpha \ell^{h-e} \gamma + b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}
+\end{eqnarray*}
+On peut alors déterminer $y$ puis $*$ afin d'avoir une transformation pour 
+laquelle on obtient un point $R'$ tel que $[\ell^{h-e}]R'$ soit un générateur 
+de l'isogénie spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
+\end{proof}
+
+On voit donc que l'on n'est pas capable de distinguer les isogénies 
+descendantes entre elles dans un volcan de $\ell$-isogénies avec $\ell$ un 
+nombre premier de Elkies. En effet pour toute forme de matrice du Frobenius 
+triangulaire observée on est capable de trouver pour chacune des différentes 
+$\ell$-isogénies descendantes un second point de la base qui engendre cette
+isogénie et pour lequel l'action du Frobenius est identique dans cette base.
 
 \subsection{Cas Atkin}
 \label{subs:atk:dir}
@@ -8342,7 +8409,7 @@ que $\langle P,Q \rangle=E[\ell^{h-e+i}]$, $R=[a]P+[b]Q$ tel que $\pi(P,R)
 domaine $E$ il existe une transformation \begin{equation*}
 R=[a]P+[b]Q \rightarrow R'=[*]P+[yb]Q
 \end{equation*}
-telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
+telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h-e}R' \rangle = \ker(\phi)$.
 \end{prop}
 
 \begin{proof}
@@ -8482,6 +8549,34 @@ La preuve étant similaire à celle du cas impair elle ne sera pas écrite.
 Si l'on a~$\lambda$ ou~$\mu \equiv -1 \bmod 4$ alors
 on peut toujours se ramener à la condition $\lambda \equiv \mu \equiv 1 \bmod 4$
 en remplaçant le corps de base par une extension quadratique.
+
+\begin{prop}
+Soit $E$ une courbe située au niveau $h-e$ du volcan de $\ell$-isogénies, 
+$(P,Q)$ une base de $E[\ell^k]$ situé avec $k>h-e$. On suppose de plus que
+\[
+\pi(P,Q)=\left( \begin{matrix}
+\lambda & \ell^{h-e}b \\
+0 & \mu
+\end{matrix} \right)
+\] alors pour toute $\ell$-isogénie descendante il existe une transformation 
+$Q \Rightarrow R=[x]P+[y]Q$ telle que $\langle [x]P+[y]Q \rangle$ soit le noyau 
+de cette isogénie et que $\pi(P,Q)=\pi(P,R)$. 
+\end{prop}
+
+\begin{proof}
+La conjugaison de la matrice $\left ( \begin{smallmatrix}\lambda & b\ell^{h-e}\\0 & \mu
+\end{smallmatrix}\right )$ par $\left ( \begin{smallmatrix}1 & \alpha \\0 & \beta
+\end{smallmatrix}\right )$ avec $\beta \wedge \ell =1$ (car on veut que cela 
+soit un changement de base) nous donne une matrice avec coefficient 
+triangulaire supérieur égal à $\alpha \lambda + \beta (b \ell^{h-e} - \alpha 
+\mu)$. Or si l'on veut que cela conserve la forme de la matrice on a besoin 
+d'avoir $\alpha \lambda + \beta (b \ell^{h-e} - \alpha \mu)= b \ell^{h-e} \bmod
+\ell^k$. De plus on souhaite que cela engendre une $\ell$-isogénie 
+particulière celle-ci étant déterminée par la valeur de $\alpha \beta^{-1} 
+\bmod \ell$ (qui peut être $=0 \bmod \ell$) on fixe donc une valeur de $\gamma 
+= \alpha \beta^{-1} \bmod \ell^k$ pour le reste du calcul.
+\end{proof}
+
 
 \section{Algorithme de Couveignes}
 
