@@ -4557,7 +4557,9 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \end{algorithm}
 \todo{remplacer les complexités espérées par ... cout moyen ?+ unifier tout cela..}
 \begin{prop}
-L'algorithme~\ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ située au niveau $h-e<h$ dans un volcan de $\ell$-isogénies régulier avec une complexité espérée de $O(\mathsf{R}(k-\beta+e) + \ell^2\mathsf{M}(\ell^{k-\beta+e})+ \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ et de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ lorsque $E$ est au dessus du niveau de stabilité.
+L'algorithme~\ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ située au niveau $h-e<h$ dans un volcan de $\ell$-isogénies régulier avec une complexité espérée de 
+$O(\mathsf{R}(k-\beta+\max(0,e-(h-\beta))) + \ell^2\mathsf{M}(\ell^{k-\beta+\max(0,e-(h-\beta))})+ \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
+%$O(\mathsf{R}(k-\beta+e) + \ell^2\mathsf{M}(\ell^{k-\beta+e})+ \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ et de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ lorsque $E$ est au dessus du niveau de stabilité.
 \end{prop}
 
 \begin{proof}
@@ -4578,16 +4580,16 @@ $E[\ell^{k}]$ qui est définie dans $\mathsf{F}_{\max(1,k-\beta+\max(0,e-(h-
 \beta))}$ car il est évident que pour $k-\beta+\max(0,e-(h-\beta)) <0$ on 
 travaillera dans $\mathsf{F}_{1}$. \todo{Il devient peut être nécessaire d'introduire une notation ici...}
 Pour tout point $P$ d'ordre  $\ell^i$ défini dans 
-$E(\mathsf{F}_{i-1-\beta+e})$, le calcul de $\mathsf{divise}(\ell, P)$ à 
- l'étape ~\ref{alg:point:divide} coûte $O(\mathsf{R}(i-\beta+e))$ opérations 
+$E(\mathsf{F}_{i-\beta+\max(0,e-(h-\beta))})$, le calcul de $\mathsf{divise}(\ell, P)$ à 
+ l'étape ~\ref{alg:point:divide} coûte $O(\mathsf{R}(i-\beta+\max(0,e-(h-\beta))+1))$ opérations 
  par le lemme~\ref{lem:div:cou}.
-  L'évaluation de~$\pi(P')$ pour $P'$ défini dans $\mathsf{F}_{i-\beta+e}$ à
+  L'évaluation de~$\pi(P')$ pour $P'$ défini dans $\mathsf{F}_{i-\beta+\max(0,e-(h-\beta))}$ à
    l'étape~\ref{alg:trigonal:frobenius} a un côut
-  de~$O(\ell^{i+1-\beta+e}\mathsf{M}(\ell))$ par le théorème~\ref{thm:frob-ell}.
+  de~$O(\ell^{i-\beta+\max(0,e-(h-\beta))+1}\mathsf{M}(\ell))$ par le théorème~\ref{thm:frob-ell}.
   L'écriture~$\pi(P')$ comme une combinaison linéaire~$[u] P' + [v] Q'$ avec 
-  $P',Q'$ définis dans $\mathsf{F}_{i+1-\beta+e}$ nécessite au
+  $P',Q'$ définis dans $\mathsf{F}_{i-\beta+\max(0,e-(h-\beta))+1}$ nécessite au
   plus~$\ell^2$ additions de points, avec un côut de~$\ell^2
-  \mathsf{M}(\ell^{i+1-\beta+e})$.
+  \mathsf{M}(\ell^{i-\beta+\max(0,e-(h-\beta))+1})$.
   Le côut de résoudre l'équation à l'étape~\ref{alg:trigonal:solve1}
   par recherche exhaustive est négligeable, comme les 
   opérations restantes. Comme le côut de chaque boucle est géométrique
@@ -4606,7 +4608,7 @@ dans le volcan de $\ell$-isogénies permet de travailler avec le corps un niveau
 en dessous dans la tour d'extensions $\ell$-adiques. Le lemme~\ref{lem:alg:rat}
 en est une illustration.
 \end{rem}
-
+\todo{remarque à revoir plus tard}
 \begin{rem}
 Pour savoir le coût des algorithmes dépendant de la profondeur de la courbe dans le volcan de $\ell$-iogénies régulier tels que les algorithmes~\ref{alg:bas:tri}, \ref{alg:rem:tri} et \ref{alg:ulti:fro}  appliqués à une courbe sur un volcan non-régulier il suffit uniquement de prendre en compte le nombre de niveaux en dessous du premier niveau de stabilité de la courbe. Si l'on utilise un algorithme qui monte de niveaux dans le volcan tels que les algorithmes~\ref{alg:rem:tri} et \ref{alg:ulti:fro} il faut alors faire une distinction des cas et adapter la complexité lorsque la courbe franchit le premier niveau de stabilité. Dans ce cas-là de volcans non-réguliers la distinction entre $h$ et $\beta$ est tout à fait pertinente.
 \end{rem}
@@ -4627,10 +4629,10 @@ tels que $\pi(P^{(h-e)})= [\lambda] P^{(h-e)}$, $ \pi(Q^{(h-e)})=[\delta] P^{(h-
 \ENSURE $(P^{h}, Q^{h} )$: une base de $E_s[\ell^k]$;
 $\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P^{(h)})= [\lambda] P^{(h)}$, $ \pi(Q^{(h)})= [\mu] Q^{(h)}$.
-\FOR {$i=0$ à $h-v_{\ell}(\delta )-1$}
+\FOR {$i=0$ à $h-e-1$}
 \STATE\label{alg:rem:iso}  $\widehat{\varphi} \leftarrow $ isogénie de noyau $\langle [\ell^{k-1}]P^{(h-e+i)} \rangle$
 \STATE\label{alg:rem:divide}
-  $P' \leftarrow \mathsf{divise}(\ell, \widehat{\varphi}(P^{(h-e+i)}))$; $Q' \leftarrow \mathsf{divise} (\ell, \widehat{\varphi}(Q^{(h-e+i)}))$.
+  $P' \leftarrow \mathsf{divise}(\ell, \widehat{\varphi}(P^{(h-e+i)}))$; $Q' \leftarrow \widehat{\varphi}(Q^{(h-e+i)})$.
 \STATE\label{alg:rem:frobenius}
   calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda  & \ell \delta \\
@@ -4638,10 +4640,10 @@ c\ell^{k-1} & \mu  \end{smallmatrix} \right) \bmod {\ell^{k}}.$
 \STATE 
   \textbf{si} $c=0$ \textbf{alors} $y \leftarrow 0 $; 
 \STATE\label{alg:rem:solve1}
-  \textbf{alors} résoudre équation
+  \textbf{sinon} résoudre équation
  $y\ell^{k-1}(\mu - \lambda) + c \ell^{k-1}=0$; \textbf{fin si}.
 \STATE
-  $P^{(h-e+i+1)} \leftarrow P' + [y \ell^{k-1}] Q'$; $Q^{(h-e+i+1)} \leftarrow Q'$.
+  $P^{(h-e+i+1)} \leftarrow P' + [y \ell^{k-1}] Q'$; $Q^{(h-e+i+1)} \leftarrow Q'$; $\delta \leftarrow \ell \delta$.
 \ENDFOR
 \RETURN $(P_{k},Q_{k},\lambda,\mu).$
 \end{algorithmic}
@@ -4649,17 +4651,26 @@ c\ell^{k-1} & \mu  \end{smallmatrix} \right) \bmod {\ell^{k}}.$
 
 \begin{prop}
 \label{pro:alg:rem:tri}
-Soit $E$ une courbe au niveau $h-e$ dans un volcan de $\ell$-isogénies régulier dont on connaît une base triangulaire de $E[\ell^k]$, soit $E_s$ sa courbe sommet associée, alors l'algorithme \ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O( \mathsf{R}(k-\beta+e) + \ell^{k-\beta+e}\mathsf{M}(\ell) + \ell\mathsf{M}(\ell^{k-\beta+e}))$ opérations sur $\mathbb{F}_q$.
+Soit $E$ une courbe située au niveau $h-e$ dans un volcan de $\ell$-isogénies 
+dont on connaît une base triangulaire de $E[\ell^k]$, soit $E_s$ sa courbe 
+sommet associée, alors l'algorithme \ref{alg:rem:tri} calcule une base 
+diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O( \mathsf{R}(k-
+\beta+\max(0,e-(h-\beta))) + \ell^{k-\beta+\max(0,e-(h-\beta))}\mathsf{M}(\ell) 
++ \ell\mathsf{M}(\ell^{k-\beta+\max(0,e-(h-\beta))}))$ opérations sur 
+$\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
-L'équation à l'étape~\ref{alg:rem:solve1} peut être simplifiée par $\ell^{k-1}$ avant d'être résolue modulo $\ell$. Un calcul direct montre qu'à chaque étape $(P_i,Q_i)$ est une base dans laquelle le coefficient en haut à droite de la matrice de $\pi$ a sa valuation $\ell$-adique qui augmente de $1$. 
+L'équation à l'étape~\ref{alg:rem:solve1} peut être simplifiée par $\ell^{k-1}$
+avant d'être résolue modulo $\ell$. Un calcul direct montre qu'à chaque étape 
+$(P_i,Q_i)$ est une base dans laquelle le coefficient en haut à droite de la 
+matrice de $\pi$ a sa valuation $\ell$-adique qui augmente de $1$. 
 
 
-\`A l'étape~\ref{alg:rem:divide} dans le cas d'un volcan de $\ell$-isogénies 
-régulier on a les points $P$ et $Q$ d'ordre $\ell^{k-1}$ situés au niveau $h-e+i-1$
- définis dans $E^{(h-e+i-1)}(\mathsf{F}_{k-\beta+e-i-1})$ alors le côut de $\mathsf{divise}$
- est de $O(\mathsf{R}(k+\beta+e-i))$ opérations.
+\`A l'étape~\ref{alg:rem:divide} les points $P$ et $Q$ d'ordre $\ell^{k-1}$ 
+situés au niveau $h-e+i-1$ sont définis dans $E^{(h-e+i-1)}(\mathsf{F}_{k-\beta
++\max(0,e-(h-\beta))-i})$ alors le côut de $\mathsf{divise}$
+ est de $O(\mathsf{R}(k-\beta+\max(0,e-(h-\beta))-i+1))$ opérations.
  Il est à noter qu'il est tout à fait vraisemblable de supposer que l'on 
  connaît déjà une base de $E^{(h-e+i-1)}[\ell]$ car à chaque étape le coût de cela
  est au maximum le coût d'évaluation la $\ell$-isogénie montante 
@@ -4667,11 +4678,11 @@ régulier on a les points $P$ et $Q$ d'ordre $\ell^{k-1}$ situés au niveau $h-e
  $E^{(h-e+i-2)}[\ell]$.
 
   L'évaluation de~$\pi$ sur un point $P'$ défini dans 
-  $\mathsf{F}_{k-\beta+e-i}$  à l'étape~\ref{alg:rem:frobenius} a un côut
-  de~$O(\ell^{k-\beta+e-i}\mathsf{M}(\ell))$ par le théoèreme~\ref{thm:frob-ell}.
+  $\mathsf{F}_{k-\beta+\max(0,e-(h-\beta))-i+1}$ à l'étape~\ref{alg:rem:frobenius} a un côut
+  de~$O(\ell^{k-\beta+\max(0,e-(h-\beta))-i+1}\mathsf{M}(\ell))$ par le théoèreme~\ref{thm:frob-ell}.
   L'écriture~$\pi(P')$ comme une combinaison linéaire~$[\lambda] P' + [v\ell^{k-1}] Q'$ 
-  avec $P',Q'$ définis dans $\mathsf{F}_{k-\beta+e-i}$  nécessite au plus~$\ell$
-  additions de points, avec un côut de~$\ell \mathsf{M}(\ell^{k-\beta+e-i})$.
+  avec $P',Q'$ définis dans $\mathsf{F}_{k-\beta+\max(0,e-(h-\beta))-i+1}$  nécessite au plus~$\ell$
+  additions de points, avec un côut de~$\ell \mathsf{M}(\ell^{k-\beta+\max(0,e-(h-\beta))-i+1})$.
   Le côut de résolution de l'équation à l'étape~\ref{alg:trigonal:solve1}
   par recherche exhaustive est négligeable, comme les 
   opérations restantes dont l'étape~\ref{alg:rem:iso}.
@@ -4681,26 +4692,28 @@ régulier on a les points $P$ et $Q$ d'ordre $\ell^{k-1}$ situés au niveau $h-e
 
 Le résultat énoncé précédemment est valide aussi bien pour les volcans réguliers que non réguliers, cependant pour les volcans non réguliers on a le résultat spécifique suivant:
 
-\begin{prop}
-Soit $E$ une courbe au niveau $h-e$ dans un volcan de $\ell$-isogénies, situé au-dessus du premier niveau de stabilité alors l'algorithme~\ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O(e( \mathsf{R}(k-\beta) + \ell\mathsf{M}(\ell^{k-\beta})))$ opérations sur $\mathbb{F}_q$.
-\end{prop}
-
-\begin{proof}
-La preuve est la même que la précédente la seule différence est que à chaque fois que l'on monte d'un niveau dans la tour d'extension on peut toujours travailler dans le même corps $\mathsf{F}_{k-\beta}$, celui pour lequel les points de la $\ell^k$ torsion sont définis pour une courbe sur le cratère.
-\end{proof}
+%\begin{prop}
+%Soit $E$ une courbe au niveau $h-e$ dans un volcan de $\ell$-isogénies, situé au-dessus du premier niveau de stabilité alors l'algorithme~\ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O(e( \mathsf{R}(k-\beta) + \ell\mathsf{M}(\ell^{k-\beta})))$ opérations sur $\mathbb{F}_q$.
+%\end{prop}
+%
+%\begin{proof}
+%La preuve est la même que la précédente la seule différence est que à chaque fois que l'on monte d'un niveau dans la tour d'extension on peut toujours travailler dans le même corps $\mathsf{F}_{k-\beta}$, celui pour lequel les points de la $\ell^k$ torsion sont définis pour une courbe sur le cratère.
+%\end{proof}
 Cette discussion sur la rationnalité de la $\ell^k$-torsion pour une courbe située en desous du cratère montre la nécessité dés lors que l'on sait à l'aide du calcul de l'action du Frobenius dans une une base de la $\ell^i$ torsion qu'une courbe est située en dessous du cratère de faire de suite une remontée afin d'éviter de travailler dans des extensions de corps supplémentaires et d'ensuite diagonaliser sur le cratère. On présente donc tout d'abord la diagonalisation pour une courbe sur le cratère, avant de présenter un algorithme qui à partir d'une courbe située en dessous du cratère du volcan nous donne une base diagonale de la courbe sommet.
 
 \begin{algorithm}
 \caption{\label{alg:bas:diag}Calcul d'une base diagonale de $E_s[\ell^k]$}
 \begin{algorithmic}[1]
-\REQUIRE $E_s$: une courbe elliptique ordinaire située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique;
+\REQUIRE $E_s$: une courbe elliptique ordinaire située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique; $j<k$; $\lambda, \mu \in \mathbb{Z}/\ell^{j}\mathbb{Z}$; $P_j,Q_j$ tels que $E[\ell^j]=\langle P_j,Q_j \rangle$ $\pi(P_j)=[\lambda] P_j, \pi(Q_j)=[\mu]Q_j$ 
 $k$: un entier positif;
 \ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
 $\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\IF{$j=0$}
 \STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$; $P_0, Q_0 \leftarrow $ éléments neutres de~$ E[\ell]$.}
-\FOR {$i=0$  à  $k-1$}
+\ENDIF
+\FOR {$i=j$  à  $k-1$}
 \STATE\label{alg:diagonal:divide}
   $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
 \STATE\label{alg:diagonal:frobenius}
@@ -4722,6 +4735,7 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \end{algorithmic}
 \end{algorithm}
 
+\todo{Algorithme utile pour décomposer le très gros algorithme}
 \begin{prop}\label{pro:alg:diagonal}
   Soit $E$ une courbe située au niveau du cratère du volcan de 
   $\ell$-isogénies, l'algorithme~\ref{alg:bas:diag} calcule une  base diagonale
@@ -4743,12 +4757,12 @@ Pour~$i = 0$, la base de~$E[\ell](\mathsf{F}_1)$ à l'étape~\ref{alg:diagonal:d
 est calculée en factorisant le polynôme de $\ell$-division
 à un côut espéré de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
 opérations en utilisant l'algorithme de Cantor-Zassenhaus~\cite[Chapter 14.5]{vzGJG03}.
-  Pour tout $P$ défini dans $E(\mathsf{F}_{i-\beta-1})$, le calcul de
-  $\mathsf{divise}(\ell, P)$ à l'étape~\ref{alg:diagonal:divide} coûte $O(\mathsf{R}(i-\beta))$
-  opérations par le lemme~\ref{lem:div:cou}.
+  Pour tout point $P$ d'ordre $\ell^{i-1}$ défini dans $E(\mathsf{F}_{i-\beta-1})$, 
+  le calcul de   $\mathsf{divise}(\ell, P)$ à l'étape~\ref{alg:diagonal:divide}
+  coûte $O(\mathsf{R}(i-\beta))$ opérations par le lemme~\ref{lem:div:cou}.
   L'évaluation de~$\pi(P')$ à l'étape~\ref{alg:diagonal:frobenius} pour $P'$ 
   défini dans $\mathsf{F}_{i-\beta}$ a un côut
-  de~$O(\ell^{i-\beta}\mathsf{M}(\ell))$ par le théorème \ref{thm:frob-ell}.
+  de~$O(\ell^{i-\beta}\mathsf{M}(\ell))$ par le théorème~\ref{thm:frob-ell}.
   \'Ecrire~$\pi(P')$ comme une combinaison linéraire~$[u] P' + [v] Q'$ avec 
   $P',Q'$ définis dans $\mathsf{F}_{i-\beta}$ nécessite au
   plus~$\ell^2$ additions de points, avec un côut de ~$\ell^2
@@ -4839,25 +4853,26 @@ c\ell^{h-e+i} & \mu + d\ell^{h-e+i} \end{smallmatrix} \right) \bmod {\ell^{h-e+i
 résoudre équation~$\delta + x(\lambda - \mu) = 0$;
 \STATE 
 $Q_{i} \leftarrow Q_{i}+[x \ell^h]P_{i}$
-\WHILE{$i<k $} \label{alg:ult:diagonal:debut} %\COMMENT{Les points de cette boucle sont définis sur $E_s$}
-\STATE
-  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
-\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i} \\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
-\STATE
-  \textbf{si} $b = 0$ \textbf{alors} $x \leftarrow 0$;
-  résoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
-\STATE
-  \textbf{sinon} résoudre équation
-  $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
-  $y \leftarrow -cx/b$; \textbf{fin si}.
-\STATE
-  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow [x] P' + Q'; \lambda \leftarrow \lambda + \ell^{i} (a + bx)$;$ \mu \leftarrow \mu + \ell^{i}(d+cy)$
-\STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
-\STATE $i \leftarrow i+1$. 
-\ENDWHILE \label{alg:ult:diagonal:fin}
-\RETURN $(P_{k},Q_{k},\lambda,\mu,L).$
+\STATE \text{Calcul d'une base diagonale de $E_s[\ell^k]$ à l'aide de l'algorithme~\ref{alg:bas:diag} avec comme entrées $P_h,Q_h,\lambda,\mu$} \label{alg:ult:diagonal:debut}
+%\WHILE{$i<k $}  %\COMMENT{Les points de cette boucle sont définis sur $E_s$}
+%\STATE
+%  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
+%\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+%\lambda + a\ell^{i} & b\ell^{i} \\
+%c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
+%\STATE
+%  \textbf{si} $b = 0$ \textbf{alors} $x \leftarrow 0$;
+%  résoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
+%\STATE
+%  \textbf{sinon} résoudre équation
+%  $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
+%  $y \leftarrow -cx/b$; \textbf{fin si}.
+%\STATE
+%  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow [x] P' + Q'; \lambda \leftarrow \lambda + \ell^{i} (a + bx)$;$ \mu \leftarrow \mu + \ell^{i}(d+cy)$
+%\STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
+%\STATE $i \leftarrow i+1$. 
+%\ENDWHILE 
+\RETURN $(P_{k},Q_{k},\lambda,\mu,L).$\label{alg:ult:diagonal:fin}
 \end{algorithmic}
 \end{algorithm}
 
