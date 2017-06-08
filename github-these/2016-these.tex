@@ -4771,16 +4771,19 @@ volcan de $\ell$-isogénies; $P,Q \in E, \lambda, \mu, b \in \mathbb{Z}/
 c\ell^{h-e+i} & \mu + d \ell^{h-e+1}  \end{smallmatrix} \right)$;
 \ENSURE $(P_h, Q_h)$: une base de $E_s[\ell^{h+1}]$;
 $\lambda, \mu \in \mathbb{Z}/\ell^{h+1} \mathbb{Z}$
-tels que $\pi(P_h)= [\lambda] P_h$, $ \pi(Q_h)= [\mu] Q_h$; $L$ une liste de 
+tels que $\pi|(P_h,Q_h)= \left( \begin{smallmatrix}
+\lambda  & 0\\
+0 & \mu  \end{smallmatrix} \right) \bmod {\ell^{h+1}}$; $L$ une liste de 
 $\ell$-isogénies montantes reliant $E$ à $E_s$.
-\STATE \textbf{si} $b \neq 0$ \textbf{alors} $\delta \leftarrow b \ell^i$ \textbf{sinon} $(P,Q,\delta,a,b,c,d) \leftarrow (Q,P, c \ell^i,d,c,b,a)$; \textbf{fin si}.
-\STATE $i \leftarrow 0$
+\STATE $(i,\delta) \leftarrow (0,0)$
+\STATE \textbf{si} $b = 0$ \textbf{alors} $(P,Q,a,b,c,d) \leftarrow (Q,P,d,c,b,a)$; \textbf{fin si}.
 \WHILE{ $v_{\ell}(\lambda - \mu)=v_{\ell}(\delta)$} \label{alg:rem:tri:trigonal:debut} %\COMMENT{On monte dans le volcan et trigonalise le Frobenius }
+\STATE $\delta \leftarrow \delta + b \ell^{h-e+i}$
 \STATE \textbf{si} $c = 0$ \textbf{alors} $y \leftarrow 0$;
 \STATE\label{alg:rem:tri:trigonal:solve1} \textbf{sinon}  résoudre equation 
  $ y^2 \delta \ell + y (\ell^{h-e+i}(a-d)+\lambda - \mu) - c\ell^{h-e+i} $; \textbf{fin  si}.
 \STATE\label{alg:rem:tri:trigonal:upd-P}
-  $P_{h-e+i+1}^{(h-e+i)} \leftarrow P' + y Q'$; $Q_{h-e+i+1}^{(h-e+i)} \leftarrow Q'$.
+  $P_{h-e+i+1}^{(h-e+i)} \leftarrow P' + [y] Q'$; $Q_{h-e+i+1}^{(h-e+i)} \leftarrow Q'$.
 \STATE $\lambda \leftarrow \lambda + a \ell^{h-e+i} + \delta y$; $\mu \leftarrow \mu + d \ell^{h-e+i} -\delta y$;%$\delta \leftarrow \delta + b \ell^i$
 \STATE\label{alg:rem:tri:rem:iso}  $\widehat{\varphi} \leftarrow $ isogénie de noyau $\langle [\ell^{h-e+i}]P_{h-e+i+1}^{(h-e+i)} \rangle$
 \STATE\label{alg:rem:tri:rem:divide}
@@ -4802,21 +4805,21 @@ c\ell^{h-e+i} & \mu + d \ell^{h-e+i}  \end{smallmatrix} \right) \bmod {\ell^{h-e
 \STATE\label{alg:rem:tri:trigonal:frob}  calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a\ell^{h-e+i} & b\ell^{h-e+i} + \delta\\
 c\ell^{h-e+i} & \mu + d\ell^{h-e+i} \end{smallmatrix} \right) \bmod {\ell^{h-e+i+1}}.$  
-\STATE $\delta \leftarrow \delta + b \ell^{h-e+i-1}$
+%\STATE \textbf{si} $v_{\ell}(\lambda-\mu) = v_{\ell}(\delta)$ \textbf{alors} $\delta \leftarrow \delta + b \ell^{h-e+i-1}$
 \ENDWHILE \label{alg:rem:tri:trigonal:fin}
 \STATE \label{alg:rem:tri:init:dia}
 résoudre équation~$\delta + x(\lambda - \mu) = 0$;
 \STATE 
-$Q_{i} \leftarrow Q_{i}+[x \ell^h]P_{i}$
-\RETURN $P_i,Q_i, \lambda, \mu, L$
+$Q_{h+1}^{(h)} \leftarrow Q_{h+1}^{(h)}+[x]P_{h+1}^{(h)}$
+\RETURN $P_{h+1}^{(h)},Q_{h+1}^{(h)}, \lambda \bmod \ell^{h}, \mu \bmod \ell^{h}, L$
 \end{algorithmic}
 \end{algorithm}
 \begin{prop}
 L'algorithme~\ref{alg:rem:tri} a une complexité espérée de 
-\[O(e(\mathsf{R}(h-(e-i)+1-\beta+\max(0,e-i-(h-\beta)))+
-\ell^{h-(e-i)+1-\beta+\max(0,e-i-(h-\beta))}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
-(\ell^{h-(e-i)+1-\beta+\max(0,e-i-(h-\beta))})))\] 
-opérations sur $\mathbb{F}_q$.
+\[O(e(\mathsf{R}(\bigstar)+
+\ell^{\bigstar}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
+(\ell^{\bigstar})))\] 
+opérations sur $\mathbb{F}_q$ avec $\bigstar=h-\beta-(e-i)+1+\max(0,e-i-(h-\beta))$.
 \end{prop}
 
 \begin{proof}
@@ -4835,7 +4838,7 @@ toujours définis dans le même corps $\mathsf{F}_{h-(e-i)+1-\beta+\max(0,e-i-
 \ref{alg:rem:tri:trigonal:divide} est de $\mathsf{R}(h-(e-i)+1-\beta+\max(0,e-i
 -(h-\beta)))$.  Pour le calcul de $E^{(h-e+i)}[\ell]$ ll est à noter qu'il est 
 tout à fait vraisemblable de supposer que l'on connaît déjà une base de 
-$E^{(h-e+i-1)}[\ell]$ car à chaque étape le coût de *********
+$E^{(h-e+i-1)}[\ell]$ car à chaque étape le coût de ********* \todo{ça!}
  est au maximum le coût d'évaluation la $\ell$-isogénie montante 
  $\widehat{\varphi}$ sur $\ell+1$ points d'ordre $\ell$ définis sur 
  $E^{(h-e+i-2)}[\ell]$. Le coût de calcul de $\pi(P)$ est de $O(\ell^{h-(e-i)+1
