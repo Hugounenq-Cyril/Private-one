@@ -4785,7 +4785,7 @@ $\ell$-isogénies montantes reliant $E$ à $E_s$.
 \STATE\label{alg:rem:tri:trigonal:upd-P}
   $P_{h-e+i+1}^{(h-e+i)} \leftarrow P' + [y] Q'$; $Q_{h-e+i+1}^{(h-e+i)} \leftarrow Q'$.
 \STATE $\lambda \leftarrow \lambda + a \ell^{h-e+i} + \delta y$; $\mu \leftarrow \mu + d \ell^{h-e+i} -\delta y$;%$\delta \leftarrow \delta + b \ell^i$
-\STATE\label{alg:rem:tri:rem:iso}  $\widehat{\varphi} \leftarrow $ isogénie de noyau $\langle [\ell^{h-e+i}]P_{h-e+i+1}^{(h-e+i)} \rangle$
+\STATE\label{alg:rem:tri:rem:iso}  $\widehat{\varphi} \leftarrow $ isogénie montante de noyau $\langle [\ell^{h-e+i}]P_{h-e+i+1}^{(h-e+i)} \rangle$
 \STATE\label{alg:rem:tri:rem:divide}
   $P' \leftarrow \mathsf{divise}(\ell, \widehat{\varphi}(P_{h-e+i+1}^{(h-e+i)}))$; $Q' \leftarrow  \widehat{\varphi}(Q_{h-e+i+1}^{(h-e+i)})$; $L \leftarrow L \bigcup \widehat{\varphi} $.
 \STATE\label{alg:rem:tri:rem:frobenius}
@@ -4819,7 +4819,23 @@ L'algorithme~\ref{alg:rem:tri} a une complexité espérée de
 \[O(e(\mathsf{R}(\bigstar)+
 \ell^{\bigstar}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
 (\ell^{\bigstar})))\] 
-opérations sur $\mathbb{F}_q$ avec $\bigstar=h-\beta-(e-i)+1+\max(0,e-i-(h-\beta))$.
+opérations sur $\mathbb{F}_q$ avec $\bigstar=h-\beta-(e-i)+1+\max(0,e-i-(h-\beta))$. 
+En particulier lorsque $e-i<=h-\beta$, c'est à dire lorsque la courbe en entrée
+de l'algorithme se trouve au dessus du premier niveau de stabilité l'aglorithme
+a une complexité espérée
+de:
+\[
+O(e(\mathsf{R}(h-\beta-(e-i)+1)+
+\ell^{h-\beta-(e-i)+1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
+(\ell^{h-\beta-(e-i)+1}))).
+\]
+Enfin lorsque $e-i > h-\beta$, c'est à dire lorsque la courbe en entrée se 
+trouve à un niveau inférieur au premier niveau de stabilité l'algorithme a une 
+complexité espérée de:
+\[
+O(e(\mathsf{R}(1)+
+\ell^{1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{1}))).
+\] 
 \end{prop}
 
 \begin{proof}
