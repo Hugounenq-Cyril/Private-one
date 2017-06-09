@@ -4636,7 +4636,7 @@ $\ell$-isogénies montantes reliant $E$ à $E_s$.
 \STATE $\lambda \leftarrow \lambda + a \ell^{h-e+i} + \delta y$; $\mu \leftarrow \mu + d \ell^{h-e+i} -\delta y$;%$\delta \leftarrow \delta + b \ell^i$
 \STATE\label{alg:rem:tri:rem:iso}  $\widehat{\varphi} \leftarrow $ isogénie montante de noyau $\langle [\ell^{h-e+i}]P_{h-e+i+1}^{(h-e+i)} \rangle$
 \STATE\label{alg:rem:tri:rem:divide}
-  $P' \leftarrow \mathsf{divise}(\ell, \widehat{\varphi}(P_{h-e+i+1}^{(h-e+i)}))$; $Q' \leftarrow  \widehat{\varphi}(Q_{h-e+i+1}^{(h-e+i)})$; $L \leftarrow L \bigcup \widehat{\varphi} $.
+  $P' \leftarrow \mathsf{divise}\left(\ell, \widehat{\varphi}\left(P_{h-e+i+1}^{(h-e+i)}\right)\right)$; $Q' \leftarrow  \widehat{\varphi}\left(Q_{h-e+i+1}^{(h-e+i)}\right)$; $L \leftarrow L \bigcup \widehat{\varphi} $.
 \STATE\label{alg:rem:tri:rem:frobenius}
   Calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
 \lambda + a \ell^{h-e+i}  & \ell \delta \\
@@ -4646,8 +4646,8 @@ c\ell^{h-e+i} & \mu + d \ell^{h-e+i}  \end{smallmatrix} \right) \bmod {\ell^{h-e
 \STATE\label{alg:rem:tri:rem:solve1}
   \textbf{sinon} résoudre équation
   $ y^2 \delta \ell + y (\ell^{h-e+i}(a-d)+\lambda - \mu) - c\ell^{h-e+i} $; \textbf{fin si}.
-\STATE
-  $P' \leftarrow P' + [y \ell^{h-e+i}] Q'$; $\lambda \leftarrow \lambda + a \ell^{h-e+i} + \delta y, \mu \leftarrow \mu + d \ell^{h-e+i} -\delta y$.
+\STATE \label{alg:rem:tri:chgvrbl0}
+  $P' \leftarrow P' + [y] Q'$; $\lambda \leftarrow \lambda + a \ell^{h-e+i} + \delta y, \mu \leftarrow \mu + d \ell^{h-e+i} -\delta y$.
 \STATE\label{alg:rem:tri:trigonal:divide}
   $P' \leftarrow \mathsf{divise}(\ell, P')$; $Q' \leftarrow \mathsf{divise} (\ell, Q')$; $\delta \leftarrow \ell \delta $.
 \STATE $i \leftarrow i+1$.
@@ -4658,14 +4658,14 @@ c\ell^{h-e+i} & \mu + d\ell^{h-e+i} \end{smallmatrix} \right) \bmod {\ell^{h-e+i
 \ENDWHILE \label{alg:rem:tri:trigonal:fin}
 \STATE \label{alg:rem:tri:init:dia}
 résoudre équation~$\delta + x(\lambda - \mu) = 0$;
-\STATE 
+\STATE  \label{alg:rem:tri:chgvrbl1}
 $Q_{h+1}^{(h)} \leftarrow Q_{h+1}^{(h)}+[x]P_{h+1}^{(h)}$
 \RETURN $P_{h+1}^{(h)},Q_{h+1}^{(h)}, \lambda \bmod \ell^{h+1}, \mu \bmod \ell^{h+1}, L$
 \end{algorithmic}
 \end{algorithm}
 \begin{prop}
 \label{pro:alg:rem:tri:hor}
-L'algorithme~\ref{alg:rem:tri} a une complexité espérée de 
+L'algorithme~\ref{alg:rem:tri} est correct et a une complexité espérée de 
 \[
 O(\max(0,e-(h-\beta))(\mathsf{R}(1)+
 \ell^{1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{1}))+\mathsf{R}(h+1)+
@@ -4674,6 +4674,18 @@ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
+Des calculs matriciels directs montrent que les changements de base aux étapes
+ ~\ref{alg:rem:tri:chgvrbl0} ~\ref{alg:rem:tri:trigonal:upd-P} permettent de 
+trigonaliser la matrice. De même le changement de base à 
+l'étape~~\ref{alg:rem:tri:chgvrbl1} permet de diagonaliser la matrice.
+\`A l'étape~\ref{alg:rem:tri:rem:iso} la $\ell$-isogénie construite est bien 
+montante par la proposition~\ref{pro:tri:dir}. Enfin la matrice représentant
+l'action du Frobenius sur une base de $E[\ell^{h-e+1}]$ pour $E$ au niveau 
+$h-e+i$ est trigonalisable par la proposition~\ref{pro:mat:fro}. De même au 
+niveau $h$ l'action du Frobenius sur une base de $E_s[\ell^{h+1}]$ est 
+diagonalisable par la proposition~\ref{pro:mat:fro}.
+ 
+Analysons maintenant la complexité de l'algorithme. 
 Entre les étapes \ref{alg:rem:tri:trigonal:debut} et \ref{alg:rem:tri:trigonal:fin}
 on calcule à chaque boucle une base de la $\ell^{h-e+i}$ torsion dans laquelle 
 l'action du Frobenius est triangulaire, et l'on remonte d'un niveau dans le 
@@ -4704,19 +4716,19 @@ de trigonalisation de $O(e(\mathsf{R}(h-(e-i)+1-\beta+\max(0,e-i-(h-\beta)))+
 
 
 L'algorithme~\ref{alg:rem:tri} a donc une complexité espérée de 
-\[O(\sum_{i=0}^{e}(\mathsf{R}(\bigstar)+
+$O(\sum_{i=0}^{e}(\mathsf{R}(\bigstar)+
 \ell^{\bigstar}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
-(\ell^{\bigstar})))\] 
+(\ell^{\bigstar})))$ 
 opérations sur $\mathbb{F}_q$ avec $\bigstar=h-\beta-(e-i)+1+\max(0,e-i-(h-\beta))$. 
 En particulier en décomposant la complexité selon le premier niveau de 
 stabilité la complexité s'écrit:
-\[
+$
 O(\max(0,e-(h-\beta))(\mathsf{R}(1)+
-\ell^{1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{1})))+
+\ell^{1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{1}))+
 \sum_{i=e-\beta}^e(\mathsf{R}(\bigstar)+
 \ell^{\bigstar}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
 (\ell^{\bigstar}))
-\]
+$
 or chacun des termes de $\sum_{i=e-\beta}^e(\mathsf{R}(\bigstar)+
 \ell^{\bigstar}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
 (\ell^{\bigstar}))$ a une complexité géométrique c'est donc la dernière 
@@ -4988,9 +5000,9 @@ On rappelle que pour $P \in \mathsf{F}_{k-\beta}$ point horizontal alors on a  $
 \end{proof}
 
 \begin{rem}
-Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne pas en compte le calcul des isogénies descendantes $\varphi_i$ car si l'on veut calculer un point partiellement horizontal pour une courbe non située sur le cratère alors il est raisonnable de penser que l'un des deux algorithmes  \ref{alg:rem:tri} ou \ref{alg:ulti:fro} a été utilisé pour obtenir une base diagonale pour la courbe située sur le cratère, ainsi on a calculé les duales des isogénies $\varphi_i$ dans l'algorithme \ref{alg:rem:tri} ou \ref{alg:ulti:fro}.
+Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne pas en compte le calcul des isogénies descendantes $\varphi_i$ car si l'on veut calculer un point partiellement horizontal pour une courbe non située sur le cratère alors il est raisonnable de penser que l'un des deux algorithmes  \ref{alg:rem:tri} ou \ref{alg:ulti:fro} a été utilisé pour obtenir une base diagonale pour la courbe située sur le cratère, ainsi peut calculer les duales des isogénies $\varphi_i$ dans l'algorithme \ref{alg:rem:tri} ou \ref{alg:ulti:fro}.
 \end{rem}
-
+\todo{Dire que les algorithmes sont corrects...}
 \section{Cas Atkin}
 \label{subs:atk:dir}
 Dans cette section on s'intéresse au cas particulier suivant: 
