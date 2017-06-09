@@ -4816,26 +4816,11 @@ $Q_{h+1}^{(h)} \leftarrow Q_{h+1}^{(h)}+[x]P_{h+1}^{(h)}$
 \end{algorithm}
 \begin{prop}
 L'algorithme~\ref{alg:rem:tri} a une complexité espérée de 
-\[O(e(\mathsf{R}(\bigstar)+
-\ell^{\bigstar}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
-(\ell^{\bigstar})))\] 
-opérations sur $\mathbb{F}_q$ avec $\bigstar=h-\beta-(e-i)+1+\max(0,e-i-(h-\beta))$. 
-En particulier lorsque $e-i<=h-\beta$, c'est à dire lorsque la courbe en entrée
-de l'algorithme se trouve au dessus du premier niveau de stabilité l'aglorithme
-a une complexité espérée
-de:
 \[
-O(e(\mathsf{R}(h-\beta-(e-i)+1)+
-\ell^{h-\beta-(e-i)+1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
-(\ell^{h-\beta-(e-i)+1}))).
-\]
-Enfin lorsque $e-i > h-\beta$, c'est à dire lorsque la courbe en entrée se 
-trouve à un niveau inférieur au premier niveau de stabilité l'algorithme a une 
-complexité espérée de:
-\[
-O(e(\mathsf{R}(1)+
-\ell^{1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{1}))).
-\] 
+O(\max(0,e-(h-\beta))(\mathsf{R}(1)+
+\ell^{1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{1}))+\mathsf{R}(h+1)+
+\ell^{h+1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{h+1}))\] 
+opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
@@ -4869,6 +4854,24 @@ de trigonalisation de $O(e(\mathsf{R}(h-(e-i)+1-\beta+\max(0,e-i-(h-\beta)))+
 \ell^{h-(e-i)+1-\beta+\max(0,e-i-(h-\beta))}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
 (\ell^{h-(e-i)+1-\beta+\max(0,e-i-(h-\beta))})))$.
 \end{itemize}
+L'algorithme~\ref{alg:rem:tri} a donc une complexité espérée de 
+\[O(\sum_{i=0}^{e}(\mathsf{R}(\bigstar)+
+\ell^{\bigstar}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
+(\ell^{\bigstar})))\] 
+opérations sur $\mathbb{F}_q$ avec $\bigstar=h-\beta-(e-i)+1+\max(0,e-i-(h-\beta))$. 
+En particulier en décomposant la complexité selon le premier niveau de 
+stabilité la complexité s'écrit:
+\[
+O(\max(0,e-(h-\beta))(\mathsf{R}(1)+
+\ell^{1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{1})))+
+\sum_{i=e-\beta}^e(\mathsf{R}(\bigstar)+
+\ell^{\bigstar}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
+(\ell^{\bigstar}))
+\]
+or chacun des termes de $\sum_{i=e-\beta}^e(\mathsf{R}(\bigstar)+
+\ell^{\bigstar}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
+(\ell^{\bigstar}))$ a une complexité géométrique c'est donc la dernière 
+itération qui domine la complexité et donne le résultat
 \end{proof}
 
 \begin{algorithm}
