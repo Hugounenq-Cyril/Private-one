@@ -4544,17 +4544,18 @@ hauteur élevée notamment dans les algorithmes qui remontent dans le volcan
 proposition~\ref{pro:niv:str} lorsque l'on monte d'un niveau dans
 le volcan de $\ell$-isogénies alors la valuation $\ell$-adique de la torsion
 rationnelle des points de la courbe augmente de $1$. Ainsi pour travailler avec
-une plus grand $\ell$-torsion rationnelle on privilégiera de monter de niveaux 
+une plus grande $\ell$-torsion rationnelle on privilégiera de monter de niveaux 
 dans le volcan afin d'éviter de travailler avec des extensions de corps 
 supplémentaires. Le lemme~\ref{lem:alg:rat} en est une illustration.
 \end{rem}
 
 
-La remarque~\ref{rem:rat:niv:vol} sur la rationnalité de la $\ell^k$-torsion 
-montre la nécessité, dés lors que l'on sait que la courbe sur laquelle on 
-travaille est située en dessous du cratère, d'effectuer une montée de niveaux 
-dans le volcan afin d'éviter de travailler dans des extensions de corps 
-supplémentaires. On présente donc tout d'abord l'algorithme~\ref{alg:rem:tri} 
+%La remarque~\ref{rem:rat:niv:vol} sur la rationnalité de la $\ell^k$-torsion 
+%montre la nécessité, dés lors que l'on sait que la courbe sur laquelle on 
+%travaille est située en dessous du cratère, d'effectuer une montée de niveaux 
+%dans le volcan afin d'éviter de travailler dans des extensions de corps 
+%supplémentaires. 
+On présente donc tout d'abord l'algorithme~\ref{alg:rem:tri} 
 qui à partir d'une base de $E[\ell^{h-e+1}]$ située au niveau $h-e$ dans 
 laquelle l'action du Frobenius est triangulaire calcule une base diagonale de 
 $E_s[\ell^{h+1}]$.
@@ -4604,9 +4605,9 @@ $\mathsf{F}_{h-e+i+1-\beta+\max(0,e-i-(h-\beta))}$.
 
 Maintenant on présente l'algorithme~\ref{alg:rem:tri} qui prend en entrée une 
 courbe elliptique $E$ située au niveau $h-e$ dans le volcan de 
-$\ell$-isogénies et qui retourne une base diagonale de sa courbe sommet ainsi 
+$\ell$-isogénies et qui retourne une base diagonale de $E_s[\ell^{h+1}]$ ainsi 
 que la liste de $\ell$-isogénies montantes qui permettent de relier $E$ à sa 
-courbe sommet.
+courbe sommet $E_s$.
 
 \begin{algorithm}
 \caption{\label{alg:rem:tri}Calcul d'une base diagonale de $E_s[\ell^{h+1}]$ à 
@@ -4743,8 +4744,7 @@ partir d'une base diagonale de $E_s[\ell^j]$ pour $j<k$.
 \begin{algorithm}
 \caption{\label{alg:bas:diag}Calcul d'une base diagonale de $E_s[\ell^k]$}
 \begin{algorithmic}[1]
-\REQUIRE $E_s$: une courbe elliptique ordinaire située sur le cratère d'un volcan de $\ell$-isogénies avec cratère cyclique; $k$: un entier positif; $j<k$; $\lambda, \mu \in \mathbb{Z}/\ell^{j}\mathbb{Z}$; $P_j,Q_j$ tels que $E_s[\ell^j]=\langle P_j,Q_j \rangle$ $\pi(P_j)=[\lambda] P_j, \pi(Q_j)=[\mu]Q_j$;
-
+\REQUIRE $E_s$: une courbe elliptique ordinaire située sur le cratère d'un volcan de $\ell$-isogénies; $k$: un entier positif; $j<k$; $\lambda, \mu \in \mathbb{Z}/\ell^{j}\mathbb{Z}$; $P_j,Q_j$ tels que $E_s[\ell^j]=\langle P_j,Q_j \rangle$ $\pi(P_j)=[\lambda] P_j, \pi(Q_j)=[\mu]Q_j$;
 \ENSURE $(P_k, Q_k )$: une base de $E_s[\ell^k]$;
 $\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k$.
@@ -4779,17 +4779,11 @@ opérations dans $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
-L'équation à la ligne~\ref{alg:diagonal:solve1} ou~\ref{alg:diagonal:solve2}
-est tout d'abord divisée par la plus grande puissance de $\ell$ possible:~$\ell^{\min (h, i)}$,
- elle est ensuite résolue modulo $\ell$.
-Pour~$i \leqslant h-1$, comme~$a = d$ et~$b = c = 0$,
-les solutions sont~$x = y = 0$, et les
-étapes~\ref{alg:diagonal:solve1} à~\ref{alg:diagonal:upd-P} ne font rien.
 Un simple calcul permet de vérifier qu'à la fin de chaque boucle
 $(P_{i+1},Q_{i+1})$ est diagonal. Une base de la $E[\ell^{h+i}]$ est 
 diagonalisable par la proposition~\ref{pro:mat:fro}.
 
-Nous analyson maintenant la complexité.
+Nous analysons maintenant la complexité de l'algorithme.
 Pour~$i = 0$, une base de~$E[\ell](\mathsf{F}_1)$ à l'étape~\ref{alg:diagonal:divide}
 est calculée en factorisant le polynôme de $\ell$-division
 à un côut espéré de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
@@ -4804,6 +4798,12 @@ opérations en utilisant l'algorithme de Cantor-Zassenhaus~\cite[Chapter 14.5]{v
   $P',Q'$ définis dans $\mathsf{F}_{i-\beta}$ nécessite au
   plus~$\ell^2$ additions de points, avec un côut de ~$\ell^2
   \mathsf{M}(\ell^{i-\beta})$.
+L'équation à la ligne~\ref{alg:diagonal:solve1} ou~\ref{alg:diagonal:solve2}
+est tout d'abord divisée par la plus grande puissance de $\ell$ possible:
+~$\ell^{\min (h, i)}$, elle est ensuite résolue modulo $\ell$.
+Pour~$i \leqslant h-1$, comme~$a = d$ et~$b = c = 0$, les solutions sont~$x = y
+ = 0$, et les étapes~\ref{alg:diagonal:solve1} à~\ref{alg:diagonal:upd-P} ne 
+font rien.
   Le côut de résolution des équations aux étapes~\ref{alg:diagonal:solve1}
   et~\ref{alg:diagonal:solve2} par recherche exhaustive est négligeable, comme
   les autres opérations restantes. Comme le côut de chaque boucle augmente
@@ -4908,7 +4908,26 @@ L'algorithme~\ref{alg:ulti:fro} a une complexité espérée de
 opérations sur $\mathbb{F}_q$.
 \end{prop}
 \begin{proof}
-On décompose l'algorithme selon les 3 parties qui le compose:
+On décompose l'algorithme selon les 3 parties qui le compose: 
+\begin{enumerate}
+\item la première partie des étapes \ref{alg:ult:scalaire:debut} à 
+\ref{alg:ult:scalaire:fin} détermine l'action du Frobenius sur la $\ell^i$-torsion 
+et augmente la valuation $\ell$-adique de la torsion sur laquelle on travaille 
+tant que l'action du Frobenius est scalaire. L'action du Frobenius est scalaire 
+pour une courbe située au niveau $h-e$, sans diagonalisation, tant que l'on 
+travaille avec la $\ell^{h-e}$-torsion par la proposition~\ref{pro:mat:fro}.
+
+\item la seconde partie correspondant à l'étape~\ref{alg:ult:base:cratere} est
+l'application de l'algorithme~\ref{alg:rem:tri} qui à partir d'une base 
+triangulaire de la $\ell^{h-e+1}$ torsion d'une courbe située au niveau $h-e$
+calcule une base diagonale de $E_s[\ell^{h+1}]$ ainsi que la liste de
+$\ell$-isogénies montantes reliant $E$ à $E_s$.
+\item la troisième et dernière partie correspond à 
+l'étape~\ref{alg:ult:diagonal:debut} qui à partir d'une base diagonale de 
+$E_s[\ell^k]$ calcule une base diagonale de $E_s[\ell^k]$.
+\end{enumerate}
+Analysons maintenant les complexités de ces différentes parties de 
+l'algorithme.
 \begin{enumerate}
 \item[\'Etapes \ref{alg:ult:scalaire:debut} à \ref{alg:ult:scalaire:fin}]
 Pour une courbe $E$ qui se trouve au niveau $h-e$ alors la première boucle de l'algorithme entre les étapes \ref{alg:ult:scalaire:debut} et \ref{alg:ult:scalaire:fin}, celle où l'action du 
@@ -5098,7 +5117,7 @@ a_0 & b_0 \\
 c_0 & d_0
 \end{matrix} \right) \color{black} $}; %node{$\bullet$};
 \draw (B) node[left]{$ \left( \begin{matrix}
-a_1 & b\ell \\
+a_1 & b_1\ell \\
 c_1\ell & d_1
 \end{matrix} \right) \color{black} $}; %node{$\bullet$};
 \draw (C) node[left]{$ \left( \begin{matrix}
