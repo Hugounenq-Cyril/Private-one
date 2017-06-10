@@ -4522,8 +4522,9 @@ située au niveau $h-e$ calcule une base diagonale de la $E_s[\ell^k]$ nous
 présentonts tout d'abord des algorithmes qui composent celui-ci.
 Ainsi nous présentons tout d'abord l'algorithme~\ref{alg:rem:tri} qui calcule
 une base diagonale de $E_s[\ell^{h+1}]$ à partir d'une base triangulaire de 
-$Es[\ell^{h-e+1}]$ pour $e>0$. Mais avant cela nous rappelons un résultat sur
-la rationalité des points et leur niveau dans le volcan de $\ell$-isogénies.
+$E[\ell^{h-e+1}]$ pour $e>0$ et $E$ située au niveau $h-e$. Mais avant cela 
+nous rappelons un résultat sur la rationalité des points et leur niveau dans le
+volcan de $\ell$-isogénies.
 %\begin{prop}
 %Soit $E$ une courbe au niveau $h-e$ dans un volcan de $\ell$-isogénies, situé au-dessus du premier niveau de stabilité alors l'algorithme~\ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O(e( \mathsf{R}(k-\beta) + \ell\mathsf{M}(\ell^{k-\beta})))$ opérations sur $\mathbb{F}_q$.
 %\end{prop}
@@ -4540,12 +4541,12 @@ Dans le cas des volcans réguliers les algorithmes dépendant de la profondeur
 ne seront pas forcéments plus coûteux à cause d'une
 hauteur élevée notamment dans les algorithmes qui remontent dans le volcan 
 (tels \ref{alg:rem:tri}, \ref{alg:ulti:fro}). En effet par la 
-proposition~\ref{pro:niv:str} on sait que lorsque l'on monte d'un niveau dans
-le volcan de $\ell$-isogénies alors la valuation $\ell$-adique de la 
-rationnalité des points de la courbe augmente de $1$ ainsi monter d'un niveau 
-dans le volcan de $\ell$-isogénies permet de travailler avec le corps un niveau
-en dessous dans la tour d'extensions $\ell$-adiques à torsion identique, le 
-lemme~\ref{lem:alg:rat} en est une illustration.
+proposition~\ref{pro:niv:str} lorsque l'on monte d'un niveau dans
+le volcan de $\ell$-isogénies alors la valuation $\ell$-adique de la torsion
+rationnelle des points de la courbe augmente de $1$. Ainsi pour travailler avec
+une plus grand $\ell$-torsion rationnelle on privilégiera de monter de niveaux 
+dans le volcan afin d'éviter de travailler avec des extensions de corps 
+supplémentaires. Le lemme~\ref{lem:alg:rat} en est une illustration.
 \end{rem}
 
 
@@ -4771,10 +4772,8 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \end{algorithm}
 
 \begin{prop}\label{pro:alg:diagonal}
-Soit $E$ une courbe située au niveau du cratère du volcan de $\ell$-isogénies
-dont on connaît une base diagonale de la $\ell^j$-torsion pour $j<k$, 
-l'algorithme~\ref{alg:bas:diag} calcule une  base diagonale de~$E[\ell^k]$ avec
-une complexité espérée de
+L'algorithme~\ref{alg:bas:diag} est correct et calcule une base diagonale 
+de~$E_s[\ell^k]$ avec une complexité espérée de
 $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ 
 opérations dans $\mathbb{F}_q$.
 \end{prop}
@@ -4787,9 +4786,11 @@ Pour~$i \leqslant h-1$, comme~$a = d$ et~$b = c = 0$,
 les solutions sont~$x = y = 0$, et les
 étapes~\ref{alg:diagonal:solve1} à~\ref{alg:diagonal:upd-P} ne font rien.
 Un simple calcul permet de vérifier qu'à la fin de chaque boucle
-$(P_{i+1},Q_{i+1})$ est diagonal.
+$(P_{i+1},Q_{i+1})$ est diagonal. Une base de la $E[\ell^{h+i}]$ est 
+diagonalisable par la proposition~\ref{pro:mat:fro}.
 
-Pour~$i = 0$, la base de~$E[\ell](\mathsf{F}_1)$ à l'étape~\ref{alg:diagonal:divide}
+Nous analyson maintenant la complexité.
+Pour~$i = 0$, une base de~$E[\ell](\mathsf{F}_1)$ à l'étape~\ref{alg:diagonal:divide}
 est calculée en factorisant le polynôme de $\ell$-division
 à un côut espéré de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
 opérations en utilisant l'algorithme de Cantor-Zassenhaus~\cite[Chapter 14.5]{vzGJG03}.
