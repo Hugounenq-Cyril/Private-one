@@ -5244,13 +5244,14 @@ corollaire~\ref{cor:mon:atk} on sait monter dans le volcan de
 $\ell$-isogénies si l'on voulait étudier le même 
 problème (déterminer les $\ell^{i}$-isogénies ayant pour domaine une courbe 
 située au niveau $h-e$) à partir de la courbe sur le cratère, on aurait alors 
-à étudier la $\ell^{h+i+e}$-torsion.
+à étudier la $\ell^{h+i+e}$-torsion. Ainsi en pratique il sera intéressant 
+d'étudier cette formulation du même problème car on peut être amené à 
+travailler avec des extensions de corps plus petites pour le même résultat 
+(voir proposition~\ref{pro:atk:d1} pour plus de détails).
 
 
 Le résultat suivant nous permet de distinguer les 
-différents générateurs d'une même $\ell^{i-e}$-isogénie.
-\todo{Dire que l'on peut se passer de l'étude pour les courbes en-dessous du 
-cratère car on sait monter dans le volcan...}
+différents générateurs d'une même $\ell^{i-e}$-isogénie dans notre contexte.
 
 \begin{prop}
 \label{pro:cla:fro:mat}
@@ -5375,7 +5376,7 @@ et $\left( \begin{smallmatrix}3 & 4 \\4  & 7 \end{smallmatrix} \right)  =
 $2$-isogénie et donc une seule matrice par conjugaison possible (voir 
 proposition~\ref{pro:atk:equi}). Pour la base du volcan il est à 
 noter qu'une seule des matrices que l'on peut obtenir par conjugaison (voir 
-proposition~\ref{pro:atk:equi}) a été représenté.
+proposition~\ref{pro:atk:equi}) a été représentée.
 
 %\begin{prop}
 %\label{pro:atk:inv:mat}
@@ -5431,7 +5432,7 @@ $\pi(P,R')=\pi(P,R)$ permet de conclure à l'aide de la
 proposition~\ref{pro:atk:equi}.
 \end{proof}
 
-\subsection{D\'ecomposition de la $\ell^{h+i}$ torsion sous l'action du Frobenius ou \'Etude de la rationalité de la $\ell^{k}$-torsion dans une tour d'extensions $\ell$-adique}
+\subsection{\'Etude de la rationalité de la $\ell^{k}$-torsion dans une tour d'extensions $\ell$-adique ou Calculs de directions dans le volcan de $\ell$-isogénies.}
 
 On va maintenant étudier la structure de la torsion rationnelle des courbes 
 elliptiques situées au niveau du cratère et déterminer l'extension de corps 
@@ -5543,10 +5544,18 @@ proposition~\ref{pro:clas:fro:atk} et similaire à la
 défintion~\ref{def:tour-ell} de tours d'extensions $\ell$-adiques
 \end{nota}
 
+Maintenant que l'on a défini dans quels éléments de la tour d'extensions 
+$\ell$-adique étaient définis les points avec lesquels on va travailler on 
+présente et analyse l'algorithme~\ref{alg:atk:bas:mat}. Cet algorithme calcule 
+à partir d'un point $P$ fixé d'ordre $\ell^{h-e+i}$ et d'une matrice $M$ à 
+coefficients dans $\mathbb{Z}/\ell^{h-e+i} \mathbb{Z}$ un second point $Q$ tel 
+que l'action du Frobenius exprimée dans la base $(P,Q)$ soit de la même forme 
+que $M$.
+
 \begin{algorithm}
 \caption{\label{alg:atk:bas:mat}Calcul d'un point $R$ d'ordre~$\ell^{h-e+i}$ tel que $\pi(P,R)=M$}
 \begin{algorithmic}[1]
-\REQUIRE $(P, Q)$: une base de~$E[\ell^{h-e+i}]$ avec $P$ un point fixé de $E$, $E$ une courbe située au niveau $h-e$;  un entier $i \geqslant e$; $M$ une matrice représentant l'action du Frobenius dans une base de la $\ell^{h-e+i}$-torsion d'une courbe elliptique située au niveau $h-e$.\\
+\REQUIRE $E$ une courbe située au niveau $h-e$; $(P, Q)$ une base de~$E[\ell^{h-e+i}]$ avec $P$ un point fixé de $E$, un entier $i > e$; $M$ une matrice représentant l'action du Frobenius dans une base de la $\ell^{h-e+i}$-torsion d'une courbe elliptique située au niveau $h-e$.\\
 \ENSURE $R=[\alpha]P+ [\beta]Q $: un point d'ordre $\ell^{h-e+i}$ de $E$ tel que $\pi(P,R)=M$.
 \STATE $(\alpha, \beta ) \leftarrow (0,0)$
 \FOR{$j = 1$ to~$h-e+i$}
@@ -5567,7 +5576,7 @@ une complexité de
 $O(\ell^4(\mathsf{M}(\ell^{h-e+i+1-\beta})+(\beta)\mathsf{M}(\ell)))$
 lorsque $E$ se situe au-dessus du premier niveau de stabilité.
 \end{prop}
-
+\todo{Traiter de façon uniforme les volcans (non)-réguliers}
 \begin{proof}
 On traite tout d'abord le cas de volcan \emph{régulier}.
 Par la proposition~\ref{pro:clas:fro:atk} les points $P_j,R_j$ sont définis
