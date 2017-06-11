@@ -3268,7 +3268,7 @@ alors on a bien $h=h'$ et $h$ représente bien la hauteur du volcan.
 Désormais lorsque l'on parlera de hauteur $h$ du volcan on fera référence à la
 hauteur du volcan de $\ell$-isogénies défini sur $\mathbb{F}_q$ sauf mention 
 explicite contraire.
-\subsection{Etude de l'action du Frobenius sur le module de Tate}
+\subsection{\'Etude de l'action du Frobenius sur le module de Tate}
 \label{subs:elk:dir}
 
 On réprésente l'action du Frobenius sur $T_{\ell}(E)$ à l'aide d'une matrice $
@@ -4371,7 +4371,7 @@ isogénie et pour lequel l'action du Frobenius est identique dans cette base.
 
 Dans cette sous-section on s'intéresse à la partie algorithmique du calcul des objets présentés dans la sous-section~\ref{subs:elk:dir}. Sont aussi utilisés les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les extensions de corps de définies dans la définition \ref{def:tour-ell}.
 
-\subsubsection{Décomposition de la $\ell^k$ torsion sous l'action du Frobenius}
+\subsubsection{\'Etude de la rationalité de la $\ell^k$-torsion dans une tour d'extensions $\ell$-adique}
 \label{sub:classes}
 
 On va maintenant étudier la structure de la torsion rationnelle des courbes 
@@ -4478,7 +4478,7 @@ premier niveau de stabilité la structure de la $\ell$-torsion ne change pas et
 en dessous elle change comme décrit juste au-dessus.
 \end{proof}
 
-\subsubsection{Calcul des directions dans le volcan de $\ell$-isogénies}
+\subsubsection{Algorithmes pour le calcul des directions dans le volcan de $\ell$-isogénies}
 
 L'objectif de cette sous-section est de calculer pour une courbe se trouvant 
 sur un volcan de $\ell$-isogénies une base horizontale (ou partiellement 
@@ -5038,7 +5038,7 @@ un point par le corollaire~\ref{cor:tab:vol}.
 \end{defi}
 \todo{Faire explicitement le lien avec le chapitre 4}
 
-\subsection{Etude de l'action du Frobenius sur le module de Tate}
+\subsection{\'Etude de l'action du Frobenius sur le module de Tate}
 
 On va donc étudier dans cette partie l'action du Frobenius sur 
 $\mathsf{T}_{\ell}(E)$ et voir si l'on peut déterminer des directions 
@@ -5173,9 +5173,6 @@ $\ell$-adique comprise entre $h-e+2$ et $h+e$
 
 On a vu dans la preuve de cette proposition~ un moyen de trouver un point
 générateur d'une isogénie montante, on énonce donc le résultat suivant:
-
-\todo{faire un dessin avec un exemple de volcan avec les matrices correspondantes au niveau}
-
 \begin{cor}
 \label{cor:mon:atk}
 Soit $E$ située au niveau $h-e \neq h$ d'un volcan de $\ell$-isogénies avec 
@@ -5200,7 +5197,6 @@ $E[\ell^{h+i}]$ pour $i>0$ des autres sous-groupes cycliques, on va voir quelles
 informations on peut tirer lorsque l'on fixe arbitrairement un point de la base
 de $E[\ell^{h+i}]$.
 
-\todo{Faire un dessin avec un volcan qui représente le lien entre les isogénies et la forme de la matrice}
 \begin{prop}
 \label{pro:atk:equi}
 Soient $P,R,R'$ trois points de $E$ située au niveau $h-e$ du volcan de 
@@ -5435,7 +5431,7 @@ $\pi(P,R')=\pi(P,R)$ permet de conclure à l'aide de la
 proposition~\ref{pro:atk:equi}.
 \end{proof}
 
-\subsection{Décomposition de la $\ell^{h+i}$ torsion sous l'action du Frobenius}
+\subsection{D\'ecomposition de la $\ell^{h+i}$ torsion sous l'action du Frobenius ou \'Etude de la rationalité de la $\ell^{k}$-torsion dans une tour d'extensions $\ell$-adique}
 
 On va maintenant étudier la structure de la torsion rationnelle des courbes 
 elliptiques situées au niveau du cratère et déterminer l'extension de corps 
@@ -5489,13 +5485,22 @@ Pour un volcan \emph{non-régulier} $\beta$ est égal au niveau du premier nivea
 \end{prop}
 
 \begin{proof}
-Voir \cite[§5.3.1]{Ionica2010}.
+Notons $E(F)[\ell^{\infty}]\simeq \mathbb{Z}/ \ell^{\alpha} \mathbb{Z} 
+\times \mathbb{Z}/ \ell^{\beta} \mathbb{Z}$, supposons par l'absurde que 
+$\alpha > \beta$, alors cela voudrait dire dans le cas où le volcan serait 
+\emph{régulier} qu'il existe seulement $\ell^{\alpha-1}$ isogénies descendantes
+de degré $\ell^{\alpha}$ et cela contredirait la structure du volcan de 
+$\ell$-isogénies $\mathsf{F}$-rationnelles. Dans le cas où le volcan serait 
+\emph{non-régulier} on a par la structure de volcans non-réguliers 
+$\alpha=\beta$ voir \cite[§5.3.1]{Ionica2010}. Pour le lien entre $h$ et
+ $\beta$ le lecteur peut voir \cite[§5.3.1]{Ionica2010}. 
 \end{proof}
 
-Dorénavant on va garder cette notation de $\beta$ représentant la plus grande 
-valuation $\ell$-adique de la torsion rationnelle sur $F$ la plus petite 
-extension de  $\mathbb{F}_q$ telle que $E[\ell] \subset E(F)$ lorsque $\ell 
-\neq 2$ et $E[4] \subset E(F)$ lorsque $\ell = 2$.
+Dorénavant on va garder cette notation de $\beta$ qui peut donc être définie de
+la même manière qu'à la définition~\ref{def:alp:bet}. % représentant la plus grande 
+%valuation $\ell$-adique de la torsion rationnelle sur $F$ la plus petite 
+%extension de  $\mathbb{F}_q$ telle que $E[\ell] \subset E(F)$ lorsque $\ell 
+%\neq 2$ et $E[4] \subset E(F)$ lorsque $\ell = 2$.
 
 \begin{prop}\label{pro:clas:fro:atk}
 Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
@@ -5534,29 +5539,9 @@ degré $\ell$ de $\mathsf{F}$ on a pour $E[\ell^{\infty}](\mathsf{F})= \mathbb{Z
 \begin{nota}
 On note par $\mathsf{F}_i$ la plus petite extension de corps de 
 $\mathbb{F}_q$ de degré $d_i$ avec $d_i$ défini comme dans la 
-proposition~\ref{pro:clas:fro:atk}.
+proposition~\ref{pro:clas:fro:atk} et similaire à la 
+défintion~\ref{def:tour-ell} de tours d'extensions $\ell$-adiques
 \end{nota}
-
-Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité.
-
-\begin{cor}
-Soit $P$ un point d'ordre $\ell^{\beta+i}$ de la courbe elliptique $E$ située 
-au niveau du cratère du volcan de $\ell$-isogénies telle que $E(\mathsf{F}_
-{1})[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times 
-\mathbb{Z}/ \ell^{\beta}\mathbb{Z}$, alors la taille de l'orbite de $P$ selon 
-l'action de $\mathsf{Gal}(\mathsf{F}_{i+1}:\mathsf{F}_{1})$ est 
-$\ell^i$. 
-\end{cor}
-
-\begin{cor} \label{cor:atk:orb:rep}
-Soit $E$ une courbe elliptique située au niveau du cratère du volcan de 
-$\ell$-isogénies telle que $E(\mathsf{F}_1)[\ell^{\infty}] \simeq 
-\mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$,
-alors il y a $\ell^{2\beta + i -2}(\ell+1)$ classes de conjugaison de points 
-d'ordre $\ell^{\beta+i}$ selon l'action de $\mathsf{Gal}(
-\mathsf{F}_{i+1}:\mathsf{F}_{1})$.
-\end{cor}
-
 
 \begin{algorithm}
 \caption{\label{alg:atk:bas:mat}Calcul d'un point $R$ d'ordre~$\ell^{h-e+i}$ tel que $\pi(P,R)=M$}
@@ -6620,6 +6605,28 @@ c'est un point d'ordre $\ell^k$, on propose donc de faire la procédure décrite
 dans le paragraphe précédent en testant toutes les valeurs possibles pour 
 l'image de $P$ par $\phi$ c'est à dire tous les points d'ordre $\ell^k$ de 
 $E'$.
+
+Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité.
+On énonce des résultats qui sont des conséquences de la proposition~\ref{pro:cals:fro:atk}
+
+\begin{cor}
+Soit $P$ un point d'ordre $\ell^{\beta+i}$ de la courbe elliptique $E$ située 
+au niveau du cratère du volcan de $\ell$-isogénies telle que $E(\mathsf{F}_
+{1})[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times 
+\mathbb{Z}/ \ell^{\beta}\mathbb{Z}$, alors la taille de l'orbite de $P$ selon 
+l'action de $\mathsf{Gal}(\mathsf{F}_{i+1}:\mathsf{F}_{1})$ est 
+$\ell^i$. 
+\end{cor}
+
+\begin{cor} \label{cor:atk:orb:rep}
+Soit $E$ une courbe elliptique située au niveau du cratère du volcan de 
+$\ell$-isogénies telle que $E(\mathsf{F}_1)[\ell^{\infty}] \simeq 
+\mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$,
+alors il y a $\ell^{2\beta + i -2}(\ell+1)$ classes de conjugaison de points 
+d'ordre $\ell^{\beta+i}$ selon l'action de $\mathsf{Gal}(
+\mathsf{F}_{i+1}:\mathsf{F}_{1})$.
+\end{cor}
+
 
 On peut dès lors énoncer une version $\ell$-adique de l'algorithme de 
 Couveignes dans le cas Atkin dans l'algorithme~\ref{alg:cou:atk}.
