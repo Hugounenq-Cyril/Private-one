@@ -4712,10 +4712,10 @@ un coût de $O(\ell^2 \mathsf{M}(\ell^{h-(e-i)+1-\beta+\max(0,e-i-(h-\beta))}))$
 Lors de la boucle $h-e+i$, les étapes \ref{alg:rem:tri:trigonal:solve1} et 
 \ref{alg:rem:tri:rem:solve1} sont résolues à l'aide d'une recherche exhaustive 
 et ont un coût négligeable par rapport aux autres opérations. 
- Le coût étant le même pour chaque boucle on a un coût total pour une boucle 
-de trigonalisation de $O(e(\mathsf{R}(h-(e-i)+1-\beta+\max(0,e-i-(h-\beta)))+
-\ell^{h-(e-i)+1-\beta+\max(0,e-i-(h-\beta))}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
-(\ell^{h-(e-i)+1-\beta+\max(0,e-i-(h-\beta))})))$.
+% Le coût étant le même pour chaque boucle on a un coût total pour une boucle 
+%de trigonalisation de $O(e(\mathsf{R}(h-(e-i)+1-\beta+\max(0,e-i-(h-\beta)))+
+%\ell^{h-(e-i)+1-\beta+\max(0,e-i-(h-\beta))}\mathsf{M}(\ell)+\ell^2 \mathsf{M}
+%(\ell^{h-(e-i)+1-\beta+\max(0,e-i-(h-\beta))})))$.
 
 
 L'algorithme~\ref{alg:rem:tri} a donc une complexité espérée de 
@@ -6218,9 +6218,11 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   Le coût de calcul des bases diagonales de courbes sommets à 
   l'étape~\ref{alg:cou-ell:bdiag} se fait à l'aide de 
   l'algorithme~\ref{alg:ulti:fro} qui a un coût dans le pire des cas
-  de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+k(\mathsf{R}(k-\beta) +  \ell^2\mathsf{M}(\ell^{k-\beta})))$ 
-  par la proposition~\ref{pro:alg:ulti}. Cette borne est prise pour le cas où 
-  la courbe en entrée se situerait en bas du volcan de $\ell$-isogénies. 
+  de 
+  %$O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+k(\mathsf{R}(k-\beta) +  \ell^2\mathsf{M}(\ell^{k-\beta})))$  
+  $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+\mathsf{R}(k) +  \ell^2\mathsf{M}(\ell^{k}))$ 
+  par la proposition~\ref{pro:alg:ulti}. %Cette borne est prise pour le cas où 
+  %la courbe en entrée se situerait en bas du volcan de $\ell$-isogénies. 
 
   L'étape~\ref{alg:cou-ell:bhor} qui utilise 
   l'algorithme~\ref{alg:hor:poi} coûte dans le pire des cas un coût espéré de
@@ -6258,13 +6260,13 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   de calcul de $F_{a,b}$ est de $O(\mathsf{M}(r)\log(r))$ par 
   \cite[Théorème 7.5]{algeff17}. Le coût de calcul du test de l'isogénie (voir
   paragraphe dans la sous-section~\ref{sub:ori:cou} pour une description 
-  détaillée des tests possibles) dont les opérations 
-  les plus coûteuses sont regarder si le dénominateur de $F$ est un carré (dans
-  le cas où $r$ est pair que c’est le produit d’un facteur du polynôme de 
-  2-division et d’un carré) ou 
-  encore si il divise le polynôme de $r$-division. Cela coûte $O(\mathsf{M}(r)
+  détaillée des tests possibles) a pour opérations 
+  les plus coûteuses: regarder si le dénominateur de $F$ est un carré (dans
+  le cas où $r$ est pair on regarde si c’est le produit d’un facteur du polynôme de 
+  $2$-division et d’un carré) ou regarder si le dénominateur
+  divise le polynôme de $r$-division. Cela coûte $O(\mathsf{M}(r)
   \log(r))$ opérations, on ne prend pas en compte toutefois le coût de calcul
-   du polynôme de $r$-division  de $r\mathsf{M}(r^2)\log(r)\log(r q)$ car 
+   du polynôme de $r$-division  de $O(r\mathsf{M}(r^2)\log(r)\log(r q))$ car 
   les autres tests suffisent en général pour conclure. Tous ces coûts sont donc
   dominés par celui du calcul de~$A_{a,b}$ et $T$.  Enfin, en moyenne 
    ${\ell^{2k-2}=O(r\ell)}$~matrices candidates doivent être testées
