@@ -6324,12 +6324,15 @@ Ce résultat comme le \cite[Theorem~1]{ShparlinskiSutherland14} s'applique aussi
 aux nombres premiers de Atkin.
 \end{rem}
 
-\begin{prop}
-\label{pro:cou:dec}
+On énonce donc un tout premier résultat qui va nous permettre par la suite de
+déterminer pour une courbe choisie un nombre premier de Elkies dans 
+l'intervalle $[1,L]$ pour $L \in O(\log(q))$.
+\begin{lem}
+\label{lem:cou:dec}
 Le coût de trouver un courbe sur le cratère d'un volcan de $\ell$-isogénies 
 pour un nombre premier $\ell$ dans l'intervalle $[1,L]$ pour $L \in O(\log(q))$
 est majoré par: $O(\log(q)^5)$.
-\end{prop}
+\end{lem}
 
 \begin{proof}
 En utilisant les algorithmes décrits dans \cite{FouquetMorain02} et abordés 
@@ -6345,8 +6348,8 @@ sommet du volcan de $\ell$-isogénies à l'aide de $O(\ell h^2)$
 
 \begin{rem}
 Les algorithmes de \cite{FouquetMorain02} utilisés pour trouver une courbe sur 
-le volcan de $\ell$-isogénies  dans la preuve de la 
-proposition~\ref{pro:cou:dec} sont moins efficaces que ceux de 
+le volcan de $\ell$-isogénies  dans la preuve du 
+lemmme~\ref{lem:cou:dec} sont moins efficaces que ceux de 
 \cite{Ionica-Joux10} et \cite{MiretMRV05} mais ils ont l'avantage de 
 fonctionner sur tous types de volcans, non-réguliers compris, d'où le fait que
 l'on ne considère que ceux-ci.
@@ -6365,7 +6368,7 @@ Par la proposition~\ref{pro:bor:ell} on sait qu'il existe un nombre premier
 $\ell$ de Elkies (Atkin) appartenant à $[1;L]$ pour $L \in O(\log(q))$ et qui 
 vérifie $\ell^{h} < \sqrt{r}$. Pour trouver un nombre premier de Elkies qui 
 vérifie cette condition on doit tester tous les nombres premier de l'intervalle
-$[1;L]$ avec $L \in O(\log(q))$. On a vu dans la proposition~\ref{pro:cou:dec} 
+$[1;L]$ avec $L \in O(\log(q))$. On a vu dans le lemmme~\ref{lem:cou:dec} 
 que pour chacun de ces nombres premiers de Elkies on trouvait une courbe sur le
 cratère en au plus $O(\log(q)^5)$ opérations, une fois qu'une telle courbe est 
 trouvée sur le cratère alors on calcule une base diagonale de la $\ell^k$ 
@@ -6374,11 +6377,14 @@ l'on arrive à diagonaliser la base c'est que le nombre premier testé est de
 Elkies et valide pour appliquer l'algorithme~\ref{alg:cou:ell-adique} sinon 
 c'est un nombre premier de Atkin et l'algorithme~\ref{alg:cou:atk} peut 
 s'appliquer. L'algorithme~\ref{alg:bas:diag} ayant une complexité de 
-$O(\mathsf{R}(k-\beta)+\ell^2\mathsf{M}(\ell^{k-\beta})+\ell 
-\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ (avec ~$\ell^{2k-1} \in O(r\ell^2)$)
+$O(\mathsf{R}(h+1-\beta)+\ell^2\mathsf{M}(\ell^{h+1-\beta})+\ell 
+\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ (avec $h<k$ et ~$\ell^{2k-1} \in O(r\ell^2)$)
 par la proposition~\ref{pro:alg:diagonal}, en appliquant les résultats de 
 ~\cite[Chapter~14.5]{vzGJG03} on obtient le résultat.
 \end{proof}
+
+On peut dés lors énoncer le résultat suivant qui permet d'exprimer le coût de 
+résolution problème du "Calcul de l'isogénie explicite" en terme de $r$ et $q$.
 
 \begin{thm}
 \label{thm:gen:elk:fin}
@@ -6404,8 +6410,8 @@ avec une complexité de $O(\sqrt{r}\mathsf{M}(\sqrt{r})\log(q)\log(\log(q) q)+\l
 opérations sur $\mathbb{F}_q$.
 Ainsi en bornant $\ell$ par $\log(q)$ dans la complexité obtenue à la 
 proposition~\ref{pro:full-complexity} on obtient un résultat auquel il faut 
-rajouter le cout de la recherche de courbe sur le volcan: $O(\log(q)^6)$ par la 
-proposition~\ref{pro:cou:dec}, le test pour savoir si le nombre est de Elkies 
+rajouter le cout de la recherche de courbe sur le volcan: $O(\log(q)^6)$ par le 
+lemmme~\ref{lem:cou:dec}, le test pour savoir si le nombre est de Elkies 
 est lui majoré par la complexité donnée dans la 
 proposition~\ref{pro:full-complexity}.
 \end{proof}
@@ -6776,8 +6782,8 @@ Le noyau de cette isogénie peut être calculé en $O(h\mathsf{\ell r}\log(\ell 
 opérations en évaluant l'isogénie duale $\widehat{\alpha}$ sur le noyau de 
 $\psi_s$ à l'aide d'une suite de résultants. \todo{Faire aussi cela}
 
-Comme dit précédemment les résultats de la proposition~\ref{pro:bor:ell},
-~\ref{pro:cou:dec} et du corollaire~\ref{cor:atk:elk:dist} sont 
+Comme dit précédemment les résultats du lemmme~\ref{lem:cou:dec}, de la proposition~\ref{pro:bor:ell},
+ et du corollaire~\ref{cor:atk:elk:dist} sont 
 aussi valables dans le cas Atkin, on peut donc trouver un $\ell \in O(\log(q))$
 nombre premier de Atkin tel que $\ell^h<\sqrt{r}$ et énoncer un résultat 
 similaire à celui du théorème~\ref{thm:gen:elk:fin}, vu le peu d'intérêt d'un 
