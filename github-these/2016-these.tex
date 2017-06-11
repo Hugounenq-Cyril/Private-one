@@ -4303,6 +4303,7 @@ base de $E[\ell^k]$.
 
 
 \begin{prop}
+\label{pro:etu:atk:elk}
 Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan de 
 $\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,Q, R 
 \in E$ tels que $\langle P,Q \rangle= \langle P,R \rangle =E[\ell^{h-e+i}]$, 
@@ -5432,7 +5433,7 @@ $\pi(P,R')=\pi(P,R)$ permet de conclure à l'aide de la
 proposition~\ref{pro:atk:equi}.
 \end{proof}
 
-\subsection{\'Etude de la rationalité de la $\ell^{k}$-torsion dans une tour d'extensions $\ell$-adique ou Calculs de directions dans le volcan de $\ell$-isogénies.}
+\subsection{Calculs de directions dans le volcan de $\ell$-isogénies.}
 
 On va maintenant étudier la structure de la torsion rationnelle des courbes 
 elliptiques situées au niveau du cratère et déterminer l'extension de corps 
@@ -5444,9 +5445,6 @@ courbes.
 %On utilise la même définition pour $\beta$ que celle issue de la 
 %définition~\ref{def:alp:bet}.
 
-Dans cette sous-section on va voir comment se décompose l'ensemble des 
-points d'ordre $\ell^{h+i}$ sous l'action du Frobenius dans le cas Atkin pour 
-une courbe se situant sur le cratère.
 \begin{prop}
 Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
 volcan de $\ell$-isogénies. On note~$d_1$ le degré de la plus 
@@ -5548,9 +5546,9 @@ Maintenant que l'on a défini dans quels éléments de la tour d'extensions
 $\ell$-adique étaient définis les points avec lesquels on va travailler on 
 présente et analyse l'algorithme~\ref{alg:atk:bas:mat}. Cet algorithme calcule 
 à partir d'un point $P$ fixé d'ordre $\ell^{h-e+i}$ et d'une matrice $M$ à 
-coefficients dans $\mathbb{Z}/\ell^{h-e+i} \mathbb{Z}$ un second point $Q$ tel 
-que l'action du Frobenius exprimée dans la base $(P,Q)$ soit de la même forme 
-que $M$.
+coefficients dans $\mathbb{Z}/\ell^{h-e+i} \mathbb{Z}$ un second point $Q$ 
+d'ordre $\ell^{h-e+i}$ tel que l'action du Frobenius exprimée dans la base 
+$(P,Q)$ soit de la même forme que $M$.
 
 \begin{algorithm}
 \caption{\label{alg:atk:bas:mat}Calcul d'un point $R$ d'ordre~$\ell^{h-e+i}$ tel que $\pi(P,R)=M$}
@@ -5601,7 +5599,7 @@ Frobenius pour cet algorithme est donc de
 $O(\ell^2\mathsf{M}(\ell)(\ell^{h-e+i-\beta+1+\max(0,e-(h-\beta))}+(\beta-\max(0,e-(h-\beta)))\ell))$ 
 opérations sur $\mathbb{F}_q$.
 
-A $R_j$ fixé pour le test d'égalité $\pi(P_j,R_j)= M \bmod \ell^j$, on 
+\`A $R_j$ fixé pour le test d'égalité $\pi(P_j,R_j)= M \bmod \ell^j$, on 
 actualise à chaque itération la valeur de $MP_j$ et $MR_j$. Pour cela on est 
 ammené à effectuer jusqu'à $\ell^2$ additions de points d'ordre 
 $\ell^{j}$ définis dans dans $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ lorsque $j-\beta+\max(0,e-(h-\beta))>1$, 
@@ -5724,13 +5722,13 @@ $k>h$). En effet on ne peut pas générer tous les point de $\ell^e$-torsion et
 donc pour éviter toute redondance on ne travaille qu'avec les points d'ordre 
 $\ell^k$. Si l'on souhaitait travailler avec les points de la $\ell^e$-torsion 
 on utiliserait dans le cas de deux points partiellements horizontaux 
-$R_{\lambda}, R_{\mu}$ (de profondeur $e>0$)par exemple le groupe $\langle 
+$R_{\lambda}, R_{\mu}$ (de profondeur $e>0$) par exemple le groupe $\langle 
 [\ell^{k-e}]R_{\lambda} \rangle$.
 
 
 Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo,
 J\'er\^ome Pl\^ut et \'Eric Schost qui ont fait l'objet d'une publication 
-\cite{Defeo_Plut_Schost_2016}.
+\cite{Defeo_Plut_Schost_2016}. \todo{bien placer cela...}
 
 
 \subsection{Présentation du cas spécifique où l'on connaît un premier $\ell$ de Elkies}
@@ -5772,7 +5770,6 @@ Q
 \right) \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^*; c,d \in \mathbb{Z}/\ell^{h}\mathbb{Z}.
 \]
 
-\todo{On peut faire un dessin pour expliquer en quoi c'est pas bien! Ce sera très parlant}
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.20]
@@ -6081,8 +6078,8 @@ choisies sur la figure~\ref{fig:ex:con:dia}. On voit en
 particulier que ce choix ne permet une correspondance exacte que pour la 
 $3$-isogénie qui correspond à l'isogénie horizontale. En effet comme on a vu
 plus tôt un point diagonal d'ordre $\ell^k$ ne donne une information que sur la
-$\ell^{k-h}$-isogénie-horizontale (voir proposition~\ref{pro:dia:hor}), dès 
-lors on ne sait dire à partir de cette information si les isogénies de degré 
+$\ell^{k-h}$-isogénie-horizontale (voir proposition~\ref{pro:dia:hor}). Dès 
+lors on ne sait dire, à partir de cette information, si les isogénies de degré 
 supérieur à $3$ engendrées par le point diagonal sont du même type et repectent
 l'action de la $r$-isogénie $\phi$. En effet pour le choix d'un de ces points 
 diagonaux on peut choisir comme sur l'exemple un point horizontal pour la 
@@ -6090,7 +6087,12 @@ direction $\color{red} \lambda$ pour la courbe $E_s$ et un point non horizontal
 pour la direction $ \color{red} \lambda$ sur la courbe $E'_s$.  Dès lors on a 
 pas une correspondance de sous-groupes cycliques et l'on doit considérer les 
 combinaisons linéaire avec le second point de la base diagonale de direction 
-$\color{blue} \mu$ pour les correspondances induites par la $r$-isogénie.  \todo{préciser et faire référence aux isogénies descendantes pour lesquelles le Frobenius ne peut rien, cela est vu en annexe}
+$\color{blue} \mu$ pour les correspondances induites par la $r$-isogénie. Enfin
+on ne sait dire si la correspondance entre les $\ell$-isogénies descendantes 
+qui composent l'isogénie engendrée par les points de dagonaux de direction 
+$\color{blue}{\mu}$ sont correctes. En effet nous avons vu à la 
+proposition~\ref{pro:etu:atk:elk} qu'une étude à l'aide du Frobenius des 
+$\ell$-isogénies ne permet pas de distinguer les $\ell$-isogénies entre elles.
 
  On travaille donc avec deux bases $(\color{red}P_{\lambda} \color{black},
  \color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},
