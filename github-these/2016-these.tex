@@ -5570,50 +5570,45 @@ que $M$.
 \begin{prop}
 \label{pro:atk:comp:alg}
 L'algorithme~\ref{alg:atk:bas:mat} a une complexité de 
-$O(\ell^4(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta-e)\mathsf{M}(\ell)))$ opérations sur 
-$\mathbb{F}_q$ lorsque la courbe $E$ se trouve sur un volcan \emph{régulier} et
-une complexité de 
-$O(\ell^4(\mathsf{M}(\ell^{h-e+i+1-\beta})+(\beta)\mathsf{M}(\ell)))$
-lorsque $E$ se situe au-dessus du premier niveau de stabilité.
+\[
+O(\ell^4(\mathsf{M}(\ell^{h-e+i-\beta+1\max(0,e-(h-\beta))})+(\beta-\max(0,e-(h-\beta)))\mathsf{M}(\ell)))
+\]
+opérations sur $\mathbb{F}_q$.
 \end{prop}
-\todo{Traiter de façon uniforme les volcans (non)-réguliers}
+
 \begin{proof}
-On traite tout d'abord le cas de volcan \emph{régulier}.
 Par la proposition~\ref{pro:clas:fro:atk} les points $P_j,R_j$ sont définis
-dans $\mathsf{F}_{j-\beta+e}$ lorsque $j-\beta+e>1$ et définis dans $\mathsf{F}_1$ sinon.
-L'étape~\ref{alg:atk:bas:niv} est faite en tant que pré-calcul, ainsi on calcule
-successivement des multiplications par $\ell$ de points définis dans 
-$\mathsf{F}_{j-\beta+e}$ à $\mathsf{F}_{1}$ en décomposant la multiplication par 
-$\ell$ par deux isogénies de degré $\ell$ qui coûte chacune 
-$O(\mathsf{M}(\ell^{1+\max(j-\beta+e,1)}))$ opérations sur $\mathbb{F}_q$. On a donc 
-un coût total pour l'étape~\ref{alg:atk:bas:niv} de 
-$O(\mathsf{M}(\ell^{h-\beta+i+2})+(\beta-e)\mathsf{M}(\ell))$.
+dans $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ lorsque $j-\beta+\max(0,e-(h-\beta))>1$ et 
+définis dans $\mathsf{F}_1$ sinon. L'étape~\ref{alg:atk:bas:niv} est faite en 
+tant que pré-calcul, ainsi on calcule successivement des multiplications par 
+$\ell$ de points définis dans $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ à 
+$\mathsf{F}_{1}$ en décomposant la multiplication par $\ell$ par deux isogénies
+de degré $\ell$ qui coûte chacune $O(\mathsf{M}(\ell^{j-\beta+\max(0,e-
+(h-\beta))}))$ opérations sur $\mathbb{F}_q$. On a donc un coût total pour 
+l'étape~\ref{alg:atk:bas:niv} de $O(\mathsf{M}(\ell^{h-e+i-\beta+1+\max(0,e-
+(h-\beta))})+(\beta-\max(0,e-(h-\beta))\mathsf{M}(\ell))$.
 \`A l'étape~\ref{alg:atk:coef:int} le calcul de $R_j$ peut être actualisé à 
 chaque itération de la boucle pour à l'aide 
-de $\ell^2$ additions de points définis dans $\mathsf{F}_{j-\beta+e}$ 
-lorsque $j-\beta+e>1$ ou $\mathsf{F}_1$ sinon. Ainsi le calcul de $R_j$ a 
+de $\ell^2$ additions de points définis dans $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ 
+lorsque $j-\beta+\max(0,e-(h-\beta))>1$ ou $\mathsf{F}_1$ sinon. Ainsi le calcul de $R_j$ a 
 un coût total de 
-$O(\ell^{2}(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta-e)\mathsf{M}(\ell)))$. Le 
-calcul du Frobenius sur un point $R_j$ fixé défini dans 
-$\mathsf{F}_{j-\beta+e}$ lorsque $j-\beta+e>1$, 
-$\mathsf{F}_1$ sinon a un coût total de $O(\ell^{\max(j-\beta+e,1)}
+$O(\ell^{2}(\mathsf{M}(\ell^{h-e+i-\beta+1+\max(0,e-(h-\beta))})+(\beta-(\max(0,e-(h-\beta)))\mathsf{M}(\ell)))$. 
+Le calcul du Frobenius sur un point $R_j$ fixé défini dans 
+$\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ lorsque $j-\beta+\max(0,e-(h-\beta))>1$, 
+$\mathsf{F}_1$ sinon, a un coût total de $O(\ell^{\max(j-\beta+\max(0,e-(h-\beta)),1)}
 \mathsf{M}(\ell))$ par le théorème~\ref{thm:frob-ell}. Le coût total du 
 Frobenius pour cet algorithme est donc de 
-$O(\ell^2\mathsf{M}(\ell)(\ell^{h-\beta+i+1}+(\beta-e)\ell))$ opérations sur 
-$\mathbb{F}_q$.
+$O(\ell^2\mathsf{M}(\ell)(\ell^{h-e+i-\beta+1+\max(0,e-(h-\beta))}+(\beta-\max(0,e-(h-\beta)))\ell))$ 
+opérations sur $\mathbb{F}_q$.
 
 A $R_j$ fixé pour le test d'égalité $\pi(P_j,R_j)= M \bmod \ell^j$, on 
 actualise à chaque itération la valeur de $MP_j$ et $MR_j$. Pour cela on est 
 ammené à effectuer jusqu'à $\ell^2$ additions de points d'ordre 
-$\ell^{j}$ définis dans dans $\mathsf{F}_{j-\beta+e}$ lorsque $j-\beta+e>1$, 
+$\ell^{j}$ définis dans dans $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ lorsque $j-\beta+\max(0,e-(h-\beta))>1$, 
 $\mathsf{F}_1$ sinon. Ce test d'égalité a donc un coût total de 
-$O(\ell^4(\mathsf{M}(\ell^{h-\beta+i+1})+(\beta-e)\mathsf{M}(\ell)))$ opérations sur 
-$\mathbb{F}_q$.
-
-L'analyse du coût de l'algorithme pour une courbe située au dessus du premier
-niveau de stabilité est la même excepté le fait que un point d'ordre 
-$\ell^{j}$ est défini dans $\mathsf{F}_{j-\beta}$ lorsque $j-\beta>1$ et 
-$\mathsf{F}_1$ sinon.
+$O(\ell^4(\mathsf{M}(\ell^{h-e+i-\beta+1\max(0,e-(h-\beta))})+(\beta-\max(0,e-(h-\beta)))\mathsf{M}(\ell)))$ 
+opérations sur $\mathbb{F}_q$, c'est cette opération qui domine la complexité
+et donne le résultat annoncé.
 \end{proof}
 
 \chapter{Algorithme de Couveignes $\ell$-adique}
