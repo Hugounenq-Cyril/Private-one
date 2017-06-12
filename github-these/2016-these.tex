@@ -6394,10 +6394,11 @@ en un temps espéré de
 \todo{moche à modifier}
  \begin{equation*}
  \begin{alignedat}{1}
-& O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\log(q)^{1,5})\log(r)\log(\ell)\log(\log(q) q) + \\ 
-& r \log(q) (\mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) + \mathsf{M}(r \log(q)^3) \log(r)^2 \log(\log(q)) + \log(q)^6 )  \Bigr)
+& O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\log(q)^{1,5})\log(r)\log(\log(q))\log(\log(q) q) + \\
+& r \log(q)^2\log(r)^2 \mathsf{M}(r \log(q)^4) \Bigr)
 \end{alignedat}
  \end{equation*}
+% & r \log(q) (\mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) + \mathsf{M}(r \log(q)^3) \log(r)^2 \log(\log(q)) + \log(q)^6 )  \Bigr)
 %  \[
 %O\Bigl( r \log(q) \mathsf{M}(r \log(q)^4) \log(r) \log(\log(q)) +  r\log(q) \mathsf{M}(r \log(q)^{1,5}) \log(r)^2 \Bigr).
 % \]
@@ -6495,9 +6496,96 @@ On présente donc une première série de tests qui a été réalisé sur des
 courbes qui ont toutes leur $\beta=h=2$, ainsi notre 
 algorithme~\ref{alg:cou:ell-adique} a travaillé avec la $2^3$ torsion jusqu'à la 
 $2^8$ torsion sur des courbes elliptiques définies sur corps finis premiers 
-allant d'une taille de $7$ bits à $252$ bits.
+allant d'une taille de $7$ bits à $252$ bits. On donne un exemple de la 
+structure de $E(\mathbb{F}_p)[2^{\infty}]$ selon le niveau dans le volcan de 
+$\ell$-isogénies dans la figure~\ref{fig:elk:dif:niv:tor} pour un des exemples
+ayant servi aux calculs montré dans la figure~\ref{fig:exp:dif}.
+\begin{figure}
+\begin{center}
 
+\begin{tikzpicture}[scale=0.50]
+\coordinate (A) at (0,2);
+\coordinate (B) at (0,6);
+\coordinate (C) at (0,10);
+\draw (A) node[left]{
+$\mathbb{Z}/2^{5}\mathbb{Z}$
+}; %node{$\bullet$};
+\draw (B) node[left]{
+$\mathbb{Z}/2^{4}\mathbb{Z} \times \mathbb{Z}/2^{1} \mathbb{Z}$}; %node{$\bullet$};
+\draw (C) node[left]{
+$\mathbb{Z}/2^{3}\mathbb{Z} \times \mathbb{Z}/2^{2} \mathbb{Z}$}; %node{$\bullet$};
+\begin{scope}[yshift=10cm]
+	\begin{scope}[xshift=4.3cm]
+		\node (A) at (-3,0) {$  \bullet $};
+		\node (B) at (3,0) {$   \bullet$};
+		\node (C) at (270:1.2) {$ \bullet \color{black}$};
+		\node (D) at (90:1.5) {};
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[-] (A.center) to[bend right=40] (B.center);
+		\draw (A) node{$  \bullet $};
+		\draw (B) node{$  \bullet $};
+		\draw (C) node{$  \bullet $};
+		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
+			\begin{scope}[xshift=-3cm]% sous volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=3cm]% sous volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			%\draw (A) node{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};;
+			
+			
+			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};			
+			
+			\end{scope}
+			\coordinate (F) at (5,0);
+			\coordinate (G) at (5,-7);
+			\draw[dashed,<-] (F)--(G) node[midway,right]{$h$};
+	\end{scope}
+\end{scope}
 
+%faire des fleches courbees avec les indices \ell et \ell^2
+
+\end{tikzpicture}
+\end{center}
+
+\caption{\label{fig:elk:dif:niv:tor} Structure du volcan sur lequel ont été étudié les courbes de la figure~\ref{fig:exp:dif}.}
+\end{figure}
 
 \begin{figure}
 \label{fig:exp:dif}
@@ -6623,8 +6711,11 @@ dans le paragraphe précédent en testant toutes les valeurs possibles pour
 l'image de $P$ par $\phi$ c'est à dire tous les points d'ordre $\ell^k$ de 
 $E'$.
 
-Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité.
-On énonce des résultats qui sont des conséquences de la proposition~\ref{pro:cals:fro:atk}
+Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité. %Juste pour les tailles d'extensions de corps
+On énonce des résultats qui sont des conséquences de la 
+proposition~\ref{pro:clas:fro:atk} et qui nous seront utiles lors de l'étape 
+du calcul de polynôme d'interpolation utilisant les méthodes de la 
+section~\ref{sec:interpolation}.
 
 \begin{cor}
 Soit $P$ un point d'ordre $\ell^{\beta+i}$ de la courbe elliptique $E$ située 
