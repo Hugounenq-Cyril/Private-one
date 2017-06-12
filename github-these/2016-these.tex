@@ -5569,7 +5569,7 @@ $(P,Q)$ soit de la même forme que $M$.
 \label{pro:atk:comp:alg}
 L'algorithme~\ref{alg:atk:bas:mat} a une complexité de 
 \[
-O(\ell^4(\mathsf{M}(\ell^{h-e+i-\beta+1\max(0,e-(h-\beta))})+(\beta-\max(0,e-(h-\beta)))\mathsf{M}(\ell)))
+O(\ell^4(\mathsf{M}(\ell^{h-e+i-\beta+1+\max(0,e-(h-\beta))})+(\beta-\max(0,e-(h-\beta)))\mathsf{M}(\ell)))
 \]
 opérations sur $\mathbb{F}_q$.
 \end{prop}
@@ -6599,9 +6599,8 @@ doit être dû à des détails d'implantation bas-niveau que SageMath ne permet 
 de maîtriser.
 
 \begin{figure}
-\label{fig:exp:niv}
 %\input{graphe-521}
-\caption{Comparaison d'une phase d'interpolation pour $r$ croissant pour différentes courbes définies sur les corps finis $\mathbb{F}_{521}$, $\mathbb{F}_{1033}$ et $\mathbb{F}_{2^{62}+169 }$. La courbe est en échelle logarithmique.}
+\caption{\label{fig:exp:niv} Comparaison d'une phase d'interpolation pour $r$ croissant pour différentes courbes définies sur les corps finis $\mathbb{F}_{521}$, $\mathbb{F}_{1033}$ et $\mathbb{F}_{2^{62}+169 }$. La courbe est en échelle logarithmique.}
 \end{figure}
 
 La deuxième série de tests montrés sur la figure~\ref{fig:exp:niv} a été réalisé
@@ -6711,7 +6710,7 @@ dans le paragraphe précédent en testant toutes les valeurs possibles pour
 l'image de $P$ par $\phi$ c'est à dire tous les points d'ordre $\ell^k$ de 
 $E'$.
 
-Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité. %Juste pour les tailles d'extensions de corps
+%Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité. %Juste pour les tailles d'extensions de corps
 On énonce des résultats qui sont des conséquences de la 
 proposition~\ref{pro:clas:fro:atk} et qui nous seront utiles lors de l'étape 
 du calcul de polynôme d'interpolation utilisant les méthodes de la 
@@ -6747,7 +6746,7 @@ Couveignes dans le cas Atkin dans l'algorithme~\ref{alg:cou:atk}.
 \STATE Calcul du plus petit $k$ tel que $\ell^{2k-2}(\ell+1)>4r$;
 \STATE \label{alg:cou:atk:bas} 
 Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
-\STATE \label{alg:cou:atk:frob:bas} Calcul de $\pi(P,Q)$;
+\STATE \label{alg:cou:atk:frob:bas} Calcul de la matrice $\pi(P,Q)$;
 \FOR{$S' \in E'$ d'ordre $\ell^k$} \label{alg:cou:atk:parc:poi}
 \STATE \label{alg:cou:atk:matc:fro} Calcul de $R' \in E'$ tel que $\pi(S',R')=\pi(P,Q)$ à l'aide de l'algorithme~\ref{alg:atk:bas:mat}
 \FOR{$U' \in E'$  tel que $[\ell^{h}]U'=[\ell^{h}]R'$} \label{alg:cou:atk:div:h}
@@ -6795,43 +6794,44 @@ $O(\mathsf{R}(k-\beta+1)+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
 Par ~\cite[Chapter~14.5]{vzGJG03} on a $\mathsf{R}(n)=
 O(\ell^n\mathsf{M}(\ell^{n+1})\log(\ell)\log(\ell q))$. 
 L'étape~\ref{alg:cou:atk:bas} a donc un coût total de $O(\ell^k \mathsf{M}
-(\ell^{k+1})\log(\ell)\log(\ell q))=O(\sqrt{r}\mathsf{M}(\sqrt{r}\ell)\log(\ell)\log(\ell q))$ 
+(\ell^{k+1})\log(\ell)\log(\ell q))=O(\sqrt{r}\ell^{1,5}\mathsf{M}(\sqrt{r}\ell^{2,5})\log(\ell)\log(\ell q))$ 
 dans le pire des cas où l'on aurait $\beta=1$.
 
 Le coût de calcul de l'étape~\ref{alg:cou:atk:frob:bas} s'effectue 
-itérativement en effet à la manière de l'algorithme~\ref{alg:atk:bas:mat} on 
+itérativement en effet de la même manière que l'algorithme~\ref{alg:atk:bas:mat} on 
 calcule itérativement l'action du Frobenius sur la $\ell^j$-torsion pour $j$ 
 allant de $1$ à $k$, ainsi à l'étape $i \in [1;k]$ on a le coût du Frobenius
 appliqué à un point de $\mathsf{F}_{i-\beta}$ lorsque $i>\beta$, $\mathsf{F}_1$
-sinon qui est de $O(\ell^{\max(i-\beta,1)}\mathsf{M}(\ell))$ opérations sur 
+sinon qui est de $O(\ell^{\max(1,i-\beta)}\mathsf{M}(\ell))$ opérations sur 
 $\mathbb{F}_q$ d'après le théorème~\ref{thm:frob-ell}. On effectue ensuite 
 jusqu'à $2\ell^2$ additions de points définis sur $\mathsf{F}_{i-\beta}$ afin 
 d'identifier l'action du Frobenius. Chaque étape a donc un coût de 
 $O(\ell^2 \mathsf{M}(\ell^{\max(1,i-\beta)}))$,
 le coût total de l'étape~\ref{alg:cou:atk:frob:bas} est donc de 
 $O(\ell^2(\beta \mathsf{M}(\ell)+\mathsf{M}(\ell^{k-\beta+1})))=
-O(\ell^2( \mathsf{M}(\ell)+\mathsf{M}(\sqrt{r}))$ 
+O(\ell^2( \mathsf{M}(\ell)+\mathsf{M}(\sqrt{r}\ell^{1,5})))$ 
 opérations sur $\mathbb{F}_q$ dans le pire des cas où $\beta=1$.
 
 Le calcul de tous les points d'ordre $\ell^k$ à 
 l'étape~\ref{alg:cou:atk:parc:poi} à partir d'une base de $E'[\ell^k]$ coûte 
 $O(\mathsf{M}(\ell^k)\log(\ell^k)\ell^{2k-2})=
-O(\mathsf{M}(\sqrt{r})r\log(r)\log(\ell))$ ce coût est considéré comme 
+O(\mathsf{M}(\sqrt{r}\ell^{1,5})r\ell\log(r)\log(\ell))$ ce coût est considéré comme 
 un pré-calcul.
 
 L'étape~\ref{alg:cou:atk:matc:fro} a un coût de 
-$O(\ell^4(\mathsf{M}(\ell^{k+1-\beta})+(\beta)\mathsf{M}(\ell)))$ 
+$O(\ell^4(\mathsf{M}(\ell^{k-\beta+1})+\beta\mathsf{M}(\ell)))$
 opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:atk:comp:alg}.
-Ce qui donne un coût de $O(\ell^4(\mathsf{M}(\sqrt{r})+\mathsf{M}(\ell)))$.
+Ce qui donne un coût de $O(\ell^4(\mathsf{M}(\sqrt{r}\ell^{1,5})+\mathsf{M}(\ell)))$.
 
 L'étape~\ref{alg:cou:atk:div:h} calcule les antécédents d'un point d'ordre
 $\ell^{k-h}$ par $[\ell^h]$ ainsi on utilise successivement la fonction 
-$\mathrm{divise}(\ell,P)$ sur des points définis dans $\mathsf{F}_{h-\beta}$ à
+$\mathrm{divise}(\ell,P)$ sur des points définis dans $\mathsf{F}_{k-h-\beta}$ à
 $\mathsf{F}_{k-\beta}$, chaque itération de $\mathrm{divise}(\ell,P)$ a un coût
 de $R(n+1)$ pour $P \in \mathsf{F}_n$ par le lemme~\ref{lem:div:cou}. Ainsi 
 par ~\cite[Chapter~14.5]{vzGJG03} cette étape a un coût total de: 
-$O(\mathsf{M}(\ell^{k-\beta + 2})\ell^{k-\beta+1}\log(\ell)\log(\ell q))=
-O(\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$.
+$O(\mathsf{M}(\ell^{k-\beta +1})\ell^{k-\beta}\log(\ell)\log(\ell q)+\beta (\mathsf{M}(\ell^2)\ell\log(\ell)\log(\ell q)))$ 
+ce qui donne dans le pire des cas
+$O(\mathsf{M}(\sqrt{r}\ell^{1,5})\sqrt{r\ell}\log(\ell)\log(\ell q))$.
 
 Par le corollaire~\ref{cor:atk:orb:rep} on a $\ell^{k+\beta-2}(\ell+1)/2$ 
 représentants à calculer, chaque représentant étant 
