@@ -6464,11 +6464,11 @@ Cauchy, cela représente une itération des étapes \ref{alg:cou-ell:ord} à
 
 
 \begin{figure}
-\label{fig:exp:uni}
+\includegraphics[scale=0.8]{benchmarks/graphe-101bis.pdf} 
 %\resizebox{\columnwidth}{!}{\input{graphe-101}}
-\caption{Comparaison entre les phases d'initialisations et la phase d'interpolation pour une courbe définie sur $\mathbb{F}_{101}$ pour $r$ croissant. La courbe est en échelle logarithmique.}
+\caption{\label{fig:exp:uni} Comparaison entre les phases d'initialisations et la phase d'interpolation pour une courbe définie sur $\mathbb{F}_{101}$ pour $r$ croissant. La courbe est en échelle logarithmique.}
 \end{figure}
-
+\todo{mettre les figures 6.2 et 6.3 cote à cote}
 
 On a donc regroupé dans la figure~\ref{fig:exp:uni} les deux premières parties
 qui sont en fait du précalcul avec notamment le calcul de bases horiontales et 
@@ -6588,9 +6588,12 @@ $\mathbb{Z}/2^{3}\mathbb{Z} \times \mathbb{Z}/2^{2} \mathbb{Z}$}; %node{$\bullet
 \end{figure}
 
 \begin{figure}
-
+\begin{center}
+%\include{benchmarks/graphe-101-149-269}
+\includegraphics[scale=0.8]{benchmarks/graphe-101-2^18bis.pdf} 
 %\include{graphe-101-149-269}
-\caption{\label{fig:exp:dif} Comparaison d'une phase d'interpolation pour $r$ croissant pour différentes courbes définies sur les corps finis $\mathbb{F}_{101}$, $\mathbb{F}_{269}$, $\mathbb{F}_{2^{18}+93 }$, $\mathbb{F}_{2^{30}+669}$, $\mathbb{F}_{2^{62}+189}$ et $\mathbb{F}_{2^{252}+421}$. La courbe est en échelle logarithmique.}
+\caption{\label{fig:exp:dif} Comparaison d'une phase d'interpolation pour $r$ croissant pour différentes courbes définies sur les corps finis $\mathbb{F}_{101}$, $\mathbb{F}_{2^{18}+93 }$, $\mathbb{F}_{2^{30}+669}$, $\mathbb{F}_{2^{62}+189}$ et $\mathbb{F}_{2^{252}+421}$. La courbe est en échelle logarithmique.}
+\end{center}
 \end{figure}
 
 On observe sur la figure~\ref{fig:exp:dif} que la dépendance en $q$ est plus 
@@ -6600,12 +6603,13 @@ de maîtriser.
 
 \begin{figure}
 %\input{graphe-521}
-\caption{\label{fig:exp:niv} Comparaison d'une phase d'interpolation pour $r$ croissant pour différentes courbes définies sur les corps finis $\mathbb{F}_{521}$, $\mathbb{F}_{1033}$ et $\mathbb{F}_{2^{62}+169 }$. La courbe est en échelle logarithmique.}
+\includegraphics[scale=0.8]{benchmarks/graphe-521bis.pdf} 
+\caption{\label{fig:exp:niv} Comparaison d'une phase d'interpolation pour $r$ croissant pour différentes courbes définies sur les corps finis $\mathbb{F}_{521}$ et $\mathbb{F}_{1033}$. La courbe est en échelle logarithmique.}
 \end{figure}
 
 La deuxième série de tests montrés sur la figure~\ref{fig:exp:niv} a été réalisé
 sur des courbes qui ont toutes leur $\beta=h=3$ définies sur des corps finis de
-taille $p$ allant de $9$ bits à $62$ bits, notre algorithme~\ref{alg:cou:ell-adique} a donc utilisé de la 
+taille $p$ de $9$ bits, notre algorithme~\ref{alg:cou:ell-adique} a donc utilisé de la 
 $2^4$ torsion jusqu'à $2^7$ torsion des courbes elliptiques. On voit ici que comme on a 
 $\beta=h=3$ alors contrairement aux précédents tests il n'y a pas de palier où l'on travaille avec la 
 $\ell^{3}$ torsion mais directement avec la $\ell^4$ torsion, car il est 
