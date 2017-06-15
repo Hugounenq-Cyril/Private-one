@@ -2227,7 +2227,7 @@ Le coût d'une inversion d'un élément de $\mathsf{F}_k$ est le coût d'une add
 
 \subsection*{Calcul du Frobenius}
 
-Cette opération est très importante pour déterminer des ensembles spécifiques de points d'une courbe elliptique (voir chapitre~\ref{cha:act:fro} \todo{ref à mettre plus tard}), c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable. Le résultat ici est une généralisation de \cite{Doliskani-Schost15}.
+Cette opération est très importante pour déterminer des ensembles spécifiques de points d'une courbe elliptique (voir chapitre~\ref{cha:act:fro}), c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable. Le résultat ici est une généralisation de \cite{Doliskani-Schost15}.
 
 \begin{thm} \label{thm:frob-ell}
 Soit $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1,  \cdots \mathsf{F}_n$ une tour d'extensions $\ell$-adiques
@@ -2304,7 +2304,7 @@ Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation
 Sans perte de généralité on peut supposer que l'on a $\eta \neq 0$, si ce n'est pas le cas alors on peut remplacer $\delta$ par $\delta c^2$ avec $c$ choisi aléatoirement parmi les inversibles de $\mathsf{F}_k$.
 $O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c) \neq 0$. En effet il y a $|\mathsf{F}_0|^{\ell^k}/|\mathsf{F}_0|$ valeurs de $c$ pour lesquelles on a $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c) = 0$ ainsi la probabilité d'avoir $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c) \neq 0$ est de $1-(|\mathsf{F}_0|^{\ell^k}/|\mathsf{F}_0|)/(|\mathsf{F}_0|^{\ell^k})=1-1/|\mathsf{F}_0|>1/2$.
 
-Le coût de calcul de $\beta$ est de $O(M(d_0)\log(q)+C(d_0)\log(d_0))$ opérations en moyenne sur $\mathbb{F}_q$ avec $C(n)=O(n^{1.67})$ d'après \cite{doliskani_Schost_2014_root}. Ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
+Le coût de calcul de $\beta$ est de $O(M(d_0)\log(q)+C(d_0)\log(d_0))$ opérations en moyenne sur $\mathbb{F}_q$ avec $C(n)=O(n^{1.67})$ d'après \cite{Doliskani-Schost14}. Ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
 
 Soit $\lambda$ un élément de $\mathsf{F}_k$ défini par $\lambda = \delta^{(|\mathsf{F}_0|-1)/2} $ on a alors la relation suivante:
 \begin{equation*}
@@ -2879,7 +2879,7 @@ Voir \cite[Proposition 23]{Kohel96}.
 \end{proof}
 
 On peut dés lors relier ce théorème avec les racines du $\ell$-ème polynôme modulaire évalué en le $j$-invariant de la courbe que l'on étudie:
-\todo{Faire une notation cohérente avec $d_K$ au lieu de $D$...}
+
 \begin{cor}
 \label{cor:tab:vol} 
 Dans le tableau suivant sont résumées les différentes possibilités de types d'isogénies selon la valeur de $\mathcal{N}_{\ell}(E)$ qui représente le nombre de solutions à l'équation: $\Phi_{\ell}(X,j(E))=0$ sur $\mathbb{F}_q$
@@ -3217,6 +3217,7 @@ Le résultat est démontré dans \cite[§5.3.1]{Ionica2010}.
 \end{proof}
 
 \chapter{Détermination de directions dans le volcan de $\ell$-isogénies à l'aide de l'action du Frobenius}
+\label{cha:act:fro}
 Dans cette partie on va étudier sur une courbe elliptique $E$ l'action du 
 Frobenius sur $\mathsf{T}_{\ell}(E)$ et voir comment selon cette action on 
 détermine des directions dans le volcan de $\ell$-isogénies. \todo{Justifier 
@@ -3228,9 +3229,6 @@ volcans non-réguliers et par conséquent de déterminer la hauteur du volcan pa
 des méthodes plus directes que celles de~\cite{FouquetMorain02}.
 
 \section{Cas Elkies}
-
-\label{cha:act:fro}
-
 
 La majeure partie du travail présenté dans cette sous-section a été effectué en collaboration avec Luca De Feo, Jér\^ome Pl\^ut et \'Eric Schost. Il a fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
@@ -4299,7 +4297,7 @@ du Frobenius. Pour cette étude on fixe un point d'ordre $\ell^k$ qui engendre
 la $\ell$-isogénie montante (ou l'une des deux horizontales lorsque l'on est 
 sur le cratère) et on regarde si la forme de la matrice du Frobenius est liée à
 la $\ell^i$-isogénie descendante engendrée par le second point qui forme une 
-base de $E[\ell^k]$.  
+base de $E[\ell^k]$.  Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Master13}.
 
 
 \begin{prop}
@@ -5023,7 +5021,6 @@ On rappelle que pour $P \in \mathsf{F}_{k-\beta}$ point horizontal alors on a  $
 \begin{rem}
 Il est normal que dans le coût de la proposition \ref{pro:par:hor} on ne prenne pas en compte le calcul des isogénies descendantes $\varphi_i$ car si l'on veut calculer un point partiellement horizontal pour une courbe non située sur le cratère alors il est raisonnable de penser que l'un des deux algorithmes  \ref{alg:rem:tri} ou \ref{alg:ulti:fro} a été utilisé pour obtenir une base diagonale pour la courbe située sur le cratère, ainsi peut calculer les duales des isogénies $\varphi_i$ dans l'algorithme \ref{alg:rem:tri} ou \ref{alg:ulti:fro}.
 \end{rem}
-\todo{Dire que les algorithmes sont corrects...}
 \section{Cas Atkin}
 \label{subs:atk:dir}
 Dans cette section on s'intéresse au cas particulier suivant: 
@@ -5032,19 +5029,17 @@ Dans cette section on s'intéresse au cas particulier suivant:
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell$ est dit un 
 nombre premier de Atkin si le polynôme caractéristique du Frobenius: 
 $\pi^2-t_{\pi}\pi + q$ est irréductible dans $\mathbb{Z}_{\ell}$. Dés lors 
-comme on a $d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$ avoir 
+comme on a $d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$, avoir 
 $d_{\pi}$ un non-résidu quadratique est équivalent à avoir $\left( 
 \frac{d_{K}}{\ell} \right)=-1$. Ainsi dans le cas Atkin le cratère est réduit à
 un point par le corollaire~\ref{cor:tab:vol}.
 \end{defi}
-\todo{Faire explicitement le lien avec le chapitre 4}
 
 \subsection{\'Etude de l'action du Frobenius sur le module de Tate}
 
 On va donc étudier dans cette partie l'action du Frobenius sur 
 $\mathsf{T}_{\ell}(E)$ et voir si l'on peut déterminer des directions 
 d'isogénies descendantes, c'est à dire les distinguer entre elles.
-\todo{Dire ce qu'est le cas Atkin et contextualiser toute cette partie...}
 %\subsubsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
 \begin{prop}\label{pro:mat:fro:atk}
 Soit~$E$ une courbe elliptique définie sur un volcan de $\ell$-isogénies de 
@@ -5061,7 +5056,6 @@ de~$E$ dans le volcan et le $E$ se situe au niveau $h-e$.
 On a soit $b$ et $c$ premiers avec $\ell$ soit l'un des deux est premier avec 
 $\ell$ et l'autre a sa valuation $\ell$-adique qui appartient à l'intervalle 
 $[2,2e]$. Lorsque $\ell=2$ et $e=0$ on a $2^{h} || a-d$.
-\todo{notations un peu perturbantes par rapport au cas Elkies, n'est-ce pas ?}
 \end{prop}
 
 \begin{proof}
@@ -8406,7 +8400,12 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
   calculer $A$ au coût de $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
 \end{proof}
 
-\chapter{\'Etude de l'application de la méthode Atkin dans le cas Elkies}
+
+
+\printnomenclature
+\chapter{Rebus}
+
+\section{\'Etude de l'application de la méthode Atkin dans le cas Elkies}
 Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Master13} et sont une 
 généralisation de ceux-ci, ils montrent en particulier pourquoi la méthode 
 utilisée dans le cas Atkin n'est pas utilisable dans le cas Elkies. On 
@@ -8611,8 +8610,6 @@ dessous du niveau du cratère dans le cas Elkies. On montre aussi que l'étude d
 l'action du Frobenius ne permet de distinguer les $\ell$-isogénies descendantes
 entre elles.
 
-\printnomenclature
-\chapter{Rebus}
 \section{Etude orbites Frobenius}
 \todo{utilité des deux propositions suivantes ?, elles ne sont pas utilisées ...}
 \begin{prop}\label{prop:orbites-l-torsion}
