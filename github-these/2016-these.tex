@@ -30,6 +30,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{apalike}
+\usepackage{subfig}
 
 
 \theoremstyle{plain}
@@ -1441,7 +1442,7 @@ interpolation de Cauchy
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Détails de Couveignes \todo{trouver meilleur titre}}
+\subsubsection{Description détaillée de l'algorithme de Couveignes \todo{trouver meilleur titre}}
 On va donner ici la démarche à utiliser pour effectuer une utilisation 
 pratique de l'algorithme de Couveignes afin de permettre de voir les différences
 avec notre approche $\ell$-adique de l'algorithme de Couveignes, pour les 
@@ -5183,7 +5184,6 @@ $E$ a pour noyau $\langle [\ell^{k-1}P] \rangle$.
 Ce résultat peut aussi être prouvé avec la même méthode que celle employée dans
 la preuve de la proposition~\ref{pro:tri:dir}. Ce corollaire permet lui aussi 
 de retrouver le résultat de la proposition~\ref{pro:iso:mon}.
-\todo{fixer le problème de profondeur et de hauteur}
 
 Maintenant nous allons voir comment on peut distinguer $\ell^{i-e}$ différentes 
 $\ell^{i-e}$-isogénies entre elles. Vu que l'on ne peut comme dans le 
@@ -5683,7 +5683,7 @@ E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in
 \end{prop}
 
 \begin{proof}
-Par définition(~\ref{def:par:hor}) on peut construire $P$ et $P'$ à 
+Par définition(\ref{def:par:hor}) on peut construire $P$ et $P'$ à 
 partir de $R \in E_S$ et $R' \in E'_s$ tels que $[\ell^e]R$ et $[\ell^e]R'$ 
 soient des points horizontaux de même direction avec deux $\ell^e$-isogénies 
 $\psi:E_s \rightarrow E$ et $\psi':E'_s \rightarrow E'$ telles que $\psi(R)=P$ 
@@ -6580,7 +6580,178 @@ $\mathbb{Z}/2^{3}\mathbb{Z} \times \mathbb{Z}/2^{2} \mathbb{Z}$}; %node{$\bullet
 
 \caption{\label{fig:elk:dif:niv:tor}Exemple de structure d'un volcan utilisé lors des test montrés à la figure~\ref{fig:exp:dif}.}
 \end{figure}
+\begin{figure}
+\subfloat[Image d'origine]{\label{fig:edge-a}\includegraphics[scale=0.8]{benchmarks/graphe-101-2^18bis.pdf} }
+  \hspace{10pt}
+\subfloat[Après une détection des contours de Laplace]{	\begin{tikzpicture}[scale=0.10]
+\coordinate (A) at (0,2);
+\coordinate (B) at (0,6);
+\coordinate (C) at (0,10);
+\draw (A) node[left]{
+$\mathbb{Z}/2^{5}\mathbb{Z}$
+}; %node{$\bullet$};
+\draw (B) node[left]{
+$\mathbb{Z}/2^{4}\mathbb{Z} \times \mathbb{Z}/2^{1} \mathbb{Z}$}; %node{$\bullet$};
+\draw (C) node[left]{
+$\mathbb{Z}/2^{3}\mathbb{Z} \times \mathbb{Z}/2^{2} \mathbb{Z}$}; %node{$\bullet$};
+\begin{scope}[yshift=10cm]
+	\begin{scope}[xshift=4.3cm]
+		\node (A) at (-3,0) {$  \bullet $};
+		\node (B) at (3,0) {$   \bullet$};
+		\node (C) at (270:1.2) {$ \bullet \color{black}$};
+		\node (D) at (90:1.5) {};
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[-] (A.center) to[bend right=40] (B.center);
+		\draw (A) node{$  \bullet $};
+		\draw (B) node{$  \bullet $};
+		\draw (C) node{$  \bullet $};
+		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
+			\begin{scope}[xshift=-3cm]% sous volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=3cm]% sous volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			%\draw (A) node{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};;
+			
+			
+			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};			
+			
+			\end{scope}
+			\coordinate (F) at (5,0);
+			\coordinate (G) at (5,-7);
+			%\draw[dashed,<-] (F)--(G) node[midway,right]{$h$};
+	\end{scope}
+\end{scope}
 
+%faire des fleches courbees avec les indices \ell et \ell^2
+
+\end{tikzpicture}
+}
+  \hspace{5pt}
+  \end{figure}
+%\begin{minipage}[c]{.46\linewidth}
+%      \includegraphics[scale=0.8]{benchmarks/graphe-101-2^18bis.pdf} 
+%   \end{minipage} \hfill
+%   \begin{minipage}[c]{.46\linewidth}
+%		\begin{tikzpicture}[scale=0.50]
+%\coordinate (A) at (0,2);
+%\coordinate (B) at (0,6);
+%\coordinate (C) at (0,10);
+%\draw (A) node[left]{
+%$\mathbb{Z}/2^{5}\mathbb{Z}$
+%}; %node{$\bullet$};
+%\draw (B) node[left]{
+%$\mathbb{Z}/2^{4}\mathbb{Z} \times \mathbb{Z}/2^{1} \mathbb{Z}$}; %node{$\bullet$};
+%\draw (C) node[left]{
+%$\mathbb{Z}/2^{3}\mathbb{Z} \times \mathbb{Z}/2^{2} \mathbb{Z}$}; %node{$\bullet$};
+%\begin{scope}[yshift=10cm]
+%	\begin{scope}[xshift=4.3cm]
+%		\node (A) at (-3,0) {$  \bullet $};
+%		\node (B) at (3,0) {$   \bullet$};
+%		\node (C) at (270:1.2) {$ \bullet \color{black}$};
+%		\node (D) at (90:1.5) {};
+%		%\draw[-] (A.center) to[bend right=25] (C.center);
+%		\draw[-] (A.center) to[bend left=40] (B.center);
+%		%\draw[-] (B.center) to[bend left=25] (C.center);
+%		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+%		\draw[-] (A.center) to[bend right=40] (B.center);
+%		\draw (A) node{$  \bullet $};
+%		\draw (B) node{$  \bullet $};
+%		\draw (C) node{$  \bullet $};
+%		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
+%			\begin{scope}[xshift=-3cm]% sous volcan de gauche
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw (C)--(CA);
+%			\draw (C)--(CB);
+%			\draw (A)--(C);
+%			\draw (CA) node[fill=white]{$\bullet$};
+%			\draw (CB) node[fill=white]{$\bullet$};
+%			\draw (A) node[fill=white]{$\bullet$};
+%			\draw (C) node[fill=white]{$\bullet$};
+%			\end{scope}
+%			\begin{scope}[xshift=3cm]% sous volcan de droite
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw (C)--(CA);
+%			\draw (C)--(CB);
+%			\draw (A)--(C);
+%			\draw (CA) node[fill=white]{$\bullet$};
+%			\draw (CB) node[fill=white]{$\bullet$};
+%			\draw (A) node[fill=white]{$\bullet$};
+%			\draw (C) node[fill=white]{$\bullet$};
+%			\end{scope}
+%			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw (C)--(CA);
+%			\draw (C)--(CB);
+%			\draw (A)--(C);
+%			\draw (CA) node[fill=white]{$\bullet$};
+%			\draw (CB) node[fill=white]{$\bullet$};
+%			%\draw (A) node{$\bullet$};
+%			\draw (C) node[fill=white]{$\bullet$};
+%			\draw (A) node[fill=white]{$\bullet$};;
+%			
+%			
+%			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};			
+%			
+%			\end{scope}
+%			\coordinate (F) at (5,0);
+%			\coordinate (G) at (5,-7);
+%			\draw[dashed,<-] (F)--(G) node[midway,right]{$h$};
+%	\end{scope}
+%\end{scope}
+%
+%%faire des fleches courbees avec les indices \ell et \ell^2
+%
+%\end{tikzpicture}
+%
+%   \end{minipage}
+%
+%\end{figure}
 \begin{figure}
 \begin{center}
 %\include{benchmarks/graphe-101-149-269}
@@ -7293,8 +7464,8 @@ $O(n(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$.
 
  Comme motivé dans la sous sous section précédente~\ref{sub:TRCE:cou} on peut 
  calculer les points (partiellement) horizontaux sur les volcans de 
- $\ell_i$-isogénies à l'aide des méthodes vues dans le 
- chapitre~\ref{cha:con:poi}, on doit alors ensuite les exprimer dans le
+ $\ell_i$-isogénies à l'aide des méthodes vues dans la 
+ section~\ref{sub:con:poi}, on doit alors ensuite les exprimer dans le
  compositum afin de les utiliser pour le théorème des restes chinois.
   
  Voyons à quel coût on peut exprimer un élément de $\mathsf{F}_{(i,n_i)}$ dans 
