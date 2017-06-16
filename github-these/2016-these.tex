@@ -2844,7 +2844,7 @@ Voir \cite[Lemma 2.1]{FouquetMorain02}
 
 \end{tikzpicture}
 \end{center}
-\caption{Représentation d'un volcan de $2$-isogénies, avec les différents ordres.}		
+\caption{Représentation d'un volcan de $2$-isogénies avec les différents ordres.}		
 \label{fig:ord:vol}
 \end{figure}
 Sur la figure \ref{fig:ord:vol} est représenté un volcan d'isogénies, les points représentent les courbes elliptiques définies à isomorphisme près les traits reliant les points représentent les $\ell$-isogénies qui lient les courbes elliptiques. On observe que le volcan représenté ici est un volcan de $2$-isogénies car toutes les courbes ne se situant pas en bas du volcan sont reliées à $3$ autres courbes. Ce graphe n'est pas orienté comme le précise le lemme \ref{lem:dua:vol}. On a aussi les différents ordres qui sont représentés, ils est à noter qu'avec la convention donnée par la définition \ref{def:iso:nom} les ordres qui apparaissent dans un même niveau du graphe ont le même conducteur par rapport à l'ordre maximal, ainsi à l'aide du conducteur on peut établir des niveaux dans le volcan et donc illustrer les notions d'isogénies descendantes, montantes et horizontales. 
@@ -3175,7 +3175,193 @@ Sur un volcan de $\ell$-isogénies on appelle le niveau à partir duquel la stru
 
 Un volcan dont tous les niveaux ont des structures de $\ell$-torsion disctinctes est dit un \emph{volcan régulier}.
 \end{defi}
+\todo{mettre ici une figure pour les niveaux et une pour l'extension quadratique}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.50]
+\coordinate (A) at (0,2);
+\coordinate (B) at (1,6);
+\coordinate (C) at (1,10);
+\draw (A) node[left]{
+$\mathbb{Z}/2^{5}\mathbb{Z}$
+}; %node{$\bullet$};
+\draw (B) node[left]{
+$\mathbb{Z}/2^{4}\mathbb{Z} \times \mathbb{Z}/2^{1} \mathbb{Z}$}; %node{$\bullet$};
+\draw (C) node[left]{
+$\mathbb{Z}/2^{3}\mathbb{Z} \times \mathbb{Z}/2^{2} \mathbb{Z}$}; %node{$\bullet$};
+\begin{scope}[yshift=10cm]
+	\begin{scope}[xshift=4.3cm]
+		\node (A) at (-3,0) {$  \bullet $};
+		\node (B) at (3,0) {$   \bullet$};
+		\node (C) at (270:1.2) {$ \bullet \color{black}$};
+		\node (D) at (90:1.5) {};
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[-] (A.center) to[bend right=40] (B.center);
+		\draw (A) node{$  \bullet $};
+		\draw (B) node{$  \bullet $};
+		\draw (C) node{$  \bullet $};
+		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
+			\begin{scope}[xshift=-3cm]% sous volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=3cm]% sous volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			%\draw (A) node{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};;
+			
+			
+			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};			
+			
+			\end{scope}
+	\end{scope}
+\end{scope}
+\begin{scope}[xshift=14.3cm]
+\coordinate (A) at (0,1);
+\coordinate (B) at (1,4);
+\coordinate (C) at (1,10);
+\coordinate (D) at (1,7);
+\draw (A) node[left]{
+$\mathbb{Z}/2^{7}\mathbb{Z}$
+}; %node{$\bullet$};
+\draw (B) node[left]{
+$\mathbb{Z}/2^{4}\mathbb{Z} \times \mathbb{Z}/2^{1} \mathbb{Z}$}; %node{$\bullet$};
+\draw (C) node[left]{
+$\mathbb{Z}/2^{3}\mathbb{Z} \times \mathbb{Z}/2^{2} \mathbb{Z}$};
+\draw (D) node[left]{
+$\mathbb{Z}/2^{4}\mathbb{Z} \times \mathbb{Z}/2^{1} \mathbb{Z}$};
+	\begin{scope}[yshift=10cm,xshift=6cm]
+		\node (A) at (-4,0) {$  \bullet $};
+		\node (B) at (4,0) {$   \bullet$};
+		\node (C) at (270:1.2) {$ \bullet \color{black}$};
+		\node (D) at (90:1.5) {};
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[-] (A.center) to[bend right=40] (B.center);
+		\draw (A) node{$  \bullet $};
+		\draw (B) node{$  \bullet $};
+		\draw (C) node{$  \bullet $};
+		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
+			\begin{scope}[xshift=-4cm]% sous volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (0,-3);
+			\coordinate (CA) at (1,-6);
+			\coordinate (CB) at (-1,-6);
+			\coordinate (CAA) at (1.4,-9);
+			\coordinate (CAB) at (0.6,-9);
+			\coordinate (CBA) at (-0.6,-9);
+			\coordinate (CBB) at (-1.4,-9);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA)--(CAA);
+			\draw (CA)--(CAB);
+			\draw (CB)--(CBA);
+			\draw (CB)--(CBB);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=4cm]% sous volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (0,-3);
+			\coordinate (CA) at (1,-6);
+			\coordinate (CB) at (-1,-6);
+			\coordinate (CAA) at (1.4,-9);
+			\coordinate (CAB) at (0.6,-9);
+			\coordinate (CBA) at (-0.6,-9);
+			\coordinate (CBB) at (-1.4,-9);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA)--(CAA);
+			\draw (CA)--(CAB);
+			\draw (CB)--(CBA);
+			\draw (CB)--(CBB);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (0,-3);
+			\coordinate (CA) at (1,-6);
+			\coordinate (CB) at (-1,-6);
+			\coordinate (CAA) at (1.4,-9);
+			\coordinate (CAB) at (0.6,-9);
+			\coordinate (CBA) at (-0.6,-9);
+			\coordinate (CBB) at (-1.4,-9);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA)--(CAA);
+			\draw (CA)--(CAB);
+			\draw (CB)--(CBA);
+			\draw (CB)--(CBB);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};
+			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};
+			\end{scope}
+	\end{scope}
+\end{scope}
 
+%faire des fleches courbees avec les indices \ell et \ell^2
+
+\end{tikzpicture}
+\end{center}
+\end{figure}
 \begin{cor}
 \label{cor:des:str}
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ située en dessous du premier niveau de stabilité telle que $E[\ell^{\infty}]=\mathbb{Z}/\ell^r\mathbb{Z} \times \mathbb{Z}/\ell^s\mathbb{Z}$ alors pour $E_b$ une des courbes situées un niveau en dessous de $E$ dans le volcan de $\ell$-isogénie on a $E_b[\ell^{\infty}]=\mathbb{Z}/\ell^{r+1}\mathbb{Z} \times \mathbb{Z}/\ell^{s-1}\mathbb{Z}$
@@ -6499,8 +6685,8 @@ ayant servi aux calculs montré dans la figure~\ref{fig:exp:dif}.
 
 \begin{tikzpicture}[scale=0.50]
 \coordinate (A) at (0,2);
-\coordinate (B) at (0,6);
-\coordinate (C) at (0,10);
+\coordinate (B) at (1,6);
+\coordinate (C) at (1,10);
 \draw (A) node[left]{
 $\mathbb{Z}/2^{5}\mathbb{Z}$
 }; %node{$\bullet$};
@@ -6581,10 +6767,7 @@ $\mathbb{Z}/2^{3}\mathbb{Z} \times \mathbb{Z}/2^{2} \mathbb{Z}$}; %node{$\bullet
 \caption{\label{fig:elk:dif:niv:tor}Exemple de structure d'un volcan utilisé lors des test montrés à la figure~\ref{fig:exp:dif}.}
 \end{figure}
 \begin{figure}
-\begin{minipage}[c]{.46\linewidth}
-      \includegraphics[scale=0.8]{benchmarks/graphe-101-2^18bis.pdf} 
-   \end{minipage} \hfill
-   \begin{minipage}[c]{.46\linewidth}
+   \begin{minipage}[c]{.40\linewidth}
 		\begin{tikzpicture}[scale=0.50]
 \coordinate (A) at (0,2);
 \coordinate (B) at (0,6);
@@ -6666,6 +6849,11 @@ $\mathbb{Z}/2^{3}\mathbb{Z} \times \mathbb{Z}/2^{2} \mathbb{Z}$}; %node{$\bullet
 \end{tikzpicture}
 
    \end{minipage}
+   \hfill
+\begin{minipage}[c]{.40\linewidth}
+      \includegraphics[scale=0.8]{benchmarks/graphe-101-2^18bis.pdf} 
+   \end{minipage} 
+
 
 \end{figure}
 \begin{figure}
