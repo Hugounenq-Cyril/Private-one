@@ -2382,7 +2382,6 @@ On note $\mathsf{R}(i)$ une borne sur le coût espéré du calcul de racine d'un
 
 Les coûts des différentes opérations dans de telles tours d'extensions $\ell$-adiques sont résumés dans le tableau  \ref{tab:complexite-degre2}.
 \begin{figure}
-\label{tab:complexite-degre2}
 \begin{tabular}{|l|r|r|}
   \hline
   \text{Opérations}  & \text{Coûts}  \\
@@ -2395,7 +2394,7 @@ Les coûts des différentes opérations dans de telles tours d'extensions $\ell$
   \text{racine $\ell$-ème} & $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$\\
   \hline
 \end{tabular}
-\caption{Coûts des opérations dans $\mathsf{F}_{k}$ exprimées en nombre d'opérations sur $\mathbb{F}_q$}
+\caption{\label{tab:complexite-degre2} Coûts des opérations dans $\mathsf{F}_{k}$ exprimées en nombre d'opérations sur $\mathbb{F}_q$}
 \end{figure}
 On a $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$ en utilisant la variante de l'algorithme de Cantor-Zassenhaus décrite dans ~\cite[Chapter~14.5]{vzGJG03}.
 Il est à noter que pour le calcul d'une racine le coût est un coût en moyenne, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
@@ -7045,13 +7044,16 @@ seules celles concernant le cas Elkies ont un intérêt en terme de complexité.
 On va donc étudier des variantes à l'algorithme de Couveignes avec 
 approche $\ell$ adique que dans le cas Elkies y compris lorsque celles-ci
 auraient pu être appliquées à notre approche proposée pour le cas Atkin.
-\section{Algorihme de Couveignes $\ell$-adique dans le cas Elkies avec un seul sous-groupe cyclique}
+\section{Algorihme de Couveignes $\ell$-adique dans le cas Elkies avec un point horizontal}
 \label{sec:var:cou:uni}
 Comme proposé par François Morain on pourrait uniquement travailler avec un 
-point horizontal au lieu de travailler avec une base horizontale.
+point horizontal au lieu de travailler avec une base horizontale.\todo{Dire ça ailleurs}
 
+Au lieu de travailler avec une base horizontale dans l'algorithme de Couveignes
+$\ell$-adique on pourrait tout aussi bien travailler avec une base horizontale.
 Dés lors on devrait fixer $k$ tel que le nombre d'abscisses de points d'ordre 
-$\ell^k:$ $\frac{\ell^{k-1}}{2}$ soit strictement plus grand que $2r$.
+$\ell^k$ engendrés par un point d'ordre $\ell^k$: $\frac{\ell^{k-1}}{2}$ soit 
+strictement plus grand que $2r$.
 
 Pour le calcul du point horizontal d'ordre $\ell^k$ on est tout de même obligé 
 de calculer une base diagonale de la $\ell^{h+1}$-torsion et donc de 
@@ -7063,19 +7065,19 @@ Soit $k$ tel que $\ell^{k-1} \in O(r\ell)$, alors pour $h<k$ le coût de calcul 
 base diagonale de la $\ell^{h+1}$ torsion à l'aide de 
 l'algorithme~\ref{alg:ulti:fro} est de:
 \[
-O(r \ell \mathsf{M}(r\ell^{2})\log(\ell)\log(\ell q) \log(r))
+O(r \ell^{2} \mathsf{M}(r\ell^{3})\log(\ell)\log(\ell q) )
 \]
 \end{prop}
 
 \begin{proof}
 On rappelle que l'on travaille avec la convention $\alpha \geqslant \beta$, 
-avec $\alpha$ et $\beta$ définis comme dans la proposition~\ref{pro:clas:fro}.
+avec $\alpha$ et $\beta$ définis comme dans la définition~\ref{def:alp:bet}.
 Le coût de calcul de la base horizontale est par la proposition~\ref{pro:alg:ulti}:
-$O((h+1)(\mathsf{R}(h+1-\beta)+\ell^2 \mathsf{M}(\ell^{h+1-\beta}))+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$. 
+$O(\mathsf{R}(h+1)+ \mathsf{R}(k-\beta)+\ell^2 \mathsf{M}(\ell^{h+1})+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$. 
 En bornant $h$ par $k$ on a $\ell^h \in O(r\ell)$ ce qui en utilisant cette
 borne et le coût de $\mathsf{R}(i)$ donné par~\cite[chapter 14.5]{vzGJG03} nous 
 donne une complexité de :
-$O(r \ell \mathsf{M}(r\ell^{2})\log(\ell)\log(\ell q) \log(r))$.
+$O(r \ell^{2} \mathsf{M}(r\ell^{3})\log(\ell)\log(\ell q) )$.
 \end{proof}
 On observe donc que dans ce cas-là on a un coût quadratique en $r$ pour le 
 calcul d'une base diagonale de la $\ell^{h+1}$ alors que dans le cas de la 
@@ -7087,7 +7089,7 @@ l'algorithme~\ref{alg:hor:poi}, on rappelle qu'ici comme on détermine un seul
 sous-groupe cyclique on choisit de travailler avec celui défini 
 sur la plus petite extension $\ell$-adique: $\mathsf{F}_{k-\alpha}$ d'où le 
 fait que l'on ait $\alpha$ ici et non $\beta$ (pour rappel $\alpha$ et $\beta$ 
-ont été définis dans la sous-section~\ref{sub:classes}). Ce calcul a un coût de 
+ont été définis dans la definition~\ref{def:alp:bet}). Ce calcul a un coût de 
 $O(\mathsf{R}(k-\alpha) + k\mathsf{R}(h-\alpha+1) + k\ell^2\mathsf{M}(\ell^{h-\alpha+1}))$
 d'après la proposition~\ref{pro:alg:hor}, ce qui appliqué à notre cas donne 
 une complexité de: $O(r \ell \mathsf{M}(r \ell^{2})\log(\ell)\log(\ell q) \log(r))$.
@@ -7119,7 +7121,7 @@ juste au-dessus il est très similaire à l'algorithme~\ref{alg:cou:ell-adique}.
 \begin{prop}
 Soit $\ell$ un nombre de Elkies tel que $\ell^h<r$ alors le coût espéré de la 
 variante de l'algorithme de Couveignes $\ell$-adique avec détermination d'un 
-seul sous-groupe cyclique présenté dans l'algorithme~\ref{alg:app:cou:var} 
+seul point horizontal présenté dans l'algorithme~\ref{alg:app:cou:var} 
 est de: 
 \[
 O(r \ell (\mathsf{M}(r\ell)\log(\ell)\log(\ell q) \log(r) + \mathsf{M}(\ell^3r)\log(\ell)\log(r) ))
@@ -7134,8 +7136,15 @@ calcul du polynôme d'interpolation. Ce facteur en moins vient du fait que l'on
 cherche $k$ tel que $\ell^{k-1} >4r$ au lieu de $\ell^{2k-2}(\ell+1)>4r$ dés 
 lors on obtient une meilleure précision dans le cas de cette variante pour le 
 choix de $k$ ce qui fait que le coût du calcul du polynôme d'interpolation est
-moins élevé de ce facteur $\ell$. 
-
+moins élevé de ce facteur $\ell$. On pourrait alors penser que cette variante
+est meilleure que l'algorithme~%\ref{alg:
+cependant l'algorithme travaille dans des extensions de corps plus petites.
+De plus notre estimation du nombre d'abscisses différentes utilisées lors de
+l'interpolation est toujours très pessimiste car on pourrait se contenter de
+prendre un nombre de points plus grand que $4r$, tout en ayant que des orbites 
+complètes pour le Frobenius, dès lors on ne travaillerait pas avec les autres 
+abscisses.  
+ 
 Une différence notable c'est que dans cette variante la complexité pour le 
 calcul d'une base diagonale de la $\ell^{h+1}$ torsion est quadratique alors 
 que dans l'algorithme~\ref{alg:cou:ell-adique} cette partie est seulement 
