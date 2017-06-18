@@ -7123,8 +7123,11 @@ Soit $\ell$ un nombre de Elkies tel que $\ell^h<r$ alors le coût espéré de la
 variante de l'algorithme de Couveignes $\ell$-adique avec détermination d'un 
 seul point horizontal présenté dans l'algorithme~\ref{alg:app:cou:var} 
 est de: 
+%\[
+%O(r \ell (\mathsf{M}(r\ell^2)\log(\ell)\log(\ell q) \log(r) + \mathsf{M}(\ell^3r)\log(\ell)\log(r) ))
+%\]
 \[
-O(r \ell (\mathsf{M}(r\ell)\log(\ell)\log(\ell q) \log(r) + \mathsf{M}(\ell^3r)\log(\ell)\log(r) ))
+O(r \ell \log(\ell) ( \mathsf{M}(r \ell^3) (\log(r) + \ell \log(q)) + \mathsf{M}(r \ell^2) \log(\ell q) \log(r) ) )
 \]
 opérations sur $\mathbb{F}_q$.
 \end{prop}
@@ -7137,22 +7140,23 @@ cherche $k$ tel que $\ell^{k-1} >4r$ au lieu de $\ell^{2k-2}(\ell+1)>4r$ dés
 lors on obtient une meilleure précision dans le cas de cette variante pour le 
 choix de $k$ ce qui fait que le coût du calcul du polynôme d'interpolation est
 moins élevé de ce facteur $\ell$. On pourrait alors penser que cette variante
-est meilleure que l'algorithme~%\ref{alg:
-cependant l'algorithme travaille dans des extensions de corps plus petites.
+est meilleure que l'algorithme~\ref{alg:cou:ell-adique}
+cependant l'algorithme~\ref{alg:cou:ell-adique} travaille dans des extensions 
+de corps plus petites.
 De plus notre estimation du nombre d'abscisses différentes utilisées lors de
 l'interpolation est toujours très pessimiste car on pourrait se contenter de
 prendre un nombre de points plus grand que $4r$, tout en ayant que des orbites 
-complètes pour le Frobenius, dès lors on ne travaillerait pas avec les autres 
-abscisses.  
+complètes pour le Frobenius, dès lors on ne travaillerait pas avec $O(r\ell^2)$ 
+abscisses lors de l'étape d'interpolation.  
  
 Une différence notable c'est que dans cette variante la complexité pour le 
 calcul d'une base diagonale de la $\ell^{h+1}$ torsion est quadratique alors 
 que dans l'algorithme~\ref{alg:cou:ell-adique} cette partie est seulement 
 quasi-linéaire en $r$.  Ainsi l'algorithme~\ref{alg:cou:ell-adique} présente
-l'avantage d'avoir une partie quasi-linéaire fixe et une partie variable 
-quasi-quadratiqe en $r$ avec un aléa qui varie dans $O(r\ell)$ d'où le fait que
-cette variante ne propose pas de grand avantage par rapport à 
-l'algorithme~\ref{alg:cou:ell-adique}.
+l'avantage d'avoir une partie quasi-linéaire fixe et une partie variable (pour 
+le calcul de l'interpolation) quasi-quadratiqe en $r$ avec un aléa qui varie 
+dans $O(r\ell)$ d'où le fait que cette variante ne propose pas de grand 
+avantage par rapport à l'algorithme~\ref{alg:cou:ell-adique}.
 
 Cette variante de l'algorithme~\ref{alg:cou:ell-adique}  proposé dans le cas 
 Elkies non transposable à l'algorithme~\ref{alg:cou:atk} proposé dans le cas 
