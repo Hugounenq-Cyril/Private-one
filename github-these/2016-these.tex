@@ -7167,11 +7167,10 @@ que déterminer un sous-groupe cyclique à partir de la connaissance d'un autre
 sous-groupe cyclique.
 
 
-On pourrait penser à utiliser l'algorithme de Couveignes $\ell$-adique avec une
-approche multimodulaire de façon similaire à un théorème des restes chinois, 
-c'est à dire pour différents nombres de Elkies $\ell_1, \ell_2, \ell_3, \dots, 
-\ell_{n}$, pour une isogénie de degré $r$ premier avec tous les $\ell_i$ on 
-calcule des bases horizontales de la $\ell_i^{k_i}$ torsion, on peut alors 
+On pourrait penser à utiliser l'algorithme de Couveignes $\ell$-adique avec 
+différents nombres de Elkies $\ell_1, \ell_2, \ell_3, \dots, \ell_{n}$, pour 
+une isogénie de degré $r$ premier avec tous les $\ell_i$. On 
+calcule alors des bases horizontales de la $\ell_i^{k_i}$ torsion, on peut 
 travailler avec les deux ensembles de points:
 \begin{itemize}
 \item $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$, 
@@ -7179,7 +7178,7 @@ travailler avec les deux ensembles de points:
 \end{itemize}
 On va détailler chacune de ces approches dans les deux sous-sections qui suivent.
 
-\section{Approche multi-moduaire de l'algorithme de Couveignes $\ell$-adique avec l'ensemble de points (partiellement) horizontaux isomorphe à $\cup_{i=1}^n \left( \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \right)^{2}$}
+\section{Algorithme de Couveignes $\ell$-adique avec différents nombres de Elkies}
 La première approche est de considérer l'ensemble de points $S$ isomorphe à: 
 $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $,
 avec les $\ell_i$ tous des nombres premiers de Elkies, dés lors il faut fixer comme 
@@ -7207,7 +7206,7 @@ l'algorithme~\ref{alg:cou:mult-adique:short}.%,
 \STATE \label{alg:mult-ell:bhor} Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black})$ bases (partiellement) horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \STATE \label{alg:mult-ell:rep} Calcul des liste de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
 \ENDFOR
-\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
+\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}$}
 \FOR{$M_i \in \mathsf{diag}(a_i,b_i)$  avec $a=a_i \bmod \ell_i^{k_i},b=b_i \bmod \ell_i^{k_i}$}
 \STATE \label{alg:mult-ell:ord} Actualisation de la liste des représentants $L_i'$ en $L'_{a,b,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
 \STATE \label{alg:mult-ell:int} Calcul des des polynômes $A_{a,b,i}$ et $T_i$ par les méthodes décrites dans la section~\ref{sec:interpolation};
@@ -7227,7 +7226,7 @@ horizontale et des représentants des orbites de points (partiellement)
 horizontaux d'ordre $\ell_i^{k_i}$ sous l'action du Frobenius sont faites en 
 parallèle sur chacune des tours d'extension $\ell_i$-adiques, les méthodes 
 utilisées sont les mêmes que celles dans l'algorithme~\ref{alg:cou:ell-adique}.
-Par la proposition~\ref{pro:par:iso} et le corollaire~\ref{cor:par:hor} on sait
+Par les propositions~\ref{pro:par:iso} et ~\ref{pro:par:hor:par} on sait
  que pour tout $i$ l'action de $\phi$ sur une base
 $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black})$
  (partiellement) horizontale de $E[\ell_i^{k_i}]$ peut être représentée de la façon suivante:
@@ -7241,15 +7240,15 @@ a_i & 0 \\
 \left(\begin{smallmatrix}
 \color{red} P_{\lambda,i} \\
 \color{blue} Q_{\mu,i} \color{black} \end{smallmatrix} \right)$
-avec $ a_i,b_i \in \left( \mathbb{Z}/\ell_i^{k_i}\mathbb{Z} \right)^*$ et 
+avec $ a_i,b_i \in \left( \mathbb{Z}/\ell_i^{k_i}\mathbb{Z} \right)^{\times}$ et 
 $(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q'_{\mu,i}\color{black})$
 base (partiellement) horizontale de $E'[\ell_i^{k_i}]$.
 
 On définit à l'aide du théorème des restes chinois deux coefficients $a,b \in 
-\left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z} \right)^*$ tels que 
+\left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z} \right)^{\times}$ tels que 
 $a=a_i \bmod \ell_i^{k_i}$ et $b=b_i \bmod \ell_i^{k_i}$ pour $i\in [1,n]$.
 On calcule ensuite pour chaque couple de coefficients 
-$(a,b) \in (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z})^*$ à l'aide des 
+$(a,b) \in (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z})^{\times}$ à l'aide des 
 méthodes de la section~\ref{sec:interpolation} appliquées
 à chacune des tours d'extensions $\ell_i$-adiques les polynômes 
 d'interpolation $A_{a,b,i}$ et $T_i$ définis dans $\mathbb{F}_q$.
@@ -7261,20 +7260,20 @@ A_{a,b}=A_{a,b,i} \bmod T_i \text{ pour tout } i \in [1,n] \text{ et } \quad T=\
 On fait le calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une
 interpolation de Cauchy. On teste si celle-ci est bien une $r$-isogénie,
 si cela n'est pas le cas alors on recommence avec d'autres coeffcients $a,b \in 
-(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^*$.
+(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$.
 %\newline
 
 \paragraph{Analyse du coût}
 {Une telle approche a forcément des coûts de pré-calcul (pour le calcul des bases 
 horizontales et des représentants) plus faibles que notre approche dans 
 l'algorithme~\ref{alg:cou:ell-adique}. De même dans la boucle que l'on effectue
- pour chaque choix de coefficients $a,b \in (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^*$
+ pour chaque choix de coefficients $a,b \in (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$
 le calcul des polynômes $A_{a,b,i}$ et $T_i$ définis dans $\mathbb{F}_q$ est 
 inférieur au calcul de $A_{a,b}$ et $T$ à l'étape~\ref{alg:cou-ell:int} de 
 l'algorithme~\ref{alg:cou:ell-adique} cependant le coût de calcul de 
 l'interpolation de Cauchy  est de $O(\mathsf{M}(r)\log(r))$ par
  \cite[Théorème 7.5]{algeff17}. Sachant que l'on doit répéter en moyenne cette 
-boucle pour tous les $a,b$ possibles appartenant à $(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^*$
+boucle pour tous les $a,b$ possibles appartenant à $(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$
  le coût d'un tel algorithme est minoré par $\Omega(\prod_{i=1}^n\ell_i^{2k_i-2}
  \mathsf{M}(r)\log(r))$ et donc en particulier par $\Omega(r\mathsf{M}(r)
  \log(r))$. 
@@ -7291,9 +7290,10 @@ c'est que l'on fixe comme condition sur les $k_i: \sum_{i=1}^n\ell_i^{2k_{i}-2}(
 à cause du théorème des restes chinois à appliquer sur tous les $A_{a,b,i}$. 
 On voudrait dés lors travailler avec des $k_i$ sur lesquels on aurait comme 
 condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
-c'est ce que l'on va aborder dans la seconde approche.}
+c'est ce que l'on va aborder dans la seconde approche avec des points 
+(partiellement) horizontaux d'ordre composé $\prod_{i=1}^n \ell_i^{k_i}$.}
 
-\section{Approche multi-moduaire de l'algorithme de Couveignes $\ell$-adique avec l'ensemble de points (partiellement) horizontaux isomorphe à $\prod_{i=1}^n \left( \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \right)^{2}$}
+\section{Approche de l'algorithme de Couveignes $\ell$-adique avec un nombre de Elkies composé}
 Ainsi dans cette approche on veut travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'information donnée par 
 les  bases (partiellement) horizontales 
