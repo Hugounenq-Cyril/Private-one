@@ -7293,7 +7293,7 @@ condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 c'est ce que l'on va aborder dans la seconde approche avec des points 
 (partiellement) horizontaux d'ordre composé $\prod_{i=1}^n \ell_i^{k_i}$.}
 
-\section{Approche de l'algorithme de Couveignes $\ell$-adique avec un nombre de Elkies composé}
+\section{Algorithme de Couveignes $\ell$-adique généralisé avec un nombre de Elkies composé}
 Ainsi dans cette approche on veut travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'information donnée par 
 les  bases (partiellement) horizontales 
@@ -7322,8 +7322,8 @@ Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts,
 on va supposer dans le reste de ce document que les différentes tours 
 d'extensions $\ell_i$-adiques sont définies comme dans le 
 chapitre~\ref{cha:tour} dont on note les éléments 
-$\mathbb{F}_q \subset \mathsf{F}_{(i,0)} \subset \dots \subset  \mathsf{F}_{(i,j)}$ 
-ont chacune des degrés $d_i=[\mathsf{F}_{(i,0)}:\mathbb{F}_q]$ qui lorsqu'ils 
+$\mathbb{F}_q \subset \mathsf{F}_{(i,1)} \subset \dots \subset  \mathsf{F}_{(i,j)}$ 
+ont chacune des degrés $d_i=[\mathsf{F}_{(i,1)}:\mathbb{F}_q]$ qui lorsqu'ils 
 ne sont pas égaux à $1$ doivent être premiers entre eux (cette dernière 
 restriction sera justifiée plus tard dans le document).
 
@@ -7370,14 +7370,14 @@ On peut alors définir les composita dans notre cas particulier.
 On note $\mathbb{K}_1$ le corps $\mathsf{F}_{(1,n_1)}$. Soit $i \in [1,n-1]$ 
 supposons que $\mathbb{K}_{i}$ est défini, alors à 
 l'aide de la proposition~\ref{pro:init:com} $\mathbb{K}_{i+1}$ est défini comme
- le composita de $\mathbb{K}_i$ et $\mathsf{F}_{(i+1,n_{i+1})}$.
+le compositum de $\mathbb{K}_i$ et $\mathsf{F}_{(i+1,n_{i+1})}$.
 \end{defi}
 \begin{rem}
-Ici le cas où l'on aurait $d_i=d_j$ pour $i<j$ entraîne dés lors que l'on a pas
+Ici le cas où l'on aurait $d_i=d_j$ pour $i<j$ entraîne le fait que l'on a pas
 les conditions pour appliquer la proposition~\ref{pro:init:com}. 
 Cette condition est assez restrictive car comme vu dans le 
 chapitre~\ref{cha:tour} on a $d_i | \ell_i-1$ et ainsi il est possible que l'on
-ait $d_i=\ell_i-1$ et $d_j=\ell_j-1$ pour deux nombres premiers impairs 
+ait $d_i=\ell_i-1$ et $d_j=\ell_j-1$ pour deux nombres premiers impairs et donc
 $2 | \mathrm{pgcd}(d_i,d_j)$. Une solution pour contourner ce problème serait
 alors de construire le compositum à partir d'une extension de $\mathbb{F}_q$.
 \end{rem}
@@ -7453,7 +7453,7 @@ $O(n(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$.
 
 \todo{changer tous les composita en compositum}
 
- Comme motivé dans la sous sous section précédente~\ref{sub:TRCE:cou} on peut 
+ Comme motivé dans la sous sous section précédente~\ref{sub:TRCE:cou} on peut \todo{incohérence, désordre}
  calculer les points (partiellement) horizontaux sur les volcans de 
  $\ell_i$-isogénies à l'aide des méthodes vues dans la 
  section~\ref{sub:con:poi}, on doit alors ensuite les exprimer dans le
