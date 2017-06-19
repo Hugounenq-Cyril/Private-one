@@ -2069,15 +2069,15 @@ La construction d'extension de corps finis est un problème naturel dès lors qu
 
 \begin{defi}[Tour \textit{$\ell$}-adique]
 \label{def:tour-ell}
-Soit $\mathbb{F}_q$ un corps fini à $q$ éléments de caractéristique $p$, soit $\ell$ un nombre premier différent de $p$, on appelle tour d'extensions $\ell$-adiques du corps fini $\mathbb{F}_q$ la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{0}, \mathsf{F}_{1}, \mathsf{F}_{2}, \cdots$ telles que:
+Soit $\mathbb{F}_q$ un corps fini à $q$ éléments de caractéristique $p$, soit $\ell$ un nombre premier différent de $p$, on appelle tour d'extensions $\ell$-adiques du corps fini $\mathbb{F}_q$ la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{1}, \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
 \begin{itemize}
-\item $\mathsf{F}_{0}$ est une extension de $\mathbb{F}_q$ de degré $d_0 \mid \ell-1$. De plus $r \mid d_0$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
-\item $\mathsf{F}_{i}$ pour $i \geqslant 1$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
+\item $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus $r \mid d_1$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
+\item $\mathsf{F}_{i}$ pour $i \geqslant 2$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
 \end{itemize}
 \end{defi}
 
 Une façon naturelle de  construire une extension d'un corps fini $\mathbb{F}_q$ est de trouver un polynôme $P$ irréductible défini sur $\mathbb{F}_q$ et de degré égal à celui de l'extension désirée et de quotienter ensuite $\mathbb{F}_q[X]$ par celui-ci.
-Ainsi les éléments des tours d'extensions seront toujours représentés comme des polynômes à coefficients dans $\mathbb{F}_q$, la taille des éléments de $\mathsf{F}_{k}$ sera donc $O(d_0\ell^k)$ éléments de $\mathbb{F}_q$. 
+Ainsi les éléments des tours d'extensions seront toujours représentés comme des polynômes à coefficients dans $\mathbb{F}_q$, la taille des éléments de $\mathsf{F}_{k}$ sera donc $O(d_1\ell^{k-1})$ éléments de $\mathbb{F}_q$. 
 
 Les travaux de \cite{DeFeo-Shost'12} sur les tours $p$-adiques ont ouvert la voie à d'autres travaux sur les tours $2$-adiques \cite{Doliskani-Schost15} et les tours $\ell$-adiques \cite{DeFeo-Doliskani-Schost13}. Dans ces travaux l'idée pour obtenir des constructions de tours de corps finis compatibles est le passage de représentation \textit{univariée} à \textit{bivariée}. Ici représentation univariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i]$ avec $x_i$ un élément générateur de $\mathsf{F}_i$ sur $\mathbb{F}_q$, de même une représentation bivariée signifie que l'on peut représenter tout élément de $\mathsf{F}_i$ comme un polynôme de $\mathbb{F}_q[x_i, x_{i-1}]$ avec $x_i$(resp. $x_{i-1}$) élément générateur de $\mathsf{F}_i$ (resp. $\mathsf{F}_{i-1}$) sur $\mathbb{F}_q$. Ces idées ont permis d'obtenir des résultats satisfaisants en terme de complexité, comparés aux résultats obtenus en utilisant de l'algèbre linéaire dans les constructions préconisées par \cite{BosmaCS97} et implantées dans le système de calcul formel Magma \cite{magma97}. Ainsi certains algorithmes tels que le \textit{relèvement} ou la \textit{descente} d'éléments dans les corps de la tour $\ell$-adique ont des complexités optimales et correspondent seulement à une réécriture des éléments. Le relèvement correspond au fait de prendre un élément de $\mathsf{F}_{i-1}$ et de l'écrire comme un élément de $\mathsf{F}_i$, la descente correspond à l'opération inverse. Il y a aussi des opérations comme le Frobenius, crucial pour l'algorithme de Couveignes $\ell$-adique présenté dans le chapitre~\ref{cha:alg:fin}, ou le calcul de racine carrée qui ont des coûts satisfaisants. Tout cela va être détaillé dans ce qui suit. Les travaux de  \cite{DeFeo-Shost'12} sur les tours $p$-adiques ne seront pas étudiés ici, ces travaux sont en effet complémentaires de ceux étudiés et utilisés ici \cite{Doliskani-Schost15}, \cite{DeFeo-Doliskani-Schost13}.
 
@@ -2092,16 +2092,16 @@ L'objectif est de calculer une tour d'extensions $\ell$-adiques du corps fini $\
 
 \begin{thm}
 \label{thm:init:tow}
-Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$, soit $\ell$ un nombre premier différent de $p$,  alors une tour d'extensions $\ell$-adiques du corps $\mathbb{F}_q$: $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1, \mathsf{F}_2, \cdots$ est initialisée en $O(d_0\mathsf{M}(d_0)\log(d_0)\log(d_0q)+\mathsf{M}(\ell)\log(\ell)+d_0^2)$ opérations en moyenne sur $\mathbb{F}_q$.
+Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$, soit $\ell$ un nombre premier différent de $p$,  alors une tour d'extensions $\ell$-adiques du corps $\mathbb{F}_q$: $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \mathsf{F}_3, \cdots$ est initialisée en $O(d_1\mathsf{M}(d_1)\log(d_1)\log(d_1q)+\mathsf{M}(\ell)\log(\ell)+d_1^2)$ opérations en moyenne sur $\mathbb{F}_q$.
 \end{thm}
  
  \begin{proof}
   %Pour $q \neq 1 \bmod \ell$ on se ramène au cas $q=1\bmod \ell$ en construisant une extension $\mathsf{F}_{0}$ de $\mathbb{F}_q$ de degré $d_0 \mid r$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
-  On construit tout d'abord $\mathsf{F}_0$ l'extension de $\mathbb{F}_q$ de degré $d_0$ qui divise $\ell-1$ et est donc premier avec $\ell$. Cette construction de $\mathsf{F}_0$ est faite en même temps que la détermination d'un non-résidu $\ell$-adique. 
+  On construit tout d'abord $\mathsf{F}_1$ l'extension de $\mathbb{F}_q$ de degré $d_1$ qui divise $\ell-1$ et est donc premier avec $\ell$. Cette construction de $\mathsf{F}_1$ est faite en même temps que la détermination d'un non-résidu $\ell$-adique. 
 
 %Tout d'abord on détermine la nature de $\mathsf{F}_0$, pour cela on calcule le $\ell$-ème polynôme cyclotomique $\Phi_{\ell} \in \mathbb{Z}[X_0]$ et on le factorise sur $\mathbb{F}_q[X_0]$ par \cite[Th 9]{Shoup93} cela a un coût de $O_e(\mathsf{M}(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$. Sur $\mathbb{F}_q[X_0]$, $\Phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$. Si $r=1$ alors on a $\mathbb{F}_q \equiv \mathsf{F}_0$ sinon on doit construire $\mathsf{F}_0$.
-On calcule un polynôme irréductible de degré $d_0$ défini sur $\mathbb{F}_q$, pour cela on utilise par exemple l'algorithme probabiliste de Ben-Or qui calcule un tel polynôme avec une complexité moyenne de $O(d_0\mathsf{M}(d_0)\log(d_0)\log(d_0q))$ opérations sur $\mathbb{F}_q$ d'après \cite[Theorem 14.42]{vzGJG03}.
- Soit $R_0$ un tel polynôme, alors par construction il existe un non-résidu $\ell$-adique dans $\mathbb{F}_q[X_0]/ \langle R_0 \rangle $. On trouve après avoir testé $O(1)$ éléments tirés au hasard un tel non-résidu $\ell$-adique, chaque essai a un coût moyen de $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$ d'après \cite[11.1]{vzGJG03}. Une fois un tel non-résidu $\ell$-adique $y_0$ trouvé on calcule son polynôme minimal $P_0$, ce calcul coûte $O(d_0^2)=O(\ell^2)$ opérations sur $\mathbb{F}_q$ d'après \cite[Th. 3.4]{Shoup93}. On construit donc $\mathsf{F}_0=\mathbb{F}_q[X_0]/\langle P_0(X_0) \rangle$ et le non-résidu $\ell$-adique sera alors l'image de $X_0$ dans $\mathsf{F}_0$. On définit le polynôme irréductible $P_i=P_0(X^{\ell^{i}})$ dans $\mathbb{F}_q[X]$ et on construit toute extension $\mathsf{F}_{i}$ de $\mathbb{F}_{q}$ comme étant $\mathsf{F}_{i}=\mathbb{F}_q[X]/P_i(X)$. 
+On calcule un polynôme irréductible de degré $d_1$ défini sur $\mathbb{F}_q$, pour cela on utilise par exemple l'algorithme probabiliste de Ben-Or qui calcule un tel polynôme avec une complexité moyenne de $O(d_1\mathsf{M}(d_1)\log(d_1)\log(d_1q))$ opérations sur $\mathbb{F}_q$ d'après \cite[Theorem 14.42]{vzGJG03}.
+ Soit $R_1$ un tel polynôme, alors par construction il existe un non-résidu $\ell$-adique dans $\mathbb{F}_q[X_1]/ \langle R_1 \rangle $. On trouve après avoir testé $O(1)$ éléments tirés au hasard un tel non-résidu $\ell$-adique, chaque essai a un coût moyen de $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$ d'après \cite[11.1]{vzGJG03}. Une fois un tel non-résidu $\ell$-adique $y_1$ trouvé on calcule son polynôme minimal $P_1$, ce calcul coûte $O(d_1^2)=O(\ell^2)$ opérations sur $\mathbb{F}_q$ d'après \cite[Th. 3.4]{Shoup93}. On construit donc $\mathsf{F}_1=\mathbb{F}_q[X_1]/\langle P_1(X_1) \rangle$ et le non-résidu $\ell$-adique sera alors l'image de $X_1$ dans $\mathsf{F}_1$. On définit le polynôme irréductible $P_i=P_1(X^{\ell^{i-1}})$ dans $\mathbb{F}_q[X]$ et on construit toute extension $\mathsf{F}_{i}$ de $\mathbb{F}_{q}$ comme étant $\mathsf{F}_{i}=\mathbb{F}_q[X]/P_i(X)$. 
  
 \end{proof}
 
@@ -2111,7 +2111,7 @@ On calcule un polynôme irréductible de degré $d_0$ défini sur $\mathbb{F}_q$
 
  
 \begin{rem}
-Sachant que $d_0 \mid \ell-1$ ce coût peut être borné à l'aide de $\ell$ de la façon suivante: $O(\ell\mathsf{M}(\ell)\log(\ell)\log(\ell q))$ opérations en moyenne sur $\mathbb{F}_q$.
+Sachant que $d_1 \mid \ell-1$ ce coût peut être borné à l'aide de $\ell$ de la façon suivante: $O(\ell\mathsf{M}(\ell)\log(\ell)\log(\ell q))$ opérations en moyenne sur $\mathbb{F}_q$.
 \end{rem}
  
  %$\mathsf{F}_0$ étant une extension de degré premier à $\ell$ de $\mathbb{F}_q$ %alors lorsque l'on a une complexité exprimée en termes d'opérations sur $\mathsf{F}_0$ 
@@ -2140,30 +2140,30 @@ Sachant que $d_0 \mid \ell-1$ ce coût peut être borné à l'aide de $\ell$ de 
 
 Les éléments de $\mathsf{F}_k$ peuvent être représentés de deux manières différentes: \textit{univariée} et \textit{bivariée}, de la même manière que dans \cite{DeFeo-Shost'12}. 
 
-Soit $P_0$ le polynôme minimal défini sur $\mathbb{F}_q$ d'un résidu non $\ell$ adique défini sur une extension de degré $d_0$, à l'aide de celui-ci sont définies les suites de polynômes $T_0,T_1,T_2,\cdots, T_k$ en les indéterminées $X_0,X_1,X_2, \cdots X_k$ de la façon suivante:
+Soit $P_1$ le polynôme minimal défini sur $\mathbb{F}_q$ d'un résidu non $\ell$ adique défini sur une extension de degré $d_1$, à l'aide de celui-ci sont définies les suites de polynômes $T_1,T_2,T_3,\cdots, T_k$ en les indéterminées $X_1,X_2,X_3, \cdots X_k$ de la façon suivante:
 \[
-T_0=P_0(X_0) \quad \text{et} \quad T_k=X_k^{\ell}-X_{k-1} \quad \text{avec $k$ entier naturel non nul}
+T_1=P_1(X_1) \quad \text{et} \quad T_k=X_k^{\ell}-X_{k-1} \quad \text{avec $k \geqslant 1$ entier naturel}
 \]  de la même manière la suite de polynômes $P_1,P_2, \cdots P_k$ est définie à l'aide de $P_0$ de la façon suivante:
 \[
-P_k=P_0(X_k^{\ell^k}) \quad \text{avec $k$ entier naturel non nul.} 
+P_k=P_1(X_k^{\ell^{k-1}}) \quad \text{avec $k \geqslant 1$ entier naturel.} 
 \]
 
 Il y a égalité entre les idéaux suivants :
 \begin{equation}
 \label{eq:corres-repre-2}
-\langle T_0 T_1, T_2, \cdots, T_k \rangle = \langle P_k, X_{k-1}-X_k^{\ell}, ..., X_1-X_{k}^{\ell^{k-1}}, X_0-X_k^{\ell^k} \rangle.
+\langle T_1, T_2, T_3, \cdots, T_k \rangle = \langle P_k, X_{k-1}-X_k^{\ell}, ..., X_2-X_{k}^{\ell^{k-2}}, X_1-X_k^{\ell^{k-1}} \rangle.
 \end{equation}
 Cet idéal premier sera appelé $A_k$ et l'on a:
 \[
-\mathsf{F}_k \cong \mathsf{F}_q[X_0,X_1,X_2,\cdots,X_k]/A_k
+\mathsf{F}_k \cong \mathsf{F}_q[X_1,X_2,X_3,\cdots,X_k]/A_k
 \]
-Soit $k \geqslant 0$  on note $x_k$ l'image de l'indéterminée $X_k$ dans l'anneau résiduel $\mathbb{F}_q[X_0,X_1,X_2, ...,X_k]/A_k$, alors par inclusion naturelle de $\mathbb{F}_q[X_0,X_1,X_2, ...,X_k]/A_k$ dans $\mathbb{F}_q[X_0,X_1,X_2, ...,X_{k+1}]/A_{k+1}$, $x_k$ peut aussi être vu comme un élément de $\mathsf{F}_{j}$ pour $j \geqslant k$.
+Soit $k \geqslant 1$  on note $x_k$ l'image de l'indéterminée $X_k$ dans l'anneau résiduel $\mathbb{F}_q[X_1,X_2,X_3, ...,X_k]/A_k$, alors par inclusion naturelle de $\mathbb{F}_q[X_1,X_2,X_3, ...,X_k]/A_k$ dans $\mathbb{F}_q[X_1,X_2,X_3, ...,X_{k+1}]/A_{k+1}$, $x_k$ peut aussi être vu comme un élément de $\mathsf{F}_{j}$ pour $j \geqslant k$.
 
-De plus grâce à l'équation \eqref{eq:corres-repre-2}, représenter un élément de $\mathsf{F}_k$ peut être fait soit comme un polynôme en $x_0,x_1, ..., x_k$ de degré au plus $\ell-1$ en chaque variable grâce au côté gauche de l'équation \eqref{eq:corres-repre-2}, soit comme un polynôme en $x_k$ de degré au plus $d_0\ell^k-1$ grâce au côté droit de l'équation.
+De plus grâce à l'équation \eqref{eq:corres-repre-2}, représenter un élément de $\mathsf{F}_k$ peut être fait soit comme un polynôme en $x_1,x_2, ..., x_k$ de degré au plus $\ell-1$ en chaque variable grâce au côté gauche de l'équation \eqref{eq:corres-repre-2}, soit comme un polynôme en $x_k$ de degré au plus $d_1\ell^{k-1}-1$ grâce au côté droit de l'équation.
 
-L'écriture par défaut des éléments de $\mathsf{F}_k$ sera donc la représentation univariée c'est à dire un élément de $\mathsf{F}_k$ sera représenté sous la forme $g(x_k)$ avec $g$ un polynôme de $\mathbb{F}_q[X_k]$ de degré strictement inférieur à $d_0\ell^k$. 
+L'écriture par défaut des éléments de $\mathsf{F}_k$ sera donc la représentation univariée c'est à dire un élément de $\mathsf{F}_k$ sera représenté sous la forme $g(x_k)$ avec $g$ un polynôme de $\mathbb{F}_q[X_k]$ de degré strictement inférieur à $d_1\ell^{k-1}$. 
 
-Cependant lors des représentations d'éléments de $\mathsf{F}_k$ il ne va pas être fait des changements de représentation d'un élément sous la forme $g(x_k)$ avec $g$ un polynôme de $\mathbb{F}_q[X_k]$ à un élément sous la forme $h(x_1,x_2,\cdots,x_k)$ avec $h$ un polynôme de $\mathbb{F}_q[X_0,X_1,X_2,\cdots,X_k]$ mais seulement à un élément de la forme $i(x_k,x_{k-1})$ avec $i$ un polynôme de $\mathbb{F}_q[X_k,X_{k-1}]$. Cette dernière représentation est suffisante pour permettre d'effectuer la descente d'un élément dans la tour d'extensions $\ell$-adiques.
+Cependant lors des représentations d'éléments de $\mathsf{F}_k$ il ne va pas être fait des changements de représentation d'un élément sous la forme $g(x_k)$ avec $g$ un polynôme de $\mathbb{F}_q[X_k]$ à un élément sous la forme $h(x_1,x_2,\cdots,x_k)$ avec $h$ un polynôme de $\mathbb{F}_q[X_1,X_1,X_2,\cdots,X_k]$ mais seulement à un élément de la forme $i(x_k,x_{k-1})$ avec $i$ un polynôme de $\mathbb{F}_q[X_k,X_{k-1}]$. Cette dernière représentation est suffisante pour permettre d'effectuer la descente d'un élément dans la tour d'extensions $\ell$-adiques.
 
 On représentera alors $\mathsf{F}_k$ pour $k\geqslant1$ des deux façons suivantes:
 \begin{equation*}
@@ -2174,44 +2174,49 @@ On représentera alors $\mathsf{F}_k$ pour $k\geqslant1$ des deux façons suivan
 Soit $\mathsf{F}_k$ un élément de la tour d'extensions $\ell$-adiques de $\mathbb{F}_q$.
 La $\mathbb{F}_q$ base univariée de $\mathsf{F}_k$ est:
 \begin{equation*}
-1,x_k,x_k^{\ell},...,x_k^{d_0\ell^k-1}
+1,x_k,x_k^{\ell},...,x_k^{d_1\ell^{k-1}-1}
 \end{equation*}
 la $\mathbb{F}_q$ base bivariée de $\mathsf{F}_k$ est:
 \begin{equation*}
-1,x_{k-1},x_{k-1}^{\ell},...,x_{k-1}^{d_0\ell^{k-1}-1},x_k,x_kx_{k-1},x_kx_{k-1}^2,...,x_kx_{k-1}^{d_0\ell^{k-1}-1}, \cdots, x_k^{\ell-1}x_{k-1}^{d_0\ell^{k-1}-1}
+1,x_{k-1},x_{k-1}^{\ell},...,x_{k-1}^{d_1\ell^{k-2}-1},x_k,x_kx_{k-1},x_kx_{k-1}^2,...,x_kx_{k-1}^{d_1\ell^{k-1}-1}, \cdots, x_k^{\ell-1}x_{k-1}^{d_1\ell^{k-2}-1}
 \end{equation*}
 \end{defi}
 
-En pratique le changement de base monovariée à bivariée se fait de la façon suivante à partir d'une expression $G(x_k)$ d'un élément de $\mathsf{F}_k$ avec $G$ un polynôme de degré inférieur à $d_0\ell^k-1$:
+En pratique le changement de base monovariée à bivariée se fait de la façon suivante à partir d'une expression $G(x_k)$ d'un élément de $\mathsf{F}_k$ avec $G$ un polynôme de degré inférieur à $d_1\ell^{k-1}-1$: 
 \begin{equation*}
-G(x_k)=G_0(x_k)+ G_1(x_k^\ell)+x_kG_2(x_k^\ell)+ \cdots + x_k^{\ell-1} G_{\ell}(x_k^{\ell}) =G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
+\begin{alignedat}{1}
+ G(x_k) &= G_0(x_k)+ G_1(x_k^\ell)+x_kG_2(x_k^\ell)+ \cdots + x_k^{\ell-1} G_{\ell}(x_k^{\ell})\\
+&= G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
+\end{alignedat}
 \end{equation*}
-avec $G_1, \cdots G_{\ell}$ des polynômes de degré inférieur à $d_0\ell^{k-1}-1$ et $G_0$ de degré strictement inférieur à $\ell$. Ce changement de base ne requiert aucun calcul arithmétique, ainsi celui-ci pourra être utilisé sans coût supplémentaire et en particulier un élément pourra être considéré indifféremment dans une base bivariée ou univariée.%a completer
+%G(x_k)=G_0(x_k)+ G_1(x_k^\ell)+x_kG_2(x_k^\ell)+ \cdots + x_k^{\ell-1} G_{\ell}(x_k^{\ell}) =G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
+
+avec $G_1, \cdots G_{\ell}$ des polynômes de degré inférieur à $d_1\ell^{k-2}-1$ et $G_0$ de degré strictement inférieur à $\ell$. Ce changement de base ne requiert aucun calcul arithmétique, ainsi celui-ci pourra être utilisé sans coût supplémentaire et en particulier un élément pourra être considéré indifféremment dans une base bivariée ou univariée.%a completer
 
 La descente correspond donc au passage d'un élément de $\mathsf{F}_k$ écrit sous la forme $G(x_k)$ en un élément de la forme $G_1(x_{k-1})$ appartenant à $\mathsf{F}_{k-1}$. Le relèvement est l'opération inverse.
 
 \begin{exe}
-Soit $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1, \cdots, \mathsf{F}_k$ une tour d'extensions $5$-adiques telle que $\mathbb{F}_q \cong \mathsf{F}_0$, soit $\alpha \in \mathsf{F}_3$ qui s'écrit dans la $\mathbb{F}_q$ base monomiale de $\mathsf{F}_3$:
+Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \cdots, \mathsf{F}_k$ une tour d'extensions $5$-adiques telle que $\mathbb{F}_q \cong \mathsf{F}_1$, soit $\alpha \in \mathsf{F}_4$ qui s'écrit dans la $\mathbb{F}_q$ base monomiale de $\mathsf{F}_4$:
 \begin{equation}
 \label{eq:exe:mon}
-\alpha_0 + \alpha_5x_3^5+ \alpha_{10}x_3^{10} + \alpha_{15}x_3^{15} + \cdots + \alpha_{5k}x_3^{5k} + \cdots + \alpha_{120}x_3^{120} 
+\alpha_0 + \alpha_5x_4^5+ \alpha_{10}x_4^{10} + \alpha_{15}x_4^{15} + \cdots + \alpha_{5k}x_4^{5k} + \cdots + \alpha_{120}x_4^{120} 
 \end{equation} 
-alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf{F}_3$:
+alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf{F}_4$:
 \begin{equation}
 \label{eq:exe:biv}
-\alpha_0 + \alpha_5x_2^1+ \alpha_{10}x_2^{2} + \alpha_{15}x_2^{3} + \cdots + \alpha_{5k}x_2^{k} + \cdots + \alpha_{120}x_2^{24}. 
+\alpha_0 + \alpha_5x_3^1+ \alpha_{10}x_3^{2} + \alpha_{15}x_3^{3} + \cdots + \alpha_{5k}x_3^{k} + \cdots + \alpha_{120}x_3^{24}. 
 \end{equation} 
- Ainsi on voit que $\alpha$ est aussi un élément de $\mathsf{F}_2$. Le passage de la représentation de $\alpha$ de \eqref{eq:exe:mon} à \eqref{eq:exe:biv} correspond à une \emph{descente}, l'opération inverse est elle un \emph{relèvement}.
+ Ainsi on voit que $\alpha$ est aussi un élément de $\mathsf{F}_3$. Le passage de la représentation de $\alpha$ de \eqref{eq:exe:mon} à \eqref{eq:exe:biv} correspond à une \emph{descente}, l'opération inverse est elle un \emph{relèvement}.
  
- Par contre pour $\beta$ un élément de $\mathsf{F}_3$ écrit de la façon suivante dans la base monovariée:
- \begin{equation}
- \beta_0 + \beta_1 x_3+ \cdots +\beta_{5k}x_3^{5k} + \beta_{5k+1}x_3^{5k+1}+\beta_{5k+2}x_3^{5k+2}+ \beta_{5k+3}x_3^{5k+3}+ \beta_{5k+4}x_3^{5k+4}+ \cdots + \beta_{124}x_3^{124}
- \end{equation}
+ Par contre pour $\beta$ un élément de $\mathsf{F}_4$ écrit de la façon suivante dans la base monovariée:
+ \begin{equation*}
+ \beta_0 + \beta_1 x_4+ \cdots +\beta_{5k}x_4^{5k} + \beta_{5k+1}x_4^{5k+1}+\beta_{5k+2}x_4^{5k+2}+ \beta_{5k+3}x_4^{5k+3}+ \beta_{5k+4}x_4^{5k+4}+ \cdots + \beta_{124}x_4^{124}
+ \end{equation*}
 l'écriture de $\beta$ dans la base bivariée est: 
- \begin{equation}
-  \beta_0 + \beta_1 x_3+ \cdots + x_2^{k}(\beta_{5k}+\beta_{5k+1} x_3 + \beta_{5k+2} x_3^2 + \beta_{5k+3} x_3^3 + \beta_{5k+4}x_3^4)+ \cdots + \beta_{124}x_2^{24}x_3^{4}.
- \end{equation}
- On voit ici que $\beta \notin \mathsf{F}_2$ et donc on ne peut le faire descendre dans la tour d'extension mais seulement s'arrêter à cette écriture dans la base bivariée.
+ \begin{equation*}
+  \beta_0 + \beta_1 x_4+ \cdots + x_3^{k}(\beta_{5k}+\beta_{5k+1} x_4 + \beta_{5k+2} x_4^2 + \beta_{5k+3} x_4^3 + \beta_{5k+4}x_3^4)+ \cdots + \beta_{124}x_3^{24}x_4^{4}.
+ \end{equation*}
+ On voit ici que $\beta \notin \mathsf{F}_3$ et donc on ne peut le faire descendre dans la tour d'extension mais seulement s'arrêter à cette écriture dans la base bivariée.
 \end{exe}
 
 \section{Opérations dans la tour d'extension $\ell$-adique}
@@ -2219,29 +2224,29 @@ l'écriture de $\beta$ dans la base bivariée est:
 \subsection*{Inversion d'un élément dans le cas $\ell=2$}
 
 
-L'inversion d'un élément peut être effectuée dans une base univariée en utilisant l'algorithme d'Euclide étendu. Le coût d'inversion d'un élément de $\mathsf{F}_k$ serait de $O(\mathsf{M}(\ell^kd_0)\log(\ell^kd_0))$ opérations sur $\mathbb{F}_q$ en utilisant les résultats de \cite[ch.11]{vzGJG03}. Une autre technique plus avantageuse est préférée uniquement pour le cas $\ell=2$ dans \cite{Doliskani-Schost15}, soit $G(x_k)$ un élément inversible de $\mathsf{F}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
+L'inversion d'un élément peut être effectuée dans une base univariée en utilisant l'algorithme d'Euclide étendu. Le coût d'inversion d'un élément de $\mathsf{F}_k$ serait de $O(\mathsf{M}(\ell^{k-1}d_1)\log(\ell^{k-1}d_1))$ opérations sur $\mathbb{F}_q$ en utilisant les résultats de \cite[ch.11]{vzGJG03}. Une autre technique plus avantageuse est préférée uniquement pour le cas $\ell=2$ dans \cite{Doliskani-Schost15}, soit $G(x_k)$ un élément inversible de $\mathsf{F}_k$ alors en écrivant $G(x_k)=G_0(x_{k-1})+x_kG_1(x_{k-1})$ on obtient:
 \begin{align*}
 \frac{1}{G(x_k)} &=\frac{1}{G_0(x_{k-1})+x_kG_1(x_{k-1})} \\
  				&= \frac{G_0(x_{k-1})-x_kG_1(x_{k-1})}{G_0(x_{k-1})^2-x_{k-1}G_1(x_{k-1})^2}
 \end{align*}
-Le coût d'une inversion d'un élément de $\mathsf{F}_k$ est le coût d'une addition, de la multiplication d'éléments de $\mathsf{F}_k$ ainsi que le coût d'une inversion d'éléments dans $\mathsf{F}_{k-1}$, on a donc affaire à un algorithme récursif de coût  $T(k)=T(k-1)+O(\mathsf{M}(\ell^kd_0))$; avec la super linéarité de $\mathsf{M}$ on obtient un coût de calcul de $O(\mathsf{M}(\ell^k)d_0)$ opérations sur $\mathbb{F}_q$. Pour les tours dyadiques on a $d_0 \mid 2$ dés lors on peut exprimer le coût comme $O(\mathsf{M}(\ell^k))$. La complexité de l'inversion est donc de $O(\mathsf{M}(\ell^k))$ opérations sur $\mathbb{F}_q$ dans le cas où l'on considère une extension dyadique.
+Le coût d'une inversion d'un élément de $\mathsf{F}_k$ est le coût d'une addition, de la multiplication d'éléments de $\mathsf{F}_k$ ainsi que le coût d'une inversion d'éléments dans $\mathsf{F}_{k-1}$, on a donc affaire à un algorithme récursif de coût  $T(k)=T(k-1)+O(\mathsf{M}(\ell^{k-1}d_1))$; avec la super linéarité de $\mathsf{M}$ on obtient un coût de calcul de $O(\mathsf{M}(\ell^{k-1})d_1)$ opérations sur $\mathbb{F}_q$. Pour les tours dyadiques on a $d_1 \mid 2$ dés lors on peut exprimer le coût comme $O(\mathsf{M}(\ell^{k-1}))$. La complexité de l'inversion est donc de $O(\mathsf{M}(\ell^{k-1}))$ opérations sur $\mathbb{F}_q$ dans le cas où l'on considère une extension dyadique.
 
 \subsection*{Calcul du Frobenius}
 
 Cette opération est très importante pour déterminer des ensembles spécifiques de points d'une courbe elliptique (voir chapitre~\ref{cha:act:fro}), c'est pourquoi on s'attache ici à montrer que l'on peut effectuer cette opération à un coût raisonnable. Le résultat ici est une généralisation de \cite{Doliskani-Schost15}.
 
 \begin{thm} \label{thm:frob-ell}
-Soit $\mathbb{F}_q, \mathsf{F}_0, \mathsf{F}_1,  \cdots \mathsf{F}_n$ une tour d'extensions $\ell$-adiques
+Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2,  \cdots \mathsf{F}_n$ une tour d'extensions $\ell$-adiques
 % définie telle que $[F_{i+1}:F_i]=\ell$ pour $i \neq 0$ et $[F_1:F_0]=d_1$ avec $d_1$ égal à l'odre multiplicatif de $q=|F_0|$  dans $\mathbb{Z}/\ell \mathbb{Z}$ (voir \textcolor{red}{(réf à mettre plus tard)} pour plus de détail). 
 Soit $a$ un élément de $\mathsf{F}_i$ pour tout entier $j$ le calcul de la puissance $|\mathsf{F}_j|$ de $a$ coûte
- $O(\ell^{i}M(d_0))$ opérations sur $\mathbb{F}_q$ après un pré-calcul de $O( M(d_0)\log(|\mathsf{F}_0|))$ opérations sur $\mathbb{F}_q$
-auquel il faut ajouter un calcul booléen de $O(\log(\ell^j)\log(\ell^i|\mathsf{F}_0|))$.
+ $O(\ell^{i-1}M(d_1))$ opérations sur $\mathbb{F}_q$ après un pré-calcul de $O( M(d_1)\log(|\mathsf{F}_1|))$ opérations sur $\mathbb{F}_q$
+auquel il faut ajouter un calcul booléen de $O(\log(\ell^j)\log(\ell^{i-1}|\mathsf{F}_1|))$.
 \end{thm} 
 
 \begin{proof}
-Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat étant sinon $a$ lui-même. Notons $s= |\mathsf{F}_j|$ et rappelons que $[\mathsf{F}_i:\mathsf{F}_0]=\ell^{i}$. Soit $x_i$ l'image de $x$ dans $\mathsf{F}_i=\mathsf{F}_0[x]/P_i(x)$, on a en particulier $x_i^{\ell^i}=x_0$.
+Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat étant sinon $a$ lui-même. Notons $s= |\mathsf{F}_j|$ et rappelons que $[\mathsf{F}_i:\mathsf{F}_1]=\ell^{i-1}$. Soit $x_i$ l'image de $x$ dans $\mathsf{F}_i=\mathsf{F}_1[x]/P_i(x)$, on a en particulier $x_i^{\ell^{i-1}}=x_1$.
 
-La première étape est de calculer $y=x_i^s$. En écrivant $s=u\ell^i+v$ avec $0 \leqslant v < \ell^i$ on a alors $y=x_0^{u \bmod |\mathsf{F}_0|-1}x_i^v$. 
+La première étape est de calculer $y=x_i^s$. En écrivant $s=u\ell^{i-1}+v$ avec $0 \leqslant v < \ell^{i-1}$ on a alors $y=x_1^{u \bmod |\mathsf{F}_1|-1}x_i^v$. 
 Une méthode rapide est préconisée pour le calcul de $u \bmod |\mathsf{F}_0|-1$ et $v$, dans un premier temps il faut calculer $\rho=s \bmod \ell^i(|\mathsf{F}_0|-1)$ à l'aide de l'exponentiation rapide puis $u \bmod |\mathsf{F}_0|-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne   de $\rho$ par $\ell^i$. Le coût booléen d'une telle opération est de $O(\log(\ell^j)\log(\ell^{i}|\mathsf{F}_0|))$. L'opération majeure étant l'exponentiation avec un exposant de taille $O(\ell^{j}\log(|\mathsf{F}_0|))$ modulo un entier de taille $O(\log(\ell^{i}|\mathsf{F}_0|))$, le calcul de $x_0^{u \bmod |\mathsf{F}_0|-1}$ se fait en utilisant $O( M(d_0) d_0\log(q))$ opérations sur $\mathbb{F}_q$. On conserve ce résultat sous la forme d'un monôme dans $\mathsf{F}_0[x_i]$. 
 
 Dans la tour d'extensions $\ell$-adiques les éléments de la tour peuvent être représentés sous forme $G(x_k)$ avec $G$ un polynôme de degré $d$ à coefficients dans $\mathsf{F}_0$, or un élément $G(x_k)$ peut aussi être représenté sous forme $H(x_k)$ avec $H$ un polynôme de degré $d_0\ell^i$ à coefficients dans $\mathbb{F}_q$. \`A travers le calcul du Frobenius on va expliciter ces changements de représentation. Soit $a$ représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[\mathsf{F}_i:\mathbb{F}_q]$ : 
@@ -7840,7 +7845,7 @@ par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,n_i)}:\mathbb{F}_q)$
  $\prod_{i=1}^n\ell_i^{k_i}$ de même direction au lieu de deux points d'ordre
  $\ell^k$ de même direction comme dans l'algorithme~\ref{alg:cou:ell-adique}.
  
- On va donc présenter dans la prochaine sous-section l'algorithme qui résulte 
+ On va donc présenter dans la prochaine sous-sous-section l'algorithme qui résulte 
  de cette approche ainsi que son coût.
 
 \subsection{Algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois}
@@ -8016,11 +8021,11 @@ a & 0 \\
  \mu_n} \color{black}
 \end{matrix}
 \right)
-\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\prod_{i=i}^n\ell_i^{k_i}\mathbb{Z} \right)^*.
+\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\prod_{i=i}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}.
 \end{equation*}
  
-On applique alors un raisonnement similaire à celui de la 
-section~\ref{sec:cou:elk} qui nous permet alors de décrire dans 
+On applique alors un raisonnement similaire à celui de la sous-
+section~\ref{ssec:cou:elk} qui nous permet alors de décrire dans 
 l'algorithme~\ref{alg:cou:TRC-adique} un algorithme de Couveignes 
 $\ell_i$-adiques dans le cas Elkies avec approche multi-modulaire à l'aide du 
 Théorème des Restes Chinois.
