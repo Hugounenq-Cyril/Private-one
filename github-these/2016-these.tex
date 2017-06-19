@@ -2247,33 +2247,33 @@ auquel il faut ajouter un calcul booléen de $O(\log(\ell^j)\log(\ell^{i-1}|\mat
 Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat étant sinon $a$ lui-même. Notons $s= |\mathsf{F}_j|$ et rappelons que $[\mathsf{F}_i:\mathsf{F}_1]=\ell^{i-1}$. Soit $x_i$ l'image de $x$ dans $\mathsf{F}_i=\mathsf{F}_1[x]/P_i(x)$, on a en particulier $x_i^{\ell^{i-1}}=x_1$.
 
 La première étape est de calculer $y=x_i^s$. En écrivant $s=u\ell^{i-1}+v$ avec $0 \leqslant v < \ell^{i-1}$ on a alors $y=x_1^{u \bmod |\mathsf{F}_1|-1}x_i^v$. 
-Une méthode rapide est préconisée pour le calcul de $u \bmod |\mathsf{F}_0|-1$ et $v$, dans un premier temps il faut calculer $\rho=s \bmod \ell^i(|\mathsf{F}_0|-1)$ à l'aide de l'exponentiation rapide puis $u \bmod |\mathsf{F}_0|-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne   de $\rho$ par $\ell^i$. Le coût booléen d'une telle opération est de $O(\log(\ell^j)\log(\ell^{i}|\mathsf{F}_0|))$. L'opération majeure étant l'exponentiation avec un exposant de taille $O(\ell^{j}\log(|\mathsf{F}_0|))$ modulo un entier de taille $O(\log(\ell^{i}|\mathsf{F}_0|))$, le calcul de $x_0^{u \bmod |\mathsf{F}_0|-1}$ se fait en utilisant $O( M(d_0) d_0\log(q))$ opérations sur $\mathbb{F}_q$. On conserve ce résultat sous la forme d'un monôme dans $\mathsf{F}_0[x_i]$. 
+Une méthode rapide est préconisée pour le calcul de $u \bmod |\mathsf{F}_1|-1$ et $v$, dans un premier temps il faut calculer $\rho=s \bmod \ell^{i-1}(|\mathsf{F}_1|-1)$ à l'aide de l'exponentiation rapide puis $u \bmod |\mathsf{F}_1|-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne   de $\rho$ par $\ell^{i-1}$. Le coût booléen d'une telle opération est de $O(\log(\ell^j)\log(\ell^{i-1}|\mathsf{F}_1|))$. L'opération majeure étant l'exponentiation avec un exposant de taille $O(\ell^{j}\log(|\mathsf{F}_1|))$ modulo un entier de taille $O(\log(\ell^{i-1}|\mathsf{F}_1|))$, le calcul de $x_1^{u \bmod |\mathsf{F}_1|-1}$ se fait en utilisant $O( M(d_1) d_1\log(q))$ opérations sur $\mathbb{F}_q$. On conserve ce résultat sous la forme d'un monôme dans $\mathsf{F}_1[x_i]$. 
 
-Dans la tour d'extensions $\ell$-adiques les éléments de la tour peuvent être représentés sous forme $G(x_k)$ avec $G$ un polynôme de degré $d$ à coefficients dans $\mathsf{F}_0$, or un élément $G(x_k)$ peut aussi être représenté sous forme $H(x_k)$ avec $H$ un polynôme de degré $d_0\ell^i$ à coefficients dans $\mathbb{F}_q$. \`A travers le calcul du Frobenius on va expliciter ces changements de représentation. Soit $a$ représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[\mathsf{F}_i:\mathbb{F}_q]$ : 
+Dans la tour d'extensions $\ell$-adiques les éléments de la tour peuvent être représentés sous forme $G(x_k)$ avec $G$ un polynôme de degré $d$ à coefficients dans $\mathsf{F}_1$, or un élément $G(x_k)$ peut aussi être représenté sous forme $H(x_k)$ avec $H$ un polynôme de degré $d_1\ell^{i-1}$ à coefficients dans $\mathbb{F}_q$. \`A travers le calcul du Frobenius on va expliciter ces changements de représentation. Soit $a$ représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[\mathsf{F}_i:\mathbb{F}_q]$ : 
 \begin{equation*}
-a^*_0+a_1^*x_i+ \cdots + a^*_{d_0\ell^i-1}x_i^{d_0\ell^i-1}
+a^*_0+a_1^*x_i+ \cdots + a^*_{d_1\ell^{i-1}-1}x_i^{d_1\ell^{i-1}-1}
 \end{equation*}
 avec les $a_i^* \in \mathbb{F}_q$. On réécrit $a$ sous la forme:
 \begin{equation*}
-a_0+a_1x_i+ \cdots + a_{\ell^i-1}x_i^{\ell^i-1}
+a_0+a_1x_i+ \cdots + a_{\ell^{i-1}-1}x_i^{\ell^{i-1}-1}
 \end{equation*}
-avec les $a_w=a_w^* + \sum_{k=1}^{\lfloor d_0\ell^i-1/d \rfloor}a_{w+dk}^*x_0^k \in \mathsf{F}_0$ pour $w$ appartenant à $[0; \ell^i-1]$. Pour obtenir cette réécriture on s'est servi du fait que pour $t$ appartenant à $[1; d_0\ell^i-1]$ tel que $t=\ell^i u_t+v_t$ avec $0 \leqslant v_t<\ell^i$ on a $x_w^t=x_0^{u_t \bmod |\mathsf{F}_0|-1}x_w^{v_t}$ . Ainsi cette opération est seulement un réarrangement des coefficients de $a$.
+avec les $a_w=a_w^* + \sum_{k=1}^{\lfloor d_1\ell^{i-1}-1/d \rfloor}a_{w+dk}^*x_1^k \in \mathsf{F}_1$ pour $w$ appartenant à $[0; \ell^{i-1}-1]$. Pour obtenir cette réécriture on s'est servi du fait que pour $t$ appartenant à $[1; d_1\ell^{i-1}-1]$ tel que $t=\ell^{i-1} u_t+v_t$ avec $0 \leqslant v_t<\ell^{i-1}$ on a $x_w^t=x_1^{u_t \bmod |\mathsf{F}_1|-1}x_w^{v_t}$ . Ainsi cette opération est seulement un réarrangement des coefficients de $a$.
 
 On écrit $a^s$ sous la forme:
 \begin{equation*}
-a_0 + a_1 y + a_2 y^2 + \cdots + a_{\ell^i-1}y^{\ell^i-1}
+a_0 + a_1 y + a_2 y^2 + \cdots + a_{\ell^i-1}y^{\ell^{i-1}-1}
 \end{equation*}
-On calcule alors $a(y)$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_0[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(d_0))$ opérations sur $\mathbb{F}_q$. On a alors un coût total de $O(\ell^{i}M(d_0)))$ opérations dans $\mathbb{F}_q$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_0,x_i)$ de degré $(d_0-1,\ell^i-1)$, on réécrit alors $a^s$ sous la forme $G(x_i)$ avec $G$ un polynôme à coefficients dans $\mathbb{F}_q$ de degré $d_0\ell^i$  à l'aide du changement de représentation inverse de celui effectué précédemment. En effet $a^s$ est représenté sous la forme:
+On calcule alors $a(y)$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_1[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(d_1))$ opérations sur $\mathbb{F}_q$. On a alors un coût total de $O(\ell^{i-1}M(d_1)))$ opérations dans $\mathbb{F}_q$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_1,x_i)$ de degré $(d_1-1,\ell^{i-1}-1)$, on réécrit alors $a^s$ sous la forme $G(x_i)$ avec $G$ un polynôme à coefficients dans $\mathbb{F}_q$ de degré $d_1\ell^{i-1}$  à l'aide du changement de représentation inverse de celui effectué précédemment. En effet $a^s$ est représenté sous la forme:
 \begin{equation*}
-b_0 + b_1 x_i + b_2 x_i^2 + \cdots + b_{\ell^i-1}x_i^{\ell^i-1}
+b_0 + b_1 x_i + b_2 x_i^2 + \cdots + b_{\ell^{i-1}-1}x_i^{\ell^{i-1}-1}
 \end{equation*}
-avec $b_k$ un élément de $\mathsf{F}_0$ pour tout $k$. En remarquant que
+avec $b_k$ un élément de $\mathsf{F}_1$ pour tout $k$. En remarquant que
 \begin{equation*}
- b_k=b_{k,0} + b_{k,1}x_0 + \cdots + b_{k,d_0-1} x_0^{d_0-1}=b_{k,0} + b_{k,1}x_i^{\ell^i} + b_{k,2} x_i^{2 \times \ell^i} + \cdots + b_{k,d_0-1} x_i^{(d_0-1)\times \ell^i} 
+ b_k=b_{k,0} + b_{k,1}x_1 + \cdots + b_{k,d_1-1} x_1^{d_1-1}=b_{k,0} + b_{k,1}x_i^{\ell^{i-1}} + b_{k,2} x_i^{2 \times \ell^{i-1}} + \cdots + b_{k,d_1-1} x_i^{(d_1-1)\times \ell^{i-1}} 
 \end{equation*}
  avec $b_{k,i}$ un élément de $\mathbb{F}_q$ pour tous $k,i$, on représente $a^s$ sous la forme:
 \begin{equation*}
-b_0^* + b_1^* x_i + b^*_2 x_i^2 + \cdots + b^*_{d_0\ell^i-1} x_i^{d_0\ell^i-1}
+b_0^* + b_1^* x_i + b^*_2 x_i^2 + \cdots + b^*_{d_1\ell^{i-1}-1} x_i^{d_1\ell^{i-1}-1}
 \end{equation*}
  en  utilisant la transformation $b_k^*=b_{u,v}$ pour tous $k,u,v$ tels que $k=ud+v$ avec $0 \leqslant v < d$.
 \end{proof}
@@ -2284,22 +2284,22 @@ Maintenant que le coût du Frobenius a été établi nous allons voir une autre 
 Les résultats présentés sont issus d'idées développées dans \cite{Doliskani-Schost14} et sont adaptés à la construction de tour d'extensions $\ell$-adiques présentée ici où le coût du Frobenius est très faible. Le résultat à retenir est celui pour les extensions dyadiques du fait de son usage pratique même si une généralisation est présentée. 
 
 \begin{prop}
-Soit $\mathbb{F}_q, \mathsf{F}_0, \cdots \mathsf{F}_k$ une tour d'extensions $\ell$-adiques. Soit $\delta$ un carré non nul de $\mathsf{F}_k$, alors une racine carrée $\gamma$ de $\delta$ est calculée en $O(M(\ell^kd_0)\log(\ell^kq))$ opérations sur $\mathbb{F}_q$.
+Soit $\mathbb{F}_q, \mathsf{F}_1, \cdots \mathsf{F}_k$ une tour d'extensions $\ell$-adiques. Soit $\delta$ un carré non nul de $\mathsf{F}_k$, alors une racine carrée $\gamma$ de $\delta$ est calculée en $O(M(\ell^{k-1}d_1)\log(\ell^{k-1}q))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
-Soit $\delta$ un carré non nul de $\mathsf{F}_k$ ayant pour racine carrée $\gamma$. Soit $\beta$ dans $\mathsf{F}_0$ défini de la manière suivante:
+Soit $\delta$ un carré non nul de $\mathsf{F}_k$ ayant pour racine carrée $\gamma$. Soit $\beta$ dans $\mathsf{F}_1$ défini de la manière suivante:
 \begin{align}
 \label{eq:trace-square-root}
-\beta=T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma)=\sum_{i=0}^{\ell^k-1}\gamma^{|\mathsf{F}_0|^i}&=\gamma(1+\gamma^{|\mathsf{F}_0|-1}+\cdots+ \gamma^{|\mathsf{F}_0|^{\ell^k-1}-1} ) \\
-&=\gamma(1+\delta^{(|\mathsf{F}_0|-1)/2}+\cdots+ \delta^{(|\mathsf{F}_0|^{\ell^k-1}-1)/2}) \\
+\beta=T_{\mathsf{F}_k/\mathsf{F}_1}(\gamma)=\sum_{i=0}^{\ell^{k-1}-1}\gamma^{|\mathsf{F}_1|^i}&=\gamma(1+\gamma^{|\mathsf{F}_1|-1}+\cdots+ \gamma^{|\mathsf{F}_1|^{\ell^{k-1}-1}-1} ) \\
+&=\gamma(1+\delta^{(|\mathsf{F}_1|-1)/2}+\cdots+ \delta^{(|\mathsf{F}_0|^{\ell^{k-1}-1}-1)/2}) \\
 &=\gamma \eta
 \end{align}
 en posant 
 \begin{align*}
-\eta=1+\delta^{(|\mathsf{F}_0|-1)/2}+\cdots+ \delta^{(|\mathsf{F}_0|^{\ell^k-1}-1)/2}.
+\eta=1+\delta^{(|\mathsf{F}_0|-1)/2}+\cdots+ \delta^{(|\mathsf{F}_0|^{\ell^{k-1}-1}-1)/2}.
 \end{align*}
-Maintenant si l'on met au carré l'équation \eqref{eq:trace-square-root} on obtient alors l'équation suivante dans $\mathsf{F}_0$: 
+Maintenant si l'on met au carré l'équation \eqref{eq:trace-square-root} on obtient alors l'équation suivante dans $\mathsf{F}_1$: 
 \begin{equation*}
 \beta^2=\delta \eta^2. 
 \end{equation*}
@@ -2308,40 +2308,40 @@ Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation
  \gamma=\beta \eta^{-1}.
 \end{equation*}
 Sans perte de généralité on peut supposer que l'on a $\eta \neq 0$, si ce n'est pas le cas alors on peut remplacer $\delta$ par $\delta c^2$ avec $c$ choisi aléatoirement parmi les inversibles de $\mathsf{F}_k$.
-$O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c) \neq 0$. En effet il y a $|\mathsf{F}_0|^{\ell^k}/|\mathsf{F}_0|$ valeurs de $c$ pour lesquelles on a $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c) = 0$ ainsi la probabilité d'avoir $T_{\mathsf{F}_k/\mathsf{F}_0}(\gamma c) \neq 0$ est de $1-(|\mathsf{F}_0|^{\ell^k}/|\mathsf{F}_0|)/(|\mathsf{F}_0|^{\ell^k})=1-1/|\mathsf{F}_0|>1/2$.
+$O(1)$ essais sont nécessaires en moyenne pour obtenir $T_{\mathsf{F}_k/\mathsf{F}_1}(\gamma c) \neq 0$. En effet il y a $|\mathsf{F}_1|^{\ell^{k-1}}/|\mathsf{F}_1|$ valeurs de $c$ pour lesquelles on a $T_{\mathsf{F}_k/\mathsf{F}_1}(\gamma c) = 0$ ainsi la probabilité d'avoir $T_{\mathsf{F}_k/\mathsf{F}_1}(\gamma c) \neq 0$ est de $1-(|\mathsf{F}_1|^{\ell^{k-1}}/|\mathsf{F}_1|)/(|\mathsf{F}_1|^{\ell^{k-1}})=1-1/|\mathsf{F}_1|>1/2$.
 
-Le coût de calcul de $\beta$ est de $O(M(d_0)\log(q)+C(d_0)\log(d_0))$ opérations en moyenne sur $\mathbb{F}_q$ avec $C(n)=O(n^{1.67})$ d'après \cite{Doliskani-Schost14}. Ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
+Le coût de calcul de $\beta$ est de $O(M(d_1)\log(q)+C(d_1)\log(d_1))$ opérations en moyenne sur $\mathbb{F}_q$ avec $C(n)=O(n^{1.67})$ d'après \cite{Doliskani-Schost14}. Ainsi seul le coût du calcul de $\eta$ est crucial pour obtenir une complexité satisfaisante.
 
-Soit $\lambda$ un élément de $\mathsf{F}_k$ défini par $\lambda = \delta^{(|\mathsf{F}_0|-1)/2} $ on a alors la relation suivante:
+Soit $\lambda$ un élément de $\mathsf{F}_k$ défini par $\lambda = \delta^{(|\mathsf{F}_1|-1)/2} $ on a alors la relation suivante:
 \begin{equation*}
-\eta = 1 + \lambda + \lambda^{1+|\mathsf{F}_0|} + \lambda^{1+|\mathsf{F}_0|+|\mathsf{F}_0|^{2}} + \cdots + \lambda^{1+|\mathsf{F}_0|+|\mathsf{F}_0|^{2}+\cdots+|\mathsf{F}_0|^{\ell^k-2}} 
+\eta = 1 + \lambda + \lambda^{1+|\mathsf{F}_1|} + \lambda^{1+|\mathsf{F}_1|+|\mathsf{F}_1|^{2}} + \cdots + \lambda^{1+|\mathsf{F}_1|+|\mathsf{F}_1|^{2}+\cdots+|\mathsf{F}_1|^{\ell^{k-1}-2}} 
 \end{equation*}
 Pour $m \geqslant 0$ on définit:
 \begin{equation}
-\zeta_m=\lambda^{|\mathsf{F}_0|+|\mathsf{F}_0|^2+\cdots+|\mathsf{F}_0|^{m}} 
+\zeta_m=\lambda^{|\mathsf{F}_1|+|\mathsf{F}_1|^2+\cdots+|\mathsf{F}_1|^{m}} 
 \end{equation}
 que l'on peut construire par récurrence:
 \begin{equation*}
-\zeta_1=\gamma^{|\mathsf{F}_0|} \quad \text{et} \quad
+\zeta_1=\gamma^{|\mathsf{F}_1|} \quad \text{et} \quad
 \zeta_m=
 \begin{cases} 
-\zeta_{m/2}  \zeta_{m/2}\zeta_{m/2}^{|\mathsf{F}_0|^{m/2}} \quad \text{si m est pair }\\
-\zeta_{1}  \zeta_{m-1}^{|\mathsf{F}_0|} \quad \text{si m est impair}
+\zeta_{m/2}  \zeta_{m/2}\zeta_{m/2}^{|\mathsf{F}_1|^{m/2}} \quad \text{si m est pair }\\
+\zeta_{1}  \zeta_{m-1}^{|\mathsf{F}_1|} \quad \text{si m est impair}
 \end{cases}
 \end{equation*}
 
 On définit aussi
 \begin{equation*}
-\varepsilon_m=\lambda^{|\mathsf{F}_0|} + \lambda^{|\mathsf{F}_0|+|\mathsf{F}_0|^{2}} + \cdots + \lambda^{|\mathsf{F}_0|+|\mathsf{F}_0|^{2}+\cdots+|\mathsf{F}_0|^{m}}
+\varepsilon_m=\lambda^{|\mathsf{F}_1|} + \lambda^{|\mathsf{F}_1|+|\mathsf{F}_1|^{2}} + \cdots + \lambda^{|\mathsf{F}_1|+|\mathsf{F}_1|^{2}+\cdots+|\mathsf{F}_1|^{m}}
 \end{equation*} 
 on a alors une relation de récurrence pour le calcul de $\varepsilon$:
 
 \begin{equation}
 \label{eq:varepsilon}
-\varepsilon_1=\lambda^{|\mathsf{F}_0|} \quad \text{et} \quad
+\varepsilon_1=\lambda^{|\mathsf{F}_1|} \quad \text{et} \quad
 \varepsilon_m=
 \begin{cases} 
-\varepsilon_{m/2} + \zeta_{m/2}\varepsilon_{m/2}^{|\mathsf{F}_0|^{m/2}} \text{si m est pair }\\
+\varepsilon_{m/2} + \zeta_{m/2}\varepsilon_{m/2}^{|\mathsf{F}_1|^{m/2}} \text{si m est pair }\\
 \varepsilon_{m-1} + \zeta_{m} \text{si m est impair}
 \end{cases}
 \end{equation}
@@ -2349,8 +2349,8 @@ on a alors une relation de récurrence pour le calcul de $\varepsilon$:
 Ainsi on obtient $\eta=1+\lambda+\lambda \varepsilon_{\ell^k-2}$. 
 
  
-Le calcul de $\lambda$ a un coût de $O(M(\ell^kd_0)\log(q))$ opérations sur $\mathbb{F}_q$. Le calcul de $\varepsilon_1$ et $\zeta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, en supposant que le calcul de $\varepsilon_m$ et $\zeta_m$ ait déjà été effectué. En utilisant les équations \eqref{eq:varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathsf{F}_{k}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ sont calculés en $O(M(\ell^kd_0)\log(\ell^k)+M(\ell^kd_0)\log(q))=O(M(\ell^kd_0)\log(\ell^kq))$ opérations sur $\mathbb{F}_q$.
-Le coût de calcul de $\gamma$ et $\beta$ étant négligeables par rapport à celui de $\eta$, on a alors un coût total de $O(M(\ell^kd_0)\log(\ell^kq))$ opérations sur $\mathbb{F}_q$.
+Le calcul de $\lambda$ a un coût de $O(M(\ell^{k-1}d_1)\log(q))$ opérations sur $\mathbb{F}_q$. Le calcul de $\varepsilon_1$ et $\zeta_1$ se fait quant à lui à l'aide de $O(1)$ fois le Frobenius. Calculons alors par récurrence le coût total, en supposant que le calcul de $\varepsilon_m$ et $\zeta_m$ ait déjà été effectué. En utilisant les équations \eqref{eq:varepsilon} $\varepsilon_{2m}$ et $\zeta_{2m}$ ou $\varepsilon_{2m+1}$ et $\zeta_{2m+1}$ peuvent être calculés en utilisant $O(1)$ Frobenius et $O(1)$ multiplications sur $\mathsf{F}_{k}$. Ainsi $\varepsilon_n$ et $\eta=1+\lambda+\lambda\varepsilon_{n-2}$ sont calculés en $O(M(\ell^{k-1}d_1)\log(\ell^{k-1})+M(\ell^{k-1}d_1)\log(q))=O(M(\ell^{k-1}d_1)\log(\ell^{k-1}q))$ opérations sur $\mathbb{F}_q$.
+Le coût de calcul de $\gamma$ et $\beta$ étant négligeables par rapport à celui de $\eta$, on a alors un coût total de $O(M(\ell^{k-1}d_1)\log(\ell^{k-1}q))$ opérations sur $\mathbb{F}_q$.
 
 \end{proof}
 
@@ -2391,11 +2391,11 @@ Les coûts des différentes opérations dans de telles tours d'extensions $\ell$
   \hline
   \text{Opérations}  & \text{Coûts}  \\
    \hline
-  \text{addition/soustraction}  & $O(\ell^kd_0)$ \\
-  \text{multiplication}  & $\mathsf{M}(\ell^kd_0)+ O(\ell^kd_0)$  \\
-  \text{division} & $O(\mathsf{M}(\ell^kd_0)\log(\ell^k)d_0)$ \\
-  \text{Frobenius} & $O(\ell^k \mathsf{M}(d_0) + d_0 \mathsf{M}(d_0)\log(q))$  \\
-  \text{racine carrée} & $ O(\mathsf{M}(\ell^kd_0)\log(\ell^kq)) (\text{en moyenne}) $ \\
+  \text{addition/soustraction}  & $O(\ell^{k-1}d_1)$ \\
+  \text{multiplication}  & $\mathsf{M}(\ell^{k-1}d_1)+ O(\ell^{k-1}d_1)$  \\
+  \text{division} & $O(\mathsf{M}(\ell^{k-1}d_1)\log(\ell^{k-1})d_1)$ \\
+  \text{Frobenius} & $O(\ell^{k-1} \mathsf{M}(d_1) + d_1 \mathsf{M}(d_1)\log(q))$  \\
+  \text{racine carrée} & $ O(\mathsf{M}(\ell^{k-1}d_1)\log(\ell^{k-1}q)) (\text{en moyenne}) $ \\
   \text{racine $\ell$-ème} & $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$\\
   \hline
 \end{tabular}
@@ -2440,10 +2440,10 @@ en particulier si l'on note $T$ le polynôme minimal de $v$ il est clair que
  $A(v)+T(v)=w$, on va donc chercher à calculer le représentant minimal de 
 $A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$.
 Pour un polynôme $A$ solution de ~\ref{eq:int:A} pour tout 
-$\pi \in \mathsf{Gal}(\mathsf{F}_n / \mathbb{F}_q):$ $A(\pi(v))=\pi(w)$. De même
+$\pi \in \mathsf{Gal}(\mathsf{F}_n : \mathbb{F}_q):$ $A(\pi(v))=\pi(w)$. De même
 tout polynôme interpolant $\pi(v)$ sur $\pi(w)$ pour tout 
-$\pi \in \mathsf{Gal}(\mathsf{F}_n / \mathbb{F}_q)$ est invariant sous l'action
-de tout élément de de $\mathsf{Gal}(\mathsf{F}_n / \mathbb{F}_q)$ et est donc 
+$\pi \in \mathsf{Gal}(\mathsf{F}_n : \mathbb{F}_q)$ est invariant sous l'action
+de tout élément de de $\mathsf{Gal}(\mathsf{F}_n : \mathbb{F}_q)$ et est donc 
 défini dans $\mathbb{F}_q$. On peut donc construire un tel polynôme $A$ par 
 interpolation. 
 
@@ -2455,7 +2455,7 @@ Frobenius.
 
 Ainsi on note $T^{(0)}=(x-v)$, $\sigma_i$ l'application qui applique à tous les
  coefficients d'un polynôme à coefficients dans $\mathsf{F}_{n-i}$ l'action 
- d'un élément générateur de $\mathsf{Gal}(\mathsf{F}_{n-i} / \mathsf{F}_{n-i-1})$. En 
+ d'un élément générateur de $\mathsf{Gal}(\mathsf{F}_{n-i} : \mathsf{F}_{n-i-1})$. En 
  supposant que l'on connaisse un $T^{(i)}$ pour $i < n$ de degré $\ell^i$ à 
  coefficients dans $\mathsf{F}_{n-i}$ alors pour $j \in [0 ; \ell-1]$ on définit
  $T^{(i,j)}=\sigma_i^j(T^{(i)})$, et l'on pose:  
@@ -2463,7 +2463,7 @@ Ainsi on note $T^{(0)}=(x-v)$, $\sigma_i$ l'application qui applique à tous les
 T^{(i+1)}=\prod_{j=0}^bT^{(i,j)} \qquad\text{avec}\qquad
   b = \begin{cases}
     \ell-1 &\text{si $i<n-1$,}\\
-    d_0-1 &\text{sinon.}
+    d_1-1 &\text{sinon.}
   \end{cases}
 \end{equation*}
 Il est alors évident que $T^{(i+1)}$ est le polynôme minimal de $v$ sur 
@@ -2499,10 +2499,10 @@ $\mathsf{F}_{n-i}$. On calcule alors le polynôme $L \in \mathsf{F}_{n-i}[x]/
 \begin{equation}
 \label{eq:crt:int}
 L= \sigma(A^{(i)}) \bmod \sigma(T^{(i)}) \quad \text{pour tout} \quad \sigma \in 
-\mathsf{Gal}(\mathsf{F}_{n-i}/ \mathsf{F}_{n-i-1}) 
+\mathsf{Gal}(\mathsf{F}_{n-i}: \mathsf{F}_{n-i-1}) 
 \end{equation} 
 ce polynôme $L$ étant invariant sous l'action du groupe de Galois: 
-$\mathsf{Gal}(\mathsf{F}_{n-i}/ \mathsf{F}_{n-i-1})$, il est alors défini dans
+$\mathsf{Gal}(\mathsf{F}_{n-i}: \mathsf{F}_{n-i-1})$, il est alors défini dans
  $\mathsf{F}_{n-i-1}$. Par \ref{eq:crt:int} on a bien $L(v)=A^{(i)}(v)=w$, 
  ainsi on a $L=A^{(i+1)}$. 
  
@@ -2515,7 +2515,7 @@ $\mathsf{Gal}(\mathsf{F}_{n-i}/ \mathsf{F}_{n-i-1})$, il est alors défini dans
 A^{(i+1)}=\sum_{j=0}^{b}A^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} \qquad\text{avec}\qquad
   b = \begin{cases}
     \ell-1 &\text{si $i<n-1$,}\\
-    d_0 -1 &\text{sinon.}
+    d_1 -1 &\text{sinon.}
   \end{cases}
 \end{equation*}
 on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A} 
