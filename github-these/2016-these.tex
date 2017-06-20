@@ -5878,6 +5878,7 @@ deux basées sur les directions dans le volcan de $\ell$-isogénies une pour le
 cas Elkies et une pour le cas Atkin.
 
 \section{Cas Elkies}
+\label{sec:cou:elk}
  Cette section s'inspire de travaux effectués en collaboration avec Luca De Feo,
 J\'er\^ome Pl\^ut et \'Eric Schost qui ont fait l'objet d'une publication 
 \cite{Defeo_Plut_Schost_2016}. 
@@ -7736,19 +7737,63 @@ de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
 \begin{proof}
-Voir la preuve en annexe~\ref{cha:ann:comp}. \todo{Laisser cette preuve elle est cruciale}
+Voir la preuve en annexe~\ref{cha:ann:comp}. \todo{En fait non pas de preuve du tout...}
 \end{proof}
 
 
-On voit dans cette preuve que le coût de changement de représentation des 
-éléments de $\mathbb{K}_i$ vers une représentation de la forme 
-$\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$ est crucial dans le coût total
-du Frobenius. En effet si on compare ce résultat avec celui du 
-théorème~\ref{thm:frob-ell} on voit l'influence du changement de représentation
-à coût nul.
+%On voit dans cette preuve que le coût de changement de représentation des 
+%éléments de $\mathbb{K}_i$ vers une représentation de la forme 
+%$\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$ est crucial dans le coût total
+%du Frobenius. En effet si on compare ce résultat avec celui du
+ 
+On obtient donc un résultant moins bon que celui du
+théorème~\ref{thm:frob-ell}, or en adaptant les mêmes méthodes on aurait du 
+avoir le coût de cette opération dominé par $O(d_i\ell_i^{k_i})$. Cependant 
+ici, contrairement au cas du théorème~\ref{thm:frob-ell}, on doit prendre en 
+compte le coût du changement de représentation qui domine la complexité. Ainsi 
+il est crucial si l'on veut obtenir des résultats similaire à la 
+section~\ref{sec:cou:elk} d'avoir une construction de compositum permettant un 
+changement de représentation à un coût linéaire.
+
+
 
 Une adaptation des méthodes de calcul de polynôme d'interpolation décrites dans
-la section~\ref{sec:interpolation} à ce contexte est développée en 
+la section~\ref{sec:interpolation} à ce contexte est faite pour le calcul de 
+polynôme minimal $T=T^{(n)}$(en reprenant une notation similaire) d'élément de 
+$\mathbb{K}_n \setminus \mathbb{K}_{n-1}$.
+Ainsi comme dans la méthode développée dans la section~\ref{sec:interpolation} 
+pour le calcul d'un tel polynôme d'interpolation on est amené à 
+multiplier des polynômes à coefficients dans $\mathbb{K}_{n-i-1} \otimes 
+\mathsf{F}_{(n-i,k)}$ qui de par leur degré font que le coût d'une telle 
+multiplication n'est que de $\tilde{O}(\mathsf{M}(p_n))$, ce qui en comparant 
+avec les résultats du lemme~\ref{lemma:interpolation:minpoly} devrait être le 
+coût dominant. Cependant comme dit précédemment le Frobenius n'a pas un coût 
+similaire du fait des changements de représentation qui domine son coût. Ainsi 
+l'application du Frobenius aux polynômes $T^{(i)}_k$ a un coût de $O(\mathsf{M}
+(p_n)p_{n-i-1}^{(\omega-1)/2})$, or on doit appliquer le Frobenius 
+$\ell_{n-i}(n_{n-i}+1)$ fois et donc on minore ce coût par $\Omega(\mathsf{M}
+(p_n)p_{n-1}^{(\omega-1)/2}\max_i(\ell_{i}(n_{i}+1)))$.
+
+De la même manière pour le calcul des polynômes d'interpolation $A$ tels 
+$A(v)=w$ avec $v,w \in \mathbb{K}_n \setminus \mathbb{K}_{n-1}$, le coût est
+encore une fois dominé par les Frobenius et on minore le coût d'un tel calcul
+par $\Omega(\mathsf{M}(p_n \max_i(d_i\ell_i^{n_i}))\max_i(\ell_i)p_{n-1}^{(\omega-1)/2})$.
+
+Ensuite pour $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n~\setminus~\mathbb{K}_{n-1}$, $t_i$ le degré des polynômes minimaux de $v_i$, on note  $t=\sum t_i$. 
+On veut alors calculer les polynômes
+  \begin{itemize}
+  \item $T\in \mathbb{F}_q[x]$ de degré $t$ tel que $T(v_i)=0$ pour tout $i$,
+    et
+  \item $A\in \mathbb{F}_q[x]$ de degré inférieur à $t$ tel que $A(v_i)=w_i$ pour
+    tout $i$.
+  \end{itemize}
+On utilise à nouveau la même méthode que celle utilisée dans la 
+section~\ref{sec:interpolation}, le calcul de $T$ à partir des $T_i$ a un même
+coût que dans la proposition~\ref{prop:interpol} de $O(\mathsf{M}(t)\log(s))$. 
+Cependant comme on a vu précédemment le coût de calcul des $T_i$ est de $\Omega(\mathsf{M}(t_j)(t_j)^{(\omega-1)/2}\max_i(\ell_i))$ on majore donc le cout total par $\Omega(\mathsf{M}(t)(t_j)^{(\omega-1)/2}\max_i(\ell_i))$ par superlinéarité de $\mathsf{M}$
+
+
+ développée en 
 annexe~\ref{cha:ann:comp}, on ne retranscrit ici que le résultat final suivant.
 
 \begin{lem}
