@@ -7308,6 +7308,100 @@ a besoin de définir quelques notions. On
 va supposer sans perte de généralités que les $k_i$ pour $i \in [1,n]$ sont 
 fixés tels que l'on ait $\prod_{i=1}^{n} \ell_i^{2k_i-2}(\ell_i+1)>4r$.
 
+\subsection{Théorème des Restes Chinois Elliptique et son application à l'algorithme de Couveignes $\ell$-adique}
+\label{sub:TRCE:cou}
+
+
+\begin{nota}
+Introduisons la notation suivante afin d'alléger l'écriture par la suite: 
+$\upsilon_n=\prod_{i=1}^n \ell_i^{k_i}$, 
+$\vartheta_i=\frac{\upsilon_n}{\ell_i^{k_i}}$.
+\end{nota}
+
+\'Enonçons une généralisation du thèorème des restes chinois pour une courbe 
+elliptique à $n$ nombres premiers distincts.
+
+\paragraph{Théorème des Restes Chinois généralisés sur une courbe Elliptique $E$}
+Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 \in E[\ell_1^{k_1}], \dots, P_n \in E[\ell_n^{k_n}]$, alors le Théorème des Restes Chinois revient à déterminer un point $P \in E[\upsilon_n]$ tel que $[\vartheta_{i_0}] P=P_{i_0}$ pour $i_0 \in [1,n]$.
+
+%\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i}
+On présente tout d'abord en appendice l'algoritme~\ref{alg:TRC:init:gen} qui 
+pour un point $P_{i}$ d'ordre $\ell_{i}^{k_{i}}$ calcule un point $P$ d'ordre 
+$\upsilon_n$ tel que $[\vartheta_{i}]P=P_{i}$ et $[\ell_{i}^{k_{i}}]P$ pour 
+$i \in [1,n]$. \'A l'aide de l'algorithme~\ref{alg:TRC:init:gen} on peut résoudre le 
+Théorème des Restes Chinois comme montré dans l'algorithme~\ref{alg:TRC}.
+
+
+
+Cette approche du Théorème des Restes Chinois a été motivée pour l'appliquer à 
+des points (partiellement) horizontaux d'ordre $\ell_i^{k_i}$, la proposition 
+suivante montre que cette utilisation du théorème des restes chinois fait sens 
+dans le contexte de l'algorithme de Couveignes.
+
+\begin{prop}
+\label{pro:par:TRC}
+Soient $\ell_1, \ell_2$ deux nombres premiers distincts de Elkies, 
+$P_1 \in E[\ell_1^{k_1}]$ un point horizontal d'ordre 
+$\ell_1^{k_1}$ et de direction $\lambda_1$, $P_2 \in E[\ell_2^{k_2}]$ un point 
+horizontal d'ordre $\ell_2^{k_2}$ et de direction $\lambda_2$. Soit $P \in 
+E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$ un point d'ordre 
+$\ell_1^{k_1}\ell_2^{k_2}$ tel que $\ell_1^{k_1}P=P_2$ et $\ell_2^{k_2}P=P_1$.
+Soit $\phi$ une isogénie de degré $r$ premier avec $\ell_1, \ell_2$ alors 
+$\phi(P)$ est tel que
+\begin{itemize}
+\item $\ell_1^{k_1}\phi(P)$ est un point horizontal d'ordre 
+$\ell_2^{k_2}$ et de direction $\lambda_2$,  
+\item $\ell_2^{k_2}\phi(P)$ est un point horizontal d'ordre 
+$\ell_1^{k_1}$ et de direction $\lambda_1$,
+\end{itemize}
+\end{prop}
+
+\begin{proof}
+Par un raisonnement similaire à la preuve de la proposition~\ref{pro:par:iso}, 
+vu que $\phi$ est de degré $r$ premier avec $\ell_1$ et $\ell_2$ alors on a un 
+isomorphisme de modules de Tate qui commutent avec le Frobenius.
+\end{proof}
+
+Cette proposition se généralise à $n$ nombres de Elkies $\ell_1, \dots, \ell_n$
+distincts.
+
+\begin{nota}
+Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers de Elkies distincts, $P$ un
+ point d'ordre $\upsilon_n$ de $E$ construit à l'aide du 
+ théorème des restes chinois (voir algorithme~\ref{alg:TRC}) tel que 
+$[\vartheta_i]P=P_i$ avec $P_i$ des points (partiellement) horizontaux de 
+direction $\lambda_i$ et profondeur $e_i$, alors 
+on dit que $P$ est de direction $(\lambda_1, \dots, \lambda_n)$ et de 
+profondeur $(e_1, \dots, e_n)$. 
+\end{nota}
+
+\begin{cor}
+Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers de Elkies distincts et 
+premiers avec $r$, $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ 
+qui se situent à une profondeur $e_i$ du cratère du volcan de 
+$\ell_i$-isogénies pour $i \in [1,n]$. Alors pour $P$ un
+ point d'ordre $\upsilon_n$ de $E$ construit à l'aide de 
+l'algorithme~\ref{alg:TRC} tel que $[\vartheta_i]P=P_i$ 
+avec $P_i$ des points (partiellement) horizontaux direction $\lambda_i$ et 
+profondeur $e_i$, et $P'$ un point d'ordre $\upsilon$ de $E'$ construit à 
+l'aide de l'algorithme~\ref{alg:TRC} tel que $[\vartheta_i]P'=P'_i$ avec $P'_i$
+des points (partiellement) horizontaux direction $\lambda_i$ et profondeur 
+$e_i$ alors $\phi(P) \in \langle P' \rangle$. 
+\end{cor}
+
+
+\begin{rem}
+Une application de la proposition~\ref{pro:par:TRC} et de la notation 
+précédente est que pour deux courbes elliptiques $E,E'$ $r$-isogènes avec $r$ 
+premier avec les nombres premiers $\ell_1, \dots, \ell_n$ un point $P \in E$ 
+d'ordre $\upsilon_n$, de direction $(\lambda_1, \dots, \lambda_n)$ et 
+profondeur $(e_1, \dots, e_n)$ a pour image par $\phi$ un point $[a]P' \in E'$
+avec $a \in (\mathbb{Z}/\upsilon_n \mathbb{Z})^{\times}$ et $P'$ un 
+point d'ordre $\upsilon_n$, de direction $(\lambda_1, \dots, \lambda_n)$ et 
+profondeur $(e_1, \dots, e_n)$.
+\end{rem}
+
+
 \subsection{Construction de compositas d'extensions $\ell_i$-adiques}
 \label{sub:con:com}
 \todo{Ajouter notations dans la liste de nomenclatures}
@@ -7400,60 +7494,7 @@ alors de construire le compositum à partir d'une extension de $\mathbb{F}_q$.
 Il reste à voir en pratique le coût de la construction d'un tel compositum pour 
 cela on se sert du résultat suivant issu de \cite[Theorem 1]{BostanFlajoletSalvySchost06}
 
-\begin{prop}[Bostan Flajolet Salvy Schost]
-\label{pro:comp:prod}
-Soient $f$ et $g$ deux polynômes unitaires de $\mathbb{F}_q[z]$ de degré $m$ et $n$, on note alors $D=mn$
-\begin{enumerate}
-\item Pour $p$, la caractéristique de $\mathbb{F}_q$, tel que $p>D$ alors le produit composé de $f$ et $g: f \odot g$ peut être calculé à l'aide de  $O(\mathsf{M}(D))$ opérations sur $\mathbb{F}_q$,
-\item Pour $p$, tel que $p<D$ et $p$ plus grand que la multiplicité des racines de $f \odot g$, alors $f \odot g$ peut être calculé à l'aide de $O(p\mathsf{M}(\frac{D}{p})\log(\frac{D}{p})+\mathsf{M}(D))$
-\end{enumerate}
-\end{prop}
 
-\begin{proof}
-Voir \cite{BostanFlajoletSalvySchost06}.
-\end{proof}
-
-\begin{prop}
-\label{pro:con:comp}
-Le coût de construire $\mathbb{K}_n$
-\begin{enumerate}
-\item pour $p$, la caractéristique de $\mathbb{F}_q$, tel que $p>p_n$
-est majoré par $O(n\mathsf{M}(p_n))$;
-\item pour $p$ tel que $p<p_n$ est majoré par 
-$O(n(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$.
-\end{enumerate}
-\end{prop}
-
-\begin{proof}
-La construction des différentes tours $\ell_i$-adiques se fait à l'aide de 
-$O(d_i\mathsf{M}(d_i)\log(d_i)\log(d_iq)+\mathsf{M}(\ell_i)\log(\ell_i)+d_i^2)$ 
-opérations sur $\mathbb{F}_q$ par le théorème~\ref{thm:init:tow}, on peut 
-majorer cela grossièrement par 
-$O(n \max_i(\ell_i\mathsf{M}(\ell_i)\log(\ell_i)\log(\ell_iq))$.
-On va alors simplifier l'analyse de complexité en ne considérant que les deux 
-cas $p>p_n$ et $p<p_n$.
-
-On travaille donc tout d'abord avec le premier cas, le plus favorable, $p>p_n$.
-Supposons que $\mathbb{K}_i$ ait été construit alors calculons le coût de 
-construire $\mathbb{K}_{i+1}$, on applique alors la 
-proposition~\ref{pro:comp:prod} avec deux polynômes irréductibles de degré 
-$p_i$ et $d_{i+1}\ell_{i+1}^{n_{i+1}}$ cela coûte $O(\mathsf{M}(p_{i+1}))$ 
-opérations sur $\mathbb{F}_q$.Ainsi en majorant grossièrement le coût de cette 
-étape par $O(\mathsf{M}(p_n))$ le coût de construction du compositum 
-$\mathbb{K}_n$ est majoré par $O(n\mathsf{M}(p_n))$.
-
-On travaille maintenant avec le second cas, le moins favorable, $p<p_n$.
-Supposons que $\mathbb{K}_i$ ait été construit alors calculons le coût de 
-construire $\mathbb{K}_{i+1}$, on applique alors la 
-proposition~\ref{pro:comp:prod} avec deux polynômes irréductibles de degré 
-$p_i$ et $d_{i+1}\ell_{i+1}^{n_{i+1}}$ tels que $p<p_{i+1}$ alors le calcul de 
-$\mathbb{K}_i$ coûte 
-$O(p\mathsf{M}(\frac{p_{i+1}}{p})\log(\frac{p_{i+1}}{p})+\mathsf{M}(p_{i+1}))$
-opérations sur $\mathbb{F}_q$. Ainsi en majorant grossièrement le coût de cette
-étape par $O(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n))$
-le coût de construction du compositum $\mathbb{K}_n$ est majoré par 
-$O(n(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$.
-\end{proof}
 
 
 \todo{changer tous les composita en compositum}
@@ -7629,153 +7670,6 @@ On va présenter dans la prochaine sous-section les points que l'on veut
 construire sur un tel compositum ainsi que leur intérêt par rapport à 
 l'algorithme de Couveignes.
 
-\subsection{Théorème des Restes Chinois Elliptique et son application à l'algorithme de Couveignes $\ell$-adique}
-\label{sub:TRCE:cou}
-\begin{defi}
-Soient $\ell_1, \ell_2$ deux nombres premiers distincts, $E$ une courbe 
-elliptique. On énonce alors le Théorème des Restes Chinois dans le contexte des
-courbes elliptiques comme suit:
-
-Soient $P_1$ un point d'ordre $\ell_1^{k_1}$ de $E$ et $P_2$ un point d'ordre $\ell_2^{k_2}$ de $E$ alors ces deux points sont associés isomorphiquement à un point $P$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$ tel que $[\ell_1^{k_1}]P=P_2$ et $[\ell_2^{k_2}]P=P_1$.
-\end{defi}
-
-Maintenant que l'on a énoncé le théorème des restes chinois pour une courbe elliptique montrons comment on le résoud à l'aide de l'algorithme~\ref{alg:TRC:init}.
-\todo{trouver un meilleur nom pour cet algorithme}
-\begin{algorithm}
-\caption{\label{alg:TRC:init}Calcul de $P \in E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$ tel que $[\ell_1^{k_1}]P=0_E$ et $[\ell_2^{k_2}]P=P_1$}
-\begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique, $\ell_1,\ell_2$ deux nombres premiers distincts, $P_1$ un point d'ordre $\ell_1^{k_1}$.
-\ENSURE $P$ un point de $E$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  tel que $[\ell_1^{k_1}]P=0_E$ et $[\ell_2^{k_2}]P=P_1$.
-% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE \label{alg:TRC:init:div} Calcul de $P'=\mathsf{divise}(P_1,\ell_2^{k_2})$;
-\STATE \label{alg:TRC:init:mul} Calcul de $Q=[\ell_1^{k_1}]P'$ un point d'ordre $\ell_2^{k_2}$;
-\STATE \label{alg:TRC:init:prim} Calcul de $R$ la pré-image de $Q$ d'ordre $\ell_2^{k_2}$ par $[\ell_1^{k_1}]$;
-\RETURN $P'-R$
-\end{algorithmic}
-\end{algorithm}
-
-\begin{prop}
-L'algorithme~\ref{alg:TRC:init} est correct.
-\end{prop}
-
-\begin{proof}
-Un calcul direct montre que $[\ell_1^{k_1}](P'-R)=Q-Q=0_E$ et 
- $[\ell_2^{k_2}](P'-R)=P_1-0_E$.
-\end{proof}
-
-\begin{prop}
-La sortie de l'algorithme~\ref{alg:TRC:init} est unique.
-\end{prop}
-
-\begin{proof}
-Soient $P,S$ deux points d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  obtenus par 
-l'algorithme~\ref{alg:TRC:init}  tels que 
-$[\ell_2^{k_2}]P=[\ell_2^{k_2}]S=P_1$ et  
-$[\ell_1^{k_1}]P=[\ell_1^{k_1}]S=0_E$. Alors on a $[\ell_2^{k_2}](P-S)=0$ et 
-$[\ell_1^{k_1}](P-S)=0$ ce qui veut dire que l'ordre de $P-S$ divise à la fois 
-$\ell_1^{k_1}$ et $\ell_2^{k_2}$ d'où le résultat. On vérifie donc bien le 
-théorème des restes chinois.
-\end{proof}
-
-Ainsi une solution du problème des restes chinois pour $P \in E[\mathbb{Z}/
-\ell_1^{k_1} \ell_2^{k_2}\mathbb{Z}]$ tel que $\ell_1^{k_1}P=P_2 \in 
-E[\ell_2^{k_2}]$ et $\ell_2^{k_2}P=P_1 \in E[\ell_1^{k_1}]$ est donnée par 
-$P=Q+R$ avec:
-\begin{itemize}
-\item $Q$ la sortie de l'algorithme~\ref{alg:TRC:init} qui a pour entrées
-$\ell_1^{k_1}, \ell_2^{k_2}$ et $P1$ d'ordre $\ell_1^{k_1}$,
-\item  $R$ la sortie de l'algorithme~\ref{alg:TRC:init} qui a pour entrées
-$\ell_2^{k_2}, \ell_1^{k_1}$ et $P2$ d'ordre $\ell_2^{k_2}$.
-\end{itemize}
-
-\begin{nota}
-Introduisons la notation suivante afin d'alléger l'écriture par la suite: 
-$\upsilon_n=\prod_{i=1}^n \ell_i^{k_i}$, 
-$\vartheta_i=\frac{\upsilon_n}{\ell_i^{k_i}}$.
-\end{nota}
-
-\'Enonçons une généralisation du thèorème des restes chinois pour une courbe 
-elliptique à $n$ nombres premiers distincts.
-
-\paragraph{Théorème des Restes chinois généralisés sur une courbe Elliptique $E$}
-Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 \in E[\ell_1^{k_1}], \dots, P_n \in E[\ell_n^{k_n}]$, alors le théorème des restes chinois revient à déterminer un point $P \in E[\upsilon_n]$ tel que $[\vartheta_{i_0}] P=P_{i_0}$ pour $i_0 \in [1,n]$.
-
-%\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i}
-On présente une généralisation de l'algorithme~\ref{alg:TRC:init} dans 
-l'algorithme~\ref{alg:TRC:init:gen} à l'aide de celui-ci on peut résoudre la 
-généralisation du théorème des restes chinois d'une courbe elliptique à l'aide 
-de l'algorithme~\ref{alg:TRC}. Ces algorithmes sont présentés et leurs 
-complexités sont analysées lorsqu'ils sont appliqués sur le compositum 
-$\mathbb{K}_n$ dans la sous-section suivante.
-
-
-Cette approche du théorème des restes chinois a été motivée pour l'appliquer à 
-des points (partiellement) horizontaux d'ordre $\ell_i^{k_i}$, la proposition 
-suivante montre que cette utilisation du théorème des restes chinois fait sens 
-dans le contexte de l'algorithme de Couveignes.
-
-\begin{prop}
-\label{pro:par:TRC}
-Soient $\ell_1, \ell_2$ deux nombres premiers distincts de Elkies, 
-$P_1 \in E[\ell_1^{k_1}]$ un point horizontal d'ordre 
-$\ell_1^{k_1}$ et de direction $\lambda_1$, $P_2 \in E[\ell_2^{k_2}]$ un point 
-horizontal d'ordre $\ell_2^{k_2}$ et de direction $\lambda_2$. Soit $P \in 
-E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$ un point d'ordre 
-$\ell_1^{k_1}\ell_2^{k_2}$ tel que $\ell_1^{k_1}P=P_2$ et $\ell_2^{k_2}P=P_1$.
-Soit $\phi$ une isogénie de degré $r$ premier avec $\ell_1, \ell_2$ alors 
-$\phi(P)$ est tel que
-\begin{itemize}
-\item $\ell_1^{k_1}\phi(P)$ est un point horizontal d'ordre 
-$\ell_2^{k_2}$ et de direction $\lambda_2$,  
-\item $\ell_2^{k_2}\phi(P)$ est un point horizontal d'ordre 
-$\ell_1^{k_1}$ et de direction $\lambda_1$,
-\end{itemize}
-\end{prop}
-
-\begin{proof}
-Par un raisonnement similaire à la preuve de la proposition~\ref{pro:par:iso}, 
-vu que $\phi$ est de degré $r$ premier avec $\ell_1$ et $\ell_2$ alors on a un 
-isomorphisme de modules de Tate qui commutent avec le Frobenius.
-\end{proof}
-
-Cette proposition se généralise à $n$ nombres de Elkies $\ell_1, \dots, \ell_n$
-distincts.
-
-\begin{nota}
-Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers de Elkies distincts, $P$ un
- point d'ordre $\upsilon_n$ de $E$ construit à l'aide du 
- théorème des restes chinois (voir algorithme~\ref{alg:TRC}) tel que 
-$[\vartheta_i]P=P_i$ avec $P_i$ des points (partiellement) horizontaux de 
-direction $\lambda_i$ et profondeur $e_i$, alors 
-on dit que $P$ est de direction $(\lambda_1, \dots, \lambda_n)$ et de 
-profondeur $(e_1, \dots, e_n)$. 
-\end{nota}
-
-\begin{cor}
-Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers de Elkies distincts et 
-premiers avec $r$, $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ 
-qui se situent à une profondeur $e_i$ du cratère du volcan de 
-$\ell_i$-isogénies pour $i \in [1,n]$. Alors pour $P$ un
- point d'ordre $\upsilon_n$ de $E$ construit à l'aide de 
-l'algorithme~\ref{alg:TRC} tel que $[\vartheta_i]P=P_i$ 
-avec $P_i$ des points (partiellement) horizontaux direction $\lambda_i$ et 
-profondeur $e_i$, et $P'$ un point d'ordre $\upsilon$ de $E'$ construit à 
-l'aide de l'algorithme~\ref{alg:TRC} tel que $[\vartheta_i]P'=P'_i$ avec $P'_i$
-des points (partiellement) horizontaux direction $\lambda_i$ et profondeur 
-$e_i$ alors $\phi(P) \in \langle P' \rangle$. 
-\end{cor}
-
-
-\begin{rem}
-Une application de la proposition~\ref{pro:par:TRC} et de la notation 
-précédente est que pour deux courbes elliptiques $E,E'$ $r$-isogènes avec $r$ 
-premier avec les nombres premiers $\ell_1, \dots, \ell_n$ un point $P \in E$ 
-d'ordre $\upsilon_n$, de direction $(\lambda_1, \dots, \lambda_n)$ et 
-profondeur $(e_1, \dots, e_n)$ a pour image par $\phi$ un point $[a]P' \in E'$
-avec $a \in (\mathbb{Z}/\upsilon_n \mathbb{Z})^*$ et $P'$ un 
-point d'ordre $\upsilon_n$, de direction $(\lambda_1, \dots, \lambda_n)$ et 
-profondeur $(e_1, \dots, e_n)$.
-\end{rem}
 On a donc bien une correspondance entre les points définis à l'aide du Théorème
  des Restes Chinois appliqué à des points (partiellement) horizontaux définis 
  sur deux courbes elliptiques $r$-isogènes avec $r$ premier avec $\ell_1, \dots
@@ -7846,7 +7740,7 @@ par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,n_i)}:\mathbb{F}_q)$
  $\ell^k$ de même direction comme dans l'algorithme~\ref{alg:cou:ell-adique}.
  
  On va donc présenter dans la prochaine sous-sous-section l'algorithme qui résulte 
- de cette approche ainsi que son coût.
+ de cette approche ainsi qu'une estimation de son coût.
 
 \subsection{Algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois}
 
@@ -7863,22 +7757,7 @@ d'analyser sa complexité en reprenant les résultats de la
 sous-section~\ref{sub:con:com}: 
 
 
-\begin{algorithm}
-\caption{ \label{alg:TRC:init:gen}  Calcul de $P \in E[\ell_i^{k_{i_0}}]$ tel que 
-$[\upsilon_{i_0}]P=P_{i_0}$ 
-et $[\ell_{i_0}^{k_{i_0}}]P=0_E$}
-\begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique, $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, un point $P_{i_0}$ d'ordre $\ell_i^{k_{i_0}}$ pour $i_0 \in [1,n]$.
-\ENSURE $P$ un point de $E$ d'ordre $\prod_{i=1}^n \ell_i^{k_i}$  tel que $[\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i} ]P=P_{i_0}$ et $[\ell_{i_0}^{k_{i_0}}]P~=~0_E$.
-\STATE $P \leftarrow P_{i_0}$;
-% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE \label{alg:TRC:init:gen:div} Calcul de $P'=\mathsf{divise}(P_{i_0},\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j})$;
-\STATE \label{alg:TRC:init:gen:mul} Calcul de $Q=[\ell_{i_0}^{k_{i_0}}]P'$ un point d'ordre $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$;
-\STATE \label{alg:TRC:init:gen:prim} Calcul de $R$ la pré-image de $Q$ d'ordre $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$ par $[\ell_{i_0}^{k_{i_0}}]$;
-\STATE \label{alg:TRC:init:gen:add}$P \leftarrow P'-R$
-\RETURN $P$
-\end{algorithmic}
-\end{algorithm}
+
 
 
 \begin{prop}
@@ -7958,20 +7837,7 @@ On voit alors que le coût total de l'algorithme est dominé par
 l'étape~\ref{alg:TRC:init:gen:div}.
 \end{proof}
 
-\begin{algorithm}
-\caption{\label{alg:TRC} Théorème des restes chinois sur une courbe elliptique}
-\begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique, $\ell_1,\ell_2, \dots \ell_n$ $n$ nombres premiers distincts, des points $P_i$ d'ordre $\ell_i^{k_i}$ pour $i \in [1,n]$.
-\ENSURE $P$ un point de $E$ d'ordre $\upsilon_n$  tel que $[\vartheta_{i_0} ] P=P_{i_0}$ pour $i_0 \in [1,n]$.
-% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE $P \leftarrow 0_E$;
-\FOR{$i=1$ à $n$}
-\STATE $Q$ sortie de l'algorithme~\ref{alg:TRC:init:gen} tel que $\ell_i^{k_i}Q=0$ et $[\vartheta_i]Q=P_i$;
-\STATE $P \leftarrow P+Q$; 
-\ENDFOR
-\RETURN $P$;
-\end{algorithmic}
-\end{algorithm}
+
 
 \begin{prop}
 L'algorithme~\ref{alg:TRC} a une complexité espérée de 
@@ -8252,6 +8118,38 @@ Calcul de $\color{red}P_{\lambda}\color{black},\color{red}P'_{\lambda}\color{bla
 \RETURN $F$
 \ENDIF
 \ENDFOR 
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{ \label{alg:TRC:init:gen}  Calcul de $P \in E[\upsilon_n]$ tel que 
+$[\upsilon_{i_0}]P=P_{i_0}$ 
+et $[\ell_{i_0}^{k_{i_0}}]P=0_E$}
+\begin{algorithmic}[1]
+\REQUIRE $E$: une courbe elliptique, $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, un point $P_{i_0}$ d'ordre $\ell_i^{k_{i_0}}$ pour $i_0 \in [1,n]$.
+\ENSURE $P$ un point de $E$ d'ordre $\prod_{i=1}^n \ell_i^{k_i}$  tel que $[\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i} ]P=P_{i_0}$ et $[\ell_{i_0}^{k_{i_0}}]P~=~0_E$.
+\STATE $P \leftarrow P_{i_0}$;
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE \label{alg:TRC:init:gen:div} Calcul de $P'=\mathsf{divise}(P_{i_0},\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j})$;
+\STATE \label{alg:TRC:init:gen:mul} Calcul de $Q=[\ell_{i_0}^{k_{i_0}}]P'$ un point d'ordre $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$;
+\STATE \label{alg:TRC:init:gen:prim} Calcul de $R$ la pré-image de $Q$ d'ordre $\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\prod}}}\ell_j^{k_j}$ par $[\ell_{i_0}^{k_{i_0}}]$;
+\STATE \label{alg:TRC:init:gen:add}$P \leftarrow P'-R$
+\RETURN $P$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{\label{alg:TRC} Théorème des restes chinois sur une courbe elliptique}
+\begin{algorithmic}[1]
+\REQUIRE $E$: une courbe elliptique, $\ell_1,\ell_2, \dots \ell_n$ $n$ nombres premiers distincts, des points $P_i$ d'ordre $\ell_i^{k_i}$ pour $i \in [1,n]$.
+\ENSURE $P$ un point de $E$ d'ordre $\upsilon_n$  tel que $[\vartheta_{i_0} ] P=P_{i_0}$ pour $i_0 \in [1,n]$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE $P \leftarrow 0_E$;
+\FOR{$i=1$ à $n$}
+\STATE $Q$ sortie de l'algorithme~\ref{alg:TRC:init:gen} tel que $\ell_i^{k_i}Q=0$ et $[\vartheta_i]Q=P_i$;
+\STATE $P \leftarrow P+Q$; 
+\ENDFOR
+\RETURN $P$;
 \end{algorithmic}
 \end{algorithm}
 
@@ -8571,6 +8469,122 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
 
 \printnomenclature
 \chapter{Rebus}
+\section{Generalisation a un nombre compose}
+\begin{defi}
+Soient $\ell_1, \ell_2$ deux nombres premiers distincts, $E$ une courbe 
+elliptique. On énonce alors le Théorème des Restes Chinois dans le contexte des
+courbes elliptiques comme suit:
+
+Soient $P_1$ un point d'ordre $\ell_1^{k_1}$ de $E$ et $P_2$ un point d'ordre $\ell_2^{k_2}$ de $E$ alors ces deux points sont associés isomorphiquement à un point $P$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$ tel que $[\ell_1^{k_1}]P=P_2$ et $[\ell_2^{k_2}]P=P_1$.
+\end{defi}
+
+Maintenant que l'on a énoncé le théorème des restes chinois pour une courbe elliptique montrons comment on le résoud à l'aide de l'algorithme~\ref{alg:TRC:init}.
+\todo{trouver un meilleur nom pour cet algorithme}
+\begin{algorithm}
+\caption{\label{alg:TRC:init}Calcul de $P \in E[\mathbb{Z}/\ell_1^{k_1}\ell_2^{k_2}\mathbb{Z}]$ tel que $[\ell_1^{k_1}]P=0_E$ et $[\ell_2^{k_2}]P=P_1$}
+\begin{algorithmic}[1]
+\REQUIRE $E$: une courbe elliptique, $\ell_1,\ell_2$ deux nombres premiers distincts, $P_1$ un point d'ordre $\ell_1^{k_1}$.
+\ENSURE $P$ un point de $E$ d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  tel que $[\ell_1^{k_1}]P=0_E$ et $[\ell_2^{k_2}]P=P_1$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE \label{alg:TRC:init:div} Calcul de $P'=\mathsf{divise}(P_1,\ell_2^{k_2})$;
+\STATE \label{alg:TRC:init:mul} Calcul de $Q=[\ell_1^{k_1}]P'$ un point d'ordre $\ell_2^{k_2}$;
+\STATE \label{alg:TRC:init:prim} Calcul de $R$ la pré-image de $Q$ d'ordre $\ell_2^{k_2}$ par $[\ell_1^{k_1}]$;
+\RETURN $P'-R$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{prop}
+L'algorithme~\ref{alg:TRC:init} est correct.
+\end{prop}
+
+\begin{proof}
+Un calcul direct montre que $[\ell_1^{k_1}](P'-R)=Q-Q=0_E$ et 
+ $[\ell_2^{k_2}](P'-R)=P_1-0_E$.
+\end{proof}
+
+\begin{prop}
+La sortie de l'algorithme~\ref{alg:TRC:init} est unique.
+\end{prop}
+
+\begin{proof}
+Soient $P,S$ deux points d'ordre $\ell_1^{k_1}\ell_2^{k_2}$  obtenus par 
+l'algorithme~\ref{alg:TRC:init}  tels que 
+$[\ell_2^{k_2}]P=[\ell_2^{k_2}]S=P_1$ et  
+$[\ell_1^{k_1}]P=[\ell_1^{k_1}]S=0_E$. Alors on a $[\ell_2^{k_2}](P-S)=0$ et 
+$[\ell_1^{k_1}](P-S)=0$ ce qui veut dire que l'ordre de $P-S$ divise à la fois 
+$\ell_1^{k_1}$ et $\ell_2^{k_2}$ d'où le résultat. On vérifie donc bien le 
+théorème des restes chinois.
+\end{proof}
+
+Ainsi une solution du problème des restes chinois pour $P \in E[\mathbb{Z}/
+\ell_1^{k_1} \ell_2^{k_2}\mathbb{Z}]$ tel que $\ell_1^{k_1}P=P_2 \in 
+E[\ell_2^{k_2}]$ et $\ell_2^{k_2}P=P_1 \in E[\ell_1^{k_1}]$ est donnée par 
+$P=Q+R$ avec:
+\begin{itemize}
+\item $Q$ la sortie de l'algorithme~\ref{alg:TRC:init} qui a pour entrées
+$\ell_1^{k_1}, \ell_2^{k_2}$ et $P1$ d'ordre $\ell_1^{k_1}$,
+\item  $R$ la sortie de l'algorithme~\ref{alg:TRC:init} qui a pour entrées
+$\ell_2^{k_2}, \ell_1^{k_1}$ et $P2$ d'ordre $\ell_2^{k_2}$.
+\end{itemize}
+
+Il reste à voir en pratique le coût de la construction d'un tel compositum pour 
+cela on se sert du résultat suivant issu de \cite[Theorem 1]{BostanFlajoletSalvySchost06}
+
+\begin{prop}[Bostan Flajolet Salvy Schost]
+\label{pro:comp:prod}
+Soient $f$ et $g$ deux polynômes unitaires de $\mathbb{F}_q[z]$ de degré $m$ et $n$, on note alors $D=mn$
+\begin{enumerate}
+\item Pour $p$, la caractéristique de $\mathbb{F}_q$, tel que $p>D$ alors le produit composé de $f$ et $g: f \odot g$ peut être calculé à l'aide de  $O(\mathsf{M}(D))$ opérations sur $\mathbb{F}_q$,
+\item Pour $p$, tel que $p<D$ et $p$ plus grand que la multiplicité des racines de $f \odot g$, alors $f \odot g$ peut être calculé à l'aide de $O(p\mathsf{M}(\frac{D}{p})\log(\frac{D}{p})+\mathsf{M}(D))$
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+Voir \cite{BostanFlajoletSalvySchost06}.
+\end{proof}
+
+\begin{prop}
+\label{pro:con:comp}
+Le coût de construire $\mathbb{K}_n$
+\begin{enumerate}
+\item pour $p$, la caractéristique de $\mathbb{F}_q$, tel que $p>p_n$
+est majoré par $O(n\mathsf{M}(p_n))$;
+\item pour $p$ tel que $p<p_n$ est majoré par 
+$O(n(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+La construction des différentes tours $\ell_i$-adiques se fait à l'aide de 
+$O(d_i\mathsf{M}(d_i)\log(d_i)\log(d_iq)+\mathsf{M}(\ell_i)\log(\ell_i)+d_i^2)$ 
+opérations sur $\mathbb{F}_q$ par le théorème~\ref{thm:init:tow}, on peut 
+majorer cela grossièrement par 
+$O(n \max_i(\ell_i\mathsf{M}(\ell_i)\log(\ell_i)\log(\ell_iq))$.
+On va alors simplifier l'analyse de complexité en ne considérant que les deux 
+cas $p>p_n$ et $p<p_n$.
+
+On travaille donc tout d'abord avec le premier cas, le plus favorable, $p>p_n$.
+Supposons que $\mathbb{K}_i$ ait été construit alors calculons le coût de 
+construire $\mathbb{K}_{i+1}$, on applique alors la 
+proposition~\ref{pro:comp:prod} avec deux polynômes irréductibles de degré 
+$p_i$ et $d_{i+1}\ell_{i+1}^{n_{i+1}}$ cela coûte $O(\mathsf{M}(p_{i+1}))$ 
+opérations sur $\mathbb{F}_q$.Ainsi en majorant grossièrement le coût de cette 
+étape par $O(\mathsf{M}(p_n))$ le coût de construction du compositum 
+$\mathbb{K}_n$ est majoré par $O(n\mathsf{M}(p_n))$.
+
+On travaille maintenant avec le second cas, le moins favorable, $p<p_n$.
+Supposons que $\mathbb{K}_i$ ait été construit alors calculons le coût de 
+construire $\mathbb{K}_{i+1}$, on applique alors la 
+proposition~\ref{pro:comp:prod} avec deux polynômes irréductibles de degré 
+$p_i$ et $d_{i+1}\ell_{i+1}^{n_{i+1}}$ tels que $p<p_{i+1}$ alors le calcul de 
+$\mathbb{K}_i$ coûte 
+$O(p\mathsf{M}(\frac{p_{i+1}}{p})\log(\frac{p_{i+1}}{p})+\mathsf{M}(p_{i+1}))$
+opérations sur $\mathbb{F}_q$. Ainsi en majorant grossièrement le coût de cette
+étape par $O(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n))$
+le coût de construction du compositum $\mathbb{K}_n$ est majoré par 
+$O(n(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$.
+\end{proof}
+
 
 \section{\'Etude de l'application de la méthode Atkin dans le cas Elkies}
 Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Master13} et sont une 
