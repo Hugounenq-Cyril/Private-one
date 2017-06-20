@@ -175,7 +175,7 @@
 \nomenclature{$d_0$}{Le degré de l'extension $F_{0}$ par rapport à $\mathbb{F}_q$}
 \nomenclature{$\mathsf{F}_{(i,j)}$}{$j$-ème corps de la tour d'extensions $\ell_i$-adiques}
 \nomenclature{$d_i$}{Le degré de l'extension $F_{(i,0)}$ par rapport à $\mathbb{F}_q$}
-\nomenclature{$\mathbb{K}_{j}$}{Le composita isomorphe à $\otimes_{i=1}^{j}\mathsf{F}_{(i,n_i)}$}
+\nomenclature{$\mathbb{K}_{j}$}{Le compositum isomorphe à $\otimes_{i=1}^{j}\mathsf{F}_{(i,n_i)}$}
 \nomenclature{$p_j$}{Le degré de l'extension $\mathbb{K}_{j}$ par rapport à $\mathbb{F}_q$}
 \nomenclature{$\varphi$}{isogénie descendante}
 \nomenclature{$\widehat{\varphi}$}{isogénie montante/ascendante}
@@ -7328,10 +7328,8 @@ Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 \
 On présente tout d'abord en appendice l'algoritme~\ref{alg:TRC:init:gen} qui 
 pour un point $P_{i}$ d'ordre $\ell_{i}^{k_{i}}$ calcule un point $P$ d'ordre 
 $\upsilon_n$ tel que $[\vartheta_{i}]P=P_{i}$ et $[\ell_{i}^{k_{i}}]P$ pour 
-$i \in [1,n]$. \'A l'aide de l'algorithme~\ref{alg:TRC:init:gen} on peut résoudre le 
+$i \in [1,n]$. \`A l'aide de l'algorithme~\ref{alg:TRC:init:gen} on peut résoudre le 
 Théorème des Restes Chinois comme montré dans l'algorithme~\ref{alg:TRC}.
-
-
 
 Cette approche du Théorème des Restes Chinois a été motivée pour l'appliquer à 
 des points (partiellement) horizontaux d'ordre $\ell_i^{k_i}$, la proposition 
@@ -7402,7 +7400,7 @@ profondeur $(e_1, \dots, e_n)$.
 \end{rem}
 
 
-\subsection{Construction de compositas d'extensions $\ell_i$-adiques}
+\subsection{Construction de compositums d'extensions $\ell_i$-adiques}
 \label{sub:con:com}
 \todo{Ajouter notations dans la liste de nomenclatures}
 
@@ -7463,7 +7461,7 @@ Voir \cite[Theorem 2]{BrawleyCarlitz87}
 \end{proof}
 
 
-On peut alors définir les composita dans notre cas particulier.
+On peut alors définir les compositum dans notre cas particulier.
 \begin{defi}
 \label{def:con:com}
 On note $\mathbb{K}_1$ le corps $\mathsf{F}_{(1,n_1)}$. Soit $i \in [1,n-1]$ 
@@ -7486,16 +7484,13 @@ alors de construire le compositum à partir d'une extension de $\mathbb{F}_q$.
 \begin{nota} Afin de simplifier les notations on va 
  noter $m_i=\prod_{i=j}^nd_j\ell_j^{n_j}/d_i\ell_i^{n_i}$ et 
  $p_{i}=\prod_{j=1}^{i}d_j\ell_j^{n_j}$, en particulier $p_{i}$ est le 
- degré du composita $\mathbb{K}_i$ comme extension de $\mathbb{F}_q$, par 
+ degré du compositum $\mathbb{K}_i$ comme extension de $\mathbb{F}_q$, par 
  ailleurs on pose $p_0=1$.
 %$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
 \end{nota}
 
 Il reste à voir en pratique le coût de la construction d'un tel compositum pour 
 cela on se sert du résultat suivant issu de \cite[Theorem 1]{BostanFlajoletSalvySchost06}
-
-
-
 
 \todo{changer tous les composita en compositum}
 
@@ -7528,19 +7523,7 @@ cela on se sert du résultat suivant issu de \cite[Theorem 1]{BostanFlajoletSalv
  Voir \cite{DeFeoDoliskaniSchost14}.
 \end{proof}  
 
-On voit qu'avec la construction de la définition~\ref{def:con:com} on connaît 
-seulement le polynôme, avec la notation de la proposition~\ref{pro:com:inj}, $Q$
-qui définit l'extension $\mathbb{K}_{i-1}$ de degré $p_{i-1}$ de 
-$\mathbb{F}_q$. Ainsi pour connaître tous les polynômes qui définissent les 
-extensions de degé $\frac{\prod_{i=1}^{n}d_i\ell_i^{n_i}}{d_j \ell_j^{n_j}}$ de
-$\mathbb{F}_q$ on doit changer l'ordre des $\ell_i$ dans la construction de la 
-définition~\ref{def:con:com}, on doit donc calculer $n$ constructions 
-différentes de compositum pour pouvoir calculer le plongement de tous les 
-$\mathsf{F}_{(i,n_i)}$ dans $\mathbb{K}_{n}$ cela a un coût majoré par 
-$O(n^2(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$ 
-opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:con:comp}.
-
- On sera ammené à multiplier des polynômes à coefficients dans un 
+ On sera amené à multiplier des polynômes à coefficients dans un 
  compositum, ainsi on a besoin du résultat suivant.
 
  \begin{prop}
@@ -7613,6 +7596,142 @@ Voir \cite{DeFeoDoliskaniSchost14}.
 
 Ainsi on peut appliquer ce résultat pour calculer le coût du Frobenius avec 
 une méhtode similaire à celle du théorème~\ref{thm:frob-ell}
+
+On va présenter dans la prochaine sous-section les points que l'on veut 
+construire sur un tel compositum ainsi que leur intérêt par rapport à 
+l'algorithme de Couveignes.
+
+\subsection{Algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois}
+
+Avant de présenter une analyse des coûts de l'algorithme de Couveignes 
+$\ell_i$-adique dans le cas Elkies avec théorème des restes chinois utilisant la 
+représentation de compositum préconisée par \cite{DeFeoDoliskaniSchost14} et 
+développée dans la sous-section~\ref{sub:con:com} on présente tout d'abord les coûts 
+d'algorithmes de théorème des restes chinois appliqués sur de telles constructions.
+
+\subsubsection{Coût total de l'algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois elliptique}
+\label{sss:crt:cou}
+Nous avons abordé dans la sous-sous-section~\ref{sub:TRCE:cou} l'intérêt 
+d'utiliser un théorème des restes chinois sur une courbe elliptique par rapport
+à l'algorithme de Couveignes $\ell$-adique dans le cas Elkies. En effet on a vu
+qu'un point construit à l'aide du théorème des restes chinois appliqué à des 
+points $P_i,Q_i$ (partiellement) horizontaux de directions $\lambda_i,\mu_i$  
+d'ordre $\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux, 
+était mis en correspondance avec un autre point de même direction.
+Ainsi avec deux bases de points (partiellement) horizontaux $(\color{red}P_{\lambda_1,
+ \dots, \lambda_n}\color{black},\color{blue}Q_{\mu_1, \dots, 
+ \mu_n}\color{black}),(\color{red}P'_{\lambda_1, \dots, \lambda_n}\color{black}
+ ,\color{blue}
+ Q'_{\mu_1, \dots, \mu_n}\color{black})$ de $E[\prod_{i=1}^n\ell_i^{k_i}]$ et 
+ $E'[\prod_{i=1}^n\ell_i^{k_i}]$ l'action de la $r$-isogénie peut être 
+ représentée de la façon suivante:  
+ \begin{equation*}
+\left(
+\begin{matrix}
+\color{red} P'_{\lambda_1,
+ \dots, \lambda_n} \\
+\color{blue} Q'_{\mu_1, \dots, 
+ \mu_n} \color{black}
+\end{matrix}
+\right)= \left(\begin{matrix}
+a & 0 \\
+0 & b
+\end{matrix} \right)
+\left(
+\begin{matrix}
+\color{red} P_{\lambda_1, 
+\dots, \lambda_n} \\
+\color{blue} Q_{\mu_1, \dots, 
+ \mu_n} \color{black}
+\end{matrix}
+\right)
+\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\prod_{i=i}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}.
+\end{equation*}
+
+On a donc bien une correspondance entre les points définis à l'aide du Théorème
+ des Restes Chinois appliqué à des points (partiellement) horizontaux définis 
+ sur deux courbes elliptiques $r$-isogènes avec $r$ premier avec $\ell_1, \dots
+ , \ell_n$.
+ Maintenant énonçons un résultat qui nous permette de déterminer les 
+ représentants d'orbites sous l'action de groupes de Galois en rappelant que 
+ l'on note $\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$ le compositum
+ qui contient tous les éléments $\mathsf{F}_{(i,k_i)}$ des tours d'extensions
+ $\ell_i$-adiques construit d'après les restrictions énoncées dans la 
+ sous-section~\ref{sub:con:com}.
+\begin{prop}
+\label{pro:rep:com}
+Soit $P$ un point d'ordre $\upsilon_n$ de $E(\mathbb{K}_n)$ obtenu à l'aide 
+du théorème des restes chinois appliqué aux points $P_i$ de $E$ d'ordre 
+$\ell_i^{k_i}$ tels que l'orbite générée par l'action de 
+$\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$ sur $P_i$ soit de taille
+ maximale: $d_i\ell_i^{k_i}$.  Alors l'orbite de $P$ selon l'action de 
+ $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$ est elle aussi de taille maximale:
+ $\prod_{i=1}^nd_i\ell_i^{k_i}$.
+\end{prop} 
+
+\begin{proof} 
+Voir la preuve en appendice~\ref{pro:rep:com:app}.
+\end{proof}
+
+\begin{nota}
+Soient $\ell_1, \dots \ell_n$ $n$ nombres premier de Elkies, alors on note 
+$\epsilon_i$ le nombre de représentants de points d'ordre $\ell_i^{k_i}$ sous 
+l'action d'un générateur de $\mathsf{Gal}(\mathsf{F}_{\ell_i^{k_i}}:\mathbb{F}_q)$.
+\end{nota}
+
+On voit donc avec la proposition~\ref{pro:rep:com} que pour déterminer des 
+représentants pour l'orbite selon l'action du groupe de Galois pour des points 
+d'ordre $\upsilon_n$ il suffit de calculer à l'aide du théorème des 
+restes chinois tous les points $P$ d'ordre $\upsilon_n$ 
+tels que tous les choix possibles de représentants $P_i=[\vartheta_i]P$
+par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,n_i)}:\mathbb{F}_q)$
+ aient été effectués. Ainsi le nombre de représentants est
+ donc de $\prod_{i=1}^{n} \epsilon_i$. On calcule donc 
+ tout d'abord les représentants d'ordre $\ell_i^{k_i}$ dans les tours 
+ d'extensions $\ell_i$-adiques, puis on les exprime dans le compositum et enfin
+ on applique $\prod_{i=1}^{n} \epsilon_i$ fois le théorème des restes chinois. 
+ Pour le théorème des restes chinois on a besoin d'appliquer 
+ l'algorithme~\ref{alg:TRC:init:gen} $\sum_{i=1}^{n} \epsilon_i$ fois, une fois
+ pour chaque représentant d'ordre $\ell_i^{k_i}$.
+  
+ On peut dès lors modifier l'algorithme~\ref{alg:cou:ell-adique} de telle sorte
+ que l'on travaille avec deux couples de points d'ordre 
+ $\prod_{i=1}^n\ell_i^{k_i}$ de même direction au lieu de deux points d'ordre
+ $\ell^k$ de même direction comme dans l'algorithme~\ref{alg:cou:ell-adique}.
+ 
+ On va donc présenter dans la prochaine sous-sous-section l'algorithme qui résulte 
+ de cette approche ainsi qu'une estimation de son coût.
+ 
+On applique alors un raisonnement similaire à celui de la sous-
+section~\ref{ssec:cou:elk} qui nous permet alors de décrire dans 
+l'algorithme~\ref{alg:cou:TRC-adique} un algorithme de Couveignes 
+$\ell_i$-adiques dans le cas Elkies avec approche multi-modulaire à l'aide du 
+Théorème des Restes Chinois.
+ 
+\begin{algorithm}
+\caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes $\ell$-adique dans le cas Elkies avec approche muti-modulaire à l'aide du TRC.}
+\begin{algorithmic}[1]
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique pour $i$ allant de $1$ à $n$.
+\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
+% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE Calcul des $k_i$ tels que $\prod_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
+\FOR{$i=1$ à $n$}
+\STATE \label{alg:cou:TRC-adique:bhor} Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black})$ bases (partiellement) horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
+\STATE \label{alg:cou:TRC_adique:rep:uni} Calcul des représentants des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$;
+\ENDFOR
+\STATE \label{alg:cou:TRC-adique:TRC} Calcul de $(P,Q),(P',Q') \in E^2 \times E'^2$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tels que $P$ et $P'$ sont de direction $(\lambda_1, \dots, \lambda_n)$ et $Q$ et $Q'$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
+\STATE \label{alg:cou:TRC-adique:rep} Calcul des listes de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$;
+\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
+\STATE \label{alg:cou:TRC-adique:ord} Actualisation de la liste $L_i'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
+\STATE \label{alg:cou:TRC-adique:int} Calcul des des polynômes $A_{a,b}$ et $T$ par des méthodes similaires à celles décrites dans la section~\ref{sec:interpolation};
+\STATE \label{alg:cou:TRC-adique:Cauchy} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
+\IF{$\mathsf{Test}(F)$} \label{alg:cou:TRC-adique:test}
+\RETURN $F$
+\ENDIF
+\ENDFOR 
+\end{algorithmic}
+\end{algorithm}
+
 \begin{prop}
 \label{pro:fro:com}
 Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{k}$ avec 
@@ -7666,259 +7785,6 @@ annexe~\ref{cha:ann:comp}, on ne retranscrit ici que le résultat final suivant.
 Voir annexe~\ref{cha:ann:comp}.
 \end{proof}
 
-On va présenter dans la prochaine sous-section les points que l'on veut 
-construire sur un tel compositum ainsi que leur intérêt par rapport à 
-l'algorithme de Couveignes.
-
-On a donc bien une correspondance entre les points définis à l'aide du Théorème
- des Restes Chinois appliqué à des points (partiellement) horizontaux définis 
- sur deux courbes elliptiques $r$-isogènes avec $r$ premier avec $\ell_1, \dots
- , \ell_n$.
- Maintenant énonçons un résultat qui nous permette de déterminer les 
- représentants d'orbites sous l'action de groupes de Galois en rappelant que 
- l'on note $\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$ le compositum
- qui contient tous les éléments $\mathsf{F}_{(i,k_i)}$ des tours d'extensions
- $\ell_i$-adiques construit d'après les restrictions énoncées dans la 
- sous-section~\ref{sub:con:com}.
-\begin{prop}
-\label{pro:rep:com}
-Soit $P$ un point d'ordre $\upsilon_n$ de $E(\mathbb{K}_n)$ obtenu à l'aide 
-du théorème des restes chinois appliqué aux points $P_i$ de $E$ d'ordre 
-$\ell_i^{k_i}$ tels que l'orbite générée par l'action de 
-$\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$ sur $P_i$ soit de taille
- maximale: $d_i\ell_i^{k_i}$.  Alors l'orbite de $P$ selon l'action de 
- $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$ est elle aussi de taille maximale:
- $\prod_{i=1}^nd_i\ell_i^{k_i}$.
-\end{prop} 
-
-\begin{proof}
-Soit $P$ un point de $E$ respectant les conditions de l'énoncé, supposons par 
-l'absurde qu'il existe $i_0 \in [1,n]$ et $r_0 \in [1,d_{i_0}\ell_{i_0}^{k_{i_0}}-1]$ 
-tel que l'action d'un élément générateur de 
-$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$ 
-à la puissance $r_0$ laisse fixe $P$. Par le théorème des restes chinois on 
-peut représenter cette action sur $\mathbb{Z}/\ell_{i_0}^{k_{i_0}}\mathbb{Z} 
-\times \mathbb{Z}/\vartheta_{i_0}\mathbb{Z}$
-à l'aide des deux points $P_{i_0}=[\vartheta_{i_0}]P$  et 
-$Q=[\ell_{i_0}^{k_{i_0}}]P$. $Q$ étant défini dans 
-$\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\otimes}}} \mathsf{F}_{(j,k_j)}$ 
-il est stable par l'action d'un élément générateur de 
-$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$.
-$P_{i_0}$ étant le représentant d'une orbite de taille maximale
-sous l'action de $\mathsf{Gal}(\mathsf{F}_{(i_0,k_{i_0})}:\mathbb{F}_q)$ par 
-construction alors il ne peut être stable que sous l'action d'un élément 
-générateur de 
-$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$
-à la puissance $d_{i_0}\ell{i_0}^{k_{i_0}}$, ainsi $r_0$ doit être un multiple 
-de $d_{i_0}\ell{i_0}^{k_{i_0}}$.
-\end{proof}
-
-\begin{nota}
-Soient $\ell_1, \dots \ell_n$ $n$ nombres premier de Elkies, alors on note 
-$\epsilon_i$ le nombre de représentants de points d'ordre $\ell_i^{k_i}$ sous 
-l'action d'un générateur de $\mathsf{Gal}(\mathsf{F}_{\ell_i^{k_i}}:\mathbb{F}_q)$.
-\end{nota}
-
-On voit donc avec la proposition~\ref{pro:rep:com} que pour déterminer des 
-représentants pour l'orbite selon l'action du groupe de Galois pour des points 
-d'ordre $\upsilon_n$ il suffit de calculer à l'aide du théorème des 
-restes chinois tous les points $P$ d'ordre $\upsilon_n$ 
-tels que tous les choix possibles de représentants $P_i=[\vartheta_i]P$
-par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,n_i)}:\mathbb{F}_q)$
- aient été effectués. Ainsi le nombre de représentants est
- donc de $\prod_{i=1}^{n} \epsilon_i$. On calcule donc 
- tout d'abord les représentants d'ordre $\ell_i^{k_i}$ dans les tours 
- d'extensions $\ell_i$-adiques, puis on les exprime dans le compositum et enfin
- on applique $\prod_{i=1}^{n} \epsilon_i$ fois le théorème des restes chinois. 
- Pour le théorème des restes chinois on a besoin d'appliquer 
- l'algorithme~\ref{alg:TRC:init:gen} $\sum_{i=1}^{n} \epsilon_i$ fois, une fois
- pour chaque représentant d'ordre $\ell_i^{k_i}$.
-  
- On peut dès lors modifier l'algorithme~\ref{alg:cou:ell-adique} de telle sorte
- que l'on travaille avec deux couples de points d'ordre 
- $\prod_{i=1}^n\ell_i^{k_i}$ de même direction au lieu de deux points d'ordre
- $\ell^k$ de même direction comme dans l'algorithme~\ref{alg:cou:ell-adique}.
- 
- On va donc présenter dans la prochaine sous-sous-section l'algorithme qui résulte 
- de cette approche ainsi qu'une estimation de son coût.
-
-\subsection{Algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois}
-
-Avant de présenter une analyse des coûts de l'algorithme de Couveignes 
-$\ell_i$-adique dans le cas Elkies avec théorème des restes chinois utilisant la 
-représentation de compositum préconisée par \cite{DeFeoDoliskaniSchost14} et 
-développée dans la sous-section~\ref{sub:con:com} on présente tout d'abord les coûts 
-d'algorithmes de théorème des restes chinois appliqués sur de telles constructions.
-
-\subsubsection{Coût des algorithmes de calcul de Théorème des Restes Chinois Elliptique}
-
-On présente ici la généralisation de l'algorithme~\ref{alg:TRC:init} avant 
-d'analyser sa complexité en reprenant les résultats de la 
-sous-section~\ref{sub:con:com}: 
-
-
-
-
-
-\begin{prop}
-\label{pro:alg:TRC:init:gen}
-L'algorithme~\ref{alg:TRC:init:gen} a une complexité espérée de:
-\[
-O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_{i}\log(\ell_{i})\log(\ell_{i}q)))
-\] 
-opérations sur $\mathbb{F}_q$.
-\end{prop}
-
-\begin{proof}
-Pour le calcul de l'étape~\ref{alg:TRC:init:gen:div} on préconise une 
-utilisation de construction de $\mathbb{K}_n$ tel que $\mathbb{K}_1=
-\mathsf{F}_{(i_0,k_{i_0})}$ et les 
-$\mathbb{K}_i \cong \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k_i)}$, dés lors lorsque 
-l'on va calculer la division successive par les différents $\ell_i$ on va 
-successivement travailler dans les corps 
-$\mathbb{K}_2, \mathbb{K}_3, \dots, \mathbb{K}_n$. On suppose sans perte 
-de généralités que l'on a $i_0=1$. On décompose 
-l'étape~\ref{alg:TRC:init:gen:div} en $n-1$ 
-étapes, on appelle $P^{(0)}=P_{1}$ et on définit par récurrence 
-$P^{(i+1)}=\mathsf{divise}(P^{(i)},\ell_{i+1}^{n_{i+1}})$, on a alors 
-$P^{(i+1)}$ d'ordre $\upsilon_{i+1}$ et défini dans $\mathbb{K}_{i+1}$. 
-Calculons le coût de l'étape $i$, on décompose tout d'abord 
-$\mathsf{divise}(P^{(i)},\ell_{i+1}^{k_{i+1}})$ à l'aide de $k_{i+1}$ 
-applications de division par $\ell_{i+1}$. On pose $P^{(i)}_0=P^{(i)}$ et on 
-définit par récurrence $P^{(i)}_{j+1}=\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$,
-ce qui nous donne $P^{(i+1)}=P^{(i)}_{k_{i+1}}$. On a $P^{(i)}_{j}$ défini dans 
- $\mathbb{K}_i\otimes \mathsf{F}_{(i+1,j)}$ et représenté comme un élément de 
- $\mathbb{K}_{i+1}$ donc le coût de  $\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$ 
- est $R(\ell_{i+1},p_{i+1})$ c'est à dire 
- $O(p_{i+1} \mathsf{M}(p_{i+1}  \ell_{i+1})\log(\ell_{i+1})\log(\ell_{i+1}q))$
- par la proposition~\ref{pro:rac:com}. Ainsi le coût de calcul de $P^{(i+1)}$ 
- est de 
- $O(k_{i+1}p_{i+1} \mathsf{M}(p_{i+1}  \ell_{i+1})\log(\ell_{i+1})\log(\ell_{i+1}q))$.
- On majore ce coût par $O(p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_{i+1}\log(\ell_{i+1})\log(\ell_{i+1}q)))$
- Il faut alors ajouter le coût de l'expression de $P^{(i+1)}$ dans 
- $\mathbb{K}_{i+2}$ par la proposition~\ref{pro:iso:fie}
- cela a un coût de $O((d_{i+2}\ell_{i+2}^{k_{i+2}})^2\mathsf{M}(p_{i+1}))$,
- ce coût sera alors majoré par le coût de $R(\ell_{i+2},p_{i+2})$ on ne le 
- prend donc pas en compte. 
- Le coût de l'étape~\ref{alg:TRC:init:gen:div} est donc majoré par 
- $O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_{i+1}\log(\ell_{i+1})\log(\ell_{i+1}q)))$. 
-
-Pour le calcul de l'étape~\ref{alg:TRC:init:gen:mul} on décompose la 
-multiplication par $\ell_{i_0}^{k_{i_0}}$ en $k_{i_0}$ multiplications par 
-$\ell_{i_0}$ que l'on décompose chacune en deux $\ell_{i_0}$-isogénies. $P'$ 
-étant défini dans $\mathbb{K}_{n}$ cela coûte 
-$O(k_{i_0}(\mathsf{M}(p_n)(\log(p_n)+\ell_{i_0})))$.
-
-L'étape~\ref{alg:TRC:init:gen:prim} se décompose comme 
-l'étape~\ref{alg:TRC:init:gen:mul} en $k_{i_0}$ multiplications par 
-$\ell_{i_0}$ que l'on décompose chacune en deux $\ell_{i_0}$-isogénies, sauf 
-que cette fois-ci on va devoir inverser chacune des $\ell_{i_0}$-isogénies pour
-obtenir un point d'ordre constant. On peut alors soit résoudre des polynômes de
-degré $\ell_{i_0}$ pour calculer les antécédents des $\ell_{i_0}$-isogénies, ou
-alors on peut déterminer l'action de la mutliplication par $\ell_{i_0}$ sur les
-points d'odre $\vartheta_{i_0}$ mais une telle recherche exhaustive dans l'état
-actuel où le coût de plongement n'est pas négligeable ne rend pas celle-ci 
-intéresante d'un point de vue pratique. Ainsi le coût d'une telle étape est de 
-$O(k_{i_0}R(\ell_{i_0},p_n))$ soit $O(k_{i_0}p_n\mathsf{M}(p_n\ell_{i_0})
-\log(\ell_{i_0})\log(\ell_{i_0q}))$ opérations sur $\mathbb{F}_q$ auquel il 
-faut ajouter le coût pour identifier la bonne racine (i.e. un point du même 
-ordre), un moyen rapide de faire cela est d'exprimer les racines dans la 
-représentation $\underset{i\neq i_0}\otimes_{i=1}^n \mathsf{F}_{(i,k_i)} 
-\otimes \mathsf{F}_{(i_0,k_{i_0})}$ et ensuite d'identifier la racine incluse
-dans $\underset{i\neq i_0}\otimes_{i=1}^n \mathsf{F}_{(i,k_i)}$ cela a un coût 
-majoré par 
-$O(\mathsf{M}(p_n)(\frac{p_n}{d_{i_0}\ell_{i_0}^{k_{i_0}}})^{(\omega-1)/2})$ 
-par la proposition~\ref{pro:iso:fie} donc un coût total de 
-$O(\ell_{i_0}^2\mathsf{M}(p_n)(\frac{p_n}{d_{i_0}\ell_{i_0}^{k_{i_0}}})^{(\omega-1)/2})$.
-
-L'étape~\ref{alg:TRC:init:gen:add} a elle un coût de $O(\mathsf{M}(p_n)\log(p_n))$.
-
-On voit alors que le coût total de l'algorithme est dominé par 
-l'étape~\ref{alg:TRC:init:gen:div}.
-\end{proof}
-
-
-
-\begin{prop}
-L'algorithme~\ref{alg:TRC} a une complexité espérée de 
-\[
-O(n^2 p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_i\log(\ell_{i})\log(\ell_{i}q))) 
-\]
-opérations sur $\mathbb{F}_q$.
-\end{prop}
-
-On peut dès lors présenter dans la sous-sous-section~\ref{sss:crt:cou} notre 
-modification de l'algorithme~\ref{alg:cou:ell-adique} utilisant les compositum 
-de tours d'extensions $\ell_i$ adiques et le théorème des restes chinois.
-
-\subsubsection{Coût total de l'algorithme de Couveignes $\ell_i$-adique avec le théorème des restes chinois elliptique}
-\label{sss:crt:cou}
-Nous avons abordé dans la sous-sous-section~\ref{sub:TRCE:cou} l'intérêt 
-d'utiliser un théorème des restes chinois sur une courbe elliptique par rapport
-à l'algorithme de Couveignes $\ell$-adique dans le cas Elkies. En effet on a vu
-qu'un point construit à l'aide du théorème des restes chinois appliqué à des 
-points $P_i,Q_i$ (partiellement) horizontaux de directions $\lambda_i,\mu_i$  
-d'ordre $\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux, 
-était mis en correspondance avec un autre point de même direction.
-Ainsi avec deux bases de points (partiellement) horizontaux $(\color{red}P_{\lambda_1,
- \dots, \lambda_n}\color{black},\color{blue}Q_{\mu_1, \dots, 
- \mu_n}\color{black}),(\color{red}P'_{\lambda_1, \dots, \lambda_n}\color{black}
- ,\color{blue}
- Q'_{\mu_1, \dots, \mu_n}\color{black})$ de $E[\prod_{i=1}^n\ell_i^{k_i}]$ et 
- $E'[\prod_{i=1}^n\ell_i^{k_i}]$ l'action de la $r$-isogénie peut être 
- représentée de la façon suivante:  
- \begin{equation*}
-\left(
-\begin{matrix}
-\color{red} P'_{\lambda_1,
- \dots, \lambda_n} \\
-\color{blue} Q'_{\mu_1, \dots, 
- \mu_n} \color{black}
-\end{matrix}
-\right)= \left(\begin{matrix}
-a & 0 \\
-0 & b
-\end{matrix} \right)
-\left(
-\begin{matrix}
-\color{red} P_{\lambda_1, 
-\dots, \lambda_n} \\
-\color{blue} Q_{\mu_1, \dots, 
- \mu_n} \color{black}
-\end{matrix}
-\right)
-\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\prod_{i=i}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}.
-\end{equation*}
- 
-On applique alors un raisonnement similaire à celui de la sous-
-section~\ref{ssec:cou:elk} qui nous permet alors de décrire dans 
-l'algorithme~\ref{alg:cou:TRC-adique} un algorithme de Couveignes 
-$\ell_i$-adiques dans le cas Elkies avec approche multi-modulaire à l'aide du 
-Théorème des Restes Chinois.
- 
-\begin{algorithm}
-\caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes $\ell$-adique dans le cas Elkies avec approche muti-modulaire à l'aide du TRC.}
-\begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique pour $i$ allant de $1$ à $n$.
-\ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
-% \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE Calcul des $k_i$ tels que $\prod_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
-\FOR{$i=1$ à $n$}
-\STATE \label{alg:cou:TRC-adique:bhor} Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black})$ bases (partiellement) horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
-\STATE \label{alg:cou:TRC_adique:rep:uni} Calcul des représentants des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$;
-\ENDFOR
-\STATE \label{alg:cou:TRC-adique:TRC} Calcul de $(P,Q),(P',Q') \in E^2 \times E'^2$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tels que $P$ et $P'$ sont de direction $(\lambda_1, \dots, \lambda_n)$ et $Q$ et $Q'$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
-\STATE \label{alg:cou:TRC-adique:rep} Calcul des listes de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$;
-\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^*$}
-\STATE \label{alg:cou:TRC-adique:ord} Actualisation de la liste $L_i'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
-\STATE \label{alg:cou:TRC-adique:int} Calcul des des polynômes $A_{a,b}$ et $T$ par des méthodes similaires à celles décrites dans la section~\ref{sec:interpolation};
-\STATE \label{alg:cou:TRC-adique:Cauchy} Calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une interpolation de Cauchy;
-\IF{$\mathsf{Test}(F)$} \label{alg:cou:TRC-adique:test}
-\RETURN $F$
-\ENDIF
-\ENDFOR 
-\end{algorithmic}
-\end{algorithm}
 
 \begin{prop}
 L'algorithme~\ref{alg:cou:TRC-adique} a un coût espéré de 
@@ -8441,7 +8307,7 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
   %elle a un coût algébrique nul. 
   Soit $t_j$ la cardinalité du sous-corps de $\mathbb{K}_n$ le plus petit au 
   sens  de l'inclusion tel que $v_j,w_j$ soient inclus dedans, alors le coût de
-  la descente d'éléments $v_j,w_j$ sur le composita inclus dans $\mathbb{K}_n$ 
+  la descente d'éléments $v_j,w_j$ sur le compositum inclus dans $\mathbb{K}_n$ 
   isomorphe à $\otimes_{k=1}^n\mathsf{F}_{(k,r_{k,i})}$ avec 
   $r_{k,j}=v_{\ell_k}(t_j)$ est majoré par $O(M(p_n)p_{n-1}^{(\omega-1)/2})$ à 
   l'aide de la proposition~\ref{pro:iso:fie}. Ainsi le coût total de descente 
@@ -8465,11 +8331,45 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
   calculer $A$ au coût de $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
 \end{proof}
 
+\begin{prop}
+\label{pro:rep:com:app}
+Soit $P$ un point d'ordre $\upsilon_n$ de $E(\mathbb{K}_n)$ obtenu à l'aide 
+du théorème des restes chinois appliqué aux points $P_i$ de $E$ d'ordre 
+$\ell_i^{k_i}$ tels que l'orbite générée par l'action de 
+$\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$ sur $P_i$ soit de taille
+ maximale: $d_i\ell_i^{k_i}$.  Alors l'orbite de $P$ selon l'action de 
+ $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$ est elle aussi de taille maximale:
+ $\prod_{i=1}^nd_i\ell_i^{k_i}$.
+\end{prop} 
+
+\begin{proof} \todo{mettre en appendice ?}
+Soit $P$ un point de $E$ respectant les conditions de l'énoncé, supposons par 
+l'absurde qu'il existe $i_0 \in [1,n]$ et $r_0 \in [1,d_{i_0}\ell_{i_0}^{k_{i_0}}-1]$ 
+tel que l'action d'un élément générateur de 
+$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$ 
+à la puissance $r_0$ laisse fixe $P$. Par le théorème des restes chinois on 
+peut représenter cette action sur $\mathbb{Z}/\ell_{i_0}^{k_{i_0}}\mathbb{Z} 
+\times \mathbb{Z}/\vartheta_{i_0}\mathbb{Z}$
+à l'aide des deux points $P_{i_0}=[\vartheta_{i_0}]P$  et 
+$Q=[\ell_{i_0}^{k_{i_0}}]P$. $Q$ étant défini dans 
+$\overset{n}{\underset{j \neq i_0}{\underset{j = 0}{\otimes}}} \mathsf{F}_{(j,k_j)}$ 
+il est stable par l'action d'un élément générateur de 
+$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$.
+$P_{i_0}$ étant le représentant d'une orbite de taille maximale
+sous l'action de $\mathsf{Gal}(\mathsf{F}_{(i_0,k_{i_0})}:\mathbb{F}_q)$ par 
+construction alors il ne peut être stable que sous l'action d'un élément 
+générateur de 
+$\mathsf{Gal}(\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)}\otimes \mathsf{F}_{(i_0,k_{i_0})}:\overset{n}{\underset{j \neq i_0}{\underset{j = 1}{\otimes}}}\mathsf{F}_{(j,k_j)})$
+à la puissance $d_{i_0}\ell{i_0}^{k_{i_0}}$, ainsi $r_0$ doit être un multiple 
+de $d_{i_0}\ell{i_0}^{k_{i_0}}$.
+\end{proof}
 
 
 \printnomenclature
 \chapter{Rebus}
 \section{Generalisation a un nombre compose}
+
+
 \begin{defi}
 Soient $\ell_1, \ell_2$ deux nombres premiers distincts, $E$ une courbe 
 elliptique. On énonce alors le Théorème des Restes Chinois dans le contexte des
@@ -8585,6 +8485,113 @@ le coût de construction du compositum $\mathbb{K}_n$ est majoré par
 $O(n(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$.
 \end{proof}
 
+\todo{A enlever...}
+On voit qu'avec la construction de la définition~\ref{def:con:com} on connaît 
+seulement le polynôme, avec la notation de la proposition~\ref{pro:com:inj}, $Q$
+qui définit l'extension $\mathbb{K}_{i-1}$ de degré $p_{i-1}$ de 
+$\mathbb{F}_q$. Ainsi pour connaître tous les polynômes qui définissent les 
+extensions de degé $\frac{\prod_{i=1}^{n}d_i\ell_i^{n_i}}{d_j \ell_j^{n_j}}$ de
+$\mathbb{F}_q$ on doit changer l'ordre des $\ell_i$ dans la construction de la 
+définition~\ref{def:con:com}, on doit donc calculer $n$ constructions 
+différentes de compositum pour pouvoir calculer le plongement de tous les 
+$\mathsf{F}_{(i,n_i)}$ dans $\mathbb{K}_{n}$ cela a un coût majoré par 
+$O(n^2(p\mathsf{M}(\frac{p_n}{p})\log(\frac{p_n}{p})+\mathsf{M}(p_n)))$ 
+opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:con:comp}.
+
+\subsubsection{Coût des algorithmes de calcul de Théorème des Restes Chinois Elliptique}
+
+On présente ici la généralisation de l'algorithme~\ref{alg:TRC:init} avant 
+d'analyser sa complexité en reprenant les résultats de la 
+sous-section~\ref{sub:con:com}: 
+
+\begin{prop}
+\label{pro:alg:TRC:init:gen}
+L'algorithme~\ref{alg:TRC:init:gen} a une complexité espérée de:
+\[
+O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_{i}\log(\ell_{i})\log(\ell_{i}q)))
+\] 
+opérations sur $\mathbb{F}_q$.
+\end{prop}
+
+\begin{proof}
+Pour le calcul de l'étape~\ref{alg:TRC:init:gen:div} on préconise une 
+utilisation de construction de $\mathbb{K}_n$ tel que $\mathbb{K}_1=
+\mathsf{F}_{(i_0,k_{i_0})}$ et les 
+$\mathbb{K}_i \cong \mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k_i)}$, dés lors lorsque 
+l'on va calculer la division successive par les différents $\ell_i$ on va 
+successivement travailler dans les corps 
+$\mathbb{K}_2, \mathbb{K}_3, \dots, \mathbb{K}_n$. On suppose sans perte 
+de généralités que l'on a $i_0=1$. On décompose 
+l'étape~\ref{alg:TRC:init:gen:div} en $n-1$ 
+étapes, on appelle $P^{(0)}=P_{1}$ et on définit par récurrence 
+$P^{(i+1)}=\mathsf{divise}(P^{(i)},\ell_{i+1}^{n_{i+1}})$, on a alors 
+$P^{(i+1)}$ d'ordre $\upsilon_{i+1}$ et défini dans $\mathbb{K}_{i+1}$. 
+Calculons le coût de l'étape $i$, on décompose tout d'abord 
+$\mathsf{divise}(P^{(i)},\ell_{i+1}^{k_{i+1}})$ à l'aide de $k_{i+1}$ 
+applications de division par $\ell_{i+1}$. On pose $P^{(i)}_0=P^{(i)}$ et on 
+définit par récurrence $P^{(i)}_{j+1}=\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$,
+ce qui nous donne $P^{(i+1)}=P^{(i)}_{k_{i+1}}$. On a $P^{(i)}_{j}$ défini dans 
+ $\mathbb{K}_i\otimes \mathsf{F}_{(i+1,j)}$ et représenté comme un élément de 
+ $\mathbb{K}_{i+1}$ donc le coût de  $\mathsf{divise}(P^{(i)}_{j},\ell_{i+1})$ 
+ est $R(\ell_{i+1},p_{i+1})$ c'est à dire 
+ $O(p_{i+1} \mathsf{M}(p_{i+1}  \ell_{i+1})\log(\ell_{i+1})\log(\ell_{i+1}q))$
+ par la proposition~\ref{pro:rac:com}. Ainsi le coût de calcul de $P^{(i+1)}$ 
+ est de 
+ $O(k_{i+1}p_{i+1} \mathsf{M}(p_{i+1}  \ell_{i+1})\log(\ell_{i+1})\log(\ell_{i+1}q))$.
+ On majore ce coût par $O(p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_{i+1}\log(\ell_{i+1})\log(\ell_{i+1}q)))$
+ Il faut alors ajouter le coût de l'expression de $P^{(i+1)}$ dans 
+ $\mathbb{K}_{i+2}$ par la proposition~\ref{pro:iso:fie}
+ cela a un coût de $O((d_{i+2}\ell_{i+2}^{k_{i+2}})^2\mathsf{M}(p_{i+1}))$,
+ ce coût sera alors majoré par le coût de $R(\ell_{i+2},p_{i+2})$ on ne le 
+ prend donc pas en compte. 
+ Le coût de l'étape~\ref{alg:TRC:init:gen:div} est donc majoré par 
+ $O(n p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_{i+1}\log(\ell_{i+1})\log(\ell_{i+1}q)))$. 
+
+Pour le calcul de l'étape~\ref{alg:TRC:init:gen:mul} on décompose la 
+multiplication par $\ell_{i_0}^{k_{i_0}}$ en $k_{i_0}$ multiplications par 
+$\ell_{i_0}$ que l'on décompose chacune en deux $\ell_{i_0}$-isogénies. $P'$ 
+étant défini dans $\mathbb{K}_{n}$ cela coûte 
+$O(k_{i_0}(\mathsf{M}(p_n)(\log(p_n)+\ell_{i_0})))$.
+
+L'étape~\ref{alg:TRC:init:gen:prim} se décompose comme 
+l'étape~\ref{alg:TRC:init:gen:mul} en $k_{i_0}$ multiplications par 
+$\ell_{i_0}$ que l'on décompose chacune en deux $\ell_{i_0}$-isogénies, sauf 
+que cette fois-ci on va devoir inverser chacune des $\ell_{i_0}$-isogénies pour
+obtenir un point d'ordre constant. On peut alors soit résoudre des polynômes de
+degré $\ell_{i_0}$ pour calculer les antécédents des $\ell_{i_0}$-isogénies, ou
+alors on peut déterminer l'action de la mutliplication par $\ell_{i_0}$ sur les
+points d'odre $\vartheta_{i_0}$ mais une telle recherche exhaustive dans l'état
+actuel où le coût de plongement n'est pas négligeable ne rend pas celle-ci 
+intéresante d'un point de vue pratique. Ainsi le coût d'une telle étape est de 
+$O(k_{i_0}R(\ell_{i_0},p_n))$ soit $O(k_{i_0}p_n\mathsf{M}(p_n\ell_{i_0})
+\log(\ell_{i_0})\log(\ell_{i_0q}))$ opérations sur $\mathbb{F}_q$ auquel il 
+faut ajouter le coût pour identifier la bonne racine (i.e. un point du même 
+ordre), un moyen rapide de faire cela est d'exprimer les racines dans la 
+représentation $\underset{i\neq i_0}\otimes_{i=1}^n \mathsf{F}_{(i,k_i)} 
+\otimes \mathsf{F}_{(i_0,k_{i_0})}$ et ensuite d'identifier la racine incluse
+dans $\underset{i\neq i_0}\otimes_{i=1}^n \mathsf{F}_{(i,k_i)}$ cela a un coût 
+majoré par 
+$O(\mathsf{M}(p_n)(\frac{p_n}{d_{i_0}\ell_{i_0}^{k_{i_0}}})^{(\omega-1)/2})$ 
+par la proposition~\ref{pro:iso:fie} donc un coût total de 
+$O(\ell_{i_0}^2\mathsf{M}(p_n)(\frac{p_n}{d_{i_0}\ell_{i_0}^{k_{i_0}}})^{(\omega-1)/2})$.
+
+L'étape~\ref{alg:TRC:init:gen:add} a elle un coût de $O(\mathsf{M}(p_n)\log(p_n))$.
+
+On voit alors que le coût total de l'algorithme est dominé par 
+l'étape~\ref{alg:TRC:init:gen:div}.
+\end{proof}
+
+\begin{prop}
+L'algorithme~\ref{alg:TRC} a une complexité espérée de 
+\[
+O(n^2 p_{n}\mathsf{M}(p_{n}\ell_{n})\max_i(k_i\log(\ell_{i})\log(\ell_{i}q))) 
+\]
+opérations sur $\mathbb{F}_q$.
+\end{prop}
+
+On peut dès lors présenter dans la sous-sous-section~\ref{sss:crt:cou} notre 
+modification de l'algorithme~\ref{alg:cou:ell-adique} utilisant les compositum 
+de tours d'extensions $\ell_i$ adiques et le théorème des restes chinois.
 
 \section{\'Etude de l'application de la méthode Atkin dans le cas Elkies}
 Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Master13} et sont une 
