@@ -6001,7 +6001,7 @@ d\ell^{k-h} & b
 P \\
 Q
 \end{matrix}
-\right) \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^*; c,d \in \mathbb{Z}/\ell^{h}\mathbb{Z}.
+\right) \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^{\times}; c,d \in \mathbb{Z}/\ell^{h}\mathbb{Z}.
 \]
 
 \begin{figure}
@@ -7746,10 +7746,10 @@ Voir la preuve en annexe~\ref{cha:ann:comp}. \todo{En fait non pas de preuve du 
 %$\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$ est crucial dans le coût total
 %du Frobenius. En effet si on compare ce résultat avec celui du
  
-On obtient donc un résultant moins bon que celui du
+On obtient donc un résultat moins bon que celui du
 théorème~\ref{thm:frob-ell}, or en adaptant les mêmes méthodes on aurait du 
-avoir le coût de cette opération dominé par $O(d_i\ell_i^{k_i})$. Cependant 
-ici, contrairement au cas du théorème~\ref{thm:frob-ell}, on doit prendre en 
+avoir le coût de cette opération dominé par $O(d_i\ell_i^{k_i})\mathsf{M}(p_{i-1})$. 
+Cependant ici, contrairement au cas du théorème~\ref{thm:frob-ell}, on doit prendre en 
 compte le coût du changement de représentation qui domine la complexité. Ainsi 
 il est crucial si l'on veut obtenir des résultats similaire à la 
 section~\ref{sec:cou:elk} d'avoir une construction de compositum permettant un 
@@ -7761,23 +7761,25 @@ Une adaptation des méthodes de calcul de polynôme d'interpolation décrites da
 la section~\ref{sec:interpolation} à ce contexte est faite pour le calcul de 
 polynôme minimal $T=T^{(n)}$(en reprenant une notation similaire) d'élément de 
 $\mathbb{K}_n \setminus \mathbb{K}_{n-1}$.
-Ainsi comme dans la méthode développée dans la section~\ref{sec:interpolation} 
+Ainsi comme dans la section~\ref{sec:interpolation} 
 pour le calcul d'un tel polynôme d'interpolation on est amené à 
 multiplier des polynômes à coefficients dans $\mathbb{K}_{n-i-1} \otimes 
 \mathsf{F}_{(n-i,k)}$ qui de par leur degré font que le coût d'une telle 
-multiplication n'est que de $\tilde{O}(\mathsf{M}(p_n))$, ce qui en comparant 
+multiplication n'est que de $\tilde{O}(\mathsf{M}(p_n))$. Ce coût de 
+$\tilde{O}(\mathsf{M}(p_n))$ en comparant 
 avec les résultats du lemme~\ref{lemma:interpolation:minpoly} devrait être le 
 coût dominant. Cependant comme dit précédemment le Frobenius n'a pas un coût 
-similaire du fait des changements de représentation qui domine son coût. Ainsi 
+similaire à la section~\ref{sec:interpolation}, ainsi le coût de 
 l'application du Frobenius aux polynômes $T^{(i)}_k$ a un coût de $O(\mathsf{M}
 (p_n)p_{n-i-1}^{(\omega-1)/2})$, or on doit appliquer le Frobenius 
-$\ell_{n-i}(n_{n-i}+1)$ fois et donc on minore ce coût par $\Omega(\mathsf{M}
-(p_n)p_{n-1}^{(\omega-1)/2}\max_i(\ell_{i}(n_{i}+1)))$.
+$\ell_{n-i}(k_{n-i}+1)$ fois et donc on majore ce coût par $O(n\mathsf{M}
+(p_n)p_{n-1}^{(\omega-1)/2}\max_i(\ell_{i}(k_{i}+1)))$.
 
 De la même manière pour le calcul des polynômes d'interpolation $A$ tels 
 $A(v)=w$ avec $v,w \in \mathbb{K}_n \setminus \mathbb{K}_{n-1}$, le coût est
-encore une fois dominé par les Frobenius et on minore le coût d'un tel calcul
-par $\Omega(\mathsf{M}(p_n \max_i(d_i\ell_i^{n_i}))\max_i(\ell_i)p_{n-1}^{(\omega-1)/2})$.
+encore une fois dominé par l'application du Frobenius et on majore le coût d'un
+tel calcul par $O(n\mathsf{M}(p_n \max_i(d_i\ell_i^{k_i}))
+\max_i(\ell_i(k_i+1))p_{n-1}^{(\omega-1)/2})$.
 
 Ensuite pour $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n~\setminus~\mathbb{K}_{n-1}$, $t_i$ le degré des polynômes minimaux de $v_i$, on note  $t=\sum t_i$. 
 On veut alors calculer les polynômes
@@ -7790,12 +7792,34 @@ On veut alors calculer les polynômes
 On utilise à nouveau la même méthode que celle utilisée dans la 
 section~\ref{sec:interpolation}, le calcul de $T$ à partir des $T_i$ a un même
 coût que dans la proposition~\ref{prop:interpol} de $O(\mathsf{M}(t)\log(s))$. 
-Cependant comme on a vu précédemment le coût de calcul des $T_i$ est de $\Omega(\mathsf{M}(t_i)(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i))$ on majore donc le cout total par $\Omega(\mathsf{M}(t)(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i))$ par superlinéarité de $\mathsf{M}$.
+Cependant comme on a vu précédemment le coût de calcul des $A_i$ est de 
+$O(n\mathsf{M}(t_i\max_i(d_i\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}
+\max_i(\ell_i))$ on majore donc le cout total par $O(n\mathsf{M}(t\max_i(d_i
+\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i(k_i+1)))$ par superlinéarité de 
+$\mathsf{M}$.
 
-On peut donc minorer le coût de calcul de la partie de l'interpolation de cette
+On peut donc majorer le coût de calcul de la partie de l'interpolation de cette
 version $\ell$-adique de l'algorithme de Couveignes. On répète l'interpolation
-$O(r \prod_{i=1}^n)\ell_i)$ en moyenne. On peut donc minorer le coût de cet 
-algorithme par $\Omega(r (\prod_{i=1}^n)\ell_i)\Omega(\mathsf{M}(r \prod_{i=1}^n \ell_i^2)(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i)) )$
+$O(r \prod_{i=1}^n\ell_i)$ en moyenne. On peut donc estimer le coût de cet 
+algorithme par $O(r (\prod_{i=1}^n\ell_i)n\mathsf{M}(r (\prod_{i=1}^n \ell_i^2)
+\max_i(d_i\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i (k_i +1)) )$ or $p_n \in 
+O(r(\prod_{i=1}^n\ell_i)^{3,5})$ ce qui nous donne comme estimation 
+\[ 
+O(r(\prod_{i=1}^n\ell_i)n\mathsf{M}(r (\prod_{i=1}^n \ell_i^{3,5})
+\max_i(d_i\ell_i^{k_i}))(\sqrt{r (\prod_{i=1}^n \ell_i^{3,5})})^{(\omega-1)/2}
+\max_i(\ell_i(k_i+1)) )
+\]
+sachant que la borne du calcul des $T_i$ et $A_i$ est large car on a majoré 
+$\sum_{i=1}^np_{n-i}^{(\omega-1)/2}$ par $np_{n-1}^{(\omega-1)/2}$ d'où le 
+$n$ en facteur et que de plus 
+$\max_i(d_i\ell_i^{k_i})p_{n-1} \in \Omega(p_n)$. Ainsi on voit que par 
+l'apport d'opérations de changement de représentations non linéaire en la 
+taille des compositum on ne peut avoir une complexité quadratique en $r$ pour
+le calcul de l'isogénie montrant ainsi qu'une telle approche en l'état actuel
+n'est pas intéressante. Cependant cette approche avait l'avantage de proposer
+une meilleure estimation de $r$ par $\prod_{i=1}^n \ell_i^{k_i}$ et donc de 
+réduire les coûts apportés par l'étape d'interpolation dûs au choix du(des)
+nombre(s) de Elkies.
 
 
  développée en 
