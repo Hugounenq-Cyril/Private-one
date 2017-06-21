@@ -7790,7 +7790,12 @@ On veut alors calculer les polynômes
 On utilise à nouveau la même méthode que celle utilisée dans la 
 section~\ref{sec:interpolation}, le calcul de $T$ à partir des $T_i$ a un même
 coût que dans la proposition~\ref{prop:interpol} de $O(\mathsf{M}(t)\log(s))$. 
-Cependant comme on a vu précédemment le coût de calcul des $T_i$ est de $\Omega(\mathsf{M}(t_j)(t_j)^{(\omega-1)/2}\max_i(\ell_i))$ on majore donc le cout total par $\Omega(\mathsf{M}(t)(t_j)^{(\omega-1)/2}\max_i(\ell_i))$ par superlinéarité de $\mathsf{M}$
+Cependant comme on a vu précédemment le coût de calcul des $T_i$ est de $\Omega(\mathsf{M}(t_i)(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i))$ on majore donc le cout total par $\Omega(\mathsf{M}(t)(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i))$ par superlinéarité de $\mathsf{M}$.
+
+On peut donc minorer le coût de calcul de la partie de l'interpolation de cette
+version $\ell$-adique de l'algorithme de Couveignes. On répète l'interpolation
+$O(r \prod_{i=1}^n)\ell_i)$ en moyenne. On peut donc minorer le coût de cet 
+algorithme par $\Omega(r (\prod_{i=1}^n)\ell_i)\Omega(\mathsf{M}(r \prod_{i=1}^n \ell_i^2)(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i)) )$
 
 
  développée en 
