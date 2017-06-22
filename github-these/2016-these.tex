@@ -7044,7 +7044,7 @@ tel résultat on ne l'énoncera pas.
 %\]
 %\end{thm}
 
-\chapter{Variantes de l'algorithme de Couveignes $\ell$-adique}
+\chapter{Variantes de l'algorithme de Couveignes $\ell$-adique dans le cas Elkies}
 Dans les améliorations de l'algorithme de Couveignes que l'on a présentées 
 seules celles concernant le cas Elkies ont un intérêt en terme de complexité. 
 On va donc étudier des variantes à l'algorithme de Couveignes avec 
@@ -7299,8 +7299,8 @@ condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 c'est ce que l'on va aborder dans la seconde approche avec des points 
 (partiellement) horizontaux d'ordre composé $\prod_{i=1}^n \ell_i^{k_i}$.}
 
-\section{Algorithme de Couveignes $\ell$-adique généralisé avec un nombre de Elkies composé}
-Ainsi dans cette approche on veut travailler avec des points d'ordre 
+\section{Algorithme de Couveignes $\ell$-adique généralisé avec un nombre composé de Elkies}
+Dans cette approche on veut travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'information donnée par 
 les  bases (partiellement) horizontales 
 $(\color{red}P_{\lambda_i}\color{black},\color{blue}Q_{\mu_i}\color{black})$ de 
@@ -7309,7 +7309,7 @@ a besoin de définir quelques notions. On
 va supposer sans perte de généralités que les $k_i$ pour $i \in [1,n]$ sont 
 fixés tels que l'on ait $\prod_{i=1}^{n} \ell_i^{2k_i-2}(\ell_i+1)>4r$.
 
-\subsection{Théorème des Restes Chinois Elliptique et son application à l'algorithme de Couveignes $\ell$-adique}
+\subsection{Théorème des Restes Chinois et son application à l'algorithme de Couveignes $\ell$-adique}
 \label{sub:TRCE:cou}
 
 
@@ -7322,15 +7322,15 @@ $\vartheta_i=\frac{\upsilon_n}{\ell_i^{k_i}}$.
 \'Enonçons une généralisation du thèorème des restes chinois pour une courbe 
 elliptique à $n$ nombres premiers distincts.
 
-\paragraph{Théorème des Restes Chinois généralisés sur une courbe Elliptique $E$}
+\paragraph{Théorème des Restes Chinois sur une courbe Elliptique $E$}
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 \in E[\ell_1^{k_1}], \dots, P_n \in E[\ell_n^{k_n}]$, alors le Théorème des Restes Chinois revient à déterminer un point $P \in E[\upsilon_n]$ tel que $[\vartheta_{i_0}] P=P_{i_0}$ pour $i_0 \in [1,n]$.
 
 %\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i}
-On présente tout d'abord en appendice l'algoritme~\ref{alg:TRC:init:gen} qui 
+On présente tout d'abord en appendice~\ref{cha:alg} l'algoritme~\ref{alg:TRC:init:gen} qui 
 pour un point $P_{i}$ d'ordre $\ell_{i}^{k_{i}}$ calcule un point $P$ d'ordre 
 $\upsilon_n$ tel que $[\vartheta_{i}]P=P_{i}$ et $[\ell_{i}^{k_{i}}]P$ pour 
 $i \in [1,n]$. \`A l'aide de l'algorithme~\ref{alg:TRC:init:gen} on peut résoudre le 
-Théorème des Restes Chinois comme montré dans l'algorithme~\ref{alg:TRC}.
+Théorème des Restes Chinois comme montré dans l'algorithme~\ref{alg:TRC} lui aussi en appendice~\ref{cha:alg}
 
 Cette approche du Théorème des Restes Chinois a été motivée pour l'appliquer à 
 des points (partiellement) horizontaux d'ordre $\ell_i^{k_i}$, la proposition 
@@ -7358,11 +7358,14 @@ $\ell_1^{k_1}$ et de direction $\lambda_1$,
 \begin{proof}
 Par un raisonnement similaire à la preuve de la proposition~\ref{pro:par:iso}, 
 vu que $\phi$ est de degré $r$ premier avec $\ell_1$ et $\ell_2$ alors on a un 
-isomorphisme de modules de Tate qui commutent avec le Frobenius.
+isomorphisme de modules de Tate qui commute avec le Frobenius.
 \end{proof}
 
-Cette proposition se généralise à $n$ nombres de Elkies $\ell_1, \dots, \ell_n$
-distincts.
+\begin{cor} 
+\label{cor:par:TRC}
+La proposition~\ref{pro:par:TRC} se généralise à $n$ nombre premiers de Elkies 
+distincts premiers avec $r$.
+\end{cor}
 
 \begin{nota}
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers de Elkies distincts, $P$ un
@@ -7374,14 +7377,8 @@ on dit que $P$ est de direction $(\lambda_1, \dots, \lambda_n)$ et de
 profondeur $(e_1, \dots, e_n)$. 
 \end{nota}
 
-\begin{cor} 
-La proposition~\ref{pro:par:TRC} se généralise à $n$ nombre premiers de Elkies 
-distincts premiers avec $r$.
-\end{cor}
-
-
 \begin{rem}
-Une application de la proposition~\ref{pro:par:TRC} et de la notation 
+Une application du corollaire~\ref{cor:par:TRC} et de la notation 
 précédente est que pour deux courbes elliptiques $E,E'$ $r$-isogènes avec $r$ 
 premier avec les nombres de Elkies $\ell_1, \dots, \ell_n$ un point $P \in E$ 
 d'ordre $\upsilon_n$, de direction $(\lambda_1, \dots, \lambda_n)$ et 
@@ -7398,15 +7395,14 @@ profondeur $(e_1, \dots, e_n)$.
 
 Cette partie s'appuie sur la construction de compositum à partir d'une idée de
 %originale de \cite{BrawleyCarlitz87} reprise dans
-\cite{DeFeoDoliskaniSchost14} qui donne le moyen de calculer à un coût quasi 
+\cite{DeFeoDoliskaniSchost14}, cet article donne aussi le moyen de calculer à un coût quasi 
 linéaire le changement de représentation d'éléments du compositum. On veut donc
 construire un corps dans lequel on pourrait représenter des points d'ordre 
-$\upsilon_n$ construit à l'aide de points d'ordre $\ell_i^{k_i}$ représentés 
+$\upsilon_n$ construits à l'aide de points d'ordre $\ell_i^{k_i}$ représentés 
 dans des tours d'extensions $\ell_i$-adiques comme celles décrites dans le 
 chapitre~\ref{cha:tour}. Afin de ne pas surcharger la lecture de ce 
 document de nombreuses preuves étant l'adaptation de techniques présentées 
-dans le chapitre~\ref{cha:tour} elles sont présentées dans 
-l'annexe~\ref{cha:ann:comp}.
+dans le chapitre~\ref{cha:tour} elles ne seront pas détaillées.
 
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, 
 on va supposer dans le reste de ce document que les différentes tours 
@@ -7423,7 +7419,7 @@ tous les éléments des tours d'extensions $\ell_i$-adiques suivant:
 $\mathsf{F}_{(1,n_1)}, \dots \mathsf{F}_{(n,n_n)}$. On suppose de plus que les
 $\ell_i$ sont ordonnés de telle sorte que pour tout $i \in [2,n]$ 
 $\prod_{j=1}^{i-1}d_j\ell_j^{n_j} \geqslant d_i\ell_i^{n_i}$, cette restriction
-sert juste à simplifier les calculs.
+sert juste à simplifier les calculs. \todo{reflechir notation $n_i$, $k_i$}
 
 On introduit un objet nécesaire à la construction de compositum.
 \begin{defi}
@@ -7464,13 +7460,14 @@ l'aide de la proposition~\ref{pro:init:com} $\mathbb{K}_{i+1}$ est défini comme
 le compositum de $\mathbb{K}_i$ et $\mathsf{F}_{(i+1,n_{i+1})}$.
 \end{defi}
 \begin{rem}
-Ici le cas où l'on aurait $d_i=d_j$ pour $i<j$ entraîne le fait que l'on a pas
+Dans la définition~\ref{def:con:com} le cas où l'on aurait $d_i=d_j$ avec $d_i 
+\neq 1$ pour $i \neq j$ entraîne le fait que l'on a pas
 les conditions pour appliquer la proposition~\ref{pro:init:com}. 
 Cette condition est assez restrictive car comme vu dans le 
-chapitre~\ref{cha:tour} on a $d_i | \ell_i-1$ et ainsi il est possible que l'on
-ait $d_i=\ell_i-1$ et $d_j=\ell_j-1$ pour deux nombres premiers impairs et donc
-$2 | \mathrm{pgcd}(d_i,d_j)$. Une solution pour contourner ce problème serait
-alors de construire le compositum à partir d'une extension de $\mathbb{F}_q$.
+chapitre~\ref{cha:tour} on a $d_i | \ell_i-1$ ainsi il est possible que l'on
+ait pour $d_i,d_j$ distincts $\mathrm{pgcd}(d_i,d_j) \neq 1$. Une 
+solution pour contourner ce problème serait alors de construire le compositum à
+partir d'une extension de $\mathbb{F}_q$.
 \end{rem}
 
 
@@ -7486,7 +7483,9 @@ alors de construire le compositum à partir d'une extension de $\mathbb{F}_q$.
 Le coût de la construction d'un tel compositum n'est pas étudié en détail afin 
 de ne pas surcharger le document car ce coût là ne sera pas majeur pour 
 une application dans l'algorithme de Couveignes. Le résultat à utiliser pour 
-évaluer un tel coût est le \cite[Theorem 1]{BostanFlajoletSalvySchost06}.
+évaluer un tel coût est le \cite[Theorem 1]{BostanFlajoletSalvySchost06} avec 
+bien évidemûment les cots de construction de tours d'extension $\ell$-adiques 
+vus dans le chapitre~\ref{cha:tour}.
 
 
 \todo{changer tous les composita en compositum}
@@ -7495,7 +7494,7 @@ une application dans l'algorithme de Couveignes. Le résultat à utiliser pour
  calcule les points (partiellement) horizontaux sur les volcans de 
  $\ell_i$-isogénies à l'aide des méthodes vues dans la 
  section~\ref{sub:con:poi}, on doit alors ensuite les exprimer dans le
- compositum afin de les utiliser pour le théorème des restes chinois dans 
+ compositum afin de les utiliser pour le Théorème des Restes Chinois dans 
  l'algorithme~\ref{alg:TRC}.
   
  Voyons à quel coût on peut exprimer un élément de $\mathsf{F}_{(i,n_i)}$ dans 
@@ -7539,24 +7538,6 @@ une application dans l'algorithme de Couveignes. Le résultat à utiliser pour
  On sera aussi amené à trouvé une racine d'un polynôme de degré $d$ à 
  coefficients dans un compositum $\mathbb{K}_n$, d'où le résultat suivant:
  
-\begin{prop}
-\label{pro:rac:com}
- Le coût de calcul de racines de polynômes de degré $d$ à coefficients dans un 
- compositum $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
- avec $P$ un polynôme irréductible de degré $p_n$ a un coût espéré de 
- $O(p_n \mathsf{M}(p_nd)\log(d)\log(dq))$ opérations sur $\mathbb{F}_q$.
-\end{prop}
- 
-\begin{proof}
-Pour obtenir ce résultat on applique les résultats de \cite[Chapter 14.5]{vzGJG03}.
-\end{proof}
-
-\begin{nota}
-On va noter par $R(i,j)$ le coût de trouver la racine d'un polynôme de degré 
-$i$ à coefficients dans le compositum $\mathbb{K}_j$, donc 
-$R(i,j)=O(p_j \mathsf{M}(p_ji)\log(i)\log(iq))$.
-\end{nota}
-
 Maintenant voyons un résultat qui nous permet de changer la 
 représentation d'un élément de $\mathbb{K}_i$ afin de le représenter comme un 
 élément de $\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$. 
@@ -7592,16 +7573,15 @@ opérations sur $\mathbb{F}_q$ lorsque $d_i\ell_i^{k} \geqslant p_{i-1}$.
 Voir \cite{DeFeoDoliskaniSchost14}.
 \end{proof}
 
-Ainsi on peut appliquer ce résultat pour calculer le coût du Frobenius avec 
-une méhtode similaire à celle du théorème~\ref{thm:frob-ell}
+Ainsi on va pouvoir appliquer ce résultat pour calculer le coût du Frobenius 
+avec une méhtode similaire à celle du théorème~\ref{thm:frob-ell}, cela sera 
+abordé dans la prochaine sous-section.
 
 \subsection{Coût total de l'algorithme de Couveignes $\ell_i$-adique avec le Théorème des Restes Chinois}
 
 
 \label{sss:crt:cou}
-Nous avons abordé dans la sous-section~\ref{sub:TRCE:cou} l'intérêt 
-d'utiliser un théorème des restes chinois sur une courbe elliptique par rapport
-à l'algorithme de Couveignes $\ell$-adique dans le cas Elkies. En effet on a vu
+On a vu dans la sous-section~\ref{sub:TRCE:cou} 
 qu'un point construit à l'aide du théorème des restes chinois appliqué à des 
 points $P_i,Q_i$ (partiellement) horizontaux de directions $\lambda_i,\mu_i$  
 d'ordre $\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux, 
@@ -7642,31 +7622,26 @@ On a donc bien une correspondance entre les points définis à l'aide du Théor�
  , \ell_n$.
  
 Dans le but d'appliquer les même méthodes que celles de la 
-sous-section~\ref{ssec:cou:elk} on a besoin du résultat qui nous permet de 
-déterminer les représentants d'orbites sous l'action de groupes de Galois en 
-rappelant que l'on note $\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$ le
-compositum qui contient tous les éléments $\mathsf{F}_{(i,k_i)}$ des tours 
-d'extensions $\ell_i$-adiques construit d'après les restrictions énoncées dans 
-la sous-section~\ref{sub:con:com}.
+sous-section~\ref{ssec:cou:elk} on a besoin de déterminer des représentants 
+d'orbites sous l'action de groupes de Galois sur des éléments de 
+$\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$ le
+défini dans la sous-section~\ref{sub:con:com}.
 \begin{prop}
 \label{pro:rep:com}
-Soit $P$ un point d'ordre $\upsilon_n$ de $E(\mathbb{K}_n)$ obtenu à l'aide 
+Soit $P$ un point d'ordre $\upsilon_n$ \todo{mettre dans nomenclature} de $E(\mathbb{K}_n)$ obtenu à l'aide 
 du Théorème des Restes Chinois appliqué aux points $P_i$ de $E$ d'ordre 
 $\ell_i^{k_i}$ tels que l'orbite générée par l'action de 
 $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$ sur $P_i$ soit de taille
  maximale: $d_i\ell_i^{k_i}$.  Alors l'orbite de $P$ selon l'action de 
  $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$ est elle aussi de taille maximale:
- $\prod_{i=1}^nd_i\ell_i^{k_i}$.
+ $p_n=\prod_{i=1}^nd_i\ell_i^{k_i}$.
 \end{prop} 
-
-\begin{proof} 
-Voir la preuve en appendice~\ref{pro:rep:com:app}.
-\end{proof}
+La preuve n'est pas retranscite pour ne pas surcharger le document.
 
 \begin{nota}
-Soient $\ell_1, \dots \ell_n$ $n$ nombres premier de Elkies, alors on note 
+Soient $\ell_1, \dots \ell_n$ $n$ nombres premiers de Elkies, alors on note 
 $\epsilon_i$ le nombre de représentants de points d'ordre $\ell_i^{k_i}$ sous 
-l'action d'un générateur de $\mathsf{Gal}(\mathsf{F}_{\ell_i^{k_i}}:\mathbb{F}_q)$.
+l'action d'un générateur de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$.
 \end{nota}
 
 On voit donc avec la proposition~\ref{pro:rep:com} que pour déterminer des 
@@ -7680,20 +7655,16 @@ par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,n_i)}:\mathbb{F}_q)$
  tout d'abord les représentants d'ordre $\ell_i^{k_i}$ dans les tours 
  d'extensions $\ell_i$-adiques, puis on les exprime dans le compositum et enfin
  on applique $\prod_{i=1}^{n} \epsilon_i$ fois le Théorème des Restes Chinois. 
- Pour le Théorème des Restes Chinois on a besoin d'appliquer 
- l'algorithme~\ref{alg:TRC:init:gen} $\sum_{i=1}^{n} \epsilon_i$ fois, une fois
- pour chaque représentant d'ordre $\ell_i^{k_i}$.
   
  On peut dès lors modifier l'algorithme~\ref{alg:cou:ell-adique} de telle sorte
  que l'on travaille avec deux couples de points d'ordre 
- $\prod_{i=1}^n\ell_i^{k_i}$ de même direction au lieu de deux points d'ordre
- $\ell^k$ de même direction comme dans l'algorithme~\ref{alg:cou:ell-adique}.
+ $\prod_{i=1}^n\ell_i^{k_i}$ de même direction.
  
- On va présente donc l'algorithme qui résulte de cette approche ainsi qu'une 
+ On présente donc l'algorithme~\ref{alg:cou:TRC-adique} qui résulte de cette approche ainsi qu'une 
  estimation de son coût.
  
 \begin{algorithm}
-\caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes $\ell$-adique dans le cas Elkies avec approche muti-modulaire à l'aide du TRC.}
+\caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes avec nombre composé de Elkies.}
 \begin{algorithmic}[1]
 \REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique pour $i$ allant de $1$ à $n$.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
@@ -7961,7 +7932,7 @@ et $[\ell_{i_0}^{k_{i_0}}]P=0_E$}
 \end{algorithmic}
 \end{algorithm}
 
-\chapter{Calculs dans un compositum}
+\chapter{Calculs dans un compositum - Rebus}
 \label{cha:ann:comp}
 Dans ce chapitre sont présentés les résultats énoncés dans la 
 section~\ref{sub:con:com}, ils n'ont pas été présenté dans le document car en 
@@ -8673,6 +8644,25 @@ dés lors réussir à avoir des opérations de changement de représentations da
 un compositum plus efficaces que celles de \cite{DeFeoDoliskaniSchost14}. Cette
 approche peut aussi selon les choix des paramètres s'avérer plus efficace que
 celle du cas Atkin proposé dans la section~\ref{sec:Atk:Con}
+
+\begin{prop}
+\label{pro:rac:com}
+ Le coût de calcul de racines de polynômes de degré $d$ à coefficients dans un 
+ compositum $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
+ avec $P$ un polynôme irréductible de degré $p_n$ a un coût espéré de 
+ $O(p_n \mathsf{M}(p_nd)\log(d)\log(dq))$ opérations sur $\mathbb{F}_q$.
+\end{prop}
+ 
+\begin{proof}
+Pour obtenir ce résultat on applique les résultats de \cite[Chapter 14.5]{vzGJG03}.
+\end{proof}
+
+\begin{nota}
+On va noter par $R(i,j)$ le coût de trouver la racine d'un polynôme de degré 
+$i$ à coefficients dans le compositum $\mathbb{K}_j$, donc 
+$R(i,j)=O(p_j \mathsf{M}(p_ji)\log(i)\log(iq))$.
+\end{nota}
+
 
 \section{\'Etude de l'application de la méthode Atkin dans le cas Elkies}
 Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Master13} et sont une 
