@@ -1143,7 +1143,7 @@ $p \gg r$, alors:
 l'algorithme BMSS  calcule l'isogénie qui relie les deux courbes en 
 $O(\mathsf{M}(r))$ opérations sur $\mathbb{F}_q$,
 \item si la somme des abscisses des points du noyau de l'isogénie n'est pas 
-connue l'algorithme BMSS \ref{alg:BMSS:total} calcule l'isogénie qui relie les 
+connue l'algorithme BMSS calcule l'isogénie qui relie les 
 deux courbes en $O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$.
 \end{itemize}
 \end{thm}
@@ -1163,7 +1163,7 @@ S(x)=\sqrt{\frac{h(1/x^2)}{g(1/x^2)}} \quad \text{équivalent à} \quad \frac{g(
 \end{equation} 
 avec 
 \begin{equation}
-S(x)=x + \frac{\tilde{A}-A}{10}x^5+\frac{\tilde{B}-B}{14}x^7+O(x^9)
+S(x)=x + \frac{\tilde{A}-A}{10}x^5+\frac{\tilde{B}-B}{14}x^7+O(x^9).
 \end{equation}
 L'équation \eqref{eq:BMSS:ED1} devient alors:
 \begin{equation}
@@ -1257,7 +1257,7 @@ Une solution $S$ de l'équation différentielle \eqref{eq:BMSS:ED3} est calculé
 \begin{equation}
 S(x)=xT(x^2), \quad R(x)=\frac{1}{T(x)^2} \quad \text{tel que } \frac{g(x)}{h(x)}=xR(1/x)
 \end{equation}
-que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle qui a un coût de $O(\mathsf{M}(r)\log(r))$ \cite[11]{vzGJG03} et domine toutes les autres.
+que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle qui a un coût de $O(\mathsf{M}(r)\log(r))$ \cite[Chapter 11]{vzGJG03} et domine toutes les autres.
 
 \begin{algorithm}
 \caption{\label{alg:BMSS:total} BMSS}
