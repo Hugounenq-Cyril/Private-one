@@ -988,9 +988,6 @@ Voir \cite{Schoof95}[§7]
 
 Maintenant que la courbe isogène est entièrement déterminée, il reste à déterminer le noyau de l'isogénie de celle-ci à l'aide d'algorithmes tels que \cite{BMSS08}  puis \cite{Lercier-Sirvent2008} qui cherchent à résoudre ce problème dans un tel contexte. Une présentation de ces algorithmes est faite dans le chapitre~\ref{cha:iso:computing}
 
-
-\subsection{Lien entre isogénie et son action sur le module de Tate}
-
 \chapter{Calcul d'isogénies sur les corps finis}
 \label{cha:iso:computing}
 Dans ce chapitre vont être présentés différents algorithmes pour résoudre le problème suivant: soient $E, E'$ deux courbes elliptiques définies sur $\mathbb{K}$, on cherche alors à calculer la fraction $\mathbb{K}$-rationnelle qui a pour domaine $E(\mathbb{K})$ et pour codomaine $E'(\mathbb{K})$  telle que  cette application  définisse une isogénie.
@@ -1033,7 +1030,11 @@ courbes ont des équations de Weierstrass \emph{normalisées}.
 \section{Elkies 1998}
 Dans cette sous-section on se restreint au cas où la caractéristique $p$ de 
 $\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p \gg r$.
-Dans le modèle de Elkies on travaille avec des courbes à équations de Weierstrass normalisées, celles-ci sont calculées à l'aide du $r$-ème polynôme modulaire (voir proposition \ref{prop:elk:nor} pour la construction et \cite{Schoof95} pour plus de détails). \todo{dire le coût de calcul de ce polynôme}
+Dans le modèle de Elkies on travaille avec des courbes à équations de 
+Weierstrass normalisées, celles-ci sont calculées à l'aide du $r$-ème polynôme 
+modulaire (voir proposition \ref{prop:elk:nor} pour la construction et 
+\cite{Schoof95} pour plus de détails). Le $r$-ème polynôme modulaire est 
+calculé en $\tilde{O}(r^3)$ opérations sur $\mathbb{F}_q$ d'après \cite{Enge09}. \todo{verifier que tilde est défini}
 Les idées présentées ici sont issues du travail de Elkies~\cite[§The kernel of
  the isogeny]{elkies1998}, celui-ci commence à partir des équations de 
  Weierstrass normalisées de $E$
@@ -1078,8 +1079,9 @@ Il est à noter que la condition $p \gg r$ est là pour nous assurer que $2, \cd
 On peut alors énoncer le théorème suivant
 \begin{thm}
 Soient $E$ et $\tilde{E}$ deux courbes elliptiques $r$-isogènes définies sur
-$\mathbb{F}_q$ avec $p>2r-1$ alors l'algorithme de Elkies calcule la 
-$r$-isogénie en $O(r^2)$ opérations sur $\mathbb{F}_q$.
+$\mathbb{F}_q$ avec des équations de Weierstrass normalisées avec $p>2r-1$ 
+alors l'algorithme de Elkies calcule la $r$-isogénie en $O(r^2)$ opérations sur
+$\mathbb{F}_q$.
 \end{thm}
 
 
@@ -1098,15 +1100,16 @@ Ce qui nous donne:
 \begin{equation}
 P=\exp\left( d \log(X) - \sum_{i = 1}^{d} \frac{p_i}{i!X^i} \right)
 \end{equation} 
-Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton on est capable d'exprimer $P$.
-
-On peut calculer $h(x)$ sans faire une reconstruction rationnelle, déterminer 
+Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton 
+on est capable d'exprimer $P$.
+On peut donc calculer $h(x)$ sans faire une reconstruction rationnelle (i.e. déterminer 
 la fraction $\frac{g(x)}{h(x)}$ à partir de son développement en série 
-$x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$, en effet on peut déterminer les sommes
+$x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$). En effet on peut déterminer les sommes
 de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de 
-$p_0=r-1, p_1$ et $\frac{g(x)}{h(x)}=x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$.
+$p_0=r-1, p_1$ et du développement en série de $\frac{g(x)}{h(x)}:x+
+\sum_{i \geqslant 1}\frac{h_i}{x^i}$.
 Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer 
-la connaissance de $p_1$. En effet comme le calcul du $\ell$-ème polynôme 
+la connaissance de $p_1$. En effet comme le calcul du $r$-ème polynôme 
 modulaire $\Phi_{r}$ a été effectué (voir \ref{sub:Elkies} pour plus de 
 contexte), alors à l'aide des dérivées partielles de $\Phi_{r}$ on peut 
 calculer celui-ci. Une formule explicite de ce calcul est donnée dans 
@@ -1900,7 +1903,7 @@ L'information de l'image de $x(P) \in \mathbb{L}_k$ entraîne bien la connaissan
 
 On présente uniquement les idées directrices pour calculer $T$, le calcul de 
 $A_0$ et les idées développées par \cite{DeFeo11} et auparavant par 
-\cite{enge2008} étant repris très largement dans la 
+\cite{EngeMorain03} étant repris très largement dans la 
 section~\ref{sec:interpolation} ils seront plus détaillés à cette occasion.
 
 
