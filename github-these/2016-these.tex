@@ -7675,7 +7675,7 @@ par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,n_i)}:\mathbb{F}_q)$
 \STATE \label{alg:cou:TRC_adique:rep:uni} Calcul des représentants des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$;
 \ENDFOR
 \STATE \label{alg:cou:TRC-adique:TRC} Calcul de $(P,Q),(P',Q') \in E^2 \times E'^2$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tels que $P$ et $P'$ sont de direction $(\lambda_1, \dots, \lambda_n)$ et $Q$ et $Q'$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
-\STATE \label{alg:cou:TRC-adique:rep} Calcul des listes de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$;
+\STATE \label{alg:cou:TRC-adique:rep} Calcul des listes de représentants $L_i,L_i'$ des orbites de points d'ordre $\prod_{i=1}^n \ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$;
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}$}
 \STATE \label{alg:cou:TRC-adique:ord} Actualisation de la liste $L_i'$ en $L'_{a,b}$ afin de respecter la correspondance induite par le choix de $M$;
 \STATE \label{alg:cou:TRC-adique:int} Calcul des des polynômes $A_{a,b}$ et $T$ par des méthodes similaires à celles décrites dans la section~\ref{sec:interpolation};
@@ -7695,14 +7695,14 @@ d'interpolation.
 
 \begin{prop}
 \label{pro:fro:com}
-Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{k}$ avec 
-$k \in [1,n_i]$ tel que $\mathsf{F}_{(i,k)}=\mathbb{F}_q[x]/\langle P \rangle$,
+Soit $i \in [1,n]$, $P$ un polynôme irréductible de degré $d_i\ell_i^{m}$ avec 
+$m \in [1,k_i]$ tel que $\mathsf{F}_{(i,m)}=\mathbb{F}_q[x]/\langle P \rangle$,
 $Q$ un polynôme irréductible de degré $p_{i-1}=\prod_{j=1}^{i-1}d_j\ell_j^{k_j}$
 tel que $\mathbb{K}_{i-1}=\mathbb{F}_q[y]/\langle Q \rangle$, $R=P \odot Q$ 
 tel que  $\mathsf{K}=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un 
 élément $a$ du corps $\mathsf{K}$ le coût de calcul de $a$ à une puissance 
 $q^{r p_{i-1}}$ est de 
-$O(\mathsf{M}(d_i\ell_i^{k}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{k})p_{i-1}^{(\omega+1)/2})$ 
+$O(\mathsf{M}(d_i\ell_i^{m}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{m})p_{i-1}^{(\omega+1)/2})$ 
 opérations dans $\mathbb{F}_q$ avec un 
 précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{n_i}qd_i))$ et  
 de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
@@ -7719,28 +7719,25 @@ avoir le coût de cette opération dominé par $O(d_i\ell_i^{k_i})\mathsf{M}(p_{
 Cependant ici, contrairement au cas du théorème~\ref{thm:frob-ell}, on doit prendre en 
 compte le coût du changement de représentation qui domine la complexité. Ainsi 
 il est crucial si l'on veut obtenir des résultats similaire à la 
-section~\ref{sec:cou:elk} d'avoir une construction de compositum permettant un 
+section~\ref{sec:interpolation} d'avoir une construction de compositum permettant un 
 changement de représentation à un coût linéaire.
-
-
 
 Une adaptation des méthodes de calcul de polynôme d'interpolation décrites dans
 la section~\ref{sec:interpolation} à ce contexte est faite pour le calcul de 
 polynôme minimal $T=T^{(n)}$(en reprenant une notation similaire) d'éléments de 
 $\mathbb{K}_n \setminus \mathbb{K}_{n-1}$.
-Ainsi comme dans la section~\ref{sec:interpolation} 
+Ainsi, comme dans la section~\ref{sec:interpolation}, 
 pour le calcul d'un tel polynôme d'interpolation on est amené à 
 multiplier des polynômes à coefficients dans $\mathbb{K}_{n-i-1} \otimes 
 \mathsf{F}_{(n-i,k)}$ qui de par leur degré font que le coût d'une telle 
 multiplication n'est que de $\tilde{O}(\mathsf{M}(p_n))$. Ce coût de 
 $\tilde{O}(\mathsf{M}(p_n))$ en comparant 
 avec les résultats du lemme~\ref{lemma:interpolation:minpoly} devrait être le 
-coût dominant. Cependant comme dit précédemment le Frobenius n'a pas un coût 
-similaire à la section~\ref{sec:interpolation}, ainsi le coût de 
-l'application du Frobenius aux polynômes $T^{(i)}_k$ a un coût de $O(\mathsf{M}
-(p_n)p_{n-i-1}^{(\omega-1)/2})$, or on doit appliquer le Frobenius 
-$\ell_{n-i}(k_{n-i}+1)$ fois et donc on majore ce coût par $O(n\mathsf{M}
-(p_n)p_{n-1}^{(\omega-1)/2}\max_i(\ell_{i}(k_{i}+1)))$.
+coût dominant. Cependant par le coût de 
+l'application du Frobenius aux polynômes $T^{(i)}_k$ de $O(\mathsf{M}
+(p_n)p_{n-i-1}^{(\omega-1)/2})$, on majore le coût total du Frobenius par 
+$O(n\mathsf{M}(p_n)p_{n-1}^{(\omega-1)/2}\max_i(\ell_{i}(k_{i}+1)))$. %or on doit appliquer le Frobenius 
+%$\ell_{n-i}(k_{n-i}+1)$ fois et donc on majore ce coût.
 
 De la même manière pour le calcul des polynômes d'interpolation $A$ tels 
 $A(v)=w$ avec $v,w \in \mathbb{K}_n \setminus \mathbb{K}_{n-1}$, le coût est
@@ -7756,21 +7753,21 @@ On veut alors calculer les polynômes
   \item $A\in \mathbb{F}_q[x]$ de degré inférieur à $t$ tel que $A(v_j)=w_j$ pour
     tout $j$.
   \end{itemize}
-On utilise à nouveau la même méthode que celle utilisée dans la 
-section~\ref{sec:interpolation}, le calcul de $T$ à partir des $T_j$ a un même
+On utilise à nouveau la méthode de la section~\ref{sec:interpolation}, le 
+calcul de $T$ à partir des $T_j$ a un même
 coût que dans la proposition~\ref{prop:interpol} de $O(\mathsf{M}(t)\log(s))$. 
-Cependant comme on a vu précédemment le coût de calcul des $A_j$ est de 
+Cependant comme vu précédemment le coût de calcul des $A_j$ est de 
 $O(n\mathsf{M}(t_j\max_i(d_i\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}
-\max_i(\ell_i(k_i+1)))$ on majore donc le cout total par $O(n\mathsf{M}(t\max_i(d_i
+\max_i(\ell_i(k_i+1)))$ on majore donc le coût total par $O(n\mathsf{M}(t\max_i(d_i
 \ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i(k_i+1)))$ par superlinéarité de 
 $\mathsf{M}$.
 
 On peut donc estimer le coût de cette version $\ell$-adique de l'algorithme de 
-Couveignes à l'aide du coût de calcul de la partie de l'interpolation. 
-L'interpolation étant répétée $O(r \prod_{i=1}^n\ell_i)$ en moyenne, on peut 
-donc estimer le coût de cet algorithme par $O(r (\prod_{i=1}^n\ell_i)n\mathsf{M}(r (\prod_{i=1}^n \ell_i^2)
+Couveignes à l'aide du coût dû à l'interpolation. 
+L'interpolation étant répétée $O(r \prod_{i=1}^n\ell_i)$ en moyenne, on obtient
+une estimation de $O(r (\prod_{i=1}^n\ell_i)n\mathsf{M}(r (\prod_{i=1}^n \ell_i^2)
 \max_i(d_i\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i (k_i +1)) )$. 
-Avec $p_n \in O(r(\prod_{i=1}^n\ell_i)^{3,5})$ cela nous donne une estimation 
+Avec $p_n \in O(r(\prod_{i=1}^n\ell_i)^{3,5})$ on a une estimation 
 de 
 \[ 
 O(r(\prod_{i=1}^n\ell_i)n\mathsf{M}(r (\prod_{i=1}^n \ell_i^{3,5})
@@ -7786,8 +7783,8 @@ taille des compositum on ne peut avoir une complexité quadratique en $r$ pour
 le calcul de l'isogénie montrant ainsi qu'une telle approche en l'état actuel
 n'est pas intéressante. Cependant cette approche avait l'avantage de proposer
 une meilleure estimation de $r$ par $\prod_{i=1}^n \ell_i^{k_i}$ et donc de 
-réduire les coûts apportés par l'étape d'interpolation dûs au choix du(des)
-nombre(s) de Elkies.
+réduire les coûts apportés par l'étape d'interpolation dûs au choix des
+nombres premiers de Elkies.
 
 
  
