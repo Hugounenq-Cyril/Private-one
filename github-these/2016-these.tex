@@ -7416,9 +7416,9 @@ restriction sera justifiée plus tard dans le document).
 On veut donc tout d'abord définir un compositum de tours d'extensions 
 $\ell_i$-adiques, en particulier on veut calculer un compositum qui contient 
 tous les éléments des tours d'extensions $\ell_i$-adiques suivant:
-$\mathsf{F}_{(1,n_1)}, \dots \mathsf{F}_{(n,n_n)}$. On suppose de plus que les
+$\mathsf{F}_{(1,k_1)}, \dots \mathsf{F}_{(n,k_n)}$. On suppose de plus que les
 $\ell_i$ sont ordonnés de telle sorte que pour tout $i \in [2,n]$ 
-$\prod_{j=1}^{i-1}d_j\ell_j^{n_j} \geqslant d_i\ell_i^{n_i}$, cette restriction
+$\prod_{j=1}^{i-1}d_j\ell_j^{k_j} \geqslant d_i\ell_i^{k_i}$, cette restriction
 sert juste à simplifier les calculs. \todo{reflechir notation $n_i$, $k_i$}
 
 On introduit un objet nécesaire à la construction de compositum.
@@ -7435,14 +7435,14 @@ proposition suivante:
 \begin{prop}
 \label{pro:init:com}
 Soient $\ell_1$ un nombre premier, $P$, $Q$ deux 
-polynômes unitaires irréductibles de degré $d_1\ell_1^{n_1}$ et $\deg(Q)$ 
+polynômes unitaires irréductibles de degré $d_1\ell_1^{k_1}$ et $\deg(Q)$ 
 premiers entre eux tels que $\mathbb{F}_q[x]/\langle P \rangle \cong 
-\mathsf{F}_{(1,n_1)}$ (le $n_1$ ème élément de la tour d'extensions 
+\mathsf{F}_{(1,k_1)}$ (le $k_1$ ème élément de la tour d'extensions 
 $\ell_1$-adique vu dans le chapitre \ref{cha:tour}), $\mathbb{F}_q[y]/\langle Q 
 \rangle$ une extension degré $\deg(Q)$ de $\mathbb{F}_q$.
  Soit $R=P\odot Q$  le produit composé de $P$ et $Q$, alors 
  $\mathbb{F}_q[z]/\langle R \rangle$ est un corps fini de taille 
- $q^{d_1\ell_1^{n_1}\deg(Q)}$ et est isomorphe à $\mathbb{F}_q[x,y]/
+ $q^{d_1\ell_1^{k_1}\deg(Q)}$ et est isomorphe à $\mathbb{F}_q[x,y]/
  \langle P,Q \rangle$.
 \end{prop}
 
@@ -7454,10 +7454,10 @@ Voir \cite[Theorem 2]{BrawleyCarlitz87}
 On peut alors définir les compositum dans notre cas particulier.
 \begin{defi}
 \label{def:con:com}
-On note $\mathbb{K}_1$ le corps $\mathsf{F}_{(1,n_1)}$. Soit $i \in [1,n-1]$ 
+On note $\mathbb{K}_1$ le corps $\mathsf{F}_{(1,k_1)}$. Soit $i \in [1,n-1]$ 
 supposons que $\mathbb{K}_{i}$ est défini, alors à 
 l'aide de la proposition~\ref{pro:init:com} $\mathbb{K}_{i+1}$ est défini comme
-le compositum de $\mathbb{K}_i$ et $\mathsf{F}_{(i+1,n_{i+1})}$.
+le compositum de $\mathbb{K}_i$ et $\mathsf{F}_{(i+1,k_{i+1})}$.
 \end{defi}
 \begin{rem}
 Dans la définition~\ref{def:con:com} le cas où l'on aurait $d_i=d_j$ avec $d_i 
@@ -7473,8 +7473,7 @@ partir d'une extension de $\mathbb{F}_q$.
 
 %\cite{Schost15} pour un contexte) \todo{surement plus du tout utile}
 \begin{nota} Afin de simplifier les notations on va 
- noter $m_i=\prod_{i=j}^nd_j\ell_j^{n_j}/d_i\ell_i^{n_i}$ et \todo{vérifier notation de $m_i$} 
- $p_{i}=\prod_{j=1}^{i}d_j\ell_j^{n_j}$, en particulier $p_{i}$ est le 
+ noter $p_{i}=\prod_{j=1}^{i}d_j\ell_j^{k_j}$, en particulier $p_{i}$ est le 
  degré du compositum $\mathbb{K}_i$ comme extension de $\mathbb{F}_q$, par 
  ailleurs on pose $p_0=1$.
 %$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
@@ -7497,20 +7496,20 @@ vus dans le chapitre~\ref{cha:tour}.
  compositum afin de les utiliser pour le Théorème des Restes Chinois dans 
  l'algorithme~\ref{alg:TRC}.
   
- Voyons à quel coût on peut exprimer un élément de $\mathsf{F}_{(i,n_i)}$ dans 
- $\mathbb{K}_n=\otimes_{i=1}^n\mathsf{F}_{(i,n_i)}$. On a donc 
+ Voyons à quel coût on peut exprimer un élément de $\mathsf{F}_{(i,k_i)}$ dans 
+ $\mathbb{K}_n=\otimes_{i=1}^n\mathsf{F}_{(i,k_i)}$. On a donc 
  besoin du résultat suivant issu de \cite[Theorem 1]{DeFeoDoliskaniSchost14}
  \begin{prop}[De Feo, Doliskani, Schost]
  \label{pro:com:inj}
  Soient $i \in [2,n] $ $P,Q$ deux polynômes irréductibles unitaires de degrés 
- premiers entre eux $d_i\ell_i^{n_i}$ et $p_{i-1}$ avec
-   $\mathbb{F}_q[x]/\langle P \rangle \cong \mathsf{F}_{(i,n_i)}$ et 
+ premiers entre eux $d_i\ell_i^{k_i}$ et $p_{i-1}$ avec
+   $\mathbb{F}_q[x]/\langle P \rangle \cong \mathsf{F}_{(i,k_i)}$ et 
    $\mathbb{F}_q[y]/\langle Q \rangle \cong \mathbb{K}_{i-1}$. Alors le 
-   plongement d'un élément de $\mathsf{F}_{(i,n_i)} $  dans $\mathbb{K}_{i}$ a un
+   plongement d'un élément de $\mathsf{F}_{(i,k_i)} $  dans $\mathbb{K}_{i}$ a un
    coût de 
-   $O(d_i\ell_i^{n_i}\mathsf{M}(p_{i-1})+p_{i-1}\mathsf{M}(d_i\ell_i^{n_i}))$ 
+   $O(d_i\ell_i^{k_i}\mathsf{M}(p_{i-1})+p_{i-1}\mathsf{M}(d_i\ell_i^{k_i}))$ 
    opérations sur $\mathbb{F}_q$. La descente d'un élémént de $\mathbb{K}_{i} $
-   vers un élément de $\mathsf{F}_{(i,n_i)}$  a un coût identique. 
+   vers un élément de $\mathsf{F}_{(i,k_i)}$  a un coût identique. 
    De même le plongement d'un élément de $\mathbb{K}_{i-1}$ dans 
    $\mathbb{K}_{i}$ aini que la descente d'un élément de $\mathbb{K}_{i}$ dans 
    $\mathbb{K}_{i-1}$ ont le même coût.
@@ -7540,7 +7539,7 @@ vus dans le chapitre~\ref{cha:tour}.
  
 Maintenant voyons un résultat qui nous permet de changer la 
 représentation d'un élément de $\mathbb{K}_i$ afin de le représenter comme un 
-élément de $\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$. 
+élément de $\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,k_i)}$. 
 
 \begin{prop}[De Feo, Doliskani, Schost]
 \label{pro:iso:fie}
