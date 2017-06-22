@@ -1034,7 +1034,7 @@ Dans le modèle de Elkies on travaille avec des courbes à équations de
 Weierstrass normalisées, celles-ci sont calculées à l'aide du $r$-ème polynôme 
 modulaire (voir proposition \ref{prop:elk:nor} pour la construction et 
 \cite{Schoof95} pour plus de détails). Le $r$-ème polynôme modulaire est 
-calculé en $\tilde{O}(r^3)$ opérations sur $\mathbb{F}_q$ d'après \cite{Enge09}. \todo{verifier que tilde est défini}
+calculé en $\tilde{O}(r^3)$ opérations sur $\mathbb{F}_q$ d'après \cite{Enge09} \cite[Algorithm 6.1, Theorem 1]{BLS12}. \todo{verifier que tilde est défini + se rappeler cette seconde source}
 Les idées présentées ici sont issues du travail de Elkies~\cite[§The kernel of
  the isogeny]{elkies1998}, celui-ci commence à partir des équations de 
  Weierstrass normalisées de $E$
@@ -1156,7 +1156,7 @@ solution de l'équation différentielle suivante:
 (x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)'^2=  \left(\frac{g(x)}{h(x)} \right)^3 + \tilde{A} \left(\frac{g(x)}{h(x)} \right) + \tilde{B}.
 \end{equation}
 Cependant on ne connaît pas des conditions initiales en $0$ pour cette équation
-différentielle vérifiée par $\frac{g(x)}{h(x)}$ et, comme $\deg(g)=r> \deg(h)= 
+différentielle vérifiée par $\frac{g(x)}{h(x)}$ et comme $\deg(g)=r> \deg(h)= 
 r-1$ alors on ne peut travailler avec des conditions à l'infini. On pose donc:
 \begin{equation}
 S(x)=\sqrt{\frac{h(1/x^2)}{g(1/x^2)}} \quad \text{équivalent à} \quad \frac{g(x)}{h(x)}=\frac{1}{S(1/\sqrt{x})}
@@ -1200,10 +1200,11 @@ Le développement en série de Taylor de $H$ en $f_1$ nous donne l'équation dif
 \begin{equation}
 2f_1'f_2'+f_1'^2=G(x)H(f_1)+G(x)H'(f_1)f_2 \bmod x^{2k}
 \end{equation}
-avec la condition initiale $f_2(0)=0$. On peut reformuler ainsi:
+avec la condition initiale $f_2(0)=0$. On reformule cette équation 
+différentielle linéaire:
 \begin{equation}
 \label{eq:LS08:diflin}
-f'_2-\frac{G(x)H'(f_1)}{2f_1'}f_2=\frac{G(x)H(f_1')-f_1'^2}{2f_1'}
+f'_2-\frac{G(x)H'(f_1)}{2f_1'}f_2=\frac{G(x)H(f_1)-f_1'^2}{2f_1'}
 \end{equation}
 
  Cette équation a alors pour solution:
@@ -1257,7 +1258,7 @@ Une solution $S$ de l'équation différentielle \eqref{eq:BMSS:ED3} est calculé
 \begin{equation}
 S(x)=xT(x^2), \quad R(x)=\frac{1}{T(x)^2} \quad \text{tel que } \frac{g(x)}{h(x)}=xR(1/x)
 \end{equation}
-que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle qui a un coût de $O(\mathsf{M}(r)\log(r))$ \cite[Chapter 11]{vzGJG03} et domine toutes les autres.
+que l'on détermine successivement dans l'algorithme \ref{alg:BMSS:total}. La dernière étape de \ref{alg:BMSS:total} est une reconstruction rationnelle qui a un coût de $O(\mathsf{M}(r)\log(r))$ \cite[Théorème 7.5]{algeff17} et domine toutes les autres.
 
 \begin{algorithm}
 \caption{\label{alg:BMSS:total} BMSS}
@@ -1277,7 +1278,7 @@ Il est à noter que si $p_1$ est connu alors on peut effectuer la reconstruction
 rationnelle avec la méthode énoncée pour l'algorithme de Elkies et précisée 
 dans la remarque~\ref{rem:pol:rec}. Il est dés lors suffisant de calculer $S$ à
 précision $x^{2r}$ car la connaissance $\frac{g(x)}{h(x)}$ à précision 
-$\ell-2$ est suffisante pour connaître $p_0,p_1,\cdots ,p_{r-1}$. Ainsi avec
+$r-2$ est suffisante pour connaître $p_0,p_1,\cdots ,p_{r-1}$. Ainsi avec
 la connaissance de $p_1$ la complexité de l'étape $5$ de 
 l'algorithme~\ref{alg:BMSS:total} est de $O(\mathsf{M}(r))$ opérations sur 
 $\mathbb{F}_q$ et donne la complexité de celui-ci.
@@ -1318,7 +1319,13 @@ sinon. Cela pose donc des limites aux applications de BMSS.
 \section{Algorithme de Lercier Sirvent}
 L'algorithme de Lercier Sirvent répond à la problématique posée par le fait que BMSS ne peut pas s'utiliser sur des corps de petite caractéristique à cause de possibles division par $0$, une solution naturelle envisagée est donc de résoudre ce problème en travaillant dans les entiers $p$-adiques.
 
-Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les nombres $p$-adiques et spécifie de quelle précision on a besoin sur les entrées de l'algorithme. Cependant l'algorithme  BMSS travaille avec des courbes elliptiques sous forme de Weierstrass normalisée, il est donc nécessaire de calculer des équations normalisées des relevés des courbes dans les $p$-adiques. L'algorithme est énoncé dans le cas où l'on a $p \geqslant 5$, les calculs ont lieu dans $\mathbb{Q}_q$ une extension non ramifiée de degré $d$ de $\mathbb{Q}_p$.
+Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les 
+nombres $p$-adiques et spécifie la précision dont on a besoin sur les entrées 
+de l'algorithme. De plus comme l'algorithme  BMSS travaille avec des courbes 
+elliptiques sous forme de Weierstrass normalisée, il est nécessaire de calculer
+des équations normalisées des relevés des courbes dans les $p$-adiques. 
+L'algorithme est énoncé dans le cas où l'on a $p \geqslant 5$, les calculs ont 
+lieu dans $\mathbb{Q}_q$ une extension non ramifiée de degré $d$ de $\mathbb{Q}_p$.
 
 L'algorithme de Lercier Sirvent calcule un relevé $\overline{E}$ de $E$ dans 
 $\mathbb{Q}_p$ et un relèvement $\overline{j_{E'}}$ du $j$-invariant $j'$ de la
@@ -1342,21 +1349,30 @@ courbe $\ell$-isogène $E'$. Ensuite les formules de Elkies \cite{elkies1998} so
 \begin{prop}[Lairez-Vaccon]
 Soient deux courbes $r$-isogènes $E,E'$ définies sur $\mathbb{F}_q$ de caractéristique $p$ avec $p \geqslant 5$, l'algorithme \ref{alg:LS08:modified} calcule l'isogénie normalisée que relie $E$ à $E'$ à l'aide d'une précision d'au plus: 
 \begin{itemize}
-\item $ 1 + \lfloor \log_p(4 r - 1) \rfloor $ coefficients p-adiques si l'on ne connaît pas $p_1$ la somme des abscisses du noyau,
-\item  $ 1 + \lfloor \log_p(2 r - 1) \rfloor $ coefficients $p$-adiques si l'on connaît $p_1$ la somme des abscisses du noyau.
+\item $ 1 + \lfloor \log_p(4 r - 1) \rfloor $ coefficients p-adiques si l'on ne connaît pas $p_1$, la somme des abscisses du noyau,
+\item  $ 1 + \lfloor \log_p(2 r - 1) \rfloor $ coefficients $p$-adiques si l'on connaît $p_1$, la somme des abscisses du noyau.
 \end{itemize}
 \end{prop}
 
-Ce résultat issu de \cite{LairezVaccon16} est une amélioration du résultat original de Lercier et Sirvent \cite{Lercier-Sirvent2008}. Cette amélioration porte notamment sur la précision de la solution de l'équation différentielle que l'on doit résoudre à l'étape~\ref{alg:BMSS:total:eqdiff} de l'algorithme BMSS  qui est décrite dans l'algorithme~\ref{alg:BMSS:eqdiff}.
+Ce résultat issu de \cite[Theorem 2]{LairezVaccon16} est une amélioration du résultat original de Lercier et Sirvent \cite{Lercier-Sirvent2008}. Cette amélioration porte notamment sur la précision de la solution de l'équation différentielle que l'on doit résoudre à l'étape~\ref{alg:BMSS:total:eqdiff} de l'algorithme BMSS  qui est décrite dans l'algorithme~\ref{alg:BMSS:eqdiff}.
 
 
 Une preuve détaillée pour calculer une solution de l'équation différentielle à précision donnée est dans \cite{LairezVaccon16}, cette méthode repose notamment sur la différenciation précisionnelle qui repose sur une analyse du premier ordre de la propagation des erreurs. 
 
-Comme vu précédemment on a besoin de calculer une solution de l'équation différentielle linéaire \eqref{eq:LS08:diflin} de précision $4r-1$ si l'on ne connaît pas $p_1$ la somme des abscisses des points du noyau de l'isogénie. Dans ce cas on applique le résultat de Lairez-Vaccon: pour obtenir une solution $p$-adique de précision $4 r-1$ on a besoin d'avoir en entrée des éléments de précision $ 1 + \lfloor \log_p(4 r - 1) \rfloor $. Tandis que dans le cas où l'on connaît $p_1$ on a besoin de calculer une solution de \eqref{eq:LS08:diflin} de précision $2r - 1$ et avec le résultat de Lairez-Vaccon on a besoin d'avoir une précision en entrée de $ 1 + \lfloor \log_p(2 r - 1) \rfloor $ nombres $p$-adiques.
-
+Détaillons un peu ce résultat: on a vu précédemment que l'on avait besoin de 
+calculer une solution de l'équation différentielle linéaire 
+\eqref{eq:LS08:diflin} de précision $4r-1$ si l'on ne connaît pas $p_1$, la 
+somme des abscisses des points du noyau de la $r$-isogénie. Dans ce cas on 
+applique le résultat de Lairez-Vaccon: pour obtenir une solution $p$-adique de 
+précision $4 r-1$ on a besoin d'avoir en entrée des éléments de précision $ 1 +
+\lfloor \log_p(4 r - 1) \rfloor $. Tandis que dans le cas où l'on connaît $p_1$
+on a besoin de calculer une solution de \eqref{eq:LS08:diflin} de précision 
+$2r - 1$ et avec \cite[Theorem 2]{LairezVaccon16} on a besoin d'avoir une 
+précision en entrée de $ 1 + \lfloor \log_p(2 r - 1) \rfloor $ nombres 
+$p$-adiques.
 
 \begin{rem}
-Lors de l'étape~\ref{alg:LS08:modified:rel:polmod} de l'algorithme de Lercier Sirvent (decrit dans l'algorithme~\ref{alg:LS08:modified}) on a besoin de connaître l'évaluation du $r$-ème polynôme modulaire en $j_E$: $\Phi_{r}(X,j_E)$ et on a aussi besoin de connaître des dérivées partielles de $\Phi_{\ell}$ lors de l'étape $3$ (voit \ref{sub:Elkies}), ceci suppose donc la connaissance de $\Phi_{r}$ qui à l'aide de formules (voir \cite[Theoreme 17.22]{ehcc05}) peut nous permettre de connaître $p_1$. Ainsi il est très raisonnable de penser que l'algorithme de Lercier Sirvent peut être utilisé dans certains cas avec une précision d'au plus $1 + \lfloor \log_{p}(2r - 1) \rfloor$.
+Lors de l'étape~\ref{alg:LS08:modified:rel:polmod} de l'algorithme de Lercier Sirvent (decrit dans l'algorithme~\ref{alg:LS08:modified}) on a besoin de connaître l'évaluation du $r$-ème polynôme modulaire en $j_E$: $\Phi_{r}(X,j_E)$ et on a aussi besoin de connaître des dérivées partielles de $\Phi_{\ell}$ lors de l'étape $3$ (voit \ref{sub:Elkies}), ceci suppose donc la connaissance de $\Phi_{r}$ qui à l'aide de formules (voir \cite[Theorem 17.22]{ehcc05}) peut nous permettre de connaître $p_1$. Ainsi il est très raisonnable de penser que l'algorithme de Lercier Sirvent peut être utilisé dans certains cas avec une précision d'au plus $1 + \lfloor \log_{p}(2r - 1) \rfloor$.
 \end{rem}
 
 \begin{prop}
@@ -1365,15 +1381,31 @@ L'algorithme \ref{alg:LS08:modified} calcule une $r$-isogénie à l'aide de $O(r
 
 \begin{proof}
 On ne considère pas dans cette analyse le coût de la construction de $\mathbb{Q}_q$.
-L'étape $1$ de relèvement de la courbe $E$ dans $\mathbb{Q}_q$ est considéré comme nul car on prend un relevé trivial de $E$.
-L'étape $2$ peut être faite en $\tilde{O}(r)$ opérations sur $\mathbb{F}_q$ à l'aide d'un relèvement de Hensel. 
-L'étape $3$ du calcul d'une équation de Weierstrass normalisée a une complexité de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$ à l'aide des formules de Elkies \cite{elkies1998} (voir \ref{sub:Elkies}).
-L'étape $4$ est l'algorithme BMSS et a une complexité de $O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{Q}_q$ si on ne connaît pas la valeur de $p_1$ (somme des abscisses des points du noyau de l'isogénie). L'étape $4$ a un coût de $O(\mathsf{M}(r))$ opérations sur $\mathbb{Q}_q$ si on connaît la valeur de $p_1$ ce qui est envisageable dès lors que l'on se sert des dérivées du polynôme modulaire à l'étape $3$ et d'une évaluation du polynôme modulaire à l'étape $2$.
-Les deux dernières étapes ont, elles, un coup négligeable par rapport au reste des opérations, d'où le coût total de $O(r^2)$ opérations sur $\mathbb{Q}_q$.
+L'étape $1$ de relèvement de la courbe $E$ dans $\mathbb{Q}_q$ est considéré 
+comme nul car on prend un relevé trivial de $E$.
+L'étape $2$ peut être faite en $\tilde{O}(r)$ opérations sur $\mathbb{F}_q$ à 
+l'aide d'un relèvement de Hensel. 
+L'étape $3$ du calcul d'une équation de Weierstrass normalisée a une complexité
+de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$ à l'aide des formules de Elkies 
+\cite{elkies1998} (voir \ref{sub:Elkies}).
+L'étape $4$ est l'algorithme BMSS et a une complexité de 
+$O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{Q}_q$ si on ne connaît pas la
+valeur de $p_1$ (somme des abscisses des points du noyau de l'isogénie). 
+L'étape $4$ a un coût de $O(\mathsf{M}(r))$ opérations sur $\mathbb{Q}_q$ si on
+connaît la valeur de $p_1$ ce qui est envisageable dès lors que l'on se sert 
+des dérivées du polynôme modulaire à l'étape $3$ et d'une évaluation du 
+polynôme modulaire à l'étape $2$.
+Les deux dernières étapes ont, elles, un coup négligeable par rapport au reste 
+des opérations, d'où le coût total de $O(r^2)$ opérations sur $\mathbb{Q}_q$.
 \end{proof}
 
 \begin{rem}
-Le coût de calcul des coefficients de $\phi_{r}$ à précision $p^{1+\log(4r -1)}$ est de $O(r^3 \log^3r \log\log r)$ opérations binaires et $O(r^2 \log r)$ d'espace binaire pour stocker les $O(r^2)$ coefficients de $\phi_{r} \in \mathbb{Z}_p[X,Y]$ d'après \cite[Algorithm 6.1, Theorem 1]{BLS12} en utilisant la précision $1+ \lfloor \log_p(4r-1) \rfloor$ préconisée par \cite{LairezVaccon16}.
+Le coût de calcul des coefficients de $\phi_{r}$ à précision 
+$p^{1+\log(4r -1)}$ est de $O(r^3 \log^3r \log\log r)$ opérations binaires et 
+$O(r^2 \log r)$ d'espace binaire pour stocker les $O(r^2)$ coefficients de 
+$\phi_{r} \in \mathbb{Z}_p[X,Y]$ d'après \cite[Algorithm 6.1, Theorem 1]{BLS12}
+en utilisant la précision $1+ \lfloor \log_p(4r-1) \rfloor$ préconisée par 
+\cite[Theorem 2]{LairezVaccon16}.
 \end{rem}
 
 
@@ -1388,24 +1420,24 @@ L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires
 Soit $I$ la $r$-isogénie qui relie deux courbes elliptiques ordinaires 
 $E,E'$ en entrée de l'algorithme de Couveignes, alors pour tout $k \geqslant 0$
 on a: $I(E[p^k])=E'[p^k]$. C'est cette correspondance qui, lorsque $k$ est 
-assez grand, donne une information suffisante pour interpoler l'isogénie. Comme
-la $p^k$-torsion est cyclique, alors cette correspondance est une 
+assez grand, donne une information suffisante pour interpoler la $r$-isogénie 
+$I$. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une 
 correspondance entre deux groupes cycliques. Soient $P$ un générateur de 
 $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement, 
 l'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point 
-$[a]P'$ par l'isogénie $I$ avec $a \in (\mathbb{Z}/p^k\mathbb{Z})^*$. Ainsi si
+$[a]P'$ par la $r$-isogénie $I$ avec $a \in (\mathbb{Z}/p^k\mathbb{Z})^{\times}$. Ainsi si
 l'on représente $I$ à l'aide d'une fraction rationnelle on a:
 \begin{equation}
-\frac{g(x([k] P))}{h(x([k] P))}=x([ka] P') \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}.
+\frac{g(x([j] P))}{h(x([j] P))}=x([ja] P') \quad \forall j \in \mathbb{Z}/p^{k}\mathbb{Z}.
 \end{equation}
 avec $\deg g = r$ et $\deg h = r-1$.
-Pour calculer l'isogénie, l'algorithme de Couveignes calcule un polynome $A_a \in \mathbb{F}_q[X]$ tel que l'on ait 
+Pour calculer la $r$-isogénie, l'algorithme de Couveignes calcule un polynome $A_a \in \mathbb{F}_q[X]$ tel que l'on ait 
 \begin{equation}
 A_a(x([k] P))= x([ka] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
 \end{equation} 
 avec $T \in \mathbb{F}_q[x]$ qui s'annule sur les abscisses des points de 
 $E[p^k]$.
-
+\todo{Regarder si reconstruction rationnelle est définie si ce n'est pas le cas le faire dans BMSS}
 On définit alors l'interpolation de Cauchy:
 \begin{defi}
 Soit $T \in \mathbb{F}_q[x]$ un polynôme de degré $n>0$ avec 
@@ -1420,12 +1452,12 @@ tels que:
 On veut donc faire une interpolation de Cauchy appliquée à $A_a$ et $T$ pour 
 calculer la forme explicite de l'isogénie de degré $r$, la valeur de $k$ 
 devrait donc être choisie telle que $p^k \geqslant 2 r +1$ mais comme tout 
-point d'ordre différent de $2$ a son opposé de même abscisse on doit doubler le
+point a son opposé de même abscisse on doit doubler le
 nombre de points à considérer et donc choisir $k$ tel que 
 $p^k \geqslant 4 r+1$. On vérifie alors si la fraction rationnelle obtenue est 
 bien la restriction d'une isogénie sur les abscisses. Si ce n'est pas le cas on
 choisit alors un autre coefficient $b \neq a \in 
-\left( \mathbb{Z}/p^k \mathbb{Z} \right)^*$ et l'on 
+\left( \mathbb{Z}/p^k \mathbb{Z} \right)^{\times}$ et l'on 
 recommence l'algorithme en supposant que $I(P)=[b] P'$.
 
 \begin{algorithm}
@@ -1437,7 +1469,7 @@ recommence l'algorithme en supposant que $I(P)=[b] P'$.
 \STATE Calcul de $P,P'$ générateurs de $E[p^k],E'[p^k]$;
 \FOR{$a \in (\mathbb{Z}/p^k\mathbb{Z})^*$}
 \STATE Calcul de $A_a$ et $T$ tels que $A_a(x([k]P))=x([ka]P) \bmod T$
-\STATE Calcul de la fraction rationnelle $F=A \bmod T$ à l'aide d'une 
+\STATE Calcul de la fraction rationnelle $F=A_a \bmod T$ à l'aide d'une 
 interpolation de Cauchy
 \IF{$\mathsf{Test}(F)$}
 \RETURN $F$
@@ -1449,15 +1481,16 @@ interpolation de Cauchy
 \subsubsection{Description détaillée de l'algorithme de Couveignes \todo{trouver meilleur titre}}
 On va donner ici la démarche à utiliser pour effectuer une utilisation 
 pratique de l'algorithme de Couveignes afin de permettre de voir les différences
-avec notre approche $\ell$-adique de l'algorithme de Couveignes, pour les 
-détails le lecteur interessé peut se reporter à \cite{Couveignes96} et 
-\cite{DeFeo11}.
+avec notre approche $\ell$-adique de l'algorithme de Couveignes faite dans le
+chapitre~\ref{cha:alg:fin}, pour les détails non abordés le lecteur interessé 
+peut se reporter à \cite{Couveignes96} et \cite{DeFeo11}.
+
 \paragraph{Calcul de la $p$-torsion}
 La première étape de l'algorithme est le calcul de générateurs de la $p^k$ 
 torsion. On a tout d'abord besoin de définir les points de $p$-torsion pour 
 cela on se sert du travail de Gunji \cite{Gunji76} et on se place dans le cas 
 où $p \neq 2$. Le lecteur intéressé par le cas $p=2$ pourra se référer à 
-\cite[3.2]{DeFeo11}.
+\cite[§3.2]{DeFeo11}.
 
 Le travail de Gunji \cite[Theorem 4]{Gunji76} permet donc de déterminer les 
 abscisses de points d'odre $p$ à l'aide d'éléments définis dans une extension 
@@ -1552,8 +1585,8 @@ Soit $\mathbb{L}_0, \mathbb{L}_1, \mathbb{L}_2, \cdots, $ une tour de corps
 finis de $\mathbb{F}_q$ définie comme dans \ref{def:p-adic:level} alors on 
 définit
 \begin{itemize}
-\item $v_p(E(\mathbb{F}_q))=\max\left( i, \mathbb{L}_i \subset \mathbb{F}_q \right)$,
-\item $v_p(E(\mathbb{L}_1))=\max\left( i, \mathbb{L}_i \subset \mathbb{L}_1 \right)$.
+\item $v_p(E(\mathbb{F}_q))=\max_i\left( \mathbb{L}_i \subset \mathbb{F}_q \right)$,
+\item $v_p(E(\mathbb{L}_1))=\max_i\left( \mathbb{L}_i \subset \mathbb{L}_1 \right)$.
 \end{itemize}
 \end{defi}
 
@@ -2047,7 +2080,7 @@ La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-
 
 L'algorithme de Couveignes avec les modifications apportées par l'utilisation de tours d'Artin-Schreier et du Frobenius pour le calcul du polynôme d'interpolation a alors la complexité suivante:
 
-\begin{thm}
+\begin{thm} \todo{!!! A retravailler !!!}
 Soient $E$ et $E'$ deux courbes $r$-isogènes, l'algorithme de Couveignes a une complexité de:
 \[
 \tilde{O}_{p,d,\log r}(p^2d^3+\mathsf{C}(p)pd+(pd)^{\omega}\log^2 r + p^3 r^2 d \log^3 r + p^2r^2d^2+(\frac{r^2}{p}+p)\mathsf{C}(pd))
@@ -2060,7 +2093,7 @@ Voir section $5.2$ de \cite{DeFeo11}.
 \end{proof}
 
 \begin{rem}
-La complexité ici est donnée en terms d'opérations sur $\mathbb{F}_p$ car les 
+La complexité ici est donnée en termes d'opérations sur $\mathbb{F}_p$ car les 
 tours d'Artin-Schreier sur lesquelles sont utililisées les améliorations 
 apportées à l'algorithme de Couveignes sont construites comme des extensions de
 corps sur $\mathbb{F}_p$ et ainsi tout élément d'une tour d'Artin-Schreier est
@@ -7157,7 +7190,7 @@ De plus notre estimation du nombre d'abscisses différentes utilisées lors de
 l'interpolation est toujours très pessimiste car on pourrait se contenter de
 prendre un nombre de points plus grand que $4r$, tout en ayant que des orbites 
 complètes pour le Frobenius, dès lors on ne travaillerait pas avec $O(r\ell^2)$ 
-abscisses lors de l'étape d'interpolation.  
+abscisses lors de l'étape d'interpolation.  \todo{A nuancer avec la taille des orbites}
  
 Une différence notable c'est que dans cette variante la complexité pour le 
 calcul d'une base diagonale de la $\ell^{h+1}$ torsion est quadratique alors 
