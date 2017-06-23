@@ -1605,7 +1605,7 @@ effectuée distinctement sur les différentes orbites sous l'action du Frobenius
 puis en utilisant le théorème des restes chinois on obtient alors un polynôme 
 d'interpolation modulo la $p^k$-torsion. Cette idée de travailler selon les 
 différentes orbites sous l'action du Frobenius est importante et sera donc 
-développée ici, elle sera reprise et améliorée par \cite{DeFeo11} ainsi que 
+développée ici, elle a été reprise et améliorée par \cite{DeFeo11} ainsi que 
 dans l'algorithme $\ell$-adique de Couveignes présenté dans le 
 chapitre~\ref{cha:alg:fin}.
 
@@ -1657,7 +1657,7 @@ et les points de l'orbite générée par l'action de $\sigma $ un générateur d
 $\mathsf{Gal}(\mathbb{L}_k:\mathbb{L}_{k-1})$ appliqué à $P_{k}$.
 \end{lem}
 
-\begin{proof}
+\begin{proof} 
 L'ensemble des points de $p$-division de $P_{k-1}$ est de cardinalité $p$ car $P$ appartient à $E$ une courbe elliptique ordinaire. La taille de l'orbite de $\sigma$ est quant à elle égale $[\mathbb{L}_k:\mathbb{L}_{k-1}]$ égale à $p$ car $\mathbb{L}_k \not \cong \mathbb{L}_{k-1}$. Il ne reste donc qu'à montrer une inclusion pour montrer l'égalité. On a vu dans la preuve de la proposition \ref{pro:ord:fro} que l'on pouvait déterminer les points de $p^k$ torsion comme des vecteurs propres pour le Frobenius. Ainsi les points conjugués à $P_k$ correspondent à $\sigma^{i } P_{k} \bmod p^k$ avec $i \in \{0, \cdots , p-1  \}$ et l'on a $[p](\sigma^{i}(P_{k}))=\sigma^{i}([p]P_{k})=[1]P_{k-1}$ car $P_{k-1} \in \mathbb{L}_{k-1}$.
 \end{proof}
 
@@ -1687,7 +1687,7 @@ l'orbite. Les opposés des points ayant la même abscisse, alors les abscisses
 des points $[n]P$ avec $n=-1 \bmod p^{v_p(E(\mathbb{L}_1))}$ appartiennent 
 aussi à l'orbite de $x(P)$ sous l'action d'un élément générateur de 
 $\mathsf{Gal}(\mathbb{L}_{k-v_p(E(\mathbb{L}_1))}:
-\mathbb{L}_{v_p(E(\mathbb{L}_1))})$, mais on préférera éviter dans les calculs 
+\mathbb{L}_{v_p(E(\mathbb{L}_1))})$, mais on préfèrera éviter dans les calculs 
 ces doublons inutiles.
 \end{proof}
 
@@ -1704,7 +1704,7 @@ p^{k-1}(p-1)/2$.
 
 %Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $f$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 0$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i+1}:\mathbb{L}_{v_E(p)+i}]$ est un antécédent de $P_i$ par $[p]$ (voir lemme \ref{lem:bij:ord}). 
 
-Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses des points d'ordre $p^{i+v_p(E(\mathbb{L}_1))}$ selon l'action du Frobenius et les différentes orbites. $f$ le nombre de représentants des orbites est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$, et est généralement égal à $\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2d_1}$ si l'on a pas $2 | [\mathbb{L}_1:\mathbb{F}_q]$.
+Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses des points d'ordre $p^{i+v_p(E(\mathbb{L}_1))}$ selon l'action du Frobenius et les différentes orbites. $f$ le nombre de représentants des orbites sous l'action de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{L}_1)$ est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$, et est généralement égal à $\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2d_1}$ si l'on a pas $2 | [\mathbb{L}_1:\mathbb{F}_q]$. \todo{?!?!?!}
 
 \begin{figure}
 \begin{center}
