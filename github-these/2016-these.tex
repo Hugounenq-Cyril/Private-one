@@ -772,7 +772,7 @@ est un homomorphisme de la courbe et est appelée \emph{endomorphisme de Frobeni
 \end{defi}
 
 Maintenant que nous avons défini l'endomorphisme de Frobenius voyons les 
-différentes propriété qu'il a selon que la courbe sur laquelle il est défini 
+différentes propriétés qu'il a selon que la courbe sur laquelle il est défini 
 soit ordinaire ou supersingulière.
 
 \begin{prop}
@@ -1627,6 +1627,7 @@ représentants on a $e \times f=p^{k-1}(p-1)/2$.
 Etudions maintenant plus en détail les orbites des abscisses de points d'ordre $p^k$ sous les actions d'éléments de groupes de Galois.
 
 \begin{cor}
+\label{cor:tai:orb}
 Soit $k$ tel que que $\mathbb{L}_k \neq \mathbb{F}_q$ avec $\mathbb{L}_k$ défini comme dans \ref{def:p-adic:level}, 
 la taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du groupe de Galois $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_q)$  est égale à:
 \begin{enumerate} 
@@ -1704,7 +1705,7 @@ p^{k-1}(p-1)/2$.
 
 %Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $f$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 0$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i+1}:\mathbb{L}_{v_E(p)+i}]$ est un antécédent de $P_i$ par $[p]$ (voir lemme \ref{lem:bij:ord}). 
 
-Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses des points d'ordre $p^{i+v_p(E(\mathbb{L}_1))}$ selon l'action du Frobenius et les différentes orbites. $f$ le nombre de représentants des orbites sous l'action de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{L}_1)$ est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}:\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2}$, et est généralement égal à $\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2d_1}$ si l'on a pas $2 | [\mathbb{L}_1:\mathbb{F}_q]$. \todo{?!?!?!}
+Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses des points d'ordre $p^{i+v_p(E(\mathbb{L}_1))}$ selon l'action du Frobenius et les différentes orbites. $f$ le nombre d'abscisses des représentants des points d'ordre $p^{v_p(E(\mathbb{L}_1))}$ sous l'action de $\mathsf{Gal}(\mathbb{L}_1:\mathbb{F}_q)$ est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}$ est égal à$ \frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2 d_1}$ sauf dans le cas où $2 | [\mathbb{L}_1:\mathbb{F}_q]$ où l'on a $\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{d_1}$ par le corollaire~\ref{cor:tai:orb}.
 
 \begin{figure}
 \begin{center}
@@ -1833,15 +1834,16 @@ Ainsi asymptotiquement la taille des orbites $e$ est dans $O(p^k)$, dés lors ne
 serait-ce que pour représenter un polynôme d'interpolation défini sur une 
 orbite on a besoin de $O(p^{2k})$ éléments de $\mathbb{F}_q$, et donc à minima 
 un nombre de $O(p^{2k})=O(r^2)$ opérations à effectuer sur $\mathbb{F}_q$. De 
-plus il faut calculer tous les points primitifs de $p^k$-torsion et donc 
-effectuer $p^k$ additions de points de courbes elliptiques définies sur une 
+plus pour il faut calculer tous les points d'ordre $p^k$ afin de calculer le
+polynôme $T$ et donc 
+effectuer $p^k$ additions de points de courbes elliptiques définis sur une 
 extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a 
 un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))=O(r\mathsf{M}(r)\log(r))$. Il faut 
-donc utiliser des méthodes supplémentaires pour optimiser ce temps de calcul 
+donc utiliser des techniques supplémentaires pour optimiser ce temps de calcul 
 trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette 
-question et seront présentées dans la sous section~\ref{sub:fro:int}.
+question et sont présentées dans la sous section~\ref{sub:fro:int}.
 
-Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation $A$ et du polynome $T$ qui s'annule sur les abscisses des points d'ordre $p^k$ est fait à l'aide de $O(\mathsf{M}(p^{k})\log(p^k))=O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03}.
+L'interpolation de Cauchy à partir du polynôme $A$ et du polynome $T$ qui s'annule sur les abscisses des points d'ordre $p^k$ est faite à l'aide de $O(\mathsf{M}(p^{k})\log(p^k))=O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03} (voir \cite[Théorème 7.5]{algeff17} pour plus de détails).
 %En pratique on travaille avec les points primitifs de $p^k$-torsion afin de pouvoir se servir de l'action du Frobenius pour parcourir tous les éléments à l'aide des représentants et de l'action du Frobenius.
 
 %\begin{lem}
@@ -1854,14 +1856,14 @@ Le calcul de la reconstruction rationnelle à partir du polynome d'interpolation
 %\end{proof}
 
 \paragraph{Validation de l'isogénie} \label{par:val:iso}
- On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=r$ et $\deg(V)=r-1$. Ensuite on vérifie que $V$ est bien un carré (ou, si $r$ est pair, que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(r) \log(r))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $r$-division, pour cela on calcule le polynôme de $r$ division en $O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$. 
+ On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=r$ et $\deg(V)=r-1$. Ensuite on vérifie que $V$ est bien un carré (ou, si $r$ est pair, que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(r) \log(r))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $r$-division, pour cela on calcule le polynôme de $r$ division en $O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$ \todo{Trouver une source directe ou regarder si ça n'a pas été justifié auparavant (surement dans le chapitre 1}. 
 
 
 \subsection{Apports de l'utilisation de l'action du Frobenius sur des tours $p$-adiques à l'algorithme de Couveignes}
 \label{sub:fro:int}
-On va se placer dans toute cette section dans le cas où l'on a la tour de corps
-finis de la définition~\ref{def:p-adic:level} qui correspond au pire des cas où
-l'on a $\mathbb{F}_q \not \simeq \mathbb{L}_1$et $\mathbb{L}_1 \not \simeq 
+On va se placer dans toute cette section dans le cas où la tour de corps
+finis définie à la définition~\ref{def:p-adic:level} correspond au pire des cas où
+$\mathbb{F}_q \not \simeq \mathbb{L}_1$et $\mathbb{L}_1 \not \simeq 
 \mathbb{L}_2$. En pratique une telle tour est implémentée à l'aide d'une tour 
 d'Artin-Schreier (voir \cite{DeFeo11} et \cite{DeFeo-Shost'12} pour plus de 
 détails).
@@ -1879,18 +1881,20 @@ Il manquait pour l'algorithme original des techniques efficaces pour faire agir
 le Frobenius ce que les constructions de tours d'Artin Schreier de 
 \cite{DeFeo-Shost'12} permettent désormais.
 
-On va montrer dans cette section les idées directrices pour obtenir à partir 
+On va montrer dans cette sous-sous-section les idées directrices pour obtenir à partir 
 d'un polynôme d'interpolation défini uniquement à l'aide de l'image d'un 
 représentant de l'orbite défini dans $\mathbb{L}_k \setminus \mathbb{L}_{k-1}$ 
 le polynôme d'interpolation défini sur toute l'orbite avec des coefficients 
-dans $\mathbb{F}_q$. Ceci est l'une des raisons pour travailler uniquement avec
-des points primitifs de $p^k$-torsion, puisque que eux seuls sont définis dans 
-$\mathbb{L}_k \setminus \mathbb{L}_{k-1}$, et sont donc tous dans des orbites 
-de tailles identiques.
+dans $\mathbb{F}_q$. On travaille avec les points d'ordre $p^k$ puisque que 
+parmi les points de $\ell^k$-torsion eux seuls sont définis dans 
+$\mathbb{L}_k \setminus \mathbb{L}_{k-1}$, ils sont donc tous dans des orbites 
+de tailles identiques. La méthode peut alors se généraliser aux points de 
+$p^k$-torsion en travaillant avec des orbites de tailles différentes.
 
-Soient $P$ et $P'$ deux points primitifs de $p^k$-torsion de $E$ et $E'$. On veut calculer le polynôme d'interpolation de degré minimal $A \in \mathbb{F}_q[X]$ tel que:
+Soient $P$ et $P'$ deux d'order $p^k$ de $E$ et $E'$. On veut calculer le 
+polynôme d'interpolation de degré minimal $A \in \mathbb{F}_q[X]$ tel que:
 \begin{equation}
-A(x([n]P))=x([n]P') \bmod T(x) \quad \text{pour } n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^*
+A(x([n]P))=x([n]P') \bmod T(x) \quad \text{pour } n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^{\times}
 \end{equation} 
 
 avec $T(X)= \prod_{n < \frac{p^{k-1}(p-1)}{2}, n \wedge p =1} (X-x([n]P))$.
@@ -1911,7 +1915,7 @@ A_{i}=A \bmod{T_{i}}.
 Dés lors on va se concentrer sur le calcul de $A_{0}$.
 
 
-On a $x(P) \in \mathbb{L}_k \setminus \mathbb{L}_{k-1}$ dés lors on veut 
+Soit $x(P) \in \mathbb{L}_k \setminus \mathbb{L}_{k-1}$ on veut 
 calculer: 
 \begin{enumerate}
 \item le polynôme minimal $T_{0}$ de $x(P)$ défini sur $\mathbb{F}_q$ de degré égal à $e$,
@@ -1919,9 +1923,9 @@ calculer:
 \end{enumerate}
 
 \begin{defi}
-Soient $j > k \geqslant 0$, $\sigma \in \mathsf{Gal}(\mathbb{L}_j:\mathbb{L}_k)$, $T=\sum_{i=0}^{d}t_iX^i \in \mathbb{L}_k[X]$ alors:
+Soient $j > i \geqslant 0$, $\sigma \in \mathsf{Gal}(\mathbb{L}_j:\mathbb{L}_i)$, $T=\sum_{s=0}^{d}t_sX^s \in \mathbb{L}_k[X]$ alors:
 \[
-\sigma(T)=\sum_{i=0}^{d}\sigma(t_i)X^i.
+\sigma(T)=\sum_{s=0}^{d}\sigma(t_s)X^s.
 \]   
 \end{defi}
 
@@ -1947,7 +1951,7 @@ théorème~\ref{thm:orb:fro} ainsi que le corollaire~\ref{cor:orb:fro}.
 Soient $k \geqslant 1$, $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{L}_{k} \setminus \mathbb{L}_{k-1}$. On note $\mathsf{orb}(x(P))$ l'ensemble des abscisses des points de l'orbite créée par l'action d'un élément générateur $\pi$ de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_{q})$ sur l'élément $x(P) \in \mathbb{L}_k$. On a donc:
 \begin{equation*}
 T_{0}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P)), n \leqslant p^k-1/2}(x-x([n]P))=\prod_{i=0}^{p^{k-1}d_1-1}(x-\pi^i(x(P)))=\prod_{i=0}^{{p^{k-1}d_1-1}}\pi^i(x-x(P))
-\end{equation*}
+\end{equation*} \todo{problème de place de l'équation}
 
 On note $T_0^{(0)}=x-x(P)$, soit $k \geqslant i\geqslant 0$ $\sigma_i$ un élément générateur de $\mathsf{Gal}(\mathbb{L}_{k-i+1}:\mathbb{L}_{k-i})$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
 \[
@@ -4702,7 +4706,6 @@ $k \cdot \ell^{k+\beta}$ classes de conjugaisons selon l'action de $\mathsf{Gal}
 \end{enumerate}
 \end{prop}
 
-\todo{!!! problème notation avec chapitre 2, celles-ci sont meilleures !!!}
 
 \begin{proof}
 Le degré ~$d_k$ correspond à l'ordre de la matrice~$\pi|E[\ell^k]$.
