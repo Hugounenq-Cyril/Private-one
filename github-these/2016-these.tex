@@ -3779,17 +3779,17 @@ on obtient, pour $Q'$ un point de $\ell$-division de $Q+[a]P$, dans la base
 $(\varphi(P), Q')$ une matrice du Frobenius de la forme $\left( 
 \begin{smallmatrix} \lambda & \delta \ell^{h-e-1}+b\ell^{k-1} \\ 0 & \mu 
 \end{smallmatrix} \right)~\bmod~\ell^k$ avec $b \in \mathbb{Z}/\ell 
-\mathbb{Z}$,  et donc par la proposition~\ref{pro:mat:fro} on a le codomaine de 
-$\varphi$ qui se situe au niveau $h-e+1$.
+\mathbb{Z}$.  Donc, par la proposition~\ref{pro:mat:fro}, le codomaine de 
+$\varphi$ se situe au niveau $h-e+1$.
 \end{proof}
 
 %Dire que par la taille des orbites on doit avoir celui qui est diagonalisé est celui de plus grande orbite  et l'autre non, ça dit quelque chose sur le fait que le point appartienne à un certain corps
 
 On pourra noter qu'avec cette proposition on retrouve bien la 
 proposition~\ref{pro:iso:mon} qui énonçait que pour une courbe $E$ non située
-au niveau du cratère telle que $E(\mathbb{F}_q)[\ell^{\infty}]\simeq 
+sur le cratère, telle que $E(\mathbb{F}_q)[\ell^{\infty}]\simeq 
 \mathbb{Z}/\ell^{n_1+i} \mathbb{Z} \times \mathbb{Z}/\ell^{n_1} \mathbb{Z}$ 
-avec $i>0$ la $\ell$-isogénie engendrée par un point de $E(\mathbb{F}_q)$ 
+avec $i>0$, la $\ell$-isogénie engendrée par un point de $E(\mathbb{F}_q)$ 
 d'ordre $\ell^{n_1+i}$ est montante.
 
 On voit aussi que cette détermination n'est pas sujette à l'existence de niveau
@@ -3817,16 +3817,16 @@ d'abord quelques définitions nécessaires:
   les deux points de la base sont horizontaux.
 \end{defi}
 
-Avant montrer les liens entre bases horizontales et diagonales on a besoin du résultat intermédiaire suivant qui pour $\phi:E \mapsto E'$ montre comment calculer l'image de la matrice du Frobenius $\pi|T_{\ell}(E)$ notée $\Pi$ dans une base de $T_{\ell}(E')$.
+Avant de montrer les liens entre bases horizontales et diagonales on a besoin du résultat intermédiaire suivant qui, pour $\phi:E \mapsto E'$, montre comment calculer l'image de la matrice du Frobenius $\pi|\mathsf{T}_{\ell}(E)$, notée $\Pi$, dans une base de $\mathsf{T}_{\ell}(E')$.
 
 \begin{lem}
 \label{lem:iso:con}
-Soient $\langle P, Q \rangle$ une base de $E[\ell^k]$ avec $k>0$, $\phi:E 
+Soit $\langle P, Q \rangle$ une base de $E[\ell^k]$ avec $k>0$, soit $\phi:E 
 \rightarrow E'$ l'isogénie de noyau engendré par $R=[x]P+[y]Q$  avec $x\wedge 
 \ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $0 \leqslant m \leqslant k$.
-$M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau 
-engendré par $R$,  $\Pi$ la matrice du Frobenius sur $T_{\ell}(E)$ alors la 
-matrice du Frobenius sur $T_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi 
+Soit $M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau 
+\todo{ Luca: comment $R$ engendre-t-il un réseau} engendré par $R$, soit $\Pi$ la matrice du Frobenius sur $\mathsf{T}_{\ell}(E)$, alors la 
+matrice du Frobenius sur $\mathsf{T}_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi 
 \cdot M_R$ à conjugaison près.
 \end{lem}
 \todo{harmoniser les notations pour la matrice de $\pi$ mettre $\Pi$ pour la matrice}
@@ -3850,11 +3850,10 @@ Comme $\Lambda_R = \phi^{-1} (\ell^k T_{\ell} (E'))$,
 alors il existe une base de~$T_{\ell}(E')$
 dans laquelle $\phi$ a pour matrice~$\ell^k M_R^{-1}$.
 Ainsi, dans cette base de ~$T_{\ell}(E')$
-la matrice de~$\pi|T_{\ell}(E')$ est $M_R^{-1} \cdot \Pi \cdot M_R^{}$.
+la matrice de~$\pi|\mathsf{T}_{\ell}(E')$ est $M_R^{-1} \cdot \Pi \cdot M_R^{}$.
 \end{proof}
 
 %Le résultat suivant permet de lier les bases horizontales et diagonales.
-
 
 \begin{prop} \label{pro:dia:hor}
 Soit~$E$ une courbe se situant sur le cratère et $P$ un point de $E[\ell^k]$
@@ -3865,7 +3864,7 @@ Si $\pi(P)=\lambda P$ alors on dit que $\ell^h P$ a pour direction $\lambda$.
 
 \begin{proof}
 La proposition étant évidente pour $h \geqslant k$,
-on suppose que l'on a $k \geqslant h$.
+on suppose que $k \geqslant h$.
 
 Soit $\langle R,S \rangle =E[\ell^k]$ une base qui diagonalise $\pi$.
 On peut alors exprimer $P=[x]R+[y]S$, on suppose sans perte de généralité
@@ -3874,14 +3873,14 @@ que $y=1$.
 Soit $\phi$ l'isogénie de noyau $\langle [\ell^h]P \rangle$ et $E'$ son 
 codomaine. Comme $[\ell^h]P$ est un vecteur propre de $\pi$, alors $\phi$ est 
 une isogénie rationnelle. Par le lemme~\ref{lem:iso:con}, la matrice 
-$\Pi'=\pi|T_{\ell}(E')$ est égale à $\left ( \begin{smallmatrix}\lambda& \ell^{h-k} 
+$\Pi'=\pi|\mathsf{T}_{\ell}(E')$ est égale à $\left ( \begin{smallmatrix}\lambda & \ell^{h-k} 
 x (\lambda-\mu)\\ 0 & \mu \end{smallmatrix}\right )$.  
 
 Cette matrice est diagonalisable seulement si $v_{\ell}(x) \geqslant k - h$.
 
-Pour l'autre sens de la preuve supposons sans perte de généralité que $P$ soit 
-un vecteur propre de $\pi$ pour la valeur propre $\mu$ alors 
-~$(\pi - \mu) P = x (\lambda - \mu) R$ et l'on obtient le résultat.
+Pour l'autre sens de la preuve supposons, sans perte de généralité, que $P$ soit 
+un vecteur propre de $\pi$ pour la valeur propre $\mu$, alors 
+$(\pi - \mu) P = x (\lambda - \mu) R$ et l'on obtient le résultat.
 \end{proof}
 
 \begin{figure}
@@ -4136,25 +4135,26 @@ un vecteur propre de $\pi$ pour la valeur propre $\mu$ alors
 \end{tikzpicture}
 \end{center}
 \caption{ \label{fig:poi:dia} Exemples de  différents points diagonaux $P \in 
-E_s$ d'ordre $2^3$ tels que $\pi(P)=[\color{blue}{\mu}\color{black}]P$, ici sont représentées les différentes isogénies de noyau $\langle P \rangle$.}
-
-%\todo{mettre des mu et des lambda sur les dessins..}
-
+E_s$ d'ordre $2^3$ tels que $\pi(P)=[ \mu ]P$, ici sont représentées les 
+différentes isogénies de noyau $\langle P \rangle$.}
 \end{figure}
-Sur le schéma~\ref{fig:poi:dia} sont représentés les isogénies qui ont pour 
-noyau différents points $P \in E_s $ diagonaux d'ordre $2^3$ tels que $\pi(P)=
-[\color{blue}\mu \color{black}]P$. On remarque tout d'abord que l'on peut avoir
+%\todo{supprimer les couleurs dans la thèse}
+%%\todo{mettre des mu et des lambda sur les dessins..}
+
+Sur la Figure~\ref{fig:poi:dia} sont représentées les isogénies qui ont pour
+noyau différents points $P \in E_s $ diagonaux d'ordre $2^3$, tels que $\pi(P)=
+[\mu]P$. On remarque tout d'abord que l'on peut avoir
 uniquement la $\ell$-isogénie de noyau $\langle [2^2]P \rangle$ qui soit 
-horizontale comme représenté sur le volcan dessiné à gauche. Or on voudrait 
-comme sur le volcan dessiné à droite déterminer un point $P$ tel que la 
-$2^3$-isogénie de noyau $\langle P \rangle$ soit horizontale. On pourrait par 
-exemple pour faire cela diagonaliser une base de la $2^{3+2}$ torsion et l'on 
+horizontale, comme représenté sur le volcan dessiné à gauche. Or on voudrait, 
+comme sur le volcan dessiné à droite, déterminer un point $P$ tel que la 
+$2^3$-isogénie de noyau $\langle P \rangle$ soit horizontale. On pourrait, par 
+exemple, diagonaliser une base de la $2^{3+2}$ torsion et l'on 
 aurait le résultat à l'aide de la proposition~\ref{pro:dia:hor}. Cependant pour
-faire cela on peut être ammené à travailler dans des extensions de corps 
+faire cela on peut être amené à travailler dans des extensions de corps 
 uniquement pour avoir un point horizontal défini dans un sous-corps. Le 
 résultat suivant répond à ce problème et nous permet de construire des bases 
 horizontales de taille aussi grande que la $\ell$-torsion définie sur le corps 
-sur lequel on travaille sans que l'on ait à travailler dans des extensions de 
+sur lequel on travaille, sans que l'on ait à travailler dans des extensions de 
 corps supplémentaires.
 
 \begin{prop}\label{pro:pus:hor}
