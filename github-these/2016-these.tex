@@ -4166,7 +4166,7 @@ alors $\psi(Q)$ est horizontal de direction~$\mu$.
 \begin{proof}
 Soit~$Q' = \psi(Q)$ et~$\widehat{\psi}$ l'isogénie duale de~$\psi$, 
 comme $\widehat{\psi}$~et~$\widehat{\psi}(Q') = [\ell]Q$ sont horizontaux
-de direction~$\mu$ alors $Q'$~est horizontal de direction $\mu$.
+de direction~$\mu$, alors $Q'$~est horizontal de direction $\mu$.
 \end{proof}
 
 \begin{figure}
@@ -4351,15 +4351,15 @@ $\color{red}{\lambda}$. Sur le volcan de droite l'isogénie de noyau $\langle
 \end{figure}
 
 On présente donc sur la figure~\ref{fig:poi:hor} un exemple de construction de 
-point horizontal, on a donc repris le premier exemple de point 
-diagonal de la figure~\ref{fig:poi:dia} pour lequel on était certain par la 
-proposition~\ref{pro:dia:hor} que $[2^2]P$ était horizontal. On utilise alors 
-la proposition~\ref{pro:dia:hor} pour déterminer l'isogénie $\psi:E_s 
-\rightarrow E'_s$ de direction $\mu$ différente de celle de $[2^2]P$, $\psi(P)$
-est alors un point d'ordre $[2^3]$ tel que $[2]\psi(P)$ est un point horizontal 
-d'ordre $2^2$. Pour obtenir un point horizontal d'ordre $2^3$ on utilise à 
-nouveau la $2$-isogénie de direction $\lambda$ et de domaine $E'_s$ que l'on 
-applique à $\psi(P)$.
+point horizontal: on a repris le premier exemple de point 
+diagonal de la figure~\ref{fig:poi:dia}, pour lequel on était certain par la 
+proposition~\ref{pro:dia:hor} que $[2^2]P$ était horizontal de direction 
+$\lambda$. On utilise alors la proposition~\ref{pro:dia:hor} pour déterminer 
+l'isogénie $\psi:E_s \rightarrow E'_s$ de direction $\mu$, $\psi(P)$ est alors 
+un point d'ordre $[2^3]$ tel que $[2]\psi(P)$
+est un point horizontal d'ordre $2^2$. Pour obtenir un point horizontal d'ordre
+$2^3$ on utilise à nouveau la $2$-isogénie de direction $\mu$ et de domaine
+$E'_s$, que l'on applique à $\psi(P)$.
 
 On va donc montrer comment transporter cette information pour des courbes 
 situées en dessous du cratère. Avant cela voyons comment déterminer à l'aide 
@@ -4371,17 +4371,25 @@ Soit $E$ une courbe elliptique située sur le cratère cyclique d'un volcan de $
 \end{prop}
 
 \begin{proof}
-Comme il y a en tout $\ell+1$ sous groupes de $E[\ell]$ avec les sous-groupes 
+Comme il y a en tout $\ell+1$ sous groupes de $E[\ell]$, avec les sous-groupes 
 $\langle P \rangle$,  $\langle Q \rangle$ qui engendrent des $\ell$-isogénies 
-horizontales alors les $\ell-1$ sous groupes restants de la forme 
+horizontales, alors les $\ell-1$ sous groupes restants de la forme 
 $\langle P+ [b] Q \rangle$ avec $b \wedge \ell =1$ engendrent des 
 $\ell$-isogénies descendantes par le théorème~\ref{thm:Koh:cas}.
 \end{proof}
 
 \begin{cor}
-Soit $E$ une courbe située sur le cratère, $k\geqslant i \geqslant 1$, $\langle P, Q \rangle= E[\ell^k]$ une base horizontale. Alors les $\ell^i$-isogénies descendantes sont générées par les sous-groupes $\langle [a\ell^{k-i}]P+ [b\ell^{k-i}]Q \rangle$ avec $b \wedge \ell =1$ et $a = 1 \bmod \ell$.
+Soit $E$ une courbe située sur le cratère, $k\geqslant i \geqslant 1$, 
+$\langle P, Q \rangle= E[\ell^k]$ une base horizontale. Alors les 
+$\ell^i$-isogénies descendantes sont générées par les sous-groupes 
+$\langle [a\ell^{k-i}]P+ [b\ell^{k-i}]Q \rangle$ avec $b \wedge \ell =1$ et 
+$a = 1 \bmod \ell$.
 \end{cor}
-Il est important de noter que le seul critère restricitf pour obtenir ce résultat est d'avoir la $\ell$-isogénie engendrée par $\langle [a \ell^{k-1}]P+ [b \ell^{k-1}]Q \rangle $ de type descendant (pour plus de détails voir sous-section \ref{sub:alg:FM} ou \cite{FouquetMorain02}).
+Il est important de noter que, comme dit dans la sous-sous-section~\ref{sub:alg:FM} 
+et dans \cite{FouquetMorain02}, pour obtenir une $\ell^k$-isogénie descendante 
+il est suffisant d'avoir la première $\ell$-isogénie engendrée par le noyau de 
+la $\ell^k$-isogénie qui soit descendante et que l'on ait pas ensuite de 
+$\ell$-isogénie duales le seul critère restricitf pour obtenir ce résultat est d'avoir la $\ell$-isogénie engendrée par $\langle [a \ell^{k-1}]P+ [b \ell^{k-1}]Q \rangle $ de type descendant (pour plus de détails voir sous-section \ref{sub:alg:FM} ou \cite{FouquetMorain02}).
 
 \begin{defi}
 \label{def:par:hor}
