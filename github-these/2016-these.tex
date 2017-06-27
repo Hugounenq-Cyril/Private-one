@@ -215,7 +215,11 @@ utilisant $O(m^{\omega})$ opérations $(+,\times)$ dans $A$, en utilisant les
 algorithmes de \cite{CoppersmithWinograd90} et \cite{Williams12} on peut 
 prendre $\omega \leqslant 2,38$.
 
-Enfin des algorithmes de Las Vegas vont être utilisé dans ce document. Ces algorithmes sont des algorithmes probabilistes qui produisent un résultat correct, dés lors qu'on utilise un algorithme de Las Vegas on parlera de probabilité espérée.
+On va noter par $\tilde{O}$ le coût de la complexité exprimée sans facteurs 
+logarithmiques.
+
+Enfin des algorithmes de Las Vegas vont être utilisés dans ce document. Ces algorithmes sont des algorithmes probabilistes qui produisent un résultat correct, dés lors qu'on utilise un algorithme de Las Vegas on parlera de complexitée espérée. \todo{cout moyen ?}
+\todo{définir tilde}
 
 \section{Théorie de Galois}
 
@@ -276,7 +280,7 @@ Soit $\mathbb{K}$ un corps, on dénote par $\overline{\mathbb{K}}$ sa cloture al
 \begin{defi}
 On appelle espace projectif de dimension $2$ sur un corps $\mathbb{K}$ et on note $\mathbb{P}^2(\mathbb{K})$, l'ensemble des classes $(X:Y:Z)$ de la relation d'équivalence définie comme suit:
 \begin{equation*}
-\forall (X,Y,Z) \in \mathbb{K}^3 \setminus (0,0,0), (X,Y,Z) \equiv (X',Y',Z') \text{ ssi }\exists c \in \mathbb{K}^*, X'=cX, Y'=cY, Z'=cZ.
+\forall (X,Y,Z) \in \mathbb{K}^3 \setminus (0,0,0), (X,Y,Z) \equiv (X',Y',Z') \Leftrightarrow \exists c \in \mathbb{K}^*, X'=cX, Y'=cY, Z'=cZ.
 \end{equation*}
 \end{defi}
 
@@ -560,8 +564,11 @@ f'(P)&=& 3x(P)^2+2a_2x(P)+a_4
 \end{align*}
 Avec les formules d'addition on peut réécrire l'équation \eqref{eq:Velu} de la façon suivante en explicitant l'isogénie sur les coordonnées affines $x,y$ de chaque point de la courbe:
 \begin{equation} \label{eq:velu:sum}
-I(x,y)=\left( x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2} , y + \sum_{Q \in G \setminus \{0_E\}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3}  \right)
+I(x,y) = \left( x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
+, y + \sum_{Q \in G \setminus \{0_E\}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3}  \right)
 \end{equation}
+\todo{faire un saut à la ligne}
+
 Alors si on note: 
 \begin{equation*}
 h(x)=\prod_{Q \in G \setminus \{0_E\}}(x-x(Q)),
@@ -806,7 +813,7 @@ L'endomorphisme de Frobenius relatif à $\mathbb{F}_q$ admet pour polynôme cara
 avec $t_{\pi}$ la trace de l'endomorphisme de Frobenius. Cette équation a un rôle important dans le calcul de cardinalité de courbes elliptiques \cite{Schoof85}.
 
 \begin{prop}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $t_{\pi}$ la trace de l'endomorphisme de Frobenius relatif à $ \mathbb{F}_q$ alors on a:
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $t_{\pi}$ la trace de l'endomorphisme de Frobenius relatif à $ \mathbb{F}_q$ alors:
 \begin{equation*}
 |E(\mathbb{F}_q)|=q+1-t_{\pi}.
 \end{equation*}
@@ -879,7 +886,7 @@ Soient $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ de $j$-in
 \item[$\ell=2$] on a la distinction suivante:
 \begin{itemize}
 \item si $d_{\pi}= 0 \bmod 4$ ou si $d_{\pi}= 1 \bmod 8$, alors $\ell$ est dit nombre premier de Elkies,
-\item si $d_{\pi=5} \bmod 8$, alors $\ell$ est dit nombre premier de Atkin.
+\item si $d_{\pi}= 5 \bmod 8$, alors $\ell$ est dit nombre premier de Atkin.
 \end{itemize}
 \end{itemize}
 \end{defi}
@@ -1948,10 +1955,11 @@ Pour plus de détails sur la description des orbites selon les cas
 possibles le lecteur peut regarder le  lemme~\ref{lem:bij:ord}, le 
 théorème~\ref{thm:orb:fro} ainsi que le corollaire~\ref{cor:orb:fro}.
 
-Soient $k \geqslant 1$, $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{L}_{k} \setminus \mathbb{L}_{k-1}$. On note $\mathsf{orb}(x(P))$ l'ensemble des abscisses des points de l'orbite créée par l'action d'un élément générateur $\pi$ de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_{q})$ sur l'élément $x(P) \in \mathbb{L}_k$. On a donc:
+Soient $k \geqslant 1$, $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{L}_{k} \setminus \mathbb{L}_{k-1}$. On note $\mathsf{orb}(x(P))$ l'ensemble des abscisses des points de l'orbite créée par l'action d'un élément générateur $\pi$ de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_{q})$ sur l'élément $x(P) \in \mathbb{L}_k$. On a donc: \todo{problème de place de l'équation}
+
 \begin{equation*}
-T_{0}(x)=\prod_{x([n]P) \in \mathsf{orb}(x(P)), n \leqslant p^k-1/2}(x-x([n]P))=\prod_{i=0}^{p^{k-1}d_1-1}(x-\pi^i(x(P)))=\prod_{i=0}^{{p^{k-1}d_1-1}}\pi^i(x-x(P))
-\end{equation*} \todo{problème de place de l'équation}
+T_{0}(x)= \overset{}{\underset{n \leqslant (p^k-1)/2}{\underset{x([n]P) \in \mathsf{orb}(x(P)) }{\prod }}}(x-x([n]P))=\prod_{i=0}^{p^{k-1}d_1-1}(x-\pi^i(x(P)))=\prod_{i=0}^{{p^{k-1}d_1-1}}\pi^i(x-x(P))
+\end{equation*}
 
 On note $T_0^{(0)}=x-x(P)$, soit $k \geqslant i\geqslant 0$ $\sigma_i$ un élément générateur de $\mathsf{Gal}(\mathbb{L}_{k-i+1}:\mathbb{L}_{k-i})$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
 \[
@@ -1963,7 +1971,10 @@ T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
 \]
  $T_0^{(k)}$ est égal à $T_0$ le polynôme minimal de $x(P)$ sur $\mathbb{F}_q$.
 
-Une représentation de ce calcul sur un arbre binaire permet de voir sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en travaillant avec une branche de celui-ci à l'aide de la méthode décrite ci-dessus.
+Une représentation de ce calcul sur un arbre de produit binaire permet de voir 
+sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en 
+travaillant avec une branche de celui-ci à l'aide de la méthode décrite 
+ci-dessus.
 
 \begin{figure}
 \begin{center}
@@ -2749,14 +2760,21 @@ Le discriminant est un invariant de la base chosie, en prenant la base $[1, f
 \omega_K]$ de $\mathcal{O}$, on a:
 \[D=f^2d_K.\]
 
+En particulier pour $\mathcal{O}=\langle 1, \omega_K f \rangle$, le polynôme 
+minimal de $f \omega_K$ est:
+\[
+x^2-fd_Kx+f^2d_K\frac{d_K-1}{4}=0
+\]
+Le discriminant de ce polynôme et de cet ordre est alors $f^2d_K$.
 \begin{rem}
-$d_{\pi}=t_{\pi}^2-4q$ le discriminant de l'équation caractéristique du 
+\label{rem:def:dpi}
+De par l'isomorphisme de groupes entre le groupe de classes de formes et le groupes de classes d'idéaux (voir Theoreme 7.7 Cox ou Theoreme 5.2.8 Coh96) on peut aussi définir le discriminant de $d_{\pi}$ comme étant le discriminant du polynôme minimal du Frobenius: $x^2-t_{\pi}+4q$ et l'on a alors $d_{\pi} =t_{\pi}^2-4q$ le discriminant de l'ordre $\mathbb{Z}[\pi]$.
 Frobenius pour une courbe elliptique dont l'anneau d'endomorphisme est 
 isomorphe à $\mathbb{Z}[\pi]$ est aussi le discriminant de l'ordre $\mathbb{Z}
 [\pi]$.
 \end{rem}
 
-
+\todo{Definir $d_{\pi}$ !}
 
 \subsection{Anneau d'endomorphisme de courbes elliptiques ordinaires}
 Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini qui sont, comme vu dans la proposition \ref{pro:fro:dis}, isomorphes à des ordres dans un corps quadratique imaginaire. On va voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
@@ -2987,9 +3005,17 @@ Soit $\ell$ un nombre premier, un chemin descendant sur un volcan de $\ell$-isog
 \end{defi}
 
 \begin{defi}
+\label{def:haut:vol}
 Soit $\ell$ un nombre premier, $E_c$ une courbe elliptique située sur le cratère d'un volcan de $\ell$-isogénies alors la longueur $h$ d'un chemin descendant partant de $E_c$ est appelée la hauteur du volcan.
 Soit $n$ la longueur d'un chemin descendant partant de la courbe elliptique $E$ alors $n$ est le niveau de $E$ dans le volcan d'isogénies.
 \end{defi}
+
+\begin{rem} \todo{A retravailler}
+\label{rem:lie:dp:dk}
+Ainsi pour un volcan de $\ell$-isohénies de hauteur $h$, on a 
+$d_{\pi}=\ell^{2h}d_{K}$ avec  $\ell^2 \nmid d_{\pi}$ par les 
+définitions~\ref{def:iso:nom} et ~\ref{def:haut:vol}.
+\end{rem}
 
 \begin{defi}
 \label{def:cou:som}
@@ -2997,7 +3023,6 @@ Soit $E$ une courbe elliptique située au niveau $n$ du cratère du volcan de $\
 \end{defi}
 
 \begin{figure}[h]
-\label{fig:vol:3t}
 		\begin{center}
         \begin{tikzpicture}[scale=0.2]
         \coordinate (A) at (0,0);
@@ -3074,7 +3099,7 @@ Soit $E$ une courbe elliptique située au niveau $n$ du cratère du volcan de $\
 		\end{scope}
 		\end{tikzpicture}
 		\end{center}
-		\caption{Différents types de volcans de $2$-isogénies.}
+		\caption{\label{fig:vol:3t} Différents types de volcans de $2$-isogénies.}
 \end{figure}
 On peut voir sur le dessin \ref{fig:vol:3t} les 3 différentes formes de volcans
 qui existent, celles-ci sont distinguées par la forme de leur cratère qui est 
@@ -3152,7 +3177,9 @@ de $\mathbb{Z}$-modules suivant:
 E(\mathbb{F}_{q^r}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q^r}}(E)}{\pi-1}
 \] 
 \end{prop}
-
+\todo{@Luca dans le cas ordinaire $\pi$ n'est jamais dans $\mathbb{Z}$, et
+  $End(E)=End_{\mathbb{F}_{q^r}}(E)$. Tu peux largement simplifier
+  l'énoncé.}
 \begin{proof}
 \cite[Theorem 1]{Lenstra1996}
 \end{proof}
@@ -3499,41 +3526,50 @@ la $2^{\infty}$-torsion illustre le résultat du corollaire~\ref{cor:struct:ext}
 
 \chapter{Détermination de directions dans le volcan de $\ell$-isogénies à l'aide de l'action du Frobenius}
 \label{cha:act:fro}
-Dans cette partie on va étudier sur une courbe elliptique $E$ l'action du 
-Frobenius sur $\mathsf{T}_{\ell}(E)$ et voir comment selon cette action on 
-détermine des directions dans le volcan de $\ell$-isogénies. \todo{Justifier 
+Dans cette partie nous allons étudier l'action du Frobenius sur  le module de
+Tate $\mathsf{T}_{\ell}(E)$ et voir comment cette action  
+détermine des directions dans le volcan de $\ell$-isogénies. On rappelle que 
+l'on se place dans tout ce document dans le cas où la courbe elliptique est 
+ordinaire. \todo{verifier que c'est un rappel} \todo{Justifier 
 l'intérêt de cela} Ceci peut permettre par exemple dans le cas Elkies (défini 
-plus bas) de savoir rester sur le cratère cyclique et par exemple de calculer
-le nombre de classe en parcourant le cratère. Cela peut permettre aussi d'atteindre et 
+plus bas) de savoir rester sur le cratère cyclique et, par exemple, de calculer
+le nombre de classe d'idéaux \todo{classes de qui?} en parcourant le cratère. Cela peut permettre aussi d'atteindre et 
 détecter le cratère du volcan directement y compris lorsque l'on est sur des 
 volcans non-réguliers et par conséquent de déterminer la hauteur du volcan par
 des méthodes plus directes que celles de~\cite{FouquetMorain02}.
 
 \section{Cas Elkies}
 
-La majeure partie du travail présenté dans cette sous-section a été effectué en collaboration avec Luca De Feo, Jér\^ome Pl\^ut et \'Eric Schost. Il a fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
+La majeure partie du travail présenté dans cette sous-section a été effectué en
+collaboration avec Luca De Feo, Jér\^ome Pl\^ut et \'Eric Schost. Il a fait 
+l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
- On se place tout d'abord dans un cas particulier le cas Elkies que l'on définit de suite: 
-\todo{cas du ordinaire à mettre partout ?}
+On se place tout d'abord dans un cas particulier le cas Elkies que l'on définit de suite: 
+\todo{cas du ordinaire à mettre partout ? @Luca Non il suffit de le mettre au début}
 \begin{defi}
 \label{def:cas:elk}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell$ est dit un nombre premier de Elkies si le polynôme caractéristique du Frobenius: $\pi^2-t_{\pi}\pi + q$ se factorise dans $\mathbb{Z}_{\ell}$ à l'aide de deux valeurs propres distinctes notées dans le document $\lambda$ et $\mu$. On a donc dans ce cas
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell$ est dit un 
+nombre premier de Elkies si le polynôme caractéristique du Frobenius: 
+$\pi^2-t_{\pi}\pi + q$ se factorise dans $\mathbb{Z}_{\ell}$ à l'aide de deux 
+valeurs propres distinctes notées dans le document $\lambda$ et $\mu$. On a 
+donc dans ce cas
 \begin{equation*}
-\pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \bmod \mathbb{Z}_{\ell} \text{ avec } \lambda \neq \mu.
+\pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \text{ dans } \mathbb{Z}_{\ell}[\pi], \text{ avec } \lambda \neq \mu.
 \end{equation*}
-dés lors comme on a $d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$ avoir 
+Dés lors puisque $d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$ (voir remarque~\ref{rem:lie:dp:dk} \todo{regarder chapitre 4} et définition ) avoir 
 $d_{\pi}$ un résidu quadratique est équivalent à avoir $\left( 
 \frac{d_{K}}{\ell} \right)=1$. Ainsi dans le cas Elkies le cratère est cyclique
 par le corollaire~\ref{cor:tab:vol}.
 \end{defi}
 
-On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de $\pi$ admet deux valeurs propres distinctes modulo la $\ell^k$ torsion avec $k > h$.
+On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de 
+$\pi$ admet deux valeurs propres distinctes modulo $\ell^k$ dès que $k > h$.
 
 \begin{prop}
 \label{pro:hau:vol}
 Soit $E$ une courbe elliptique $\ell$ un nombre premier de Elkies alors on a 
-$h=v_{\ell}(\lambda - \mu)$ qui est la hauteur du volcan de $\ell$-isogénies 
-sur $\mathbb{F}_q$.
+$h=v_{\ell}(\lambda - \mu)$ est la hauteur du volcan de $\ell$-isogénies 
+contenant $E$.
 \end{prop}
 
 \begin{proof}
@@ -3545,8 +3581,8 @@ alors on a bien $h=h'$ et $h$ représente bien la hauteur du volcan.
 \end{proof}
  
 Désormais lorsque l'on parlera de hauteur $h$ du volcan on fera référence à la
-hauteur du volcan de $\ell$-isogénies défini sur $\mathbb{F}_q$ sauf mention 
-explicite contraire.
+hauteur du volcan des $\ell$-isogénies définies sur $\mathbb{F}_q$, sauf mention 
+ explicite contraire.
 \subsection{\'Etude de l'action du Frobenius sur le module de Tate}
 \label{subs:elk:dir}
 
@@ -3556,11 +3592,11 @@ conjugaison près.
 
 
 \begin{prop}\label{pro:mat:fro}
-Soit~$E$ une courbe elliptique ordinaire tel que $\ell$ est un nombre Elkies
+Soit~$E$ une courbe elliptique ordinaire, telle que $\ell$ est un nombre Elkies
 a deux racines distinctes $\lambda$, $\mu$ appartenant à $\mathbb{Z}_{\ell}$,
-ainsi le volcan de $\ell$-isogénies de $E$ a un cratère cyclique.
+ainsi le volcan des $\ell$-isogénies de $E$ a un cratère cyclique.
 Il existe un unique $e \in [ 0, h]$
-tel que $\pi|T_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
+tel que $\pi|\mathsf{T}_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
 à la matrice 
 \begin{equation*}
 \left ( \begin{matrix}\lambda & \ell^{h-e} \\ 0 & \mu
@@ -3568,15 +3604,16 @@ tel que $\pi|T_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
 \end{equation*}
 % where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
 De plus $e = 0$ si~$E$ se situe sur le cratère,
-sinon $h - e$~est le niveau de~$E$ dans le volcan, $e$ est appelé la profondeur
+sinon $h - e$~est le niveau de~$E$ dans le volcan, $e$ est appelé la \emph{profondeur}
 de la courbe dans le volcan.
 \end{prop}
+\todo{mathsf{T}}
 
 On souligne le fait que $\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
 \mu \end{smallmatrix}\right)$ est conjugée à $\left(\begin{smallmatrix} \lambda & 0 \\ 0 & \mu\end{smallmatrix}\right)$ sur~$\mathbb{Z}_{\ell}$.
 \begin{proof}
 Comme le polynôme caractéristique de $\pi$ admet deux valeurs propres sur 
-$\mathbb{Z}_{\ell}$ alors la matrice $\pi|T_{\ell}(E)$ est trigonalisable. \todo{justifier cela Morris Newman Integral Matrices III.\color{red}{15}}
+$\mathbb{Z}_{\ell}$ alors la matrice $\pi|\mathsf{T}_{\ell}(E)$ est trigonalisable. \todo{justifier cela Morris Newman Integral Matrices III.\color{red}{15}}
 La conjugaison de la matrice $\left ( \begin{smallmatrix}\lambda & a\\0 & \mu
 \end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & b\\0 & 1
 \end{smallmatrix} \right )$ change le coefficient $a$ en $a-b (\lambda - \mu)$, 
@@ -3585,31 +3622,31 @@ et la conjugaison par ~$\left(\begin{smallmatrix} c & 0 \\ 0 &
 ainsi la valuation $\ell$-adique~$h-e = v_{\ell}(a)$ est invariante sous la 
 conjugaison matricielle. Cela prouve la première partie de la proposition. 
 
-Pour la seconde partie par le thèorème de 
-Tate~\cite[Isogeny theorem III.7.7 (a)]{Silv1},$\mathcal{O} \otimes 
-\mathbb{Z}_{\ell}$~est isomorphe à l'ordre dans~$\mathbb{Q}_{\ell}[\pi_{\ell}]$
-des matrices avec coefficients entiers, cet ordre est généré par la matrice 
-identité et la matrice $\ell^{-\min (h, v_\ell(a))} (\pi_{\ell}-\lambda)$, dés 
-lors l'indice de cet ordre par rapport à $\mathbb{Z}[\pi_{\ell}]$ est de 
-$\ell^{\min (h, v_\ell(a))}$ lui donnant son niveau $\min (h, v_\ell(a))$ dans 
-le volcan de $\ell$-isogénies.
+Pour la seconde partie, par le thèorème de 
+Tate~\cite[Isogeny theorem III.7.7 (a)]{Silv1}, $\mathcal{O} \otimes 
+ \mathbb{Z}_{\ell}$~est isomorphe à l'ordre dans~$\mathbb{Q}_{\ell}[\pi_{\ell}]$
+des matrices avec coefficients entiers, cet ordre est engendré par la matrice 
+ identité et la matrice $\ell^{-\min (h, v_\ell(a))} (\pi_{\ell}-\lambda)$, dés 
+ lors l'indice de cet ordre par rapport à $\mathbb{Z}[\pi_{\ell}]$ est de 
+$\ell^{\min (h, v_\ell(a))}$, lui donnant son niveau $\min (h, v_\ell(a))$ dans 
+ le volcan de $\ell$-isogénies.
 \end{proof}
 
 Ainsi avec la proposition \ref{pro:mat:fro} on a un moyen de déterminer la 
 hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de 
 l'action du Frobenius sur $\mathsf{T}_{\ell}(E)$. Dans la 
 figure~\ref{fig:elk:dif:niv:mat} est représenté un volcan de $2$-isogénies 
-de hauteur $2$ où l'on observe le lien entre le niveau de la courbe dans le 
-volcan de hauteur $2$ ici et la forme de la matrice du Frobenius à conjugaison 
-près. Ainsi pour les courbes situées tout en bas du volcan on a le coefficient 
-triangulaire supérieur qui est de valuation $\ell$-adique nulle et qui augmente
-de $1$ à chaque fois que l'on monte d'un niveau dans le volcan. 
+de hauteur $2$, où l'on observe le lien entre le niveau de la courbe dans le 
+volcan (de hauteur $2$ ici) et la forme de la matrice du Frobenius à conjugaison 
+près. Ainsi, pour les courbes situées tout en bas du volcan, le coefficient 
+triangulaire supérieur est de valuation $\ell$-adique nulle, et augmente
+de $1$ à chaque fois que l'on monte d'un niveau dans le volcan.
 
 Le résultat suivant nous donne un moyen de savoir comment monter et descendre à
 l'intérieur d'un volcan de $\ell$-isogénies en étudiant l'action du Frobenius 
-sur les points de la courbe qui génèrent leur noyau. C'est d'ailleurs 
-l'approche que l'on aura tout au long de cette section, pour déterminer les 
-directions des isogénies on étudiera l'action du Frobenius sur un point 
+sur leurs noyaux. C'est d'ailleurs 
+l'approche que l'on aura tout au long de cette section: pour déterminer les 
+directions des isogénies on étudiera l'action du Frobenius sur un 
 générateur de leur noyau.
 
 
@@ -3705,10 +3742,12 @@ générateur de leur noyau.
 \caption{\label{fig:elk:dif:niv:mat} Différentes formes de matrices du Frobenius à conjugaison près selon le niveau dans le volcan d'isogénies.}
 \end{figure}
 
+\todo{volcan des }
+
 \begin{prop}
 \label{pro:tri:dir}
-Soient $E$ une courbe elliptique située au niveau $h-e$ du volcan de 
-$\ell$-isogénies avec $\ell$ nombre premier de Elkies, $P,Q \in E$ tels que 
+Soient $E$ une courbe elliptique située au niveau $h-e \neq h$ du volcan des 
+$\ell$-isogénies avec $\ell$ un nombre premier de Elkies, $P,Q \in E$ tels que 
 $\langle P,Q \rangle = E[\ell^k]$ avec $k>h-e$, pour lesquels la matrice du 
 Frobenius est de la forme $\left( \begin{smallmatrix} \lambda & \delta 
 \ell^{h-e} \\ 0 & \mu \end{smallmatrix} \right) \bmod \ell^k $ avec $\delta 
@@ -3719,18 +3758,19 @@ noyau les groupes $\langle [\ell^{k-1}](Q+[a]P) \rangle$ avec $a \in
 \end{prop}
 
 \begin{proof}
-Soit $\widehat{\varphi}$ la $\ell$-isogénie de noyau $\langle \ell^{k-1}P 
-\rangle$, $P'$ un point de $\ell$-division de $\widehat{\varphi}(P)$ alors 
-comme le Frobenius avec $\widehat{\varphi}$ il a pour matrice dans la base 
-$( P',\widehat{\varphi}(Q) )$: $\left( \begin{smallmatrix} \lambda 
-& \delta \ell^{h-e+1} \\ c \ell^{k-1} & \mu \end{smallmatrix} \right)~\bmod~\ell^k$ 
-avec $c \in \mathbb{Z}/\ell \mathbb{Z}$ et donc par la 
-proposition~\ref{pro:mat:fro} on a le codomaine de $\widehat{\varphi}$ qui se 
-situe au niveau $h-e+1$. En effet un changement de base de la forme $\left( 
-\begin{smallmatrix} 1 & 0 \\ \gamma \ell^{k-1} & 1 \end{smallmatrix} \right)$ 
-avec $\gamma \in (\mathbb{Z}/\ell \mathbb{Z})^{\times}$ tel que $\ell^{k-1}(c+
-\gamma (\lambda -\mu))=0 \bmod \ell^k$ permet d'obtenir une matrice 
-triangulaire supérieure de la forme de celles de la 
+Soit $\widehat{\varphi}:E\to E'$ la $\ell$-isogénie de noyau $\langle \ell^{k-1}P 
+\rangle$.
+Soit $P'\in E'$ un point de $\ell$-division de $\widehat{\varphi}(P)$, alors 
+le Frobenius de $E'$ agit sur la base 
+$( P',\widehat{\varphi}(Q) )$ comme la matrice $\left( \begin{smallmatrix} \lambda 
+& \delta \ell^{h-e+1} \\ c \ell^{k-1} & \mu \end{smallmatrix} \right)~\bmod~\ell^k$, 
+avec $c \in \mathbb{Z}/\ell \mathbb{Z}$. Par la 
+proposition~\ref{pro:mat:fro} $E'$ se 
+ situe au niveau $h-e+1$. En effet un changement de base de la forme $\left( 
+\begin{smallmatrix} 1 & 0 \\ \gamma \ell^{k-1} & 1 \end{smallmatrix} \right)$, 
+ avec $\gamma \in (\mathbb{Z}/\ell \mathbb{Z})^{\times}$ tel que $\ell^{k-1}(c+
+\gamma (\lambda -\mu))=0 \bmod \ell^k$, permet d'obtenir une matrice 
+triangulaire supérieure comme dans la
 proposition~\ref{pro:mat:fro}.
 
 De même on peut montrer que pour $\varphi$ une $\ell$-isogénie de noyau 
