@@ -730,11 +730,6 @@ $\mathrm{End}(E)$ est
 Voir \cite[Corollary III.9.4]{Silv1}, et \cite[Theorem V.3.1]{Silv1}
 \end{proof}
 
-\subsection{Courbes d\'efinies sur $\mathbb{C}$}
-Parler entre autres du polynome modulaire à cette occasion-là.
-\subsubsection{Polynôme modulaire}
-
-
 \section{Courbes elliptiques définies sur un corps fini}
 
 Soit $p$ un nombre premier, on notera $\mathbb{F}_q=\mathbb{F}_{p^e}$ le corps 
@@ -743,7 +738,7 @@ nombre de points d'une courbe elliptiqe est fini, ainsi nous travaillons avec
 un groupe abélien fini. Afin d'étudier ce groupe, et en particulier d'établir 
 sa cardinalité, nous allons introduire l'endomorphisme de Frobenius. Dans la 
 suite de ce document nous considérerons que les courbes elliptiques mentionnées
- sont définies sur un corps fini.
+sont définies sur un corps fini.
 
 On a tout d'abord le résultat suivant sur la structure des points d'une courbe elliptique:
 \begin{prop}
@@ -870,7 +865,7 @@ Une fois la valeur de la trace du Frobenius $t_{\pi}$ déterminée, on a alors $
 
 Le principal problème avec cette approche est que l'on travaille avec la $\ell$-torsion qui lorsque l'on a $\ell \neq p$ est de la forme $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$. On doit alors travailler modulo le polynôme de $\ell$-division (le polynôme unitaire qui s'annule sur les abscisses des points de $\ell$-torsion) qui est de degré $(\ell^2-1)/2$. L'objectif de l'amélioration d'Elkies est alors de considérer des sous-groupes de la $\ell$-torsion afin de diminuer le coût de l'algorithme.
 
-Des améliorations ont donc été apportées à l'algorithme de Schoof par Atkin et Elkies en analysant plus précisément l'action du Frobenius sur la $\ell$-torsion afin d'exhiber des sous-groupes de la $\ell$-torsion. En  rappelant que $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$ on peut représenter l'action de $\pi$ sur la $\ell$-torsion sous forme matricielle. Ainsi en analysant les solutions de l'équation caractéristique de $\pi$:
+Des améliorations ont donc été apportées à l'algorithme de Schoof par Atkin et Elkies en analysant plus précisément l'action du Frobenius sur la $\ell$-torsion afin d'exhiber des sous-groupes de la $\ell$-torsion. Ainsi en analysant les solutions de l'équation caractéristique de $\pi$:
 \begin{equation*}
 X^2-t_{\pi}X+q = 0 \bmod \ell
 \end{equation*} 
@@ -895,28 +890,32 @@ Soient $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ de $j$-in
 \end{itemize}
 \end{itemize}
 \end{defi}
-	Avec cette distinction il va être possible selon les cas de déterminer des espaces propres pour le Frobenius appliqué à la $\ell$-torsion. Avant cela on a besoin d'énoncer la définition suivante:
-\begin{defi}
-Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Soit $C$ un sous-groupe de $E[\ell]$ d'ordre $\ell$. On note $r$ le plus petit entier $\rho$ tel que $\pi^{\rho}(C)=C$.
-\end{defi}	
+	Avec cette distinction il va être possible selon les cas de déterminer des espaces propres pour le Frobenius appliqué à la $\ell$-torsion. Avant cela on a besoin d'énoncer la notation suivante:
+\begin{nota}
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Soit $C$ un sous-groupe de $E[\ell]$ d'ordre $\ell$. On note $s$ le plus petit entier $\rho$ tel que $\pi^{\rho}(C)=C$.
+\end{nota}	
 	 
 	Dans le cas Elkies on doit faire une distinction selon la nullité du discriminant $d_{\pi}$ modulo $\ell$. 
 \begin{itemize}	
-	\item Si $d_{\pi}=0 \bmod \ell$ lorsque $\ell \neq 2$ et $d_{\pi}=0 \bmod [4]$ lorsque $\ell=2$  alors il n'y a qu'une seule valeur propre $\lambda$ pour le Frobenius restreint à la $\ell$-torsion  et l'espace propre est défini sur $\mathbb{F}_{q^r}$ avec $r=1$ si l'espace propre est de dimension $2$ sur $\mathbb{F}_q$ et $r=\ell$ si seulement un espace propre de dimension $1$ est défini sur $\mathbb{F}_q$.
+	\item Si $d_{\pi}=0 \bmod \ell$ lorsque $\ell \neq 2$ et $d_{\pi}=0 \bmod [4]$ lorsque $\ell=2$  alors il n'y a qu'une seule valeur propre $\lambda$ pour le Frobenius restreint à la $\ell$-torsion  et l'espace propre est défini sur $\mathbb{F}_{q^s}$ avec $s=1$ si l'espace propre est de dimension $2$ sur $\mathbb{F}_q$ et $s=\ell$ si seulement un espace propre de dimension $1$ est défini sur $\mathbb{F}_q$.
 	\item Si $d_{\pi} \neq 0 \bmod \ell$ lorsque $\ell \neq 2$ et $d_{\pi}=1 \bmod [8]$ alors il y a deux valeurs propres $\lambda$, $\mu$ pour le Frobenius restreint à la $\ell$-torsion  et les espaces propres sont définis sur $\mathbb{F}_q$.
 \end{itemize}
 
-	Dans le cas Atkin les valeurs propres ne sont pas définies sur $\mathbb{F}_\ell$ mais sur $\mathbb{F}_{\ell^2}$, les espaces propres sont alors définis sur $\mathbb{F}_{q^r}$ avec $r \mid \ell+1$.
+	Dans le cas Atkin les valeurs propres ne sont pas définies sur $\mathbb{F}_\ell$ mais sur $\mathbb{F}_{\ell^2}$, les espaces propres sont alors définis sur $\mathbb{F}_{q^s}$ avec $s \mid \ell+1$.
 	
 	
-	On ne peut appliquer à priori ce résultat, car il suppose la connaissance de $t_{\pi}$ et donc la cardinalité de la courbe. On doit donc travailler avec un autre objet: le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $, de degré $\ell+1$ et symétrique. 
+	On ne peut appliquer à priori ce résultat, car il suppose la connaissance de 
+$t_{\pi}$ et donc la cardinalité de la courbe. On doit donc travailler avec un 
+autre objet: le $\ell$-ème polynôme modulaire $\Phi_{\ell}(X,Y) \in 
+\mathbb{Z}[X,Y] $, de degré $\ell+1$ et symétrique. 
  
 \begin{prop}
 Soient $j_0 \in \mathbb{F}_q$ le $j$-invariant d'une courbe elliptique $E_0$ définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0,1728$ et  $\Phi_{\ell}(X,Y) \in \mathbb{Z}[X,Y] $ le $\ell$-ème polynôme modulaire. Les $\ell+1$ racines du polynôme $\Phi_{\ell}(X,j_0)$ sont les $j$-invariants de courbes $\ell$-isogénes à $E_0$. 
 \end{prop}
 
 \begin{proof}
-Voir \cite[Théorème 4.1.1]{Fouquet01} qui utilise notamment le résultat de \cite[Theorem 11.23]{Cox89}.
+Voir \cite[Théorème 4.1.1]{Fouquet01} qui utilise notamment le résultat de 
+\cite[Theorem 11.23]{Cox89}.
 \end{proof}
  
 Les $j$ invariants des courbes $\ell$-isogènes à $E_0$, racines du polynôme modulaire évalué en $j_0$, correspondent exactement aux $j$-invariants des  courbes générées par les $\ell$ isogénies $E \to E/C$ avec $C$(noyau de l'isogénie) un des $\ell+1$ sous-groupes cycliques de la $\ell$-torsion. 
@@ -1868,7 +1867,7 @@ L'interpolation de Cauchy à partir du polynôme $A$ et du polynome $T$ qui s'an
 %\end{proof}
 
 \paragraph{Validation de l'isogénie} \label{par:val:iso}
- On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=r$ et $\deg(V)=r-1$. Ensuite on vérifie que $V$ est bien un carré (ou, si $r$ est pair, que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(r) \log(r))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $r$-division, pour cela on calcule le polynôme de $r$ division en $O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$ \todo{Trouver une source directe ou regarder si ça n'a pas été justifié auparavant (surement dans le chapitre 1}. 
+ On doit ensuite tester si la fraction rationnelle $\frac{R}{V}$ définit bien une isogénie, si l'un des test échoue alors ce n'est pas l'isogénie que l'on cherche à calculer et on peut passer à un nouvel essai. On regarde tout d'abord si $\deg(R)=r$ et $\deg(V)=r-1$. Ensuite on vérifie que $V$ est bien un carré (ou, si $r$ est pair, que c'est le produit d'un facteur du polynôme de $2$-division et d'un carré). Ces deux tests suffisent généralement à conclure et ils ont un coût de $O(\mathsf{M}(r) \log(r))$ opérations sur $\mathbb{F}_q$. Pour plus de sûreté on peut évaluer la fonction sur différents points et vérifier que c'est bien un morphisme de groupes. Enfin si une preuve déterministe est souhaitée on vérifie que $V$ est bien un diviseur du polynôme de $r$-division, pour cela on calcule le polynôme de $r$ division en $O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$ (pour une formule explicite voire \cite[§4.4.5.a]{ehcc05}). 
 
 
 \subsection{Apports de l'utilisation de l'action du Frobenius sur des tours $p$-adiques à l'algorithme de Couveignes}
@@ -1960,10 +1959,13 @@ Pour plus de détails sur la description des orbites selon les cas
 possibles le lecteur peut regarder le  lemme~\ref{lem:bij:ord}, le 
 théorème~\ref{thm:orb:fro} ainsi que le corollaire~\ref{cor:orb:fro}.
 
-Soient $k \geqslant 1$, $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{L}_{k} \setminus \mathbb{L}_{k-1}$. On note $\mathsf{orb}(x(P))$ l'ensemble des abscisses des points de l'orbite créée par l'action d'un élément générateur $\pi$ de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_{q})$ sur l'élément $x(P) \in \mathbb{L}_k$. On a donc: \todo{problème de place de l'équation}
+Soient $k \geqslant 1$, $P$ un point d'ordre $p^k$ alors $x(P) \in \mathbb{L}_{k} \setminus \mathbb{L}_{k-1}$. On note $\mathsf{orb}(x(P))$ l'ensemble des abscisses des points de l'orbite créée par l'action d'un élément générateur $\pi$ de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_{q})$ sur l'élément $x(P) \in \mathbb{L}_k$. On a donc: 
 
 \begin{equation*}
-T_{0}(x)= \overset{}{\underset{n \leqslant (p^k-1)/2}{\underset{x([n]P) \in \mathsf{orb}(x(P)) }{\prod }}}(x-x([n]P))=\prod_{i=0}^{p^{k-1}d_1-1}(x-\pi^i(x(P)))=\prod_{i=0}^{{p^{k-1}d_1-1}}\pi^i(x-x(P))
+\begin{alignedat}{1}
+T_{0}(x)= \overset{}{\underset{n \leqslant (p^k-1)/2}{\underset{x([n]P) \in \mathsf{orb}(x(P)) }{\prod }}}(x-x([n]P)) &=\prod_{i=0}^{p^{k-1}d_1-1}(x-\pi^i(x(P))) \\
+&=\prod_{i=0}^{{p^{k-1}d_1-1}}\pi^i(x-x(P))
+\end{alignedat}
 \end{equation*}
 
 On note $T_0^{(0)}=x-x(P)$, soit $k \geqslant i\geqslant 0$ $\sigma_i$ un élément générateur de $\mathsf{Gal}(\mathbb{L}_{k-i+1}:\mathbb{L}_{k-i})$ pour $i \geqslant 1$, supposons que l'on connaisse $T_0^{(i)}$ dés lors on définit $T_0^{(i,j)}=\sigma_i^j(T_0^{(i)})$ et l'on a 
