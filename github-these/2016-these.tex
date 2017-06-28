@@ -2761,21 +2761,26 @@ Le discriminant est un invariant de la base chosie, en prenant la base $[1, f
 \omega_K]$ de $\mathcal{O}$, on a:
 \[D=f^2d_K.\]
 
-En particulier pour $\mathcal{O}=\langle 1, \omega_K f \rangle$, le polynôme 
-minimal de $f \omega_K$ est:
-\[
-x^2-fd_Kx+f^2d_K\frac{d_K-1}{4}=0
-\]
-Le discriminant de ce polynôme et de cet ordre est alors $f^2d_K$.
+
 \begin{rem}
 \label{rem:def:dpi}
-De par l'isomorphisme de groupes entre le groupe de classes de formes et le groupes de classes d'idéaux (voir Theoreme 7.7 Cox ou Theoreme 5.2.8 Coh96) on peut aussi définir le discriminant de $d_{\pi}$ comme étant le discriminant du polynôme minimal du Frobenius: $x^2-t_{\pi}+4q$ et l'on a alors $d_{\pi} =t_{\pi}^2-4q$ le discriminant de l'ordre $\mathbb{Z}[\pi]$.
-Frobenius pour une courbe elliptique dont l'anneau d'endomorphisme est 
-isomorphe à $\mathbb{Z}[\pi]$ est aussi le discriminant de l'ordre $\mathbb{Z}
-[\pi]$.
+Soit $E$ une courbe elliptique dont l'ordre, associé à isomorphisme près à son 
+anneau des endomorphismes, est $\mathbb{Z}[\pi]$. Alors de par l'isomorphisme 
+de groupes entre le groupe de classes de formes (quadratiques) et le groupes de
+classes d'idéaux (voir \cite[Theorem 7.7]{Cox89} ou \cite[Theorem 5.2.8]{Cohen96}) on 
+peut définir le discriminant $d_{\pi}$ de l'ordre $\mathbb{Z}[\pi]$ comme étant
+le discriminant du polynôme minimal du Frobenius: $x^2-t_{\pi}+4q$. On a 
+$d_{\pi} =t_{\pi}^2-4q$.
+
+De même pour $\mathcal{O}=[ 1, \omega_K f ]$, le polynôme 
+minimal de $f \omega_K$ est:
+\[
+x^2-fd_Kx+f^2d_K\frac{d_K-1}{4}=0.
+\]
+On retrouve bien que le discriminant de $\mathcal{O}$ est $f^2d_K$.
 \end{rem}
 
-\todo{Definir $d_{\pi}$ !}
+
 
 \subsection{Anneau d'endomorphisme de courbes elliptiques ordinaires}
 Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini qui sont, comme vu dans la proposition \ref{pro:fro:dis}, isomorphes à des ordres dans un corps quadratique imaginaire. On va voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
@@ -3011,9 +3016,9 @@ Soit $\ell$ un nombre premier, $E_c$ une courbe elliptique située sur le cratè
 Soit $n$ la longueur d'un chemin descendant partant de la courbe elliptique $E$ alors $n$ est le niveau de $E$ dans le volcan d'isogénies.
 \end{defi}
 
-\begin{rem} \todo{A retravailler}
+\begin{rem} 
 \label{rem:lie:dp:dk}
-Ainsi pour un volcan de $\ell$-isohénies de hauteur $h$, on a 
+Ainsi, pour un volcan de $\ell$-isohénies de hauteur $h$, on a 
 $d_{\pi}=\ell^{2h}d_{K}$ avec  $\ell^2 \nmid d_{\pi}$ par les 
 définitions~\ref{def:iso:nom} et ~\ref{def:haut:vol}.
 \end{rem}
@@ -3556,8 +3561,9 @@ valeurs propres distinctes notées dans le document $\lambda$ et $\mu$. On a
 donc dans ce cas
 \begin{equation*}
 \pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \text{ dans } \mathbb{Z}_{\ell}[\pi], \text{ avec } \lambda \neq \mu.
-\end{equation*}
-Dés lors puisque $d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$ (voir remarque~\ref{rem:lie:dp:dk} \todo{regarder chapitre 4} et définition ) avoir 
+\end{equation*}\todo{$\mathbb{Z}_{\ell}[\pi]$ ?}
+Dés lors puisque $d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$ (voir 
+remarques~\ref{rem:def:dpi} et ~\ref{rem:lie:dp:dk}) avoir 
 $d_{\pi}$ un résidu quadratique est équivalent à avoir $\left( 
 \frac{d_{K}}{\ell} \right)=1$. Ainsi dans le cas Elkies le cratère est cyclique
 par le corollaire~\ref{cor:tab:vol}.
