@@ -3835,10 +3835,10 @@ matrice du Frobenius sur $\mathsf{T}_{\ell}(E')$ est donnée par $M_R^{-1} \cdot
 Le sous-groupe $\langle R \rangle$ définit un point dans l'espace projectif de $E[\ell^k]$,
 celui-ci est une ligne projective sur $\mathbb{Z}/\ell^k \mathbb{Z}$. Il existe 
 une bijection canonique~\cite[II.1.1]{Serre77} entre cette ligne projective et 
-l'ensemble des réseaux d'indice $\ell^k$ dans le $\mathbb{Z}_{\ell}$ module $T_{\ell}(E)$:
+l'ensemble des réseaux d'indice $\ell^k$ dans le $\mathbb{Z}_{\ell}$ module $\mathsf{T}_{\ell}(E)$:
 la ligne $\langle R \rangle$ est donc en bijection avec le réseau~$\Lambda_R = 
 \langle R \rangle + \ell^k T_{\ell}(E)$. Ce réseau est aussi la préimage du réseau 
-$\ell^kT_{\ell}(E')$ par $\phi$.
+$\ell^k\mathsf{T}_{\ell}(E')$ par $\phi$.
 
 Le réseau $\Lambda_R$ est engendré par les colonnes de la matrice 
 $L_R = \left (\begin{smallmatrix}\ell^k & 0 & x\\0 & \ell^k & y\end{smallmatrix} \right )$.
@@ -3846,10 +3846,10 @@ La forme normale réduite de Hermite de $L_R$ est
 $M_R = \left (\begin{smallmatrix}\ell^{k-m} & x/y' \\ 0 & \ell^m\end{smallmatrix}\right )$,
 et les colonnes de $M_R$ génèrent le réseau $\Lambda_R$.
 On peut vérifier que $M_R$ a pour déterminant $\ell^k$.
-Comme $\Lambda_R = \phi^{-1} (\ell^k T_{\ell} (E'))$,
-alors il existe une base de~$T_{\ell}(E')$
+Comme $\Lambda_R = \phi^{-1} (\ell^k \mathsf{T}_{\ell} (E'))$,
+alors il existe une base de~$\mathsf{T}_{\ell}(E')$
 dans laquelle $\phi$ a pour matrice~$\ell^k M_R^{-1}$.
-Ainsi, dans cette base de ~$T_{\ell}(E')$
+Ainsi, dans cette base de ~$\mathsf{T}_{\ell}(E')$
 la matrice de~$\pi|\mathsf{T}_{\ell}(E')$ est $M_R^{-1} \cdot \Pi \cdot M_R^{}$.
 \end{proof}
 
@@ -4386,10 +4386,14 @@ $\langle [a\ell^{k-i}]P+ [b\ell^{k-i}]Q \rangle$ avec $b \wedge \ell =1$ et
 $a = 1 \bmod \ell$.
 \end{cor}
 Il est important de noter que, comme dit dans la sous-sous-section~\ref{sub:alg:FM} 
-et dans \cite{FouquetMorain02}, pour obtenir une $\ell^k$-isogénie descendante 
-il est suffisant d'avoir la première $\ell$-isogénie engendrée par le noyau de 
-la $\ell^k$-isogénie qui soit descendante et que l'on ait pas ensuite de 
-$\ell$-isogénie duales le seul critère restricitf pour obtenir ce résultat est d'avoir la $\ell$-isogénie engendrée par $\langle [a \ell^{k-1}]P+ [b \ell^{k-1}]Q \rangle $ de type descendant (pour plus de détails voir sous-section \ref{sub:alg:FM} ou \cite{FouquetMorain02}).
+et dans \cite{FouquetMorain02}, lorsque la décomposition de la 
+$\ell^i$-isogénie en $i$ $\ell$-isogénies ne comporte pas d'isogénie duale d'une 
+autre isogénie alors le fait d'avoir la première $\ell$-isogénie (celle de noyau
+$\langle [\ell^{k-1}]([a]P+[b]Q) \rangle$) descendante est suffisant pour avoir
+une $\ell^{i}$-isogénie descendante de noyau $\langle \ell^{k-i}]([a]P+[b]Q) 
+\rangle$. Enfin il n'y a pas de $\ell$-isogénie duale d'une autre dans la
+composition de la $\ell^i$-isogénie car celle-ci est générée par un point et
+donc par un groupe cyclique.
 
 \begin{defi}
 \label{def:par:hor}
