@@ -4652,7 +4652,7 @@ $R=[a]P+[b]Q$ et $\pi(P,R)= \left( \begin{matrix}\lambda & \beta
 \ell^{h-e} \\0 & \mu \end{matrix}\right) \bmod \ell^{h-e+i}$ avec $\beta \wedge
 \ell=1$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il
 existe une transformation \begin{equation*}
-R=[a]P+[b]Q \mapsto R'=[*]P+[yb]Q
+R=[a]P+[b]Q \mapsto R'=[c]P+[yb]Q
 \end{equation*}
 telle que $\pi(P,R)=\pi(P,R')$ et $\langle [\ell^{h-e}]R' \rangle = \ker(\phi)$.
 \end{prop}
@@ -4663,39 +4663,41 @@ Par la forme de la matrice $\pi(P,R)$ on a:
 De plus, comme $\pi([a]P+[b]Q)=[a \lambda ]P + [b] \pi(Q)$, on déduit 
 l'expression suivante pour $[b]\pi(Q)$:
 \[ [b] \pi(Q)=[\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q. \]
-On a alors $\pi([*]P+[by]Q)=[*\lambda]P+[y]([b]\pi(Q))$. La condition 
+On a alors $\pi([c]P+[by]Q)=[c\lambda]P+[y]([b]\pi(Q))$. La condition 
 $\pi(P,R')=\pi(P,R)$ est vérifiée si et seulement si:
 \begin{eqnarray*}
-\pi([*]P+[by]Q) &=& [\beta \ell^{h-e}] P + [\mu]([*]P+[by]Q) \\
-				&=& [\lambda *]P + [y]([\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q).
+\pi([c]P+[by]Q) &=& [\beta \ell^{h-e}] P + [\mu]([c]P+[by]Q) \\
+				&=& [\lambda c]P + [y]([\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q).
 \end{eqnarray*}
 Cela se traduit donc par l'égalité suivante:
-\[ \beta \ell^{h-e} + *(\mu-\lambda)=y(\beta \ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
-Ainsi on fait une distinction avec selon que l'on ait $h-e+i \leqslant h$ ou 
-$h-e+i > h$ car $\ell^h || \lambda - \mu$. 
+\[ \beta \ell^{h-e} + c(\mu-\lambda)=y(\beta \ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
+Ainsi on fait une distinction selon que l'on ait $h-e+i \leqslant h$ ou 
+$h-e+i > h$, car $\ell^h || \lambda - \mu$. 
 
 Pour $h-e+i \leqslant h$ on obtient l'équation suivante:
 \[\beta \ell^{h-e} = y\beta \ell^{h-e}  \bmod \ell^{h-e+i}, \]
 et donc la valeur de la matrice ne dépend que de $y$. Or la
-$\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle$ est déterminée par la 
-valeur de $\ell^{h-e}b^{-1}y^{-1}* \bmod \ell^{h-e+i}$ (voir preuve de la 
+$\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle= \langle [\ell^{h-e}]
+([c(by)^{-1}]P+Q) \rangle$ est déterminée par la 
+valeur de $\ell^{h-e}b^{-1}y^{-1}c \bmod \ell^{h-e+i}$ (voir preuve de la 
 proposition~\ref{pro:cla:fro:mat} pour plus de détails), ainsi en faisant 
-varier la valeur de $*$ on peut faire en sorte que $[\ell^{h-e}]R'$ soit le 
+varier la valeur de $c$ on peut faire en sorte que $[\ell^{h-e}]R'$ soit le 
 générateur de n'importe quelle $\ell^{i}$-isogénie descendante.
 
 On regarde donc maintenant le cas où $h-e+i>h$, montrons comment on détermine
-$y$ et $*$  tels que $\ell^{h-e}\gamma=\ell^{h-e}*(by)^{-1} \bmod 
-\ell^{h-e+i}$ avec $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$ qui représente une 
-$\ell^i$-isogénie descendante spécifique tout en ayant $\pi(P,R)=\pi(P,R')$.
+$y$ et $c$  tels que $\ell^{h-e}\gamma=\ell^{h-e}c(by)^{-1} \bmod 
+\ell^{h-e+i}$, avec $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$ qui détermine une 
+$\ell^i$-isogénie descendante spécifique (celle de noyau $\langle [\ell^{h-e}]
+([\gamma]P+Q) \rangle$) tout en ayant $\pi(P,R)=\pi(P,R')$.
 On pose $\ell^{h} \alpha = \lambda - \mu$ avec $\alpha \wedge \ell=1$
 , l'égalité $\pi(P,R)=\pi(P,R')$ se traduit donc par:
-\[ \beta \ell^{h-e} + \ell^{h}\alpha *=y(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}, \]
+\[ \beta \ell^{h-e} + \ell^{h}\alpha c=y(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}, \]
 on multiplie alors cette équation par $(by)^{-1}$
 \begin{eqnarray*}
 \beta \ell^{h-e}(by)^{-1} + \ell^{e}\alpha \ell^{h-e} \gamma &=& b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i} \\
 \beta \ell^{h-e}(by)^{-1} &=& - \ell^{e}\alpha \ell^{h-e} \gamma + b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}
 \end{eqnarray*}
-On peut alors déterminer $y$ puis $*$ afin d'avoir une transformation pour 
+On peut alors déterminer $y$ puis $c$ afin d'avoir une transformation pour 
 laquelle on obtient un point $R'$ tel que $[\ell^{h-e}]R'$ soit un générateur 
 de l'isogénie spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
 \end{proof}
@@ -4720,11 +4722,11 @@ extensions de corps de la définition \ref{def:tour-ell}.
 \label{sub:classes}
 
 On va maintenant étudier la structure de la torsion rationnelle des courbes 
-elliptiques sur lesquelles on travaille et déterminer l'extension de corps 
-nécessaire pour avoir une torsion $\ell$-adique de valuation fixée définie.
-On va en particulier étudier cela pour une courbe située au niveau du cratère
-du volcan de $\ell$-isogénies, car c'est à ce niveau du volcan que l'on peut 
-calculer les points horizontaux. Pour les courbes inférieures dans le volcan
+elliptiques ordinaires, et déterminer l'extension de corps 
+nécessaire pour avoir une torsion $\ell$-adique de valuation fixée.
+On va en particulier étudier cela pour une courbe située sur le cratère
+d'un volcan de $\ell$-isogénies, car c'est à ce niveau du volcan que l'on peut 
+calculer les points horizontaux. Pour les courbes inférieures dans le volcan,
 le corollaire~\ref{cor:elk:bet:reg} permet de conclure. 
 
 \begin{defi}
