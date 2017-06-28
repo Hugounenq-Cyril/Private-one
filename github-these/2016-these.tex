@@ -565,11 +565,14 @@ f(P)&=& x(P)^3+a_2x(P)^2+a_4x(P)+a_6 \\
 f'(P)&=& 3x(P)^2+2a_2x(P)+a_4
 \end{align*}
 Avec les formules d'addition on peut réécrire l'équation \eqref{eq:Velu} de la façon suivante en explicitant l'isogénie sur les coordonnées affines $x,y$ de chaque point de la courbe:
-\begin{equation} \label{eq:velu:sum}
-I(x,y) = \left( x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
-, y + \sum_{Q \in G \setminus \{0_E\}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3}  \right)
+\begin{equation} 
+\begin{alignedat}{1}
+I:x & \mapsto  x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2} \\
+ y & \mapsto y + \sum_{Q \in G \setminus \{0_E\}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3}  
+\end{alignedat}
+\label{eq:velu:sum}
 \end{equation}
-\todo{faire un saut à la ligne}
+\todo{saut à la ligne fait, moche ?}
 
 Alors si on note: 
 \begin{equation*}
@@ -1043,7 +1046,7 @@ Dans le modèle de Elkies on travaille avec des courbes à équations de
 Weierstrass normalisées, celles-ci sont calculées à l'aide du $r$-ème polynôme 
 modulaire (voir proposition \ref{prop:elk:nor} pour la construction et 
 \cite{Schoof95} pour plus de détails). Le $r$-ème polynôme modulaire est 
-calculé en $\tilde{O}(r^3)$ opérations sur $\mathbb{F}_q$ d'après \cite{Enge09} \cite[Algorithm 6.1, Theorem 1]{BLS12}. \todo{verifier que tilde est défini + se rappeler cette seconde source}
+calculé en $\tilde{O}(r^3)$ opérations sur $\mathbb{F}_q$ d'après \cite{Enge09} \cite[Algorithm 6.1, Theorem 1]{BLS12}. \todo{se rappeler cette seconde source}
 Les idées présentées ici sont issues du travail de Elkies~\cite[§The kernel of
  the isogeny]{elkies1998}, celui-ci commence à partir des équations de 
  Weierstrass normalisées de $E$
@@ -1446,7 +1449,7 @@ A_a(x([k] P))= x([ka] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
 \end{equation} 
 avec $T \in \mathbb{F}_q[x]$ qui s'annule sur les abscisses des points de 
 $E[p^k]$.
-\todo{Regarder si reconstruction rationnelle est définie si ce n'est pas le cas le faire dans BMSS}
+
 On définit alors l'interpolation de Cauchy:
 \begin{defi}
 Soit $T \in \mathbb{F}_q[x]$ un polynôme de degré $n>0$ avec 
