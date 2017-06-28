@@ -215,11 +215,13 @@ utilisant $O(m^{\omega})$ opérations $(+,\times)$ dans $A$, en utilisant les
 algorithmes de \cite{CoppersmithWinograd90} et \cite{Williams12} on peut 
 prendre $\omega \leqslant 2,38$.
 
-On va noter par $\tilde{O}$ le coût de la complexité exprimée sans facteurs 
-logarithmiques.
+On va noter par $\tilde{O}_{r}$ le coût de la complexité en omettant les facteurs 
+logarithmiques en la variable $r$. Ainsi on a $O(r \ell \log(r) \log(\ell)) 
+\subset \tilde{O}_{r}(r \ell \log(\ell)) \subset \tilde{O}_{r,\ell}(r \ell)$. 
+On omettra de préciser la variable quand il n'y a pas d'ambiguïtés possibles.
 
-Enfin des algorithmes de Las Vegas vont être utilisés dans ce document. Ces algorithmes sont des algorithmes probabilistes qui produisent un résultat correct, dés lors qu'on utilise un algorithme de Las Vegas on parlera de complexitée espérée. \todo{cout moyen ?}
-\todo{définir tilde}
+Enfin des algorithmes de Las Vegas vont être utilisés dans ce document. Ces algorithmes sont des algorithmes probabilistes qui produisent un résultat correct, dés lors qu'on utilise un algorithme de Las Vegas on parlera de coût moyen. 
+
 
 \section{Théorie de Galois}
 
@@ -677,7 +679,7 @@ Voir \cite[Corrolary III.6.4]{Silv1}.
 \begin{defi}[Module de Tate]
 Soit $E$ une courbe elliptique et $\ell$ un nombre premier. Le \emph{module de Tate $\ell$-adique} de $E$ est le groupe:
 \begin{equation*}
-T_{\ell}(E)=\varprojlim_nE[\ell^n],
+\mathsf{T}_{\ell}(E)=\varprojlim_nE[\ell^n],
 \end{equation*}
 la limite projective étant définie par rapport à l'application naturelle
 \begin{equation*}
@@ -688,7 +690,7 @@ Comme chacun des $E[\ell^n]$ est un $\nicefrac{\mathbb{Z}}{\ell^n\mathbb{Z}}$-mo
 \begin{prop}
 En tant que $\mathbb{Z}_{\ell}$ module, le module de Tate a la structure suivante:
 \begin{equation*}
-T_{\ell} \cong 
+\mathsf{T}_{\ell} \cong 
 \begin{cases} 
 \mathbb{Z}_{\ell} \times \mathbb{Z}_{\ell} &\text{ si } \ell \neq \mathrm{car}(\mathbb{K}). \\
 \mathbb{Z}_{\ell} &\text{ si } \ell=\mathrm{car}(\mathbb{K})  \text{ et E est \emph{ordinaire}}. \\
@@ -698,7 +700,7 @@ T_{\ell} \cong
 \end{prop}
 
 %\begin{alignedat}{2}
-%& T_{\ell} \cong \mathbb{Z}_{\ell} \times \mathbb{Z}_{\ell} &\textit{ si } \ell \neq \mathrm{car}(\mathbb{K}).& \\
+%& \mathsf{T}_{\ell} \cong \mathbb{Z}_{\ell} \times \mathbb{Z}_{\ell} &\textit{ si } \ell \neq \mathrm{car}(\mathbb{K}).& \\
 %& T_{p} \cong \{O_E\} \textit{ or } \mathbb{Z}_{p} \times \mathbb{Z}_{\ell} &\textit{ si }  p =\mathrm{car}(\mathbb{K})&>0.
 %\end{alignedat}
 
@@ -3561,7 +3563,7 @@ valeurs propres distinctes notées dans le document $\lambda$ et $\mu$. On a
 donc dans ce cas
 \begin{equation*}
 \pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \text{ dans } \mathbb{Z}_{\ell}[\pi], \text{ avec } \lambda \neq \mu.
-\end{equation*}\todo{$\mathbb{Z}_{\ell}[\pi]$ ?}
+\end{equation*}
 Dés lors puisque $d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$ (voir 
 remarques~\ref{rem:def:dpi} et ~\ref{rem:lie:dp:dk}) avoir 
 $d_{\pi}$ un résidu quadratique est équivalent à avoir $\left( 
@@ -3593,7 +3595,7 @@ hauteur du volcan des $\ell$-isogénies définies sur $\mathbb{F}_q$, sauf menti
 \subsection{\'Etude de l'action du Frobenius sur le module de Tate}
 \label{subs:elk:dir}
 
-On réprésente l'action du Frobenius sur $T_{\ell}(E)$ à l'aide d'une matrice $
+On réprésente l'action du Frobenius sur $\mathsf{T}_{\ell}(E)$ à l'aide d'une matrice $
 2 \times 2$. On a le résultat suivant qui nous donne la forme de ces matrices à
 conjugaison près.
 
@@ -3614,7 +3616,6 @@ De plus $e = 0$ si~$E$ se situe sur le cratère,
 sinon $h - e$~est le niveau de~$E$ dans le volcan, $e$ est appelé la \emph{profondeur}
 de la courbe dans le volcan.
 \end{prop}
-\todo{mathsf{T}}
 
 On souligne le fait que $\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
 \mu \end{smallmatrix}\right)$ est conjugée à $\left(\begin{smallmatrix} \lambda & 0 \\ 0 & \mu\end{smallmatrix}\right)$ sur~$\mathbb{Z}_{\ell}$.
@@ -3844,7 +3845,7 @@ celui-ci est une ligne projective sur $\mathbb{Z}/\ell^k \mathbb{Z}$. Il existe
 une bijection canonique~\cite[II.1.1]{Serre77} entre cette ligne projective et 
 l'ensemble des réseaux d'indice $\ell^k$ dans le $\mathbb{Z}_{\ell}$ module $\mathsf{T}_{\ell}(E)$:
 la ligne $\langle R \rangle$ est donc en bijection avec le réseau~$\Lambda_R = 
-\langle R \rangle + \ell^k T_{\ell}(E)$. Ce réseau est aussi la préimage du réseau 
+\langle R \rangle + \ell^k \mathsf{T}_{\ell}(E)$. Ce réseau est aussi la préimage du réseau 
 $\ell^k\mathsf{T}_{\ell}(E')$ par $\phi$.
 
 Le réseau $\Lambda_R$ est engendré par les colonnes de la matrice 
@@ -4856,7 +4857,6 @@ de calcul de $E(\mathsf{F}_1)[\ell]$ est de $O(\ell \mathsf{M}(\ell^2)
 $O(\mathsf{R}(n+1))$ lorsque $E[\ell](\mathsf{F}_1)$ a déjà été calculé. Ces 
 coûts sont des coûts moyens.
 \end{lem}
-\todo{dire coût moyen}
 
 \begin{proof}
 $E[\ell](\mathsf{F}_1)$ est calculé en factorisant le polynome de 
@@ -5438,7 +5438,7 @@ d'isogénies descendantes, c'est à dire les distinguer entre elles.
 \begin{prop}\label{pro:mat:fro:atk}
 Soit~$E$ une courbe elliptique définie sur un volcan de $\ell$-isogénies de 
 hauteur $h$ tel que $\ell$ soit un nombre premier de Atkin. Il existe un unique
-$e \in [ 0, h]$ tel que $\Pi=\pi|T_{\ell}(E)$ est égale, sur~$\mathbb{Z}_{\ell}$, à
+$e \in [ 0, h]$ tel que $\Pi=\pi|\mathsf{T}_{\ell}(E)$ est égale, sur~$\mathbb{Z}_{\ell}$, à
  la matrice 
 \begin{equation*}
 \left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
@@ -6013,7 +6013,7 @@ enlèverait la dépendance exponentielle en la taille du corps sur lequel on
 travaille. Avec une telle démarche on 
 \begin{itemize}
 \item calcule une base de la $\ell^k$-torsion telle que $\ell^{2k} \in \tilde 
-O(r)$ sur chacune des $2$ courbes;
+{O}_{r,q}(r)$ sur chacune des $2$ courbes;
 \item teste toutes les matrices $M \in \mathbb{GL}_2(\mathbb{Z}/\ell^k
 \mathbb{Z})$ qui modélisent toutes les correspondances possibles entre les 
 deux bases de la $\ell^k$-torsion induites par la $r$-isogénie.
@@ -6613,7 +6613,7 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   %la courbe en entrée se situerait en bas du volcan de $\ell$-isogénies. 
 
   L'étape~\ref{alg:cou-ell:bhor} qui utilise 
-  l'algorithme~\ref{alg:hor:poi} coûte dans le pire des cas un coût espéré de
+  l'algorithme~\ref{alg:hor:poi} coûte dans le pire des cas un coût moyen de
   $O(k\mathsf{R}(k-\beta) + k\ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ d'après la 
   proposition~\ref{pro:alg:hor}.
   En utilisant le  résultat  donné par ~\cite[Chapter~14.5]{vzGJG03} pour le 
@@ -7279,7 +7279,7 @@ en appendice~\ref{cha:alg} afin de ne pas surcharger ce document car comme vu
 juste au-dessus il est très similaire à l'algorithme~\ref{alg:cou:ell-adique}.
 
 \begin{prop}
-Soit $\ell$ un nombre de Elkies tel que $\ell^h<r$ alors le coût espéré de la 
+Soit $\ell$ un nombre de Elkies tel que $\ell^h<r$ alors le coût moyen de la 
 variante de l'algorithme de Couveignes $\ell$-adique avec détermination d'un 
 seul point horizontal présenté dans l'algorithme~\ref{alg:app:cou:var} 
 est de: 
@@ -7883,8 +7883,8 @@ Ainsi, comme dans la section~\ref{sec:interpolation},
 pour le calcul d'un tel polynôme d'interpolation on est amené à 
 multiplier des polynômes à coefficients dans $\mathbb{K}_{n-i-1} \otimes 
 \mathsf{F}_{(n-i,k)}$ qui de par leur degré font que le coût d'une telle 
-multiplication n'est que de $\tilde{O}(\mathsf{M}(p_n))$. Ce coût de 
-$\tilde{O}(\mathsf{M}(p_n))$ en comparant 
+multiplication n'est que de $\tilde{O}_{p_n,q}(\mathsf{M}(p_n))$. Ce coût de 
+$\tilde{O}_{p_n,q}(\mathsf{M}(p_n))$ en comparant 
 avec les résultats du lemme~\ref{lemma:interpolation:minpoly} devrait être le 
 coût dominant. Cependant par le coût de 
 l'application du Frobenius aux polynômes $T^{(i)}_k$ de $O(\mathsf{M}
@@ -8703,7 +8703,7 @@ Voir annexe~\ref{cha:ann:comp}.
 
 
 \begin{prop}
-L'algorithme~\ref{alg:cou:TRC-adique} a un coût espéré de 
+L'algorithme~\ref{alg:cou:TRC-adique} a un coût moyen de 
 \[ O \bigl( r\prod_{i=1}^n\ell_i(\sqrt{r} \mathsf{M}(\sqrt{r}\prod_{i=1}^n\ell_i^{2})\prod_{i=1}^n(k_i\ell_i^{1,5})\log(r)^2+n \mathsf{M}(r \prod_{i=1}^n\ell_i^2 \max_i(d_i\ell_i^{k_i}))(\sqrt{r}\prod_{i=1}^n\ell_i^{2,5})^{(\omega-1)/2}\max_i\ell_i) \bigr) \]
 opérations sur $\mathbb{F}_q$ avec un précalcul de 
 \[O(\sum_{i=1}^nk_i\ell_i^{k_i}n\sqrt{r}\prod_{i=1}^{n}\ell_i^{2,5}\mathsf{M}(\sqrt{r}\prod_{i=1}^{n}\ell_i^{2,5})\max_i(k_i\log(\ell_i)\log(\ell_iq))).\]
@@ -8799,7 +8799,7 @@ celle du cas Atkin proposé dans la section~\ref{sec:Atk:Con}
 \label{pro:rac:com}
  Le coût de calcul de racines de polynômes de degré $d$ à coefficients dans un 
  compositum $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
- avec $P$ un polynôme irréductible de degré $p_n$ a un coût espéré de 
+ avec $P$ un polynôme irréductible de degré $p_n$ a un coût moyen de 
  $O(p_n \mathsf{M}(p_nd)\log(d)\log(dq))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
  
@@ -9661,19 +9661,19 @@ Comme dit dans \ref{sub:Elkies} l'étape la plus importante pour le coût de l'a
 
 En effet comme on est dans le cas Elkies alors la courbe $E_0$ dont on veut calculer le cardinal admet deux  courbes $\ell$-isogènes définies dans $\mathbb{F}_q$. Ainsi pour ces courbes isogènes le polynôme modulaire admet aussi deux solutions  dans $\mathbb{F}_q$. En effet ces courbes sont de même cardinal que $E_0$ et ont donc la même valeur $t_{\pi}$, par conséquent le fait que $t_{\pi}^2-4q$ soit un résidu quadratique modulo $\ell$ reste préservé. Ainsi chaque courbe admet deux coubes isogènes définies sur $\mathbb{F}_q$, on définit alors un cycle qui est fini. En effet à chaque courbe on peut associer à isomorphisme près un ordre maximal pour l'indice $\ell$ (\textcolor{red}{ref a mettre plus tard}) dans $\mathbb{Q}[X]/(X^2-t_{\pi})X+q$ or comme le nombre de classe est borné on obtient le résultat. 
 
-L'idée derrière cet article est donc de décomposer en deux espaces propres la $\ell^k$ torsion à l'aide des valeurs propres du Frobenius dans le cas Elkies, puis de calculer la valeur de la trace du Frobenius ($t_{\pi}$) dans ces espaces propres. Ainsi la recherche de la valeur de $t_{\pi}$ se fera sur des ensembles plus petits et donc en manipulant des polynômes de degré moindre. Pour décrire tout cela il est nécessaire de poser quelques notations. On généralise tout d'abord l'action du Frobenius $\pi$ sur $E[\ell]$ à une action sur $T_{\ell}(E)$, on a alors une décomposition de $T_{\ell}(E)$ en deux espaces propres: $T_{\ell}^{\lambda}(E) \oplus T_{\ell}^{\mu}(E)$, avec $T_{\ell}^{\lambda}(E)$ associé à la valeur propre $\lambda$ et $T_{\ell}^{\mu}(E)$ associé à la valeur propre $\mu$. 
+L'idée derrière cet article est donc de décomposer en deux espaces propres la $\ell^k$ torsion à l'aide des valeurs propres du Frobenius dans le cas Elkies, puis de calculer la valeur de la trace du Frobenius ($t_{\pi}$) dans ces espaces propres. Ainsi la recherche de la valeur de $t_{\pi}$ se fera sur des ensembles plus petits et donc en manipulant des polynômes de degré moindre. Pour décrire tout cela il est nécessaire de poser quelques notations. On généralise tout d'abord l'action du Frobenius $\pi$ sur $E[\ell]$ à une action sur $\mathsf{T}_{\ell}(E)$, on a alors une décomposition de $\mathsf{T}_{\ell}(E)$ en deux espaces propres: $\mathsf{T}_{\ell}^{\lambda}(E) \oplus \mathsf{T}_{\ell}^{\mu}(E)$, avec $\mathsf{T}_{\ell}^{\lambda}(E)$ associé à la valeur propre $\lambda$ et $\mathsf{T}_{\ell}^{\mu}(E)$ associé à la valeur propre $\mu$. 
 
 
-Montrons tout d'abord que les isogénies peuvent êtres associées de façon canonique aux valeurs propres du Frobenius. On note $I_{\lambda}$ (resp. $I_{\mu}$) l'isogénie engendrée par l'espace propre pour $\pi$ associé à la valeur propre $\lambda$ (resp. $\mu$). Ainsi en partant de $E_0$ on note alors $E_{\lambda}$(resp. $E_{\mu}$) l'image de l'isogénie $I_{\lambda}$ (resp. $I_{\mu}$). Lorsque l'on est sur $E_{\lambda}$ on a alors à nouveau l'existence de deux isogénies associées aux deux espaces propres: $I_{\lambda \lambda}$ pour l'iosgénie associée à la valeur propre $\lambda$ et $I_{\lambda \mu}$ pour l'isogénie associée à la valeur propre $\mu$. On a alors $I_{\lambda \mu}=\widehat{I_{\lambda}}$, en effet l'isogénie $I_{\lambda}$ étant rationnelle sa duale l'est aussi et on conclut alors en analysant son action sur $T_{\ell}^{\lambda}(E)$. Ainsi on a des directions canoniques définies par les valeurs propres $\lambda$ et $\mu$. 
+Montrons tout d'abord que les isogénies peuvent êtres associées de façon canonique aux valeurs propres du Frobenius. On note $I_{\lambda}$ (resp. $I_{\mu}$) l'isogénie engendrée par l'espace propre pour $\pi$ associé à la valeur propre $\lambda$ (resp. $\mu$). Ainsi en partant de $E_0$ on note alors $E_{\lambda}$(resp. $E_{\mu}$) l'image de l'isogénie $I_{\lambda}$ (resp. $I_{\mu}$). Lorsque l'on est sur $E_{\lambda}$ on a alors à nouveau l'existence de deux isogénies associées aux deux espaces propres: $I_{\lambda \lambda}$ pour l'iosgénie associée à la valeur propre $\lambda$ et $I_{\lambda \mu}$ pour l'isogénie associée à la valeur propre $\mu$. On a alors $I_{\lambda \mu}=\widehat{I_{\lambda}}$, en effet l'isogénie $I_{\lambda}$ étant rationnelle sa duale l'est aussi et on conclut alors en analysant son action sur $\mathsf{T}_{\ell}^{\lambda}(E)$. Ainsi on a des directions canoniques définies par les valeurs propres $\lambda$ et $\mu$. 
 
-Il reste alors à montrer comment on détermine en pratique un espace propre de la $\ell^k$ torsion. Travaillons donc avec l'espace propre associé à $E_{\lambda}$, on a alors $T_{\ell}^{\lambda}(E_0) \cap E_0[\ell]$ qui est contruit comme étant le noyau de l'isogénie qui va de $E_0$ à $E_{\lambda}$. Pour calculer celui-ci on doit tout d'abord calculer à l'aide du polynôme modulaire les $j$-invariants des deux courbes $E_0$ et $E_1$, puis leur représentations sous forme de Weierstrass, puis l'isogénie est ensuite calculée. Ainsi on dénote $h_1$ le polynôme qui s'annule sur l'abscisse des points du noyau de l'isogénie $I_1$. 
-Maintenant si l'on veut déterminer $T_{\ell}^{\lambda}(E_0) \cap E[\ell^2]$, on remarque que cet ensemble c'est la préimage du noyau de l'isogénie $I_{\lambda \lambda}$ (id est $h_{\lambda \lambda}$) par l'isogénie $I_{\lambda}$. Ainsi on injecte $I_{\lambda}$ dans $h_{\lambda \lambda}$ pour obtenir cet ensemble qui est donc le noyau de $h_{\lambda \lambda}(I_{\lambda}(x))$. On répète alors l'opération pour déterminer un espace propre pour le Frobenius de la $\ell^k$-torsion. Ainsi pour la $\ell^k$-torsion on va déterminer l'espace propre par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ qui factorise le $\ell^k$-ème polynôme de division de degré $\ell^{2k}$.
+Il reste alors à montrer comment on détermine en pratique un espace propre de la $\ell^k$ torsion. Travaillons donc avec l'espace propre associé à $E_{\lambda}$, on a alors $\mathsf{T}_{\ell}^{\lambda}(E_0) \cap E_0[\ell]$ qui est contruit comme étant le noyau de l'isogénie qui va de $E_0$ à $E_{\lambda}$. Pour calculer celui-ci on doit tout d'abord calculer à l'aide du polynôme modulaire les $j$-invariants des deux courbes $E_0$ et $E_1$, puis leur représentations sous forme de Weierstrass, puis l'isogénie est ensuite calculée. Ainsi on dénote $h_1$ le polynôme qui s'annule sur l'abscisse des points du noyau de l'isogénie $I_1$. 
+Maintenant si l'on veut déterminer $\mathsf{T}_{\ell}^{\lambda}(E_0) \cap E[\ell^2]$, on remarque que cet ensemble c'est la préimage du noyau de l'isogénie $I_{\lambda \lambda}$ (id est $h_{\lambda \lambda}$) par l'isogénie $I_{\lambda}$. Ainsi on injecte $I_{\lambda}$ dans $h_{\lambda \lambda}$ pour obtenir cet ensemble qui est donc le noyau de $h_{\lambda \lambda}(I_{\lambda}(x))$. On répète alors l'opération pour déterminer un espace propre pour le Frobenius de la $\ell^k$-torsion. Ainsi pour la $\ell^k$-torsion on va déterminer l'espace propre par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ qui factorise le $\ell^k$-ème polynôme de division de degré $\ell^{2k}$.
 
 On peut alors dès lors résoudre l'équation:
 \begin{equation*}
 X^2-t_{\pi}X+q=0
 \end{equation*}
-modulo l'espace propre $T_{\ell}^{\lambda}(E_0) \cap E[\ell^k]$ (ou $T_{\ell}^{\mu}(E_0) \cap E[\ell^k]$ par exemple) défini par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ au lieu de résoudre celle-ci modulo $E[\ell^k]$ défini par un polynôme de degré $\ell^{2k}$.
+modulo l'espace propre $\mathsf{T}_{\ell}^{\lambda}(E_0) \cap E[\ell^k]$ (ou $\mathsf{T}_{\ell}^{\mu}(E_0) \cap E[\ell^k]$ par exemple) défini par un polynôme de degré $\ell^k  (\frac{\ell-1}{2})$ au lieu de résoudre celle-ci modulo $E[\ell^k]$ défini par un polynôme de degré $\ell^{2k}$.
 
 \paragraph{Optimisation}
 Cependant on peut travailler aussi avec un facteur de $h_{\lambda^k}$ à la place de celui-ci en effet on peut procéder de la manière suivante:
