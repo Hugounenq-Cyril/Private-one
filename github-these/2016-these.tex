@@ -4391,16 +4391,18 @@ $\ell^i$-isogénie en $i$ $\ell$-isogénies ne comporte pas d'isogénie duale d'
 autre isogénie alors le fait d'avoir la première $\ell$-isogénie (celle de noyau
 $\langle [\ell^{k-1}]([a]P+[b]Q) \rangle$) descendante est suffisant pour avoir
 une $\ell^{i}$-isogénie descendante de noyau $\langle \ell^{k-i}]([a]P+[b]Q) 
-\rangle$. Enfin il n'y a pas de $\ell$-isogénie duale d'une autre dans la
-composition de la $\ell^i$-isogénie car celle-ci est générée par un point et
-donc par un groupe cyclique.
+\rangle$. Enfin il n'y a pas de $\ell$-isogénie duale d'une autre 
+$\ell$-isogénie dans la composition de la $\ell^i$-isogénie car celle-ci est 
+générée par un point et donc par un groupe cyclique.
+
+\todo{reflexion de Luca sur ascendant horizontal}
 
 \begin{defi}
 \label{def:par:hor}
 Soient $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère 
-(id est au niveau $h-e$),
+(\emph{id est} au niveau $h-e$),
 $E_s$ la courbe sommet de $E$ (voir définition~\ref{def:cou:som}), $P \in E_s$ 
-un point d'ordre $\ell^k$ avec $k>e$ tel que $[\ell^e]P$ soit horizontal de 
+un point d'ordre $\ell^k$, avec $k>e$, tel que $[\ell^e]P$ soit horizontal de 
 direction $\lambda$ (resp. $\mu$), $\varphi$ la $\ell^e$-isogénie $\varphi:
 E_s \rightarrow E$, alors $\varphi(P)$ est appelé point \emph{partiellement 
 horizontal} de direction $\lambda$ (resp. $\mu$) et de profondeur $e$.
@@ -4408,7 +4410,7 @@ horizontal} de direction $\lambda$ (resp. $\mu$) et de profondeur $e$.
 
 \begin{rem}
 Il est porté à l'attention du lecteur qu'un point horizontal est aussi un point
- \emph{partiellement horizontal} de profondeur $0$.
+\emph{partiellement horizontal} de profondeur $0$.
 \end{rem}
 
 \begin{figure}
@@ -4607,24 +4609,26 @@ Soit $P \in E[\ell^k]$ un vecteur propre de $\pi$, $i\leqslant k$ tel que
 $[\ell^i]P$ soit horizontal de direction $\lambda$, $\varphi:E \mapsto E_i$ une
 isogénie descendante de degré $\ell^i$, on note $P'=\varphi(P)$, alors:
 \begin{enumerate}
-\item  $\langle [\ell^{k-i}]P' \rangle$ est le noyau d'une isogénie montante de
+\item \label{ite:pro:par:1} $\langle [\ell^{k-i}]P' \rangle$ est le noyau d'une isogénie montante de
 degré $\ell^{i}$ duale de $\varphi$ notée $\widehat{\varphi}$, 
-\item  $\langle \widehat{\varphi}(P') \rangle$ est le noyau d'une isogénie 
+\item \label{ite:pro:par:2} $\langle \widehat{\varphi}(P') \rangle$ est le noyau d'une isogénie 
 horizontale de direction $\lambda$ de degré $\ell^{k-i}$.  
 \end{enumerate}
 \end{prop}
 
 \begin{proof}
-Pour le point (1) montrons que l'image de $P$ par $\varphi$ est encore d'ordre 
-$\ell^k$, comme $P$ est un générateur d'une $\ell^{k-i}$-isogénie horizontale 
-alors $[\ell^{k-1}]P$ n'est pas dans le noyau de $\varphi$ et donc $\varphi(P)$ est 
-d'ordre $\ell^k$. On a alors $\langle [\ell^{k-i}]\varphi(P) \rangle $ qui est le 
+Pour le point~\eqref{ite:pro:par:1} montrons que l'image de $P$ par $\varphi$ est encore d'ordre 
+$\ell^k$. Comme $P$ est un générateur d'une $\ell^{k-i}$-isogénie horizontale 
+alors $[\ell^{k-1}]P$ n'est pas dans le noyau de $\varphi$, et donc $\varphi(P)$ est 
+d'ordre $\ell^k$. Alors $\langle [\ell^{k-i}]\varphi(P) \rangle $ qui est le 
 noyau de $\widehat{\varphi}$.  
 
-Pour le point (2) il suffit d'écrire que $\widehat{\varphi}(P')=\widehat{\varphi}\circ \varphi (P)= [\ell^i] P$ on conclut alors à l'aide des hypothèses sur $P$.
+Pour le point~\eqref{ite:pro:par:2} il suffit d'écrire que $\widehat{\varphi}
+(P')=\widehat{\varphi}\circ \varphi (P)= [\ell^i] P$; on conclut alors à l'aide
+des hypothèses sur $P$.
 \end{proof}
 
-Maintenant nous allons voir si l'on peut tirer distinguer les 
+Maintenant nous allons voir si l'on peut distinguer les 
 $\ell^i$-isogénies descendantes dans le volcan à l'aide d'une étude de l'action
 du Frobenius. Pour cette étude on fixe un point d'ordre $\ell^k$ qui engendre 
 la $\ell$-isogénie montante (ou l'une des deux horizontales lorsque l'on est 
@@ -4632,6 +4636,12 @@ sur le cratère) et on regarde si la forme de la matrice du Frobenius est liée 
 la $\ell^i$-isogénie descendante engendrée par le second point qui forme une 
 base de $E[\ell^k]$.  Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Master13}.
 
+
+\begin{nota} \todo{Nomenclature}
+Soient $E$ une courbe elliptique, $P,Q$ deux points tels que $E[\ell^k]=\langle
+P,Q \rangle$ on note alors $\pi(P,Q)$ la représenation matricielle de l'action
+du Frobenius dans la base $(P,Q)$.
+\end{nota}
 
 \begin{prop}
 \label{pro:etu:atk:elk}
@@ -4649,15 +4659,15 @@ telle que $\pi(P,R)=\pi(P,R')$ et $\langle [\ell^{h-e}]R' \rangle = \ker(\phi)$.
 
 \begin{proof}
 Par la forme de la matrice $\pi(P,R)$ on a:
-\[ \pi([a]P+[b]Q)=[\ell^{h-e} \beta] P + [\mu] ([a]P+[b]Q)\]
-de plus comme $\pi([a]P+[b]Q)=[a \lambda ]P + [b] \pi(Q)$ on en déduit 
-l'expression suivante de $b\pi(Q)$:
-\[ b \pi(Q)=[\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q. \]
-On a alors $\pi([*]P+[by]Q)=[*\lambda]P+[y]([b]\pi(Q))$, la condition 
+\[ \pi([a]P+[b]Q)=[\ell^{h-e} \beta] P + [\mu] ([a]P+[b]Q).\]
+De plus, comme $\pi([a]P+[b]Q)=[a \lambda ]P + [b] \pi(Q)$, on déduit 
+l'expression suivante pour $[b]\pi(Q)$:
+\[ [b] \pi(Q)=[\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q. \]
+On a alors $\pi([*]P+[by]Q)=[*\lambda]P+[y]([b]\pi(Q))$. La condition 
 $\pi(P,R')=\pi(P,R)$ est vérifiée si et seulement si:
 \begin{eqnarray*}
 \pi([*]P+[by]Q) &=& [\beta \ell^{h-e}] P + [\mu]([*]P+[by]Q) \\
-				&=& [\lambda *]P + [y]([\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q)
+				&=& [\lambda *]P + [y]([\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q).
 \end{eqnarray*}
 Cela se traduit donc par l'égalité suivante:
 \[ \beta \ell^{h-e} + *(\mu-\lambda)=y(\beta \ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
@@ -4665,7 +4675,7 @@ Ainsi on fait une distinction avec selon que l'on ait $h-e+i \leqslant h$ ou
 $h-e+i > h$ car $\ell^h || \lambda - \mu$. 
 
 Pour $h-e+i \leqslant h$ on obtient l'équation suivante:
-\[\beta \ell^{h-e} = y\beta \ell^{h-e}  \bmod \ell^{h-e+i} \]
+\[\beta \ell^{h-e} = y\beta \ell^{h-e}  \bmod \ell^{h-e+i}, \]
 et donc la valeur de la matrice ne dépend que de $y$. Or la
 $\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle$ est déterminée par la 
 valeur de $\ell^{h-e}b^{-1}y^{-1}* \bmod \ell^{h-e+i}$ (voir preuve de la 
@@ -4691,7 +4701,7 @@ de l'isogénie spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
 \end{proof}
 
 On voit donc que l'on n'est pas capable de distinguer les isogénies 
-descendantes entre elles dans un volcan de $\ell$-isogénies avec $\ell$ un 
+descendantes entre elles dans un volcan de $\ell$-isogénies, quand $\ell$ est un 
 nombre premier de Elkies. En effet pour toute forme de matrice du Frobenius 
 triangulaire observée on est capable de trouver pour chacune des différentes 
 $\ell$-isogénies descendantes un second point de la base qui engendre cette
@@ -4701,7 +4711,10 @@ isogénie et pour lequel l'action du Frobenius est identique dans cette base.
 \label{sub:con:poi}
 %Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'er\^ome Pl\^ut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
-Dans cette sous-section on s'intéresse à la partie algorithmique du calcul des objets présentés dans la sous-section~\ref{subs:elk:dir}. Sont aussi utilisés les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les extensions de corps de définies dans la définition \ref{def:tour-ell}.
+DDans cette sous-section on s'intéresse à la partie algorithmique du calcul des
+objets présentés dans la sous-section~\ref{subs:elk:dir}. Sont aussi utilisés 
+les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les 
+extensions de corps de la définition \ref{def:tour-ell}.
 
 \subsubsection{\'Etude de la rationalité de la $\ell^k$-torsion dans une tour d'extensions $\ell$-adique}
 \label{sub:classes}
