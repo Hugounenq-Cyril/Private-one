@@ -4723,8 +4723,7 @@ Pour $h-e+i \leqslant h$ on obtient l'équation suivante:
 et donc la valeur de la matrice ne dépend que de $y$. Or la
 $\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle= \langle [\ell^{h-e}]
 ([c(by)^{-1}]P+Q) \rangle$ est déterminée par la 
-valeur de $\ell^{h-e}b^{-1}y^{-1}c \bmod \ell^{h-e+i}$ (voir preuve de la 
-proposition~\ref{pro:cla:fro:mat} pour plus de détails), ainsi en faisant 
+valeur de $\ell^{h-e}b^{-1}y^{-1}c \bmod \ell^{h-e+i}$, ainsi en faisant 
 varier la valeur de $c$ on peut faire en sorte que $[\ell^{h-e}]R'$ soit le 
 générateur de n'importe quelle $\ell^{i}$-isogénie descendante.
 
@@ -5701,40 +5700,26 @@ conjuguée aux matrices de la forme:
 \]
 si et seulement si $\beta \ell^{h+e}R= \ell^{h+e}R'$ avec $\beta \in \left( \mathbb{Z}/\ell^{i-e} \mathbb{Z} 
 \right)^{\times}$. De plus tous les points $S$ tels que $\langle [\ell^{h+e}]R \rangle = \langle [\ell^{h+e}]S \rangle$ sont obtenus à partir de tous les changements de la forme 
-$R\rightarrow [\beta]R$ avec $\beta \in \left( \mathbb{Z}/\ell^{i-e}\mathbb{Z} 
+$R \mapsto [\beta]R$ avec $\beta \in \left( \mathbb{Z}/\ell^{i-e}\mathbb{Z} 
 \right)^{\times}$.
 \end{prop}
-\todo{Luca La dernière phrase est triviale. Je ne comprends pas comment la preuve peut être aussi longue. --> pas complètement tort...}
 
 \begin{proof}
 Par la proposition~\ref{pro:atk:equi} on a $\pi(P,R')=\pi(P,
-\beta R)$ si et seulement si $[\ell^{h+e}]\beta R=[\ell^{h+e}]R'$ or en 
+\beta R)$ si et seulement si $[\ell^{h+e}]\beta R=[\ell^{h+e}]R'$. Or, en 
 observant que la conjugaison de la matrice $\left( \begin{smallmatrix}a & b 
 \ell^{h-e} \\c  \ell^{h-e} & d \end{smallmatrix} \right)$ par $\left( 
 \begin{smallmatrix}1 & 0 \\0 & \beta \end{smallmatrix} \right)$ avec $\beta \in
 \left( \mathbb{Z}/\ell^{i-e} \mathbb{Z}\right)^{\times}$ nous donne une matrice de la 
 forme $\left( \begin{smallmatrix}a & b \ell^{h-e} \beta \\c \ell^{h-e} \beta^{-1} &
- d \end{smallmatrix} \right)$ on a bien $\pi(P,\beta R)=\left( 
+ d \end{smallmatrix} \right)$, on a bien $\pi(P,\beta R)=\left( 
 \begin{smallmatrix}a & b \ell^{h-e} \beta \\c \ell^{h-e} \beta^{-1} & d 
-\end{smallmatrix} \right)$ ce qui nous donne le résultat.
+\end{smallmatrix} \right)$, ce qui nous donne le résultat.
 
-Montrons maintenant le second point. Soit $[\ell^{h+e}]([x]P+[y]Q)$ un point 
-d'ordre $\ell^{i-e}$ engendré par $R$, 
-le groupe $\langle [\ell^{h+e}]([x]P+[y]Q) \rangle$ engendré par ce point peut 
-aussi s'écrire:$\langle [xy^{-1}]([\ell^{h+e}]P)+ ([\ell^{h+e}]Q) \rangle$. De 
-même on peut écrire le groupe engendré par $[\ell^{h+e}]([x']P+[y']Q)$ comme 
-$\langle [x'y'^{-1}]([\ell^{h+e}]P)+ ([\ell^{h+e}]Q) \rangle$, ainsi on a 
-égalité des $\ell^i$-isogénies engendrées par $[\ell^{h+e}]([x']P+[y']Q)$ et 
-$[\ell^{h+e}]([x]P+[y]Q)$ si et seulement si $\ell^{h+e}xy^{-1}=\ell^{h+e}
-x'y'^{-1}\bmod \ell^{h+i}$. On voit donc que seul compte les valeurs de 
-$\ell^{h+e}x$ et $\ell^{h+e}y$ modulo $\ell^{h+i}$ pour la détermination de la 
-$\ell^{i-e}$-isogénie.
-
-Les seuls changements qui préservent la $\ell^{i-e}$-isogénie générée par 
-$R=[x]P+[y]Q$ sont les seuls changements qui préservent la valeur de 
-$\ell^{h+e}xy^{-1} \bmod \ell^{h+i}$ ce sont donc les changements de la forme 
-$[x]P+[y]Q \rightarrow [\beta x]P+[\beta y]Q$ avec $\beta \in \left( \mathbb{Z}
-/\ell^{i-e}\mathbb{Z} \right)^{\times}$. 
+Montrons maintenant le second point. Soit $S$ tel que $\langle [\ell^{h+e}]R 
+\rangle =\langle [\ell^{h+e}]S \rangle$ alors il existe $\beta \in \left( 
+\mathbb{Z}/\ell^{i-e} \mathbb{Z} \right)^{\times}$ tel que $[\beta] R= S$,
+d'où le résultat.
 \end{proof}
 
 \begin{figure}
@@ -8961,11 +8946,12 @@ telle que $\pi(P,R)=\pi(P,R')$ et $\langle \ell^{h}R' \rangle = \ker(\phi)$.
 \end{prop}
 
 \begin{proof}
-Comme vu dans la preuve de la proposition~\ref{pro:cla:fro:mat} toute 
-$\ell^i$-isogénie de noyau $\langle \ell^{h}R' \rangle$ est déterminée par la 
-valeur de $\ell^{h}b^{-1}y^{-1}* \bmod \ell^{h+i}$, on rappelle de plus que l'on est obligé 
-d'avoir $*y \wedge \ell =1$ pour avoir une $\ell^{h+i}$-isogénie descendante.
-On a alors l'équation suivante qui doit être vérifiée: 
+Comme on a $\langle \ell^{h}R' \rangle= \langle [ell^{h}]([*(by)^{-1}]P+Q) 
+\rangle$ alors l'isogénie de noyau $\langle \ell^{h}R' \rangle$ est déterminée 
+par la valeur de $\ell^{h}b^{-1}y^{-1}* \bmod \ell^{h+i}$, on rappelle de plus 
+que l'on est obligé d'avoir $*y \wedge \ell =1$ pour avoir une 
+$\ell^{h+i}$-isogénie descendante. On a alors l'équation suivante qui doit être
+vérifiée: 
 \[ \beta \ell^h (1-y) = (\mu - \lambda) (ay-*)  \bmod \ell^{h+i} \]
 or comme $\ell^{h}|| (\mu - \lambda)$ et $\beta \wedge \ell =1$, si l'on a 
 $\ell^{h}b^{-1}y^{-1}*=\ell^{h}b^{-1}a$ alors on doit avoir 
@@ -9037,8 +9023,7 @@ Cela se traduit donc par l'égalité suivante:
 \[ \beta \ell^{h-e} + *(\mu-\lambda)=y(\beta \ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
 Ainsi pour $h-e+i \leqslant h$ on obtient l'équation suivante:
 \[\beta \ell^{h-e} = y\beta \ell^{h-e}  \bmod \ell^{h-e+i} \]
-et donc la valeur de la matrice ne dépend que que de $y$. Or on a vu dans la
-preuve de la proposition~\ref{pro:cla:fro:mat} que la
+et donc la valeur de la matrice ne dépend que que de $y$. Or la
 $\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle$ est déterminée par la 
 valeur de $\ell^{h-e}b^{-1}y^{-1}* \bmod \ell^{h-e+i}$, ainsi en faisant 
 varier la valeur de $*$ on peut faire en sorte que $[\ell^h-e]R'$ soit le 
