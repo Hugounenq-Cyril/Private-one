@@ -191,7 +191,7 @@
 
 
 \chapter*{Introduction}
-
+\todo{Point ascendant horizontal}
 
 \chapter{Rappels théoriques}
 \section{Complexite}
@@ -3904,7 +3904,7 @@ que $y=1$.
 Soit $\phi$ l'isogénie de noyau $\langle [\ell^h]P \rangle$ et $E'$ son 
 codomaine. Comme $[\ell^h]P$ est un vecteur propre de $\pi$, alors $\phi$ est 
 une isogénie rationnelle. Par le lemme~\ref{lem:iso:con}, la matrice 
-$\Pi'=\pi|\mathsf{T}_{\ell}(E')$ est égale à $\left ( \begin{smallmatrix}\lambda & \ell^{h-k} 
+$\pi|\mathsf{T}_{\ell}(E')$ est égale à $\left ( \begin{smallmatrix}\lambda & \ell^{h-k} 
 x (\lambda-\mu)\\ 0 & \mu \end{smallmatrix}\right )$.  
 
 Cette matrice est diagonalisable seulement si $v_{\ell}(x) \geqslant k - h$.
@@ -4386,8 +4386,8 @@ de direction~$\mu$, alors $Q'$~est horizontal de direction $\mu$.
 \caption{ \label{fig:poi:hor} Exemple de construction de point horizontal. 
 Sur le volcan de gauche est représentée  l'isogénie de noyau $\langle P 
 \rangle$ avec $P \in E_s$  tel que $[2^2]P$ est horizontal de direction 
-$\color{blue}{\mu}$ et $\psi$ est une $2$-isogénie horizontale de direction 
-$\color{red}{\lambda}$. Sur le volcan de droite l'isogénie de noyau $\langle 
+$\mu$ et $\psi$ est une $2$-isogénie horizontale de direction 
+$\lambda$. Sur le volcan de droite l'isogénie de noyau $\langle 
 \psi(P) \rangle$ est représentée.}
 \end{figure}
 
@@ -4633,7 +4633,7 @@ Il est porté à l'attention du lecteur qu'un point horizontal est aussi un poin
 \end{center}
 \caption{ \label{fig:par:hor:con} Construction d'un point partiellement 
 horizontal à partir d'un point $P \in E_s$ d'ordre $2^3$ tel que $[2]P$ soit 
-horizontal de direction $\color{blue}{\mu}$ et $\psi:E_s \rightarrow E$ une 
+horizontal de direction $\mu$ et $\psi:E_s \rightarrow E$ une 
 $2$-isogénie descendante. L'isogénie de noyau $\langle P \rangle$ est 
 représentée en bleu sur le dessin de gauche, celle de noyau $\langle \psi(P) 
 \rangle$ est représentée sur le dessin de droite.}
@@ -4642,7 +4642,7 @@ représentée en bleu sur le dessin de gauche, celle de noyau $\langle \psi(P)
 On voit sur la figure~\ref{fig:par:hor:con} la construction d'un point 
 partiellement horizontal sur un volcan des $2$-isogénies. Sur le volcan de 
 gauche est représentée l'isogénie de noyau $\langle P \rangle$ avec $P \in E_s$
-tel que $[\ell]P$ est horizontal de direction  $\color{blue}{\mu}$. On calcule 
+tel que $[\ell]P$ est horizontal de direction  $\mu$. On calcule 
 alors l'image de $P$ par la $2$-isogénie descendante $\psi:E_s \rightarrow E$
 pour construire le point partiellement horizontal $R=\psi(P) \in E$. Sur le 
 volcan de droite est représenté l'isogénie de noyau $\langle R \rangle$.
@@ -6209,6 +6209,8 @@ Q
 		\node[fill=white] (D) at (0,4) {$\bullet$};
 		\draw[-] (A.center) to[bend left=20] (D.center);
 		\draw[-] (D.center) to[bend left=20] (B.center);
+		\node (W0) at (-5.5,-1.5) {$\lambda$};		
+		\node (X0) at (5.5,-1.5) {$\mu$};
 		
 			\begin{scope}[shift={(A)}] %sous-volcan de gauche
 			\coordinate (A) at (0,0);
@@ -6510,25 +6512,23 @@ lors on ne sait dire, à partir de cette information, si les isogénies de degr�
 supérieur à $3$ engendrées par le point diagonal sont du même type et repectent
 l'action de la $r$-isogénie $\phi$. En effet pour le choix d'un de ces points 
 diagonaux on peut choisir comme sur l'exemple un point horizontal pour la 
-direction $\color{red} \lambda$ pour la courbe $E_s$ et un point non horizontal
-pour la direction $ \color{red} \lambda$ sur la courbe $E'_s$.  Dès lors on a 
+direction $ \lambda$ pour la courbe $E_s$ et un point non horizontal
+pour la direction $\lambda$ sur la courbe $E'_s$.  Dès lors on a 
 pas une correspondance de sous-groupes cycliques et l'on doit considérer les 
 combinaisons linéaire avec le second point de la base diagonale de direction 
-$\color{blue} \mu$ pour les correspondances induites par la $r$-isogénie. Enfin
+$\mu$ pour les correspondances induites par la $r$-isogénie. Enfin
 on ne sait dire si la correspondance entre les $\ell$-isogénies descendantes 
 qui composent l'isogénie engendrée par les points de dagonaux de direction 
-$\color{blue}{\mu}$ sont correctes. En effet nous avons vu à la 
+$\mu$ sont correctes. En effet nous avons vu à la 
 proposition~\ref{pro:etu:atk:elk} qu'une étude à l'aide du Frobenius des 
 $\ell$-isogénies ne permet pas de distinguer les $\ell$-isogénies entre elles.
 
- On travaille donc avec deux bases $(\color{red}P_{\lambda} \color{black},
- \color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},
- \color{blue}Q'_{\mu}\color{black})$ (partiellement) horizontales de 
- $E[\ell^k]$ et $E'[\ell^k]$.
+ On travaille donc avec deux bases $(P_{\lambda}, Q_{\mu}),(P'_{\lambda},
+ Q'_{\mu})$ (partiellement) horizontales de $E[\ell^k]$ et $E'[\ell^k]$.
  On doit à nouveau avoir $k \geqslant h +1$ pour pouvoir calculer ces bases 
 (partiellement) horizontales par la proposition~\ref{pro:dia:hor}.
  Dans ces bases l'action de $\phi$ sur la base 
- $(\color{red}P_{\lambda} \color{black},\color{blue}Q_{\mu}\color{black})$ 
+ $(P_{\lambda}, Q_{\mu})$ 
  peut être représentée comme une matrice diagonale car par la 
  proposition~\ref{pro:par:iso} et la proposition~\ref{pro:par:hor:par} les 
  groupes cycliques engendrés par des points (partiellement) horizontaux de
@@ -6536,8 +6536,8 @@ $\ell$-isogénies ne permet pas de distinguer les $\ell$-isogénies entre elles.
 \[
 \left(
 \begin{matrix}
-\color{red} P'_{\lambda} \\
-\color{blue} Q'_{\mu} \color{black}
+ P'_{\lambda} \\
+ Q'_{\mu} 
 \end{matrix}
 \right)= \left(\begin{matrix}
 a & 0 \\
@@ -6545,32 +6545,27 @@ a & 0 \\
 \end{matrix} \right)
 \left(
 \begin{matrix}
-\color{red} P_{\lambda} \\
-\color{blue} Q_{\mu} \color{black}
+P_{\lambda} \\
+Q_{\mu}
 \end{matrix}
 \right)
 \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^{\times}
 \]
  On énumère donc toutes les $\ell^{2k-2}$ matrices $M$ possibles $\left( 
  \begin{smallmatrix} a & 0 \\ 0 & b \end{smallmatrix} \right)$. Pour chaque 
-matrice $M$ on interpole l'action de $M$ sur les bases $(\color{red}P_{\lambda}
- \color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}
-\color{black},\color{blue}Q'_{\mu}\color{black})$ en calculant le 
-polynôme d'interpolation $A_{a,b}$ tel que 
+matrice $M$ on interpole l'action de $M$ sur les bases $(P_{\lambda},Q_{\mu}),
+(P'_{\lambda},Q'_{\mu})$ en calculant le polynôme d'interpolation $A_{a,b}$ tel
+que 
 \[
-A_{a,b}(x([u]\color{red}P_{\lambda}
- \color{black}+[v]\color{blue}Q_{\mu}\color{black}))=x([au]\color{red}P'_{\lambda}
- \color{black}+[bv]\color{blue}Q'_{\mu}\color{black}) \quad \text{pour tout $[u]\color{red}P_{\lambda}
- \color{black}+[v]\color{blue}Q_{\mu}\color{black}$ d'ordre $\ell^k$}.
+A_{a,b}(x([u]P_{\lambda} +[v]Q_{\mu}))=x([au]P'_{\lambda}+[bv]Q'_{\mu}) \quad 
+\text{pour tout $[u]P_{\lambda}+[v]Q_{\mu}$ d'ordre $\ell^k$}.
 \]
-
 
 Ensuite à l'aide du polynôme $A_{a,b}$ on calcule la fraction rationnelle $F$ telle que:
 \[
 F=A_{a,b} \bmod T
 \]
-avec $T$ le polynôme minimal qui s'annule sur tout point $[u]\color{red}
-P_{\lambda} \color{black}+[v]\color{blue}Q_{\mu}\color{black}$ d'ordre 
+avec $T$ le polynôme minimal qui s'annule sur tout point $[u]P_{\lambda}+[v]Q_{\mu}$ d'ordre 
 $\ell^k$. C'est la fraction rationnelle $F$ qui lorsque l'on a bien choisi 
 $M$ doit représenter l'action de la $r$-isogénie $\phi$, on cherche donc à 
 calculer $F$ de degré $(r,r-1)$. Or une telle fraction rationnelle est 
@@ -6594,9 +6589,12 @@ $\ell$ un nombre premier de Elkies.
 \STATE  \label{alg:cou-ell:bdiag}
 Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
 \STATE \label{alg:cou-ell:bhor}
-Calcul de $(\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black})$ bases horizontales de $E_s[\ell^k],E'_s[\ell^k]$ à l'aide de l'algorithme \ref{alg:hor:poi};
+Calcul de $(P_{\lambda},Q_{\mu}),(P'_{\lambda},Q_{\mu}')$ bases horizontales de
+$E_s[\ell^k],E'_s[\ell^k]$ à l'aide de l'algorithme \ref{alg:hor:poi};
 \IF{$(E_s,E'_s) \neq (E,E')$}
-\STATE Calcul de $((\color{red}P_{\lambda}\color{black},\color{blue}Q_{\mu}\color{black}),(\color{red}P'_{\lambda}\color{black},\color{blue}Q_{\mu}'\color{black}))=((\varphi(\color{red}P_{\lambda}\color{black}),\varphi(\color{blue}Q_{\mu}\color{black})),(\varphi'(\color{red}P'_{\lambda}\color{black}),\varphi'(\color{blue}Q_{\mu}'\color{black})))$ bases partiellement horizontales de $E[\ell^k],E'[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
+\STATE Calcul de $((P_{\lambda},Q_{\mu}),(P'_{\lambda},Q_{\mu}'))=
+((\varphi(P_{\lambda}),\varphi(Q_{\mu})),(\varphi'(P'_{\lambda}),\varphi'(
+Q_{\mu}')))$ bases partiellement horizontales de $E[\ell^k],E'[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
 \ENDIF
 \STATE \label{alg:cou-ell:rep} Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\ell^{k}\mathbb{Z} \right)^*$}
@@ -6670,12 +6668,11 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   plus~$O(k \cdot \ell^{k+\beta})$ classes de Galois dans~$E[\ell^k]$. 
   Pour les polynômes d'interpolation on a besoin d'un représentant de chaque 
   classe que l'on stocke dans les listes $L$ et $L'$. Chaque représentant est
-  calculé à partir de la base $(\color{red}P_{\lambda}\color{black},
-  \color{blue}Q_{\mu}\color{black})$ et $(\color{red}P'_{\lambda}\color{black},
-  \color{blue}Q'_{\mu}\color{black})$ en multipliant les deux points définis 
-  dans $\mathsf{F}_{k-\beta}$ par des entiers définis dans 
-  $\left( \mathbb{Z}/\ell^{k}\mathbb{Z}\right)^*$ une telle multiplication coûte 
-  $O(\mathsf{M}(\ell^{k-\beta})\log(\ell^k))$ opérations. On a donc un coût total de 
+  calculé à partir de la base $(P_{\lambda},Q_{\mu})$ et $(P'_{\lambda},
+  Q'_{\mu})$ en multipliant les deux points définis dans $\mathsf{F}_{k-\beta}$
+  par des entiers définis dans $\left( \mathbb{Z}/\ell^{k}\mathbb{Z}
+  \right)^{\times}$ une telle multiplication coûte $O(\mathsf{M}(\ell^{k-\beta}
+  )\log(\ell^k))$ opérations. On a donc un coût total de 
   $O(k\mathsf{M}(\ell^{2k})\log(\ell^k)) \subset O(\mathsf{M}(r\ell^{3})\log(r)^2 \log(\ell))$
   pour calculer tous les représentants.
   
@@ -7402,7 +7399,9 @@ l'algorithme~\ref{alg:cou:mult-adique:short}.%,
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE Calcul des $k_i$ tel que $\sum_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
 \FOR{$i=1$ à $n$}
-\STATE \label{alg:mult-ell:bhor} Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black})$ bases (partiellement) horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
+\STATE \label{alg:mult-ell:bhor} Calcul de $(P_{\lambda,i},Q_{\mu,i}),
+(P'_{\lambda,i},Q_{\mu,i}')$ bases (partiellement) horizontales de 
+$E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \STATE \label{alg:mult-ell:rep} Calcul des liste de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
 \ENDFOR
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}$}
@@ -7427,20 +7426,20 @@ parallèle sur chacune des tours d'extension $\ell_i$-adiques, les méthodes
 utilisées sont les mêmes que celles dans l'algorithme~\ref{alg:cou:ell-adique}.
 Par les propositions~\ref{pro:par:iso} et ~\ref{pro:par:hor:par} on sait
  que pour tout $i$ l'action de $\phi$ sur une base
-$(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black})$
- (partiellement) horizontale de $E[\ell_i^{k_i}]$ peut être représentée de la façon suivante:
+$(P_{\lambda,i},Q_{\mu,i})$ (partiellement) horizontale de $E[\ell_i^{k_i}]$ 
+peut être représentée de la façon suivante:
 $
 \left(\begin{smallmatrix}
-\color{red} P'_{\lambda,i} \\
-\color{blue} Q'_{\mu,i} \color{black}
+P'_{\lambda,i} \\
+Q'_{\mu,i} 
 \end{smallmatrix} \right)= \left(\begin{smallmatrix}
 a_i & 0 \\
 0 & b_i\end{smallmatrix} \right)
 \left(\begin{smallmatrix}
-\color{red} P_{\lambda,i} \\
-\color{blue} Q_{\mu,i} \color{black} \end{smallmatrix} \right)$
+P_{\lambda,i} \\
+Q_{\mu,i} \end{smallmatrix} \right)$
 avec $ a_i,b_i \in \left( \mathbb{Z}/\ell_i^{k_i}\mathbb{Z} \right)^{\times}$ et 
-$(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q'_{\mu,i}\color{black})$
+$(P'_{\lambda,i},Q'_{\mu,i})$
 base (partiellement) horizontale de $E'[\ell_i^{k_i}]$.
 
 On définit à l'aide du théorème des restes chinois deux coefficients $a,b \in 
@@ -7495,12 +7494,11 @@ c'est ce que l'on va aborder dans la seconde approche avec des points
 \section{Algorithme de Couveignes $\ell$-adique généralisé avec un nombre composé de Elkies}
 Dans cette approche on veut travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'information donnée par 
-les  bases (partiellement) horizontales 
-$(\color{red}P_{\lambda_i}\color{black},\color{blue}Q_{\mu_i}\color{black})$ de 
+les  bases (partiellement) horizontales $(P_{\lambda_i},Q_{\mu_i})$ de 
 $E[\ell_i^{k_i}]$ avec $\ell_i$ un nombre premier de Elkies, pour faire cela on
-a besoin de définir quelques notions. On
-va supposer sans perte de généralités que les $k_i$ pour $i \in [1,n]$ sont 
-fixés tels que l'on ait $\prod_{i=1}^{n} \ell_i^{2k_i-2}(\ell_i+1)>4r$.
+a besoin de définir quelques notions. On va supposer sans perte de généralités 
+que les $k_i$ pour $i \in [1,n]$ sont fixés tels que l'on ait $\prod_{i=1}^{n} 
+\ell_i^{2k_i-2}(\ell_i+1)>4r$.
 
 \subsection{Théorème des Restes Chinois et son application à l'algorithme de Couveignes $\ell$-adique}
 \label{sub:TRCE:cou}
@@ -7775,20 +7773,16 @@ qu'un point construit à l'aide du théorème des restes chinois appliqué à de
 points $P_i,Q_i$ (partiellement) horizontaux de directions $\lambda_i,\mu_i$  
 d'ordre $\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux, 
 était mis en correspondance avec un autre point de même direction.
-Ainsi avec deux bases de points (partiellement) horizontaux $(\color{red}P_{\lambda_1,
- \dots, \lambda_n}\color{black},\color{blue}Q_{\mu_1, \dots, 
- \mu_n}\color{black}),(\color{red}P'_{\lambda_1, \dots, \lambda_n}\color{black}
- ,\color{blue}
- Q'_{\mu_1, \dots, \mu_n}\color{black})$ de $E[\prod_{i=1}^n\ell_i^{k_i}]$ et 
+Ainsi avec deux bases de points (partiellement) horizontaux $(P_{\lambda_1,
+\dots, \lambda_n},Q_{\mu_1, \dots, \mu_n}),(P'_{\lambda_1, \dots, \lambda_n}
+ , Q'_{\mu_1, \dots, \mu_n})$ de $E[\prod_{i=1}^n\ell_i^{k_i}]$ et 
  $E'[\prod_{i=1}^n\ell_i^{k_i}]$ l'action de la $r$-isogénie peut être 
  représentée de la façon suivante:  
  \begin{equation*}
 \left(
 \begin{matrix}
-\color{red} P'_{\lambda_1,
- \dots, \lambda_n} \\
-\color{blue} Q'_{\mu_1, \dots, 
- \mu_n} \color{black}
+P'_{\lambda_1, \dots, \lambda_n} \\
+Q'_{\mu_1, \dots, \mu_n}
 \end{matrix}
 \right)= \left(\begin{matrix}
 a & 0 \\
@@ -7796,10 +7790,8 @@ a & 0 \\
 \end{matrix} \right)
 \left(
 \begin{matrix}
-\color{red} P_{\lambda_1, 
-\dots, \lambda_n} \\
-\color{blue} Q_{\mu_1, \dots, 
- \mu_n} \color{black}
+ P_{\lambda_1, \dots, \lambda_n} \\
+ Q_{\mu_1, \dots,  \mu_n} 
 \end{matrix}
 \right)
 \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\prod_{i=i}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}.
@@ -7860,7 +7852,10 @@ par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE Calcul des $k_i$ tels que $\prod_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
 \FOR{$i=1$ à $n$}
-\STATE \label{alg:cou:TRC-adique:bhor} Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black})$ bases (partiellement) horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
+\STATE \label{alg:cou:TRC-adique:bhor} Calcul de $(P_{\lambda,i},Q_{\mu,i}),
+(P'_{\lambda,i},Q_{\mu,i}')$ bases (partiellement) horizontales de 
+$E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} 
+et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \STATE \label{alg:cou:TRC_adique:rep:uni} Calcul des représentants des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$;
 \ENDFOR
 \STATE \label{alg:cou:TRC-adique:TRC} Calcul de $(P,Q),(P',Q') \in E^2 \times E'^2$ d'ordres $ \mathbb{Z}/\prod_{i=1}^n \ell_i^{k_i}\mathbb{Z}$ tels que $P$ et $P'$ sont de direction $(\lambda_1, \dots, \lambda_n)$ et $Q$ et $Q'$ de direction $(\mu_1, \dots, \mu_n)$ à l'aide de l'algorithme~\ref{alg:TRC};
@@ -8075,10 +8070,12 @@ dans la section~\ref{sec:cou:elk}.
 \STATE Calcul du plus petit $k$ tel que $\ell^{k-1}>4r$;
 \STATE  
 Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^{h+1}],E'_s[\ell^{h+1}]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
-\STATE Calcul de $\color{red}P_{\lambda}\color{black} \in E_s[\ell^k]$, $\color{red}P'_{\lambda}\color{black} \in E_s'[\ell^k]$ points horizontaux  à l'aide de l'algorithme \ref{alg:hor:poi};
+\STATE Calcul de $P_{\lambda} \in E_s[\ell^k]$, $P'_{\lambda} \in E_s'[\ell^k]$ points horizontaux  à l'aide de l'algorithme \ref{alg:hor:poi};
 \IF{$(E_s,E'_s) \neq (E,E')$}
 \STATE 
-Calcul de $\color{red}P_{\lambda}\color{black},\color{red}P'_{\lambda}\color{black}$ points partiellement horizontaux de $E_s[\ell^k],E'_s[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
+Calcul de $P_{\lambda},P'_{\lambda}$ points partiellement 
+horizontaux de $E_s[\ell^k],E'_s[\ell^k]$ avec les $\ell^e$-isogénies 
+descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
 \ENDIF
 \STATE Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
 \FOR{ $a \in \left( \mathbb{Z}/\ell^{k}\mathbb{Z} \right)^*$}
@@ -9612,10 +9609,10 @@ Voir section $5.2$ de \cite{DeFeo11}.
 \STATE  \label{alg:cou-mult:bdiag:long}
 Calcul de $(P_i,Q_i),(P_i',Q_i')$ bases diagonales de $E_s[\ell_i^{k_i}],E'_s[\ell_i^{k_i}]$ à l'aide de l'algorithme \ref{alg:ulti:fro};
 \STATE \label{alg:cou-mult:bhor:long}
-Calcul de $(\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q'_{\mu,i}\color{black})$ bases horizontales de $E_s[\ell_i^{k_i}],E'_s[\ell_i^{k_i}]$ à l'aide de l'algorithme \ref{alg:hor:poi};
+Calcul de $(P_{\lambda,i},Q_{\mu,i}),(P'_{\lambda,i},Q'_{\mu,i})$ bases horizontales de $E_s[\ell_i^{k_i}],E'_s[\ell_i^{k_i}]$ à l'aide de l'algorithme \ref{alg:hor:poi};
 \IF{$(E_s,E'_s) \neq (E,E')$}
 \STATE Calcul de 
-~$((\color{red}P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black}))=((\varphi(\color{red}P_{\lambda,i}\color{black}),\varphi(\color{blue}Q_{\mu,i}\color{black})),(\varphi'(\color{red}P'_{\lambda,i}\color{black}),\varphi'(\color{blue}Q_{\mu,i}'\color{black})))$ bases partiellement horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ avec les $\ell_i^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
+~$((P_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}\color{black}),(\color{red}P'_{\lambda,i}\color{black},\color{blue}Q_{\mu,i}'\color{black}))=((\varphi(\color{red}P_{\lambda,i}\color{black}),\varphi(\color{blue}Q_{\mu,i}\color{black})),(\varphi'(\color{red}P'_{\lambda,i}\color{black}),\varphi'(\color{blue}Q_{\mu,i}'\color{black})))$ bases partiellement horizontales de $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ avec les $\ell_i^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
 \ENDIF
 \STATE \label{alg:mult-ell:rep:long} Calcul des liste de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
 \ENDFOR
