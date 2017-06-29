@@ -175,7 +175,7 @@
 \nomenclature{$d_0$}{Le degré de l'extension $F_{0}$ par rapport à $\mathbb{F}_q$}
 \nomenclature{$\mathsf{F}_{(i,j)}$}{$j$-ème corps de la tour d'extensions $\ell_i$-adiques}
 \nomenclature{$d_i$}{Le degré de l'extension $F_{(i,0)}$ par rapport à $\mathbb{F}_q$}
-\nomenclature{$\mathbb{K}_{j}$}{Le compositum isomorphe à $\otimes_{i=1}^{j}\mathsf{F}_{(i,n_i)}$}
+\nomenclature{$\mathbb{K}_{j}$}{Le compositum isomorphe à $\otimes_{i=1}^{j}\mathsf{F}_{(i,k_i)}$}
 \nomenclature{$p_j$}{Le degré de l'extension $\mathbb{K}_{j}$ par rapport à $\mathbb{F}_q$}
 \nomenclature{$\upsilon_n$}{L'entier $\prod_{i=1}^n\ell_i^{k_i}$}
 \nomenclature{$\vartheta_{i_0}$}{L'entier $\frac{\upsilon_{n}}{\ell_{i_0}^{k_{i_0}}}$}
@@ -191,7 +191,7 @@
 
 
 \chapter*{Introduction}
-\todo{Point ascendant horizontal}
+
 
 \chapter{Rappels théoriques}
 \section{Complexite}
@@ -579,12 +579,11 @@ f'(P)&=& 3x(P)^2+2a_2x(P)+a_4
 Avec les formules d'addition on peut réécrire l'équation \eqref{eq:Velu} de la façon suivante en explicitant l'isogénie sur les coordonnées affines $x,y$ de chaque point de la courbe:
 \begin{equation} 
 \begin{alignedat}{1}
-I:x & \mapsto  x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2} \\
- y & \mapsto y + \sum_{Q \in G \setminus \{0_E\}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3}  
+I(x,y)= \Bigl( &  x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2} \\
+ , &  y + \sum_{Q \in G \setminus \{0_E\}} -\frac{yf'(Q)}{(x-x(Q))^2}-\frac{4yf(Q)}{(x-x(Q))^3} \Bigr) 
 \end{alignedat}
 \label{eq:velu:sum}
 \end{equation}
-\todo{saut à la ligne fait, moche ?}
 
 Alors si on note: 
 \begin{equation*}
@@ -3856,11 +3855,11 @@ Soit $\langle P, Q \rangle$ une base de $E[\ell^k]$ avec $k>0$, soit $\phi:E
 \rightarrow E'$ l'isogénie de noyau engendré par $R=[x]P+[y]Q$  avec $x\wedge 
 \ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $0 \leqslant m \leqslant k$.
 Soit $M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau 
-\todo{ Luca: comment $R$ engendre-t-il un réseau} engendré par $R$, soit $\Pi$ la matrice du Frobenius sur $\mathsf{T}_{\ell}(E)$, alors la 
-matrice du Frobenius sur $\mathsf{T}_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi 
-\cdot M_R$ à conjugaison près.
+engendré par $R$ $[\ell^k]P$ et $[\ell^k]Q$, soit $\Pi$ la matrice du Frobenius
+sur $\mathsf{T}_{\ell}(E)$, alors la matrice du Frobenius sur 
+$\mathsf{T}_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi \cdot M_R$ à 
+conjugaison près.
 \end{lem}
-\todo{harmoniser les notations pour la matrice de $\pi$ mettre $\Pi$ pour la matrice}
 
 \begin{proof}
 Le sous-groupe $\langle R \rangle$ définit un point dans l'espace projectif de $E[\ell^k]$,
@@ -4175,8 +4174,7 @@ $(\pi - \mu) P = x (\lambda - \mu) R$ et l'on obtient le résultat.
 E_s$ d'ordre $2^3$ tels que $\pi(P)=[ \mu ]P$, ici sont représentées les 
 différentes isogénies de noyau $\langle P \rangle$.}
 \end{figure}
-%\todo{supprimer les couleurs dans la thèse}
-%%\todo{mettre des mu et des lambda sur les dessins..}
+
 
 Sur la Figure~\ref{fig:poi:dia} sont représentées les isogénies qui ont pour
 noyau différents points $P \in E_s $ diagonaux d'ordre $2^3$, tels que $\pi(P)=
@@ -4436,8 +4434,6 @@ une $\ell^{i}$-isogénie descendante de noyau $\langle \ell^{k-i}]([a]P+[b]Q)
 $\ell$-isogénie dans la composition de la $\ell^i$-isogénie car celle-ci est 
 générée par un point et donc par un groupe cyclique.
 
-\todo{reflexion de Luca sur ascendant horizontal}
-
 \begin{defi}
 \label{def:par:hor}
 Soient $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère 
@@ -4445,13 +4441,13 @@ Soient $E$ une courbe qui se situe à une profondeur $e \geqslant 1$ du cratère
 $E_s$ la courbe sommet de $E$ (voir définition~\ref{def:cou:som}), $P \in E_s$ 
 un point d'ordre $\ell^k$, avec $k>e$, tel que $[\ell^e]P$ soit horizontal de 
 direction $\lambda$ (resp. $\mu$), $\varphi$ la $\ell^e$-isogénie $\varphi:
-E_s \rightarrow E$, alors $\varphi(P)$ est appelé point \emph{partiellement 
+E_s \rightarrow E$, alors $\varphi(P)$ est appelé point \emph{ascendant 
 horizontal} de direction $\lambda$ (resp. $\mu$) et de profondeur $e$.
 \end{defi}
 
 \begin{rem}
 Il est porté à l'attention du lecteur qu'un point horizontal est aussi un point
-\emph{partiellement horizontal} de profondeur $0$.
+\emph{ascendant horizontal} de profondeur $0$.
 \end{rem}
 
 \begin{figure}
@@ -4681,7 +4677,7 @@ la $\ell^i$-isogénie descendante engendrée par le second point qui forme une
 base de $E[\ell^k]$.  Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Master13}.
 
 
-\begin{nota} \todo{Nomenclature}
+\begin{nota} 
 Soient $E$ une courbe elliptique, $P,Q$ deux points tels que $E[\ell^k]=\langle
 P,Q \rangle$ on note alors $\pi(P,Q)$ la représenation matricielle de l'action
 du Frobenius dans la base $(P,Q)$.
@@ -5415,13 +5411,13 @@ répétées $k$ fois. Enfin, l'étape~\ref{alg:horizontal:final} est
 dominée par la dernière opération $\mathsf{divise}$ qui coûte $O(\mathsf{R}(k-\beta))$.
 \end{proof}
 
-\todo{Luca: Tu as déjà fait une remarque similaire. Il faut peut-être factoriser.}
 \begin{rem}
 Ce résultat est à comparer avec le calcul de point horizontal d'ordre $\ell^k$ 
 à l'aide d'une base de la la $\ell^{k+h}$-torsion (voir 
 proposition~\ref{pro:dia:hor}). Par exemple, pour une 
 courbe située sur le cratère, à l'aide de l'algorithme~\ref{alg:bas:diag} on 
-obtiendrait une complexité moyenne de: $O(\mathsf{R}((k+h)-\beta)+\ell^{2}
+obtiendrait un point horizontal d'ordre $\ell^k$ avec une complexité moyenne 
+de: $O(\mathsf{R}((k+h)-\beta)+\ell^{2}
 \mathsf{M}(\ell^{k+h-\beta})+\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)$.
 \end{rem}
 
@@ -5458,9 +5454,9 @@ Dans cette section on s'intéresse au cas particulier suivant:
 \label{def:cas:atk}
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell$ est dit un 
 nombre premier de Atkin si le polynôme caractéristique du Frobenius: 
-$\pi^2-t_{\pi}\pi + q$ est irréductible dans $\mathbb{Z}_{\ell}$. Dés lors 
-comme on a $d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$, avoir 
-$d_{\pi}$ un non-résidu quadratique est équivalent à avoir $\left( 
+$\pi^2-t_{\pi}\pi + q$ est irréductible dans $\mathbb{Z}_{\ell}$. Dés lors, 
+comme on a $d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$, 
+$d_{\pi}$ est un non-résidu quadratique si et seulement si $\left( 
 \frac{d_{K}}{\ell} \right)=-1$. Ainsi dans le cas Atkin le cratère est réduit à
 un point par le corollaire~\ref{cor:tab:vol}.
 \end{defi}
@@ -6034,8 +6030,7 @@ et donne le résultat annoncé.
 
 \chapter{Algorithme de Couveignes $\ell$-adique}
 \label{cha:alg:fin}
-On rappelle que l'on se place dans le contexte suivant: \todo{est-ce un rappel?}
-
+On précise le contexte dans lequel on se place:
 \paragraph{Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
 
 Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
@@ -6081,7 +6076,7 @@ sous-section~\ref{subs:elk:dir} sur les isogénies horizontales.
 \begin{prop}\label{pro:par:iso}
 Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
 \begin{enumerate}
-\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan des
+\item\label{pro:par:1} les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan des
  $\ell$-isogénies;
 \item\label{pro:par:fun} pour tout point~$P \in E[\ell^k]$,
 les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de même type
@@ -6093,7 +6088,13 @@ direction alors $E/\langle P \rangle$ et~$E'/\langle P' \rangle$ sont encore $r$
 \end{prop}
 
 \begin{proof}
-Les points (1) et (2) découlent de la proposition \ref{pro:mat:fro} et du fait que pour $\phi$ isogénie rationnelle de degré $r$ premier avec $\ell$ on a un isomorphisme de modules de Tate qui commute avec le Frobenius. Pour le point (3) il suffit de remarquer qu'il existe un unique sous-groupe d'ordre $\ell$ qui génère soit une isogénie ascendante soit une isogénie de direction fixée, ainsi on doit avoir $\langle P' \rangle=\langle \phi(P) \rangle$.
+Les points~\eqref{pro:par:1} et~\eqref{pro:par:fun} découlent de la 
+proposition~\ref{pro:mat:fro} et du fait que pour $\phi$ isogénie rationnelle 
+de degré $r$ premier avec $\ell$ on a un isomorphisme de modules de Tate qui 
+commute avec le Frobenius. Pour le point~\eqref{pro:par:asc} il suffit de 
+remarquer qu'il existe un unique sous-groupe d'ordre $\ell$ qui génère soit une
+isogénie ascendante soit une isogénie de direction fixée, ainsi on doit avoir 
+$\langle P' \rangle=\langle \phi(P) \rangle$.
 
 \end{proof}
 Le troisième point de cette proposition nous permet de réduire le problème du 
@@ -6103,7 +6104,6 @@ proposition suivante montre que cela n'est pas nécessaire on peut tout aussi
 bien, à l'aide de points partiellement horizontaux, travailler avec des 
 sous-groupes cycliques invariants selon l'action de $r$-isogénies. 
 
-\todo{faire un beau dessin de correspondance avec les points partiellement horizontaux}
 \begin{prop}
 \label{pro:par:hor:par}
 Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se
@@ -6118,15 +6118,15 @@ partir de $R \in E_S$ et $R' \in E'_s$ tels que $[\ell^e]R$ et $[\ell^e]R'$
 soient des points horizontaux de même direction avec deux $\ell^e$-isogénies 
 $\psi:E_s \rightarrow E$ et $\psi':E'_s \rightarrow E'$ telles que $\psi(R)=P$ 
 et $\psi'(R')=P'$. On a tout d'abord $ \phi([\ell^{k-e}]P) \in \langle 
-[\ell^{k-e}]P' \rangle$  par la proposition~\ref{pro:par:iso}(2) car par la 
-proposition~\ref{pro:elk:par:hor}(1) on a $\ker(\widehat{\psi})= \langle 
+[\ell^{k-e}]P' \rangle$  par la proposition~\ref{pro:par:iso}~\eqref{pro:par:fun} car par la 
+proposition~\ref{pro:elk:par:hor}~\eqref{pro:par:1} on a $\ker(\widehat{\psi})= \langle 
 [\ell^{k-e}]P \rangle$ et $\ker(\widehat{\psi'})= \langle [\ell^{k-e}]P' 
 \rangle$. Ensuite on a $\langle [\ell^e]R \rangle = \langle 
 \widehat{\psi}(P) \rangle $ et $\langle [\ell^e]R' \rangle = \langle 
 \widehat{\psi'}(P') \rangle$ ainsi les $\ell^{k}$-isogénies engendrées par 
 $P$ et $P'$ sont du même type: une composition d'une $\ell^e$ isogénie montante 
 et d'une $\ell^{k-e}$-isogénie horizontale de direction identique, donc par la 
-proposition~\ref{pro:par:iso}(2) on a $\phi(P) \in \langle P' \rangle$.
+proposition~\ref{pro:par:iso}~\eqref{pro:par:fun} on a $\phi(P) \in \langle P' \rangle$.
 \end{proof}
 
 %Ainsi on est capable à l'aide de bases horizontales et d'isogénies montantes de
@@ -6151,10 +6151,6 @@ on utiliserait dans le cas de deux points partiellements horizontaux
 $R_{\lambda}, R_{\mu}$ (de profondeur $e>0$) par exemple le groupe $\langle 
 [\ell^{k-e}]R_{\lambda} \rangle$.
 
-
-
-
-
 \subsection{Présentation du cas spécifique où l'on connaît un premier $\ell$ de Elkies}
 \label{ssec:cou:elk}
 On se place tout d'abord dans le cas particulier où l'on connaît un nombre 
@@ -6164,7 +6160,7 @@ On montre tout d'abord en quoi ce n'est pas optimal de travailler avec une base
 diagonale de la $\ell^k$-torsion et l'avantage que cela procure de travailler 
 avec des bases horizontales.
 
-Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une $r$-isogénie $\phi$, alors par la proposition~\ref{pro:mat:fro} pour $k$ plus grand que $h$ la hauteur du volcan des $\ell$-isogénies on peut calculer deux bases diagonales $(P,Q),(P',Q')$ de $E_s[\ell^k]$ et $E'_s[\ell^k]$ les courbes sommets respectives de $E$ et $E'$ \todo{pourquoi encore parler de bases diagonales alors que l'on veut parler de directions horizontales sur le volcan des $\ell$-isogénies}
+Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une $r$-isogénie $\phi$, alors, par la proposition~\ref{pro:mat:fro} pour $k$ plus grand que $h$ la hauteur du volcan des $\ell$-isogénies, on peut calculer deux bases diagonales $(P,Q),(P',Q')$ de $E_s[\ell^k]$ et $E'_s[\ell^k]$ les courbes sommets respectives de $E$ et $E'$. L'action du Frobenius peut être représentée matriciellement de  la façon suivante dans ces bases:
 \[
 \pi|(P,Q)=\pi|(P',Q')= \left( \begin{matrix}
 \lambda & 0 \\
@@ -6521,18 +6517,19 @@ on ne sait dire si la correspondance entre les $\ell$-isogénies descendantes
 qui composent l'isogénie engendrée par les points de dagonaux de direction 
 $\mu$ sont correctes. En effet nous avons vu à la 
 proposition~\ref{pro:etu:atk:elk} qu'une étude à l'aide du Frobenius des 
-$\ell$-isogénies ne permet pas de distinguer les $\ell$-isogénies entre elles.
+$\ell$-isogénies descendantes ne permet pas de distinguer les $\ell$-isogénies 
+entre elles.
 
  On travaille donc avec deux bases $(P_{\lambda}, Q_{\mu}),(P'_{\lambda},
- Q'_{\mu})$ (partiellement) horizontales de $E[\ell^k]$ et $E'[\ell^k]$.
+ Q'_{\mu})$ (asendantes) horizontales de $E[\ell^k]$ et $E'[\ell^k]$.
  On doit à nouveau avoir $k \geqslant h +1$ pour pouvoir calculer ces bases 
-(partiellement) horizontales par la proposition~\ref{pro:dia:hor}.
+(ascendantes) horizontales par la proposition~\ref{pro:dia:hor}.
  Dans ces bases l'action de $\phi$ sur la base 
  $(P_{\lambda}, Q_{\mu})$ 
  peut être représentée comme une matrice diagonale car par la 
  proposition~\ref{pro:par:iso} et la proposition~\ref{pro:par:hor:par} les 
- groupes cycliques engendrés par des points (partiellement) horizontaux de
-  même direction sont en bijection:
+ groupes cycliques engendrés par des points (ascendants) horizontaux de
+ même direction sont en bijection:
 \[
 \left(
 \begin{matrix}
@@ -6815,10 +6812,10 @@ résolution du problème du "Calcul de l'isogénie explicite" en terme de $r$ et
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
 $\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
 en un temps espéré de 
-\todo{moche à modifier}
+\todo{moche à modifier, encore moche ?}
  \begin{equation*}
  \begin{alignedat}{1}
-& O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\log(q)^{1,5})\log(r)\log(\log(q))\log(\log(q) q) + \\
+ O\Bigl( &\sqrt{r}\mathsf{M}(\sqrt{r}\log(q)^{1,5})\log(r)\log(\log(q))\log(\log(q) q) + \\
 & r \log(q)^2\log(r)^2 \mathsf{M}(r \log(q)^4) \Bigr)
 \end{alignedat}
  \end{equation*}
@@ -6843,7 +6840,6 @@ proposition~\ref{pro:full-complexity}.
 
 \subsection{Partie expérimentale}
 \label{ssec:exp:cou}
-\todo{ajouter figure volcan exemple avec structure}
 
 Les résultats expérimentaux ont été obtenu à partir de code implanté pour le 
 logiciel SageMath v7.1~\cite{Sage}, le code est disponible sur le projet 
@@ -7400,7 +7396,7 @@ l'algorithme~\ref{alg:cou:mult-adique:short}.%,
 \STATE Calcul des $k_i$ tel que $\sum_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
 \FOR{$i=1$ à $n$}
 \STATE \label{alg:mult-ell:bhor} Calcul de $(P_{\lambda,i},Q_{\mu,i}),
-(P'_{\lambda,i},Q_{\mu,i}')$ bases (partiellement) horizontales de 
+(P'_{\lambda,i},Q_{\mu,i}')$ bases (ascendantes) horizontales de 
 $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \STATE \label{alg:mult-ell:rep} Calcul des liste de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
 \ENDFOR
@@ -7419,14 +7415,14 @@ $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} 
 \end{algorithm}
 
 Les étapes \ref{alg:mult-ell:bhor} à \ref{alg:mult-ell:rep} de 
-l'algorithme~\ref{alg:cou:mult-adique:short} qui calculent une base (partiellement) 
-horizontale et des représentants des orbites de points (partiellement) 
+l'algorithme~\ref{alg:cou:mult-adique:short} qui calculent une base (ascendante) 
+horizontale et des représentants des orbites de points (ascendants) 
 horizontaux d'ordre $\ell_i^{k_i}$ sous l'action du Frobenius sont faites en 
 parallèle sur chacune des tours d'extension $\ell_i$-adiques, les méthodes 
 utilisées sont les mêmes que celles dans l'algorithme~\ref{alg:cou:ell-adique}.
 Par les propositions~\ref{pro:par:iso} et ~\ref{pro:par:hor:par} on sait
  que pour tout $i$ l'action de $\phi$ sur une base
-$(P_{\lambda,i},Q_{\mu,i})$ (partiellement) horizontale de $E[\ell_i^{k_i}]$ 
+$(P_{\lambda,i},Q_{\mu,i})$ (ascendante) horizontale de $E[\ell_i^{k_i}]$ 
 peut être représentée de la façon suivante:
 $
 \left(\begin{smallmatrix}
@@ -7440,7 +7436,7 @@ P_{\lambda,i} \\
 Q_{\mu,i} \end{smallmatrix} \right)$
 avec $ a_i,b_i \in \left( \mathbb{Z}/\ell_i^{k_i}\mathbb{Z} \right)^{\times}$ et 
 $(P'_{\lambda,i},Q'_{\mu,i})$
-base (partiellement) horizontale de $E'[\ell_i^{k_i}]$.
+base (ascendante) horizontale de $E'[\ell_i^{k_i}]$.
 
 On définit à l'aide du théorème des restes chinois deux coefficients $a,b \in 
 \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z} \right)^{\times}$ tels que 
@@ -7489,12 +7485,12 @@ c'est que l'on fixe comme condition sur les $k_i: \sum_{i=1}^n\ell_i^{2k_{i}-2}(
 On voudrait dés lors travailler avec des $k_i$ sur lesquels on aurait comme 
 condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 c'est ce que l'on va aborder dans la seconde approche avec des points 
-(partiellement) horizontaux d'ordre composé $\prod_{i=1}^n \ell_i^{k_i}$.}
+(ascendants) horizontaux d'ordre composé $\prod_{i=1}^n \ell_i^{k_i}$.}
 
 \section{Algorithme de Couveignes $\ell$-adique généralisé avec un nombre composé de Elkies}
 Dans cette approche on veut travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'information donnée par 
-les  bases (partiellement) horizontales $(P_{\lambda_i},Q_{\mu_i})$ de 
+les  bases (ascendantes) horizontales $(P_{\lambda_i},Q_{\mu_i})$ de 
 $E[\ell_i^{k_i}]$ avec $\ell_i$ un nombre premier de Elkies, pour faire cela on
 a besoin de définir quelques notions. On va supposer sans perte de généralités 
 que les $k_i$ pour $i \in [1,n]$ sont fixés tels que l'on ait $\prod_{i=1}^{n} 
@@ -7524,7 +7520,7 @@ $i \in [1,n]$. \`A l'aide de l'algorithme~\ref{alg:TRC:init:gen} on peut résoud
 Théorème des Restes Chinois comme montré dans l'algorithme~\ref{alg:TRC} lui aussi en appendice~\ref{cha:alg}
 
 Cette approche du Théorème des Restes Chinois a été motivée pour l'appliquer à 
-des points (partiellement) horizontaux d'ordre $\ell_i^{k_i}$, la proposition 
+des points (ascendants) horizontaux d'ordre $\ell_i^{k_i}$, la proposition 
 suivante montre que cette utilisation du théorème des restes chinois fait sens 
 dans le contexte de l'algorithme de Couveignes.
 
@@ -7562,7 +7558,7 @@ distincts premiers avec $r$.
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers de Elkies distincts, $P$ un
  point d'ordre $\upsilon_n$ de $E$ construit à l'aide du 
  théorème des restes chinois (voir algorithme~\ref{alg:TRC}) tel que 
-$[\vartheta_i]P=P_i$ avec $P_i$ des points (partiellement) horizontaux de 
+$[\vartheta_i]P=P_i$ avec $P_i$ des points (ascendants) horizontaux de 
 direction $\lambda_i$ et profondeur $e_i$, alors 
 on dit que $P$ est de direction $(\lambda_1, \dots, \lambda_n)$ et de 
 profondeur $(e_1, \dots, e_n)$. 
@@ -7609,7 +7605,7 @@ tous les éléments des tours d'extensions $\ell_i$-adiques suivant:
 $\mathsf{F}_{(1,k_1)}, \dots \mathsf{F}_{(n,k_n)}$. On suppose de plus que les
 $\ell_i$ sont ordonnés de telle sorte que pour tout $i \in [2,n]$ 
 $\prod_{j=1}^{i-1}d_j\ell_j^{k_j} \geqslant d_i\ell_i^{k_i}$, cette restriction
-sert juste à simplifier les calculs. \todo{reflechir notation $n_i$, $k_i$}
+sert juste à simplifier les calculs.
 
 On introduit un objet nécesaire à la construction de compositum.
 \begin{defi}
@@ -7678,7 +7674,7 @@ vus dans le chapitre~\ref{cha:tour}.
 
 
  Comme motivé dans la sous sous section précédente~\ref{sub:TRCE:cou} on
- calcule les points (partiellement) horizontaux sur les volcans des 
+ calcule les points (ascendants) horizontaux sur les volcans des 
  $\ell_i$-isogénies à l'aide des méthodes vues dans la 
  section~\ref{sub:con:poi}, on doit alors ensuite les exprimer dans le
  compositum afin de les utiliser pour le Théorème des Restes Chinois dans 
@@ -7770,10 +7766,10 @@ abordé dans la prochaine sous-section.
 \label{sss:crt:cou}
 On a vu dans la sous-section~\ref{sub:TRCE:cou} 
 qu'un point construit à l'aide du théorème des restes chinois appliqué à des 
-points $P_i,Q_i$ (partiellement) horizontaux de directions $\lambda_i,\mu_i$  
+points $P_i,Q_i$ (ascendants) horizontaux de directions $\lambda_i,\mu_i$  
 d'ordre $\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux, 
 était mis en correspondance avec un autre point de même direction.
-Ainsi avec deux bases de points (partiellement) horizontaux $(P_{\lambda_1,
+Ainsi avec deux bases de points (ascendants) horizontaux $(P_{\lambda_1,
 \dots, \lambda_n},Q_{\mu_1, \dots, \mu_n}),(P'_{\lambda_1, \dots, \lambda_n}
  , Q'_{\mu_1, \dots, \mu_n})$ de $E[\prod_{i=1}^n\ell_i^{k_i}]$ et 
  $E'[\prod_{i=1}^n\ell_i^{k_i}]$ l'action de la $r$-isogénie peut être 
@@ -7798,7 +7794,7 @@ a & 0 \\
 \end{equation*}
 
 On a donc bien une correspondance entre les points définis à l'aide du Théorème
-des Restes Chinois appliqué à des points (partiellement) horizontaux définis 
+des Restes Chinois appliqué à des points (ascendants) horizontaux définis 
 sur deux courbes elliptiques $r$-isogènes avec $r$ premier avec $\ell_1, \dots
 , \ell_n$.
  
@@ -7853,7 +7849,7 @@ par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$
 \STATE Calcul des $k_i$ tels que $\prod_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
 \FOR{$i=1$ à $n$}
 \STATE \label{alg:cou:TRC-adique:bhor} Calcul de $(P_{\lambda,i},Q_{\mu,i}),
-(P'_{\lambda,i},Q_{\mu,i}')$ bases (partiellement) horizontales de 
+(P'_{\lambda,i},Q_{\mu,i}')$ bases (ascendantes) horizontales de 
 $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} 
 et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \STATE \label{alg:cou:TRC_adique:rep:uni} Calcul des représentants des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$;
@@ -7888,7 +7884,7 @@ tel que  $\mathsf{K}=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un
 $q^{r p_{i-1}}$ est de 
 $O(\mathsf{M}(d_i\ell_i^{m}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_i\ell_i^{m})p_{i-1}^{(\omega+1)/2})$ 
 opérations dans $\mathbb{F}_q$ avec un 
-précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{n_i}qd_i))$ et  
+précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{k_i}qd_i))$ et  
 de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
@@ -7990,72 +7986,6 @@ Blabla
 \chapter{Algorithmes}
 \label{cha:alg}
 Dans ce chapitre sont présentés des algorithmes qui n'ont pas été laissé dans le manuscrit pour ne pas surcharger celui-ci.
-\section{Algorithme dans un volcan de type Elkies}
-On présente ici un algorithme qui propose de 
-\todo{Algorithme appendice intéressant seulement pour la condition qui distingue horizontal de trigonal}
-\begin{algorithm}
-\caption{\label{alg:app:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
-\begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan des $\ell$-isogénies avec cratère cyclique;
-$k$: une entier positif;
-\ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
-$\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
-tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k + [\delta] P_k$.
-% \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
-\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$;$i \leftarrow 0$; $\delta \leftarrow 0$;$P', Q' \leftarrow $ tels que~$\langle P',Q' \rangle =  E[\ell]$.}
-\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i}\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
-\WHILE {$\pi|(P',Q')= (\lambda + a\ell^i) \cdot I_2$}
-\STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
-\STATE\label{alg:fin:identical:divide}
-  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
-\STATE $i \leftarrow i+1$.
-\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i}\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
-\ENDWHILE 
-\IF{$\lambda + a \ell^i \neq \mu + d \ell^i$}
-%\STATE $\delta \leftarrow 0$;
-\WHILE{$i<k $}
-\STATE\label{alg:app:diagonal:solve1}
-  \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
-  résoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
-\STATE\label{alg:app:diagonal:solve2}
-  \textbf{else} résoudre équation
-  $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
-  $y \leftarrow -cx/b$; \textbf{end if}.
-\STATE\label{alg:app:diagonal:upd-P}
-  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow [x] P' + Q'$.
-\STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
-\STATE $i \leftarrow i+1$.
-\STATE\label{alg:app:diagonal:divide}
-  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
-\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i}\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
-\ENDWHILE
-\ELSE 
-\STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{end if}.
-\WHILE{$i<k$}
-\STATE \textbf{if} $c = 0$ \textbf{then} $y \leftarrow 0$;
-\STATE \textbf{else}  résoudre equation 
-$ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
-\STATE\label{alg:app:trigonal:upd-P}
-  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow Q'$.
-\STATE{$\lambda \leftarrow \lambda + a \ell^{i} + \delta y$; $\mu \leftarrow \mu + d \ell^{i} $.}
-\STATE\label{alg:app:trigonal:divide}
-  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
-\STATE $i \leftarrow i+1$.
-\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
-\lambda + a\ell^{i} & b\ell^{i} + \delta\\
-c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
-\STATE $\delta \leftarrow \delta + b \ell^i$
-\ENDWHILE
-\ENDIF
-\RETURN $(P_{k},Q_{k},\lambda,\mu, \delta).$
-\end{algorithmic}
-\end{algorithm}
 
 \section{Couveignes $\ell$-adique dans le cas Elkies avec un seul sous-groupe cyclique}
 On présente ici l'algorithme analysé dans la section~{sec:var:cou:uni}, cet 
@@ -8123,6 +8053,7 @@ et $[\ell_{i_0}^{k_{i_0}}]P=0_E$}
 
 \chapter{Calculs dans un compositum - Rebus}
 \label{cha:ann:comp}
+\todo{les todos suivants sont dans le rebus}
 Dans ce chapitre sont présentés les résultats énoncés dans la 
 section~\ref{sub:con:com}, ils n'ont pas été présenté dans le document car en 
 plus d'être technique ils sont juste une adaptation des résultats présentés 
@@ -8469,6 +8400,72 @@ de $d_{i_0}\ell{i_0}^{k_{i_0}}$.
 
 \printnomenclature
 \chapter{Rebus}
+\section{Algorithme dans un volcan de type Elkies}
+On présente ici un algorithme qui propose de 
+\todo{Algorithme appendice intéressant seulement pour la condition qui distingue horizontal de trigonal}
+\begin{algorithm}
+\caption{\label{alg:app:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
+\begin{algorithmic}[1]
+\REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan des $\ell$-isogénies avec cratère cyclique;
+$k$: une entier positif;
+\ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
+$\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
+tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k + [\delta] P_k$.
+% \STATE Compute $(P_1,Q_1)$, a basis of $E[\ell]$
+\STATE{$\lambda \leftarrow 0$; $\mu \leftarrow 0$;$i \leftarrow 0$; $\delta \leftarrow 0$;$P', Q' \leftarrow $ tels que~$\langle P',Q' \rangle =  E[\ell]$.}
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i}\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
+\WHILE {$\pi|(P',Q')= (\lambda + a\ell^i) \cdot I_2$}
+\STATE $P_i \leftarrow P'$; $Q_i \leftarrow Q'$; $\lambda \leftarrow \lambda+a \ell^i$; $\mu \leftarrow \mu +a \ell^i$.
+\STATE\label{alg:fin:identical:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
+\STATE $i \leftarrow i+1$.
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i}\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
+\ENDWHILE 
+\IF{$\lambda + a \ell^i \neq \mu + d \ell^i$}
+%\STATE $\delta \leftarrow 0$;
+\WHILE{$i<k $}
+\STATE\label{alg:app:diagonal:solve1}
+  \textbf{if} $b = 0$ \textbf{then} $x \leftarrow 0$;
+  résoudre équation~$c \ell^{i} + ((d-a) \ell^{i} + \mu-\lambda) y = 0$;
+\STATE\label{alg:app:diagonal:solve2}
+  \textbf{else} résoudre équation
+  $c \ell^{i} x^2 + ((d-a) \ell^{i}+ \mu-\lambda) x - b \ell^{i} = 0$;
+  $y \leftarrow -cx/b$; \textbf{end if}.
+\STATE\label{alg:app:diagonal:upd-P}
+  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow [x] P' + Q'$.
+\STATE{$\lambda \leftarrow \lambda + \ell^{i} (a + bx)$; $\mu \leftarrow \mu + \ell^{i} (d + cy)$.}
+\STATE $i \leftarrow i+1$.
+\STATE\label{alg:app:diagonal:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i}\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
+\ENDWHILE
+\ELSE 
+\STATE \textbf{if} $b \neq 0$ \textbf{then} $\delta \leftarrow b \ell^i$ \textbf{else} $(P',Q',\delta,a,b,c,d) \leftarrow (Q',P', c \ell^i,d,c,b,a)$; \textbf{end if}.
+\WHILE{$i<k$}
+\STATE \textbf{if} $c = 0$ \textbf{then} $y \leftarrow 0$;
+\STATE \textbf{else}  résoudre equation 
+$ \delta  y^2 + y (\ell^i(a-d)+\lambda - \mu) - c\ell^i $; \textbf{end if}.
+\STATE\label{alg:app:trigonal:upd-P}
+  $P_{i+1} \leftarrow P' + [y] Q'$; $Q_{i+1} \leftarrow Q'$.
+\STATE{$\lambda \leftarrow \lambda + a \ell^{i} + \delta y$; $\mu \leftarrow \mu + d \ell^{i} $.}
+\STATE\label{alg:app:trigonal:divide}
+  $P' \leftarrow \mathsf{divise}(\ell, P_{i})$; $Q' \leftarrow \mathsf{divise} (\ell, Q_{i})$.
+\STATE $i \leftarrow i+1$.
+\STATE calcul $\pi|(P',Q')=\left( \begin{smallmatrix}
+\lambda + a\ell^{i} & b\ell^{i} + \delta\\
+c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$  
+\STATE $\delta \leftarrow \delta + b \ell^i$
+\ENDWHILE
+\ENDIF
+\RETURN $(P_{k},Q_{k},\lambda,\mu, \delta).$
+\end{algorithmic}
+\end{algorithm}
 \section{Generalisation a un nombre compose}
 
 
@@ -8607,10 +8604,10 @@ qui se situent à une profondeur $e_i$ du cratère du volcan des
 $\ell_i$-isogénies pour $i \in [1,n]$. Alors pour $P$ un
  point d'ordre $\upsilon_n$ de $E$ construit à l'aide de 
 l'algorithme~\ref{alg:TRC} tel que $[\vartheta_i]P=P_i$ 
-avec $P_i$ des points (partiellement) horizontaux direction $\lambda_i$ et 
+avec $P_i$ des points (ascendants) horizontaux direction $\lambda_i$ et 
 profondeur $e_i$, et $P'$ un point d'ordre $\upsilon$ de $E'$ construit à 
 l'aide de l'algorithme~\ref{alg:TRC} tel que $[\vartheta_i]P'=P'_i$ avec $P'_i$
-des points (partiellement) horizontaux direction $\lambda_i$ et profondeur 
+des points (ascendants) horizontaux direction $\lambda_i$ et profondeur 
 $e_i$ alors $\phi(P) \in \langle P' \rangle$. 
 \end{cor}
 
