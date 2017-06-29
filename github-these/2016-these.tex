@@ -5478,51 +5478,56 @@ $e \in [ 0, h]$ tel que $\Pi=\pi|\mathsf{T}_{\ell}(E)$ est égale, sur~$\mathbb{
 \end{equation*}
 % where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
 De plus $e = 0$ si~$E$ se situe sur le cratère, sinon $e$~est la profondeur 
-de~$E$ dans le volcan et le $E$ se situe au niveau $h-e$.
-On a soit $b$ et $c$ premiers avec $\ell$ soit l'un des deux est premier avec 
+de~$E$ dans le volcan.
+De plus, soit $b$ et $c$ sont premiers avec $\ell$, soit l'un des deux est premier avec 
 $\ell$ et l'autre a sa valuation $\ell$-adique qui appartient à l'intervalle 
-$[2,2e]$. Lorsque $\ell=2$ et $e=0$ on a $2^{h} || a-d$.
+$[2,2e]$. Lorsque $\ell=2$ et $e=0$, on a $2^{h} || a-d$.
 \end{prop}
-
+\todo{penser a la conjugaison pres pour les conditions sur b et c}
 \begin{proof}
-Soit $E$ une courbe située au niveau $h-e$ du volcan des $\ell$-isogénies, alors
+Soit $E$ une courbe située au niveau $h-e$ du volcan des $\ell$-isogénies, alors,
 comme les $\ell$-isogénies sont rationnelles, les $\ell^{h-e}$-isogénies 
 sont rationnelles, ainsi l'action du Frobenius sur une base de la 
-$\ell^{h-e}$-torsion est diagonale, mais comme le polynôme caractéristique de 
-$\pi$ est irréductible sur $\mathbb{Z}_{\ell}$ alors l'action du Frobenius doit
+$\ell^{h-e}$-torsion est diagonale. Mais, comme le polynôme caractéristique de 
+$\pi$ est irréductible sur $\mathbb{Z}_{\ell}$, alors l'action du Frobenius doit
 être scalaire, ainsi on a $a=d \bmod \ell^{h-e}$.
 On a alors la matrice du Frobenius sur $\mathbb{Z}_{\ell}$ qui  
 \begin{itemize}
-\item lorsque $h-e=h$ est de la forme $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
+\item lorsque $e=0$ est de la forme $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
 \end{smallmatrix}\right )$ avec $b \wedge \ell=1$ et $c \wedge \ell=1$. En 
 effet on a $\left(\frac{d_K}{\ell}\right)=\left(\frac{d_{\pi}/\ell^{2h}}{\ell}
-\right)$ or $\frac{d_{\pi}}{\ell^{2h}}=\frac{(a-d)^2}{\ell^{2h}}+4bc$ ainsi on 
-doit avoir $bc \wedge \ell=1$. Comme dans le cas $\ell=2$ on a $d_K=5 \bmod 8$ 
+\right)$, or $\frac{d_{\pi}}{\ell^{2h}}=\frac{(a-d)^2}{\ell^{2h}}+4bc$, ainsi on 
+doit avoir $bc \wedge \ell=1$. Comme dans le cas $\ell=2$ on a $d_K=5 \bmod 8$, 
 alors on a $(\frac{a-d}{\ell^{h}})^2 \neq 0 \bmod 2$.
-\item lorsque $h-e \neq h$ est de la forme  $\left ( \begin{smallmatrix}a & 
-b\ell^{h-e}\\ c\ell^{h-e}  & d \end{smallmatrix}\right )$ avec soit $b, c$ 
-premiers avec $\ell$ soit $b$ ou $c$ premier avec $\ell$ l'autre ayant une 
+\item lorsque $e>0$, est de la forme  $\left ( \begin{smallmatrix}a & 
+b\ell^{h-e}\\ c\ell^{h-e}  & d \end{smallmatrix}\right )$, avec soit $b, c$ 
+premiers avec $\ell$, soit $b$ ou $c$ premier avec $\ell$, l'autre ayant une 
 valuation $\ell$-adique comprise entre $2$ et $2e$. Ce second cas correspond au
 cas où l'on a un point de la base dans laquelle est exprimée l'action du 
-Frobenius qui est un générateur de l'unique $\ell$-isogénie montante, le plus 
+Frobenius qui est un générateur de l'unique $\ell$-isogénie montante. Le plus 
 grand degré d'isogénie définie sur $\mathbb{F}_q$ ayant pour domaine $E$ étant 
-une $\ell^{h+e}$ on a alors le résultat. Comme vu précédemment on doit avoir 
-$\ell^{2h} | d_{\pi}=(a-d)^2+4bc\ell^{2h-2e}$, on a alors en particulier 
-$\ell^{2h-2e} | d_{\pi}$ et donc $\ell^{2h-2e} | (a-d)^2$.
+égal à $\ell^{h+e}$, on a alors le résultat. En effet une telle 
+$\ell^{h+e}$-isogénie est obtenue comme la composition des $e$ $\ell$-isogénies
+montantes qui permettent d'atteindre le cratère et de $h$ $\ell$-isogénies 
+descendantes reliant le courbe sommet au bas du volcan, on obtient la borne 
+minimale ($2$) en ne montant que d'un niveau dans le volcan puis en descendant 
+en bas de celui-ci. Comme vu précédemment on doit avoir $\ell^{2h} | d_{\pi}=
+(a-d)^2+4bc\ell^{2h-2e}$, on a alors en particulier $\ell^{2h-2e} | d_{\pi}$ et
+donc $\ell^{2h-2e} | (a-d)^2$.
 \end{itemize}
-On peut alors montrer matriciellement que le changement de base préserve les 
+On peut alors montrer matriciellement que tout changement de base préserve les 
 propriétés énoncées. La conjugaison de la matrice $\left ( \begin{smallmatrix}a
 & b\ell^{h-e}\\c\ell^{h-e} & d \end{smallmatrix}\right )$ par~$\left ( 
 \begin{smallmatrix}1 & \beta \\0 & 1 \end{smallmatrix} \right )$ nous donne la
 matrice $\left ( \begin{smallmatrix}a + \beta (c\ell^{h-e}) & \ell^{h-e}(
 -\beta^2c + \beta(d-a)/\ell^{h-e} + b)\\c\ell^{h-e} & d - \beta c\ell^{h-e}
-\end{smallmatrix}\right )$ pour laquelle les coefficients diagonaux sont encore
+\end{smallmatrix}\right )$, dont les coefficients diagonaux sont encore
 égaux modulo $\ell^{h-e}$. Le coefficient $(-\beta^2c + \beta(d-a)/
 \ell^{h-e} + b)$ peut être divisible par $\ell$ seulement si $\frac{d-a}{\ell^{h-e}}+4bc=
 d_{\pi}/{\ell^{2h-2e}}$ est un résidu quadratique dans $\mathbb{Z}_{\ell}$. 
 La conjugaison de la matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
 \end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix} \gamma & 0 \\0 & 1
-\end{smallmatrix} \right )$ avec $\gamma \wedge \ell=1$  a pour résultat la 
+\end{smallmatrix} \right )$ avec $\gamma \wedge \ell=1$  donne la 
 matrice $\left ( \begin{smallmatrix}a  & b\gamma^{-1} \ell^{h-e} \\c \gamma 
 \ell^{h-e} & d \end{smallmatrix}\right )$.
 \end{proof}
@@ -5581,7 +5586,7 @@ c_2\ell^2 & d_2
 \end{center}
 \caption{\label{fig:atk:dif:niv:mat} Exemples de matrices du Frobenius obtenues sur les différents niveaux d'un volcan des $\ell$-isogénies}
 \end{figure}
-Sur la figure~\ref{fig:atk:dif:niv:mat} est représenté les différentes matrices
+La figure~\ref{fig:atk:dif:niv:mat} montre les différentes matrices
 représentant l'action du Frobenius que l'on peut obtenir selon le niveau de la 
 courbe sur laquelle on fait agir le Frobenius. Pour une courbe située au niveau
 du cratère (ici le $2$ème niveau) on a les coefficients $b_2$ et $c_2$ qui sont
