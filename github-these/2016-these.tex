@@ -179,15 +179,16 @@
 \nomenclature{$p_j$}{Le degré de l'extension $\mathbb{K}_{j}$ par rapport à $\mathbb{F}_q$}
 \nomenclature{$\upsilon_n$}{L'entier $\prod_{i=1}^n\ell_i^{k_i}$}
 \nomenclature{$\vartheta_{i_0}$}{L'entier $\frac{\upsilon_{n}}{\ell_{i_0}^{k_{i_0}}}$}
-\nomenclature{$\varphi$}{isogénie descendante}
-\nomenclature{$\widehat{\varphi}$}{isogénie montante/ascendante}
-\nomenclature{$\phi$}{une $r$-isogénie}
-\nomenclature{$\psi$}{une isogénie horizontale}
-\nomenclature{$\widehat{\psi}$}{isogénie duale de $\psi$}
+\nomenclature{$\varphi$}{Isogénie descendante}
+\nomenclature{$\widehat{\varphi}$}{Isogénie montante/ascendante}
+\nomenclature{$\phi$}{Une $r$-isogénie}
+\nomenclature{$\psi$}{Une isogénie horizontale}
+\nomenclature{$\widehat{\psi}$}{Isogénie duale de $\psi$}
 \nomenclature{$\Phi_{\ell}$}{$\ell$-ème polynôme modulaire}
-\nomenclature{$\mathsf{T}_{\ell}(E)$}{le module de Tate $\ell$-adique de la courbe elliptique $E$}
-\nomenclature{$\mathbb{Z}_{\ell}$}{l'ensemble des entiers $\ell$-adiques}
-\nomenclature{$P \odot Q$}{le produit composé de $P$ et $Q$}
+\nomenclature{$\mathsf{T}_{\ell}(E)$}{Le module de Tate $\ell$-adique de la courbe elliptique $E$}
+\nomenclature{$\mathbb{Z}_{\ell}$}{L'ensemble des entiers $\ell$-adiques}
+\nomenclature{$P \odot Q$}{Le produit composé de $P$ et $Q$}
+\nomenclature{$v_{\ell}(n)$}{La valuation $\ell$-adique de $n$}
 
 
 \chapter*{Introduction}
@@ -1092,7 +1093,7 @@ On écrit alors le développement en série de la fraction rationnelle $\frac{g(
 que l'on injecte dans \eqref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $h_i$ en identifiant les coefficients des $x^{-i}$:
 \begin{equation}
 \label{eq:rec:h_k}
-h_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}h_ih_{k-1-i}\frac{2k-3}{2k+3}Ah_{k-2}-\frac{2(k-3)}{2k+3}Bh_{k-3} \quad \text{pour tout } k \geqslant 3,
+h_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}h_ih_{k-1-i}\frac{2k-3}{2k+3}Ah_{k-2}-\frac{2(k-3)}{2k+3}Bh_{k-3} \; \forall k \geqslant 3,
 \end{equation}
 les termes $h_1,h_2$ étant déterminés par:
 \begin{equation}
@@ -1598,7 +1599,10 @@ $\mathbb{F}_q$, la restriction de son action à $E[p^k]$ peut être représenté
 par la multiplication de $t_k=\mathfrak{t}_{\pi}\bmod p^k$. Ainsi on a 
 $[\mathbb{L}_k:\mathbb{F}_q]=\mathrm{ord}(t_k)$.
 
-Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du lemme \ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que $\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
+Dés lors pour tout $k\geqslant 1$ en appliquant le résultat du 
+lemme~\ref{lem:ord} à $t_{k+1}=\mathfrak{t}_{\pi} \bmod p^{k+1}$ on obtient que
+$\mathrm{ord}(t_{k+1})=\mathrm{ord}(t_{k})$ implique que $\mathrm{ord}(t_{k})=
+\mathrm{ord}(t_{k-1})$ ce qui termine la preuve.
 \end{proof}
 
 On voit donc à travers la preuve de la proposition \ref{pro:ord:fro} que si $E[p] \subset E(\mathbb{F}_q)$ alors il est possible que $\mathbb{L}_0=\mathbb{L}_1=\mathbb{L}_2$, de même lorsque l'on a $E[p] \not\subset E(\mathbb{F}_q)$ il est possible que $\mathbb{L}_1=\mathbb{L}_2$, dés lors la distinction suivante est nécessaire.
@@ -5588,58 +5592,60 @@ c_2\ell^2 & d_2
 \end{figure}
 La figure~\ref{fig:atk:dif:niv:mat} montre les différentes matrices
 représentant l'action du Frobenius que l'on peut obtenir selon le niveau de la 
-courbe sur laquelle on fait agir le Frobenius. Pour une courbe située au niveau
-du cratère (ici le $2$ème niveau) on a les coefficients $b_2$ et $c_2$ qui sont
-premiers avec $\ell$ et on a la valuation $\ell$-adique des coefficients 
-anti-diagonaux qui vaut $h$. Pour les niveaux en dessous du cratère on a au 
+courbe. Pour une courbe située au niveau %sur laquelle on fait agir le Frobenius. 
+du cratère (ici le $2$ème niveau), les coefficients $b_2$ et $c_2$ sont
+premiers avec $\ell$, et la valuation $\ell$-adique des coefficients 
+anti-diagonaux qui vaut $h$. Pour les niveaux en dessous du cratère, au 
 moins un des deux coefficients anti-diagonaux (ici $(b_1\ell,c_1\ell)$ pour le 
-niveau 1 et $(b_0,c_0)$ pour le niveau $0$) qui est de valuation $\ell$-adique 
+niveau 1 et $(b_0,c_0)$ pour le niveau $0$) est de valuation $\ell$-adique 
 égal au niveau $h-e$ de la courbe, l'autre coefficient peut avoir une valuation 
-$\ell$-adique comprise entre $h-e+2$ et $h+e$ 
+$\ell$-adique comprise entre $h-e+2$ et $h+e$.
 
-On a vu dans la preuve de cette proposition~ un moyen de trouver un point
-générateur d'une isogénie montante, on énonce donc le résultat suivant:
+On a vu dans la preuve de la proposition~\ref{pro:mat:fro:atk} un moyen de 
+trouver un point générateur d'une isogénie montante, on énonce donc le résultat
+suivant:
 \begin{cor}
 \label{cor:mon:atk}
-Soit $E$ située au niveau $h-e \neq h$ d'un volcan des $\ell$-isogénies avec 
-$\ell$ un nombre premier de Atkin. Alors pour une base $(P,Q)$ de $E[\ell^k]$
-avec $k>h-e$ telle que:
+Soit $E$ située au niveau $h-e < h$ d'un volcan des $\ell$-isogénies avec 
+$\ell$ un nombre premier de Atkin. Soit $\langle P,Q \rangle$ une base de $E[\ell^k]$,
+avec $k>h-e$, telle que:
 \[
 \Pi=\pi|(P,Q)=\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-\end{matrix}\right ) \bmod \ell^k 
+\end{matrix}\right ) \bmod \ell^k, 
 \] 
-avec $b \wedge \ell=1$ et $\ell \mid c$, la $\ell$-isogénie montante de domaine
+avec $b \wedge \ell=1$ et $\ell \mid c$. Alors la $\ell$-isogénie montante de domaine
 $E$ a pour noyau $\langle [\ell^{k-1}P] \rangle$.
 \end{cor}
 Ce résultat peut aussi être prouvé avec la même méthode que celle employée dans
 la preuve de la proposition~\ref{pro:tri:dir}. Ce corollaire permet lui aussi 
 de retrouver le résultat de la proposition~\ref{pro:iso:mon}.
 
-Maintenant nous allons voir comment on peut distinguer $\ell^{i-e}$ différentes 
-$\ell^{i-e}$-isogénies entre elles. Vu que l'on ne peut comme dans le 
-cas Elkies distinguer deux sous-groupes cycliques d'ordre $\ell^{h+i}$ de 
-$E[\ell^{h+i}]$ pour $i>0$ des autres sous-groupes cycliques, on va voir quelles
-informations on peut tirer lorsque l'on fixe arbitrairement un point de la base
-de $E[\ell^{h+i}]$.
+Maintenant nous allons voir comment on peut distinguer les
+$\ell^{i-e}$-isogénies entre elles. Vu que l'on ne peut, comme dans le 
+cas Elkies, distinguer deux sous-groupes cycliques d'ordre $\ell^{h+i}$ de 
+$E[\ell^{h+i}]$ pour $i \geqslant e$ des autres sous-groupes cycliques, on va 
+voir quelles informations on peut tirer lorsque l'on fixe arbitrairement un 
+point de la base de $E[\ell^{h+i}]$.
 
 \begin{prop}
 \label{pro:atk:equi}
-Soient $P,R,R'$ trois points de $E$ située au niveau $h-e$ du volcan des 
-$\ell$-isogénies tels que $\langle P,R \rangle = \langle P,R' \rangle= 
-E[\ell^{h+i}]$ alors $\pi(P,R)=\pi(P,R') $ si et seulement si $[\ell^{h+e}]R=[\ell^{h+e}]R'$.
+Soient $P,R,R'$ trois points d'une courbe $E$, située au niveau $h-e$ du volcan
+des $\ell$-isogénies, tels que $\langle P,R \rangle = \langle P,R' \rangle= 
+E[\ell^{h+i}]$ avec $i \geqslant e$ alors $\pi(P,R)=\pi(P,R') $ si et seulement
+si $[\ell^{h+e}]R=[\ell^{h+e}]R'$.
 \end{prop}
 
 \begin{proof}
 Montrons tout d'abord le sens direct.
 Soient $R,R'$ deux points tels que $\pi(P,R)=\pi(P,R')=\left ( 
-\begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d \end{smallmatrix}\right )$ 
+\begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d \end{smallmatrix}\right )$ 
 alors cette égalité nous donne:
  $\pi(P)=[a]P+[c\ell^{h-e}]R=[a]P+[c\ell^{h-e}]R'$, de
-cette égalité on déduit avec $c \wedge \ell = 1$ que $[\ell^{h+e}]R=[\ell^{h+e}]R'$
-ce qui permet de conclure pour ce sens de l'équivalence.
+cette égalité on déduit avec $v_{\ell}(c) \leqslant 2e$ que $[\ell^{h+e}]R=
+[\ell^{h+e}]R'$ ce qui permet de conclure pour ce sens de l'équivalence.
 
-Matriciellement on prouve que $[\ell^{h-e}]R=[\ell^{h-e}]R' \Rightarrow 
-\pi(P,R)=\pi(P,R')$ en voyant que la conjugaison de la 
+Pour prouver que $[\ell^{h-e}]R=[\ell^{h-e}]R' \Rightarrow 
+\pi(P,R)=\pi(P,R')$, il suffit de remarquer que la conjugaison de la 
 matrice $\left ( \begin{smallmatrix}a & b\ell^{h-e}\\c\ell^{h-e} & d
 \end{smallmatrix}\right ) \bmod \ell^{h+i}$ par~$\left ( \begin{smallmatrix}1
 & k' \ell^{i+e} \\ 0 & 1 + k \ell^{i+e} \end{smallmatrix} \right )$  laisse la matrice invariante 
@@ -5662,26 +5668,26 @@ $\ell^{i-e}$-isogénie de noyau $\langle [\ell^{h+e}]R' \rangle = \langle
 %\pi(P,R') \Rightarrow [\ell^{h+e}]R=[\ell^{h+e}]R'$.
 %\end{rem}
 
-Si on travaille à partir d'une courbe située au niveau $h-e$ pour 
-étudier la direction des $\ell^i$-isogénies on aura à travailler
-avec une base de la $\ell^{h+i+e}$-torsion. Comme à l'aide du 
+Si on travaille à partir d'une courbe située au niveau $h-e$, pour 
+étudier la direction des $\ell^i$-isogénies, on aura à travailler
+avec une base de la $\ell^{h+i+e}$-torsion. Comme, à l'aide du 
 corollaire~\ref{cor:mon:atk} on sait monter dans le volcan des 
-$\ell$-isogénies si l'on voulait étudier le même 
+$\ell$-isogénies, si l'on voulait étudier le même 
 problème (déterminer les $\ell^{i}$-isogénies ayant pour domaine une courbe 
 située au niveau $h-e$) à partir de la courbe sur le cratère, on aurait alors 
 à étudier la $\ell^{h+i+e}$-torsion. Ainsi en pratique il sera intéressant 
-d'étudier cette formulation du même problème car on peut être amené à 
+d'étudier cette formulation du même problème, car on peut être amené à 
 travailler avec des extensions de corps plus petites pour le même résultat 
 (voir proposition~\ref{pro:atk:d1} pour plus de détails).
 
 
-Le résultat suivant nous permet de distinguer les 
-différents générateurs d'une même $\ell^{i-e}$-isogénie dans notre contexte.
+Le résultat suivant nous permet de distinguer les différents générateurs d'une 
+même $\ell^{i-e}$-isogénie dans notre contexte.
 
 \begin{prop}
 \label{pro:cla:fro:mat}
 Soient $P,Q$ deux points définis sur une courbe elliptique $E$ située au niveau
-$h-e$ du volcan des $\ell$-isogénies tels que 
+$h-e$ du volcan des $\ell$-isogénies, tels que 
 $E[\ell^{h+i}]=\langle P,Q \rangle$ avec $i \geqslant e$. On pose $R=[x]P+[y]Q$ avec $y\wedge 
 \ell=1$, alors la matrice 
 \[
@@ -5698,6 +5704,7 @@ si et seulement si $\beta \ell^{h+e}R= \ell^{h+e}R'$ avec $\beta \in \left( \mat
 $R\rightarrow [\beta]R$ avec $\beta \in \left( \mathbb{Z}/\ell^{i-e}\mathbb{Z} 
 \right)^{\times}$.
 \end{prop}
+\todo{Luca La dernière phrase est triviale. Je ne comprends pas comment la preuve peut être aussi longue. --> pas complètement tort...}
 
 \begin{proof}
 Par la proposition~\ref{pro:atk:equi} on a $\pi(P,R')=\pi(P,
