@@ -177,12 +177,16 @@
 \nomenclature{$d_i$}{Le degré de l'extension $F_{(i,0)}$ par rapport à $\mathbb{F}_q$}
 \nomenclature{$\mathbb{K}_{j}$}{Le compositum isomorphe à $\otimes_{i=1}^{j}\mathsf{F}_{(i,n_i)}$}
 \nomenclature{$p_j$}{Le degré de l'extension $\mathbb{K}_{j}$ par rapport à $\mathbb{F}_q$}
+\nomenclature{$\upsilon_n$}{L'entier $\prod_{i=1}^n\ell_i^{k_i}$}
+\nomenclature{$\vartheta_{i_0}$}{L'entier $\frac{\upsilon_{n}}{\ell_{i_0}^{k_{i_0}}}$}
 \nomenclature{$\varphi$}{isogénie descendante}
 \nomenclature{$\widehat{\varphi}$}{isogénie montante/ascendante}
 \nomenclature{$\phi$}{une $r$-isogénie}
 \nomenclature{$\psi$}{une isogénie horizontale}
 \nomenclature{$\widehat{\psi}$}{isogénie duale de $\psi$}
 \nomenclature{$\Phi_{\ell}$}{$\ell$-ème polynôme modulaire}
+\nomenclature{$\mathsf{T}_{\ell}(E)$}{le module de Tate $\ell$-adique de la courbe elliptique $E$}
+\nomenclature{$\mathbb{Z}_{\ell}$}{l'ensemble des entiers $\ell$-adiques}
 
 
 \chapter*{Introduction}
@@ -282,7 +286,11 @@ Soit $\mathbb{K}$ un corps, on dénote par $\overline{\mathbb{K}}$ sa cloture al
 \begin{defi}
 On appelle espace projectif de dimension $2$ sur un corps $\mathbb{K}$ et on note $\mathbb{P}^2(\mathbb{K})$, l'ensemble des classes $(X:Y:Z)$ de la relation d'équivalence définie comme suit:
 \begin{equation*}
-\forall (X,Y,Z) \in \mathbb{K}^3 \setminus (0,0,0), (X,Y,Z) \equiv (X',Y',Z') \Leftrightarrow \exists c \in \mathbb{K}^*, X'=cX, Y'=cY, Z'=cZ.
+\begin{alignedat}{1}
+\forall (X,Y,Z) \in \mathbb{K}^3 \setminus (0,0,0), (X,Y,Z) &\equiv (X',Y',Z')\\ 
+&\Leftrightarrow  \\
+\exists c \in \mathbb{K}^*, X'=cX, Y' &=cY, Z'=cZ.
+\end{alignedat}
 \end{equation*}
 \end{defi}
 
@@ -343,7 +351,10 @@ avec $u,r,s,t$ des éléments de $\overline{\mathbb{K}}$ et $u$ différent de $0
 \begin{defi}
 Soit une courbe $E$ définie sur $\mathbb{K}$ on note $E(\mathbb{K})$, l'ensemble des points d'une courbe elliptique $E$ défini sur $\mathbb{K}$, c'est l'ensemble:
 \begin{equation*}
-E(\mathbb{K})=\{(X:Y:Z)\in \mathbb{P}^2(\mathbb{K}) \setminus (0,0,0) : Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3 \}
+\begin{alignedat}{1}
+E(\mathbb{K})=\{(X:Y:Z)\in \mathbb{P}^2(\mathbb{K}) \setminus (0,0,0) &:  \\
+Y^2Z+a_1XYZ+a_3YZ^2 &= X^3+a_2X^2Z+a_4XZ^2+a_6Z^3 \}
+\end{alignedat}
 \end{equation*}
 Le seul point correspondant à $Z=0$ est le point à l'infini $0_E=(0:1:0)$, chaque classe différente de $0_E$ a un unique représentant $(X:Y:1)$ ce qui nous donne la notation équivalente suivante:
 \begin{equation*}
@@ -806,6 +817,9 @@ si ces conditions ne sont pas vérifiées alors on a les conditions équivalente
 Voir \cite[Theorem V.3.1]{Silv1}
 \end{proof}
 
+Dorénavant on ne va travailler qu'avec des courbes elliptiques ordinaires dans 
+tout le reste du document.
+
 L'endomorphisme de Frobenius relatif à $\mathbb{F}_q$ admet pour polynôme caractéristique:
 \begin{equation}
 \pi^2-t_{\pi}+q=0
@@ -871,7 +885,8 @@ X^2-t_{\pi}X+q = 0 \bmod \ell
 \end{equation*} 
 on veut voir quand il est possible de déterminer des sous-groupes de la 
 $\ell$-torsion stables par $\pi$.
-On a plusieurs cas possibles selon les propriétés du discriminant $d_{\pi}=t_{\pi}^2-4q$.
+On a plusieurs cas possibles selon les propriétés du discriminant du Frobenius 
+$d_{\pi}=t_{\pi}^2-4q$.
 
 \begin{defi}\label{def:dif-Atk-Elk}
 Soient $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0,1728$, $d_{\pi}$ le discriminant du polynôme caractéristique du Frobenius $\pi$ associé à $E$. Soit $\ell$ un nombre premier différent de $p$ la caractéristique de $\mathbb{F}_q$ alors pour:
@@ -2664,7 +2679,7 @@ Les deux documents à citer pour cette section sont \cite{Kohel96} qui a introdu
 
 \section{Anneau d'endomorphismes}
 \label{sec:ann:end}
-Dans cette section on va aborder les anneaux d'endomorphismes, car c'est cet objet qu'a étudié Kohel dans sa thèse \cite{Kohel96} qui a permis ensuite de définir les volcans de $l$-isogénies. On a tout d'abord besoin de faire quelques rappels sur les ordres d'un corps quadratique imaginaire car on a vu que ceux-ci correspondent à isomorphisme près aux anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini.
+Dans cette section on va aborder les anneaux d'endomorphismes, car c'est cet objet qu'a étudié Kohel dans sa thèse \cite{Kohel96} qui a permis ensuite de définir les volcans des $l$-isogénies. On a tout d'abord besoin de faire quelques rappels sur les ordres d'un corps quadratique imaginaire car on a vu que ceux-ci correspondent à isomorphisme près aux anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini.
 
 \subsection{Rappel sur les ordres d'un corps quadratique}
 \todo{A eventuellement mettre dans le chapitre d'introduction j'ai laissé une place vide pour cette sous-section.}
@@ -2749,7 +2764,7 @@ Soit $\mathcal{O}$ un ordre du corps quadratique imaginaire $K$, l'indice $f=[\m
 \`A l'aide des conducteurs on peut définir une relation d'ordre sur les ordres, en effet si on a $m \mid n$ alors on a l'ordre $n\mathcal{O}_K \subset m\mathcal{O}_K$.
 \end{rem}
 
-C'est cette idée que l'on va retrouver dans les volcans de $l$-isogénies en essayant de donner une structure aux relations entre les différents ordres isomorphes aux anneaux d'endomorphismes.
+C'est cette idée que l'on va retrouver dans les volcans des $l$-isogénies en essayant de donner une structure aux relations entre les différents ordres isomorphes aux anneaux d'endomorphismes.
 \\
 \\
 On peut aussi définir un autre invariant pour un ordre, son discriminant.
@@ -2920,10 +2935,10 @@ Voir \cite[Lemma 2.1]{FouquetMorain02}
 
 \end{tikzpicture}
 \end{center}
-\caption{Représentation d'un volcan de $2$-isogénies avec les différents ordres.}		
+\caption{Représentation d'un volcan des $2$-isogénies avec les différents ordres.}		
 \label{fig:ord:vol}
 \end{figure}
-Sur la figure \ref{fig:ord:vol} est représenté un volcan d'isogénies, les points représentent les courbes elliptiques définies à isomorphisme près les traits reliant les points représentent les $\ell$-isogénies qui lient les courbes elliptiques. On observe que le volcan représenté ici est un volcan de $2$-isogénies car toutes les courbes ne se situant pas en bas du volcan sont reliées à $3$ autres courbes. Ce graphe n'est pas orienté comme le précise le lemme \ref{lem:dua:vol}. On a aussi les différents ordres qui sont représentés, ils est à noter qu'avec la convention donnée par la définition \ref{def:iso:nom} les ordres qui apparaissent dans un même niveau du graphe ont le même conducteur par rapport à l'ordre maximal, ainsi à l'aide du conducteur on peut établir des niveaux dans le volcan et donc illustrer les notions d'isogénies descendantes, montantes et horizontales. 
+Sur la figure \ref{fig:ord:vol} est représenté un volcan d'isogénies, les points représentent les courbes elliptiques définies à isomorphisme près les traits reliant les points représentent les $\ell$-isogénies qui lient les courbes elliptiques. On observe que le volcan représenté ici est un volcan des $2$-isogénies car toutes les courbes ne se situant pas en bas du volcan sont reliées à $3$ autres courbes. Ce graphe n'est pas orienté comme le précise le lemme \ref{lem:dua:vol}. On a aussi les différents ordres qui sont représentés, ils est à noter qu'avec la convention donnée par la définition \ref{def:iso:nom} les ordres qui apparaissent dans un même niveau du graphe ont le même conducteur par rapport à l'ordre maximal, ainsi à l'aide du conducteur on peut établir des niveaux dans le volcan et donc illustrer les notions d'isogénies descendantes, montantes et horizontales. 
 
 \begin{defi}
 Soit $\ell$ un nombre premier, soit $D$ un discriminant associé à un ordre dans
@@ -2995,9 +3010,9 @@ Voir \cite[§2.3]{FouquetMorain02}.
 Maintenant que l'on a introduit les relations possibles entre les ordres on définit certains termes de la littérature.
 
 \begin{defi}
-Soit $\ell$ un nombre premier, le terme volcan de $\ell$-isogénies désigne le graphe composé de courbes $\ell$-isogènes entre elles.
+Soit $\ell$ un nombre premier, le terme volcan des $\ell$-isogénies désigne le graphe composé de courbes $\ell$-isogènes entre elles.
 
-Le terme cratère du volcan de $\ell$-isogénies désigne le sous-graphe composé uniquement de courbes dont la valuation $\ell$-adique du conducteur est $0$.
+Le terme cratère du volcan des $\ell$-isogénies désigne le sous-graphe composé uniquement de courbes dont la valuation $\ell$-adique du conducteur est $0$.
 \end{defi}
 
 \begin{defi}
@@ -3014,25 +3029,25 @@ que $\psi=\psi_1 \circ \cdots \circ \psi_k$.
 \end{defi}
 
 \begin{defi}
-Soit $\ell$ un nombre premier, un chemin descendant sur un volcan de $\ell$-isogénies d'une courbe elliptique $E$ est une suite de courbes elliptiques $\ell$-isogènes $E=E_0 \rightarrow E_1 \rightarrow E_2 \rightarrow ... \rightarrow E_m$ telles que $E_i \mapsto E_{i+1}$ est une $\ell$ -isogénie descendante et que l'on ait $\ell \nmid [ \mathcal{O}_m : \mathbb{Z}[\pi]]$. 
+Soit $\ell$ un nombre premier, un chemin descendant sur un volcan des $\ell$-isogénies d'une courbe elliptique $E$ est une suite de courbes elliptiques $\ell$-isogènes $E=E_0 \rightarrow E_1 \rightarrow E_2 \rightarrow ... \rightarrow E_m$ telles que $E_i \mapsto E_{i+1}$ est une $\ell$ -isogénie descendante et que l'on ait $\ell \nmid [ \mathcal{O}_m : \mathbb{Z}[\pi]]$. 
 \end{defi}
 
 \begin{defi}
 \label{def:haut:vol}
-Soit $\ell$ un nombre premier, $E_c$ une courbe elliptique située sur le cratère d'un volcan de $\ell$-isogénies alors la longueur $h$ d'un chemin descendant partant de $E_c$ est appelée la hauteur du volcan.
+Soit $\ell$ un nombre premier, $E_c$ une courbe elliptique située sur le cratère d'un volcan des $\ell$-isogénies alors la longueur $h$ d'un chemin descendant partant de $E_c$ est appelée la hauteur du volcan.
 Soit $n$ la longueur d'un chemin descendant partant de la courbe elliptique $E$ alors $n$ est le niveau de $E$ dans le volcan d'isogénies.
 \end{defi}
 
 \begin{rem} 
 \label{rem:lie:dp:dk}
-Ainsi, pour un volcan de $\ell$-isohénies de hauteur $h$, on a 
+Ainsi, pour un volcan des $\ell$-isohénies de hauteur $h$, on a 
 $d_{\pi}=\ell^{2h}d_{K}$ avec  $\ell^2 \nmid d_{\pi}$ par les 
 définitions~\ref{def:iso:nom} et ~\ref{def:haut:vol}.
 \end{rem}
 
 \begin{defi}
 \label{def:cou:som}
-Soit $E$ une courbe elliptique située au niveau $n$ du cratère du volcan de $\ell$-isogénies, soit $E_s$ la courbe codomaine de la $\ell^{h-n}$-isogénie ascendante $\widehat{\varphi}$ de domaine $E$. Alors $E_s$ est dite la \emph{courbe sommet} de $E$. 
+Soit $E$ une courbe elliptique située au niveau $n$ du cratère du volcan des $\ell$-isogénies, soit $E_s$ la courbe codomaine de la $\ell^{h-n}$-isogénie ascendante $\widehat{\varphi}$ de domaine $E$. Alors $E_s$ est dite la \emph{courbe sommet} de $E$. 
 \end{defi}
 
 \begin{figure}[h]
@@ -3112,7 +3127,7 @@ Soit $E$ une courbe elliptique située au niveau $n$ du cratère du volcan de $\
 		\end{scope}
 		\end{tikzpicture}
 		\end{center}
-		\caption{\label{fig:vol:3t} Différents types de volcans de $2$-isogénies.}
+		\caption{\label{fig:vol:3t} Différents types de volcans des $2$-isogénies.}
 \end{figure}
 On peut voir sur le dessin \ref{fig:vol:3t} les 3 différentes formes de volcans
 qui existent, celles-ci sont distinguées par la forme de leur cratère qui est 
@@ -3175,7 +3190,7 @@ de la courbe elliptique.
 \section{Lien entre les niveaux d'une courbe dans le volcan et la structure de la $\ell^{\infty}$ torsion rationnelle}
 \label{sec:lie:niv}
 On va dans cette section mettre en avant les liens qui existent entre le niveau
-d'une courbe dans un volcan de $\ell$-isogénies et la structure de sa 
+d'une courbe dans un volcan des $\ell$-isogénies et la structure de sa 
 $\ell$-torsion rationnelle. Les résultats exposés ici sont tirés de 
 \cite{MiretMSTV08} et \cite{Ionica-Joux10}.
 
@@ -3209,12 +3224,12 @@ Voir  \cite[Lemma 1]{Ruck1987}.
 \end{proof}
 
 \begin{prop}
-Sur un volcan de $\ell$-isogénies, deux courbes $E$, $E'$ situées au même niveau ont la même structure de $\ell$-torsion rationnelle.
+Sur un volcan des $\ell$-isogénies, deux courbes $E$, $E'$ situées au même niveau ont la même structure de $\ell$-torsion rationnelle.
 \end{prop}
 
 \begin{proof}
 Cette preuve est issue de \cite{Ionica2010}.
-Tout d'abord on peut remarquer que deux courbes situées sur un même volcan de $\ell$-isogénies ont la même cardinalité par la proposition \ref{pro:iso:ega}. Par la proposition \ref{pro:len:str} la structure de la torsion rationnelle est alors de la forme :
+Tout d'abord on peut remarquer que deux courbes situées sur un même volcan des $\ell$-isogénies ont la même cardinalité par la proposition \ref{pro:iso:ega}. Par la proposition \ref{pro:len:str} la structure de la torsion rationnelle est alors de la forme :
 \[
 E(\mathbb{F}_{q}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q}}(E)}{\pi-1}
 \] 
@@ -3231,7 +3246,7 @@ Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi=a+g \
 Voir \cite[Lemma 5.2]{Ionica2010}
 \end{proof}
 
-On peut maintenant relier la structure de la $\ell$-torsion et le niveau de la courbe dans le volcan de $\ell$-isogénies.
+On peut maintenant relier la structure de la $\ell$-torsion et le niveau de la courbe dans le volcan des $\ell$-isogénies.
 
 \begin{prop}
 \label{pro:niv:str}
@@ -3256,7 +3271,7 @@ Dés lors quand on descend d'un niveau dans le volcan la valuation $\ell$-adique
 \end{proof}
 
 \begin{defi}
-Sur un volcan de $\ell$-isogénies on appelle le niveau à partir duquel la structure de la $\ell$-torsion ne change pas en même temps que les niveaux du volcan le \emph{premier niveau de stabilité}.
+Sur un volcan des $\ell$-isogénies on appelle le niveau à partir duquel la structure de la $\ell$-torsion ne change pas en même temps que les niveaux du volcan le \emph{premier niveau de stabilité}.
 
 Un volcan dont tous les niveaux ont des structures de $\ell$-torsion disctinctes est dit un \emph{volcan régulier}.
 \end{defi}
@@ -3477,7 +3492,7 @@ structure de volcan non-régulier};
 \end{figure}
 \begin{cor}
 \label{cor:des:str}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ située en dessous du premier niveau de stabilité telle que $E[\ell^{\infty}]=\mathbb{Z}/\ell^r\mathbb{Z} \times \mathbb{Z}/\ell^s\mathbb{Z}$ alors pour $E_b$ une des courbes situées un niveau en dessous de $E$ dans le volcan de $\ell$-isogénie on a $E_b[\ell^{\infty}]=\mathbb{Z}/\ell^{r+1}\mathbb{Z} \times \mathbb{Z}/\ell^{s-1}\mathbb{Z}$
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ située en dessous du premier niveau de stabilité telle que $E[\ell^{\infty}]=\mathbb{Z}/\ell^r\mathbb{Z} \times \mathbb{Z}/\ell^s\mathbb{Z}$ alors pour $E_b$ une des courbes situées un niveau en dessous de $E$ dans le volcan des $\ell$-isogénie on a $E_b[\ell^{\infty}]=\mathbb{Z}/\ell^{r+1}\mathbb{Z} \times \mathbb{Z}/\ell^{s-1}\mathbb{Z}$
 \end{cor}
 
 \begin{rem}
@@ -3517,14 +3532,14 @@ Le résultat est démontré dans \cite[§5.3.1]{Ionica2010}.
 \end{proof}
 
 On peut donc résumer les résultats de cette section sur le lien entre les 
-volcans de $\ell$-isogénies et la structure de la $\ell^{\infty}$ torsion 
-rationnelle à l'aide de la figure~\ref{fig:ex:niv:ext}. Le volcan de 
+volcans des $\ell$-isogénies et la structure de la $\ell^{\infty}$ torsion 
+rationnelle à l'aide de la figure~\ref{fig:ex:niv:ext}. Le volcan des 
 $2$-isogénies \emph{régulier} à gauche illustre l'évolution de la structure de
 la $2^{\infty}$-torsion rationnelle, on voit le lien direct entre la 
 structure de la $2^{\infty}$-torsion rationnelle d'une courbe et son niveau 
 dans le volcan comme énoncé dans la proposition~\ref{pro:niv:str}. 
 
-Le volcan de $2$-isogénies représenté à droite est présenté avec deux
+Le volcan des $2$-isogénies représenté à droite est présenté avec deux
 structures de la $2^{\infty}$-torsion rationnelle à gauche et à droite du 
 volcan. Sur la droite du volcan est représenté un exemple de structure de la 
 $2^{\infty}$-torsion rationnelle pour un volcan \emph{non régulier}, on observe
@@ -3534,19 +3549,18 @@ deuxième niveau du volcan, alors la structure de la $2^{\infty}$-torsion
 rationnelle ne change pas pour les courbes situées au-dessus dans le volcan. 
 Enfin le volcan de droite avec la structure montrée à sa gauche représente le 
 volcan que l'on obtient en travaillant dans l'extension quadratique du corps 
-sur lequel est défini le volcan de $2$-isogénies de gauche, la structure de 
+sur lequel est défini le volcan des $2$-isogénies de gauche, la structure de 
 la $2^{\infty}$-torsion illustre le résultat du corollaire~\ref{cor:struct:ext}.
 
-\chapter{Détermination de directions dans le volcan de $\ell$-isogénies à l'aide de l'action du Frobenius}
+\chapter{Détermination de directions dans le volcan des $\ell$-isogénies à l'aide de l'action du Frobenius}
 \label{cha:act:fro}
 Dans cette partie nous allons étudier l'action du Frobenius sur  le module de
 Tate $\mathsf{T}_{\ell}(E)$ et voir comment cette action  
-détermine des directions dans le volcan de $\ell$-isogénies. On rappelle que 
-l'on se place dans tout ce document dans le cas où la courbe elliptique est 
-ordinaire. \todo{verifier que c'est un rappel} \todo{Justifier 
-l'intérêt de cela} Ceci peut permettre par exemple dans le cas Elkies (défini 
+détermine des directions dans le volcan des $\ell$-isogénies. On rappelle que 
+l'on se place dans toute la suite de ce document dans le cas où la courbe 
+elliptique est ordinaire. Ceci peut permettre par exemple dans le cas Elkies (défini 
 plus bas) de savoir rester sur le cratère cyclique et, par exemple, de calculer
-le nombre de classe d'idéaux \todo{classes de qui?} en parcourant le cratère. Cela peut permettre aussi d'atteindre et 
+le nombre de classe d'idéaux \todo{classes de qui?} en parcourant le cratère d'un volcan des $\ell$-isogénies. Cela peut permettre aussi d'atteindre et 
 détecter le cratère du volcan directement y compris lorsque l'on est sur des 
 volcans non-réguliers et par conséquent de déterminer la hauteur du volcan par
 des méthodes plus directes que celles de~\cite{FouquetMorain02}.
@@ -3582,13 +3596,13 @@ $\pi$ admet deux valeurs propres distinctes modulo $\ell^k$ dès que $k > h$.
 \begin{prop}
 \label{pro:hau:vol}
 Soit $E$ une courbe elliptique $\ell$ un nombre premier de Elkies alors on a 
-$h=v_{\ell}(\lambda - \mu)$ est la hauteur du volcan de $\ell$-isogénies 
+$h=v_{\ell}(\lambda - \mu)$ est la hauteur du volcan des $\ell$-isogénies 
 contenant $E$.
 \end{prop}
 
 \begin{proof}
 Dans la section~\ref{sec:ann:end} on a vu que l'on avait $d_{\pi}=\ell^{2h'}d_K$ 
-avec $\ell^2 \nmid d_K$ pour un volcan de $\ell$-isogénies de hauteur $h'$ sur 
+avec $\ell^2 \nmid d_K$ pour un volcan des $\ell$-isogénies de hauteur $h'$ sur 
 $\mathbb{F}_q$. Ainsi comme $\ell^{2} \nmid  \frac{d_\pi}{\ell^{2 v_{\ell}
 (\lambda - \mu)}}=\frac{(\lambda - \mu)^2}{\ell^{2 v_{\ell}(\lambda - \mu)}}$ 
 alors on a bien $h=h'$ et $h$ représente bien la hauteur du volcan. 
@@ -3642,13 +3656,13 @@ des matrices avec coefficients entiers, cet ordre est engendré par la matrice
  identité et la matrice $\ell^{-\min (h, v_\ell(a))} (\pi_{\ell}-\lambda)$, dés 
  lors l'indice de cet ordre par rapport à $\mathbb{Z}[\pi_{\ell}]$ est de 
 $\ell^{\min (h, v_\ell(a))}$, lui donnant son niveau $\min (h, v_\ell(a))$ dans 
- le volcan de $\ell$-isogénies.
+ le volcan des $\ell$-isogénies.
 \end{proof}
 
 Ainsi avec la proposition \ref{pro:mat:fro} on a un moyen de déterminer la 
-hauteur d'une courbe dans un volcan de $\ell$-isogénies à l'aide de l'étude de 
+hauteur d'une courbe dans un volcan des $\ell$-isogénies à l'aide de l'étude de 
 l'action du Frobenius sur $\mathsf{T}_{\ell}(E)$. Dans la 
-figure~\ref{fig:elk:dif:niv:mat} est représenté un volcan de $2$-isogénies 
+figure~\ref{fig:elk:dif:niv:mat} est représenté un volcan des $2$-isogénies 
 de hauteur $2$, où l'on observe le lien entre le niveau de la courbe dans le 
 volcan (de hauteur $2$ ici) et la forme de la matrice du Frobenius à conjugaison 
 près. Ainsi, pour les courbes situées tout en bas du volcan, le coefficient 
@@ -3656,7 +3670,7 @@ triangulaire supérieur est de valuation $\ell$-adique nulle, et augmente
 de $1$ à chaque fois que l'on monte d'un niveau dans le volcan.
 
 Le résultat suivant nous donne un moyen de savoir comment monter et descendre à
-l'intérieur d'un volcan de $\ell$-isogénies en étudiant l'action du Frobenius 
+l'intérieur d'un volcan des $\ell$-isogénies en étudiant l'action du Frobenius 
 sur leurs noyaux. C'est d'ailleurs 
 l'approche que l'on aura tout au long de cette section: pour déterminer les 
 directions des isogénies on étudiera l'action du Frobenius sur un 
@@ -3752,10 +3766,10 @@ générateur de leur noyau.
 \end{tikzpicture}
 \end{center}
 
-\caption{\label{fig:elk:dif:niv:mat} Différentes formes de matrices du Frobenius à conjugaison près selon le niveau dans le volcan d'isogénies.}
+\caption{\label{fig:elk:dif:niv:mat} Différentes formes de matrices du Frobenius à conjugaison près selon le niveau dans le volcan des isogénies.}
 \end{figure}
 
-\todo{volcan des }
+
 
 \begin{prop}
 \label{pro:tri:dir}
@@ -3818,7 +3832,7 @@ l'action du Frobenius sur deux espaces propres distincts. Introduisons tout
 d'abord quelques définitions nécessaires:
 
 %\begin{defi}
-%Soit $E$ un courbe située sur le cratère d'un volcan de $\ell$-isogénies, $\phi$ une isogénie de degré $\ell^k$ de domaine $E$, alors $\phi$ est dite une isogénie horizontale si il existe $\phi_1, \cdots, \phi_k$ $k$ $\ell$-isogénies horizontales, dans le sens de la définition \ref{def:iso:nom},telles que $\phi=\phi_1 \circ \phi_2 \circ \cdots \circ \phi_k$.
+%Soit $E$ un courbe située sur le cratère d'un volcan des $\ell$-isogénies, $\phi$ une isogénie de degré $\ell^k$ de domaine $E$, alors $\phi$ est dite une isogénie horizontale si il existe $\phi_1, \cdots, \phi_k$ $k$ $\ell$-isogénies horizontales, dans le sens de la définition \ref{def:iso:nom},telles que $\phi=\phi_1 \circ \phi_2 \circ \cdots \circ \phi_k$.
 %\end{defi}
 
 \begin{defi}[Bases horizontales et diagonales]
@@ -4380,7 +4394,7 @@ d'une base horizontale les isogénies descendantes d'une courbe située sur le
 cratère.
 
 \begin{prop}
-Soit $E$ une courbe elliptique située sur le cratère cyclique d'un volcan de $\ell$-isogénies, $\langle P, Q \rangle= E[\ell]$ une base horizontale. Alors les $\ell$-isogénies descendantes sont générées par les sous-groupes $\langle [\ell]P+ [b]Q \rangle$ avec $b \wedge \ell =1$.
+Soit $E$ une courbe elliptique située sur le cratère cyclique d'un volcan des $\ell$-isogénies, $\langle P, Q \rangle= E[\ell]$ une base horizontale. Alors les $\ell$-isogénies descendantes sont générées par les sous-groupes $\langle [\ell]P+ [b]Q \rangle$ avec $b \wedge \ell =1$.
 \end{prop}
 
 \begin{proof}
@@ -4609,7 +4623,7 @@ représentée en bleu sur le dessin de gauche, celle de noyau $\langle \psi(P)
 \end{figure}
 
 On voit sur la figure~\ref{fig:par:hor:con} la construction d'un point 
-partiellement horizontal sur un volcan de $2$-isogénies. Sur le volcan de 
+partiellement horizontal sur un volcan des $2$-isogénies. Sur le volcan de 
 gauche est représentée l'isogénie de noyau $\langle P \rangle$ avec $P \in E_s$
 tel que $[\ell]P$ est horizontal de direction  $\color{blue}{\mu}$. On calcule 
 alors l'image de $P$ par la $2$-isogénie descendante $\psi:E_s \rightarrow E$
@@ -4658,7 +4672,7 @@ du Frobenius dans la base $(P,Q)$.
 
 \begin{prop}
 \label{pro:etu:atk:elk}
-Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan de 
+Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan des 
 $\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,Q, R 
 \in E$ tels que $\langle P,Q \rangle= \langle P,R \rangle =E[\ell^{h-e+i}]$, 
 $R=[a]P+[b]Q$ et $\pi(P,R)= \left( \begin{matrix}\lambda & \beta 
@@ -4716,13 +4730,13 @@ de l'isogénie spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
 \end{proof}
 
 On voit donc que l'on n'est pas capable de distinguer les isogénies 
-descendantes entre elles dans un volcan de $\ell$-isogénies, quand $\ell$ est un 
+descendantes entre elles dans un volcan des $\ell$-isogénies, quand $\ell$ est un 
 nombre premier de Elkies. En effet pour toute forme de matrice du Frobenius 
 triangulaire observée on est capable de trouver pour chacune des différentes 
 $\ell$-isogénies descendantes un second point de la base qui engendre cette
 isogénie et pour lequel l'action du Frobenius est identique dans cette base.
 
-\subsection{Calcul des directions dans le volcan de $\ell$-isogénies}
+\subsection{Calcul des directions dans le volcan des $\ell$-isogénies}
 \label{sub:con:poi}
 %Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'er\^ome Pl\^ut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
@@ -4738,7 +4752,7 @@ On va maintenant étudier la structure de la torsion rationnelle des courbes
 elliptiques ordinaires, et déterminer l'extension de corps 
 nécessaire pour avoir une torsion $\ell$-adique de valuation fixée.
 On va en particulier étudier cela pour une courbe située sur le cratère
-d'un volcan de $\ell$-isogénies, car c'est à ce niveau du volcan que l'on peut 
+d'un volcan des $\ell$-isogénies, car c'est à ce niveau du volcan que l'on peut 
 calculer les points horizontaux. Pour les courbes inférieures dans le volcan,
 le corollaire~\ref{cor:elk:bet:reg} permet de conclure. 
 
@@ -4836,10 +4850,10 @@ premier niveau de stabilité la structure de la $\ell$-torsion ne change pas, et
 en dessous elle change comme décrit juste au-dessus.
 \end{proof}
 
-\subsubsection{Algorithmes pour le calcul des directions dans le volcan de $\ell$-isogénies}
+\subsubsection{Algorithmes pour le calcul des directions dans le volcan des $\ell$-isogénies}
 
 L'objectif de cette sous-section est de calculer, pour une courbe se trouvant 
-sur un volcan de $\ell$-isogénies une base horizontale (ou partiellement 
+sur un volcan des $\ell$-isogénies une base horizontale (ou partiellement 
 horizontale) de la $\ell^k$-torsion. On a vu à la proposition~\ref{pro:dia:hor}
 que l'on devait avoir $k \geqslant h+1$ avec $h$ la hauteur du volcan afin de 
 pouvoir déterminer une $\ell$-isogénie horizontale car sinon on ne peut 
@@ -4889,9 +4903,9 @@ Ainsi nous présentons tout d'abord l'algorithme~\ref{alg:rem:tri} qui calcule
 une base diagonale de $E_s[\ell^{h+1}]$ à partir d'une base triangulaire de 
 $E[\ell^{h-e+1}]$, pour $e>0$ et $E$ située au niveau $h-e$. Mais avant cela 
 nous rappelons un résultat sur la rationalité des points et leur niveau dans le
-volcan de $\ell$-isogénies.
+volcan des $\ell$-isogénies.
 %\begin{prop}
-%Soit $E$ une courbe au niveau $h-e$ dans un volcan de $\ell$-isogénies, situé au-dessus du premier niveau de stabilité alors l'algorithme~\ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O(e( \mathsf{R}(k-\beta) + \ell\mathsf{M}(\ell^{k-\beta})))$ opérations sur $\mathbb{F}_q$.
+%Soit $E$ une courbe au niveau $h-e$ dans un volcan des $\ell$-isogénies, situé au-dessus du premier niveau de stabilité alors l'algorithme~\ref{alg:rem:tri} calcule une base diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O(e( \mathsf{R}(k-\beta) + \ell\mathsf{M}(\ell^{k-\beta})))$ opérations sur $\mathbb{F}_q$.
 %\end{prop}
 %
 %\begin{proof}
@@ -4902,11 +4916,11 @@ volcan de $\ell$-isogénies.
 
 \begin{rem}
 \label{rem:rat:niv:vol}
-Dans le cas des volcans réguliers, la hauteur du volcan de $\ell$-isogénies 
+Dans le cas des volcans réguliers, la hauteur du volcan des $\ell$-isogénies 
 n'a pas d'influence sur le coût des algorithmes qui remontent dans le volcan 
 (tels \ref{alg:rem:tri}, \ref{alg:ulti:fro}). En effet par la 
 proposition~\ref{pro:niv:str}, lorsque l'on monte d'un niveau dans
-le volcan de $\ell$-isogénies, la valuation $\ell$-adique de la torsion
+le volcan des $\ell$-isogénies, la valuation $\ell$-adique de la torsion
 rationnelle des points de la courbe augmente de $1$. De plus comme on a 
 uniquement besoin de travailler avec la $\ell^{h-e+1}$-torsion, pour une courbe 
 située au niveau $h-e$, pour déterminer la $\ell$-isogénie montante (voir 
@@ -4931,9 +4945,9 @@ $E_s[\ell^{h+1}]$.
 Afin de permettre au lecteur de se rendre compte du niveau dans le volcan 
 auquel les points et les courbes sont définis on introduit la notation suivante:
 \begin{nota}
-Soit $P \in E$ avec $E$ située au niveau $h-e+i$ d'un volcan de 
+Soit $P \in E$ avec $E$ située au niveau $h-e+i$ d'un volcan des 
 $\ell$-isogénies, alors on notera $P^{(h-e+i)}$ et $E^{(h-e+i)}$ pour signifier
-que le point et la courbe sont définis au niveau $h-e+i$ du volcan de 
+que le point et la courbe sont définis au niveau $h-e+i$ du volcan des 
 $\ell$-isogénies.
 \end{nota}
 Cette notation étant très lourde elle ne sera utilisée que lorsque le niveau 
@@ -4946,7 +4960,7 @@ afin d'éviter de surcharger la preuve.
 \begin{lem}
 \label{lem:alg:rat}
 Dans l'algorithme~\ref{alg:rem:tri}, avec comme entrée une courbe située en 
-dessous du cratère d'un volcan de $\ell$-isogénies, les points utilisés et 
+dessous du cratère d'un volcan des $\ell$-isogénies, les points utilisés et 
 calculés entre les étapes \ref{alg:rem:tri:trigonal:debut} et 
 \ref{alg:rem:tri:trigonal:fin} sont définis dans $\mathsf{F}_{h-(e-i)+1-\beta+
 \max(0,e-i-(h-\beta))}$.
@@ -4975,7 +4989,7 @@ $\mathsf{F}_{h-e+i+1-\beta+\max(0,e-i-(h-\beta))}$.
 \end{proof}
 
 Maintenant on présente l'algorithme~\ref{alg:rem:tri} qui prend en entrée une 
-courbe elliptique $E$ située au niveau $h-e$ dans le volcan de 
+courbe elliptique $E$ située au niveau $h-e$ dans le volcan des 
 $\ell$-isogénies et qui retourne une base diagonale de $E_s[\ell^{h+1}]$ ainsi 
 que la liste de $\ell$-isogénies montantes qui permettent de relier $E$ à sa 
 courbe sommet $E_s$.
@@ -4986,7 +5000,7 @@ partir d'une base triangulaire de $E[\ell^{h-e+1}]$ pour $E$ au niveau
 $h-e$}
 \begin{algorithmic}[1]
 \REQUIRE $E$: une courbe elliptique ordinaire située au niveau $h-e$ d'un 
-volcan de $\ell$-isogénies; $P,Q \in E, \lambda, \mu, b \in \mathbb{Z}/
+volcan des $\ell$-isogénies; $P,Q \in E, \lambda, \mu, b \in \mathbb{Z}/
 \ell^{h-e+1}\mathbb{Z}$ tels que $E[\ell^{h-e+1}]=\langle P,Q \rangle$, $\pi(P,Q)
 =\left( \begin{smallmatrix}
 \lambda + a \ell^{h-e+1}  & b \ell^{h-e+1} \\
@@ -5116,7 +5130,7 @@ partir d'une base diagonale de $E_s[\ell^j]$ pour $j<k$.
 \begin{algorithm}
 \caption{\label{alg:bas:diag}Calcul d'une base diagonale de $E_s[\ell^k]$}
 \begin{algorithmic}[1]
-\REQUIRE $E_s$: une courbe elliptique ordinaire située sur le cratère d'un volcan de $\ell$-isogénies; $k$: un entier positif; $j<k$; $\lambda, \mu \in \mathbb{Z}/\ell^{j}\mathbb{Z}$; $P_j,Q_j$ tels que $E_s[\ell^j]=\langle P_j,Q_j \rangle$ $\pi(P_j)=[\lambda] P_j, \pi(Q_j)=[\mu]Q_j$;
+\REQUIRE $E_s$: une courbe elliptique ordinaire située sur le cratère d'un volcan des $\ell$-isogénies; $k$: un entier positif; $j<k$; $\lambda, \mu \in \mathbb{Z}/\ell^{j}\mathbb{Z}$; $P_j,Q_j$ tels que $E_s[\ell^j]=\langle P_j,Q_j \rangle$ $\pi(P_j)=[\lambda] P_j, \pi(Q_j)=[\mu]Q_j$;
 \ENSURE $(P_k, Q_k )$: une base de $E_s[\ell^k]$;
 $\lambda, \mu \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P_k)= [\lambda] P_k$, $ \pi(Q_k)= [\mu] Q_k$.
@@ -5190,7 +5204,7 @@ $\ell$-isogénies montantes reliant $E$ à $E_s$.
 \begin{algorithm}
 \caption{\label{alg:ulti:fro}Calcul d'une base diagonale de $E_s[\ell^k]$ à partir de $E$ au niveau $h-e$}
 \begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan de $\ell$-isogénies avec cratère cyclique;
+\REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan des $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif;
 \ENSURE $(P_k, Q_k )$: une base de $E_s[\ell^k]$;
 $\lambda, \mu, b \in \mathbb{Z}/\ell^k \mathbb{Z}$
@@ -5362,7 +5376,7 @@ $k \geqslant h + 1$.\\
 \end{algorithm}
 
 \begin{prop}\label{pro:alg:hor}
-Soit $E$ une courbe située sur le cratère d'un volcan de $\ell$-isogénies dont 
+Soit $E$ une courbe située sur le cratère d'un volcan des $\ell$-isogénies dont 
 on connaît une base diagonale de la $\ell^{h+1}$ torsion alors pour 
 $k \geqslant h+1$ l'algorithme~\ref{alg:hor:poi} est correct et calcule un 
 point horizontal avec un côut moyen de $O(\mathsf{R}(k-\beta) + k\mathsf{R}(h-\beta+1) + k\ell^2\mathsf{M}(\ell^{h-\beta+1}))$
@@ -5396,7 +5410,7 @@ obtiendrait une complexité moyenne de: $O(\mathsf{R}((k+h)-\beta)+\ell^{2}
 
 \begin{prop}
 \label{pro:par:hor}
-Soit $E$ une courbe située au niveau $h-e$ dans un volcan de $\ell$-isogénies, 
+Soit $E$ une courbe située au niveau $h-e$ dans un volcan des $\ell$-isogénies, 
 soit $E_s$ sa courbe sommet, dont on connaît un point horizontal $P_h$ d'ordre 
 $\ell^k$. Soit $\varphi_s:Es \rightarrow E $ la $\ell^{e}$ isogénie descendante,
 dont on connaît une décomposition en $e$ $\ell$-isogénies descendantes: 
@@ -5441,7 +5455,7 @@ $\mathsf{T}_{\ell}(E)$ et voir si l'on peut déterminer des directions
 d'isogénies descendantes, c'est à dire les distinguer entre elles.
 %\subsubsection{Determination de sous-groupes cycliques à l'aide du Frobenius}
 \begin{prop}\label{pro:mat:fro:atk}
-Soit~$E$ une courbe elliptique définie sur un volcan de $\ell$-isogénies de 
+Soit~$E$ une courbe elliptique définie sur un volcan des $\ell$-isogénies de 
 hauteur $h$ tel que $\ell$ soit un nombre premier de Atkin. Il existe un unique
 $e \in [ 0, h]$ tel que $\Pi=\pi|\mathsf{T}_{\ell}(E)$ est égale, sur~$\mathbb{Z}_{\ell}$, à
  la matrice 
@@ -5458,7 +5472,7 @@ $[2,2e]$. Lorsque $\ell=2$ et $e=0$ on a $2^{h} || a-d$.
 \end{prop}
 
 \begin{proof}
-Soit $E$ une courbe située au niveau $h-e$ du volcan de $\ell$-isogénies, alors
+Soit $E$ une courbe située au niveau $h-e$ du volcan des $\ell$-isogénies, alors
 comme les $\ell$-isogénies sont rationnelles, les $\ell^{h-e}$-isogénies 
 sont rationnelles, ainsi l'action du Frobenius sur une base de la 
 $\ell^{h-e}$-torsion est diagonale, mais comme le polynôme caractéristique de 
@@ -5552,7 +5566,7 @@ c_2\ell^2 & d_2
 \end{scope}
 \end{tikzpicture}
 \end{center}
-\caption{\label{fig:atk:dif:niv:mat} Exemples de matrices du Frobenius obtenues sur les différents niveaux d'un volcan de $\ell$-isogénies}
+\caption{\label{fig:atk:dif:niv:mat} Exemples de matrices du Frobenius obtenues sur les différents niveaux d'un volcan des $\ell$-isogénies}
 \end{figure}
 Sur la figure~\ref{fig:atk:dif:niv:mat} est représenté les différentes matrices
 représentant l'action du Frobenius que l'on peut obtenir selon le niveau de la 
@@ -5569,7 +5583,7 @@ On a vu dans la preuve de cette proposition~ un moyen de trouver un point
 générateur d'une isogénie montante, on énonce donc le résultat suivant:
 \begin{cor}
 \label{cor:mon:atk}
-Soit $E$ située au niveau $h-e \neq h$ d'un volcan de $\ell$-isogénies avec 
+Soit $E$ située au niveau $h-e \neq h$ d'un volcan des $\ell$-isogénies avec 
 $\ell$ un nombre premier de Atkin. Alors pour une base $(P,Q)$ de $E[\ell^k]$
 avec $k>h-e$ telle que:
 \[
@@ -5592,7 +5606,7 @@ de $E[\ell^{h+i}]$.
 
 \begin{prop}
 \label{pro:atk:equi}
-Soient $P,R,R'$ trois points de $E$ située au niveau $h-e$ du volcan de 
+Soient $P,R,R'$ trois points de $E$ située au niveau $h-e$ du volcan des 
 $\ell$-isogénies tels que $\langle P,R \rangle = \langle P,R' \rangle= 
 E[\ell^{h+i}]$ alors $\pi(P,R)=\pi(P,R') $ si et seulement si $[\ell^{h+e}]R=[\ell^{h+e}]R'$.
 \end{prop}
@@ -5623,7 +5637,7 @@ $\ell^{i-e}$-isogénie de noyau $\langle [\ell^{h+e}]R' \rangle = \langle
 %\begin{rem}
 %\label{rem:atk:gen}
 %La proposition~\ref{pro:atk:equi} ne peut se généraliser aux niveaux inférieurs
-%du volcan car pour les niveaux inférieurs du volcan de $\ell$-isogénies on a la
+%du volcan car pour les niveaux inférieurs du volcan des $\ell$-isogénies on a la
 %possibilité d'avoir $v_{\ell}(c)$ ou $v_{\ell}(b)$ qui appartient à $[2,2e]$ ce
 %qui fait que l'implication $\pi(P,R)=\pi(P,R') \Rightarrow [\ell^{h-e}]R=
 %[\ell^{h-e}]R'$ n'est plus assurée on peut seulement montrer que $\pi(P,R)=
@@ -5633,7 +5647,7 @@ $\ell^{i-e}$-isogénie de noyau $\langle [\ell^{h+e}]R' \rangle = \langle
 Si on travaille à partir d'une courbe située au niveau $h-e$ pour 
 étudier la direction des $\ell^i$-isogénies on aura à travailler
 avec une base de la $\ell^{h+i+e}$-torsion. Comme à l'aide du 
-corollaire~\ref{cor:mon:atk} on sait monter dans le volcan de 
+corollaire~\ref{cor:mon:atk} on sait monter dans le volcan des 
 $\ell$-isogénies si l'on voulait étudier le même 
 problème (déterminer les $\ell^{i}$-isogénies ayant pour domaine une courbe 
 située au niveau $h-e$) à partir de la courbe sur le cratère, on aurait alors 
@@ -5649,7 +5663,7 @@ différents générateurs d'une même $\ell^{i-e}$-isogénie dans notre contexte
 \begin{prop}
 \label{pro:cla:fro:mat}
 Soient $P,Q$ deux points définis sur une courbe elliptique $E$ située au niveau
-$h-e$ du volcan de $\ell$-isogénies tels que 
+$h-e$ du volcan des $\ell$-isogénies tels que 
 $E[\ell^{h+i}]=\langle P,Q \rangle$ avec $i \geqslant e$. On pose $R=[x]P+[y]Q$ avec $y\wedge 
 \ell=1$, alors la matrice 
 \[
@@ -5744,7 +5758,7 @@ $[x]P+[y]Q \rightarrow [\beta x]P+[\beta y]Q$ avec $\beta \in \left( \mathbb{Z}
 \end{scope}
 \end{tikzpicture}
 \end{center}
-\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies obtenues à partir de différentes matrices du Frobenius calculées sur la courbe située au niveau du cratère du volcan de $\ell$-isogénies. Pour cet exemple on a travaillé avec une courbe de $j$-invariant $56$ définie sur $\mathbb{F}_{149}$.}
+\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies obtenues à partir de différentes matrices du Frobenius calculées sur la courbe située au niveau du cratère du volcan des $\ell$-isogénies. Pour cet exemple on a travaillé avec une courbe de $j$-invariant $56$ définie sur $\mathbb{F}_{149}$.}
 \end{figure}
 
 La figure~\ref{fig:atk:dif:niv:iso} représente les isogénies que l'on obtient 
@@ -5774,7 +5788,7 @@ proposition~\ref{pro:atk:equi}) a été représentée.
 %\begin{prop}
 %\label{pro:atk:inv:mat}
 %Soient $P,R,R'$ trois points de la courbe elliptique $E$ située au niveau $h-e$
-%du volcan de $\ell$-isogénies tels que $\langle P,R \rangle = \langle P,R' 
+%du volcan des $\ell$-isogénies tels que $\langle P,R \rangle = \langle P,R' 
 %\rangle = E[\ell^{h-e+i}]$ et $\pi(P,R)=\pi(P,R')$ alors $R-R'$ est un point de 
 %$E[\ell^{h+e}]$.
 %\end{prop}
@@ -5799,7 +5813,7 @@ résultats suivants.
 \begin{lem}
 \label{lem:fro:atk}
 Soient $P,P',R$ trois points de $E$ une courbe elliptique située au 
-niveau $h-e$ du volcan de $\ell$-isogénies tels que $\langle P,R \rangle= 
+niveau $h-e$ du volcan des $\ell$-isogénies tels que $\langle P,R \rangle= 
 \langle P',R \rangle=E[\ell^{h-e+i}]$ et $[\ell^{h-e}]P=[\ell^{h-e}]P'$ alors 
 $\pi(P',R)=\pi(P,R)$.
 \end{lem}
@@ -5813,7 +5827,7 @@ La matrice $\left( \begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{sm
 
 \begin{prop}
 Soient $P,P'$ deux points d'ordre $\ell^{h+i}$ de $E$ une courbe elliptique 
-située au niveau du cratère du volcan de $\ell$-isogénies tels que $[\ell^{h-e}]P=
+située au niveau du cratère du volcan des $\ell$-isogénies tels que $[\ell^{h-e}]P=
 [\ell^{h-e}]P'$ alors pour deux points $R,R'$ tels que $\langle P, R \rangle = 
 \langle P', R' \rangle=E[\ell^{h+i}]$ et $\pi(P,R)=\pi(P',R')$ on a 
 $[\ell^{h+e}]R=[\ell^{h+e}]R'$.
@@ -5825,7 +5839,7 @@ $\pi(P,R')=\pi(P,R)$ permet de conclure à l'aide de la
 proposition~\ref{pro:atk:equi}.
 \end{proof}
 
-\subsection{Calculs de directions dans le volcan de $\ell$-isogénies.}
+\subsection{Calculs de directions dans le volcan des $\ell$-isogénies.}
 \label{sub:atk:cal}
 On va maintenant étudier la structure de la torsion rationnelle des courbes 
 elliptiques situées au niveau du cratère et déterminer l'extension de corps 
@@ -5839,7 +5853,7 @@ courbes.
 
 \begin{prop}
 Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
-volcan de $\ell$-isogénies. On note~$d_1$ le degré de la plus 
+volcan des $\ell$-isogénies. On note~$d_1$ le degré de la plus 
 petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell]\subset E(F)$. 
 On  a alors l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
 et $d_1$ qui divise~$(\ell-1)$.
@@ -5857,7 +5871,7 @@ chapitre~\ref{cha:volc:iso}.
 \begin{prop}
 \label{pro:atk:d1}
 Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
-volcan de $\ell$-isogénies,
+volcan des $\ell$-isogénies,
 \begin{itemize}
 \item pour $\ell \neq 2$ on définit $F/\mathbb{F}_q$ la 
 plus petite extension de corps de $\mathbb{F}_q$ de degré $d_1$ telle que 
@@ -5880,7 +5894,7 @@ Notons $E(F)[\ell^{\infty}]\simeq \mathbb{Z}/ \ell^{\alpha} \mathbb{Z}
 \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z}$, supposons par l'absurde que 
 $\alpha > \beta$, alors cela voudrait dire dans le cas où le volcan serait 
 \emph{régulier} qu'il existe seulement $\ell^{\alpha-1}$ isogénies descendantes
-de degré $\ell^{\alpha}$ et cela contredirait la structure du volcan de 
+de degré $\ell^{\alpha}$ et cela contredirait la structure du volcan des 
 $\ell$-isogénies $\mathsf{F}$-rationnelles. Dans le cas où le volcan serait 
 \emph{non-régulier} on a par la structure de volcans non-réguliers 
 $\alpha=\beta$ voir \cite[§5.3.1]{Ionica2010}. Pour le lien entre $h$ et
@@ -5895,7 +5909,7 @@ la même manière qu'à la définition~\ref{def:alp:bet}. % représentant la plu
 
 \begin{prop}\label{pro:clas:fro:atk}
 Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
-volcan de $\ell$-isogénies. En reprenant les notations de la 
+volcan des $\ell$-isogénies. En reprenant les notations de la 
 proposition~\ref{pro:atk:d1} pour tout~$k$, on note~$d_k$ le degré de la plus 
 petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell^k]\subset E(F)$. 
 On  a alors:
@@ -5918,7 +5932,7 @@ $d_k = \ell^{\max (0, k - \beta)}d_2$.
 \begin{proof}
 Le premier résultat a déjà été montré dans la proposition~\ref{pro:atk:d1}.
 Les résultats suivants viennent du fait que pour augmenter de $1$ la hauteur du
-volcan de $\ell$-isogénies on est obligé de travailler avec une extension 
+volcan des $\ell$-isogénies on est obligé de travailler avec une extension 
 $\ell$-adique par \cite[Lemme 6.5.2]{Fouquet01}. Dés lors que l'on augmente de 
 $1$ la hauteur du volcan en travaillant sur $\mathsf{F}_{\ell}$ l'extensiont de
 degré $\ell$ de $\mathsf{F}$ on a pour $E[\ell^{\infty}](\mathsf{F})= \mathbb{Z}/
@@ -6033,7 +6047,7 @@ de tests à effectuer. On doit donc travailler avec un ensemble de
 points plus restrictifs, mais encore invariant sous l'action de $r$-isogénies 
 si l'on veut obtenir une complexité quadratique comme dans
 les algorithmes de \cite{DeFeo11}. On présente donc deux approches toutes les 
-deux basées sur les directions dans le volcan de $\ell$-isogénies une pour le 
+deux basées sur les directions dans le volcan des $\ell$-isogénies une pour le 
 cas Elkies et une pour le cas Atkin.
 
 \section{Cas Elkies}
@@ -6050,7 +6064,7 @@ sous-section~\ref{subs:elk:dir} sur les isogénies horizontales.
 \begin{prop}\label{pro:par:iso}
 Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
 \begin{enumerate}
-\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan de
+\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan des
  $\ell$-isogénies;
 \item\label{pro:par:fun} pour tout point~$P \in E[\ell^k]$,
 les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de même type
@@ -6067,7 +6081,7 @@ Les points (1) et (2) découlent de la proposition \ref{pro:mat:fro} et du fait 
 \end{proof}
 Le troisième point de cette proposition nous permet de réduire le problème du 
 calcul de la $r$-isogénie entre deux courbes elliptiques au même problème pour 
-deux courbes situées sur le cratère du volcan de $\ell$-isogénies. Cependant la
+deux courbes situées sur le cratère du volcan des $\ell$-isogénies. Cependant la
 proposition suivante montre que cela n'est pas nécessaire on peut tout aussi 
 bien, à l'aide de points partiellement horizontaux, travailler avec des 
 sous-groupes cycliques invariants selon l'action de $r$-isogénies. 
@@ -6101,7 +6115,7 @@ proposition~\ref{pro:par:iso}(2) on a $\phi(P) \in \langle P' \rangle$.
 %Ainsi on est capable à l'aide de bases horizontales et d'isogénies montantes de
 %déterminer une correspondance entre deux groupes cycliques d'ordre $\ell^k$ de 
 %courbes $r$-isogènes qui respectent l'action de la $r$-isogénie et qui ne se 
-%situent pas forcément sur le cratère du volcan de $\ell$-isogénies. 
+%situent pas forcément sur le cratère du volcan des $\ell$-isogénies. 
 
 La différence entre des points horizontaux $P_{\lambda}, Q_{\mu} \in E_s$ 
 d'ordre $\ell^k$ et des points \emph{partiellement} horizontaux $R_{\lambda}, 
@@ -6133,7 +6147,7 @@ On montre tout d'abord en quoi ce n'est pas optimal de travailler avec une base
 diagonale de la $\ell^k$-torsion et l'avantage que cela procure de travailler 
 avec des bases horizontales.
 
-Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une $r$-isogénie $\phi$, alors par la proposition~\ref{pro:mat:fro} pour $k$ plus grand que $h$ la hauteur du volcan de $\ell$-isogénies on peut calculer deux bases diagonales $(P,Q),(P',Q')$ de $E_s[\ell^k]$ et $E'_s[\ell^k]$ les courbes sommets respectives de $E$ et $E'$ \todo{pourquoi encore parler de bases diagonales alors que l'on veut parler de directions horizontales sur le volcan de $\ell$-isogénies}
+Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une $r$-isogénie $\phi$, alors par la proposition~\ref{pro:mat:fro} pour $k$ plus grand que $h$ la hauteur du volcan des $\ell$-isogénies on peut calculer deux bases diagonales $(P,Q),(P',Q')$ de $E_s[\ell^k]$ et $E'_s[\ell^k]$ les courbes sommets respectives de $E$ et $E'$ \todo{pourquoi encore parler de bases diagonales alors que l'on veut parler de directions horizontales sur le volcan des $\ell$-isogénies}
 \[
 \pi|(P,Q)=\pi|(P',Q')= \left( \begin{matrix}
 \lambda & 0 \\
@@ -6547,13 +6561,13 @@ le nombre d'abscisses de points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}
 
 On peut donc maintenant énoncer dans l'algorithme~\ref{alg:cou:ell-adique} 
 l'algorithme complet  pour calculer une $r$-isogénie entre deux
-courbes elliptiques $E$, $E'$ définies sur des volcans de $\ell$-isogénies avec
+courbes elliptiques $E$, $E'$ définies sur des volcans des $\ell$-isogénies avec
 $\ell$ un nombre premier de Elkies. 
 
 \begin{algorithm}
 \caption{\label{alg:cou:ell-adique} Algorithme de Couveignes $\ell$-adique dans le cas Elkies.}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique.
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h-e$ d'un volcan des $\ell$-isogénies avec cratère cyclique.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE Calcul du plus petit $k$ tel que $\ell^{2k-2}(\ell+1)>4r$;
@@ -6615,7 +6629,7 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   %$O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+k(\mathsf{R}(k-\beta) +  \ell^2\mathsf{M}(\ell^{k-\beta})))$  
   $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+\mathsf{R}(k) +  \ell^2\mathsf{M}(\ell^{k}))$ 
   par la proposition~\ref{pro:alg:ulti}. %Cette borne est prise pour le cas où 
-  %la courbe en entrée se situerait en bas du volcan de $\ell$-isogénies. 
+  %la courbe en entrée se situerait en bas du volcan des $\ell$-isogénies. 
 
   L'étape~\ref{alg:cou-ell:bhor} qui utilise 
   l'algorithme~\ref{alg:hor:poi} coûte dans le pire des cas un coût moyen de
@@ -6722,7 +6736,7 @@ déterminer le coût pour une courbe choisie de trouver un nombre premier de
 Elkies dans l'intervalle $[1,L]$ pour $L \in O(\log(q))$.
 \begin{lem}
 \label{lem:cou:dec}
-Le coût de trouver un courbe sur le cratère d'un volcan de $\ell$-isogénies 
+Le coût de trouver un courbe sur le cratère d'un volcan des $\ell$-isogénies 
 pour un nombre premier $\ell$ dans l'intervalle $[1,L]$ pour $L \in O(\log(q))$
 est majoré par: $O(\log(q)^5)$.
 \end{lem}
@@ -6730,7 +6744,7 @@ est majoré par: $O(\log(q)^5)$.
 \begin{proof}
 En utilisant les algorithmes décrits dans \cite{FouquetMorain02} et abordés 
 dans la sous-section~\ref{sub:alg:FM} on peut déterminer une courbe sur le 
-sommet du volcan de $\ell$-isogénies à l'aide de $O(\ell h^2)$ 
+sommet du volcan des $\ell$-isogénies à l'aide de $O(\ell h^2)$ 
   factorisations du $\ell$-ème polynôme moduaire. Or $h \in O(\log(q))$ et
   le coût de calcul du polynôme modulaire est de $O(\ell^3\log(\ell))$ sa factorisation de 
   $O(\mathsf{M}(\ell)\log(\ell)\log(\ell q))$ par l'algorithme de 
@@ -6741,7 +6755,7 @@ sommet du volcan de $\ell$-isogénies à l'aide de $O(\ell h^2)$
 
 \begin{rem}
 Les algorithmes de \cite{FouquetMorain02} utilisés pour trouver une courbe sur 
-le volcan de $\ell$-isogénies  dans la preuve du 
+le volcan des $\ell$-isogénies  dans la preuve du 
 lemmme~\ref{lem:cou:dec} sont moins efficaces que ceux de 
 \cite{Ionica-Joux10} et \cite{MiretMRV05} mais ils ont l'avantage de 
 fonctionner sur tous types de volcans, non-réguliers compris, d'où le fait que
@@ -6820,7 +6834,7 @@ github:\url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. Les
 calculs ont été effectué sur une machine Intel Xeon E5530 CPU avec l'horloge 
 réglée à 2.4GHz. La partie expérimentale a été faite uniquement pour le cas 
 $\ell=2$ et des courbes en entrée se situant sur le cratère cyclique d'un 
-volcan de $2$-isogénies.
+volcan des $2$-isogénies.
 
 La construction des tours d'extensions $2$-adiques, implantée elle ausi en 
 SageMath, a été faite selon la méthode
@@ -6833,7 +6847,7 @@ polynômes modulaires utilisés d'après la base de données "database-kohel"
 implantée par David Kohel. La détermination de la forme du cratère se faisait 
 elle à l'aide de la valeur du discriminant $d_k$. Un module a été fait par 
 Sébastien Besnier sur Sagemath celui-ci permet d'afficher directement les 
-volcans de $\ell$-isogénies à partir d'une courbe et il est disponible à cette 
+volcans des $\ell$-isogénies à partir d'une courbe et il est disponible à cette 
 adresse \url{https://trac.sagemath.org/ticket/16942}. 
 
 Pour l'analyse des temps de calcul de notre algorithmes de Couveignes 
@@ -6889,7 +6903,7 @@ On présente donc une première série de tests qui a été réalisé sur des
 courbes qui ont toutes leur $\beta=h=2$, ainsi notre 
 algorithme~\ref{alg:cou:ell-adique} a travaillé avec la $2^3$ torsion jusqu'à la 
 $2^8$ torsion sur des courbes elliptiques définies sur corps finis premiers 
-allant d'une taille de $7$ bits à $252$ bits. Le volcan de $2$-iogénies de 
+allant d'une taille de $7$ bits à $252$ bits. Le volcan des $2$-iogénies de 
 gauche de la figure~\ref{fig:ex:niv:ext} est celui sur lequel se trouve la 
 courbe définie sur $\mathbb{F}_{101}$ ayant servi aux calculs montrés dans la 
 figure~\ref{fig:exp:dif}.
@@ -6941,7 +6955,7 @@ proposition~\ref{pro:par:iso} qui s'appliquait au cas Elkies.
 Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$ un 
 nombre premier de Atkin.
 \begin{enumerate}
-\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan de
+\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan des
  $\ell$-isogénies,
 \item\label{pro:par:fun:atk} pour tout point~$P \in E[\ell^k]$,
 les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de
@@ -6981,12 +6995,12 @@ permet de conclure.
 
 
 On rappelle que l'on travaille avec deux courbes $r$-isogènes, avec $r \wedge 
-\ell=1$ qui se situent sur un volcan de $\ell$-isogénies de hauteur $h$, dont 
+\ell=1$ qui se situent sur un volcan des $\ell$-isogénies de hauteur $h$, dont 
 le cratère est réduit à une courbe car on se place dans le cas Atkin, on 
 suppose de plus qu'un nombre $\ell$ de Atkin tel que $\ell^h<\sqrt{r}$ est déjà
 connu (pour plus de détails voir la proposition~\ref{pro:bor:ell}). De plus on 
 va dans un premier temps se restreindre au cas où les courbes avec lesquelles 
-on travaille se situent sur le cratère d'un volcan de $\ell$-isogénies, on 
+on travaille se situent sur le cratère d'un volcan des $\ell$-isogénies, on 
 verra par la suite comment généraliser notre problème à des courbes non situées
 sur le cratère. \todo{est-ce utile ?}
 
@@ -7029,7 +7043,7 @@ section~\ref{sec:interpolation}.
 
 \begin{cor}
 Soit $P$ un point d'ordre $\ell^{\beta+i}$ de la courbe elliptique $E$ située 
-au niveau du cratère du volcan de $\ell$-isogénies telle que $E(\mathsf{F}_
+au niveau du cratère du volcan des $\ell$-isogénies telle que $E(\mathsf{F}_
 {1})[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times 
 \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$, alors la taille de l'orbite de $P$ selon 
 l'action de $\mathsf{Gal}(\mathsf{F}_{i+1}:\mathsf{F}_{1})$ est 
@@ -7037,7 +7051,7 @@ $\ell^i$.
 \end{cor}
 
 \begin{cor} \label{cor:atk:orb:rep}
-Soit $E$ une courbe elliptique située au niveau du cratère du volcan de 
+Soit $E$ une courbe elliptique située au niveau du cratère du volcan des 
 $\ell$-isogénies telle que $E(\mathsf{F}_1)[\ell^{\infty}] \simeq 
 \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta}\mathbb{Z}$,
 alors il y a $\ell^{2\beta + i -2}(\ell+1)$ classes de conjugaison de points 
@@ -7051,7 +7065,7 @@ Couveignes dans le cas Atkin dans l'algorithme~\ref{alg:cou:atk}.
 \begin{algorithm}
 \caption{\label{alg:cou:atk} Algorithme de Couveignes $\ell$-adique dans le cas Atkin.}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau du cratère d'un volcan de $\ell$-isogénies avec cratère réduit à une courbe.
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau du cratère d'un volcan des $\ell$-isogénies avec cratère réduit à une courbe.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE Calcul du plus petit $k$ tel que $\ell^{2k-2}(\ell+1)>4r$;
@@ -7363,7 +7377,7 @@ l'algorithme~\ref{alg:cou:mult-adique:short}.%,
 \begin{algorithm}
 \caption{\label{alg:cou:mult-adique:short} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire dans le cas Elkies.}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique.
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan des $\ell_i$-isogénies avec cratère cyclique.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE Calcul des $k_i$ tel que $\sum_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
@@ -7646,10 +7660,8 @@ bien évidemûment les cots de construction de tours d'extension $\ell$-adiques
 vus dans le chapitre~\ref{cha:tour}.
 
 
-\todo{changer tous les composita en compositum}
-
  Comme motivé dans la sous sous section précédente~\ref{sub:TRCE:cou} on
- calcule les points (partiellement) horizontaux sur les volcans de 
+ calcule les points (partiellement) horizontaux sur les volcans des 
  $\ell_i$-isogénies à l'aide des méthodes vues dans la 
  section~\ref{sub:con:poi}, on doit alors ensuite les exprimer dans le
  compositum afin de les utiliser pour le Théorème des Restes Chinois dans 
@@ -7824,7 +7836,7 @@ par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,n_i)}:\mathbb{F}_q)$
 \begin{algorithm}
 \caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes avec nombre composé de Elkies.}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique pour $i$ allant de $1$ à $n$.
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan des $\ell_i$-isogénies avec cratère cyclique pour $i$ allant de $1$ à $n$.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE Calcul des $k_i$ tels que $\prod_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
@@ -7964,7 +7976,7 @@ On présente ici un algorithme qui propose de
 \begin{algorithm}
 \caption{\label{alg:app:bas:fro}Calcul d'une base de $E[\ell^k]$ et de l'action de $\pi$ dans celle-ci}
 \begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan de $\ell$-isogénies avec cratère cyclique;
+\REQUIRE $E$: une courbe elliptique ordinaire située sur un volcan des $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif;
 \ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
 $\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
@@ -8032,7 +8044,7 @@ dans la section~\ref{sec:cou:elk}.
 \begin{algorithm}
 \caption{\label{alg:app:cou:var} Couveignes $\ell$-adique dans le cas Elkies avec un seul sous-groupe cyclique.}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique.
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h-e$ d'un volcan des $\ell$-isogénies avec cratère cyclique.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE Calcul du plus petit $k$ tel que $\ell^{k-1}>4r$;
@@ -8569,7 +8581,7 @@ opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:con:comp}.
 \begin{cor} \todo{remplacer tout simplement par la proposition se généralise pour $n$}
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers de Elkies distincts et 
 premiers avec $r$, $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ 
-qui se situent à une profondeur $e_i$ du cratère du volcan de 
+qui se situent à une profondeur $e_i$ du cratère du volcan des 
 $\ell_i$-isogénies pour $i \in [1,n]$. Alors pour $P$ un
  point d'ordre $\upsilon_n$ de $E$ construit à l'aide de 
 l'algorithme~\ref{alg:TRC} tel que $[\vartheta_i]P=P_i$ 
@@ -8832,7 +8844,7 @@ base de la $\ell^{h+i}$-torsion.
 
 \begin{lem} \label{lem:app:eq}
 Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ située au niveau du
-cratère cyclique ($\ell$ est donc un nombre de Elkies) d'un volcan de 
+cratère cyclique ($\ell$ est donc un nombre de Elkies) d'un volcan des 
 $\ell$-isogénies. Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit 
 $R=[a]P+[b]Q$ un point d'ordre $\ell^{h+i}$ tel que:
 \begin{equation}
@@ -8906,7 +8918,7 @@ horizontale générée par un vecteur propre pour l'action du Frobenius.
 
 \begin{prop}\label{pro:app:inv:fro}
 Soit une courbe elliptique $E$ définie sur $\mathbb{F}_q$ au niveau du cratère 
-cyclique ($\ell$ est donc un nombre de Elkies) d'un volcan de $\ell$-isogénies.
+cyclique ($\ell$ est donc un nombre de Elkies) d'un volcan des $\ell$-isogénies.
 Soit $(P,Q)$ une base diagonale de $E[\ell^{h+i}]$, soit $R=[a]P+[b]Q$ un point
 d'ordre $\ell^{h+i}$ tel que $\langle R \rangle$ soit le noyau d'une 
 $\ell^{h+i}$-isogénie descendante, alors pour toute $\ell^i$-isogénie 
@@ -8953,17 +8965,17 @@ la transformation.
 \end{proof}
 
 On voit donc avec cette proposition que pour une courbe située sur le cratère 
-cyclique d'un volcan de $\ell$-isogénies ayant une base diagonale $(P,Q)$ de la
+cyclique d'un volcan des $\ell$-isogénies ayant une base diagonale $(P,Q)$ de la
 $\ell^{h+i}$-torsion, alors pour tout point $R=[a]P+[b]Q$ tel que $\langle P,R 
 \rangle=E[\ell^{h+i}]$, l'étude de l'action de $\pi$ dans une telle base à $P$
 fixé ne donne aucune information sur la $\ell^{i}$-isogénie de noyau $\langle 
 \ell^{h}R \rangle$.
 
 Maintenant on va énoncer un résultat similaire pour des courbes situées plus 
-bas dans un volcan de $\ell$-isogénies pour le cas Elkies. 
+bas dans un volcan des $\ell$-isogénies pour le cas Elkies. 
 
 \begin{prop}
-Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan de 
+Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan des 
 $\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,Q$ tels 
 que $\langle P,Q \rangle=E[\ell^{h-e+i}]$, $R=[a]P+[b]Q$ tel que $\pi(P,R)
 = \left( \begin{matrix}\lambda & \beta \ell^{h-e} \\0 & \mu \end{matrix}\right)
@@ -9111,7 +9123,7 @@ on peut toujours se ramener à la condition $\lambda \equiv \mu \equiv 1 \bmod 4
 en remplaçant le corps de base par une extension quadratique.
 
 \begin{prop}
-Soit $E$ une courbe située au niveau $h-e$ du volcan de $\ell$-isogénies, 
+Soit $E$ une courbe située au niveau $h-e$ du volcan des $\ell$-isogénies, 
 $(P,Q)$ une base de $E[\ell^k]$ situé avec $k>h-e$. On suppose de plus que
 \[
 \pi(P,Q)=\left( \begin{matrix}
@@ -9140,7 +9152,7 @@ particulière celle-ci étant déterminée par la valeur de $\alpha \beta^{-1}
 \begin{algorithm}
 \caption{\label{alg:rem:tri:old}Calcul d'une base diagonale de $E_s[\ell^k]$ à partir d'une base triangulaire de $E[\ell^k]$}
 \begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire située à un niveau $h-e$ d'un volcan de $\ell$-isogénies avec cratère cyclique;
+\REQUIRE $E$: une courbe elliptique ordinaire située à un niveau $h-e$ d'un volcan des $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif; $(P^{(h-e)},Q^{(h-e)})$ une base de $E[\ell^k]$; $\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
 tels que $\pi(P^{(h-e)})= [\lambda] P^{(h-e)}$, $ \pi(Q^{(h-e)})=[\delta] P^{(h-e)}_{k} +  [\mu] Q^{(h-e)}_{k}$.
 \ENSURE $(P^{(h)}, Q^{(h)} )$: une base de $E_s[\ell^k]$;
@@ -9168,7 +9180,7 @@ c\ell^{k-1} & \mu  \end{smallmatrix} \right) \bmod {\ell^{k}}.$
 
 \begin{prop}
 \label{pro:alg:rem:tri}
-Soit $E$ une courbe située au niveau $h-e$ dans un volcan de $\ell$-isogénies 
+Soit $E$ une courbe située au niveau $h-e$ dans un volcan des $\ell$-isogénies 
 dont on connaît une base triangulaire de $E[\ell^k]$, soit $E_s$ sa courbe 
 sommet associée, alors l'algorithme \ref{alg:rem:tri} calcule une base 
 diagonale de $E_s[\ell^k]$ avec une complexité espérée de $O( \mathsf{R}(k-
@@ -9217,7 +9229,7 @@ l'action du Frobenius est triangulaire.
 \begin{algorithm}
 \caption{\label{alg:bas:tri}Calcul d'une base triangulaire de $E[\ell^k]$ dans le cas Elkies}
 \begin{algorithmic}[1]
-\REQUIRE $E$: une courbe elliptique ordinaire au niveau $h-e \neq h$ d'un volcan de $\ell$-isogénies avec cratère cyclique;
+\REQUIRE $E$: une courbe elliptique ordinaire au niveau $h-e \neq h$ d'un volcan des $\ell$-isogénies avec cratère cyclique;
 $k$: une entier positif;
 \ENSURE $(P_k, Q_k )$: une base de $E[\ell^k]$;
 $\lambda, \mu, \delta \in \mathbb{Z}/\ell^k \mathbb{Z}$
@@ -9248,7 +9260,7 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \todo{remplacer les complexités espérées par ... cout moyen ?+ unifier tout cela..}
 \todo{cet algorithme est-il vraiment utile ??? je ne pense pas}
 \begin{prop}
-L'algorithme~\ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ située au niveau $h-e<h$ dans un volcan de $\ell$-isogénies régulier avec une complexité espérée de 
+L'algorithme~\ref{alg:bas:tri} calcule une base triangulaire de $E[\ell^k]$ située au niveau $h-e<h$ dans un volcan des $\ell$-isogénies régulier avec une complexité espérée de 
 $O(\mathsf{R}(k-\beta+\max(0,e-(h-\beta))) + \ell^2\mathsf{M}(\ell^{k-\beta+\max(0,e-(h-\beta))})+ \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$.
 %$O(\mathsf{R}(k-\beta+e) + \ell^2\mathsf{M}(\ell^{k-\beta+e})+ \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ et de $O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$ lorsque $E$ est au dessus du niveau de stabilité.
 \end{prop}
@@ -9300,7 +9312,7 @@ $\ell^i$ torsion n'est plus égale à une matrice scalaire tester l'égalité en
  les deux valeurs propres de la matrice. En effet par la 
  proposition~\ref{pro:mat:fro}  si les deux valeurs propres sont égales alors 
  on est sur une courbe située en dessous du niveau du cratère, sinon on est au 
- niveau du cratère, dans les deux cas le niveau de la courbe dans le volcan de 
+ niveau du cratère, dans les deux cas le niveau de la courbe dans le volcan des 
  $\ell$-isogénies est $i-1$.
 
 
@@ -9567,7 +9579,7 @@ Voir section $5.2$ de \cite{DeFeo11}.
 \begin{algorithm}
 \caption{\label{alg:cou:mult-adique} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire.}
 \begin{algorithmic}[1]
-\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique.
+\REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan des $\ell_i$-isogénies avec cratère cyclique.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
 % \STATE Calcul $(P_1,Q_1)$, a basis of $E[\ell]$
 \STATE Calcul des $k_i$ tel que $\sum_{i=1}^n\ell_{i}^{2k_{i}-2}(\ell_{i}+1)>4r$;
