@@ -5768,17 +5768,18 @@ d'où le résultat.
 \end{scope}
 \end{tikzpicture}
 \end{center}
-\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies obtenues à partir de différentes matrices du Frobenius calculées sur la courbe située au niveau du cratère du volcan des $\ell$-isogénies. Pour cet exemple on a travaillé avec une courbe de $j$-invariant $56$ définie sur $\mathbb{F}_{149}$.}
+\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies correspondant aux différentes matrices du Frobenius, calculées sur la courbe $E$ au sommet du volcan de $\ell$-isogénies. Dans cet exemple, $E$ est la courbe de $j$-invariant $56$ définie sur $\mathbb{F}_{149}$, et $\ell=2$.}
 \end{figure}
 
 La figure~\ref{fig:atk:dif:niv:iso} représente les isogénies que l'on obtient 
-selon la forme des matrices représentant l'action du Frobenius calculé sur la 
-courbe située au niveau du cratère. On a donc représenté dans le volcan la 
+selon la forme des matrices du Frobenius de la 
+courbe au sommet du volcan. On a donc représenté dans le volcan la 
 matrice à l'endroit correspondant au codomaine de la $\ell^{i}$-isogénie 
 engendrée par le second vecteur de la base de $E[\ell^{h+i}]$ dans laquelle est
-calculée l'action du Frobenius. Ainsi les courbes dans le volcan atteintes
-par les isogénies engendrées par le premier point de la base ne sont pas 
-associées à des matrices du Frobenius, voilà pourquoi seulement $2$ des $3$ 
+calculée l'action du Frobenius. Le premier vecteur de la base a été choisi au 
+hasard parmi les points d'ordre $\ell^{h+i}$.  Ainsi les courbes dans le volcan
+atteintes par les isogénies engendrées par le premier point de la base ne sont 
+pas associées à des matrices du Frobenius, voilà pourquoi seulement $2$ des $3$ 
 branches descendantes ont des matrices associées à chaque courbe. Les matrices 
 sont représentées modulo $\ell^{h+1}$ pour le niveau $h-1$ car il est 
 nécessaire de calculer une base de $E[\ell^{h+1}]$ pour distinguer les 
@@ -5789,8 +5790,8 @@ nécessaire. On remarque de plus que pour chaque branche on a $\left(
 \begin{smallmatrix}7 & 4 \\4  & 3 \end{smallmatrix} \right) \bmod \ell^{h+1}$ 
 et $\left( \begin{smallmatrix}3 & 4 \\4  & 7 \end{smallmatrix} \right)  = 
 \left( \begin{smallmatrix}11 & 12 \\4 & 15 \end{smallmatrix} \right) \bmod 
-\ell^{h+1}$ ce qui est normal car on a un seul générateur possible de la 
-$2$-isogénie et donc une seule matrice par conjugaison possible (voir 
+\ell^{h+1}$, ce qui est normal car on a un seul générateur possible de la 
+$2$-isogénie, et donc une seule matrice par conjugaison possible (voir 
 proposition~\ref{pro:atk:equi}). Pour la base du volcan il est à 
 noter qu'une seule des matrices que l'on peut obtenir par conjugaison (voir 
 proposition~\ref{pro:atk:equi}) a été représentée.
@@ -5817,36 +5818,20 @@ proposition~\ref{pro:atk:equi}) a été représentée.
 %\end{proof}
 
 Ces résultats sur la détermination du second point ne necéssitent pas forcément
-la détermination complète du premier point de la base comme le montrent les 
-résultats suivants.
+la détermination complète du premier point de la base, comme le montrent le 
+résultat suivant.
 
-\begin{lem}
-\label{lem:fro:atk}
-Soient $P,P',R$ trois points de $E$ une courbe elliptique située au 
-niveau $h-e$ du volcan des $\ell$-isogénies tels que $\langle P,R \rangle= 
-\langle P',R \rangle=E[\ell^{h-e+i}]$ et $[\ell^{h-e}]P=[\ell^{h-e}]P'$ alors 
-$\pi(P',R)=\pi(P,R)$.
-\end{lem}
-
-\begin{proof}
-La matrice $\left( \begin{smallmatrix}a & b\ell^{h-e} \\c\ell^{h-e}  & d \end{smallmatrix} 
-\right)$ est invariante par action de la matrice $\left( 
-\begin{smallmatrix}1 + \alpha \ell^{i} & 0 \\\beta\ell^{i}  & 1 \end{smallmatrix} 
-\right)$ modulo $\ell^{h-e+i}$.
-\end{proof}
-
-\begin{prop}
-Soient $P,P'$ deux points d'ordre $\ell^{h+i}$ de $E$ une courbe elliptique 
-située au niveau du cratère du volcan des $\ell$-isogénies tels que $[\ell^{h-e}]P=
-[\ell^{h-e}]P'$ alors pour deux points $R,R'$ tels que $\langle P, R \rangle = 
-\langle P', R' \rangle=E[\ell^{h+i}]$ et $\pi(P,R)=\pi(P',R')$ on a 
-$[\ell^{h+e}]R=[\ell^{h+e}]R'$.
-\end{prop}
+\begin{cor}
+Soient $P,P'$ deux points d'ordre $\ell^{h+i}$, avec $i \geqslant e$, d'une 
+courbe elliptique $E$ située sur au niveau $h-e$ du volcan de $\ell$-isogénies,
+tels que $[\ell^{h+e}]P=[\ell^{h+e}]P'$. Soient $R,R'$ deux points tels que 
+$\langle P, R \rangle = \langle P', R' \rangle=E[\ell^{h+i}]$ et $\pi(P,R)=
+\pi(P',R')$, alors $[\ell^{h+e}]R=[\ell^{h+e}]R'$.
+\end{cor}
 
 \begin{proof}
-Par le lemme~\ref{lem:fro:atk} on a $\pi(P',R')=\pi(P,R')$, l'égalité 
-$\pi(P,R')=\pi(P,R)$ permet de conclure à l'aide de la 
-proposition~\ref{pro:atk:equi}.
+Par la proposition~\ref{pro:atk:equi} on a $\pi(P',R')=\pi(P,R')$, l'égalité 
+$\pi(P,R')=\pi(P,R)$ permet de conclure.
 \end{proof}
 
 \subsection{Calculs de directions dans le volcan des $\ell$-isogénies.}
