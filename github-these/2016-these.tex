@@ -187,6 +187,7 @@
 \nomenclature{$\Phi_{\ell}$}{$\ell$-ème polynôme modulaire}
 \nomenclature{$\mathsf{T}_{\ell}(E)$}{le module de Tate $\ell$-adique de la courbe elliptique $E$}
 \nomenclature{$\mathbb{Z}_{\ell}$}{l'ensemble des entiers $\ell$-adiques}
+\nomenclature{$P \odot Q$}{le produit composé de $P$ et $Q$}
 
 
 \chapter*{Introduction}
@@ -6878,7 +6879,7 @@ Cauchy, cela représente une itération des étapes \ref{alg:cou-ell:ord} à
 %\resizebox{\columnwidth}{!}{\input{graphe-101}}
 \caption{\label{fig:exp:uni} Comparaison entre les phases d'initialisations et la phase d'interpolation pour une courbe définie sur $\mathbb{F}_{101}$ pour $r$ croissant. La courbe est en échelle logarithmique.}
 \end{figure}
-\todo{mettre les figures 6.2 et 6.3 cote à cote}
+
 
 On a donc regroupé dans la figure~\ref{fig:exp:uni} les deux premières parties
 qui sont en fait du précalcul avec notamment le calcul de bases horiontales et 
@@ -6999,13 +7000,13 @@ permet de conclure.
 
 On rappelle que l'on travaille avec deux courbes $r$-isogènes, avec $r \wedge 
 \ell=1$ qui se situent sur un volcan des $\ell$-isogénies de hauteur $h$, dont 
-le cratère est réduit à une courbe car on se place dans le cas Atkin, on 
+le cratère est réduit à une courbe, car on se place dans le cas Atkin. On 
 suppose de plus qu'un nombre $\ell$ de Atkin tel que $\ell^h<\sqrt{r}$ est déjà
 connu (pour plus de détails voir la proposition~\ref{pro:bor:ell}). De plus on 
 va dans un premier temps se restreindre au cas où les courbes avec lesquelles 
 on travaille se situent sur le cratère d'un volcan des $\ell$-isogénies, on 
 verra par la suite comment généraliser notre problème à des courbes non situées
-sur le cratère. \todo{est-ce utile ?}
+sur le cratère.
 
 Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées
 par une $r$-isogénie $\phi$, $P \in E$ et $S' \in E'$ deux points d'ordre 
@@ -7229,7 +7230,7 @@ auraient pu être appliquées à notre approche proposée pour le cas Atkin.
 \section{Algorihme de Couveignes $\ell$-adique dans le cas Elkies avec un point horizontal}
 \label{sec:var:cou:uni}
 Comme proposé par François Morain on pourrait uniquement travailler avec un 
-point horizontal au lieu de travailler avec une base horizontale.\todo{Dire ça ailleurs}
+point horizontal au lieu de travailler avec une base horizontale.\todo{Dire ça ailleurs, dans les remerciements}
 
 Au lieu de travailler avec une base horizontale dans l'algorithme de Couveignes
 $\ell$-adique on pourrait tout aussi bien travailler avec une base horizontale.
@@ -7567,7 +7568,6 @@ profondeur $(e_1, \dots, e_n)$.
 
 \subsection{Construction de compositums d'extensions $\ell_i$-adiques}
 \label{sub:con:com}
-\todo{Ajouter notations dans la liste de nomenclatures}
 
 Cette partie s'appuie sur la construction de compositum à partir d'une idée de
 %originale de \cite{BrawleyCarlitz87} reprise dans
@@ -7790,9 +7790,9 @@ a & 0 \\
 \end{equation*}
 
 On a donc bien une correspondance entre les points définis à l'aide du Théorème
- des Restes Chinois appliqué à des points (partiellement) horizontaux définis 
- sur deux courbes elliptiques $r$-isogènes avec $r$ premier avec $\ell_1, \dots
- , \ell_n$.
+des Restes Chinois appliqué à des points (partiellement) horizontaux définis 
+sur deux courbes elliptiques $r$-isogènes avec $r$ premier avec $\ell_1, \dots
+, \ell_n$.
  
 Dans le but d'appliquer les même méthodes que celles de la 
 sous-section~\ref{ssec:cou:elk} on a besoin de déterminer des représentants 
@@ -7801,7 +7801,7 @@ $\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$ le
 défini dans la sous-section~\ref{sub:con:com}.
 \begin{prop}
 \label{pro:rep:com}
-Soit $P$ un point d'ordre $\upsilon_n$ \todo{mettre dans nomenclature} de $E(\mathbb{K}_n)$ obtenu à l'aide 
+Soit $P$ un point d'ordre $\upsilon_n$ de $E(\mathbb{K}_n)$ obtenu à l'aide 
 du Théorème des Restes Chinois appliqué aux points $P_i$ de $E$ d'ordre 
 $\ell_i^{k_i}$ tels que l'orbite générée par l'action de 
 $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$ sur $P_i$ soit de taille
@@ -7822,7 +7822,7 @@ représentants pour l'orbite selon l'action du groupe de Galois pour des points
 d'ordre $\upsilon_n$ il suffit de calculer à l'aide du théorème des 
 restes chinois tous les points $P$ d'ordre $\upsilon_n$ 
 tels que tous les choix possibles de représentants $P_i=[\vartheta_i]P$
-par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,n_i)}:\mathbb{F}_q)$
+par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$
  aient été effectués. Ainsi le nombre de représentants est
  donc de $\prod_{i=1}^{n} \epsilon_i$. On calcule donc 
  tout d'abord les représentants d'ordre $\ell_i^{k_i}$ dans les tours 
@@ -7915,8 +7915,8 @@ $O(n\mathsf{M}(p_n)p_{n-1}^{(\omega-1)/2}\max_i(\ell_{i}(k_{i}+1)))$. %or on doi
 De la même manière pour le calcul des polynômes d'interpolation $A$ tels 
 $A(v)=w$ avec $v,w \in \mathbb{K}_n \setminus \mathbb{K}_{n-1}$, le coût est
 encore une fois dominé par l'application du Frobenius et on majore le coût d'un
-tel calcul par $O(n\mathsf{M}(p_n \max_i(d_i\ell_i^{k_i}))
-\max_i(\ell_i(k_i+1))p_{n-1}^{(\omega-1)/2})$.
+tel calcul par \[O(n\mathsf{M}(p_n \max_i(d_i\ell_i^{k_i}))
+\max_i(\ell_i(k_i+1))p_{n-1}^{(\omega-1)/2}).\]
 
 Ensuite pour $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n~\setminus~\mathbb{K}_{n-1}$, $t_j$ le degré des polynômes minimaux de $v_j$, on note  $t=\sum t_j$. 
 On veut alors calculer les polynômes
@@ -7930,16 +7930,22 @@ On utilise à nouveau la méthode de la section~\ref{sec:interpolation}, le
 calcul de $T$ à partir des $T_j$ a un même
 coût que dans la proposition~\ref{prop:interpol} de $O(\mathsf{M}(t)\log(s))$. 
 Cependant comme vu précédemment le coût de calcul des $A_j$ est de 
-$O(n\mathsf{M}(t_j\max_i(d_i\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}
-\max_i(\ell_i(k_i+1)))$ on majore donc le coût total par $O(n\mathsf{M}(t\max_i(d_i
-\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i(k_i+1)))$ par superlinéarité de 
+\[
+O(n\mathsf{M}(t_j\max_i(d_i\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}
+\max_i(\ell_i(k_i+1)))
+\]
+on majore donc le coût total par
+\[O(n\mathsf{M}(t\max_i(d_i
+\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i(k_i+1)))\]
+par superlinéarité de 
 $\mathsf{M}$.
 
 On peut donc estimer le coût de cette version $\ell$-adique de l'algorithme de 
 Couveignes à l'aide du coût dû à l'interpolation. 
 L'interpolation étant répétée $O(r \prod_{i=1}^n\ell_i)$ en moyenne, on obtient
-une estimation de $O(r (\prod_{i=1}^n\ell_i)n\mathsf{M}(r (\prod_{i=1}^n \ell_i^2)
-\max_i(d_i\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i (k_i +1)) )$. 
+une estimation de 
+\[ O(r (\prod_{i=1}^n\ell_i)n\mathsf{M}(r (\prod_{i=1}^n \ell_i^2)
+\max_i(d_i\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i (k_i +1)) ).\] 
 Avec $p_n \in O(r(\prod_{i=1}^n\ell_i)^{3,5})$ on a une estimation 
 de 
 \[ 
