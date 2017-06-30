@@ -5893,18 +5893,25 @@ Pour un volcan \emph{non-régulier} $\beta$ est égal au niveau du premier nivea
 
 \begin{proof}
 Notons $E(F)[\ell^{\infty}]\simeq \mathbb{Z}/ \ell^{\alpha} \mathbb{Z} 
-\times \mathbb{Z}/ \ell^{\beta} \mathbb{Z}$, supposons par l'absurde que 
-$\alpha > \beta$, alors cela voudrait dire, dans le cas où le volcan serait 
-\emph{régulier}, qu'il existe seulement $\ell^{\alpha-1}$ isogénies descendantes
-de degré $\ell^{\alpha}$, \todo{justifier} et cela contredirait la structure du volcan des 
-$\ell$-isogénies $\mathsf{F}$-rationnelles. Dans le cas où le volcan serait 
+\times \mathbb{Z}/ \ell^{\beta} \mathbb{Z}$. 
+
+Supposons par l'absurde que $\alpha > \beta$ dans le cas où le volcan serait 
+\emph{régulier}. On aurait alors $\beta=h$ et comme $\alpha>\beta$ il 
+existerait des isogénies ayant pour domaine $E$, située sur le cratère, de 
+degré $\ell^{\alpha}$ ce qui contredirait le fait que le volcan soit de hauteur 
+$h=\beta$. 
+
+Dans le cas où le volcan serait 
 \emph{non-régulier} on a par la structure de volcans non-réguliers 
 $\alpha=\beta$ voir \cite[§5.3.1]{Ionica2010}. Pour le lien entre $h$ et
  $\beta$ le lecteur peut voir \cite[§5.3.1]{Ionica2010}. 
 \end{proof}
 
-Dorénavant on va garder cette notation de $\beta$ qui peut donc être définie de
-la même manière qu'à la définition~\ref{def:alp:bet}. \todo{Oups plus du tout vrai} % représentant la plus grande 
+Dorénavant on va garder cette notation de $\beta$ qui est définie comme la plus
+grande valuation $\ell$-adique rationnelle de la courbe sur le cratère du 
+volcan des $\ell$-isogénies défini sur $\mathbb{F}$. \todo{Faire un peu mieux}
+
+
 %valuation $\ell$-adique de la torsion rationnelle sur $F$ la plus petite 
 %extension de  $\mathbb{F}_q$ telle que $E[\ell] \subset E(F)$ lorsque $\ell 
 %\neq 2$ et $E[4] \subset E(F)$ lorsque $\ell = 2$.
@@ -5962,14 +5969,14 @@ $\langle P,Q \rangle$ soit de la même forme que $M$.
 \caption{\label{alg:atk:bas:mat}Calcul d'un point $R$ d'ordre~$\ell^{h-e+i}$ tel que $\pi(P,R)=M$}
 \begin{algorithmic}[1]
 \REQUIRE $E$ une courbe située au niveau $h-e$; $(P, Q)$ une base de~$E[\ell^{h-e+i}]$ avec $P$ un point fixé de $E$, un entier $i > e$; $M$ une matrice représentant l'action du Frobenius dans une base de la $\ell^{h-e+i}$-torsion d'une courbe elliptique située au niveau $h-e$.\\
-\ENSURE $R=[\alpha]P+ [\beta]Q $: un point d'ordre $\ell^{h-e+i}$ de $E$ tel que $\pi(P,R)=M$.
-\STATE $(\alpha, \beta ) \leftarrow (0,0)$
+\ENSURE $R=[\gamma]P+ [\kappa]Q $: un point d'ordre $\ell^{h-e+i}$ de $E$ tel que $\pi(P,R)=M$.
+\STATE $(\gamma, \kappa ) \leftarrow (0,0)$
 \FOR{$j = 1$ to~$h-e+i$}
 \STATE Calcul de $P_j=[\ell^{h-e+i-j}]P, Q_j=[\ell^{h-e+i-j}]Q$; \label{alg:atk:bas:niv}
-\STATE Calcul de $R_j=[\alpha + x\ell^{j-1}]P_j+[\beta +y\ell^{j-1}]Q_j$ avec $\pi(P_j,R_j)=M\bmod \ell^{j}$; \label{alg:atk:coef:int}
-\STATE $(\alpha, \beta) \leftarrow (\alpha + x\ell^{j-1}, \beta +y\ell^{j-1})$;
+\STATE Calcul de $R_j=[\gamma + x\ell^{j-1}]P_j+[\kappa +y\ell^{j-1}]Q_j$ avec $\pi(P_j,R_j)=M\bmod \ell^{j}$; \label{alg:atk:coef:int}
+\STATE $(\gamma, \kappa) \leftarrow (\gamma + x\ell^{j-1}, \kappa +y\ell^{j-1})$;
 \ENDFOR
-\RETURN\label{alg:atk:horizontal:final} $R =[\alpha]P+ [\beta]Q$. 
+\RETURN\label{alg:atk:horizontal:final} $R =[\gamma]P+ [\kappa]Q$. 
 \end{algorithmic}
 \end{algorithm}
 
