@@ -4756,7 +4756,7 @@ isogénie et pour lequel l'action du Frobenius est identique dans cette base.
 \label{sub:con:poi}
 %Ce chapitre comme le précédent s'inspire de travaux effectués en collaboration avec Luca De Feo, J\'er\^ome Pl\^ut et \'Eric Schost qui ont fait l'objet d'une publication \cite{Defeo_Plut_Schost_2016}.
 
-DDans cette sous-section on s'intéresse à la partie algorithmique du calcul des
+Dans cette sous-section on s'intéresse à la partie algorithmique du calcul des
 objets présentés dans la sous-section~\ref{subs:elk:dir}. Sont aussi utilisés 
 les résultats et définitions du chapitre \ref{cha:tour}, dont notamment les 
 extensions de corps de la définition \ref{def:tour-ell}.
@@ -5837,59 +5837,66 @@ $\pi(P,R')=\pi(P,R)$ permet de conclure.
 \subsection{Calculs de directions dans le volcan des $\ell$-isogénies.}
 \label{sub:atk:cal}
 On va maintenant étudier la structure de la torsion rationnelle des courbes 
-elliptiques situées au niveau du cratère et déterminer l'extension de corps 
-nécessaire pour avoir une torsion $\ell$-adique de valuation fixée définie.
-Pour les courbes inférieures dans le volcan la 
-proposition~\ref{pro:atk:d1} permet d'utiliser notre résultat aux autres
-courbes. 
+elliptiques situées sur le cratère, et déterminer l'extension de corps 
+nécessaire pour avoir une torsion $\ell$-adique de valuation fixée.
+La proposition~\ref{pro:atk:d1} permet d'étendre notre résultat aux
+courbes inférieures dans le volcan.
 
+\todo{Dire quelque part que l'on travaille avec des volcans de hauteur h>0}
 %On utilise la même définition pour $\beta$ que celle issue de la 
 %définition~\ref{def:alp:bet}.
 
 \begin{prop}
-Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
-volcan des $\ell$-isogénies. On note~$d_1$ le degré de la plus 
+Soit $E$ une courbe elliptique ordinaire située sur le cratère d'un 
+volcan des $\ell$-isogénies de hauteur $h>0$. On note~$d_1$ le degré de la plus 
 petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell]\subset E(F)$. 
-On  a alors l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
+Alors l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ divise $d_1$,
 et $d_1$ qui divise~$(\ell-1)$.
 \end{prop}
 
 \begin{proof}
 On procède de manière similaire à la preuve de la proposition~\ref{pro:clas:fro}.
 Le degré ~$d_1$ correspond à l'ordre de la matrice~$\pi|E[\ell]$.
-On obtient donc le résultat en utilisant le fait que~$a \cdot d = q$. 
+On obtient donc le résultat en utilisant le fait que~$a \cdot d = q \bmod \ell$. 
 \end{proof}
+
+\begin{rem}
+Lorsque le volcan est de hauteur $0$, on peut se ramener au cas d'un volcan de 
+hauteur $h>0$ en travaillant dans une extension de degré $\ell+1$ pour que le
+$\ell$-ème polynôme modulaire possède des racines dans cette extension.
+\end{rem}
 
 On met en avant un résultat qui est une conséquence du 
 chapitre~\ref{cha:volc:iso}. 
 
 \begin{prop}
 \label{pro:atk:d1}
-Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
-volcan des $\ell$-isogénies,
+Soit $E$ une courbe elliptique ordinaire située sur le cratère d'un 
+volcan des $\ell$-isogénies de hauteur $h>0$, avec $\ell$ un nombre premier 
+de Atkin,
 \begin{itemize}
-\item pour $\ell \neq 2$ on définit $F/\mathbb{F}_q$ la 
+\item si $\ell \neq 2$ on note $F/\mathbb{F}_q$ la 
 plus petite extension de corps de $\mathbb{F}_q$ de degré $d_1$ telle que 
 $E[\ell] \subset E(F)$,
-\item pour $\ell=2$ on définit $F/\mathbb{F}_q$ la 
+\item si $\ell=2$ on note $F/\mathbb{F}_q$ la 
 plus petite extension de corps de $\mathbb{F}_q$ de degré $d_2 \in {1,2}$ telle
-que $E[4] \subset E(F)$,
+que $E[4] \subset E(F)$.
 \end{itemize}
-on a alors:
+On a alors:
 \[
-E(F)[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z} 
+E(F)[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z}, 
 \]
-avec pour $\ell \neq 2$ $\beta \in [1,h]$ et pour $\ell=2$ $\beta \in [2,h]$. De 
-plus $\beta=h$ la hauteur du volcan sur $F$ si et seulement si le volcan est \emph{régulier}.
+avec $\beta \in [1,h]$ pour $\ell \neq 2$, et $\beta \in [2,h]$ pour $\ell=2$. De 
+plus $\beta=h$, la hauteur du volcan sur $F$, si et seulement si le volcan est \emph{régulier}.
 Pour un volcan \emph{non-régulier} $\beta$ est égal au niveau du premier niveau de stabilité. 
 \end{prop}
 
 \begin{proof}
 Notons $E(F)[\ell^{\infty}]\simeq \mathbb{Z}/ \ell^{\alpha} \mathbb{Z} 
 \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z}$, supposons par l'absurde que 
-$\alpha > \beta$, alors cela voudrait dire dans le cas où le volcan serait 
-\emph{régulier} qu'il existe seulement $\ell^{\alpha-1}$ isogénies descendantes
-de degré $\ell^{\alpha}$ et cela contredirait la structure du volcan des 
+$\alpha > \beta$, alors cela voudrait dire, dans le cas où le volcan serait 
+\emph{régulier}, qu'il existe seulement $\ell^{\alpha-1}$ isogénies descendantes
+de degré $\ell^{\alpha}$, \todo{justifier} et cela contredirait la structure du volcan des 
 $\ell$-isogénies $\mathsf{F}$-rationnelles. Dans le cas où le volcan serait 
 \emph{non-régulier} on a par la structure de volcans non-réguliers 
 $\alpha=\beta$ voir \cite[§5.3.1]{Ionica2010}. Pour le lien entre $h$ et
@@ -5897,20 +5904,20 @@ $\alpha=\beta$ voir \cite[§5.3.1]{Ionica2010}. Pour le lien entre $h$ et
 \end{proof}
 
 Dorénavant on va garder cette notation de $\beta$ qui peut donc être définie de
-la même manière qu'à la définition~\ref{def:alp:bet}. % représentant la plus grande 
+la même manière qu'à la définition~\ref{def:alp:bet}. \todo{Oups plus du tout vrai} % représentant la plus grande 
 %valuation $\ell$-adique de la torsion rationnelle sur $F$ la plus petite 
 %extension de  $\mathbb{F}_q$ telle que $E[\ell] \subset E(F)$ lorsque $\ell 
 %\neq 2$ et $E[4] \subset E(F)$ lorsque $\ell = 2$.
 
 \begin{prop}\label{pro:clas:fro:atk}
-Soit $E$ une courbe elliptique ordinaire située au niveau du cratère d'un 
+Soit $E$ une courbe elliptique ordinaire située sur le cratère d'un 
 volcan des $\ell$-isogénies. En reprenant les notations de la 
 proposition~\ref{pro:atk:d1} pour tout~$k$, on note~$d_k$ le degré de la plus 
 petite extension de corps $F/\mathbb{F}_q$ telle que~$E[\ell^k]\subset E(F)$. 
-On  a alors:
+Alors:
 \begin{enumerate}
-\item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ qui divise $d_1$,
-et $d_1$ qui divise~$(\ell-1)$.
+\item l'ordre de $q$ dans $(\mathbb{Z}/ \ell \mathbb{Z})^\times$ divise $d_1$,
+et $d_1$ divise~$(\ell-1)$.
 \item Si $\ell$~est impair alors pour tout $k > 1$,
 $ d_k = \ell^{\max (0, k - \beta)}d_1$.
 % $d_k = \mathrm {lcm} (d_1, \ell^{k-\beta})$.
@@ -5928,9 +5935,9 @@ $d_k = \ell^{\max (0, k - \beta)}d_2$.
 Le premier résultat a déjà été montré dans la proposition~\ref{pro:atk:d1}.
 Les résultats suivants viennent du fait que pour augmenter de $1$ la hauteur du
 volcan des $\ell$-isogénies on est obligé de travailler avec une extension 
-$\ell$-adique par \cite[Lemme 6.5.2]{Fouquet01}. Dés lors que l'on augmente de 
-$1$ la hauteur du volcan en travaillant sur $\mathsf{F}_{\ell}$ l'extensiont de
-degré $\ell$ de $\mathsf{F}$ on a pour $E[\ell^{\infty}](\mathsf{F})= \mathbb{Z}/
+de degré $\ell$, par \cite[Lemme 6.5.2]{Fouquet01}. Dés lors que l'on augmente de 
+$1$ la hauteur du volcan en travaillant sur $\mathsf{F}_{\ell}$, l'extensiont de
+degré $\ell$ de $\mathsf{F}$, on a pour $E[\ell^{\infty}](\mathsf{F})= \mathbb{Z}/
 \ell^{n_1} \mathbb{Z} \times \mathbb{Z}/\ell^{n_2} \mathbb{Z}$, $E[\ell^{\infty}
 ](\mathsf{F}_{\ell})= \mathbb{Z}/\ell^{n_1+1} \mathbb{Z} \times \mathbb{Z}/\ell^{n_2+1} 
 \mathbb{Z}$ comme montré dans \cite[§5.3.1]{Ionica2010}.
@@ -5938,18 +5945,18 @@ degré $\ell$ de $\mathsf{F}$ on a pour $E[\ell^{\infty}](\mathsf{F})= \mathbb{Z
 
 \begin{nota}
 On note par $\mathsf{F}_i$ la plus petite extension de corps de 
-$\mathbb{F}_q$ de degré $d_i$ avec $d_i$ défini comme dans la 
+$\mathbb{F}_q$ de degré $d_i$, avec $d_i$ défini comme dans la 
 proposition~\ref{pro:clas:fro:atk} et similaire à la 
-défintion~\ref{def:tour-ell} de tours d'extensions $\ell$-adiques
+défintion~\ref{def:tour-ell} des tours d'extensions $\ell$-adiques
 \end{nota}
 
 Maintenant que l'on a défini dans quels éléments de la tour d'extensions 
-$\ell$-adique étaient définis les points avec lesquels on va travailler on 
-présente et analyse l'algorithme~\ref{alg:atk:bas:mat}. Cet algorithme calcule 
+$\ell$-adique sont définis les points, on 
+présente et analyse l'algorithme~\ref{alg:atk:bas:mat}. Cet algorithme calcule, 
 à partir d'un point $P$ fixé d'ordre $\ell^{h-e+i}$ et d'une matrice $M$ à 
-coefficients dans $\mathbb{Z}/\ell^{h-e+i} \mathbb{Z}$ un second point $Q$ 
+coefficients dans $\mathbb{Z}/\ell^{h-e+i} \mathbb{Z}$, un second point $Q$ 
 d'ordre $\ell^{h-e+i}$ tel que l'action du Frobenius exprimée dans la base 
-$(P,Q)$ soit de la même forme que $M$.
+$\langle P,Q \rangle$ soit de la même forme que $M$.
 
 \begin{algorithm}
 \caption{\label{alg:atk:bas:mat}Calcul d'un point $R$ d'ordre~$\ell^{h-e+i}$ tel que $\pi(P,R)=M$}
@@ -5982,28 +5989,29 @@ définis dans $\mathsf{F}_1$ sinon. L'étape~\ref{alg:atk:bas:niv} est faite en
 tant que pré-calcul, ainsi on calcule successivement des multiplications par 
 $\ell$ de points définis dans $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ à 
 $\mathsf{F}_{1}$ en décomposant la multiplication par $\ell$ par deux isogénies
-de degré $\ell$ qui coûte chacune $O(\mathsf{M}(\ell^{j-\beta+\max(0,e-
+de degré $\ell$, qui coûtent chacune $O(\mathsf{M}(\ell^{j-\beta+\max(0,e-
 (h-\beta))}))$ opérations sur $\mathbb{F}_q$. On a donc un coût total pour 
 l'étape~\ref{alg:atk:bas:niv} de $O(\mathsf{M}(\ell^{h-e+i-\beta+1+\max(0,e-
 (h-\beta))})+(\beta-\max(0,e-(h-\beta))\mathsf{M}(\ell))$.
 \`A l'étape~\ref{alg:atk:coef:int} le calcul de $R_j$ peut être actualisé à 
-chaque itération de la boucle pour à l'aide 
-de $\ell^2$ additions de points définis dans $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ 
-lorsque $j-\beta+\max(0,e-(h-\beta))>1$ ou $\mathsf{F}_1$ sinon. Ainsi le calcul de $R_j$ a 
+chaque itération de la boucle à l'aide 
+de $\ell^2$ additions de points définis dans $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$, 
+lorsque $j-\beta+\max(0,e-(h-\beta))>1$, ou $\mathsf{F}_1$ sinon. Ainsi le calcul de $R_j$ a 
 un coût total de 
 $O(\ell^{2}(\mathsf{M}(\ell^{h-e+i-\beta+1+\max(0,e-(h-\beta))})+(\beta-(\max(0,e-(h-\beta)))\mathsf{M}(\ell)))$. 
-Le calcul du Frobenius sur un point $R_j$ fixé défini dans 
+Le calcul du Frobenius sur un point $R_j$, fixé défini dans 
 $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ lorsque $j-\beta+\max(0,e-(h-\beta))>1$, 
-$\mathsf{F}_1$ sinon, a un coût total de $O(\ell^{\max(j-\beta+\max(0,e-(h-\beta)),1)}
-\mathsf{M}(\ell))$ par le théorème~\ref{thm:frob-ell}. Le coût total du 
+dans $\mathsf{F}_1$ sinon, a un coût total de $O(\ell^{\max(j-\beta+\max(0,e-(h-\beta)),1)}
+\mathsf{M}(\ell))$ par le théorème~\ref{thm:frob-ell}. Le coût total du calcul du 
 Frobenius pour cet algorithme est donc de 
 $O(\ell^2\mathsf{M}(\ell)(\ell^{h-e+i-\beta+1+\max(0,e-(h-\beta))}+(\beta-\max(0,e-(h-\beta)))\ell))$ 
 opérations sur $\mathbb{F}_q$.
 
-\`A $R_j$ fixé pour le test d'égalité $\pi(P_j,R_j)= M \bmod \ell^j$, on 
+\`A $R_j$ fixé, pour le test d'égalité $\pi(P_j,R_j)= M \bmod \ell^j$, on 
 actualise à chaque itération la valeur de $MP_j$ et $MR_j$. Pour cela on est 
 ammené à effectuer jusqu'à $\ell^2$ additions de points d'ordre 
-$\ell^{j}$ définis dans dans $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ lorsque $j-\beta+\max(0,e-(h-\beta))>1$, 
+$\ell^{j}$ définis dans $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$, lorsque 
+$j-\beta+\max(0,e-(h-\beta))>1$, dans
 $\mathsf{F}_1$ sinon. Ce test d'égalité a donc un coût total de 
 $O(\ell^4(\mathsf{M}(\ell^{h-e+i-\beta+1\max(0,e-(h-\beta))})+(\beta-\max(0,e-(h-\beta)))\mathsf{M}(\ell)))$ 
 opérations sur $\mathbb{F}_q$, c'est cette opération qui domine la complexité
