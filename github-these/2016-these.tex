@@ -3201,17 +3201,15 @@ $\ell$-torsion rationnelle. Les résultats exposés ici sont tirés de
 \begin{prop}[Lenstra]
 \label{pro:len:str}
 Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi$ 
-l'endomorphisme de Frobenius avec $\pi \not \in \mathbb{Z}$ alors pour les 
-extension de corps de la forme $\mathbb{F}_{q^r}$ $\mathrm{End}_{
-\mathbb{F}_{q^r}}(E)$ est un $\mathbb{Z}$-module de rang $2$ et l'isomorphisme 
-de $\mathbb{Z}$-modules suivant:
+l'endomorphisme de Frobenius alors pour les 
+extension de corps de la forme $\mathbb{F}_{q^r}$ $\mathrm{End}(E)$ est un 
+$\mathbb{Z}$-module de rang $2$ et on a 
+l'isomorphisme de $\mathbb{Z}$-modules suivant:
 \[
-E(\mathbb{F}_{q^r}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q^r}}(E)}{\pi-1}
+E(\mathbb{F}_{q^r}) \cong \frac{\mathrm{End}(E)}{\pi^{r}-1}
 \] 
-\end{prop}
-\todo{@Luca dans le cas ordinaire $\pi$ n'est jamais dans $\mathbb{Z}$, et
-  $End(E)=End_{\mathbb{F}_{q^r}}(E)$. Tu peux largement simplifier
-  l'énoncé.}
+\end{prop}  
+  
 \begin{proof}
 \cite[Theorem 1]{Lenstra1996}
 \end{proof}
@@ -5464,6 +5462,10 @@ $d_{\pi}$ est un non-résidu quadratique si et seulement si $\left(
 un point par le corollaire~\ref{cor:tab:vol}.
 \end{defi}
 
+On va se placer dans tout ce document dans le cas où l'on travaille avec des 
+volcans de $\ell$-isogénies de hauteur $h>0$ dans le cas Atkin. La 
+remarque~\ref{rem:hau:atk} donne un moyen pour se ramener à ce cas-là.
+
 \subsection{\'Etude de l'action du Frobenius sur le module de Tate}
 
 On va donc étudier dans cette partie l'action du Frobenius sur 
@@ -5486,7 +5488,7 @@ De plus, soit $b$ et $c$ sont premiers avec $\ell$, soit l'un des deux est premi
 $\ell$ et l'autre a sa valuation $\ell$-adique qui appartient à l'intervalle 
 $[2,2e]$. Lorsque $\ell=2$ et $e=0$, on a $2^{h} || a-d$.
 \end{prop}
-\todo{penser a la conjugaison pres pour les conditions sur b et c}
+%\todo{penser a la conjugaison pres pour les conditions sur b et c}
 \begin{proof}
 Soit $E$ une courbe située au niveau $h-e$ du volcan des $\ell$-isogénies, alors,
 comme les $\ell$-isogénies sont rationnelles, les $\ell^{h-e}$-isogénies 
@@ -5857,10 +5859,12 @@ et $d_1$ qui divise~$(\ell-1)$.
 \begin{proof}
 On procède de manière similaire à la preuve de la proposition~\ref{pro:clas:fro}.
 Le degré ~$d_1$ correspond à l'ordre de la matrice~$\pi|E[\ell]$.
-On obtient donc le résultat en utilisant le fait que~$a \cdot d = q \bmod \ell$. 
+On obtient donc le résultat par la proposition~\ref{pro:mat:fro:atk} en 
+utilisant le fait que~$a \cdot d = q \bmod \ell$. 
 \end{proof}
 
 \begin{rem}
+\label{rem:hau:atk}
 Lorsque le volcan est de hauteur $0$, on peut se ramener au cas d'un volcan de 
 hauteur $h>0$ en travaillant dans une extension de degré $\ell+1$ pour que le
 $\ell$-ème polynôme modulaire possède des racines dans cette extension.
@@ -5907,10 +5911,22 @@ $\alpha=\beta$ voir \cite[§5.3.1]{Ionica2010}. Pour le lien entre $h$ et
  $\beta$ le lecteur peut voir \cite[§5.3.1]{Ionica2010}. 
 \end{proof}
 
-Dorénavant on va garder cette notation de $\beta$ qui est définie comme la plus
-grande valuation $\ell$-adique rationnelle de la courbe sur le cratère du 
-volcan des $\ell$-isogénies défini sur $\mathbb{F}$. \todo{Faire un peu mieux}
+Dorénavant on va garder cette notation de $\beta$ que l'on définit comme suit.
 
+\begin{defi}
+\label{def:bet:atk}
+On introduit la notation suivante afin de spécifier la structure de la 
+$\ell$-torsion sur une extension de $\mathsf{F}_1 /\mathbb{F}_q$ où l'on aurait
+$E[\ell] \subset E(\mathsf{F}_1)$.
+\begin{itemize}
+\item Pour $\ell$ premier impair, on note~$\beta$ la plus
+grande valuation $\ell$-adique de la torsion rationnelle de la courbe sur le 
+cratère du volcan des $\ell$-isogénies défini sur $\mathsf{F}_1$; 
+\item pour $\ell=2$, on note~$\beta$ la plus
+grande valuation $2$-adique moins un de la torsion rationnelle de la courbe sur
+le cratère du volcan des $2$-isogénies défini sur $\mathsf{F}_1$.
+\end{itemize}
+\end{defi}
 
 %valuation $\ell$-adique de la torsion rationnelle sur $F$ la plus petite 
 %extension de  $\mathbb{F}_q$ telle que $E[\ell] \subset E(F)$ lorsque $\ell 
@@ -6011,7 +6027,7 @@ $\mathsf{F}_{j-\beta+\max(0,e-(h-\beta))}$ lorsque $j-\beta+\max(0,e-(h-\beta))>
 dans $\mathsf{F}_1$ sinon, a un coût total de $O(\ell^{\max(j-\beta+\max(0,e-(h-\beta)),1)}
 \mathsf{M}(\ell))$ par le théorème~\ref{thm:frob-ell}. Le coût total du calcul du 
 Frobenius pour cet algorithme est donc de 
-$O(\ell^2\mathsf{M}(\ell)(\ell^{h-e+i-\beta+1+\max(0,e-(h-\beta))}+(\beta-\max(0,e-(h-\beta)))\ell))$ 
+\[O(\ell^2\mathsf{M}(\ell)(\ell^{h-e+i-\beta+1+\max(0,e-(h-\beta))}+(\beta-\max(0,e-(h-\beta)))\ell))\]
 opérations sur $\mathbb{F}_q$.
 
 \`A $R_j$ fixé, pour le test d'égalité $\pi(P_j,R_j)= M \bmod \ell^j$, on 
