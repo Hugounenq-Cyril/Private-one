@@ -213,11 +213,32 @@ des groupes définis sur les courbes (hyper-)elliptiques dans lesquels de telles
 attaques seraient plus difficiles \cite{Miller85,Koblitz87,Koblitz89}. 
 Cependant des méthodes à l'aide de couplage sur les courbes elliptiques 
 \cite{Menezes93,FreyRuck94}  ont permis de réduire ce problème à un problème de 
-logarithme discret sur des corps finis. Ainsi 
+logarithme discret sur des corps finis. Malgré de nombreux progrès dans la 
+résolution du logratihme discret sur les corps finis à l'aide de calculs 
+d'indices 
+\cite{JouxLercier06,JouxLercierSmartVercauteren06,BarbulescuGaudryJouxThome14} 
+ce problème reste toujours non résoluble en algorithme en temps 
+polynomial. Ainsi la cryptographie à l'aide de courbes elliptiques est toujours
+utilisée malgré l'existence de méthodes post-quantiques permettant de résoudre
+le logarithme discret. \todo{Trouver source}
 
-L'une des permières étapes donc à faire lorsque l'on veut utiliser une courbe
-en cryptographie est de calculer sa cardinalité pour faire ceci
+L'une des permières étapes à faire lorsque l'on veut utiliser une courbe
+en cryptographie est de calculer sa cardinalité pour faire ceci l'algorithme de
+Schoof \cite{Schoof85} propose une solution en temps polynomial en la 
+caractéristique du corps $\mathbb{F}_q$ sur lequel est définie la courbe 
+elliptique. Cette méthode repose principale sur la détermination de la trace du
+Frobenius sur un groupe de $\ell$-torsion. Ceci est fait en déterminant 
+$t_{\pi}$ dans l'équation suivante obtenue à l'aide du polynôme 
+caractéristique du Frobenius:
+\begin{equation}
+x^2-t_{\pi}x+q=0 \bmod \ell.
+\end{equation} 
+Des améliorations ont été apporté à cet algorithme notamment par Elkies 
+\cite{Elkies91}  et Atkin \cite{Atkin88}, celles-ci permettent notamment de 
+travailler avec des sous-groupes de la $\ell$-torsion lorsque le Frobenius 
+admet deux espaces propres (cas Elkies).
 
+Ainsi au cours de l'algorithme de Schoof
 Parler de cryptographie et du problème du logarithme discret que l'on a étendu sur des courbes elliptiques, le premier à faire ça c'était 
 
 
