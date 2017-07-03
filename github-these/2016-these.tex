@@ -193,6 +193,33 @@
 
 \chapter*{Introduction}
 
+La cryptographie est la science de coder les informations afin de ne pas les
+rendre intelligible par toute personne non destinataire du message, tout en 
+laissant la possibilité au destinataire de pouvoir déchiffrer cette 
+information. De nos jours, de par les nombreux échanges sur internet et 
+l'utilisation de plus en plus présente de l'informatique, cette science est 
+devenue cruciale que cela soit pour des enjeux économiques ou politiques. Ainsi
+la sécurité des données chiffrées est un enjeu majeur et pour prouver celle-ci
+des algorithmes de chiffrement repose sur des problèmes mathématiques jugés 
+difficiles. Tout particulièrement il y a le problème du logarithme discret dans
+un groupe $(G,\cdot)$. Ce problème est de retrouver d'après la connaissance de 
+$P \in G$, $P^{x} \in G$ l'entier $x$. Ce problème dépend notamment du choix du
+groupe. 
+
+De nombreuses attaques génériques sur le logarithme discret ont été 
+faites \cite{Shanks71,Pollard78} en un temps $O(\sqrt{r})$ avec $r$ la taille 
+du plus grand facteur de l'ordre du groupe. Ainsi il a été proposé d'utiliser 
+des groupes définis sur les courbes (hyper-)elliptiques dans lesquels de telles 
+attaques seraient plus difficiles \cite{Miller85,Koblitz87,Koblitz89}. 
+Cependant des méthodes à l'aide de couplage sur les courbes elliptiques 
+\cite{Menezes93,FreyRuck94}  ont permis de réduire ce problème à un problème de 
+logarithme discret sur des corps finis. Ainsi 
+
+L'une des permières étapes donc à faire lorsque l'on veut utiliser une courbe
+en cryptographie est de calculer sa cardinalité pour faire ceci
+
+Parler de cryptographie et du problème du logarithme discret que l'on a étendu sur des courbes elliptiques, le premier à faire ça c'était 
+
 
 \chapter{Rappels théoriques}
 \section{Complexit\'e}
