@@ -311,11 +311,15 @@ d'isogénies \cite{Couveignes96} car celui-ci ne suppose pas la connaissance de
 courbes sous une représentation spécifique. L'algorithme de Couveignes 
 interpole l'action de l'isogénie sur les points d'ordre $p^k$, préservés par 
 l'action de l'isogénie de degré $r$ avec $r \wedge p=1$, et se sert de cette 
-information pour déterminer l'isogénie. Cet algorithme
-a toutefois le désavantage d'avoir une dépendance exponentielle en $p$.
-Ce travail de Couveignes fût amélioré par la suite par De Feo  \cite{DeFeo11},
-qui se sert notamment d'une construction efficace d'extensions $p$-adiques de 
-corps finis faite conjointement avec Schost \cite{DeFeo-Shost'12}. 
+information pour déterminer l'isogénie. Ce travail de Couveignes fût amélioré 
+par la suite par De Feo \cite{DeFeo11}, qui se sert notamment d'une 
+construction efficace d'extensions $p$-adiques de corps finis faite 
+conjointement avec Schost \cite{DeFeo-Shost'12}. Cet algorithme
+a toutefois le désavantage d'avoir une dépendance exponentielle en $p$. Il 
+reste intéressant car il a une complexité quadratique meilleure que la 
+complexité pour le calcul nécessaire à l'obtention de représentations 
+spécifiques (équation de Weierstrass normalisée) des courbes utilisées dans le 
+contexte S.E.A.. 
 
 Cette thèse s'inscrit dans la suite des travaux de \cite{Couveignes96} 
 et \cite{DeFeo11} et cherche notamment à généraliser celui-ci à l'étude des 
@@ -345,8 +349,9 @@ intéressent.
 Ainsi notre travail a abouti au théorème suivant:
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
-$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
-en un temps quasi quadratique avec une dépendance polynomiale en la caractéristique du corps.
+$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de 
+l'isogénie explicite" en un temps quasi quadratique en le degré de l'isogénie 
+avec une dépendance polynomiale en la caractéristique du corps.
 \end{thm}
 
 \paragraph{Organisation de la thèse}
