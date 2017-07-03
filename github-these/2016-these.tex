@@ -55,7 +55,7 @@
 \newcommand{\defeq}{\mathrel{\mathop:}=}
 
 \author{Hugounenq Cyril}
-\title{Arithmétique Rapide appliqué à la Géométrie et à la Cryptologie}
+\title{Volcans et calcul d'isogénies}
 \makenomenclature
 \makeindex
 
@@ -118,17 +118,6 @@
 \selectlanguage{french}% french si rapport en français
 
 
-%\renewcommand{\ALG@name}{Algorithme} %Redéfintion du  nom Algorithm
-%\renewcommand{\listalgorithmname}{Liste des \ALG@name s} \makeatother
-%
-%\newcommand{\newalgname}[1]{%
-%  \renewcommand{\ALG@name}{#1}%
-%}
-%\newalgname{Algorithme}% All algorithms will be called "Algorithme"
-%\renewcommand{\listalgorithmname}{Liste des \ALG@name s}
-%\newcommand{\algorithmicend}{\textbf{fin}}
-%\newcommand{\algorithmicif}{\textbf{si}}
-%\newcommand{\algorithmicthen}{\textbf{alors}
 \floatname{algorithm}{Algorithme}
 \def\algorithmicrequire{\textbf{Entrée:}}
 \def\algorithmicensure{\textbf{Sortie:}}
@@ -163,7 +152,7 @@
 
 \mainmatter
 % \SingleSpace
-
+\maketitle
 \tableofcontents*
 \listofalgorithms
 \listoftodos
@@ -227,18 +216,42 @@ en cryptographie est de calculer sa cardinalité pour faire ceci l'algorithme de
 Schoof \cite{Schoof85} propose une solution en temps polynomial en la 
 caractéristique du corps $\mathbb{F}_q$ sur lequel est définie la courbe 
 elliptique. Cette méthode repose principale sur la détermination de la trace du
-Frobenius sur un groupe de $\ell$-torsion. Ceci est fait en déterminant 
+Frobenius sur un groupe de $r$-torsion. Ceci est fait en déterminant 
 $t_{\pi}$ dans l'équation suivante obtenue à l'aide du polynôme 
 caractéristique du Frobenius:
 \begin{equation}
-x^2-t_{\pi}x+q=0 \bmod \ell.
+x^2-t_{\pi}x+q=0 \bmod r.
 \end{equation} 
 Des améliorations ont été apporté à cet algorithme notamment par Elkies 
-\cite{Elkies91}  et Atkin \cite{Atkin88}, celles-ci permettent notamment de 
-travailler avec des sous-groupes de la $\ell$-torsion lorsque le Frobenius 
-admet deux espaces propres (cas Elkies).
+\cite{Elkies91}  et Atkin \cite{Atkin88}, celles-ci permettent de travailler 
+avec des sous-groupes de la $\ell$-torsion lorsque le Frobenius admet deux 
+espaces propres (cas Elkies).
 
-Ainsi au cours de l'algorithme de Schoof
+Ainsi au cours de l'algorithme de S.E.A. (Schoof Elkies Atkin) on est amené à 
+calculer le $r$-ème polynôme modulaire $\Phi_r$ avec un coût de 
+$\tilde{O}(r^3)$ (par \cite[Algorithm 6.1]{BLS12}), ainsi q'une isogénie de 
+degré $r$ entre deux courbes elliptiques données par leur $j$-invariants (ces 
+$j$-invariants annulent $\Phi_r$). Les toutes premières méthodes de calcul 
+d'isogénies dans ce contexte \cite{Atkin91} \cite{CharlapColeyRobbins91} sont
+dominées par le coût de calcul du polynôme modulaire. Le premier algorithme à
+traiter du calcul d'isogénies sur les corps finis est celui de Elkies 
+\cite{Elkies1998} celui-ci se limitait au cas de corps de caractéristique 
+suffisamment grande. Ce travail a été ensuite amélioré par les travaux de 
+Bostan Morain Salvy et Schost \cite{BMSS08} puis par ceux de Lercier Sirvent
+\cite{Lercier-Sirvent2008}  qui a permis d'utiliser cette méthode sans 
+contrainte de caractéristique, celui-ci a été récemment amélioré par un 
+résultat de Lairez-Vaccon \cite{LairezVaccon16} sur la précision $p$-adique. 
+
+Le désavantage avec toutes ces méthodes c'est que celles-ci supposaient la 
+connaissance de $\Phi_r$. En effet le calcul d'isogénies peut avoir un intérêt 
+en dehors de l'algorithme S.E.A. comme le montrent les travaux de Teske 
+\cite{Teske06} sur un schéma à trappes, les travaux de cryptanalyse de \cite{MaurerMenezesTeske01}, 
+les fonctions de hachage \cite{CGL09}, l'accélération de la multiplication 
+scalaire \cite{GallantLambertVanstone01}, \cite{LongaSica14} ou les 
+crypto-systèmes post-quantiques à base de graphes d'isogénies 
+\cite{RostovtsevStolbunov06} voire \cite{DeFeoJaoPlut14}.
+
+Ainsi le coût de calcul de la $r$-isogénie dans ce contexte n'est pas intéressant
 Parler de cryptographie et du problème du logarithme discret que l'on a étendu sur des courbes elliptiques, le premier à faire ça c'était 
 
 
@@ -649,7 +662,7 @@ t= \sum_{Q \in G \setminus \{0_E\}} f'(Q) \quad u=\sum_{Q \in G \setminus \{0_E\
 \end{equation*}
 
 \begin{rem}
-On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisée par Elkies \cite{elkies1998} et \cite[Section 2.4]{Kohel96}  qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
+On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisée par Elkies \cite{Elkies1998} et \cite[Section 2.4]{Kohel96}  qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
 \begin{equation*}
 \frac{g(x)}{h(x)}= x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
 \end{equation*}
@@ -1111,7 +1124,7 @@ modulaire (voir proposition \ref{prop:elk:nor} pour la construction et
 \cite{Schoof95} pour plus de détails). Le $r$-ème polynôme modulaire est 
 calculé en $\tilde{O}(r^3)$ opérations sur $\mathbb{F}_q$ d'après \cite{Enge09} \cite[Algorithm 6.1, Theorem 1]{BLS12}. \todo{se rappeler cette seconde source}
 Les idées présentées ici sont issues du travail de Elkies~\cite[§The kernel of
- the isogeny]{elkies1998}, celui-ci commence à partir des équations de 
+ the isogeny]{Elkies1998}, celui-ci commence à partir des équations de 
  Weierstrass normalisées de $E$
 \begin{equation}
 y^2=x^3+Ax+B
@@ -1205,7 +1218,7 @@ $\mathbb{F}_q$.
  
 \section{Bostan-Morain-Salvy-Schost}
 L'algorithme BMSS \cite{BMSS08} propose de résoudre le même problème que 
-l'algorithme de Elkies \cite{elkies1998} et a une meilleure complexité car 
+l'algorithme de Elkies \cite{Elkies1998} et a une meilleure complexité car 
 il change notamment de méthode pour le calcul des $h_i$:
 \begin{thm}
 \label{thm:BMSS}
@@ -1404,7 +1417,7 @@ lieu dans $\mathbb{Q}_q$ une extension non ramifiée de degré $d$ de $\mathbb{Q
 
 L'algorithme de Lercier Sirvent calcule un relevé $\overline{E}$ de $E$ dans 
 $\mathbb{Q}_p$ et un relèvement $\overline{j_{E'}}$ du $j$-invariant $j'$ de la
-courbe $\ell$-isogène $E'$. Ensuite les formules de Elkies \cite{elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors $\overline{I}$ et $\overline{E''}$, enfin on calcule $I: E \rightarrow E' $ à l'aide de l'isomorphisme $E' \cong E''$. 
+courbe $\ell$-isogène $E'$. Ensuite les formules de Elkies \cite{Elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors $\overline{I}$ et $\overline{E''}$, enfin on calcule $I: E \rightarrow E' $ à l'aide de l'isomorphisme $E' \cong E''$. 
 
 \begin{algorithm}
 \caption{\label{alg:LS08:modified} Algorithme de Lercier-Sirvent}
@@ -1462,7 +1475,7 @@ L'étape $2$ peut être faite en $\tilde{O}(r)$ opérations sur $\mathbb{F}_q$ �
 l'aide d'un relèvement de Hensel. 
 L'étape $3$ du calcul d'une équation de Weierstrass normalisée a une complexité
 de $O(\ell^2)$ opérations sur $\mathbb{Q}_q$ à l'aide des formules de Elkies 
-\cite{elkies1998} (voir \ref{sub:Elkies}).
+\cite{Elkies1998} (voir \ref{sub:Elkies}).
 L'étape $4$ est l'algorithme BMSS et a une complexité de 
 $O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{Q}_q$ si on ne connaît pas la
 valeur de $p_1$ (somme des abscisses des points du noyau de l'isogénie). 
