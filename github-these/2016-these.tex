@@ -216,84 +216,138 @@ cryptographie \cite{Miller85,Koblitz87,Koblitz89}.
 On s'intéresse tout particulièrement aux courbes elliptiques sur les corps 
 finis $\mathbb{F}_q$ et aux algorithmes qui permettent de calculer les 
 isogénies, morphismes de groupe de noyau fini, entre deux courbes elliptiques. 
+En particulier deux courbes elliptiques reliées par une isogénie ont la même 
+cardinalité.
 
 L'intérêt de tels algorithmes est motivé par leur utilisation dans l'algorithme
 de Schoof \cite{Schoof85}, qui est un algorithme primodial car il sert à 
 calculer la cardinalité de courbes elliptiques. Bien que la complexité des 
-algorithmes de calculs d'isogénies ne domine pas dans l'algorithme de Schoof, et
-de son amélioration (S.E.A) \cite{Schoof95} due aux travaux de Atkin \cite{Atkin88} et 
+algorithmes de calculs d'isogénies ne domine pas dans l'algorithme de Schoof et
+son amélioration (S.E.A) \cite{Schoof95}, due aux travaux de Atkin \cite{Atkin88} et 
 Elkies \cite{Elkies91}, des travaux ont été fait sur les algorithmes de calcul 
 d'isogénies.
 
-L'une des permières étapes à faire lorsque l'on veut utiliser une courbe
-en cryptographie est de calculer sa cardinalité pour faire ceci l'algorithme de
-Schoof \cite{Schoof85} propose une solution en temps polynomial en la 
-caractéristique du corps $\mathbb{F}_q$ sur lequel est définie la courbe 
-elliptique. Cette méthode repose principalement sur la détermination de la 
-trace du Frobenius sur un groupe de $r$-torsion. Ceci est fait en déterminant 
-$t_{\pi}$ dans l'équation suivante obtenue à l'aide du polynôme 
-caractéristique du Frobenius:
-\begin{equation}
-x^2-t_{\pi}x+q=0 \bmod r.
-\end{equation} 
-Des améliorations ont été apportées à cet algorithme notamment par Elkies 
-\cite{Elkies91}  et Atkin \cite{Atkin88}, celles-ci permettent de travailler 
-avec des sous-groupes de la $\ell$-torsion lorsque le Frobenius admet deux 
-espaces propres (cas Elkies).
-
-Ainsi au cours de l'algorithme de S.E.A. (Schoof Elkies Atkin) \cite{Schoof95} 
-on est amené à calculer le $r$-ème polynôme modulaire $\Phi_r$ avec un coût de 
-$\tilde{O}(r^3)$ (par \cite[Algorithm 6.1]{BLS12}), ainsi qu'une isogénie de 
-degré $r$ entre deux courbes elliptiques données par leur $j$-invariants (ces 
-$j$-invariants annulent $\Phi_r$). Les toutes premières méthodes de calcul 
+Les toutes premières méthodes de calcul 
 d'isogénies dans ce contexte \cite{Atkin91} \cite{CharlapColeyRobbins91} sont
-dominées par le coût de calcul du polynôme modulaire. Le premier algorithme à
+dominées par d'autres étapes dans l'algorithme S.E.A.. Le premier algorithme à
 traiter du calcul d'isogénies sur les corps finis est celui de Elkies 
-\cite{Elkies1998} celui-ci se limitait au cas de corps de caractéristique 
-suffisamment grande. Ce travail a été ensuite amélioré par les travaux de 
-Bostan Morain Salvy et Schost \cite{BMSS08} puis par ceux de Lercier Sirvent
-\cite{Lercier-Sirvent2008}  qui a permis d'utiliser cette méthode sans 
+\cite{Elkies1998}; celui-ci se limitait au cas de corps finis $\mathbb{F}_q$ de 
+caractéristique $p$ suffisamment grande. Ce travail a été ensuite amélioré par 
+les travaux de Bostan Morain Salvy et Schost \cite{BMSS08} puis par ceux de 
+Lercier Sirvent \cite{Lercier-Sirvent2008} qui a permis d'utiliser cette méthode sans 
 contrainte de caractéristique, celui-ci a été récemment amélioré par un 
-résultat de Lairez-Vaccon \cite{LairezVaccon16} sur la précision $p$-adique. 
+résultat de Lairez et Vaccon \cite{LairezVaccon16} sur la précision $p$-adique. 
 
-Le désavantage avec toutes ces méthodes c'est que celles-ci supposaient la 
-connaissance de $\Phi_r$. En effet le calcul d'isogénies peut avoir un intérêt 
+Dans S.E.A. les isogénies sont calculées à l'aide de représentations 
+spécifiques des courbes (sous équation de Weierstrass normalisée) alors que 
+celles-ci peuvent être représentées à isomorphisme près à l'aide de leur 
+$j$-invariant.
+
+En effet le calcul d'isogénies peut avoir un intérêt 
 en dehors de l'algorithme S.E.A. comme le montrent les travaux de Teske 
-\cite{Teske06} sur un schéma à trappes, les travaux de cryptanalyse de \cite{MaurerMenezesTeske01}, 
+\cite{Teske06} sur un crypto-système à trappes, les travaux de cryptanalyse de 
+\cite{MaurerMenezesTeske01}, 
 les fonctions de hachage \cite{CGL09}, l'accélération de la multiplication 
 scalaire \cite{GallantLambertVanstone01}, \cite{LongaSica14} ou les 
 crypto-systèmes post-quantiques à base de graphes d'isogénies 
-\cite{RostovtsevStolbunov06} voire \cite{DeFeoJaoPlut14}.
+\cite{RostovtsevStolbunov06} \cite{DeFeoJaoPlut14}.
+
+On s'intéresse au problème suivant:
+\paragraph{Problème du calcul explicite d'isogénie}
+
+Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les 
+$j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes 
+elliptiques $E_a$ et $E_b$ reliées par une isogénie de degré $r$ telles que 
+$j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est
+de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et 
+l'isogénie de degré $r$ $\phi:E \rightarrow E'$.
+\\
+%parler dej-invariants
+
+%L'une des étapes les plus couteuses de l'algorithme S.E.A. est le calcul
+
+%L'une des permières étapes à faire lorsque l'on veut utiliser une courbe
+%en cryptographie est de calculer sa cardinalité pour faire ceci l'algorithme de
+%Schoof \cite{Schoof85} propose une solution en temps polynomial en la 
+%caractéristique du corps $\mathbb{F}_q$ sur lequel est définie la courbe 
+%elliptique. Cette méthode repose principalement sur la détermination de la 
+%trace du Frobenius sur un groupe de $r$-torsion. Ceci est fait en déterminant 
+%$t_{\pi}$ dans l'équation suivante obtenue à l'aide du polynôme 
+%caractéristique du Frobenius:
+%\begin{equation}
+%x^2-t_{\pi}x+q=0 \bmod r.
+%\end{equation} 
+%Des améliorations ont été apportées à cet algorithme notamment par Elkies 
+%\cite{Elkies91}  et Atkin \cite{Atkin88}, celles-ci permettent de travailler 
+%avec des sous-groupes de la $\ell$-torsion lorsque le Frobenius admet deux 
+%espaces propres (cas Elkies).
+
+%Ainsi au cours de l'algorithme de S.E.A. (Schoof Elkies Atkin) \cite{Schoof95} 
+%on est amené à calculer le $r$-ème polynôme modulaire $\Phi_r$ avec un coût de 
+%$\tilde{O}(r^3)$ (par \cite[Algorithm 6.1]{BLS12}), ainsi qu'une isogénie de 
+%degré $r$ entre deux courbes elliptiques données par leur $j$-invariants (ces 
+%$j$-invariants annulent $\Phi_r$). Les toutes premières méthodes de calcul 
+%d'isogénies dans ce contexte \cite{Atkin91} \cite{CharlapColeyRobbins91} sont
+%dominées par le coût de calcul du polynôme modulaire. Le premier algorithme à
+%traiter du calcul d'isogénies sur les corps finis est celui de Elkies 
+%\cite{Elkies1998} celui-ci se limitait au cas de corps de caractéristique 
+%suffisamment grande. Ce travail a été ensuite amélioré par les travaux de 
+%Bostan Morain Salvy et Schost \cite{BMSS08} puis par ceux de Lercier Sirvent
+%\cite{Lercier-Sirvent2008}  qui a permis d'utiliser cette méthode sans 
+%contrainte de caractéristique, celui-ci a été récemment amélioré par un 
+%résultat de Lairez-Vaccon \cite{LairezVaccon16} sur la précision $p$-adique. 
+
+%Le désavantage avec toutes ces méthodes c'est que celles-ci supposaient la 
+%connaissance de $\Phi_r$. En effet le calcul d'isogénies peut avoir un intérêt 
+%en dehors de l'algorithme S.E.A. comme le montrent les travaux de Teske 
+%\cite{Teske06} sur un schéma à trappes, les travaux de cryptanalyse de \cite{MaurerMenezesTeske01}, 
+%les fonctions de hachage \cite{CGL09}, l'accélération de la multiplication 
+%scalaire \cite{GallantLambertVanstone01}, \cite{LongaSica14} ou les 
+%crypto-systèmes post-quantiques à base de graphes d'isogénies 
+%\cite{RostovtsevStolbunov06} voire \cite{DeFeoJaoPlut14}.
 
 Ainsi il est pertinent de suivre le travail de Couveignes sur le calcul 
-d'isogénies de degré $r$ à l'aide de la $p$-torsion \cite{Couveignes96}, avec 
-$p$ la caractéristique du corps sur lequel on travaille,
-car celui-ci ne suppose pas la connaissance de
-$\Phi_r$. Ce travaille de Couveignes fût amélioré par la suite par De Feo  \cite{DeFeo11},  qui se sert notamment
-d'une construction efficace d'extensions $p$-adiques de corps finis faite conjointement avec Schost \cite{DeFeo-Shost'12}. 
+d'isogénies \cite{Couveignes96} car celui-ci ne suppose pas la connaissance de 
+courbes sous une représentation spécifique. L'algorithme de Couveignes 
+interpole l'action de l'isogénie sur les points d'ordre $p^k$, préservés par 
+l'action de l'isogénie de degré $r$ avec $r \wedge p=1$, et se sert de cette 
+information pour déterminer l'isogénie. Cet algorithme
+a toutefois le désavantage d'avoir une dépendance exponentielle en $p$.
+Ce travail de Couveignes fût amélioré par la suite par De Feo  \cite{DeFeo11},
+qui se sert notamment d'une construction efficace d'extensions $p$-adiques de 
+corps finis faite conjointement avec Schost \cite{DeFeo-Shost'12}. 
 
 Cette thèse s'inscrit dans la suite des travaux de \cite{Couveignes96} 
 et \cite{DeFeo11} et cherche notamment à généraliser celui-ci à l'étude des 
-points de $\ell$-torsion, dans le cas de courbes ordinaires, avec $\ell \neq p$. Pour cela on doit notamment 
-déterminer des invariants de 
-l'isogénie de degré $r$ que l'on veut calculer tout en se servant d'une 
-construction efficace de tours d'extensions $\ell$-adiques. 
+points d'ordre $\ell^k$, dans le cas de courbes ordinaires, avec $\ell \neq p$
+afin notamment de s'affranchir de la dépendance exponentielle en $p$. Pour 
+cela on doit notamment déterminer des ensembles de points préservés par 
+l'action de l'isogénie de degré $r$ tout en se servant d'une construction 
+efficace d'extensions $\ell$-adiques de corps finis. 
 
-Pour le calcul d'invariants de la $r$-isogénie on se sert de graphes d'isogénies 
-étudiés (dans le cas de courbes ordinaires) pour la première fois par \cite{Kohel96} afin de calculer l'anneau 
-d'endomorphismes d'une courbe elliptique. Fouquet et Morain ont par la suite 
+Pour le calcul d'ensemble de points d'ordre $\ell^k$ préservés par l'action de 
+la $r$-isogénie on se sert de graphes 
+d'isogénies dans le cas de courbes ordinaires. Ceux-ci ont été étudiés pour 
+la première fois par \cite{Kohel96} afin de calculer l'anneau des 
+endomorphismes d'une courbe elliptique. Fouquet et Morain ont par la suite 
 utilisé ces graphes d'isogénies, appelés \emph{volcans d'isogénies}, afin 
-d'améliorer S.E.A. Enfin les travaux de 
-Miret et al. \cite{MiretMRV05} \cite{MiretMSTV06} \cite{MiretMSTV08} ont permis
-d'expliciter un lien entre le niveau d'une courbe dans le volcan de $\ell$-isogénies et
-la structure des $\ell$ sous groupe de Sylow.
+d'améliorer S.E.A.. Enfin les travaux de Miret et al. \cite{MiretMRV05} 
+\cite{MiretMSTV06} \cite{MiretMSTV08} ont permis d'expliciter un lien entre le 
+niveau d'une courbe dans le volcan de $\ell$-isogénies et
+la structure des $\ell$ sous-groupes de Sylow.
 Les travaux de \cite{Ionica-Joux10} ont permis eux, à l'aide de couplage de 
-points, de déterminer la direction d'isogénies dans le volcan sous certaines
-conditions. 
+points, de se diriger dans le volcan d'isogénies sous certaines conditions. 
 
 Pour la construction de tours d'extensions nos travaux sont dans la veine de 
 ceux de \cite{Doliskani-Schost15} et généralisent les résultats qui nous 
-intéressent, tout particulièrement le calcul du Frobenius.
+intéressent.
+
+Ainsi notre travail a abouti au théorème suivant:
+\begin{thm}
+Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
+$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
+en un temps quasi quadratique avec une dépendance polynomiale en la caractéristique du corps.
+\end{thm}
 
 \paragraph{Organisation de la thèse}
 On présente donc dans le premier chapitre des notions de bases, notamment sur les
@@ -317,11 +371,12 @@ des résultats de Kohel \cite{Kohel96}, Fouquet et Morain
 Ensuite nous étudions dans le chapitre 5 l'action du Frobenius sur 
 la $\ell^k$-torsion, et ses liens avec les directions dans le volcan de 
 $\ell$-isogénies, dans le cas Elkies puis Atkin. Nous présentons aussi dans ce
-chapitre des algorithmes pour calculer des points générateurs de certaines \todo{Qu'est-ce qu'un point générateur?}
-isogénies, spécifiées par leurs directions, dans le volcan. 
+chapitre des algorithmes permettant de calculer des points qui engendrent le 
+noyau de certaines isogénies, spécifiées par leurs directions, dans le volcan. 
 
-Ensuite, nous présentons dans le chapitre 6 comment ces directions peuvent être utilisées
-dans l'algorithme de Couveignes $\ell$-adique.
+Ensuite, nous présentons dans le chapitre 6 comment ces isogénies spécifiées 
+par leur directions peuvent être
+utilisées dans un algorithme de Couveignes $\ell$-adique.
 Nous présentons et analysons donc un algorithme $\ell$-adique de
 Couveignes dans un cas favorable (en particulier on connaît déjà un nombre de 
 Elkies), puis dans le cas général, où l'on utilise notamment un résultat de 
@@ -8189,8 +8244,11 @@ secrète partagée entre deux utilisateurs et on utiliserait alors les formes de
 matrices pour communiquer la clé correspondant au point que l'on doit utiliser.
 Ce crypto système semble cependant un peu trop couteux pour être pratique.
 
+Parler de couplage.
+
 Enfin on pourrait étudier l'intérêt de l'algorithme de Couveignes $\ell$-adique
 dans la cryptanalyse de systèmes à base d'isogénies.
+
  
 \todo{Vérifier qu'il n'y a pas d'erreurs dans la bibliographie}
 \bibliography{Biblio}
