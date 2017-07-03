@@ -7369,6 +7369,7 @@ tel résultat on ne l'énoncera pas.
 %\end{thm}
 
 \chapter{Variantes de l'algorithme de Couveignes $\ell$-adique dans le cas Elkies}
+\label{cha:var:cou}
 Dans les améliorations de l'algorithme de Couveignes que l'on a présentées 
 seules celles concernant le cas Elkies ont un intérêt en terme de complexité. 
 On va donc étudier des variantes à l'algorithme de Couveignes avec 
@@ -7633,7 +7634,7 @@ $E[\ell_i^{k_i}]$ avec $\ell_i$ un nombre premier de Elkies, pour faire cela on
 a besoin de définir quelques notions. On va supposer sans perte de généralités 
 que les $k_i$ pour $i \in [1,n]$ sont fixés tels que l'on ait $\prod_{i=1}^{n} 
 \ell_i^{2k_i-2}(\ell_i+1)>4r$.
-
+\label{sec:cou:con}
 \subsection{Théorème des Restes Chinois et son application à l'algorithme de Couveignes $\ell$-adique}
 \label{sub:TRCE:cou}
 
@@ -8114,8 +8115,57 @@ nombres premiers de Elkies.
  
 
 \chapter*{Conclusion}
-Blabla 
+Nous avons donc vu dans ce manuscrit comment généraliser l'algorithme de 
+Couveignes au cas $\ell$-adique. En particulier, en l'état actuel, nous avons 
+vu que l'on était capable d'obtenir un algorithme quasi-quadratique uniquement
+dans le cas Elkies, et un algorithme de complexité inférieure à cubique dans le
+cas Atkin. Cependant l'algorithme $\ell$-adique de Couveignes dans le cas Atkin
+a une complexité trop grande, et si on voulait améliorer cet algorithme, avec 
+la même méthode que pour le cas Elkies, il faudrait pouvoir distinguer un 
+sous-groupe cyclique de la $\ell^k$-torsion, ou trouver un autre moyen pour 
+distinguer des couples de points formant une base de $E[\ell^k]$. Nous avons 
+réfléchi à travailler avec un groupes de points isomorphes à 
+$\mathbb{Z}_{\ell^2}$ (l'unique extension quadratique non ramifiée de 
+$\mathbb{Z}_{\ell}$), mais nous n'avons pas réussi à modéliser l'action du 
+Frobenius sur un tel ensemble. Enfin parmi les pistes proposées mais non 
+satisfaisante dans le chapitre~\ref{cha:var:cou} seule celle présentée dans la 
+section~\ref{sec:cou:con} sur une approche avec un nombre composé de Elkies 
+pourrait aboutir quand on aura des meilleurs représentations de compositum 
+permettant des changements de représentation en un temps linéaire.
 
+Enfin les propositions~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} nous 
+permettent de savoir exactement à quel niveau se trouve une courbe dans le 
+volcan. Ainsi en se plaçant dans le même contexte que \cite{BissonSutherLand2009},
+où l'on connaît déjà une factorisation de $d_{\pi}$, avec les 
+propositions ~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} on connaîtrait le 
+conducteur de la courbe par rapport à $\mathbb{Z}[\pi]$ et donc on pourrait
+déterminer l'anneau d'endomorphisme de la courbe.
+
+Dans les travaux similaire à \cite{BissonSutherLand2009} \todo{reformuler cela} pour le calcul 
+d'anneau d'endomorphisme tels que \cite{BLS12} pour le calcul de polynôme 
+modulaire ou le calcul de polynôme de Hilbert \cite{Broker08} \cite{Sutherland11a} sont utilisés des marches sur le
+volcan, et se placent par simplicité dans le cas où le volcan de 
+$\ell_i$-isogénies est réduit à un cratère cyclique. Ce cas se présentant 
+uniquement pour les nombres $\ell_i$ de Elkies ne divisant pas $d_{\pi}$ cette 
+approche est trés raisonnable. De plus comme dit dans le calcul d'isogénies 
+n'est pas privilégié or c'est ce que l'on fait lors de nos déplacements dans
+la détermination de direction dans le volcan. Pour toutes ces raisons notre 
+détermination de directions dans le volcan de $\ell_i$-isogénies n'aura 
+vraisemblablement pas d'impact sur ces méthodes. Cependant comme dit dans 
+où l'on étudie les directions dans le volcan à l'aide d'action dans le groupe
+de classes d'idéaux, il serait intéressant de savoir transposer le résultat de 
+la proposition~\ref{pro:dia:hor} au groupe de classes d'idéaux pour avoir 
+éventuellement un résultat intéressant dans ce contexte.
+
+On a aussi vu dans le chapitre~\ref{cha:tour}, en adaptant les méthodes de 
+\cite{Doliskani-Schost15} un moyen de faire un calcul 
+rapide du Frobenius, il serait intéressant de voir si on ne peut pas se servir
+de cela pour obtenir des résultats sur la multiplication scalaire tel que dans \todo{Citer Christophe Negre}.
+
+Enfin on pourrait utiliser le résultat de la proposition %~\ref{pro:cla:fro:mat} pour faire un crypto système dans lequel le point P fixe serait la clé maitre secrète partagée entre deux utilisateurs et on utiliserait alors les formes des matrices pour communiquer la clé correspondant au point que l'on doit utiliser. Ce crypto système semble cependant un peu trop couteux pour être pratique.
+
+
+ 
 \todo{Probleme biblio reférence double}
 \bibliography{Biblio}
 
