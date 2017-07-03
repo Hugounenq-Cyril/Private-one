@@ -205,11 +205,11 @@ Cependant des méthodes à l'aide de couplage sur les courbes elliptiques
 logarithme discret sur des corps finis. Malgré de nombreux progrès dans la 
 résolution du logratihme discret sur les corps finis à l'aide de calculs 
 d'indices 
-\cite{JouxLercier06,JouxLercierSmartVercauteren06,BarbulescuGaudryJouxThome14} 
+\cite{JouxLercier06,JouxLercierSmartVercauteren06,BarbulescuGaudryJouxThome14,BarbulescuPierrot14} 
 ce problème reste toujours non résoluble en algorithme en temps 
 polynomial. Ainsi la cryptographie à l'aide de courbes elliptiques est toujours
 utilisée malgré l'existence de méthodes post-quantiques permettant de résoudre
-le logarithme discret. \todo{Trouver source}
+le problème logarithme discret. \todo{Trouver source}
 
 L'une des permières étapes à faire lorsque l'on veut utiliser une courbe
 en cryptographie est de calculer sa cardinalité pour faire ceci l'algorithme de
@@ -251,8 +251,71 @@ scalaire \cite{GallantLambertVanstone01}, \cite{LongaSica14} ou les
 crypto-systèmes post-quantiques à base de graphes d'isogénies 
 \cite{RostovtsevStolbunov06} voire \cite{DeFeoJaoPlut14}.
 
-Ainsi le coût de calcul de la $r$-isogénie dans ce contexte n'est pas intéressant
-Parler de cryptographie et du problème du logarithme discret que l'on a étendu sur des courbes elliptiques, le premier à faire ça c'était 
+Ainsi il est pertinent de suivre le travail de Couveignes sur le calcul 
+d'isogénies de degré $r$ à l'aide de la $p$-torsion \cite{Couveignes96}
+car celui-ci ne suppose pas la connaissance de
+$\Phi_r$. Ce travaille de Couveignes fût amélioré par la suite par les travaux 
+de De Feo et Schost \cite{DeFeo11}, \cite{DeFeo-Shost'12} qui se sert notamment
+d'une construction efficace d'extensions $p$-adiques de corps finis. 
+
+Cette thèse s'inscrit dans la continuation des travaux de \cite{Couveignes96} 
+et \cite{DeFeo11} et cherche notamment à généraliser celui-ci à l'étude des 
+points de $\ell$-torsion avec $\ell \neq p$ la caractéristique du corps sur 
+lequel on travaille. Pour cela on doit notamment déterminer des invariants de 
+l'isogénie de degré $r$ que l'on veut calculer tout en se servant de la 
+construction de tours d'extensions $\ell$-adiques. 
+
+Pour le calcul d'invariants de la $r$-isogénie on se sert de graphes d'isogénies 
+étudiés pour la première fois par \cite{Kohel96} afin de calculer l'anneau 
+d'endomorphismes d'une courbe elliptique. Fouquet et Morain ont par la suite 
+utilisé ces graphes d'isogénies, appelés \emph{volcans d'isogénies}, afin 
+d'améliorer S.E.A. Enfin les travaux de 
+Miret et al. \cite{MiretMRV05} \cite{MiretMSTV06} \cite{MiretMSTV08} ont permis
+d'expliciter un lien entre le niveau d'une courbe dans le volcan d'isogénies et
+la structure de son groupe de Sylow.
+Les travaux de \cite{Ionica-Joux10} ont permis eux, à l'aide de couplage de 
+points, de déterminer la direction d'isogénies dans le volcan sous certaines
+conditions. 
+
+Pour la construction de tours d'extensions nos travaux sont dans la veine de 
+ceux de \cite{Doliskani-Schost15} et généralisent les résultats qui nous 
+intéressent, tout particulièrement le calcul du Frobenius.
+
+\paragraph{Organisation de la thèse}
+On présente donc dans le premier chapitre des notions de bases, notamments les
+courbes elliptiques et les endomorphismes de courbes elliptiques. Dans le 
+deuxième chapitre nous abordons les différents algorithmes de calculs 
+d'isogénies sur des corps finis, dont ceux de Elkies \cite{Elkies1998}, Bostan 
+et Al. \cite{BMSS08}, Lercier-Sirvent \cite{Lercier-Sirvent2008} avant de 
+présenter l'algorithme de Couveignes \cite{Couveignes96} et ses améliorations 
+par De Feo \cite{DeFeo11}. Dans le chapitre 3 nous présentons les tours 
+$\ell$-adiques, dans la suite des travaux de \cite{Doliskani-Schost15}, sur 
+lesquelles on va travailler par la suite. Nous établissons notamment un 
+résultat similaire à celui de \cite{DeFeo11} pour le calcul de polynômes 
+d'interpolation. Dans le chapitre 4 nous rappelons les résultats principaux 
+sur les volcans d'isogénies, dont notamment le lien entre les niveaux dans le
+volcan et la structure des $\ell$ sous-groupes de Sylow, pour cela on utilise
+notamment des résultats de Kohel \cite{Kohel96}, Fouquet et Morain 
+\cite{FouquetMorain02}, Miret et Al. \cite{MiretMRV05} \cite{MiretMSTV06} 
+\cite{MiretMSTV08}, et Ionica-Joux \cite{Ionica-Joux10}. 
+
+Ensuite nous étudions dans le chapitre 5 la forme de l'action du Frobenius sur 
+la $\ell^k$-torsion et ses liens avec les directions dans le volcan de 
+$\ell$-isogénies, dans le cas Elkies puis Atkin. Nous présentons aussi dans ce
+chapitre des algorithmes pour calculer des points générateurs de certaines 
+isogénies, spécifiées par leurs directions, dans le volcan. 
+
+Ensuite nous présentons dans le chapitre 6, l'intérêt de ces directions dans
+l'algorithme de Couveignes $\ell$-adique et son application dans l'algorithme 
+de Couveignes. Nous présentons et analysons donc un algorithme $\ell$-adique de
+Couveignes dans un cas favorable (i.e. on connaît un nombre de Elkies) puis 
+dans le cas général où l'on utilise notamment un résultat de Shparlinski et 
+Sutherland \cite{ShparlinskiSutherland14} afin de trouver un tel nombre de 
+Elkies. On fait aussi une présentation moins détaillée du cas Atkin car 
+celle-ci est moins performante.
+
+Enfin nous présentons dans le chapitre 7 des variantes de l'algorithme de 
+Couveignes $\ell$-adique et étudions leurs pertinences. 
 
 
 \chapter{Rappels théoriques}
@@ -8049,7 +8112,7 @@ nombres premiers de Elkies.
 
  
 
-\chapter{Conclusion}
+\chapter*{Conclusion}
 Blabla 
 
 \todo{Probleme biblio reférence double}
