@@ -8160,13 +8160,25 @@ la proposition~\ref{pro:dia:hor} au groupe de classes d'idéaux pour avoir
 On a aussi vu dans le chapitre~\ref{cha:tour}, en adaptant les méthodes de 
 \cite{Doliskani-Schost15} un moyen de faire un calcul 
 rapide du Frobenius, il serait intéressant de voir si on ne peut pas se servir
-de cela pour obtenir des résultats sur la multiplication scalaire tel que dans \todo{Citer Christophe Negre}.
+de cela pour obtenir des résultats intéressants sur la multiplication scalaire.
+Pour le moment tout ce que l'on est capable de faire c'est à partir d'une 
+décomposition d'un point $R$ d'ordre $\ell^k$ en deux points (ascendant) 
+horizontaux $P_{\lambda}, Q_{\mu}$ décomposer la multiplication scalaire de 
+$R=[a]P_{\lambda} + [b] Q_{\mu}$ par $c$ en le calcul de $[c]R=[c_{\lambda}] 
+\pi^{\lfloor c/\lambda \rfloor}([a]P)+[c_{\mu}]\pi^{\lfloor c/\mu \rfloor}
+([a]Q_{\mu})$  avec $c_{\lambda}=c \bmod \lambda$ et $c_{\mu}=c \bmod \mu$. 
+L'intérêt d'une telle approche reste à étudier.
 
-Enfin on pourrait utiliser le résultat de la proposition %~\ref{pro:cla:fro:mat} pour faire un crypto système dans lequel le point P fixe serait la clé maitre secrète partagée entre deux utilisateurs et on utiliserait alors les formes des matrices pour communiquer la clé correspondant au point que l'on doit utiliser. Ce crypto système semble cependant un peu trop couteux pour être pratique.
+Enfin on pourrait utiliser le résultat de la proposition ~\ref{pro:cla:fro:mat}
+pour faire un crypto système dans lequel le point P fixe serait la clé maitre 
+secrète partagée entre deux utilisateurs et on utiliserait alors les formes des
+matrices pour communiquer la clé correspondant au point que l'on doit utiliser.
+Ce crypto système semble cependant un peu trop couteux pour être pratique.
 
-
+Enfin on pourrait étudier l'intérêt de l'algorithme de Couveignes $\ell$-adique
+dans la cryptanalyse de systèmes à base d'isogénies.
  
-\todo{Probleme biblio reférence double}
+\todo{Vérifier qu'il n'y a pas d'erreurs dans la bibliographie}
 \bibliography{Biblio}
 
 
