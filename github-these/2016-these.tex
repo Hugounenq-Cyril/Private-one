@@ -182,34 +182,48 @@
 
 \chapter*{Introduction}
 
-La cryptographie est la science de coder les informations afin de ne pas les
-rendre intelligible par toute personne non destinataire du message, tout en 
-laissant la possibilité au destinataire de pouvoir déchiffrer cette 
-information. De nos jours, de par les nombreux échanges sur internet et 
-l'utilisation de plus en plus présente de l'informatique, cette science est 
-devenue cruciale que cela soit pour des enjeux économiques ou politiques. Ainsi
-la sécurité des données chiffrées est un enjeu majeur et pour prouver celle-ci
-des algorithmes de chiffrement repose sur des problèmes mathématiques jugés 
-difficiles. Tout particulièrement il y a le problème du logarithme discret dans
-un groupe $(G,\cdot)$. Ce problème est de retrouver d'après la connaissance de 
-$P \in G$, $P^{x} \in G$ l'entier $x$. Ce problème dépend notamment du choix du
-groupe. 
+%La cryptographie est la science de coder les informations afin de ne pas les
+%rendre intelligible par toute personne non destinataire du message, tout en 
+%laissant la possibilité au destinataire de pouvoir déchiffrer cette 
+%information. De nos jours, de par les nombreux échanges sur internet et 
+%l'utilisation de plus en plus présente de l'informatique, cette science est 
+%devenue cruciale que cela soit pour des enjeux économiques ou politiques. Ainsi
+%la sécurité des données chiffrées est un enjeu majeur et pour prouver celle-ci
+%des algorithmes de chiffrement repose sur des problèmes mathématiques jugés 
+%difficiles. Tout particulièrement il y a le problème du logarithme discret dans
+%un groupe $(G,\cdot)$. Ce problème est de retrouver d'après la connaissance de 
+%$P \in G$, $P^{x} \in G$ l'entier $x$. Ce problème dépend notamment du choix du
+%groupe. 
+%
+%De nombreuses attaques génériques sur le logarithme discret ont été 
+%faites \cite{Shanks71,Pollard78} en un temps $O(\sqrt{r})$ avec $r$ la taille 
+%du plus grand facteur de l'ordre du groupe. Ainsi il a été proposé d'utiliser 
+%des groupes définis sur les courbes (hyper-)elliptiques dans lesquels de telles 
+%attaques seraient plus difficiles \cite{Miller85,Koblitz87,Koblitz89}. 
+%Cependant des méthodes à l'aide de couplage sur les courbes elliptiques 
+%\cite{Menezes93,FreyRuck94}  ont permis de réduire ce problème à un problème de 
+%logarithme discret sur des corps finis. En dépit de nombreux progrès dans la 
+%résolution du problème du logratihme discret sur les corps finis à l'aide de 
+%calculs d'indices 
+%\cite{JouxLercier06,JouxLercierSmartVercauteren06,BarbulescuGaudryJouxThome14,BarbulescuPierrot14} 
+%ce problème reste toujours non résoluble en algorithme en temps 
+%polynomial. Ainsi la cryptographie à l'aide de courbes elliptiques est toujours
+%utilisée malgré l'existence d'algorithmes quantiques \cite{Shor94} permettant 
+%de résoudre le problème du logarithme discret.
 
-De nombreuses attaques génériques sur le logarithme discret ont été 
-faites \cite{Shanks71,Pollard78} en un temps $O(\sqrt{r})$ avec $r$ la taille 
-du plus grand facteur de l'ordre du groupe. Ainsi il a été proposé d'utiliser 
-des groupes définis sur les courbes (hyper-)elliptiques dans lesquels de telles 
-attaques seraient plus difficiles \cite{Miller85,Koblitz87,Koblitz89}. 
-Cependant des méthodes à l'aide de couplage sur les courbes elliptiques 
-\cite{Menezes93,FreyRuck94}  ont permis de réduire ce problème à un problème de 
-logarithme discret sur des corps finis. En dépit de nombreux progrès dans la 
-résolution du problème du logratihme discret sur les corps finis à l'aide de 
-calculs d'indices 
-\cite{JouxLercier06,JouxLercierSmartVercauteren06,BarbulescuGaudryJouxThome14,BarbulescuPierrot14} 
-ce problème reste toujours non résoluble en algorithme en temps 
-polynomial. Ainsi la cryptographie à l'aide de courbes elliptiques est toujours
-utilisée malgré l'existence d'algorithmes quantiques \cite{Shor94} permettant 
-de résoudre le problème du logarithme discret.
+Les courbes (hyper)elliptiques sont beaucoup étudiées et utilisées notamment en 
+cryptographie \cite{Miller85,Koblitz87,Koblitz89}.
+On s'intéresse tout particulièrement aux courbes elliptiques sur les corps 
+finis $\mathbb{F}_q$ et aux algorithmes qui permettent de calculer les 
+isogénies, morphismes de groupe de noyau fini, entre deux courbes elliptiques. 
+
+L'intérêt de tels algorithmes est motivé par leur utilisation dans l'algorithme
+de Schoof \cite{Schoof85}, qui est un algorithme primodial car il sert à 
+calculer la cardinalité de courbes elliptiques. Bien que la complexité des 
+algorithmes de calculs d'isogénies ne domine pas dans l'algorithme de Schoof, et
+de son amélioration (S.E.A) \cite{Schoof95} due aux travaux de Atkin \cite{Atkin88} et 
+Elkies \cite{Elkies91}, des travaux ont été fait sur les algorithmes de calcul 
+d'isogénies.
 
 L'une des permières étapes à faire lorsque l'on veut utiliser une courbe
 en cryptographie est de calculer sa cardinalité pour faire ceci l'algorithme de
@@ -282,41 +296,41 @@ ceux de \cite{Doliskani-Schost15} et généralisent les résultats qui nous
 intéressent, tout particulièrement le calcul du Frobenius.
 
 \paragraph{Organisation de la thèse}
-On présente donc dans le premier chapitre des notions de bases, notamments les
-courbes elliptiques et les endomorphismes de courbes elliptiques et tout 
-particulièrement le Frobenius. Dans le 
+On présente donc dans le premier chapitre des notions de bases, notamment sur les
+courbes elliptiques et leurs endomorphismes, et tout 
+particulièrement l'endomorphisme de Frobenius. Dans le 
 deuxième chapitre nous abordons les différents algorithmes de calculs 
 d'isogénies sur des corps finis, dont ceux de Elkies \cite{Elkies1998}, Bostan 
-et Al. \cite{BMSS08}, Lercier-Sirvent \cite{Lercier-Sirvent2008} avant de 
+et Al. \cite{BMSS08}, Lercier-Sirvent \cite{Lercier-Sirvent2008}, avant de 
 présenter l'algorithme de Couveignes \cite{Couveignes96} et ses améliorations 
-par De Feo \cite{DeFeo11}. Dans le chapitre 3, dans la suite des travaux de 
-\cite{Doliskani-Schost15}, nous présentons les tours $\ell$-adiques sur 
-lesquelles on va travailler par la suite. Nous établissons notamment un 
+par De Feo \cite{DeFeo11}. Dans le chapitre 3, nous nous plaçons dans la continuité des travaux de 
+\cite{Doliskani-Schost15}, et nous présentons les tours d'extensions $\ell$-adiques.
+Nous établissons notamment un 
 résultat similaire à celui de \cite{DeFeo11} pour le calcul de polynômes 
 d'interpolation. Dans le chapitre 4 nous rappelons les résultats principaux 
 sur les volcans d'isogénies, dont notamment le lien entre les niveaux dans le
-volcan et la structure des $\ell$ sous-groupes de Sylow, pour cela on utilise
+volcan et la structure des $\ell$-sous-groupes de Sylow; pour cela nous utilisons
 des résultats de Kohel \cite{Kohel96}, Fouquet et Morain 
 \cite{FouquetMorain02}, Miret et Al. \cite{MiretMRV05} \cite{MiretMSTV06} 
 \cite{MiretMSTV08}, et Ionica Joux \cite{Ionica-Joux10}. 
 
-Ensuite nous étudions dans le chapitre 5 la forme de l'action du Frobenius sur 
-la $\ell^k$-torsion et ses liens avec les directions dans le volcan de 
+Ensuite nous étudions dans le chapitre 5 l'action du Frobenius sur 
+la $\ell^k$-torsion, et ses liens avec les directions dans le volcan de 
 $\ell$-isogénies, dans le cas Elkies puis Atkin. Nous présentons aussi dans ce
-chapitre des algorithmes pour calculer des points générateurs de certaines 
+chapitre des algorithmes pour calculer des points générateurs de certaines \todo{Qu'est-ce qu'un point générateur?}
 isogénies, spécifiées par leurs directions, dans le volcan. 
 
-Ensuite nous présentons dans le chapitre 6, l'intérêt de ces directions dans
-l'algorithme de Couveignes $\ell$-adique et son application dans l'algorithme 
-de Couveignes. Nous présentons et analysons donc un algorithme $\ell$-adique de
+Ensuite, nous présentons dans le chapitre 6 comment ces directions peuvent être utilisées
+dans l'algorithme de Couveignes $\ell$-adique.
+Nous présentons et analysons donc un algorithme $\ell$-adique de
 Couveignes dans un cas favorable (en particulier on connaît déjà un nombre de 
-Elkies) puis dans le cas général où l'on utilise notamment un résultat de 
+Elkies), puis dans le cas général, où l'on utilise notamment un résultat de 
 Shparlinski et Sutherland \cite{ShparlinskiSutherland14} afin de trouver un tel
-nombre de Elkies. On fait aussi une présentation moins détaillée du cas Atkin 
+nombre de Elkies. On fait aussi une présentation moins détaillée du cas Atkin, 
 car celle-ci est moins performante.
 
 Enfin nous présentons dans le chapitre 7 des variantes de l'algorithme de 
-Couveignes $\ell$-adique et étudions leurs pertinences. 
+Couveignes $\ell$-adique et étudions leur intérêt. 
 
 
 \chapter{Rappels théoriques}
