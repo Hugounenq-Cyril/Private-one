@@ -179,44 +179,23 @@
 
 \chapter*{Introduction}
 
-%La cryptographie est la science de coder les informations afin de ne pas les
-%rendre intelligible par toute personne non destinataire du message, tout en 
-%laissant la possibilité au destinataire de pouvoir déchiffrer cette 
-%information. De nos jours, de par les nombreux échanges sur internet et 
-%l'utilisation de plus en plus présente de l'informatique, cette science est 
-%devenue cruciale que cela soit pour des enjeux économiques ou politiques. Ainsi
-%la sécurité des données chiffrées est un enjeu majeur et pour prouver celle-ci
-%des algorithmes de chiffrement repose sur des problèmes mathématiques jugés 
-%difficiles. Tout particulièrement il y a le problème du logarithme discret dans
-%un groupe $(G,\cdot)$. Ce problème est de retrouver d'après la connaissance de 
-%$P \in G$, $P^{x} \in G$ l'entier $x$. Ce problème dépend notamment du choix du
-%groupe. 
-%
-%De nombreuses attaques génériques sur le logarithme discret ont été 
-%faites \cite{Shanks71,Pollard78} en un temps $O(\sqrt{r})$ avec $r$ la taille 
-%du plus grand facteur de l'ordre du groupe. Ainsi il a été proposé d'utiliser 
-%des groupes définis sur les courbes (hyper-)elliptiques dans lesquels de telles 
-%attaques seraient plus difficiles \cite{Miller85,Koblitz87,Koblitz89}. 
-%Cependant des méthodes à l'aide de couplage sur les courbes elliptiques 
-%\cite{Menezes93,FreyRuck94}  ont permis de réduire ce problème à un problème de 
-%logarithme discret sur des corps finis. En dépit de nombreux progrès dans la 
-%résolution du problème du logratihme discret sur les corps finis à l'aide de 
-%calculs d'indices 
-%\cite{JouxLercier06,JouxLercierSmartVercauteren06,BarbulescuGaudryJouxThome14,BarbulescuPierrot14} 
-%ce problème reste toujours non résoluble en algorithme en temps 
-%polynomial. Ainsi la cryptographie à l'aide de courbes elliptiques est toujours
-%utilisée malgré l'existence d'algorithmes quantiques \cite{Shor94} permettant 
-%de résoudre le problème du logarithme discret.
 
 Les courbes (hyper)elliptiques sont beaucoup étudiées et utilisées notamment en 
-cryptographie \cite{Miller85,Koblitz87,Koblitz89}.
-On s'intéresse tout particulièrement aux courbes elliptiques sur les corps 
-finis $\mathbb{F}_q$ et aux algorithmes qui permettent de calculer les 
-isogénies, morphismes de groupe de noyau fini, entre deux courbes elliptiques. 
-En particulier deux courbes elliptiques reliées par une isogénie ont la même 
-cardinalité.
+cryptographie \cite{Miller85,Koblitz87,Koblitz89}. Nous nous intéressons tout 
+particulièrement aux courbes elliptiques sur les corps finis $\mathbb{F}_q$ de 
+caractéristique $p$. Les algorithmes de calculs de cardinalité de courbes 
+elliptiques sont donc primordiaux. L'algorithme de Schoof \cite{Schoof85}, est 
+le premier algorithme à calculer la cardinalité de courbes elliptiques. Il a 
+été amélioré par la suite par les travaux de Atkin \cite{Atkin88} et Elkies 
+\cite{Elkies91} aboutissant à l'algorithme SEA \cite{Schoof95}.
 
-L'intérêt de tels algorithmes est motivé par leur utilisation dans l'algorithme
+
+
+Le calcul d'isogénies, morphismes de groupe de noyau fini entre deux courbes
+elliptiques apparaît dans SEA et a donc un intérêt particulier. En effet deux 
+courbes elliptiques reliées par une isogénie ont la même cardinalité.
+
+L'intérêt de tels algorithmes se justifie par leur utilisation dans l'algorithme
 de Schoof \cite{Schoof85}, qui est un algorithme primodial car il sert à 
 calculer la cardinalité de courbes elliptiques. Bien que la complexité des 
 algorithmes de calculs d'isogénies ne domine pas dans l'algorithme de Schoof et
@@ -228,16 +207,17 @@ Les toutes premières méthodes de calcul
 d'isogénies dans ce contexte \cite{Atkin91} \cite{CharlapColeyRobbins91} sont
 dominées par d'autres étapes dans l'algorithme S.E.A.. Le premier algorithme à
 traiter du calcul d'isogénies sur les corps finis est celui de Elkies 
-\cite{Elkies1998}; celui-ci se limitait au cas de corps finis $\mathbb{F}_q$ de 
-caractéristique $p$ suffisamment grande. Ce travail a été ensuite amélioré par 
-les travaux de Bostan Morain Salvy et Schost \cite{BMSS08} puis par ceux de 
-Lercier Sirvent \cite{Lercier-Sirvent2008} qui a permis d'utiliser cette méthode sans 
-contrainte de caractéristique, celui-ci a été récemment amélioré par un 
-résultat de Lairez et Vaccon \cite{LairezVaccon16} sur la précision $p$-adique. 
+\cite{Elkies1998}; cet algorithme se limitait au cas de corps finis 
+$\mathbb{F}_q$ de caractéristique $p$ suffisamment grande. Ce travail a été 
+ensuite amélioré par les travaux de Bostan Morain Salvy et Schost \cite{BMSS08}
+puis par ceux de Lercier Sirvent \cite{Lercier-Sirvent2008} qui a permis 
+d'utiliser cette méthode sans contrainte de caractéristique, ce dernier 
+algorithme a été récemment amélioré par un résultat de Lairez et Vaccon 
+\cite{LairezVaccon16} sur la précision $p$-adique. 
 
 Dans S.E.A. les isogénies sont calculées à l'aide de représentations 
 spécifiques des courbes (sous équation de Weierstrass normalisée) alors que 
-celles-ci peuvent être représentées à isomorphisme près à l'aide de leur 
+les courbes peuvent être représentées à isomorphisme près à l'aide de leur 
 $j$-invariant.
 
 En effet le calcul d'isogénies peut avoir un intérêt 
@@ -252,56 +232,13 @@ crypto-systèmes post-quantiques à base de graphes d'isogénies
 On s'intéresse au problème suivant:
 \paragraph{Problème du calcul explicite d'isogénie}
 
-Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les 
+Soient deux $j$-invariants $j_0$ et $j_1$ et un entier positif $r$. Si les 
 $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes 
 elliptiques $E_a$ et $E_b$ reliées par une isogénie de degré $r$ telles que 
-$j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est
-de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et 
+$j(E_a)=j_0$ et $j(E_b)=j_1$, alors le problème du calcul explicite d'isogénie est
+de calculer les courbes $E$, $E'$ telles que $j(E)=j_0$ et $j(E')=j_1$, et 
 l'isogénie de degré $r$ $\phi:E \rightarrow E'$.
 \\
-%parler dej-invariants
-
-%L'une des étapes les plus couteuses de l'algorithme S.E.A. est le calcul
-
-%L'une des permières étapes à faire lorsque l'on veut utiliser une courbe
-%en cryptographie est de calculer sa cardinalité pour faire ceci l'algorithme de
-%Schoof \cite{Schoof85} propose une solution en temps polynomial en la 
-%caractéristique du corps $\mathbb{F}_q$ sur lequel est définie la courbe 
-%elliptique. Cette méthode repose principalement sur la détermination de la 
-%trace du Frobenius sur un groupe de $r$-torsion. Ceci est fait en déterminant 
-%$t_{\pi}$ dans l'équation suivante obtenue à l'aide du polynôme 
-%caractéristique du Frobenius:
-%\begin{equation}
-%x^2-t_{\pi}x+q=0 \bmod r.
-%\end{equation} 
-%Des améliorations ont été apportées à cet algorithme notamment par Elkies 
-%\cite{Elkies91}  et Atkin \cite{Atkin88}, celles-ci permettent de travailler 
-%avec des sous-groupes de la $\ell$-torsion lorsque le Frobenius admet deux 
-%espaces propres (cas Elkies).
-
-%Ainsi au cours de l'algorithme de S.E.A. (Schoof Elkies Atkin) \cite{Schoof95} 
-%on est amené à calculer le $r$-ème polynôme modulaire $\Phi_r$ avec un coût de 
-%$\tilde{O}(r^3)$ (par \cite[Algorithm 6.1]{BLS12}), ainsi qu'une isogénie de 
-%degré $r$ entre deux courbes elliptiques données par leur $j$-invariants (ces 
-%$j$-invariants annulent $\Phi_r$). Les toutes premières méthodes de calcul 
-%d'isogénies dans ce contexte \cite{Atkin91} \cite{CharlapColeyRobbins91} sont
-%dominées par le coût de calcul du polynôme modulaire. Le premier algorithme à
-%traiter du calcul d'isogénies sur les corps finis est celui de Elkies 
-%\cite{Elkies1998} celui-ci se limitait au cas de corps de caractéristique 
-%suffisamment grande. Ce travail a été ensuite amélioré par les travaux de 
-%Bostan Morain Salvy et Schost \cite{BMSS08} puis par ceux de Lercier Sirvent
-%\cite{Lercier-Sirvent2008}  qui a permis d'utiliser cette méthode sans 
-%contrainte de caractéristique, celui-ci a été récemment amélioré par un 
-%résultat de Lairez-Vaccon \cite{LairezVaccon16} sur la précision $p$-adique. 
-
-%Le désavantage avec toutes ces méthodes c'est que celles-ci supposaient la 
-%connaissance de $\Phi_r$. En effet le calcul d'isogénies peut avoir un intérêt 
-%en dehors de l'algorithme S.E.A. comme le montrent les travaux de Teske 
-%\cite{Teske06} sur un schéma à trappes, les travaux de cryptanalyse de \cite{MaurerMenezesTeske01}, 
-%les fonctions de hachage \cite{CGL09}, l'accélération de la multiplication 
-%scalaire \cite{GallantLambertVanstone01}, \cite{LongaSica14} ou les 
-%crypto-systèmes post-quantiques à base de graphes d'isogénies 
-%\cite{RostovtsevStolbunov06} voire \cite{DeFeoJaoPlut14}.
 
 Ainsi il est pertinent de suivre le travail de Couveignes sur le calcul 
 d'isogénies \cite{Couveignes96} car celui-ci ne suppose pas la connaissance de 
@@ -326,9 +263,9 @@ cela on doit notamment déterminer des ensembles de points préservés par
 l'action de l'isogénie de degré $r$ tout en se servant d'une construction 
 efficace d'extensions $\ell$-adiques de corps finis. 
 
-Pour le calcul d'ensemble de points d'ordre $\ell^k$ préservés par l'action de 
-la $r$-isogénie on se sert de graphes 
-d'isogénies dans le cas de courbes ordinaires. Ceux-ci ont été étudiés pour 
+dans le cas de courbes ordinaires Pour le calcul d'ensemble de points d'ordre $\ell^k$, préservés par l'action de 
+la $r$-isogénie, on se sert de graphes 
+d'isogénies . Ceux-ci ont été étudiés pour 
 la première fois par \cite{Kohel96} afin de calculer l'anneau des 
 endomorphismes d'une courbe elliptique. Fouquet et Morain ont par la suite 
 utilisé ces graphes d'isogénies, appelés \emph{volcans d'isogénies}, afin 
@@ -387,7 +324,8 @@ nombre de Elkies. On fait aussi une présentation moins détaillée du cas Atkin
 car celle-ci est moins performante.
 
 Enfin nous présentons dans le chapitre 7 des variantes d'algorithmes de 
-Couveignes $\ell$-adique et étudions leur intérêt. 
+Couveignes $\ell$-adique afin de voir notamment si l'on ne peut pas travailler 
+avec un seul groupe cyclique ou avec différents nombres de Elkies et étudions leur intérêt. 
 
 
 \chapter{Rappels théoriques}
