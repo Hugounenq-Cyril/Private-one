@@ -8235,20 +8235,23 @@ cyclique d'un volcan de $\ell$-isogénies avec $\ell$ petit. Certains
 algorithmes (\cite{Couveignes96isogenycycles}) se limitent, à juste titre, au 
 cas de volcans réduits à leur cratère, d'autres ne peuvent et on va donc 
 aborder l'éventuel impact de nos travaux sur ceux-ci.
-Dans l'algorithme de Sutherland on est obligé, de par la taille du $\ell$-ème 
+Dans l'algorithme de Sutherland \cite{Sutherland11a} pour le calcul de polynôme
+de Hilbert on est obligé, de par la taille du $\ell$-ème 
 polynôme modulaire, de traiter les cas où le volcan n'est pas réduit à un
 cratère cyclique. Dés lors il serait pertinent de voir l'apport de notre 
 travail (proposition~\ref{pro:dia:hor}) dans ce contexte par rapport à 
-l'algorithme de marche dans le volcan similaire aux travaux de 
-\cite{FouquetMorain02} (voir sous-section~\ref{sub:alg:FM}) utilisant
-le $\ell$-ème polynôme modulaire, ainsi on pourrait rendre cet algorithme non
+l'algorithme de marche utilisé dans le volcan similaire aux travaux de 
+\cite{FouquetMorain02} (voir sous-section~\ref{sub:alg:FM}) se servant
+du $\ell$-ème polynôme modulaire, ainsi on pourrait rendre cet algorithme non
 dépendant du (pré)calcul de $\ell$-ème polynôme modulaire.
-De plus dans l'algorithme BLS (Bröker Lauter Sutherland) \cite{BLS12} pour 
+Dans l'algorithme BLS (Bröker Lauter Sutherland) \cite{BLS12} pour 
 calculer le $\ell$-ème polynôme modulaire les auteurs se placent dans le cas
 où ils travaillent sur un volcan de $\ell_i$-isogénies de hauteur $h = 1$
 pour lequel on a de $E[\ell_i]\subset E(\mathbb{F}_p)$ pour les courbes situées
 sur le cratère et pour lequel on a l'existence de points d'ordre $\ell_i^2$ 
-définis sur $\mathbb{F}_p$ pour les courbes en bas du volcan.
+définis sur $\mathbb{F}_p$ pour les courbes en bas du volcan. On pourrait à 
+nouveau étudier, dans ce cas très spécifique, l'impact d'une méthode utilisant
+la proposition~\ref{pro:dia:hor}.
 
 
 
@@ -8270,7 +8273,7 @@ définis sur $\mathbb{F}_p$ pour les courbes en bas du volcan.
 %éventuellement un résultat intéressant dans ce contexte.
 \paragraph{Multiplication scalaire et points ascendants horizontaux}
 On a aussi vu dans le chapitre~\ref{cha:tour}, en adaptant les méthodes de 
-\cite{Doliskani-Schost15} un moyen de faire un calcul 
+\cite{Doliskani-Schost15}, un moyen de faire un calcul 
 rapide du Frobenius, il serait intéressant de voir si on ne peut pas se servir
 de cela pour obtenir des résultats intéressants sur la multiplication scalaire.
 Pour le moment tout ce que l'on est capable de faire c'est à partir d'une 
@@ -8281,12 +8284,13 @@ $R=[a]P_{\lambda} + [b] Q_{\mu}$ par $c$ en le calcul de $[c]R=[c_{\lambda}]
 ([a]Q_{\mu})$  avec $c_{\lambda}=c \bmod \lambda$ et $c_{\mu}=c \bmod \mu$. 
 L'intérêt d'une telle approche reste à étudier.
 
-\paragraph{Cryptosystème}
-Enfin on pourrait utiliser le résultat de la proposition ~\ref{pro:cla:fro:mat}
-pour faire un crypto système dans lequel le point P fixe serait la clé maitre 
-secrète partagée entre deux utilisateurs et on utiliserait alors les formes des
-matrices pour communiquer la clé correspondant au point que l'on doit utiliser.
-Ce crypto système semble cependant un peu trop couteux pour être pratique.
+\paragraph{Crypto-système}
+On pourrait utiliser, dans le cas Atkin, le résultat de la proposition ~\ref{pro:cla:fro:mat}
+pour faire un crypto-système dans lequel le point $P$ fixé serait la clé maitre 
+secrète partagée entre deux utilisateurs. Dés lors ces utilisateurs se 
+communiqueraient la forme de matrices du Frobenius et déterminerait à l'aide de
+$P$ le second point de la base qui serait alors une nouvelle clé partagée.
+Ce crypto-système semble cependant un peu trop couteux pour être pratique.
 
 \paragraph{Couplage de points}
 Le couplage de points n'a pas été abordé dans ce document mais seulement 
@@ -8297,12 +8301,15 @@ critère restrictif, pertinent du point de vue de la complexité, sur les images
 de points par la $r$-isogénie, et en particulier sur les points (ascendants) 
 horizontaux.
 
+\paragraph{Calcul d'isogénies de degrés non connus}
+Comme abordé dans la thèse de De Feo \cite[Section 8.9]{DeFeo10}, l'algorithme 
+de Couveignes \cite{Couveignes96} pourrait être utilisé sans connaître le degré
+de l'isogénie, donc nos algorithmes de Couveignes $\ell$-adique aussi. Nos 
+algorithmes auront ainsi l'avantage de ne pas dépendre de la caractéristique du
+corps sur lequel ils se trouvent.
 
-Comme abordé dans la thèse de De Feo, l'algorithme de Couveignes pourrait être 
-utilisé sans connaître le degré de l'isogénie.
-
-Enfin on pourrait étudier l'intérêt de l'algorithme de Couveignes $\ell$-adique
-dans la cryptanalyse de systèmes à base d'isogénies.
+De manière plus générale on pourrait étudier l'intérêt de l'algorithme de 
+Couveignes $\ell$-adique dans la cryptanalyse de systèmes à base d'isogénies.
 
  
 \todo{Vérifier qu'il n'y a pas d'erreurs dans la bibliographie}
