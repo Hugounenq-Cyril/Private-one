@@ -8188,38 +8188,42 @@ nombres premiers de Elkies.
 \chapter*{Conclusion}
 Nous avons donc vu dans ce manuscrit comment généraliser l'algorithme de 
 Couveignes au cas $\ell$-adique. En particulier, en l'état actuel, nous avons 
-vu que l'on était capable d'obtenir un algorithme quasi-quadratique uniquement
-dans le cas Elkies, et un algorithme de complexité inférieure à cubique dans le
-cas Atkin. Cependant l'algorithme $\ell$-adique de Couveignes dans le cas Atkin
-a une complexité trop grande, et si on voulait améliorer cet algorithme, avec 
-la même méthode que pour le cas Elkies, il faudrait pouvoir distinguer un 
-sous-groupe cyclique de la $\ell^k$-torsion, ou trouver un autre moyen pour 
-distinguer des couples de points formant une base de $E[\ell^k]$. Nous avons 
+vu que l'on était capable d'obtenir un algorithme qui résolve le problème de 
+l'isogénie explicite avec une complexité quasi-quadratique en le degré de 
+l'isogénie uniquement dans le cas Elkies, et un algorithme de complexité 
+inférieure à cubique dans le cas Atkin. Cependant notre proposition 
+d'algorithme $\ell$-adique de Couveignes dans le cas Atkin
+a une complexité trop grande. Une amélioration l'algorithme que nous proposons
+dans le cas Atkin, avec la même méthode que pour le cas Elkies, nécessiterait 
+de distinguer un sous-groupe cyclique de la $\ell^k$-torsion, ou de trouver un 
+autre moyen pour distinguer des couples de points formant une base de 
+$E[\ell^k]$. Nous avons 
 réfléchi à travailler avec un groupes de points isomorphes à 
 $\mathbb{Z}_{\ell^2}$ (l'unique extension quadratique non ramifiée de 
 $\mathbb{Z}_{\ell}$), mais nous n'avons pas réussi à modéliser l'action du 
 Frobenius sur un tel ensemble. Enfin parmi les pistes proposées mais non 
 satisfaisante dans le chapitre~\ref{cha:var:cou} seule celle présentée dans la 
 section~\ref{sec:cou:con} sur une approche avec un nombre composé de Elkies 
-pourrait aboutir quand on aura des meilleurs représentations de compositum 
+pourrait aboutir quand on aura des meilleures représentations de compositum 
 permettant des changements de représentation en un temps linéaire.
 
 \paragraph{Calcul d'anneau des endomorphismes}
-Enfin les propositions~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} nous 
-permettent de savoir exactement à quel niveau se trouve une courbe dans le 
-volcan. Ainsi en se plaçant dans le même contexte que \cite{BissonSutherland11},
-où l'on connaît déjà une factorisation de $d_{\pi}$, avec les 
-propositions ~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} dans un volcan de 
-$\ell_i$-isogénies on connaîtrait la valuation $\ell_i$ adique du 
+Les propositions~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} nous 
+permettent de savoir exactement à quel niveau se trouve une courbe dans un 
+volcan de $\ell_i$-isogénies. Ainsi en se plaçant dans le même contexte que 
+\cite{BissonSutherland11}, où l'on connaît déjà une factorisation de $d_{\pi}$,
+avec les propositions ~\ref{pro:mat:fro} ou \ref{pro:mat:fro:atk}, selon le cas
+Elkies ou Atkin, on connaîtrait la valuation $\ell_i$ adique du 
 conducteur de la courbe par rapport à $\mathbb{Z}[\pi]$ et donc on pourrait
-déterminer l'anneau d'endomorphisme de la courbe. Cela pourrait avoir par 
-exemple une application dans l'algorithme de Broker utilisé pour calculer
-un polynôme de Hilbert. En effet dans l'algorithme, il est nécessaire de 
-calculer une courbe avec un anneau d'endomorphismes spécifique à partir d'une 
-courbe au hasard dont $\mathbb{Z}[\pi]$ est fixée. On pourrait alors à partir
-d'une telle courbe se servir des propositions~\ref{pro:mat:fro} et 
-\ref{pro:mat:fro:atk} afin de déterminer l'anneau d'endomorphisme de la courbe.
-Ensuite on pourrait se servir de la propositioné\ref{pro:tri:dir} et du 
+déterminer l'anneau des endomorphismes de la courbe. Cela pourrait avoir par 
+exemple une application dans l'algorithme de Bröker \cite{Broker08} utilisé 
+pour calculer un polynôme de Hilbert. En effet dans l'algorithme de Bröker, il 
+est nécessaire de calculer une courbe avec un anneau d'endomorphismes 
+spécifique à partir d'une courbe au hasard dont $\mathbb{Z}[\pi]$ est fixée. 
+On pourrait alors à partir d'une telle courbe se servir des 
+propositions~\ref{pro:mat:fro} ou \ref{pro:mat:fro:atk} afin de déterminer 
+l'anneau des endomorphismes de la courbe.
+Ensuite on pourrait se servir de la proposition~\ref{pro:tri:dir} ou du 
 corollaire~\ref{cor:mon:atk} pour trouver une courbe dont 
 l'anneau des endomorphismes correspond à celui que l'on cherche. 
 
