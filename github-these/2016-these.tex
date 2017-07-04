@@ -8204,6 +8204,7 @@ section~\ref{sec:cou:con} sur une approche avec un nombre composé de Elkies
 pourrait aboutir quand on aura des meilleurs représentations de compositum 
 permettant des changements de représentation en un temps linéaire.
 
+\paragraph{Calcul d'anneau des endomorphismes}
 Enfin les propositions~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} nous 
 permettent de savoir exactement à quel niveau se trouve une courbe dans le 
 volcan. Ainsi en se plaçant dans le même contexte que \cite{BissonSutherland11},
@@ -8211,25 +8212,59 @@ où l'on connaît déjà une factorisation de $d_{\pi}$, avec les
 propositions ~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} dans un volcan de 
 $\ell_i$-isogénies on connaîtrait la valuation $\ell_i$ adique du 
 conducteur de la courbe par rapport à $\mathbb{Z}[\pi]$ et donc on pourrait
-déterminer l'anneau d'endomorphisme de la courbe.
+déterminer l'anneau d'endomorphisme de la courbe. Cela pourrait avoir par 
+exemple une application dans l'algorithme de Broker utilisé pour calculer
+un polynôme de Hilbert. En effet dans l'algorithme, il est nécessaire de 
+calculer une courbe avec un anneau d'endomorphismes spécifique à partir d'une 
+courbe au hasard dont $\mathbb{Z}[\pi]$ est fixée. On pourrait alors à partir
+d'une telle courbe se servir des propositions~\ref{pro:mat:fro} et 
+\ref{pro:mat:fro:atk} afin de déterminer l'anneau d'endomorphisme de la courbe.
+Ensuite on pourrait se servir de la propositioné\ref{pro:tri:dir} et du 
+corollaire~\ref{cor:mon:atk} pour trouver une courbe dont 
+l'anneau des endomorphismes correspond à celui que l'on cherche. 
 
-Dans les travaux similaire à \cite{BissonSutherland11} \todo{reformuler cela} pour le calcul 
-d'anneau d'endomorphisme tels que \cite{BLS12} pour le calcul de polynôme 
-modulaire ou le calcul de polynôme de Hilbert \cite{Broker08} \cite{Sutherland11a}
-sont utilisés des marches sur le
-volcan, et se placent par simplicité dans le cas où le volcan de 
-$\ell_i$-isogénies est réduit à un cratère cyclique. Ce cas se présentant 
-uniquement pour les nombres $\ell_i$ de Elkies ne divisant pas $d_{\pi}$, cette 
-approche est trés raisonnable. De plus comme dit dans \todo{trou} le calcul d'isogénies 
-n'est pas privilégié or c'est ce que l'on fait lors de nos déplacements dans
-la détermination de direction dans le volcan. Pour toutes ces raisons notre 
-détermination de directions dans le volcan de $\ell_i$-isogénies n'aura 
-vraisemblablement pas d'impact sur ces méthodes. Cependant comme dit dans \todo{trou}
-où l'on étudie les directions dans le volcan à l'aide d'action dans le groupe
-de classes d'idéaux, il serait intéressant de savoir transposer le résultat de 
-la proposition~\ref{pro:dia:hor} au groupe de classes d'idéaux pour avoir 
-éventuellement un résultat intéressant dans ce contexte.
+\paragraph{Déplacement sur le cratère de volcans de $\ell$-isogénies et ses 
+applications aux algorithmes de calcul de poylnômes de Hilbert et modulaire}
+Des articles tels que \cite{Couveignes96isogenycycles}, \cite{Broker08}, 
+\cite{Sutherland11a}, \cite{BLS12}, utilisent des marches sur le cratère 
+cyclique d'un volcan de $\ell$-isogénies avec $\ell$ petit. Certains 
+algorithmes (\cite{Couveignes96isogenycycles}) se limitent, à juste titre, au 
+cas de volcans réduits à leur cratère, d'autres ne peuvent et on va donc 
+aborder l'éventuel impact de nos travaux sur ceux-ci.
+Dans l'algorithme de Sutherland on est obligé, de par la taille du $\ell$-ème 
+polynôme modulaire, de traiter les cas où le volcan n'est pas réduit à un
+cratère cyclique. Dés lors il serait pertinent de voir l'apport de notre 
+travail (proposition~\ref{pro:dia:hor}) dans ce contexte par rapport à 
+l'algorithme de marche dans le volcan similaire aux travaux de 
+\cite{FouquetMorain02} (voir sous-section~\ref{sub:alg:FM}) utilisant
+le $\ell$-ème polynôme modulaire, ainsi on pourrait rendre cet algorithme non
+dépendant du (pré)calcul de $\ell$-ème polynôme modulaire.
+De plus dans l'algorithme BLS (Bröker Lauter Sutherland) \cite{BLS12} pour 
+calculer le $\ell$-ème polynôme modulaire les auteurs se placent dans le cas
+où ils travaillent sur un volcan de $\ell_i$-isogénies de hauteur $h = 1$
+pour lequel on a de $E[\ell_i]\subset E(\mathbb{F}_p)$ pour les courbes situées
+sur le cratère et pour lequel on a l'existence de points d'ordre $\ell_i^2$ 
+définis sur $\mathbb{F}_p$ pour les courbes en bas du volcan.
 
+
+
+%Dans les travaux similaire à \cite{BissonSutherland11} \todo{reformuler cela} pour le calcul 
+%d'anneau d'endomorphisme tels que \cite{BLS12} pour le calcul de polynôme 
+%modulaire ou le calcul de polynôme de Hilbert \cite{Broker08} \cite{Sutherland11a}
+%sont utilisés des marches sur le
+%volcan, et se placent par simplicité dans le cas où le volcan de 
+%$\ell_i$-isogénies est réduit à un cratère cyclique. Ce cas se présentant 
+%uniquement pour les nombres $\ell_i$ de Elkies ne divisant pas $d_{\pi}$, cette 
+%approche est trés raisonnable. De plus comme dit dans \todo{trou} le calcul d'isogénies 
+%n'est pas privilégié or c'est ce que l'on fait lors de nos déplacements dans
+%la détermination de direction dans le volcan. Pour toutes ces raisons notre 
+%détermination de directions dans le volcan de $\ell_i$-isogénies n'aura 
+%vraisemblablement pas d'impact sur ces méthodes. Cependant comme dit dans \todo{trou}
+%où l'on étudie les directions dans le volcan à l'aide d'action dans le groupe
+%de classes d'idéaux, il serait intéressant de savoir transposer le résultat de 
+%la proposition~\ref{pro:dia:hor} au groupe de classes d'idéaux pour avoir 
+%éventuellement un résultat intéressant dans ce contexte.
+\paragraph{Multiplication scalaire et points ascendants horizontaux}
 On a aussi vu dans le chapitre~\ref{cha:tour}, en adaptant les méthodes de 
 \cite{Doliskani-Schost15} un moyen de faire un calcul 
 rapide du Frobenius, il serait intéressant de voir si on ne peut pas se servir
@@ -8242,12 +8277,14 @@ $R=[a]P_{\lambda} + [b] Q_{\mu}$ par $c$ en le calcul de $[c]R=[c_{\lambda}]
 ([a]Q_{\mu})$  avec $c_{\lambda}=c \bmod \lambda$ et $c_{\mu}=c \bmod \mu$. 
 L'intérêt d'une telle approche reste à étudier.
 
+\paragraph{Cryptosystème}
 Enfin on pourrait utiliser le résultat de la proposition ~\ref{pro:cla:fro:mat}
 pour faire un crypto système dans lequel le point P fixe serait la clé maitre 
 secrète partagée entre deux utilisateurs et on utiliserait alors les formes des
 matrices pour communiquer la clé correspondant au point que l'on doit utiliser.
 Ce crypto système semble cependant un peu trop couteux pour être pratique.
 
+\paragraph{Couplage de points}
 Le couplage de points n'a pas été abordé dans ce document mais seulement 
 mentionné, certes dans \cite{Ionica-Joux10} il y a des résultats moins probants
 sur la détermination de directions dans le volcan de $\ell$-isogénies. Il 
@@ -8255,6 +8292,7 @@ serait toutefois intéressant d'étudier si le couplage ne nous apporte pas un
 critère restrictif, pertinent du point de vue de la complexité, sur les images 
 de points par la $r$-isogénie, et en particulier sur les points (ascendants) 
 horizontaux.
+
 
 Comme abordé dans la thèse de De Feo, l'algorithme de Couveignes pourrait être 
 utilisé sans connaître le degré de l'isogénie.
