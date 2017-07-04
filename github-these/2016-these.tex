@@ -208,40 +208,72 @@
 %utilisée malgré l'existence d'algorithmes quantiques \cite{Shor94} permettant 
 %de résoudre le problème du logarithme discret.
 
-Les courbes (hyper)elliptiques sont beaucoup étudiées et utilisées notamment en 
+Les courbes (hyper)elliptiques sont beaucoup étudiées et utilisées, notamment en 
 cryptographie \cite{Miller85,Koblitz87,Koblitz89}.
 On s'intéresse tout particulièrement aux courbes elliptiques sur les corps 
-finis $\mathbb{F}_q$ et aux algorithmes qui permettent de calculer les 
+finis
+\todo{Doucement. Parle d'abord de comptage de points et de SEA.
+  Ensuite tu peux introduire les isogénies, dans quelques paragraphes.}
+et aux algorithmes qui permettent de calculer les 
 isogénies, morphismes de groupe de noyau fini, entre deux courbes elliptiques. 
 En particulier deux courbes elliptiques reliées par une isogénie ont la même 
 cardinalité.
 
 L'intérêt de tels algorithmes est motivé par leur utilisation dans l'algorithme
-de Schoof \cite{Schoof85}, qui est un algorithme primodial car il sert à 
+de Schoof \cite{Schoof85}, qui est un algorithme primodial car il sert à
+\todo{Trois fois ``algorithme'' dans la même phrase.
+  Quatre niveaux de subordination... il n'y a que Proust ou Hugo qui ont droit à autant.}
 calculer la cardinalité de courbes elliptiques. Bien que la complexité des 
-algorithmes de calculs d'isogénies ne domine pas dans l'algorithme de Schoof et
-son amélioration (S.E.A) \cite{Schoof95}, due aux travaux de Atkin \cite{Atkin88} et 
-Elkies \cite{Elkies91}, des travaux ont été fait sur les algorithmes de calcul 
+algorithmes de calcul d'isogénies ne domine pas dans l'algorithme de Schoof et
+\todo{Ne te tire pas une balle dans le pied: le calcul d'isogénies est intéressant
+  puisqu'il apparaît dans SEA. Point.}
+son amélioration (SEA) \cite{Schoof95}, due aux travaux de Atkin \cite{Atkin88} et
+Elkies \cite{Elkies91}, des travaux ont été fait sur les algorithmes de calcul
+\todo{Quel travaux? Pourquoi?}
 d'isogénies.
+
+\todo{Une étape fondamentale de SEA consiste en la résolution du problème suivant:}
+\paragraph{Problème du calcul explicite d'isogénie}
+\todo{Je pense qu'on peut traduire Elkies par ``problème de l'isogénie explicite''.}
+
+Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. En supposant que les 
+$j$-invariants sont $r$-isogènes, c'est à dire qu'il existe deux courbes 
+elliptiques $E_a$ et $E_b$ reliées par une isogénie de degré $r$ telles que 
+$j(E_a)=j$ et $j(E_b)=j'$,
+calculer les courbes $E_a$, $E_b$ et 
+l'isogénie $\phi:E_a \rightarrow E_b$ de degré $r$ .
 
 Les toutes premières méthodes de calcul 
 d'isogénies dans ce contexte \cite{Atkin91} \cite{CharlapColeyRobbins91} sont
-dominées par d'autres étapes dans l'algorithme S.E.A.. Le premier algorithme à
+dominées par d'autres étapes dans l'algorithme SEA.
+\todo{Cette phrase ne fait pas de sens: est-ce que Elkies 98 ne serait pas dominé aussi?
+  Laisse tomber cette histoire de savoir qui domine.
+  À ce stade, on n'a pas les éléments pour comprendre.}
+Le premier algorithme à
 traiter du calcul d'isogénies sur les corps finis est celui de Elkies 
-\cite{Elkies1998}; celui-ci se limitait au cas de corps finis $\mathbb{F}_q$ de 
-caractéristique $p$ suffisamment grande. Ce travail a été ensuite amélioré par 
-les travaux de Bostan Morain Salvy et Schost \cite{BMSS08} puis par ceux de 
-Lercier Sirvent \cite{Lercier-Sirvent2008} qui a permis d'utiliser cette méthode sans 
-contrainte de caractéristique, celui-ci a été récemment amélioré par un 
+\cite{Elkies1998}; celui-ci se limite au cas de corps finis de 
+caractéristique suffisamment grande.
+\todo{À nouveau, tu ne fais pas justice à Couveignes 94, 96 et Lercier 96.
+  C'est le moment de les mentionner, puisque tu parles de caractéristique}
+Ce travail a été ensuite amélioré par 
+les travaux de Bostan, Morain, Salvy et Schost \cite{BMSS08}, puis par ceux de 
+Lercier et Sirvent \cite{Lercier-Sirvent2008} qui ont permis d'utiliser la méthode sans 
+contrainte de caractéristique. Ce dernier a été récemment amélioré par un 
 résultat de Lairez et Vaccon \cite{LairezVaccon16} sur la précision $p$-adique. 
 
-Dans S.E.A. les isogénies sont calculées à l'aide de représentations 
+Dans SEA. les isogénies sont calculées à l'aide de représentations 
 spécifiques des courbes (sous équation de Weierstrass normalisée) alors que 
 celles-ci peuvent être représentées à isomorphisme près à l'aide de leur 
 $j$-invariant.
+\todo{Paragraphe incompréhensible. Ce que tu veux dire:
+  1) Les algos à la Elkies ou à la Couviegnes résolvent le problème de l'isogénie explicite;
+  2) Elkies a une moins bonne complexité, Couveignes est moins efficace en pratique;
+  3) Mais de toutes façons c'est absorbé dans les autres coûts de SEA, donc osef et on utilise Elkies en crypto.
+  4) Mais il y a des cas (carac moyenne), ou c'est moins clair entre L-S et Couveignes;
+  5) Et puis le problème apparaît aussi dans d'autres contextes, où Couveignes gagne (voir paragraphe suivant).}
 
 En effet le calcul d'isogénies peut avoir un intérêt 
-en dehors de l'algorithme S.E.A. comme le montrent les travaux de Teske 
+en dehors de l'algorithme SEA. comme le montrent les travaux de Teske 
 \cite{Teske06} sur un crypto-système à trappes, les travaux de cryptanalyse de 
 \cite{MaurerMenezesTeske01}, 
 les fonctions de hachage \cite{CGL09}, l'accélération de la multiplication 
@@ -249,15 +281,6 @@ scalaire \cite{GallantLambertVanstone01}, \cite{LongaSica14} ou les
 crypto-systèmes post-quantiques à base de graphes d'isogénies 
 \cite{RostovtsevStolbunov06} \cite{DeFeoJaoPlut14}.
 
-On s'intéresse au problème suivant:
-\paragraph{Problème du calcul explicite d'isogénie}
-
-Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les 
-$j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes 
-elliptiques $E_a$ et $E_b$ reliées par une isogénie de degré $r$ telles que 
-$j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est
-de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et 
-l'isogénie de degré $r$ $\phi:E \rightarrow E'$.
 \\
 %parler dej-invariants
 
@@ -303,75 +326,89 @@ l'isogénie de degré $r$ $\phi:E \rightarrow E'$.
 %crypto-systèmes post-quantiques à base de graphes d'isogénies 
 %\cite{RostovtsevStolbunov06} voire \cite{DeFeoJaoPlut14}.
 
-Ainsi il est pertinent de suivre le travail de Couveignes sur le calcul 
-d'isogénies \cite{Couveignes96} car celui-ci ne suppose pas la connaissance de 
-courbes sous une représentation spécifique. L'algorithme de Couveignes 
-interpole l'action de l'isogénie sur les points d'ordre $p^k$, préservés par 
-l'action de l'isogénie de degré $r$ avec $r \wedge p=1$, et se sert de cette 
-information pour déterminer l'isogénie. Ce travail de Couveignes fût amélioré 
-par la suite par De Feo \cite{DeFeo11}, qui se sert notamment d'une 
-construction efficace d'extensions $p$-adiques de corps finis faite 
-conjointement avec Schost \cite{DeFeo-Shost'12}. Cet algorithme
-a toutefois le désavantage d'avoir une dépendance exponentielle en $p$. Il 
-reste intéressant car il a une complexité quadratique meilleure que la 
-complexité pour le calcul nécessaire à l'obtention de représentations 
-spécifiques (équation de Weierstrass normalisée) des courbes utilisées dans le 
-contexte S.E.A.. 
+L'algorithme de Couveignes 
+interpole l'action de l'isogénie sur les points d'ordre $p^k$,
+pour $k$ assez grand, où $p$ est la caractéristique du corps de base.
+Ce travail de Couveignes fût amélioré
+\todo{Seul passé simple de toute l'intro. Ça fait bizarre.}
+par la suite par De Feo \cite{DeFeo11}, qui se sert notamment d'une
+\todo{Cite aussi Couveignes 2000, les tours d'AS, c'est d'abord son idée.}
+construction efficace de tours d'extensions de degré $p$ de corps finis, développée
+conjointement avec Schost \cite{DeFeo-Shost'12}. L'algorithme de Couveignes
+a toutefois le désavantage d'avoir une dépendance polynomiale en la caractéristique $p$.
 
-Cette thèse s'inscrit dans la suite des travaux de \cite{Couveignes96} 
-et \cite{DeFeo11} et cherche notamment à généraliser celui-ci à l'étude des 
-points d'ordre $\ell^k$, dans le cas de courbes ordinaires, avec $\ell \neq p$
-afin notamment de s'affranchir de la dépendance exponentielle en $p$. Pour 
-cela on doit notamment déterminer des ensembles de points préservés par 
-l'action de l'isogénie de degré $r$ tout en se servant d'une construction 
-efficace d'extensions $\ell$-adiques de corps finis. 
+Cette thèse s'inscrit dans la continuité des travaux de \cite{Couveignes96} 
+et \cite{DeFeo11}, et cherche notamment à les généraliser à l'étude des 
+points d'ordre $\ell^k$, avec $\ell$ quelconque,
+afin notamment de s'affranchir de la dépendance polynomiale en $p$. Pour 
+cela, on doit notamment déterminer des ensembles de points préservés par 
+l'action de l'isogénie que l'on veut calculer, tout en se servant d'une construction 
+efficace de tours d'extensions de degré $\ell$ de corps finis. 
 
-Pour le calcul d'ensemble de points d'ordre $\ell^k$ préservés par l'action de 
-la $r$-isogénie on se sert de graphes 
-d'isogénies dans le cas de courbes ordinaires. Ceux-ci ont été étudiés pour 
+Pour une étude fine de l'action de l'isogénie sur les
+points d'ordre $\ell^k$, on se sert de \emph{graphes 
+  d'isogénies}.
+\todo{C'est le bon moment pour ajouter un dessin.
+  Dis au moins ce que sons les sommets et les arêtes.}
+Ceux-ci ont été étudiés pour 
 la première fois par \cite{Kohel96} afin de calculer l'anneau des 
 endomorphismes d'une courbe elliptique. Fouquet et Morain ont par la suite 
-utilisé ces graphes d'isogénies, appelés \emph{volcans d'isogénies}, afin 
-d'améliorer S.E.A.. Enfin les travaux de Miret et al. \cite{MiretMRV05} 
+utilisé ces graphes, appelés aussi \emph{volcans d'isogénies}, afin 
+d'améliorer SEA. Enfin les travaux de Miret et al. \cite{MiretMRV05} 
 \cite{MiretMSTV06} \cite{MiretMSTV08} ont permis d'expliciter un lien entre le 
 niveau d'une courbe dans le volcan de $\ell$-isogénies et
 la structure des $\ell$ sous-groupes de Sylow.
-Les travaux de \cite{Ionica-Joux10} ont permis eux, à l'aide de couplage de 
-points, de se diriger dans le volcan d'isogénies sous certaines conditions. 
+Les travaux de \cite{Ionica-Joux10} ont permis, eux, à l'aide de couplages,
+de se diriger dans le volcan d'isogénies sous certaines conditions.
+\todo{Je crois que tu peux vendre aussi bien Miret et cie que Ionica-Joux comme
+  des améliorations de Fouquet-Morain, avec SEA comme finalité principale.}
 
-Pour la construction de tours d'extensions nos travaux sont dans la veine de 
-ceux de \cite{Doliskani-Schost15} et généralisent les résultats qui nous 
-intéressent.
+Concernant la construction de tours d'extensions, nos travaux se placent dans la suite de 
+ceux de \cite{Doliskani-Schost15}, et en donnent quelques généralisations utiles.
+\todo{Tu oublies De Feo-Doloskani-Schost.}
 
 Ainsi notre travail a abouti au théorème suivant:
+\todo{Attention à ne pas sous-vendre.
+  C'est le résultat principal, mais il y a plus dans ta thèse.}
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
 $\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de 
-l'isogénie explicite" en un temps quasi quadratique en le degré de l'isogénie 
-avec une dépendance polynomiale en la caractéristique du corps.
+l'isogénie explicite" en un temps quasi-quadratique en le degré de l'isogénie, 
+avec une dépendance logarithmique en la caractéristique du corps.
 \end{thm}
+\todo{Dis dans quelle section ce théorème est prouvé.
+  Pointe vers l'énoncé exact (il me semble qu'il est plus précis dans le texte).}
 
 \paragraph{Organisation de la thèse}
 On présente donc dans le premier chapitre des notions de bases, notamment sur les
 courbes elliptiques et leurs endomorphismes, et tout 
-particulièrement l'endomorphisme de Frobenius. Dans le 
-deuxième chapitre nous abordons les différents algorithmes de calculs 
+particulièrement l'endomorphisme de Frobenius.
+
+Dans le 
+deuxième chapitre nous abordons les différents algorithmes de calculs
+\todo{Dans l'espace de deux phrases, tu passes de ``on'' à ``nous''.
+  Homogénéise sur toute l'intro!}
 d'isogénies sur des corps finis, dont ceux de Elkies \cite{Elkies1998}, Bostan 
 et Al. \cite{BMSS08}, Lercier-Sirvent \cite{Lercier-Sirvent2008}, avant de 
 présenter l'algorithme de Couveignes \cite{Couveignes96} et ses améliorations 
-par De Feo \cite{DeFeo11}. Dans le chapitre 3, nous nous plaçons dans la continuité des travaux de 
+par De Feo \cite{DeFeo11}.
+
+Dans le chapitre 3, nous nous plaçons dans la continuité des travaux de 
 \cite{Doliskani-Schost15}, et nous présentons les tours d'extensions $\ell$-adiques.
 Nous établissons notamment un 
 résultat similaire à celui de \cite{DeFeo11} pour le calcul de polynômes 
-d'interpolation. Dans le chapitre 4 nous rappelons les résultats principaux 
+d'interpolation.
+
+Dans le chapitre 4 nous rappelons les résultats principaux 
 sur les volcans d'isogénies, dont notamment le lien entre les niveaux dans le
 volcan et la structure des $\ell$-sous-groupes de Sylow; pour cela nous utilisons
 des résultats de Kohel \cite{Kohel96}, Fouquet et Morain 
 \cite{FouquetMorain02}, Miret et Al. \cite{MiretMRV05} \cite{MiretMSTV06} 
 \cite{MiretMSTV08}, et Ionica Joux \cite{Ionica-Joux10}. 
 
-Ensuite nous étudions dans le chapitre 5 l'action du Frobenius sur 
-la $\ell^k$-torsion, et ses liens avec les directions dans le volcan de 
+Ensuite nous étudions dans le chapitre 5 l'action de l'endomorphisme de Frobenius sur 
+la $\ell^k$-torsion d'une courbe elliptique, et ses liens avec les directions dans le volcan de
+\todo{On ne sait toujours pas ce que c'est qu'une direction.}
 $\ell$-isogénies, dans le cas Elkies puis Atkin. Nous présentons aussi dans ce
 chapitre des algorithmes permettant de calculer des points qui engendrent le 
 noyau de certaines isogénies, spécifiées par leurs directions, dans le volcan. 
@@ -379,15 +416,22 @@ noyau de certaines isogénies, spécifiées par leurs directions, dans le volcan
 Ensuite, nous présentons dans le chapitre 6 comment ces isogénies spécifiées 
 par leur directions peuvent être
 utilisées dans un algorithme de Couveignes $\ell$-adique.
+\todo{Tu n'as jamais dit ce que c'est qu'un algo de Couveignes ``ell-adique''.
+  Tu forces le lecteur à deviner. Même si deviner n'est pas dur, dis plus tôt que
+  tu appelles ell-adiques tes variantes qui interpolent sur la ell-torsion.}
 Nous présentons et analysons donc un algorithme $\ell$-adique de
-Couveignes dans un cas favorable (en particulier on connaît déjà un nombre de 
-Elkies), puis dans le cas général, où l'on utilise notamment un résultat de 
-Shparlinski et Sutherland \cite{ShparlinskiSutherland14} afin de trouver un tel
-nombre de Elkies. On fait aussi une présentation moins détaillée du cas Atkin, 
-car celle-ci est moins performante.
+Couveignes
+\todo{Répété ``algorithme ell-adique de Couveignes'' dans l'espace de 2 lignes.}
+dans un cas favorable (à savoir, lorsque un entier $\ell$ avec des bonnes propriétés nous
+est fourni d'avance), puis dans le cas général, où l'on utilise notamment un résultat de 
+Shparlinski et Sutherland \cite{ShparlinskiSutherland14} afin de donner une borne sur
+l'entier $\ell$. On fait aussi une présentation d'une variante qui n'impose pas de
+contraintes sur $\ell$, mais nous la détaillerons moins
+car elle est moins performante.
 
 Enfin nous présentons dans le chapitre 7 des variantes d'algorithmes de 
-Couveignes $\ell$-adique et étudions leur intérêt. 
+Couveignes $\ell$-adique et étudions leur intérêt.
+\todo{Dis-en un peu plus, sinon on a l'impression qu'il sert à rien ce chapitre.}
 
 
 \chapter{Rappels théoriques}
