@@ -223,8 +223,8 @@ algorithme a été récemment amélioré par un résultat de Lairez et Vaccon
 Bien que l'algorithme de Couveignes~\cite{Couveignes96} ait une meilleure 
 complexité que l'algorithme de Lercier et Sirvent\cite{Lercier-Sirvent2008}, 
 celui-ci n'est pas utilisé en pratique à cause d'une dépendance polynomiale en 
-la caractéristique $p$ qui le rend trop couteux dés lors que la 
-caractéristique augmente trop. Ces deux algorithmes n'étant pas limités par la 
+la caractéristique $p$ qui le rend trop couteux dés que la caractéristique 
+augmente. Ces deux algorithmes n'étant pas limités par la 
 caractéristique ils sont pertinents pour le calcul de points en caractéristique
 moyenne, dés lors il n'est pas évident lequel utiliser. De plus comme dans SEA 
 d'autres opérations, notamment le calcul d'équations de Weierstrass 
@@ -254,7 +254,6 @@ les fonctions de hachage \cite{CGL09}, l'accélération de la multiplication
 scalaire \cite{GallantLambertVanstone01}, \cite{LongaSica14} ou les 
 crypto-systèmes post-quantiques à base de graphes d'isogénies 
 \cite{RostovtsevStolbunov06} \cite{DeFeoJaoPlut14}.
-\\
 
 Ainsi il est pertinent de suivre le travail de Couveignes sur le calcul 
 d'isogénies \cite{Couveignes96} car celui-ci ne suppose pas la connaissance de 
@@ -265,12 +264,12 @@ base. Ce travail de Couveignes a été amélioré par la suite par De Feo
 \cite{DeFeo11}, qui se sert notamment d'une construction efficace de tours 
 d'extensions de degré $p$ de corps finis, développée conjointement avec Schost 
 \cite{DeFeo-Shost'12} d'après un travail de Couveignes \cite{Couveignes00}. 
-L'algorithme de Couveignes a toutefois le désavantage d'avoir une dépendance 
-polynomiale en la caractéristique $p$.
+%L'algorithme de Couveignes a toutefois le désavantage d'avoir une dépendance 
+%polynomiale en la caractéristique $p$.
 
-Cette thèse s'inscrit dans la continuité des travaux de \cite{Couveignes96} 
-et \cite{DeFeo11}, et cherche notamment à les généraliser à l'étude des 
-points d'ordre $\ell^k$, avec $\ell$ quelconque,
+Cette thèse s'inscrit dans la continuité des travaux de Couveignes 
+\cite{Couveignes96} et De Feo \cite{DeFeo11}, et cherche notamment à les 
+généraliser à l'étude des points d'ordre $\ell^k$, avec $\ell$ quelconque,
 afin notamment de s'affranchir de la dépendance polynomiale en $p$. Pour 
 cela, on doit notamment déterminer des ensembles de points préservés par 
 l'action de l'isogénie que l'on veut calculer, tout en se servant d'une construction 
@@ -278,10 +277,10 @@ efficace de tours d'extensions de degré $\ell$ de corps finis.
 
 Pour une étude fine de l'action de l'isogénie sur les points d'ordre $\ell^k$, 
 on se sert de \emph{graphes d'isogénies}.
-Sur la Figure~\ref{fig:int:vol} on voit un graphe, sur celui-ci 
+Sur la Figure~\ref{fig:int:vol} on voit un graphe d'isogénies. Sur ce graphe 
 sont représentés à l'aide de points les courbes elliptiques définies à 
 isomorphisme près, celles-ci sont reliées par des traits symbolisant les 
-isogénies de même degré. En particulier toutes les courbes d'un même volcan 
+isogénies de même degré. En particulier toutes les courbes d'un même graphe
 d'isogénies ont la même cardinalité.
 \begin{figure}
 \begin{center}
@@ -353,12 +352,9 @@ al. \cite{MiretMRV05}  \cite{MiretMSTV06} \cite{MiretMSTV08} ont permis
 d'expliciter un lien entre le niveau d'une courbe dans le volcan de 
 $\ell$-isogénies et la structure des $\ell$ sous-groupes de Sylow.
 Les travaux de \cite{Ionica-Joux10} ont permis, eux, à l'aide de couplages,
-de changer de niveau dans le volcan d'isogénies sous certaines conditions. Tous ces 
-travaux ayant pour but d'améliorer ceux de Fouquet et Morain 
-\cite{FouquetMorain02} ils ont aussi amélioré SEA.
-
-\todo{Je crois que tu peux vendre aussi bien Miret et cie que Ionica-Joux comme
-des améliorations de Fouquet-Morain, avec SEA comme finalité principale.}
+de changer de déterminer un changement de niveau dans le volcan d'isogénies 
+sous certaines conditions. Tous ces travaux ayant pour but d'améliorer ceux de 
+Fouquet et Morain \cite{FouquetMorain02} ils ont aussi amélioré SEA.
 
 Concernant la construction de tours d'extensions, nos travaux se placent dans la suite de 
 ceux de De Feo, Doliskani et Schost \cite{DeFeo-Doliskani-Schost13}, Doliskani 
@@ -378,7 +374,7 @@ Pour arriver à ce résultat nous avons donné de nouveaux moyens, sans
 restrictions, pour définir et déterminer des directions dans les volcans de 
 $\ell$-isogénies.
 
-\paragraph{Organisation de la thèse}
+\section*{Organisation de la thèse}
 Nous présentons donc dans le premier chapitre des notions de bases, notamment 
 sur les courbes elliptiques et leurs endomorphismes, et tout particulièrement 
 l'endomorphisme de Frobenius. 
@@ -389,28 +385,29 @@ et Al. \cite{BMSS08}, Lercier-Sirvent \cite{Lercier-Sirvent2008}, avant de
 présenter l'algorithme de Couveignes \cite{Couveignes96} et ses améliorations 
 par De Feo \cite{DeFeo11}. 
 
-Dans le chapitre 3, nous nous plaçons dans la continuité des travaux de 
+Dans le chapitre~\ref{cha:tour}, nous nous plaçons dans la continuité des travaux de 
 De Feo, Doliskani et Schost \cite{DeFeo-Doliskani-Schost13}, Doliskani et 
 Schost \cite{Doliskani-Schost15}, et nous présentons les tours d'extensions 
 $\ell$-adiques. Nous établissons notamment un résultat similaire à celui de De 
 Feo \cite{DeFeo11} pour le calcul de polynômes d'interpolation. 
 
-Dans le chapitre 4 nous rappelons les résultats principaux sur les volcans 
+Dans le chapitre~\ref{cha:volc:iso} nous rappelons les résultats principaux sur les volcans 
 d'isogénies, dont notamment le lien entre les niveaux dans le
 volcan et la structure des $\ell$-sous-groupes de Sylow; pour cela nous utilisons
 des résultats de Kohel \cite{Kohel96}, Fouquet et Morain 
 \cite{FouquetMorain02}, Miret et Al. \cite{MiretMRV05} \cite{MiretMSTV06} 
 \cite{MiretMSTV08}, et Ionica Joux \cite{Ionica-Joux10}. 
 
-Ensuite nous étudions dans le chapitre 5 l'action de l'endomorphisme de 
-Frobenius sur la $\ell^k$-torsion d'une courbe elliptique. on étend la définition de direction à l'aide
- du Frobenius et ses liens avec les directions dans le volcan de 
-$\ell$-isogénies, dans le cas Elkies puis Atkin. Nous présentons aussi dans ce
-chapitre des algorithmes permettant de calculer des points qui engendrent le 
-noyau de certaines isogénies, spécifiées par leurs directions, dans le volcan. 
+Ensuite nous étudions dans le chapitre\ref{cha:act:fro} l'action de l'endomorphisme de 
+Frobenius sur la $\ell^k$-torsion d'une courbe elliptique. On étend la 
+définition de direction d'isogénie dans le volcan, déjà définie pour le 
+changement de niveau dans le volcan \cite{FouquetMorain02}, à l'aide du 
+Frobenius dans le cas Atkin. Nous présentons aussi dans ce chapitre des 
+algorithmes permettant de calculer des points qui engendrent le noyau de 
+certaines isogénies, spécifiées par leurs directions, dans le volcan. 
 
-Ensuite, nous présentons dans le chapitre 6 comment ces isogénies spécifiées 
-par leur directions peuvent être utilisées dans un algorithme de Couveignes
+Ensuite, nous présentons dans le chapitre~\ref{cha:alg:fin} comment ces isogénies spécifiées 
+par leurs directions peuvent être utilisées dans un algorithme de Couveignes
 ou l'on interpole l'action de l'isogénie sur les points d'ordre $\ell^k$. Nous
 appellerons cette variante de l'algorithme de Couveignes: $\ell$-adique.
 Nous présentons et analysons donc un algorithme $\ell$-adique de
@@ -421,10 +418,11 @@ utilise notamment un résultat de Shparlinski et Sutherland
 On fait aussi une présentation d'une variante qui n'impose pas de contraintes 
 sur $\ell$, mais nous la détaillerons moins car elle est moins performante.
 
-Enfin nous présentons dans le chapitre 7 des variantes d'algorithmes de 
-Couveignes $\ell$-adique afin de voir notamment si l'on ne peut pas travailler 
-avec un seul groupe cyclique ou avec différents nombres de Elkies et étudions 
-leur intérêt. 
+Enfin nous présentons dans le chapitre~\ref{cha:var:cou} des variantes de notre
+algorithmes de Couveignes $\ell$-adique présenté dans le 
+chapitre~\ref{cha:alg:fin}  afin de voir notamment si l'on ne peut pas 
+travailler avec un seul groupe cyclique des points d'ordre $\ell^k$ ou avec 
+différents nombres de Elkies et étudions leur intérêt. 
 
 
 \chapter{Rappels théoriques}
