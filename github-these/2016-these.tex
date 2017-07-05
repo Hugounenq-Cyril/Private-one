@@ -169,6 +169,11 @@
 %\nomenclature{$\phi$}{Une $r$-isogénie}
 \nomenclature{$\widehat{\psi}$}{Isogénie duale de $\psi$}
 \nomenclature{$\Phi_{\ell}$}{$\ell$-ème polynôme modulaire}
+\nomenclature{$\mathsf{End}(E)$}{L'anneau des endomorphismes de la courbe elliptique $E$}
+\nomenclature{$\mathcal{O}$}{L'ordre associé à ismorphisme près à l'anneau des endomorphisme de la courbe elliptique $E$}
+\nomenclature{$\mathsf{Gal}(\mathbb{L}:\mathbb{K})$}{Le groupe d'automorphismes de
+ $\mathbb{L}$ qui laisse fixe $\mathbb{K}$ avec $\mathbb{L}/\mathbb{K}$ une extension Galoisienne.}
+\nomenclature{$j(E)$}{$j$-invariant de la courbe elliptique $E$}
 \nomenclature{$P \odot Q$}{Le produit composé de $P$ et $Q$}
 \nomenclature{$\mathsf{F}_{(i,j)}$}{$j$-ème corps de la tour d'extensions $\ell_i$-adiques}
 \nomenclature{$d_i$}{Le degré de l'extension $F_{(i,0)}$ par rapport à $\mathbb{F}_q$}
@@ -2143,8 +2148,8 @@ avec le Frobenius. Couveignes \cite{Couveignes96} ne tirait pas
 pleinement parti du fait que connaître l'image d'un générateur d'une orbite 
 selon l'action du Frobenius fixait la valeur des autres points de l'orbite. 
 Il manquait pour l'algorithme original des techniques efficaces pour faire agir
-le Frobenius ce que les constructions de tours d'Artin Schreier de 
-\cite{DeFeo-Shost'12} permettent désormais.
+le Frobenius ce que les constructions de tours d'Artin Schreier de De Feo et 
+Schost \cite{DeFeo-Shost'12} permettent désormais.
 
 On va montrer dans cette sous-sous-section les idées directrices pour obtenir à partir 
 d'un polynôme d'interpolation défini uniquement à l'aide de l'image d'un 
@@ -2375,6 +2380,13 @@ apportées à l'algorithme de Couveignes sont construites comme des extensions d
 corps sur $\mathbb{F}_p$ et ainsi tout élément d'une tour d'Artin-Schreier est
 exprimé à l'aide d'un polynôme à coefficients dans $\mathbb{F}_p$.
 \end{rem}
+
+\begin{thm}
+****Brouillon****
+Un pré-calcul (des points de $p^k$-torsion) que l'on majore grossièrement par 
+$O(M(rp^2))$ opérations sur $\mathbb{F}_q$
+On a l'interpolation de Cauchy qui coûte quoiqu'il arrive $O(\mathsf{M}(r)\log(r))$.
+\end{thm}
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
 \label{cha:tour}
@@ -7095,8 +7107,12 @@ normalisée calculées à l'aide du $r$-ème polynôme modulaire (voir
 chapitres~\ref{cha:iso:computing} et \ref{cha:rappel} pour plus de détails).
 Ainsi l'algorithme de Bröker, Lauter et Sutherland~\cite{BLS12}, le plus rapide
 connu pour calculer le $r$-ème polynôme modulaire a une complexité de 
-$O(r^3 \log^3(r) \log \log(r))$ opérations sur $\mathbb{F}_q$ d'après 
-\cite[Theorem 1]{BLS12}.
+$O(r^3 \log^3(r) \log \log(r))$ opérations sur $\mathbb{F}_p$ d'après 
+\cite[Theorem 1]{BLS12}, ainsi ne serait-ce que pour représenter $Phi_r$ sur 
+$\mathbb{F}_q$ nous a une complexité cubique en $r$ supérieure à notre résultat.
+Nous comparons aussi la complexité énoncée dans le 
+théorème~\ref{thm:gen:elk:fin} avec l'algorithme appelée "C2-AS-FI" de De Feo
+\cite{DeFeo11} car nous utilisons des méthodes similaires.
 
 \subsection{Partie expérimentale}
 \label{ssec:exp:cou}
