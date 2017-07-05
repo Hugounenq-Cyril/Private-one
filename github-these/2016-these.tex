@@ -1292,7 +1292,7 @@ Dans le modèle de Elkies on travaille avec des courbes à équations de
 Weierstrass normalisées, celles-ci sont calculées à l'aide du $r$-ème polynôme 
 modulaire (voir proposition \ref{prop:elk:nor} pour la construction et 
 \cite{Schoof95} pour plus de détails). Le $r$-ème polynôme modulaire est 
-calculé en $\tilde{O}(r^3)$ opérations sur $\mathbb{F}_q$ d'après \cite{Enge09} \cite[Algorithm 6.1, Theorem 1]{BLS12}. \todo{se rappeler cette seconde source}
+calculé en $\tilde{O}(r^3)$ opérations sur $\mathbb{F}_q$ d'après \cite{Enge09} \cite[Algorithm 6.1, Theorem 1]{BLS12}.
 Les idées présentées ici sont issues du travail de Elkies~\cite[§The kernel of
  the isogeny]{Elkies1998}, celui-ci commence à partir des équations de 
  Weierstrass normalisées de $E$
@@ -7581,12 +7581,20 @@ moins élevé de ce facteur $\ell$. On pourrait alors penser que cette variante
 est meilleure que l'algorithme~\ref{alg:cou:ell-adique}
 cependant l'algorithme~\ref{alg:cou:ell-adique} travaille dans des extensions 
 de corps plus petites.
-De plus notre estimation du nombre d'abscisses différentes utilisées lors de
-l'interpolation est toujours très pessimiste car on pourrait se contenter de
-prendre un nombre de points plus grand que $4r$, tout en ayant que des orbites 
-complètes pour le Frobenius, dès lors on ne travaillerait pas avec $O(r\ell^2)$ 
-abscisses lors de l'étape d'interpolation.  \todo{A nuancer avec la taille des orbites qui sont de $\ell^{k-\alpha}$ à $\ell^{k-\beta}$}
- 
+De plus notre estimation du nombre d'abscisses de points différentes utilisées lors de
+l'interpolation est toujours très pessimiste car nous pourrions nous contenter de
+prendre un nombre d'abscisses plus grand que $4r$, tout en ayant que des orbites 
+complètes pour le Frobenius. Dès lors nous ne travaillerions pas avec $O(r\ell^2)$ 
+abscisses lors de l'étape d'interpolation. Cependant la taille des orbites est
+comprise entre $\ell^{k-\beta}$ et $\ell^{k-\alpha}$ dans notre approche (voir 
+chapitres~\ref{cha:alg:fin} et ~\ref{cha:act:fro}). On aurait pu travailler avec
+des orbites de taille plus petites si nous avions travaillé uniquement avec
+des courbes situées sur le cratère du volcan de $\ell$-isogénies, nous aurions 
+pu utiliser des points d'ordre compris entre $\ell^{k}$ et $\ell^{k-h}$. Ceci 
+nous aurait permis de travailler avec des orbites plus petites et donc 
+d'approcher $4r$ avec plus de précision.
+
+
 Une différence notable c'est que dans cette variante la complexité pour le 
 calcul d'une base diagonale de la $\ell^{h+1}$ torsion est quadratique alors 
 que dans l'algorithme~\ref{alg:cou:ell-adique} cette partie est seulement 
