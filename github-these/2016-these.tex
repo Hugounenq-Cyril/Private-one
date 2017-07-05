@@ -193,7 +193,7 @@ Le calcul d'isogénies, morphismes de groupes de noyau fini entre deux courbes
 elliptiques apparaît dans SEA et a donc un intérêt central. En effet deux 
 courbes elliptiques reliées par une isogénie ont la même cardinalité. Dans SEA
 les courbes elliptiques sont représentées, entre autres, à l'aide de leur 
-$j$-invariant qui les définit à isomorphisme près. On formule donc le problème
+$j$-invariant qui les définit à isomorphisme près. Nous formulons donc le problème
 suivant de calcul d'isogénies :
 
 \paragraph{Problème du calcul explicite d'isogénie}
@@ -203,6 +203,7 @@ $j$-invariants sont $r$-isogènes, c'est à dire qu'il existe deux courbes
 elliptiques $E_a$ et $E_b$ reliées par une isogénie de degré $r$ telles que 
 $j(E_a)=j_0$ et $j(E_b)=j_1$, calculer les courbes $E_a$, $E_b$ et 
 l'isogénie $\phi:E_a \rightarrow E_b$ de degré $r$.
+\\
 
 Les premiers algorithmes de calculs d'isogénies sont dus à Atkin \cite{Atkin91}
 et Charlap, Coley et Robbins \cite{CharlapColeyRobbins91}. Ensuite des 
@@ -223,7 +224,7 @@ algorithme a été récemment amélioré par un résultat de Lairez et Vaccon
 Bien que l'algorithme de Couveignes~\cite{Couveignes96} ait une meilleure 
 complexité que l'algorithme de Lercier et Sirvent\cite{Lercier-Sirvent2008}, 
 celui-ci n'est pas utilisé en pratique à cause d'une dépendance polynomiale en 
-la caractéristique $p$ qui le rend trop couteux dés que la caractéristique 
+la caractéristique $p$ qui le rend trop coûteux dès que la caractéristique 
 augmente. Ces deux algorithmes n'étant pas limités par la 
 caractéristique, ils sont pertinents pour le calcul de points en caractéristique
 moyenne, dès lors il n'est pas évident lequel utiliser. De plus comme dans SEA 
@@ -401,7 +402,7 @@ des résultats de Kohel \cite{Kohel96}, Fouquet et Morain
 Ensuite nous étudions dans le chapitre~\ref{cha:act:fro} l'action de l'endomorphisme de 
 Frobenius sur la $\ell^k$-torsion d'une courbe elliptique. Nous étendons la 
 définition de direction d'isogénie dans le volcan, déjà définie pour le 
-changement de niveau dans le volcan \cite{FouquetMorain02}, à l'aide du 
+changement de niveau dans le volcan par \cite{FouquetMorain02}, à l'aide du 
 Frobenius dans le cas Atkin. Nous présentons aussi dans ce chapitre des 
 algorithmes permettant de calculer des points qui engendrent le noyau de 
 certaines isogénies, spécifiées par leurs directions, dans le volcan. 
@@ -419,26 +420,26 @@ Nous faisons aussi une présentation d'une variante qui n'impose pas de contrain
 sur $\ell$, mais nous la détaillerons moins car elle est moins performante.
 
 Enfin nous présentons dans le chapitre~\ref{cha:var:cou} des variantes de notre
-algorithmes de Couveignes $\ell$-adique présenté dans le 
+algorithme de Couveignes $\ell$-adique présenté dans le 
 chapitre~\ref{cha:alg:fin}  afin de voir notamment si il est possible de 
-travailler avec un seul groupe cyclique des points d'ordre $\ell^k$ ou avec 
+travailler avec un seul sous-groupe cyclique des points d'ordre $\ell^k$ ou avec 
 différents nombres de Elkies, et étudions leur intérêt. 
 
 
 \chapter{Rappels théoriques}
 \section{Complexit\'e}
-Dans ce document, on va utiliser la notation classique de Landau $O$ pour mesurer la 
+Dans ce document, nous utilisons la notation classique de Landau $O$ pour mesurer la 
 complexité des algorithmes présentés. Etant données deux fonctions $f,g: \mathbb{N} \rightarrow \mathbb{N}$, on dit que $f \in O(g)$ lorsqu'il existe deux constantes $x_0$ et $M$ telles que:
 \[
 f(x)<Mg(x) \quad \text{pour} \quad x>x_0.
 \]
-On définit également la notation $f \in \Omega(g)$ de la façon suivante à l'aide de deux constantes $x_0$ et $M$ telles que: 
+Nous définissons également la notation $f \in \Omega(g)$ de la façon suivante à l'aide de deux constantes $x_0$ et $M$ telles que: 
 \[
 f(x)>Mg(x) \quad \text{pour} \quad x>x_0.
 \]
-On défnit la notation $\Theta$ pour laquelle que $f \in \Theta(g)$ si et seulement si $f \in O(g)$ et $f \in \Omega(g)$.
+Nous défnissons la notation $\Theta$ pour laquelle que $f \in \Theta(g)$ si et seulement si $f \in O(g)$ et $f \in \Omega(g)$.
 
-Dans ce document, de nombreux algorithmes vont utiliser la multiplication rapide, on définit donc celle-ci: $\mathsf{M}:\mathbb{N} \rightarrow \mathbb{N}$ la \emph{fonction de multiplication} tel que le coût de la multiplication de deux polynômes de de degré $n$ définis dans $\mathbb{F}_q[x]$ coûte $M(n)$ opérations arithmétiques dans $\mathbb{F}_q$. En utilisant les résultats de \cite[§8.3]{vzGJG03} on peut supposer que l'on a:
+Dans ce document, de nombreux algorithmes vont utiliser la multiplication rapide, nous définissons donc celle-ci: $\mathsf{M}:\mathbb{N} \rightarrow \mathbb{N}$ la \emph{fonction de multiplication} tel que le coût de la multiplication de deux polynômes de de degré $n$ définis dans $\mathbb{F}_q[x]$ coûte $M(n)$ opérations arithmétiques dans $\mathbb{F}_q$. En utilisant les résultats de \cite[§8.3]{vzGJG03} nous pouvons supposer que:
 \begin{itemize}
 \item $\mathsf{M}(n)$ est superlinéaire, c'est à dire $\frac{\mathsf{M}(n)}{n} \geqslant \frac{\mathsf{M}(m)}{m}$ si $n \geqslant m$,
 \item $\mathsf{M}(n)$ est au plus quadratique: $\mathsf{M}(mn) \leqslant m^2 \mathsf{M}(n)$.
@@ -446,18 +447,18 @@ Dans ce document, de nombreux algorithmes vont utiliser la multiplication rapide
 
 \`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} utlisant des transformation de Fourrier rapides, la multiplication de polynômes de degré $n$ appartenant à $R[x]$ pour un anneau $R$ quelconque est de $O(n\log(n) \log \log (n))$ opérations arithmétiques dans $R$.
 
-Dans ce document on va noter par $\omega$ un constante telle que l'on peut 
+Dans ce document nous notons par $\omega$ un constante telle que l'on peut 
 multiplier des matrices de taille $m$ définies sur un anneau $A$ quelconque en
-utilisant $O(m^{\omega})$ opérations $(+,\times)$ dans $A$, en utilisant les 
-algorithmes de \cite{CoppersmithWinograd90} et \cite{Williams12} on peut 
-prendre $\omega \leqslant 2,38$.
+utilisant $O(m^{\omega})$ opérations $(+,\times)$ dans $A$. \`A l'aide des 
+algorithmes de \cite{CoppersmithWinograd90} et \cite{Williams12} nous avons
+ $\omega \leqslant 2,38$.
 
-On va noter par $\tilde{O}_{r}$ le coût de la complexité en omettant les facteurs 
-logarithmiques en la variable $r$. Ainsi on a $O(r \ell \log(r) \log(\ell)) 
+Nous notons par $\tilde{O}_{r}$ le coût de la complexité en omettant les facteurs 
+logarithmiques en la variable $r$. Ainsi nous avons $O(r \ell \log(r) \log(\ell)) 
 \subset \tilde{O}_{r}(r \ell \log(\ell)) \subset \tilde{O}_{r,\ell}(r \ell)$. 
-On omettra de préciser la variable quand il n'y a pas d'ambiguïtés possibles.
+Nous omettrons de préciser la variable quand il n'y a pas d'ambiguïtés possibles.
 
-Enfin des algorithmes de Las Vegas vont être utilisés dans ce document. Ces algorithmes sont des algorithmes probabilistes qui produisent un résultat correct, dès lors qu'on utilise un algorithme de Las Vegas on parlera de coût moyen. 
+Enfin des algorithmes de Las Vegas vont être utilisés dans ce document. Ces algorithmes sont des algorithmes probabilistes qui produisent un résultat correct, dès lors que nous utilisons un algorithme de Las Vegas nous parlerons de coût moyen. 
 
 
 \section{Théorie de Galois}
