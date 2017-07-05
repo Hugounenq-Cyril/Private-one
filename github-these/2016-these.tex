@@ -161,6 +161,9 @@
 \nomenclature{$v_{\ell}(n)$}{La valuation $\ell$-adique de $n$}
 \nomenclature{$\mathbb{Z}_{\ell}$}{L'ensemble des entiers $\ell$-adiques}
 \nomenclature{$\pi$}{L'endomorphisme de Frobenius}
+\nomenclature{$d_{\pi}$}{Discriminant du Frobenius}
+\nomenclature{$t_{\pi}$}{Trace du Frobenius}
+\nomenclature{$\mathbb{F}_q$}{Corps fini à $q$ éléments}
 \nomenclature{$[n]P$}{Multiplication scalaire par $n$ d'un point $P$ d'une courbe elliptique}
 \nomenclature{$E[n]$}{Ensemble des points de $n$-torsion d'une courbe elliptique}
 \nomenclature{$\mathsf{T}_{\ell}(E)$}{Le module de Tate $\ell$-adique de la courbe elliptique $E$}
@@ -181,6 +184,8 @@
 \nomenclature{$p_j$}{Le degré de l'extension $\mathbb{K}_{j}$ par rapport à $\mathbb{F}_q$}
 \nomenclature{$\upsilon_n$}{L'entier $\prod_{i=1}^n\ell_i^{k_i}$}
 \nomenclature{$\vartheta_{i_0}$}{L'entier $\frac{\upsilon_{n}}{\ell_{i_0}^{k_{i_0}}}$}
+\nomenclature{$\left( \frac{\ell}{d_K} \right)$}{Symbole de Kronecker}
+
 
 \printnomenclature
 
@@ -1975,7 +1980,8 @@ p^{k-1}(p-1)/2$.
 
 %Détaillons cela, on a vu dans la proposition \ref{pro:ord:fro} que pour tout $i\geqslant 1$ l'extension $\mathbb{L}_{i+1}$, dans laquelle est définie $E[p^{i+1}]$, est soit une extension de degré $p$ de $\mathbb{L}_{i}$ soit égale à $\mathbb{L}_{i}$. Ainsi les points d'ordre $p^{v_p(E(\mathbb{L}_1)}$ de $E$ sont par définition de $v_p(E(\mathbb{L}_1))$ définis sur $\mathbb{L}_1$ (qui n'est pas forcément égal à $\mathbb{F}_q)$, on note $f$ le nombre d'abscisses différentes de ces éléments. Dès lors les points d'ordre $p^{v_p(E(\mathbb{L}_1))+i+1}$ avec $i \geqslant 0$ sont définis comme des antécédents par $[p]$ (la multiplication par $p$) d'un point $P_i$ d'ordre $p^{v_p(E(\mathbb{L}_1))+i}$ et chaque point de cet orbite sous l'action du groupe de Galois $[\mathbb{L}_{v_E(p)+i+1}:\mathbb{L}_{v_E(p)+i}]$ est un antécédent de $P_i$ par $[p]$ (voir lemme \ref{lem:bij:ord}). 
 
-Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses des points d'ordre $p^{i+v_p(E(\mathbb{L}_1))}$ selon l'action du Frobenius et les différentes orbites. $f$ le nombre d'abscisses des représentants des points d'ordre $p^{v_p(E(\mathbb{L}_1))}$ sous l'action de $\mathsf{Gal}(\mathbb{L}_1:\mathbb{F}_q)$ est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}$ est égal à$ \frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2 d_1}$ sauf dans le cas où $2 | [\mathbb{L}_1:\mathbb{F}_q]$ où l'on a $\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{d_1}$ par le corollaire~\ref{cor:tai:orb}.
+Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses des points d'ordre $p^{i+v_p(E(\mathbb{L}_1))}$ selon l'action du Frobenius et les différentes orbites. $f$ le nombre d'abscisses des représentants des points d'ordre $p^{v_p(E(\mathbb{L}_1))}$ sous l'action de $\mathsf{Gal}(\mathbb{L}_1:\mathbb{F}_q)$ est égal aux nombres d'abscisses de points d'ordre $p^{v_p(E(\mathbb{L}_1))}$. $f$ est égal à$ \frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{2 d_1}$ sauf dans le cas où $2 | [\mathbb{L}_1:\mathbb{F}_q]$ où l'on a $\frac{p^{v_p(E(\mathbb{L}_1))-1}(p-1)}{d_1}$ par le corollaire~\ref{cor:tai:orb}.
+%En particulier on a une décomposition des $(p-1)/2$ abscisses de points d'ordre $p$ en $f$ orbites de taille $d_1$ chacune
 
 \begin{figure}
 \begin{center}
@@ -2096,8 +2102,8 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 		\end{scope}             
 \end{tikzpicture}
 \end{center}
-\caption{Classification des points de $p^k$-torsion selon l'action du Frobenius, en particulier on a une décomposition des $(p-1)/2$ abscisses de points d'ordre $p$ en $f$ orbites de taille $d_1$ chacune.}
-\label{fig:p-tor:fro}
+\caption{\label{fig:p-tor:fro} Classification des points de $p^k$-torsion selon l'action du Frobenius.}
+%, en particulier on a une décomposition des $(p-1)/2$ abscisses de points d'ordre $p$ en $f$ orbites de taille $d_1$ chacune
 \end{figure}
 
 Ainsi asymptotiquement la taille des orbites $e$ est dans $O(p^k)$, dés lors ne
@@ -2240,7 +2246,9 @@ T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
 Une représentation de ce calcul sur un arbre de produit binaire permet de voir 
 sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en 
 travaillant avec une branche de celui-ci à l'aide de la méthode décrite 
-ci-dessus.
+ci-dessus. En effet seul les éléments en rouge de l'arbre sont pris en compte 
+pour le calcul de $T_0$, $\sigma$ peut être n'importe quel élément générateur 
+de $\mathsf{Gal}(\mathbb{L}_3:\mathbb{L}_0)$.
 
 \begin{figure}
 \begin{center}
@@ -2351,8 +2359,8 @@ ci-dessus.
 		\draw (A4) node[left]{$\mathbb{L}_{3}$};
 \end{tikzpicture}
 \end{center}
-\caption{Arbre de sous produits pour le calcul de $T_0^{(0)}$ dans le cas d'une tour d'extension quadratique. Seul les éléments en rouge de l'arbre sont pris en compte pour le calcul, $\sigma$ peut être n'importe quel élément générateur de $\mathsf{Gal}(\mathbb{L}_3:\mathbb{L}_0)$.}
-\label{fig:orb:T}
+\caption{\label{fig:orb:T} Arbre de sous produits pour le calcul de $T_0^{(0)}$ dans le cas d'une tour d'extension quadratique.}
+%Seul les éléments en rouge de l'arbre sont pris en compte pour le calcul, $\sigma$ peut être n'importe quel élément générateur de $\mathsf{Gal}(\mathbb{L}_3:\mathbb{L}_0)$.
 \end{figure}
 
 \begin{rem}
@@ -4421,8 +4429,9 @@ $(\pi - \mu) P = x (\lambda - \mu) R$ et l'on obtient le résultat.
 \end{tikzpicture}
 \end{center}
 \caption{ \label{fig:poi:dia} Exemples de  différents points diagonaux $P \in 
-E_s$ d'ordre $2^3$ tels que $\pi(P)=[ \mu ]P$, ici sont représentées les 
-différentes isogénies de noyau $\langle P \rangle$.}
+E_s$ d'ordre $2^3$ tels que $\pi(P)=[ \mu ]P$.}
+%, ici sont représentées les 
+% différentes isogénies de noyau $\langle P \rangle$
 \end{figure}
 
 
@@ -4631,12 +4640,13 @@ de direction~$\mu$, alors $Q'$~est horizontal de direction $\mu$.
 
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:poi:hor} Exemple de construction de point horizontal. 
-Sur le volcan de gauche est représentée  l'isogénie de noyau $\langle P 
-\rangle$ avec $P \in E_s$  tel que $[2^2]P$ est horizontal de direction 
-$\mu$ et $\psi$ est une $2$-isogénie horizontale de direction 
-$\lambda$. Sur le volcan de droite l'isogénie de noyau $\langle 
-\psi(P) \rangle$ est représentée.}
+\caption{ \label{fig:poi:hor} Exemple de construction de point horizontal d'ordre $2^2$. 
+}
+%Sur le volcan de gauche est représentée  l'isogénie de noyau $\langle P 
+%\rangle$ avec $P \in E_s$  tel que $[2^2]P$ est horizontal de direction 
+%$\mu$ et $\psi$ est une $2$-isogénie horizontale de direction 
+%$\lambda$. Sur le volcan de droite l'isogénie de noyau $\langle 
+%\psi(P) \rangle$ est représentée.
 \end{figure}
 
 On présente donc sur la figure~\ref{fig:poi:hor} un exemple de construction de 
@@ -4646,9 +4656,11 @@ proposition~\ref{pro:dia:hor} que $[2^2]P$ était horizontal de direction
 $\lambda$. On utilise alors la proposition~\ref{pro:dia:hor} pour déterminer 
 l'isogénie $\psi:E_s \rightarrow E'_s$ de direction $\mu$, $\psi(P)$ est alors 
 un point d'ordre $[2^3]$ tel que $[2]\psi(P)$
-est un point horizontal d'ordre $2^2$. Pour obtenir un point horizontal d'ordre
-$2^3$ on utilise à nouveau la $2$-isogénie de direction $\mu$ et de domaine
-$E'_s$, que l'on applique à $\psi(P)$.
+est un point horizontal d'ordre $2^2$ par la proposition~\ref{pro:pus:hor}. 
+L'isogénie de noyau $ \langle \psi(P) \rangle$ est donc représentée sur le 
+volcan de droite. Pour obtenir un point horizontal d'ordre $2^3$ on utilise à 
+nouveau une $2$-isogénie de direction $\mu$ et de domaine $E'_s$, que l'on 
+applique à $\psi(P)$.
 
 On va donc montrer comment transporter cette information pour des courbes 
 situées en dessous du cratère. Avant cela voyons comment déterminer à l'aide 
@@ -4877,20 +4889,20 @@ Il est porté à l'attention du lecteur qu'un point horizontal est aussi un poin
 
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:par:hor:con} Construction d'un point partiellement 
-horizontal à partir d'un point $P \in E_s$ d'ordre $2^3$ tel que $[2]P$ soit 
-horizontal de direction $\mu$ et $\psi:E_s \rightarrow E$ une 
-$2$-isogénie descendante. L'isogénie de noyau $\langle P \rangle$ est 
-représentée en bleu sur le dessin de gauche, celle de noyau $\langle \psi(P) 
-\rangle$ est représentée sur le dessin de droite.}
+\caption{ \label{fig:par:hor:con} Construction d'un point ascendant 
+horizontal.} % à partir d'un point $P \in E_s$ d'ordre $2^3$ tel que $[2]P$ soit 
+%horizontal de direction $\mu$ et $\psi:E_s \rightarrow E$ une 
+%$2$-isogénie descendante. L'isogénie de noyau $\langle P \rangle$ est 
+%représentée en bleu sur le dessin de gauche, celle de noyau $\langle \psi(P) 
+%\rangle$ est représentée sur le dessin de droite.
 \end{figure}
 
 On voit sur la figure~\ref{fig:par:hor:con} la construction d'un point 
-partiellement horizontal sur un volcan de $2$-isogénies. Sur le volcan de 
+ascendant horizontal sur un volcan de $2$-isogénies. Sur le volcan de 
 gauche est représentée l'isogénie de noyau $\langle P \rangle$ avec $P \in E_s$
 tel que $[\ell]P$ est horizontal de direction  $\mu$. On calcule 
 alors l'image de $P$ par la $2$-isogénie descendante $\psi:E_s \rightarrow E$
-pour construire le point partiellement horizontal $R=\psi(P) \in E$. Sur le 
+pour construire le point ascendant horizontal $R=\psi(P) \in E$. Sur le 
 volcan de droite est représenté l'isogénie de noyau $\langle R \rangle$.
 
 \begin{prop}
@@ -5115,7 +5127,7 @@ en dessous elle change comme décrit juste au-dessus.
 \subsubsection{Algorithmes pour le calcul des directions dans le volcan de $\ell$-isogénies}
 
 L'objectif de cette sous-section est de calculer, pour une courbe se trouvant 
-sur un volcan de $\ell$-isogénies une base horizontale (ou partiellement 
+sur un volcan de $\ell$-isogénies une base horizontale (ou ascendante 
 horizontale) de la $\ell^k$-torsion. On a vu à la proposition~\ref{pro:dia:hor}
 que l'on devait avoir $k \geqslant h+1$ avec $h$ la hauteur du volcan afin de 
 pouvoir déterminer une $\ell$-isogénie horizontale car sinon on ne peut 
@@ -5690,7 +5702,7 @@ $O(\mathsf{M}(\ell^{k-\beta+1}))$ opérations sur $\mathbb{F}_q$, on obtient le 
 \begin{rem}
 Il est normal que dans le coût de la proposition~\ref{pro:par:hor} on ne prenne
 pas en compte le calcul des isogénies descendantes $\varphi_i$, car, si l'on 
-veut calculer un point partiellement horizontal pour une courbe non située sur 
+veut calculer un point ascendant horizontal pour une courbe non située sur 
 le cratère, alors il est raisonnable de penser que l'un des deux algorithmes 
 \ref{alg:rem:tri} ou \ref{alg:ulti:fro} a été utilisé pour obtenir une base 
 diagonale pour la courbe située sur le cratère, ainsi peut calculer les duales 
@@ -6018,12 +6030,14 @@ d'où le résultat.
 \end{scope}
 \end{tikzpicture}
 \end{center}
-\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies correspondant aux différentes matrices du Frobenius, calculées sur la courbe $E$ au sommet du volcan des $\ell$-isogénies. Dans cet exemple, $E$ est la courbe de $j$-invariant $56$ définie sur $\mathbb{F}_{149}$, et $\ell=2$.}
+\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies correspondant aux différentes matrices du Frobenius, calculées sur la courbe $E$ au sommet du volcan des $\ell$-isogénies. }
 \end{figure}
 
 La figure~\ref{fig:atk:dif:niv:iso} représente les isogénies que l'on obtient 
 selon la forme des matrices du Frobenius de la 
-courbe au sommet du volcan. On a donc représenté dans le volcan la 
+courbe au sommet du volcan. Dans cet exemple, $E$ est la courbe de 
+$j$-invariant $56$ définie sur $\mathbb{F}_{149}$, et $\ell=2$. On a donc 
+représenté dans le volcan la 
 matrice à l'endroit correspondant au codomaine de la $\ell^{i}$-isogénie 
 engendrée par le second vecteur de la base de $E[\ell^{h+i}]$ dans laquelle est
 calculée l'action du Frobenius. Le premier vecteur de la base a été choisi au 
@@ -6362,14 +6376,14 @@ Le troisième point de cette proposition nous permet de réduire le problème du
 calcul de la $r$-isogénie entre deux courbes elliptiques au même problème pour 
 deux courbes situées sur le cratère du volcan de $\ell$-isogénies. Cependant la
 proposition suivante montre que cela n'est pas nécessaire on peut tout aussi 
-bien, à l'aide de points partiellement horizontaux, travailler avec des 
+bien, à l'aide de points ascendants horizontaux, travailler avec des 
 sous-groupes cycliques invariants selon l'action de $r$-isogénies. 
 
 \begin{prop}
 \label{pro:par:hor:par}
 Soient $\phi: E \rightarrow E'$ une $r$-isogénie avec $E$ et $E'$ qui se
 situent à une profondeur $e$ du cratère (donc au niveau $h-e$), $P \in E,P' \in
-E'$ des points partiellement horizontaux de même direction alors $\phi(P) \in 
+E'$ des points ascendants horizontaux de même direction alors $\phi(P) \in 
 \langle P' \rangle$. 
 \end{prop}
 
@@ -6396,19 +6410,19 @@ proposition~\ref{pro:par:iso}~\eqref{pro:par:fun} on a $\phi(P) \in \langle P' \
 %situent pas forcément sur le cratère du volcan des $\ell$-isogénies. 
 
 La différence entre des points horizontaux $P_{\lambda}, Q_{\mu} \in E_s$ 
-d'ordre $\ell^k$ et des points \emph{partiellement} horizontaux $R_{\lambda}, 
+d'ordre $\ell^k$ et des points \emph{ascendants} horizontaux $R_{\lambda}, 
 R_{\mu} \in E$ d'ordre $\ell^k$ de profondeur $e>0$ de directions opposées 
 c'est que l'on a $\langle R_{\lambda}, R_{\mu} \rangle \neq E[\ell^k]$ (en 
 particulier$\langle [\ell^{k-e}]R_{\lambda} \rangle = \langle 
 [\ell^{k-e}]R_{\mu} \rangle$) alors que pour deux points horizontaux de 
 directions opposées on avait $E_s[\ell^k]= \langle P_{\lambda}, Q_{\mu} \rangle$. 
-Ainsi avec deux points partiellement horizontaux on ne peut travailler avec 
+Ainsi avec deux points ascendants horizontaux on ne peut travailler avec 
 toute la $\ell^k$-torsion. On va donc faire le choix par la suite, afin d'avoir
 une présentation uniforme,de travailler avec les points d'ordre $\ell^k$(avec 
 $k>h$). En effet on ne peut pas générer tous les point de $\ell^e$-torsion et 
 donc pour éviter toute redondance on ne travaille qu'avec les points d'ordre 
 $\ell^k$. Si l'on souhaitait travailler avec les points de la $\ell^e$-torsion 
-on utiliserait dans le cas de deux points partiellements horizontaux 
+on utiliserait dans le cas de deux points ascendants horizontaux 
 $R_{\lambda}, R_{\mu}$ (de profondeur $e>0$) par exemple le groupe $\langle 
 [\ell^{k-e}]R_{\lambda} \rangle$.
 
@@ -6852,7 +6866,7 @@ $E_s[\ell^k],E'_s[\ell^k]$ à l'aide de l'algorithme \ref{alg:hor:poi};
 \IF{$(E_s,E'_s) \neq (E,E')$}
 \STATE Calcul de $((P_{\lambda},Q_{\mu}),(P'_{\lambda},Q_{\mu}'))=
 ((\varphi(P_{\lambda}),\varphi(Q_{\mu})),(\varphi'(P'_{\lambda}),\varphi'(
-Q_{\mu}')))$ bases partiellement horizontales de $E[\ell^k],E'[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
+Q_{\mu}')))$ bases ascendantes horizontales de $E[\ell^k],E'[\ell^k]$ avec les $\ell^e$-isogénies descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
 \ENDIF
 \STATE \label{alg:cou-ell:rep} Calcul des liste de représentants $L,L'$ des orbites de points d'ordre $\ell^k$ sous l'action de $\pi$;
 \FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\ell^{k}\mathbb{Z} \right)^*$}
@@ -6916,7 +6930,7 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   étapes~\ref{alg:cou-ell:bhor} et \ref{alg:cou-ell:bdiag} par 
   $O(\sqrt{r}\mathsf{M}(\sqrt{r}\ell^{1,5})\log(r)\log(\ell)\log(\ell q))$.
   
-  Il faut éventuellement rajouter le coût de calcul des points partiellement 
+  Il faut éventuellement rajouter le coût de calcul des points ascendants 
   horizontaux si les courbes en entrée ne se situent pas sur le cratère. 
   Celui-ci est dans le pire des cas de
   $O(k\mathsf{M}(\ell^{k-\beta+1})) = O(\log(r) \mathsf{M}(\sqrt{r} \ell^{1,5}) )$ par la proposition~\ref{pro:par:hor}, ce 
@@ -7162,7 +7176,7 @@ Cauchy, cela représente une itération des étapes \ref{alg:cou-ell:ord} à
 \begin{figure}
 \includegraphics[scale=0.8]{benchmarks/graphe-101bis.pdf} 
 %\resizebox{\columnwidth}{!}{\input{graphe-101}}
-\caption{\label{fig:exp:uni} Comparaison entre les phases d'initialisations et la phase d'interpolation pour une courbe définie sur $\mathbb{F}_{101}$ pour $r$ croissant. La courbe est en échelle logarithmique.}
+\caption{\label{fig:exp:uni} Comparaison entre la phase d'initialisation et la phase d'interpolation pour une courbe définie sur $\mathbb{F}_{101}$ pour $r$ croissant. La courbe est en échelle logarithmique.}
 \end{figure}
 
 
@@ -7673,7 +7687,7 @@ l'algorithme~\ref{alg:cou:mult-adique:short}.%,
 %l'algorithme~\ref{alg:cou:mult-adique:short} est disponible en annexe.
 
 \begin{algorithm}
-\caption{\label{alg:cou:mult-adique:short} Algorithme de Couveignes $\ell$-adique avec approche muti-modulaire dans le cas Elkies.}
+\caption{\label{alg:cou:mult-adique:short} Algorithme de Couveignes $\ell$-adique avec différents nombres de Elkies}
 \begin{algorithmic}[1]
 \REQUIRE $E,E'$: deux courbes elliptiques $r$-isogènes ordinaires situées au niveau $h_i-e_i$ d'un volcan de $\ell_i$-isogénies avec cratère cyclique.
 \ENSURE $\phi$ la $r$-isogénie qui relie $E$ à $E'$.
@@ -8412,7 +8426,7 @@ Calcul de $(P,Q),(P',Q')$ bases diagonales de $E_s[\ell^{h+1}],E'_s[\ell^{h+1}]$
 \STATE Calcul de $P_{\lambda} \in E_s[\ell^k]$, $P'_{\lambda} \in E_s'[\ell^k]$ points horizontaux  à l'aide de l'algorithme \ref{alg:hor:poi};
 \IF{$(E_s,E'_s) \neq (E,E')$}
 \STATE 
-Calcul de $P_{\lambda},P'_{\lambda}$ points partiellement 
+Calcul de $P_{\lambda},P'_{\lambda}$ points ascendants 
 horizontaux de $E_s[\ell^k],E'_s[\ell^k]$ avec les $\ell^e$-isogénies 
 descendantes $\varphi: E_s \rightarrow E$, $\varphi': E_s \rightarrow E'$;
 \ENDIF
