@@ -7102,7 +7102,7 @@ résolution du problème du "Calcul de l'isogénie explicite" en terme de $r$ et
 \begin{thm}
 \label{thm:gen:elk:fin}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
-$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de l'isogénie explicite" 
+$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul explicite de l'isogénie" 
 en un temps espéré de 
  \begin{equation*}
  \begin{alignedat}{1}
@@ -8305,24 +8305,10 @@ Nous avons aussi vu au travers de notre étude des moyens pour déterminer des
 directions dans le volcan de $\ell$-isogénies à l'aide de l'étude de l'action
 du Frobenius sur le module de Tate $\ell$-adique, excepté pour le cas des 
 isogénies descendantes dans le cas Elkies où l'on ne peut rien déduire.
-Voyons maintenant quelques utilisations ou améliorations possibles des 
+
+Voyons maintenant quelques améliorations possibles (ou à explorer) des 
 résultats présentés dans cette thèse.
 
-L'amélioration l'algorithme de Couveignes que nous proposons
-dans le cas Atkin, avec la même méthode que pour le cas Elkies, nécessiterait 
-de distinguer un sous-groupe cyclique de la $\ell^k$-torsion, ou de trouver un 
-autre moyen pour distinguer des couples de points formant une base de 
-$E[\ell^k]$. Nous avons 
-réfléchi à travailler avec un groupes de points isomorphes à 
-$\mathbb{Z}_{\ell^2}$ (l'unique extension quadratique non ramifiée de 
-$\mathbb{Z}_{\ell}$), mais nous n'avons pas réussi à modéliser l'action du 
-Frobenius sur un tel ensemble. Enfin parmi les pistes proposées mais non 
-satisfaisante dans le chapitre~\ref{cha:var:cou} seule celle présentée dans la 
-section~\ref{sec:cou:con} sur une approche avec un nombre composé de Elkies 
-pourrait aboutir quand on aura des meilleures représentations de compositum 
-permettant des changements de représentation en un temps linéaire.
-
-\paragraph{Couplage de points}
 Le couplage de points n'a pas été abordé dans ce document mais seulement 
 mentionné, certes dans \cite{Ionica-Joux10} il y a des résultats moins probants
 sur la détermination de directions dans le volcan de $\ell$-isogénies. Il 
@@ -8330,6 +8316,28 @@ serait toutefois intéressant d'étudier si le couplage ne nous apporte pas un
 critère restrictif, pertinent du point de vue de la complexité, sur les images 
 de points par la $r$-isogénie, et en particulier sur les points (ascendants) 
 horizontaux.
+
+L'objectif d'une complexité quadratique pour notre amélioration de l'algorithme
+de Couveignes dans le cas Atkin avec la même méthode que \cite{Couveignes96} 
+nécessite de distinguer un sous-groupe cyclique de la $\ell^k$-torsion.
+Ainsi résoudre ce problème permettrait d'atteindre une complexité 
+quasi-quadratique dans le cas Atkin.
+%Un autre moyen pour distinguer des couples de points formant une base de 
+%$E[\ell^k]$. Nous avons 
+%réfléchi à travailler avec un groupes de points isomorphes à 
+%$\mathbb{Z}_{\ell^2}$ (l'unique extension quadratique non ramifiée de 
+%$\mathbb{Z}_{\ell}$), mais nous n'avons pas réussi à modéliser l'action du 
+%Frobenius sur un tel ensemble. 
+
+Enfin, parmi les pistes proposées mais non satisfaisante dans le 
+chapitre~\ref{cha:var:cou}, seule celle présentée dans la 
+section~\ref{sec:cou:con} utilisant un nombre composé de Elkies pourrait 
+aboutir, en supposant qu'on ait des meilleures représentations de composita 
+permettant des changements de représentation de corps finis en un temps 
+quasi-linéaire.
+
+Nous donnons, pour conclure, quelques perspectives d'application des
+résultats de cette thèse.
 
 \paragraph{Calcul d'anneau des endomorphismes}
 Les propositions~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} nous 
@@ -8379,22 +8387,7 @@ la proposition~\ref{pro:dia:hor}.
 
 
 
-%Dans les travaux similaire à \cite{BissonSutherland11} \todo{reformuler cela} pour le calcul 
-%d'anneau d'endomorphisme tels que \cite{BLS12} pour le calcul de polynôme 
-%modulaire ou le calcul de polynôme de Hilbert \cite{Broker08} \cite{Sutherland11a}
-%sont utilisés des marches sur le
-%volcan, et se placent par simplicité dans le cas où le volcan de 
-%$\ell_i$-isogénies est réduit à un cratère cyclique. Ce cas se présentant 
-%uniquement pour les nombres $\ell_i$ de Elkies ne divisant pas $d_{\pi}$, cette 
-%approche est trés raisonnable. De plus comme dit dans \todo{trou} le calcul d'isogénies 
-%n'est pas privilégié or c'est ce que l'on fait lors de nos déplacements dans
-%la détermination de direction dans le volcan. Pour toutes ces raisons notre 
-%détermination de directions dans le volcan de $\ell_i$-isogénies n'aura 
-%vraisemblablement pas d'impact sur ces méthodes. Cependant comme dit dans \todo{trou}
-%où l'on étudie les directions dans le volcan à l'aide d'action dans le groupe
-%de classes d'idéaux, il serait intéressant de savoir transposer le résultat de 
-%la proposition~\ref{pro:dia:hor} au groupe de classes d'idéaux pour avoir 
-%éventuellement un résultat intéressant dans ce contexte.
+
 \paragraph{Multiplication scalaire et points ascendants horizontaux}
 On a aussi vu dans le chapitre~\ref{cha:tour}, en adaptant les méthodes de 
 \cite{Doliskani-Schost15}, un moyen de faire un calcul 
