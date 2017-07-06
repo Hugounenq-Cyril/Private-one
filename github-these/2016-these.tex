@@ -8327,37 +8327,46 @@ nombres premiers de Elkies.
 
 \chapter*{Conclusion}
 Nous avons donc vu dans ce manuscrit comment généraliser l'algorithme de 
-Couveignes au cas $\ell$-adique. En particulier, en l'état actuel, nous avons 
+Couveignes au cas $\ell$-adique. En particulier, nous avons 
 vu que l'on était capable d'obtenir un algorithme qui résolve le problème de 
 l'isogénie explicite avec une complexité quasi-quadratique en le degré de 
 l'isogénie uniquement dans le cas Elkies, et un algorithme de complexité 
 inférieure à cubique dans le cas Atkin. Cependant notre proposition 
 d'algorithme $\ell$-adique de Couveignes dans le cas Atkin
-a une complexité trop grande. Une amélioration l'algorithme que nous proposons
+a une complexité trop grande. Une amélioration de l'algorithme que nous proposons
 dans le cas Atkin, avec la même méthode que pour le cas Elkies, nécessiterait 
 de distinguer un sous-groupe cyclique de la $\ell^k$-torsion, ou de trouver un 
 autre moyen pour distinguer des couples de points formant une base de 
 $E[\ell^k]$. Nous avons 
-réfléchi à travailler avec un groupes de points isomorphes à 
+réfléchi à travailler avec un groupe de points isomorphe à 
 $\mathbb{Z}_{\ell^2}$ (l'unique extension quadratique non ramifiée de 
 $\mathbb{Z}_{\ell}$), mais nous n'avons pas réussi à modéliser l'action du 
-Frobenius sur un tel ensemble. Enfin parmi les pistes proposées mais non 
-satisfaisante dans le chapitre~\ref{cha:var:cou} seule celle présentée dans la 
-section~\ref{sec:cou:con} sur une approche avec un nombre composé de Elkies 
-pourrait aboutir quand on aura des meilleures représentations de compositum 
-permettant des changements de représentation en un temps linéaire.
+Frobenius sur un tel ensemble.
+\todo{Je ne comprends pas ce que tu veux faire.}
+Enfin, parmi les pistes proposées mais non 
+satisfaisante dans le chapitre~\ref{cha:var:cou}, seule celle présentée dans la 
+section~\ref{sec:cou:con} utilisant un nombre composé de Elkies 
+pourrait aboutir, en supposant qu'on ait des meilleures représentations de composita 
+permettant des changements de représentation de corps finis en un temps quasi-linéaire.
 
-\paragraph{Calcul d'anneau des endomorphismes}
+Nous donnons, pour conclure, quelques perspectives d'application des
+résultats de cette thèse.
+
+\paragraph{Calcul d'anneaux d'endomorphismes}
 Les propositions~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} nous 
 permettent de savoir exactement à quel niveau se trouve une courbe dans un 
 volcan de $\ell_i$-isogénies. Ainsi en se plaçant dans le même contexte que 
-\cite{BissonSutherland11}, où l'on connaît déjà une factorisation de $d_{\pi}$,
-avec les propositions ~\ref{pro:mat:fro} ou \ref{pro:mat:fro:atk}, selon le cas
-Elkies ou Atkin, on connaîtrait la valuation $\ell_i$ adique du 
-conducteur de la courbe par rapport à $\mathbb{Z}[\pi]$ et donc on pourrait
-déterminer l'anneau des endomorphismes de la courbe. Cela pourrait avoir par 
-exemple une application dans l'algorithme de Bröker \cite{Broker08} utilisé 
-pour calculer un polynôme de Hilbert. En effet dans l'algorithme de Bröker, il 
+\cite{BissonSutherland11},
+\todo{Et de la thèse de Kohel, et de celle de Gaëtan, non?}
+où l'on connaît déjà une factorisation de $d_{\pi}$, grâce à ces résultats
+on connaîtrait la valuation $\ell_i$-adique du 
+conducteur de la courbe par rapport à $\mathbb{Z}[\pi]$, et donc on pourrait
+déterminer l'anneau des endomorphismes de la courbe. Cela pourrait avoir, par 
+exemple, une application dans l'algorithme de Bröker \cite{Broker08} utilisé 
+pour calculer un polynôme de Hilbert.
+\todo{Je crois que la littérature sur le calcul de polynômes d'Hilberts est un peu plus
+  vaste que ça. Il doit y avoir des papiers d'Andreas et de Drew, entre autres.}
+En effet dans l'algorithme de Bröker, il 
 est nécessaire de calculer une courbe avec un anneau d'endomorphismes 
 spécifique à partir d'une courbe au hasard dont $\mathbb{Z}[\pi]$ est fixée. 
 On pourrait alors à partir d'une telle courbe se servir des 
@@ -8365,7 +8374,9 @@ propositions~\ref{pro:mat:fro} ou \ref{pro:mat:fro:atk} afin de déterminer
 l'anneau des endomorphismes de la courbe.
 Ensuite on pourrait se servir de la proposition~\ref{pro:tri:dir} ou du 
 corollaire~\ref{cor:mon:atk} pour trouver une courbe dont 
-l'anneau des endomorphismes correspond à celui que l'on cherche. 
+l'anneau des endomorphismes correspond à celui que l'on cherche.
+\todo{Peut-être deux mots pour dire pourquoi ce serait plus intéressant d'utiliser
+  tes résultats, plutôt que la thèse de Kohel, ou Fouquet-Morain, ou Miret et al. etc.?}
 
 \paragraph{Déplacement sur le cratère de volcans de $\ell$-isogénies et ses 
 applications aux algorithmes de calcul de poylnômes de Hilbert et modulaire}
@@ -8373,23 +8384,25 @@ Des articles tels que \cite{Couveignes96isogenycycles}, \cite{Broker08},
 \cite{Sutherland11a}, \cite{BLS12}, utilisent des marches sur le cratère 
 cyclique d'un volcan de $\ell$-isogénies avec $\ell$ petit. Certains 
 algorithmes (\cite{Couveignes96isogenycycles}) se limitent, à juste titre, au 
-cas de volcans réduits à leur cratère, d'autres ne peuvent et on va donc 
+cas de volcans réduits à leur cratère, d'autres ne peuvent, et on va donc 
 aborder l'éventuel impact de nos travaux sur ceux-ci.
-Dans l'algorithme de Sutherland \cite{Sutherland11a} pour le calcul de polynôme
+Dans l'algorithme de Sutherland \cite{Sutherland11a} pour le calcul de polynômes
 de Hilbert on est obligé, de par la taille du $\ell$-ème 
 polynôme modulaire, de traiter les cas où le volcan n'est pas réduit à un
 cratère cyclique. Dés lors il serait pertinent de voir l'apport de notre 
 travail (proposition~\ref{pro:dia:hor}) dans ce contexte par rapport à 
-l'algorithme de marche utilisé dans le volcan similaire aux travaux de 
+l'algorithme utilisé par Sutherland, similaire aux travaux de 
 \cite{FouquetMorain02} (voir sous-section~\ref{sub:alg:FM}) se servant
 du $\ell$-ème polynôme modulaire, ainsi on pourrait rendre cet algorithme non
-dépendant du (pré)calcul de $\ell$-ème polynôme modulaire.
-Dans l'algorithme BLS (Bröker Lauter Sutherland) \cite{BLS12} pour 
+dépendant du (pré)calcul des polynômes modulaires.
+Dans l'algorithme de Bröker, Lauter et Sutherland \cite{BLS12}, pour 
 calculer le $\ell$-ème polynôme modulaire les auteurs se placent dans le cas
-où ils travaillent sur un volcan de $\ell_i$-isogénies de hauteur $h = 1$
-pour lequel on a de $E[\ell_i]\subset E(\mathbb{F}_p)$ pour les courbes situées
+d'un volcan de $\ell_i$-isogénies de hauteur $1$,
+pour lequel on a $E[\ell_i]\subset E(\mathbb{F}_p)$ pour les courbes situées
 sur le cratère et pour lequel on a l'existence de points d'ordre $\ell_i^2$ 
-définis sur $\mathbb{F}_p$ pour les courbes en bas du volcan. On pourrait à 
+définis sur $\mathbb{F}_p$ pour les courbes en bas du volcan.
+\todo{C'est pas la même chose que dire Elkies, de hauteur 1 et régulier, ça?}
+On pourrait à 
 nouveau étudier, dans ce cas très spécifique, l'impact d'une méthode utilisant
 la proposition~\ref{pro:dia:hor}.
 
@@ -8414,15 +8427,18 @@ la proposition~\ref{pro:dia:hor}.
 \paragraph{Multiplication scalaire et points ascendants horizontaux}
 On a aussi vu dans le chapitre~\ref{cha:tour}, en adaptant les méthodes de 
 \cite{Doliskani-Schost15}, un moyen de faire un calcul 
-rapide du Frobenius, il serait intéressant de voir si on ne peut pas se servir
+rapide du Frobenius.
+\todo{D'une courbe ou du corps?}
+Il serait intéressant de voir si on ne peut pas se servir
 de cela pour obtenir des résultats intéressants sur la multiplication scalaire.
-Pour le moment tout ce que l'on est capable de faire c'est à partir d'une 
+Pour le moment tout ce que l'on est capable de faire c'est, à partir d'une 
 décomposition d'un point $R$ d'ordre $\ell^k$ en deux points (ascendant) 
 horizontaux $P_{\lambda}, Q_{\mu}$ décomposer la multiplication scalaire de 
 $R=[a]P_{\lambda} + [b] Q_{\mu}$ par $c$ en le calcul de $[c]R=[c_{\lambda}] 
 \pi^{\lfloor c/\lambda \rfloor}([a]P)+[c_{\mu}]\pi^{\lfloor c/\mu \rfloor}
 ([a]Q_{\mu})$  avec $c_{\lambda}=c \bmod \lambda$ et $c_{\mu}=c \bmod \mu$. 
 L'intérêt d'une telle approche reste à étudier.
+\todo{Tu veux faire un truc à la GLV? Cite.}
 
 \paragraph{Crypto-système}
 On pourrait utiliser, dans le cas Atkin, le résultat de la proposition ~\ref{pro:cla:fro:mat}
@@ -8431,6 +8447,7 @@ secrète partagée entre deux utilisateurs. Dés lors ces utilisateurs se
 communiqueraient la forme de matrices du Frobenius et déterminerait à l'aide de
 $P$ le second point de la base qui serait alors une nouvelle clé partagée.
 Ce crypto-système semble cependant un peu trop couteux pour être pratique.
+\todo{BS. Enlève-moi ça!}
 
 \paragraph{Couplage de points}
 Le couplage de points n'a pas été abordé dans ce document mais seulement 
@@ -8440,6 +8457,9 @@ serait toutefois intéressant d'étudier si le couplage ne nous apporte pas un
 critère restrictif, pertinent du point de vue de la complexité, sur les images 
 de points par la $r$-isogénie, et en particulier sur les points (ascendants) 
 horizontaux.
+\todo{Ce paragraphe irait mieux dans la discussion sur comment améliorer tes résultats,
+  que tu fais avant ``Calcul d'anneaux d'endomorphismes''.
+  Il ne s'agit pas d'une application de tes résultats.}
 
 \paragraph{Calcul d'isogénies de degrés non connus}
 Comme abordé dans la thèse de De Feo \cite[Section 8.9]{DeFeo10}, l'algorithme 
@@ -8447,10 +8467,15 @@ de Couveignes \cite{Couveignes96} pourrait être utilisé sans connaître le deg
 de l'isogénie, donc nos algorithmes de Couveignes $\ell$-adique aussi. Nos 
 algorithmes auront ainsi l'avantage de ne pas dépendre de la caractéristique du
 corps sur lequel ils se trouvent.
+\todo{C'est trivial. Mais si tu n'as pas plus d'idées de quoi faire avec ça,
+  pas la peine d'en parler.}
 
 De manière plus générale on pourrait étudier l'intérêt de l'algorithme de 
 Couveignes $\ell$-adique dans la cryptanalyse de systèmes à base d'isogénies.
-
+\todo{Trop spécifique. Si Couveignes donne quelque chose, pourquoi pas les autres
+  algos de calcul d'isogénies? Certes, tu as envie de t'intéresser à la cryptanalyse
+  de IBC, et c'est bien, mais ta thèse n'apporte pas grande chose de nouveau
+  sur le sujet.}
  
 \todo{Vérifier qu'il n'y a pas d'erreurs dans la bibliographie}
 \bibliography{Biblio}
