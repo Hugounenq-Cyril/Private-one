@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{hyperref}
-\usepackage{natbib}
+%\usepackage{natbib}
 \usepackage[francais]{babel}
 \usepackage{hyperref}
 \usepackage{amssymb,amsthm,amsmath,amsfonts}
@@ -29,7 +29,7 @@
 \usepackage[intoc]{nomencl}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\usepackage{apalike}
+%\usepackage{apalike}
 \usepackage{subfig}
 
 
@@ -193,13 +193,14 @@
 
 
 Les courbes (hyper)elliptiques sont beaucoup étudiées et utilisées, notamment en 
-cryptographie \cite{Miller85,Koblitz87,Koblitz89}. Nous nous intéressons tout 
-particulièrement aux courbes elliptiques sur les corps finis $\mathbb{F}_q$ de 
-caractéristique $p$. Les algorithmes de calculs de cardinalité de courbes 
-elliptiques sont donc primordiaux. L'algorithme de Schoof \cite{Schoof85}, est 
-le premier algorithme à calculer la cardinalité de courbes elliptiques. Il a 
-été amélioré par la suite par les travaux de Atkin \cite{Atkin88} et Elkies 
-\cite{Elkies91} aboutissant à l'algorithme SEA \cite{Schoof95}.
+cryptographie \cite{Miller85,Koblitz87,Koblitz89}. Dans les domaines applicatifs, 
+on s'intéresse tout particulièrement aux courbes elliptiques sur les corps finis. 
+Les algorithmes de calculs de cardinalité de courbes elliptiques sont donc 
+primordiaux, afin par exemple de définir les paramètres du cryptosystème. 
+L'algorithme de Schoof \cite{Schoof85}, est le premier algorithme de complexité
+polynômiale à calculer la cardinalité de courbes elliptiques sur les corps 
+finis. Il a été amélioré par la suite par les travaux de Atkin \cite{Atkin88} 
+et Elkies \cite{Elkies91} aboutissant à l'algorithme SEA \cite{Schoof95}.
 
 Le calcul d'isogénies, morphismes de groupes de noyau fini entre deux courbes
 elliptiques, apparaît dans SEA et a donc un intérêt central. En effet deux 
@@ -214,37 +215,39 @@ Soient deux $j$-invariants $j_0$ et $j_1$ et un entier positif $r$. En supposant
 $j$-invariants sont $r$-isogènes, c'est à dire qu'il existe deux courbes 
 elliptiques $E_a$ et $E_b$ reliées par une isogénie de degré $r$ telles que 
 $j(E_a)=j_0$ et $j(E_b)=j_1$, calculer les courbes $E_a$, $E_b$ et 
-l'isogénie $\phi:E_a \rightarrow E_b$ de degré $r$.
+l'isogénie $\phi:E_a \rightarrow E_b$.
 \\
 
 Les premiers algorithmes de calculs d'isogénies sont dus à Atkin \cite{Atkin91}
 et Charlap, Coley et Robbins \cite{CharlapColeyRobbins91}. Ensuite des 
-algorithmes sur les corps finis ont été développés \cite{Couveignes94}, 
-\cite{Couveignes96}, \cite{Lercier96}, \cite{Elkies1998}.
-Les trois premiers algorithmes sus-cités de Couveignes \cite{Couveignes94}, 
-\cite{Couveignes96} et Lercier \cite{Lercier96} ne sont utilisables que dans le
-cas de petite caractéristique. L'algorithme de Elkies\cite{Elkies1998} qui se 
-place dans le contexte SEA, et nécessite le calcul de représentations 
-spécifiques des courbes (sous équation de Weierstrass normalisée), est 
-utilisable en plus grande caractéristique. Ce travail a
-été ensuite amélioré par les travaux de Bostan, Morain, Salvy et Schost 
-\cite{BMSS08} puis par celui de Lercier et Sirvent \cite{Lercier-Sirvent2008} qui a
-permis d'utiliser cette méthode sans contrainte de caractéristique, ce dernier 
+algorithmes utilisables sur les corps finis ont été développés 
+\cite{Elkies1998}, \cite{Couveignes94}, \cite{Couveignes96}, \cite{Lercier96}.
+Les trois algorithmes sus-cités de Couveignes \cite{Couveignes94}, 
+\cite{Couveignes96} et Lercier \cite{Lercier96} ne sont pratiques que dans le
+cas de petite caractéristique. L'algorithme de Elkies\cite{Elkies1998}, au 
+contraire est mieux adapté à la caractéristique grande ou zéro, et ne peut pas 
+être utilisé en peite caractéristique. Ce dernier a
+été ensuite amélioré par le travail de Bostan, Morain, Salvy et Schost 
+\cite{BMSS08}, puis par celui de Lercier et Sirvent \cite{Lercier-Sirvent2008} qui a
+permis d'utiliser cette méthode sans contrainte de caractéristique; ce dernier 
 algorithme a été récemment amélioré par un résultat de Lairez et Vaccon 
 \cite{LairezVaccon16} sur la précision $p$-adique. 
 
 Bien que l'algorithme de Couveignes~\cite{Couveignes96} ait une meilleure 
-complexité que l'algorithme de Lercier et Sirvent\cite{Lercier-Sirvent2008}, 
-celui-ci n'est pas utilisé en pratique à cause d'une dépendance polynomiale en 
-la caractéristique $p$ qui le rend trop coûteux dès que la caractéristique 
-augmente. Ces deux algorithmes, n'étant pas limités par la 
-caractéristique, sont pertinents pour le calcul de points en caractéristique
-moyenne, dès lors il n'est pas évident lequel utiliser. De plus comme dans SEA 
-d'autres opérations, notamment le calcul d'équations de Weierstrass 
-normalisées, ont un coût plus élevé que l'algorithme de Lercier et Sirvent 
-\cite{Lercier-Sirvent2008}, la question d'un algorithme plus efficace n'est 
-donc pas motivée dans ce contexte.
-
+complexité que l'algorithme de Lercier et Sirvent\cite{Lercier-Sirvent2008}
+en le degré de l'isogénie, celui-ci n'est pas utilisé en pratique à cause d'une
+dépendance polynomiale en la caractéristique $p$ qui le rend trop coûteux dès 
+que la caractéristique augmente. Ainsi l'algorithme de Lercier et Sirvent 
+\cite{Lercier-Sirvent2008} avec une dépendance logarithmique en $p$ est 
+préféré pour les plus grandes caractéristiques. Ces deux algorithmes, n'étant 
+pas limités par la caractéristique, on ne connaît pas exactement, dans le cas 
+de la moyenne caractéristique, quand il est pertinent d'utiliser l'algorithme
+de Lercier et Sirvent~\cite{Lercier-Sirvent2008} à la place de celui de 
+Couveignes~\cite{Couveignes96}. De plus comme dans SEA 
+d'autres opérations ont un coût plus élevé que l'algorithme de Lercier et Sirvent 
+\cite{Lercier-Sirvent2008}, la question de trouver un algorithme avec une 
+complexité moins élevée en le degré de l'isogénie n'est pas motivée dans ce 
+contexte.
 
 %+  4) Mais il y a des cas (carac moyenne), ou c'est moins clair entre L-S et Couveignes;
 %Les toutes premières méthodes de calcul 
@@ -259,42 +262,42 @@ donc pas motivée dans ce contexte.
 %les courbes peuvent être représentées à isomorphisme près à l'aide de leur 
 %$j$-invariant.
 
-Cependant, le calcul d'isogénies peut avoir un intérêt 
-en dehors de l'algorithme SEA comme le montrent les travaux de Teske 
-\cite{Teske06} sur un crypto-système à trappes, les travaux de cryptanalyse
-\cite{MaurerMenezesTeske01}, 
-les fonctions de hachage \cite{CGL09}, l'accélération de la multiplication 
-scalaire \cite{GallantLambertVanstone01}, \cite{LongaSica14} ou les 
+Cependant, le calcul d'isogénies peut s'appliquer à d'autres
+contextes que l'algorithme SEA, comme par exemple le crypto-système à
+trappe de Teske \cite{Teske06}, les travaux de cryptanalyse de 
+ \cite{MaurerMenezesTeske01}, 
+la construction de fonctions de hachage \cite{CGL09}, l'accélération de la 
+multiplication scalaire \cite{GallantLambertVanstone01,LongaSica14}, ou les 
 crypto-systèmes post-quantiques à base de graphes d'isogénies 
 \cite{RostovtsevStolbunov06} \cite{DeFeoJaoPlut14}.
 
-Ainsi il est pertinent de suivre le travail de Couveignes sur le calcul 
-d'isogénies \cite{Couveignes96} car celui-ci ne suppose pas la connaissance de 
-courbes sous une représentation spécifique.
+Ainsi il est pertinent d'approfondir le travail de Couveignes sur le calcul 
+d'isogénies \cite{Couveignes96}, à cause de sa bonne complexité en le degré
+de l'isogénie.
 L'algorithme de Couveignes interpole l'action de l'isogénie sur les points 
 d'ordre $p^k$, pour $k$ assez grand, où $p$ est la caractéristique du corps de 
-base. Ce travail de Couveignes a été amélioré par la suite par De Feo 
-\cite{DeFeo11}, qui, d'après un travail de Couveignes \cite{Couveignes00}, se 
+base. Ce travail a été amélioré par la suite par De Feo 
+\cite{DeFeo11}, qui se 
 sert notamment d'une construction efficace de tours d'extensions de degré $p$ 
-de corps finis, développée conjointement avec Schost \cite{DeFeo-Shost'12}. 
+de corps finis \cite{Couveignes00, DeFeo-Schost'12}
 %L'algorithme de Couveignes a toutefois le désavantage d'avoir une dépendance 
 %polynomiale en la caractéristique $p$.
 
 Cette thèse s'inscrit dans la continuité des travaux de Couveignes 
 \cite{Couveignes96} et De Feo \cite{DeFeo11}, et cherche notamment à les 
 généraliser à l'étude des points d'ordre $\ell^k$, avec $\ell$ quelconque,
-afin principalement de s'affranchir de la dépendance polynomiale en $p$. Pour 
+afin de s'affranchir de la dépendance polynomiale en $p$. Pour 
 cela, nous devons en particulier déterminer des ensembles de points préservés par 
-l'action de l'isogénie que nous voulons calculer, tout en se servant d'une construction 
+l'action de l'isogénie que nous voulons calculer, tout en nous servant d'une construction 
 efficace de tours d'extensions de degré $\ell$ de corps finis. 
 
 Pour une étude fine de l'action de l'isogénie sur les points d'ordre $\ell^k$, 
 nous nous servons de \emph{graphes d'isogénies}.
-Sur la Figure~\ref{fig:int:vol} nous pouvons en voir un exemple. Sur ce graphe 
-sont représentés, à l'aide de points, les courbes elliptiques définies à 
-isomorphisme près. Celles-ci sont reliées par des traits symbolisant les 
-isogénies de même degré. En particulier, toutes les courbes d'un même graphe
-d'isogénies ont la même cardinalité.
+Sur la Figure~\ref{fig:int:vol} nous pouvons en voir un exemple. Les sommets de
+ce graphe sont des courbes elliptiques définies à isomorphisme près; elles sont
+reliées par des arêtes symbolisant les isogénies d'un degré fixé. En 
+particulier, toutes les courbes d'un même graphe d'isogénies ont la même 
+cardinalité.
 \begin{figure}
 \begin{center}
 
@@ -357,33 +360,43 @@ d'isogénies ont la même cardinalité.
 \end{figure}
 
 
-Les graphes d'isogénies ont été étudiés pour la première fois par \cite{Kohel96} afin de 
-calculer l'anneau des endomorphismes d'une courbe elliptique. Fouquet et Morain
-\cite{FouquetMorain02} ont par la suite utilisé ces graphes, appelés aussi 
-\emph{volcans d'isogénies}, afin d'améliorer SEA. Enfin les travaux de Miret et
-al. \cite{MiretMRV05}  \cite{MiretMSTV06} \cite{MiretMSTV08} ont permis 
-d'expliciter un lien entre le niveau d'une courbe dans le volcan de 
-$\ell$-isogénies et la structure des $\ell$ sous-groupes de Sylow.
-Les travaux de Ionica et Joux \cite{Ionica-Joux10} ont permis, eux, à l'aide de couplages,
-de déterminer un changement de niveau dans le volcan d'isogénies 
-sous certaines conditions. Tous ces travaux ayant pour but d'améliorer celui de 
-Fouquet et Morain \cite{FouquetMorain02} ils ont aussi amélioré SEA.
+Les graphes d'isogénies ont été étudiés pour la première fois par 
+\cite{Kohel96} afin de calculer l'anneau des endomorphismes d'une courbe 
+elliptique. Kohel a permis de définir des niveaux de hauteur dans le graphe 
+d'isogénies. Ainsi le graphe de la Figure~\ref{fig:int:vol} a été représenté
+selon cette convention, les isogénies allant entre deux courbes située au même
+niveau sont appelées horizontales, celles allant vers une courbe située plus 
+bas(haut) sont appelées descendantes(ascendantes). %verticale 
+Kohel a ainsi cherché à déterminer le niveau d'une courbe dans le graphe tout 
+en connaissant la cardinalité de celle-ci.
+Fouquet et Morain \cite{FouquetMorain02} ont par la suite résolu le même 
+problème, sans la connaissance de la cardinalité de la courbe, afin d'améliorer
+SEA,et ont nommé les graphes d'isogénies \emph{volcans d'isogénies}. Enfin les 
+travaux de Miret et al. \cite{MiretMRV05}  \cite{MiretMSTV06} 
+\cite{MiretMSTV08} ont permis d'expliciter un lien entre le niveau d'une courbe
+dans le volcan de $\ell$-isogénies et la structure des $\ell$ sous-groupes de 
+Sylow. Le travail de Ionica et Joux \cite{Ionica-Joux10} a permis, à l'aide de 
+couplages, de déterminer un changement de niveau dans le volcan d'isogénies 
+sous certaines conditions. Ces travaux ont donc été faits dans le but de 
+déterminer si une isogénie était montante, descendante ou horizontale pour 
+améliorer celui de Fouquet et Morain \cite{FouquetMorain02}, et donc SEA.
 
-Concernant la construction de tours d'extensions, nos travaux se placent dans la suite de 
-ceux de De Feo, Doliskani et Schost \cite{DeFeo-Doliskani-Schost13}, Doliskani 
-et Schost \cite{Doliskani-Schost15}, et en donnent quelques généralisations utiles.
+Concernant la construction de tours d'extensions, nos travaux se placent dans 
+la suite de ceux de De Feo, Doliskani et Schost 
+\cite{DeFeo-Doliskani-Schost13}, Doliskani et Schost \cite{Doliskani-Schost15},
+et en donnent quelques généralisations utiles.
 
-Ainsi dans notre travail nous avons montré le résultat suivant:
+Ainsi, l'un des résultats principaux de cette thèse est le théorème suivant:
 \begin{thm}
 Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
-$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de 
-l'isogénie explicite" en un temps quasi-quadratique en le degré de l'isogénie, 
+$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul explicite de
+l'isogénie" en un temps quasi-quadratique en le degré de l'isogénie, 
 avec une dépendance logarithmique en la caractéristique du corps.
 \end{thm}
 L'énoncé détaillé est le théorème~\ref{thm:gen:elk:fin} démontré dans la 
 sous-section~\ref{sub:cou:ag}.
 
-Pour arriver à ce résultat nous avons dévelopé de nouvelles méthodes, sans 
+Pour arriver à ce résultat nous avons développé de nouvelles méthodes, sans 
 restrictions, pour définir et déterminer des directions dans les volcans de 
 $\ell$-isogénies.
 
@@ -392,7 +405,7 @@ Nous présentons dans le premier chapitre des notions de bases, notamment
 sur les courbes elliptiques et leurs endomorphismes, et tout particulièrement 
 l'endomorphisme de Frobenius. 
 
-Dans le deuxième chapitre nous abordons les différents algorithmes de calculs 
+Dans le deuxième chapitre nous abordons les différents algorithmes de calcul 
 d'isogénies sur des corps finis, dont ceux de Elkies \cite{Elkies1998}, Bostan 
 et Al. \cite{BMSS08}, Lercier-Sirvent \cite{Lercier-Sirvent2008}, avant de 
 présenter l'algorithme de Couveignes \cite{Couveignes96} et ses améliorations 
@@ -401,7 +414,7 @@ par De Feo \cite{DeFeo11}.
 Dans le chapitre~\ref{cha:tour}, nous nous plaçons dans la continuité des travaux de 
 De Feo, Doliskani et Schost \cite{DeFeo-Doliskani-Schost13}, Doliskani et 
 Schost \cite{Doliskani-Schost15}, et nous présentons les tours d'extensions 
-$\ell$-adiques. Nous établissons notamment un résultat similaire à celui de De 
+$\ell$-adiques. Nous généralisons notamment un résultat similaire à celui de De 
 Feo \cite{DeFeo11} pour le calcul de polynômes d'interpolation. 
 
 Dans le chapitre~\ref{cha:volc:iso} nous rappelons les résultats principaux sur les volcans 
@@ -411,18 +424,18 @@ des résultats de Kohel \cite{Kohel96}, Fouquet et Morain
 \cite{FouquetMorain02}, Miret et Al. \cite{MiretMRV05} \cite{MiretMSTV06} 
 \cite{MiretMSTV08}, et Ionica et Joux \cite{Ionica-Joux10}. 
 
-Ensuite nous étudions dans le chapitre~\ref{cha:act:fro} l'action de l'endomorphisme de 
-Frobenius sur la $\ell^k$-torsion d'une courbe elliptique. Nous étendons la 
-définition de direction d'isogénie dans le volcan, déjà définie pour le 
-changement de niveau dans le volcan par \cite{FouquetMorain02}, à l'aide du 
-Frobenius dans le cas Atkin. Nous présentons aussi dans ce chapitre des 
-algorithmes permettant de calculer des points qui engendrent le noyau de 
-certaines isogénies, spécifiées par leurs directions, dans le volcan. 
+Ensuite nous étudions dans le chapitre~\ref{cha:act:fro} l'action de 
+l'endomorphisme de Frobenius sur la $\ell^k$-torsion d'une courbe elliptique. 
+Nous  développons de nouvelles méthodes pour déterminer des directions dans le 
+volcan de $\ell$-isogénies, y compris pour les directions descendantes dans le 
+cas Atkin. Nous présentons aussi dans ce chapitre des 
+algorithmes permettant de calculer certaines isogénies, spécifiées par leurs 
+directions, dans le volcan. 
 
 Ensuite, nous présentons dans le chapitre~\ref{cha:alg:fin} comment ces isogénies spécifiées 
 par leurs directions peuvent être utilisées dans un algorithme de Couveignes
 où l'action de l'isogénie est interpolée sur les points d'ordre $\ell^k$. Nous
-appellerons cette variante de l'algorithme de Couveignes $\ell$-adique.
+appellerons $\ell$-adique ces variantes de l'algorithme de Couveignes.
 Nous présentons et analysons donc un algorithme $\ell$-adique de
 Couveignes dans un cas favorable (à savoir, lorsque un entier $\ell$ avec des 
 bonnes propriétés nous est fourni d'avance), puis dans le cas général, où nous 
@@ -8276,13 +8289,23 @@ nombres premiers de Elkies.
 
 \chapter*{Conclusion}
 Nous avons donc vu dans ce manuscrit comment généraliser l'algorithme de 
-Couveignes au cas $\ell$-adique. En particulier, en l'état actuel, nous avons 
-vu que l'on était capable d'obtenir un algorithme qui résolve le problème de 
-l'isogénie explicite avec une complexité quasi-quadratique en le degré de 
-l'isogénie uniquement dans le cas Elkies, et un algorithme de complexité 
-inférieure à cubique dans le cas Atkin. Cependant notre proposition 
-d'algorithme $\ell$-adique de Couveignes dans le cas Atkin
-a une complexité trop grande. Une amélioration l'algorithme que nous proposons
+Couveignes\cite{Couveignes96} au cas $\ell$-adique et s'affranchir de la 
+dépendance polynômiale en la caractéristique. En particulier, en l'état 
+actuel, nous avons vu que nous étions capables d'obtenir un algorithme qui 
+résolve le problème de l'isogénie explicite avec une complexité quasi 
+quadratique en le degré de l'isogénie uniquement dans le cas Elkies. Dans le 
+cas Atkin on a seulement obtenu un algorithme de complexité inférieure à 
+cubique. Cet algorithme a une complexité trop grande par rapport à l'algorithme
+de Couveignes \cite{Couveignes96}, mais reste meilleur que le coût de calcul 
+du $\ell$-ème polynôme modulaire (cubique d'après \cite{BLS12}). 
+Nous avons aussi vu au travers de notre étude des moyens pour déterminer des 
+directions dans le volcan de $\ell$-isogénies à l'aide de l'étude de l'action
+du Frobenius sur le module de Tate $\ell$-adique, excepté pour le cas des 
+isogénies descendantes dans le cas Elkies où l'on ne peut rien déduire.
+Voyons maintenant quelques utilisations ou améliorations possibles des 
+résultats présentés dans cette thèse.
+
+L'amélioration l'algorithme de Couveignes que nous proposons
 dans le cas Atkin, avec la même méthode que pour le cas Elkies, nécessiterait 
 de distinguer un sous-groupe cyclique de la $\ell^k$-torsion, ou de trouver un 
 autre moyen pour distinguer des couples de points formant une base de 
@@ -8295,6 +8318,15 @@ satisfaisante dans le chapitre~\ref{cha:var:cou} seule celle présentée dans la
 section~\ref{sec:cou:con} sur une approche avec un nombre composé de Elkies 
 pourrait aboutir quand on aura des meilleures représentations de compositum 
 permettant des changements de représentation en un temps linéaire.
+
+\paragraph{Couplage de points}
+Le couplage de points n'a pas été abordé dans ce document mais seulement 
+mentionné, certes dans \cite{Ionica-Joux10} il y a des résultats moins probants
+sur la détermination de directions dans le volcan de $\ell$-isogénies. Il 
+serait toutefois intéressant d'étudier si le couplage ne nous apporte pas un 
+critère restrictif, pertinent du point de vue de la complexité, sur les images 
+de points par la $r$-isogénie, et en particulier sur les points (ascendants) 
+horizontaux.
 
 \paragraph{Calcul d'anneau des endomorphismes}
 Les propositions~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} nous 
@@ -8372,23 +8404,6 @@ $R=[a]P_{\lambda} + [b] Q_{\mu}$ par $c$ en le calcul de $[c]R=[c_{\lambda}]
 \pi^{\lfloor c/\lambda \rfloor}([a]P)+[c_{\mu}]\pi^{\lfloor c/\mu \rfloor}
 ([a]Q_{\mu})$  avec $c_{\lambda}=c \bmod \lambda$ et $c_{\mu}=c \bmod \mu$. 
 L'intérêt d'une telle approche reste à étudier.
-
-\paragraph{Crypto-système}
-On pourrait utiliser, dans le cas Atkin, le résultat de la proposition ~\ref{pro:cla:fro:mat}
-pour faire un crypto-système dans lequel le point $P$ fixé serait la clé maitre 
-secrète partagée entre deux utilisateurs. Dés lors ces utilisateurs se 
-communiqueraient la forme de matrices du Frobenius et déterminerait à l'aide de
-$P$ le second point de la base qui serait alors une nouvelle clé partagée.
-Ce crypto-système semble cependant un peu trop couteux pour être pratique.
-
-\paragraph{Couplage de points}
-Le couplage de points n'a pas été abordé dans ce document mais seulement 
-mentionné, certes dans \cite{Ionica-Joux10} il y a des résultats moins probants
-sur la détermination de directions dans le volcan de $\ell$-isogénies. Il 
-serait toutefois intéressant d'étudier si le couplage ne nous apporte pas un 
-critère restrictif, pertinent du point de vue de la complexité, sur les images 
-de points par la $r$-isogénie, et en particulier sur les points (ascendants) 
-horizontaux.
 
 \paragraph{Calcul d'isogénies de degrés non connus}
 Comme abordé dans la thèse de De Feo \cite[Section 8.9]{DeFeo10}, l'algorithme 
