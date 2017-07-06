@@ -8343,21 +8343,28 @@ résultats de cette thèse.
 Les propositions~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} nous 
 permettent de savoir exactement à quel niveau se trouve une courbe dans un 
 volcan de $\ell_i$-isogénies. Ainsi en se plaçant dans le même contexte que 
-\cite{BissonSutherland11}, où l'on connaît déjà une factorisation de $d_{\pi}$,
-avec les propositions ~\ref{pro:mat:fro} ou \ref{pro:mat:fro:atk}, selon le cas
-Elkies ou Atkin, on connaîtrait la valuation $\ell_i$ adique du 
-conducteur de la courbe par rapport à $\mathbb{Z}[\pi]$ et donc on pourrait
-déterminer l'anneau des endomorphismes de la courbe. Cela pourrait avoir par 
-exemple une application dans l'algorithme de Bröker \cite{Broker08} utilisé 
-pour calculer un polynôme de Hilbert. En effet dans l'algorithme de Bröker, il 
-est nécessaire de calculer une courbe avec un anneau d'endomorphismes 
-spécifique à partir d'une courbe au hasard dont $\mathbb{Z}[\pi]$ est fixée. 
-On pourrait alors à partir d'une telle courbe se servir des 
+\cite{Kohel96}, \cite{BissonSutherland11}, où l'on connaît déjà une 
+factorisation de $d_{\pi}$, avec les propositions ~\ref{pro:mat:fro} ou 
+\ref{pro:mat:fro:atk}, selon le cas Elkies ou Atkin, on connaîtrait la 
+valuation $\ell_i$ adique du conducteur de la courbe par rapport à 
+$\mathbb{Z}[\pi]$ et donc on pourrait déterminer l'anneau des endomorphismes de
+la courbe. Cela pourrait avoir par exemple une application dans l'algorithme de
+Bröker \cite{Broker08} utilisé pour calculer un polynôme de Hilbert. En effet 
+dans l'algorithme de Bröker, il est nécessaire de calculer une courbe avec un 
+anneau d'endomorphismes spécifique à partir d'une courbe au hasard dont 
+$\mathbb{Z}[\pi]$ est fixée. On pourrait alors à partir d'une telle courbe se servir des 
 propositions~\ref{pro:mat:fro} ou \ref{pro:mat:fro:atk} afin de déterminer 
 l'anneau des endomorphismes de la courbe.
 Ensuite on pourrait se servir de la proposition~\ref{pro:tri:dir} ou du 
 corollaire~\ref{cor:mon:atk} pour trouver une courbe dont 
-l'anneau des endomorphismes correspond à celui que l'on cherche. 
+l'anneau des endomorphismes correspond à celui que l'on cherche.
+Cette approche présente l'avantage par rapport à Kohel \cite{Kohel96} et 
+Fouquet et Morain \cite{FouquetMorain02} d'être plus directe et de ne pas 
+calculer le $\ell$-ème polynôme modulaire $\Phi_{\ell}$. Par rapport à 
+l'algorithme de Bisson et Sutherland \cite{BissonSutherland11} on évite de 
+devoir calculer toutes les relations dues aux représentations polycycliques 
+dans le groupe de classe des idéaux. Ainsi notre approche a l'air plus simple, 
+mais il reste toutefois à évaluer son coût.
 
 \paragraph{Déplacement sur le cratère de volcans de $\ell$-isogénies et ses 
 applications aux algorithmes de calcul de poylnômes de Hilbert et modulaire}
@@ -8400,6 +8407,7 @@ $R=[a]P_{\lambda} + [b] Q_{\mu}$ par $c$ en le calcul de $[c]R=[c_{\lambda}]
 \pi^{\lfloor c/\lambda \rfloor}([a]P)+[c_{\mu}]\pi^{\lfloor c/\mu \rfloor}
 ([a]Q_{\mu})$  avec $c_{\lambda}=c \bmod \lambda$ et $c_{\mu}=c \bmod \mu$. 
 L'intérêt d'une telle approche reste à étudier.
+\cite{GallantLambertVanstone01}
 
 \paragraph{Calcul d'isogénies de degrés non connus}
 Comme abordé dans la thèse de De Feo \cite[Section 8.9]{DeFeo10}, l'algorithme 
