@@ -154,6 +154,9 @@
 % \SingleSpace
 \maketitle
 \chapter*{Remerciements}
+%Comme proposé par François Morain on pourrait uniquement travailler avec un 
+%point horizontal au lieu de travailler avec une base horizontale.\todo{Dire ça ailleurs, dans les remerciements}
+
 \tableofcontents*
 \listofalgorithms
 \listoftodos
@@ -193,6 +196,7 @@
 
 
 \chapter*{Introduction}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Introduction}
 
 
 Les courbes (hyper)elliptiques sont beaucoup étudiées et utilisées, notamment en 
@@ -7200,7 +7204,7 @@ En pratique la recherche d'exemples s'est faite à l'aide des méthodes décrite
 dans les algorithmes de l'article~\cite{FouquetMorain02} (voir sous section~\ref{sub:alg:FM}) en résolvant donc les
 polynômes modulaires utilisés d'après la base de données "database-kohel" 
 implantée par David Kohel. La détermination de la forme du cratère se faisait 
-elle à l'aide de la valeur du discriminan \todo{(fondamental)} $d_k$. Un module a été fait par 
+elle à l'aide de la valeur du discriminant $d_k$. Un module a été fait par 
 Sébastien Besnier \cite{Besnier14} sur Sagemath celui-ci permet d'afficher directement les 
 volcans des $\ell$-isogénies à partir d'une courbe et il est disponible à cette 
 adresse \url{https://trac.sagemath.org/ticket/16942}. 
@@ -7233,7 +7237,7 @@ Cauchy, cela représente une itération des étapes \ref{alg:cou-ell:ord} à
 
 
 On a donc regroupé dans la figure~\ref{fig:exp:uni} les deux premières parties
-qui sont en fait du précalcul avec notamment le calcul de bases horiontales et 
+qui sont en fait du précalcul avec notamment le calcul de bases horizontales et 
 comparé cela avec la troisième partie qui représente l'interpolation. On voit 
 donc la linéarité en $r$ des temps de calcul. 
 Le comportement en escalier observé est tout à fait normal car pour toutes les 
@@ -7241,7 +7245,7 @@ isogénies de degré
 $\frac{\ell^{2k-2}(\ell+1)}{4} \leqslant r \leqslant \frac{\ell^{2k}(\ell+1)}{4}$ 
 on a besoin de travailler avec la même taille de $\ell^{k}$ torsion, ainsi pour 
 différents $r$ dans cet intervalle on aura les polynômes $A_{a,b}$ et $T$ de 
-même degré ce qui fait que la complexité et le temp de calcul sont les mêmes. 
+même degré ce qui fait que la complexité et le temps de calcul sont les mêmes. 
 Ceci est une raison 
 suffisante pour motiver la recherche du plus petit nombre $\ell$ de Elkies car
 alors on aura des paliers plus petits pour l'algorithme. Il pourrait toutefois 
@@ -7581,8 +7585,7 @@ approche $\ell$ adique que dans le cas Elkies y compris lorsque celles-ci
 auraient pu être appliquées à notre approche proposée pour le cas Atkin.
 \section{Algorihme de Couveignes $\ell$-adique dans le cas Elkies avec un point horizontal}
 \label{sec:var:cou:uni}
-Comme proposé par François Morain on pourrait uniquement travailler avec un 
-point horizontal au lieu de travailler avec une base horizontale.\todo{Dire ça ailleurs, dans les remerciements}
+
 
 Au lieu de travailler avec une base horizontale dans l'algorithme de Couveignes
 $\ell$-adique on pourrait tout aussi bien travailler avec une base horizontale.
@@ -8327,6 +8330,9 @@ nombres premiers de Elkies.
  
 
 \chapter*{Conclusion}
+
+\addcontentsline{toc}{chapter}{Conclusion}
+
 Nous avons donc vu dans ce manuscrit comment généraliser l'algorithme de 
 Couveignes\cite{Couveignes96} au cas $\ell$-adique et s'affranchir de la 
 dépendance polynômiale en la caractéristique. En particulier, en l'état 
