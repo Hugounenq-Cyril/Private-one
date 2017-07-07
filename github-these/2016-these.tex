@@ -6359,10 +6359,15 @@ et donne le résultat annoncé.
 On précise le contexte dans lequel on se place:
 \paragraph{Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
 
-Soient deux $j$-invariants $j$ et $j'$ et un entier positif $r$. Si les $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j$ et $j(E_b)=j'$, alors le problème du calcul explicite d'isogénie est de calculer les courbes $E$, $E'$ telles que $j(E)=j$ et $j(E')=j'$, et la fonction rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
+Soient deux $j$-invariants $j_0$ et $j_1$ et un entier positif $r$. Si les 
+$j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes 
+elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j_0$ et 
+$j(E_b)=j_1$, alors le problème du calcul explicite d'isogénie est de calculer 
+les courbes $E$, $E'$ telles que $j(E)=j_0$ et $j(E')=j_1$, et la fonction 
+rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
 
 
-Pour résoudre ce problème du calcul explicite d'isogénies on pourrait utiliser 
+Pour résoudre ce problème du calcul explicite d'isogénie on pourrait utiliser 
 les même méthodes que celles développées dans \cite{Couveignes96} et 
 \cite{DeFeo11} (voir chapitre~\ref{cha:iso:computing} pour plus de détails) en 
 remplaçant les points de $p$-torsion par ceux de $\ell$-torsion, ainsi on 
@@ -7355,49 +7360,55 @@ permet alors de conclure.
 \end{proof}
 
 
-Nous rappellons que nous travaillons avec deux courbes $r$-isogènes, avec $r \wedge 
-\ell=1$ qui se situent sur un volcan de $\ell$-isogénies de hauteur $h$, dont 
-le cratère est réduit à une courbe, car on se place dans le cas Atkin. On 
-suppose de plus qu'un nombre $\ell$ de Atkin tel que $\ell^h<\sqrt{r}$ est déjà
-connu (pour plus de détails voir la proposition~\ref{pro:bor:ell}). De plus on 
-va dans un premier temps se restreindre au cas où les courbes avec lesquelles 
-on travaille se situent sur le cratère d'un volcan de $\ell$-isogénies, on 
-verra par la suite comment généraliser notre problème à des courbes non situées
-sur le cratère.
+Nous rappellons que nous travaillons avec deux courbes $r$-isogènes, avec $r 
+\wedge \ell=1$, qui se situent sur un volcan de $\ell$-isogénies de hauteur 
+$h$, dont le cratère est réduit à une courbe (car nous nous plaçons dans le cas
+Atkin). Nous supposons de plus qu'un nombre $\ell$ de Atkin tel que 
+$\ell^h<\sqrt{r}$ est déjà connu (pour plus de détails voir la 
+proposition~\ref{pro:bor:ell}). De plus nous allons dans un premier temps nous 
+restreindre au cas où les courbes avec lesquelles nous travaillons se situent 
+sur le cratère d'un volcan de $\ell$-isogénies, nous verrons par la suite 
+comment généraliser notre problème à des courbes non situées sur le cratère.
 
-Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées
-par une $r$-isogénie $\phi$, $P \in E$ et $S' \in E'$ deux points d'ordre 
-$\ell^{k}$, avec $k$  plus grand que $h$, tels que $\phi(P)=S'$. Pour deux 
-bases $(P,Q),(S',R')$ de $E[\ell^k]$ et $E'[\ell^k]$ telles que $\pi(P,Q)=
-\pi(S',R')$ on détermine de façon unique $\phi([\ell^h]Q)=[\ell^h]R'$ par le 
-corollaire~\ref{cor:atk:ess}. On détermine alors le point 
+
+Maintenant nons faisons une description de la méthode employée dans notre 
+algorithme~\ref{alg:cou:atk} pour résoudre le problème du calcul explicite 
+d'isogénie.
+Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j_0$ et $j_1$ 
+reliées par une $r$-isogénie $\phi$, $P \in E$ et $S' \in E'$ deux points 
+d'ordre $\ell^{k}$, avec $k$  plus grand que $h$, tels que $\phi(P)=S'$. Pour 
+deux bases $(P,Q),(S',R')$ de $E[\ell^k]$ et $E'[\ell^k]$ telles que $\pi(P,Q)=
+\pi(S',R')$ nous déterminons de façon unique $\phi([\ell^h]Q)=[\ell^h]R'$ par 
+le corollaire~\ref{cor:atk:ess}. Nous déterminons ensuite le point 
 $\phi(Q)$ en testant pour tout point $U'$ antécédent par $[\ell^h]$ de 
 $[\ell^h]R'$ si la correspondance $(P,Q) \rightarrow (S',U')$ permet de définir
-une $r$-isogénie. Ce test consiste comme dans le cas Elkies à calculer le 
-polynôme d'interpolation $A_{S',U'}$ tel que 
+une $r$-isogénie. Ce test consiste comme dans le cas Elkies (voir 
+sous-section~\ref{ssec:cou:elk}) à calculer le polynôme d'interpolation 
+$A_{S',U'}$ tel que 
 \[
 A_{R'}(x([u]P+[v]Q))=x([u]S'+[v]U') \quad \text{pour tout $[u]P+[v]Q$ d'ordre $\ell^k$}.
 \]
-Ensuite à l'aide du polynôme $A_{S',U'}$ on calcule la fraction rationnelle $F$ telle que:
+Ensuite à l'aide du polynôme $A_{S',U'}$ nous calculons la fraction rationnelle
+$F$ telle que:
 \[
 F=A_{S',U'} \bmod T
 \]
 avec $T$ le polynôme minimal qui s'annule sur tout point $[u]P +[v]Q$ 
-d'ordre $\ell^k$. C'est la fraction rationnelle $F$ qui lorsque l'on a bien 
-choisi $U'$ doit représenter l'action de la $r$-isogénie $\phi$, on cherche 
+d'ordre $\ell^k$. C'est la fraction rationnelle $F$ qui lorsque nous avons bien 
+choisi $U'$ doit représenter l'action de la $r$-isogénie $\phi$. Nous cherchons 
 donc à calculer $F$ de degré $(r,r-1)$. Or une telle fraction rationnelle est 
-déterminée par $2r$ coefficients on doit donc avoir le nombre d'abscisses de 
+déterminée par $2r$ coefficients, nous devons donc avoir le nombre d'abscisses de 
 points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}{2}$ strictement plus grand
 que $2r$ pour avoir suffisamment d'informations.
 
-Comme la seule information que l'on ait sur l'image de $P$ par $\phi$ est que 
-c'est un point d'ordre $\ell^k$, on propose donc de faire la procédure décrite 
+Comme nous savons seulement que l'image de $P$ par $\phi$ est un point d'ordre 
+$\ell^k$, nous proposons donc de faire la procédure décrite 
 dans le paragraphe précédent en testant toutes les valeurs possibles pour 
-l'image de $P$ par $\phi$ c'est à dire tous les points d'ordre $\ell^k$ de 
+l'image de $P$ par $\phi$, c'est à dire tous les points d'ordre $\ell^k$ de 
 $E'$.
 
 %Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité. %Juste pour les tailles d'extensions de corps
-On énonce des résultats qui sont des conséquences de la 
+Nous énonçons des résultats qui sont des conséquences de la 
 proposition~\ref{pro:clas:fro:atk} et qui nous seront utiles lors de l'étape 
 du calcul de polynôme d'interpolation utilisant les méthodes de la 
 section~\ref{sec:interpolation}.
@@ -7421,7 +7432,7 @@ d'ordre $\ell^{\beta+i}$ selon l'action de $\mathsf{Gal}(
 \end{cor}
 
 
-On peut dès lors énoncer une version $\ell$-adique de l'algorithme de 
+Nous pouvons dès lors énoncer une version $\ell$-adique de l'algorithme de 
 Couveignes dans le cas Atkin dans l'algorithme~\ref{alg:cou:atk}.
 \begin{algorithm}
 \caption{\label{alg:cou:atk} Algorithme de Couveignes $\ell$-adique dans le cas Atkin.}
@@ -7450,7 +7461,7 @@ Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
 
 \begin{prop}
   \label{pro:atk:full-complexity}
-  En supposant que l'on a $\ell^h<\sqrt{r}$, 
+  En supposant que $\ell^h<\sqrt{r}$, 
   l'algorithme~\ref{alg:cou:atk} calcule une $r$-isogénie 
   ${\phi:E \rightarrow E'}$ en un temps espéré de \[
   O(r \ell^2 \sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))\]
@@ -7459,9 +7470,9 @@ $O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\e
 \end{prop}
 
 \begin{proof}
-On fait remarquer que la condition $\ell^h < \sqrt{r}$ signifie que l'on
-a $k>h$, on va utiliser cette condition tout au long de la preuve.
-Par définition de $k$ on a $\ell^{2k-1} \in O(r\ell^2)$.
+Nous faison remarquer que la condition $\ell^h < \sqrt{r}$ signifie que $k>h$, 
+nous allons utiliser cette condition tout au long de la preuve.
+Par définition de $k$ nous avons $\ell^{2k-1} \in O(r\ell^2)$.
 Par la proposition~\ref{pro:clas:fro:atk}, il existe $\beta \leqslant h$ tel que
 $E[\ell^k]$ est inclus dans $E(F_{k-\beta})$. On construit donc une
 tour d'extensions $\ell$-adiques $\mathsf{F}_0\subset\cdots\subset 
