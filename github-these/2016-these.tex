@@ -7201,20 +7201,23 @@ décrite dans l'article~\cite{Doliskani-Schost15}, l'étude s'est restreinte au
 cas favorable où $p=1 \bmod 4$.
 
 En pratique la recherche d'exemples s'est faite à l'aide des méthodes décrites
-dans les algorithmes de l'article~\cite{FouquetMorain02} (voir sous section~\ref{sub:alg:FM}) en résolvant donc les
-polynômes modulaires utilisés d'après la base de données "database-kohel" 
-implantée par David Kohel. La détermination de la forme du cratère se faisait 
-elle à l'aide de la valeur du discriminant $d_k$. Un module a été fait par 
-Sébastien Besnier \cite{Besnier14} sur Sagemath celui-ci permet d'afficher directement les 
-volcans des $\ell$-isogénies à partir d'une courbe et il est disponible à cette 
-adresse \url{https://trac.sagemath.org/ticket/16942}. 
+dans les algorithmes de l'article~\cite{FouquetMorain02} (voir 
+sous-section~\ref{sub:alg:FM}) en résolvant donc les
+polynômes modulaires (ici $\Phi_2$) utilisés d'après la base de données 
+"database-kohel" implantée par David Kohel. La détermination de la forme du 
+cratère se faisait elle à l'aide de la valeur du discriminant $d_k$. Un module 
+a été fait par Sébastien Besnier \cite{Besnier14} sur Sagemath celui-ci permet 
+d'afficher directement les volcans des $\ell$-isogénies à partir d'une courbe 
+et il est disponible à cette adresse 
+\url{https://trac.sagemath.org/ticket/16942}. 
 
 Pour l'analyse des temps de calcul de notre algorithmes de Couveignes 
-$2$-adique, on a décomposé notre algorithme en 3 parties:
+$2$-adique, nous avons décomposé notre algorithme en 3 parties:
 \begin{enumerate}
-\item[Tate Module] est la première partie qui calcule une base diagonale de la 
-$\ell^k$ torsion avec $k$ le plus petit entier tel que $2^{2k-2}(2+1)> 4r$,
-cela représente donc les étapes \ref{alg:cou-ell:bdiag} à \ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
+\item[Tate Module] est la première partie qui calcule une base horizontale de 
+la $\ell^k$ torsion avec $k$ le plus petit entier tel que $2^{2k-2}(2+1)> 4r$,
+cela représente donc les étapes \ref{alg:cou-ell:bdiag} à 
+\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \item[Calcul Isogenie Init] est la seconde partie qui calcule les listes de 
 représentants $L,L'$ ainsi que le polynôme $T$, mais aussi le polynôme 
 $A_{1,1}$ et certains pré-calculs pour les Théorème des Restes Chinois dans 
@@ -7236,29 +7239,28 @@ Cauchy, cela représente une itération des étapes \ref{alg:cou-ell:ord} à
 \end{figure}
 
 
-On a donc regroupé dans la figure~\ref{fig:exp:uni} les deux premières parties
-qui sont en fait du précalcul avec notamment le calcul de bases horizontales et 
-comparé cela avec la troisième partie qui représente l'interpolation. On voit 
-donc la linéarité en $r$ des temps de calcul. 
+Nous avons donc regroupé dans la figure~\ref{fig:exp:uni} les deux premières 
+parties qui sont en fait du précalcul avec notamment le calcul de bases 
+horizontales et comparé cela avec la troisième partie qui représente 
+l'interpolation. Nous voyons donc la linéarité en $r$ des temps de calcul. 
 Le comportement en escalier observé est tout à fait normal car pour toutes les 
-isogénies de degré 
-$\frac{\ell^{2k-2}(\ell+1)}{4} \leqslant r \leqslant \frac{\ell^{2k}(\ell+1)}{4}$ 
-on a besoin de travailler avec la même taille de $\ell^{k}$ torsion, ainsi pour 
-différents $r$ dans cet intervalle on aura les polynômes $A_{a,b}$ et $T$ de 
-même degré ce qui fait que la complexité et le temps de calcul sont les mêmes. 
-Ceci est une raison 
-suffisante pour motiver la recherche du plus petit nombre $\ell$ de Elkies car
-alors on aura des paliers plus petits pour l'algorithme. Il pourrait toutefois 
-s'avérer que pour un autre nombre de Elkies $\ell'$ plus grand que $\ell$, $r$ 
-se trouve à la fin du palier $\frac{\ell'^{2k-2}(\ell+1)}{4} \leqslant r 
-\leqslant \frac{\ell'^{2k}(\ell+1)}{4}$, ainsi il serait plus utile de 
-travailler avec $\ell'$ plutôt que $\ell$.
+isogénies de degré $\frac{\ell^{2k-2}(\ell+1)}{4} \leqslant r < 
+\frac{\ell^{2k}(\ell+1)}{4}$ nous avons besoin de travailler avec la même 
+taille de $\ell^{k}$ torsion, ainsi pour différents $r$ dans cet intervalle 
+nous obtenons des polynômes $A_{a,b}$ et $T$ de même degré ce qui fait que la 
+complexité et le temps de calcul sont les mêmes. 
+Ceci est une raison suffisante pour motiver la recherche du plus petit nombre 
+$\ell$ de Elkies car alors nous aurions des paliers plus petits pour 
+l'algorithme. Il pourrait toutefois s'avérer que pour un autre nombre de Elkies
+$\ell'$ plus grand que $\ell$, $r$ se trouve à la fin du palier 
+$\frac{\ell'^{2k-2}(\ell+1)}{4} \leqslant r < \frac{\ell'^{2k}(\ell+1)}{4}$, 
+ainsi il serait plus utile de travailler avec $\ell'$ plutôt que $\ell$.
 
 Comme l'étape d'interpolation va être répétée $O(r \ell)$ fois et domine la 
-complexité de l'algorithme~\ref{alg:cou:ell-adique} alors on compare le temps 
+complexité de l'algorithme~\ref{alg:cou:ell-adique} alors nous comparons le temps 
 de calcul obtenu pour une étape d'interpolation pour différentes tailles de 
 corps fini.
-On présente donc une première série de tests qui a été réalisé sur des 
+Nous présentons donc une première série de tests qui a été réalisé sur des 
 courbes qui ont toutes leur $\beta=h=2$, ainsi notre 
 algorithme~\ref{alg:cou:ell-adique} a travaillé avec la $2^3$ torsion jusqu'à la 
 $2^8$ torsion sur des courbes elliptiques définies sur corps finis premiers 
@@ -7276,10 +7278,10 @@ figure~\ref{fig:exp:dif}.
 \end{center}
 \end{figure}
 
-On observe sur la figure~\ref{fig:exp:dif} que la dépendance en $q$ est plus 
-grande que ce à quoi on aurait pu s'attendre d'après la borne théorique, cela 
-doit être dû à des détails d'implantation bas-niveau que SageMath ne permet pas
-de maîtriser.
+Nous observons sur la figure~\ref{fig:exp:dif} que la dépendance en $q$ est 
+plus grande que ce à quoi nous aurions pu nous attendre d'après la borne 
+théorique, cela doit être dû à des détails d'implantation bas-niveau que 
+SageMath ne nous permet pas de maîtriser.
 
 \begin{figure}
 %\input{graphe-521}
@@ -7287,27 +7289,27 @@ de maîtriser.
 \caption{\label{fig:exp:niv} Phase d'interpolation pour $r$ croissant pour différentes courbes définies sur les corps finis $\mathbb{F}_{521}$ et $\mathbb{F}_{1033}$. La courbe est en échelle logarithmique.}
 \end{figure}
 
-La deuxième série de tests montrés sur la figure~\ref{fig:exp:niv} a été réalisé
-sur des courbes qui ont toutes leur $\beta=h=3$ définies sur des corps finis de
-taille $p$ de $9$ bits, notre algorithme~\ref{alg:cou:ell-adique} a donc utilisé de la 
-$2^4$ torsion jusqu'à $2^7$ torsion des courbes elliptiques. On voit ici que comme on a 
-$\beta=h=3$ alors contrairement aux précédents tests il n'y a pas de palier où l'on travaille avec la 
-$\ell^{3}$ torsion mais directement avec la $\ell^4$ torsion, car il est 
-nécessaire d'avoir $k$ strictement supérieur à $h$.
+La deuxième série de tests montrée sur la figure~\ref{fig:exp:niv} a été 
+réalisée sur des courbes qui ont toutes $\beta=h=3$, définies sur des corps 
+finis premiers de taille $9$ bits. Notre algorithme~\ref{alg:cou:ell-adique} a 
+donc travaillé avec la $2^4$ torsion jusqu'à la $2^7$ torsion des courbes 
+elliptiques. Nous voyons ici que comme $\beta=h=3$, alors contrairement aux 
+précédents tests il n'y a pas de palier où nous travaillons avec la 
+$\ell^{3}$ torsion mais directement avec la $\ell^4$ torsion. En effet il est 
+nécessaire d'avoir $k$ strictement supérieur à $h=3$.
 
-Le détail des timings pour les 
-différentes parties est disponible sur le projet github: 
-\url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. 
+Le détail des timings pour les différentes parties est disponible sur le projet 
+github: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}. 
 
 \section{Cas Atkin}
 \label{sec:Atk:Con}
-On justifie tout d'abord l'intérêt de l'étude que l'on a fait de la forme de 
+Nous justifions tout d'abord l'intérêt de l'étude faite sur la forme de 
 la matrice du Frobenius avec un vecteur de la base fixée par rapport à un 
 algorithme de Couveignes~\cite{Couveignes96} modifié pour travailler avec la
 $\ell$-torsion. Cette section utilise les résultats de la 
 sous-section~\ref{subs:atk:dir}.
 
-On énonce donc un résultat qui est une transposition de la 
+Nous énonçons donc un résultat qui est une transposition de la 
 proposition~\ref{pro:par:iso} qui s'appliquait au cas Elkies.
 
 \begin{prop}\label{pro:par:iso:atk}
@@ -7326,15 +7328,15 @@ les deux des points générateurs d'isogénies ascendantes alors $E/\langle P
 \end{prop}
 
 \begin{proof}
-La preuve est exactement la même que celle de la proposition~\ref{pro:par:iso}
-toutefois ici on fait référence à la proposition~\ref{pro:mat:fro:atk} pour la
-preuve.
+La preuve est exactement la même que celle de la proposition~\ref{pro:par:iso},
+toutefois ici nous faisons référence à la proposition~\ref{pro:mat:fro:atk} 
+pour la preuve.
 \end{proof}
 
 Voyons maintenant un résultat qui est une conséquence de la 
 proposition~\ref{pro:atk:equi} et qui étudie donc l'invariance des groupes 
-de point de $E[\ell^{\infty}]$ déterminé par l'action du Frobenius 
-par rapport aux actions de $r$-isogénies rationnelles avec $r$ premier avec 
+de points de $E[\ell^{\infty}]$ déterminés par l'action du Frobenius 
+par rapport aux actions de $r$-isogénies rationnelles, avec $r$ premier avec 
 $\ell$.
 
 \begin{cor}\label{cor:atk:ess}
@@ -7346,14 +7348,14 @@ $E'[\ell^k]$ telles que $\pi(P,Q)=\pi(P',Q')$ on a $[\ell^h]Q'=[\ell^h]\phi(Q)$.
 \end{cor}
 
 \begin{proof}
-Comme le Frobenius commute avec $\phi$ alors on a $\pi(P,Q)=\pi(\phi(P),\phi(Q))$
-or comme $P'=\phi(P)$ pour $Q'$ tel que $\pi(P,Q)=\pi(P',Q')$ on a l'égalité 
-$\pi(P',Q')=\pi(\phi(P),\phi(Q))$ et la proposition~\ref{pro:atk:equi} nous 
-permet de conclure.
+Comme le Frobenius commute avec $\phi$ alors $\pi(P,Q)=\pi(\phi(P),\phi(Q))$.
+De plus $P'=\phi(P)$ donc pour $Q'$ tel que $\pi(P,Q)=\pi(P',Q')$ nous obtenons 
+$\pi(P',Q')=\pi(\phi(P),\phi(Q))$, la proposition~\ref{pro:atk:equi} nous 
+permet alors de conclure.
 \end{proof}
 
 
-On rappelle que l'on travaille avec deux courbes $r$-isogènes, avec $r \wedge 
+Nous rappellons que nous travaillons avec deux courbes $r$-isogènes, avec $r \wedge 
 \ell=1$ qui se situent sur un volcan de $\ell$-isogénies de hauteur $h$, dont 
 le cratère est réduit à une courbe, car on se place dans le cas Atkin. On 
 suppose de plus qu'un nombre $\ell$ de Atkin tel que $\ell^h<\sqrt{r}$ est déjà
@@ -8326,12 +8328,9 @@ une meilleure estimation de $r$ par $\prod_{i=1}^n \ell_i^{k_i}$ et donc de
 réduire les coûts apportés par l'étape d'interpolation dûs au choix des
 nombres premiers de Elkies.
 
-
- 
-
 \chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Conclusion}
 
-\addcontentsline{toc}{chapter}{Conclusion}
 
 Nous avons donc vu dans ce manuscrit comment généraliser l'algorithme de 
 Couveignes\cite{Couveignes96} au cas $\ell$-adique et s'affranchir de la 
