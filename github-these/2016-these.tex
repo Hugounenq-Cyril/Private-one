@@ -153,6 +153,7 @@
 \mainmatter
 % \SingleSpace
 \maketitle
+\chapter*{Remerciements}
 \tableofcontents*
 \listofalgorithms
 \listoftodos
@@ -188,6 +189,8 @@
 
 
 \printnomenclature
+
+
 
 \chapter*{Introduction}
 
@@ -374,7 +377,7 @@ en connaissant la cardinalité de celle-ci.
 Fouquet et Morain \cite{FouquetMorain02} ont par la suite résolu le même 
 problème, sans la connaissance de la cardinalité de la courbe, afin d'améliorer
 SEA, et ont nommé les graphes d'isogénies \emph{volcans d'isogénies}. Enfin les 
-travaux de Miret et al. \cite{MiretMRV05}  \cite{MiretMSTV06} 
+travaux de Miret et al. \cite{MiretMRV05}  \cite{MiretMSTV06} \todo{Verifier que les 3 citations sont pertinentes}
 \cite{MiretMSTV08} ont permis d'expliciter un lien entre le niveau d'une courbe
 dans le volcan de $\ell$-isogénies et la structure des $\ell$ sous-groupes de 
 Sylow. Le travail de Ionica et Joux \cite{Ionica-Joux10} a permis, à l'aide de 
@@ -2383,10 +2386,16 @@ de $\mathsf{Gal}(\mathbb{L}_3:\mathbb{L}_0)$.
 La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-tor:fro} puisque l'arbre \ref{fig:orb:T} représente un seul des $fd_1$ arbres de \ref{fig:p-tor:fro} et que les extrémités de l'arbre \ref{fig:orb:T} représentent les polynômes qui s'annulent en les abscisses de points des extrémités d'un des arbres de \ref{fig:p-tor:fro}.
 \end{rem}
 
-L'algorithme de Couveignes avec les modifications apportées par l'utilisation de tours d'Artin-Schreier et du Frobenius pour le calcul du polynôme d'interpolation a alors la complexité suivante:
+L'algorithme de Couveignes avec les modifications apportées par l'utilisation 
+de tours d'Artin-Schreier et du Frobenius pour le calcul du polynôme 
+d'interpolation, dénommé "C2-AS-FI" par \cite{DeFeo11}, a alors la complexité 
+suivante:
 
-\begin{thm} \todo{!!! A retravailler !!!}
-Soient $E$ et $E'$ deux courbes $r$-isogènes, l'algorithme de Couveignes a une complexité de:
+\begin{thm}
+\label{thm:C2:FP}
+Soient $E$ et $E'$ deux courbes $r$-isogènes, l'algorithme de Couveignes 
+"C2-AS-FI" a, en supposant que $M(n)=O(n \log(n) \log \log (n))$, une complexité
+de:
 \[
 \tilde{O}_{p,d,\log r}(p^2d^3+\mathsf{C}(p)pd+(pd)^{\omega}\log^2 r + p^3 r^2 d \log^3 r + p^2r^2d^2+(\frac{r^2}{p}+p)\mathsf{C}(pd))
 \]
@@ -2405,12 +2414,34 @@ corps sur $\mathbb{F}_p$ et ainsi tout élément d'une tour d'Artin-Schreier est
 exprimé à l'aide d'un polynôme à coefficients dans $\mathbb{F}_p$.
 \end{rem}
 
+On peut généraliser les travaux de DeFeo et Schost \cite{DeFeo-Shost'12} et 
+De Feo \cite{DeFeo11} avec une tour d'Artin-Schreier construite sur une 
+extension de $\mathbb{F}_q$ (ainsi tout élément d'une tour d'Artin-Schreier est
+exprimé à l'aide d'un polynôme à coefficients dans $\mathbb{F}_q$). Il faut en 
+particulier que $\mathrm{Tr}_{\mathbb{U}_1/\mathbb{F}_q}(x_0) \neq 0$ avec 
+$\mathrm{Tr}$ qui représente la Trace, $\mathbb{U}_1=\mathbb{F}_q[X_0]/Q_0$ 
+avec $Q_0$ un polynôme de degré divisant $p-1$ (par \cite{Gunji76}) et 
+$x_0=X_0 \bmod Q_0$. Ici $\mathbb{U}_1$ représente le premier élément de la 
+tour, les suivant étant construits comme des extensions de degré $p$ du 
+précédent à l'aide d'une équation d'Artin Schreier (comme dans 
+\cite{DeFeo-Shost'12}). Dans ces conditions on donne une estimation du coût de 
+"C2-AS-FI" en termes d'opérations sur $\mathbb{F}_q$.
+
 \begin{thm}
-****Brouillon****
-Un pré-calcul (des points de $p^k$-torsion) que l'on majore grossièrement par 
-$O(M(rp^2))$ opérations sur $\mathbb{F}_q$
-On a l'interpolation de Cauchy qui coûte quoiqu'il arrive $O(\mathsf{M}(r)\log(r))$.
+\label{thm:C2:FQ}
+La complexité totale de l'algorithme "C2-AS-FI" à l'aide de constructions de 
+tour d'Artin-Schreier construite sur $\mathbb{F}_q$ est dominée par le terme 
+\[O(p^3r^2\log_p(p^3r)^2)\]
+opérations sur $\mathbb{F}_q$.
 \end{thm}
+
+On ne donne pas une preuve de cette estimation juste quelques pistes. Le 
+pré-calcul des points de $p$-torsion et de l'extension $\mathbb{U}_1$ est 
+majoré grossièrement par $\tilde{O}_{p,\log(r)}(M(rp^2)\log_{p}(r)^4)$ 
+opérations sur $\mathbb{F}_q$. 
+Le coût dominant de l'étape d'interpolation est de $O(p^3r\log_p(p^3r)^2)$ 
+opérations sur $\mathbb{F}_q$, on doit répéter celle-ci $p^{k-1} \in O(r)$ fois 
+ainsi on obtient ce terme dominant.
 
 \chapter{Construction efficaces de tours $\ell$-adiques}
 \label{cha:tour}
@@ -7138,11 +7169,16 @@ chapitres~\ref{cha:iso:computing} et \ref{cha:rappel} pour plus de détails).
 Ainsi l'algorithme de Bröker, Lauter et Sutherland~\cite{BLS12}, le plus rapide
 connu pour calculer le $r$-ème polynôme modulaire a une complexité de 
 $O(r^3 \log^3(r) \log \log(r))$ opérations sur $\mathbb{F}_p$ d'après 
-\cite[Theorem 1]{BLS12}, ainsi ne serait-ce que pour représenter $Phi_r$ sur 
-$\mathbb{F}_q$ nous a une complexité cubique en $r$ supérieure à notre résultat.
+\cite[Theorem 1]{BLS12}, ainsi %ne serait-ce que pour représenter $\Phi_r$ sur 
+%$\mathbb{F}_q$ 
+nous avons une complexité cubique en $r$ supérieure à notre résultat.
 Nous comparons aussi la complexité énoncée dans le 
 théorème~\ref{thm:gen:elk:fin} avec l'algorithme appelée "C2-AS-FI" de De Feo
-\cite{DeFeo11} car nous utilisons des méthodes similaires.
+\cite{DeFeo11} car nous utilisons des méthodes similaires. Nous voyons donc que 
+comparé aux résultats des théorèmes~\ref{thm:C2:FP} et \ref{thm:C2:FQ} on 
+obtient une complexité qui est aussi quasi-quadratique en le degré de 
+l'isogénie et pour laquelle on s'est affranchie de toute dépendance polynomiale
+en la caractéristique.
 
 \subsection{Partie expérimentale}
 \label{ssec:exp:cou}
@@ -7164,8 +7200,8 @@ En pratique la recherche d'exemples s'est faite à l'aide des méthodes décrite
 dans les algorithmes de l'article~\cite{FouquetMorain02} (voir sous section~\ref{sub:alg:FM}) en résolvant donc les
 polynômes modulaires utilisés d'après la base de données "database-kohel" 
 implantée par David Kohel. La détermination de la forme du cratère se faisait 
-elle à l'aide de la valeur du discriminant $d_k$. Un module a été fait par 
-Sébastien Besnier sur Sagemath celui-ci permet d'afficher directement les 
+elle à l'aide de la valeur du discriminan \todo{(fondamental)} $d_k$. Un module a été fait par 
+Sébastien Besnier \cite{Besnier14} sur Sagemath celui-ci permet d'afficher directement les 
 volcans des $\ell$-isogénies à partir d'une courbe et il est disponible à cette 
 adresse \url{https://trac.sagemath.org/ticket/16942}. 
 
