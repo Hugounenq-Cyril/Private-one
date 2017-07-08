@@ -7656,33 +7656,34 @@ calcul d'une base diagonale de la $\ell^{h+1}$ alors que dans le cas de la
 proposition~\ref{pro:full-complexity} nous montrions dans la preuve que le coût 
 d'une telle opération était quasi-linéaire.
 
-Ensuite on calcule un point horizontal d'ordre $\ell^k$ à l'aide de 
-l'algorithme~\ref{alg:hor:poi}, on rappelle qu'ici comme on détermine un seul 
+Ensuite nous calculons un point horizontal d'ordre $\ell^k$ à l'aide de 
+l'algorithme~\ref{alg:hor:poi}. Nous rappelons qu'ici comme on détermine un seul 
 sous-groupe cyclique on choisit de travailler avec celui défini 
 sur la plus petite extension $\ell$-adique: $\mathsf{F}_{k-\alpha}$ d'où le 
-fait que l'on ait $\alpha$ ici et non $\beta$ (pour rappel $\alpha$ et $\beta$ 
-ont été définis dans la definition~\ref{def:alp:bet}). Ce calcul a un coût de 
+fait que l'on ait $\alpha$ ici et non $\beta$ ($\alpha$ et $\beta$ 
+ont été définis dans~\ref{def:alp:bet}). Le calcul du point horizontal a un 
+coût de 
 $O(\mathsf{R}(k-\alpha) + k\mathsf{R}(h-\alpha+1) + k\ell^2\mathsf{M}(\ell^{h-\alpha+1}))$
 d'après la proposition~\ref{pro:alg:hor}, ce qui appliqué à notre cas donne 
 une complexité de: $O(r \ell \mathsf{M}(r \ell^{2})\log(\ell)\log(\ell q) \log(r))$.
 
-Pour le calcul du polynôme d'interpolation on utilise des méthodes 
-similaires à celles de la section~\ref{sec:interpolation} mais plus proches de 
-celles de \cite[§5]{DeFeo11} vu qu'ici on travaille uniquement avec un sous-groupe 
+Pour le calcul du polynôme d'interpolation nous utilisons des méthodes 
+similaires à celles de la section~\ref{sec:interpolation} mais plus proches de  
+celles de \cite[§5]{DeFeo11} car ici nous travaillons uniquement avec un sous-groupe 
 cyclique défini dans $\mathsf{F}_{k-\alpha}$. 
-On a alors au plus $\frac{\ell^{k-1}}{\ell^{k-\alpha}}=\ell^{\alpha-1}$ représentants 
+Nous avons au plus $\frac{\ell^{k-1}}{\ell^{k-\alpha}}=\ell^{\alpha-1}$ représentants 
 des orbites selon l'action du Frobenius à calculer dans $\mathsf{F}_{k-\alpha}$.
 Le calcul de ces représentants a un coût de 
 $O(\ell^{\alpha-1}\mathsf{M}(\ell^{k-\alpha})\log(\ell^k)) \subset O(\mathsf{M}(r\ell)\log(r)\log(\ell))$ opérations.
 
-Ensuite on doit calculer le polynôme d'interpolation en appliquant le résultat
- de la proposition~\ref{prop:interpol} avec $t=\ell^{k-1} \in O(r \ell)$, $s=\ell^{\alpha-1}$, 
- $n=k-\alpha$ on obtient une complexité de 
- $O(\mathsf{M}(\ell^3r)\log(\ell)\log(r))$ qui est l'étape dominante dans les
- étapes \ref{alg:cou-ell:ord} à \ref{alg:cou-ell:Cauchy} de 
- l'algorithme~\ref{alg:cou:ell-adique}.
+Ensuite nous devons calculer le polynôme d'interpolation, en appliquant le résultat
+de la proposition~\ref{prop:interpol} avec $t=\ell^{k-1} \in O(r \ell)$, 
+$s=\ell^{\alpha-1}$, $n=k-\alpha$ nous obtenons une complexité de 
+$O(\mathsf{M}(\ell^3r)\log(\ell)\log(r))$ qui est l'étape dominante dans les
+étapes \ref{alg:cou-ell:ord} à \ref{alg:cou-ell:Cauchy} de 
+l'algorithme~\ref{alg:cou:ell-adique}.
 
-Ainsi pour le calcul de la $r$-isogénie on doit répéter l'étape d'interpolation 
+Ainsi pour le calcul de la $r$-isogénie nous devons répéter l'étape d'interpolation 
 $\ell^{k-1}$ fois ce qui nous donne un coût total de: 
 $O(r \ell \mathsf{M}(\ell^3r)\log(\ell)\log(r))$ opérations sur $\mathbb{F}_q$.
 
@@ -7707,70 +7708,74 @@ opérations sur $\mathbb{F}_q$.
 Le coût de cette variante de Couveignes $\ell$-adique dans le cas Elkies a donc
 une complexité qui est un peu plus faible que le résultat obtenu à la 
 proposition~\ref{pro:full-complexity} avec un facteur $\ell$ en moins dans le 
-calcul du polynôme d'interpolation. Ce facteur en moins vient du fait que l'on
-cherche $k$ tel que $\ell^{k-1} >4r$ au lieu de $\ell^{2k-2}(\ell+1)>4r$ dés 
-lors on obtient une meilleure précision dans le cas de cette variante pour le 
-choix de $k$ ce qui fait que le coût du calcul du polynôme d'interpolation est
-moins élevé de ce facteur $\ell$. On pourrait alors penser que cette variante
-est meilleure que l'algorithme~\ref{alg:cou:ell-adique}
-cependant l'algorithme~\ref{alg:cou:ell-adique} travaille dans des extensions 
-de corps plus petites.
-De plus notre estimation du nombre d'abscisses de points différentes utilisées lors de
-l'interpolation est toujours très pessimiste car nous pourrions nous contenter de
-prendre un nombre d'abscisses plus grand que $4r$, tout en ayant que des orbites 
-complètes pour le Frobenius. Dès lors nous ne travaillerions pas avec $O(r\ell^2)$ 
-abscisses lors de l'étape d'interpolation. Cependant la taille des orbites est
-comprise entre $\ell^{k-\beta}$ et $\ell^{k-\alpha}$ dans notre approche (voir 
-chapitres~\ref{cha:alg:fin} et ~\ref{cha:act:fro}). On aurait pu travailler avec
-des orbites de taille plus petites si nous avions travaillé uniquement avec
-des courbes situées sur le cratère du volcan de $\ell$-isogénies, nous aurions 
-pu utiliser des points d'ordre compris entre $\ell^{k}$ et $\ell^{k-h}$. Ceci 
-nous aurait permis de travailler avec des orbites plus petites et donc 
-d'approcher $4r$ avec plus de précision.
+calcul du polynôme d'interpolation. Ce facteur $\ell$ en moins vient du fait 
+que nous travaillons avec le plus petit $k$ tel que $\ell^{k-1} >4r$ au lieu de 
+$\ell^{2k-2}(\ell+1)>4r$, dés lors nous obtenons une meilleure précision dans 
+le cas de cette variante pour le 
+choix de $k$, ceci explique que le coût du calcul du polynôme d'interpolation 
+est moins élevé de ce facteur $\ell$. 
 
+Nous pourrions alors penser que cette variante est meilleure que 
+l'algorithme~\ref{alg:cou:ell-adique} cependant 
+l'algorithme~\ref{alg:cou:ell-adique} travaille dans des extensions de corps 
+plus petites. De plus notre estimation du nombre d'abscisses de points 
+différentes utilisées lors de l'interpolation est toujours très pessimiste car 
+nous pourrions nous contenter de prendre un nombre d'abscisses plus grand que 
+$4r$, tout en ayant que des orbites complètes pour le Frobenius. Dès lors nous 
+ne travaillerions pas avec $O(r\ell^2)$ abscisses lors de l'étape 
+d'interpolation. Cependant la taille des orbites est comprise entre 
+$\ell^{k-\beta}$ et $\ell^{k-\alpha}$ dans notre approche (voir 
+chapitres~\ref{cha:act:fro} et ~\ref{cha:alg:fin}). Nous aurions pu travailler 
+avec des orbites de taille plus petites si nous avions utilisé uniquement des 
+courbes situées sur le cratère du volcan de $\ell$-isogénies. En effet nous 
+aurions pu utiliser des points d'ordre compris entre $\ell^{k}$ et 
+$\ell^{k-h}$. Ceci nous aurait permis de travailler avec des orbites plus 
+petites et donc d'approcher $4r$ avec plus de précision.
 
-Une différence notable c'est que dans cette variante la complexité pour le 
+Une différence notable est que dans cette variante la complexité pour le 
 calcul d'une base diagonale de la $\ell^{h+1}$ torsion est quadratique alors 
 que dans l'algorithme~\ref{alg:cou:ell-adique} cette partie est seulement 
 quasi-linéaire en $r$.  Ainsi l'algorithme~\ref{alg:cou:ell-adique} présente
 l'avantage d'avoir une partie quasi-linéaire fixe et une partie variable (pour 
-le calcul de l'interpolation) quasi-quadratiqe en $r$ avec un aléa qui varie 
+le calcul de l'interpolation) quasi-quadratique en $r$ avec un aléa qui varie 
 dans $O(r\ell)$ d'où le fait que cette variante ne propose pas de grand 
 avantage par rapport à l'algorithme~\ref{alg:cou:ell-adique}.
+\newline
 
 Cette variante de l'algorithme~\ref{alg:cou:ell-adique}  proposé dans le cas 
 Elkies non transposable à l'algorithme~\ref{alg:cou:atk} proposé dans le cas 
 Atkin souligne le fait que l'étude de l'action du Frobenius dans le cas Elkies 
 nous permet de spécifier des sous-groupe cycliques invariants par l'action de 
-$r$-isogénies (avec $r \wedge \ell = 1$) alors que dans le cas Atkin on ne peut
-que déterminer un sous-groupe cyclique à partir de la connaissance d'un autre 
-sous-groupe cyclique.
+$r$-isogénies (avec $r \wedge \ell = 1$), alors que dans le cas Atkin nous ne 
+pouvons que déterminer un sous-groupe cyclique à partir de la connaissance d'un 
+autre sous-groupe cyclique.
 
-
-On pourrait penser à utiliser l'algorithme de Couveignes $\ell$-adique avec 
+Maintenant voyons d'autres pistes d'améliorations de l'algorithme de Couveignes
+$\ell$-adique.
+Nous pourrions penser à utiliser l'algorithme de Couveignes $\ell$-adique avec 
 différents nombres de Elkies $\ell_1, \ell_2, \ell_3, \dots, \ell_{n}$, pour 
-une isogénie de degré $r$ premier avec tous les $\ell_i$. On 
-calcule alors des bases horizontales de la $\ell_i^{k_i}$ torsion, on peut 
+une isogénie de degré $r$ premier avec tous les $\ell_i$. Nous 
+calculons alors des bases (ascendantes) horizontales de la $\ell_i^{k_i}$ torsion, on peut 
 travailler avec les deux ensembles de points:
 \begin{itemize}
 \item $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z}$, 
 \item $\prod_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $.
 \end{itemize}
-On va détailler chacune de ces approches dans les deux sous-sections qui suivent.
+Nous allons détailler chacune de ces approches dans les deux sous-sections qui suivent.
 
 \section{Algorithme de Couveignes $\ell$-adique avec différents nombres de Elkies}
 La première approche est de considérer l'ensemble de points $S$ isomorphe à: 
 $\cup_{i=1}^n \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} \times \mathbb{Z}/\ell_i^{k_i} \mathbb{Z} $,
-avec les $\ell_i$ tous des nombres premiers de Elkies, dés lors il faut fixer comme 
-condition  $\sum_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
+avec les $\ell_i$ tous des nombres premiers de Elkies. Dés lors il faut fixer comme 
+condition  $\sum_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$,
 afin que le polynôme d'interpolation que l'on cherche à construire puisse 
 définir la fraction rationnelle $F$ candidate pour représenter la $r$-isogénie 
 $\phi$ que l'on veut calculer. 
-L'avantage de cette approche est que bien que l'on soit obligé de travailler
-sur différentes tours d'extensions $\ell$-adiques, on a pas besoin de 
+L'avantage de cette approche est que bien que nous soyons obligés de travailler
+sur différentes tours d'extensions $\ell$-adiques, il n'est pas nécessaire de 
 travailler avec des compositum de tours d'extensions $\ell$-adiques.
 
-Détaillons comment on procède, la méthode est restranscrite dans 
+Détaillons comment nous procèdons, la méthode est restranscrite dans 
 l'algorithme~\ref{alg:cou:mult-adique:short}.%, 
 %l'algorithme~\ref{alg:cou:mult-adique} détaillant un peu plus 
 %l'algorithme~\ref{alg:cou:mult-adique:short} est disponible en annexe.
@@ -7788,8 +7793,8 @@ l'algorithme~\ref{alg:cou:mult-adique:short}.%,
 $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \STATE \label{alg:mult-ell:rep} Calcul des liste de représentants $L_i,L_i'$ des orbites de points d'ordre $\ell_i^{k_i}$ sous l'action de $\pi$;
 \ENDFOR
-\FOR{$M \in \mathsf{diag}(a,b)$  avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}$}
-\FOR{$M_i \in \mathsf{diag}(a_i,b_i)$  avec $a=a_i \bmod \ell_i^{k_i},b=b_i \bmod \ell_i^{k_i}$}
+\FOR{$M \in \mathsf{diag}(a,b)$ avec $a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}$}
+\FOR{$M_i \in \mathsf{diag}(a_i,b_i)$ avec $a=a_i \bmod \ell_i^{k_i},b=b_i \bmod \ell_i^{k_i}$}
 \STATE \label{alg:mult-ell:ord} Actualisation de la liste des représentants $L_i'$ en $L'_{a,b,i}$ afin de respecter la correspondance induite par le choix de $M_i$;
 \STATE \label{alg:mult-ell:int} Calcul des des polynômes $A_{a,b,i}$ et $T_i$ par les méthodes décrites dans la section~\ref{sec:interpolation};
 \ENDFOR
@@ -7802,16 +7807,17 @@ $E[\ell_i^{k_i}],E'[\ell_i^{k_i}]$ à l'aide de l'algorithme~\ref{alg:ulti:fro} 
 \end{algorithmic}
 \end{algorithm}
 
+\todo{chasser les on sait que}
+
 Les étapes \ref{alg:mult-ell:bhor} à \ref{alg:mult-ell:rep} de 
 l'algorithme~\ref{alg:cou:mult-adique:short} qui calculent une base (ascendante) 
 horizontale et des représentants des orbites de points (ascendants) 
 horizontaux d'ordre $\ell_i^{k_i}$ sous l'action du Frobenius sont faites en 
 parallèle sur chacune des tours d'extension $\ell_i$-adiques, les méthodes 
 utilisées sont les mêmes que celles dans l'algorithme~\ref{alg:cou:ell-adique}.
-Par les propositions~\ref{pro:par:iso} et ~\ref{pro:par:hor:par} on sait
- que pour tout $i$ l'action de $\phi$ sur une base
-$(P_{\lambda,i},Q_{\mu,i})$ (ascendante) horizontale de $E[\ell_i^{k_i}]$ 
-peut être représentée de la façon suivante:
+Par les propositions~\ref{pro:par:iso} et ~\ref{pro:par:hor:par} pour tout $i$ 
+l'action de $\phi$ sur une base $(P_{\lambda,i},Q_{\mu,i})$ (ascendante) 
+horizontale de $E[\ell_i^{k_i}]$ peut être représentée de la façon suivante:
 $
 \left(\begin{smallmatrix}
 P'_{\lambda,i} \\
@@ -7826,63 +7832,66 @@ avec $ a_i,b_i \in \left( \mathbb{Z}/\ell_i^{k_i}\mathbb{Z} \right)^{\times}$ et
 $(P'_{\lambda,i},Q'_{\mu,i})$
 base (ascendante) horizontale de $E'[\ell_i^{k_i}]$.
 
-On définit à l'aide du théorème des restes chinois deux coefficients $a,b \in 
-\left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z} \right)^{\times}$ tels que 
+Nous définissons à l'aide du théorème des restes chinois deux coefficients 
+$a,b \in \left( \mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z} 
+\right)^{\times}$ tels que 
 $a=a_i \bmod \ell_i^{k_i}$ et $b=b_i \bmod \ell_i^{k_i}$ pour $i\in [1,n]$.
-On calcule ensuite pour chaque couple de coefficients 
-$(a,b) \in (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z})^{\times}$ à l'aide des 
-méthodes de la section~\ref{sec:interpolation} appliquées
-à chacune des tours d'extensions $\ell_i$-adiques les polynômes 
+Nous calculons ensuite pour chaque couple de coefficients 
+$(a,b) \in (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i}\mathbb{Z})^{\times}$, à l'aide 
+des méthodes de la section~\ref{sec:interpolation} appliquées
+à chacune des tours d'extensions $\ell_i$-adiques, les polynômes 
 d'interpolation $A_{a,b,i}$ et $T_i$ définis dans $\mathbb{F}_q$.
- On applique alors le théorème des restes chinois à ces polynômes pour obtenir 
- les polynômes $A_{a,b},T \in \mathbb{F}_q[x]$ tels que:
+Alors  par le théorème des restes chinois appliqué à ces polynômes nous 
+obtenons les polynômes $A_{a,b},T \in \mathbb{F}_q[x]$ tels que:
  \[
 A_{a,b}=A_{a,b,i} \bmod T_i \text{ pour tout } i \in [1,n] \text{ et } \quad T=\prod_{i=1}^nT_i 
  \]
-On fait le calcul de la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide d'une
-interpolation de Cauchy. On teste si celle-ci est bien une $r$-isogénie,
-si cela n'est pas le cas alors on recommence avec d'autres coeffcients $a,b \in 
-(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$.
+Nous calculons ensuite la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide 
+d'une interpolation de Cauchy. Nous testons si celle-ci est bien une 
+$r$-isogénie, si cela n'est pas le cas alors nous recommençons avec d'autres 
+coeffcients $a,b \in (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$.
 %\newline
 
 \paragraph{Analyse du coût}
-{Une telle approche a forcément des coûts de pré-calcul (pour le calcul des bases 
-horizontales et des représentants) plus faibles que notre approche dans 
-l'algorithme~\ref{alg:cou:ell-adique}. De même dans la boucle que l'on effectue
- pour chaque choix de coefficients $a,b \in (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$
+{Une telle approche a forcément des coûts de pré-calcul (pour le calcul des 
+bases (asendantes) horizontales et des représentants) plus faibles que notre 
+approche dans l'algorithme~\ref{alg:cou:ell-adique}. De même dans la boucle 
+que nous effectuons pour chaque choix de coefficients $a,b \in 
+(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$
 le calcul des polynômes $A_{a,b,i}$ et $T_i$ définis dans $\mathbb{F}_q$ est 
 inférieur au calcul de $A_{a,b}$ et $T$ à l'étape~\ref{alg:cou-ell:int} de 
-l'algorithme~\ref{alg:cou:ell-adique} cependant le coût de calcul de 
+l'algorithme~\ref{alg:cou:ell-adique}. Cependant le coût de calcul de 
 l'interpolation de Cauchy  est de $O(\mathsf{M}(r)\log(r))$ par
- \cite[Théorème 7.5]{algeff17}. Sachant que l'on doit répéter en moyenne cette 
-boucle pour tous les $a,b$ possibles appartenant à $(\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$
+ \cite[Théorème 7.5]{algeff17}. Sachant que nous devons répéter en moyenne 
+cette boucle pour tous les $a,b$ possibles appartenant à $(\mathbb{Z}/
+\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$
  le coût d'un tel algorithme est minoré par $\Omega(\prod_{i=1}^n\ell_i^{2k_i-2}
  \mathsf{M}(r)\log(r))$ et donc en particulier par $\Omega(r\mathsf{M}(r)
  \log(r))$. 
 
 Une telle approche serait bien évidemment meilleure que 
-l'algorithme~\ref{alg:cou:ell-adique} si l'on avait un moyen de préciser si un 
+l'algorithme~\ref{alg:cou:ell-adique} si nous avions un moyen de préciser si un 
 polynôme $A_{a,b,i_0}$ était correct sans connaître la valeur des autres 
-$A_{a,b,i}$ dans un cas comme celui-ci on aurait à tester 
+$A_{a,b,i}$, dans un cas comme celui-ci nous aurions à tester 
 $\sum_{i=1}^n \ell_i^{2k_i-2} \in \Theta(r)$ choix possibles pour le polynôme 
 d'interpolation, comme dans l'algorithme~\ref{alg:cou:ell-adique}.
 
 Le principal inconvénient de cette approche 
-c'est que l'on fixe comme condition sur les $k_i: \sum_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
+c'est que nous fixons comme condition sur les $k_i: \sum_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
 à cause du théorème des restes chinois à appliquer sur tous les $A_{a,b,i}$. 
-On voudrait dés lors travailler avec des $k_i$ sur lesquels on aurait comme 
-condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$
-c'est ce que l'on va aborder dans la seconde approche avec des points 
+Nous voudrions dés lors travailler avec des $k_i$ sur lesquels nous aurions comme 
+condition nécessaire: $\prod_{i=1}^n\ell_i^{2k_{i}-2}(\ell_i+1)>4r$.
+C'est ce que nous allons aborder dans la seconde approche avec des points 
 (ascendants) horizontaux d'ordre composé $\prod_{i=1}^n \ell_i^{k_i}$.}
 
 \section{Algorithme de Couveignes $\ell$-adique généralisé avec un nombre composé de Elkies}
-Dans cette approche on veut travailler avec des points d'ordre 
+Dans cette approche nous voulons travailler avec des points d'ordre 
 $\prod_{i=1}^{n} \ell_i^{k_i}$ qui arrivent à porter l'information donnée par 
 les  bases (ascendantes) horizontales $(P_{\lambda_i},Q_{\mu_i})$ de 
-$E[\ell_i^{k_i}]$ avec $\ell_i$ un nombre premier de Elkies, pour faire cela on
-a besoin de définir quelques notions. On va supposer sans perte de généralités 
-que les $k_i$ pour $i \in [1,n]$ sont fixés tels que l'on ait $\prod_{i=1}^{n} 
-\ell_i^{2k_i-2}(\ell_i+1)>4r$.
+$E[\ell_i^{k_i}]$ avec $\ell_i$ un nombre premier de Elkies. Pour cela 
+nous avons besoin de définir quelques notions, nous allons supposer sans perte 
+de généralités que les $k_i$ pour $i \in [1,n]$ sont fixés tels que l'on ait 
+$\prod_{i=1}^{n} \ell_i^{2k_i-2}(\ell_i+1)>4r$.
 \label{sec:cou:con}
 \subsection{Théorème des Restes Chinois et son application à l'algorithme de Couveignes $\ell$-adique}
 \label{sub:TRCE:cou}
@@ -7894,22 +7903,27 @@ $\upsilon_n=\prod_{i=1}^n \ell_i^{k_i}$,
 $\vartheta_i=\frac{\upsilon_n}{\ell_i^{k_i}}$.
 \end{nota}
 
-\'Enonçons une généralisation du thèorème des restes chinois pour une courbe 
+Nous énonçons une généralisation du thèorème des restes chinois pour une courbe 
 elliptique à $n$ nombres premiers distincts.
 
 \paragraph{Théorème des Restes Chinois sur une courbe Elliptique $E$}
-Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 \in E[\ell_1^{k_1}], \dots, P_n \in E[\ell_n^{k_n}]$, alors le Théorème des Restes Chinois revient à déterminer un point $P \in E[\upsilon_n]$ tel que $[\vartheta_{i_0}] P=P_{i_0}$ pour $i_0 \in [1,n]$.
-
+{Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, les points $P_1 
+\in E[\ell_1^{k_1}], \dots, P_n \in E[\ell_n^{k_n}]$, alors par le Théorème des
+Restes Chinois il existe un point $P \in E[\upsilon_n]$ tel que 
+$[\vartheta_{i_0}] P=P_{i_0}$ pour $i_0 \in [1,n]$.}\todo{reformuler}
+\newline
 %\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i}
-On présente tout d'abord en appendice~\ref{cha:alg} l'algoritme~\ref{alg:TRC:init:gen} qui 
-pour un point $P_{i}$ d'ordre $\ell_{i}^{k_{i}}$ calcule un point $P$ d'ordre 
+Nous présentons tout d'abord en appendice~\ref{cha:alg} 
+l'algoritme~\ref{alg:TRC:init:gen} qui prend en entrée un point $P_{i}$ d'ordre
+$\ell_{i}^{k_{i}}$ et calcule alors un point $P$ d'ordre 
 $\upsilon_n$ tel que $[\vartheta_{i}]P=P_{i}$ et $[\ell_{i}^{k_{i}}]P$ pour 
-$i \in [1,n]$. \`A l'aide de l'algorithme~\ref{alg:TRC:init:gen} on peut résoudre le 
-Théorème des Restes Chinois comme montré dans l'algorithme~\ref{alg:TRC} lui aussi en appendice~\ref{cha:alg}
+$i \in [1,n]$. \`A l'aide de l'algorithme~\ref{alg:TRC:init:gen} nous résolvons
+le Théorème des Restes Chinois (TRC) comme montré dans l'algorithme~\ref{alg:TRC} lui
+aussi en appendice~\ref{cha:alg}.
 
-Cette approche du Théorème des Restes Chinois a été motivée pour l'appliquer à 
+Cette approche du TRC a été motivée pour l'appliquer à 
 des points (ascendants) horizontaux d'ordre $\ell_i^{k_i}$, la proposition 
-suivante montre que cette utilisation du théorème des restes chinois fait sens 
+suivante montre que cette utilisation du TRC fait sens 
 dans le contexte de l'algorithme de Couveignes.
 
 \begin{prop}
@@ -7932,7 +7946,7 @@ $\ell_1^{k_1}$ et de direction $\lambda_1$,
 
 \begin{proof}
 Par un raisonnement similaire à la preuve de la proposition~\ref{pro:par:iso}, 
-vu que $\phi$ est de degré $r$ premier avec $\ell_1$ et $\ell_2$ alors on a un 
+comme $\phi$ est de degré $r$ premier avec $\ell_1$ et $\ell_2$ alors il y a un
 isomorphisme de modules de Tate qui commute avec le Frobenius.
 \end{proof}
 
@@ -7944,8 +7958,8 @@ distincts premiers avec $r$.
 
 \begin{nota}
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers de Elkies distincts, $P$ un
- point d'ordre $\upsilon_n$ de $E$ construit à l'aide du 
- théorème des restes chinois (voir algorithme~\ref{alg:TRC}) tel que 
+point d'ordre $\upsilon_n$ de $E$ construit à l'aide du 
+Théorème des Restes Chinois (voir algorithme~\ref{alg:TRC}) tel que 
 $[\vartheta_i]P=P_i$ avec $P_i$ des points (ascendants) horizontaux de 
 direction $\lambda_i$ et profondeur $e_i$, alors 
 on dit que $P$ est de direction $(\lambda_1, \dots, \lambda_n)$ et de 
@@ -7953,14 +7967,19 @@ profondeur $(e_1, \dots, e_n)$.
 \end{nota}
 
 \begin{rem}
-Une application du corollaire~\ref{cor:par:TRC} et de la notation 
-précédente est que pour deux courbes elliptiques $E,E'$ $r$-isogènes avec $r$ 
+Soient  $E,E'$ deux courbes elliptiques $r$-isogènes avec $r$ 
 premier avec les nombres de Elkies $\ell_1, \dots, \ell_n$ un point $P \in E$ 
 d'ordre $\upsilon_n$, de direction $(\lambda_1, \dots, \lambda_n)$ et 
-profondeur $(e_1, \dots, e_n)$ a pour image par $\phi$ un point $[a]P' \in E'$
-avec $a \in (\mathbb{Z}/\upsilon_n \mathbb{Z})^{\times}$ et $P'$ un 
-point d'ordre $\upsilon_n$, de direction $(\lambda_1, \dots, \lambda_n)$ et 
-profondeur $(e_1, \dots, e_n)$.
+profondeur $(e_1, \dots, e_n)$. Par le corollaire~\ref{cor:par:TRC} $P$ a pour 
+image par $\phi$ un point $[a]P' \in E'$ avec $a \in (\mathbb{Z}/\upsilon_n 
+\mathbb{Z})^{\times}$ et $P'$ un point d'ordre $\upsilon_n$, de direction 
+$(\lambda_1, \dots, \lambda_n)$ et profondeur $(e_1, \dots, e_n)$.
+%
+%Une application du corollaire~\ref{cor:par:TRC} et de la notation 
+%précédente est que pour deux courbes elliptiques $E,E'$ $r$-isogènes avec $r$ 
+%premier avec les nombres de Elkies $\ell_1, \dots, \ell_n$ un point $P \in E$ 
+%d'ordre $\upsilon_n$, de direction $(\lambda_1, \dots, \lambda_n)$ et 
+%profondeur $(e_1, \dots, e_n)$ 
 \end{rem}
 
 
@@ -7969,14 +7988,15 @@ profondeur $(e_1, \dots, e_n)$.
 
 Cette partie s'appuie sur la construction de compositum à partir d'une idée de
 %originale de \cite{BrawleyCarlitz87} reprise dans
-\cite{DeFeoDoliskaniSchost14}, cet article donne aussi le moyen de calculer à un coût quasi 
-linéaire le changement de représentation d'éléments du compositum. On veut donc
-construire un corps dans lequel on pourrait représenter des points d'ordre 
-$\upsilon_n$ construits à l'aide de points d'ordre $\ell_i^{k_i}$ représentés 
-dans des tours d'extensions $\ell_i$-adiques comme celles décrites dans le 
-chapitre~\ref{cha:tour}. Afin de ne pas surcharger la lecture de ce 
-document de nombreuses preuves étant l'adaptation de techniques présentées 
-dans le chapitre~\ref{cha:tour} elles ne seront pas détaillées.
+\cite{DeFeoDoliskaniSchost14}, cet article donne aussi le moyen de calculer à 
+un coût sous-quadratique le changement de représentation d'éléments du 
+compositum. Nous voulons donc construire un corps dans lequel nous pourrions 
+représenter des points d'ordre $\upsilon_n$ construits à l'aide de points 
+d'ordre $\ell_i^{k_i}$ représentés dans des tours d'extensions $\ell_i$-adiques
+comme celles décrites dans le chapitre~\ref{cha:tour}. Afin de ne pas 
+surcharger la lecture de ce document de nombreuses preuves étant l'adaptation 
+de techniques présentées dans le chapitre~\ref{cha:tour} elles ne seront pas 
+détaillées.
 
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, 
 on va supposer dans le reste de ce document que les différentes tours 
