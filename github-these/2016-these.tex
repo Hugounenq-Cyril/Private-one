@@ -6367,8 +6367,8 @@ On précise le contexte dans lequel on se place:
 
 Soient deux $j$-invariants $j_0$ et $j_1$ et un entier positif $r$. Si les 
 $j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes 
-elliptiques $E_a$ et $E_b$ $r$-isogènes telles que $j(E_a)=j_0$ et 
-$j(E_b)=j_1$, alors le problème du calcul explicite d'isogénie est de calculer 
+elliptiques $E_0$ et $E_1$ $r$-isogènes telles que $j(E_0)=j_0$ et 
+$j(E_1)=j_1$, alors le problème du calcul explicite d'isogénie est de calculer 
 les courbes $E$, $E'$ telles que $j(E)=j_0$ et $j(E')=j_1$, et la fonction 
 rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
 
@@ -7476,6 +7476,7 @@ $O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\e
 \end{prop}
 
 \begin{proof}
+\sloppy
 Nous faison remarquer que la condition $\ell^h < \sqrt{r}$ signifie que $k>h$, 
 nous allons utiliser cette condition tout au long de la preuve.
 Par définition de $k$ nous avons $\ell^{2k-1} \in O(r\ell^2)$.
@@ -7496,9 +7497,15 @@ dernière étape
 $O(\mathsf{R}(k-\beta+1)+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
 Par ~\cite[Chapter~14.5]{vzGJG03} on a $\mathsf{R}(n)=
 O(\ell^n\mathsf{M}(\ell^{n+1})\log(\ell)\log(\ell q))$. 
-L'étape~\ref{alg:cou:atk:bas} a donc un coût total de $O(\ell^k \mathsf{M}
-(\ell^{k+1})\log(\ell)\log(\ell q))=O(\sqrt{r}\ell^{1,5}\mathsf{M}(\sqrt{r}\ell^{2,5})\log(\ell)\log(\ell q))$ 
+L'étape~\ref{alg:cou:atk:bas} a donc un coût total de 
+\[
+O(\ell^k \mathsf{M}
+(\ell^{k+1})\log(\ell)\log(\ell q))=O(\sqrt{r}\ell^{1,5}\mathsf{M}(\sqrt{r}\ell^{2,5})\log(\ell)\log(\ell q))
+\] 
 dans le pire des cas où l'on aurait $\beta=1$.
+\fussy
+%/sloppy
+%/fussy
 
 De la même manière que l'algorithme~\ref{alg:atk:bas:mat} à l'étape~\ref{alg:cou:atk:frob:bas} on 
 calcule itérativement l'action du Frobenius sur la $\ell^j$-torsion pour $j$ 
@@ -7554,12 +7561,12 @@ L'étape~\ref{alg:cou:atk:Cauchy} a une complexité de $O(r\log(r))$ d'après
 \cite[Théorème 7.5]{algeff17}. Le coût du test de la fraction rationnelle est
 dominé par les autres opérations (pour plus de détails le lecteur peut voir 
 la preuve de la proposition~\ref{pro:full-complexity}).
-
+\sloppy
 Les étapes~\ref{alg:cou:atk:parc:poi} à ~\ref{alg:cou:atk:test} étant répétées 
 $\ell^{k-h}$ fois cela a un coût de 
 $O(\sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ 
 à $S'$ fixé.
-
+\fussy
 Enfin l'étape~\ref{alg:cou:atk:frob:bas} et la boucle commençant à 
 l'étape~\ref{alg:cou:atk:parc:poi} étant répétées $\ell^{2k-2}(\ell+1)/2 \in 
 O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 \sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ à laquelle il faut ajouter les précalculs pour obtenir 
@@ -8351,39 +8358,35 @@ nombres premiers de Elkies.
 
 Nous avons donc vu dans ce manuscrit comment généraliser l'algorithme de 
 Couveignes~\cite{Couveignes96} au cas $\ell$-adique et s'affranchir de la 
-dépendance polynomiale en la caractéristique. En particulier, nous avons présenté
- un algorithme qui 
-résout le problème de l'isogénie explicite avec une complexité quasi-quadratique en le degré de l'isogénie, et ce uniquement dans le cas Elkies. Dans le 
-cas Atkin nouus avons seulement obtenu un algorithme de complexité sous-cubique. Cet algorithme a une complexité trop grande \todo{moins bonne} par rapport à l'algorithme
-de Couveignes \cite{Couveignes96}, mais reste meilleur que le coût de calcul 
-du $\ell$-ème polynôme modulaire (cubique d'après \cite{BLS12}). \todo{citer plutot LS08}
-Nous \todo{trop long!} avons aussi vu au travers de notre étude des moyens pour déterminer des 
-directions dans le volcan de $\ell$-isogénies à l'aide de l'étude de l'action
-du Frobenius sur le module de Tate, excepté pour le cas des 
-isogénies descendantes dans le cas Elkies où l'on ne peut rien déduire. \todo{parler de la nouveauté et de la spécification des directions avec "les" + nouveauté dans le cas Atkin}
+dépendance polynomiale en la caractéristique. En particulier, nous avons 
+présenté un algorithme qui résout le problème du calcul explicite d'isogénie 
+avec une complexité quasi-quadratique en le degré de l'isogénie, et ce 
+uniquement dans le cas Elkies. Dans le cas Atkin nouus avons seulement obtenu 
+un algorithme de complexité sous-cubique. Cet algorithme a une complexité moins
+bonne par rapport à l'algorithme de Couveignes \cite{Couveignes96} et à notre 
+algorithme de la section~\ref{sec:cou:elk} , mais reste meilleur que le coût 
+Lerciet et Sirvent\cite{Lercier-Sirvent2008}.
+Nous \todo{trop long!} avons aussi vu au travers de notre étude de nouveaux 
+moyens pour déterminer des directions dans le volcan de $\ell$-isogénies à 
+l'aide de l'étude de l'action du Frobenius sur le module de Tate. En 
+particulier pour le cas Atkin on a permis de spécifier, sous certaines 
+conditions, les isogénies descendantes.
 
 Voyons maintenant quelques améliorations possibles (ou à explorer) des 
 résultats présentés dans cette thèse.
 
-Le couplage n'a pas été abordé dans ce document mais seulement 
-mentionné, certes dans \cite{Ionica-Joux10} il y a des résultats moins probants \todo{réfléchir a cette formulation}
-sur la détermination de directions dans le volcan de $\ell$-isogénies. Il 
-serait toutefois intéressant d'étudier si le couplage ne nous apporte pas un 
-critère restrictif, pertinent du point de vue de la complexité, sur les images 
-de points par la $r$-isogénie, et en particulier sur les points ascendants 
-horizontaux.
 
 L'objectif d'une complexité quadratique pour notre amélioration de l'algorithme
 de Couveignes dans le cas Atkin avec la même méthode que \cite{Couveignes96} 
 nécessite de distinguer un sous-groupe cyclique de la $\ell^k$-torsion.
-Ainsi résoudre ce problème permettrait d'atteindre une complexité 
-quasi-quadratique dans le cas Atkin. \todo{se mord la queue et mettre avant Ionica Joux}
-%Un autre moyen pour distinguer des couples de points formant une base de 
-%$E[\ell^k]$. Nous avons 
-%réfléchi à travailler avec un groupes de points isomorphes à 
-%$\mathbb{Z}_{\ell^2}$ (l'unique extension quadratique non ramifiée de 
-%$\mathbb{Z}_{\ell}$), mais nous n'avons pas réussi à modéliser l'action du 
-%Frobenius sur un tel ensemble. 
+%Ainsi résoudre ce problème permettrait d'atteindre une complexité 
+%quasi-quadratique dans le cas Atkin. \todo{se mord la queue et mettre avant Ionica Joux}
+Ainsi, le couplage qui n'a pas été abordé dans ce document mais seulement 
+mentionné, à travers les travaux de Ionica et Joux \cite{Ionica-Joux10},
+serait intéressant à étudier afin de voir aussi si il ne nous apporte pas un 
+critère restrictif, pertinent du point de vue de la complexité, sur les images 
+de points par la $r$-isogénie, et en particulier sur les points ascendants 
+horizontaux.
 
 Enfin, parmi les pistes proposées mais non satisfaisantes dans le 
 chapitre~\ref{cha:var:cou}, seule celle présentée dans la 
@@ -8399,17 +8402,10 @@ résultats de cette thèse.
 Les propositions~\ref{pro:mat:fro} et \ref{pro:mat:fro:atk} nous 
 permettent de savoir exactement à quel niveau se trouve une courbe dans un 
 volcan de $\ell_i$-isogénies. Ainsi, en se plaçant dans le même contexte que 
-\cite{Kohel96,BissonSutherland11}, où l'on connaît déjà une 
-factorisation de $d_{\pi}$, %avec les propositions ~\ref{pro:mat:fro} ou 
-%\ref{pro:mat:fro:atk}, selon le cas Elkies ou Atkin, 
-on peut déterminer la
-valuation $\ell_i$-adique du conducteur de la courbe par rapport à 
-$\mathbb{Z}[\pi]$ et donc on peut déterminer l'anneau des endomorphismes de
-la courbe. Cela pourrait avoir par exemple une application dans l'algorithme de
-Bröker \cite{Broker08} utilisé pour calculer un polynôme de Hilbert. En effet 
-dans l'algorithme de Bröker, il est nécessaire de calculer une courbe avec un 
-anneau d'endomorphismes spécifique à partir d'une courbe au hasard dont 
-$\mathbb{Z}[\pi]$ est fixé. %On pourrait alors à partir d'une telle courbe se servir des 
+\cite{Kohel96,BissonSutherland11}, où l'on connaît déjà une factorisation de 
+$d_{\pi}$, on peut déterminer la valuation $\ell_i$-adique du conducteur de la 
+courbe par rapport à $\mathbb{Z}[\pi]$ et donc on peut calculer l'anneau des 
+endomorphismes de la courbe.  %On pourrait alors à partir d'une telle courbe se servir des 
 %propositions~\ref{pro:mat:fro} ou \ref{pro:mat:fro:atk} afin de déterminer 
 %l'anneau des endomorphismes de la courbe.
 %Ensuite on pourrait se servir de la proposition~\ref{pro:tri:dir} ou du 
@@ -8422,7 +8418,11 @@ l'algorithme de Bisson et Sutherland~\cite{BissonSutherland11} on évite de
 devoir calculer toutes les relations dues aux représentations polycycliques 
 dans le groupe de classe des idéaux. Ainsi notre approche a l'air plus simple, 
 mais il reste toutefois à évaluer son coût dans un tel contexte.
-\todo{Placer Broker à la fin}
+Cela pourrait avoir par exemple une application dans l'algorithme de
+Bröker \cite{Broker08} utilisé pour calculer un polynôme de Hilbert. En effet 
+dans l'algorithme de Bröker, il est nécessaire de calculer une courbe avec un 
+anneau d'endomorphismes spécifique à partir d'une courbe au hasard dont 
+$\mathbb{Z}[\pi]$ est fixé.
 
 \paragraph{Déplacement sur le cratère de volcans de $\ell$-isogénies et ses 
 applications aux algorithmes de calcul de poylnômes de Hilbert et modulaire}
