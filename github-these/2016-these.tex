@@ -7999,19 +7999,19 @@ de techniques présentées dans le chapitre~\ref{cha:tour} elles ne seront pas
 détaillées.
 
 Soient $\ell_1, \dots, \ell_n$ $n$ nombres premiers distincts, 
-on va supposer dans le reste de ce document que les différentes tours 
+nous allons supposer dans le reste de ce document que les différentes tours 
 d'extensions $\ell_i$-adiques sont définies comme dans le 
-chapitre~\ref{cha:tour} dont on note les éléments 
+chapitre~\ref{cha:tour} dont nous notons les éléments 
 $\mathbb{F}_q \subset \mathsf{F}_{(i,1)} \subset \dots \subset  \mathsf{F}_{(i,j)}$ 
-ont chacune des degrés $d_i=[\mathsf{F}_{(i,1)}:\mathbb{F}_q]$ qui lorsqu'ils 
+et ont chacune des degrés $d_i=[\mathsf{F}_{(i,1)}:\mathbb{F}_q]$ qui lorsqu'ils 
 ne sont pas égaux à $1$ doivent être premiers entre eux (cette dernière 
 restriction sera justifiée plus tard dans le document).
 
-On veut donc tout d'abord définir un compositum de tours d'extensions 
-$\ell_i$-adiques, en particulier on veut calculer un compositum qui contient 
-tous les éléments des tours d'extensions $\ell_i$-adiques suivant:
-$\mathsf{F}_{(1,k_1)}, \dots \mathsf{F}_{(n,k_n)}$. On suppose de plus que les
-$\ell_i$ sont ordonnés de telle sorte que pour tout $i \in [2,n]$ 
+Nous voulons donc tout d'abord définir un compositum de tours d'extensions 
+$\ell_i$-adiques, en particulier nous voulons calculer un compositum qui 
+contient tous les éléments des tours d'extensions $\ell_i$-adiques suivant:
+$\mathsf{F}_{(1,k_1)}, \dots \mathsf{F}_{(n,k_n)}$. Nous supposons de plus que 
+les $\ell_i$ sont ordonnés de telle sorte que pour tout $i \in [2,n]$ 
 $\prod_{j=1}^{i-1}d_j\ell_j^{k_j} \geqslant d_i\ell_i^{k_i}$, cette restriction
 sert juste à simplifier les calculs.
 
@@ -8024,8 +8024,8 @@ $s_j$, tels que $P$ et $Q$ aient des racines distinctes et des degrés $\deg(P),
 comme étant le polynôme de degré $\deg(P)\deg(Q)$ unitaire et de racines 
 $r_is_j$ avec $i \in [1,\deg(P)], j \in [1,\deg(Q)]$. On note $R= P\odot Q$.  
 \end{defi}
-On peut alors montrer comment on construit un compositum à l'aide de la 
-proposition suivante: 
+Nous pouvons alors construire un compositum à l'aide de la proposition 
+suivante: 
 \begin{prop}
 \label{pro:init:com}
 Soient $\ell_1$ un nombre premier, $P$, $Q$ deux 
@@ -8045,89 +8045,90 @@ Voir \cite[Theorem 2]{BrawleyCarlitz87}
 \end{proof}
 
 
-On peut alors définir les compositum dans notre cas particulier.
+Nous définissons alors les compositums qui nous intéressent dans le cas présent.
 \begin{defi}
 \label{def:con:com}
-On note $\mathbb{K}_1$ le corps $\mathsf{F}_{(1,k_1)}$. Soit $i \in [1,n-1]$ 
+$\mathbb{K}_1$ est le corps $\mathsf{F}_{(1,k_1)}$. Soit $i \in [1,n-1]$ 
 supposons que $\mathbb{K}_{i}$ est défini, alors à 
 l'aide de la proposition~\ref{pro:init:com} $\mathbb{K}_{i+1}$ est défini comme
 le compositum de $\mathbb{K}_i$ et $\mathsf{F}_{(i+1,k_{i+1})}$.
 \end{defi}
 \begin{rem}
-Dans la définition~\ref{def:con:com} le cas où l'on aurait $d_i=d_j$ avec $d_i 
-\neq 1$ pour $i \neq j$ entraîne le fait que l'on a pas
-les conditions pour appliquer la proposition~\ref{pro:init:com}. 
+Dans la définition~\ref{def:con:com} le cas où $d_i=d_j$ avec $d_i 
+\neq 1$ pour $i \neq j$ empêcherait d'avoir les conditions pour appliquer la 
+proposition~\ref{pro:init:com}. 
 Cette condition est assez restrictive car comme vu dans le 
-chapitre~\ref{cha:tour} on a $d_i | \ell_i-1$ ainsi il est possible que l'on
-ait pour $d_i,d_j$ distincts $\mathrm{pgcd}(d_i,d_j) \neq 1$. Une 
+chapitre~\ref{cha:tour} $d_i | \ell_i-1$, ainsi il est possible que 
+pour $d_i,d_j$ distincts $\mathrm{pgcd}(d_i,d_j) \neq 1$. Une 
 solution pour contourner ce problème serait alors de construire le compositum à
-partir d'une extension de $\mathbb{F}_q$.
+partir d'une extension de $\mathbb{F}_q$ pour laquelle 
+$\mathrm{pgcd}(d_i,d_j) \neq 1$ pour tout $i,j$.
 \end{rem}
 
 
 %\cite{Schost15} pour un contexte) \todo{surement plus du tout utile}
-\begin{nota} Afin de simplifier les notations on va 
- noter $p_{i}=\prod_{j=1}^{i}d_j\ell_j^{k_j}$, en particulier $p_{i}$ est le 
- degré du compositum $\mathbb{K}_i$ comme extension de $\mathbb{F}_q$, par 
- ailleurs on pose $p_0=1$.
+\begin{nota} 
+Nous posons $p_{i}=\prod_{j=1}^{i}d_j\ell_j^{k_j}$, en particulier $p_{i}$ est le 
+degré du compositum $\mathbb{K}_i$ comme extension de $\mathbb{F}_q$, par 
+ailleurs $p_0=1$.
 %$m_i = \overset{n}{\underset{j \neq i}{\underset{j = 0}{\prod \ell_j^{k_j}}}}$
 \end{nota}
 
-Le coût de la construction d'un tel compositum n'est pas étudié en détail afin 
-de ne pas surcharger le document car ce coût là ne sera pas majeur pour 
+Le coût de la construction d'un tel compositum n'est pas étudié en détails afin 
+de ne pas surcharger le document car ce coût ne sera pas majeur pour 
 une application dans l'algorithme de Couveignes. Le résultat à utiliser pour 
-évaluer un tel coût est le \cite[Theorem 1]{BostanFlajoletSalvySchost06} avec 
-bien évidemûment les cots de construction de tours d'extension $\ell$-adiques 
-vus dans le chapitre~\ref{cha:tour}.
+évaluer un tel coût est \cite[Theorem 1]{BostanFlajoletSalvySchost06} avec 
+les coûts de construction de tours d'extension $\ell$-adiques vus dans le 
+chapitre~\ref{cha:tour}.
 
 
- Comme motivé dans la sous sous section précédente~\ref{sub:TRCE:cou} on
- calcule les points (ascendants) horizontaux sur les volcans des 
- $\ell_i$-isogénies à l'aide des méthodes vues dans la 
- section~\ref{sub:con:poi}, on doit alors ensuite les exprimer dans le
- compositum afin de les utiliser pour le Théorème des Restes Chinois dans 
- l'algorithme~\ref{alg:TRC}.
+Comme motivé dans la sous sous section précédente~\ref{sub:TRCE:cou} nous
+calculons les points (ascendants) horizontaux sur les volcans des 
+$\ell_i$-isogénies à l'aide des méthodes vues dans la 
+section~\ref{sub:con:poi} afin de les utiliser pour le Théorème des Restes 
+Chinois dans l'algorithme~\ref{alg:TRC}. Pour faire cela nous devons exprimer 
+les différents points dans un corps commun: le compositum. 
   
- Voyons à quel coût on peut exprimer un élément de $\mathsf{F}_{(i,k_i)}$ dans 
- $\mathbb{K}_n=\otimes_{i=1}^n\mathsf{F}_{(i,k_i)}$. On a donc 
- besoin du résultat suivant issu de \cite[Theorem 1]{DeFeoDoliskaniSchost14}
- \begin{prop}[De Feo, Doliskani, Schost]
- \label{pro:com:inj}
- Soient $i \in [2,n] $ $P,Q$ deux polynômes irréductibles unitaires de degrés 
- premiers entre eux $d_i\ell_i^{k_i}$ et $p_{i-1}$ avec
-   $\mathbb{F}_q[x]/\langle P \rangle \cong \mathsf{F}_{(i,k_i)}$ et 
-   $\mathbb{F}_q[y]/\langle Q \rangle \cong \mathbb{K}_{i-1}$. Alors le 
-   plongement d'un élément de $\mathsf{F}_{(i,k_i)} $  dans $\mathbb{K}_{i}$ a un
-   coût de 
-   $O(d_i\ell_i^{k_i}\mathsf{M}(p_{i-1})+p_{i-1}\mathsf{M}(d_i\ell_i^{k_i}))$ 
-   opérations sur $\mathbb{F}_q$. La descente d'un élémént de $\mathbb{K}_{i} $
-   vers un élément de $\mathsf{F}_{(i,k_i)}$  a un coût identique. 
-   De même le plongement d'un élément de $\mathbb{K}_{i-1}$ dans 
-   $\mathbb{K}_{i}$ aini que la descente d'un élément de $\mathbb{K}_{i}$ dans 
-   $\mathbb{K}_{i-1}$ ont le même coût.
- \end{prop}
+Voyons à quel coût nous pouvons exprimer un élément de $\mathsf{F}_{(i,k_i)}$ dans 
+$\mathbb{K}_n=\otimes_{i=1}^n\mathsf{F}_{(i,k_i)}$, pour cela nous avons 
+besoin du résultat suivant issu de \cite[Theorem 1]{DeFeoDoliskaniSchost14}
+\begin{prop}[De Feo, Doliskani, Schost]
+\label{pro:com:inj}
+Soient $i \in [2,n] $ $P,Q$ deux polynômes irréductibles unitaires de degrés 
+premiers entre eux $d_i\ell_i^{k_i}$ et $p_{i-1}$ avec
+$\mathbb{F}_q[x]/\langle P \rangle \cong \mathsf{F}_{(i,k_i)}$ et 
+$\mathbb{F}_q[y]/\langle Q \rangle \cong \mathbb{K}_{i-1}$. Alors le 
+plongement d'un élément de $\mathsf{F}_{(i,k_i)} $  dans $\mathbb{K}_{i}$ a un
+coût de 
+$O(d_i\ell_i^{k_i}\mathsf{M}(p_{i-1})+p_{i-1}\mathsf{M}(d_i\ell_i^{k_i}))$ 
+opérations sur $\mathbb{F}_q$. La descente d'un élémént de $\mathbb{K}_{i} $
+vers un élément de $\mathsf{F}_{(i,k_i)}$  a un coût identique. 
+De même le plongement d'un élément de $\mathbb{K}_{i-1}$ dans 
+$\mathbb{K}_{i}$ aini que la descente d'un élément de $\mathbb{K}_{i}$ dans 
+$\mathbb{K}_{i-1}$ ont le même coût.
+\end{prop}
 
- \begin{proof}
- Voir \cite{DeFeoDoliskaniSchost14}.
+\begin{proof}
+Voir \cite{DeFeoDoliskaniSchost14}.
 \end{proof}  
 
- On sera amené à multiplier des polynômes à coefficients dans un 
- compositum, ainsi on a besoin du résultat suivant.
+Nous serons amenés à multiplier des polynômes à coefficients dans un 
+compositum, ainsi nous énonçons le résultat suivant.
 
- \begin{prop}
- \label{pro:mul:com}
- La multiplication et la division euclidienne de polynômes de degré au plus $d$
- à coefficients dans $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
- avec $P$ un polynôme irréductible de degré $p_n$ est de $O(\mathsf{M}(p_nd))$ 
- opérations sur $\mathbb{F}_q$.
- \end{prop} 
+\begin{prop}
+\label{pro:mul:com}
+La multiplication et la division euclidienne de polynômes de degré au plus $d$
+à coefficients dans $\mathbb{K}_{n} \cong \mathbb{F}_q[x]/ \langle P \rangle$
+avec $P$ un polynôme irréductible de degré $p_n$ est de $O(\mathsf{M}(p_nd))$ 
+opérations sur $\mathbb{F}_q$.
+\end{prop} 
  
- \begin{proof}
- La preuve est la même que celle de la proposition~\ref{pro:mult:pol}.
- \end{proof}
+\begin{proof}
+La preuve est la même que celle de la proposition~\ref{pro:mult:pol}.
+\end{proof}
  
- On sera aussi amené à trouvé une racine d'un polynôme de degré $d$ à 
- coefficients dans un compositum $\mathbb{K}_n$, d'où le résultat suivant:
+Nous devrons aussi calculer une racine d'un polynôme de degré $d$ à 
+coefficients dans un compositum $\mathbb{K}_n$, d'où le résultat suivant: \todo{Le résultat a disparu ou il n'est plus nécessaire ???}
  
 Maintenant voyons un résultat qui nous permet de changer la 
 représentation d'un élément de $\mathbb{K}_i$ afin de le représenter comme un 
@@ -8164,15 +8165,15 @@ opérations sur $\mathbb{F}_q$ lorsque $d_i\ell_i^{k} \geqslant p_{i-1}$.
 Voir \cite{DeFeoDoliskaniSchost14}.
 \end{proof}
 
-Ainsi on va pouvoir appliquer ce résultat pour calculer le coût du Frobenius 
-avec une méhtode similaire à celle du théorème~\ref{thm:frob-ell}, cela sera 
-abordé dans la prochaine sous-section.
+Ainsi, nous allons pouvoir appliquer ce résultat pour calculer le coût du 
+Frobenius avec une méhtode similaire à celle du théorème~\ref{thm:frob-ell}. 
+Cela sera abordé dans la prochaine sous-section.
 
-\subsection{Coût total de l'algorithme de Couveignes $\ell_i$-adique avec le Théorème des Restes Chinois}
+\subsection{Coût total de l'algorithme de Couveignes $\ell_i$-adique avec un nombre composé de Elkies}
 
 
 \label{sss:crt:cou}
-On a vu dans la sous-section~\ref{sub:TRCE:cou} 
+Nous avons vu dans la sous-section~\ref{sub:TRCE:cou} 
 qu'un point construit à l'aide du théorème des restes chinois appliqué à des 
 points $P_i,Q_i$ (ascendants) horizontaux de directions $\lambda_i,\mu_i$  
 d'ordre $\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux, 
@@ -8402,7 +8403,7 @@ conditions, les isogénies descendantes.
 
 Voyons maintenant quelques améliorations possibles (ou à explorer) des 
 résultats présentés dans cette thèse.
-
+\todo{composita ou compositum}
 
 L'objectif d'une complexité quadratique pour notre amélioration de l'algorithme
 de Couveignes dans le cas Atkin avec la même méthode que \cite{Couveignes96} 
