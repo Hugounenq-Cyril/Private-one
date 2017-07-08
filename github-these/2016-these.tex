@@ -7327,7 +7327,7 @@ proposition~\ref{pro:par:iso} qui s'appliquait au cas Elkies.
 Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$ un 
 nombre premier de Atkin.
 \begin{enumerate}
-\item les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan des
+\item\label{pro:par:pro:atk}  les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan des
  $\ell$-isogénies,
 \item\label{pro:par:fun:atk} pour tout point~$P \in E[\ell^k]$,
 les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de
@@ -7377,20 +7377,20 @@ sur le cratère d'un volcan de $\ell$-isogénies, nous verrons par la suite
 comment généraliser notre problème à des courbes non situées sur le cratère.
 
 
-Maintenant nons faisons une description de la méthode employée dans notre 
+Maintenant nous faisons une description de la méthode employée dans notre 
 algorithme~\ref{alg:cou:atk} pour résoudre le problème du calcul explicite 
 d'isogénie.
-Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j_0$ et $j_1$ 
+Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ 
 reliées par une $r$-isogénie $\phi$, $P \in E$ et $S' \in E'$ deux points 
 d'ordre $\ell^{k}$, avec $k$  plus grand que $h$, tels que $\phi(P)=S'$. Pour 
-deux bases $(P,Q),(S',R')$ de $E[\ell^k]$ et $E'[\ell^k]$ telles que $\pi(P,Q)=
-\pi(S',R')$ nous déterminons de façon unique $\phi([\ell^h]Q)=[\ell^h]R'$ par 
-le corollaire~\ref{cor:atk:ess}. Nous déterminons ensuite le point 
-$\phi(Q)$ en testant pour tout point $U'$ antécédent par $[\ell^h]$ de 
-$[\ell^h]R'$ si la correspondance $(P,Q) \rightarrow (S',U')$ permet de définir
-une $r$-isogénie. Ce test consiste comme dans le cas Elkies (voir 
-sous-section~\ref{ssec:cou:elk}) à calculer le polynôme d'interpolation 
-$A_{S',U'}$ tel que 
+deux bases $(P,Q),(S',Q')$ de $E[\ell^k]$ et $E'[\ell^k]$ nous déterminons 
+$R'\in E'[\ell^k]$ tel que $\pi(P,Q)=\pi(S',R')$ et $\langle S',R' \rangle =E'[\ell^k]$. %nous déterminons de façon unique $\phi([\ell^h]Q)=[\ell^h]R'$
+Par le corollaire~\ref{cor:atk:ess} nous avons $\phi([\ell^h]Q)=[\ell^h]R'$. 
+Nous déterminons ensuite le point $\phi(Q)$ en testant pour tout point $U'$ 
+antécédent par $[\ell^h]$ de $[\ell^h]R'$ si la correspondance $(P,Q) 
+\rightarrow (S',U')$ permet de définir une $r$-isogénie. Ce test consiste, 
+comme dans le cas Elkies (voir sous-section~\ref{ssec:cou:elk}), à calculer le 
+polynôme d'interpolation $A_{S',U'}$ tel que 
 \[
 A_{R'}(x([u]P+[v]Q))=x([u]S'+[v]U') \quad \text{pour tout $[u]P+[v]Q$ d'ordre $\ell^k$}.
 \]
@@ -7416,7 +7416,7 @@ $E'$.
 %Dans la suite on se place dans le cas $\ell \neq 2$ par souci de simplicité. %Juste pour les tailles d'extensions de corps
 Nous énonçons des résultats qui sont des conséquences de la 
 proposition~\ref{pro:clas:fro:atk} et qui nous seront utiles lors de l'étape 
-du calcul de polynôme d'interpolation utilisant les méthodes de la 
+du calcul de polynôme d'interpolation à l'aide des méthodes de la 
 section~\ref{sec:interpolation}.
 
 \begin{cor}
@@ -7469,7 +7469,7 @@ Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
   \label{pro:atk:full-complexity}
   En supposant que $\ell^h<\sqrt{r}$, 
   l'algorithme~\ref{alg:cou:atk} calcule une $r$-isogénie 
-  ${\phi:E \rightarrow E'}$ en un temps espéré de \[
+  ${\phi:E \rightarrow E'}$ avec un coût moyen de \[
   O(r \ell^2 \sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))\]
 auquel il faut ajouter un temps de pré-calcul de:
 $O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\ell)\log(\ell q))$.
@@ -7481,13 +7481,13 @@ Nous faison remarquer que la condition $\ell^h < \sqrt{r}$ signifie que $k>h$,
 nous allons utiliser cette condition tout au long de la preuve.
 Par définition de $k$ nous avons $\ell^{2k-1} \in O(r\ell^2)$.
 Par la proposition~\ref{pro:clas:fro:atk}, il existe $\beta \leqslant h$ tel que
-$E[\ell^k]$ est inclus dans $E(F_{k-\beta})$. On construit donc une
+$E[\ell^k]$ est inclus dans $E(F_{k-\beta})$. Nous construisons donc une
 tour d'extensions $\ell$-adiques $\mathsf{F}_0\subset\cdots\subset 
-\mathsf{F}_{k-\beta}$, et l'on effectue les précalculs nécessaires au 
+\mathsf{F}_{k-\beta}$, et nous effectuons les précalculs nécessaires au 
 théorème~\ref{thm:frob-ell} avec un coût de $O(\ell\mathsf{M}(\ell)\log(q))$.
 \`A l'étape~\ref{alg:cou:atk:bas} le coût de calcul des bases de la 
-$\ell^k$-torsion se fait à partir d'une base de la $\ell$-torsion puis on 
-inverse la multiplication par $\ell$ l'aide de deux $\ell$-isogénies qui 
+$\ell^k$-torsion se fait à partir d'une base de la $\ell$-torsion puis nous 
+inversons la multiplication par $\ell$ l'aide de deux $\ell$-isogénies qui 
 composent la multiplication par $\ell$. Par le lemme~\ref{lem:div:cou} le coût 
 de calcul de $E[\ell]$ est de 
 $O(\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ opérations sur 
@@ -7495,24 +7495,25 @@ $\mathbb{F}_q$, ensuite le coût de calcul de $\mathrm{divise}(\ell,P)$ pour
 $P \in E(F_n)$ est de $\mathsf{R}(n+1)$, ce coût est donc dominé par la 
 dernière étape
 $O(\mathsf{R}(k-\beta+1)+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
-Par ~\cite[Chapter~14.5]{vzGJG03} on a $\mathsf{R}(n)=
+Par ~\cite[Chapter~14.5]{vzGJG03} nous avons $\mathsf{R}(n)=
 O(\ell^n\mathsf{M}(\ell^{n+1})\log(\ell)\log(\ell q))$. 
 L'étape~\ref{alg:cou:atk:bas} a donc un coût total de 
 \[
 O(\ell^k \mathsf{M}
 (\ell^{k+1})\log(\ell)\log(\ell q))=O(\sqrt{r}\ell^{1,5}\mathsf{M}(\sqrt{r}\ell^{2,5})\log(\ell)\log(\ell q))
 \] 
-dans le pire des cas où l'on aurait $\beta=1$.
+dans le pire des cas où $\beta=1$.
 \fussy
 %/sloppy
 %/fussy
 
-De la même manière que l'algorithme~\ref{alg:atk:bas:mat} à l'étape~\ref{alg:cou:atk:frob:bas} on 
-calcule itérativement l'action du Frobenius sur la $\ell^j$-torsion pour $j$ 
-allant de $1$ à $k$, ainsi à l'étape $i \in [1;k]$ on a le coût du Frobenius
+De la même manière que l'algorithme~\ref{alg:atk:bas:mat} à 
+l'étape~\ref{alg:cou:atk:frob:bas} nous calculons itérativement l'action du 
+Frobenius sur la $\ell^j$-torsion pour $j$ allant de $1$ à $k$, ainsi à l'étape
+$i \in [1;k]$ le coût du Frobenius
 appliqué à un point de $\mathsf{F}_{i-\beta}$ lorsque $i>\beta$, $\mathsf{F}_1$
-sinon qui est de $O(\ell^{\max(1,i-\beta)}\mathsf{M}(\ell))$ opérations sur 
-$\mathbb{F}_q$ d'après le théorème~\ref{thm:frob-ell}. On effectue ensuite 
+sinon, est de $O(\ell^{\max(1,i-\beta)}\mathsf{M}(\ell))$ opérations sur 
+$\mathbb{F}_q$ d'après le théorème~\ref{thm:frob-ell}. Nous effectuons ensuite 
 jusqu'à $2\ell^2$ additions de points définis sur $\mathsf{F}_{i-\beta}$ afin 
 d'identifier l'action du Frobenius. Chaque étape a donc un coût de 
 $O(\ell^2 \mathsf{M}(\ell^{\max(1,i-\beta)}))$,
@@ -7533,7 +7534,7 @@ opérations sur $\mathbb{F}_q$ d'après la proposition~\ref{pro:atk:comp:alg}.
 Ce qui donne un coût de $O(\ell^4(\mathsf{M}(\sqrt{r}\ell^{1,5})+\mathsf{M}(\ell)))$.
 
 L'étape~\ref{alg:cou:atk:div:h} calcule les antécédents d'un point d'ordre
-$\ell^{k-h}$ par $[\ell^h]$ ainsi on utilise successivement la fonction 
+$\ell^{k-h}$ par $[\ell^h]$ ainsi nous utilisons successivement la fonction 
 $\mathrm{divise}(\ell,P)$ sur des points définis dans $\mathsf{F}_{k-h-\beta}$ à
 $\mathsf{F}_{k-\beta}$, chaque itération de $\mathrm{divise}(\ell,P)$ a un coût
 de $R(n+1)$ pour $P \in \mathsf{F}_n$ par le lemme~\ref{lem:div:cou}. Ainsi 
@@ -7542,19 +7543,19 @@ $O(\mathsf{M}(\ell^{k-\beta +1})\ell^{k-\beta}\log(\ell)\log(\ell q)+\beta (\mat
 ce qui donne dans le pire des cas
 $O(\mathsf{M}(\sqrt{r}\ell^{1,5})\sqrt{r\ell}\log(\ell)\log(\ell q))$.
 
-Par le corollaire~\ref{cor:atk:orb:rep} on a $\ell^{k+\beta-2}(\ell+1)/2$ 
+Par le corollaire~\ref{cor:atk:orb:rep} nous avons $\ell^{k+\beta-2}(\ell+1)/2$ 
 représentants à calculer, chaque représentant étant 
 calculé comme la multiplication scalaire d'un point d'ordre $\ell^k$ défini 
 dans $\mathsf{F}_{k-\beta}$ par un coefficient dans 
 $(\mathbb{Z}/\ell^k\mathbb{Z})^{\times}$ une telle multiplication a un coût
-de $O(\log(\ell^k)\mathsf{M}(\ell^{k-\beta}))$. On a donc un coût total de 
+de $O(\log(\ell^k)\mathsf{M}(\ell^{k-\beta}))$. Le coût total de total est donc
 $O(\mathsf{M}(\ell^{2k})\log(\ell^k))=O(\mathsf{M}(r\ell^3)\log(r))$ opérations sur 
 $\mathbb{F}_q$ pour l'étape~\ref{alg:cou:atk:rep}.
 
-Pour l'étape~\ref{alg:cou:atk:int} on utilise la 
+Pour l'étape~\ref{alg:cou:atk:int} à l'aide de la 
 proposition~\ref{prop:interpol} avec $t=\ell^{2k-2}(\ell+1)/2 \in O(r\ell^2)$ 
-et le nombre de points d'interpolations $s=\ell^{k+\beta-2}(\ell+1)$, on 
-calcule alors les polynômes $T$ et $A_{U',R'}$ avec un coût de 
+et le nombre de points d'interpolations $s=\ell^{k+\beta-2}(\ell+1)$, nous 
+calculons les polynômes $T$ et $A_{U',R'}$ avec un coût de 
 $O(\mathsf{M}(r\ell^4)\log(r)\log(\ell))$. 
 
 L'étape~\ref{alg:cou:atk:Cauchy} a une complexité de $O(r\log(r))$ d'après
@@ -7569,28 +7570,33 @@ $O(\sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\s
 \fussy
 Enfin l'étape~\ref{alg:cou:atk:frob:bas} et la boucle commençant à 
 l'étape~\ref{alg:cou:atk:parc:poi} étant répétées $\ell^{2k-2}(\ell+1)/2 \in 
-O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 \sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ à laquelle il faut ajouter les précalculs pour obtenir 
-le résultat.
+O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 \sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ à laquelle il faut ajouter les précalculs pour obtenir le résultat.
 \end{proof}
 
 
-Par la proposition~\ref{pro:par:iso:atk}, la profondeur de ~$E$ et $E'$ sous
-leur cratère respectif est la même.  Par la
-proposition~\ref{pro:par:iso:atk}~\ref{pro:par:asc:atk}, les
-courbes sommets~$E_{s}$ et~$E'_{s}$ sont encore $r$-isogèness; on utilise
-alors l'algorithme~\ref{alg:cou:atk} pour calculer une $r$-isogénie~$\psi_{s}$.  
-Ensuite comme $\ell \wedge r =1$ alors $\psi = (\alpha ') \circ \psi_{s} \circ 
-\alpha$ est bien définie et est la $r$-isogénie cherchée.
-Le noyau de cette isogénie peut être calculé en $O(h\mathsf{\ell r}\log(\ell r))$
+Maintenant nous abordons le cas général où les courbes $r$-isogénes ne sont
+pas situées sur le cratère du volcan de $\ell$-isogénies.
+Par la proposition~\ref{pro:par:iso:atk}\eqref{pro:par:pro:atk}, la profondeur 
+de ~$E$ et $E'$ sous leur cratère respectif est la même, 
+par~\ref{pro:par:iso:atk} \eqref{pro:par:asc:atk}, les
+courbes sommets~$E_{s}$ et~$E'_{s}$ sont encore $r$-isogènes; nous notons 
+les isogénies $\alpha:E \rightarrow E_{s}$ et $\alpha':E' \rightarrow E'_{s}$. 
+Nous utilisons alors l'algorithme~\ref{alg:cou:atk} pour calculer une 
+$r$-isogénie~$\psi_{s}$. Ensuite comme $\ell \wedge r =1$ alors $\psi = 
+(\alpha ')^{-1} \circ \psi_{s} \circ \alpha$ est bien définie et est la $r$-isogénie
+cherchée. Le noyau de cette isogénie peut être calculé en $O(h\mathsf{M}(\ell r)\log(\ell r))$
 opérations en évaluant l'isogénie duale $\widehat{\alpha}$ sur le noyau de 
-$\psi_s$ à l'aide d'une suite de résultants. \todo{Faire aussi cela}
+$\psi_s$ à l'aide d'une suite de résultants. %\todo{Faire aussi cela}
 
-Comme dit précédemment les résultats du lemmme~\ref{lem:cou:dec}, de la proposition~\ref{pro:bor:ell},
- et du corollaire~\ref{cor:atk:elk:dist} sont 
-aussi valables dans le cas Atkin, on peut donc trouver un $\ell \in O(\log(q))$
+Comme dit précédemment les résultats du de la proposition~\ref{pro:bor:ell}, du
+lemmme~\ref{lem:cou:dec}, et du corollaire~\ref{cor:atk:elk:dist} sont 
+aussi valables dans le cas Atkin, nous pouvons donc trouver un $\ell \in O(\log(q))$
 nombre premier de Atkin tel que $\ell^h<\sqrt{r}$ et énoncer un résultat 
-similaire à celui du théorème~\ref{thm:gen:elk:fin}, vu le peu d'intérêt d'un 
-tel résultat on ne l'énoncera pas. 
+similaire à celui du théorème~\ref{thm:gen:elk:fin}. Vu le peu d'intérêt, par 
+rapport au cas Elkies, d'un tel résultat nous ne l'énoncerons pas. Cependant il
+est à noter que la complexité obtenue à la 
+proposition~\ref{pro:atk:full-complexity} est meilleure que Lercier et 
+Sirvent~\cite{Lercier-Sirvent2008}.
 
 
 %\begin{thm} \todo{resultat totaement inintéressant}
@@ -7604,23 +7610,25 @@ tel résultat on ne l'énoncera pas.
 
 \chapter{Variantes de l'algorithme de Couveignes $\ell$-adique dans le cas Elkies}
 \label{cha:var:cou}
-Dans les améliorations de l'algorithme de Couveignes que l'on a présentées 
+Dans les améliorations de l'algorithme de Couveignes que nous avons présentées 
 seules celles concernant le cas Elkies ont un intérêt en terme de complexité. 
-On va donc étudier des variantes à l'algorithme de Couveignes avec 
+Nous allons donc étudier des variantes à l'algorithme de Couveignes avec 
 approche $\ell$ adique que dans le cas Elkies y compris lorsque celles-ci
 auraient pu être appliquées à notre approche proposée pour le cas Atkin.
 \section{Algorihme de Couveignes $\ell$-adique dans le cas Elkies avec un point horizontal}
 \label{sec:var:cou:uni}
 
 
-Au lieu de travailler avec une base horizontale dans l'algorithme de Couveignes
-$\ell$-adique on pourrait tout aussi bien travailler avec une base horizontale.
-Dés lors on devrait fixer $k$ tel que le nombre d'abscisses de points d'ordre 
-$\ell^k$ engendrés par un point d'ordre $\ell^k$: $\frac{\ell^{k-1}}{2}$ soit 
-strictement plus grand que $2r$.
+Au lieu de travailler avec une base (ascendante) horizontale dans l'algorithme 
+de Couveignes $\ell$-adique nous pourrions tout aussi bien travailler avec un 
+point (ascendant) horizontale. C'est l'approche que nous allons avoir dans 
+cette sous-section.
+Dés lors nous devons déterminer le plus petit entier $k$ tel que le nombre 
+d'abscisses de points d'ordre $\ell^k$ engendrés par un point d'ordre $\ell^k$:
+$\frac{\ell^{k-1}}{2}$ soit strictement plus grand que $2r$.
 
-Pour le calcul du point horizontal d'ordre $\ell^k$ on est tout de même obligé 
-de calculer une base diagonale de la $\ell^{h+1}$-torsion et donc de 
+Pour le calcul du point horizontal d'ordre $\ell^k$ nous sommes tout de même 
+obligé de calculer une base diagonale de la $\ell^{h+1}$-torsion et donc de 
 travailler dans l'élément $\mathsf{F}_{h+1-\beta}$ de la tour d'extensions 
 $\ell$-adiques.
 
@@ -7634,18 +7642,18 @@ O(r \ell^{2} \mathsf{M}(r\ell^{3})\log(\ell)\log(\ell q) )
 \end{prop}
 
 \begin{proof}
-On rappelle que l'on travaille avec la convention $\alpha \geqslant \beta$, 
+Nous travaillons, toujours, avec la convention $\alpha \geqslant \beta$, 
 avec $\alpha$ et $\beta$ définis comme dans la définition~\ref{def:alp:bet}.
 Le coût de calcul de la base horizontale est par la proposition~\ref{pro:alg:ulti}:
 $O(\mathsf{R}(h+1)+ \mathsf{R}(k-\beta)+\ell^2 \mathsf{M}(\ell^{h+1})+\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$. 
-En bornant $h$ par $k$ on a $\ell^h \in O(r\ell)$ ce qui en utilisant cette
-borne et le coût de $\mathsf{R}(i)$ donné par~\cite[chapter 14.5]{vzGJG03} nous 
-donne une complexité de :
+En bornant $h$ par $k$ nous avons $\ell^h \in O(r\ell)$ ce qui en utilisant 
+cette borne et le coût de $\mathsf{R}(i)$ donné 
+par~\cite[chapter 14.5]{vzGJG03} nous donne une complexité de :
 $O(r \ell^{2} \mathsf{M}(r\ell^{3})\log(\ell)\log(\ell q) )$.
 \end{proof}
-On observe donc que dans ce cas-là on a un coût quadratique en $r$ pour le 
+Nous observons que dans ce cas-là on a un coût quadratique en $r$ pour le 
 calcul d'une base diagonale de la $\ell^{h+1}$ alors que dans le cas de la 
-proposition~\ref{pro:full-complexity} on montrait dans la preuve que le coût 
+proposition~\ref{pro:full-complexity} nous montrions dans la preuve que le coût 
 d'une telle opération était quasi-linéaire.
 
 Ensuite on calcule un point horizontal d'ordre $\ell^k$ à l'aide de 
