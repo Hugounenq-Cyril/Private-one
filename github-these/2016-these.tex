@@ -8169,12 +8169,12 @@ Ainsi, nous allons pouvoir appliquer ce résultat pour calculer le coût du
 Frobenius avec une méhtode similaire à celle du théorème~\ref{thm:frob-ell}. 
 Cela sera abordé dans la prochaine sous-section.
 
-\subsection{Coût total de l'algorithme de Couveignes $\ell_i$-adique avec un nombre composé de Elkies}
+\subsection{Estimation du coût de l'algorithme de Couveignes $\ell_i$-adique avec un nombre composé de Elkies}
 
 
 \label{sss:crt:cou}
 Nous avons vu dans la sous-section~\ref{sub:TRCE:cou} 
-qu'un point construit à l'aide du théorème des restes chinois appliqué à des 
+qu'un point construit à l'aide du Théorème des Restes Chinois appliqué à des 
 points $P_i,Q_i$ (ascendants) horizontaux de directions $\lambda_i,\mu_i$  
 d'ordre $\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux, 
 était mis en correspondance avec un autre point de même direction.
@@ -8202,15 +8202,15 @@ a & 0 \\
 \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\prod_{i=i}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}.
 \end{equation*}
 
-On a donc bien une correspondance entre les points définis à l'aide du Théorème
-des Restes Chinois appliqué à des points (ascendants) horizontaux définis 
+Nous avons donc bien une correspondance entre les points définis à l'aide du 
+TRC appliqué à des points (ascendants) horizontaux définis 
 sur deux courbes elliptiques $r$-isogènes avec $r$ premier avec $\ell_1, \dots
 , \ell_n$.
  
 Dans le but d'appliquer les même méthodes que celles de la 
-sous-section~\ref{ssec:cou:elk} on a besoin de déterminer des représentants 
+sous-section~\ref{ssec:cou:elk} nous devons déterminer des représentants 
 d'orbites sous l'action de groupes de Galois sur des éléments de 
-$\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$ le
+$\mathbb{K}_n=\otimes_{i=1}^{n}\mathsf{F}_{(i,k_i)}$
 défini dans la sous-section~\ref{sub:con:com}.
 \begin{prop}
 \label{pro:rep:com}
@@ -8230,24 +8230,24 @@ $\epsilon_i$ le nombre de représentants de points d'ordre $\ell_i^{k_i}$ sous
 l'action d'un générateur de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$.
 \end{nota}
 
-On voit donc avec la proposition~\ref{pro:rep:com} que pour déterminer des 
-représentants pour l'orbite selon l'action du groupe de Galois pour des points 
-d'ordre $\upsilon_n$ il suffit de calculer à l'aide du théorème des 
-restes chinois tous les points $P$ d'ordre $\upsilon_n$ 
-tels que tous les choix possibles de représentants $P_i=[\vartheta_i]P$
-par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$
- aient été effectués. Ainsi le nombre de représentants est
- donc de $\prod_{i=1}^{n} \epsilon_i$. On calcule donc 
- tout d'abord les représentants d'ordre $\ell_i^{k_i}$ dans les tours 
- d'extensions $\ell_i$-adiques, puis on les exprime dans le compositum et enfin
- on applique $\prod_{i=1}^{n} \epsilon_i$ fois le Théorème des Restes Chinois. 
+%On voit donc avec la proposition~\ref{pro:rep:com} que 
+Ainsi, pour déterminer des représentants des différentes orbites selon l'action
+de $\mathsf{Gal}(\mathsf{K}_{n}:\mathbb{F}_q)$ pour des points d'ordre $\upsilon_n$ il suffit, par la 
+proposition~\ref{pro:rep:com}, de calculer à l'aide du TRC tous les points $P$ 
+d'ordre $\upsilon_n$ à partir de tous les choix possibles de représentants 
+$P_i=[\vartheta_i]P$ par rapport à l'action de $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$.
+% aient été effectués. 
+Le nombre de représentants est donc de $\prod_{i=1}^{n} \epsilon_i$. Ainsi, nous 
+calculons tout d'abord les représentants d'ordre $\ell_i^{k_i}$ dans les tours 
+d'extensions $\ell_i$-adiques, puis nous les exprimons dans le compositum et 
+enfin nous appliquons $\prod_{i=1}^{n} \epsilon_i$ fois le TRC. 
   
- On peut dès lors modifier l'algorithme~\ref{alg:cou:ell-adique} de telle sorte
- que l'on travaille avec deux couples de points d'ordre 
- $\prod_{i=1}^n\ell_i^{k_i}$ de même direction.
+Nous pouvons dès à présent modifier l'algorithme~\ref{alg:cou:ell-adique} pour 
+prendre en entrée deux couples de points d'ordre $\prod_{i=1}^n\ell_i^{k_i}$ de
+même direction.
  
- On présente donc l'algorithme~\ref{alg:cou:TRC-adique} qui résulte de cette approche ainsi qu'une 
- estimation de son coût.
+Nous présentons donc l'algorithme~\ref{alg:cou:TRC-adique} qui résulte de cette
+approche ainsi qu'une estimation de son coût.
  
 \begin{algorithm}
 \caption{\label{alg:cou:TRC-adique} Algorithme de Couveignes avec nombre composé de Elkies.}
@@ -8276,10 +8276,10 @@ et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \end{algorithmic}
 \end{algorithm}
 
-Avant d'évaluer le coût de l'algorithme~\ref{alg:cou:TRC-adique}, qui comme on
-a vu avec l'algorithme~\ref{alg:cou:ell-adique}, est dominé par le coût de 
-l'interpolation (étape~\ref{alg:cou:TRC-adique:int}) on énonce le coût du
-Frobenius (sans rentrer dans les détails) et on estime le calcul de polynômes 
+Avant d'évaluer le coût de l'algorithme~\ref{alg:cou:TRC-adique}, qui comme nous
+avons vu avec l'algorithme~\ref{alg:cou:ell-adique}, est dominé par le coût de 
+l'interpolation (étape~\ref{alg:cou:TRC-adique:int}) nous énonçons le coût du
+Frobenius (sans rentrer dans les détails) et nous estimons le calcul de polynômes 
 d'interpolation. 
 
 \begin{prop}
@@ -8302,14 +8302,14 @@ de $O( M(d_i) d_i\log(q))$ opérations sur $\mathbb{F}_q$.
 %$\mathbb{K}_{i-1} \otimes \mathsf{F}_{(i,n_i)}$ est crucial dans le coût total
 %du Frobenius. En effet si on compare ce résultat avec celui du
  
-On obtient donc un résultat moins bon que celui du
-théorème~\ref{thm:frob-ell}, or en adaptant les mêmes méthodes on aurait du 
-avoir le coût de cette opération dominé par $O(d_i\ell_i^{k_i})\mathsf{M}(p_{i-1})$. 
-Cependant ici, contrairement au cas du théorème~\ref{thm:frob-ell}, on doit prendre en 
-compte le coût du changement de représentation qui domine la complexité. Ainsi 
-il est crucial si l'on veut obtenir des résultats similaire à la 
-section~\ref{sec:interpolation} d'avoir une construction de compositum permettant un 
-changement de représentation à un coût linéaire.
+Nous obtenons un résultat moins bon que celui du théorème~\ref{thm:frob-ell}, 
+or en adaptant les mêmes méthodes nous aurions du avoir le coût de cette 
+opération dominé par $O(d_i\ell_i^{k_i})\mathsf{M}(p_{i-1})$. 
+Cependant ici, contrairement au cas du théorème~\ref{thm:frob-ell}, nous devons
+prendre en compte le coût du changement de représentation qui domine la 
+complexité. Ainsi il est crucial pour obtenir des résultats similaire à la 
+section~\ref{sec:interpolation} d'avoir une construction de compositum 
+permettant un changement de représentation à un coût quasi-linéaire.
 
 Une adaptation des méthodes de calcul de polynôme d'interpolation décrites dans
 la section~\ref{sec:interpolation} à ce contexte est faite pour le calcul de 
