@@ -7773,7 +7773,7 @@ définir la fraction rationnelle $F$ candidate pour représenter la $r$-isogéni
 $\phi$ que l'on veut calculer. 
 L'avantage de cette approche est que bien que nous soyons obligés de travailler
 sur différentes tours d'extensions $\ell$-adiques, il n'est pas nécessaire de 
-travailler avec des compositum de tours d'extensions $\ell$-adiques.
+travailler avec des composita de tours d'extensions $\ell$-adiques.
 
 Détaillons comment nous procèdons, la méthode est restranscrite dans 
 l'algorithme~\ref{alg:cou:mult-adique:short}.%, 
@@ -8127,8 +8127,8 @@ opérations sur $\mathbb{F}_q$.
 La preuve est la même que celle de la proposition~\ref{pro:mult:pol}.
 \end{proof}
  
-Nous devrons aussi calculer une racine d'un polynôme de degré $d$ à 
-coefficients dans un compositum $\mathbb{K}_n$, d'où le résultat suivant: \todo{Le résultat a disparu ou il n'est plus nécessaire ???}
+%Nous devrons aussi calculer une racine d'un polynôme de degré $d$ à 
+%coefficients dans un compositum $\mathbb{K}_n$, d'où le résultat suivant: \todo{Le résultat a disparu ou il n'est plus nécessaire ???}
  
 Maintenant voyons un résultat qui nous permet de changer la 
 représentation d'un élément de $\mathbb{K}_i$ afin de le représenter comme un 
@@ -8276,11 +8276,11 @@ et de l'étape~\ref{alg:cou-ell:bhor} de l'algorithme~\ref{alg:cou:ell-adique};
 \end{algorithmic}
 \end{algorithm}
 
-Avant d'évaluer le coût de l'algorithme~\ref{alg:cou:TRC-adique}, qui comme nous
+Avant d'évaluer le coût de l'algorithme~\ref{alg:cou:TRC-adique}, qui, comme nous
 avons vu avec l'algorithme~\ref{alg:cou:ell-adique}, est dominé par le coût de 
 l'interpolation (étape~\ref{alg:cou:TRC-adique:int}) nous énonçons le coût du
-Frobenius (sans rentrer dans les détails) et nous estimons le calcul de polynômes 
-d'interpolation. 
+Frobenius (sans rentrer dans les détails) puis nous estimons le coût du calcul 
+de polynômes d'interpolation. 
 
 \begin{prop}
 \label{pro:fro:com}
@@ -8316,7 +8316,7 @@ la section~\ref{sec:interpolation} à ce contexte est faite pour le calcul de
 polynôme minimal $T=T^{(n)}$(en reprenant une notation similaire) d'éléments de 
 $\mathbb{K}_n \setminus \mathbb{K}_{n-1}$.
 Ainsi, comme dans la section~\ref{sec:interpolation}, 
-pour le calcul d'un tel polynôme d'interpolation on est amené à 
+pour le calcul d'un tel polynôme d'interpolation nous devons 
 multiplier des polynômes à coefficients dans $\mathbb{K}_{n-i-1} \otimes 
 \mathsf{F}_{(n-i,k)}$ qui de par leur degré font que le coût d'une telle 
 multiplication n'est que de $\tilde{O}_{p_n,q}(\mathsf{M}(p_n))$. Ce coût de 
@@ -8324,61 +8324,62 @@ $\tilde{O}_{p_n,q}(\mathsf{M}(p_n))$ en comparant
 avec les résultats du lemme~\ref{lemma:interpolation:minpoly} devrait être le 
 coût dominant. Cependant par le coût de 
 l'application du Frobenius aux polynômes $T^{(i)}_k$ de $O(\mathsf{M}
-(p_n)p_{n-i-1}^{(\omega-1)/2})$, on majore le coût total du Frobenius par 
+(p_n)p_{n-i-1}^{(\omega-1)/2})$, nous majorons le coût total du Frobenius par 
 $O(n\mathsf{M}(p_n)p_{n-1}^{(\omega-1)/2}\max_i(\ell_{i}(k_{i}+1)))$. %or on doit appliquer le Frobenius 
 %$\ell_{n-i}(k_{n-i}+1)$ fois et donc on majore ce coût.
 
 De la même manière pour le calcul des polynômes d'interpolation $A$ tels 
 $A(v)=w$ avec $v,w \in \mathbb{K}_n \setminus \mathbb{K}_{n-1}$, le coût est
-encore une fois dominé par l'application du Frobenius et on majore le coût d'un
-tel calcul par \[O(n\mathsf{M}(p_n \max_i(d_i\ell_i^{k_i}))
+encore une fois dominé par l'application du Frobenius et nous majorons le coût 
+d'un tel calcul par \[O(n\mathsf{M}(p_n \max_i(d_i\ell_i^{k_i}))
 \max_i(\ell_i(k_i+1))p_{n-1}^{(\omega-1)/2}).\]
 
-Ensuite pour $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de $\mathbb{K}_n~\setminus~\mathbb{K}_{n-1}$, $t_j$ le degré des polynômes minimaux de $v_j$, on note  $t=\sum t_j$. 
-On veut alors calculer les polynômes
+Ensuite pour $(v_1,w_1),\dots,(v_s,w_s)$ des paires d'éléments de 
+$\mathbb{K}_n~\setminus~\mathbb{K}_{n-1}$, $t_j$ le degré des polynômes 
+minimaux de $v_j$, nous posons $t=\sum t_j$. 
+Nous cherchons alors à calculer les polynômes
   \begin{itemize}
   \item $T\in \mathbb{F}_q[x]$ de degré $t$ tel que $T(v_j)=0$ pour tout $j$,
     et
   \item $A\in \mathbb{F}_q[x]$ de degré inférieur à $t$ tel que $A(v_j)=w_j$ pour
     tout $j$.
   \end{itemize}
-On utilise à nouveau la méthode de la section~\ref{sec:interpolation}, le 
-calcul de $T$ à partir des $T_j$ a un même
-coût que dans la proposition~\ref{prop:interpol} de $O(\mathsf{M}(t)\log(s))$. 
+Nous utilisons à nouveau la méthode de la section~\ref{sec:interpolation}, le 
+calcul de $T$ à partir des $T_j$ a un même coût que dans la 
+proposition~\ref{prop:interpol} de $O(\mathsf{M}(t)\log(s))$. 
 Cependant comme vu précédemment le coût de calcul des $A_j$ est de 
 \[
 O(n\mathsf{M}(t_j\max_i(d_i\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}
 \max_i(\ell_i(k_i+1)))
 \]
-on majore donc le coût total par
+nous majorons donc le coût total par
 \[O(n\mathsf{M}(t\max_i(d_i
 \ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i(k_i+1)))\]
 par superlinéarité de 
 $\mathsf{M}$.
 
-On peut donc estimer le coût de cette version $\ell$-adique de l'algorithme de 
-Couveignes à l'aide du coût dû à l'interpolation. 
-L'interpolation étant répétée $O(r \prod_{i=1}^n\ell_i)$ en moyenne, on obtient
-une estimation de 
+L'interpolation étant répétée $O(r \prod_{i=1}^n\ell_i)$ en moyenne, nous 
+obtenons une estimation de cette version $\ell$-adique de l'algorithme de 
+Couveignes
 \[ O(r (\prod_{i=1}^n\ell_i)n\mathsf{M}(r (\prod_{i=1}^n \ell_i^2)
 \max_i(d_i\ell_i^{k_i}))(p_{n-1})^{(\omega-1)/2}\max_i(\ell_i (k_i +1)) ).\] 
-Avec $p_n \in O(r(\prod_{i=1}^n\ell_i)^{3,5})$ on a une estimation 
+Avec $p_n \in O(r(\prod_{i=1}^n\ell_i)^{3,5})$ l'estimation est
 de 
 \[ 
 O(r(\prod_{i=1}^n\ell_i)n\mathsf{M}(r (\prod_{i=1}^n \ell_i^{3,5})
 \max_i(d_i\ell_i^{k_i}))(r (\prod_{i=1}^n \ell_i^{3,5}))^{(\omega-1)/4}
 \max_i(\ell_i(k_i+1)) )
 \]
-sachant que la borne du calcul des $T_i$ et $A_i$ est large car on a majoré 
-$\sum_{i=1}^np_{n-i}^{(\omega-1)/2}$ par $np_{n-1}^{(\omega-1)/2}$ d'où le 
-$n$ en facteur et que de plus 
-$\max_i(d_i\ell_i^{k_i})p_{n-1} \in \Omega(p_n)$. Ainsi on voit que par 
+sachant que la borne du calcul des $T_i$ et $A_i$ est large car nous avons 
+majoré $\sum_{i=1}^np_{n-i}^{(\omega-1)/2}$ par $np_{n-1}^{(\omega-1)/2}$ d'où 
+le $n$ en facteur et que de plus 
+$\max_i(d_i\ell_i^{k_i})p_{n-1} \in \Omega(p_n)$. Ainsi nous voyons que par 
 l'apport d'opérations de changement de représentations non-linéaires en la 
-taille des compositum on ne peut avoir une complexité quadratique en $r$ pour
-le calcul de l'isogénie montrant ainsi qu'une telle approche en l'état actuel
-n'est pas intéressante. Cependant cette approche avait l'avantage de proposer
-une meilleure estimation de $r$ par $\prod_{i=1}^n \ell_i^{k_i}$ et donc de 
-réduire les coûts apportés par l'étape d'interpolation dûs au choix des
+taille des composita nous ne pouvons avoir une complexité quadratique en $r$
+pour le calcul de l'isogénie montrant ainsi qu'une telle approche en l'état 
+actuel n'est pas intéressante. Cependant cette approche avait l'avantage de 
+proposer une meilleure estimation de $r$ par $\prod_{i=1}^n \ell_i^{k_i}$ et 
+donc de réduire les coûts apportés par l'étape d'interpolation dûs au choix des
 nombres premiers de Elkies.
 
 \chapter*{Conclusion}
@@ -8403,7 +8404,7 @@ conditions, les isogénies descendantes.
 
 Voyons maintenant quelques améliorations possibles (ou à explorer) des 
 résultats présentés dans cette thèse.
-\todo{composita ou compositum}
+\todo{composita est le pluriel de compositum}
 
 L'objectif d'une complexité quadratique pour notre amélioration de l'algorithme
 de Couveignes dans le cas Atkin avec la même méthode que \cite{Couveignes96} 
