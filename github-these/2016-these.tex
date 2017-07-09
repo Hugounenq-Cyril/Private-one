@@ -204,10 +204,10 @@ cryptographie \cite{Miller85,Koblitz87,Koblitz89}. Dans les domaines applicatifs
 on s'intéresse tout particulièrement aux courbes elliptiques sur les corps finis. 
 Les algorithmes de calculs de cardinalité de courbes elliptiques sont donc 
 fondamentaux, afin par exemple de définir les paramètres des cryptosystèmes. 
-L'algorithme de Schoof \cite{Schoof85}, est le premier algorithme de complexité
+L'algorithme de Schoof~\cite{Schoof85}, est le premier algorithme de complexité
 polynomiale à calculer la cardinalité de courbes elliptiques sur les corps 
-finis. Il a été amélioré par la suite par les travaux de Atkin \cite{Atkin88} 
-et Elkies \cite{Elkies91} aboutissant à l'algorithme SEA \cite{Schoof95}.
+finis. Il a été amélioré par la suite par les travaux de Atkin~\cite{Atkin88} 
+et Elkies~\cite{Elkies91} aboutissant à l'algorithme SEA~\cite{Schoof95}.
 
 Les isogénies sont des morphismes de groupes de noyau fini entre deux courbes 
 elliptiques. Le calcul d'isogénies apparaît dans SEA et a donc un intérêt 
@@ -228,7 +228,7 @@ Les premiers algorithmes de calcul d'isogénies sont dus à Atkin~\cite{Atkin91}
 et Charlap, Coley et Robbins~\cite{CharlapColeyRobbins91}. Ensuite des 
 algorithmes utilisables sur les corps finis ont été développés 
 \cite{Elkies1998}, \cite{Couveignes94}, \cite{Couveignes96}, \cite{Lercier96}.
-Les trois algorithmes sus-cités de Couveignes \cite{Couveignes94}, 
+Les trois algorithmes sus-cités de Couveignes~\cite{Couveignes94}, 
 \cite{Couveignes96} et Lercier~\cite{Lercier96} ne sont pratiques que dans le
 cas de petite caractéristique. L'algorithme de Elkies~\cite{Elkies1998}, au 
 contraire, est mieux adapté à la caractéristique grande ou zéro, et ne peut pas 
@@ -293,7 +293,7 @@ de corps finis~\cite{Couveignes00,DeFeo-Shost'12}.
 %polynomiale en la caractéristique $p$.
 
 Cette thèse s'inscrit dans la continuité des travaux de Couveignes 
-\cite{Couveignes96} et De Feo \cite{DeFeo11}, et cherche notamment à les 
+\cite{Couveignes96} et De Feo~\cite{DeFeo11}, et cherche notamment à les 
 généraliser à l'étude des points d'ordre $\ell^k$, avec $\ell$ premier 
 quelconque, afin de s'affranchir de la dépendance polynomiale en $p$. Pour 
 cela, nous devons en particulier déterminer des ensembles de points préservés 
@@ -379,7 +379,7 @@ niveau sont appelées horizontales, celles allant vers une courbe située plus
 bas (haut) sont appelées descendantes (ascendantes). %verticale 
 Kohel a cherché à déterminer le niveau d'une courbe dans le graphe tout en 
 connaissant la cardinalité de celle-ci afin de déterminer son anneau des 
-endomorphismes. Fouquet et Morain \cite{FouquetMorain02} ont par la suite 
+endomorphismes. Fouquet et Morain~\cite{FouquetMorain02} ont par la suite 
 résolu le même problème, sans la connaissance préalable de la cardinalité de la
 courbe, afin d'améliorer SEA, et ont nommé les graphes d'isogénies 
 \emph{volcans d'isogénies}. Ensuite les travaux de Miret \textit{et al.} 
@@ -416,10 +416,10 @@ sur les courbes elliptiques et leurs endomorphismes, et tout particulièrement
 l'endomorphisme de Frobenius. 
 
 Dans le deuxième chapitre nous abordons les différents algorithmes de calcul 
-d'isogénies sur des corps finis, dont ceux de Elkies \cite{Elkies1998}, Bostan 
-\textit{et al.} \cite{BMSS08}, Lercier et Sirvent \cite{Lercier-Sirvent2008}, avant de 
-présenter l'algorithme de Couveignes \cite{Couveignes96} et ses améliorations 
-par De Feo \cite{DeFeo11}. 
+d'isogénies sur des corps finis, dont ceux de Elkies~\cite{Elkies1998}, Bostan 
+\textit{et al.} \cite{BMSS08}, Lercier et Sirvent~\cite{Lercier-Sirvent2008}, avant de 
+présenter l'algorithme de Couveignes~\cite{Couveignes96} et ses améliorations 
+par De Feo~\cite{DeFeo11}. 
 
 Dans le chapitre~\ref{cha:tour}, nous nous plaçons dans la continuité des 
 travaux de Doliskani et Schost~\cite{Doliskani-Schost15}, De Feo, Doliskani et 
@@ -430,9 +430,8 @@ Feo~\cite{DeFeo11} pour le calcul de polynômes d'interpolation.
 Dans le chapitre~\ref{cha:volc:iso} nous rappelons les résultats principaux sur les volcans 
 d'isogénies, dont notamment le lien entre les niveaux dans le
 volcan et la structure des $\ell$-sous-groupes de Sylow; pour cela nous utilisons
-des résultats de Kohel \cite{Kohel96}, Fouquet et Morain 
-\cite{FouquetMorain02}, Miret \textit{et al.} \cite{MiretMRV05} \cite{MiretMSTV06} 
-\cite{MiretMSTV08}, et Ionica et Joux \cite{Ionica-Joux10}. 
+des résultats de Kohel~\cite{Kohel96}, Fouquet et Morain~\cite{FouquetMorain02}, Miret \textit{et al.} \cite{MiretMRV05} \cite{MiretMSTV06} 
+\cite{MiretMSTV08}, et Ionica et Joux~\cite{Ionica-Joux10}. 
 
 Nous abordons alors les principaux apports de la thèse dans les deux prochains
 chapitres.
@@ -836,7 +835,7 @@ de celles-ci.
 
 \subsubsection{Formules de Vélu}
 \label{sse:Vel}
-Pour un sous-groupe $C$ de $E(\mathbb{K})$ les formules de Vélu \cite{velu1971} permettent d'exprimer de façon canonique une isogénie séparable $E \rightarrow E'$ de noyau $C$ et de codomaine $E'$.  L'isogénie est définie sur $\mathbb{K}$ si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{K}[X]$.
+Pour un sous-groupe $C$ de $E(\mathbb{K})$ les formules de Vélu~\cite{velu1971} permettent d'exprimer de façon canonique une isogénie séparable $E \rightarrow E'$ de noyau $C$ et de codomaine $E'$.  L'isogénie est définie sur $\mathbb{K}$ si et seulement si le polynôme qui s'annule sur les abscisses des points du noyau $C$ est défini dans $\mathbb{K}[X]$.
 
 Soit $P$ un point de $E$ alors les formules de Vélu nous donnent l'isogénie $I$ de noyau $C$ par: 
 \begin{equation}
@@ -876,7 +875,7 @@ t= \sum_{Q \in G \setminus \{0_E\}} f'(Q) \quad u=\sum_{Q \in G \setminus \{0_E\
 \end{equation*}
 
 \begin{rem}
-On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisée par Elkies \cite{Elkies1998} et \cite[Section 2.4]{Kohel96}  qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
+On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisée par Elkies~\cite{Elkies1998} et \cite[Section 2.4]{Kohel96}  qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
 \begin{equation*}
 \frac{g(x)}{h(x)}= x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
 \end{equation*}
@@ -1147,7 +1146,7 @@ Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi$ l'en
 \subsection{Algorithme de Schoof et ses améliorations}
 %Ici vont être présentés les bases de S.E.A., aucun apport personnel n'a été fait dans ce cadre là, mais il est intéressant pour le lecteur de voir les concepts et  le contexte de celui-ci qui seront évoqués plus tard.
 \label{sub-sec:schoof}
-L'algorithme de Schoof \cite{Schoof85} consiste à calculer le cardinal d'une courbe elliptique $E$ définie sur $\mathbb{F}_q$ à l'aide de l'équation caractéristique du Frobenius $\pi$:
+L'algorithme de Schoof~\cite{Schoof85} consiste à calculer le cardinal d'une courbe elliptique $E$ définie sur $\mathbb{F}_q$ à l'aide de l'équation caractéristique du Frobenius $\pi$:
 \begin{equation*}
 X^2-t_{\pi}X+q=0
 \end{equation*}
@@ -1431,8 +1430,8 @@ $\mathbb{F}_q$.
 \end{rem}
  
 \section{Bostan-Morain-Salvy-Schost}
-L'algorithme BMSS \cite{BMSS08} propose de résoudre le même problème que 
-l'algorithme de Elkies \cite{Elkies1998} et a une meilleure complexité car 
+L'algorithme BMSS~\cite{BMSS08} propose de résoudre le même problème que 
+l'algorithme de Elkies~\cite{Elkies1998} et a une meilleure complexité car 
 il change notamment de méthode pour le calcul des $h_i$:
 \begin{thm}
 \label{thm:BMSS}
@@ -1631,7 +1630,7 @@ lieu dans $\mathbb{Q}_q$ une extension non ramifiée de degré $d$ de $\mathbb{Q
 
 L'algorithme de Lercier Sirvent calcule un relevé $\overline{E}$ de $E$ dans 
 $\mathbb{Q}_p$ et un relèvement $\overline{j_{E'}}$ du $j$-invariant $j'$ de la
-courbe $\ell$-isogène $E'$. Ensuite les formules de Elkies \cite{Elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS \cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors $\overline{I}$ et $\overline{E''}$, enfin on calcule $I: E \rightarrow E' $ à l'aide de l'isomorphisme $E' \cong E''$. 
+courbe $\ell$-isogène $E'$. Ensuite les formules de Elkies~\cite{Elkies1998} sont utilisées afin  de calculer une équation de Weierstrass normalisée de $\overline{E''}$, codomaine de $\overline{I}$. L'algorithme BMSS~\cite{BMSS08} est utilisé pour calculer l'isogénie $\overline{I}:\overline{E} \rightarrow \overline{E''}$ on réduit alors $\overline{I}$ et $\overline{E''}$, enfin on calcule $I: E \rightarrow E' $ à l'aide de l'isomorphisme $E' \cong E''$. 
 
 \begin{algorithm}
 \caption{\label{alg:LS08:modified} Algorithme de Lercier-Sirvent}
@@ -1656,7 +1655,7 @@ Soient deux courbes $r$-isogènes $E,E'$ définies sur $\mathbb{F}_q$ de caract�
 \end{itemize}
 \end{prop}
 
-Ce résultat issu de \cite[Theorem 2]{LairezVaccon16} est une amélioration du résultat original de Lercier et Sirvent \cite{Lercier-Sirvent2008}. Cette amélioration porte notamment sur la précision de la solution de l'équation différentielle que l'on doit résoudre à l'étape~\ref{alg:BMSS:total:eqdiff} de l'algorithme BMSS  qui est décrite dans l'algorithme~\ref{alg:BMSS:eqdiff}.
+Ce résultat issu de \cite[Theorem 2]{LairezVaccon16} est une amélioration du résultat original de Lercier et Sirvent~\cite{Lercier-Sirvent2008}. Cette amélioration porte notamment sur la précision de la solution de l'équation différentielle que l'on doit résoudre à l'étape~\ref{alg:BMSS:total:eqdiff} de l'algorithme BMSS  qui est décrite dans l'algorithme~\ref{alg:BMSS:eqdiff}.
 
 
 Une preuve détaillée pour calculer une solution de l'équation différentielle à précision donnée est dans \cite{LairezVaccon16}, cette méthode repose notamment sur la différenciation précisionnelle qui repose sur une analyse du premier ordre de la propagation des erreurs. 
@@ -1712,7 +1711,7 @@ en utilisant la précision $1+ \lfloor \log_p(4r-1) \rfloor$ préconisée par
 
 
 \section{Algorithme de Couveignes et ses améliorations}
-Dans cette section nous présentons tout d'abord l'algorithme de Couveignes \cite{Couveignes96}, puis ensuite les différentes améliorations apportées par De Feo dans \cite{DeFeo10}.
+Dans cette section nous présentons tout d'abord l'algorithme de Couveignes~\cite{Couveignes96}, puis ensuite les différentes améliorations apportées par De Feo dans \cite{DeFeo11}.
 
 L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires $r$-isogènes définies sur un corps fini $\mathbb{F}_q$ avec $r$ premier avec $p$ et calcule la $r$-isogénie $\mathbb{F}_q$-rationnelle qui les relie. L'algorithme est présenté ici uniquement en caractéristique $p$ impaire, par simplification.
 
@@ -1790,11 +1789,11 @@ peut se reporter à \cite{Couveignes96} et \cite{DeFeo11}.
 \paragraph{Calcul de la $p$-torsion}
 La première étape de l'algorithme est le calcul de générateurs de la $p^k$ 
 torsion. On a tout d'abord besoin de définir les points de $p$-torsion pour 
-cela on se sert du travail de Gunji \cite{Gunji76} et on se place dans le cas 
+cela on se sert du travail de Gunji~\cite{Gunji76} et on se place dans le cas 
 où $p \neq 2$. Le lecteur intéressé par le cas $p=2$ pourra se référer à 
 \cite[§3.2]{DeFeo11}.
 
-Le travail de Gunji \cite[Theorem 4]{Gunji76} permet donc de déterminer les 
+Le travail de Gunji~\cite[Theorem 4]{Gunji76} permet donc de déterminer les 
 abscisses de points d'odre $p$ à l'aide d'éléments définis dans une extension 
 de $\mathbb{F}_q$ de degré au plus $p-1$.  
 
@@ -1905,7 +1904,7 @@ Ainsi on a $[\mathbb{L}_i:\mathbb{L}_1]=p^{i- v_p(E(\mathbb{L}_1))}$ pour tout $
 
 \paragraph{Interpolation de Cauchy} L'interpolation de Cauchy se fait en deux étapes: tout d'abord il faut calculer un polynôme d'interpolation $A$ d'après la donnée de valeurs prises en les points primitifs de $p^k$-torsion. Ensuite on doit reconstruire à l'aide d'une interpolation de Cauchy la fraction rationnelle $\frac{R}{V}$ égale à $A$ modulo le polynôme unitaire $T$ qui s'annule sur les abscisses des points d'ordre $p^k$. 
 
-Dans l'algorithme de Couveignes \cite{Couveignes96} l'interpolation est 
+Dans l'algorithme de Couveignes~\cite{Couveignes96} l'interpolation est 
 effectuée distinctement sur les différentes orbites sous l'action du Frobenius 
 puis en utilisant le théorème des restes chinois on obtient alors un polynôme 
 d'interpolation modulo la $p^k$-torsion. Cette idée de travailler selon les 
@@ -2146,7 +2145,7 @@ effectuer $p^k$ additions de points de courbes elliptiques définis sur une
 extension de taille $[\mathbb{L}_k:\mathbb{F}_q] \in O(p^k) $, ce pré-calcul a 
 un coût de $O(p^k\mathsf{M}(p^k)\log(p^k))=O(r\mathsf{M}(r)\log(r))$. Il faut 
 donc utiliser des techniques supplémentaires pour optimiser ce temps de calcul 
-trop élevé. Les améliorations de De Feo \cite{DeFeo11} ont donc résolu cette 
+trop élevé. Les améliorations de De Feo~\cite{DeFeo11} ont donc résolu cette 
 question et sont présentées dans la sous section~\ref{sub:fro:int}.
 
 L'interpolation de Cauchy à partir du polynôme $A$ et du polynome $T$ qui s'annule sur les abscisses des points d'ordre $p^k$ est faite à l'aide de $O(\mathsf{M}(p^{k})\log(p^k))=O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03} (voir \cite[Théorème 7.5]{algeff17} pour plus de détails).
@@ -2180,12 +2179,12 @@ Bien que le polynôme $A$ que l'on souhaite calculer soit de degré $p^{k-1}
 (p-1)-1$, il est possible avec moins d'informations de le calculer. Le polynôme
 $A$ étant à coefficients dans $\mathbb{F}_q$ alors $A$, comme l'isogénie dont 
 il est censé représenter l'action sur les points d'ordre $p^k$, doit commuter 
-avec le Frobenius. Couveignes \cite{Couveignes96} ne tirait pas 
+avec le Frobenius. Couveignes~\cite{Couveignes96} ne tirait pas 
 pleinement parti du fait que connaître l'image d'un générateur d'une orbite 
 selon l'action du Frobenius fixait la valeur des autres points de l'orbite. 
 Il manquait pour l'algorithme original des techniques efficaces pour faire agir
 le Frobenius ce que les constructions de tours d'Artin Schreier de De Feo et 
-Schost \cite{DeFeo-Shost'12} permettent désormais.
+Schost~\cite{DeFeo-Shost'12} permettent désormais.
 
 On va montrer dans cette sous-sous-section les idées directrices pour obtenir à partir 
 d'un polynôme d'interpolation défini uniquement à l'aide de l'image d'un 
@@ -2425,8 +2424,8 @@ corps sur $\mathbb{F}_p$ et ainsi tout élément d'une tour d'Artin-Schreier est
 exprimé à l'aide d'un polynôme à coefficients dans $\mathbb{F}_p$.
 \end{rem}
 
-On peut généraliser les travaux de DeFeo et Schost \cite{DeFeo-Shost'12} et 
-De Feo \cite{DeFeo11} avec une tour d'Artin-Schreier construite sur une 
+On peut généraliser les travaux de DeFeo et Schost~\cite{DeFeo-Shost'12} et 
+De Feo~\cite{DeFeo11} avec une tour d'Artin-Schreier construite sur une 
 extension de $\mathbb{F}_q$ (ainsi tout élément d'une tour d'Artin-Schreier est
 exprimé à l'aide d'un polynôme à coefficients dans $\mathbb{F}_q$). Il faut en 
 particulier que $\mathrm{Tr}_{\mathbb{U}_1/\mathbb{F}_q}(x_0) \neq 0$ avec 
@@ -3464,7 +3463,7 @@ Voir \cite[Proposition 6]{MiretMSTV08}.
 
 \subsubsection{Algorithme de Fouquet-Morain}
 \label{sub:alg:FM}
-L'algorithme de Fouquet-Morain \cite{FouquetMorain02} est un algorithme qui cherche à calculer un chemin descendant d'une courbe elliptique située sur le cratère afin de calculer la valuation $\ell$-adique du conducteur de $\mathbb{Z}[\pi]$. Pour trouver une courbe sur le cratère la première chose à faire est de savoir déterminer un chemin descendant. 
+L'algorithme de Fouquet-Morain~\cite{FouquetMorain02} est un algorithme qui cherche à calculer un chemin descendant d'une courbe elliptique située sur le cratère afin de calculer la valuation $\ell$-adique du conducteur de $\mathbb{Z}[\pi]$. Pour trouver une courbe sur le cratère la première chose à faire est de savoir déterminer un chemin descendant. 
 
 \paragraph{Chemin descendant}
 En pratique une courbe admet au plus $2$ isogénies horizontales et au moins une isogénie descecendante (voir corollaire \ref{cor:tab:vol}), ainsi à l'aide du calcul en parallèle de 3 isogénies on est sûr d'avoir une des 3 qui est une isogénie descendante. Il est aussi important de noter que toute courbe du volcan admet au plus une isogénie montante. Dés lors que l'on parcourt le volcan d'isogénies à partir d'une isogénie descendante et que l'on ne retourne pas sur une courbe déjà visitée alors la suite des isogénies parcourues seront descendantes jusqu'à ce que l'on se retrouve sur une courbe située en bas du volcan. On détecte qu'une courbe est en bas du volcan dés qu'il y a une seule courbe isogène à celle-ci.
@@ -3491,7 +3490,7 @@ avec $E_h$.
 \end{itemize}
 
 \paragraph{Algorithme de Fouquet-Morain}
-L'algorithme de Fouquet-Morain \cite{FouquetMorain02} calcule donc pour 
+L'algorithme de Fouquet-Morain~\cite{FouquetMorain02} calcule donc pour 
 différents nombres premiers $\ell_i$ la valuation $v_i$ $\ell_i$-adique du 
 conducteur de $\mathbb{Z}[\pi]$. \`A l'aide de cette valuation on obtient la 
 valeur du carré de la trace modulo $\ell_i^{v_i}$, le signe est calculé à 
@@ -7224,7 +7223,7 @@ sous-section~\ref{sub:alg:FM}) en résolvant donc les
 polynômes modulaires (ici $\Phi_2$) utilisés d'après la base de données 
 "database-kohel" implantée par David Kohel. La détermination de la forme du 
 cratère se faisait elle à l'aide de la valeur du discriminant $d_k$. Un module 
-a été fait par Sébastien Besnier \cite{Besnier14} sur Sagemath celui-ci permet 
+a été fait par Sébastien Besnier~\cite{Besnier14} sur Sagemath celui-ci permet 
 d'afficher directement les volcans des $\ell$-isogénies à partir d'une courbe 
 et il est disponible à cette adresse 
 \url{https://trac.sagemath.org/ticket/16942}. 
@@ -8398,7 +8397,7 @@ présenté un algorithme qui résout le problème du calcul explicite d'isogéni
 avec une complexité quasi-quadratique en le degré de l'isogénie, et ce 
 uniquement dans le cas Elkies. Dans le cas Atkin nous avons seulement obtenu 
 un algorithme de complexité sous-cubique. Cet algorithme a une complexité moins
-bonne par rapport à l'algorithme de Couveignes \cite{Couveignes96} et à notre 
+bonne par rapport à l'algorithme de Couveignes~\cite{Couveignes96} et à notre 
 algorithme de la section~\ref{sec:cou:elk} , mais reste meilleur que le coût 
 Lerciet et Sirvent\cite{Lercier-Sirvent2008}.
 Nous avons aussi vu au travers de notre étude de nouveaux 
@@ -8417,7 +8416,7 @@ nécessite de distinguer un sous-groupe cyclique de la $\ell^k$-torsion.
 %Ainsi résoudre ce problème permettrait d'atteindre une complexité 
 %quasi-quadratique dans le cas Atkin. \todo{se mord la queue et mettre avant Ionica Joux}
 Ainsi, le couplage qui n'a pas été abordé dans ce document mais seulement 
-mentionné, à travers les travaux de Ionica et Joux \cite{Ionica-Joux10},
+mentionné, à travers les travaux de Ionica et Joux~\cite{Ionica-Joux10},
 serait intéressant à étudier afin de voir aussi si il ne nous apporte pas un 
 critère restrictif, pertinent du point de vue de la complexité, sur les images 
 de points par la $r$-isogénie, et en particulier sur les points ascendants 
@@ -8446,15 +8445,15 @@ endomorphismes de la courbe.  %On pourrait alors à partir d'une telle courbe se
 %Ensuite on pourrait se servir de la proposition~\ref{pro:tri:dir} ou du 
 %corollaire~\ref{cor:mon:atk} pour trouver une courbe dont 
 %l'anneau des endomorphismes correspond à celui que l'on cherche.
-Cette approche présente l'avantage par rapport à Kohel \cite{Kohel96} et 
-Fouquet et Morain \cite{FouquetMorain02} d'être plus directe et de ne pas 
+Cette approche présente l'avantage par rapport à Kohel~\cite{Kohel96} et 
+Fouquet et Morain~\cite{FouquetMorain02} d'être plus directe et de ne pas 
 calculer le $\ell$-ème polynôme modulaire $\Phi_{\ell}$. Par rapport à 
 l'algorithme de Bisson et Sutherland~\cite{BissonSutherland11} on évite de 
 devoir calculer toutes les relations dues aux représentations polycycliques 
 dans le groupe de classe des idéaux. Ainsi notre approche a l'air plus simple, 
 mais il reste toutefois à évaluer son coût dans un tel contexte.
 Cela pourrait avoir par exemple une application dans l'algorithme de
-Bröker \cite{Broker08} utilisé pour calculer un polynôme de Hilbert. En effet 
+Bröker~\cite{Broker08} utilisé pour calculer un polynôme de Hilbert. En effet 
 dans l'algorithme de Bröker, il est nécessaire de calculer une courbe avec un 
 anneau d'endomorphismes spécifique à partir d'une courbe choisie au hasard dont 
 $\mathbb{Z}[\pi]$ est fixé.
@@ -8467,7 +8466,7 @@ cyclique d'un volcan de $\ell$-isogénies avec $\ell$ petit. Certains
 algorithmes (\cite{Couveignes96isogenycycles}) se limitent, à juste titre, au 
 cas de volcans réduits à leur cratère, d'autres ne peuvent, et on va donc 
 aborder l'éventuel impact de nos travaux sur ceux-ci.
-Dans l'algorithme de Sutherland \cite{Sutherland11a} pour le calcul de polynômes
+Dans l'algorithme de Sutherland~\cite{Sutherland11a} pour le calcul de polynômes
 de Hilbert on est obligé, de par la taille du $\ell$-ème 
 polynôme modulaire, de traiter les cas où le volcan n'est pas réduit à un
 cratère cyclique. Dés lors il serait pertinent de voir l'apport de notre 
@@ -8476,7 +8475,7 @@ l'algorithme utilisé par Sutherland, similaire aux travaux de
 \cite{FouquetMorain02} (voir sous-section~\ref{sub:alg:FM}) se servant
 du $\ell$-ème polynôme modulaire, ainsi on pourrait rendre cet algorithme non
 dépendant du (pré)calcul des polynômes modulaires.
-Dans l'algorithme de Bröker, Lauter et Sutherland \cite{BLS12}, pour 
+Dans l'algorithme de Bröker, Lauter et Sutherland~\cite{BLS12}, pour 
 calculer le $\ell$-ème polynôme modulaire les auteurs se placent dans le cas
 d'un volcan de $\ell_i$-isogénies de hauteur $1$ de Elkies et régulier. 
 On pourrait à nouveau étudier, dans ce cas très spécifique, l'impact d'une 
