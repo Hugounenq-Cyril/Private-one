@@ -1,4 +1,4 @@
-\documentclass[a4paper, titlepage, 12pt]{book}
+\documentclass[a4paper, titlepage, 11pt]{book}
 
 \usepackage{graphicx}
 \usepackage{multicol}
@@ -209,13 +209,13 @@ des travaux de De Feo (2011), et la détermination d'ensemble de points d'ordre
 $\ell^k$ stables sous l'action d'isogénies.
 
 L'apport majeur de cette thèse est fait sur le second axe pour lequel nous 
-étudions les graphes d'isogénies dans lesquels les points représentent des 
+étudions les graphes d'isogénies dans lesquels les points représentent les 
 courbes elliptiques et les arrêtes représentent les isogénies. Nous utilisons
 pour notre travail les résultats précédents de Kohel (1996), Fouquet et Morain
 (2001), Miret \emph{et al.} (2005,2006,2008), Ionica et Joux (2001). Nous 
 présentons donc dans cette thèse, à l'aide d'une étude de l'action du Frobenius
 sur les points d'ordre $\ell^k$, un nouveau moyen de déterminer les directions 
-dans le volcan.
+dans le graphe (volcan) d'isogénies.
 
 
 % après avoir abordé les différents algorithmes dans la lignée
@@ -264,7 +264,26 @@ symbolic computation
 
 \begin{multicols}{2}
 \noindent\textbf{Abstract : }
-Some translation to do later.
+Isogeny computation problem appeared in the SEA algorithm to count the number of points on an elliptic curve defined over a finite field. Algorithms using ideas of Elkies (1998) solved this problem with satisfying results in this context. The appearance of new applications of the isogeny computation problem (trapdoor crypto system, hash function, scalar multiplication acceleration, post quantic crypto system) motivated the search for a faster algorithm outside the SEA context. Couveignes's algorithm (1996) offers the best complexity in the degree of the isogeny but, despite improvements by DeFeo (2011), it proves being unpractical with great characteristic.
+
+The aim of this work is to present a modified version of Couveignes's 
+algorithm (1996) that maintains the same complexity in the degree of the 
+isogeny but is practical with any characteristic.
+
+Two approaches contribute to the improvement of Couveignes's algorithm
+(1996) : firstly, the construction of towers of degree $\ell$ extensions which 
+are efficient for faster arithmetic operations, as used in the work of De Feo 
+(2011), and secondly, the specification of sets of points of order $\ell^k$ 
+that are stable under the action of isogenies.
+
+The main contribution of this document is done following the second approach. 
+Our work uses the graph of isogeny where the vertices are 
+elliptic curves and the edges are isogenies. We based our work on the previous 
+results of David Kohel (1996), Fouquet and Morain (2001), Miret \emph{\& al.}
+(2005,2006,2008), Ionica and Joux (2001). We therefore present in this 
+document, through the study of the action of the Frobenius endomorphism on 
+points of order $\ell^k$, a new way to specify directions in the isogeny graph (volcano). 
+
 \end{multicols}
 \end{breakbox}
 
