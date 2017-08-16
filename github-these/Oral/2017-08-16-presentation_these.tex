@@ -200,22 +200,77 @@ How to communicate securely on a channel that is not ?
 
 \begin{frame}
 \frametitle{Points defined on an elliptic curve}
-\begin{defi}
-Definition of an elliptic curve
-\end{defi}
 
 \begin{defi}
-Une courbe elliptique $E$ peut être définie comme la variété projective associée à l'équation
+Soit $\mathbb{K}$ un corps de caractéristique différente de $2$ et $3$, une courbe elliptique $E$ peut être définie comme 
+la variété projective associée à l'équation
 \begin{equation}
 \label{eq:weierstrass-proj}
-E:Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3
+E:Y^2=X^3+a_4X+a_6
 \end{equation}
-avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le point $[0:1:0]$ est appelé le \emph{point à l'infini} et sera noté $0_E$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
+avec $a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le \emph{point à l'infini} est noté $0_E$. Dès lors 
+que $a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite
+définie sur $\mathbb{K}$.
 \end{defi}
+Partir directement en coordonnées projectives .
+Faire un dessin de courbe elliptique
+
+\begin{figure}
+\begin{center}
+
+\begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
+          \begin{scope}[fixed point arithmetic]
+            \begin{scope}[fixed point arithmetic]
+              \coordinate (Q) at (2, -4/3) {};
+              \coordinate (-Q) at (2, 4/3) {};
+              \coordinate (-2Q) at (-1079/576, 59653/13824);
+              \coordinate (3Q) at (2319138/4977361, 27920423524/11104492391);
+            \end{scope}
+
+            \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+            \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+
+            \draw[shorten >=-2cm, shorten <=-2cm] (-2Q) -- (-Q);
+            \draw[dashed] (-Q) -- (Q);
+
+            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
+              every label/.style={inner sep=5pt,font=\scriptsize}]
+              \draw (-2Q) node[/dot,label=$P$] {}
+               (3Q) node[/dot,label=$Q$] (G) {}
+              (-Q) node[/dot,label=$R$] {};
+              \draw[label position=right,label distance=5pt] (Q) node[/dot,label=$P+Q$] {};
+            \end{scope}
+          \end{scope}
+\end{tikzpicture}
+\end{center}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\begin{rem}
+Par souci de simplicité on va utiliser la représentation affine des points de
+la courbe solution de son équation, qui sera elle donnée sous forme de 
+Weierstrass simplifiée lorsque la caractéristique du corps est différente de $2$ et de $3$
+\begin{equation}
+E:Y^2=X^3+AX+B
+\end{equation}
+avec $A,B$ des éléments de $\overline{\mathbb{K}}$.
+\end{rem}
 
 
+\begin{prop}
+L'ensemble des points d'une courbe elliptique forme un groupe pour la loi additive.
+\end{prop}
 
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+Parler du logarithme discret sur les courbes elliptiques.
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
