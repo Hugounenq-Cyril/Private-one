@@ -155,8 +155,6 @@ Volcans et calculs d'isogénies}
 
 \hfill
 \includegraphics[scale=0.1]{Images/digiteo.jpg}\hfill
-\includegraphics[scale=0.03]{Images/Anssi.png}\hfill
-\includegraphics[scale=0.18]{Images/UniversityOfWaterloo_logo_horiz_pms.eps}\hfill
 \includegraphics[height=10mm]{Images/uvsq-logo-cmjn.jpg}
 \end{frame}
 %\maketitle
@@ -190,11 +188,33 @@ How to communicate securely on a channel that is not ?
 \includegraphics[scale=0.32]{Images/communication_Alice_Bob_dechiffre.jpg} 
 \end{center}
 }
+%Dire que cette protection se fait a l aide d unn probleme mathematique juge  difficile
 %parler de canaux non-sécurisés...
 %\bluebox{Cryptography}
 %{It is a way to communicate in a secured way on a channel that is not}
 
 % parle de cryptographie symmétrique la clé de chiffrement et de déchiffrement sont identiques, et asymmétriques la clé de chiffrement et de déchiffrement sont différentes...
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Points defined on an elliptic curve}
+\begin{defi}
+Definition of an elliptic curve
+\end{defi}
+
+\begin{defi}
+Une courbe elliptique $E$ peut être définie comme la variété projective associée à l'équation
+\begin{equation}
+\label{eq:weierstrass-proj}
+E:Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3
+\end{equation}
+avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le point $[0:1:0]$ est appelé le \emph{point à l'infini} et sera noté $0_E$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
+\end{defi}
+
+
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
