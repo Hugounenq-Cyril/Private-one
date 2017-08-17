@@ -202,23 +202,46 @@ How to communicate securely on a channel that is not ?
 \frametitle{Points defined on an elliptic curve}
 
 \begin{defi}
-Soit $\mathbb{K}$ un corps de caractéristique différente de $2$ et $3$, une courbe elliptique $E$ peut être définie comme 
-la variété projective associée à l'équation
+Soit $\mathbb{K}$ un corps de caractéristique différente de $2$ et $3$, une courbe elliptique $E$ peut être définie à l'aide d'une équation de Weierstrass: 
+%la variété projective associée à l'équation
 \begin{equation}
 \label{eq:weierstrass-proj}
-E:Y^2=X^3+a_4X+a_6
+E:=\{ (X,Y) \in \overline{\mathbb{K}} , Y^2=X^3+a_4X+a_6 \}
 \end{equation}
-avec $a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le \emph{point à l'infini} est noté $0_E$. Dès lors 
-que $a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite
-définie sur $\mathbb{K}$.
+avec $a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le \emph{point à l'infini} est noté $0_E$. 
+%Dès lors que $a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite
+%définie sur $\mathbb{K}$.
 \end{defi}
-Partir directement en coordonnées projectives .
-Faire un dessin de courbe elliptique
+%Partir directement en coordonnées projectives .
+%Faire un dessin de courbe elliptique
 
 \begin{figure}
 \begin{center}
 
-\begin{tikzpicture}[scale=0.60,domain=-10/3:4.5,samples=100,yscale=1/2]
+\begin{tikzpicture}[scale=0.35,domain=-10/3:4.5,samples=100,yscale=1/2]
+          \begin{scope}[fixed point arithmetic]
+            
+            \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+            \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+			\draw[->,color=black!70!white] (-4,0) -- (5,0);
+			\draw (5,0) node[right] {$x$};
+			\draw [->,color=black!70!white] (0,-8) -- (0,8);
+			\draw (0,8) node[above] {$y$};
+          \end{scope}
+\end{tikzpicture}
+\end{center}
+%\caption{Représentation d'une courbe elliptique}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Loi de Groupe sur une courbe elliptique}
+
+
+\begin{figure}
+\begin{center}
+
+\begin{tikzpicture}[scale=0.50,domain=-10/3:4.5,samples=100,yscale=1/2]
           \begin{scope}[fixed point arithmetic]
             \begin{scope}[fixed point arithmetic]
               \coordinate (Q) at (2, -4/3) {};
@@ -229,46 +252,96 @@ Faire un dessin de courbe elliptique
 
             \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
             \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
-
+			\draw[->,color=black!70!white] (-4,0) -- (5,0);
+			\draw (5,0) node[right] {$x$};
+			\draw [->,color=black!70!white] (0,-8) -- (0,8);
+			\draw (0,8) node[above] {$y$};			
+			
             \draw[shorten >=-2cm, shorten <=-2cm] (-2Q) -- (-Q);
             \draw[dashed] (-Q) -- (Q);
 
-            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
-              every label/.style={inner sep=5pt,font=\scriptsize}]
-              \draw (-2Q) node[/dot,label=$P$] {}
-               (3Q) node[/dot,label=$Q$] (G) {}
-              (-Q) node[/dot,label=$R$] {};
-              \draw[label position=right,label distance=5pt] (Q) node[/dot,label=$P+Q$] {};
-            \end{scope}
+%            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
+%              every label/.style={inner sep=5pt,font=\scriptsize}]
+%              \draw (-2Q) node[/dot,label=$P$] {}
+%               (3Q) node[/dot,label=$Q$] (G) {}
+%              (-Q) node[/dot,label=$R$] {};
+%              \draw[label position=right,label distance=5pt] (Q) node[/dot,label=$P+Q$] {};
+%            \end{scope}
+            \draw (-2Q) node{$\bullet$};
+            \draw (-2Q) node[above]{$P$};
+            \draw (3Q) node{$\bullet$};
+            \draw (3Q) node[above]{$Q$};
+            \draw (-Q) node{$\bullet$};
+            \draw (-Q) node[above]{$R$};
+            \draw (Q) node{$\bullet$};
+            \draw (Q) node[below]{$P+Q$};
           \end{scope}
-\end{tikzpicture}
+
+          \begin{scope}[xshift=10cm,fixed point arithmetic]
+            \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+            \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
+			\draw[->,color=black!70!white] (-4,0) -- (5,0);
+			\draw (5,0) node[right] {$x$};
+			\draw [->,color=black!70!white] (0,-8) -- (0,8);
+			\draw (0,8) node[above] {$y$};		
+		
+            \begin{scope}[fixed point arithmetic]
+              \coordinate (-Q) at (2, 4/3) {};
+              \coordinate (-2Q) at (-1079/576, 59653/13824);
+              \path let \p1 = (-2Q) in coordinate (2Q) at (\x1,-\y1);
+            \end{scope}
+
+            \draw[shorten >=-2cm, shorten <=-2cm] (-Q) -- (2Q);
+            \draw[dashed] (-2Q) -- (2Q);
+
+%            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
+%              every label/.style={inner sep=5pt,font=\scriptsize}]
+%              \draw (-Q) node[/dot] {$P$}
+%              (-2Q) node[/dot] (G) {$[2]P$};
+%              \draw[label position=below] (2Q) node[/dot] {$R$};
+%            \end{scope}
+            
+            \draw (-Q) node{$\bullet$};
+            \draw (-Q) node[above]{$P$};
+            \draw (-2Q) node{$\bullet$};
+            \draw (-2Q) node[above]{$[2]P$};
+            \draw (2Q) node{$\bullet$};
+            \draw (2Q) node[below]{$R$};
+%			 \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
+%              every label/.style={inner sep=5pt,font=\scriptsize}]
+%              \draw (-2Q) node[/dot,label=$P$] {}
+%               (3Q) node[/dot,label=$Q$] (G) {}
+%              (-Q) node[/dot,label=$R$] {};
+%              \draw[label position=right,label distance=5pt] (Q) node[/dot,label=$P+Q$] {};
+%            \end{scope}
+%          \end{scope}            
+            
+          \end{scope}
+        \end{tikzpicture}
+
 \end{center}
 \end{figure}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
 
-\begin{rem}
-Par souci de simplicité on va utiliser la représentation affine des points de
-la courbe solution de son équation, qui sera elle donnée sous forme de 
-Weierstrass simplifiée lorsque la caractéristique du corps est différente de $2$ et de $3$
-\begin{equation}
-E:Y^2=X^3+AX+B
-\end{equation}
-avec $A,B$ des éléments de $\overline{\mathbb{K}}$.
-\end{rem}
-
+\pause
 
 \begin{prop}
 L'ensemble des points d'une courbe elliptique forme un groupe pour la loi additive.
 \end{prop}
 
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-Parler du logarithme discret sur les courbes elliptiques.
+\bluebox{Multiplication scalaire}{On définit alors pour une courbe elliptique 
+$E$ et un entier $n$:
+\begin{align*}
+[n] \;:\; E & \to E\\
+P & \mapsto [n] P
+\end{align*}}
+\pause 
+On peut dès lors définir le problème du logarithme discret sur une courbe elliptique. Soit $G=\langle P \rangle$ l'ensemble des points de la courbe elliptique engendré par $P$ un point de $E$, le problème du logarithme discret est à partir de la connaissance de $[x]P$ et $P$ retrouver $x$.  
 \end{frame}
 
 
