@@ -201,13 +201,13 @@ How to communicate securely on a channel that is not ?
 \begin{frame}
 \frametitle{Points defined on an elliptic curve}
 
-\begin{defi}
+\begin{defi}[Courbe Elliptique]
 Soit $\mathbb{K}$ un corps de caractéristique différente de $2$ et $3$, une courbe elliptique $E$ peut être définie à l'aide d'une équation de Weierstrass: 
 %la variété projective associée à l'équation
-\begin{equation}
+\begin{equation*}
 \label{eq:weierstrass-proj}
 E:=\{ (X,Y) \in \overline{\mathbb{K}} , Y^2=X^3+a_4X+a_6 \}
-\end{equation}
+\end{equation*}
 avec $a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le \emph{point à l'infini} est noté $0_E$. 
 %Dès lors que $a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite
 %définie sur $\mathbb{K}$.
@@ -341,7 +341,16 @@ $E$ et un entier $n$:
 P & \mapsto [n] P
 \end{align*}}
 \pause 
-On peut dès lors définir le problème du logarithme discret sur une courbe elliptique. Soit $G=\langle P \rangle$ l'ensemble des points de la courbe elliptique engendré par $P$ un point de $E$, le problème du logarithme discret est à partir de la connaissance de $[x]P$ et $P$ retrouver $x$.  
+\hfill
+\bluebox{Problème du logarithme discret sur une courbe elliptique $E$}
+{
+\begin{algorithmic}[1]
+\REQUIRE $P \in E$ le générateur du groupe $G:=\langle P \rangle$, $Q=[x]P \in G$;
+\ENSURE $x$.
+\end{algorithmic}
+}
+Il manque un lien avec la suite..
+Dire que c'est donc intéressant de se pencher sur des applications qui permettent de conserver cette propriété....
 \end{frame}
 
 
@@ -466,7 +475,7 @@ p^{O(1)})$ operations.
 \item{} [Lercier~'97] only $p=2$.
 \item{} [Couveignes~'96], [De Feo~'10] any characteristic, $\tilde{O}(r^2
 p^{O(1)})$ operations.
-\item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] works for every $p$ using $\tilde{O}(r^3)$ operations in $\mathbb{F}_q$. Specific to the SEA case.
+\item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] works for every $p$ using $\tilde{O}(r)$ operations in $\mathbb{F}_q$. Specific to the SEA case.
 \end{itemize}
 \begin{itemize}
 
@@ -720,7 +729,7 @@ i.e. its minimal polynomial factors as
 
   \begin{figure}[h]
     \begin{center}
-      \begin{tikzpicture}[scale=0.4]
+      \begin{tikzpicture}[scale=0.39]
         \foreach \s/\e in {0/E,15cm/E'} {
           \begin{scope}[xshift=\s,black!60]
             \coordinate (A) at (0:5);
@@ -832,7 +841,7 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 \begin{figure}
 \begin{center}
 
-\begin{tikzpicture}[scale=0.60]
+\begin{tikzpicture}[scale=0.59]
 \coordinate (A) at (0,1.5);
 \coordinate (AB) at (1,1.5);
 %\coordinate (AZ) at (-1.5,1.5);	
@@ -914,7 +923,7 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 \begin{figure}
 \begin{center}
 
-\begin{tikzpicture}[scale=0.60]
+\begin{tikzpicture}[scale=0.59]
 \coordinate (A) at (0,1.5);
 \coordinate (AB) at (1,1.5);
 %\coordinate (AZ) at (-1.5,1.5);	
@@ -996,7 +1005,7 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 \begin{figure}
 \begin{center}
 
-\begin{tikzpicture}[scale=0.60]
+\begin{tikzpicture}[scale=0.59]
 \coordinate (A) at (0,1.5);
 \coordinate (AB) at (1,1.5);
 %\coordinate (AZ) at (-1.5,1.5);	
@@ -1182,7 +1191,7 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		
 		\end{center} 
 		\end{figure}
-In the rest of this talk we consider only volcanoes with cyclic crater (Elkies case).
+In the rest of this talk we consider first volcanoes with cyclic crater (Elkies case), then volcanoes with one point on the crater (Atkin case).
 %\begin{figure}[hbtp]
 %\centering
 %\includegraphics[scale=0.4]{Images/duo-volcan-wo-label.png}
@@ -1922,6 +1931,104 @@ We proceed step by step by walking along the crater according to the direction $
 %\caption{Subproduct tree}
 %\end{figure}
 %\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\bluebox{Atkin prime}{We say that $\ell$ is an \emph{Atkin prime} if the characteristic polynomial of $\pi$: 
+\[
+\pi^2 - t_{\pi}\pi + q 
+\]
+is irreducible over $\mathbb{Z}_{\ell}$}
+Thus we are not able to distinguish two different eigenspaces, the method used with \emph{Elkies prime} cannot be applied. 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+
+
+\begin{prop}
+In the Atkin case the action of the Frobenius endomorphism $\pi$ on 
+$E[\ell^{h+1}]$~is, over~$\mathbb{Z}_{\ell}$, equals to the matrix 
+\[\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
+\end{matrix}\right ), \quad \text{with }a,d \text{ primes with }\ell, \]  %with $a,d $ primes with $\ell$,
+$\ell^{h} |a-d$ and $e = 0$ iff~$E$ lies on the crater. Moreover either $b$ and $c$ are primes with $\ell$, either one of them is prime and the other has its $\ell$-adic valuation which belongs to $[2,2e]$.
+
+%Soit~$E$ une courbe elliptique définie sur un volcan de $\ell$-isogénies de 
+%hauteur $h>0$ tel que $\ell$ soit un nombre premier de Atkin. Il existe un unique
+%$e \in [ 0, h]$ tel que $\pi|\mathsf{T}_{\ell}(E)$ est égale, sur~$\mathbb{Z}_{\ell}$, à
+% la matrice 
+%\begin{equation*}
+%\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
+%\end{matrix}\right ) \bmod \mathbb{Z}_{\ell} \quad \text{avec }a,d \text{ premiers avec }\ell, \ell^{h} |a-d.
+%\end{equation*}
+%% where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
+%Pour $e = 0$ ~$E$ se situe sur le cratère, sinon $e$~est la profondeur 
+%de~$E$ dans le volcan.
+%De plus, soit $b$ et $c$ sont premiers avec $\ell$, soit l'un des deux est premier avec 
+%$\ell$ et l'autre a sa valuation $\ell$-adique qui appartient à l'intervalle 
+%$[2,2e]$.
+\end{prop}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.30]
+\coordinate (A) at (0,2.5);
+\coordinate (B) at (0,6.5);
+\coordinate (C) at (0,10);
+\draw (A) node[left]{$\left( \begin{matrix}
+a_0 & b_0 \\
+c_0 & d_0
+\end{matrix} \right) \color{black} $}; %node{$\bullet$};
+\draw (B) node[left]{$ \left( \begin{matrix}
+a_1 & b_1\ell \\
+c_1\ell & d_1
+\end{matrix} \right) \color{black} $}; %node{$\bullet$};
+\draw (C) node[left]{$ \left( \begin{matrix}
+a_2 & b_2\ell^2 \\
+c_2\ell^2 & d_2
+\end{matrix} \right) \color{black} $}; %node{$\bullet$};
+\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-2,-11);
+		\coordinate (M) at (2,-11);
+		\draw (D) -- (E);
+		\draw (D) -- (F);
+		\draw (D) -- (K);
+		\draw (K) -- (L);
+		\draw (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw (F) -- (I);
+		\draw (F) -- (J);
+		%\coordinate (G) at (E)++(225:3);
+		\draw (D) node[fill=white]{$\bullet$};
+		\draw (J) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\bullet$};
+		\draw (F) node[fill=white]{$\bullet$};
+		\draw (G) node[fill=white]{$\bullet$};
+		\draw (H) node[fill=white]{$\bullet$};
+		\draw (I) node[fill=white]{$\bullet$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (L) node[fill=white]{$\bullet$};
+		\draw (M) node[fill=white]{$\bullet$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\caption{\label{fig:atk:dif:niv:mat} Exemples de matrices du Frobenius obtenues sur les différents niveaux d'un volcan de $\ell$-isogénies}
+\end{figure}
+
+%On peut donc comme dans le cas Elkies déterminer le niveau sur lequel se trouve une courbe elliptique dans le volcan d'isogénies dans le cas Atkin. 
+
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
