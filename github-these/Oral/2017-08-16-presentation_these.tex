@@ -1942,19 +1942,37 @@ is irreducible over $\mathbb{Z}_{\ell}$}
 Thus we are not able to distinguish two different eigenspaces, the method used with \emph{Elkies prime} cannot be applied. 
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
 
 \begin{frame}
+\frametitle{Technical details}
+ \bluebox{Finding an Elkies prime $\ell$}{
+  \begin{itemize}
+  \item The complexity depends polynomially on the auxiliary prime $\ell$.
+  \item Ideally we would like to work with $\ell=2$.
+  \item In practice half of all $\ell$ are expected to be Elkies primes.
+  \item In theory we can only prove $\ell \leq O(\log(q))$ for almost
+    all $q$ and curves $E,E'$ (see [Shparlinski,~Sutherland~'14]).
+\end{itemize}
+  }
+\end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
-
+\begin{frame}
+\section{Atkin Case}
 \begin{prop}
 In the Atkin case the action of the Frobenius endomorphism $\pi$ on 
 $E[\ell^{h+1}]$~is, over~$\mathbb{Z}_{\ell}$, equals to the matrix 
 \[\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-\end{matrix}\right ), \quad \text{with }a,d \text{ primes with }\ell, \]  %with $a,d $ primes with $\ell$,
-$\ell^{h} |a-d$ and $e = 0$ iff~$E$ lies on the crater. Moreover either $b$ and $c$ are primes with $\ell$, either one of them is prime and the other has its $\ell$-adic valuation which belongs to $[2,2e]$.
+\end{matrix}\right ), \quad \text{with }a,d \text{ primes with }\ell, \ell^{h} |a-d \]  %with $a,d $ primes with $\ell$,
+ and $e = 0$ iff~$E$ lies on the crater. Moreover 
+\begin{itemize}
+\item either $b$ and $c$ are primes with $\ell$, 
+\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation which belongs to $[2,2e]$.
 
+\end{itemize}
 %Soit~$E$ une courbe elliptique définie sur un volcan de $\ell$-isogénies de 
 %hauteur $h>0$ tel que $\ell$ soit un nombre premier de Atkin. Il existe un unique
 %$e \in [ 0, h]$ tel que $\pi|\mathsf{T}_{\ell}(E)$ est égale, sur~$\mathbb{Z}_{\ell}$, à
@@ -1974,8 +1992,8 @@ $\ell^{h} |a-d$ and $e = 0$ iff~$E$ lies on the crater. Moreover either $b$ and 
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.30]
-\coordinate (A) at (0,2.5);
-\coordinate (B) at (0,6.5);
+\coordinate (A) at (-2,2.5);
+\coordinate (B) at (-1,6.5);
 \coordinate (C) at (0,10);
 \draw (A) node[left]{$\left( \begin{matrix}
 a_0 & b_0 \\
@@ -2033,6 +2051,123 @@ c_2\ell^2 & d_2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
+
+Dans le cas Atkin on ne peut comme dans le cas Elkies distinguer des espaces propres pour le Frobenius
+\pause
+\begin{prop}
+Soient $P,R,R'$ trois points d'une courbe $E$, située au niveau $h-e$ du volcan
+des $\ell$-isogénies, tels que $\langle P,R \rangle = \langle P,R' \rangle= 
+E[\ell^{h+i}]$ avec $i \geqslant e$ alors $\pi(P,R)=\pi(P,R') $ si et seulement
+si $[\ell^{h+e}]R=[\ell^{h+e}]R'$.
+\end{prop}
+
+\pause 
+permet de distinguer les différents sous-groupes une fois que l'on en a fixé un ...
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.50]
+\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-2,-11);
+		\coordinate (M) at (2,-11);
+		\draw (D) -- (E);
+		\draw (D) -- (F);
+		\draw (D) -- (K);
+		\draw (K) -- (L);
+		\draw (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw (F) -- (I);
+		\draw (F) -- (J);
+		\draw (D) node[fill=white]{$\bullet$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
+\\4  & 3 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
+\\12  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
+\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\bullet $};
+		\draw (M) node[fill=white]{$\bullet $};
+		\draw (I) node[fill=white]{$\left( \begin{smallmatrix}11 & 12 
+\\4 & 15 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\coordinate (A) at (12,-5);
+		\coordinate (B) at (12,-11);
+		\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
+		\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies correspondant aux différentes matrices du Frobenius, calculées sur la courbe $E$ au sommet du volcan des $\ell$-isogénies. }
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+Couveignes'algorithm dans le cas Atkin
+
+\bluebox{Towards an $\ell$-adic Couveignes' algorithm ($\pi$ splits modulo $\ell$)}{
+\begin{algorithmic}[1]
+\REQUIRE $E, E'$ two $r$-isogenous curves on $\mathbb{F}_{q}$ 
+\ENSURE $\phi: E \rightarrow E'$ of degree $r$
+\end{algorithmic}}
+
+\bluebox{}{\textbf{Fact:}$\pi(P,R)=\pi(\phi(P),\phi(R))$ and $\pi(P,R)=\pi(P,R')$ iff $[\ell^h]R=[\ell^h]R'$.}
+
+\begin{enumerate}
+\item Select the least $k$ such that  $\ell^{2k}>4r$.
+\medskip
+\item Compute $\langle P , Q \rangle = E[\ell^k]$ and $\langle P' , Q' \rangle = E'[\ell^k]$
+%\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
+\medskip
+\item Compute the matrix $\pi(P,Q)$;
+\medskip
+\item For each point $S'$ of order $\ell^k$ in $E'$: \hfill\only<2>{$O(r)$}
+\begin{enumerate}
+  \item Computation of $R'$ such that $\pi(S',R')=\pi(P,Q)$ 
+  \medskip
+  \item For each point $U' \in E'$ such that $[\ell^h]R'=[\ell^h]U'$ \hfill\only<2>{$O(\sqrt{r})$}
+  \begin{enumerate}
+
+  \item Compute the interpolation polynomial
+    $L$ sending\\
+    $P\mapsto S'$ and $Q\mapsto U'$;
+\hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
+	\item Use a  rational reconstruction  algorithm 
+    to compute a rational
+    fraction $F$ of degrees~$(r, r-1)$;
+\hfill\only<2>{$\tilde{O}(r)$}
+  \item If $F$ defines an isogeny of degree $r$, return it and
+    stop.
+  \end{enumerate}
+
+\end{enumerate}
+\end{enumerate}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
   \frametitle{Technical details}
 
   \bluebox{Computing in towers of field extensions}{
@@ -2047,26 +2182,7 @@ c_2\ell^2 & d_2
   }
 
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
-
-\begin{frame}
-\frametitle{Technical details}
- \bluebox{Finding an Elkies prime $\ell$}{
-  \begin{itemize}
-  \item The complexity depends polynomially on the auxiliary prime $\ell$.
-  \item Ideally we would like to work with $\ell=2$.
-  \item In practice half of all $\ell$ are expected to be Elkies primes.
-  \item In theory we can only prove $\ell \leq O(\log(q))$ for almost
-    all $q$ and curves $E,E'$ (see [Shparlinski,~Sutherland~'14]).
-\end{itemize}
-  }
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Experiments}
 The algorithm has been implemented on SageMath v7.1 for the case of $\ell=2$, the code is available on GitHub: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}
