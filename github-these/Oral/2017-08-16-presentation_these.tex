@@ -1970,7 +1970,7 @@ $E[\ell^{h+1}]$~is, over~$\mathbb{Z}_{\ell}$, equals to the matrix
 with $e$ the depth of $E$ in the volcano. Moreover 
 \begin{itemize}
 \item either $b$ and $c$ are prime with $\ell$, 
-\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation included in $ [h-e+2,h+e]$.
+\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation included in $ [2,2e]$.
 
 \end{itemize}
 %Soit~$E$ une courbe elliptique définie sur un volcan de $\ell$-isogénies de 
@@ -2172,6 +2172,45 @@ si $[\ell^{h+e}]R=[\ell^{h+e}]R'$.
   }
 
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\section{Calcul d'anneau d'endomorphismes}
+%A l'aide des propositions sur les formes de la matrice dans le cas Atkin et 
+%Elkies on peut savoir à quel niveau du volcan se trouve une courbe elliptique.
+%
+% 
+%Faire une slide qui parle de ça 
+%Il faut juste dire comment l'on distingue un cas Atkin d'un cas Elkies...
+%Faire une estimation à la louche
+
+\bluebox{Towards an $\ell$-adic Couveignes' algorithm (Atkin case)}{
+\begin{algorithmic}[1]
+\REQUIRE $d_{\pi}$ the discriminant of the Elliptic curve $E$; 
+\ENSURE $\mathcal{O}$ the endomorphism ring of $E$
+\end{algorithmic}}
+
+\bluebox{}{\textbf{Fact:}$\pi(P,R)=\pi(\phi(P),\phi(R))$ and $\pi(P,R)=\pi(P,R')$ iff $[\ell^h]R=[\ell^h]R'$.}
+
+\begin{enumerate}
+\item Compute the prime factorisation of $d_{\pi}=\prod_{i=1}^j\ell_i^{r_i}$
+\item For each $\ell_i$:
+\begin{enumerate}
+\item Compute $\langle P , Q \rangle = E[\ell_i^{r_i+1}]$
+\medskip
+\item Determine from $d_{\pi}$ if $\ell_i$ is an Atkin or an Elkies prime 
+\medskip 
+\item Compute $\pi(P,Q)$
+\medskip
+\item Deduce $s_i=v_{\ell_i}[\mathcal{O}:d_{\pi}]$ 
+\end{enumerate}
+\item Compute $\mathcal{O}=\mathbb{Z}[\pi]/\prod_{i=1}^j\ell_i^{s_i}$
+
+\end{enumerate}
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Experiments}
