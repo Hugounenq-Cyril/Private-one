@@ -1966,11 +1966,11 @@ Thus we are not able to distinguish two different eigenspaces, the method used w
 In the Atkin case the action of the Frobenius endomorphism $\pi$ on 
 $E[\ell^{h+1}]$~is, over~$\mathbb{Z}_{\ell}$, equals to the matrix 
 \[\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-\end{matrix}\right ), \quad \text{with }a,d \text{ primes with }\ell, \ell^{h} |a-d \]  %with $a,d $ primes with $\ell$,
- and $e = 0$ iff~$E$ lies on the crater. Moreover 
+\end{matrix}\right ), \quad \text{with }a,d \text{ primes with }\ell, v_{\ell}(a-d)\geqslant h \]  %with $a,d $ primes with $\ell$,
+with $e$ the depth of $E$ in the volcano. Moreover 
 \begin{itemize}
-\item either $b$ and $c$ are primes with $\ell$, 
-\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation which belongs to $[2,2e]$.
+\item either $b$ and $c$ are prime with $\ell$, 
+\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation included in $ [h-e+2,h+e]$.
 
 \end{itemize}
 %Soit~$E$ une courbe elliptique définie sur un volcan de $\ell$-isogénies de 
@@ -1991,7 +1991,7 @@ $E[\ell^{h+1}]$~is, over~$\mathbb{Z}_{\ell}$, equals to the matrix
 
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}[scale=0.30]
+\begin{tikzpicture}[scale=0.225]
 \coordinate (A) at (-2,2.5);
 \coordinate (B) at (-1,6.5);
 \coordinate (C) at (0,10);
