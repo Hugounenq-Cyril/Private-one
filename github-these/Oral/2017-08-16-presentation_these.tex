@@ -841,7 +841,7 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 \begin{figure}
 \begin{center}
 
-\begin{tikzpicture}[scale=0.59]
+\begin{tikzpicture}[scale=0.55]
 \coordinate (A) at (0,1.5);
 \coordinate (AB) at (1,1.5);
 %\coordinate (AZ) at (-1.5,1.5);	
@@ -923,7 +923,7 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 \begin{figure}
 \begin{center}
 
-\begin{tikzpicture}[scale=0.59]
+\begin{tikzpicture}[scale=0.55]
 \coordinate (A) at (0,1.5);
 \coordinate (AB) at (1,1.5);
 %\coordinate (AZ) at (-1.5,1.5);	
@@ -1005,7 +1005,7 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 \begin{figure}
 \begin{center}
 
-\begin{tikzpicture}[scale=0.59]
+\begin{tikzpicture}[scale=0.55]
 \coordinate (A) at (0,1.5);
 \coordinate (AB) at (1,1.5);
 %\coordinate (AZ) at (-1.5,1.5);	
@@ -1472,6 +1472,28 @@ and contains $\ell^h$ cyclic subgroups of order $\ell^k$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
+Faire une slide disant que l'on a pas la correspondance entre les différentes isogénies descendantes et ensuite embrayer sur les isogénies horizontales...
+De plus on est pas capable de distinguer les isogénies descendantes.
+
+\begin{prop}
+\label{pro:etu:atk:elk}
+Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan des 
+$\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,Q, R 
+\in E$ tels que $\langle P,Q \rangle= \langle P,R \rangle =E[\ell^{h-e+i}]$, 
+$R=[a]P+[b]Q$ et $\pi(P,R)= \left( \begin{matrix}\lambda & \beta 
+\ell^{h-e} \\0 & \mu \end{matrix}\right) \bmod \ell^{h-e+i}$ avec $\beta \wedge
+\ell=1$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il
+existe une transformation \begin{equation*}
+R=[a]P+[b]Q \mapsto R'=[c]P+[yb]Q
+\end{equation*}
+telle que $\pi(P,R)=\pi(P,R')$ et $\langle [\ell^{h-e}]R' \rangle = \ker(\phi)$.
+\end{prop}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
 \frametitle{Walking on the crater}
 \bluebox{Fact}{
     Let $\phi$ be an $r$-isogeny with $\ell \nmid r$, then $\phi$ preserves the kernels of the horizontal $\ell^k$-isogenies of direction $\red \lambda, \blu \mu $.}
@@ -1480,7 +1502,7 @@ and contains $\ell^h$ cyclic subgroups of order $\ell^k$.
 
 We proceed step by step by walking along the crater according to the direction $ \blu \mu$. %to compute the kernels of the horizontal $\ell^3$-isogeny of direction $\blu \mu $.
 \begin{center}
-\begin{tikzpicture}[scale=0.44]
+\begin{tikzpicture}[scale=0.37]
 \begin{scope}[yshift=10cm]
 	\begin{scope}[xshift=4.3cm]
 		\node (A) at (-3,0) {$\bullet$};
@@ -1932,18 +1954,6 @@ We proceed step by step by walking along the crater according to the direction $
 %\end{figure}
 %\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-
-\bluebox{Atkin prime}{We say that $\ell$ is an \emph{Atkin prime} if the characteristic polynomial of $\pi$: 
-\[
-\pi^2 - t_{\pi}\pi + q 
-\]
-is irreducible over $\mathbb{Z}_{\ell}$}
-Thus we are not able to distinguish two different eigenspaces, the method used with \emph{Elkies prime} cannot be applied. 
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
 
 \begin{frame}
 \frametitle{Technical details}
@@ -1959,6 +1969,19 @@ Thus we are not able to distinguish two different eigenspaces, the method used w
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\begin{frame}
+
+\bluebox{Atkin prime}{We say that $\ell$ is an \emph{Atkin prime} if the characteristic polynomial of $\pi$: 
+\[
+\pi^2 - t_{\pi}\pi + q 
+\]
+is irreducible over $\mathbb{Z}_{\ell}$}
+Thus we are not able to distinguish two different eigenspaces, the method used with \emph{Elkies prime} cannot be applied. 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
 
 \begin{frame}
 \section{Atkin Case}
@@ -2191,7 +2214,7 @@ si $[\ell^{h+e}]R=[\ell^{h+e}]R'$.
 \ENSURE $\mathcal{O}$ the endomorphism ring of $E$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fact:}$\pi(P,R)=\pi(\phi(P),\phi(R))$ and $\pi(P,R)=\pi(P,R')$ iff $[\ell^h]R=[\ell^h]R'$.}
+\bluebox{}{\textbf{Fact:} For $\langle P, R \rangle = E[\ell_i^{r_i+1}]$ with $r_i=v_{\ell_i}(d_{\pi})$ from  $\pi(P,R)$ we deduce $v_{\ell_i}[\mathcal{O}:d_{\pi}]$.}
 
 \begin{enumerate}
 \item Compute the prime factorisation of $d_{\pi}=\prod_{i=1}^j\ell_i^{r_i}$
