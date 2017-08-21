@@ -194,16 +194,67 @@ calcul formel
 \begin{multicols}{2}
 \noindent\textbf{Résumé : }
 Le problème du calcul d'isogénies est apparu dans l'algorithme SEA de comptage
-de points de courbes elliptiques sur un corps fini. Des travaux dans la lignée 
-de ceux de Elkies (1998) ont eu des résultats satisfaisants dans ce contexte. 
-L'apparition de nouvelles applications du calcul d'isogénie (crypto système à 
-trappe, fonction de hachage, accélération de la multiplication scalaire, crypto
-système post quantique) ont motivé l’intérêt d'autres approches dont 
-l'algorithme de Couveignes (1996).  L'algorithme de Couveignes (1996), a donc 
-une meilleure complexité que les travaux dans la lignée de Elkies, mais malgré 
-les améliorations de De Feo (2011) a une dépendance polynomiale en la 
-caractéristique, à cause de son utilisation des points de p-torsions. Ainsi, 
-afin de généraliser l'utilisation de Couveignes (1996), nous allons travailler à améliorer cet algorithme sur deux axes: la construction de tours d'extensions de degré $\ell$ efficaces pour rendre les opérations plus rapides et la détermination d'ensemble de points d'ordre $\ell^k$ stables sous l'action d'isogénies. Ainsi, dans cette thèse nous présentons une construction de tours d'extensions $\ell$-adique qui généralise les travaux de Doliskani-Schost (2015) et DeFeo-Doliskani-Schost (2013). Pour une détermination d'ensemble de points d'ordre $\ell^k$ stables sous l'action d'isogénies, nous étudions notamment les graphes d'isogénies après les travaux de Kohel (1996) Fouquet-Moran (2001) Miret \emph{et al.} (2005,06,08) et Ionica-Joux (2010). En particulier (un des apports majeur de la thèse) nous donnons dans cette thèse, à l'aide d'étude de l'action du Frobenius, un nouveau moyen de déterminer des directions dans le graphe d'isogénies ce qui n'a pas été fait auparavant dans la totalité des cas. Nous utilisons ensuite les améliorations de DeFeo11 pour parvenir à donner une nouvelle version de Couveignes (1996) avec une complexité affranchie de la dépendance polynomiale en la caractéristique. Enfin nous présentons quelques pistes de généralisations de notre algorithme et étudions leur intérêt.
+de points de courbes elliptiques définies sur des corps finis. L'apparition de 
+nouvelles applications du calcul d'isogénies (crypto système à trappe, fonction 
+de hachage, accélération de la multiplication scalaire, crypto système post 
+quantique) ont motivé par ailleurs la recherche d'algorithmes plus rapides en 
+dehors du contexte SEA. L'algorithme de Couveignes (1996), malgré ses 
+améliorations par De Feo (2011), présente la meilleure complexité en le 
+degré de l'isogénie mais ne peut s'appliquer dans le cas de grande 
+caractéristique.
+
+
+L'objectif de cette thèse est donc de présenter une modification de 
+l'algorithme de Couveignes (1996) utilisable en toute caractéristique avec une 
+complexité en le degré de l'isogénie similaire à celui de Couveignes (1996).
+
+
+L'amélioration de l'algorithme de Couveignes (1996) se fait à 
+travers deux axes: la construction de tours d'extensions
+de degré $\ell$ efficaces pour rendre les opérations plus rapides, à l'image 
+des travaux de De Feo (2011), et la détermination d'ensemble de points d'ordre 
+$\ell^k$ stables sous l'action d'isogénies.
+
+L'apport majeur de cette thèse est fait sur le second axe pour lequel nous 
+étudions les graphes d'isogénies dans lesquels les points représentent des 
+courbes elliptiques et les arrêtes représentent les isogénies. Nous utilisons
+pour notre travail les résultats précédents de Kohel (1996), Fouquet et Morain
+(2001), Miret \emph{et al.} (2005,2006,2008), Ionica et Joux (2001). Nous 
+présentons donc dans cette thèse, à l'aide d'une étude de l'action du Frobenius
+sur les points d'ordre $\ell^k$, un nouveau moyen de déterminer les directions 
+dans le volcan.
+
+
+% après avoir abordé les différents algorithmes dans la lignée
+%de Elkies (1998), 
+%
+%Le problème du calcul d'isogénies est apparu dans l'algorithme SEA de comptage
+%de points de courbes elliptiques. Des travaux dans la lignée de ceux de 
+%Elkies98 ont eu des résultats satisfaisants dans ce contexte. L'apparition de 
+%nouvelles applications du calcul d'isogénie (crypto système à trappe, fonction 
+%de hachage, accélération de la multiplication scalaire, crypto système post 
+%quantique) ont motivé l’intérêt d'autres approches dont l'algorithme de 
+%Couveignes 96.  L'algorithme de Couveignes96, a donc une meilleure complexité 
+%que les travaux dans la lignée de Elkies, mais malgré les améliorations de 
+%De Feo 11 a une dépendance polynomiale en la caractéristique, à cause de son 
+%utilisation des points de $p^k$-torsions. Ainsi, afin de généraliser l'utilisation 
+%de Couveignes 96, nous allons travailler à améliorer cet algorithme sur deux 
+%axes: la construction de tours d'extensions de degré $\ell$ efficaces pour 
+%rendre les opérations plus rapides et la détermination d'ensemble de points 
+%d'ordre $\ell^k$ stables sous l'action d'isogénies. Ainsi, dans cette thèse 
+%nous présentons une construction de tours d'extensions $\ell$-adique qui 
+%généralise les travaux de Doliskani-Schost15 et DeFeo-Doliskani-Schost13. Pour 
+%une détermination d'ensemble de points d'ordre $\ell^k$ stables sous l'action 
+%d'isogénies, nous étudions notamment les graphes d'isogénies après les travaux 
+%de Kohel96 Fouquet-Moran01 Miret et al.05,06,08 et Ionica-Joux10. En 
+%particulier (un des apports majeur de la thèse) nous donnons dans cette thèse, 
+%à l'aide d'étude de l'action du Frobenius, un nouveau moyen de déterminer des 
+%directions dans le graphe d'isogénies ce qui n'a pas été fait auparavant dans 
+%la totalité des cas. Nous utilisons ensuite les améliorations de DeFeo11 pour 
+%parvenir à donner une nouvelle version de Couveignes96 avec une complexité 
+%affranchie de la dépendance polynomiale en la caractéristique. Enfin nous 
+%présentons quelques pistes de généralisations de notre algorithme et étudions 
+%leur intérêt.
 \end{multicols}
 \end{breakbox}
 
