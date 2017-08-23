@@ -168,36 +168,8 @@ Volcans et calculs d'isogénies}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction - motivation cryptographique}
+\section{Reminder on isogenies}
 %parler aussi de la cryptographie sur les courbes elliptiques
-\begin{frame}
-\frametitle{Motivation}
-How to communicate securely on a channel that is not ?
-%mettre une image de communication entre deux personnes
-\only<1-1>{
-\begin{center}
-\includegraphics[scale=0.30]{Images/communication_Alice_Bob.jpg} 
-\end{center}
-}
-\only<2-2>{
-\begin{center}
-\includegraphics[scale=0.30]{Images/communication_Alice_Bob_chiffre.jpg} 
-\end{center}
-}
-\only<3-3>{
-\begin{center}
-\includegraphics[scale=0.30]{Images/communication_Alice_Bob_dechiffre.jpg} 
-\end{center}
-}
-%Dire que cette protection se fait a l aide d unn probleme mathematique juge  difficile
-%parler de canaux non-sécurisés...
-%\bluebox{Cryptography}
-%{It is a way to communicate in a secured way on a channel that is not}
-
-% parle de cryptographie symmétrique la clé de chiffrement et de déchiffrement sont identiques, et asymmétriques la clé de chiffrement et de déchiffrement sont différentes...
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Points defined on an elliptic curve}
@@ -350,8 +322,8 @@ P & \mapsto [n] P
 \ENSURE $x$.
 \end{algorithmic}
 }
-Il manque un lien avec la suite..
-Dire que c'est donc intéressant de se pencher sur des applications qui permettent de conserver cette propriété....
+%Il manque un lien avec la suite..
+%Dire que c'est donc intéressant de se pencher sur des applications qui permettent de conserver cette propriété....
 \end{frame}
 
 
@@ -392,7 +364,7 @@ Dire que c'est donc intéressant de se pencher sur des applications qui permette
 Let $\ell$ be an integer, the \emph{scalar multiplication map}
 \begin{align*}
 [\ell] \;:\; E &\to E\\
-P &\mapsto \ell\cdot P
+P &\mapsto [\ell] P
 \end{align*}
 is an isogeny of degree $\ell^2$.
 
@@ -499,7 +471,7 @@ p^{O(1)})$ operations.
 \bluebox{Torsion points}{
 Let $E$ be an elliptic curve defined over a finite field $\mathbb{F}_q$, and let $m>0$
 \vspace{-1.5mm}
-\[E[m]= \{ P \in E(\bar{\mathbb{F}}_q) , mP=0_E \} \]
+\[E[m]= \{ P \in E(\bar{\mathbb{F}}_q) , [m]P=0_E \} \]
 
 For \emph{ordinary} elliptic curves
 \vspace{-1.5mm}
@@ -513,9 +485,9 @@ E[p^k]&\simeq\mathbb{Z}/p^k\mathbb{Z}
 Compute $\phi$ by interpolation over $E[p^k]$:
 \begin{itemize}
 \item Compute generators $P,P'$ of $E[p^k],E'[p^k]$;
-\item Interpolate $\phi$, assuming it maps $uP\mapsto uP'$ for all $u \in \mathbb{Z}/p^k\mathbb{Z}$;
+\item Interpolate $\phi$, assuming it maps $[u]P\mapsto [u]P'$ for all $u \in \mathbb{Z}/p^k\mathbb{Z}$;
 \item Test whether $\phi$ is an isogeny.\\
-    In case it is not, replace $P'$ with a multiple $aP'$ and start again.
+    In case it is not, replace $P'$ with a multiple $[a]P'$ and start again.
 \end{itemize}
 
 }
@@ -535,12 +507,12 @@ Compute $\phi$ by interpolation over $E[p^k]$:
 \item Select the least $k$ such that $p^k >  4r$;
 \item Compute generators $P$ of
   $E[p^k]$ and $P'$ of $E'[p^k]$;
-\item Compute $T=\prod(X-x(uP))$ with $1\le u \le \frac{p^k-1}{2}$;
+\item Compute $T=\prod(X-x([u]P))$ with $1\le u \le \frac{p^k-1}{2}$;
 \item For each $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $O(r)$
  \begin{enumerate}
   \item Compute the interpolation polynomial
     $L$ such that
-    $L (x (u P)) = x(a\, u\,P' )$ for all
+    $L (x ([u] P)) = x([a\, u\,]P' )$ for all
     $u \in \mathbb{Z}/p^k \mathbb{Z}$;
     \hfill $\tilde{O}(r p^{O(1)})$
   \item Use a  rational reconstruction  algorithm 
@@ -582,7 +554,7 @@ instead of $E[p^k]$ to remove the polynomial dependency in $p$.
 \bluebox{$p$-adic}{
 Let $P\in E\quad$ and $\quad P'\in E'$
 \[
-P \mapsto a P'  \qquad a\in(\mathbb{Z}/p^k\mathbb{Z})^*
+P \mapsto [a] P'  \qquad a\in(\mathbb{Z}/p^k\mathbb{Z})^*
 \]
 
 $\Rightarrow O(r)$ possibilities.
@@ -813,7 +785,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 
   \item Compute the interpolation polynomial
     $L$ sending\\
-    $\color{red}P\mapsto aP'$ and $\color{blue}Q\mapsto bQ'$;
+    $\color{red}P\mapsto [a]P'$ and $\color{blue}Q\mapsto [b]Q'$;
 \hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
 	\item Use a  rational reconstruction  algorithm 
     to compute a rational
@@ -1218,7 +1190,7 @@ we cannot immediately distinguish kernels of isogenies with direction $\red
 \medskip
 Thus we have to work with $E[\ell^{h+1}]$ to get $P \in \red{ E[\ell^{h+1}]_{ \lambda}}$ such that:
 \[
-\pi(P)=\red \lambda P \neq \blu \mu P
+\pi(P)= [\red \lambda ] P \neq [\blu \mu ] P
 \]
 We must therefore now assume that $k \geqslant h+1$.
 
@@ -1930,7 +1902,7 @@ si $[\ell^{h+e}]R=[\ell^{h+e}]R'$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{An $\ell$-adic algorithm in the Atkin case}
+\frametitle{An $\ell$-adic Couveignes' algorithm in the Atkin case}
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.40]
@@ -2043,7 +2015,7 @@ descending isogenies generated by the second basis point.
 \bluebox{}{\textbf{Fact:}$\pi(P,R)=\pi(\phi(P),\phi(R))$ and $\pi(P,R)=\pi(P,R')$ iff $[\ell^h]R=[\ell^h]R'$.}
 
 \begin{enumerate}
-\item Select the least $k$ such that  $\ell^{2k}>4r$.
+\item Select the least $k$ such that $\ell^{2k}>4r$.
 \medskip
 \item Compute $\langle P , Q \rangle = E[\ell^k]$ and $\langle P' , Q' \rangle = E'[\ell^k]$
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
@@ -2563,6 +2535,34 @@ The algorithm has been implemented on SageMath v7.1 for the case of $\ell=2$, th
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
+\begin{frame}
+\frametitle{Motivation}
+How to communicate securely on a channel that is not ?
+%mettre une image de communication entre deux personnes
+\only<1-1>{
+\begin{center}
+\includegraphics[scale=0.30]{Images/communication_Alice_Bob.jpg} 
+\end{center}
+}
+\only<2-2>{
+\begin{center}
+\includegraphics[scale=0.30]{Images/communication_Alice_Bob_chiffre.jpg} 
+\end{center}
+}
+\only<3-3>{
+\begin{center}
+\includegraphics[scale=0.30]{Images/communication_Alice_Bob_dechiffre.jpg} 
+\end{center}
+}
+%Dire que cette protection se fait a l aide d unn probleme mathematique juge  difficile
+%parler de canaux non-sécurisés...
+%\bluebox{Cryptography}
+%{It is a way to communicate in a secured way on a channel that is not}
+
+% parle de cryptographie symmétrique la clé de chiffrement et de déchiffrement sont identiques, et asymmétriques la clé de chiffrement et de déchiffrement sont différentes...
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \end{document}
