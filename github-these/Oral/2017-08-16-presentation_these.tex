@@ -1671,12 +1671,44 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \]
 is irreducible over $\mathbb{Z}_{\ell}$}
 Thus we are not able to distinguish two different eigenspaces, the method used with \emph{Elkies prime} cannot be applied. 
+\begin{figure}
 \begin{center}
-        \begin{tikzpicture}[scale=0.35]
-        \coordinate (D) at (0,0);
-        
-        \end{tikzpicture}
-
+\begin{tikzpicture}[scale=0.225]
+\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-2,-11);
+		\coordinate (M) at (2,-11);
+		\draw (D) -- (E);
+		\draw (D) -- (F);
+		\draw (D) -- (K);
+		\draw (K) -- (L);
+		\draw (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw (F) -- (I);
+		\draw (F) -- (J);
+		%\coordinate (G) at (E)++(225:3);
+		\draw (D) node[fill=white]{$\bullet$};
+		\draw (J) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\bullet$};
+		\draw (F) node[fill=white]{$\bullet$};
+		\draw (G) node[fill=white]{$\bullet$};
+		\draw (H) node[fill=white]{$\bullet$};
+		\draw (I) node[fill=white]{$\bullet$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (L) node[fill=white]{$\bullet$};
+		\draw (M) node[fill=white]{$\bullet$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\end{figure}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -1775,27 +1807,17 @@ c_2\ell^2 & d_2
 %Faire une slide disant que l'on a pas la correspondance entre les différentes isogénies descendantes et ensuite embrayer sur les isogénies horizontales...
 %De plus on est pas capable de distinguer les isogénies descendantes.
 
-\begin{prop}
-\label{pro:etu:atk:elk}
-%Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan des 
-%$\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,Q, R 
-%\in E$ tels que $\langle P,Q \rangle= \langle P,R \rangle =E[\ell^{h-e+i}]$, 
-%$R=[a]P+[b]Q$ et $\pi(P,R)= \left( \begin{matrix}\lambda & \beta 
-%\ell^{h-e} \\0 & \mu \end{matrix}\right) \bmod \ell^{h-e+i}$ avec $\beta \wedge
-%\ell=1$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il
-%existe une transformation \begin{equation*}
-%R=[a]P+[b]Q \mapsto R'=[c]P+[yb]Q
-%\end{equation*}
-%telle que $\pi(P,R)=\pi(P,R')$ et $\langle [\ell^{h-e}]R' \rangle = \ker(\phi)$.
-
-Soit $\langle P ,R \rangle = E[\ell^{h-e+1}]$ pour $E$ située au niveau $h-e$ 
-du volcan. Alors pour toute $\ell$-isogénie $\psi$ descendante de domaine $E$ 
-il existe $R'$ tel que $\ker(\psi)=\langle [\ell^{h-e}]R' \rangle$, $\langle P,R' 
-\rangle = E[\ell^{h-e+1}]$ et $ \pi(P,R)= \pi(P,R') $
-\end{prop}
-\pause
+%\begin{prop}
+%\label{pro:etu:atk:elk}
+%
+%Soit $\langle P ,R \rangle = E[\ell^{h-e+1}]$ pour $E$ située au niveau $h-e$ 
+%du volcan. Alors pour toute $\ell$-isogénie $\psi$ descendante de domaine $E$ 
+%il existe $R'$ tel que $\ker(\psi)=\langle [\ell^{h-e}]R' \rangle$, $\langle P,R' 
+%\rangle = E[\ell^{h-e+1}]$ et $ \pi(P,R)= \pi(P,R') $
+%\end{prop}
+%\pause
 %Le Frobenius ne permet pas de distinguer les isogénies descendantes.
-
+\frametitle{Comparison with the Elkies case}
 \begin{figure}
 \begin{center}
 
@@ -1803,18 +1825,14 @@ il existe $R'$ tel que $\ker(\psi)=\langle [\ell^{h-e}]R' \rangle$, $\langle P,R
 
 \begin{scope}[yshift=10cm]
 	\begin{scope}[xshift=4.3cm]
-		\node (A) at (-3,0) {$  \bullet $};
-		\node (B) at (3,0) {$   \bullet$};
-		\node (C) at (270:1.2) {$ \bullet \color{black}$};
-		\node (D) at (90:1.5) {};
+		\coordinate (A) at (-3,0);
+		\coordinate (B) at (3,0);
+		\coordinate (C) at (270:1.2);
 		%\draw[-] (A.center) to[bend right=25] (C.center);
 		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
 		%\draw[-] (B.center) to[bend left=25] (C.center);
 		%\draw[-,dashed] (B.center) to[bend right] (D.center);
 		\draw[-] (A.center) to[bend right=40] (B.center);
-		\draw (A) node{$  \bullet $};
-		\draw (B) node{$  \bullet $};
-		\draw (C) node{$  \bullet $};
 		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
 			\begin{scope}[xshift=-3cm]% sous volcan de gauche
 			\coordinate (A) at (0,0);
@@ -1864,8 +1882,8 @@ il existe $R'$ tel que $\ker(\psi)=\langle [\ell^{h-e}]R' \rangle$, $\langle P,R
 					\end{smallmatrix} \right) $};
 			%c est de la triche ce sont les seules matrices possibles...
 			%\draw (A) node{$\bullet$};
-			\draw (C) node[fill=white]{$E$};
-			\draw (A) node[fill=white]{$\bullet$};;
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$E$};
 			
 			
 			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};			
@@ -1891,15 +1909,14 @@ il existe $R'$ tel que $\ker(\psi)=\langle [\ell^{h-e}]R' \rangle$, $\langle P,R
 
 
 \begin{frame}
-
-\begin{prop}
-Soient $P,R,R'$ trois points d'une courbe $E$, située au niveau du cratère volcan
-des $\ell$-isogénies, tels que $\langle P,R \rangle = \langle P,R' \rangle= 
-E[\ell^{h+i}]$ avec $i > 0 $ alors $\pi(P,R)=\pi(P,R') $ si et seulement
-si $[\ell^{h}]R=[\ell^{h}]R'$.
-\end{prop}
-
-\pause 
+%
+%\begin{prop}
+%Soient $P,R,R'$ trois points d'une courbe $E$, située au niveau du cratère volcan
+%des $\ell$-isogénies, tels que $\langle P,R \rangle = \langle P,R' \rangle= 
+%E[\ell^{h+i}]$ avec $i > 0 $ alors $\pi(P,R)=\pi(P,R') $ si et seulement
+%si $[\ell^{h}]R=[\ell^{h}]R'$.
+%\end{prop}
+%\pause 
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.45]
@@ -1915,28 +1932,55 @@ si $[\ell^{h}]R=[\ell^{h}]R'$.
 		\coordinate (L) at (-2,-11);
 		\coordinate (M) at (2,-11);
 		\draw (D) -- (E);
-		\draw (D) -- (F);
 		\draw (D) -- (K);
+		\only<2,3>{
+		\draw [line width=1.5pt,blue] (D) -- (E);
+		\draw [line width=1.5pt,red] (D) -- (K);		
+		}
+		\draw (D) -- (F);
 		\draw (K) -- (L);
 		\draw (K) -- (M);
 		\draw (E) -- (H);
+		\only<3>{
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw [line width=1.5pt,blue] (E) -- (H);
+		}
+		
 		\draw (E) -- (G);
 		\draw (F) -- (I);
+		\only<4>{
+		\draw [line width=1.5pt,red] (D) -- (K);
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw [line width=1.5pt,blue] (D) -- (F);
+		\draw [line width=1.5pt,blue] (F) -- (I);
+		}
 		\draw (F) -- (J);
 		\draw (D) node[fill=white]{$E$};
 		\draw (K) node[fill=white]{$\bullet$};
 		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
 \\4  & 3 \end{smallmatrix} \right)$};
+		\only<2>{
+		\draw (E) node[fill=white]{$\color{blue}  \left( \begin{smallmatrix}7 & 4 
+\\4  & 3 \end{smallmatrix} \right)$};		
+		}
 		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
 \\4  & 7 \end{smallmatrix} \right) $};
 		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
 \\12  & 3 \end{smallmatrix} \right) $};
 		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
 \\4  & 11 \end{smallmatrix} \right) $};
+		\only<3>{
+		\draw (H) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}15 & 12 
+\\4  & 11 \end{smallmatrix} \right) $};
+		}
 		\draw (L) node[fill=white]{$\bullet $};
 		\draw (M) node[fill=white]{$\bullet $};
 		\draw (I) node[fill=white]{$\left( \begin{smallmatrix}11 & 12 
 \\4 & 15 \end{smallmatrix} \right) $};
+		\only<4>{
+		\draw (I) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}11 & 12 
+\\4 & 15 \end{smallmatrix} \right) $};
+		}
 		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
 \\4  & 7 \end{smallmatrix} \right) $};
 		\coordinate (A) at (12,-5);
@@ -1948,7 +1992,9 @@ si $[\ell^{h}]R=[\ell^{h}]R'$.
 \end{center}
 \caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies correspondant aux différentes matrices du Frobenius, calculées sur la courbe $E$ au sommet du volcan des $\ell$-isogénies. }
 \end{figure}
-
+%\pause
+\only<4>{Parler du nombre de matrices à classes de conjugaison près... en fait c'est le nombre d'éléments inversibles dans ....
+}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2099,99 +2145,6 @@ descending isogenies generated by the second basis point.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\section{Computation of endomorphism rings}
-\frametitle{Computation of endomorphism rings}
-\begin{prop} [Silverman, '86]
-Soit $E$ une courbe elliptique alors son anneau d'endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre $\mathcal{O}$ défini dans un corps de nombre quadratique imaginaire noté ici $K$. 
-\end{prop}
-
-\begin{prop}
-Soit $E$ une courbe elliptique ordinaire, alors 
-\[
-\mathbb{Z} \left[ \pi \right] \subset \mathcal{O} \subset \mathcal{O}_K
-\] 
-avec $\mathcal{O}_K$ l'anneau des entiers de $K$. %le corps de nombre quadratique imaginaire tel que $\mathcal{O} \subset K$
-\end{prop}
-
-\begin{defi}[Conducteur]
-On note $g=[\mathcal{O}_K:\mathbb{Z}[\pi]]$ le conducteur de $\mathbb{Z}[\pi]$. %et $f$ le conducteur de $[\mathcal{O}_K:\mathcal{O}]$.
-\end{defi}
-\end{frame}
-
-\begin{frame}
-\begin{defi}[Discriminant]
-On note $d_{\pi}$ (resp. $d_K$) le discriminant de l'ordre $\mathbb{Z}\left[ \pi \right]$ (resp. $\mathcal{O}_K$).
-\end{defi}
-En particulier: $d_{\pi}=g^2d_K$
-
-\begin{prop}[Preciser source vu dans Fouquet '01]
-Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] \quad \text{et} \quad (X-a)^2=X^2-t_{\pi}X+q \bmod g \]
-\end{prop}
-
-\end{frame}
-
-\begin{frame}
-
-
-\bluebox{Algorithm to compute the endomorphism ring of $E$ [Kohel '96]}{
-\begin{algorithmic}[1]
-\REQUIRE $d_{\pi}$ the discriminant of the Elliptic curve $E$; 
-\ENSURE $\mathcal{O}$ the endomorphism ring of $E$
-\end{algorithmic}}
-
-\begin{enumerate}
-\item Compute the prime factorization of $d_{\pi}$ and deduce from it the conductor  $g=\prod_{i=1}^j\ell_i^{t_i}$ such that $d_{\pi}=g^2d_K$ and $a$ such that $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
-\item For each $\ell_i$:
-\begin{enumerate}
-\item Compute $s_i= v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $
-\end{enumerate}
-\item Return $\mathcal{O}=\mathbb{Z}+\left( (\pi-a)/\prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
-\end{enumerate}
-
-\bluebox{Previous work on the computation of $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $}{
-\begin{itemize}
-\item Kohel (1996) work with modular polynomials (variants with division polynomials, and ideal class group)
-\item Bisson-Sutherland (2009) enumerations of relations built from isogeny cycles
-\end{itemize}
-}
-%Parler de Kohel (Vu dans la thèse de Mireille 1) Methode par les polynomes de division, 2) polynomes modulaires 3) Methode par les ideaux 3.a) enumeration 3.b) groupe de classe d ideaux )
-
-%Parler de Bisson Sutherland (Utilise les cycles d'isogénies et les relations qui donnent un endomorphisme)}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-%A l'aide des propositions sur les formes de la matrice dans le cas Atkin et 
-%Elkies on peut savoir à quel niveau du volcan se trouve une courbe elliptique.
-%
-% 
-%Faire une slide qui parle de ça 
-%Il faut juste dire comment l'on distingue un cas Atkin d'un cas Elkies...
-%Faire une estimation à la louche
-
-\bluebox{Algorithm to compute the endomorphism ring of $E$}{
-\begin{algorithmic}[1]
-\REQUIRE $d_{\pi}$ the discriminant of the Elliptic curve $E$; 
-\ENSURE $\mathcal{O}$ the endomorphism ring of $E$
-\end{algorithmic}}
-
-\bluebox{}{\textbf{Fact:} For $\langle P, R \rangle = E[\ell_i^{r_i+1}]$ with $r_i=\lfloor v_{\ell_i}(d_{\pi})/2 \rfloor $ from  $\pi(P,R)$ we deduce $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$.}
-
-\begin{enumerate}
-\item Compute from $d_{\pi}$ the prime factorization of the conductor $g=\prod_{i=1}^j\ell_i^{t_i}$ of $\mathbb{Z}[\pi]$ and $a$ such that $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
-\item For each $\ell_i$:
-\begin{enumerate}
-\item Compute $\langle P , Q \rangle = E[\ell_i^{r_i+1}]$
-\medskip
-\item Determine from $d_{\pi}$ if $\ell_i$ is an Atkin or an Elkies prime 
-\medskip 
-\item Compute $\pi(P,Q)$ and deduce from it $s_i=v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$ 
-\end{enumerate}
-\item Return $\mathcal{O}=\mathbb{Z} + \left( (\pi-a)/ \prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
-\end{enumerate}
-\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2630,6 +2583,99 @@ How to communicate securely on a channel that is not ?
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%\section{Computation of endomorphism rings}
+\frametitle{Computation of endomorphism rings}
+\begin{prop} [Silverman, '86]
+Soit $E$ une courbe elliptique alors son anneau d'endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre $\mathcal{O}$ défini dans un corps de nombre quadratique imaginaire noté ici $K$. 
+\end{prop}
+
+\begin{prop}
+Soit $E$ une courbe elliptique ordinaire, alors 
+\[
+\mathbb{Z} \left[ \pi \right] \subset \mathcal{O} \subset \mathcal{O}_K
+\] 
+avec $\mathcal{O}_K$ l'anneau des entiers de $K$. %le corps de nombre quadratique imaginaire tel que $\mathcal{O} \subset K$
+\end{prop}
+
+\begin{defi}[Conducteur]
+On note $g=[\mathcal{O}_K:\mathbb{Z}[\pi]]$ le conducteur de $\mathbb{Z}[\pi]$. %et $f$ le conducteur de $[\mathcal{O}_K:\mathcal{O}]$.
+\end{defi}
+\end{frame}
+
+\begin{frame}
+\begin{defi}[Discriminant]
+On note $d_{\pi}$ (resp. $d_K$) le discriminant de l'ordre $\mathbb{Z}\left[ \pi \right]$ (resp. $\mathcal{O}_K$).
+\end{defi}
+En particulier: $d_{\pi}=g^2d_K$
+
+\begin{prop}[Preciser source vu dans Fouquet '01]
+Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] \quad \text{et} \quad (X-a)^2=X^2-t_{\pi}X+q \bmod g \]
+\end{prop}
+
+\end{frame}
+
+\begin{frame}
+
+
+\bluebox{Algorithm to compute the endomorphism ring of $E$ [Kohel '96]}{
+\begin{algorithmic}[1]
+\REQUIRE $d_{\pi}$ the discriminant of the Elliptic curve $E$; 
+\ENSURE $\mathcal{O}$ the endomorphism ring of $E$
+\end{algorithmic}}
+
+\begin{enumerate}
+\item Compute the prime factorization of $d_{\pi}$ and deduce from it the conductor  $g=\prod_{i=1}^j\ell_i^{t_i}$ such that $d_{\pi}=g^2d_K$ and $a$ such that $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
+\item For each $\ell_i$:
+\begin{enumerate}
+\item Compute $s_i= v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $
+\end{enumerate}
+\item Return $\mathcal{O}=\mathbb{Z}+\left( (\pi-a)/\prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
+\end{enumerate}
+
+\bluebox{Previous work on the computation of $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $}{
+\begin{itemize}
+\item Kohel (1996) work with modular polynomials (variants with division polynomials, and ideal class group)
+\item Bisson-Sutherland (2009) enumerations of relations built from isogeny cycles
+\end{itemize}
+}
+%Parler de Kohel (Vu dans la thèse de Mireille 1) Methode par les polynomes de division, 2) polynomes modulaires 3) Methode par les ideaux 3.a) enumeration 3.b) groupe de classe d ideaux )
+
+%Parler de Bisson Sutherland (Utilise les cycles d'isogénies et les relations qui donnent un endomorphisme)}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+%A l'aide des propositions sur les formes de la matrice dans le cas Atkin et 
+%Elkies on peut savoir à quel niveau du volcan se trouve une courbe elliptique.
+%
+% 
+%Faire une slide qui parle de ça 
+%Il faut juste dire comment l'on distingue un cas Atkin d'un cas Elkies...
+%Faire une estimation à la louche
+
+\bluebox{Algorithm to compute the endomorphism ring of $E$}{
+\begin{algorithmic}[1]
+\REQUIRE $d_{\pi}$ the discriminant of the Elliptic curve $E$; 
+\ENSURE $\mathcal{O}$ the endomorphism ring of $E$
+\end{algorithmic}}
+
+\bluebox{}{\textbf{Fact:} For $\langle P, R \rangle = E[\ell_i^{r_i+1}]$ with $r_i=\lfloor v_{\ell_i}(d_{\pi})/2 \rfloor $ from  $\pi(P,R)$ we deduce $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$.}
+
+\begin{enumerate}
+\item Compute from $d_{\pi}$ the prime factorization of the conductor $g=\prod_{i=1}^j\ell_i^{t_i}$ of $\mathbb{Z}[\pi]$ and $a$ such that $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
+\item For each $\ell_i$:
+\begin{enumerate}
+\item Compute $\langle P , Q \rangle = E[\ell_i^{r_i+1}]$
+\medskip
+\item Determine from $d_{\pi}$ if $\ell_i$ is an Atkin or an Elkies prime 
+\medskip 
+\item Compute $\pi(P,Q)$ and deduce from it $s_i=v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$ 
+\end{enumerate}
+\item Return $\mathcal{O}=\mathbb{Z} + \left( (\pi-a)/ \prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
+\end{enumerate}
+\end{frame}
+
 
 
 \end{document}
