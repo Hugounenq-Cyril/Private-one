@@ -1188,7 +1188,8 @@ we cannot immediately distinguish kernels of isogenies with direction $\red
 \lambda$ from those with direction $\blu \mu$.
 
 \medskip
-Thus we have to work with $E[\ell^{h+1}]$ to get $P \in \red{ E[\ell^{h+1}]_{ \lambda}}$ such that:
+Thus in Couveignes' algorithm  we have to work with $E[\ell^{k}]$ with $k \geqslant h+1$ to be able to determine $P \in \red{ E[\ell^{h+1}]_{ \lambda}}$ such that: 
+%Thus we have to work with $E[\ell^{h+1}]$ to get $P \in \red{ E[\ell^{h+1}]_{ \lambda}}$ such that:
 \[
 \pi(P)= [\red \lambda ] P \neq [\blu \mu ] P
 \]
@@ -1647,7 +1648,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Technical details changer titre...}
+\frametitle{Trouver titre...}
  \bluebox{Finding an Elkies prime $\ell$}{
   \begin{itemize}
   \item The complexity depends polynomially on the auxiliary prime $\ell$.
@@ -1794,7 +1795,7 @@ c_2\ell^2 & d_2
 \end{scope}
 \end{tikzpicture}
 \end{center}
-\caption{\label{fig:atk:dif:niv:mat} Exemples de matrices du Frobenius obtenues sur les différents niveaux d'un volcan de $\ell$-isogénies}
+%\caption{\label{fig:atk:dif:niv:mat} Exemples de matrices du Frobenius obtenues sur les différents niveaux d'un volcan de $\ell$-isogénies}
 \end{figure}
 %\todo{retravailler cette slide}
 %On peut donc comme dans le cas Elkies déterminer le niveau sur lequel se trouve une courbe elliptique dans le volcan d'isogénies dans le cas Atkin. 
@@ -1900,7 +1901,7 @@ c_2\ell^2 & d_2
 \end{tikzpicture}
 \end{center}
 
-\caption{\label{fig:elk:dif:niv:mat} Matrices du Frobenius possibles pour une base de $E[4]$ avec le premier vecteur de la base ($P$) fixé et le second ($R$) qui engendre la $2$-isogénie descendante}
+\caption{\label{fig:elk:dif:niv:mat} Matrices du Frobenius possibles pour une base de $E[8]$ avec le premier vecteur de la base ($P$) fixé et le second ($R$) qui engendre la $4$-isogénie descendante}
 \end{figure}
 
 \end{frame}
@@ -1993,7 +1994,7 @@ c_2\ell^2 & d_2
 \caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies correspondant aux différentes matrices du Frobenius, calculées sur la courbe $E$ au sommet du volcan des $\ell$-isogénies. }
 \end{figure}
 %\pause
-\only<4>{Parler du nombre de matrices à classes de conjugaison près... en fait c'est le nombre d'éléments inversibles dans ....
+\only<4>{Parler du nombre de matrices à classes de conjugaison près... en fait c'est le nombre d'éléments inversibles dans .... donc $\ell^{k-h-1}$ ?
 }
 \end{frame}
 
