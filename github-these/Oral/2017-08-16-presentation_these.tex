@@ -1604,6 +1604,49 @@ We proceed step by step by walking along the crater according to the direction $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
+
+\bluebox{Towards an $\ell$-adic Couveignes' algorithm ($\ell$ an Elkies prime)}{
+\begin{algorithmic}[1]
+\REQUIRE $E, E'$ two $r$-isogenous curves on $\mathbb{F}_{q}$ 
+\ENSURE $\phi: E \rightarrow E'$ of degree $r$
+\end{algorithmic}}
+
+\bluebox{}{\textbf{Fact:} $\phi$ maps 
+$\color{red}{E[\ell^k]_{{\lambda}}} \color{black}{\rightarrow} \color{red}{E'[\ell^k]_{{\lambda}}}$  
+and 
+$\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell^k]_{{\mu}}}$.
+ }
+
+\begin{enumerate}
+\item Select the least $k$ such that  $\ell^{2k}>4r$.
+\medskip
+\item Compute $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
+ and $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ generators of horizontal $\ell^k$-isogenies of directions $\color{red} \lambda \color{black}, \color{blue} \mu$.  
+%\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$; Rajouter le coût de cela...
+\medskip
+\item For each \textbf{invertible diagonal} matrix
+  $\left ( \begin{smallmatrix}a & 0\\ 0 & b
+\end{smallmatrix}\right )$ in $(\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
+\hfill\only<2>{$O(r)$}
+  \begin{enumerate}
+
+  \item Compute the interpolation polynomial
+    $L$ sending\\
+    $\color{red}P\mapsto [a]P'$ and $\color{blue}Q\mapsto [b]Q'$;
+\hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
+	\item Use a  rational reconstruction  algorithm 
+    to compute a rational
+    fraction $F$ of degrees~$(r, r-1)$;
+\hfill\only<2>{$\tilde{O}(r)$}
+  \item If $F$ defines an isogeny of degree $r$, return it and
+    stop.
+  \end{enumerate}
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
 \frametitle{Technical details changer titre...}
  \bluebox{Finding an Elkies prime $\ell$}{
   \begin{itemize}
@@ -1628,6 +1671,12 @@ We proceed step by step by walking along the crater according to the direction $
 \]
 is irreducible over $\mathbb{Z}_{\ell}$}
 Thus we are not able to distinguish two different eigenspaces, the method used with \emph{Elkies prime} cannot be applied. 
+\begin{center}
+        \begin{tikzpicture}[scale=0.35]
+        \coordinate (D) at (0,0);
+        
+        \end{tikzpicture}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
