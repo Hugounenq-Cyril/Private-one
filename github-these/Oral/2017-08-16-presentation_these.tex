@@ -298,7 +298,7 @@ avec $a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. $O_E$ est appelé le \
 \pause
 
 \begin{prop}[Silverman, '86]
-L'ensemble des points d'une courbe elliptique forme un groupe pour la loi additive.
+L'ensemble des points d'une courbe elliptique forme un groupe abélien pour la loi additive.
 \end{prop}
 
 
@@ -809,7 +809,6 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 \begin{columns}
 \begin{column}{6cm}
 %\includegraphics[scale=.66]{Images/ordres-l.eps}
-\only<1-1>{
 \begin{figure}
 \begin{center}
 
@@ -841,172 +840,13 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
 		%\draw[-] (B.center) to[bend left=25] (C.center);
 		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\only<1-2>{
 		\draw[-] (A.center) to[bend right=40] (B.center);
-			\begin{scope}[xshift=-3cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (CA) node{$\bullet$};
-			\draw (CB) node{$\bullet$};
-			\draw (A) node{$\bullet$};
-			\draw (C) node{$\bullet$};
-			\draw (A)--(C);
-			\end{scope}
-			\begin{scope}[xshift=3cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (CA) node{$\bullet$};
-			\draw (CB) node{$\bullet$};
-			\draw (A) node{$\bullet$};
-			\draw (C) node{$\bullet$};
-			\draw (A)--(C);
-			\end{scope}
-			\begin{scope}[yshift=-1.2cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (CA) node{$\bullet$};
-			\draw (CB) node{$\bullet$};
-			\draw (A) node{$\bullet$};
-			\draw (C) node{$\bullet$};
-			\draw[line width=1.5pt,red,->] (A)--(C);
-			\end{scope}
-	\end{scope}
-\end{scope}
-
-%faire des fleches courbees avec les indices \ell et \ell^2
-
-
-\end{tikzpicture}
-\end{center}		
-\end{figure}}
-
-\only<2-2>{
-\begin{figure}
-\begin{center}
-
-\begin{tikzpicture}[scale=0.55]
-\coordinate (A) at (0,1.5);
-\coordinate (AB) at (1,1.5);
-%\coordinate (AZ) at (-1.5,1.5);	
-\coordinate (B) at (0,5);
-\coordinate (BB) at (1,5);
-%\coordinate (BZ) at (-1.5,5.2);
-%\coordinate (BZ2) at (-1.5,4.8);
-\coordinate (C) at (0,10);
-\coordinate (CB) at (1,10);
-%\coordinate (CZ) at (-1.5,10);
-\draw (A) node[left]{$\mathbb{Z} + \ell^2 \mathcal{O}$} node{$\bullet$};
-\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}$} node{$\bullet$};
-\draw (C) node[left]{$\mathcal{O}$} node{$\bullet$};
-\draw (A)--(B)node[midway,left] {$\ell$};
-\draw (B)--(C) node[midway,left] {$\ell$};
-%\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
-%\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
-\begin{scope}[yshift=10cm]
-	\begin{scope}[xshift=4.3cm]
-		\node (A) at (-3,0) {$\bullet$};
-		\node (B) at (3,0) {$\bullet$};
-		\node (C) at (270:1.2) {$\bullet$};
-		\node (D) at (90:1.5) {};
-		%\draw[-] (A.center) to[bend right=25] (C.center);
-		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
-		%\draw[-] (B.center) to[bend left=25] (C.center);
-		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		\draw[-] (A.center) to[bend right=40] (B.center);
-			\begin{scope}[xshift=-3cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (CA) node{$\bullet$};
-			\draw (CB) node{$\bullet$};
-			\draw (A) node{$\bullet$};
-			\draw (C) node{$\bullet$};
-			\draw (A)--(C);
-			\end{scope}
-			\begin{scope}[xshift=3cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (CA) node{$\bullet$};
-			\draw (CB) node{$\bullet$};
-			\draw (A) node{$\bullet$};
-			\draw (C) node{$\bullet$};
-			\draw (A)--(C);
-			\end{scope}
-			\begin{scope}[yshift=-1.2cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (CA) node{$\bullet$};
-			\draw (CB) node{$\bullet$};
-			\draw (A) node{$\bullet$};
-			\draw (C) node{$\bullet$};
-			\draw[line width=1.5pt,red,<-] (A)--(C);
-			\end{scope}
-	\end{scope}
-\end{scope}
-
-%faire des fleches courbees avec les indices \ell et \ell^2
-
-
-\end{tikzpicture}
-\end{center}		
-\end{figure}}
-
-\only<3-3>{
-\begin{figure}
-\begin{center}
-
-\begin{tikzpicture}[scale=0.55]
-\coordinate (A) at (0,1.5);
-\coordinate (AB) at (1,1.5);
-%\coordinate (AZ) at (-1.5,1.5);	
-\coordinate (B) at (0,5);
-\coordinate (BB) at (1,5);
-%\coordinate (BZ) at (-1.5,5.2);
-%\coordinate (BZ2) at (-1.5,4.8);
-\coordinate (C) at (0,10);
-\coordinate (CB) at (1,10);
-%\coordinate (CZ) at (-1.5,10);
-\draw (A) node[left]{$\mathbb{Z} + \ell^2 \mathcal{O}$} node{$\bullet$};
-\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}$} node{$\bullet$};
-\draw (C) node[left]{$\mathcal{O}$} node{$\bullet$};
-\draw (A)--(B)node[midway,left] {$\ell$};
-\draw (B)--(C) node[midway,left] {$\ell$};
-%\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
-%\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
-\begin{scope}[yshift=10cm]
-	\begin{scope}[xshift=4.3cm]
-		\node (A) at (-3,0) {$\bullet$};
-		\node (B) at (3,0) {$\bullet$};
-		\node (C) at (270:1.2) {$\bullet$};
-		\node (D) at (90:1.5) {};
-		%\draw[-] (A.center) to[bend right=25] (C.center);
-		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
-		%\draw[-] (B.center) to[bend left=25] (C.center);
-		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		}
+		\only<3-3>{
 		\draw[-] (C.center) to[bend right=20] (B.center);
 		\draw[line width=1.5pt,red,->] (A.center) to[bend right=20] (C.center);
+		}
 			\begin{scope}[xshift=-3cm]
 			\coordinate (A) at (0,0);
 			\coordinate (C) at (270:4.2);
@@ -1042,9 +882,15 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 			\draw (C)--(CB);
 			\draw (CA) node{$\bullet$};
 			\draw (CB) node{$\bullet$};
-			%\draw (A) node{$\bullet$};
+			\draw (A) node{$\bullet$};
 			\draw (C) node{$\bullet$};
 			\draw (A)--(C);
+            \only<1-1>{
+            \draw[line width=1.5pt,red,->] (A)--(C);
+            }
+            \only<2-2>{
+			\draw[line width=1.5pt,red,<-] (A)--(C);            
+            }
 			\end{scope}
 	\end{scope}
 \end{scope}
@@ -1054,8 +900,7 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 
 \end{tikzpicture}
 \end{center}		
-\end{figure}}
-
+\end{figure}
 
 \end{column}
 \begin{column}{4cm}
@@ -2659,6 +2504,45 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 \end{enumerate}
 \end{frame}
 
+\begin{frame}
+Parler de la représentation univariée et bivariée, dire que les calculs sont toujours plus rapide en univariée, montrer le passage d'une représentation bivariée à univariée. Dire que l'on peut ajouter des étages à la volée. Mentionner que l'on a des bonnes complexités pour le Frobenius en particulier.
+
+\begin{equation*}
+\begin{alignedat}{1}
+ G(x_k) &= G_0(x_k)+ G_1(x_k^\ell)+x_kG_2(x_k^\ell)+ \cdots + x_k^{\ell-1} G_{\ell}(x_k^{\ell})\\
+&= G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
+\end{alignedat}
+\end{equation*}
+\end{frame}
+
+\begin{frame}
+\begin{exe}
+Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \cdots, \mathsf{F}_k$ une tour d'extensions $5$-adiques telle que $\mathbb{F}_q \cong \mathsf{F}_1$, soit $\alpha \in \mathsf{F}_4$ qui s'écrit dans la $\mathbb{F}_q$ base monomiale de $\mathsf{F}_4$:
+\begin{equation}
+\label{eq:exe:mon}
+\alpha_0 + \alpha_5x_4^5+ \alpha_{10}x_4^{10} + \alpha_{15}x_4^{15} + \cdots + \alpha_{5k}x_4^{5k} + \cdots + \alpha_{120}x_4^{120} 
+\end{equation} 
+alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf{F}_4$:
+\begin{equation}
+\label{eq:exe:biv}
+\alpha_0 + \alpha_5x_3^1+ \alpha_{10}x_3^{2} + \alpha_{15}x_3^{3} + \cdots + \alpha_{5k}x_3^{k} + \cdots + \alpha_{120}x_3^{24}. 
+\end{equation} 
+ Ainsi on voit que $\alpha$ est aussi un élément de $\mathsf{F}_3$. Le passage de la représentation de $\alpha$ de \eqref{eq:exe:mon} à \eqref{eq:exe:biv} correspond à une \emph{descente}, l'opération inverse est elle un \emph{relèvement}.
+ 
+ Par contre pour $\beta$ un élément de $\mathsf{F}_4$ écrit de la façon suivante dans la base monovariée:
+ \begin{equation*}
+ \beta_0 + \beta_1 x_4+ \cdots +\beta_{5k}x_4^{5k} + \beta_{5k+1}x_4^{5k+1}+\beta_{5k+2}x_4^{5k+2}+ \beta_{5k+3}x_4^{5k+3}+ \beta_{5k+4}x_4^{5k+4}+ \cdots + \beta_{124}x_4^{124}
+ \end{equation*}
+l'écriture de $\beta$ dans la base bivariée est: 
+ \begin{equation*}
+  \beta_0 + \beta_1 x_4+ \cdots + x_3^{k}(\beta_{5k}+\beta_{5k+1} x_4 + \beta_{5k+2} x_4^2 + \beta_{5k+3} x_4^3 + \beta_{5k+4}x_3^4)+ \cdots + \beta_{124}x_3^{24}x_4^{4}.
+ \end{equation*}
+ On voit ici que $\beta \notin \mathsf{F}_3$ et donc on ne peut le faire descendre dans la tour d'extension mais seulement s'arrêter à cette écriture dans la base bivariée.
+\end{exe}
+
+\end{frame}
+
+
 \end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2689,3 +2573,4 @@ How to communicate securely on a channel that is not ?
 
 % parle de cryptographie symmétrique la clé de chiffrement et de déchiffrement sont identiques, et asymmétriques la clé de chiffrement et de déchiffrement sont différentes...
 \end{frame}
+
