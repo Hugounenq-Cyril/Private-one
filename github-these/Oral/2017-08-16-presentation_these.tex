@@ -1730,7 +1730,7 @@ c_2\ell^2 & d_2
 \caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies correspondant aux différentes matrices du Frobenius, calculées sur la courbe $E$ au sommet du volcan des $\ell$-isogénies. }
 \end{figure}
 %\pause
-\only<4>{On a alors $\ell^{k-h-1}(\ell-1)$ matrices dans la classe de conjugaison d'une matrice définie modulo $\ell^k$ pour une courbe située au niveau du cratère
+\only<4>{On a $\ell^{k-h-1}(\ell-1)$ matrices dans la classe de conjugaison d'une matrice définie modulo $\ell^k$ pour une courbe située au niveau du cratère.
 }
 \end{frame}
 
@@ -1847,7 +1847,7 @@ c_2\ell^2 & d_2
 \end{tikzpicture}
 \end{center}
 
-\caption{\label{fig:elk:dif:niv:mat} Matrices du Frobenius possibles pour une base de $E[8]$ avec le premier vecteur de la base ($P$) fixé et le second ($R$) qui engendre la $4$-isogénie descendante}
+\caption{\label{fig:elk:dif:niv:mat} Matrices du Frobenius possibles pour une base de $E[8]$ avec le premier vecteur de la base ($\color{red} P$) fixé et le second ($\color{blue} R$) qui engendre la $4$-isogénie descendante}
 \end{figure}
 
 \end{frame}
@@ -2052,11 +2052,11 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 
 \bluebox{Représentation univariée}
 {
-Un élément de $F_k$ est dit sous forme univariée si il est écrit à l'aide d'un polynôme $G \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-1}$ évalué en l'élément primitif $x_k$ de $F_k$. Avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$.
+Un élément de $F_k$ est dit sous forme univariée si il est écrit à l'aide d'un polynôme $G \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-1}$, avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$, évalué en l'élément primitif $x_k$ de $F_k$.
 }
 
 \begin{exe}
-Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \cdots, \mathsf{F}_k$ une tour d'extensions $5$-adiques telle que $\mathbb{F}_q \cong \mathsf{F}_1$ (id est $d_1=1$), soit $\alpha \in \mathsf{F}_4$, $x_4$ un élément primitif de $F_4$ alors une représentation univariée d'un élément $\beta \in \mathsf{F}_4$ est:
+Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \cdots, \mathsf{F}_k$ une tour d'extensions $5$-adiques telle que $\mathbb{F}_q \cong \mathsf{F}_1$ (id est $d_1=1$), soit $x_4$ un élément primitif de $\mathsf{F}_4$ alors une représentation univariée d'un élément $\beta \in \mathsf{F}_4$ est:
 \begin{equation*}
  \beta_0 + \beta_1 x_4+ \cdots +\beta_{5k}x_4^{5k} + \beta_{5k+1}x_4^{5k+1}+ \cdots +\beta_{5k+4}x_4^{5k+4}+ \cdots + \beta_{124}x_4^{124}
 \end{equation*}
@@ -2079,6 +2079,7 @@ Ainsi $\beta \in \mathsf{F}_4$ a la représentation bivariée suivante:
 \begin{equation*}
   \beta_0 + \beta_1 x_4+ \cdots + x_3^{k}(\beta_{5k}+\beta_{5k+1} x_4 + \beta_{5k+2} x_4^2 + \beta_{5k+3} x_4^3 + \beta_{5k+4}x_3^4)+ \cdots + \beta_{124}x_3^{24}x_4^{4}.
  \end{equation*} 
+en se servant du fait que $x_4^5=x_3$.
 \end{exe}
 \end{frame}
 
