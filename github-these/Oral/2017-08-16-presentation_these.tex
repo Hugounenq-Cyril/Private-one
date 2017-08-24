@@ -2505,7 +2505,41 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 \end{frame}
 
 \begin{frame}
+\frametitle{Construction et définition d'une tour d'extension de corps finis}
+\begin{defi}[Tour \textit{$\ell$}-adique]
+Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $\ell$-adiques de $\mathbb{F}_q$ est la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{1}, \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
+\begin{itemize}
+\item $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus $r \mid d_1$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
+\item $\mathsf{F}_{i}$ pour $i \geqslant 2$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
+\end{itemize}
+\end{defi}
+
+\bluebox{Construction d'une tour \textit{$\ell$}-adique}
+{
+\begin{itemize}
+\item $\mathsf{F}_{1}=\mathbb{F}_q[X]/P_0(X)$ tel que $x_1$ l'image de $X$ dans $\mathsf{F}_1$ est un non-résidu $\ell$-adique, 
+\item $\mathsf{F}_{i}=\mathsf{F}_{i-1}[X_{i-1}]/(X^{\ell}-x_{i-1})$ pour $i \geqslant 2$.
+\end{itemize}
+}
+\end{frame}
+
+\begin{frame}
 Parler de la représentation univariée et bivariée, dire que les calculs sont toujours plus rapide en univariée, montrer le passage d'une représentation bivariée à univariée. Dire que l'on peut ajouter des étages à la volée. Mentionner que l'on a des bonnes complexités pour le Frobenius en particulier.
+
+\bluebox{Représentation univariée}
+{
+On dit qu'un élément de $F_k$ est sous forme univariée si il est écrit à l'aide d'un polynôme $G \in \mathbb{F}_q[X]$ de degré $d_1\ell^{k-1}$ évalué en l'élément primitif $x_k$ de $F_k$.
+}
+
+\begin{exe}
+Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \cdots, \mathsf{F}_k$ une tour d'extensions $5$-adiques telle que $\mathbb{F}_q \cong \mathsf{F}_1$, soit $\alpha \in \mathsf{F}_4$, $x_4$ un élément primitif de $F_4$ alors une représentation univariée d'un élément de $\mathsf{F}_4$ est:
+\begin{equation}
+\alpha_0 + \alpha_5x_4^5+ \alpha_{10}x_4^{10} + \alpha_{15}x_4^{15} + \cdots + \alpha_{5k}x_4^{5k} + \cdots + \alpha_{120}x_4^{120} 
+\end{equation} 
+
+\end{exe}
+
+\bluebox{Changement de représentation univariée, bivariée}
 
 \begin{equation*}
 \begin{alignedat}{1}
