@@ -1648,7 +1648,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Trouver titre...}
+\frametitle{Limitations of the Elkies case}
  \bluebox{Finding an Elkies prime $\ell$}{
   \begin{itemize}
   \item The complexity depends polynomially on the auxiliary prime $\ell$.
@@ -1671,7 +1671,8 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \pi^2 - t_{\pi}\pi + q 
 \]
 is irreducible over $\mathbb{Z}_{\ell}$}
-Thus we are not able to distinguish two different eigenspaces, the method used with \emph{Elkies prime} cannot be applied. 
+%Thus we are not able to distinguish two different eigenspaces, 
+Thus the method used with \emph{Elkies prime} using two different eigenspaces cannot be applied. 
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.225]
@@ -1717,30 +1718,23 @@ Thus we are not able to distinguish two different eigenspaces, the method used w
 
 \begin{frame}
 \begin{prop}
-In the Atkin case the action of the Frobenius endomorphism $\pi$ on 
-$E[\ell^{h+1}]$~is, over~$\mathbb{Z}_{\ell}$, equals to the matrix 
-\[\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-\end{matrix}\right ), \quad \text{with }a,d \text{ primes with }\ell, v_{\ell}(a-d)\geqslant h \]  %with $a,d $ primes with $\ell$,
-with $e$ the depth of $E$ in the volcano. Moreover 
+%In the Atkin case the action of the Frobenius endomorphism $\pi$ on 
+%$E[\ell^{h+1}]$~is, over~$\mathbb{Z}_{\ell}$, equals to the matrix 
+%\[\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
+%\end{matrix}\right ), \quad \text{with }a,d \text{ primes with }\ell, v_{\ell}(a-d)\geqslant h \]  %with $a,d $ primes with $\ell$,
+%with $e$ the depth of $E$ in the volcano. Moreover 
+%\begin{itemize}
+%\item either $b$ and $c$ are prime with $\ell$;
+%\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation included in $ [2,2e]$.
+%\end{itemize}
+In the Atkin case for any bases $(P,Q)$ of $E[\ell^k]$ with $k>h-e$ and $e$ the depth of $E$ in the volcano. The action of the Frobenius $\pi$ in this basis is up to permutation equals to:
+ \[\pi(P,Q)= \left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
+\end{matrix}\right ) \bmod \ell^k, \quad \text{with }a,d \text{ primes with }\ell, v_{\ell}(a-d)\geqslant h .\]
+Moreover 
 \begin{itemize}
 \item either $b$ and $c$ are prime with $\ell$;
-\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation included in $ [2,2e]$.
-
+\item either $b$ is prime with $\ell$ and $v_{\ell}(c) \in [2,2e]$.
 \end{itemize}
-%Soit~$E$ une courbe elliptique définie sur un volcan de $\ell$-isogénies de 
-%hauteur $h>0$ tel que $\ell$ soit un nombre premier de Atkin. Il existe un unique
-%$e \in [ 0, h]$ tel que $\pi|\mathsf{T}_{\ell}(E)$ est égale, sur~$\mathbb{Z}_{\ell}$, à
-% la matrice 
-%\begin{equation*}
-%\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-%\end{matrix}\right ) \bmod \mathbb{Z}_{\ell} \quad \text{avec }a,d \text{ premiers avec }\ell, \ell^{h} |a-d.
-%\end{equation*}
-%% where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
-%Pour $e = 0$ ~$E$ se situe sur le cratère, sinon $e$~est la profondeur 
-%de~$E$ dans le volcan.
-%De plus, soit $b$ et $c$ sont premiers avec $\ell$, soit l'un des deux est premier avec 
-%$\ell$ et l'autre a sa valuation $\ell$-adique qui appartient à l'intervalle 
-%$[2,2e]$.
 \end{prop}
 
 \begin{figure}
@@ -1804,109 +1798,6 @@ c_2\ell^2 & d_2
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-%Faire une slide disant que l'on a pas la correspondance entre les différentes isogénies descendantes et ensuite embrayer sur les isogénies horizontales...
-%De plus on est pas capable de distinguer les isogénies descendantes.
-
-%\begin{prop}
-%\label{pro:etu:atk:elk}
-%
-%Soit $\langle P ,R \rangle = E[\ell^{h-e+1}]$ pour $E$ située au niveau $h-e$ 
-%du volcan. Alors pour toute $\ell$-isogénie $\psi$ descendante de domaine $E$ 
-%il existe $R'$ tel que $\ker(\psi)=\langle [\ell^{h-e}]R' \rangle$, $\langle P,R' 
-%\rangle = E[\ell^{h-e+1}]$ et $ \pi(P,R)= \pi(P,R') $
-%\end{prop}
-%\pause
-%Le Frobenius ne permet pas de distinguer les isogénies descendantes.
-\frametitle{Comparison with the Elkies case}
-\begin{figure}
-\begin{center}
-
-\begin{tikzpicture}[scale=0.290]
-
-\begin{scope}[yshift=10cm]
-	\begin{scope}[xshift=4.3cm]
-		\coordinate (A) at (-3,0);
-		\coordinate (B) at (3,0);
-		\coordinate (C) at (270:1.2);
-		%\draw[-] (A.center) to[bend right=25] (C.center);
-		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
-		%\draw[-] (B.center) to[bend left=25] (C.center);
-		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		\draw[-] (A.center) to[bend right=40] (B.center);
-		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
-			\begin{scope}[xshift=-3cm]% sous volcan de gauche
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\end{scope}
-			\begin{scope}[xshift=3cm]% sous volcan de droite
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\end{scope}
-			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			%\draw (CA) node[fill=white]{$\bullet$};
-			\coordinate (CAB) at (260:8.5);
-			\coordinate (CBB) at (280:8.5);
-			\draw (CAB) node {$ \left( \begin{smallmatrix}
-					3 & 2 \\
-					0 & 3
-					\end{smallmatrix} \right) $};
-			%\draw (CB) node[fill=white]{$\bullet$};
-			\draw (CBB) node{$ \left( \begin{smallmatrix}
-					3 & 2 \\
-					0 & 3
-					\end{smallmatrix} \right) $};
-			%c est de la triche ce sont les seules matrices possibles...
-			%\draw (A) node{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white]{$E$};
-			
-			
-			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};			
-			
-			\end{scope}
-			\coordinate (F) at (5,0);
-			\coordinate (G) at (5,-7);
-			\draw[dashed,<-] (F)--(G) node[midway,right]{$h$};
-	\end{scope}
-\end{scope}
-
-%faire des fleches courbees avec les indices \ell et \ell^2
-
-\end{tikzpicture}
-\end{center}
-
-\caption{\label{fig:elk:dif:niv:mat} Matrices du Frobenius possibles pour une base de $E[8]$ avec le premier vecteur de la base ($P$) fixé et le second ($R$) qui engendre la $4$-isogénie descendante}
-\end{figure}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{frame}
@@ -1999,6 +1890,125 @@ c_2\ell^2 & d_2
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+%Faire une slide disant que l'on a pas la correspondance entre les différentes isogénies descendantes et ensuite embrayer sur les isogénies horizontales...
+%De plus on est pas capable de distinguer les isogénies descendantes.
+
+%\begin{prop}
+%\label{pro:etu:atk:elk}
+%
+%Soit $\langle P ,R \rangle = E[\ell^{h-e+1}]$ pour $E$ située au niveau $h-e$ 
+%du volcan. Alors pour toute $\ell$-isogénie $\psi$ descendante de domaine $E$ 
+%il existe $R'$ tel que $\ker(\psi)=\langle [\ell^{h-e}]R' \rangle$, $\langle P,R' 
+%\rangle = E[\ell^{h-e+1}]$ et $ \pi(P,R)= \pi(P,R') $
+%\end{prop}
+%\pause
+%Le Frobenius ne permet pas de distinguer les isogénies descendantes.
+\frametitle{Comparison with the Elkies case}
+\begin{figure}
+\begin{center}
+
+\begin{tikzpicture}[scale=0.290]
+
+\begin{scope}[yshift=10cm]
+	\begin{scope}[xshift=4.3cm]
+		\coordinate (A) at (-3,0);
+		\coordinate (B) at (3,0);
+		\coordinate (C) at (270:1.2);
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[line width=2.5pt,red,->] (A.center) to[bend right=40] (B.center);
+		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
+			\begin{scope}[xshift=-3cm]% sous volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=3cm]% sous volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw [line width=1.5pt,red] (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw [line width=1.5pt,blue] (A)--(C);
+			%\draw (CA) node[fill=white]{$\bullet$};
+			\coordinate (CAB) at (260:8.5);
+			\coordinate (CBB) at (280:8.5);
+			\draw (CAB) node {$ \left( \begin{smallmatrix}
+					7 & 4 \\
+					0 & 3
+					\end{smallmatrix} \right) $};
+			%\draw (CB) node[fill=white]{$\bullet$};
+			\draw (CBB) node{$ \left( \begin{smallmatrix}
+					7 & 4 \\
+					0 & 3
+					\end{smallmatrix} \right) $};
+			%c est de la triche ce sont les seules matrices possibles...
+			%\draw (A) node{$\bullet$};
+			\only<1>{
+			\draw [line width=1.5pt,blue] (C)--(CA);
+			\draw (CAB) node {$ \color{blue} \left( \begin{smallmatrix}
+					7 & 4 \\
+					0 & 3
+					\end{smallmatrix} \right) $};
+			}
+			\only<2>{
+			\draw [line width=1.5pt,blue] (C)--(CB);
+			\draw (CBB) node{$ \color{blue} \left( \begin{smallmatrix}
+					7 & 4 \\
+					0 & 3
+					\end{smallmatrix} \right) $};
+			}			
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$E$};
+			
+			
+			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};			
+			
+			\end{scope}
+			\coordinate (F) at (5,0);
+			\coordinate (G) at (5,-7);
+			\draw[dashed,<-] (F)--(G) node[midway,right]{$h$};
+	\end{scope}
+\end{scope}
+
+%faire des fleches courbees avec les indices \ell et \ell^2
+
+\end{tikzpicture}
+\end{center}
+
+\caption{\label{fig:elk:dif:niv:mat} Matrices du Frobenius possibles pour une base de $E[8]$ avec le premier vecteur de la base ($P$) fixé et le second ($R$) qui engendre la $4$-isogénie descendante}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \begin{frame}
 \frametitle{An $\ell$-adic Couveignes' algorithm in the Atkin case}
