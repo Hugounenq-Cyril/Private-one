@@ -610,197 +610,52 @@ We are only working with rational isogenies $\psi:E \to E'$, i.e.
 
 
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%\begin{frame}
-%    \begin{columns}
-%        \begin{column}{0.8\textwidth}
-%            \includegraphics[height=\textheight]{Images/xkcd.png}
-%        \end{column}
-%        \begin{column}{0.2\textwidth}
-%            \href{http://xkcd.com/1714/}{xkcd.com/1714}
-%        \end{column}
-%    \end{columns}
-%\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \begin{frame}
-\vspace{-4mm}
-  \begin{center}
-    \begin{tabular}{p{13em}p{2em}p{13em}}
-Subgroup of size $\ell$  & $\Leftrightarrow$ &     $\ell$-isogeny \pause \\[2mm]
-      
-    Subgroup of size $\ell$ stable by $\pi$   & $\Leftrightarrow$ & Rational $\ell$-isogeny 
-    \end{tabular}
-  \end{center}
+%\section{Computation of endomorphism rings}
+\frametitle{Computation of endomorphism rings}
+\begin{prop} [Silverman, '86]
+Soit $E$ une courbe elliptique alors son anneau d'endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre $\mathcal{O}$ défini dans un corps de nombre quadratique imaginaire noté ici $K$. 
+\end{prop}
 
-
-\pause
-Assume that $\pi$ splits modulo $\ell$:
-i.e. its minimal polynomial factors as
-\[ (\pi-\red \lambda)(\pi- \blu \mu ) \quad \text{with} \quad \red \lambda \neq \blu \mu \bmod \ell \]
-
-
-\pause
-\begin{center}
-  \begin{tabular}{p{13em}p{2em}p{13em}}
-     \raggedright Two eigenspaces in $E[\ell]$
-     \mbox{$\ker(\pi-\red \lambda), \ker( \pi- \blu \mu)$}
-     & $\Rightarrow$  
-     & \raggedright Two rational $\ell$-isogenies
-    \mbox{of direction $\red \lambda, \blu \mu $}
-  \end{tabular}
-\end{center}
-%
-\bluebox{Isogeny graph}{
-\begin{figure}[h]
-	\begin{center}
-	\begin{tikzpicture}[scale=0.3]
-	\coordinate (A) at (0:5);
-	\coordinate (B) at (45:5);
-	\coordinate (C) at (90:5);
-	\coordinate (D) at (135:5);
-	\coordinate (E) at (180:5);
-	\coordinate (F) at (225:5);
-	\coordinate (G) at (270:5);
-	\coordinate (H) at (315:5);
-	\draw (A)--(B)--(C)--(D)--(E)--(F)--(G)--(H)--(A);	
-		
-	\draw (A) node[right]{$E$};
-	\draw (A) node{$\bullet$};
-	\draw (B) node{$\bullet$};
-	\draw (C) node{$\bullet$};
-	\draw (D) node{$\bullet$};
-	\draw (E) node{$\bullet$};
-	\draw (F) node{$\bullet$};
-	\draw (G) node{$\bullet$};
-	\draw (H) node{$\bullet$};
-	
-	\draw[line width=1.5pt,red,-latex] (A)--(B) node[midway,right]{$\color{red} \lambda$};
-	\draw[line width=1.5pt,blue,-latex] (A)--(H) node[midway,right]{$\color{blue} \mu$};
-		\end{tikzpicture}	
-	\end{center}
-\end{figure}
-}
+\begin{defi}
+Une courbe elliptique $E$ est dite à multiplication complexe si $\mathrm{End}(E)$ n'est pas réduit à $\mathbb{Z}$.
+\end{defi}
+On a le résultat suivant sur la structure de $\mathrm{End}(E)$.
 
 \end{frame}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{frame}
-  \bluebox{Fact}{
-    Let $\phi$ be an $r$-isogeny with $\ell \nmid r$, then $\phi$ preserves the kernels of the $\ell$-isogenies of \emph{direction} $\red \lambda, \blu \mu $.}
 
-  To interpolate $\phi$ over $E[\ell^k]$, we want to compute two cyclic
-  $\ell^k$-subgroups of direction $\red \lambda, \blu \mu $. 
+\begin{thm}
+$\mathrm{End}(E)$ est
+\begin{itemize}
+\item soit isomorphe à $\mathbb{Z}$ dans ce cas la courbe est \emph{ordinaire}, 
+\item soit isomorphe à un ordre dans un corps quadratique imaginaire dans ce cas la courbe est \emph{ordinaire}, 
+\item soit isomorphe à un ordre dans une algèbre de quaternions, la courbe est \emph{supersingulière}. 
+\end{itemize}
+\end{thm}
 
-  \begin{figure}[h]
-    \begin{center}
-      \begin{tikzpicture}[scale=0.39]
-        \foreach \s/\e in {0/E,15cm/E'} {
-          \begin{scope}[xshift=\s,black!60]
-            \coordinate (A) at (0:5);
-            \coordinate (B) at (45:5);
-            \coordinate (C) at (90:5);
-            \coordinate (D) at (135:5);
-            \coordinate (E) at (180:5);
-            \coordinate (F) at (225:5);
-            \coordinate (G) at (270:5);
-            \coordinate (H) at (315:5);
 
-            \draw (A) node{$\bullet$};
-            \draw (A) node[right]{$\e$};
-            \draw (B) node{$\bullet$};
-            \draw (C) node{$\bullet$};
-            \draw (D) node{$\bullet$};
-            \draw (E) node{$\bullet$};
-            \draw (F) node{$\bullet$};
-            \draw (G) node{$\bullet$};
-            \draw (H) node{$\bullet$};
+\begin{prop}
+Soit $E$ une courbe elliptique ordinaire, alors 
+\[
+\mathbb{Z} \left[ \pi \right] \subset \mathcal{O} \subset \mathcal{O}_K
+\] 
+avec $\mathcal{O}_K$ l'anneau des entiers de $K$. %le corps de nombre quadratique imaginaire tel que $\mathcal{O} \subset K$
+\end{prop}
 
-            \draw (A)--(B)--(C)--(D)--(E)--(F)--(G)--(H)--(A);		
-            \begin{scope}[-latex]
-              \draw[line width=1.5pt,red] (A)--(B) node[midway,right]{$\color{red} \lambda$};
-              \draw[line width=1.5pt,blue] (A)--(H) node[midway,right]{$\color{blue} \mu$};
-              \uncover<2->{
-                \draw[line width=1.5pt,red] (B)--(C) node[midway,above]{$\color{red} \lambda$};
-                \draw[line width=1.5pt,blue] (H)--(G) node[midway,below]{$\color{blue} \mu$};
-              }
-              \uncover<3->{
-                \draw[line width=1.5pt,red] (C)--(D) node[midway,above]{$\color{red} \lambda$};
-                \draw[line width=1.5pt,blue] (G)--(F) node[midway,below]{$\color{blue} \mu$};
-              }
-            \end{scope}
-          \end{scope}
+\begin{defi}[Conducteur]
+On note $g=[\mathcal{O}_K:\mathbb{Z}[\pi]]$ le conducteur de $\mathbb{Z}[\pi]$. %et $f$ le conducteur de $[\mathcal{O}_K:\mathcal{O}]$.
+\end{defi}
 
-          \draw[dashed,thick,-latex,shorten >=5pt] (0:5) to[bend left=40] node[below left] {$\phi$} (0:20);
-        }
-      \end{tikzpicture}	
-    \end{center}
-  \end{figure}
-
-  \begin{uncoverenv}<3->
-    \begin{itemize}
-    \item We call $\red{E[\ell^k]_\lambda}\oplus\blu{E[\ell^k]_\mu}$ a
-      \emph{horizontal} decomposition;
-    \item SEA literature calls this an \emph{isogeny cycle} [Couveignes, Morain '94].
-    \end{itemize}
-  \end{uncoverenv}
+\begin{defi}[Discriminant]
+On note $d_{\pi}$ (resp. $d_K$) le discriminant de l'ordre $\mathbb{Z}\left[ \pi \right]$ (resp. $\mathcal{O}_K$).
+\end{defi}
+En particulier: $d_{\pi}=g^2d_K$
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\bluebox{Towards an $\ell$-adic Couveignes' algorithm ($\pi$ splits modulo $\ell$)}{
-\begin{algorithmic}[1]
-\REQUIRE $E, E'$ two $r$-isogenous curves on $\mathbb{F}_{q}$ 
-\ENSURE $\phi: E \rightarrow E'$ of degree $r$
-\end{algorithmic}}
-
-\bluebox{}{\textbf{Fact:} $\phi$ maps 
-$\color{red}{E[\ell^k]_{{\lambda}}} \color{black}{\rightarrow} \color{red}{E'[\ell^k]_{{\lambda}}}$  
-and 
-$\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell^k]_{{\mu}}}$.
- }
-
-\begin{enumerate}
-\item Select the least $k$ such that  $\ell^{2k}>4r$.
-\medskip
-\item Compute $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
- and $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $
-%\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
-\medskip
-\item For each \textbf{invertible diagonal} matrix
-  $\left ( \begin{smallmatrix}a & 0\\ 0 & b
-\end{smallmatrix}\right )$ in $(\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
-\hfill\only<2>{$O(r)$}
-  \begin{enumerate}
-
-  \item Compute the interpolation polynomial
-    $L$ sending\\
-    $\color{red}P\mapsto [a]P'$ and $\color{blue}Q\mapsto [b]Q'$;
-\hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
-	\item Use a  rational reconstruction  algorithm 
-    to compute a rational
-    fraction $F$ of degrees~$(r, r-1)$;
-\hfill\only<2>{$\tilde{O}(r)$}
-  \item If $F$ defines an isogeny of degree $r$, return it and
-    stop.
-  \end{enumerate}
-\end{enumerate}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{An $\ell$-adic Couveignes algorithm}
-
 \begin{frame}
 \frametitle{The general case}
 
@@ -1015,6 +870,213 @@ In the rest of this talk we consider first volcanoes with cyclic crater (Elkies 
 %\caption{Volcano with one point on the crater, and two points}
 %\end{figure}
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Etudes des différents cas de Couveignes $\ell$-adique}
+\vfill
+\begin{itemize}
+
+\item Cas Elkies avec hauteur $h=0$;
+\vfill
+\item Cas Elkies avec hauteur $h \neq 0$;
+\vfill
+\item Cas Atkin avec hauteur $h=0$;
+\vfill
+\item Cas Atkin avec hauteur $h \neq 0$.
+\end{itemize}
+\vfill
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}
+%    \begin{columns}
+%        \begin{column}{0.8\textwidth}
+%            \includegraphics[height=\textheight]{Images/xkcd.png}
+%        \end{column}
+%        \begin{column}{0.2\textwidth}
+%            \href{http://xkcd.com/1714/}{xkcd.com/1714}
+%        \end{column}
+%    \end{columns}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\vspace{-4mm}
+  \begin{center}
+    \begin{tabular}{p{13em}p{2em}p{13em}}
+Subgroup of size $\ell$  & $\Leftrightarrow$ &     $\ell$-isogeny \pause \\[2mm]
+      
+    Subgroup of size $\ell$ stable by $\pi$   & $\Leftrightarrow$ & Rational $\ell$-isogeny 
+    \end{tabular}
+  \end{center}
+
+
+\pause
+Assume that $\pi$ splits modulo $\ell$:
+i.e. its minimal polynomial factors as
+\[ (\pi-\red \lambda)(\pi- \blu \mu ) \quad \text{with} \quad \red \lambda \neq \blu \mu \bmod \ell \]
+
+
+\pause
+\begin{center}
+  \begin{tabular}{p{13em}p{2em}p{13em}}
+     \raggedright Two eigenspaces in $E[\ell]$
+     \mbox{$\ker(\pi-\red \lambda), \ker( \pi- \blu \mu)$}
+     & $\Rightarrow$  
+     & \raggedright Two rational $\ell$-isogenies
+    \mbox{of direction $\red \lambda, \blu \mu $}
+  \end{tabular}
+\end{center}
+%
+\bluebox{Isogeny graph}{
+\begin{figure}[h]
+	\begin{center}
+	\begin{tikzpicture}[scale=0.3]
+	\coordinate (A) at (0:5);
+	\coordinate (B) at (45:5);
+	\coordinate (C) at (90:5);
+	\coordinate (D) at (135:5);
+	\coordinate (E) at (180:5);
+	\coordinate (F) at (225:5);
+	\coordinate (G) at (270:5);
+	\coordinate (H) at (315:5);
+	\draw (A)--(B)--(C)--(D)--(E)--(F)--(G)--(H)--(A);	
+		
+	\draw (A) node[right]{$E$};
+	\draw (A) node{$\bullet$};
+	\draw (B) node{$\bullet$};
+	\draw (C) node{$\bullet$};
+	\draw (D) node{$\bullet$};
+	\draw (E) node{$\bullet$};
+	\draw (F) node{$\bullet$};
+	\draw (G) node{$\bullet$};
+	\draw (H) node{$\bullet$};
+	
+	\draw[line width=1.5pt,red,-latex] (A)--(B) node[midway,right]{$\color{red} \lambda$};
+	\draw[line width=1.5pt,blue,-latex] (A)--(H) node[midway,right]{$\color{blue} \mu$};
+		\end{tikzpicture}	
+	\end{center}
+\end{figure}
+}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \bluebox{Fact}{
+    Let $\phi$ be an $r$-isogeny with $\ell \nmid r$, then $\phi$ preserves the kernels of the $\ell$-isogenies of \emph{direction} $\red \lambda, \blu \mu $.}
+
+  To interpolate $\phi$ over $E[\ell^k]$, we want to compute two cyclic
+  $\ell^k$-subgroups of direction $\red \lambda, \blu \mu $. 
+
+  \begin{figure}[h]
+    \begin{center}
+      \begin{tikzpicture}[scale=0.39]
+        \foreach \s/\e in {0/E,15cm/E'} {
+          \begin{scope}[xshift=\s,black!60]
+            \coordinate (A) at (0:5);
+            \coordinate (B) at (45:5);
+            \coordinate (C) at (90:5);
+            \coordinate (D) at (135:5);
+            \coordinate (E) at (180:5);
+            \coordinate (F) at (225:5);
+            \coordinate (G) at (270:5);
+            \coordinate (H) at (315:5);
+
+            \draw (A) node{$\bullet$};
+            \draw (A) node[right]{$\e$};
+            \draw (B) node{$\bullet$};
+            \draw (C) node{$\bullet$};
+            \draw (D) node{$\bullet$};
+            \draw (E) node{$\bullet$};
+            \draw (F) node{$\bullet$};
+            \draw (G) node{$\bullet$};
+            \draw (H) node{$\bullet$};
+
+            \draw (A)--(B)--(C)--(D)--(E)--(F)--(G)--(H)--(A);		
+            \begin{scope}[-latex]
+              \draw[line width=1.5pt,red] (A)--(B) node[midway,right]{$\color{red} \lambda$};
+              \draw[line width=1.5pt,blue] (A)--(H) node[midway,right]{$\color{blue} \mu$};
+              \uncover<2->{
+                \draw[line width=1.5pt,red] (B)--(C) node[midway,above]{$\color{red} \lambda$};
+                \draw[line width=1.5pt,blue] (H)--(G) node[midway,below]{$\color{blue} \mu$};
+              }
+              \uncover<3->{
+                \draw[line width=1.5pt,red] (C)--(D) node[midway,above]{$\color{red} \lambda$};
+                \draw[line width=1.5pt,blue] (G)--(F) node[midway,below]{$\color{blue} \mu$};
+              }
+            \end{scope}
+          \end{scope}
+
+          \draw[dashed,thick,-latex,shorten >=5pt] (0:5) to[bend left=40] node[below left] {$\phi$} (0:20);
+        }
+      \end{tikzpicture}	
+    \end{center}
+  \end{figure}
+
+  \begin{uncoverenv}<3->
+    \begin{itemize}
+    \item We call $\red{E[\ell^k]_\lambda}\oplus\blu{E[\ell^k]_\mu}$ a
+      \emph{horizontal} decomposition;
+    \item SEA literature calls this an \emph{isogeny cycle} [Couveignes, Morain '94].
+    \end{itemize}
+  \end{uncoverenv}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\bluebox{Towards an $\ell$-adic Couveignes' algorithm ($\pi$ splits modulo $\ell$)}{
+\begin{algorithmic}[1]
+\REQUIRE $E, E'$ two $r$-isogenous curves on $\mathbb{F}_{q}$ 
+\ENSURE $\phi: E \rightarrow E'$ of degree $r$
+\end{algorithmic}}
+
+\bluebox{}{\textbf{Fact:} $\phi$ maps 
+$\color{red}{E[\ell^k]_{{\lambda}}} \color{black}{\rightarrow} \color{red}{E'[\ell^k]_{{\lambda}}}$  
+and 
+$\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell^k]_{{\mu}}}$.
+ }
+
+\begin{enumerate}
+\item Select the least $k$ such that  $\ell^{2k}>4r$.
+\medskip
+\item Compute $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
+ and $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $
+%\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
+\medskip
+\item For each \textbf{invertible diagonal} matrix
+  $\left ( \begin{smallmatrix}a & 0\\ 0 & b
+\end{smallmatrix}\right )$ in $(\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
+\hfill\only<2>{$O(r)$}
+  \begin{enumerate}
+
+  \item Compute the interpolation polynomial
+    $L$ sending\\
+    $\color{red}P\mapsto [a]P'$ and $\color{blue}Q\mapsto [b]Q'$;
+\hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
+	\item Use a  rational reconstruction  algorithm 
+    to compute a rational
+    fraction $F$ of degrees~$(r, r-1)$;
+\hfill\only<2>{$\tilde{O}(r)$}
+  \item If $F$ defines an isogeny of degree $r$, return it and
+    stop.
+  \end{enumerate}
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{An $\ell$-adic Couveignes algorithm}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -2504,32 +2566,9 @@ E_s$ of order $2^3$ such that $[2]P$ is an horizontal point and $\psi: E_s
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-%\section{Computation of endomorphism rings}
-\frametitle{Computation of endomorphism rings}
-\begin{prop} [Silverman, '86]
-Soit $E$ une courbe elliptique alors son anneau d'endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre $\mathcal{O}$ défini dans un corps de nombre quadratique imaginaire noté ici $K$. 
-\end{prop}
 
-\begin{prop}
-Soit $E$ une courbe elliptique ordinaire, alors 
-\[
-\mathbb{Z} \left[ \pi \right] \subset \mathcal{O} \subset \mathcal{O}_K
-\] 
-avec $\mathcal{O}_K$ l'anneau des entiers de $K$. %le corps de nombre quadratique imaginaire tel que $\mathcal{O} \subset K$
-\end{prop}
-
-\begin{defi}[Conducteur]
-On note $g=[\mathcal{O}_K:\mathbb{Z}[\pi]]$ le conducteur de $\mathbb{Z}[\pi]$. %et $f$ le conducteur de $[\mathcal{O}_K:\mathcal{O}]$.
-\end{defi}
-\end{frame}
 
 \begin{frame}
-\begin{defi}[Discriminant]
-On note $d_{\pi}$ (resp. $d_K$) le discriminant de l'ordre $\mathbb{Z}\left[ \pi \right]$ (resp. $\mathcal{O}_K$).
-\end{defi}
-En particulier: $d_{\pi}=g^2d_K$
-
 \begin{prop}[Preciser source vu dans Fouquet '01]
 Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] \quad \text{et} \quad (X-a)^2=X^2-t_{\pi}X+q \bmod g \]
 \end{prop}
