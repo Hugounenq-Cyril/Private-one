@@ -1852,41 +1852,29 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 \end{frame}
 
 \begin{frame}
-Faire slide avec tour et volcan à côté.
+\frametitle{Volcano and extension field}
 
 \begin{figure}
 \begin{center}
 
 \begin{tikzpicture}[scale=0.55]
-\coordinate (A1) at (-8,0);
-		\coordinate (A2) at (-8,2);
-		\coordinate (A3) at (-8,4);
-		\coordinate (A4) at (-8,6);
-		\draw (A1)--(A2)--(A3)--(A4);
-		\draw (A1) node{$\bullet$};
-		\draw (A2) node{$\bullet$};
-		\draw (A3) node{$\bullet$};
-		\draw (A4) node{$\bullet$};
-		\draw (A1) node[left]{$\mathbb{F}_q$};
-		\draw (A2) node[left]{$\mathsf{F}_{1}$};
-		\draw (A3) node[left]{$\mathsf{F}_{2}$};
-		\draw (A4) node[left]{$\mathsf{F}_{3}$};
-
-\coordinate (A) at (-2,1.5);
-%\coordinate (AB) at (1,1.5);
-%\coordinate (AZ) at (-1.5,1.5);	
+\coordinate (A) at (-2,1.5);	
 \coordinate (B) at (-2,5);
-%\coordinate (BB) at (1,5);
-%\coordinate (BZ) at (-1.5,5.2);
-%\coordinate (BZ2) at (-1.5,4.8);
 \coordinate (C) at (-2,10);
-%\coordinate (CB) at (1,10);
-%\coordinate (CZ) at (-1.5,10);
-\draw (A) node[left]{$\mathsf{F}_3$} node{$\bullet$};
-\draw (B) node[left]{$\mathsf{F}_2$} node{$\bullet$};
+\draw [gray!30] (B)--(C) ;
+\draw [gray!30] (A)--(B) ;
+\only<3>{
+\draw (A)--(B);}
+\only<2->{
+\draw (B)--(C);}
 \draw (C) node[left]{$\mathbb{F}_q$} node{$\bullet$};
-\draw (A)--(B)node[midway,left] {$\ell$};
-\draw (B)--(C) node[midway,left] {$\ell$};
+\draw (A) node[left,gray!30]{$\mathsf{F}_3$} node[gray!30]{$\bullet$};
+\draw (B) node[left,gray!30]{$\mathsf{F}_2$} node[gray!30]{$\bullet$};
+\only<2->{
+\draw (B) node[left]{$\mathsf{F}_2$} node{$\bullet$};}
+\only<3->{
+\draw (A) node[left]{$\mathsf{F}_3$} node{$\bullet$};}
+
 %\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
 %\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
 \begin{scope}[xshift=0cm]
@@ -1932,10 +1920,10 @@ Faire slide avec tour et volcan à côté.
 			\draw (CB)--(CBB);}
 			\only<1>{
 			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CA) node[gray!80]{$\bullet$};
+			\draw (CA) node[gray!30]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};
-			\draw (CB) node[gray!80]{$\bullet$};}
-			\only<2>{
+			\draw (CB) node[gray!30]{$\bullet$};}
+			\only<2->{
 			\draw (CA) node[fill=white]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};}
 			\draw (A) node[fill=white]{$\bullet$};
@@ -1947,13 +1935,13 @@ Faire slide avec tour et volcan à côté.
 			\draw (CBB) node[fill=white]{$\bullet$};}
 			\only<1-2>{
 			\draw (CAA) node[fill=white]{$\bullet$};
-			\draw (CAA) node[gray!80]{$\bullet$};
+			\draw (CAA) node[gray!30]{$\bullet$};
 			\draw (CAB) node[fill=white]{$\bullet$};
-			\draw (CAB) node[gray!80]{$\bullet$};
+			\draw (CAB) node[gray!30]{$\bullet$};
 			\draw (CBA) node[fill=white]{$\bullet$};
-			\draw (CBA) node[gray!80]{$\bullet$};
+			\draw (CBA) node[gray!30]{$\bullet$};
 			\draw (CBB) node[fill=white]{$\bullet$};
-			\draw (CBB) node[gray!80]{$\bullet$};}
+			\draw (CBB) node[gray!30]{$\bullet$};}
 			\end{scope}
 			\begin{scope}[xshift=4cm]% sous volcan de droite
 			\coordinate (A) at (0,0);
@@ -1983,10 +1971,10 @@ Faire slide avec tour et volcan à côté.
 			\draw (CB)--(CBB);}
 			\only<1>{
 			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CA) node[gray!80]{$\bullet$};
+			\draw (CA) node[gray!30]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};
-			\draw (CB) node[gray!80]{$\bullet$};}
-			\only<2>{
+			\draw (CB) node[gray!30]{$\bullet$};}
+			\only<2->{
 			\draw (CA) node[fill=white]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};}
 			\draw (A) node[fill=white]{$\bullet$};
@@ -1998,13 +1986,13 @@ Faire slide avec tour et volcan à côté.
 			\draw (CBB) node[fill=white]{$\bullet$};}
 			\only<1-2>{
 			\draw (CAA) node[fill=white]{$\bullet$};
-			\draw (CAA) node[gray!80]{$\bullet$};
+			\draw (CAA) node[gray!30]{$\bullet$};
 			\draw (CAB) node[fill=white]{$\bullet$};
-			\draw (CAB) node[gray!80]{$\bullet$};
+			\draw (CAB) node[gray!30]{$\bullet$};
 			\draw (CBA) node[fill=white]{$\bullet$};
-			\draw (CBA) node[gray!80]{$\bullet$};
+			\draw (CBA) node[gray!30]{$\bullet$};
 			\draw (CBB) node[fill=white]{$\bullet$};
-			\draw (CBB) node[gray!80]{$\bullet$};}
+			\draw (CBB) node[gray!30]{$\bullet$};}
 			\end{scope}
 			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
 			\coordinate (A) at (0,0);
@@ -2034,10 +2022,10 @@ Faire slide avec tour et volcan à côté.
 			\draw (CB)--(CBB);}
 			\only<1>{
 			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CA) node[gray!80]{$\bullet$};
+			\draw (CA) node[gray!30]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};
-			\draw (CB) node[gray!80]{$\bullet$};}
-			\only<2>{
+			\draw (CB) node[gray!30]{$\bullet$};}
+			\only<2->{
 			\draw (CA) node[fill=white]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};}
 			\draw (A) node[fill=white]{$\bullet$};
@@ -2049,13 +2037,13 @@ Faire slide avec tour et volcan à côté.
 			\draw (CBB) node[fill=white]{$\bullet$};}
 			\only<1-2>{
 			\draw (CAA) node[fill=white]{$\bullet$};
-			\draw (CAA) node[gray!80]{$\bullet$};
+			\draw (CAA) node[gray!30]{$\bullet$};
 			\draw (CAB) node[fill=white]{$\bullet$};
-			\draw (CAB) node[gray!80]{$\bullet$};
+			\draw (CAB) node[gray!30]{$\bullet$};
 			\draw (CBA) node[fill=white]{$\bullet$};
-			\draw (CBA) node[gray!80]{$\bullet$};
+			\draw (CBA) node[gray!30]{$\bullet$};
 			\draw (CBB) node[fill=white]{$\bullet$};
-			\draw (CBB) node[gray!80]{$\bullet$};}
+			\draw (CBB) node[gray!30]{$\bullet$};}
 			\end{scope}
 	\end{scope}
 \end{scope}
