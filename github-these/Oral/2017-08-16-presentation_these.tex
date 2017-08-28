@@ -363,7 +363,7 @@ and let $m>0$
 
 
 \begin{frame}
-\frametitle{Refresher on isogenies}
+\frametitle{Isogenies}
 \bluebox{Isogenies}{
 \begin{itemize}
 \item $E$ and $E'$ two elliptic curves, an isogeny is  a surjective morphism $\phi: E \rightarrow E'$ such that $\phi(0_{E})=0_{E'}$. Isogenies are
@@ -1882,86 +1882,180 @@ Faire slide avec tour et volcan à côté.
 \coordinate (C) at (-2,10);
 %\coordinate (CB) at (1,10);
 %\coordinate (CZ) at (-1.5,10);
-\draw (A) node[left]{$\mathbb{Z} + \ell^2 \mathcal{O}$} node{$\bullet$};
-\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}$} node{$\bullet$};
-\draw (C) node[left]{$\mathcal{O}$} node{$\bullet$};
+\draw (A) node[left]{$\mathsf{F}_3$} node{$\bullet$};
+\draw (B) node[left]{$\mathsf{F}_2$} node{$\bullet$};
+\draw (C) node[left]{$\mathbb{F}_q$} node{$\bullet$};
 \draw (A)--(B)node[midway,left] {$\ell$};
 \draw (B)--(C) node[midway,left] {$\ell$};
 %\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
 %\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
-\begin{scope}[yshift=10cm]
-	\begin{scope}[xshift=4.3cm]
-		\node (A) at (-5,0) {$\bullet$};
-		\node (B) at (5,0) {$\bullet$};
-		\node (C1) at (270:2.0) {$\bullet$};
+\begin{scope}[xshift=0cm]
+	\begin{scope}[yshift=10cm,xshift=6cm]
+		\node (A) at (-4,0) {$  \bullet $};
+		\node (B) at (4,0) {$   \bullet$};
+		\node (C) at (270:1.2) {$ \bullet \color{black}$};
 		\node (D) at (90:1.5) {};
 		%\draw[-] (A.center) to[bend right=25] (C.center);
-		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
+		\draw[-] (A.center) to[bend left=40] (B.center);
 		%\draw[-] (B.center) to[bend left=25] (C.center);
 		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		\draw[-] (A.center) to[bend right=40] (B.center);
-			\begin{scope}[xshift=-5cm]
+		\draw[-] (A.center) to[bend right=30] (B.center);
+		\draw (A) node{$  \bullet $};
+		\draw (B) node{$  \bullet $};
+		\draw (C) node{$  \bullet $};
+		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
+			\begin{scope}[xshift=-4cm]% sous volcan de gauche
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
+			\coordinate (C) at (0,-3);
+			\coordinate (CA) at (1,-6);
+			\coordinate (CB) at (-1,-6);
+			\coordinate (CAA) at (1.4,-9);
+			\coordinate (CAB) at (0.6,-9);
+			\coordinate (CBA) at (-0.6,-9);
+			\coordinate (CBB) at (-1.4,-9);
 			\only<1>{
-			\draw [dashed,gray!30](C)--(CA);
-			\draw [dashed,gray!30](C)--(CB);
-			\draw (CA) node[gray!30]{$\bullet$};
-			\draw (CB) node[gray!30]{$\bullet$}; }
+			\draw [dashed,gray!30] (C)--(CA);
+			\draw [dashed,gray!30] (C)--(CB);}
 			\only<2->{
 			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (CA) node{$\bullet$};
-			\draw (CB) node{$\bullet$};}
-			\draw (A) node{$\bullet$};
-			\draw (C) node{$\bullet$};
+			\draw (C)--(CB);}
 			\draw (A)--(C);
+			\only<1-2>{
+			\draw [dashed,gray!30] (CA)--(CAA);
+			\draw [dashed,gray!30] (CA)--(CAB);
+			\draw [dashed,gray!30] (CB)--(CBA);
+			\draw [dashed,gray!30] (CB)--(CBB);}
+			\only<3>{
+			\draw (CA)--(CAA);
+			\draw (CA)--(CAB);
+			\draw (CB)--(CBA);
+			\draw (CB)--(CBB);}
+			\only<1>{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CA) node[gray!80]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (CB) node[gray!80]{$\bullet$};}
+			\only<2>{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};}
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\only<3>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};}
+			\only<1-2>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAA) node[gray!80]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CAB) node[gray!80]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBA) node[gray!80]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};
+			\draw (CBB) node[gray!80]{$\bullet$};}
 			\end{scope}
-			\begin{scope}[xshift=5cm]
+			\begin{scope}[xshift=4cm]% sous volcan de droite
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
+			\coordinate (C) at (0,-3);
+			\coordinate (CA) at (1,-6);
+			\coordinate (CB) at (-1,-6);
+			\coordinate (CAA) at (1.4,-9);
+			\coordinate (CAB) at (0.6,-9);
+			\coordinate (CBA) at (-0.6,-9);
+			\coordinate (CBB) at (-1.4,-9);
 			\only<1>{
-			\draw [dashed,gray!30](C)--(CA);
-			\draw [dashed,gray!30](C)--(CB);
-			\draw (CA) node[gray!30]{$\bullet$};
-			\draw (CB) node[gray!30]{$\bullet$}; }
+			\draw [dashed,gray!30] (C)--(CA);
+			\draw [dashed,gray!30] (C)--(CB);}
 			\only<2->{
 			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (CA) node{$\bullet$};
-			\draw (CB) node{$\bullet$};}
-			\draw (A) node{$\bullet$};
-			\draw (C) node{$\bullet$};
+			\draw (C)--(CB);}
 			\draw (A)--(C);
+			\only<1-2>{
+			\draw [dashed,gray!30] (CA)--(CAA);
+			\draw [dashed,gray!30] (CA)--(CAB);
+			\draw [dashed,gray!30] (CB)--(CBA);
+			\draw [dashed,gray!30] (CB)--(CBB);}
+			\only<3>{
+			\draw (CA)--(CAA);
+			\draw (CA)--(CAB);
+			\draw (CB)--(CBA);
+			\draw (CB)--(CBB);}
+			\only<1>{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CA) node[gray!80]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (CB) node[gray!80]{$\bullet$};}
+			\only<2>{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};}
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\only<3>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};}
+			\only<1-2>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAA) node[gray!80]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CAB) node[gray!80]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBA) node[gray!80]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};
+			\draw (CBB) node[gray!80]{$\bullet$};}
 			\end{scope}
-			\begin{scope}[shift={(C1)}]
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
+			\coordinate (C) at (0,-3);
+			\coordinate (CA) at (1,-6);
+			\coordinate (CB) at (-1,-6);
+			\coordinate (CAA) at (1.4,-9);
+			\coordinate (CAB) at (0.6,-9);
+			\coordinate (CBA) at (-0.6,-9);
+			\coordinate (CBB) at (-1.4,-9);
 			\only<1>{
-			\draw [dashed,gray!30](C)--(CA);
-			\draw [dashed,gray!30](C)--(CB);
-			\draw (CA) node[gray!30]{$\bullet$};
-			\draw (CB) node[gray!30]{$\bullet$}; }
+			\draw [dashed,gray!30] (C)--(CA);
+			\draw [dashed,gray!30] (C)--(CB);}
 			\only<2->{
 			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (CA) node{$\bullet$};
-			\draw (CB) node{$\bullet$};}
-			\draw (A) node{$\bullet$};
-			\draw (C) node{$\bullet$};
+			\draw (C)--(CB);}
 			\draw (A)--(C);
-            \only<1-1>{
-            \draw[line width=1.5pt,red,->] (A)--(C);
-            }
-            \only<2-2>{
-			\draw[line width=1.5pt,red,<-] (A)--(C);            
-            }
+			\only<1-2>{
+			\draw [dashed,gray!30] (CA)--(CAA);
+			\draw [dashed,gray!30] (CA)--(CAB);
+			\draw [dashed,gray!30] (CB)--(CBA);
+			\draw [dashed,gray!30] (CB)--(CBB);}
+			\only<3>{
+			\draw (CA)--(CAA);
+			\draw (CA)--(CAB);
+			\draw (CB)--(CBA);
+			\draw (CB)--(CBB);}
+			\only<1>{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CA) node[gray!80]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (CB) node[gray!80]{$\bullet$};}
+			\only<2>{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};}
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\only<3>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};}
+			\only<1-2>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAA) node[gray!80]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CAB) node[gray!80]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBA) node[gray!80]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};
+			\draw (CBB) node[gray!80]{$\bullet$};}
 			\end{scope}
 	\end{scope}
 \end{scope}
