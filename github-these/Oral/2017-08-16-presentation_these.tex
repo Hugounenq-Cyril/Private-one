@@ -313,6 +313,17 @@ $E$ et un entier $n$:
 [n] \;:\; E & \to E\\
 P & \mapsto [n] P
 \end{align*}}
+
+
+%\vspace{-1mm}
+
+\bluebox{Torsion points}{
+Let $E$ be an elliptic curve defined over a finite field $\mathbb{F}_q$, and let $m>0$
+\vspace{-1.5mm}
+\[E[m]= \{ P \in E(\bar{\mathbb{F}}_q) , [m]P=0_E \} \]
+}
+
+
 \pause 
 \hfill
 \bluebox{Problème du logarithme discret sur une courbe elliptique $E$}
@@ -465,13 +476,24 @@ p^{O(1)})$ operations.
 
 \begin{frame}
 \frametitle{Torsion points of elliptic curves}
+\begin{prop} [Silverman, '86]
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Les conditions suivantes sont équivalentes:
+\begin{enumerate}
+\item $E$ est supersingulière,
+\item $E[p^e]=\{O_E\}$ pour tout $e > 0$,
+\item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
+\end{enumerate}
+si ces conditions ne sont pas vérifiées alors on a les conditions équivalentes suivantes:
+\begin{enumerate}
+\item $E$ est ordinaire,
+\item $E[p^e]=\mathbb{Z}/p^e\mathbb{Z}$ pour tout $e > 0$,
+\item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombres quadratique imaginaire.
+\end{enumerate}
+\end{prop}
 
-\vspace{-1mm}
+\end{frame}
 
-\bluebox{Torsion points}{
-Let $E$ be an elliptic curve defined over a finite field $\mathbb{F}_q$, and let $m>0$
-\vspace{-1.5mm}
-\[E[m]= \{ P \in E(\bar{\mathbb{F}}_q) , [m]P=0_E \} \]
+\begin{frame}
 
 For \emph{ordinary} elliptic curves
 \vspace{-1.5mm}
@@ -479,7 +501,7 @@ For \emph{ordinary} elliptic curves
 E[\ell^k]&\simeq\mathbb{Z}/\ell^k\mathbb{Z} \times \mathbb{Z}/\ell^k\mathbb{Z} \quad \textit{with } \ell \neq p \\
 E[p^k]&\simeq\mathbb{Z}/p^k\mathbb{Z}
 \end{align*}
-}
+
 \pause
 \bluebox{Couveignes' algorithm (compute an $r$-isogeny $\phi:E\to E'$)}{
 Compute $\phi$ by interpolation over $E[p^k]$:
@@ -593,7 +615,6 @@ $\Rightarrow O(r^2)$ possibilities.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{An $\ell$-adic Couveignes algorithm (special case)}
-\section{An $\ell$-adic Couveignes algorithm (special case)}
 
 \begin{frame}
 \frametitle{Frobenius vs isogenies}
@@ -613,9 +634,7 @@ We are only working with rational isogenies $\psi:E \to E'$, i.e.
 \begin{frame}
 %\section{Computation of endomorphism rings}
 \frametitle{Computation of endomorphism rings}
-\begin{prop} [Silverman, '86]
-Soit $E$ une courbe elliptique alors son anneau d'endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre $\mathcal{O}$ défini dans un corps de nombre quadratique imaginaire noté ici $K$. 
-\end{prop}
+
 
 \begin{defi}
 Une courbe elliptique $E$ est dite à multiplication complexe si $\mathrm{End}(E)$ n'est pas réduit à $\mathbb{Z}$.
@@ -625,16 +644,6 @@ On a le résultat suivant sur la structure de $\mathrm{End}(E)$.
 \end{frame}
 
 \begin{frame}
-
-\begin{thm}
-$\mathrm{End}(E)$ est
-\begin{itemize}
-\item soit isomorphe à $\mathbb{Z}$ dans ce cas la courbe est \emph{ordinaire}, 
-\item soit isomorphe à un ordre dans un corps quadratique imaginaire dans ce cas la courbe est \emph{ordinaire}, 
-\item soit isomorphe à un ordre dans une algèbre de quaternions, la courbe est \emph{supersingulière}. 
-\end{itemize}
-\end{thm}
-
 
 \begin{prop}
 Soit $E$ une courbe elliptique ordinaire, alors 
@@ -905,8 +914,10 @@ In the rest of this talk we consider first volcanoes with cyclic crater (Elkies 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{An $\ell$-adic Couveignes algorithm (special case)}
 
 \begin{frame}
+
 \vspace{-4mm}
   \begin{center}
     \begin{tabular}{p{13em}p{2em}p{13em}}
@@ -1566,12 +1577,11 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \end{itemize}
   }
 \end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{An $\ell$-adic Couveignes algorithm}
 
 \begin{frame}
 %\section{Atkin Case}
-\section{An $\ell$-adic Couveignes algorithm}
 \frametitle{Atkin case}
 \bluebox{Atkin prime}{We say that $\ell$ is an \emph{Atkin prime} if the characteristic polynomial of $\pi$: 
 \[
@@ -2635,9 +2645,7 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 \item Return $\mathcal{O}=\mathbb{Z} + \left( (\pi-a)/ \prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
 \end{enumerate}
 \end{frame}
-
 \end{document}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
