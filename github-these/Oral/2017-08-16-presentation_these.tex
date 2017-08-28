@@ -1659,191 +1659,18 @@ Thus the method used with \emph{Elkies prime} using two different eigenspaces ca
 \end{figure}
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-
-
-\begin{frame}
-\begin{prop}
-%In the Atkin case the action of the Frobenius endomorphism $\pi$ on 
-%$E[\ell^{h+1}]$~is, over~$\mathbb{Z}_{\ell}$, equals to the matrix 
-%\[\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-%\end{matrix}\right ), \quad \text{with }a,d \text{ primes with }\ell, v_{\ell}(a-d)\geqslant h \]  %with $a,d $ primes with $\ell$,
-%with $e$ the depth of $E$ in the volcano. Moreover 
-%\begin{itemize}
-%\item either $b$ and $c$ are prime with $\ell$;
-%\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation included in $ [2,2e]$.
-%\end{itemize}
-In the Atkin case for any bases $(P,Q)$ of $E[\ell^k]$ with $k>h-e$ and $e$ the depth of $E$ in the volcano. The action of the Frobenius $\pi$ in this basis is up to permutation equals to:
- \[\pi(P,Q)= \left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-\end{matrix}\right ) \bmod \ell^k, \quad \text{with }a,d \text{ primes with }\ell, v_{\ell}(a-d)\geqslant h .\]
-Moreover 
-\begin{itemize}
-\item either $b$ and $c$ are prime with $\ell$;
-\item either $b$ is prime with $\ell$ and $v_{\ell}(c) \in [2,2e]$.
-\end{itemize}
-\end{prop}
-
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}[scale=0.225]
-\coordinate (A) at (-2,2.5);
-\coordinate (B) at (-1,6.5);
-\coordinate (C) at (0,10);
-\draw (A) node[left]{$\left( \begin{smallmatrix}
-a_0 & b_0 \\
-c_0 & d_0
-\end{smallmatrix} \right) \color{black} $}; %node{$\bullet$};
-\draw (B) node[left]{$ \left( \begin{smallmatrix}
-a_1 & b_1\ell \\
-c_1\ell & d_1
-\end{smallmatrix} \right) \color{black} $}; %node{$\bullet$};
-\draw (C) node[left]{$ \left( \begin{smallmatrix}
-a_2 & b_2\ell^2 \\
-c_2\ell^2 & d_2
-\end{smallmatrix} \right) \color{black} $}; %node{$\bullet$};
-\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
-		\coordinate (D) at (0,0);
-		\coordinate (E) at (-6,-5);
-		\coordinate (F) at (6,-5);
-		\coordinate (G) at (-4,-11);
-		\coordinate (H) at (-8,-11);
-		\coordinate (I) at (4,-11);
-		\coordinate (J) at (8,-11);
-		\coordinate (K) at (0,-5);
-		\coordinate (L) at (-2,-11);
-		\coordinate (M) at (2,-11);
-		\draw (D) -- (E);
-		\draw (D) -- (F);
-		\draw (D) -- (K);
-		\draw (K) -- (L);
-		\draw (K) -- (M);
-		\draw (E) -- (H);
-		\draw (E) -- (G);
-		\draw (F) -- (I);
-		\draw (F) -- (J);
-		%\coordinate (G) at (E)++(225:3);
-		\draw (D) node[fill=white]{$\bullet$};
-		\draw (J) node[fill=white]{$\bullet$};
-		\draw (E) node[fill=white]{$\bullet$};
-		\draw (F) node[fill=white]{$\bullet$};
-		\draw (G) node[fill=white]{$\bullet$};
-		\draw (H) node[fill=white]{$\bullet$};
-		\draw (I) node[fill=white]{$\bullet$};
-		\draw (K) node[fill=white]{$\bullet$};
-		\draw (L) node[fill=white]{$\bullet$};
-		\draw (M) node[fill=white]{$\bullet$};
-\end{scope}
-\end{tikzpicture}
-\end{center}
-%\caption{\label{fig:atk:dif:niv:mat} Exemples de matrices du Frobenius obtenues sur les différents niveaux d'un volcan de $\ell$-isogénies}
-\end{figure}
-%\todo{retravailler cette slide}
-%On peut donc comme dans le cas Elkies déterminer le niveau sur lequel se trouve une courbe elliptique dans le volcan d'isogénies dans le cas Atkin. 
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\begin{frame}
-%
-%\begin{prop}
-%Soient $P,R,R'$ trois points d'une courbe $E$, située au niveau du cratère volcan
-%des $\ell$-isogénies, tels que $\langle P,R \rangle = \langle P,R' \rangle= 
-%E[\ell^{h+i}]$ avec $i > 0 $ alors $\pi(P,R)=\pi(P,R') $ si et seulement
-%si $[\ell^{h}]R=[\ell^{h}]R'$.
-%\end{prop}
-%\pause 
-\begin{figure}
-\begin{center}
-\begin{tikzpicture}[scale=0.45]
-\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
-		\coordinate (D) at (0,0);
-		\coordinate (E) at (-6,-5);
-		\coordinate (F) at (6,-5);
-		\coordinate (G) at (-4,-11);
-		\coordinate (H) at (-8,-11);
-		\coordinate (I) at (4,-11);
-		\coordinate (J) at (8,-11);
-		\coordinate (K) at (0,-5);
-		\coordinate (L) at (-2,-11);
-		\coordinate (M) at (2,-11);
-		\draw (D) -- (E);
-		\draw (D) -- (K);
-		\only<2,3>{
-		\draw [line width=1.5pt,blue] (D) -- (E);}		
-		\draw (D) -- (F);
-		\draw (K) -- (L);
-		\draw (K) -- (M);
-		\draw (E) -- (H);
-		\only<3>{
-		\draw [line width=1.5pt,blue] (E) -- (H);
-		}
-		\only<2->
-		{
-		\draw [line width=1.5pt,red] (K) -- (M);
-		\draw [line width=1.5pt,red] (D) -- (K);
-		}		
-		\draw (E) -- (G);
-		\draw (F) -- (I);
-		\only<4>{
-		\draw [line width=1.5pt,red] (D) -- (K);
-		\draw [line width=1.5pt,red] (K) -- (M);
-		\draw [line width=1.5pt,blue] (D) -- (F);
-		\draw [line width=1.5pt,blue] (F) -- (I);
-		}
-		\draw (F) -- (J);
-		\draw (D) node[fill=white]{$E$};
-		\draw (K) node[fill=white]{$\bullet$};
-		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
-\\4  & 3 \end{smallmatrix} \right)$};
-		\only<2>{
-		\draw (E) node[fill=white]{$\color{blue}  \left( \begin{smallmatrix}7 & 4 
-\\4  & 3 \end{smallmatrix} \right)$};		
-		}
-		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
-		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
-\\12  & 3 \end{smallmatrix} \right) $};
-		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
-\\4  & 11 \end{smallmatrix} \right) $};
-		\only<3>{
-		\draw (H) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}15 & 12 
-\\4  & 11 \end{smallmatrix} \right) $};
-		}
-		\draw (L) node[fill=white]{$\bullet $};
-		\draw (M) node[fill=white]{$\bullet $};
-		\draw (I) node[fill=white]{$\left( \begin{smallmatrix}11 & 12 
-\\4 & 15 \end{smallmatrix} \right) $};
-		\only<4>{
-		\draw (I) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}11 & 12 
-\\4 & 15 \end{smallmatrix} \right) $};
-		}
-		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
-		\coordinate (A) at (12,-5);
-		\coordinate (B) at (12,-11);
-		\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
-		\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
-\end{scope}
-\end{tikzpicture}
-\end{center}
-\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies correspondant aux différentes matrices du Frobenius, calculées sur la courbe $E$ au sommet du volcan des $\ell$-isogénies. }
-\end{figure}
-%\pause
-\only<4>{On a $\ell^{k-h-1}(\ell-1)$ matrices dans la classe de conjugaison d'une matrice définie modulo $\ell^k$ pour une courbe située au niveau du cratère.
-}
-\end{frame}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{An $\ell$-adic Couveignes' algorithm in the Atkin case}
 %\begin{figure}
 \begin{center}
-\begin{tikzpicture}[scale=0.40]
-\begin{scope}[yshift=10.5cm,xshift=0cm,scale=0.75]
+\begin{tikzpicture}[yshift=-25cm,scale=0.25]
+\begin{scope}[yshift=0cm,xshift=0cm]
+		\coordinate (A) at (33,-5);
+		\coordinate (B) at (33,-11);
+		\draw (A) node[fill=white]{$ \bmod \ell^{h+1}$};
+		\draw (B) node[fill=white]{$ \bmod \ell^{h+2}$};
 		\coordinate (D) at (0,0);
 		\coordinate (E) at (-6,-5);
 		\coordinate (F) at (6,-5);
@@ -1855,13 +1682,13 @@ c_2\ell^2 & d_2
 		\coordinate (L) at (-1,-11);
 		\coordinate (M) at (1,-11);
 		\draw (D) -- (E);
-		\draw (D) -- (F);
+		\draw [line width=1.5pt,blue](D) -- (F);
 		\draw [line width=1.5pt,red] (D) -- (K);
 		\draw (K) -- (L);
 		\draw [line width=1.5pt,red] (K) -- (M);
 		\draw (E) -- (H);
 		\draw (E) -- (G);
-		\draw (F) -- (I);
+		\draw [line width=1.5pt,blue](F) -- (I);
 		\draw (F) -- (J);
 		\draw (D) node[fill=white]{$E$};
 		\draw (K) node[fill=white]{$\bullet$};
@@ -1875,7 +1702,7 @@ c_2\ell^2 & d_2
 \\4  & 11 \end{smallmatrix} \right) $};
 		\draw (L) node[fill=white]{$\bullet $};
 		\draw (M) node[fill=white]{$\bullet $};
-		\draw (I) node[fill=white]{$\left( \begin{smallmatrix}11 & 12 
+		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}11 & 12 
 \\4 & 15 \end{smallmatrix} \right) $};
 		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
 \\4  & 7 \end{smallmatrix} \right) $};
@@ -1884,7 +1711,7 @@ c_2\ell^2 & d_2
 		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
 		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
 \end{scope}
-\begin{scope}[yshift=10.5cm,xshift=14.8cm,scale=0.75]
+\begin{scope}[yshift=0cm,xshift=20.0cm]
 		\coordinate (D) at (0,0);
 		\coordinate (E) at (-6,-5);
 		\coordinate (F) at (6,-5);
@@ -1896,13 +1723,13 @@ c_2\ell^2 & d_2
 		\coordinate (L) at (-1,-11);
 		\coordinate (M) at (1,-11);
 		\draw (D) -- (E);
-		\draw (D) -- (F);
+		\draw [line width=1.5pt,blue](D) -- (F);
 		\draw [line width=1.5pt,red] (D) -- (K);
 		\draw (K) -- (L);
 		\draw [line width=1.5pt,red] (K) -- (M);
 		\draw (E) -- (H);
 		\draw (E) -- (G);
-		\draw (F) -- (I);
+		\draw [line width=1.5pt,blue](F) -- (I);
 		\draw (F) -- (J);
 		\draw (D) node[fill=white]{$E'$};
 		\draw (K) node[fill=white]{$\bullet$};
@@ -1916,7 +1743,7 @@ c_2\ell^2 & d_2
 \\4  & 11 \end{smallmatrix} \right) $};
 		\draw (L) node[fill=white]{$\bullet $};
 		\draw (M) node[fill=white]{$\bullet $};
-		\draw (I) node[fill=white]{$\left( \begin{smallmatrix}11 & 12 
+		\draw (I) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}11 & 12 
 \\4 & 15 \end{smallmatrix} \right) $};
 		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
 \\4  & 7 \end{smallmatrix} \right) $};
@@ -1933,9 +1760,9 @@ c_2\ell^2 & d_2
 \end{tikzpicture}
 \end{center}
 %\end{figure}
-Once the image by $\phi$ of one of the two bases point of $E[\ell^k]$ is 
-determined, then the matrix that represents the Frobenius determines the 
-descending isogenies generated by the second basis point. 
+Once the image by $\phi$ of one ($\color{red} P$) of the two bases point of $E[\ell^{h+i}]$ is 
+determined, then the matrix that represents the Frobenius determines uniquely a generator of the
+descending $\ell^{i}$-isogenies generated by the second basis point ($\color{blue} Q$). 
 %Une fois que l'image par $\phi$ d'un des deux points de la base de la $\ell^k$-torsion a été déterminé alors la forme de la matrice du Frobenius détermine les $\ell$-isogénies descendantes engendrées par le second point de la base.
 \end{frame}
 
@@ -2015,8 +1842,8 @@ descending isogenies generated by the second basis point.
 \begin{defi}[Tour \textit{$\ell$}-adique]
 Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $\ell$-adiques de $\mathbb{F}_q$ est la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{1}, \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
 \begin{itemize}
-\item[Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus $r \mid d_1$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
-\item[Cas Atkin] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré au plus $ \ell^2-1$,
+\item [Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus $r \mid d_1$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
+\item [Cas Atkin] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré au plus $ \ell^2-1$,
 \item $\mathsf{F}_{i}$ pour $i \geqslant 2$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
 \end{itemize}
 \end{defi}
@@ -2026,6 +1853,125 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 
 \begin{frame}
 Faire slide avec tour et volcan à côté.
+
+\begin{figure}
+\begin{center}
+
+\begin{tikzpicture}[scale=0.55]
+\coordinate (A1) at (-8,0);
+		\coordinate (A2) at (-8,2);
+		\coordinate (A3) at (-8,4);
+		\coordinate (A4) at (-8,6);
+		\draw (A1)--(A2)--(A3)--(A4);
+		\draw (A1) node{$\bullet$};
+		\draw (A2) node{$\bullet$};
+		\draw (A3) node{$\bullet$};
+		\draw (A4) node{$\bullet$};
+		\draw (A1) node[left]{$\mathbb{F}_q$};
+		\draw (A2) node[left]{$\mathsf{F}_{1}$};
+		\draw (A3) node[left]{$\mathsf{F}_{2}$};
+		\draw (A4) node[left]{$\mathsf{F}_{3}$};
+
+\coordinate (A) at (-2,1.5);
+%\coordinate (AB) at (1,1.5);
+%\coordinate (AZ) at (-1.5,1.5);	
+\coordinate (B) at (-2,5);
+%\coordinate (BB) at (1,5);
+%\coordinate (BZ) at (-1.5,5.2);
+%\coordinate (BZ2) at (-1.5,4.8);
+\coordinate (C) at (-2,10);
+%\coordinate (CB) at (1,10);
+%\coordinate (CZ) at (-1.5,10);
+\draw (A) node[left]{$\mathbb{Z} + \ell^2 \mathcal{O}$} node{$\bullet$};
+\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}$} node{$\bullet$};
+\draw (C) node[left]{$\mathcal{O}$} node{$\bullet$};
+\draw (A)--(B)node[midway,left] {$\ell$};
+\draw (B)--(C) node[midway,left] {$\ell$};
+%\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
+%\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
+\begin{scope}[yshift=10cm]
+	\begin{scope}[xshift=4.3cm]
+		\node (A) at (-5,0) {$\bullet$};
+		\node (B) at (5,0) {$\bullet$};
+		\node (C1) at (270:2.0) {$\bullet$};
+		\node (D) at (90:1.5) {};
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[-] (A.center) to[bend right=40] (B.center);
+			\begin{scope}[xshift=-5cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\only<1>{
+			\draw [dashed,gray!30](C)--(CA);
+			\draw [dashed,gray!30](C)--(CB);
+			\draw (CA) node[gray!30]{$\bullet$};
+			\draw (CB) node[gray!30]{$\bullet$}; }
+			\only<2->{
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (CA) node{$\bullet$};
+			\draw (CB) node{$\bullet$};}
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+			\end{scope}
+			\begin{scope}[xshift=5cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\only<1>{
+			\draw [dashed,gray!30](C)--(CA);
+			\draw [dashed,gray!30](C)--(CB);
+			\draw (CA) node[gray!30]{$\bullet$};
+			\draw (CB) node[gray!30]{$\bullet$}; }
+			\only<2->{
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (CA) node{$\bullet$};
+			\draw (CB) node{$\bullet$};}
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+			\end{scope}
+			\begin{scope}[shift={(C1)}]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\only<1>{
+			\draw [dashed,gray!30](C)--(CA);
+			\draw [dashed,gray!30](C)--(CB);
+			\draw (CA) node[gray!30]{$\bullet$};
+			\draw (CB) node[gray!30]{$\bullet$}; }
+			\only<2->{
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (CA) node{$\bullet$};
+			\draw (CB) node{$\bullet$};}
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+            \only<1-1>{
+            \draw[line width=1.5pt,red,->] (A)--(C);
+            }
+            \only<2-2>{
+			\draw[line width=1.5pt,red,<-] (A)--(C);            
+            }
+			\end{scope}
+	\end{scope}
+\end{scope}
+
+%faire des fleches courbees avec les indices \ell et \ell^2
+
+
+\end{tikzpicture}
+\end{center}		
+\end{figure}
 \end{frame}
 
 
@@ -2220,9 +2166,9 @@ and then we use the Chinese  Remainder Theorem to get $L$.
 		\draw (A3) node{$\bullet$};
 		\draw (A4) node{$\bullet$};
 		\draw (A1) node[left]{$\mathbb{F}_q$};
-		\draw (A2) node[left]{$\mathbb{F}_{q^\ell}$};
-		\draw (A3) node[left]{$\mathbb{F}_{q^{\ell^2}}$};
-		\draw (A4) node[left]{$\mathbb{F}_{q^{\ell^3}}$};
+		\draw (A2) node[left]{$\mathsf{F}_{2}$};
+		\draw (A3) node[left]{$\mathsf{F}_{3}$};
+		\draw (A4) node[left]{$\mathsf{F}_{4}$};
 \end{tikzpicture}
 
 \end{center}
@@ -2418,6 +2364,100 @@ E_s$ of order $2^3$ such that $[2]P$ is an horizontal point and $\psi: E_s
 \end{figure}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}
+%
+%\begin{prop}
+%Soient $P,R,R'$ trois points d'une courbe $E$, située au niveau du cratère volcan
+%des $\ell$-isogénies, tels que $\langle P,R \rangle = \langle P,R' \rangle= 
+%E[\ell^{h+i}]$ avec $i > 0 $ alors $\pi(P,R)=\pi(P,R') $ si et seulement
+%si $[\ell^{h}]R=[\ell^{h}]R'$.
+%\end{prop}
+%\pause 
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.45]
+\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-2,-11);
+		\coordinate (M) at (2,-11);
+		\draw (D) -- (E);
+		\draw (D) -- (K);
+		\only<2,3>{
+		\draw [line width=1.5pt,blue] (D) -- (E);}		
+		\draw (D) -- (F);
+		\draw (K) -- (L);
+		\draw (K) -- (M);
+		\draw (E) -- (H);
+		\only<3>{
+		\draw [line width=1.5pt,blue] (E) -- (H);
+		}
+		\only<2->
+		{
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw [line width=1.5pt,red] (D) -- (K);
+		}		
+		\draw (E) -- (G);
+		\draw (F) -- (I);
+		\only<4>{
+		\draw [line width=1.5pt,red] (D) -- (K);
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw [line width=1.5pt,blue] (D) -- (F);
+		\draw [line width=1.5pt,blue] (F) -- (I);
+		}
+		\draw (F) -- (J);
+		\draw (D) node[fill=white]{$E$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
+\\4  & 3 \end{smallmatrix} \right)$};
+		\only<2>{
+		\draw (E) node[fill=white]{$\color{blue}  \left( \begin{smallmatrix}7 & 4 
+\\4  & 3 \end{smallmatrix} \right)$};		
+		}
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
+\\12  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
+\\4  & 11 \end{smallmatrix} \right) $};
+		\only<3>{
+		\draw (H) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}15 & 12 
+\\4  & 11 \end{smallmatrix} \right) $};
+		}
+		\draw (L) node[fill=white]{$\bullet $};
+		\draw (M) node[fill=white]{$\bullet $};
+		\draw (I) node[fill=white]{$\left( \begin{smallmatrix}11 & 12 
+\\4 & 15 \end{smallmatrix} \right) $};
+		\only<4>{
+		\draw (I) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}11 & 12 
+\\4 & 15 \end{smallmatrix} \right) $};
+		}
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\coordinate (A) at (12,-5);
+		\coordinate (B) at (12,-11);
+		\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
+		\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\caption{\label{fig:atk:dif:niv:iso} Exemples des isogénies correspondant aux différentes matrices du Frobenius, calculées sur la courbe $E$ au sommet du volcan des $\ell$-isogénies. }
+\end{figure}
+%\pause
+\only<4>{On a $\ell^{k-h-1}(\ell-1)$ matrices dans la classe de conjugaison d'une matrice définie modulo $\ell^k$ pour une courbe située au niveau du cratère.
+}
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -2457,7 +2497,91 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 %Parler de Bisson Sutherland (Utilise les cycles d'isogénies et les relations qui donnent un endomorphisme)}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+\begin{frame}
+\begin{prop}
+%In the Atkin case the action of the Frobenius endomorphism $\pi$ on 
+%$E[\ell^{h+1}]$~is, over~$\mathbb{Z}_{\ell}$, equals to the matrix 
+%\[\left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
+%\end{matrix}\right ), \quad \text{with }a,d \text{ primes with }\ell, v_{\ell}(a-d)\geqslant h \]  %with $a,d $ primes with $\ell$,
+%with $e$ the depth of $E$ in the volcano. Moreover 
+%\begin{itemize}
+%\item either $b$ and $c$ are prime with $\ell$;
+%\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation included in $ [2,2e]$.
+%\end{itemize}
+In the Atkin case for any bases $(P,Q)$ of $E[\ell^k]$ with $k>h-e$ and $e$ the depth of $E$ in the volcano. The action of the Frobenius $\pi$ in this basis is up to permutation equals to:
+ \[\pi(P,Q)= \left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
+\end{matrix}\right ) \bmod \ell^k, \quad \text{with }a,d \text{ primes with }\ell, v_{\ell}(a-d)\geqslant h .\]
+Moreover 
+\begin{itemize}
+\item either $b$ and $c$ are prime with $\ell$;
+\item either $b$ is prime with $\ell$ and $v_{\ell}(c) \in [2,2e]$.
+\end{itemize}
+\end{prop}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.225]
+\coordinate (A) at (-2,2.5);
+\coordinate (B) at (-1,6.5);
+\coordinate (C) at (0,10);
+\draw (A) node[left]{$\left( \begin{smallmatrix}
+a_0 & b_0 \\
+c_0 & d_0
+\end{smallmatrix} \right) \color{black} $}; %node{$\bullet$};
+\draw (B) node[left]{$ \left( \begin{smallmatrix}
+a_1 & b_1\ell \\
+c_1\ell & d_1
+\end{smallmatrix} \right) \color{black} $}; %node{$\bullet$};
+\draw (C) node[left]{$ \left( \begin{smallmatrix}
+a_2 & b_2\ell^2 \\
+c_2\ell^2 & d_2
+\end{smallmatrix} \right) \color{black} $}; %node{$\bullet$};
+\begin{scope}[yshift=10.5cm,xshift=6.3cm,scale=0.75]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-2,-11);
+		\coordinate (M) at (2,-11);
+		\draw (D) -- (E);
+		\draw (D) -- (F);
+		\draw (D) -- (K);
+		\draw (K) -- (L);
+		\draw (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw (F) -- (I);
+		\draw (F) -- (J);
+		%\coordinate (G) at (E)++(225:3);
+		\draw (D) node[fill=white]{$\bullet$};
+		\draw (J) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\bullet$};
+		\draw (F) node[fill=white]{$\bullet$};
+		\draw (G) node[fill=white]{$\bullet$};
+		\draw (H) node[fill=white]{$\bullet$};
+		\draw (I) node[fill=white]{$\bullet$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (L) node[fill=white]{$\bullet$};
+		\draw (M) node[fill=white]{$\bullet$};
+\end{scope}
+\end{tikzpicture}
+\end{center}
+%\caption{\label{fig:atk:dif:niv:mat} Exemples de matrices du Frobenius obtenues sur les différents niveaux d'un volcan de $\ell$-isogénies}
+\end{figure}
+%\todo{retravailler cette slide}
+%On peut donc comme dans le cas Elkies déterminer le niveau sur lequel se trouve une courbe elliptique dans le volcan d'isogénies dans le cas Atkin. 
+
+\end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 %A l'aide des propositions sur les formes de la matrice dans le cas Atkin et 
 %Elkies on peut savoir à quel niveau du volcan se trouve une courbe elliptique.
@@ -2490,6 +2614,7 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 \frametitle{Comparison with the Elkies case}
 \begin{figure}
@@ -2592,6 +2717,8 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 \end{figure}
 
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 %Parler de la représentation univariée et bivariée, dire que les calculs sont toujours plus rapide en univariée, montrer le passage d'une représentation bivariée à univariée. Dire que l'on peut ajouter des étages à la volée. Mentionner que l'on a des bonnes complexités pour le Frobenius en particulier.
