@@ -659,17 +659,17 @@ $\Rightarrow O(r^2)$ possibilities.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-%\section{Computation of endomorphism rings}
-\frametitle{Computation of endomorphism rings}
-
-
-\begin{defi}
-Une courbe elliptique $E$ est dite à multiplication complexe si $\mathrm{End}(E)$ n'est pas réduit à $\mathbb{Z}$.
-\end{defi}
-On a le résultat suivant sur la structure de $\mathrm{End}(E)$.
-
-\end{frame}
+%\begin{frame}
+%%\section{Computation of endomorphism rings}
+%\frametitle{Computation of endomorphism rings}
+%
+%
+%\begin{defi}
+%Une courbe elliptique $E$ est dite à multiplication complexe si $\mathrm{End}(E)$ n'est pas réduit à $\mathbb{Z}$.
+%\end{defi}
+%On a le résultat suivant sur la structure de $\mathrm{End}(E)$.
+%
+%\end{frame}
 
 \begin{frame}
 
@@ -830,8 +830,8 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		\draw (C) node[fill=white]{$\bullet$};
 		\draw (D) node[fill=white]{$\bullet$};
 		\node at (0,-6.7) {Inert prime $\ell$};
-		\node at (0,-8.2) {(Atkin case)};
-		\draw (A)--(B);
+		\node at (0,-8.2) {Atkin case  ($\left( \frac{d_{\pi}}{\ell} \right) = -1$)};
+		\draw (A)--(B); 
 		\draw (A)--(C);
 		\draw (A)--(D);		
 		\begin{scope}[xshift=9cm]
@@ -844,6 +844,7 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		\draw (C) node[fill=white]{$\bullet$};
 		\draw (D) node[fill=white]{$\bullet$};
 		\node at (2.8,-6.7) {Ramified prime $\ell$};
+		\node at (2.8,-8.2) {$\left( \frac{d_{\pi}}{\ell} \right) = 0$};
 		\draw (A)--(B);
 		\draw (A)--(C);
 		\draw (A)--(D);
@@ -866,7 +867,7 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		\node (C) at (270:1.2) {$\bullet$};
 		\node (D) at (90:1.5) {};
 		\node at (0,-6.7) {Split prime $\ell$};
-		\node at (0,-8.2) {(Elkies case)};
+		\node at (0,-8.2) {Elkies case ($\left( \frac{d_{\pi}}{\ell} \right) = 1$)};
 		%\draw[-] (A.center) to[bend right=25] (C.center);
 		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
 		%\draw[-] (B.center) to[bend left=25] (C.center);
@@ -1771,18 +1772,19 @@ c_2\ell^2 & d_2
 		\draw (D) -- (E);
 		\draw (D) -- (K);
 		\only<2,3>{
-		\draw [line width=1.5pt,blue] (D) -- (E);
-		\draw [line width=1.5pt,red] (D) -- (K);		
-		}
+		\draw [line width=1.5pt,blue] (D) -- (E);}		
 		\draw (D) -- (F);
 		\draw (K) -- (L);
 		\draw (K) -- (M);
 		\draw (E) -- (H);
 		\only<3>{
-		\draw [line width=1.5pt,red] (K) -- (M);
 		\draw [line width=1.5pt,blue] (E) -- (H);
 		}
-		
+		\only<2->
+		{
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw [line width=1.5pt,red] (D) -- (K);
+		}		
 		\draw (E) -- (G);
 		\draw (F) -- (I);
 		\only<4>{
@@ -1835,125 +1837,6 @@ c_2\ell^2 & d_2
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-%Faire une slide disant que l'on a pas la correspondance entre les différentes isogénies descendantes et ensuite embrayer sur les isogénies horizontales...
-%De plus on est pas capable de distinguer les isogénies descendantes.
-
-%\begin{prop}
-%\label{pro:etu:atk:elk}
-%
-%Soit $\langle P ,R \rangle = E[\ell^{h-e+1}]$ pour $E$ située au niveau $h-e$ 
-%du volcan. Alors pour toute $\ell$-isogénie $\psi$ descendante de domaine $E$ 
-%il existe $R'$ tel que $\ker(\psi)=\langle [\ell^{h-e}]R' \rangle$, $\langle P,R' 
-%\rangle = E[\ell^{h-e+1}]$ et $ \pi(P,R)= \pi(P,R') $
-%\end{prop}
-%\pause
-%Le Frobenius ne permet pas de distinguer les isogénies descendantes.
-\frametitle{Comparison with the Elkies case}
-\begin{figure}
-\begin{center}
-
-\begin{tikzpicture}[scale=0.290]
-
-\begin{scope}[yshift=10cm]
-	\begin{scope}[xshift=4.3cm]
-		\coordinate (A) at (-3,0);
-		\coordinate (B) at (3,0);
-		\coordinate (C) at (270:1.2);
-		\draw[-] (A.center) to[bend right=25] (C.center);
-		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
-		%\draw[-] (A.center) to[bend right=40] (B.center);
-		\draw[line width=2.25pt,red] (B.center) to[bend left=25] (C.center);
-		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
-			\begin{scope}[xshift=-3cm]% sous volcan de gauche
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\end{scope}
-			\begin{scope}[xshift=3cm]% sous volcan de droite
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw [line width=1.5pt,red] (C)--(A);
-			\draw (C)--(CB);
-			\draw (C)--(CA);
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\end{scope}
-			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw [line width=1.5pt,blue] (A)--(C);
-			%\draw (CA) node[fill=white]{$\bullet$};
-			\coordinate (CAB) at (260:8.5);
-			\coordinate (CBB) at (280:8.5);
-			\draw (CAB) node {$ \left( \begin{smallmatrix}
-					7 & 4 \\
-					0 & 3
-					\end{smallmatrix} \right) $};
-			%\draw (CB) node[fill=white]{$\bullet$};
-			\draw (CBB) node{$ \left( \begin{smallmatrix}
-					7 & 4 \\
-					0 & 3
-					\end{smallmatrix} \right) $};
-			%c est de la triche ce sont les seules matrices possibles...
-			%\draw (A) node{$\bullet$};
-			\only<1>{
-			\draw [line width=1.5pt,blue] (C)--(CA);
-			\draw (CAB) node {$ \color{blue} \left( \begin{smallmatrix}
-					7 & 4 \\
-					0 & 3
-					\end{smallmatrix} \right) $};
-			}
-			\only<2>{
-			\draw [line width=1.5pt,blue] (C)--(CB);
-			\draw (CBB) node{$ \color{blue} \left( \begin{smallmatrix}
-					7 & 4 \\
-					0 & 3
-					\end{smallmatrix} \right) $};
-			}			
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white]{$E$};
-			
-			
-			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};			
-			
-			\end{scope}
-			\coordinate (F) at (5,0);
-			\coordinate (G) at (5,-7);
-			\draw[dashed,<-] (F)--(G) node[midway,right]{$h$};
-	\end{scope}
-\end{scope}
-
-%faire des fleches courbees avec les indices \ell et \ell^2
-
-\end{tikzpicture}
-\end{center}
-
-\caption{\label{fig:elk:dif:niv:mat} Matrices du Frobenius possibles pour une base de $E[8]$ avec le premier vecteur de la base ($\color{red} P$) fixé et le second ($\color{blue} R$) qui engendre la $4$-isogénie descendante}
-\end{figure}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \begin{frame}
 \frametitle{An $\ell$-adic Couveignes' algorithm in the Atkin case}
@@ -2060,7 +1943,7 @@ descending isogenies generated by the second basis point.
 
 \begin{frame}
 
-\bluebox{Towards an $\ell$-adic Couveignes' algorithm (Atkin case)}{
+\bluebox{An $\ell$-adic Couveignes' algorithm (Atkin case)}{
 \begin{algorithmic}[1]
 \REQUIRE $E, E'$ two $r$-isogenous curves on $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ of degree $r$
@@ -2079,7 +1962,7 @@ descending isogenies generated by the second basis point.
 \item For each point $S'$ of order $\ell^k$ in $E'$: \hfill\only<2>{$O(r)$}
 \begin{enumerate}
 \medskip
-  \item Computation of $R'$ such that $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$O(\ell^4 r)$}
+  \item Computation of $R'$ such that $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$O(r \ell^{O(1)})$}
   \medskip
   \item For each point $U' \in E'$ such that $[\ell^h]R'=[\ell^h]U'$ \hfill\only<2>{$O(\sqrt{r})$}
   \begin{enumerate}
@@ -2132,87 +2015,19 @@ descending isogenies generated by the second basis point.
 \begin{defi}[Tour \textit{$\ell$}-adique]
 Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $\ell$-adiques de $\mathbb{F}_q$ est la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{1}, \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
 \begin{itemize}
-\item $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus $r \mid d_1$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
+\item[Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus $r \mid d_1$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
+\item[Cas Atkin] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré au plus $ \ell^2-1$,
 \item $\mathsf{F}_{i}$ pour $i \geqslant 2$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
 \end{itemize}
 \end{defi}
 
-\bluebox{Construction d'une tour \textit{$\ell$}-adique}
-{
-\begin{itemize}
-\item $\mathsf{F}_{1}=\mathbb{F}_q[X]/P_0(X)$ tel que $x_1$ l'image de $X$ dans $\mathsf{F}_1$ est un non-résidu $\ell$-adique, 
-\item $\mathsf{F}_{i}=\mathsf{F}_{i-1}[X]/(X^{\ell}-x_{i-1})$ pour $i \geqslant 2$, $x_i$ est alors l'image de $X$ dans $\mathsf{F}_{i}$.
-\end{itemize}
-}
-\end{frame}
 
+\end{frame}
 
 \begin{frame}
-%Parler de la représentation univariée et bivariée, dire que les calculs sont toujours plus rapide en univariée, montrer le passage d'une représentation bivariée à univariée. Dire que l'on peut ajouter des étages à la volée. Mentionner que l'on a des bonnes complexités pour le Frobenius en particulier.
-
-\bluebox{Représentation univariée}
-{
-Un élément de $F_k$ est dit sous forme univariée si il est écrit à l'aide d'un polynôme $G \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-1}$, avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$, évalué en l'élément primitif $x_k$ de $F_k$.
-}
-
-\begin{exe}
-Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \cdots, \mathsf{F}_k$ une tour d'extensions $5$-adiques telle que $\mathbb{F}_q \cong \mathsf{F}_1$ (id est $d_1=1$), soit $x_4$ un élément primitif de $\mathsf{F}_4$ alors une représentation univariée d'un élément $\beta \in \mathsf{F}_4$ est:
-\begin{equation*}
- \beta_0 + \beta_1 x_4+ \cdots +\beta_{5k}x_4^{5k} + \beta_{5k+1}x_4^{5k+1}+ \cdots +\beta_{5k+4}x_4^{5k+4}+ \cdots + \beta_{124}x_4^{124}
-\end{equation*}
-\end{exe}
+Faire slide avec tour et volcan à côté.
 \end{frame}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\bluebox{Représentation bivariée}
-{
-Un élément de $\mathsf{F}_k$ est dit sous forme bivariée si il est écrit à l'aide des éléments primitifs $x_k$ de $\mathsf{F}_k$ et $x_{k-1}$ de $\mathsf{F}_{k-1}$ sous la forme: 
-\begin{equation*}
- G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
-\end{equation*}
-avec $G_i \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-2}$ avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$ pour $i>0$ et $G_0$ de degré inférieur à $\ell$.
-}
-\begin{exe}
-Ainsi $\beta \in \mathsf{F}_4$ a la représentation bivariée suivante:
-\begin{equation*}
-  \beta_0 + \beta_1 x_4+ \cdots + x_3^{k}(\beta_{5k}+\beta_{5k+1} x_4 + \beta_{5k+2} x_4^2 + \beta_{5k+3} x_4^3 + \beta_{5k+4}x_3^4)+ \cdots + \beta_{124}x_3^{24}x_4^{4}.
- \end{equation*} 
-en se servant du fait que $x_4^5=x_3$.
-\end{exe}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\bluebox{Changement de représentation univariée, bivariée}
-{Celui-ci consiste à passer d'une écriture à une autre.
-\begin{equation*}
-\begin{alignedat}{1}
- G(x_k) &= G_0(x_k)+ G_1(x_k^\ell)+x_kG_2(x_k^\ell)+ \cdots + x_k^{\ell-1} G_{\ell}(x_k^{\ell})\\
-&= G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
-\end{alignedat}
-\end{equation*}
-Celui-ci n'a pas de coût algébrique.}
-
-\begin{exe}
-Soit $\alpha \in \mathsf{F}_4$ qui s'écrit dans la base univariée de $\mathsf{F}_4$:
-\begin{equation}
-\label{eq:exe:mon}
-\alpha_0 + \alpha_5x_4^5+ \alpha_{10}x_4^{10} + \alpha_{15}x_4^{15} + \cdots + \alpha_{5k}x_4^{5k} + \cdots + \alpha_{120}x_4^{120} 
-\end{equation} 
-alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf{F}_4$:
-\begin{equation}
-\label{eq:exe:biv}
-\alpha_0 + \alpha_5x_3^1+ \alpha_{10}x_3^{2} + \alpha_{15}x_3^{3} + \cdots + \alpha_{5k}x_3^{k} + \cdots + \alpha_{120}x_3^{24}. 
-\end{equation} 
- Ainsi $\alpha \in \mathsf{F}_3$. Le passage de la représentation de $\alpha$ de \eqref{eq:exe:mon} à \eqref{eq:exe:biv} correspond à une \emph{descente}, l'opération inverse est elle un \emph{relèvement}.
-\end{exe}
-
-%Cela permet notamment d'ajouter sans coût supplémentaire des étages à la tour.
-
-\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2673,6 +2488,177 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 \item Return $\mathcal{O}=\mathbb{Z} + \left( (\pi-a)/ \prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
 \end{enumerate}
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Comparison with the Elkies case}
+\begin{figure}
+\begin{center}
+
+\begin{tikzpicture}[scale=0.290]
+
+\begin{scope}[yshift=10cm]
+	\begin{scope}[xshift=4.3cm]
+		\coordinate (A) at (-3,0);
+		\coordinate (B) at (3,0);
+		\coordinate (C) at (270:1.2);
+		\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (A.center) to[bend right=40] (B.center);
+		\draw[line width=2.25pt,red] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
+			\begin{scope}[xshift=-3cm]% sous volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (A)--(C);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[xshift=3cm]% sous volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw [line width=1.5pt,red] (C)--(A);
+			\draw (C)--(CB);
+			\draw (C)--(CA);
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};
+			\draw (C) node[fill=white]{$\bullet$};
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:4.2);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw [line width=1.5pt,blue] (A)--(C);
+			%\draw (CA) node[fill=white]{$\bullet$};
+			\coordinate (CAB) at (260:8.5);
+			\coordinate (CBB) at (280:8.5);
+			\draw (CAB) node {$ \left( \begin{smallmatrix}
+					7 & 4 \\
+					0 & 3
+					\end{smallmatrix} \right) $};
+			%\draw (CB) node[fill=white]{$\bullet$};
+			\draw (CBB) node{$ \left( \begin{smallmatrix}
+					7 & 4 \\
+					0 & 3
+					\end{smallmatrix} \right) $};
+			%c est de la triche ce sont les seules matrices possibles...
+			%\draw (A) node{$\bullet$};
+			\only<1>{
+			\draw [line width=1.5pt,blue] (C)--(CA);
+			\draw (CAB) node {$ \color{blue} \left( \begin{smallmatrix}
+					7 & 4 \\
+					0 & 3
+					\end{smallmatrix} \right) $};
+			}
+			\only<2>{
+			\draw [line width=1.5pt,blue] (C)--(CB);
+			\draw (CBB) node{$ \color{blue} \left( \begin{smallmatrix}
+					7 & 4 \\
+					0 & 3
+					\end{smallmatrix} \right) $};
+			}			
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$E$};
+			
+			
+			%(C) node[left]{$\mathcal{O}$} node{$\bullet$};			
+			
+			\end{scope}
+			\coordinate (F) at (5,0);
+			\coordinate (G) at (5,-7);
+			\draw[dashed,<-] (F)--(G) node[midway,right]{$h$};
+	\end{scope}
+\end{scope}
+
+%faire des fleches courbees avec les indices \ell et \ell^2
+
+\end{tikzpicture}
+\end{center}
+
+\caption{\label{fig:elk:dif:niv:mat} Matrices du Frobenius possibles pour une base de $E[8]$ avec le premier vecteur de la base ($\color{red} P$) fixé et le second ($\color{blue} R$) qui engendre la $4$-isogénie descendante}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+%Parler de la représentation univariée et bivariée, dire que les calculs sont toujours plus rapide en univariée, montrer le passage d'une représentation bivariée à univariée. Dire que l'on peut ajouter des étages à la volée. Mentionner que l'on a des bonnes complexités pour le Frobenius en particulier.
+
+\bluebox{Représentation univariée}
+{
+Un élément de $F_k$ est dit sous forme univariée si il est écrit à l'aide d'un polynôme $G \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-1}$, avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$, évalué en l'élément primitif $x_k$ de $F_k$.
+}
+
+\begin{exe}
+Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \cdots, \mathsf{F}_k$ une tour d'extensions $5$-adiques telle que $\mathbb{F}_q \cong \mathsf{F}_1$ (id est $d_1=1$), soit $x_4$ un élément primitif de $\mathsf{F}_4$ alors une représentation univariée d'un élément $\beta \in \mathsf{F}_4$ est:
+\begin{equation*}
+ \beta_0 + \beta_1 x_4+ \cdots +\beta_{5k}x_4^{5k} + \beta_{5k+1}x_4^{5k+1}+ \cdots +\beta_{5k+4}x_4^{5k+4}+ \cdots + \beta_{124}x_4^{124}
+\end{equation*}
+\end{exe}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\bluebox{Représentation bivariée}
+{
+Un élément de $\mathsf{F}_k$ est dit sous forme bivariée si il est écrit à l'aide des éléments primitifs $x_k$ de $\mathsf{F}_k$ et $x_{k-1}$ de $\mathsf{F}_{k-1}$ sous la forme: 
+\begin{equation*}
+ G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
+\end{equation*}
+avec $G_i \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-2}$ avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$ pour $i>0$ et $G_0$ de degré inférieur à $\ell$.
+}
+\begin{exe}
+Ainsi $\beta \in \mathsf{F}_4$ a la représentation bivariée suivante:
+\begin{equation*}
+  \beta_0 + \beta_1 x_4+ \cdots + x_3^{k}(\beta_{5k}+\beta_{5k+1} x_4 + \beta_{5k+2} x_4^2 + \beta_{5k+3} x_4^3 + \beta_{5k+4}x_3^4)+ \cdots + \beta_{124}x_3^{24}x_4^{4}.
+ \end{equation*} 
+en se servant du fait que $x_4^5=x_3$.
+\end{exe}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\bluebox{Changement de représentation univariée, bivariée}
+{Celui-ci consiste à passer d'une écriture à une autre.
+\begin{equation*}
+\begin{alignedat}{1}
+ G(x_k) &= G_0(x_k)+ G_1(x_k^\ell)+x_kG_2(x_k^\ell)+ \cdots + x_k^{\ell-1} G_{\ell}(x_k^{\ell})\\
+&= G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
+\end{alignedat}
+\end{equation*}
+Celui-ci n'a pas de coût algébrique.}
+
+\begin{exe}
+Soit $\alpha \in \mathsf{F}_4$ qui s'écrit dans la base univariée de $\mathsf{F}_4$:
+\begin{equation}
+\label{eq:exe:mon}
+\alpha_0 + \alpha_5x_4^5+ \alpha_{10}x_4^{10} + \alpha_{15}x_4^{15} + \cdots + \alpha_{5k}x_4^{5k} + \cdots + \alpha_{120}x_4^{120} 
+\end{equation} 
+alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf{F}_4$:
+\begin{equation}
+\label{eq:exe:biv}
+\alpha_0 + \alpha_5x_3^1+ \alpha_{10}x_3^{2} + \alpha_{15}x_3^{3} + \cdots + \alpha_{5k}x_3^{k} + \cdots + \alpha_{120}x_3^{24}. 
+\end{equation} 
+ Ainsi $\alpha \in \mathsf{F}_3$. Le passage de la représentation de $\alpha$ de \eqref{eq:exe:mon} à \eqref{eq:exe:biv} correspond à une \emph{descente}, l'opération inverse est elle un \emph{relèvement}.
+\end{exe}
+
+%Cela permet notamment d'ajouter sans coût supplémentaire des étages à la tour.
+
+\end{frame}
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2702,4 +2688,19 @@ How to communicate securely on a channel that is not ?
 
 % parle de cryptographie symmétrique la clé de chiffrement et de déchiffrement sont identiques, et asymmétriques la clé de chiffrement et de déchiffrement sont différentes...
 \end{frame}
+
+%Faire une slide disant que l'on a pas la correspondance entre les différentes isogénies descendantes et ensuite embrayer sur les isogénies horizontales...
+%De plus on est pas capable de distinguer les isogénies descendantes.
+
+%\begin{prop}
+%\label{pro:etu:atk:elk}
+%
+%Soit $\langle P ,R \rangle = E[\ell^{h-e+1}]$ pour $E$ située au niveau $h-e$ 
+%du volcan. Alors pour toute $\ell$-isogénie $\psi$ descendante de domaine $E$ 
+%il existe $R'$ tel que $\ker(\psi)=\langle [\ell^{h-e}]R' \rangle$, $\langle P,R' 
+%\rangle = E[\ell^{h-e+1}]$ et $ \pi(P,R)= \pi(P,R') $
+%\end{prop}
+%\pause
+%Le Frobenius ne permet pas de distinguer les isogénies descendantes.
+
 
