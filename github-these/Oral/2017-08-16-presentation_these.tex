@@ -161,6 +161,25 @@ Volcans et calculs d'isogénies}
 %\maketitle
 %faire un plan
 %faire un rappel sur les courbes elliptiques
+
+\begin{frame}
+\frametitle{Motivation}
+%We focus on one specific subproblem in the Schoof-Elkies-Atkin point counting  algorithm:
+%\medskip
+
+%\bluebox{Disclaimer:}{This is \textbf{not} the dominant step in SEA.}
+
+Applications:
+\begin{itemize}
+\item Schoof-Elkies-Atkin point counting algorithm,
+\item ECC cryptanalysis: [Gaudry,~Hess,~Smart '02],
+\item Hash functions: [Charles,~Goren,~Lauter '07],
+\item Trapdoors: [Teske~'06],
+\item Post quantum cryptography: [Rotostev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
+\end{itemize}
+%Probleme du logarithme discret...
+\end{frame}
+
 \begin{frame}
 \frametitle{Summary}
 \tableofcontents
@@ -250,12 +269,12 @@ avec $a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. $O_E$ est appelé le \
             \draw (Q) node[below]{$P+Q$};
           \end{scope}
 
-          \begin{scope}[xshift=10cm,fixed point arithmetic]
+          \begin{scope}[xshift=11cm,fixed point arithmetic]
             \draw plot (\x,{sqrt(\x*\x*\x+(3-100/9)*\x+10)});
             \draw plot (\x,{-sqrt(\x*\x*\x+(3-100/9)*\x+10)});
-			\draw[->,color=black!70!white] (-4,0) -- (5,0);
+			\draw[->,color=black!70!white] (-4,0) -- (5,0);%axe x
 			\draw (5,0) node[right] {$x$};
-			\draw [->,color=black!70!white] (0,-8) -- (0,8);
+			\draw [->,color=black!70!white] (0,-8) -- (0,8);%axe y
 			\draw (0,8) node[above] {$y$};		
 		
             \begin{scope}[fixed point arithmetic]
@@ -264,7 +283,7 @@ avec $a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. $O_E$ est appelé le \
               \path let \p1 = (-2Q) in coordinate (2Q) at (\x1,-\y1);
             \end{scope}
 
-            \draw[shorten >=-2cm, shorten <=-2cm] (-Q) -- (2Q);
+            \draw[shorten >=-1.5cm, shorten <=-2cm] (-Q) -- (2Q);
             \draw[dashed] (-2Q) -- (2Q);
 
 %            \begin{scope}[/dot/.style={draw,circle,inner sep=1pt,fill},
@@ -313,26 +332,27 @@ $E$ et un entier $n$:
 [n] \;:\; E & \to E\\
 P & \mapsto [n] P
 \end{align*}}
+\pause 
 
+\hfill
 
 %\vspace{-1mm}
 
 \bluebox{Torsion points}{
-Let $E$ be an elliptic curve defined over a finite field $\mathbb{F}_q$, and let $m>0$
+Let $E$ be an elliptic curve defined over a finite field $\mathbb{F}_q$, 
+and let $m>0$
 \vspace{-1.5mm}
 \[E[m]= \{ P \in E(\bar{\mathbb{F}}_q) , [m]P=0_E \} \]
 }
 
 
-\pause 
-\hfill
-\bluebox{Problème du logarithme discret sur une courbe elliptique $E$}
-{
-\begin{algorithmic}[1]
-\REQUIRE $P \in E$ le générateur du groupe $G:=\langle P \rangle$, $Q=[x]P \in G$;
-\ENSURE $x$.
-\end{algorithmic}
-}
+%\bluebox{Problème du logarithme discret sur une courbe elliptique $E$}
+%{
+%\begin{algorithmic}[1]
+%\REQUIRE $P \in E$ le générateur du groupe $G:=\langle P \rangle$, $Q=[x]P \in G$;
+%\ENSURE $x$.
+%\end{algorithmic}
+%}
 %Il manque un lien avec la suite..
 %Dire que c'est donc intéressant de se pencher sur des applications qui permettent de conserver cette propriété....
 \end{frame}
@@ -447,7 +467,14 @@ Applications:
 
 \begin{frame}
 \frametitle{Previous work}
-
+\bluebox{Explicit isogeny computation problem}
+{
+ Let $\mathbb{F}_q$ be a finite field of characteristic $p$. 
+ Given $E$, $E'$   two $r$-isogenous elliptic curves defined over $\mathbb{F}_q$,
+ compute an $r$-isogeny $\phi:E\to E'$.
+}
+\medskip
+\pause
 Let $p$ be the characteristic of $\mathbb{F}_q$.
 
 \begin{itemize}
@@ -470,6 +497,24 @@ p^{O(1)})$ operations.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{An $\ell$-adic Couveignes algorithm (special case)}
+
+\begin{frame}
+\frametitle{Frobenius vs isogenies}
+\begin{defi}[Frobenius Endomorphism]
+$E$ an ordinary elliptic curve defined over $\mathbb{F}_q$. The function
+\[ \pi:(x,y) \mapsto (x^q,y^q)\] is called Frobenius endomorphism. It
+satisfies a quadratic equation \[ \pi^2 - t_\pi \pi + q = 0.\]
+\end{defi}
+
+We are only working with rational isogenies $\psi:E \to E'$, i.e.
+\[
+\pi_{E'} \circ \psi =\psi \circ \pi_{E}.
+ \]
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Couveignes' algorithm}
@@ -477,17 +522,18 @@ p^{O(1)})$ operations.
 \begin{frame}
 \frametitle{Torsion points of elliptic curves}
 \begin{prop} [Silverman, '86]
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Les conditions suivantes sont équivalentes:
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Soit les conditions suivantes équivalentes son vérifiées:
 \begin{enumerate}
 \item $E$ est supersingulière,
 \item $E[p^e]=\{O_E\}$ pour tout $e > 0$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
 \end{enumerate}
-si ces conditions ne sont pas vérifiées alors on a les conditions équivalentes suivantes:
+\pause
+Soit les conditions suivantes équivalentes son vérifiées:
 \begin{enumerate}
-\item $E$ est ordinaire,
+\item $E$ est \emph{ordinaire},
 \item $E[p^e]=\mathbb{Z}/p^e\mathbb{Z}$ pour tout $e > 0$,
-\item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombres quadratique imaginaire.
+\item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombres quadratique imaginaire noté $K$.
 \end{enumerate}
 \end{prop}
 
@@ -613,24 +659,6 @@ $\Rightarrow O(r^2)$ possibilities.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section{An $\ell$-adic Couveignes algorithm (special case)}
-
-\begin{frame}
-\frametitle{Frobenius vs isogenies}
-\begin{defi}[Frobenius Endomorphism]
-$E$ an ordinary elliptic curve defined over $\mathbb{F}_q$. The function
-\[ \pi:(x,y) \mapsto (x^q,y^q)\] is called Frobenius endomorphism. It
-satisfies a quadratic equation \[ \pi^2 - t_\pi \pi + q = 0.\]
-\end{defi}
-
-We are only working with rational isogenies $\psi:E \to E'$, i.e.
-\[
-\pi_{E'} \circ \psi =\psi \circ \pi_{E}.
- \]
-
-
-\end{frame}
 \begin{frame}
 %\section{Computation of endomorphism rings}
 \frametitle{Computation of endomorphism rings}
