@@ -163,12 +163,13 @@ Volcans et calculs d'isogénies}
 %faire un rappel sur les courbes elliptiques
 
 \begin{frame}
-\frametitle{Motivation}
+\frametitle{Intérêts cryptographiques des isogénies}
 %We focus on one specific subproblem in the Schoof-Elkies-Atkin point counting  algorithm:
 %\medskip
 
 %\bluebox{Disclaimer:}{This is \textbf{not} the dominant step in SEA.}
-Les isogénies, à l'image des courbes elliptiques, ont de nombreuses applications: 
+Les isogénies, à l'image des courbes elliptiques, ont de nombreuses 
+applications en cryptographie: 
 \begin{itemize}
 \item l'algorithme de Schoof-Elkies-Atkin: algorithme de comptage de points
 d'une courbe elliptique, nécessaire pour l'évaluation de la sécurité 
@@ -180,7 +181,7 @@ cryptographique d'une courbe elliptique,
 \pause
 \item constructions de schéma cryptographique à trappes: [Teske~'06],
 \pause
-\item constructions de schémas cryptographique post-quantique: [Rotostev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
+\item constructions de schémas cryptographiques post-quantique: [Rotostev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
 \end{itemize}
 %Probleme du logarithme discret...
 \end{frame}
@@ -407,6 +408,22 @@ is an isogeny of degree $\ell^2$.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Frobenius vs isogenies}
+\begin{defi}[Frobenius Endomorphism]
+$E$ an ordinary elliptic curve defined over $\mathbb{F}_q$. The function
+\[ \pi:(x,y) \mapsto (x^q,y^q)\] is called Frobenius endomorphism. It
+satisfies a quadratic equation \[ \pi^2 - t_\pi \pi + q = 0.\]
+\end{defi}
+
+We are only working with rational isogenies $\psi:E \to E'$, i.e.
+\[
+\pi_{E'} \circ \psi =\psi \circ \pi_{E}.
+ \]
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Explicit isogenies}
@@ -485,12 +502,14 @@ Let $p$ be the characteristic of $\mathbb{F}_q$.
 \begin{itemize}
 \item{} [Elkies~'92/'98],  %[Charlap, Colay, Robbins '91], 
 [Bostan,~Morain,~Salvy,~Schost~'08] use $\tilde{O}(r)$ operations in $\mathbb{F}_q$, work only for $r < 2p$. Specific to the SEA case.
+\item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] works for every $p$ using $\tilde{O}(r)$ operations in $\mathbb{F}_q$. Specific to the SEA case.
+\pause
+\item{} [Lercier~'97] only $p=2$.
+\pause
 \item{} [Couveignes~'94] any characteristic, $\tilde{O}(r^3
 p^{O(1)})$ operations.
-\item{} [Lercier~'97] only $p=2$.
 \item{} [Couveignes~'96], [De Feo~'10] any characteristic, $\tilde{O}(r^2
 p^{O(1)})$ operations.
-\item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] works for every $p$ using $\tilde{O}(r)$ operations in $\mathbb{F}_q$. Specific to the SEA case.
 \end{itemize}
 \begin{itemize}
 
@@ -503,24 +522,6 @@ p^{O(1)})$ operations.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{An $\ell$-adic Couveignes algorithm (special case)}
-
-\begin{frame}
-\frametitle{Frobenius vs isogenies}
-\begin{defi}[Frobenius Endomorphism]
-$E$ an ordinary elliptic curve defined over $\mathbb{F}_q$. The function
-\[ \pi:(x,y) \mapsto (x^q,y^q)\] is called Frobenius endomorphism. It
-satisfies a quadratic equation \[ \pi^2 - t_\pi \pi + q = 0.\]
-\end{defi}
-
-We are only working with rational isogenies $\psi:E \to E'$, i.e.
-\[
-\pi_{E'} \circ \psi =\psi \circ \pi_{E}.
- \]
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Couveignes' algorithm}
 
@@ -543,6 +544,8 @@ Soit les conditions suivantes équivalentes sont vérifiées:
 \end{prop}
 
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 
@@ -835,7 +838,7 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		\draw (C) node[fill=white]{$\bullet$};
 		\draw (D) node[fill=white]{$\bullet$};
 		\node at (0,-6.7) {Inert prime $\ell$};
-		\node at (0,-8.2) {Atkin case  ($\left( \frac{d_{\pi}}{\ell} \right) = -1$)};
+		\node at (0,-8.2) {Atkin case  ($\left( \frac{d_{K}}{\ell} \right) = -1$)};
 		\draw (A)--(B); 
 		\draw (A)--(C);
 		\draw (A)--(D);		
@@ -849,7 +852,7 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		\draw (C) node[fill=white]{$\bullet$};
 		\draw (D) node[fill=white]{$\bullet$};
 		\node at (2.8,-6.7) {Ramified prime $\ell$};
-		\node at (2.8,-8.2) {($\left( \frac{d_{\pi}}{\ell} \right) = 0$)};
+		\node at (2.8,-8.2) {($\left( \frac{d_{K}}{\ell} \right) = 0$)};
 		\draw (A)--(B);
 		\draw (A)--(C);
 		\draw (A)--(D);
@@ -872,7 +875,7 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		\node (C) at (270:1.2) {$\bullet$};
 		\node (D) at (90:1.5) {};
 		\node at (0,-6.7) {Split prime $\ell$};
-		\node at (0,-8.2) {Elkies case ($\left( \frac{d_{\pi}}{\ell} \right) = 1$)};
+		\node at (0,-8.2) {Elkies case ($\left( \frac{d_{K}}{\ell} \right) = 1$)};
 		%\draw[-] (A.center) to[bend right=25] (C.center);
 		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
 		%\draw[-] (B.center) to[bend left=25] (C.center);
@@ -948,8 +951,11 @@ In the rest of this talk we consider first volcanoes with cyclic crater (Elkies 
 %\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{An $\ell$-adic Couveignes algorithm (special case)}
+\section{An $\ell$-adic Couveignes algorithm (Elkies case)}
+
+
 
 \begin{frame}
 
