@@ -600,7 +600,7 @@ Compute $\phi$ by interpolation over $E[p^k]$:
 \end{enumerate}
 %Complexity polynomial in $p$. 
 \pause
-\bluebox{Objectif} {Remplacez $E[p^k]$ par \boldmath $E[\ell^k]$ \unboldmath pour un petit premier $\ell \neq p$.}
+\bluebox{Objectif} {Remplacer $E[p^k]$ par \boldmath $E[\ell^k]$ \unboldmath pour un petit premier $\ell \neq p$.}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -650,7 +650,7 @@ c & d
 P'\\Q'
 \end{pmatrix}
 \\[1ex]
-\text{with $\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)\in \mathsf{GL}_2(\mathbb{Z}/\ell^k\mathbb{Z})$ invertible}.
+\text{avec $\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)\in \mathsf{GL}_2(\mathbb{Z}/\ell^k\mathbb{Z})$ inversible}.
 \end{gather*}
 $\Rightarrow O(r^2)$ possibilités.
 }
@@ -702,9 +702,9 @@ En particulier: $d_{\pi}=g^2d_K$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{The general case}
+\frametitle{Le cas général}
 
-Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (resp. $E'$)
+Nous notons par $\mathcal{O}$ (resp. $\mathcal{O}'$) l'anneau d'endomorphisme de $E$ (resp. $E'$)
 \vspace{-4mm}
 \begin{columns}
 \begin{column}{6cm}
@@ -806,11 +806,11 @@ Denote by $\mathcal{O}$ (resp. $\mathcal{O}'$) the endomorphism ring of $E$ (res
 \begin{column}{4cm}
 
 \begin{lem}[Kohel 1996]
-$E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarrow E'$ an $\ell$-isogeny. Then we say that $\psi$ is
+Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi :E \rightarrow E'$ une $\ell$-isogénie. Alors $\psi$ est dite
 \begin{enumerate}
-\item  \textbf<1>{descending} if $\ell=[\mathcal{O} : \mathcal{O}']$
-\item \textbf<2>{ascending} if $\ell=[\mathcal{O}':\mathcal{O}]$,
-\item \textbf<3>{horizontal} if $\mathcal{O}=\mathcal{O}'$.
+\item  \textbf<1>{descendante} si $\ell=[\mathcal{O} : \mathcal{O}']$
+\item \textbf<2>{ascendante} si $\ell=[\mathcal{O}':\mathcal{O}]$,
+\item \textbf<3>{horizontale} si $\mathcal{O}=\mathcal{O}'$.
 \end{enumerate}
 \end{lem}
 %\begin{defi}
@@ -825,7 +825,7 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{A guide to volcano types}
+\frametitle{Un guide pour les différents types de volcans}%
 \begin{figure}[h]
 		\begin{center}
         \begin{tikzpicture}[scale=0.35]
@@ -837,8 +837,8 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		\draw (B) node[fill=white]{$\bullet$};
 		\draw (C) node[fill=white]{$\bullet$};
 		\draw (D) node[fill=white]{$\bullet$};
-		\node at (0,-6.7) {Inert prime $\ell$};
-		\node at (0,-8.2) {Atkin case  ($\left( \frac{d_{K}}{\ell} \right) = -1$)};
+		\node at (0,-6.7) {$\ell$ premier inerte};
+		\node at (0,-8.2) {Cas Atkin ($\left( \frac{d_{K}}{\ell} \right) = -1$)};
 		\draw (A)--(B); 
 		\draw (A)--(C);
 		\draw (A)--(D);		
@@ -851,7 +851,7 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		\draw (B) node[fill=white]{$\bullet$};
 		\draw (C) node[fill=white]{$\bullet$};
 		\draw (D) node[fill=white]{$\bullet$};
-		\node at (2.8,-6.7) {Ramified prime $\ell$};
+		\node at (2.8,-6.7) {$\ell$ premier ramifié};
 		\node at (2.8,-8.2) {($\left( \frac{d_{K}}{\ell} \right) = 0$)};
 		\draw (A)--(B);
 		\draw (A)--(C);
@@ -874,8 +874,8 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		\node (B) at (3,0) {$\bullet$};
 		\node (C) at (270:1.2) {$\bullet$};
 		\node (D) at (90:1.5) {};
-		\node at (0,-6.7) {Split prime $\ell$};
-		\node at (0,-8.2) {Elkies case ($\left( \frac{d_{K}}{\ell} \right) = 1$)};
+		\node at (0,-6.7) {$\ell$ premier scindé};
+		\node at (0,-8.2) {Cas Elkies ($\left( \frac{d_{K}}{\ell} \right) = 1$)};
 		%\draw[-] (A.center) to[bend right=25] (C.center);
 		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
 		%\draw[-] (B.center) to[bend left=25] (C.center);
@@ -905,11 +905,13 @@ $E$ and $E'$ two elliptic curves defined over $\mathbb{F}_q$, $\psi :E \rightarr
 		\end{scope}
 		\end{tikzpicture}
 		%\end{center}
-		\caption{The three shapes of volcanoes of $2$-isogenies }
+		\caption{Les trois formes de volcans de $2$-isogénies }
 		
 		\end{center} 
 		\end{figure}
-In the rest of this talk we consider first volcanoes with cyclic crater (Elkies case), then volcanoes with one point on the crater (Atkin case).
+		Durant le reste de cet exposé nous étudierons tout d'abord le cas de volcans 
+		à cratères cycliques (cas Elkies), puis les volcans avec cratères réduit à un
+		point (cas Atkin).
 %\begin{figure}[hbtp]
 %\centering
 %\includegraphics[scale=0.4]{Images/duo-volcan-wo-label.png}
@@ -919,7 +921,7 @@ In the rest of this talk we consider first volcanoes with cyclic crater (Elkies 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Etudes des différents cas de Couveignes $\ell$-adique}
+\frametitle{Études des différents cas de Couveignes $\ell$-adique}
 \vfill
 \begin{itemize}
 \item Cas Elkies (issu d'un travail conjoint avec De Feo, Plût et Schost publié à ANTS XII en 2016)
@@ -953,7 +955,7 @@ In the rest of this talk we consider first volcanoes with cyclic crater (Elkies 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{An $\ell$-adic Couveignes algorithm (Elkies case)}
+\section{Un algorithme de Couveignes $\ell$-adique (cas Elkies)}
 
 
 
@@ -962,31 +964,31 @@ In the rest of this talk we consider first volcanoes with cyclic crater (Elkies 
 \vspace{-4mm}
   \begin{center}
     \begin{tabular}{p{13em}p{2em}p{13em}}
-Subgroup of size $\ell$  & $\Leftrightarrow$ &     $\ell$-isogeny \pause \\[2mm]
+Sous-groupe de taille $\ell$  & $\Leftrightarrow$ &     $\ell$-isogénie \pause \\[2mm]
       
-    Subgroup of size $\ell$ stable by $\pi$   & $\Leftrightarrow$ & Rational $\ell$-isogeny 
+    Sous-groupe de taille $\ell$ stable par $\pi$   & $\Leftrightarrow$ & $\ell$-isogénie rationnelle 
     \end{tabular}
   \end{center}
 
 
 \pause
-Assume that $\pi$ splits modulo $\ell$:
-i.e. its minimal polynomial factors as
+Supposons que $\pi$ se scinde modulo $\ell$:
+i.e. son polynôme minimal se factorise comme
 \[ (\pi-\red \lambda)(\pi- \blu \mu ) \quad \text{with} \quad \red \lambda \neq \blu \mu \bmod \ell \]
 
 
 \pause
 \begin{center}
   \begin{tabular}{p{13em}p{2em}p{13em}}
-     \raggedright Two eigenspaces in $E[\ell]$
+     \raggedright Deux espaces propres dans $E[\ell]$
      \mbox{$\ker(\pi-\red \lambda), \ker( \pi- \blu \mu)$}
      & $\Rightarrow$  
-     & \raggedright Two rational $\ell$-isogenies
-    \mbox{of direction $\red \lambda, \blu \mu $}
+     & \raggedright Deux $\ell$-isogénies rationnelles 
+    \mbox{de direction $\red \lambda, \blu \mu $}
   \end{tabular}
 \end{center}
 %
-\bluebox{Isogeny graph}{
+\bluebox{Graphe d'isogénies}{
 \begin{figure}[h]
 	\begin{center}
 	\begin{tikzpicture}[scale=0.3]
@@ -1021,11 +1023,13 @@ i.e. its minimal polynomial factors as
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-  \bluebox{Fact}{
-    Let $\phi$ be an $r$-isogeny with $\ell \nmid r$, then $\phi$ preserves the kernels of the $\ell$-isogenies of \emph{direction} $\red \lambda, \blu \mu $.}
+  \bluebox{Fait}{
+    Soit $\phi$ une $r$-isogénie avec $\ell \nmid r$, alors $\phi$ préserve les
+    noyaux des $\ell$-isogénies de \emph{direction} $\red \lambda, \blu \mu $.}
 
-  To interpolate $\phi$ over $E[\ell^k]$, we want to compute two cyclic
-  $\ell^k$-subgroups of direction $\red \lambda, \blu \mu $. 
+  Pour interpoler $\phi$ sur $E[\ell^k]$, nous voulons calculer deux 
+  sous-groupes cycliques de taille $\ell^k$ et de direction $\red \lambda, \blu
+  \mu $. 
 
   \begin{figure}[h]
     \begin{center}
@@ -1074,9 +1078,9 @@ i.e. its minimal polynomial factors as
 
   \begin{uncoverenv}<3->
     \begin{itemize}
-    \item We call $\red{E[\ell^k]_\lambda}\oplus\blu{E[\ell^k]_\mu}$ a
-      \emph{horizontal} decomposition;
-    \item SEA literature calls this an \emph{isogeny cycle} [Couveignes, Morain '94].
+    \item On appelle $\red{E[\ell^k]_\lambda}\oplus\blu{E[\ell^k]_\mu}$ une
+     décomposition \emph{horizontale};
+    \item SEA literature appelle cela un \emph{cycle d'isogénies} [Couveignes, Morain '94].%!!!!!!!!!!!!!!!!!!!!
     \end{itemize}
   \end{uncoverenv}
 
@@ -1086,15 +1090,15 @@ i.e. its minimal polynomial factors as
 
 \begin{frame}
 
-\bluebox{Towards an $\ell$-adic Couveignes' algorithm (cas Elkies $h=0$)}{
+\bluebox{Vers un algorithme de Couveignes $\ell$-adique (cas Elkies $h=0$)}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ two $r$-isogenous curves on $\mathbb{F}_{q}$ 
-\ENSURE $\phi: E \rightarrow E'$ of degree $r$
+\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
 \bluebox{}{\textbf{Fact:} $\phi$ maps 
 $\color{red}{E[\ell^k]_{{\lambda}}} \color{black}{\rightarrow} \color{red}{E'[\ell^k]_{{\lambda}}}$  
-and 
+et 
 $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell^k]_{{\mu}}}$.
  }
 
@@ -1133,7 +1137,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 
-\bluebox{Premier de Elkies}{Nous appelons $\ell$ un \emph{premier de Elkies} si le polynôme charactéristique de $\pi$ se factorize sur $\mathbb{Z}_{\ell}$ comme suit:
+\bluebox{Premier de Elkies}{Nous appelons $\ell$ un \emph{premier de Elkies} si le polynôme caractéristique de $\pi$ se factorise sur $\mathbb{Z}_{\ell}$ comme suit:
 \[
 \pi^2 - t_{\pi}\pi + q = (\pi - \red \lambda) (\pi - \blu \mu), \quad \textsf{avec } \red \lambda \neq \blu \mu,
 \]
