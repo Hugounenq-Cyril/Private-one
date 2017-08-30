@@ -1898,24 +1898,30 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 \coordinate (A) at (-2,1.5);	
 \coordinate (B) at (-2,5);
 \coordinate (C) at (-2,10);
-\draw [gray!30] (B)--(C) ;
-\draw [gray!30] (A)--(B) ;
-\only<3>{
-\draw (A)--(B);}
+\coordinate (D) at (-2,7.5);
+\draw [gray!30] (D)--(C);
+\draw [gray!30] (C)--(B);
+\draw [gray!30] (A)--(B);
 \only<2->{
-\draw (B)--(C);}
+\draw (D)--(C);}
+\only<4>{
+\draw (A)--(B);}
+\only<3->{
+\draw (B)--(D);}
 \draw (C) node[left]{$\mathbb{F}_q$} node{$\bullet$};
 \draw (A) node[left,gray!30]{$\mathsf{F}_3$} node[gray!30]{$\bullet$};
 \draw (B) node[left,gray!30]{$\mathsf{F}_2$} node[gray!30]{$\bullet$};
+\draw (D) node[left,gray!30]{$\mathsf{F}_1$} node[gray!30]{$\bullet$};
 \only<2->{
-\draw (B) node[left]{$\mathsf{F}_2$} node{$\bullet$};}
+\draw (D) node[left]{$\mathsf{F}_1$} node{$\bullet$};}
 \only<3->{
+\draw (B) node[left]{$\mathsf{F}_2$} node{$\bullet$};}
+\only<4->{
 \draw (A) node[left]{$\mathsf{F}_3$} node{$\bullet$};}
 
 %\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
 %\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
-\begin{scope}[xshift=0cm]
-	\begin{scope}[yshift=10cm,xshift=6cm]
+\begin{scope}[yshift=10cm,xshift=6cm]
 		\node (A) at (-4,0) {$  \bullet $};
 		\node (B) at (4,0) {$   \bullet$};
 		\node (C) at (270:1.2) {$ \bullet \color{black}$};
@@ -1938,39 +1944,45 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 			\coordinate (CAB) at (0.6,-9);
 			\coordinate (CBA) at (-0.6,-9);
 			\coordinate (CBB) at (-1.4,-9);
-			\only<1>{
+			\only<1-2>{
 			\draw [dashed,gray!30] (C)--(CA);
 			\draw [dashed,gray!30] (C)--(CB);}
-			\only<2->{
+			\only<3->{
 			\draw (C)--(CA);
 			\draw (C)--(CB);}
+			\only<1>{
+			\draw [dashed,gray!30] (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white] {$\bullet$};
+			\draw (C) node[gray!30]{$\bullet$};}
+			\only<2->{
 			\draw (A)--(C);
-			\only<1-2>{
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};}
+			\only<1-3>{
 			\draw [dashed,gray!30] (CA)--(CAA);
 			\draw [dashed,gray!30] (CA)--(CAB);
 			\draw [dashed,gray!30] (CB)--(CBA);
 			\draw [dashed,gray!30] (CB)--(CBB);}
-			\only<3>{
+			\only<4>{
 			\draw (CA)--(CAA);
 			\draw (CA)--(CAB);
 			\draw (CB)--(CBA);
 			\draw (CB)--(CBB);}
-			\only<1>{
+			\only<1-2>{
 			\draw (CA) node[fill=white]{$\bullet$};
 			\draw (CA) node[gray!30]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};
 			\draw (CB) node[gray!30]{$\bullet$};}
-			\only<2->{
+			\only<3->{
 			\draw (CA) node[fill=white]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};}
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\only<3>{
+			\only<4>{
 			\draw (CAA) node[fill=white]{$\bullet$};
 			\draw (CAB) node[fill=white]{$\bullet$};
 			\draw (CBA) node[fill=white]{$\bullet$};
 			\draw (CBB) node[fill=white]{$\bullet$};}
-			\only<1-2>{
+			\only<1-3>{
 			\draw (CAA) node[fill=white]{$\bullet$};
 			\draw (CAA) node[gray!30]{$\bullet$};
 			\draw (CAB) node[fill=white]{$\bullet$};
@@ -1989,39 +2001,45 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 			\coordinate (CAB) at (0.6,-9);
 			\coordinate (CBA) at (-0.6,-9);
 			\coordinate (CBB) at (-1.4,-9);
-			\only<1>{
+			\only<1-2>{
 			\draw [dashed,gray!30] (C)--(CA);
 			\draw [dashed,gray!30] (C)--(CB);}
-			\only<2->{
+			\only<3->{
 			\draw (C)--(CA);
 			\draw (C)--(CB);}
+			\only<1>{
+			\draw [dashed,gray!30] (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white] {$\bullet$};
+			\draw (C) node[gray!30]{$\bullet$};}
+			\only<2->{
 			\draw (A)--(C);
-			\only<1-2>{
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};}
+			\only<1-3>{
 			\draw [dashed,gray!30] (CA)--(CAA);
 			\draw [dashed,gray!30] (CA)--(CAB);
 			\draw [dashed,gray!30] (CB)--(CBA);
 			\draw [dashed,gray!30] (CB)--(CBB);}
-			\only<3>{
+			\only<4>{
 			\draw (CA)--(CAA);
 			\draw (CA)--(CAB);
 			\draw (CB)--(CBA);
 			\draw (CB)--(CBB);}
-			\only<1>{
+			\only<1-2>{
 			\draw (CA) node[fill=white]{$\bullet$};
 			\draw (CA) node[gray!30]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};
 			\draw (CB) node[gray!30]{$\bullet$};}
-			\only<2->{
+			\only<3->{
 			\draw (CA) node[fill=white]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};}
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\only<3>{
+			\only<4>{
 			\draw (CAA) node[fill=white]{$\bullet$};
 			\draw (CAB) node[fill=white]{$\bullet$};
 			\draw (CBA) node[fill=white]{$\bullet$};
 			\draw (CBB) node[fill=white]{$\bullet$};}
-			\only<1-2>{
+			\only<1-3>{
 			\draw (CAA) node[fill=white]{$\bullet$};
 			\draw (CAA) node[gray!30]{$\bullet$};
 			\draw (CAB) node[fill=white]{$\bullet$};
@@ -2040,39 +2058,45 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 			\coordinate (CAB) at (0.6,-9);
 			\coordinate (CBA) at (-0.6,-9);
 			\coordinate (CBB) at (-1.4,-9);
-			\only<1>{
+			\only<1-2>{
 			\draw [dashed,gray!30] (C)--(CA);
 			\draw [dashed,gray!30] (C)--(CB);}
-			\only<2->{
+			\only<3->{
 			\draw (C)--(CA);
 			\draw (C)--(CB);}
+			\only<1>{
+			\draw [dashed,gray!30] (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white] {$\bullet$};
+			\draw (C) node[gray!30]{$\bullet$};}
+			\only<2->{
 			\draw (A)--(C);
-			\only<1-2>{
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};}
+			\only<1-3>{
 			\draw [dashed,gray!30] (CA)--(CAA);
 			\draw [dashed,gray!30] (CA)--(CAB);
 			\draw [dashed,gray!30] (CB)--(CBA);
 			\draw [dashed,gray!30] (CB)--(CBB);}
-			\only<3>{
+			\only<4>{
 			\draw (CA)--(CAA);
 			\draw (CA)--(CAB);
 			\draw (CB)--(CBA);
 			\draw (CB)--(CBB);}
-			\only<1>{
+			\only<1-2>{
 			\draw (CA) node[fill=white]{$\bullet$};
 			\draw (CA) node[gray!30]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};
 			\draw (CB) node[gray!30]{$\bullet$};}
-			\only<2->{
+			\only<3->{
 			\draw (CA) node[fill=white]{$\bullet$};
 			\draw (CB) node[fill=white]{$\bullet$};}
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\only<3>{
+			\only<4>{
 			\draw (CAA) node[fill=white]{$\bullet$};
 			\draw (CAB) node[fill=white]{$\bullet$};
 			\draw (CBA) node[fill=white]{$\bullet$};
 			\draw (CBB) node[fill=white]{$\bullet$};}
-			\only<1-2>{
+			\only<1-3>{
 			\draw (CAA) node[fill=white]{$\bullet$};
 			\draw (CAA) node[gray!30]{$\bullet$};
 			\draw (CAB) node[fill=white]{$\bullet$};
@@ -2082,7 +2106,6 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 			\draw (CBB) node[fill=white]{$\bullet$};
 			\draw (CBB) node[gray!30]{$\bullet$};}
 			\end{scope}
-	\end{scope}
 \end{scope}
 
 %faire des fleches courbees avec les indices \ell et \ell^2
