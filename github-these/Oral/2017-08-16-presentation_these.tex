@@ -197,16 +197,16 @@ cryptographique d'une courbe elliptique,
 %parler aussi de la cryptographie sur les courbes elliptiques
 
 \begin{frame}
-\frametitle{Points defined on an elliptic curve}
+\frametitle{Points définis sur une courbe elliptique }
 
 \begin{defi}[Courbe Elliptique]
 Soit $\mathbb{K}$ un corps de caractéristique différente de $2$ et $3$, une courbe elliptique $E$ peut être définie à l'aide d'une équation de Weierstrass: 
 %la variété projective associée à l'équation
 \begin{equation*}
 \label{eq:weierstrass-proj}
-E:=\{ (X,Y) \in \overline{\mathbb{K}} , Y^2=X^3+a_4X+a_6 \} \cup O_E
+E:=\{ (X,Y) \in \overline{\mathbb{K}} , Y^2=X^3+AX+B \} \cup 0_E
 \end{equation*}
-avec $a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. $O_E$ est appelé le \emph{point à l'infini}. 
+avec $A,B$ des éléments de $\mathbb{K}$. $0_E$ est appelé le \emph{point à l'infini}. 
 %Dès lors que $a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite
 %définie sur $\mathbb{K}$.
 \end{defi}
@@ -322,7 +322,7 @@ avec $a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. $O_E$ est appelé le \
 
 \pause
 
-\begin{prop}[Silverman, '86]
+\begin{prop}
 L'ensemble des points d'une courbe elliptique forme un groupe abélien pour la loi additive.
 \end{prop}
 
@@ -344,9 +344,9 @@ P & \mapsto [n] P
 
 %\vspace{-1mm}
 
-\bluebox{Torsion points}{
-Let $E$ be an elliptic curve defined over a finite field $\mathbb{F}_q$, 
-and let $m>0$
+\bluebox{Points de torsion}{
+Soit $E$ une courbe elliptique définie sur un corps fini $\mathbb{F}_q$,
+et $m>0$
 \vspace{-1.5mm}
 \[E[m]= \{ P \in E(\bar{\mathbb{F}}_q) , [m]P=0_E \} \]
 }
@@ -369,20 +369,20 @@ and let $m>0$
 
 
 \begin{frame}
-\frametitle{Isogenies}
-\bluebox{Isogenies}{
+\frametitle{Isogénies}
+\bluebox{Isogénies}{
 \begin{itemize}
-\item $E$ and $E'$ two elliptic curves, an isogeny is  a surjective morphism $\phi: E \rightarrow E'$ such that $\phi(0_{E})=0_{E'}$. Isogenies are
+\item $E$ et $E'$ deux courbes elliptiques, une isogénie est un morphisme surjectif$\phi: E \rightarrow E'$ telle que $\phi(0_{E})=0_{E'}$. Les isogénies sont
 \begin{itemize}
- \item group morphisms (with finite kernel),
- \item algebraic maps (of finite degree).
+ \item des morphismes de groupe (avec un noyau fini),
+ \item algébriques maps (de degré fini).%!!!!!!!!!!!!!
 \end{itemize}
  
-\item  If the isogeny has degree $\ell$, we call it an \emph{$\ell$-isogeny},
+\item  Si l'isogénie est de degré $\ell$, nous l'appelons \emph{$\ell$-isogénie},
 
-\item We say that $E$ and $E'$ are \emph{$\ell$-isogenous} if there exist an $\ell$-isogeny between them.
+\item Nous disons que $E$ et $E'$ sont \emph{$\ell$-isogènes} si il existe une $\ell$-isogénie entre les deux.
 
-\item In this talk: only \emph{rational} isogenies (i.e.\ Galois-equivariant maps).
+\item Dans cet exposé: seulement des isogénies \emph{rationnelles} (i.e.\ Galois-équivariantes maps).
 
 %\item We say that $E$ and $E'$ are isogenous if there exist an isogeny $\phi$ between the two curves.
 
@@ -398,25 +398,25 @@ and let $m>0$
 % For \emph{separable} isogenies, this defines a bijection between isogenies and finite subgroups.
 
 \textbf{Example:}
-Let $\ell$ be an integer, the \emph{scalar multiplication map}
+Soit $\ell$ un entier, la \emph{multiplication scalaire  map}
 \begin{align*}
 [\ell] \;:\; E &\to E\\
 P &\mapsto [\ell] P
 \end{align*}
-is an isogeny of degree $\ell^2$.
+est une isogénie de degré $\ell^2$.
 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Frobenius vs isogenies}
-\begin{defi}[Frobenius Endomorphism]
-$E$ an ordinary elliptic curve defined over $\mathbb{F}_q$. The function
-\[ \pi:(x,y) \mapsto (x^q,y^q)\] is called Frobenius endomorphism. It
-satisfies a quadratic equation \[ \pi^2 - t_\pi \pi + q = 0.\]
+\begin{defi}[L'endomorphisme de Frobenius]
+$E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. La fonction
+\[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Elle
+satisfait une équation quadratique \[ \pi^2 - t_\pi \pi + q = 0.\]
 \end{defi}
 
-We are only working with rational isogenies $\psi:E \to E'$, i.e.
+Nous travaillons seulement avec des isogénies rationnelles $\psi:E \to E'$, i.e.
 \[
 \pi_{E'} \circ \psi =\psi \circ \pi_{E}.
  \]
@@ -429,7 +429,8 @@ We are only working with rational isogenies $\psi:E \to E'$, i.e.
 \frametitle{Explicit isogenies}
 
 \bluebox{Explicit isogenies}{
-Separable isogenies of degree $\ell$ are represented by rational maps in Weierestrass form
+Les isogénies séparables de degré $\ell$ sont representées par des fonctions%!!!!!!!map
+ rationnelles sous forme de Weierestrass
 %\[
 %\left( x ,y \right) \mapsto \left( \frac{n(x)=45x^9+67x^7+57x^6+97x^5+7+100x^2+78x+67}{d(x)(x^4+51x^2+67x+61)^2}, y\left(\frac{n(x)}{d(x)\right)^'} \right)
 %\]
@@ -437,9 +438,7 @@ Separable isogenies of degree $\ell$ are represented by rational maps in Weieres
 \[
 \left( x,y \right) \mapsto \left(\frac{n(x)}{d(x)}, cy \left( \frac{n(x)}{d(x)} \right)' \right)
 \]
-with $n(x)$ a polynomial of degree $\ell$ and $d(x)$ a polynomial of degree $\ell-1$.
-
-
+avec $n(x)$ une polynôme de degré $\ell$ et $d(x)$ un polynôme de degré $\ell-1$.
 }
 
 %\begin{exe} 
@@ -447,7 +446,7 @@ with $n(x)$ a polynomial of degree $\ell$ and $d(x)$ a polynomial of degree $\el
 %\[ \phi: E \rightarrow E/ \left\langle P \right\rangle \]
 %\end{exe}
 
-\bluebox{V\'elu's formulas}{
+\bluebox{Formules de V\'elu}{
 From the knowledge of its kernel we can explicitly write down the isogeny:
 \begin{itemize}
     \item Let $G=\ker\phi$, then $\displaystyle d(X)=\prod_{P \in G\setminus\{0_E\}}(X-x(P))$;
@@ -488,35 +487,35 @@ From the knowledge of its kernel we can explicitly write down the isogeny:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Previous work}
-\bluebox{Explicit isogeny computation problem}
+\frametitle{Précédents travaux}
+\bluebox{Problème du calcul de l'isogénie explicite}
 {
- Let $\mathbb{F}_q$ be a finite field of characteristic $p$. 
- Given $E$, $E'$   two $r$-isogenous elliptic curves defined over $\mathbb{F}_q$,
- compute an $r$-isogeny $\phi:E\to E'$.
+ Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$. 
+ \'A partir de $E$, $E'$  deux courbes elliptique $r$-isogènes définies sur $\mathbb{F}_q$,
+ calculer une $r$-isogénie $\phi:E\to E'$.
 }
 \medskip
 \pause
-Let $p$ be the characteristic of $\mathbb{F}_q$.
+Soit $p$ la caractéristique de $\mathbb{F}_q$.
 
 \begin{itemize}
 \item{} [Elkies~'92/'98],  %[Charlap, Colay, Robbins '91], 
-[Bostan,~Morain,~Salvy,~Schost~'08] use $\tilde{O}(r)$ operations in $\mathbb{F}_q$, work only for $r < 2p$. Specific to the SEA case.
-\item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] works for every $p$ using $\tilde{O}(r)$ operations in $\mathbb{F}_q$. Specific to the SEA case.
+[Bostan,~Morain,~Salvy,~Schost~'08] fonctionne en $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$, seulement pour $r < 2p$. Spécifique au contexte SEA.
+\item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne pour tout $p$ à l'aide de $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$. Spécifique au contexte SEA.
 \pause
-\item{} [Lercier~'97] only $p=2$.
+\item{} [Lercier~'97] fonctionne seulement pour $p=2$.
 \pause
-\item{} [Couveignes~'94] any characteristic, $\tilde{O}(r^3
-p^{O(1)})$ operations.
-\item{} [Couveignes~'96], [De Feo~'10] any characteristic, $\tilde{O}(r^2
-p^{O(1)})$ operations.
+\item{} [Couveignes~'94] fonctionne pour toute caractéristique à l'aide de 
+$\tilde{O}(r^3p^{O(1)})$ opérations.
+\item{} [Couveignes~'96], [De Feo~'10]fonctionne pour toute caractéristique à l'aide de  $\tilde{O}(r^2p^{O(1)})$ opérations.
 \end{itemize}
 \begin{itemize}
 
 %\item[$\rightarrow$] we focus on the medium characteristic case ($n\gg p/\log(p)$),
 \pause
-\item[$\rightarrow$] We want to modify Couveignes' algorithm to obtain an algorithm with complexity $\tilde{O}(r^2)$ but with no exponential dependency in $\log(p)$.
-
+\item[$\rightarrow$] Nous voulons modifier l'algorithme de Couveignes pour 
+obtenir un algorithme avec une complexité de  $\tilde{O}(r^2)$ mais sans 
+dépendance exponentielle en $\log(p)$.
 \end{itemize}
 \end{frame}
 
@@ -526,7 +525,7 @@ p^{O(1)})$ operations.
 \section{Couveignes' algorithm}
 
 \begin{frame}
-\frametitle{Classification of elliptic curves}
+\frametitle{Classification des courbes elliptiques}
 \begin{prop} [Silverman, '86]
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Soit les conditions suivantes équivalentes sont vérifiées:
 \begin{enumerate}
@@ -572,11 +571,11 @@ Compute $\phi$ by interpolation over $E[p^k]$:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Couveignes algorithm (1996)}
+\frametitle{Algorithme de Couveignes (1996)}
 \bluebox{}{ %\cite{DBLP:conf/ants/Couveignes96}}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ two $r$-isogenous curves on $\mathbb{F}_{p^n}$ 
-\ENSURE $\phi: E \rightarrow E'$ of degree $r$
+\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{p^n}$ 
+\ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
 \begin{enumerate}
@@ -601,44 +600,43 @@ Compute $\phi$ by interpolation over $E[p^k]$:
 \end{enumerate}
 %Complexity polynomial in $p$. 
 \pause
-\bluebox{Goal} {Replace $E[p^k]$ by \boldmath $E[\ell^k]$ \unboldmath for
-a small prime $\ell \neq p$.}
+\bluebox{Objectif} {Remplacez $E[p^k]$ par \boldmath $E[\ell^k]$ \unboldmath pour un petit premier $\ell \neq p$.}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 
-\frametitle{An $\ell$-adic Couveignes' algorithm?}
+\frametitle{Un algorithme de Couveignes $\ell$-adique ?}
 \bluebox{}{
-Our goal is to work with \boldmath $E[\ell^k]\simeq \left(\mathbb{Z}/\ell^k \mathbb{Z} \right)^2$ \unboldmath 
+Notre objectif est de travailler avec \boldmath $E[\ell^k]\simeq \left(\mathbb{Z}/\ell^k \mathbb{Z} \right)^2$ \unboldmath 
 %Our goal is to work with \textcolor{red}{$E[\ell^k]= \left(\mathbb{Z}/\ell^k \mathbb{Z} \right)^2$}  
-instead of $E[p^k]$ to remove the polynomial dependency in $p$.
+à la place de $E[p^k]$ afin de s'affranchir de la dépendance polynomiale en $p$.
 \begin{itemize}
 
 %\item[$\Rightarrow$] main drawback: $E[\ell^{\frac{k}{2}}]=\left(\mathbb{Z}/\ell^{\frac{k}{2}} \mathbb{Z} \right)^2$ thus for two basis $\langle P,Q \rangle=E[\ell^{\frac{k}{2}}]$, $\langle P',Q' \rangle=E'[\ell^{\frac{k}{2}}]$ we have to test $O(\ell^{\frac{4k}{2}})=O(r^2)$ mapping candidates before finding the good one for the interpolation.
 \item $E[p^k] = \langle P\rangle\simeq\left(\mathbb{Z}/p^{k} \mathbb{Z}
-\right)$ \hfill with $p^{k} \approx r$
+\right)$ \hfill avec $p^{k} \approx r$
 \item $E[\ell^k] = \langle P,Q\rangle\simeq\left(\mathbb{Z}/\ell^{k}
 \mathbb{Z} \right) \times \left(\mathbb{Z}/\ell^{k} \mathbb{Z} \right)$
-\hfill with $\color{red} \ell^{2k} \approx r$
+\hfill avec $\color{red} \ell^{2k} \approx r$
 \end{itemize}}
 \pause
 \begin{columns}
 \begin{column}{0.48\textwidth}
 
-\bluebox{$p$-adic}{
-Let $P\in E\quad$ and $\quad P'\in E'$
+\bluebox{$p$-adique}{
+Soit $P\in E\quad$ et $\quad P'\in E'$
 \[
 P \mapsto [a] P'  \qquad a\in(\mathbb{Z}/p^k\mathbb{Z})^*
 \]
 
-$\Rightarrow O(r)$ possibilities.
+$\Rightarrow O(r)$ possibilités.
 }
 \end{column}
 \begin{column}{0.55\textwidth}
 \bluebox{$\ell$-adic}{
-Let $P,Q \in E\quad$ and $\quad P',Q' \in E'$
+Soit $P,Q \in E\quad$ et $\quad P',Q' \in E'$
 \begin{gather*}
 \begin{pmatrix}
 P\\Q
@@ -654,7 +652,7 @@ P'\\Q'
 \\[1ex]
 \text{with $\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)\in \mathsf{GL}_2(\mathbb{Z}/\ell^k\mathbb{Z})$ invertible}.
 \end{gather*}
-$\Rightarrow O(r^2)$ possibilities.
+$\Rightarrow O(r^2)$ possibilités.
 }
 \end{column}
 \end{columns}
