@@ -397,8 +397,8 @@ et $m>0$
 
 % For \emph{separable} isogenies, this defines a bijection between isogenies and finite subgroups.
 
-\textbf{Example:}
-Soit $\ell$ un entier, la \emph{multiplication scalaire  map}
+\textbf{Exemple:}
+Soit $\ell$ un entier, l'application \emph{multiplication scalaire}
 \begin{align*}
 [\ell] \;:\; E &\to E\\
 P &\mapsto [\ell] P
@@ -410,10 +410,10 @@ est une isogénie de degré $\ell^2$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Explicit isogenies}
+\frametitle{Isogénie explicite}
 
-\bluebox{Explicit isogenies}{
-Les isogénies séparables de degré $\ell$ sont représentées par des fonctions%!!!!!!!map
+\bluebox{Isogénie explicite}{
+Les isogénies séparables de degré $\ell$ sont représentées par des fonctions
  rationnelles sous forme de Weierstrass
 %\[
 %\left( x ,y \right) \mapsto \left( \frac{n(x)=45x^9+67x^7+57x^6+97x^5+7+100x^2+78x+67}{d(x)(x^4+51x^2+67x+61)^2}, y\left(\frac{n(x)}{d(x)\right)^'} \right)
@@ -422,7 +422,7 @@ Les isogénies séparables de degré $\ell$ sont représentées par des fonction
 \[
 \left( x,y \right) \mapsto \left(\frac{n(x)}{d(x)}, cy \left( \frac{n(x)}{d(x)} \right)' \right)
 \]
-avec $n(x)$ une polynôme de degré $\ell$ et $d(x)$ un polynôme de degré $\ell-1$.
+avec $n(x)$ un polynôme de degré $\ell$ et $d(x)$ un polynôme de degré $\ell-1$.
 }
 
 %\begin{exe} 
@@ -431,10 +431,11 @@ avec $n(x)$ une polynôme de degré $\ell$ et $d(x)$ un polynôme de degré $\el
 %\end{exe}
 
 \bluebox{Formules de V\'elu}{
-From the knowledge of its kernel we can explicitly write down the isogeny:
+La connaissance du noyau de l'isogénie permet d'expliciter celle-ci
+%From the knowledge of its kernel we can explicitly write down the isogeny:
 \begin{itemize}
-    \item Let $G=\ker\phi$, then $\displaystyle d(X)=\prod_{P \in G\setminus\{0_E\}}(X-x(P))$;
-    \item V\'elu's formulas: from $d(X)$ we deduce $n(X)/d(X)$;
+    \item Soit $G=\ker\phi$, alors $\displaystyle d(X)=\prod_{P \in G\setminus\{0_E\}}(X-x(P))$;
+    \item Formules de V\'elu : à partir de $d(X)$ on déduit $n(X)/d(X)$;
     %\item Complexity quasi-linear in $\ell = \#G$.
 \end{itemize}
 }
@@ -475,13 +476,12 @@ From the knowledge of its kernel we can explicitly write down the isogeny:
 \bluebox{Problème du calcul de l'isogénie explicite}
 {
  Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$. 
- \'A partir de $E$, $E'$  deux courbes elliptique $r$-isogènes définies sur $\mathbb{F}_q$,
+ \`A partir de $E$, $E'$  deux courbes elliptiques $r$-isogènes définies sur $\mathbb{F}_q$,
  calculer une $r$-isogénie $\phi:E\to E'$.
 }
-\medskip
+\medskip 
+%\vspace{-1mm}
 \pause
-Soit $p$ la caractéristique de $\mathbb{F}_q$.
-
 \begin{itemize}
 \item{} [Elkies~'92/'98],  %[Charlap, Colay, Robbins '91], 
 [Bostan,~Morain,~Salvy,~Schost~'08] fonctionne en $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$, seulement pour $r < 2p$. Spécifique au contexte SEA.
@@ -489,9 +489,10 @@ Soit $p$ la caractéristique de $\mathbb{F}_q$.
 \pause
 \item{} [Lercier~'97] fonctionne seulement pour $p=2$.
 \pause
-\item{} [Couveignes~'94] fonctionne pour toute caractéristique à l'aide de 
-$\tilde{O}(r^3p^{O(1)})$ opérations.
-\item{} [Couveignes~'96], [De Feo~'10]fonctionne pour toute caractéristique à l'aide de  $\tilde{O}(r^2p^{O(1)})$ opérations.
+\item{} [Couveignes~'94] pour tout $p$ à l'aide de $\tilde{O}(r^3p^{O(1)})$ 
+opérations.
+\item{} [Couveignes~'96], [De Feo~'10] pour tout $p$ à l'aide de  $\tilde{O}
+(r^2p^{O(1)})$ opérations.
 \end{itemize}
 \begin{itemize}
 
@@ -532,21 +533,21 @@ Soit les conditions suivantes équivalentes sont vérifiées:
 
 \begin{frame}
 
-For \emph{ordinary} elliptic curves
+Pour les courbes elliptiques \emph{ordinaires}
 \vspace{-1.5mm}
 \begin{align*}
-E[\ell^k]&\simeq\mathbb{Z}/\ell^k\mathbb{Z} \times \mathbb{Z}/\ell^k\mathbb{Z} \quad \textit{with } \ell \neq p \\
+E[\ell^k]&\simeq\mathbb{Z}/\ell^k\mathbb{Z} \times \mathbb{Z}/\ell^k\mathbb{Z} \quad \textit{avec } \ell \neq p \\
 E[p^k]&\simeq\mathbb{Z}/p^k\mathbb{Z}
 \end{align*}
 
 \pause
-\bluebox{Couveignes' algorithm (compute an $r$-isogeny $\phi:E\to E'$)}{
-Compute $\phi$ by interpolation over $E[p^k]$:
+\bluebox{Algorithme de Couveignes (calcul d'une $r$-isogénie $\phi:E\to E'$)}{
+Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{itemize}
-\item Compute generators $P,P'$ of $E[p^k],E'[p^k]$;
-\item Interpolate $\phi$, assuming it maps $[u]P\mapsto [u]P'$ for all $u \in \mathbb{Z}/p^k\mathbb{Z}$;
-\item Test whether $\phi$ is an isogeny.\\
-    In case it is not, replace $P'$ with a multiple $[a]P'$ and start again.
+\item Calcul de générateurs $P,P'$ de $E[p^k],E'[p^k]$;
+\item Interpolation de $\phi$, en supposant que l'on a la correspondance $[u]P\mapsto [u]P'$ pour tout $u \in \mathbb{Z}/p^k\mathbb{Z}$;
+\item Test si $\phi$ est une isogénie.\\
+    Si ce n'en est pas une, on remplace $P'$ avec un multiple $[a]P'$ et on recommence à nouveau.
 \end{itemize}
 
 }
@@ -563,20 +564,23 @@ Compute $\phi$ by interpolation over $E[p^k]$:
 \end{algorithmic}}
 
 \begin{enumerate}
-\item Select the least $k$ such that $p^k >  4r$;
-\item Compute generators $P$ of
-  $E[p^k]$ and $P'$ of $E'[p^k]$;
-\item Compute $T=\prod(X-x([u]P))$ with $1\le u \le \frac{p^k-1}{2}$;
-\item For each $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $O(r)$
+\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$.
+\item Calcul des générateurs $P$ de
+  $E[p^k]$ et $P'$ de $E'[p^k]$;
+\item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$;
+\item Pour tout $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $O(r)$
   \begin{enumerate}
   \item Calcul du polynôme d'interpolation 
     $L$ tel que
    $L (x ([u] P)) = x([a\, u\,]P' )$ pour tout
     $u \in \mathbb{Z}/p^k \mathbb{Z}$;
 \hfill $\tilde{O}(r p^{O(1)})$
-	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
-	calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\tilde{O}(r)$}
+	%\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
+	%calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
+%\hfill $\tilde{O}(r)$
+	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$ \\ 
+	à l'aide d'un algorithme de reconstruction rationnelle; 
+	\hfill $\tilde{O}(r)$
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
   \end{enumerate}
@@ -649,15 +653,22 @@ $\Rightarrow O(r^2)$ possibilités.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Frobenius vs isogenies}
+\frametitle{Endomorphismes d'un courbe elliptique}
 \begin{defi}
-Un endomorphisme d'une courbe elliptique $E$ est une isogénie qui a pour image et codomaine $E$.
+Un endomorphisme d'une courbe elliptique $E$ est une isogénie qui a pour image 
+et codomaine $E$. L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$.
 \end{defi}
 
 \begin{prop}
-L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$, de plus $\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
+$\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
 \end{prop}
+\textbf{Rappel:} L'anneau d'endomorphisme d'une courbe elliptique ordinaire est isomorphe à un ordre dans un corps quadratique imaginaire.
+\end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Frobenius}
 \begin{defi}[L'endomorphisme de Frobenius]
 $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. La fonction
 \[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Elle
@@ -668,6 +679,7 @@ Nous travaillons seulement avec des isogénies rationnelles $\psi:E \to E'$, i.e
 \[
 \pi_{E'} \circ \psi =\psi \circ \pi_{E}.
  \]
+ 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -710,7 +722,7 @@ En particulier: $d_{\pi}=g^2d_K$
 \begin{frame}
 \frametitle{Le cas général}
 
-Nous notons par $\mathcal{O}$ (resp. $\mathcal{O}'$) l'anneau d'endomorphisme de $E$ (resp. $E'$)
+Nous notons par $\mathcal{O}$ (resp. $\mathcal{O}'$) l'anneau des endomorphismes de $E$ (resp. $E'$)
 \vspace{-4mm}
 \begin{columns}
 \begin{column}{6cm}
@@ -972,7 +984,7 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
     \begin{tabular}{p{13em}p{2em}p{13em}}
 Sous-groupe de taille $\ell$  & $\Leftrightarrow$ &     $\ell$-isogénie \pause \\[2mm]
       
-    Sous-groupe de taille $\ell$ stable par $\pi$   & $\Leftrightarrow$ & $\ell$-isogénie rationnelle 
+    Sous-groupe de taille $\ell$ stable sous l'action de $\pi$   & $\Leftrightarrow$ & $\ell$-isogénie rationnelle 
     \end{tabular}
   \end{center}
 
@@ -980,13 +992,13 @@ Sous-groupe de taille $\ell$  & $\Leftrightarrow$ &     $\ell$-isogénie \pause 
 \pause
 Supposons que $\pi$ se scinde modulo $\ell$:
 i.e. son polynôme minimal se factorise comme
-\[ (\pi-\red \lambda)(\pi- \blu \mu ) \quad \text{with} \quad \red \lambda \neq \blu \mu \bmod \ell \]
+\[ (\pi-\red \lambda)(\pi- \blu \mu ) \quad \text{avec} \quad \red \lambda \neq \blu \mu \bmod \ell \]
 
 
 \pause
 \begin{center}
   \begin{tabular}{p{13em}p{2em}p{13em}}
-     \raggedright Deux espaces propres dans $E[\ell]$
+     \raggedright Deux espaces propres de $E[\ell]$:
      \mbox{$\ker(\pi-\red \lambda), \ker( \pi- \blu \mu)$}
      & $\Rightarrow$  
      & \raggedright Deux $\ell$-isogénies rationnelles 
@@ -997,7 +1009,7 @@ i.e. son polynôme minimal se factorise comme
 \bluebox{Graphe d'isogénies}{
 \begin{figure}[h]
 	\begin{center}
-	\begin{tikzpicture}[scale=0.3]
+	\begin{tikzpicture}[scale=0.20]
 	\coordinate (A) at (0:5);
 	\coordinate (B) at (45:5);
 	\coordinate (C) at (90:5);
@@ -1102,7 +1114,7 @@ i.e. son polynôme minimal se factorise comme
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fait:} $\phi$ maps 
+\bluebox{}{\textbf{Fait:} $\phi$ fait correspondre 
 $\color{red}{E[\ell^k]_{{\lambda}}} \color{black}{\rightarrow} \color{red}{E'[\ell^k]_{{\lambda}}}$  
 et 
 $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell^k]_{{\mu}}}$.
@@ -1122,7 +1134,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
     \begin{enumerate}
   \item Calcul du polynôme d'interpolation 
     $L$  qui envoie\\
-    $\color{red}P\mapsto [a]P'$ and $\color{blue}Q\mapsto [b]Q'$;
+    $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
 \hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
 	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
