@@ -193,7 +193,7 @@ cryptographique d'une courbe elliptique,
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Reminder on isogenies}
+\section{Isogénies}
 %parler aussi de la cryptographie sur les courbes elliptiques
 
 \begin{frame}
@@ -375,14 +375,14 @@ et $m>0$
 \item $E$ et $E'$ deux courbes elliptiques, une isogénie est un morphisme surjectif$\phi: E \rightarrow E'$ telle que $\phi(0_{E})=0_{E'}$. Les isogénies sont
 \begin{itemize}
  \item des morphismes de groupe (avec un noyau fini),
- \item algébriques maps (de degré fini).%!!!!!!!!!!!!!
+ \item des fonctions algébriques (de degré fini).
 \end{itemize}
  
 \item  Si l'isogénie est de degré $\ell$, nous l'appelons \emph{$\ell$-isogénie},
 
-\item Nous disons que $E$ et $E'$ sont \emph{$\ell$-isogènes} si il existe une $\ell$-isogénie entre les deux.
+\item Deux courbes $E$ et $E'$ sont dites \emph{$\ell$-isogènes} si il existe une $\ell$-isogénie qui les relie.
 
-\item Dans cet exposé: seulement des isogénies \emph{rationnelles} (i.e.\ Galois-équivariantes maps).
+\item Dans cet exposé: seulement des isogénies \emph{rationnelles} (i.e. invariantes sous l'action de groupe de Galois).
 
 %\item We say that $E$ and $E'$ are isogenous if there exist an isogeny $\phi$ between the two curves.
 
@@ -408,29 +408,13 @@ est une isogénie de degré $\ell^2$.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Frobenius vs isogenies}
-\begin{defi}[L'endomorphisme de Frobenius]
-$E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. La fonction
-\[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Elle
-satisfait une équation quadratique \[ \pi^2 - t_\pi \pi + q = 0.\]
-\end{defi}
-
-Nous travaillons seulement avec des isogénies rationnelles $\psi:E \to E'$, i.e.
-\[
-\pi_{E'} \circ \psi =\psi \circ \pi_{E}.
- \]
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Explicit isogenies}
 
 \bluebox{Explicit isogenies}{
-Les isogénies séparables de degré $\ell$ sont representées par des fonctions%!!!!!!!map
- rationnelles sous forme de Weierestrass
+Les isogénies séparables de degré $\ell$ sont représentées par des fonctions%!!!!!!!map
+ rationnelles sous forme de Weierstrass
 %\[
 %\left( x ,y \right) \mapsto \left( \frac{n(x)=45x^9+67x^7+57x^6+97x^5+7+100x^2+78x+67}{d(x)(x^4+51x^2+67x+61)^2}, y\left(\frac{n(x)}{d(x)\right)^'} \right)
 %\]
@@ -522,7 +506,7 @@ dépendance exponentielle en $\log(p)$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{An $\ell$-adic Couveignes algorithm (special case)}
 
-\section{Couveignes' algorithm}
+\section{Algorithme de Couveignes}
 
 \begin{frame}
 \frametitle{Classification des courbes elliptiques}
@@ -584,18 +568,17 @@ Compute $\phi$ by interpolation over $E[p^k]$:
   $E[p^k]$ and $P'$ of $E'[p^k]$;
 \item Compute $T=\prod(X-x([u]P))$ with $1\le u \le \frac{p^k-1}{2}$;
 \item For each $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $O(r)$
- \begin{enumerate}
-  \item Compute the interpolation polynomial
-    $L$ such that
-    $L (x ([u] P)) = x([a\, u\,]P' )$ for all
+  \begin{enumerate}
+  \item Calcul du polynôme d'interpolation 
+    $L$ tel que
+   $L (x ([u] P)) = x([a\, u\,]P' )$ pour tout
     $u \in \mathbb{Z}/p^k \mathbb{Z}$;
-    \hfill $\tilde{O}(r p^{O(1)})$
-  \item Use a  rational reconstruction  algorithm 
-    to compute a rational
-    fraction $F=L\bmod{T}$ of degrees~$(r, r-1)$;
-    \hfill $\tilde{O}(r)$
-  \item If $F$ defines an isogeny of degree $r$, return it and
-    stop.
+\hfill $\tilde{O}(r p^{O(1)})$
+	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
+	calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
+\hfill\only<2>{$\tilde{O}(r)$}
+  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
+   l'algorithme.
   \end{enumerate}
 \end{enumerate}
 %Complexity polynomial in $p$. 
@@ -662,6 +645,29 @@ $\Rightarrow O(r^2)$ possibilités.
 %    Ouch! Can we restrict the choices for $\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)$?
 %\end{center}
 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Frobenius vs isogenies}
+\begin{defi}
+Un endomorphisme d'une courbe elliptique $E$ est une isogénie qui a pour image et codomaine $E$.
+\end{defi}
+
+\begin{prop}
+L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$, de plus $\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
+\end{prop}
+
+\begin{defi}[L'endomorphisme de Frobenius]
+$E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. La fonction
+\[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Elle
+satisfait une équation quadratique \[ \pi^2 - t_\pi \pi + q = 0.\]
+\end{defi}
+
+Nous travaillons seulement avec des isogénies rationnelles $\psi:E \to E'$, i.e.
+\[
+\pi_{E'} \circ \psi =\psi \circ \pi_{E}.
+ \]
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -955,7 +961,7 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Un algorithme de Couveignes $\ell$-adique (cas Elkies)}
+\section{Algorithme de Couveignes $\ell$-adique (cas Elkies)}
 
 
 
@@ -1096,35 +1102,33 @@ i.e. son polynôme minimal se factorise comme
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fact:} $\phi$ maps 
+\bluebox{}{\textbf{Fait:} $\phi$ maps 
 $\color{red}{E[\ell^k]_{{\lambda}}} \color{black}{\rightarrow} \color{red}{E'[\ell^k]_{{\lambda}}}$  
 et 
 $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell^k]_{{\mu}}}$.
  }
 
 \begin{enumerate}
-\item Select the least $k$ such that  $\ell^{2k}>4r$.
+\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$.
 \medskip
-\item Compute $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
- and $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $
+\item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
+ et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
-\item For each \textbf{invertible diagonal} matrix
+\item Pour toute matrice \textbf{diagonale inversible}
   $\left ( \begin{smallmatrix}a & 0\\ 0 & b
 \end{smallmatrix}\right )$ in $(\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
 \hfill\only<2>{$O(r)$}
-  \begin{enumerate}
-
-  \item Compute the interpolation polynomial
-    $L$ sending\\
+    \begin{enumerate}
+  \item Calcul du polynôme d'interpolation 
+    $L$  qui envoie\\
     $\color{red}P\mapsto [a]P'$ and $\color{blue}Q\mapsto [b]Q'$;
 \hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
-	\item Use a  rational reconstruction  algorithm 
-    to compute a rational
-    fraction $F$ of degrees~$(r, r-1)$;
+	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
+	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
 \hfill\only<2>{$\tilde{O}(r)$}
-  \item If $F$ defines an isogeny of degree $r$, return it and
-    stop.
+  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
+   l'algorithme.
   \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -1571,10 +1575,10 @@ We proceed step by step by walking along the crater according to the direction $
 
 \begin{frame}
 
-\bluebox{Towards an $\ell$-adic Couveignes' algorithm ($\ell$ an Elkies prime)}{
+\bluebox{Vers un algorithme de Couveignes $\ell$-adic ($\ell$ un premier de Elkies)}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ two $r$-isogenous curves on $\mathbb{F}_{q}$ 
-\ENSURE $\phi: E \rightarrow E'$ of degree $r$
+\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\ENSURE $\phi: E \rightarrow E'$ de de degré $r$
 \end{algorithmic}}
 
 \bluebox{}{\textbf{Fait:} $\phi$ maps 
@@ -1625,7 +1629,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
   }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\section{An $\ell$-adic Couveignes algorithm}
+\section{Algorithme de Couveignes $\ell$-adique}
 
 \begin{frame}
 %\section{Atkin Case}
