@@ -515,14 +515,14 @@ dépendance exponentielle en $\log(p)$.
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Soit les conditions suivantes équivalentes sont vérifiées:
 \begin{enumerate}
 \item $E$ est supersingulière,
-\item $E[p^e]=\{O_E\}$ pour tout $e > 0$,
+\item $E[p]=\{0_E\}$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
 \end{enumerate}
 \pause
 Soit les conditions suivantes équivalentes sont vérifiées:
 \begin{enumerate}
 \item $E$ est \emph{ordinaire},
-\item $E[p^e]=\mathbb{Z}/p^e\mathbb{Z}$ pour tout $e > 0$,
+\item $E[p]=\mathbb{Z}/p\mathbb{Z}$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombres quadratique imaginaire noté $K$.
 \end{enumerate}
 \end{prop}
@@ -1600,7 +1600,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
  }
 
 \begin{enumerate}
-\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$.
+\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$, avec $h<k$.
 \medskip
 \item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
  et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogenies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$.  
@@ -1636,7 +1636,8 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
   \item En pratique la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies.
   \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leq 
   O(\log(q))$ pour presque tous les $q$ et courbes $E,E'$ (voir 
-[Shparlinski,~Sutherland~'14]).
+[Shparlinski,~Sutherland~'14]).\\
+ $\Rightarrow$ Algorithme quasi-quadratique de Couveignes $\ell$-adique.
 \end{itemize}
   }
 \end{frame}
@@ -1814,7 +1815,7 @@ Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la bas
 \bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $[\ell^h]R=[\ell^h]R'$.}
 
 \begin{enumerate}
-\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$.
+\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$ avec $h<k$.
 \medskip
 \item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
