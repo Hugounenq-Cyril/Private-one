@@ -1427,13 +1427,13 @@ et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
 
 \begin{frame}
 \frametitle{Marche sur le cratère}
-Citer Fouquet Morain et Ionica-Joux
-\bluebox{Fact}{
+
+\bluebox{Fait}{
     Soit $\phi$ une $r$-isogénie avec $\ell \nmid r$, alors $\phi$ préserve les noyaux des $\ell^k$-isogénies horizontales de direction $\red \lambda, \blu \mu $.}
 %\textbf{Goal:} compute the kernel of horizontal $\ell^k$-isogenies (codomain curves lying on the crater).
-
-
+Des algorithmes pour déterminer des isogénies horizontales ont déjà été effectués: [Fouquet, Morain, '02], [Ionica,Joux, '10]. \\
 On procède étape par étape à l'aide de marche sur le cratère selon la direction $ \blu \mu$. %to compute the kernels of the horizontal $\ell^3$-isogeny of direction $\blu \mu $.
+\vspace{-5mm}
 \begin{center}
 \begin{tikzpicture}[scale=0.37]
 \begin{scope}[yshift=10cm]
@@ -1849,8 +1849,13 @@ Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la bas
 
 \begin{frame}
 \frametitle{Algorithme de Couveignes $\ell$-adique}
-
-Conclure sur tout cela...
+Nous avons vu que nous étions capable de proposer un algorithme de Couveignes $\ell$-adique quasi quadratique sans dépendance polynomiale en la caractéristique dès lors que:
+\begin{itemize}
+\item $\ell$ est un nombre premier de Elkies et $h<k$ (un tel $\ell$ existe dans $[1, O(\log(\ell))]$)
+\item $\ell$ est un nombre permier de Atkin et $h=0$ (il existe un nombre fini de premiers de Atkin tels que $h \neq 0$) 
+\end{itemize}
+\`A défaut dans le cas Atkin il existe un premier $\ell$ de Atkin dans $[1, O(\log(\ell))]$ tel que l'on obtienne un algorithme avec une complexité en $\tilde{O}(r^{2}r^{1/2})$. % pas clair...
+%\`A défaut dans le cas Atkin nous avons un algorithme avec une complexité en $\tilde{O}(r^{2}\ell^{h})$, pour lequel 
 
 \end{frame}
 
