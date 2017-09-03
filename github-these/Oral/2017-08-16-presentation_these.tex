@@ -1727,26 +1727,30 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 		\draw (F) -- (J);
 		\draw (D) node[fill=white]{$E$};
 		\draw (K) node[fill=white]{$\bullet$};
-		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
-\\4  & 3 \end{smallmatrix} \right)$};
-		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
-		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
-\\12  & 3 \end{smallmatrix} \right) $};
-		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
-\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
 		\draw (L) node[fill=white]{$\bullet $};
 		\draw (M) node[fill=white]{$\bullet $};
-		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}11 & 12 
-\\4 & 15 \end{smallmatrix} \right) $};
-		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};
 		%\coordinate (A) at (12,-5);
 		%\coordinate (B) at (12,-11);
 		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
 		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
 \end{scope}
 \begin{scope}[yshift=0cm,xshift=20.3cm]
+		\coordinate (A) at (33,-5);
+		\coordinate (B) at (33,-11);
+		\draw (A) node[fill=white]{$ \bmod \ell^{h+1}$};
+		\draw (B) node[fill=white]{$ \bmod \ell^{h+2}$};
 		\coordinate (D) at (0,0);
 		\coordinate (E) at (-6,-5);
 		\coordinate (F) at (6,-5);
@@ -1766,31 +1770,26 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 		\draw (E) -- (G);
 		\draw [line width=1.5pt,blue](F) -- (I);
 		\draw (F) -- (J);
-		\draw (D) node[fill=white]{$E'$};
+		\draw (D) node[fill=white]{$E$};
 		\draw (K) node[fill=white]{$\bullet$};
-		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
-\\4  & 3 \end{smallmatrix} \right)$};
-		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
-		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
-\\12  & 3 \end{smallmatrix} \right) $};
-		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
-\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
 		\draw (L) node[fill=white]{$\bullet $};
 		\draw (M) node[fill=white]{$\bullet $};
-		\draw (I) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}11 & 12 
-\\4 & 15 \end{smallmatrix} \right) $};
-		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};
 		%\coordinate (A) at (12,-5);
 		%\coordinate (B) at (12,-11);
 		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
 		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
-		\coordinate (A) at (-20.1,0.5);
-		\coordinate (B) at (0,0.5);
-		%\draw [->] (A) --(B);
-		%\draw[bend right =20] (A)--(B);
-		\draw[dashed,thick,-latex,shorten >=5pt] (A) to[bend left=20] node[below left] {$\phi$} (B);
 \end{scope}
 \end{tikzpicture}
 \end{center}
@@ -2959,6 +2958,114 @@ alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf
 %Cela permet notamment d'ajouter sans coût supplémentaire des étages à la tour.
 
 \end{frame}
+
+\begin{frame}
+\frametitle{Un algorithme de Couveignes $\ell$-adique dans le cas Atkin}
+%\begin{figure}
+\begin{center}
+\begin{tikzpicture}[yshift=-25cm,scale=0.25]
+\begin{scope}[yshift=0cm,xshift=0cm]
+		\coordinate (A) at (33,-5);
+		\coordinate (B) at (33,-11);
+		\draw (A) node[fill=white]{$ \bmod \ell^{h+1}$};
+		\draw (B) node[fill=white]{$ \bmod \ell^{h+2}$};
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8.4,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-1,-11);
+		\coordinate (M) at (1,-11);
+		\draw (D) -- (E);
+		\draw [line width=1.5pt,blue](D) -- (F);
+		\draw [line width=1.5pt,red] (D) -- (K);
+		\draw (K) -- (L);
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw [line width=1.5pt,blue](F) -- (I);
+		\draw (F) -- (J);
+		\draw (D) node[fill=white]{$E$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
+\\4  & 3 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
+\\12  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
+\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\bullet $};
+		\draw (M) node[fill=white]{$\bullet $};
+		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}11 & 12 
+\\4 & 15 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		%\coordinate (A) at (12,-5);
+		%\coordinate (B) at (12,-11);
+		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
+		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+\end{scope}
+\begin{scope}[yshift=0cm,xshift=20.3cm]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8.4,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-1,-11);
+		\coordinate (M) at (1,-11);
+		\draw (D) -- (E);
+		\draw [line width=1.5pt,blue](D) -- (F);
+		\draw [line width=1.5pt,red] (D) -- (K);
+		\draw (K) -- (L);
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw [line width=1.5pt,blue](F) -- (I);
+		\draw (F) -- (J);
+		\draw (D) node[fill=white]{$E'$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
+\\4  & 3 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
+\\12  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
+\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\bullet $};
+		\draw (M) node[fill=white]{$\bullet $};
+		\draw (I) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}11 & 12 
+\\4 & 15 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		%\coordinate (A) at (12,-5);
+		%\coordinate (B) at (12,-11);
+		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
+		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+		\coordinate (A) at (-20.1,0.5);
+		\coordinate (B) at (0,0.5);
+		%\draw [->] (A) --(B);
+		%\draw[bend right =20] (A)--(B);
+		\draw[dashed,thick,-latex,shorten >=5pt] (A) to[bend left=20] node[below left] {$\phi$} (B);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+%\end{figure}
+%Once the image by $\phi$ of one ($\color{red} P$) of the two bases point of $E[\ell^{h+i}]$ is 
+%determined, then the matrix $\pi(P,Q)$ that represents the Frobenius determines \emph{uniquely} a \emph{generator} of the
+%descending $\ell^{i}$-isogenies generated by the second basis point ($\color{blue} Q$). 
+Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la base de la de $E[\ell^{h+i}]$ a été déterminé alors la forme de la matrice du Frobenius $\pi(P,Q)$ détermine de façon unique le générateur de la $\ell^i$-isogénie engendrée par le second point de la base
+% les $\ell$-isogénies descendantes engendrées par le second point de la base.
+\end{frame}
+
+
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
