@@ -2233,7 +2233,7 @@ and then we use the Chinese  Remainder Theorem to get $L$.
 
 
 \begin{frame}
-\frametitle{Technical details: Improving interpolation with Frobenius}
+\frametitle{Détails techniques: Amélioration de l'interpolation avec le Frobenius}
 \begin{figure}[h]
 \begin{center}
 
@@ -2346,14 +2346,15 @@ and then we use the Chinese  Remainder Theorem to get $L$.
 
 \end{center}
 \end{figure}
-Elements of the binary tree we need for the computation of the interpolation polynomial.
+%Elements of the binary tree we need for the computation of the interpolation polynomial.
+Éléments de l'arbre de produit binaire nécessaires au calcul du polynôme d'interpolation.
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Bonus: ascending horizontal points}
+\frametitle{Bonus: points ascendants horizontaux}
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.50]
@@ -2528,9 +2529,9 @@ Elements of the binary tree we need for the computation of the interpolation pol
 
 \end{tikzpicture}
 \end{center}
-\caption{ Construction of an ascending horizontal point from a point $P \in 
-E_s$ of order $2^3$ such that $[2]P$ is an horizontal point and $\psi: E_s 
-\rightarrow E$ is a descending $2$-isogeny.} 
+\caption{ Construction d'un point ascendant horizontal à l'aide d'un point $P \in 
+E_s$ d'ordre $2^3$ tel que $[2]P$ est un point horizontal et $\psi: E_s 
+\rightarrow E$ est une $2$-isogénie descendante.} 
 %à partir d'un point $P \in E_s$ d'ordre $2^3$ tel que $[2]P$ soit 
 %horizontal de direction $\color{blue}{\mu}$ et $\psi:E_s \rightarrow E$ une 
 %$2$-isogénie descendante.}
@@ -2635,7 +2636,7 @@ E_s$ of order $2^3$ such that $[2]P$ is an horizontal point and $\psi: E_s
 
 
 \begin{frame}
-\begin{prop}[Preciser source vu dans Fouquet '01]
+\begin{prop}
 Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] \quad \text{et} \quad (X-a)^2=X^2-t_{\pi}X+q \bmod g \]
 \end{prop}
 
@@ -2644,25 +2645,28 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 \begin{frame}
 
 
-\bluebox{Algorithm to compute the endomorphism ring of $E$ [Kohel '96]}{
+\bluebox{Algorithme de calcul de l'anneau des endomorphismes de $E$ [Kohel '96]}{
 \begin{algorithmic}[1]
-\REQUIRE $d_{\pi}$ the discriminant of the Elliptic curve $E$; 
-\ENSURE $\mathcal{O}$ the endomorphism ring of $E$
+\REQUIRE $d_{\pi}$ le discriminant de la courbe elliptique $E$; 
+\ENSURE $\mathcal{O}$ l'anneau d'endomorphisme de $E$
 \end{algorithmic}}
 
 \begin{enumerate}
-\item Compute the prime factorization of $d_{\pi}$ and deduce from it the conductor  $g=\prod_{i=1}^j\ell_i^{t_i}$ such that $d_{\pi}=g^2d_K$ and $a$ such that $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
-\item For each $\ell_i$:
+%\item Compute the prime factorization of $d_{\pi}$ and deduce from it the conductor  $g=\prod_{i=1}^j\ell_i^{t_i}$ such that $d_{\pi}=g^2d_K$ and $a$ such that $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
+\item Factorisation de $d_{\pi}$ et calcul du conducteur 
+$g=\prod_{i=1}^j\ell_i^{t_i}$ tel que $d_{\pi}=g^2d_K$ et $a$ tel que 
+$\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
+\item Pour tout $\ell_i$:
 \begin{enumerate}
-\item Compute $s_i= v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $
+\item Calcul de $s_i= v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $
 \end{enumerate}
-\item Return $\mathcal{O}=\mathbb{Z}+\left( (\pi-a)/\prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
+\item Retourne $\mathcal{O}=\mathbb{Z}+\left( (\pi-a)/\prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
 \end{enumerate}
 
-\bluebox{Previous work on the computation of $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $}{
+\bluebox{Travaux précédents sur le calcul de $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $}{
 \begin{itemize}
-\item Kohel (1996) work with modular polynomials (variants with division polynomials, and ideal class group)
-\item Bisson-Sutherland (2009) enumerations of relations built from isogeny cycles
+\item Kohel (1996) utilise les polynômes modulaires (variantes avec les polynômes de division, et les groupes de classe d'idéaux)
+\item Bisson-Sutherland (2009) énumérations de relations construites à l'aide de cycles  d'isogénies
 \end{itemize}
 }
 %Parler de Kohel (Vu dans la thèse de Mireille 1) Methode par les polynomes de division, 2) polynomes modulaires 3) Methode par les ideaux 3.a) enumeration 3.b) groupe de classe d ideaux )
@@ -2684,13 +2688,14 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 %\item either $b$ and $c$ are prime with $\ell$;
 %\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation included in $ [2,2e]$.
 %\end{itemize}
-In the Atkin case for any bases $(P,Q)$ of $E[\ell^k]$ with $k>h-e$ and $e$ the depth of $E$ in the volcano. The action of the Frobenius $\pi$ in this basis is up to permutation equals to:
+Dans le cas Atkin pour toute base $(P,Q)$ de $E[\ell^k]$ avec $k>h-e$ et $e$ la
+profondeur de $E$ dans le volcan. L'action du Frobenius dans cette base est, à permuationt prés:
  \[\pi(P,Q)= \left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-\end{matrix}\right ) \bmod \ell^k, \quad \text{with }a,d \text{ primes with }\ell, v_{\ell}(a-d)\geqslant h .\]
-Moreover 
+\end{matrix}\right ) \bmod \ell^k, \quad \text{avec }a,d \text{ premier avec }\ell, v_{\ell}(a-d)\geqslant h .\]
+De plus
 \begin{itemize}
-\item either $b$ and $c$ are prime with $\ell$;
-\item either $b$ is prime with $\ell$ and $v_{\ell}(c) \in [2,2e]$.
+\item soit $b$ et $c$ sont premiers avec $\ell$;
+\item soit $b$ est premier avec $\ell$ et $v_{\ell}(c) \in [2,2e]$.
 \end{itemize}
 \end{prop}
 
@@ -2763,33 +2768,32 @@ c_2\ell^2 & d_2
 %Faire une slide qui parle de ça 
 %Il faut juste dire comment l'on distingue un cas Atkin d'un cas Elkies...
 %Faire une estimation à la louche
-
-\bluebox{Algorithm to compute the endomorphism ring of $E$}{
+\bluebox{Algorithme de calcul de l'anneau des endomorphismes de $E$ [Kohel '96]}{
 \begin{algorithmic}[1]
-\REQUIRE $d_{\pi}$ the discriminant of the Elliptic curve $E$; 
-\ENSURE $\mathcal{O}$ the endomorphism ring of $E$
+\REQUIRE $d_{\pi}$ le discriminant de la courbe elliptique $E$; 
+\ENSURE $\mathcal{O}$ l'anneau d'endomorphisme de $E$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fact:} For $\langle P, R \rangle = E[\ell_i^{r_i+1}]$ with $r_i=\lfloor v_{\ell_i}(d_{\pi})/2 \rfloor $ from  $\pi(P,R)$ we deduce $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$.}
+\bluebox{}{\textbf{Fait:} Pour $\langle P, R \rangle = E[\ell_i^{r_i+1}]$ avec $r_i=\lfloor v_{\ell_i}(d_{\pi})/2 \rfloor $ à partir de $\pi(P,R)$ nous déduisons $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$.}
 
 \begin{enumerate}
-\item Compute from $d_{\pi}$ the prime factorization of the conductor $g=\prod_{i=1}^j\ell_i^{t_i}$ of $\mathbb{Z}[\pi]$ and $a$ such that $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
-\item For each $\ell_i$:
+\item \`A partir de la factorisation de $d_{\pi}$ calcul du conducteur $g=\prod_{i=1}^j\ell_i^{t_i}$ de $\mathbb{Z}[\pi]$ et $a$ tel que $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
+\item Pour tout $\ell_i$:
 \begin{enumerate}
-\item Compute $\langle P , Q \rangle = E[\ell_i^{r_i+1}]$
+\item Calcul de $\langle P , Q \rangle = E[\ell_i^{r_i+1}]$
 \medskip
-\item Determine from $d_{\pi}$ if $\ell_i$ is an Atkin or an Elkies prime 
+\item Détermination à partir de $d_{\pi}$ si $\ell_i$ est un nombre premier de Atkin ou de Elkies 
 \medskip 
-\item Compute $\pi(P,Q)$ and deduce from it $s_i=v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$ 
+\item Détermination de $s_i=v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$ à partir de  $\pi(P,Q)$
 \end{enumerate}
-\item Return $\mathcal{O}=\mathbb{Z} + \left( (\pi-a)/ \prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
+\item Retourne $\mathcal{O}=\mathbb{Z} + \left( (\pi-a)/ \prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
 \end{enumerate}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Comparison with the Elkies case}
+\frametitle{Comparaison avec le cas Elkies}
 \begin{figure}
 \begin{center}
 
@@ -2893,72 +2897,6 @@ c_2\ell^2 & d_2
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-%Parler de la représentation univariée et bivariée, dire que les calculs sont toujours plus rapide en univariée, montrer le passage d'une représentation bivariée à univariée. Dire que l'on peut ajouter des étages à la volée. Mentionner que l'on a des bonnes complexités pour le Frobenius en particulier.
-
-\bluebox{Représentation univariée}
-{
-Un élément de $F_k$ est dit sous forme univariée si il est écrit à l'aide d'un polynôme $G \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-1}$, avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$, évalué en l'élément primitif $x_k$ de $F_k$.
-}
-
-\begin{exe}
-Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \cdots, \mathsf{F}_k$ une tour d'extensions $5$-adiques telle que $\mathbb{F}_q \cong \mathsf{F}_1$ (id est $d_1=1$), soit $x_4$ un élément primitif de $\mathsf{F}_4$ alors une représentation univariée d'un élément $\beta \in \mathsf{F}_4$ est:
-\begin{equation*}
- \beta_0 + \beta_1 x_4+ \cdots +\beta_{5k}x_4^{5k} + \beta_{5k+1}x_4^{5k+1}+ \cdots +\beta_{5k+4}x_4^{5k+4}+ \cdots + \beta_{124}x_4^{124}
-\end{equation*}
-\end{exe}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\bluebox{Représentation bivariée}
-{
-Un élément de $\mathsf{F}_k$ est dit sous forme bivariée si il est écrit à l'aide des éléments primitifs $x_k$ de $\mathsf{F}_k$ et $x_{k-1}$ de $\mathsf{F}_{k-1}$ sous la forme: 
-\begin{equation*}
- G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
-\end{equation*}
-avec $G_i \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-2}$ avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$ pour $i>0$ et $G_0$ de degré inférieur à $\ell$.
-}
-\begin{exe}
-Ainsi $\beta \in \mathsf{F}_4$ a la représentation bivariée suivante:
-\begin{equation*}
-  \beta_0 + \beta_1 x_4+ \cdots + x_3^{k}(\beta_{5k}+\beta_{5k+1} x_4 + \beta_{5k+2} x_4^2 + \beta_{5k+3} x_4^3 + \beta_{5k+4}x_3^4)+ \cdots + \beta_{124}x_3^{24}x_4^{4}.
- \end{equation*} 
-en se servant du fait que $x_4^5=x_3$.
-\end{exe}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\bluebox{Changement de représentation univariée, bivariée}
-{Celui-ci consiste à passer d'une écriture à une autre.
-\begin{equation*}
-\begin{alignedat}{1}
- G(x_k) &= G_0(x_k)+ G_1(x_k^\ell)+x_kG_2(x_k^\ell)+ \cdots + x_k^{\ell-1} G_{\ell}(x_k^{\ell})\\
-&= G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
-\end{alignedat}
-\end{equation*}
-Celui-ci n'a pas de coût algébrique.}
-
-\begin{exe}
-Soit $\alpha \in \mathsf{F}_4$ qui s'écrit dans la base univariée de $\mathsf{F}_4$:
-\begin{equation}
-\label{eq:exe:mon}
-\alpha_0 + \alpha_5x_4^5+ \alpha_{10}x_4^{10} + \alpha_{15}x_4^{15} + \cdots + \alpha_{5k}x_4^{5k} + \cdots + \alpha_{120}x_4^{120} 
-\end{equation} 
-alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf{F}_4$:
-\begin{equation}
-\label{eq:exe:biv}
-\alpha_0 + \alpha_5x_3^1+ \alpha_{10}x_3^{2} + \alpha_{15}x_3^{3} + \cdots + \alpha_{5k}x_3^{k} + \cdots + \alpha_{120}x_3^{24}. 
-\end{equation} 
- Ainsi $\alpha \in \mathsf{F}_3$. Le passage de la représentation de $\alpha$ de \eqref{eq:exe:mon} à \eqref{eq:exe:biv} correspond à une \emph{descente}, l'opération inverse est elle un \emph{relèvement}.
-\end{exe}
-
-%Cela permet notamment d'ajouter sans coût supplémentaire des étages à la tour.
-
-\end{frame}
 
 \begin{frame}
 \frametitle{Un algorithme de Couveignes $\ell$-adique dans le cas Atkin}
@@ -3066,6 +3004,74 @@ Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la bas
 % les $\ell$-isogénies descendantes engendrées par le second point de la base.
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+%Parler de la représentation univariée et bivariée, dire que les calculs sont toujours plus rapide en univariée, montrer le passage d'une représentation bivariée à univariée. Dire que l'on peut ajouter des étages à la volée. Mentionner que l'on a des bonnes complexités pour le Frobenius en particulier.
+
+\bluebox{Représentation univariée}
+{
+Un élément de $F_k$ est dit sous forme univariée si il est écrit à l'aide d'un polynôme $G \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-1}$, avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$, évalué en l'élément primitif $x_k$ de $F_k$.
+}
+
+\begin{exe}
+Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \cdots, \mathsf{F}_k$ une tour d'extensions $5$-adiques telle que $\mathbb{F}_q \cong \mathsf{F}_1$ (id est $d_1=1$), soit $x_4$ un élément primitif de $\mathsf{F}_4$ alors une représentation univariée d'un élément $\beta \in \mathsf{F}_4$ est:
+\begin{equation*}
+ \beta_0 + \beta_1 x_4+ \cdots +\beta_{5k}x_4^{5k} + \beta_{5k+1}x_4^{5k+1}+ \cdots +\beta_{5k+4}x_4^{5k+4}+ \cdots + \beta_{124}x_4^{124}
+\end{equation*}
+\end{exe}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\bluebox{Représentation bivariée}
+{
+Un élément de $\mathsf{F}_k$ est dit sous forme bivariée si il est écrit à l'aide des éléments primitifs $x_k$ de $\mathsf{F}_k$ et $x_{k-1}$ de $\mathsf{F}_{k-1}$ sous la forme: 
+\begin{equation*}
+ G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
+\end{equation*}
+avec $G_i \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-2}$ avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$ pour $i>0$ et $G_0$ de degré inférieur à $\ell$.
+}
+\begin{exe}
+Ainsi $\beta \in \mathsf{F}_4$ a la représentation bivariée suivante:
+\begin{equation*}
+  \beta_0 + \beta_1 x_4+ \cdots + x_3^{k}(\beta_{5k}+\beta_{5k+1} x_4 + \beta_{5k+2} x_4^2 + \beta_{5k+3} x_4^3 + \beta_{5k+4}x_3^4)+ \cdots + \beta_{124}x_3^{24}x_4^{4}.
+ \end{equation*} 
+en se servant du fait que $x_4^5=x_3$.
+\end{exe}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\bluebox{Changement de représentation univariée, bivariée}
+{Celui-ci consiste à passer d'une écriture à une autre.
+\begin{equation*}
+\begin{alignedat}{1}
+ G(x_k) &= G_0(x_k)+ G_1(x_k^\ell)+x_kG_2(x_k^\ell)+ \cdots + x_k^{\ell-1} G_{\ell}(x_k^{\ell})\\
+&= G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
+\end{alignedat}
+\end{equation*}
+Celui-ci n'a pas de coût algébrique.}
+
+\begin{exe}
+Soit $\alpha \in \mathsf{F}_4$ qui s'écrit dans la base univariée de $\mathsf{F}_4$:
+\begin{equation}
+\label{eq:exe:mon}
+\alpha_0 + \alpha_5x_4^5+ \alpha_{10}x_4^{10} + \alpha_{15}x_4^{15} + \cdots + \alpha_{5k}x_4^{5k} + \cdots + \alpha_{120}x_4^{120} 
+\end{equation} 
+alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf{F}_4$:
+\begin{equation}
+\label{eq:exe:biv}
+\alpha_0 + \alpha_5x_3^1+ \alpha_{10}x_3^{2} + \alpha_{15}x_3^{3} + \cdots + \alpha_{5k}x_3^{k} + \cdots + \alpha_{120}x_3^{24}. 
+\end{equation} 
+ Ainsi $\alpha \in \mathsf{F}_3$. Le passage de la représentation de $\alpha$ de \eqref{eq:exe:mon} à \eqref{eq:exe:biv} correspond à une \emph{descente}, l'opération inverse est elle un \emph{relèvement}.
+\end{exe}
+
+%Cela permet notamment d'ajouter sans coût supplémentaire des étages à la tour.
+
+\end{frame}
 
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
