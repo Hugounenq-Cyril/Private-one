@@ -88,6 +88,8 @@
   \end{beamercolorbox}}%
   \vskip0pt%
 }
+\newcommand{\backupbegin}{ \newcounter{framenumberappendix} \setcounter{framenumberappendix}{\value{framenumber}} \setbeamertemplate{footline}{} } \newcommand{\backupend}{ \addtocounter{framenumberappendix}{-\value{framenumber}} \addtocounter{framenumber}{\value{framenumberappendix}} \setbeamertemplate{footline}{ \vspace{-1cm}\small{\insertframenumber/\inserttotalframenumber} } }
+
 \makeatother
 \definecolor{uvsqvert}{RGB}{91,172,41}
 \definecolor{uvsqbleu}{RGB}{15,152,209}
@@ -2203,18 +2205,18 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\backupbegin
 \begin{frame}
-\frametitle{Technical details: Improving interpolation with Frobenius}
+\frametitle{Détails techniques: Amélioration de l'interpolation avec le Frobenius}
 %$A$ the polynomial that interpolates the isogeny according to the mappings $\red P \rightarrow \color{red} u P' $, $\blu Q \rightarrow \color{blue}v Q'$  and $\color{red} P' \in  E'[\ell^k]_{\lambda}$, $\color{blue} Q' \in  E'[\ell^k]_{\mu} \color{black}$.
 
 %$T$ the polynomial that interpolates the isogeny according to the mapping \[P \mapsto a P \quad Q \mapsto bQ \quad \textit{with } a,b \wedge \ell = 1.\]
-We want to compute an $\mathbb{F}_q$ \textbf{rational} isogeny, then for each interpolation polynomial candidate $L$ we have for $R \in E[\ell^k]$: 
+Nous cherchons à calculer une $\mathbb{F}_q$ isogénie \textbf{rationnelle}, ainsi pour tout polynôme d'interpolation candidat $L$ nous avons pour $R \in E[\ell^k]$: 
 \[\pi(L(x(R)))=L(x(\pi(R))),\]
-and in particular with $\color{red} P \in  E[\ell^k]_{\lambda}$, $\color{blue} Q \in  E[\ell^k]_{\mu} \color{black}$:
+et en particulier avec $\color{red} P \in  E[\ell^k]_{\lambda}$, $\color{blue} Q \in  E[\ell^k]_{\mu} \color{black}$:
 \[\pi(L(x(\red P)))=L(x(\color{red} \lambda P \color{black}))) \quad \pi(L(x(\blu Q)))=L(x(\color{blue} \mu Q \color{black}))).\]
 \pause
-As suggested by [Couveignes,96] we construct $L$ separately from the representatives points of an orbit under the action of the Frobenius: 
+Comme suggéré par [Couveignes,96] on calcule $L$ séparément sur les points représentants des orbites sous l'action du Frobenius: 
 \[
 \{ {\boldmath \color{red} \textbf{P}} \unboldmath , \pi(\red P), \pi^2(\red P), \cdots \color{black} \}  
 \]
@@ -2224,7 +2226,7 @@ As suggested by [Couveignes,96] we construct $L$ separately from the representat
 \[
 \cdots
 \]
-and then we use the Chinese  Remainder Theorem to get $L$.
+nous utilisons ensuite le Théorème des Restes Chinois pour obetnir $L$.
 
 \end{frame}
 
@@ -2354,7 +2356,7 @@ and then we use the Chinese  Remainder Theorem to get $L$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Bonus: points ascendants horizontaux}
+\frametitle{Points ascendants horizontaux}
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.50]
@@ -2899,7 +2901,7 @@ c_2\ell^2 & d_2
 
 
 \begin{frame}
-\frametitle{Un algorithme de Couveignes $\ell$-adique dans le cas Atkin}
+\frametitle{Un algorithme de Couveignes $\ell$-adique dans le cas Atkin avec $h \neq 0$}
 %\begin{figure}
 \begin{center}
 \begin{tikzpicture}[yshift=-25cm,scale=0.25]
@@ -3072,7 +3074,7 @@ alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf
 %Cela permet notamment d'ajouter sans coût supplémentaire des étages à la tour.
 
 \end{frame}
-
+\backupend
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
