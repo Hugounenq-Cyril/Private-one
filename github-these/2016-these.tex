@@ -33,6 +33,7 @@
 \usepackage{subfig}
 
 
+
 \theoremstyle{plain}
 \newtheorem{thm}{Théorème}[chapter]
 \theoremstyle{definition} 
@@ -87,23 +88,23 @@
 %%% BEGIN DOCUMENT
 \begin{document}
 \fancyhf{}%␣efface␣tout␣ce␣qu'il␣y␣avait␣avant
-\fancyhead[L]{\nouppercase\leftmark}%␣LO␣=␣gauche/impair␣;␣RE␣=␣droite/pair
-\fancyhead[R]{}
+\fancyhead[LE]{\nouppercase\leftmark}%␣LO␣=␣gauche/impair␣;␣RE␣=␣droite/pair
+\fancyhead[RO]{\nouppercase\rightmark}
 \fancyfoot[C]{\thepage}%␣C␣=␣centré
 \fancyfoot[L]{}
 
-
+\setlength{\headheight}{22pt}
 
 \renewcommand{\headrulewidth}{1pt}% 1pt header rule
 \renewcommand{\headrule}{\hbox to\headwidth{%
-  \color{orange}\leaders\hrule height \headrulewidth\hfill}}
+  \color{blue}\leaders\hrule height \headrulewidth\hfill}}
   
 \renewcommand{\footrulewidth}{1pt}% 1pt header rule
-\newcommand{\footrulecolor}{blue}
+\newcommand{\footrulecolor}{green}
 
 
 %\small
-\setlength{\parskip}{-1pt plus 1pt}
+\setlength{\parskip}{ -1pt plus 1pt}
 
 \newcommand{\abstracttextfont}{\normalfont}
 %\abstractintoc
