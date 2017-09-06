@@ -177,19 +177,19 @@ applications en cryptographie:
 d'une courbe elliptique, nécessaire pour l'évaluation de la sécurité 
 cryptographique d'une courbe elliptique,
 \pause
-\item cryptanalyse de la Cryptographie à l'aide de Courbes Elliptiques: [Gaudry,~Hess,~Smart '02],
+\item cryptanalyse de la cryptographie à l'aide de courbes elliptiques: [Gaudry,~Hess,~Smart '02],
 \pause
 \item construction de fonctions de hachages: [Charles,~Goren,~Lauter '07],
 \pause
-\item constructions de schéma cryptographique à trappes: [Teske~'06],
+\item construction de schéma cryptographique à trappe: [Teske~'06],
 \pause
-\item constructions de schémas cryptographiques post-quantique: [Rostovtsev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
+\item construction de schémas cryptographiques post-quantiques: [Rostovtsev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
 \end{itemize}
 %Probleme du logarithme discret...
 \end{frame}
 
 \begin{frame}
-\frametitle{Summary}
+\frametitle{Sommaire}
 \tableofcontents
 \end{frame}
 
@@ -199,7 +199,7 @@ cryptographique d'une courbe elliptique,
 %parler aussi de la cryptographie sur les courbes elliptiques
 
 \begin{frame}
-\frametitle{Points définis sur une courbe elliptique }
+\frametitle{Courbe elliptique }
 
 \begin{defi}[Courbe Elliptique]
 Soit $\mathbb{K}$ un corps de caractéristique différente de $2$ et $3$, une courbe elliptique $E$ peut être définie à l'aide d'une équation de Weierstrass: 
@@ -374,7 +374,7 @@ et $m>0$
 \frametitle{Isogénies}
 \bluebox{Isogénies}{
 \begin{itemize}
-\item $E$ et $E'$ deux courbes elliptiques, une isogénie est un morphisme surjectif$\phi: E \rightarrow E'$ telle que $\phi(0_{E})=0_{E'}$. Les isogénies sont
+\item $E$ et $E'$ deux courbes elliptiques, une isogénie est un morphisme surjectif $\phi: E \rightarrow E'$ telle que $\phi(0_{E})=0_{E'}$. Les isogénies sont
 \begin{itemize}
  \item des morphismes de groupe (avec un noyau fini),
  \item des fonctions algébriques (de degré fini).
@@ -512,7 +512,7 @@ dépendance exponentielle en $\log(p)$.
 \section{Algorithme de Couveignes}
 
 \begin{frame}
-\frametitle{Classification des courbes elliptiques}
+\frametitle{Classification des courbes elliptiques sur un corps fini}
 \begin{prop}
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$. Soit les conditions suivantes équivalentes sont vérifiées:
 \begin{enumerate}
@@ -548,8 +548,8 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{itemize}
 \item Calcul de générateurs $P,P'$ de $E[p^k],E'[p^k]$;
 \item Interpolation de $\phi$, en supposant que l'on a la correspondance $[u]P\mapsto [u]P'$ pour tout $u \in \mathbb{Z}/p^k\mathbb{Z}$;
-\item Test si $\phi$ est une isogénie.\\
-    Si ce n'en est pas une, on remplace $P'$ avec un multiple $[a]P'$ et on recommence à nouveau.
+\item Vérification si $\phi$ est une isogénie.\\
+    Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$ et on recommence à nouveau.
 \end{itemize}
 
 }
@@ -566,23 +566,23 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \end{algorithmic}}
 
 \begin{enumerate}
-\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$.
+\item Choix du plus petit entier $k$ tel que $p^{k}>4r$.
 \item Calcul des générateurs $P$ de
   $E[p^k]$ et $P'$ de $E'[p^k]$;
 \item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$;
-\item Pour tout $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $O(r)$
+\item Pour tout $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $\color{blue!50!gray}{O(r)}$
   \begin{enumerate}
   \item Calcul du polynôme d'interpolation 
     $L$ tel que
    $L (x ([u] P)) = x([a\, u\,]P' )$ pour tout
     $u \in \mathbb{Z}/p^k \mathbb{Z}$;
-\hfill $\tilde{O}(r p^{O(1)})$
+\hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
 	%\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	%calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
 %\hfill $\tilde{O}(r)$
-	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$ \\ 
-	à l'aide d'un algorithme de reconstruction rationnelle; 
-	\hfill $\tilde{O}(r)$
+	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
+	$(r, r-1)$  à l'aide d'un algorithme de reconstruction rationnelle; 
+	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
   \end{enumerate}
@@ -657,8 +657,7 @@ $\Rightarrow O(r^2)$ possibilités.
 \begin{frame}
 \frametitle{Endomorphismes d'un courbe elliptique}
 \begin{defi}[Endomorphisme]
-Un endomorphisme d'une courbe elliptique $E$ est une isogénie qui a pour image 
-et codomaine $E$. L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$.
+Un endomorphisme d'une courbe elliptique $E$ est une isogénie $\psi:E \rightarrow E$. L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$.
 \end{defi}
 
 \begin{prop}
@@ -672,8 +671,8 @@ $\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
 \begin{frame}
 \frametitle{Frobenius}
 \begin{defi}[L'endomorphisme de Frobenius]
-$E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. La fonction
-\[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Elle
+$E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Le morphisme
+\[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Il
 satisfait une équation quadratique \[ \pi^2 - t_\pi \pi + q = 0.\]
 \end{defi}
 
@@ -953,6 +952,12 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 \end{itemize}
 \vfill
 \item Cas Atkin
+\begin{itemize}
+\vfill 
+\item Cas Atkin avec hauteur $h=0$;
+\vfill
+\item Cas Atkin avec hauteur $h \neq 0$;
+\end{itemize}
 \end{itemize}
 \vfill
 
@@ -1131,16 +1136,16 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \medskip
 \item Pour toute matrice \textbf{diagonale inversible}
   $\left ( \begin{smallmatrix}a & 0\\ 0 & b
-\end{smallmatrix}\right )$ dans $(\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
-\hfill\only<2>{$O(r)$}
+\end{smallmatrix}\right ) \in (\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
+\hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
     \begin{enumerate}
   \item Calcul du polynôme d'interpolation 
     $L$  qui envoie\\
     $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
-\hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\tilde{O}(r)$}
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
   \end{enumerate}
@@ -1611,16 +1616,16 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \item Pour toute matrice \textbf{diagonale inversible}
   $\left ( \begin{smallmatrix}a & 0\\ 0 & b
 \end{smallmatrix}\right ) \in (\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
-\hfill\only<2>{$O(r)$}
+\hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
   \begin{enumerate}
 
   \item Calcul du polynôme d'interpolation 
     $L$ qui envoie\\
     $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
-\hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\tilde{O}(r)$}
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
   \end{enumerate}
@@ -1633,7 +1638,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \frametitle{Limitations du cas Elkies}
  \bluebox{Trouver un premier $\ell$ de Elkies}{
   \begin{itemize}
-  \item La complexité de l'algorithme dépend de polyniomalement du paramètre $\ell$.
+  \item La complexité de l'algorithme dépend de polynomialement du paramètre $\ell$.
   \item Idéalement nous voudrions travailler avec $\ell=2$.
   \item En pratique la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies.
   \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leqslant 
@@ -1768,7 +1773,7 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 		\draw (E) -- (G);
 		\draw [line width=1.5pt,blue](F) -- (I);
 		\draw (F) -- (J);
-		\draw (D) node[fill=white]{$E$};
+		\draw (D) node[fill=white]{$E'$};
 		\draw (K) node[fill=white]{$\bullet$};
 		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
 \\1  & 1 \end{smallmatrix} \right)$};
@@ -1821,26 +1826,26 @@ $(Q)$ de la base.
 \bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $R=R'$.}
 
 \begin{enumerate}
-\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$ avec $h<k$.
+\item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
 \medskip
 \item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
 \item Calcul de la matrice $\pi(P,Q)$;
 \medskip
-\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\only<2>{$O(r)$}
+\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
-  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$O(r \ell^{O(1)})$}
+  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$\color{blue!50!gray}{O(r \ell^{O(1)})}$}
   \medskip
 
   \item Calcul du polynôme d'interpolation 
     $L$ qui envoie\\
     $P\mapsto S'$ et $Q\mapsto R'$;
-\hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\tilde{O}(r)$}
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
 \end{enumerate}
@@ -1858,35 +1863,43 @@ $(Q)$ de la base.
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $[\ell^h]R=[\ell^h]R'$.}
+\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $[\ell^h]R=[\ell^h]R'$ avec $\langle P,R \rangle = \langle P,R' \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 
 \begin{enumerate}
-\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$ avec $h<k$.
+\item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$ avec $h<k$.
 \medskip
 \item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
 \item Calcul de la matrice $\pi(P,Q)$;
 \medskip
-\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill {$O(r)$}
+\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill {$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
-  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill {$O(r \ell^{O(1)})$}
+  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill {$\color{blue!50!gray}{O(r \ell^{O(1)})}$}
   \medskip
-  \item Pour tout point $U' \in E'$ tel que $[\ell^h]R'=[\ell^h]U'$ \hfill {$O(\ell^h)$}
+  \only<1>{
+	\medskip
+	\begin{enumerate}
+	\item Test
+	\item Test2
+	\end{enumerate}
+	}
+  \only<2>{
+  \item Pour tout point $U' \in E'$ tel que $[\ell^h]R'=[\ell^h]U'$ \hfill {$\color{blue!50!gray}{O(\ell^h)}$}
   \begin{enumerate}
 
   \item Calcul du polynôme d'interpolation 
     $L$ qui envoie\\
     $P\mapsto S'$ et $Q\mapsto U'$;
-\hfill {$\tilde{O}(r \ell^{O(1)})$}
+\hfill {$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill {$\tilde{O}(r)$}
+\hfill {$\color{blue!50!gray}{\tilde{O}(r)}$}
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
   \end{enumerate}
-
+	}
 \end{enumerate}
 \end{enumerate}
 \end{frame}
