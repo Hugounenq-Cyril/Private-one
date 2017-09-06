@@ -1863,7 +1863,8 @@ $(Q)$ de la base.
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $[\ell^h]R=[\ell^h]R'$ avec $\langle P,R \rangle = \langle P,R' \rangle = E[\ell^{h+i}]$ avec $i>0$.}
+\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $[\ell^h]R=[\ell^h]R'$ \\
+avec $\langle P,R \rangle = \langle P,R' \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 
 \begin{enumerate}
 \item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$ avec $h<k$.
@@ -1908,12 +1909,15 @@ $(Q)$ de la base.
 
 \begin{frame}
 \frametitle{Algorithme de Couveignes $\ell$-adique}
-Nous avons vu que nous étions capable de proposer un algorithme de Couveignes $\ell$-adique quasi quadratique sans dépendance polynomiale en la caractéristique dès lors que:
+
+Retravailler cette slide.
+
+Nous avons vu que nous sommes capables de proposer un algorithme de Couveignes $\ell$-adique quasi quadratique sans dépendance polynomiale en la caractéristique dès lors que:
 \begin{itemize}
-\item $\ell$ est un nombre premier de Elkies et $h<k$ (un tel $\ell$ existe dans $[1, O(\log(\ell))]$)
+\item $\ell$ est un nombre premier de Elkies et $h<k$ (un tel $\ell$ borné par $\log(q)$ existe)
 \item $\ell$ est un nombre premier de Atkin et $h=0$ (il existe un nombre fini de premiers de Atkin tels que $h \neq 0$) 
 \end{itemize}
-\`A défaut dans le cas Atkin il existe un premier $\ell$ de Atkin dans $[1, O(\log(\ell))]$ tel que l'on obtienne un algorithme avec une complexité en $\tilde{O}(r^{2}r^{1/2})$. % pas clair...
+\`A défaut dans le cas Atkin il existe un premier $\ell$ de Atkin dans $[1, O(\log(q))]$ tel que l'on obtienne un algorithme avec une complexité en $\tilde{O}(r^{2}r^{1/2})$. % pas clair...
 %\`A défaut dans le cas Atkin nous avons un algorithme avec une complexité en $\tilde{O}(r^{2}\ell^{h})$, pour lequel 
 
 \end{frame}
@@ -2178,7 +2182,7 @@ Nous avons vu que nous étions capable de proposer un algorithme de Couveignes $
 \begin{defi}[Tour \textit{$\ell$}-adique]
 Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $\ell$-adiques de $\mathbb{F}_q$ est la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{1}, \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
 \begin{itemize}
-\item{} [Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus $r \mid d_1$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
+\item{} [Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$ divise $d_1$,
 \item{} [Cas Atkin] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré au plus $ \ell^2-1$,
 \item $\mathsf{F}_{i}$ pour $i \geqslant 2$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
 \end{itemize}
@@ -2198,7 +2202,7 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
   \begin{itemize}
 %   \item We work on $\mathbb{F}_q$ such that $E[\ell] \subset E(\mathbb{F}_q)$,
 	\item Les points de torsion ne sont pas en général définis dans $\mathbb{F}_q$.	
-	\item Nous travaillons dans des extensions $\ell$-adique de $\mathbb F_q$
+	\item Nous travaillons dans des extensions $\ell$-adiques de $\mathbb F_q$
         en généralisant les constructions de [De~Feo,~Doliskani, Schost '13], [Doliskani,~Schost '15] et où en particulier nous avons un calcul rapide du Frobenius.
 	\item Il est alors nécessaire d'implanter un algorithme qui prenne en compte ces constructions de tour d'extensions de corps finis.
   \end{itemize}
@@ -2234,9 +2238,9 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 }
 \bluebox{Travaux futurs}{
 \begin{itemize}
-\item Comparer notre implantation à d'autres algorithmes (en part. Lercier-Sirvent).
+\item Comparer notre implantation à d'autres algorithmes (en part. Lercier-Sirvent dans le contexte S.E.A.).
 % \item Directly generalize to curves not on the crater.
-\item Estimer le coût de calcul de l'anneau d'endomorphismes avec l'étude de l'action de l'endomorphisme du Frobenius et l'implanter.
+\item Estimer le coût de calcul de l'anneau des endomorphismes avec l'étude de l'action de l'endomorphisme du Frobenius et l'implanter.
 \item Étudier l'utilité de notre technique dans d'autres contextes: comptage de points, polynômes de Hilbert, polynômes modulaires.
 %Analyze our techniques to navigate the volcano in other
 %  settings: point counting, Hilbert
