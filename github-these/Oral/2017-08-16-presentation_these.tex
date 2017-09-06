@@ -156,6 +156,8 @@ Volcans et calculs d'isogénies}
 \begin{frame}
 \titlepage
 
+%\hfill
+%\includegraphics[height=10mm]{Images/Logo_Ecole polytechnique_horizontal_72dpi.jpg} 
 \hfill
 \includegraphics[scale=0.1]{Images/digiteo.jpg}\hfill
 \includegraphics[height=10mm]{Images/uvsq-logo-cmjn.jpg}
@@ -1105,7 +1107,7 @@ i.e. son polynôme minimal se factorise comme
     \begin{itemize}
     \item On appelle $\red{E[\ell^k]_\lambda}\oplus\blu{E[\ell^k]_\mu}$ une
      décomposition \emph{horizontale};
-    \item La littérature SEA appelle cela un \emph{cycle d'isogénies} [Couveignes, Morain '94].%!!!!!!!!!!!!!!!!!!!!
+    \item La littérature SEA appelle cela un \emph{cycle d'isogénies} [Couveignes,~Morain '96].%!!!!!!!!!!!!!!!!!!!!
     \end{itemize}
   \end{uncoverenv}
 
@@ -1115,7 +1117,7 @@ i.e. son polynôme minimal se factorise comme
 
 \begin{frame}
 
-\bluebox{Vers un algorithme de Couveignes $\ell$-adique (cas Elkies $h=0$)}{
+\bluebox{Un algorithme de Couveignes $\ell$-adique (cas Elkies $h=0$)}{
 \begin{algorithmic}[1]
 \REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
@@ -1438,7 +1440,6 @@ et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
 \bluebox{Fait}{
     Soit $\phi$ une $r$-isogénie avec $\ell \nmid r$, alors $\phi$ préserve les noyaux des $\ell^k$-isogénies horizontales de direction $\red \lambda, \blu \mu $.}
 %\textbf{Goal:} compute the kernel of horizontal $\ell^k$-isogenies (codomain curves lying on the crater).
-Des algorithmes pour déterminer des isogénies horizontales ont déjà été effectués: [Fouquet, Morain, '02], [Ionica,Joux, '10]. \\
 On procède étape par étape à l'aide de marche sur le cratère selon la direction $ \blu \mu$. %to compute the kernels of the horizontal $\ell^3$-isogeny of direction $\blu \mu $.
 \vspace{-5mm}
 \begin{center}
@@ -1588,13 +1589,15 @@ On procède étape par étape à l'aide de marche sur le cratère selon la direc
 
 \end{tikzpicture}
 \end{center}
+\vspace{-4mm}
+Des algorithmes pour déterminer des isogénies horizontales ont déjà été proposés: [Fouquet, Morain, '02], [Ionica,Joux, '10].
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 
-\bluebox{Vers un algorithme de Couveignes $\ell$-adique ($\ell$ un premier de Elkies)}{
+\bluebox{Un algorithme de Couveignes $\ell$-adique ($\ell$ un premier de Elkies)}{
 \begin{algorithmic}[1]
 \REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de de degré $r$
@@ -1638,7 +1641,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \frametitle{Limitations du cas Elkies}
  \bluebox{Trouver un premier $\ell$ de Elkies}{
   \begin{itemize}
-  \item La complexité de l'algorithme dépend de polynomialement du paramètre $\ell$.
+  \item La complexité de l'algorithme dépend polynomialement du paramètre $\ell$.
   \item Idéalement nous voudrions travailler avec $\ell=2$.
   \item En pratique la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies.
   \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leqslant 
@@ -1719,16 +1722,42 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 		\coordinate (K) at (0,-5);
 		\coordinate (L) at (-1,-11);
 		\coordinate (M) at (1,-11);
+		\only<1>{
+		\draw [gray!25] (D) -- (E);
+		\draw [gray!25] (K) -- (L);
+		\draw [line width=1.5pt,blue!25](D) -- (F);
+		\draw [line width=1.5pt,red!25] (D) -- (K);
+		\draw [line width=1.5pt,red!25] (K) -- (M);
+		\draw [gray!25] (E) -- (H);
+		\draw [gray!25] (E) -- (G);
+		\draw [line width=1.5pt,blue!25](F) -- (I);
+		\draw [gray!25] (F) -- (J);
+		\draw (K) node[fill=white]{$\color{gray!25}{ \bullet}$};
+		\draw (E) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (M) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (I) node[fill=white]{$ \color{blue!25} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};
+		}
+		\only<2>{
 		\draw (D) -- (E);
+		\draw (K) -- (L);
 		\draw [line width=1.5pt,blue](D) -- (F);
 		\draw [line width=1.5pt,red] (D) -- (K);
-		\draw (K) -- (L);
 		\draw [line width=1.5pt,red] (K) -- (M);
 		\draw (E) -- (H);
 		\draw (E) -- (G);
 		\draw [line width=1.5pt,blue](F) -- (I);
 		\draw (F) -- (J);
-		\draw (D) node[fill=white]{$E$};
 		\draw (K) node[fill=white]{$\bullet$};
 		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
 \\1  & 1 \end{smallmatrix} \right)$};
@@ -1743,7 +1772,8 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}3 & 1 
 \\3 & 0 \end{smallmatrix} \right) $};
 		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
-\\1  & 2 \end{smallmatrix} \right) $};
+\\1  & 2 \end{smallmatrix} \right) $};}
+		\draw (D) node[fill=white]{$E$};
 		%\coordinate (A) at (12,-5);
 		%\coordinate (B) at (12,-11);
 		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
@@ -1764,16 +1794,42 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 		\coordinate (K) at (0,-5);
 		\coordinate (L) at (-1,-11);
 		\coordinate (M) at (1,-11);
+		\only<1>{
+		\draw [gray!25] (D) -- (E);
+		\draw [gray!25] (K) -- (L);
+		\draw [line width=1.5pt,blue!25](D) -- (F);
+		\draw [line width=1.5pt,red!25] (D) -- (K);
+		\draw [line width=1.5pt,red!25] (K) -- (M);
+		\draw [gray!25] (E) -- (H);
+		\draw [gray!25] (E) -- (G);
+		\draw [line width=1.5pt,blue!25](F) -- (I);
+		\draw [gray!25] (F) -- (J);
+		\draw (K) node[fill=white]{$\color{gray!25}{ \bullet}$};
+		\draw (E) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (M) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (I) node[fill=white]{$ \color{blue!25} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};
+		}
+		\only<2>{
 		\draw (D) -- (E);
+		\draw (K) -- (L);
 		\draw [line width=1.5pt,blue](D) -- (F);
 		\draw [line width=1.5pt,red] (D) -- (K);
-		\draw (K) -- (L);
 		\draw [line width=1.5pt,red] (K) -- (M);
 		\draw (E) -- (H);
 		\draw (E) -- (G);
 		\draw [line width=1.5pt,blue](F) -- (I);
 		\draw (F) -- (J);
-		\draw (D) node[fill=white]{$E'$};
 		\draw (K) node[fill=white]{$\bullet$};
 		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
 \\1  & 1 \end{smallmatrix} \right)$};
@@ -1788,11 +1844,13 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}3 & 1 
 \\3 & 0 \end{smallmatrix} \right) $};
 		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
-\\1  & 2 \end{smallmatrix} \right) $};
+\\1  & 2 \end{smallmatrix} \right) $};}
+		\draw (D) node[fill=white]{$E$};
 		%\coordinate (A) at (12,-5);
 		%\coordinate (B) at (12,-11);
 		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
 		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+		\draw (D) node[fill=white]{$E'$};
 		\coordinate (A) at (-20.1,0.5);
 		\coordinate (B) at (0,0.5);
 		%\draw [->] (A) --(B);
@@ -1805,11 +1863,11 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 %Once the image by $\phi$ of one ($\color{red} P$) of the two bases point of $E[\ell^{h+i}]$ is 
 %determined, then the matrix $\pi(P,Q)$ that represents the Frobenius determines \emph{uniquely} a \emph{generator} of the
 %descending $\ell^{i}$-isogenies generated by the second basis point ($\color{blue} Q$). 
-Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la 
+\only<2>{Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la 
 base $\langle P, Q \rangle$ de $E[\ell^{k}]$ a été déterminée alors la forme de
 la matrice du Frobenius dans une telle base notée $\pi(P,Q)$ détermine de façon
 unique le générateur de la $\ell^k$-isogénie engendrée par le second point 
-$(Q)$ de la base.
+$(Q)$ de la base.}
 % les $\ell$-isogénies descendantes engendrées par le second point de la base.
 \end{frame}
 
@@ -1880,14 +1938,9 @@ avec $\langle P,R \rangle = \langle P,R' \rangle = E[\ell^{h+i}]$ avec $i>0$.}
   \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill {$\color{blue!50!gray}{O(r \ell^{O(1)})}$}
   \medskip
   \only<1>{
-	\medskip
-	\begin{enumerate}
-	\item Test
-	\item Test2
-	\end{enumerate}
-	}
+  \item $\color{red}{\text{Pour tout point } U' \in E' \text{ tel que } [\ell^h]R'=[\ell^h]U'}$}
   \only<2>{
-  \item Pour tout point $U' \in E'$ tel que $[\ell^h]R'=[\ell^h]U'$ \hfill {$\color{blue!50!gray}{O(\ell^h)}$}
+  \item Pour tout point $U' \in E'$ tel que $[\ell^h]R'=[\ell^h]U'$ \hfill {$\color{blue!50!gray}{O(\ell^h)}$}}
   \begin{enumerate}
 
   \item Calcul du polynôme d'interpolation 
@@ -1900,7 +1953,7 @@ avec $\langle P,R \rangle = \langle P,R' \rangle = E[\ell^{h+i}]$ avec $i>0$.}
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
   \end{enumerate}
-	}
+	
 \end{enumerate}
 \end{enumerate}
 \end{frame}
