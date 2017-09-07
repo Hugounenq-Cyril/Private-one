@@ -289,7 +289,7 @@ crypto-systèmes post-quantiques à base de graphes d'isogénies
 Ainsi, il est pertinent d'approfondir le travail de Couveignes~\cite{Couveignes96} 
 sur le calcul d'isogénies à cause de sa bonne complexité en le degré
 de l'isogénie.
-L'algorithme de Couveignes interpole l'action de l'isogénie sur les points 
+L'algorithme de Couveignes interpole l'évaluation de l'isogénie sur les points 
 d'ordre $p^k$, pour $k$ assez grand, où $p$ est la caractéristique du corps de 
 base. Ce travail a été amélioré par la suite par De Feo~\cite{DeFeo11}, qui se 
 sert notamment d'une construction efficace de tours d'extensions de degré $p$ 
@@ -376,18 +376,31 @@ cardinalité.
 
 
 Les graphes d'isogénies ont été étudiés pour la première fois par 
-\cite{Pizer90,Pizer95,Kohel96} afin de calculer l'anneau des endomorphismes d'une courbe 
+\cite{Kohel96}, ses travaux dans le contexte particulier des courbes elliptiques
+supersingulières ont été inspirés par ceux de \cite{Mestre86,Pizer90,Pizer95} 
+qu'il a adapté et développé dans ce contexte, il a aussi étudié le cas des 
+courbes elliptiques ordinaires, tout cela afin de calculer l'anneau des 
+endomorphismes d'une courbe 
 elliptique. Kohel a permis de définir des niveaux dans le graphe 
 d'isogénies. Ainsi le graphe de la Figure~\ref{fig:int:vol} a été représenté
 selon cette convention, les isogénies allant entre deux courbes situées au même
 niveau sont appelées horizontales, celles allant vers une courbe située plus 
 bas (haut) sont appelées descendantes (ascendantes). %verticale 
-Kohel a cherché à déterminer le niveau d'une courbe dans le graphe tout en 
-connaissant la cardinalité de celle-ci afin de déterminer son anneau des 
-endomorphismes. Fouquet et Morain~\cite{FouquetMorain02} ont par la suite 
-résolu le même problème, sans la connaissance préalable de la cardinalité de la
-courbe, afin d'améliorer SEA, et ont nommé les graphes d'isogénies 
-\emph{volcans d'isogénies}. Ensuite les travaux de Miret \textit{et al.} 
+Kohel détermine le niveau d'une courbe dans le graphe tout en 
+connaissant la cardinalité de celle-ci afin de calculer son anneau des 
+endomorphismes. Fouquet et Morain~\cite{FouquetMorain02} ont par la suite résolu le même 
+problème, en adaptant les méthodes de Kohel sans la connaissance préalable de 
+la cardinalité de la courbe, afin d'améliorer SEA, et ont nommé les graphes 
+d'isogénies \emph{volcans d'isogénies}. 
+
+%Fouquet et Morain~\cite{FouquetMorain02} ont par la suite 
+%résolu le même problème, sans la connaissance préalable de la cardinalité de la
+%courbe, afin d'améliorer SEA, et ont nommé les graphes d'isogénies 
+%\emph{volcans d'isogénies}. 
+
+
+
+Ensuite les travaux de Miret \textit{et al.} 
 \cite{MiretMRV05}  \cite{MiretMSTV06} 
 \cite{MiretMSTV08} ont permis d'expliciter un lien entre le niveau d'une courbe
 dans le volcan de $\ell$-isogénies et la structure des $\ell$-sous-groupes de 
@@ -404,7 +417,8 @@ généralisations utiles.
 
 Ainsi, l'un des résultats principaux de cette thèse est le théorème suivant:
 \begin{thm*}
-Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
+Pour presque tous les nombres premiers $q$ et les courbes elliptiques 
+ordinaires $E,E'$ définies sur 
 $\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul explicite de
 l'isogénie" en un temps quasi-quadratique en le degré de l'isogénie, 
 avec une dépendance logarithmique en la caractéristique de $\mathbb{F}_q$.
@@ -7079,7 +7093,7 @@ Soit une courbe $E$, on cherche le plus petit nombre premier de Elkies qui
   de Elkies dépasse $\Omega(\sqrt{q})$. On enlève alors les nombres premiers 
   de Elkies $\ell \leqslant L$ tels que $\ell^{h} > \sqrt{r}$, cette condition
   empêchant d'utiliser notre algorithme~\ref{alg:cou:ell-adique}, 
-  pour de tels nombres premiers ceux-ci sont des diviseurs de $d_{K}$ et leur 
+  pour de tels nombres premiers ceux-ci sont des diviseurs de $d_{\pi}$ et leur 
   produit est donc borné par $O(\sqrt{q})$. Ainsi il reste suffisamment de 
   nombres premiers de Elkies satisfaisant $\ell^{h} < \sqrt{r}$ dans 
   l'intervalle  $[1,L]$, dans le pire des cas on a donc un nombre premier de
