@@ -3320,11 +3320,11 @@ On peut dés lors relier ce théorème avec les racines du $\ell$-ème polynôme
 
 \begin{cor}
 \label{cor:tab:vol} 
-Dans le tableau suivant sont résumées les différentes possibilités de types d'isogénies selon la valeur de $\mathcal{N}_{\ell}(E)$ qui représente le nombre de solutions à l'équation: $\Phi_{\ell}(X,j(E))=0$ sur $\mathbb{F}_q$
+Dans le tableau suivant sont résumées les différentes possibilités de types d'isogénies selon la valeur de $\mathcal{N}_{\ell}(E)$ qui représente le nombre de solutions à l'équation: $\Phi_{\ell}(X,j(E))=0$ sur $\mathbb{F}_q$ pour $j\neq 0, 1728$.
 \newline
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
-$\mathcal{N}_{\ell}(E)$ & Type des $\ell$-isogénies &  & $\left(\frac{D}{\ell}\right)$ & $\left(\frac{d_{\pi}}{\ell}\right)$\tabularnewline
+$\mathcal{N}_{\ell}(E)$ & Type des $\ell$-isogénies &  & $\left(\frac{d_K}{\ell}\right)$ & $\left(\frac{d_{\pi}}{\ell}\right)$\tabularnewline
 \hline 
 \hline 
 $0$ & aucune & $\ell \,\nmid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell \,\nmid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $-1$ & $-1$\\
@@ -3336,8 +3336,8 @@ $1$ & cas 1: $\rightarrow$ & $\ell\,\nmid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell
 \cline{2-5} & cas 2: $\uparrow$ & $\ell\,\mid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell\,\nmid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $0$ & $0$\\
 \hline 
 $\ell+1$ & cas 1:$\left\{ \begin{array}{cc}
-1+\left(\frac{D}{\ell}\right) & \rightarrow\\
-\ell-\left(\frac{D}{\ell}\right) & \downarrow
+(1+\left(\frac{d_K}{\ell}\right))& \rightarrow\\
+(\ell-\left(\frac{d_K}{\ell}\right)) & \downarrow
 \end{array}\right.$ & $\ell \,\nmid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell \,\mid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $0$,$1$ ou $-1$ & $0$\\
  
 \cline{2-5} & cas 2:$\left\{ \begin{array}{cc}
@@ -3347,10 +3347,14 @@ $\ell+1$ & cas 1:$\left\{ \begin{array}{cc}
 \hline 
 %\label{tab:cla:iso}
 \end{tabular}
+Pour $j=0$ ou $j=1728$ il faut prendre en compte l'action des automorphismes de
+$E$ sur les sous-groupes cycliques de $E[\ell]$. Dans ce cas
+ les valeurs dans la seconde colonne ne donnent que le nombre 
+de représentants sous l'action du groupe des automorphismes de $E$.
 \end{cor}
 
 \begin{proof}
-Voir \cite[§2.3]{FouquetMorain02}.
+Voir \cite[§2.3]{FouquetMorain02}, \cite[Proposition 23]{Kohel96}.
 \end{proof}
 
 Maintenant que l'on a introduit les relations possibles entre les ordres on définit certains termes de la littérature.
@@ -3364,7 +3368,7 @@ Le terme \emph{cratère} du volcan des $\ell$-isogénies désigne le sous-graphe
 
 \begin{defi}
 Soit $\ell$ un nombre premier, soit $\varphi$ une $\ell^k$-isogénie, alors
-$\varphi$ est dite une $\ell^k$-isogénie descendante si il existe $k$ 
+$\varphi$ est dite une $\ell^k$-isogénie descendante s'il existe $k$ 
 isogénies de degré $\ell$ descendantes $\varphi_i, i \in [1,k]$ telles que 
 $\varphi=\varphi_1 \circ \cdots \circ \varphi_k$. De même une 
 $\ell^k$-isogénie $\widehat{\varphi}$ est dite ascendante si il existe $k$ 
