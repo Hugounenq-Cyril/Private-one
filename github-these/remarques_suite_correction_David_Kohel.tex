@@ -96,19 +96,31 @@ nouveau ici}
 
 \paragraph{Question sur le théorème}{Notre algorithme proposé pour résoudre ce 
 problème traite différemment deux cas distincts: le cas Atkin et le cas Elkies.
-Pour le cas Elkies nous avons un algorithme fonctionnel avec une complexité
+\begin{itemize}
+
+\item {} Pour le cas Elkies nous avons un algorithme fonctionnel avec une complexité
 satisfaisante (quasi-quadratique) avec une condition restrictive sur la hauteur
 $h$ du volcan de $\ell$-isogénies, concrètement on doit avoir $h< O(\log_{\ell}
 (4r))$ lorsque cette condition sur $h$ n'est pas vérifiée alors 
 l'algorithme a une complexité supérieure à la complexité quasi-quadratique. 
-Concernant le cas Atkin ce n'est pas explicitement écrit dans ma thèse mais 
+\item  Concernant le cas Atkin ce n'est pas explicitement écrit dans ma thèse mais 
 pour la cas où l'on a un entier de Atkin tel que la hauteur du volcan est 
 nulle alors nous obtenons un algorithme quadratique avec une dépendance 
 polynomiale en le paramètre $\ell$ moins bonne que dans le cas Elkies. 
-Ainsi à l'aide du résultat de Shparlinski et Sutherland 2014 si l'on fixe une 
+\item[Existence de tels cas]\`A l'aide du résultat de 
+\cite[Theorem 1]{ShparlinskiSutherland14} si l'on fixe une 
 borne $L=O(\log(q))$ et que pour celle-ci nous n'avons que des nombres $\ell$ de 
 Elkies avec une hauteur $h$ associée $>\log_{\ell}(4r)$ alors en étudiant 
-$d_{\pi}$ borné par $O(\log(q))$, celui-ci ne peut admettre que des nombre premiers ramifiés qui le divise et des nombres premiers de Atkin de hauteur $\neq 0$ car sinon ce produit de nombres premiers dépasserait largement $O(\log(q))$ ainsi on doit avoir au moins l'existence d'un entier de Atkin de hauteur $0$  ou d'un entier de Elkies de hauteur $h<\log_{\ell}(4r)$. Donc on peut trouver un entier soit de Atkin de hauteur $0$ soit de Elkies de hauteur $h<\log_{\ell}(4r)$ borné par $O\log(q)$}
+$d_{\pi}$ borné par $O(\log(q))$, celui-ci($d_{\pi}$) ne peut admettre que des
+nombres premiers ramifiés qui le divise et des nombres premiers de Atkin de 
+hauteur $\neq 0$ car sinon ce produit de nombres premiers dépasserait largement
+$O(\log(q))$ ainsi on doit avoir au moins l'existence d'un entier de Atkin de 
+hauteur $0$  ou d'un entier de Elkies de hauteur $h<\log_{\ell}(4r)$. Donc on 
+peut trouver un entier soit de Atkin de hauteur $0$ soit de Elkies de hauteur 
+$h<\log_{\ell}(4r)$ borné par $O\log(q)$.
+
+\end{itemize}
+}
 
 \section{Chapitre 4}
 
@@ -117,7 +129,7 @@ $d_{\pi}$ borné par $O(\log(q))$, celui-ci ne peut admettre que des nombre prem
 \paragraph{p.63}{$f^2\frac{d_K (d_K-1)}{4}$ c'est fait.}
 
 \paragraph{p.63}{Concernant le Lemme 6.14, il est vrai que ce résultat est trivial, je l'ai mis sous forme de remarque et j'ai formulé cela comme suit dans la thèse: 
-"On fait remarquer que pour les duales des isogénies:
+"On fait alors la remarque suivante sur les duales des isogénies:
 \begin{rem}
 \label{lem:dua:vol}
 Soit $\phi : E \mapsto E'$ une isogénie et sa duale $\widehat{\phi}$. Alors:
@@ -144,6 +156,67 @@ prendre en compte l'action des automorphismes de
 $E$ sur les sous-groupes cycliques de $E[\ell]$. Dans ce cas
  les valeurs dans la seconde colonne ne donnent que le nombre 
 de représentants sous l'action du groupe des automorphismes de $E$."}
+
+\paragraph{ en référence à la modification précédente}{J'ai donc modifié le théorème qui se trouvait juste avant le corollaire en bas de la p.64: "\begin{thm}
+\label{thm:Koh:cas}
+Soit $E$ une courbe elliptique ordinaire définie sur un corps fini 
+$\mathbb{F}_q$ avec $j(E)\neq 0, 1728$ et soit $\ell$ un nombre premier 
+différent de la caractéristique de $\mathbb{F}_q$
+\begin{enumerate}
+\item Si $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $ 1 + \left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies horizontales
+\item Si $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet une $\ell$-isogénie montante
+\item Si $\ell \nmid [\mathcal{O} : \mathbb{Z}[\pi]]$ alors $E$ n'admet pas de $\ell$-isogénie descendante
+\item Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell-\left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies descendantes
+\item  Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell$ isogénies de degré $\ell$ descendantes.
+\end{enumerate}
+Si $j(E)=0$ ou $j(E)=1728$ alors il faut prendre en compte l'action des 
+automorphismes de $E$ sur les sous-groupes cycliques de $E[\ell]$. Dans ce cas
+les valeurs énoncées ne donnent que le nombre de représentants 
+sous l'action du groupe des automorphismes de $E$.
+\end{thm}"}
+
+\paragraph{Définition 4.23}{Il ne doit y avoir dans le manuscrit que des $E_s$, j'ai donc corrigé cela. J'ai reformulé la définition comme suit:
+\begin{defi}
+\label{def:haut:vol}
+Pour une courbe sur le volcan son niveau est la longueur maximale d'un chemin descendant.
+\newline
+La hauteur $h$ d'un volcan est le niveau maximal des courbes dans le volcan.
+\end{defi}}
+
+\paragraph{Remarque 4.24}{J'ai modifié la remarque comme suit:
+"\begin{rem} 
+\label{rem:lie:dp:dk}
+Pour un volcan de $\ell$-isogénies de hauteur $h$ par les 
+définitions~\ref{def:iso:nom} et ~\ref{def:haut:vol} $\ell^{2h} | d_{\pi}$.
+En particulier pour $\ell \neq 2$ $\ell^{2h}||d_{\pi}$, ce résultat ne peut être 
+énoncé  pour $\ell=2$ car il est possible que $4 \mid d_K$ par définition de $d_K$
+(définition~\ref{def:dis:dK}).
+\end{rem}"}
+
+\paragraph{Algorithme de Fouquet-Morain}{J'ai ajouté la référence et j'ai 
+enlevé le cherche à calculer: "L'algorithme de 
+Fouquet-Morain~\cite{FouquetMorain02} est un algorithme qui 
+calcule un chemin descendant d'une courbe elliptique située sur le cratère afin
+de calculer la valuation $\ell$-adique du conducteur de $\mathbb{Z}[\pi]$. Cet
+algorithme est une adaptation de l'algorithme "Probing the depths" de Kohel \cite[Section 4.2]{Kohel96} au contexte SEA."}
+
+\paragraph{Citation de FM02}{Si je comprends bien il serait préférable que je cite uniquement FM00 lorsque cela est possible ?}
+
+\paragraph{p.67-P.68: Proposition 4.\color{red}{2}\color{black}9 corollaire de 
+4.27}{Je suis tout à fait d'accord avec cette remarque qui fait référence aussi
+à celle de l'introduction. J'ai donc renommé cette proposition corollaire je 
+l'ai placé après la proposition dont il est le corollaire et j'ai rédigé la 
+preuve suivante:"\begin{proof}
+Comme $E$ et $E'$ sont situées au même niveau alors leurs anneaux 
+des endomorphismes sont isomorphes, par la proposition \ref{pro:len:str} on 
+obtient le résultat.
+\end{proof}"}
+
+\paragraph{prop 4.30}{Je n'ai pas vu de problème de parenthèses}
+
+\paragraph{prop 4.31}{$n_2 \mid n_1$ rajouté}
+
+\paragraph{Attention}{Courbes elliptiques ordinaires ajoutés!}
 
 \bibliography{Biblio}
 \end{document}

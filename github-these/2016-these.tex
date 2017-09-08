@@ -2889,7 +2889,7 @@ $\mathsf{F}_{n-i-1}$.
 \begin{proof}
   \`A l'étape $i$, à partir de la connaissance de $T^{(i)}$ on  calcule tous 
   les $T^{(i,j)}$ en utilisant le théorème~\ref{thm:frob-ell}. Le coût du 
-  Frobenius pour un polynome $T^{(i,j)}$ est de 
+  Frobenius pour un polynôme $T^{(i,j)}$ est de 
   $O(\ell^i\ell^{n-i-1}\mathsf{M}(\ell))$ opérations,
   \emph{i.e.} $O(\ell^n\mathsf{M}(\ell))$ pour chacun des $O(\ell)$ calculs.
   \`A partir des $T^{(i,j)}$ on calcule $T^{(i+1)}$ en utilisant un arbre de 
@@ -2954,7 +2954,7 @@ on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A}
   \`A chaque étape $i$, les polynômes $A^{(i,j)}$ sont calculés à un coût de
   $O(\ell^n\mathsf{M}(\ell))$ opérations, comme dans la preuve du  
   lemme~\ref{lemma:interpolation:minpoly}.  Le calcul de $L^{(i+1)}$ utilise 
-  le meme arbre de produit que celui utilisé pour $T^{(i)}$, 
+  le même arbre de produit que celui utilisé pour $T^{(i)}$, 
   utilisant $O(\log \ell)$ additions, multiplications et divisions de polynômes
   de degré $O(\ell^{i+1})$ à coefficients dans $\mathsf{F}_{n-i}$, pour un coût
    total de $O(\mathsf{M}(\ell^{n+1})\log(\ell))$. En additionnant pour tous les
@@ -3002,7 +3002,7 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
    par niveau. Ainsi le coût de calcul de $T$ est borné par 
    $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
   
-  Enfin, en utilisant la même strucutre d'arbre de sous-produit on applique le 
+  Enfin, en utilisant la même structure d'arbre de sous-produit on applique le 
   théorème des restes chinois proposé dans~\cite[Chapter~10]{vzGJG03} pour 
   calculer $A$ au coût de $O(\mathsf{M}(t)\log(s))$ opérations sur $\mathbb{F}_q$.
 \end{proof}
@@ -3014,14 +3014,15 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
 \label{cha:volc:iso}
 Les deux documents à citer pour cette section sont \cite{Kohel96} qui a introduit les graphes d'isogénie et \cite{Fouquet01} qui a développé ces idées pour donner une structure à ces graphes.
 
-\section{Anneau d'endomorphismes}
+\section{Anneau des endomorphismes}
 \label{sec:ann:end}
-Dans cette section on va aborder les anneaux d'endomorphismes, car c'est cet objet qu'a étudié Kohel dans sa thèse \cite{Kohel96} qui a permis ensuite de définir les volcans des $l$-isogénies. On a tout d'abord besoin de faire quelques rappels sur les ordres d'un corps quadratique imaginaire car on a vu que ceux-ci correspondent à isomorphisme près aux anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini.
+Dans cette section on va aborder les anneaux des endomorphismes, car c'est cet objet qu'a étudié Kohel dans sa thèse \cite{Kohel96} qui a permis ensuite de définir les volcans des $l$-isogénies. On a tout d'abord besoin de faire quelques rappels sur les ordres d'un corps quadratique imaginaire car on a vu que ceux-ci correspondent à isomorphisme près aux anneaux des endomorphismes de courbes elliptiques ordinaires définies sur un corps fini.
 
 \subsection{Rappel sur les ordres d'un corps quadratique}
 
 Soit $K$ un corps quadratique, alors il existe un entier $N$ sans facteur carré tel que l'on peut écrire $K=\mathbb{Q}[\sqrt{N}]$. On donne la définition suivante:
 \begin{defi}
+\label{def:dis:dK}
 Soit $K=\mathbb{Q}[\sqrt{N}]$, on définit le discriminant $d_K$ de $K$ de la façon suivante: 
 \begin{equation*}
 d_K=\begin{cases}
@@ -3100,7 +3101,7 @@ Soit $\mathcal{O}$ un ordre du corps quadratique imaginaire $K$, l'indice $f=[\m
 \`A l'aide des conducteurs on peut définir une relation d'ordre sur les ordres, en effet si on a $m \mid n$ alors on a l'ordre $n\mathcal{O}_K \subset m\mathcal{O}_K$.
 \end{rem}
 
-C'est cette idée que l'on va retrouver dans les volcans des $l$-isogénies en essayant de donner une structure aux relations entre les différents ordres isomorphes aux anneaux d'endomorphismes.
+C'est cette idée que l'on va retrouver dans les volcans des $l$-isogénies en essayant de donner une structure aux relations entre les différents ordres isomorphes aux anneaux des endomorphismes.
 \\
 \\
 On peut aussi définir un autre invariant pour un ordre, son discriminant.
@@ -3138,8 +3139,8 @@ x^2-fd_Kx+f^2\frac{d_K (d_K-1)}{4}=0.
 On retrouve bien que le discriminant de $\mathcal{O}$ est $f^2d_K$.
 \end{rem}
 
-\subsection{Anneau d'endomorphisme de courbes elliptiques ordinaires}
-Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini qui sont, comme vu dans la proposition \ref{pro:fro:dis}, isomorphes à des ordres dans un corps quadratique imaginaire. On va voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
+\subsection{Anneau des endomorphismes de courbes elliptiques ordinaires}
+Dans cette sous-section on va se concentrer sur les anneaux des endomorphismes de courbes elliptiques ordinaires définies sur un corps fini qui sont, comme vu dans la proposition \ref{pro:fro:dis}, isomorphes à des ordres dans un corps quadratique imaginaire. On va voir en détail les relations possibles et les structures qu'ont les anneaux des endomorphismes dans un tel contexte.
 
 La première remarque à faire c'est que pour toute courbe elliptique ordinaire définie sur un corps fini pour $\mathcal{O}$ l'ordre associé à isomorphisme près à $\mathrm{End}(E)$ on a: 
 \[
@@ -3176,7 +3177,7 @@ Soient $E,E'$ deux courbes elliptiques ordinaires, $\phi: E \mapsto E'$ une $\el
 \end{enumerate}
 \end{defi}
 
-On fait remarquer que pour les duales des isogénies:
+On fait alors la remarque suivante sur les duales des isogénies:
 \begin{rem}
 \label{rem:dua:vol}
 Soit $\phi : E \mapsto E'$ une isogénie et sa duale $\widehat{\phi}$. Alors:
@@ -3302,7 +3303,9 @@ particulier pour le cas $\ell=2$:
 
 \begin{thm}
 \label{thm:Koh:cas}
-Soit $E$ une courbe elliptique ordinaire définie sur un corps fini $\mathbb{F}_q$ et soit $\ell$ un nombre premier différent de la caractéristique de $\mathbb{F}_q$
+Soit $E$ une courbe elliptique ordinaire définie sur un corps fini 
+$\mathbb{F}_q$ avec $j(E)\neq 0, 1728$ et soit $\ell$ un nombre premier 
+différent de la caractéristique de $\mathbb{F}_q$
 \begin{enumerate}
 \item Si $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $ 1 + \left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies horizontales
 \item Si $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet une $\ell$-isogénie montante
@@ -3310,6 +3313,10 @@ Soit $E$ une courbe elliptique ordinaire définie sur un corps fini $\mathbb{F}_
 \item Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell-\left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies descendantes
 \item  Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell$ isogénies de degré $\ell$ descendantes.
 \end{enumerate}
+Si $j(E)=0$ ou $j(E)=1728$ alors il faut prendre en compte l'action des 
+automorphismes de $E$ sur les sous-groupes cycliques de $E[\ell]$. Dans ce cas
+les valeurs énoncées ne donnent que le nombre de représentants 
+sous l'action du groupe des automorphismes de $E$.
 \end{thm}
 
 \begin{proof}
@@ -3385,15 +3392,20 @@ Soit $\ell$ un nombre premier, un chemin descendant sur un volcan des $\ell$-iso
 
 \begin{defi}
 \label{def:haut:vol}
-Soit $\ell$ un nombre premier, $E_c$ une courbe elliptique située sur le cratère d'un volcan des $\ell$-isogénies alors la longueur $h$ d'un chemin descendant partant de $E_c$ est appelée la hauteur du volcan.
-Soit $n$ la longueur d'un chemin descendant partant de la courbe elliptique $E$ alors $n$ est le niveau de $E$ dans le volcan d'isogénies.
+%Soit $\ell$ un nombre premier, $E_s$ une courbe elliptique située sur le cratère d'un volcan des $\ell$-isogénies alors la longueur $h$ d'un chemin descendant partant de $E_s$ est appelée la hauteur du volcan.
+%\newline
+Pour une courbe sur le volcan son niveau est la longueur maximale d'un chemin descendant.
+\newline
+La hauteur $h$ d'un volcan est le niveau maximal des courbes dans le volcan.
 \end{defi}
-
+ 
 \begin{rem} 
 \label{rem:lie:dp:dk}
-Ainsi, pour un volcan des $\ell$-isohénies de hauteur $h$, on a 
-$d_{\pi}=\ell^{2h}d_{K}$ avec  $\ell^2 \nmid d_{\pi}$ par les 
-définitions~\ref{def:iso:nom} et ~\ref{def:haut:vol}.
+Pour un volcan de $\ell$-isogénies de hauteur $h$ par les 
+définitions~\ref{def:iso:nom} et ~\ref{def:haut:vol} $\ell^{2h} | d_{\pi}$.
+En particulier pour $\ell \neq 2$ $\ell^{2h}||d_{\pi}$, ce résultat ne peut être 
+énoncé  pour $\ell=2$ car il est possible que $4 \mid d_K$ par définition de $d_K$
+(définition~\ref{def:dis:dK}).
 \end{rem}
 
 \begin{defi}
@@ -3497,10 +3509,13 @@ Voir \cite[Proposition 6]{MiretMSTV08}.
 
 \subsubsection{Algorithme de Fouquet-Morain}
 \label{sub:alg:FM}
-L'algorithme de Fouquet-Morain~\cite{FouquetMorain02} est un algorithme qui cherche à calculer un chemin descendant d'une courbe elliptique située sur le cratère afin de calculer la valuation $\ell$-adique du conducteur de $\mathbb{Z}[\pi]$. Pour trouver une courbe sur le cratère la première chose à faire est de savoir déterminer un chemin descendant. 
+L'algorithme de Fouquet-Morain~\cite{FouquetMorain02} est un algorithme qui 
+calcule un chemin descendant d'une courbe elliptique située sur le cratère afin
+de calculer la valuation $\ell$-adique du conducteur de $\mathbb{Z}[\pi]$. Cet
+algorithme est une adaptation de l'algorithme "Probing the depths" de Kohel \cite[Section 4.2]{Kohel96} au contexte SEA. Pour trouver une courbe sur le cratère la première chose à faire est de savoir déterminer un chemin descendant. 
 
 \paragraph{Chemin descendant}
-En pratique une courbe admet au plus $2$ isogénies horizontales et au moins une isogénie descecendante (voir corollaire \ref{cor:tab:vol}), ainsi à l'aide du calcul en parallèle de 3 isogénies on est sûr d'avoir une des 3 qui est une isogénie descendante. Il est aussi important de noter que toute courbe du volcan admet au plus une isogénie montante. Dés lors que l'on parcourt le volcan d'isogénies à partir d'une isogénie descendante et que l'on ne retourne pas sur une courbe déjà visitée alors la suite des isogénies parcourues seront descendantes jusqu'à ce que l'on se retrouve sur une courbe située en bas du volcan. On détecte qu'une courbe est en bas du volcan dés qu'il y a une seule courbe isogène à celle-ci.
+En pratique une courbe admet au plus $2$ isogénies horizontales et au moins une isogénie descendante (voir corollaire \ref{cor:tab:vol}), ainsi à l'aide du calcul en parallèle de 3 isogénies on est sûr d'avoir une des 3 qui soit descendante. Il est aussi important de noter que toute courbe du volcan admet au plus une isogénie montante. Dés lors que l'on parcourt le volcan d'isogénies à partir d'une isogénie descendante et que l'on ne retourne pas sur une courbe déjà visitée alors la suite des isogénies parcourues seront descendantes jusqu'à ce que l'on se retrouve sur une courbe située en bas du volcan. On détecte qu'une courbe est en bas du volcan dés qu'il y a une seule courbe isogène à celle-ci.
 
 Ainsi en pratique \cite{FouquetMorain02} calcule 3 chemins à partir de la courbe de départ et le(s) chemin(s) le(s) plus court(s) sera(ont) alors un(des) chemin(s) descendant(s). 
 
@@ -3540,7 +3555,7 @@ de la courbe elliptique.
 
 \section{Lien entre les niveaux d'une courbe dans le volcan et la structure de la $\ell^{\infty}$ torsion rationnelle}
 \label{sec:lie:niv}
-On va dans cette section mettre en avant les liens qui existent entre le niveau
+Dans cette section on a mettre en avant les liens qui existent entre le niveau
 d'une courbe dans un volcan des $\ell$-isogénies et la structure de sa 
 $\ell$-torsion rationnelle. Les résultats exposés ici sont tirés de 
 \cite{MiretMSTV08} et \cite{Ionica-Joux10}.
@@ -3561,28 +3576,33 @@ E(\mathbb{F}_{q^r}) \cong \frac{\mathrm{End}(E)}{\pi^{r}-1}
 \cite[Theorem 1]{Lenstra1996}
 \end{proof}
 
+\begin{cor}
+Sur un volcan des $\ell$-isogénies, deux courbes elliptiques ordinaires $E$, $E'$ situées au même niveau ont la même structure de $\ell$-torsion rationnelle.
+\end{cor}
+
+\begin{proof}
+Comme $E$ et $E'$ sont situées au même niveau alors leurs anneaux 
+des endomorphismes sont isomorphes, par la proposition \ref{pro:len:str} on 
+obtient le résultat.
+\end{proof}
+%Cette preuve est issue de \cite{Ionica2010}.
+%Tout d'abord on peut remarquer que deux courbes situées sur un même volcan des $\ell$-isogénies ont la même cardinalité par la proposition \ref{pro:iso:ega}. Par la proposition \ref{pro:len:str} la structure de la torsion rationnelle est alors de la forme :
+%\[
+%E(\mathbb{F}_{q}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q}}(E)}{\pi-1}
+%\] 
+%On rappelle l'écriture $\pi=a + g \omega_K$, pour le plus grand $N$ tel que $E[N] \subset E(\mathbb{F}_q)$ on a par \cite[Lemma 1]{Ruck1987} $N=\mathrm{pgcd}(a-1,g/f)$ avec $f$ le conducteur de $\mathrm{End}(E)$ et $\mathrm{End}(E')$ ce qui permet de conclure.
+
+
 \begin{lem}
 \label{lem:ruc:rat}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ de conducteur $f$, 
-$\pi=a+g \omega_K$ l'endomorphisme de Frobenius, alors le plus grand $n_2$ tel 
-que $E[n_2] \subset E(\mathbb{F}_q)$ est $n_2=\mathrm{pgcd}(a-1,g/f)$.
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ de 
+conducteur $f$, $\pi=a+g \omega_K$ l'endomorphisme de Frobenius, alors le plus 
+grand $n_2$ tel que $E[n_2] \subset E(\mathbb{F}_q)$ est $n_2=
+\mathrm{pgcd}(a-1,g/f)$.
 \end{lem}
 
 \begin{proof}
 Voir  \cite[Lemma 1]{Ruck1987}.
-\end{proof}
-
-\begin{prop}
-Sur un volcan des $\ell$-isogénies, deux courbes $E$, $E'$ situées au même niveau ont la même structure de $\ell$-torsion rationnelle.
-\end{prop}
-
-\begin{proof}
-Cette preuve est issue de \cite{Ionica2010}.
-Tout d'abord on peut remarquer que deux courbes situées sur un même volcan des $\ell$-isogénies ont la même cardinalité par la proposition \ref{pro:iso:ega}. Par la proposition \ref{pro:len:str} la structure de la torsion rationnelle est alors de la forme :
-\[
-E(\mathbb{F}_{q}) \cong \frac{\mathrm{End}_{\mathbb{F}_{q}}(E)}{\pi-1}
-\] 
-On rappelle l'écriture $\pi=a + g \omega_K$, pour le plus grand $N$ tel que $E[N] \subset E(\mathbb{F}_q)$ on a par \cite[Lemma 1]{Ruck1987} $N=\mathrm{pgcd}(a-1,g/f)$ avec $f$ le conducteur de $\mathrm{End}(E)$ et $\mathrm{End}(E')$ ce qui permet de conclure.
 \end{proof}
 
 Avant d'énoncer le résultat principal sur la structure de la $\ell$-torsion rationnelle on a besoin du résultat intermédiare suivant:
@@ -3599,9 +3619,12 @@ On peut maintenant relier la structure de la $\ell$-torsion et le niveau de la c
 
 \begin{prop}
 \label{pro:niv:str}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que $E(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/n_1\mathbb{Z} \times \mathbb{Z}/n_2\mathbb{Z}$, $\pi = a + g \omega_K$ l'endomorphisme de Frobenius:
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ telle que 
+$E(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/n_1\mathbb{Z} \times
+\mathbb{Z}/n_2\mathbb{Z}$ avec $n_2 \mid n_1$, $\pi = a + g \omega_K$ 
+l'endomorphisme de Frobenius: 
 \begin{itemize}
-\item si $v_{\ell}(n_1)>v_{\ell}(n_2)$ alors $E$ est se situe au niveau $n_2$,
+\item si $v_{\ell}(n_1)>v_{\ell}(n_2)$ alors $E$ se situe au niveau $n_2$,
 \item si $v_{\ell}(n_1)=v_{\ell}(n_2)$ alors $E$ se situe à un niveau supérieur ou égal à $v_{\ell}(|E(\mathbb{F}_q)|)/2$.
 \end{itemize}
 \end{prop}
@@ -3622,7 +3645,7 @@ Dés lors quand on descend d'un niveau dans le volcan la valuation $\ell$-adique
 \begin{defi}
 Sur un volcan des $\ell$-isogénies on appelle le niveau à partir duquel la structure de la $\ell$-torsion ne change pas en même temps que les niveaux du volcan le \emph{premier niveau de stabilité}.
 
-Un volcan dont tous les niveaux ont des structures de $\ell$-torsion disctinctes est dit un \emph{volcan régulier}.
+Un volcan dont tous les niveaux ont des structures de $\ell$-torsion distinctes est dit un \emph{volcan régulier}.
 \end{defi}
 
 \begin{figure}
@@ -3841,7 +3864,12 @@ structure de volcan non-régulier};
 \end{figure}
 \begin{cor}
 \label{cor:des:str}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ située en dessous du premier niveau de stabilité telle que $E[\ell^{\infty}]=\mathbb{Z}/\ell^r\mathbb{Z} \times \mathbb{Z}/\ell^s\mathbb{Z}$ alors pour $E_b$ une des courbes situées un niveau en dessous de $E$ dans le volcan des $\ell$-isogénie on a $E_b[\ell^{\infty}]=\mathbb{Z}/\ell^{r+1}\mathbb{Z} \times \mathbb{Z}/\ell^{s-1}\mathbb{Z}$
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ située en 
+dessous du premier niveau de stabilité telle que $E[\ell^{\infty}]=\mathbb{Z}/
+\ell^r\mathbb{Z} \times \mathbb{Z}/\ell^s\mathbb{Z}$ alors pour $E_b$ une des 
+courbes situées un niveau en dessous de $E$ dans le volcan des $\ell$-isogénie 
+on a $E_b[\ell^{\infty}]=\mathbb{Z}/\ell^{r+1}\mathbb{Z} \times \mathbb{Z}/
+\ell^{s-1}\mathbb{Z}$
 \end{cor}
 
 \begin{rem}
@@ -3853,7 +3881,7 @@ Il existe un second niveau de stabilité introduit et développé dans
 \label{pro:iso:mon}
 Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ avec: $E(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/\ell^{r}\mathbb{Z} \times \mathbb{Z}/\ell^{s}\mathbb{Z}= \langle P,Q \rangle $, $r>s +1 \geqslant  1$ et $P$ un point d'ordre $\ell^r$, alors:
 \begin{enumerate}
-\item la $\ell$-isogénie engendrée par $\ell^{r-1}P$ est une isogénie montante avec pour codomaine un courbe elliptique $E'$ telle que: \[E'(\mathbb{F}_q)[\ell^{\infty}]=\nicefrac{\mathbb{Z}}{\ell^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{\ell^{s+1}\mathbb{Z}}, \]
+\item la $\ell$-isogénie engendrée par $\ell^{r-1}P$ est une isogénie montante avec pour codomaine un courbe elliptique $E'$ telle que: \[E'(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/\ell^{r-1}\mathbb{Z} \times \mathbb{Z}/\ell^{s+1}\mathbb{Z}, \]
 \item les autres $\ell$-isogénies sont descendantes.
 \end{enumerate}
 \end{prop}
@@ -3864,8 +3892,8 @@ Par le corollaire \ref{cor:tab:vol} on a $\ell+1$ isogénies de degré $\ell$ et
 \\
 Considérons l'isogénie $\phi$ engendrée par $[\ell^{r-1}]P$. L'image $\widetilde{P}$ de $P$ par l'isogénie $\phi$ est alors d'ordre $\ell^{r-1}$. 
 
-Montrons par l'absurde que l'on n'a pas $\nicefrac{\mathbb{Z}}{\ell^{r}\mathbb{Z}} \subset \phi(E)(\mathbb{F}_q)[\ell^{\infty}]$. Supposons qu'il existe un point $\widetilde{R}$ d'ordre $\ell^n$ avec $n \geqslant r$. Cela implique donc qu'il existe $R \in E(\mathbb{F}_q)$ tel que $R$ soit d'ordre $\ell^n$ et $R \notin \langle P \rangle$ ou  $[\ell^n]R =[\ell^{r-1}]P$. La deuxième hypothèse est impossible car cela implique qu'il existe $S \in E(\mathbb{F}_q)$ tel que $[\ell] S=P$ et contredit donc l'hypothèse sur la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. De même la première hypothèse: $[\ell^n]R = \mathcal{O}$ contredit elle aussi la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. On a donc:
-\[\phi(E)(\mathbb{F}_q)[\ell^{\infty}]=\nicefrac{\mathbb{Z}}{\ell^{r-1}\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{\ell^{s+1}\mathbb{Z}}. \]
+Montrons par l'absurde que l'on n'a pas $\mathbb{Z}/\ell^{r}\mathbb{Z} \subset \phi(E)(\mathbb{F}_q)[\ell^{\infty}]$. Supposons qu'il existe un point $\widetilde{R}$ d'ordre $\ell^n$ avec $n \geqslant r$. Cela implique donc qu'il existe $R \in E(\mathbb{F}_q)$ tel que $R$ soit d'ordre $\ell^n$ et $R \notin \langle P \rangle$ ou  $[\ell^n]R =[\ell^{r-1}]P$. La deuxième hypothèse est impossible car cela implique qu'il existe $S \in E(\mathbb{F}_q)$ tel que $[\ell] S=P$ et contredit donc l'hypothèse sur la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. De même la première hypothèse: $[\ell^n]R = \mathcal{O}$ contredit elle aussi la structure de $E(\mathbb{F}_q)[\ell^{\infty}]$. On a donc:
+\[\phi(E)(\mathbb{F}_q)[\ell^{\infty}]=\mathbb{Z}/\ell^{r-1}\mathbb{Z} \times \mathbb{Z}/\ell^{s+1}\mathbb{Z}. \]
 
 On observe bien que c'est une isogénie montante par le corollaire \ref{cor:des:str}.
 \end{proof}
@@ -8488,7 +8516,7 @@ mais il reste toutefois à évaluer son coût dans un tel contexte.
 Cela pourrait avoir par exemple une application dans l'algorithme de
 Bröker~\cite{Broker08} utilisé pour calculer un polynôme de Hilbert. En effet 
 dans l'algorithme de Bröker, il est nécessaire de calculer une courbe avec un 
-anneau d'endomorphismes spécifique à partir d'une courbe choisie au hasard dont 
+anneau des endomorphismes spécifique à partir d'une courbe choisie au hasard dont 
 $\mathbb{Z}[\pi]$ est fixé.
 
 \paragraph{Déplacement sur le cratère de volcans de $\ell$-isogénies et ses 
