@@ -193,7 +193,7 @@
 \nomenclature{$\upsilon_n$}{L'entier $\prod_{i=1}^n\ell_i^{k_i}$}
 \nomenclature{$\vartheta_{i_0}$}{L'entier $\frac{\upsilon_{n}}{\ell_{i_0}^{k_{i_0}}}$}
 \nomenclature{$\left( \frac{\ell}{d_K} \right)$}{Symbole de Kronecker}
-\nomenclature{$d_{\ell}$}{Discriminant de l'ordre maximal par rapport à $\ell$: $\mathcal{O}_{\ell}$}
+\nomenclature{$d_{\ell}$}{Discriminant de l'ordre maximal par rapport à $\ell$ noté $\mathcal{O}_{\ell}$}
 \nomenclature{$\mathcal{O}_{\ell}$}{Ordre maximal par rapport à $\ell$}
 
 
@@ -3138,8 +3138,6 @@ x^2-fd_Kx+f^2\frac{d_K (d_K-1)}{4}=0.
 On retrouve bien que le discriminant de $\mathcal{O}$ est $f^2d_K$.
 \end{rem}
 
-
-
 \subsection{Anneau d'endomorphisme de courbes elliptiques ordinaires}
 Dans cette sous-section on va se concentrer sur les anneaux d'endomorphismes de courbes elliptiques ordinaires définies sur un corps fini qui sont, comme vu dans la proposition \ref{pro:fro:dis}, isomorphes à des ordres dans un corps quadratique imaginaire. On va voir en détail les relations possibles et les structures qu'ont les anneaux d'endomorphismes dans un tel contexte.
 
@@ -3178,19 +3176,19 @@ Soient $E,E'$ deux courbes elliptiques ordinaires, $\phi: E \mapsto E'$ une $\el
 \end{enumerate}
 \end{defi}
 
-On a alors le résultat suivant sur les duales des isogénies:
-\begin{lem}
-\label{lem:dua:vol}
+On fait remarquer que pour les duales des isogénies:
+\begin{rem}
+\label{rem:dua:vol}
 Soit $\phi : E \mapsto E'$ une isogénie et sa duale $\widehat{\phi}$. Alors:
 \begin{enumerate}
 \item $\phi$ est une isogénie montante si et seulement si $\widehat{\phi}$ est une isogénie descendante,
 \item $\phi$ est une isogénie horizontale si et seulement si $\widehat{\phi}$ est une isogénie horizontale.
 \end{enumerate}
-\end{lem}
+\end{rem}
 
-\begin{proof}
-Voir \cite[Lemma 2.1]{FouquetMorain02}
-\end{proof}
+%\begin{proof}
+%Voir \cite[Lemma 2.1]{FouquetMorain02}
+%\end{proof}
 
 \begin{figure}
 \begin{center}
@@ -3274,7 +3272,7 @@ Voir \cite[Lemma 2.1]{FouquetMorain02}
 \caption{Représentation d'un volcan de $2$-isogénies avec les différents ordres.}		
 \label{fig:ord:vol}
 \end{figure}
-Sur la figure \ref{fig:ord:vol} est représenté un volcan d'isogénies, les points représentent les courbes elliptiques définies à isomorphisme près les traits reliant les points représentent les $\ell$-isogénies qui lient les courbes elliptiques. On observe que le volcan représenté ici est un volcan de $2$-isogénies car toutes les courbes ne se situant pas en bas du volcan sont reliées à $3$ autres courbes. Ce graphe n'est pas orienté comme le précise le lemme \ref{lem:dua:vol}. On a aussi les différents ordres qui sont représentés, ils est à noter qu'avec la convention donnée par la définition \ref{def:iso:nom} les ordres qui apparaissent dans un même niveau du graphe ont le même conducteur par rapport à l'ordre maximal, ainsi à l'aide du conducteur on peut établir des niveaux dans le volcan et donc illustrer les notions d'isogénies descendantes, montantes et horizontales. 
+Sur la figure \ref{fig:ord:vol} est représenté un volcan d'isogénies, les points représentent les courbes elliptiques définies à isomorphisme près les traits reliant les points représentent les $\ell$-isogénies qui lient les courbes elliptiques. On observe que le volcan représenté ici est un volcan de $2$-isogénies car toutes les courbes ne se situant pas en bas du volcan sont reliées à $3$ autres courbes. Ce graphe n'est pas orienté comme le précise la remarque \ref{rem:dua:vol}. On a aussi les différents ordres qui sont représentés, ils est à noter qu'avec la convention donnée par la définition \ref{def:iso:nom} les ordres qui apparaissent dans un même niveau du graphe ont le même conducteur par rapport à l'ordre maximal, ainsi à l'aide du conducteur on peut établir des niveaux dans le volcan et donc illustrer les notions d'isogénies descendantes, montantes et horizontales. 
 
 \begin{defi}
 Soit $\ell$ un nombre premier, soit $D$ un discriminant associé à un ordre dans
