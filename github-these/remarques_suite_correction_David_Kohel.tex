@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{memoir}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{hyperref}
@@ -36,7 +36,7 @@
 
 
 \theoremstyle{plain}
-\newtheorem{thm}{Théorème}[chapter]
+\newtheorem{thm}{Théorème}[section]
 \theoremstyle{definition}
 \newtheorem*{thm*}{Théorème}
 \theoremstyle{definition} 
@@ -54,16 +54,85 @@
 \theoremstyle{definition}
 \newtheorem{nota}[thm]{Notation}
 
-
+\bibliographystyle{alpha}
 \title{Remarks concerning the correction of David Kohel}
 \begin{document}
 \maketitle
-\chapter{Introduction}
+\section{Introduction}
 \paragraph{p.13}{Référence à l'article de Jacques Vélu de 1971 "Isogénies entre Courbes Elliptiques" $\Rightarrow$  celui-ci n'est pas pertinent par rapport au problème que l'on étudie car ici on ne connaît pas le noyau de l'isogénie alors que dans l'article de Vélu si, voilà pourquoi je n'ai pas cité celui-ci. \'A moins qu'il n'y ait un article de Vélu que j'ai manqué...}
 \paragraph{p.13}{"En pratique ... au cas par cas" en fait ici je voulais faire référence au crosspoint entre l'algorithme de Couveignes et celui de Lercier-Sirvent dans le cas de la moyenne caractéristique. Les complexités de ces algorithmes sont explicitées dans le chapitre 2. Pour l'algorithme de Lercier-Sirvent il faut rajouter le coût de calcul du polynôme modulaire.}
 \paragraph{p.14}{Concernant l'article de Couveignes "Hard homogeneous space" Luca m'avait parlé de celui-ci, je le rajoute.}
 
-\paragraph{p.14}{action d'isogénie...}
+\paragraph{p.14}{Concernant "action d'isogénie" je l'ai remplacé par "évaluation de l'isogénie"}
+
+\paragraph{p.14}{Concernant les références aux travaux de Pizer et Mestre j'ai rédigé cela de la façon suivante: "Les graphes d'isogénies ont été étudiés pour la première fois par 
+\cite{Kohel96}, ses travaux dans le contexte particulier des courbes elliptiques
+supersingulières ont été inspirés par ceux de \cite{Mestre86,Pizer90,Pizer95} 
+qu'il a adapté et développé dans ce contexte, il a aussi étudié le cas des 
+courbes elliptiques ordinaires, tout cela afin de calculer l'anneau des 
+endomorphismes d'une courbe 
+elliptique."}
+
+\paragraph{p.14}{Concernant "a cherché à déterminer", j'ai changé de la manière suivante: "Kohel détermine le niveau d'une courbe dans le graphe tout en 
+connaissant la cardinalité de celle-ci afin de calculer son anneau des 
+endomorphismes."}
+
+\paragraph{p.14}{Concernant le travail de Fouquet Morain je l'ai reformulé de la façon suivante: "Fouquet et Morain~\cite{FouquetMorain02} ont par la suite résolu le même 
+problème, en adaptant les méthodes de Kohel sans la connaissance préalable de 
+la cardinalité de la courbe, afin d'améliorer SEA, et ont nommé les graphes 
+d'isogénies \emph{volcans d'isogénies}."}
+
+\paragraph{p.14}{Concernant le travail de Lenstra et de son articulation avec votre thèse, je réfléchis encore à cela pour bien le comprendre avant d'en parler. J'ai du mal à voir notamment dans ce cas comment détecter un niveau de stabilité. J'arrive bien à voir que ainsi en bas du volcan on a un cratère, que la structure sur le cratère est forcément identique. Encore une fois je réfléchis encore à cela.}
+
+\paragraph{p.14}{Concernant le théorème, j'ai bien enlevé la numérotation 
+(trop) récemment, j'ai modifié l'énoncé comme suit :"Pour presque tous les 
+nombres premiers $q$ et les courbes elliptiques ordinaires $E,E'$ définies sur
+$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul explicite de
+l'isogénie" en un temps quasi-quadratique en le degré de l'isogénie, 
+avec une dépendance logarithmique en la caractéristique de $\mathbb{F}_q$." le 
+fait que le degré de l'isogénie soit connue est pour moi énoncé dans le 
+problème du "Calcul explicite de l'isogénie" je ne l'ai donc pas retranscrit à 
+nouveau ici}
+
+\paragraph{Question sur le théorème}{Notre algorithme proposé pour résoudre ce 
+problème traite différemment deux cas distincts: le cas Atkin et le cas Elkies.
+Pour le cas Elkies nous avons un algorithme fonctionnel avec une complexité
+satisfaisante (quasi-quadratique) avec une condition restrictive sur la hauteur
+$h$ du volcan de $\ell$-isogénies, concrètement on doit avoir $h< O(\log_{\ell}
+(4r))$ lorsque cette condition sur $h$ n'est pas vérifiée alors 
+l'algorithme a une complexité supérieure à la complexité quasi-quadratique. 
+Concernant le cas Atkin ce n'est pas explicitement écrit dans ma thèse mais 
+pour la cas où l'on a un entier de Atkin tel que la hauteur du volcan est 
+nulle alors nous obtenons un algorithme quadratique avec une dépendance 
+polynomiale en le paramètre $\ell$ moins bonne que dans le cas Elkies. 
+Ainsi à l'aide du résultat de Shparlinski et Sutherland 2014 si l'on fixe une 
+borne $L=O(\log(q))$ et que pour celle-ci nous n'avons que des nombres $\ell$ de 
+Elkies avec une hauteur $h$ associée $>\log_{\ell}(4r)$ alors en étudiant 
+$d_{\pi}$ borné par $O(\log(q))$, celui-ci ne peut admettre que des nombre premiers ramifiés qui le divise et des nombres premiers de Atkin de hauteur $\neq 0$ car sinon ce produit de nombres premiers dépasserait largement $O(\log(q))$ ainsi on doit avoir au moins l'existence d'un entier de Atkin de hauteur $0$  ou d'un entier de Elkies de hauteur $h<\log_{\ell}(4r)$. Donc on peut trouver un entier soit de Atkin de hauteur $0$ soit de Elkies de hauteur $h<\log_{\ell}(4r)$ borné par $O\log(q)$}
+
+\section{Chapitre 4}
+
+\paragraph{p 61}{Merci pour les remarques autour de $d_{K}$, j'introduis donc de suite la notation $d_{\ell}$ pour le discriminant de l'ordre maximal par rapport à $\ell$ noté $\mathcal{O}_{\ell}$ lui aussi dans la nomenclature}
+
+\paragraph{p.63}{$f^2\frac{d_K (d_K-1)}{4}$ c'est fait.}
+
+\paragraph{p.64}{Concernant le Lemme 6.14, il est vrai que ce résultat est trivial, je l'ai mis sous forme de remarque et j'ai formulé cela comme suit dans la thèse: 
+"On fait remarquer que pour les duales des isogénies:
+\begin{rem}
+\label{lem:dua:vol}
+Soit $\phi : E \mapsto E'$ une isogénie et sa duale $\widehat{\phi}$. Alors:
+\begin{enumerate}
+\item $\phi$ est une isogénie montante si et seulement si $\widehat{\phi}$ est une isogénie descendante,
+\item $\phi$ est une isogénie horizontale si et seulement si $\widehat{\phi}$ est une isogénie horizontale.
+\end{enumerate}
+\end{rem}"}
+
+\paragraph{p.65}{Merci pour les remarques concernant le graphe non orienté, 
+j'ai donc reformulé une partie du paragraphe comme suit: "On a pris comme 
+convention de représenter ici un graphe non orienté. En effet chaque arrête 
+représente toutes les isogénies de noyaux identiques ainsi que leurs duales."}
+
+\bibliography{Biblio}
 \end{document}
 %  LocalWords:  isogeny morphisms Isogenies isogenies isogenous
 %  LocalWords:  cardinality bijection Couveignes automorphism
