@@ -3963,11 +3963,17 @@ donc dans ce cas
 \begin{equation*}
 \pi^2 - t_{\pi}\pi + q = (\pi - \lambda)(\pi - \mu) \text{ dans } \mathbb{Z}_{\ell}[\pi], \text{ avec } \lambda \neq \mu.
 \end{equation*}
-Dés lors puisque $d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$ (voir 
-remarques~\ref{rem:def:dpi} et ~\ref{rem:lie:dp:dk}) avoir 
-$d_{\pi}$ un résidu quadratique est équivalent à avoir $\left( 
-\frac{d_{K}}{\ell} \right)=1$. Ainsi dans le cas Elkies le cratère est cyclique
-par le corollaire~\ref{cor:tab:vol}.
+Dès lors puisque $\ell^{2h} \mid d_{\pi}$ et pour $\ell \neq 2$ $\ell^{2h}
+|| d_{\pi}$, pour $\ell=2$ on peut avoir $2^{2h+1} \mid d_{\pi}$ lorsque $2 \mid d_K$ (voir remarques~\ref{rem:def:dpi} 
+et ~\ref{rem:lie:dp:dk}) avoir $d_{\pi}$ un résidu quadratique est équivalent 
+à avoir $\left( \frac{d_{K}}{\ell} \right)=1$. Ainsi dans le cas Elkies le 
+cratère est cyclique par le corollaire~\ref{cor:tab:vol}.
+
+%Dés lors puisque $ d_{\pi}=\ell^{2h}d_{K}$ avec $\ell^2 \nmid d_{K}$ (voir 
+%remarques~\ref{rem:def:dpi} et ~\ref{rem:lie:dp:dk}) avoir 
+%$d_{\pi}$ un résidu quadratique est équivalent à avoir $\left( 
+%\frac{d_{K}}{\ell} \right)=1$. Ainsi dans le cas Elkies le cratère est cyclique
+%par le corollaire~\ref{cor:tab:vol}.
 \end{defi}
 
 On note $h=v_{\ell}(\lambda - \mu)$, ainsi le polynôme caractéristique de 
@@ -3994,7 +4000,7 @@ hauteur du volcan des $\ell$-isogénies définies sur $\mathbb{F}_q$, sauf menti
 \subsection{\'Etude de l'action du Frobenius sur le module de Tate}
 \label{subs:elk:dir}
 
-On réprésente l'action du Frobenius sur $\mathsf{T}_{\ell}(E)$ à l'aide d'une matrice $
+On représente l'action du Frobenius sur $\mathsf{T}_{\ell}(E)$ à l'aide d'une matrice $
 2 \times 2$. On a le résultat suivant qui nous donne la forme de ces matrices à
 conjugaison près.
 
@@ -4003,8 +4009,10 @@ conjugaison près.
 Soit~$E$ une courbe elliptique ordinaire, telle que $\ell$ est un nombre Elkies
 a deux racines distinctes $\lambda$, $\mu$ appartenant à $\mathbb{Z}_{\ell}$,
 ainsi le volcan des $\ell$-isogénies de $E$ a un cratère cyclique.
-Il existe un unique $e \in [ 0, h]$
-tel que $\pi|\mathsf{T}_{\ell}(E)$~est conjugée, sur~$\mathbb{Z}_{\ell}$,
+Il existe un unique $e \in [ 0, h]$ tel que 
+l'action du Frobenius dans toute base de $\mathsf{T}_{\ell}(E)$  
+%$\pi|\mathsf{T}_{\ell}(E)$~
+est conjuguée, sur~$\mathbb{Z}_{\ell}$,
 à la matrice 
 \begin{equation*}
 \left ( \begin{matrix}\lambda & \ell^{h-e} \\ 0 & \mu
@@ -4016,11 +4024,15 @@ sinon $h - e$~est le niveau de~$E$ dans le volcan, $e$ est appelé la \emph{prof
 de la courbe dans le volcan.
 \end{prop}
 
-On souligne le fait que $\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
-\mu \end{smallmatrix}\right)$ est conjugée à $\left(\begin{smallmatrix} \lambda & 0 \\ 0 & \mu\end{smallmatrix}\right)$ sur~$\mathbb{Z}_{\ell}$.
+\begin{rem}
+$\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
+\mu \end{smallmatrix}\right)$ est conjuguée à $\left(\begin{smallmatrix} \lambda & 0 \\ 0 & \mu\end{smallmatrix}\right)$ sur~$\mathbb{Z}_{\ell}$.
+\end{rem}
+
 \begin{proof}
 Comme le polynôme caractéristique de $\pi$ admet deux valeurs propres sur 
-$\mathbb{Z}_{\ell}$ alors la matrice $\pi|\mathsf{T}_{\ell}(E)$ est trigonalisable. %\todo{justifier cela Morris Newman Integral Matrices III.\color{red}{15}}
+$\mathbb{Z}_{\ell}$ alors pour toute base de $\mathsf{T}_{\ell}(E)$ la matrice
+représentant l'action du Frobenius dans cette base est trigonalisable. %\todo{justifier cela Morris Newman Integral Matrices III.\color{red}{15}}
 La conjugaison de la matrice $\left ( \begin{smallmatrix}\lambda & a\\0 & \mu
 \end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & b\\0 & 1
 \end{smallmatrix} \right )$ change le coefficient $a$ en $a-b (\lambda - \mu)$, 
@@ -4029,7 +4041,7 @@ et la conjugaison par ~$\left(\begin{smallmatrix} c & 0 \\ 0 &
 ainsi la valuation $\ell$-adique~$h-e = v_{\ell}(a)$ est invariante sous la 
 conjugaison matricielle. Cela prouve la première partie de la proposition. 
 
-Pour la seconde partie, par le thèorème de 
+Pour la seconde partie, par le théorème de 
 Tate~\cite[Isogeny theorem III.7.7 (a)]{Silv1}, $\mathcal{O} \otimes 
  \mathbb{Z}_{\ell}$~est isomorphe à l'ordre dans~$\mathbb{Q}_{\ell}[\pi_{\ell}]$
 des matrices avec coefficients entiers, cet ordre est engendré par la matrice 

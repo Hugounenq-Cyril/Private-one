@@ -175,13 +175,13 @@ les valeurs énoncées ne donnent que le nombre de représentants
 sous l'action du groupe des automorphismes de $E$.
 \end{thm}"}
 
-\paragraph{Définition 4.23}{Il ne doit y avoir dans le manuscrit que des $E_s$, j'ai donc corrigé cela. J'ai reformulé la définition comme suit:
+\paragraph{Définition 4.23}{Il ne doit y avoir dans le manuscrit que des $E_s$, j'ai donc corrigé cela. J'ai reformulé la définition comme suit:"
 \begin{defi}
 \label{def:haut:vol}
 Pour une courbe sur le volcan son niveau est la longueur maximale d'un chemin descendant.
 \newline
 La hauteur $h$ d'un volcan est le niveau maximal des courbes dans le volcan.
-\end{defi}}
+\end{defi}"}
 
 \paragraph{Remarque 4.24}{J'ai modifié la remarque comme suit:
 "\begin{rem} 
@@ -217,6 +217,65 @@ obtient le résultat.
 \paragraph{prop 4.31}{$n_2 \mid n_1$ rajouté}
 
 \paragraph{Attention}{Courbes elliptiques ordinaires ajoutés!}
+
+\section{Chapitre 5}
+
+\paragraph{ligne -1}{J'ai modifié comme suit: "
+Dès lors puisque $\ell^{2h} \mid d_{\pi}$ et pour $\ell \neq 2$ $\ell^{2h}
+|| d_{\pi}$, pour $\ell=2$ on peut avoir $2^{2h+1} \mid d_{\pi}$ lorsque $2 \mid d_K$ (voir remarques~\ref{rem:def:dpi} 
+et ~\ref{rem:lie:dp:dk}) avoir $d_{\pi}$ un résidu quadratique est équivalent 
+à avoir $\left( \frac{d_{K}}{\ell} \right)=1$. Ainsi dans le cas Elkies le 
+cratère est cyclique par le corollaire~\ref{cor:tab:vol}.
+"}
+
+\paragraph{Proposition $5.\color{red}3$}{Concernant $\pi | \mathsf{T}_{\ell}(E)$ j'ai reformulé l'énoncé et la preuve comme suit:
+"
+\begin{prop}\label{pro:mat:fro}
+Soit~$E$ une courbe elliptique ordinaire, telle que $\ell$ est un nombre Elkies
+a deux racines distinctes $\lambda$, $\mu$ appartenant à $\mathbb{Z}_{\ell}$,
+ainsi le volcan des $\ell$-isogénies de $E$ a un cratère cyclique.
+Il existe un unique $e \in [ 0, h]$ tel que 
+l'action du Frobenius dans toute base de $\mathsf{T}_{\ell}(E)$  
+%$\pi|\mathsf{T}_{\ell}(E)$~
+est conjuguée, sur~$\mathbb{Z}_{\ell}$,
+à la matrice 
+\begin{equation*}
+\left ( \begin{matrix}\lambda & \ell^{h-e} \\ 0 & \mu
+\end{matrix}\right ).
+\end{equation*}
+% where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
+De plus $e = 0$ si~$E$ se situe sur le cratère,
+sinon $h - e$~est le niveau de~$E$ dans le volcan, $e$ est appelé la \emph{profondeur}
+de la courbe dans le volcan.
+\end{prop}
+
+\begin{rem}
+$\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
+\mu \end{smallmatrix}\right)$ est conjuguée à $\left(\begin{smallmatrix} \lambda & 0 \\ 0 & \mu\end{smallmatrix}\right)$ sur~$\mathbb{Z}_{\ell}$.
+\end{rem}
+
+\begin{proof}
+Comme le polynôme caractéristique de $\pi$ admet deux valeurs propres sur 
+$\mathbb{Z}_{\ell}$ alors pour toute base de $\mathsf{T}_{\ell}(E)$ la matrice
+représentant l'action du Frobenius dans cette base est trigonalisable. %\todo{justifier cela Morris Newman Integral Matrices III.\color{red}{15}}
+La conjugaison de la matrice $\left ( \begin{smallmatrix}\lambda & a\\0 & \mu
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & b\\0 & 1
+\end{smallmatrix} \right )$ change le coefficient $a$ en $a-b (\lambda - \mu)$, 
+et la conjugaison par ~$\left(\begin{smallmatrix} c & 0 \\ 0 &
+1\end{smallmatrix}\right)$ change~$a$ en~$c \cdot a$,
+ainsi la valuation $\ell$-adique~$h-e = v_{\ell}(a)$ est invariante sous la 
+conjugaison matricielle. Cela prouve la première partie de la proposition. 
+
+Pour la seconde partie, par le théorème de 
+Tate~\cite[Isogeny theorem III.7.7 (a)]{Silv1}, $\mathcal{O} \otimes 
+ \mathbb{Z}_{\ell}$~est isomorphe à l'ordre dans~$\mathbb{Q}_{\ell}[\pi_{\ell}]$
+des matrices avec coefficients entiers, cet ordre est engendré par la matrice 
+ identité et la matrice $\ell^{-\min (h, v_\ell(a))} (\pi_{\ell}-\lambda)$, dés 
+ lors l'indice de cet ordre par rapport à $\mathbb{Z}[\pi_{\ell}]$ est de 
+$\ell^{\min (h, v_\ell(a))}$, lui donnant son niveau $\min (h, v_\ell(a))$ dans 
+ le volcan des $\ell$-isogénies.
+\end{proof}
+"}
 
 \bibliography{Biblio}
 \end{document}
