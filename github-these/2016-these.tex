@@ -4240,14 +4240,28 @@ Avant de montrer les liens entre bases horizontales et diagonales on a besoin du
 
 \begin{lem}
 \label{lem:iso:con}
-Soit $\langle P, Q \rangle$ une base de $E[\ell^k]$ avec $k>0$, soit $\phi:E 
+Soit une base fixée de $\mathsf{T}_{\ell}(E)$ dont la projection sur 
+$E[\ell^{k}]$ est $\langle P, Q \rangle$ avec $k>0$, soit $\phi:E 
 \rightarrow E'$ l'isogénie de noyau engendré par $R=[x]P+[y]Q$  avec $x\wedge 
 \ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $0 \leqslant m \leqslant k$.
 Soit $M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau 
-engendré par $R$, $[\ell^k]P$ et $[\ell^k]Q$, soit $\Pi$ la matrice du Frobenius
-sur $\mathsf{T}_{\ell}(E)$, alors la matrice du Frobenius sur 
+engendré par $R$, $\ell^k\mathsf{T}_{\ell}(E)$ alors la matrice du Frobenius sur 
 $\mathsf{T}_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi \cdot M_R$ à 
-conjugaison près.
+conjugaison près, avec $\Pi$ la matrice du Frobenius dans la base fixée de 
+$\mathsf{T}_{\ell}(E)$.
+
+
+%Soit une base fixée de $\mathsf{T}_{\ell}(E')$ telle que celle-ci soit
+%
+% 
+%Soit $\langle P, Q \rangle$ une base de $E[\ell^k]$ avec $k>0$, soit $\phi:E 
+%\rightarrow E'$ l'isogénie de noyau engendré par $R=[x]P+[y]Q$  avec $x\wedge 
+%\ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $0 \leqslant m \leqslant k$.
+%Soit $M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau 
+%engendré par $R$, $[\ell^k]P$ et $[\ell^k]Q$, soit $\Pi$ la matrice du Frobenius
+%sur $\mathsf{T}_{\ell}(E)$, alors la matrice du Frobenius sur 
+%$\mathsf{T}_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi \cdot M_R$ à 
+%conjugaison près.
 \end{lem}
 
 \begin{proof}
@@ -4291,8 +4305,9 @@ que $y=1$.
 
 Soit $\phi$ l'isogénie de noyau $\langle [\ell^h]P \rangle$ et $E'$ son 
 codomaine. Comme $[\ell^h]P$ est un vecteur propre de $\pi$, alors $\phi$ est 
-une isogénie rationnelle. Par le lemme~\ref{lem:iso:con}, la matrice 
-$\pi|\mathsf{T}_{\ell}(E')$ est égale à $\left ( \begin{smallmatrix}\lambda & \ell^{h-k} 
+une isogénie rationnelle. Par le lemme~\ref{lem:iso:con}, pour toute base de 
+$\mathsf{T}_{\ell}(E')$ la matrice 
+$\pi|\mathsf{T}_{\ell}(E')$ est conjuguée à $\left ( \begin{smallmatrix}\lambda & \ell^{h-k} 
 x (\lambda-\mu)\\ 0 & \mu \end{smallmatrix}\right )$.  
 
 Cette matrice est diagonalisable seulement si $v_{\ell}(x) \geqslant k - h$.
@@ -5072,8 +5087,17 @@ base de $E[\ell^k]$.  Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Maste
 
 \begin{nota} 
 Soient $E$ une courbe elliptique, $P,Q$ deux points tels que $E[\ell^k]=\langle
-P,Q \rangle$ on note alors $\pi(P,Q)$ la représenation matricielle de l'action
-du Frobenius dans la base $(P,Q)$.
+P,Q \rangle$ on note alors $\pi(P,Q)$ la représentation matricielle de l'action
+du Frobenius dans la base $(P,Q)$. Ainsi:
+\[
+\pi(P,Q)=\left(
+\begin{matrix}
+\lambda & a \\
+0 & \mu
+\end{matrix}
+ \right)
+\]
+signifie que l'on a $\pi(P)=[\lambda]P$ et $\pi(Q)=[a]P+[\mu]Q$
 \end{nota}
 
 \begin{prop}

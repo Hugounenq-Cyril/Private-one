@@ -280,7 +280,46 @@ $\ell^{\min (h, v_\ell(a))}$, lui donnant son niveau $\min (h, v_\ell(a))$ dans
 \paragraph{Proposition 5.4}{Pourquoi ne pas travailler avec une matrice avec 
 $\delta = 1$? J'ai choisi de faire un énoncé le plus général possible pour une
 application pratique par la suite. Cette proposition serait tout aussi juste 
-avec $\delta = 1$. Est-ce nécessaire pour la compréhension du lecteur que je rédige cela avec $\delta = 1$ ?}
+avec $\delta = 1$. Est-ce nécessaire pour la compréhension du lecteur que je 
+rédige cela avec $\delta = 1$ ?}
+
+\paragraph{Lemme 5.6}{J'ai choisi de ne fixer dans l'énoncé du Lemme seulement 
+la base de $\mathsf{T}_{\ell}(E)$ et pas celle de $\mathsf{T}_{\ell}(E')$ afin 
+de ne pas surcharger l'énoncé. J'ai modifié l'énoncé comme suit "
+\begin{lem}
+\label{lem:iso:con}
+Soit une base fixée de $\mathsf{T}_{\ell}(E)$ dont la projection sur 
+$E[\ell^{k}]$ est $\langle P, Q \rangle$ avec $k>0$, soit $\phi:E 
+\rightarrow E'$ l'isogénie de noyau engendré par $R=[x]P+[y]Q$  avec $x\wedge 
+\ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $0 \leqslant m \leqslant k$.
+Soit $M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau 
+engendré par $R$, $\ell^k\mathsf{T}_{\ell}(E)$ alors la matrice du Frobenius sur 
+$\mathsf{T}_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi \cdot M_R$ à 
+conjugaison près, avec $\Pi$ la matrice du Frobenius dans la base fixée de 
+$\mathsf{T}_{\ell}(E)$.
+\end{lem}" J'ai remarqué que dans la preuve de la proposition suivante j'avais
+dit que $\Pi|\mathsf{T}_{\ell}(E')$ était $\color{red}\text{égale}$ j'ai 
+remplacée cela par conjugué et reformulé la phrase en question comme suit:
+"  Par le lemme~\ref{lem:iso:con}, pour toute base de 
+$\mathsf{T}_{\ell}(E')$ la matrice 
+$\pi|\mathsf{T}_{\ell}(E')$ est conjuguée à $\left ( \begin{smallmatrix}\lambda & \ell^{h-k} 
+x (\lambda-\mu)\\ 0 & \mu \end{smallmatrix}\right )$."}
+
+\paragraph{Notation 5.14}{J'ai essayé de clarifier la notation comme suit: "
+\begin{nota} 
+Soient $E$ une courbe elliptique, $P,Q$ deux points tels que $E[\ell^k]=\langle
+P,Q \rangle$ on note alors $\pi(P,Q)$ la représentation matricielle de l'action
+du Frobenius dans la base $(P,Q)$. Ainsi:
+\[
+\pi(P,Q)=\left(
+\begin{matrix}
+\lambda & a \\
+0 & \mu
+\end{matrix}
+ \right)
+\]
+signifie que l'on a $\pi(P)=[\lambda]P$ et $\pi(Q)=[a]P+[\mu]Q$
+\end{nota}"}
 
 \bibliography{Biblio}
 \end{document}
