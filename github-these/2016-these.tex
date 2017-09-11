@@ -193,8 +193,9 @@
 \nomenclature{$\upsilon_n$}{L'entier $\prod_{i=1}^n\ell_i^{k_i}$}
 \nomenclature{$\vartheta_{i_0}$}{L'entier $\frac{\upsilon_{n}}{\ell_{i_0}^{k_{i_0}}}$}
 \nomenclature{$\left( \frac{\ell}{d_K} \right)$}{Symbole de Kronecker}
-\nomenclature{$d_{\ell}$}{Discriminant de l'ordre maximal par rapport à $\ell$ noté $\mathcal{O}_{\ell}$}
-\nomenclature{$\mathcal{O}_{\ell}$}{Ordre maximal par rapport à $\ell$}
+%\nomenclature{$d_{\ell}$}{Discriminant de l'ordre maximal par rapport à $\ell$ noté $\mathcal{O}_{\ell}$}
+%\nomenclature{$\mathcal{O}_{\ell}$}{Ordre maximal par rapport à $\ell$}
+\nomenclature{$\pi(P,Q)$}{Représente l'action du Frobenius $\pi$ dans une base $P,Q$ sous forme matricielle.}
 
 
 \printnomenclature
@@ -257,7 +258,7 @@ est préféré pour les plus grandes caractéristiques.
 %En pratique déterminer 
 %lequel des deux est le plus pertinent doit se faire au cas par cas. 
 
-Bien que la compléxité de SEA ne soit pas dominée par le calcul de l'isogénie 
+Bien que la complexité de SEA ne soit pas dominée par le calcul de l'isogénie 
 explicite,
 %/Soulignons que, notons que/De plus comme dans SEA d'autres opérations ont 
 %un coût plus élevé que l'algorithme de Lercier et Sirvent 
@@ -304,11 +305,11 @@ Cette thèse s'inscrit dans la continuité des travaux de Couveignes
 généraliser à l'étude des points d'ordre $\ell^k$, avec $\ell$ premier 
 quelconque, afin de s'affranchir de la dépendance polynomiale en $p$. Pour 
 cela, nous devons en particulier déterminer des ensembles de points préservés 
-par l'action de l'isogénie que nous voulons calculer, tout en nous servant 
+par l'évaluation de l'isogénie que nous voulons calculer, tout en nous servant 
 d'une construction efficace de tours d'extensions de degré $\ell$ de corps 
 finis. 
 
-Pour une étude fine de l'action de l'isogénie sur les points d'ordre $\ell^k$, 
+Pour une étude fine de l'évaluation de l'isogénie sur les points d'ordre $\ell^k$, 
 nous nous servons de \emph{graphes d'isogénies}.
 Sur la Figure~\ref{fig:int:vol} nous pouvons en voir un exemple. Les sommets de
 ce graphe sont des courbes elliptiques définies à isomorphisme près; elles sont
@@ -465,9 +466,10 @@ cas Atkin. Nous présentons aussi dans ce chapitre des
 algorithmes permettant de calculer certaines isogénies, spécifiées par leurs 
 directions, dans le volcan. 
 
-Ensuite, nous présentons dans le chapitre~\ref{cha:alg:fin} comment ces isogénies spécifiées 
+Ensuite, nous présentons dans le chapitre~\ref{cha:alg:fin} comment ces 
+isogénies spécifiées 
 par leurs directions peuvent être utilisées dans un algorithme de Couveignes
-où l'action de l'isogénie est interpolée sur les points d'ordre $\ell^k$. Nous
+où l'isogénie est interpolée sur les points d'ordre $\ell^k$. Nous
 appellerons $\ell$-adiques ces variantes de l'algorithme de Couveignes.
 Nous présentons et analysons donc un algorithme $\ell$-adique de
 Couveignes dans un cas favorable (à savoir, lorsque un entier $\ell$ avec des 
@@ -492,7 +494,7 @@ et nous étudions leur intérêt.
 \label{cha:rappel}
 \section{Complexit\'e}
 Dans ce document, nous utilisons la notation classique de Landau $O$ pour mesurer la 
-complexité des algorithmes présentés. Etant données deux fonctions $f,g: \mathbb{N} \rightarrow \mathbb{N}$, on dit que $f \in O(g)$ lorsqu'il existe deux constantes $x_0$ et $M$ telles que:
+complexité des algorithmes présentés. Étant données deux fonctions $f,g: \mathbb{N} \rightarrow \mathbb{N}$, on dit que $f \in O(g)$ lorsqu'il existe deux constantes $x_0$ et $M$ telles que:
 \[
 f(x)<Mg(x) \quad \text{pour} \quad x>x_0.
 \]
@@ -500,7 +502,7 @@ Nous définissons également la notation $f \in \Omega(g)$ de la façon suivante
 \[
 f(x)>Mg(x) \quad \text{pour} \quad x>x_0.
 \]
-Nous défnissons la notation $\Theta$ pour laquelle que $f \in \Theta(g)$ si et seulement si $f \in O(g)$ et $f \in \Omega(g)$.
+Nous définissons la notation $\Theta$ pour laquelle que $f \in \Theta(g)$ si et seulement si $f \in O(g)$ et $f \in \Omega(g)$.
 
 Dans ce document, de nombreux algorithmes vont utiliser la multiplication rapide, nous définissons donc celle-ci: $\mathsf{M}:\mathbb{N} \rightarrow \mathbb{N}$ la \emph{fonction de multiplication} tel que le coût de la multiplication de deux polynômes de de degré $n$ définis dans $\mathbb{F}_q[x]$ coûte $M(n)$ opérations arithmétiques dans $\mathbb{F}_q$. En utilisant les résultats de \cite[§8.3]{vzGJG03} nous pouvons supposer que:
 \begin{itemize}
@@ -574,7 +576,7 @@ Soit $\mathbb{L}/\mathbb{K}$ une extension Galoisienne alors on appelle
 %\section{Théorie des ordres dans un corps quadratique imaginaire}
 
 \section{Courbes Elliptiques}
-Dans ce chaptire nous allons faire quelques rappels sur les courbes elliptiques. Pour approfondir le sujet le lecteur pourra consulter \cite{Silv1} ou encore \cite{Washington2008}
+Dans ce chapitre nous allons faire quelques rappels sur les courbes elliptiques. Pour approfondir le sujet le lecteur pourra consulter \cite{Silv1} ou encore \cite{Washington2008}
 
 \subsection{\'Equations de Weierstrass}
 
@@ -1256,7 +1258,7 @@ Soit $E$ une courbe ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E)
 \begin{enumerate}
 \item $(1,\ell)$ ou $(1,1, \cdots, 1)$. Dans les deux cas $t_{\pi}^2-4q=0 \bmod \ell $, dans le premier cas on pose $r=\ell$ et dans le second $r=1$;
 \item $(1,1,r,r, \cdots,r)$. Dans ce cas $t_{\pi}^2-4q$ est un résidu quadratique modulo $\ell$. On a alors $r$ qui divise $\ell-1$ et $\pi$ agit comme une matrice scalaire sur $E[\ell]$;
-\item $(r,r,\cdots,r)$ avec $r>1$. Dans ce cas $t_{\pi}^2-4q$ n'est pas un résidu quadratique, $r$ divise $\ell+1$ et la restriction de $\pi$ à $E[\ell]$ admet un polynôme charactéristique irréductible sur $\mathbb{F}_q$. 
+\item $(r,r,\cdots,r)$ avec $r>1$. Dans ce cas $t_{\pi}^2-4q$ n'est pas un résidu quadratique, $r$ divise $\ell+1$ et la restriction de $\pi$ à $E[\ell]$ admet un polynôme caractéristique irréductible sur $\mathbb{F}_q$. 
 \end{enumerate}
 \end{thm}
 Dans tous les cas on a $r$ qui correspond à l'ordre de la matrice $\pi$ dans $\mathrm{PGL_2}(\mathbb{Z}/\ell \mathbb{Z})$ et la trace du Frobenius $t_{\pi}$ vérifie:
@@ -1409,7 +1411,7 @@ $\mathbb{F}_q$.
 
 \begin{rem}
 \label{rem:pol:rec}
-Soit $P$ un polynôme de degré $d$ défini sur $\mathbb{F}_q[X]$ de caratéristique $p>d$ ou $p=0$. Alors $P$ peut être déterminé à l'aide de la formule:
+Soit $P$ un polynôme de degré $d$ défini sur $\mathbb{F}_q[X]$ de caractéristique $p>d$ ou $p=0$. Alors $P$ peut être déterminé à l'aide de la formule:
 \begin{equation}
 P=\exp\left(\int{\frac{P'}{P}}\right)
 \end{equation} 
@@ -1746,14 +1748,14 @@ assez grand, donne une information suffisante pour interpoler la $r$-isogénie
 $I$. Comme la $p^k$-torsion est cyclique, alors cette correspondance est une 
 correspondance entre deux groupes cycliques. Soient $P$ un générateur de 
 $E[p^k]$ et $P'$ un générateur de $E'[p^k]$ tous deux calculés itérativement, 
-l'algorithme fait alors l'hyptohèse que le point $P$ a pour image le point 
+l'algorithme fait alors l'hypothèse que le point $P$ a pour image le point 
 $[a]P'$ par la $r$-isogénie $I$ avec $a \in (\mathbb{Z}/p^k\mathbb{Z})^{\times}$. Ainsi si
 l'on représente $I$ à l'aide d'une fraction rationnelle on a:
 \begin{equation}
 \frac{g(x([j] P))}{h(x([j] P))}=x([ja] P') \quad \forall j \in \mathbb{Z}/p^{k}\mathbb{Z}.
 \end{equation}
 avec $\deg g = r$ et $\deg h = r-1$.
-Pour calculer la $r$-isogénie, l'algorithme de Couveignes calcule un polynome $A_a \in \mathbb{F}_q[X]$ tel que l'on ait 
+Pour calculer la $r$-isogénie, l'algorithme de Couveignes calcule un polynôme $A_a \in \mathbb{F}_q[X]$ tel que l'on ait 
 \begin{equation}
 A_a(x([k] P))= x([ka] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
 \end{equation} 
@@ -1804,7 +1806,7 @@ interpolation de Cauchy
 On va donner ici la démarche à utiliser pour effectuer une utilisation 
 pratique de l'algorithme de Couveignes afin de permettre de voir les différences
 avec notre approche $\ell$-adique de l'algorithme de Couveignes faite dans le
-chapitre~\ref{cha:alg:fin}, pour les détails non abordés le lecteur interessé 
+chapitre~\ref{cha:alg:fin}, pour les détails non abordés le lecteur intéressé 
 peut se reporter à \cite{Couveignes96} et \cite{DeFeo11}.
 
 \paragraph{Calcul de la $p$-torsion}
@@ -1962,7 +1964,7 @@ la taille des orbites des abscisses des points d'ordre $p^k$ selon l'action du g
 \end{cor}
 
 \begin{proof}
-Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ commme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $e$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ veut dire que $t_{\pi}^e=1 \bmod p^k$ ou $t_{\pi}^e=-1 \bmod p^k$; par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $e \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{e})^2=1 \bmod p^k$, ainsi $2e \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $e= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
+Comme vu dans la preuve de la proposition \ref{pro:ord:fro} on peut considérer les points d'ordre $p^k$ comme des vecteurs propres pour le Frobenius associés à $t_{\pi}$. Ainsi avoir $e$ la taille de l'orbite des abscisses plus petite que  $[\mathbb{L}_k:\mathbb{F}_q]$ veut dire que $t_{\pi}^e=1 \bmod p^k$ ou $t_{\pi}^e=-1 \bmod p^k$; par définition de $[\mathbb{L}_k:\mathbb{F}_q]$ seul le second cas est envisageable. Dés lors pour un tel $e \neq [\mathbb{L}_k:\mathbb{F}_q]$,  $(t_{\pi}^{e})^2=1 \bmod p^k$, ainsi $2e \mid [\mathbb{L}_k:\mathbb{F}_q]$. Ce cas n'est donc possible que si $2 \mid [\mathbb{L}_k:\mathbb{F}_q]$ et l'on aura $e= \frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$. 
 \end{proof}
 
 
@@ -2013,7 +2015,7 @@ l'orbite. Les opposés des points ayant la même abscisse, alors les abscisses
 des points $[n]P$ avec $n=-1 \bmod p^{v_p(E(\mathbb{L}_1))}$ appartiennent 
 aussi à l'orbite de $x(P)$ sous l'action d'un élément générateur de 
 $\mathsf{Gal}(\mathbb{L}_{k-v_p(E(\mathbb{L}_1))}:
-\mathbb{L}_{v_p(E(\mathbb{L}_1))})$, mais on préfèrera éviter dans les calculs 
+\mathbb{L}_{v_p(E(\mathbb{L}_1))})$, mais on préférera éviter dans les calculs 
 ces doublons inutiles.
 \end{proof}
 
@@ -2169,7 +2171,7 @@ donc utiliser des techniques supplémentaires pour optimiser ce temps de calcul
 trop élevé. Les améliorations de De Feo~\cite{DeFeo11} ont donc résolu cette 
 question et sont présentées dans la sous section~\ref{sub:fro:int}.
 
-L'interpolation de Cauchy à partir du polynôme $A$ et du polynome $T$ qui s'annule sur les abscisses des points d'ordre $p^k$ est faite à l'aide de $O(\mathsf{M}(p^{k})\log(p^k))=O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03} (voir \cite[Théorème 7.5]{algeff17} pour plus de détails).
+L'interpolation de Cauchy à partir du polynôme $A$ et du polynôme $T$ qui s'annule sur les abscisses des points d'ordre $p^k$ est faite à l'aide de $O(\mathsf{M}(p^{k})\log(p^k))=O(\mathsf{M}(r)\log(r))$ opérations sur $\mathbb{F}_q$ d'après \cite[§ 11.1]{vzGJG03} (voir \cite[Théorème 7.5]{algeff17} pour plus de détails).
 %En pratique on travaille avec les points primitifs de $p^k$-torsion afin de pouvoir se servir de l'action du Frobenius pour parcourir tous les éléments à l'aide des représentants et de l'action du Frobenius.
 
 %\begin{lem}
@@ -2194,13 +2196,13 @@ $\mathbb{F}_q \not \simeq \mathbb{L}_1$et $\mathbb{L}_1 \not \simeq
 d'Artin-Schreier (voir \cite{DeFeo11} et \cite{DeFeo-Shost'12} pour plus de 
 détails).
 
-Cette partie sur le calcul du polynôme d'interpolation est cruciale car, comme vu précédemment, c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{L}_k$ entraîne un côut minimal de $O(p^{2k})=O(r^2)$ opérations sur $\mathbb{F}_q$ à l'aide de la méthode précédemment présentée. 
+Cette partie sur le calcul du polynôme d'interpolation est cruciale car, comme vu précédemment, c'est la partie la plus coûteuse de l'algorithme de Couveignes. On peut déjà noter qu'interpoler $p^{k-1}(p-1)$ paires de points $(P,I(P))$ avec $P$ et $I(P)$ à coordonnées dans $\mathbb{L}_k$ entraîne un coût minimal de $O(p^{2k})=O(r^2)$ opérations sur $\mathbb{F}_q$ à l'aide de la méthode précédemment présentée. 
 
 Bien que le polynôme $A$ que l'on souhaite calculer soit de degré $p^{k-1}
 (p-1)-1$, il est possible avec moins d'informations de le calculer. Le polynôme
-$A$ étant à coefficients dans $\mathbb{F}_q$ alors $A$, comme l'isogénie dont 
-il est censé représenter l'action sur les points d'ordre $p^k$, doit commuter 
-avec le Frobenius. Couveignes~\cite{Couveignes96} ne tirait pas 
+$A$ étant à coefficients dans $\mathbb{F}_q$ alors $A$, comme l'isogénie qu'il
+il est censé représenter, doit commuter avec le Frobenius sur les points 
+d'ordre $p^k$. Couveignes~\cite{Couveignes96} ne tirait pas 
 pleinement parti du fait que connaître l'image d'un générateur d'une orbite 
 selon l'action du Frobenius fixait la valeur des autres points de l'orbite. 
 Il manquait pour l'algorithme original des techniques efficaces pour faire agir
@@ -2217,7 +2219,7 @@ $\mathbb{L}_k \setminus \mathbb{L}_{k-1}$, ils sont donc tous dans des orbites
 de tailles identiques. La méthode peut alors se généraliser aux points de 
 $p^k$-torsion en travaillant avec des orbites de tailles différentes.
 
-Soient $P$ et $P'$ deux d'order $p^k$ de $E$ et $E'$. On veut calculer le 
+Soient $P$ et $P'$ deux d'ordre $p^k$ de $E$ et $E'$. On veut calculer le 
 polynôme d'interpolation de degré minimal $A \in \mathbb{F}_q[X]$ tel que:
 \begin{equation}
 A(x([n]P))=x([n]P') \bmod T(x) \quad \text{pour } n \in \left( \mathbb{Z}/p^k\mathbb{Z} \right)^{\times}
@@ -2439,7 +2441,7 @@ Voir section $5.2$ de \cite{DeFeo11}.
 
 \begin{rem}
 La complexité ici est donnée en termes d'opérations sur $\mathbb{F}_p$ car les 
-tours d'Artin-Schreier sur lesquelles sont utililisées les améliorations 
+tours d'Artin-Schreier sur lesquelles sont utilisées les améliorations 
 apportées à l'algorithme de Couveignes sont construites comme des extensions de
 corps sur $\mathbb{F}_p$ et ainsi tout élément d'une tour d'Artin-Schreier est
 exprimé à l'aide d'un polynôme à coefficients dans $\mathbb{F}_p$.
@@ -3116,7 +3118,7 @@ Soit $\alpha \mapsto \overline{\alpha}$ l'automorphisme non-trivial d'un corps q
 \right) \right)^2. \]
 Le discriminant de $\mathcal{O}_K$ est noté $d_K$.
 \end{defi}
-Le discriminant est un invariant de la base chosie, en prenant la base $[1, f 
+Le discriminant est un invariant de la base choisie, en prenant la base $[1, f 
 \omega_K]$ de $\mathcal{O}$, on a:
 \[D=f^2d_K.\]
 
@@ -3548,7 +3550,7 @@ le polynôme de $\ell_i$-division. Ainsi l'algorithme de Fouquet Morain a une
 application dans l'algorithme de Schoof~\cite{Schoof85} (voir 
 sous-section~\ref{sub-sec:schoof}) qui calcule la cardinalité d'une courbe
 elliptique à partir de la valeur de sa trace modulo différents nombres premiers
-et utilise ensuite le théorème des restes chinois pour trouver la cardinlaité 
+et utilise ensuite le théorème des restes chinois pour trouver la cardinalité 
 de la courbe elliptique. 
 
 
@@ -3605,7 +3607,7 @@ grand $n_2$ tel que $E[n_2] \subset E(\mathbb{F}_q)$ est $n_2=
 Voir  \cite[Lemma 1]{Ruck1987}.
 \end{proof}
 
-Avant d'énoncer le résultat principal sur la structure de la $\ell$-torsion rationnelle on a besoin du résultat intermédiare suivant:
+Avant d'énoncer le résultat principal sur la structure de la $\ell$-torsion rationnelle on a besoin du résultat intermédiaire suivant:
 
 \begin{prop}
 Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi=a+g \omega_K$ l'endomorphisme de Frobenius alors: $v_{\ell}(a-1) \geqslant \min(v_{\ell}(g),v_{\ell}(|E(\mathbb{F}_q)|/2))$.
@@ -4270,7 +4272,7 @@ celui-ci est une ligne projective sur $\mathbb{Z}/\ell^k \mathbb{Z}$. Il existe
 une bijection canonique~\cite[II.1.1]{Serre77} entre cette ligne projective et 
 l'ensemble des réseaux d'indice $\ell^k$ dans le $\mathbb{Z}_{\ell}$ module $\mathsf{T}_{\ell}(E)$:
 la ligne $\langle R \rangle$ est donc en bijection avec le réseau~$\Lambda_R = 
-\langle R \rangle + \ell^k \mathsf{T}_{\ell}(E)$. Ce réseau est aussi la préimage du réseau 
+\langle R \rangle + \ell^k \mathsf{T}_{\ell}(E)$. Ce réseau est aussi la pré-image du réseau 
 $\ell^k\mathsf{T}_{\ell}(E')$ par $\phi$.
 
 Le réseau $\Lambda_R$ est engendré par les colonnes de la matrice 
@@ -4814,7 +4816,7 @@ d'une base horizontale les isogénies descendantes d'une courbe située sur le
 cratère.
 
 \begin{prop}
-Soit $E$ une courbe elliptique située sur le cratère cyclique d'un volcan des $\ell$-isogénies, $\langle P, Q \rangle= E[\ell]$ une base horizontale. Alors les $\ell$-isogénies descendantes sont générées par les sous-groupes $\langle [\ell]P+ [b]Q \rangle$ avec $b \wedge \ell =1$.
+Soit $E$ une courbe elliptique située sur le cratère cyclique d'un volcan des $\ell$-isogénies, $\langle P, Q \rangle= E[\ell]$ une base horizontale. Alors les $\ell$-isogénies descendantes sont générées par les sous-groupes $\langle P+ [b]Q \rangle$ avec $b \wedge \ell =1$.
 \end{prop}
 
 \begin{proof}
@@ -5046,7 +5048,7 @@ horizontal.} % à partir d'un point $P \in E_s$ d'ordre $2^3$ tel que $[2]P$ soi
 On voit sur la figure~\ref{fig:par:hor:con} la construction d'un point 
 ascendant horizontal sur un volcan de $2$-isogénies. Sur le volcan de 
 gauche est représentée l'isogénie de noyau $\langle P \rangle$ avec $P \in E_s$
-tel que $[\ell]P$ est horizontal de direction  $\mu$. On calcule 
+tel que $[2]P$ est horizontal de direction  $\mu$. On calcule 
 alors l'image de $P$ par la $2$-isogénie descendante $\psi:E_s \rightarrow E$
 pour construire le point ascendant horizontal $R=\psi(P) \in E$. Sur le 
 volcan de droite est représenté l'isogénie de noyau $\langle R \rangle$.
@@ -5065,14 +5067,20 @@ horizontale de direction $\lambda$ de degré $\ell^{k-i}$.
 \end{prop}
 
 \begin{proof}
-Pour le point~\eqref{ite:pro:par:1} montrons que l'image de $P$ par $\varphi$ est encore d'ordre 
-$\ell^k$. Comme $P$ est un générateur d'une $\ell^{k-i}$-isogénie horizontale 
-alors $[\ell^{k-1}]P$ n'est pas dans le noyau de $\varphi$, et donc $\varphi(P)$ est 
-d'ordre $\ell^k$. Alors $\langle [\ell^{k-i}]\varphi(P) \rangle $ qui est le 
-noyau de $\widehat{\varphi}$.  
+Pour le point~\eqref{ite:pro:par:1} comme $[\ell^{k-1}]P$ n'est pas dans le 
+noyau de $\varphi$, alors $\langle [\ell^{k-i}]\varphi(P) \rangle $ est le 
+noyau de $\widehat{\varphi}$. 
+
+%montrons que l'image de $P$ par $\varphi$ 
+%est encore d'ordre 
+%$\ell^k$. Comme $P$ est un générateur d'une $\ell^{k-i}$-isogénie horizontale 
+%alors $[\ell^{k-1}]P$ n'est pas dans le noyau de $\varphi$, et donc $\varphi(P)$ est 
+%d'ordre $\ell^k$. Alors $\langle [\ell^{k-i}]\varphi(P) \rangle $ est le 
+%noyau de $\widehat{\varphi}$. 
+ 
 
 Pour le point~\eqref{ite:pro:par:2} il suffit d'écrire que $\widehat{\varphi}
-(P')=\widehat{\varphi}\circ \varphi (P)= [\ell^i] P$; on conclut alors à l'aide
+(P')= [\ell^i] P$; on conclut alors à l'aide
 des hypothèses sur $P$.
 \end{proof}
 
@@ -5088,7 +5096,8 @@ base de $E[\ell^k]$.  Ces travaux s'inspirent de ceux de \cite[Chapitre 6]{Maste
 \begin{nota} 
 Soient $E$ une courbe elliptique, $P,Q$ deux points tels que $E[\ell^k]=\langle
 P,Q \rangle$ on note alors $\pi(P,Q)$ la représentation matricielle de l'action
-du Frobenius dans la base $(P,Q)$. Ainsi:
+du Frobenius dans la base $(P,Q)$. Ainsi dans ce document nous avons pris la 
+convention que:
 \[
 \pi(P,Q)=\left(
 \begin{matrix}
@@ -5103,59 +5112,80 @@ signifie que l'on a $\pi(P)=[\lambda]P$ et $\pi(Q)=[a]P+[\mu]Q$
 \begin{prop}
 \label{pro:etu:atk:elk}
 Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan des 
-$\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,Q, R 
-\in E$ tels que $\langle P,Q \rangle= \langle P,R \rangle =E[\ell^{h-e+i}]$, 
-$R=[a]P+[b]Q$ et $\pi(P,R)= \left( \begin{matrix}\lambda & \beta 
+$\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,R 
+\in E$ tels que $\langle P,R \rangle =E[\ell^{h-e+i}]$ et $\pi(P,R)= 
+\left( \begin{matrix}\lambda & \beta 
 \ell^{h-e} \\0 & \mu \end{matrix}\right) \bmod \ell^{h-e+i}$ avec $\beta \wedge
 \ell=1$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il
-existe une transformation \begin{equation*}
+existe une base $\langle P,R' \rangle$ de $E[\ell^{h-e+i}]$ telle que  $\ker(\phi)=\langle R' \rangle$ et $\pi(P,R)=\pi(P,R')$.
+%Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan des 
+%$\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,Q, R 
+%\in E$ tels que $\langle P,Q \rangle= \langle P,R \rangle =E[\ell^{h-e+i}]$, 
+%$R=[a]P+[b]Q$ et $\pi(P,R)= \left( \begin{matrix}\lambda & \beta 
+%\ell^{h-e} \\0 & \mu \end{matrix}\right) \bmod \ell^{h-e+i}$ avec $\beta \wedge
+%\ell=1$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il
+%existe une transformation \begin{equation*}
+%R=[a]P+[b]Q \mapsto R'=[c]P+[yb]Q
+%\end{equation*}
+%telle que $\pi(P,R)=\pi(P,R')$ et $\langle [\ell^{h-e}]R' \rangle = \ker(\phi)$.
+\end{prop}
+
+\begin{proof}%On peut supposer sans perte de généralités que $\beta =1$.
+\`A l'aide du changement de base $(P,R) \rightarrow ([\beta^{-1}]P,R)$ nous 
+supposons sans perte de généralités que $\beta =1$.
+Soit $Q \in E$ tel que $\langle P,Q \rangle = E[\ell^{h-e+i}]$. 
+Alors nous posons $R=[a]P+[b]Q$ et nous allons montrer qu'il existe une 
+transformation \begin{equation*}
 R=[a]P+[b]Q \mapsto R'=[c]P+[yb]Q
 \end{equation*}
 telle que $\pi(P,R)=\pi(P,R')$ et $\langle [\ell^{h-e}]R' \rangle = \ker(\phi)$.
-\end{prop}
-
-\begin{proof}
-Par la forme de la matrice $\pi(P,R)$ on a:
-\[ \pi([a]P+[b]Q)=[\ell^{h-e} \beta] P + [\mu] ([a]P+[b]Q).\]
-De plus, comme $\pi([a]P+[b]Q)=[a \lambda ]P + [b] \pi(Q)$, on déduit 
-l'expression suivante pour $[b]\pi(Q)$:
-\[ [b] \pi(Q)=[\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q. \]
-On a alors $\pi([c]P+[by]Q)=[c\lambda]P+[y]([b]\pi(Q))$. La condition 
+\newline
+Par la forme de la matrice $\pi(P,R)$ nous avons:
+\[ \pi([a]P+[b]Q)=[\ell^{h-e}] P + [\mu] ([a]P+[b]Q).\]
+De plus, comme $\pi$ est un morphisme $\pi([a]P+[b]Q)=[a \lambda ]P + [b] 
+\pi(Q)$, nous déduisons l'expression suivante pour $[b]\pi(Q)$:
+\[ [b] \pi(Q)=[\ell^{h-e} + (\mu - \lambda)a]P + [\mu b] Q. \]
+Nous avons alors $\pi([c]P+[by]Q)=[c\lambda]P+[y]([b]\pi(Q))$. La condition 
 $\pi(P,R')=\pi(P,R)$ est vérifiée si et seulement si:
 \begin{eqnarray*}
-\pi([c]P+[by]Q) &=& [\beta \ell^{h-e}] P + [\mu]([c]P+[by]Q) \\
-				&=& [\lambda c]P + [y]([\ell^{h-e}\beta + (\mu - \lambda)a]P + [\mu b] Q).
+\pi([c]P+[by]Q) &=& [\ell^{h-e}] P + [\mu]([c]P+[by]Q) \\
+				&=& [\lambda c]P + [y]([\ell^{h-e} + (\mu - \lambda)a]P + [\mu b] Q).
 \end{eqnarray*}
 Cela se traduit donc par l'égalité suivante:
-\[ \beta \ell^{h-e} + c(\mu-\lambda)=y(\beta \ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
-Ainsi on fait une distinction selon que l'on ait $h-e+i \leqslant h$ ou 
+\[ \ell^{h-e} + c(\mu-\lambda)=y(\ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
+Ainsi nous faisons une distinction selon que $h-e+i \leqslant h$ ou 
 $h-e+i > h$, car $\ell^h || \lambda - \mu$. 
 
-Pour $h-e+i \leqslant h$ on obtient l'équation suivante:
-\[\beta \ell^{h-e} = y\beta \ell^{h-e}  \bmod \ell^{h-e+i}, \]
+\begin{itemize}
+\item[$h-e+i \leqslant h$] %Pour $h-e+i \leqslant h$ 
+Dans ce cas nous obtenons l'équation suivante:
+\[ \ell^{h-e} = y \ell^{h-e}  \bmod \ell^{h-e+i}, \]
 et donc la valeur de la matrice ne dépend que de $y$. Or la
 $\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle= \langle [\ell^{h-e}]
 ([c(by)^{-1}]P+Q) \rangle$ est déterminée par la 
 valeur de $\ell^{h-e}b^{-1}y^{-1}c \bmod \ell^{h-e+i}$, ainsi en faisant 
-varier la valeur de $c$ on peut faire en sorte que $[\ell^{h-e}]R'$ soit le 
+varier la valeur de $c$ nous pouvons faire en sorte que $[\ell^{h-e}]R'$ soit le 
 générateur de n'importe quelle $\ell^{i}$-isogénie descendante.
 
-On regarde donc maintenant le cas où $h-e+i>h$, montrons comment on détermine
+\item[$h-e+i>h$] %On regarde donc maintenant le cas où $h-e+i>h$, 
+Montrons dans ce cas comment déterminer
 $y$ et $c$  tels que $\ell^{h-e}\gamma=\ell^{h-e}c(by)^{-1} \bmod 
 \ell^{h-e+i}$, avec $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$ qui détermine une 
 $\ell^i$-isogénie descendante spécifique (celle de noyau $\langle [\ell^{h-e}]
-([\gamma]P+Q) \rangle$) tout en ayant $\pi(P,R)=\pi(P,R')$.
-On pose $\ell^{h} \alpha = \lambda - \mu$ avec $\alpha \wedge \ell=1$
+([\gamma]P+Q) \rangle$). %tout en ayant $\pi(P,R)=\pi(P,R')$.
+Nous posons $\ell^{h} \alpha = \lambda - \mu$ avec $\alpha \wedge \ell=1$
 , l'égalité $\pi(P,R)=\pi(P,R')$ se traduit donc par:
-\[ \beta \ell^{h-e} + \ell^{h}\alpha c=y(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}, \]
-on multiplie alors cette équation par $(by)^{-1}$
+\[  \ell^{h-e} + \ell^{h}\alpha c=y( \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}, \]
+nous multiplions alors cette équation par $(by)^{-1}$
 \begin{eqnarray*}
-\beta \ell^{h-e}(by)^{-1} + \ell^{e}\alpha \ell^{h-e} \gamma &=& b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i} \\
-\beta \ell^{h-e}(by)^{-1} &=& - \ell^{e}\alpha \ell^{h-e} \gamma + b^{-1}(\beta \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}
+ \ell^{h-e}(by)^{-1} + \ell^{e}\alpha \ell^{h-e} \gamma &=& b^{-1}( \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i} \\
+\ell^{h-e}(by)^{-1} &=&  b^{-1}(\ell^{h-e}+\ell^{h}(\alpha)a) - \ell^{e}\alpha \ell^{h-e} \gamma \bmod \ell^{h-e+i} 
 \end{eqnarray*}
-On peut alors déterminer $y$ puis $c$ afin d'avoir une transformation pour 
-laquelle on obtient un point $R'$ tel que $[\ell^{h-e}]R'$ soit un générateur 
+Nous pouvons alors déterminer $y$ puis $c$ afin d'avoir une transformation pour 
+laquelle nous obtenons un point $R'$ tel que $[\ell^{h-e}]R'$ soit un générateur 
 de l'isogénie spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
+
+\end{itemize}
 \end{proof}
 
 On voit donc que l'on n'est pas capable de distinguer les isogénies 
@@ -5307,7 +5337,7 @@ coûts sont des coûts moyens.
 \end{lem}
 
 \begin{proof}
-$E[\ell](\mathsf{F}_1)$ est calculé en factorisant le polynome de 
+$E[\ell](\mathsf{F}_1)$ est calculé en factorisant le polynôme de 
 $\ell$-division 
 avec un coût moyen de $O(\ell \mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
 opérations, en utilisant la variante de l'algorithme de Cantor-Zassenhaus 
@@ -5410,7 +5440,7 @@ $\mathsf{divise}(\ell, P')$ et $\pi(P')=[u]P'+[v]Q'$ sont donc toujours faites
 dans $\mathsf{F}_{h-e+i+1-\beta+\max(0,e-i-(h-\beta))}$. De même pour les 
 points $Q'$, car à l'étape \ref{alg:rem:tri:rem:divide} on transporte la base 
 sur une courbe située un niveau au-dessus dans le volcan, et dès lors les points
-de $\ell$-divsion de $\widehat{\varphi}(Q_{h-e+i+1}^{(h-e+i)})$ sont aussi 
+de $\ell$-division de $\widehat{\varphi}(Q_{h-e+i+1}^{(h-e+i)})$ sont aussi 
 définis dans $\mathsf{F}_{h-e+i+1-\beta+\max(0,e-i-(h-\beta))}$. Ainsi on 
 vérifie bien qu'à la fin de la boucle on a des points d'ordre $\ell^{h-e+i+2}$ 
 définis sur une courbe au niveau $h-(e-i)+1$ et donc encore définis dans 
@@ -5607,11 +5637,11 @@ opérations en utilisant l'algorithme de Cantor-Zassenhaus~\cite[Chapter 14.5]{v
   le calcul de $\mathsf{divise}(\ell, P)$ à l'étape~\ref{alg:diagonal:divide}
   coûte $O(\mathsf{R}(i-\beta))$ opérations par le lemme~\ref{lem:div:cou}.
   L'évaluation de~$\pi(P')$ à l'étape~\ref{alg:diagonal:frobenius}, pour $P'$ 
-  défini dans $\mathsf{F}_{i-\beta}$, a un côut
+  défini dans $\mathsf{F}_{i-\beta}$, a un coût
   de~$O(\ell^{i-\beta}\mathsf{M}(\ell))$ par le théorème~\ref{thm:frob-ell}.
-  \'Ecrire~$\pi(P')$ comme une combinaison linéraire~$[u] P' + [v] Q'$ avec 
+  \'Ecrire~$\pi(P')$ comme une combinaison linéaire~$[u] P' + [v] Q'$ avec 
   $P',Q'$ définis dans $\mathsf{F}_{i-\beta}$ nécessite au
-  plus~$\ell^2$ additions de points, avec un côut de ~$\ell^2
+  plus~$\ell^2$ additions de points, avec un coût de ~$\ell^2
   \mathsf{M}(\ell^{i-\beta})$.
 L'équation à la ligne~\ref{alg:diagonal:solve1} ou~\ref{alg:diagonal:solve2}
 est tout d'abord divisée par la plus grande puissance de $\ell$ possible:
@@ -5619,11 +5649,11 @@ est tout d'abord divisée par la plus grande puissance de $\ell$ possible:
 Pour~$i \leqslant h-1$, comme~$a = d$ et~$b = c = 0$, les solutions sont~$x = y
  = 0$, et les étapes~\ref{alg:diagonal:solve1} à~\ref{alg:diagonal:upd-P} ne 
 font rien.
-  Le côut de résolution des équations aux étapes~\ref{alg:diagonal:solve1}
+  Le coût de résolution des équations aux étapes~\ref{alg:diagonal:solve1}
   et~\ref{alg:diagonal:solve2} par recherche exhaustive est négligeable, comme
-  les autres opérations restantes. Comme le côut de chaque boucle augmente
+  les autres opérations restantes. Comme le coût de chaque boucle augmente
   de façon géométrique, la dernière boucle domine les autres, et donne la
-  compléxité annoncée.
+  complexité annoncée.
 \end{proof}
 
 On énonce maintenant l'algorithme~\ref{alg:ulti:fro} qui avec pour entrée une 
@@ -5808,7 +5838,7 @@ $k \geqslant h + 1$.\\
 Soit $E$ une courbe située sur le cratère d'un volcan de $\ell$-isogénies dont 
 on connaît une base diagonale de la $\ell^{h+1}$ torsion alors pour 
 $k \geqslant h+1$ l'algorithme~\ref{alg:hor:poi} est correct et calcule un 
-point horizontal avec un côut moyen de $O(\mathsf{R}(k-\beta) + k\mathsf{R}(h-\beta+1) + k\ell^2\mathsf{M}(\ell^{h-\beta+1}))$
+point horizontal avec un coût moyen de $O(\mathsf{R}(k-\beta) + k\mathsf{R}(h-\beta+1) + k\ell^2\mathsf{M}(\ell^{h-\beta+1}))$
   opérations dans $\mathbb{F}_q$.
 \end{prop}
 \begin{proof}
@@ -5849,7 +5879,7 @@ est de $O(e\mathsf{M}(\ell^{k-\beta+1}))$ opérations sur $\mathbb{F}_q$.
 
 \begin{proof}
 On rappelle que si $P \in \mathsf{F}_{k-\beta}$ point horizontal, alors 
-$\varphi(P) \in \mathsf{F}_{k-\beta}$. Le côut de l'évaluation d'une isogénie 
+$\varphi(P) \in \mathsf{F}_{k-\beta}$. Le coût de l'évaluation d'une isogénie 
 rationnelle de degré $\ell$ sur un point $P \in \mathsf{F}_{k-\beta}$ étant de 
 $O(\mathsf{M}(\ell^{k-\beta+1}))$ opérations sur $\mathbb{F}_q$, on obtient le résultat.
 \end{proof}
@@ -6237,7 +6267,7 @@ proposition~\ref{pro:atk:equi}) a été représentée.
 %$E[\ell^{h-e}]$.
 %\end{proof}
 
-Ces résultats sur la détermination du second point ne necéssitent pas forcément
+Ces résultats sur la détermination du second point ne nécessitent pas forcément
 la détermination complète du premier point de la base, comme le montre le 
 résultat suivant.
 
@@ -6274,7 +6304,7 @@ et $d_1$ qui divise~$(\ell-1)$.
 \end{prop}
 
 \begin{proof}
-Nous procèdons de manière similaire à la preuve de la proposition~\ref{pro:clas:fro}.
+Nous procédons de manière similaire à la preuve de la proposition~\ref{pro:clas:fro}.
 Le degré ~$d_1$ correspond à l'ordre de la matrice~$\pi|E[\ell]$.
 Nous obtenons donc le résultat par la proposition~\ref{pro:mat:fro:atk} en 
 utilisant le fait que~$a \cdot d = q \bmod \ell$. 
@@ -6468,12 +6498,10 @@ et donne le résultat annoncé.
 On précise le contexte dans lequel on se place:
 \paragraph{Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
 
-Soient deux $j$-invariants $j_0$ et $j_1$ et un entier positif $r$. Si les 
-$j$-invariants sont $r$-isogènes, c'est à dire il existe deux courbes 
-elliptiques $E_0$ et $E_1$ $r$-isogènes telles que $j(E_0)=j_0$ et 
-$j(E_1)=j_1$, alors le problème du calcul explicite d'isogénie est de calculer 
-les courbes $E$, $E'$ telles que $j(E)=j_0$ et $j(E')=j_1$, et la fonction 
-rationnelle qui définit la $r$-isogénie $\phi:E \rightarrow E'$.
+Le problème du \emph{calcul explicite d'isogénie} est: étant données deux 
+courbes elliptiques ordinaires $E_0$ et $E_1$ et un entier $r$ tel que les 
+courbes $E_0$ et $E_1$ soient $r$-isogènes, calculer une isogénie $\phi:E_0 
+\rightarrow E_1$ de degré $r$.
 
 
 Pour résoudre ce problème du calcul explicite d'isogénie on pourrait utiliser 
@@ -6496,7 +6524,7 @@ toutes les correspondances entre les groupes cycliques de la $p$-torsion, or
 ici les groupes avec lesquels on travaille ne sont plus cycliques mais un 
 produit de deux groupes cycliques, d'où la complexité plus élevée pour le nombre 
 de tests à effectuer. On doit donc travailler avec un ensemble de 
-points plus restrictifs, mais encore invariant sous l'action de $r$-isogénies 
+points plus restrictifs, mais encore invariant sous l'évaluation de $r$-isogénies 
 si l'on veut obtenir une complexité quadratique comme dans
 les algorithmes de \cite{DeFeo11}. On présente donc deux approches toutes les 
 deux basées sur les directions dans le volcan de $\ell$-isogénies une pour le 
@@ -6514,7 +6542,8 @@ $\ell$-torsion. Cette section utilise les résultats de la
 sous-section~\ref{subs:elk:dir} sur les isogénies horizontales.
 
 \begin{prop}\label{pro:par:iso}
-Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$ premier avec~$\ell$.
+Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$, soit $\ell$ un entier 
+premier avec~$r$.
 \begin{enumerate}
 \item\label{pro:par:1} les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan des
  $\ell$-isogénies;
@@ -6542,7 +6571,7 @@ calcul de la $r$-isogénie entre deux courbes elliptiques au même problème pou
 deux courbes situées sur le cratère du volcan de $\ell$-isogénies. Cependant la
 proposition suivante montre que cela n'est pas nécessaire on peut tout aussi 
 bien, à l'aide de points ascendants horizontaux, travailler avec des 
-sous-groupes cycliques invariants selon l'action de $r$-isogénies. 
+sous-groupes cycliques invariants selon l'évaluation de $r$-isogénies. 
 
 \begin{prop}
 \label{pro:par:hor:par}
@@ -6553,8 +6582,9 @@ E'$ des points ascendants horizontaux de même direction alors $\phi(P) \in
 \end{prop}
 
 \begin{proof}
-Par définition(\ref{def:par:hor}) on peut construire $P$ et $P'$ à 
-partir de $R \in E_S$ et $R' \in E'_s$ tels que $[\ell^e]R$ et $[\ell^e]R'$ 
+%Par définition(\ref{def:par:hor}) on peut construire $P$ et $P'$ à 
+Par définition(\ref{def:par:hor}) on peut trouver
+$R \in E_s$ et $R' \in E'_s$ tels que $[\ell^e]R$ et $[\ell^e]R'$ 
 soient des points horizontaux de même direction avec deux $\ell^e$-isogénies 
 $\psi:E_s \rightarrow E$ et $\psi':E'_s \rightarrow E'$ telles que $\psi(R)=P$ 
 et $\psi'(R')=P'$. On a tout d'abord $ \phi([\ell^{k-e}]P) \in \langle 
@@ -6602,7 +6632,7 @@ avec des bases horizontales.
 
 Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées par une $r$-isogénie $\phi$, alors, par la proposition~\ref{pro:mat:fro} pour $k$ plus grand que $h$ la hauteur du volcan des $\ell$-isogénies, on peut calculer deux bases diagonales $(P,Q),(P',Q')$ de $E_s[\ell^k]$ et $E'_s[\ell^k]$ les courbes sommets respectives de $E$ et $E'$. L'action du Frobenius peut être représentée matriciellement de  la façon suivante dans ces bases:
 \[
-\pi|(P,Q)=\pi|(P',Q')= \left( \begin{matrix}
+\pi(P,Q)=\pi(P',Q')= \left( \begin{matrix}
 \lambda & 0 \\
 0 & \mu
 \end{matrix} \right).
@@ -6610,24 +6640,24 @@ Soient $E$, $E'$ deux courbes elliptiques de $j$-invariants $j$ et $j'$ reliées
 
 Comme la $r$-isogénie $\phi$ commute avec le Frobenius (et que $E_s$ et $E'_s$ sont encore $r$-isogènes par la proposition~\ref{pro:par:iso}) on devrait avoir $\phi(P) \in \langle P' \rangle $ et $\phi(Q) \in \langle Q' \rangle $, or la matrice $\pi$ est scalaire modulo la $\ell^{h}$ torsion ainsi la représentation de $\phi$ dans les bases $(P,Q)$ et $(P',Q')$ n'est pas diagonale:
 \[
+\phi \left(
+\begin{matrix}
+P \\
+Q
+\end{matrix}
+\right)=
+\left( 
+\begin{matrix}
+a &  b\ell^{h} \\
+c\ell^{h} & d
+\end{matrix}
+\right)
 \left(
 \begin{matrix}
 P' \\
 Q'
 \end{matrix}
-\right)=
-\left( 
-\begin{matrix}
-a &  c\ell^{k-h} \\
-d\ell^{k-h} & b
-\end{matrix}
-\right)
-\left(
-\begin{matrix}
-P \\
-Q
-\end{matrix}
-\right) \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^{\times}; c,d \in \mathbb{Z}/\ell^{h}\mathbb{Z}.
+\right) \quad \text{avec} \quad a,d \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^{\times}; b,c \in \mathbb{Z}/\ell^{k}\mathbb{Z}.
 \]
 
 \begin{figure}
@@ -6935,7 +6965,7 @@ Q
 %\end{scope}
 \end{tikzpicture}
 \end{center}
-\caption{ \label{fig:ex:con:dia}Exemple de candidats pour la mise en correspondances de points diagonaux par la $r$-isgoénie $\phi$}
+\caption{ \label{fig:ex:con:dia}Exemple de candidats pour la mise en correspondances de points diagonaux par la $r$-isogénie $\phi$}
 \end{figure}
 
 On illustre cela avec l'exemple de bases diagonales de la $3^3$-torsion 
@@ -6945,8 +6975,8 @@ $3$-isogénie qui correspond à l'isogénie horizontale. En effet comme on a vu
 plus tôt un point diagonal d'ordre $\ell^k$ ne donne une information que sur la
 $\ell^{k-h}$-isogénie-horizontale (voir proposition~\ref{pro:dia:hor}). Dès 
 lors on ne sait dire, à partir de cette information, si les isogénies de degré 
-supérieur à $3$ engendrées par le point diagonal sont du même type et repectent
-l'action de la $r$-isogénie $\phi$. En effet pour le choix d'un de ces points 
+supérieur à $3$ engendrées par le point diagonal sont du même type et respectent
+l'évaluation de la $r$-isogénie $\phi$. En effet pour le choix d'un de ces points 
 diagonaux on peut choisir comme sur l'exemple un point horizontal pour la 
 direction $ \lambda$ pour la courbe $E_s$ et un point non horizontal
 pour la direction $\lambda$ sur la courbe $E'_s$.  Dès lors on a 
@@ -6954,27 +6984,27 @@ pas une correspondance de sous-groupes cycliques et l'on doit considérer les
 combinaisons linéaire avec le second point de la base diagonale de direction 
 $\mu$ pour les correspondances induites par la $r$-isogénie. Enfin
 on ne sait dire si la correspondance entre les $\ell$-isogénies descendantes 
-qui composent l'isogénie engendrée par les points de dagonaux de direction 
+qui composent l'isogénie engendrée par les points de diagonaux de direction 
 $\mu$ sont correctes. En effet nous avons vu à la 
 proposition~\ref{pro:etu:atk:elk} qu'une étude à l'aide du Frobenius des 
 $\ell$-isogénies descendantes ne permet pas de distinguer les $\ell$-isogénies 
 entre elles.
 
  On travaille donc avec deux bases $(P_{\lambda}, Q_{\mu}),(P'_{\lambda},
- Q'_{\mu})$ (asendantes) horizontales de $E[\ell^k]$ et $E'[\ell^k]$.
+ Q'_{\mu})$ (ascendantes) horizontales de $E[\ell^k]$ et $E'[\ell^k]$.
  On doit à nouveau avoir $k \geqslant h +1$ pour pouvoir calculer ces bases 
 (ascendantes) horizontales par la proposition~\ref{pro:dia:hor}.
- Dans ces bases l'action de $\phi$ sur la base 
- $(P_{\lambda}, Q_{\mu})$ 
+ Dans ces bases $\phi$ 
  peut être représentée comme une matrice diagonale car par la 
  proposition~\ref{pro:par:iso} et la proposition~\ref{pro:par:hor:par} les 
  groupes cycliques engendrés par des points (ascendants) horizontaux de
  même direction sont en bijection:
 \[
+\phi
 \left(
 \begin{matrix}
- P'_{\lambda} \\
- Q'_{\mu} 
+ P_{\lambda} \\
+ Q_{\mu} 
 \end{matrix}
 \right)= \left(\begin{matrix}
 a & 0 \\
@@ -6982,15 +7012,15 @@ a & 0 \\
 \end{matrix} \right)
 \left(
 \begin{matrix}
-P_{\lambda} \\
-Q_{\mu}
+P'_{\lambda} \\
+Q'_{\mu}
 \end{matrix}
 \right)
 \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^{\times}
 \]
  On énumère donc toutes les $\ell^{2k-2}$ matrices $M$ possibles $\left( 
  \begin{smallmatrix} a & 0 \\ 0 & b \end{smallmatrix} \right)$. Pour chaque 
-matrice $M$ on interpole l'action de $M$ sur les bases $(P_{\lambda},Q_{\mu}),
+matrice $M$ on interpole celle-ci sur les bases $(P_{\lambda},Q_{\mu}),
 (P'_{\lambda},Q'_{\mu})$ en calculant le polynôme d'interpolation $A_{a,b}$ tel
 que 
 \[
@@ -7004,7 +7034,7 @@ F=A_{a,b} \bmod T
 \]
 avec $T$ le polynôme minimal qui s'annule sur tout point $[u]P_{\lambda}+[v]Q_{\mu}$ d'ordre 
 $\ell^k$. C'est la fraction rationnelle $F$ qui lorsque l'on a bien choisi 
-$M$ doit représenter l'action de la $r$-isogénie $\phi$, on cherche donc à 
+$M$ doit représenter la $r$-isogénie $\phi$, on cherche donc à 
 calculer $F$ de degré $(r,r-1)$. Or une telle fraction rationnelle est 
 déterminée par $2r$ coefficients on doit donc avoir
 le nombre d'abscisses de points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}
@@ -7068,7 +7098,7 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
   Par la proposition~\ref{pro:clas:fro}, il existe $\beta \leqslant h$ tel que
   $E[\ell^k]$ est inclus dans $E(F_{k-\beta})$. On construit donc une
   tour d'extensions $\ell$-adiques $\mathsf{F}_0\subset\cdots\subset 
-  \mathsf{F}_{k-\beta}$, et l'on effectue les précalculs nécessaires au 
+  \mathsf{F}_{k-\beta}$, et l'on effectue les pré-calculs nécessaires au 
   théorème~\ref{thm:frob-ell} avec un coût de 
   $O(\ell\mathsf{M}(\ell)\log(q))$. Ces étapes sont faites en pratique au cours
   de l'étape~\ref{alg:cou-ell:bdiag}.
@@ -7200,7 +7230,7 @@ est majoré par: $O(\log(q)^5)$.
 En utilisant les algorithmes décrits dans \cite{FouquetMorain02} et abordés 
 dans la sous-section~\ref{sub:alg:FM} on peut déterminer une courbe sur le 
 sommet du volcan de $\ell$-isogénies à l'aide de $O(\ell h^2)$ 
-  factorisations du $\ell$-ème polynôme moduaire. Or $h \in O(\log(q))$ et
+  factorisations du $\ell$-ème polynôme modulaire. Or $h \in O(\log(q))$ et
   le coût de calcul du polynôme modulaire est de $O(\ell^3\log(\ell))$ sa factorisation de 
   $O(\mathsf{M}(\ell)\log(\ell)\log(\ell q))$ par l'algorithme de 
   Cantor-Zassenhaus décrit dans \cite[Chapter~14.5]{vzGJG03}. Ainsi le coût 
@@ -7211,7 +7241,7 @@ sommet du volcan de $\ell$-isogénies à l'aide de $O(\ell h^2)$
 \begin{rem}
 Les algorithmes de \cite{FouquetMorain02} utilisés pour trouver une courbe sur 
 le volcan de $\ell$-isogénies  dans la preuve du 
-lemmme~\ref{lem:cou:dec} sont moins efficaces que ceux de 
+lemme~\ref{lem:cou:dec} sont moins efficaces que ceux de 
 \cite{Ionica-Joux10} et \cite{MiretMRV05} mais ils ont l'avantage de 
 fonctionner sur tous types de volcans, non-réguliers compris, d'où le fait que
 l'on ne considère que ceux-ci.
@@ -7230,7 +7260,7 @@ Par la proposition~\ref{pro:bor:ell} on sait qu'il existe un nombre premier
 $\ell$ de Elkies (Atkin) appartenant à $[1;L]$ pour $L \in O(\log(q))$ et qui 
 vérifie $\ell^{h} < \sqrt{r}$. Pour trouver un nombre premier de Elkies qui 
 vérifie cette condition on doit tester tous les nombres premier de l'intervalle
-$[1;L]$ avec $L \in O(\log(q))$. On a vu dans le lemmme~\ref{lem:cou:dec} 
+$[1;L]$ avec $L \in O(\log(q))$. On a vu dans le lemme~\ref{lem:cou:dec} 
 que pour chacun de ces nombres premiers de Elkies on trouvait une courbe sur le
 cratère en au plus $O(\log(q)^5)$ opérations, une fois qu'une telle courbe est 
 trouvée sur le cratère alors on calcule une base diagonale de la $\ell^k$ 
@@ -7272,8 +7302,8 @@ avec une complexité de $O(\sqrt{r}\mathsf{M}(\sqrt{r})\log(q)\log(\log(q) q)+\l
 opérations sur $\mathbb{F}_q$.
 Ainsi en bornant $\ell$ par $\log(q)$ dans la complexité obtenue à la 
 proposition~\ref{pro:full-complexity} on obtient un résultat auquel il faut 
-rajouter le cout de la recherche de courbe sur le volcan: $O(\log(q)^6)$ par le 
-lemmme~\ref{lem:cou:dec}, le test pour savoir si le nombre est de Elkies 
+rajouter le coût de la recherche de courbe sur le volcan: $O(\log(q)^6)$ par le 
+lemme~\ref{lem:cou:dec}, le test pour savoir si le nombre est de Elkies 
 est lui majoré par la complexité donnée dans la 
 proposition~\ref{pro:full-complexity}.
 \end{proof}
@@ -7310,7 +7340,7 @@ réglée à 2.4GHz. La partie expérimentale a été faite uniquement pour le ca
 $\ell=2$ et des courbes en entrée se situant sur le cratère cyclique d'un 
 volcan de $2$-isogénies.
 
-La construction des tours d'extensions $2$-adiques, implantée elle ausi en 
+La construction des tours d'extensions $2$-adiques, implantée elle aussi en 
 SageMath, a été faite selon la méthode
 décrite dans l'article~\cite{Doliskani-Schost15}, l'étude s'est restreinte au 
 cas favorable où $p=1 \bmod 4$.
@@ -7355,7 +7385,7 @@ Cauchy, cela représente une itération des étapes \ref{alg:cou-ell:ord} à
 
 
 Nous avons donc regroupé dans la figure~\ref{fig:exp:uni} les deux premières 
-parties qui sont en fait du précalcul avec notamment le calcul de bases 
+parties qui sont en fait du pré-calcul avec notamment le calcul de bases 
 horizontales et comparé cela avec la troisième partie qui représente 
 l'interpolation. Nous voyons donc la linéarité en $r$ des temps de calcul. 
 Le comportement en escalier observé est tout à fait normal car pour toutes les 
@@ -7379,7 +7409,7 @@ Nous présentons donc une première série de tests qui a été réalisé sur de
 courbes qui ont toutes leur $\beta=h=2$, ainsi notre 
 algorithme~\ref{alg:cou:ell-adique} a travaillé avec la $2^3$ torsion jusqu'à la 
 $2^8$ torsion sur des courbes elliptiques définies sur corps finis premiers 
-allant d'une taille de $7$ bits à $252$ bits. Le volcan de $2$-iogénies de 
+allant d'une taille de $7$ bits à $252$ bits. Le volcan de $2$-isogénies de 
 gauche de la figure~\ref{fig:ex:niv:ext} est celui sur lequel se trouve la 
 courbe définie sur $\mathbb{F}_{101}$ ayant servi aux calculs montrés dans la 
 figure~\ref{fig:exp:dif}.
@@ -7470,7 +7500,7 @@ permet alors de conclure.
 \end{proof}
 
 
-Nous rappellons que nous travaillons avec deux courbes $r$-isogènes, avec $r 
+Nous rappelons que nous travaillons avec deux courbes $r$-isogènes, avec $r 
 \wedge \ell=1$, qui se situent sur un volcan de $\ell$-isogénies de hauteur 
 $h$, dont le cratère est réduit à une courbe (car nous nous plaçons dans le cas
 Atkin). Nous supposons de plus qu'un nombre $\ell$ de Atkin tel que 
@@ -7505,7 +7535,7 @@ F=A_{S',U'} \bmod T
 \]
 avec $T$ le polynôme minimal qui s'annule sur tout point $[u]P +[v]Q$ 
 d'ordre $\ell^k$. C'est la fraction rationnelle $F$ qui lorsque nous avons bien 
-choisi $U'$ doit représenter l'action de la $r$-isogénie $\phi$. Nous cherchons 
+choisi $U'$ doit représenter la $r$-isogénie $\phi$. Nous cherchons 
 donc à calculer $F$ de degré $(r,r-1)$. Or une telle fraction rationnelle est 
 déterminée par $2r$ coefficients, nous devons donc avoir le nombre d'abscisses de 
 points d'ordre $\ell^k$: $\frac{\ell^{2k-2}(\ell+1)}{2}$ strictement plus grand
@@ -7581,13 +7611,13 @@ $O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\e
 
 \begin{proof}
 \sloppy
-Nous faison remarquer que la condition $\ell^h < \sqrt{r}$ signifie que $k>h$, 
+Nous faisons remarquer que la condition $\ell^h < \sqrt{r}$ signifie que $k>h$, 
 nous allons utiliser cette condition tout au long de la preuve.
 Par définition de $k$ nous avons $\ell^{2k-1} \in O(r\ell^2)$.
 Par la proposition~\ref{pro:clas:fro:atk}, il existe $\beta \leqslant h$ tel que
 $E[\ell^k]$ est inclus dans $E(F_{k-\beta})$. Nous construisons donc une
 tour d'extensions $\ell$-adiques $\mathsf{F}_0\subset\cdots\subset 
-\mathsf{F}_{k-\beta}$, et nous effectuons les précalculs nécessaires au 
+\mathsf{F}_{k-\beta}$, et nous effectuons les pré-calculs nécessaires au 
 théorème~\ref{thm:frob-ell} avec un coût de $O(\ell\mathsf{M}(\ell)\log(q))$.
 \`A l'étape~\ref{alg:cou:atk:bas} le coût de calcul des bases de la 
 $\ell^k$-torsion se fait à partir d'une base de la $\ell$-torsion puis nous 
@@ -7674,11 +7704,11 @@ $O(\sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\s
 \fussy
 Enfin l'étape~\ref{alg:cou:atk:frob:bas} et la boucle commençant à 
 l'étape~\ref{alg:cou:atk:parc:poi} étant répétées $\ell^{2k-2}(\ell+1)/2 \in 
-O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 \sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ à laquelle il faut ajouter les précalculs pour obtenir le résultat.
+O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 \sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ à laquelle il faut ajouter les pré-calculs pour obtenir le résultat.
 \end{proof}
 
 
-Maintenant nous abordons le cas général où les courbes $r$-isogénes ne sont
+Maintenant nous abordons le cas général où les courbes $r$-isogènes ne sont
 pas situées sur le cratère du volcan de $\ell$-isogénies.
 Par la proposition~\ref{pro:par:iso:atk}\eqref{pro:par:pro:atk}, la profondeur 
 de ~$E$ et $E'$ sous leur cratère respectif est la même, 
@@ -7693,7 +7723,7 @@ opérations en évaluant l'isogénie duale $\widehat{\alpha}$ sur le noyau de
 $\psi_s$ à l'aide d'une suite de résultants. %\todo{Faire aussi cela}
 
 Comme dit précédemment les résultats du de la proposition~\ref{pro:bor:ell}, du
-lemmme~\ref{lem:cou:dec}, et du corollaire~\ref{cor:atk:elk:dist} sont 
+lemme~\ref{lem:cou:dec}, et du corollaire~\ref{cor:atk:elk:dist} sont 
 aussi valables dans le cas Atkin, nous pouvons donc trouver un $\ell \in O(\log(q))$
 nombre premier de Atkin tel que $\ell^h<\sqrt{r}$ et énoncer un résultat 
 similaire à celui du théorème~\ref{thm:gen:elk:fin}. Vu le peu d'intérêt, par 
@@ -7849,7 +7879,7 @@ avantage par rapport à l'algorithme~\ref{alg:cou:ell-adique}.
 Cette variante de l'algorithme~\ref{alg:cou:ell-adique}  proposé dans le cas 
 Elkies non transposable à l'algorithme~\ref{alg:cou:atk} proposé dans le cas 
 Atkin souligne le fait que l'étude de l'action du Frobenius dans le cas Elkies 
-nous permet de spécifier des sous-groupe cycliques invariants par l'action de 
+nous permet de spécifier des sous-groupe cycliques invariants sous l'évaluation de 
 $r$-isogénies (avec $r \wedge \ell = 1$), alors que dans le cas Atkin nous ne 
 pouvons que déterminer un sous-groupe cyclique à partir de la connaissance d'un 
 autre sous-groupe cyclique.
@@ -7879,7 +7909,7 @@ L'avantage de cette approche est que bien que nous soyons obligés de travailler
 sur différentes tours d'extensions $\ell$-adiques, il n'est pas nécessaire de 
 travailler avec des composita de tours d'extensions $\ell$-adiques.
 
-Détaillons comment nous procèdons, la méthode est restranscrite dans 
+Détaillons comment nous procédons, la méthode est retranscrite dans 
 l'algorithme~\ref{alg:cou:mult-adique:short}.%, 
 %l'algorithme~\ref{alg:cou:mult-adique} détaillant un peu plus 
 %l'algorithme~\ref{alg:cou:mult-adique:short} est disponible en annexe.
@@ -7919,18 +7949,19 @@ horizontaux d'ordre $\ell_i^{k_i}$ sous l'action du Frobenius sont faites en
 parallèle sur chacune des tours d'extension $\ell_i$-adiques, les méthodes 
 utilisées sont les mêmes que celles dans l'algorithme~\ref{alg:cou:ell-adique}.
 Par les propositions~\ref{pro:par:iso} et ~\ref{pro:par:hor:par} pour tout $i$ 
-l'action de $\phi$ sur une base $(P_{\lambda,i},Q_{\mu,i})$ (ascendante) 
-horizontale de $E[\ell_i^{k_i}]$ peut être représentée de la façon suivante:
+$\phi$ peut être représentée sur une base $(P_{\lambda,i},Q_{\mu,i})$ (ascendante) 
+horizontale de $E[\ell_i^{k_i}]$  de la façon suivante:
 $
+\phi
 \left(\begin{smallmatrix}
-P'_{\lambda,i} \\
-Q'_{\mu,i} 
+P_{\lambda,i} \\
+Q_{\mu,i} 
 \end{smallmatrix} \right)= \left(\begin{smallmatrix}
 a_i & 0 \\
 0 & b_i\end{smallmatrix} \right)
 \left(\begin{smallmatrix}
-P_{\lambda,i} \\
-Q_{\mu,i} \end{smallmatrix} \right)$
+P'_{\lambda,i} \\
+Q'_{\mu,i} \end{smallmatrix} \right)$
 avec $ a_i,b_i \in \left( \mathbb{Z}/\ell_i^{k_i}\mathbb{Z} \right)^{\times}$ et 
 $(P'_{\lambda,i},Q'_{\mu,i})$
 base (ascendante) horizontale de $E'[\ell_i^{k_i}]$.
@@ -7952,12 +7983,12 @@ A_{a,b}=A_{a,b,i} \bmod T_i \text{ pour tout } i \in [1,n] \text{ et } \quad T=\
 Nous calculons ensuite la fraction rationnelle $F=A_{a,b} \bmod T$ à l'aide 
 d'une interpolation de Cauchy. Nous testons si celle-ci est bien une 
 $r$-isogénie, si cela n'est pas le cas alors nous recommençons avec d'autres 
-coeffcients $a,b \in (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$.
+coefficients $a,b \in (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$.
 %\newline
 
 \paragraph{Analyse du coût}
 {Une telle approche a forcément des coûts de pré-calcul (pour le calcul des 
-bases (asendantes) horizontales et des représentants) plus faibles que notre 
+bases (ascendantes) horizontales et des représentants) plus faibles que notre 
 approche dans l'algorithme~\ref{alg:cou:ell-adique}. De même dans la boucle 
 que nous effectuons pour chaque choix de coefficients $a,b \in 
 (\mathbb{Z}/\prod_{i=1}^n\ell_i^{k_i} \mathbb{Z})^{\times}$
@@ -8006,7 +8037,7 @@ $\upsilon_n=\prod_{i=1}^n \ell_i^{k_i}$,
 $\vartheta_i=\frac{\upsilon_n}{\ell_i^{k_i}}$.
 \end{nota}
 
-Nous énonçons une généralisation du thèorème des restes chinois pour une courbe 
+Nous énonçons une généralisation du théorème des restes chinois pour une courbe 
 elliptique à $n$ nombres premiers distincts.
 
 \paragraph{Théorème des Restes Chinois sur une courbe Elliptique $E$}
@@ -8118,7 +8149,7 @@ les $\ell_i$ sont ordonnés de telle sorte que pour tout $i \in [2,n]$
 $\prod_{j=1}^{i-1}d_{(j,1)}\ell_j^{k_j} \geqslant d_{(i,1)}\ell_i^{k_i}$, cette restriction
 sert juste à simplifier les calculs.
 
-On introduit un objet nécesaire à la construction de compositum.
+On introduit un objet nécessaire à la construction de compositum.
 \begin{defi}
 Soient $P$ un polynôme unitaire de degré $\deg(P)$ de racines $r_i$ pour 
 $i \in [1,\deg(P)]$, $Q$ un polynôme unitaire de degré $\deg(Q)$ de racines 
@@ -8148,7 +8179,7 @@ Voir \cite[Theorem 2]{BrawleyCarlitz87}
 \end{proof}
 
 
-Nous définissons alors les compositums qui nous intéressent dans le cas présent.
+Nous définissons alors les composita qui nous intéressent dans le cas présent.
 \begin{defi}
 \label{def:con:com}
 $\mathbb{K}_1$ est le corps $\mathsf{F}_{(1,k_1)}$. Soit $i \in [1,n-1]$ 
@@ -8204,10 +8235,10 @@ $\mathbb{F}_q[y]/\langle Q \rangle \cong \mathbb{K}_{i-1}$. Alors le
 plongement d'un élément de $\mathsf{F}_{(i,k_i)} $  dans $\mathbb{K}_{i}$ a un
 coût de 
 $O(d_{(i,1)}\ell_i^{k_i}\mathsf{M}(p_{i-1})+p_{i-1}\mathsf{M}(d_{(i,1)}\ell_i^{k_i}))$ 
-opérations sur $\mathbb{F}_q$. La descente d'un élémént de $\mathbb{K}_{i} $
+opérations sur $\mathbb{F}_q$. La descente d'un élément de $\mathbb{K}_{i} $
 vers un élément de $\mathsf{F}_{(i,k_i)}$  a un coût identique. 
 De même le plongement d'un élément de $\mathbb{K}_{i-1}$ dans 
-$\mathbb{K}_{i}$ aini que la descente d'un élément de $\mathbb{K}_{i}$ dans 
+$\mathbb{K}_{i}$ ainsi que la descente d'un élément de $\mathbb{K}_{i}$ dans 
 $\mathbb{K}_{i-1}$ ont le même coût.
 \end{prop}
 
@@ -8269,7 +8300,7 @@ Voir \cite{DeFeoDoliskaniSchost14}.
 \end{proof}
 
 Ainsi, nous allons pouvoir appliquer ce résultat pour calculer le coût du 
-Frobenius avec une méhtode similaire à celle du théorème~\ref{thm:frob-ell}. 
+Frobenius avec une méthode similaire à celle du théorème~\ref{thm:frob-ell}. 
 Cela sera abordé dans la prochaine sous-section.
 
 \subsection{Estimation du coût de l'algorithme de Couveignes $\ell_i$-adique avec un nombre composé de Elkies}
@@ -8284,13 +8315,14 @@ d'ordre $\ell_i^{k_i}$, avec $r, \ell_i$ tous premiers entre eux,
 Ainsi avec deux bases de points (ascendants) horizontaux $(P_{\lambda_1,
 \dots, \lambda_n},Q_{\mu_1, \dots, \mu_n}),(P'_{\lambda_1, \dots, \lambda_n}
  , Q'_{\mu_1, \dots, \mu_n})$ de $E[\prod_{i=1}^n\ell_i^{k_i}]$ et 
- $E'[\prod_{i=1}^n\ell_i^{k_i}]$ l'action de la $r$-isogénie peut être 
+ $E'[\prod_{i=1}^n\ell_i^{k_i}]$ la $r$-isogénie $\phi$ peut être 
  représentée de la façon suivante:  
  \begin{equation*}
+ \phi
 \left(
 \begin{matrix}
-P'_{\lambda_1, \dots, \lambda_n} \\
-Q'_{\mu_1, \dots, \mu_n}
+P_{\lambda_1, \dots, \lambda_n} \\
+Q_{\mu_1, \dots, \mu_n}
 \end{matrix}
 \right)= \left(\begin{matrix}
 a & 0 \\
@@ -8298,8 +8330,8 @@ a & 0 \\
 \end{matrix} \right)
 \left(
 \begin{matrix}
- P_{\lambda_1, \dots, \lambda_n} \\
- Q_{\mu_1, \dots,  \mu_n} 
+ P'_{\lambda_1, \dots, \lambda_n} \\
+ Q'_{\mu_1, \dots,  \mu_n} 
 \end{matrix}
 \right)
 \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\prod_{i=i}^n\ell_i^{k_i}\mathbb{Z} \right)^{\times}.
@@ -8325,7 +8357,7 @@ $\mathsf{Gal}(\mathsf{F}_{(i,k_i)}:\mathbb{F}_q)$ sur $P_i$ soit de taille
  $\mathsf{Gal}(\mathbb{K}_n:\mathbb{F}_q)$ est elle aussi de taille maximale:
  $p_n=\prod_{i=1}^nd_{(i,1)}\ell_i^{k_i}$.
 \end{prop} 
-La preuve n'est pas retranscite pour ne pas surcharger le document.
+La preuve n'est pas retranscrite pour ne pas surcharger le document.
 
 \begin{nota}
 Soient $\ell_1, \dots \ell_n$ $n$ nombres premiers de Elkies, alors on note 
@@ -8396,7 +8428,7 @@ tel que  $\mathsf{K}=\mathbb{F}_q[z]/\langle R\rangle$, alors pour un
 $q^{r p_{i-1}}$ est de 
 $O(\mathsf{M}(d_{(i,1)}\ell_i^{m}p_{i-1})p_{i-1}^{1/2}+\mathsf{M}(d_{(i,1)}\ell_i^{m})p_{i-1}^{(\omega+1)/2})$ 
 opérations dans $\mathbb{F}_q$ avec un 
-précalcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{k_i}qd_{(i,1)}))$ et  
+pré-calcul qui a un coût booléen de $O(\log(p_{i})\log(\ell_i^{k_i}qd_{(i,1)}))$ et  
 de $O( M(d_{(i,1)}) d_{(i,1)}\log(q))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
@@ -8481,7 +8513,7 @@ taille des composita nous ne pouvons avoir une complexité quadratique en $r$
 pour le calcul de l'isogénie montrant ainsi qu'une telle approche en l'état 
 actuel n'est pas intéressante. Cependant cette approche avait l'avantage de 
 proposer une meilleure estimation de $r$ par $\prod_{i=1}^n \ell_i^{k_i}$ et 
-donc de réduire les coûts apportés par l'étape d'interpolation dûs au choix des
+donc de réduire les coûts apportés par l'étape d'interpolation dus au choix des
 nombres premiers de Elkies.
 
 \chapter*{Conclusion}
@@ -8556,7 +8588,7 @@ anneau des endomorphismes spécifique à partir d'une courbe choisie au hasard d
 $\mathbb{Z}[\pi]$ est fixé.
 
 \paragraph{Déplacement sur le cratère de volcans de $\ell$-isogénies et ses 
-applications aux algorithmes de calcul de poylnômes de Hilbert et modulaire}
+applications aux algorithmes de calcul de polynômes de Hilbert et modulaire}
 Des articles tels que \cite{Couveignes96isogenycycles}, \cite{Broker08}, 
 \cite{Sutherland11a}, \cite{BLS12}, utilisent des marches sur le cratère 
 cyclique d'un volcan de $\ell$-isogénies avec $\ell$ petit. Certains 

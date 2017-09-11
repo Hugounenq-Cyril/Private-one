@@ -103,22 +103,30 @@ satisfaisante (quasi-quadratique) avec une condition restrictive sur la hauteur
 $h$ du volcan de $\ell$-isogénies, concrètement on doit avoir $h< O(\log_{\ell}
 (4r))$ lorsque cette condition sur $h$ n'est pas vérifiée alors 
 l'algorithme a une complexité supérieure à la complexité quasi-quadratique. 
-\item  Concernant le cas Atkin ce n'est pas explicitement écrit dans ma thèse mais 
+\item {} Concernant le cas Atkin ce n'est pas explicitement écrit dans ma thèse mais 
 pour la cas où l'on a un entier de Atkin tel que la hauteur du volcan est 
 nulle alors nous obtenons un algorithme quadratique avec une dépendance 
 polynomiale en le paramètre $\ell$ moins bonne que dans le cas Elkies. 
-\item[Existence de tels cas]\`A l'aide du résultat de 
-\cite[Theorem 1]{ShparlinskiSutherland14} si l'on fixe une 
-borne $L=O(\log(q))$ et que pour celle-ci nous n'avons que des nombres $\ell$ de 
-Elkies avec une hauteur $h$ associée $>\log_{\ell}(4r)$ alors en étudiant 
-$d_{\pi}$ borné par $O(\log(q))$, celui-ci($d_{\pi}$) ne peut admettre que des
-nombres premiers ramifiés qui le divise et des nombres premiers de Atkin de 
-hauteur $\neq 0$ car sinon ce produit de nombres premiers dépasserait largement
-$O(\log(q))$ ainsi on doit avoir au moins l'existence d'un entier de Atkin de 
-hauteur $0$  ou d'un entier de Elkies de hauteur $h<\log_{\ell}(4r)$. Donc on 
-peut trouver un entier soit de Atkin de hauteur $0$ soit de Elkies de hauteur 
-$h<\log_{\ell}(4r)$ borné par $O\log(q)$.
+\item[Existence de tels cas]On fixe $L \in O(\log(q))$ tel que le produit de tous les nombres premiers 
+  dépasse $\Omega(\sqrt{q})$. On enlève alors les nombres premiers 
+  de Elkies $\ell \leqslant L$ tels que $\ell^{h} > \sqrt{r}$, cette condition
+  empêchant d'utiliser notre algorithme dans le cas Elkies, les nombres premiers de Atkin de hauteur $h>0$ et les nombres premiers ramifiés;
+  pour de tels nombres premiers ceux-ci sont des diviseurs de $d_{\pi}$ et leur 
+  produit est donc borné par $O(\sqrt{q})$. Ainsi il reste suffisamment de 
+  nombres premiers de satisfaisant pour avoir un algorithme quasi quadratique dans 
+  l'intervalle  $[1,L]$.
 
+%\`A l'aide du résultat de 
+%\cite[Theorem 1]{ShparlinskiSutherland14} si l'on fixe une 
+%borne $L=O(\log(q))$ et que pour celle-ci nous n'avons que des nombres $\ell$ de 
+%Elkies avec une hauteur $h$ associée $>\log_{\ell}(4r)$ alors en étudiant 
+%$d_{\pi}$ borné par $O(q)$, celui-ci($d_{\pi}$) ne peut admettre que des
+%nombres premiers ramifiés qui le divise et des nombres premiers de Atkin de 
+%hauteur $\neq 0$ car sinon ce produit de nombres premiers dépasserait largement
+%$O(q)$ ainsi on doit avoir au moins l'existence d'un entier de Atkin de 
+%hauteur $0$  ou d'un entier de Elkies de hauteur $h<\log_{\ell}(4r)$. Donc on 
+%peut trouver un entier soit de Atkin de hauteur $0$ soit de Elkies de hauteur 
+%$h<\log_{\ell}(4r)$ borné par $O\log(q)$.
 \end{itemize}
 }
 
@@ -309,7 +317,8 @@ x (\lambda-\mu)\\ 0 & \mu \end{smallmatrix}\right )$."}
 \begin{nota} 
 Soient $E$ une courbe elliptique, $P,Q$ deux points tels que $E[\ell^k]=\langle
 P,Q \rangle$ on note alors $\pi(P,Q)$ la représentation matricielle de l'action
-du Frobenius dans la base $(P,Q)$. Ainsi:
+du Frobenius dans la base $(P,Q)$. Ainsi dans ce document nous avons pris la 
+convention que:
 \[
 \pi(P,Q)=\left(
 \begin{matrix}
@@ -319,8 +328,200 @@ du Frobenius dans la base $(P,Q)$. Ainsi:
  \right)
 \]
 signifie que l'on a $\pi(P)=[\lambda]P$ et $\pi(Q)=[a]P+[\mu]Q$
-\end{nota}"}
+\end{nota}" J'ai mis une entrée correspondant à cette notation dans la 
+nomenclature}
 
+\paragraph{Proposition 5.15}{Merci pour les remarques, j'ai reformulé l'énoncé 
+comme suit: "
+\begin{prop}
+\label{pro:etu:atk:elk}
+Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan des 
+$\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,R 
+\in E$ tels que $\langle P,R \rangle =E[\ell^{h-e+i}]$ et $\pi(P,R)= 
+\left( \begin{matrix}\lambda & \beta 
+\ell^{h-e} \\0 & \mu \end{matrix}\right) \bmod \ell^{h-e+i}$ avec $\beta \wedge
+\ell=1$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il
+existe une base $\langle P,R' \rangle$ de $E[\ell^{h-e+i}]$ telle que  $\ker(\phi)=\langle R' \rangle$ et $\pi(P,R)=\pi(P,R')$.
+\end{prop}"
+Concernant la preuve je l'ai modifié afin d'inclure ce que j'ai enlevé de 
+l'énoncé de la proposition (notamment $Q$) et mis en avant la distinction de 
+cas dans la seconde partie de la preuve:
+"
+Voir plus bas la version actualisée (11/09/17)
+"}
+
+\paragraph{p.76 Proposition 5.9}{Typo $\langle [\ell] P+ [b]Q \rangle$ corrigée en $\langle P+ [b]Q \rangle$ comme ce qui était suggéré et correct.}
+
+\paragraph{p.76 Corollaire 5.6}{A}
+
+\paragraph{p.77 par.1}{Typo $[\ell]P$ corrigée par $[2]P$.}
+
+\paragraph{P.77 Preuve de la Proposition 5.13}{J'ai considéré qu'il était 
+important de souligner que $[\ell^{k-1}]P$ n'était pas dans le noyau de 
+$\varphi$. J'ai modifié la preuve comme suit: "
+\begin{proof}
+Pour le point~\eqref{ite:pro:par:1} comme $[\ell^{k-1}]P$ n'est pas dans le 
+noyau de $\varphi$, alors $\langle [\ell^{k-i}]\varphi(P) \rangle $ est le 
+noyau de $\widehat{\varphi}$. 
+
+Pour le point~\eqref{ite:pro:par:2} il suffit d'écrire que $\widehat{\varphi}
+(P')= [\ell^i] P$; on conclut alors à l'aide
+des hypothèses sur $P$.
+\end{proof}
+"}
+
+\paragraph{p.77 Notation 5.14}{Déjà fait dans une modification précédente}
+
+\paragraph{p.78 Proposition 5.15}{J'ai fait une nouvelle modification (j'ai enlevé $\beta$) suite à votre remarque mais seulement dans la preuve car comme dit précédemment je veux que l'énoncé soit le plus général possible voici donc la version modifiée de la preuve (sans $\beta$ !): 
+"
+\begin{proof}%On peut supposer sans perte de généralités que $\beta =1$.
+\`A l'aide du changement de base $(P,R) \rightarrow ([\beta^{-1}]P,R)$ nous 
+supposons sans perte de généralités que $\beta =1$.
+Soit $Q \in E$ tel que $\langle P,Q \rangle = E[\ell^{h-e+i}]$. 
+Alors nous posons $R=[a]P+[b]Q$ et nous allons montrer qu'il existe une 
+transformation \begin{equation*}
+R=[a]P+[b]Q \mapsto R'=[c]P+[yb]Q
+\end{equation*}
+telle que $\pi(P,R)=\pi(P,R')$ et $\langle [\ell^{h-e}]R' \rangle = \ker(\phi)$.
+\newline
+Par la forme de la matrice $\pi(P,R)$ nous avons:
+\[ \pi([a]P+[b]Q)=[\ell^{h-e}] P + [\mu] ([a]P+[b]Q).\]
+De plus, comme $\pi$ est un morphisme $\pi([a]P+[b]Q)=[a \lambda ]P + [b] 
+\pi(Q)$, nous déduisons l'expression suivante pour $[b]\pi(Q)$:
+\[ [b] \pi(Q)=[\ell^{h-e} + (\mu - \lambda)a]P + [\mu b] Q. \]
+Nous avons alors $\pi([c]P+[by]Q)=[c\lambda]P+[y]([b]\pi(Q))$. La condition 
+$\pi(P,R')=\pi(P,R)$ est vérifiée si et seulement si:
+\begin{eqnarray*}
+\pi([c]P+[by]Q) &=& [\ell^{h-e}] P + [\mu]([c]P+[by]Q) \\
+				&=& [\lambda c]P + [y]([\ell^{h-e} + (\mu - \lambda)a]P + [\mu b] Q).
+\end{eqnarray*}
+Cela se traduit donc par l'égalité suivante:
+\[ \ell^{h-e} + c(\mu-\lambda)=y(\ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
+Ainsi nous faisons une distinction selon que $h-e+i \leqslant h$ ou 
+$h-e+i > h$, car $\ell^h || \lambda - \mu$. 
+
+\begin{itemize}
+\item[$h-e+i \leqslant h$] %Pour $h-e+i \leqslant h$ 
+Dans ce cas nous obtenons l'équation suivante:
+\[ \ell^{h-e} = y \ell^{h-e}  \bmod \ell^{h-e+i}, \]
+et donc la valeur de la matrice ne dépend que de $y$. Or la
+$\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle= \langle [\ell^{h-e}]
+([c(by)^{-1}]P+Q) \rangle$ est déterminée par la 
+valeur de $\ell^{h-e}b^{-1}y^{-1}c \bmod \ell^{h-e+i}$, ainsi en faisant 
+varier la valeur de $c$ nous pouvons faire en sorte que $[\ell^{h-e}]R'$ soit le 
+générateur de n'importe quelle $\ell^{i}$-isogénie descendante.
+
+\item[$h-e+i>h$] %On regarde donc maintenant le cas où $h-e+i>h$, 
+Montrons dans ce cas comment déterminer
+$y$ et $c$  tels que $\ell^{h-e}\gamma=\ell^{h-e}c(by)^{-1} \bmod 
+\ell^{h-e+i}$, avec $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$ qui détermine une 
+$\ell^i$-isogénie descendante spécifique (celle de noyau $\langle [\ell^{h-e}]
+([\gamma]P+Q) \rangle$). %tout en ayant $\pi(P,R)=\pi(P,R')$.
+Nous posons $\ell^{h} \alpha = \lambda - \mu$ avec $\alpha \wedge \ell=1$
+, l'égalité $\pi(P,R)=\pi(P,R')$ se traduit donc par:
+\[  \ell^{h-e} + \ell^{h}\alpha c=y( \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}, \]
+nous multiplions alors cette équation par $(by)^{-1}$
+\begin{eqnarray*}
+ \ell^{h-e}(by)^{-1} + \ell^{e}\alpha \ell^{h-e} \gamma &=& b^{-1}( \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i} \\
+\ell^{h-e}(by)^{-1} &=&  b^{-1}(\ell^{h-e}+\ell^{h}(\alpha)a) - \ell^{e}\alpha \ell^{h-e} \gamma \bmod \ell^{h-e+i} 
+\end{eqnarray*}
+Nous pouvons alors déterminer $y$ puis $c$ afin d'avoir une transformation pour 
+laquelle nous obtenons un point $R'$ tel que $[\ell^{h-e}]R'$ soit un générateur 
+de l'isogénie spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
+\end{itemize}
+\end{proof}
+"}
+
+\section{Chapitre 6}
+
+\paragraph{Énoncé du problème}{Merci pour les remarques, j'ai reformulé le problème comme suit: 
+"\paragraph{Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
+
+Le problème du \emph{calcul explicite d'isogénie} est: étant données deux 
+courbes elliptiques ordinaires $E_0$ et $E_1$ et un entier $r$ tel que les 
+courbes $E_0$ et $E_1$ soient $r$-isogènes, calculer une isogénie $\phi:E_0 
+\rightarrow E_1$ de degré $r$."}
+
+\paragraph{p.96 Proposition 6.1}{Concernant les spécifications sur les ordres des points ceux-ci sont déjà spécifiés lorsque il est écrit $P \in E[\ell^k]$ et $P \in E[\ell]$, le cas $P=0_E$ étant trivial pouvant être inclus.  L'énoncé de la proposition a été modifié comme suit:
+"
+\begin{prop}\label{pro:par:iso}
+Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$, soit $\ell$ un entier 
+premier avec~$r$.
+\begin{enumerate}
+\item\label{pro:par:1} les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan des
+ $\ell$-isogénies;
+\item\label{pro:par:fun} pour tout point~$P \in E[\ell^k]$,
+les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de même type
+(ascendantes, descendantes, ou horizontales de même direction);
+\item\label{pro:par:asc} si $P \in E[\ell]$ et $P' \in E'[\ell]$ sont tous les 
+deux des points générateurs d'isogénies ascendantes, ou horizontales de même 
+direction alors $E/\langle P \rangle$ et~$E'/\langle P' \rangle$ sont encore $r$-isogènes.
+\end{enumerate}
+\end{prop}
+"}
+
+\paragraph{p.96 Preuve de la Proposition 6.2}{Merci pour la remarque j'ai modifié la (le début) preuve comme suit:
+"
+\begin{proof}
+%Par définition(\ref{def:par:hor}) on peut construire $P$ et $P'$ à 
+Par définition(\ref{def:par:hor}) on peut trouver
+$R \in E_s$ et $R' \in E'_s$ tels que $[\ell^e]R$ et $[\ell^e]R'$ 
+soient des points horizontaux de même direction avec deux $\ell^e$-isogénies 
+$\psi:E_s \rightarrow E$ et $\psi':E'_s \rightarrow E'$ telles que $\psi(R)=P$ 
+et $\psi'(R')=P'$. On a tout d'abord $ \phi([\ell^{k-e}]P) \in \langle 
+[\ell^{k-e}]P' \rangle$  par la proposition~\ref{pro:par:iso}~\eqref{pro:par:fun} car par la 
+proposition~\ref{pro:elk:par:hor}~\eqref{pro:par:1} on a $\ker(\widehat{\psi})= \langle 
+[\ell^{k-e}]P \rangle$ et $\ker(\widehat{\psi'})= \langle [\ell^{k-e}]P' 
+\rangle$. Ensuite on a $\langle [\ell^e]R \rangle = \langle 
+\widehat{\psi}(P) \rangle $ et $\langle [\ell^e]R' \rangle = \langle 
+\widehat{\psi'}(P') \rangle$ ainsi les $\ell^{k}$-isogénies engendrées par 
+$P$ et $P'$ sont du même type: une composition d'une $\ell^e$ isogénie montante 
+et d'une $\ell^{k-e}$-isogénie horizontale de direction identique, donc par la 
+proposition~\ref{pro:par:iso}~\eqref{pro:par:fun} on a $\phi(P) \in \langle P' \rangle$.
+\end{proof}
+"
+}
+
+\paragraph{p.97-98}{merci de la remarque. Je n'ai pas voulu introduire la 
+notation pertinente que vous avez proposé car je pense (et j'espère) que le 
+texte se comprend sans celle-ci, j'ai modifié comme suit pour l'égalité vectorielle:
+"
+\[
+\phi \left(
+\begin{matrix}
+P \\
+Q
+\end{matrix}
+\right)=
+\left( 
+\begin{matrix}
+a &  b\ell^{h} \\
+c\ell^{h} & d
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
+P' \\
+Q'
+\end{matrix}
+\right) \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^{\times}; c,d \in \mathbb{Z}/\ell^{k}\mathbb{Z}.
+\]
+" de la même manière j'ai modifié la deuxième itération et celles à la p.115 et
+119. J'ai enlevé les "action d'isogénies" qui traînaient (y compris encore dans
+l'introduction !). Pour les matrices [a,b;c,d] vous avez raison, en plus je ne 
+suis pas cohérent avec le reste de mon manuscrit...
+}
+
+
+\section{Modifications diverses}
+\paragraph{Nomenclature}{J'ai rajouté dans la nomenclature l'encart suivant:
+\{ $\pi(P,Q)$ \} \{Représente l'action du Frobenius $\pi$ dans une base $P,Q$ sous forme matricielle.\} }
+
+\paragraph{p.97}{ Typo:$\pi|(P,Q)=\pi|(P',Q') \rightarrow \pi(P,Q)=\pi(P',Q')$}
+
+\paragraph{p.101} Typo dans la preuve de la proposition 6.4 :"pour de tels nombres premiers ceux-ci sont des diviseurs de $\mathbf{d_{K}}$ et leur 
+  produit est donc borné par $O(\sqrt{q})$."$\rightarrow$ "pour de tels nombres premiers ceux-ci sont des diviseurs de $\mathbf{d_{\pi}}$ et leur 
+  produit est donc borné par $O(\sqrt{q})$." 
 \bibliography{Biblio}
 \end{document}
 %  LocalWords:  isogeny morphisms Isogenies isogenies isogenous
