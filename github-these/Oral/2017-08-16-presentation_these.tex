@@ -181,7 +181,7 @@ cryptographique d'une courbe elliptique,
 \pause
 \item cryptanalyse de la cryptographie à l'aide de courbes elliptiques: [Gaudry,~Hess,~Smart '02],
 \pause
-\item construction de fonctions de hachages: [Charles,~Goren,~Lauter '07],
+\item construction de fonctions de hachage: [Charles,~Goren,~Lauter '07],
 \pause
 \item construction de schéma cryptographique à trappe: [Teske~'06],
 \pause
@@ -724,8 +724,8 @@ En particulier: $d_{\pi}=g^2d_K$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Le cas général}
-
-La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'anneau des endomorphismes de $E$ (resp. $E'$)
+\only<2-4>{
+La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'anneau des endomorphismes de $E$ (resp. $E'$)}
 \vspace{-4mm}
 \begin{columns}
 \begin{column}{6cm}
@@ -735,22 +735,20 @@ La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'anneau des endomorph
 
 \begin{tikzpicture}[scale=0.545]
 \coordinate (A) at (0,1.5);
-\coordinate (AB) at (1,1.5);
-%\coordinate (AZ) at (-1.5,1.5);	
+\coordinate (AB) at (0,2);
 \coordinate (B) at (0,5);
-\coordinate (BB) at (1,5);
-%\coordinate (BZ) at (-1.5,5.2);
-%\coordinate (BZ2) at (-1.5,4.8);
 \coordinate (C) at (0,10);
-\coordinate (CB) at (1,10);
-%\coordinate (CZ) at (-1.5,10);
-\draw (A) node[left]{$\mathbb{Z} + \ell^2 \mathcal{O}$} node{$\bullet$};
-\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}$} node{$\bullet$};
-\draw (C) node[left]{$\mathcal{O}$} node{$\bullet$};
+\draw (AB) node[above,left,text width=2cm]{
+$
+\mathbb{Z}[\pi]=\mathbb{Z}~+~\ell^2~\mathcal{O}_K 
+$
+} ;
+\draw (A) node{$\bullet$};
+\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}_K$} node{$\bullet$};
+\draw (C) node[left]{$\mathcal{O}_K$} node{$\bullet$};
 \draw (A)--(B)node[midway,left] {$\ell$};
 \draw (B)--(C) node[midway,left] {$\ell$};
-%\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
-%\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
+\only<2-4>{
 \begin{scope}[yshift=10cm]
 	\begin{scope}[xshift=4.3cm]
 		\node (A) at (-3,0) {$\bullet$};
@@ -815,7 +813,7 @@ La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'anneau des endomorph
 			\end{scope}
 	\end{scope}
 \end{scope}
-
+}
 %faire des fleches courbees avec les indices \ell et \ell^2
 
 
@@ -825,15 +823,16 @@ La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'anneau des endomorph
 
 \end{column}
 \begin{column}{4cm}
-
+\only<2-4>{
 \begin{lem}[Kohel 1996]
 Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi :E \rightarrow E'$ une $\ell$-isogénie. Alors $\psi$ est dite
 \begin{enumerate}
-\item  \textbf<1>{descendante} si $\ell=[\mathcal{O} : \mathcal{O}']$
-\item \textbf<2>{ascendante} si $\ell=[\mathcal{O}':\mathcal{O}]$,
-\item \textbf<3>{horizontale} si $\mathcal{O}=\mathcal{O}'$.
+\item  \textbf<2>{descendante} si $\ell=[\mathcal{O} : \mathcal{O}']$
+\item \textbf<3>{ascendante} si $\ell=[\mathcal{O}':\mathcal{O}]$,
+\item \textbf<4>{horizontale} si \\
+ $\mathcal{O}=\mathcal{O}'$.
 \end{enumerate}
-\end{lem}
+\end{lem}}
 %\begin{defi}
 %The index $f=[\mathcal{O}_K : \mathcal{O}]$ is called the conductor of $\mathcal{O}$.
 %\end{defi}
@@ -1963,15 +1962,14 @@ avec $\langle P,R \rangle = \langle P,R' \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 \begin{frame}
 \frametitle{Algorithme de Couveignes $\ell$-adique}
 
-Retravailler cette slide.
-
 Nous avons vu que nous sommes capables de proposer un algorithme de Couveignes $\ell$-adique quasi quadratique sans dépendance polynomiale en la caractéristique dès lors que:
 \begin{itemize}
-\item $\ell$ est un nombre premier de Elkies et $h<k$ (un tel $\ell$ borné par $\log(q)$ existe)
-\item $\ell$ est un nombre premier de Atkin et $h=0$ (il existe un nombre fini de premiers de Atkin tels que $h \neq 0$) 
+\item $\ell$ est un nombre premier de Elkies et $h<k$, 
+\item $\ell$ est un nombre premier de Atkin et $h=0$.
 \end{itemize}
-\`A défaut dans le cas Atkin il existe un premier $\ell$ de Atkin dans $[1, O(\log(q))]$ tel que l'on obtienne un algorithme avec une complexité en $\tilde{O}(r^{2}r^{1/2})$. % pas clair...
-%\`A défaut dans le cas Atkin nous avons un algorithme avec une complexité en $\tilde{O}(r^{2}\ell^{h})$, pour lequel 
+On peut trouver un tel premier dans un intervalle $[1,O(\log(q))]$.
+
+
 
 \end{frame}
 
