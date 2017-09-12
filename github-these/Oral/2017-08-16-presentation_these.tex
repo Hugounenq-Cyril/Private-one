@@ -759,10 +759,10 @@ $
 		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
 		%\draw[-] (B.center) to[bend left=25] (C.center);
 		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		\only<1-2>{
+		\only<2-3>{
 		\draw[-] (A.center) to[bend right=40] (B.center);
 		}
-		\only<3-3>{
+		\only<4-4>{
 		\draw[-] (C.center) to[bend right=20] (B.center);
 		\draw[line width=1.5pt,red,->] (A.center) to[bend right=20] (C.center);
 		}
@@ -804,10 +804,10 @@ $
 			\draw (A) node{$\bullet$};
 			\draw (C) node{$\bullet$};
 			\draw (A)--(C);
-            \only<1-1>{
+            \only<2-2>{
             \draw[line width=1.5pt,red,->] (A)--(C);
             }
-            \only<2-2>{
+            \only<3-3>{
 			\draw[line width=1.5pt,red,<-] (A)--(C);            
             }
 			\end{scope}
@@ -827,7 +827,7 @@ $
 \begin{lem}[Kohel 1996]
 Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi :E \rightarrow E'$ une $\ell$-isogénie. Alors $\psi$ est dite
 \begin{enumerate}
-\item  \textbf<2>{descendante} si $\ell=[\mathcal{O} : \mathcal{O}']$
+\item  \textbf<2>{descendante} si $\ell=[\mathcal{O} : \mathcal{O}']$,
 \item \textbf<3>{ascendante} si $\ell=[\mathcal{O}':\mathcal{O}]$,
 \item \textbf<4>{horizontale} si \\
  $\mathcal{O}=\mathcal{O}'$.
@@ -1968,8 +1968,6 @@ Nous avons vu que nous sommes capables de proposer un algorithme de Couveignes $
 \item $\ell$ est un nombre premier de Atkin et $h=0$.
 \end{itemize}
 On peut trouver un tel premier dans un intervalle $[1,O(\log(q))]$.
-
-
 
 \end{frame}
 
