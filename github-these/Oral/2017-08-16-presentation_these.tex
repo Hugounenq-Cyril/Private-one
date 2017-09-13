@@ -327,7 +327,7 @@ avec $A,B$ des éléments de $\mathbb{K}$. $0_E$ est appelé le \emph{point à l
 \pause
 
 \begin{prop}
-L'ensemble des points d'une courbe elliptique forme un groupe abélien pour la loi additive.
+L'ensemble des points d'une courbe elliptique forme un groupe abélien pour la loi additive d'élément neutre $0_E$.
 \end{prop}
 
 
@@ -516,7 +516,8 @@ dépendance exponentielle en $\log(p)$.
 \begin{frame}
 \frametitle{Classification des courbes elliptiques sur un corps fini}
 \begin{prop}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$. Soit les conditions suivantes équivalentes sont vérifiées:
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ de caractéristique 
+$p$. Soit les conditions suivantes équivalentes sont vérifiées:
 \begin{enumerate}
 \item $E$ est supersingulière,
 \item $E[p]=\{0_E\}$,
@@ -550,7 +551,7 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{itemize}
 \item Calcul de générateurs $P,P'$ de $E[p^k],E'[p^k]$;
 \item Interpolation de $\phi$, en supposant que l'on a la correspondance $[u]P\mapsto [u]P'$ pour tout $u \in \mathbb{Z}/p^k\mathbb{Z}$;
-\item Vérification si $\phi$ est une isogénie.\\
+\item Vérification si l'interpolation définit une isogénie.\\
     Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$ et on recommence à nouveau.
 \end{itemize}
 
@@ -563,7 +564,7 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \frametitle{Algorithme de Couveignes (1996)}
 \bluebox{}{ %\cite{DBLP:conf/ants/Couveignes96}}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{p^n}$ 
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{p^n}$ 
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
@@ -1118,7 +1119,7 @@ i.e. son polynôme minimal se factorise comme
 
 \bluebox{Un algorithme de Couveignes $\ell$-adique (cas Elkies $h=0$)}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
@@ -1598,7 +1599,7 @@ Des algorithmes pour déterminer des isogénies horizontales ont déjà été pr
 
 \bluebox{Un algorithme de Couveignes $\ell$-adique ($\ell$ un premier de Elkies)}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de de degré $r$
 \end{algorithmic}}
 
@@ -1876,7 +1877,7 @@ $(Q)$ de la base.}
 
 \bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin $h = 0$)}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
@@ -1916,7 +1917,7 @@ $(Q)$ de la base.}
 
 \bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin $h \neq 0$)}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
