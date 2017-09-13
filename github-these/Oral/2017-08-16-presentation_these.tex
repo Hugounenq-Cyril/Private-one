@@ -72,7 +72,8 @@
       \vbox to\@tempdimb{\vfil\insertsectionnavigation{.5\paperwidth}\vfil}%
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{logo in head}%
-    \vbox to\@tempdimb{\vfil \hbox to .5\paperwidth{\hfil
+    \vbox to\@tempdimb{\vfil \hbox to .5\paperwidth{\hfill
+    \includegraphics[scale=0.5]{Images/Logo_Ecole_polytechnique_horizontal_300dpi.jpg} \hfill
   \includegraphics[height=8mm]{Images/uvsq-logo-cmjn.jpg}\hskip 8mm}\vfil}%
     \end{beamercolorbox}%
   \fi%
@@ -88,6 +89,8 @@
   \end{beamercolorbox}}%
   \vskip0pt%
 }
+\newcommand{\backupbegin}{ \newcounter{framenumberappendix} \setcounter{framenumberappendix}{\value{framenumber}} \setbeamertemplate{footline}{} } \newcommand{\backupend}{ \addtocounter{framenumberappendix}{-\value{framenumber}} \addtocounter{framenumber}{\value{framenumberappendix}} \setbeamertemplate{footline}{ \vspace{-1cm}\small{\insertframenumber/\inserttotalframenumber} } }
+
 \makeatother
 \definecolor{uvsqvert}{RGB}{91,172,41}
 \definecolor{uvsqbleu}{RGB}{15,152,209}
@@ -142,7 +145,7 @@
 \begin{document}
 
 \author{
-Cyril Hugounenq
+\href{http://www.prism.uvsq.fr/~huc/}{Cyril Hugounenq}
 }
 %\title[Structure of $\ell$-isogeny volcanoes applied to Couveignes' algorithm]{Structure of $\ell$-isogeny volcanoes applied to Couveignes' algorithm}
 \title[Volcans et calculs d'isogénies]{
@@ -155,6 +158,7 @@ Volcans et calculs d'isogénies}
 \titlepage
 
 \hfill
+\includegraphics[scale=0.6]{Images/Logo_Ecole_polytechnique_horizontal_300dpi.jpg} \hfill
 \includegraphics[scale=0.1]{Images/digiteo.jpg}\hfill
 \includegraphics[height=10mm]{Images/uvsq-logo-cmjn.jpg}
 \end{frame}
@@ -168,26 +172,26 @@ Volcans et calculs d'isogénies}
 %\medskip
 
 %\bluebox{Disclaimer:}{This is \textbf{not} the dominant step in SEA.}
-Les isogénies, à l'image des courbes elliptiques, ont de nombreuses 
+Les isogénies, à l'image des courbes elliptiques sur les corps finis, ont de nombreuses 
 applications en cryptographie: 
 \begin{itemize}
 \item l'algorithme de Schoof-Elkies-Atkin: algorithme de comptage de points
 d'une courbe elliptique, nécessaire pour l'évaluation de la sécurité 
 cryptographique d'une courbe elliptique,
 \pause
-\item cryptanalyse de la Cryptographie à l'aide de Courbes Elliptiques: [Gaudry,~Hess,~Smart '02],
+\item cryptanalyse de la cryptographie à l'aide de courbes elliptiques: [Gaudry,~Hess,~Smart '02],
 \pause
-\item construction de fonctions de hachages: [Charles,~Goren,~Lauter '07],
+\item construction de fonctions de hachage: [Charles,~Goren,~Lauter '07],
 \pause
-\item constructions de schéma cryptographique à trappes: [Teske~'06],
+\item construction de schéma cryptographique à trappe: [Teske~'06],
 \pause
-\item constructions de schémas cryptographiques post-quantique: [Rotostev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
+\item construction de schémas cryptographiques post-quantiques: [Rostovtsev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
 \end{itemize}
 %Probleme du logarithme discret...
 \end{frame}
 
 \begin{frame}
-\frametitle{Summary}
+\frametitle{Sommaire}
 \tableofcontents
 \end{frame}
 
@@ -197,7 +201,7 @@ cryptographique d'une courbe elliptique,
 %parler aussi de la cryptographie sur les courbes elliptiques
 
 \begin{frame}
-\frametitle{Points définis sur une courbe elliptique }
+\frametitle{Courbe elliptique }
 
 \begin{defi}[Courbe Elliptique]
 Soit $\mathbb{K}$ un corps de caractéristique différente de $2$ et $3$, une courbe elliptique $E$ peut être définie à l'aide d'une équation de Weierstrass: 
@@ -323,7 +327,7 @@ avec $A,B$ des éléments de $\mathbb{K}$. $0_E$ est appelé le \emph{point à l
 \pause
 
 \begin{prop}
-L'ensemble des points d'une courbe elliptique forme un groupe abélien pour la loi additive.
+L'ensemble des points d'une courbe elliptique forme un groupe abélien pour la loi additive d'élément neutre $0_E$.
 \end{prop}
 
 
@@ -372,7 +376,7 @@ et $m>0$
 \frametitle{Isogénies}
 \bluebox{Isogénies}{
 \begin{itemize}
-\item $E$ et $E'$ deux courbes elliptiques, une isogénie est un morphisme surjectif$\phi: E \rightarrow E'$ telle que $\phi(0_{E})=0_{E'}$. Les isogénies sont
+\item $E$ et $E'$ deux courbes elliptiques, une isogénie est un morphisme surjectif $\phi: E \rightarrow E'$ telle que $\phi(0_{E})=0_{E'}$. Les isogénies sont
 \begin{itemize}
  \item des morphismes de groupe (avec un noyau fini),
  \item des fonctions algébriques (de degré fini).
@@ -413,8 +417,8 @@ est une isogénie de degré $\ell^2$.
 \frametitle{Isogénie explicite}
 
 \bluebox{Isogénie explicite}{
-Les isogénies séparables de degré $\ell$ sont représentées par des fonctions
- rationnelles sous forme de Weierstrass
+Les isogénies séparables de degré $\ell$ sont représentables par des fonctions
+rationnelles sous forme de Weierstrass
 %\[
 %\left( x ,y \right) \mapsto \left( \frac{n(x)=45x^9+67x^7+57x^6+97x^5+7+100x^2+78x+67}{d(x)(x^4+51x^2+67x+61)^2}, y\left(\frac{n(x)}{d(x)\right)^'} \right)
 %\]
@@ -431,7 +435,7 @@ avec $n(x)$ un polynôme de degré $\ell$ et $d(x)$ un polynôme de degré $\ell
 %\end{exe}
 
 \bluebox{Formules de V\'elu}{
-La connaissance du noyau de l'isogénie permet d'expliciter celle-ci
+La connaissance du noyau de l'isogénie $\phi$ permet d'expliciter celle-ci
 %From the knowledge of its kernel we can explicitly write down the isogeny:
 \begin{itemize}
     \item Soit $G=\ker\phi$, alors $\displaystyle d(X)=\prod_{P \in G\setminus\{0_E\}}(X-x(P))$;
@@ -510,19 +514,20 @@ dépendance exponentielle en $\log(p)$.
 \section{Algorithme de Couveignes}
 
 \begin{frame}
-\frametitle{Classification des courbes elliptiques}
+\frametitle{Classification des courbes elliptiques sur un corps fini}
 \begin{prop}
-Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Soit les conditions suivantes équivalentes sont vérifiées:
+Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ de caractéristique 
+$p$. Soit les conditions suivantes équivalentes sont vérifiées:
 \begin{enumerate}
 \item $E$ est supersingulière,
-\item $E[p^e]=\{O_E\}$ pour tout $e > 0$,
+\item $E[p]=\{0_E\}$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
 \end{enumerate}
 \pause
 Soit les conditions suivantes équivalentes sont vérifiées:
 \begin{enumerate}
 \item $E$ est \emph{ordinaire},
-\item $E[p^e]=\mathbb{Z}/p^e\mathbb{Z}$ pour tout $e > 0$,
+\item $E[p]=\mathbb{Z}/p\mathbb{Z}$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombres quadratique imaginaire noté $K$.
 \end{enumerate}
 \end{prop}
@@ -546,8 +551,8 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{itemize}
 \item Calcul de générateurs $P,P'$ de $E[p^k],E'[p^k]$;
 \item Interpolation de $\phi$, en supposant que l'on a la correspondance $[u]P\mapsto [u]P'$ pour tout $u \in \mathbb{Z}/p^k\mathbb{Z}$;
-\item Test si $\phi$ est une isogénie.\\
-    Si ce n'en est pas une, on remplace $P'$ avec un multiple $[a]P'$ et on recommence à nouveau.
+\item Vérification si l'interpolation définit une isogénie.\\
+    Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$ et on recommence à nouveau.
 \end{itemize}
 
 }
@@ -559,28 +564,28 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \frametitle{Algorithme de Couveignes (1996)}
 \bluebox{}{ %\cite{DBLP:conf/ants/Couveignes96}}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{p^n}$ 
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{p^n}$ 
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
 \begin{enumerate}
-\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$.
+\item Choix du plus petit entier $k$ tel que $p^{k}>4r$.
 \item Calcul des générateurs $P$ de
   $E[p^k]$ et $P'$ de $E'[p^k]$;
 \item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$;
-\item Pour tout $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $O(r)$
+\item Pour tout $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $\color{blue!50!gray}{O(r)}$
   \begin{enumerate}
   \item Calcul du polynôme d'interpolation 
     $L$ tel que
    $L (x ([u] P)) = x([a\, u\,]P' )$ pour tout
     $u \in \mathbb{Z}/p^k \mathbb{Z}$;
-\hfill $\tilde{O}(r p^{O(1)})$
+\hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
 	%\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	%calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
 %\hfill $\tilde{O}(r)$
-	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$ \\ 
-	à l'aide d'un algorithme de reconstruction rationnelle; 
-	\hfill $\tilde{O}(r)$
+	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
+	$(r, r-1)$  à l'aide d'un algorithme de reconstruction rationnelle; 
+	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
   \end{enumerate}
@@ -622,7 +627,7 @@ $\Rightarrow O(r)$ possibilités.
 }
 \end{column}
 \begin{column}{0.55\textwidth}
-\bluebox{$\ell$-adic}{
+\bluebox{$\ell$-adique}{
 Soit $P,Q \in E\quad$ et $\quad P',Q' \in E'$
 \begin{gather*}
 \begin{pmatrix}
@@ -654,15 +659,14 @@ $\Rightarrow O(r^2)$ possibilités.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Endomorphismes d'un courbe elliptique}
-\begin{defi}
-Un endomorphisme d'une courbe elliptique $E$ est une isogénie qui a pour image 
-et codomaine $E$. L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$.
+\begin{defi}[Endomorphisme]
+Un endomorphisme d'une courbe elliptique $E$ est une isogénie $\psi:E \rightarrow E$. L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$.
 \end{defi}
 
 \begin{prop}
 $\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
 \end{prop}
-\textbf{Rappel:} L'anneau d'endomorphisme d'une courbe elliptique ordinaire est isomorphe à un ordre dans un corps quadratique imaginaire.
+\textbf{Rappel:} L'anneau d'endomorphisme d'une courbe elliptique ordinaire est isomorphe à un ordre dans un corps de nombre quadratique imaginaire.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -670,8 +674,8 @@ $\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
 \begin{frame}
 \frametitle{Frobenius}
 \begin{defi}[L'endomorphisme de Frobenius]
-$E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. La fonction
-\[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Elle
+$E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Le morphisme
+\[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Il
 satisfait une équation quadratique \[ \pi^2 - t_\pi \pi + q = 0.\]
 \end{defi}
 
@@ -721,8 +725,8 @@ En particulier: $d_{\pi}=g^2d_K$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Le cas général}
-
-La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'anneau des endomorphismes de $E$ (resp. $E'$)
+\only<2-4>{
+La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'ordre associé à isomorphisme près à l'anneau des endomorphismes de $E$ (resp. $E'$)}
 \vspace{-4mm}
 \begin{columns}
 \begin{column}{6cm}
@@ -732,22 +736,20 @@ La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'anneau des endomorph
 
 \begin{tikzpicture}[scale=0.545]
 \coordinate (A) at (0,1.5);
-\coordinate (AB) at (1,1.5);
-%\coordinate (AZ) at (-1.5,1.5);	
+\coordinate (AB) at (0,2);
 \coordinate (B) at (0,5);
-\coordinate (BB) at (1,5);
-%\coordinate (BZ) at (-1.5,5.2);
-%\coordinate (BZ2) at (-1.5,4.8);
 \coordinate (C) at (0,10);
-\coordinate (CB) at (1,10);
-%\coordinate (CZ) at (-1.5,10);
-\draw (A) node[left]{$\mathbb{Z} + \ell^2 \mathcal{O}$} node{$\bullet$};
-\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}$} node{$\bullet$};
-\draw (C) node[left]{$\mathcal{O}$} node{$\bullet$};
+\draw (AB) node[above,left,text width=2cm]{
+$
+\mathbb{Z}[\pi]=\mathbb{Z}~+~\ell^2~\mathcal{O}_K 
+$
+} ;
+\draw (A) node{$\bullet$};
+\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}_K$} node{$\bullet$};
+\draw (C) node[left]{$\mathcal{O}_K$} node{$\bullet$};
 \draw (A)--(B)node[midway,left] {$\ell$};
 \draw (B)--(C) node[midway,left] {$\ell$};
-%\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
-%\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
+\only<2-4>{
 \begin{scope}[yshift=10cm]
 	\begin{scope}[xshift=4.3cm]
 		\node (A) at (-3,0) {$\bullet$};
@@ -758,10 +760,10 @@ La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'anneau des endomorph
 		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
 		%\draw[-] (B.center) to[bend left=25] (C.center);
 		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		\only<1-2>{
+		\only<2-3>{
 		\draw[-] (A.center) to[bend right=40] (B.center);
 		}
-		\only<3-3>{
+		\only<4-4>{
 		\draw[-] (C.center) to[bend right=20] (B.center);
 		\draw[line width=1.5pt,red,->] (A.center) to[bend right=20] (C.center);
 		}
@@ -803,16 +805,16 @@ La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'anneau des endomorph
 			\draw (A) node{$\bullet$};
 			\draw (C) node{$\bullet$};
 			\draw (A)--(C);
-            \only<1-1>{
+            \only<2-2>{
             \draw[line width=1.5pt,red,->] (A)--(C);
             }
-            \only<2-2>{
+            \only<3-3>{
 			\draw[line width=1.5pt,red,<-] (A)--(C);            
             }
 			\end{scope}
 	\end{scope}
 \end{scope}
-
+}
 %faire des fleches courbees avec les indices \ell et \ell^2
 
 
@@ -822,15 +824,16 @@ La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'anneau des endomorph
 
 \end{column}
 \begin{column}{4cm}
-
+\only<2-4>{
 \begin{lem}[Kohel 1996]
 Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi :E \rightarrow E'$ une $\ell$-isogénie. Alors $\psi$ est dite
 \begin{enumerate}
-\item  \textbf<1>{descendante} si $\ell=[\mathcal{O} : \mathcal{O}']$
-\item \textbf<2>{ascendante} si $\ell=[\mathcal{O}':\mathcal{O}]$,
-\item \textbf<3>{horizontale} si $\mathcal{O}=\mathcal{O}'$.
+\item  \textbf<2>{descendante} si $\ell=[\mathcal{O} : \mathcal{O}']$,
+\item \textbf<3>{ascendante} si $\ell=[\mathcal{O}':\mathcal{O}]$,
+\item \textbf<4>{horizontale} si \\
+ $\mathcal{O}=\mathcal{O}'$.
 \end{enumerate}
-\end{lem}
+\end{lem}}
 %\begin{defi}
 %The index $f=[\mathcal{O}_K : \mathcal{O}]$ is called the conductor of $\mathcal{O}$.
 %\end{defi}
@@ -928,8 +931,8 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 		\end{center} 
 		\end{figure}
 		Durant le reste de cet exposé nous étudierons tout d'abord le cas de volcans 
-		à cratères cycliques (cas Elkies), puis les volcans avec cratères réduit à un
-		point (cas Atkin).
+		à cratères cycliques (cas Elkies), puis les volcans avec cratères réduits à 
+		un point (cas Atkin).
 %\begin{figure}[hbtp]
 %\centering
 %\includegraphics[scale=0.4]{Images/duo-volcan-wo-label.png}
@@ -942,7 +945,7 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 \frametitle{Études des différents cas de Couveignes $\ell$-adique}
 \vfill
 \begin{itemize}
-\item Cas Elkies (issu d'un travail conjoint avec De Feo, Plût et Schost publié à ANTS XII en 2016)
+\item Cas Elkies (issu d'un travail conjoint avec \href{http://defeo.lu/}{De Feo}, Plût et \href{https://cs.uwaterloo.ca/~eschost/}{Schost} publié à ANTS XII en 2016)
 \begin{itemize}
 \vfill
 \item Cas Elkies avec hauteur $h=0$;
@@ -951,6 +954,12 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 \end{itemize}
 \vfill
 \item Cas Atkin
+\begin{itemize}
+\vfill 
+\item Cas Atkin avec hauteur $h=0$;
+\vfill
+\item Cas Atkin avec hauteur $h \neq 0$;
+\end{itemize}
 \end{itemize}
 \vfill
 
@@ -1098,7 +1107,7 @@ i.e. son polynôme minimal se factorise comme
     \begin{itemize}
     \item On appelle $\red{E[\ell^k]_\lambda}\oplus\blu{E[\ell^k]_\mu}$ une
      décomposition \emph{horizontale};
-    \item La littérature SEA appelle cela un \emph{cycle d'isogénies} [Couveignes, Morain '94].%!!!!!!!!!!!!!!!!!!!!
+    \item La littérature SEA appelle cela un \emph{cycle d'isogénies} [Couveignes,~Morain '96].%!!!!!!!!!!!!!!!!!!!!
     \end{itemize}
   \end{uncoverenv}
 
@@ -1108,9 +1117,9 @@ i.e. son polynôme minimal se factorise comme
 
 \begin{frame}
 
-\bluebox{Vers un algorithme de Couveignes $\ell$-adique (cas Elkies $h=0$)}{
+\bluebox{Un algorithme de Couveignes $\ell$-adique (cas Elkies $h=0$)}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
@@ -1121,7 +1130,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
  }
 
 \begin{enumerate}
-\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$.
+\item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
 \medskip
 \item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
  et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $
@@ -1129,16 +1138,16 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \medskip
 \item Pour toute matrice \textbf{diagonale inversible}
   $\left ( \begin{smallmatrix}a & 0\\ 0 & b
-\end{smallmatrix}\right )$ dans $(\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
-\hfill\only<2>{$O(r)$}
+\end{smallmatrix}\right ) \in (\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
+\hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
     \begin{enumerate}
   \item Calcul du polynôme d'interpolation 
     $L$  qui envoie\\
     $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
-\hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\tilde{O}(r)$}
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
   \end{enumerate}
@@ -1427,13 +1436,12 @@ et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
 
 \begin{frame}
 \frametitle{Marche sur le cratère}
-Citer Fouquet Morain et Ionica-Joux
-\bluebox{Fact}{
+
+\bluebox{Fait}{
     Soit $\phi$ une $r$-isogénie avec $\ell \nmid r$, alors $\phi$ préserve les noyaux des $\ell^k$-isogénies horizontales de direction $\red \lambda, \blu \mu $.}
 %\textbf{Goal:} compute the kernel of horizontal $\ell^k$-isogenies (codomain curves lying on the crater).
-
-
 On procède étape par étape à l'aide de marche sur le cratère selon la direction $ \blu \mu$. %to compute the kernels of the horizontal $\ell^3$-isogeny of direction $\blu \mu $.
+\vspace{-5mm}
 \begin{center}
 \begin{tikzpicture}[scale=0.37]
 \begin{scope}[yshift=10cm]
@@ -1581,15 +1589,17 @@ On procède étape par étape à l'aide de marche sur le cratère selon la direc
 
 \end{tikzpicture}
 \end{center}
+\vspace{-4mm}
+Des algorithmes pour déterminer des isogénies horizontales ont déjà été proposés: [Fouquet, Morain, '02], [Ionica,Joux, '10].
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 
-\bluebox{Vers un algorithme de Couveignes $\ell$-adique ($\ell$ un premier de Elkies)}{
+\bluebox{Un algorithme de Couveignes $\ell$-adique ($\ell$ un premier de Elkies)}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de de degré $r$
 \end{algorithmic}}
 
@@ -1600,7 +1610,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
  }
 
 \begin{enumerate}
-\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$.
+\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$, avec $h<k$.
 \medskip
 \item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
  et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogenies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$.  
@@ -1608,17 +1618,17 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \medskip
 \item Pour toute matrice \textbf{diagonale inversible}
   $\left ( \begin{smallmatrix}a & 0\\ 0 & b
-\end{smallmatrix}\right )$ dans $(\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
-\hfill\only<2>{$O(r)$}
+\end{smallmatrix}\right ) \in (\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
+\hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
   \begin{enumerate}
 
   \item Calcul du polynôme d'interpolation 
     $L$ qui envoie\\
     $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
-\hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\tilde{O}(r)$}
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
   \end{enumerate}
@@ -1631,12 +1641,13 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \frametitle{Limitations du cas Elkies}
  \bluebox{Trouver un premier $\ell$ de Elkies}{
   \begin{itemize}
-  \item La complexité de l'algorithme dépend de polyniomalement du paramètre $\ell$.
+  \item La complexité de l'algorithme dépend polynomialement du paramètre $\ell$.
   \item Idéalement nous voudrions travailler avec $\ell=2$.
   \item En pratique la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies.
-  \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leq 
+  \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leqslant 
   O(\log(q))$ pour presque tous les $q$ et courbes $E,E'$ (voir 
-[Shparlinski,~Sutherland~'14]).
+[Shparlinski,~Sutherland~'14]).\\
+ $\Rightarrow$ Algorithme quasi-quadratique de Couveignes $\ell$-adique.
 \end{itemize}
   }
 \end{frame}
@@ -1645,8 +1656,8 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 
 \begin{frame}
 %\section{Atkin Case}
-\frametitle{Atkin case}
-\bluebox{Atkin prime}{Un nombre premier $\ell$ est dit un \emph{premier de Atkin} si le polynôme caractéristique de $\pi$: 
+\frametitle{Cas Atkin}
+\bluebox{Premier de Atkin}{Un nombre premier $\ell$ est dit un \emph{premier de Atkin} si le polynôme caractéristique de $\pi$: 
 \[
 \pi^2 - t_{\pi}\pi + q 
 \]
@@ -1701,10 +1712,6 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 \begin{center}
 \begin{tikzpicture}[yshift=-25cm,scale=0.25]
 \begin{scope}[yshift=0cm,xshift=0cm]
-		\coordinate (A) at (33,-5);
-		\coordinate (B) at (33,-11);
-		\draw (A) node[fill=white]{$ \bmod \ell^{h+1}$};
-		\draw (B) node[fill=white]{$ \bmod \ell^{h+2}$};
 		\coordinate (D) at (0,0);
 		\coordinate (E) at (-6,-5);
 		\coordinate (F) at (6,-5);
@@ -1715,37 +1722,68 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 		\coordinate (K) at (0,-5);
 		\coordinate (L) at (-1,-11);
 		\coordinate (M) at (1,-11);
+		\only<1>{
+		\draw [gray!25] (D) -- (E);
+		\draw [gray!25] (K) -- (L);
+		\draw [line width=1.5pt,blue!25](D) -- (F);
+		\draw [line width=1.5pt,red!25] (D) -- (K);
+		\draw [line width=1.5pt,red!25] (K) -- (M);
+		\draw [gray!25] (E) -- (H);
+		\draw [gray!25] (E) -- (G);
+		\draw [line width=1.5pt,blue!25](F) -- (I);
+		\draw [gray!25] (F) -- (J);
+		\draw (K) node[fill=white]{$\color{gray!25}{ \bullet}$};
+		\draw (E) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (M) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (I) node[fill=white]{$ \color{blue!25} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};
+		}
+		\only<2>{
 		\draw (D) -- (E);
+		\draw (K) -- (L);
 		\draw [line width=1.5pt,blue](D) -- (F);
 		\draw [line width=1.5pt,red] (D) -- (K);
-		\draw (K) -- (L);
 		\draw [line width=1.5pt,red] (K) -- (M);
 		\draw (E) -- (H);
 		\draw (E) -- (G);
 		\draw [line width=1.5pt,blue](F) -- (I);
 		\draw (F) -- (J);
-		\draw (D) node[fill=white]{$E$};
 		\draw (K) node[fill=white]{$\bullet$};
-		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
-\\4  & 3 \end{smallmatrix} \right)$};
-		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
-		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
-\\12  & 3 \end{smallmatrix} \right) $};
-		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
-\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
 		\draw (L) node[fill=white]{$\bullet $};
 		\draw (M) node[fill=white]{$\bullet $};
-		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}11 & 12 
-\\4 & 15 \end{smallmatrix} \right) $};
-		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};}
+		\draw (D) node[fill=white]{$E$};
 		%\coordinate (A) at (12,-5);
 		%\coordinate (B) at (12,-11);
 		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
 		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
 \end{scope}
 \begin{scope}[yshift=0cm,xshift=20.3cm]
+		\coordinate (A) at (33,-5);
+		\coordinate (B) at (33,-11);
+		\draw (A) node[fill=white]{$ \bmod \ell^{1}$};
+		\draw (B) node[fill=white]{$ \bmod \ell^{2}$};
 		\coordinate (D) at (0,0);
 		\coordinate (E) at (-6,-5);
 		\coordinate (F) at (6,-5);
@@ -1756,35 +1794,63 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 		\coordinate (K) at (0,-5);
 		\coordinate (L) at (-1,-11);
 		\coordinate (M) at (1,-11);
+		\only<1>{
+		\draw [gray!25] (D) -- (E);
+		\draw [gray!25] (K) -- (L);
+		\draw [line width=1.5pt,blue!25](D) -- (F);
+		\draw [line width=1.5pt,red!25] (D) -- (K);
+		\draw [line width=1.5pt,red!25] (K) -- (M);
+		\draw [gray!25] (E) -- (H);
+		\draw [gray!25] (E) -- (G);
+		\draw [line width=1.5pt,blue!25](F) -- (I);
+		\draw [gray!25] (F) -- (J);
+		\draw (K) node[fill=white]{$\color{gray!25}{ \bullet}$};
+		\draw (E) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (M) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (I) node[fill=white]{$ \color{blue!25} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};
+		}
+		\only<2>{
 		\draw (D) -- (E);
+		\draw (K) -- (L);
 		\draw [line width=1.5pt,blue](D) -- (F);
 		\draw [line width=1.5pt,red] (D) -- (K);
-		\draw (K) -- (L);
 		\draw [line width=1.5pt,red] (K) -- (M);
 		\draw (E) -- (H);
 		\draw (E) -- (G);
 		\draw [line width=1.5pt,blue](F) -- (I);
 		\draw (F) -- (J);
-		\draw (D) node[fill=white]{$E'$};
 		\draw (K) node[fill=white]{$\bullet$};
-		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
-\\4  & 3 \end{smallmatrix} \right)$};
-		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
-		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
-\\12  & 3 \end{smallmatrix} \right) $};
-		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
-\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
 		\draw (L) node[fill=white]{$\bullet $};
 		\draw (M) node[fill=white]{$\bullet $};
-		\draw (I) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}11 & 12 
-\\4 & 15 \end{smallmatrix} \right) $};
-		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
-\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};}
+		\draw (D) node[fill=white]{$E$};
 		%\coordinate (A) at (12,-5);
 		%\coordinate (B) at (12,-11);
 		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
 		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+		\draw (D) node[fill=white]{$E'$};
 		\coordinate (A) at (-20.1,0.5);
 		\coordinate (B) at (0,0.5);
 		%\draw [->] (A) --(B);
@@ -1797,7 +1863,11 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 %Once the image by $\phi$ of one ($\color{red} P$) of the two bases point of $E[\ell^{h+i}]$ is 
 %determined, then the matrix $\pi(P,Q)$ that represents the Frobenius determines \emph{uniquely} a \emph{generator} of the
 %descending $\ell^{i}$-isogenies generated by the second basis point ($\color{blue} Q$). 
-Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la base de la de $E[\ell^{h+i}]$ a été déterminé alors la forme de la matrice du Frobenius $\pi(P,Q)$ détermine de façon unique le générateur de la $\ell^i$-isogénie engendrée par le second point de la base
+\only<2>{Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la 
+base $\langle P, Q \rangle$ de $E[\ell^{2}]$ a été déterminée alors la forme de
+la matrice du Frobenius dans une telle base notée $\pi(P,Q)$ détermine de façon
+unique le générateur de la $\ell^2$-isogénie engendrée par le second point 
+$(Q)$ de la base.}
 % les $\ell$-isogénies descendantes engendrées par le second point de la base.
 \end{frame}
 
@@ -1805,41 +1875,85 @@ Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la bas
 
 \begin{frame}
 
-\bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin)}{
+\bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin $h = 0$)}{
 \begin{algorithmic}[1]
-\REQUIRE $E, E'$ deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $[\ell^h]R=[\ell^h]R'$.}
+\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $R=R'$.}
 
 \begin{enumerate}
-\item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$.
+\item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
 \medskip
 \item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
 \item Calcul de la matrice $\pi(P,Q)$;
 \medskip
-\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\only<2>{$O(r)$}
+\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
-  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$O(r \ell^{O(1)})$}
+  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$\color{blue!50!gray}{O(r \ell^{O(1)})}$}
   \medskip
-  \item Pour tout point $U' \in E'$ tel que $[\ell^h]R'=[\ell^h]U'$ \hfill\only<2>{$O(\ell^h)$}
+
+  \item Calcul du polynôme d'interpolation 
+    $L$ qui envoie\\
+    $P\mapsto S'$ et $Q\mapsto R'$;
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
+	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
+\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
+  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
+   l'algorithme.
+\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin $h \neq 0$)}{
+\begin{algorithmic}[1]
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\ENSURE $\phi: E \rightarrow E'$ de degré $r$
+\end{algorithmic}}
+
+\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $[\ell^h]R=[\ell^h]R'$ \\
+avec $\langle P,R \rangle = \langle P,R' \rangle = E[\ell^{h+i}]$ avec $i>0$.}
+
+\begin{enumerate}
+\item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
+\medskip
+\item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$
+%\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
+\medskip
+\item Calcul de la matrice $\pi(P,Q)$;
+\medskip
+\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill {$\color{blue!50!gray}{O(r)}$}
+\begin{enumerate}
+\medskip
+  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill {$\color{blue!50!gray}{O(r \ell^{O(1)})}$}
+  \medskip
+  \only<1>{
+  \item $\color{red}{\text{Pour tout point } U' \in E' \text{ tel que } [\ell^h]R'=[\ell^h]U'}$}
+  \only<2>{
+  \item Pour tout point $U' \in E'$ tel que $[\ell^h]R'=[\ell^h]U'$ \hfill {$\color{blue!50!gray}{O(\ell^h)}$}}
   \begin{enumerate}
 
   \item Calcul du polynôme d'interpolation 
     $L$ qui envoie\\
     $P\mapsto S'$ et $Q\mapsto U'$;
-\hfill\only<2>{$\tilde{O}(r \ell^{O(1)})$}
+\hfill {$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\tilde{O}(r)$}
+\hfill {$\color{blue!50!gray}{\tilde{O}(r)}$}
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
    l'algorithme.
   \end{enumerate}
-
+	
 \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -1849,8 +1963,13 @@ Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la bas
 \begin{frame}
 \frametitle{Algorithme de Couveignes $\ell$-adique}
 
-Conclure sur tout cela...
-
+Nous avons vu que nous sommes capables de proposer un algorithme de Couveignes $\ell$-adique quasi quadratique sans dépendance polynomiale en la caractéristique dès lors que:
+\begin{itemize}
+\item $\ell$ est un nombre premier de Elkies et $h<k$, 
+\item $\ell$ est un nombre premier de Atkin et $h=0$.
+\end{itemize}
+%On peut trouver un tel premier dans un intervalle $[1,O(\log(q))]$.
+Un tel premier borné par $O(\log(q))$ peut être trouvé.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2113,7 +2232,7 @@ Conclure sur tout cela...
 \begin{defi}[Tour \textit{$\ell$}-adique]
 Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $\ell$-adiques de $\mathbb{F}_q$ est la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{1}, \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
 \begin{itemize}
-\item{} [Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus $r \mid d_1$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
+\item{} [Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$ divise $d_1$,
 \item{} [Cas Atkin] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré au plus $ \ell^2-1$,
 \item $\mathsf{F}_{i}$ pour $i \geqslant 2$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
 \end{itemize}
@@ -2127,15 +2246,15 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 
 \begin{frame}
 
-  \frametitle{Towers of field extensions}
+  \frametitle{Tour d'extensions de corps finis}
 
-  \bluebox{Computing in towers of field extensions}{
+  \bluebox{Calcul dans une tour d'extension de corps finis}{
   \begin{itemize}
 %   \item We work on $\mathbb{F}_q$ such that $E[\ell] \subset E(\mathbb{F}_q)$,
-	\item Torsion points are not defined in $\mathbb{F}_q$, in general.	
-	\item We work in $\ell$-adic extensions of $\mathbb F_q$
-        using constructions from [De~Feo,~Doliskani, Schost '13], [Doliskani,~Schost '15] where in particular we have a fast computation of the Frobenius.
-	
+	\item Les points de torsion ne sont pas en général définis dans $\mathbb{F}_q$.	
+	\item Nous travaillons dans des extensions $\ell$-adiques de $\mathbb F_q$
+        en généralisant les constructions de [De~Feo,~Doliskani, Schost '13], [Doliskani,~Schost '15] et où en particulier nous avons un calcul rapide du Frobenius.
+	\item Il est alors nécessaire d'implanter un algorithme qui prenne en compte ces constructions de tour d'extensions de corps finis.
   \end{itemize}
  	
   }
@@ -2150,7 +2269,7 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\ell=2$, le code est disponible sur GitHub: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.8]{Images/graphe-101-149-269.pdf}
+\includegraphics[scale=0.8]{Images/graphe-101-149-269-C2.pdf}
 \end{figure}
 \end{frame}
 
@@ -2161,22 +2280,22 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \frametitle{Conclusion}
 \bluebox{Contribution}{
 \begin{itemize}
-\item New tools for navigating isogeny volcanoes. 
+\item De nouveaux outils pour se déplacer dans le volcan d'isogénies. 
 
-\item A faster variant of Couveignes' algorithm only with Elkies primes.
+\item Une variante de l'algorithme de Couveignes quasi-quadratique sous certaines conditions.
 
 \end{itemize}
 }
-\bluebox{Future work}{
+\bluebox{Travaux futurs}{
 \begin{itemize}
-\item Compare implementation to other algorithms (esp. Lercier-Sirvent).
+\item Comparer notre implantation à d'autres algorithmes (en part. Lercier-Sirvent dans le contexte S.E.A.).
 % \item Directly generalize to curves not on the crater.
-\item Give an analogous algorithm for Atkin primes with a quadratic complexity 
-(only subcubic has been done).
-\item Estimate the cost of the computation of endomorphism rings with the study of the action of the Frobenius and implement it.
-\item Analyze our techniques to navigate the volcano in other
-  settings: point counting, Hilbert
-  class polynomials, modular polynomials.
+\item Estimer le coût de calcul de l'anneau des endomorphismes avec l'étude de l'action de l'endomorphisme du Frobenius et l'implanter.
+\item Étudier l'utilité de notre technique dans d'autres contextes: comptage de points, polynômes de Hilbert, polynômes modulaires.
+%Analyze our techniques to navigate the volcano in other
+%  settings: point counting, Hilbert
+%  class polynomials, modular polynomials.
+\item Résoudre le problème de l'isogénie explicite avec une complexité de $\tilde{O}(r)$ opérations sur $\mathbb{F}_q$.
 \end{itemize}}
 
 %Code available on GitHub: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}
@@ -2197,18 +2316,18 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\backupbegin
 \begin{frame}
-\frametitle{Technical details: Improving interpolation with Frobenius}
+\frametitle{Détails techniques: Amélioration de l'interpolation avec le Frobenius}
 %$A$ the polynomial that interpolates the isogeny according to the mappings $\red P \rightarrow \color{red} u P' $, $\blu Q \rightarrow \color{blue}v Q'$  and $\color{red} P' \in  E'[\ell^k]_{\lambda}$, $\color{blue} Q' \in  E'[\ell^k]_{\mu} \color{black}$.
 
 %$T$ the polynomial that interpolates the isogeny according to the mapping \[P \mapsto a P \quad Q \mapsto bQ \quad \textit{with } a,b \wedge \ell = 1.\]
-We want to compute an $\mathbb{F}_q$ \textbf{rational} isogeny, then for each interpolation polynomial candidate $L$ we have for $R \in E[\ell^k]$: 
+Nous cherchons à calculer une $\mathbb{F}_q$ isogénie \textbf{rationnelle}, ainsi pour tout polynôme d'interpolation candidat $L$ nous avons pour $R \in E[\ell^k]$: 
 \[\pi(L(x(R)))=L(x(\pi(R))),\]
-and in particular with $\color{red} P \in  E[\ell^k]_{\lambda}$, $\color{blue} Q \in  E[\ell^k]_{\mu} \color{black}$:
+et en particulier avec $\color{red} P \in  E[\ell^k]_{\lambda}$, $\color{blue} Q \in  E[\ell^k]_{\mu} \color{black}$:
 \[\pi(L(x(\red P)))=L(x(\color{red} \lambda P \color{black}))) \quad \pi(L(x(\blu Q)))=L(x(\color{blue} \mu Q \color{black}))).\]
 \pause
-As suggested by [Couveignes,96] we construct $L$ separately from the representatives points of an orbit under the action of the Frobenius: 
+Comme suggéré par [Couveignes,96] on calcule $L$ séparément sur les points représentants des orbites sous l'action du Frobenius: 
 \[
 \{ {\boldmath \color{red} \textbf{P}} \unboldmath , \pi(\red P), \pi^2(\red P), \cdots \color{black} \}  
 \]
@@ -2218,7 +2337,7 @@ As suggested by [Couveignes,96] we construct $L$ separately from the representat
 \[
 \cdots
 \]
-and then we use the Chinese  Remainder Theorem to get $L$.
+nous utilisons ensuite le Théorème des Restes Chinois pour obetnir $L$.
 
 \end{frame}
 
@@ -2227,7 +2346,7 @@ and then we use the Chinese  Remainder Theorem to get $L$.
 
 
 \begin{frame}
-\frametitle{Technical details: Improving interpolation with Frobenius}
+\frametitle{Détails techniques: Amélioration de l'interpolation avec le Frobenius}
 \begin{figure}[h]
 \begin{center}
 
@@ -2340,14 +2459,15 @@ and then we use the Chinese  Remainder Theorem to get $L$.
 
 \end{center}
 \end{figure}
-Elements of the binary tree we need for the computation of the interpolation polynomial.
+%Elements of the binary tree we need for the computation of the interpolation polynomial.
+Éléments de l'arbre de produit binaire nécessaires au calcul du polynôme d'interpolation.
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Bonus: ascending horizontal points}
+\frametitle{Points ascendants horizontaux}
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.50]
@@ -2522,9 +2642,9 @@ Elements of the binary tree we need for the computation of the interpolation pol
 
 \end{tikzpicture}
 \end{center}
-\caption{ Construction of an ascending horizontal point from a point $P \in 
-E_s$ of order $2^3$ such that $[2]P$ is an horizontal point and $\psi: E_s 
-\rightarrow E$ is a descending $2$-isogeny.} 
+\caption{ Construction d'un point ascendant horizontal à l'aide d'un point $P \in 
+E_s$ d'ordre $2^3$ tel que $[2]P$ est un point horizontal et $\psi: E_s 
+\rightarrow E$ est une $2$-isogénie descendante.} 
 %à partir d'un point $P \in E_s$ d'ordre $2^3$ tel que $[2]P$ soit 
 %horizontal de direction $\color{blue}{\mu}$ et $\psi:E_s \rightarrow E$ une 
 %$2$-isogénie descendante.}
@@ -2544,6 +2664,7 @@ E_s$ of order $2^3$ such that $[2]P$ is an horizontal point and $\psi: E_s
 %si $[\ell^{h}]R=[\ell^{h}]R'$.
 %\end{prop}
 %\pause 
+\frametitle{Cas Atkin $h \neq 0$}
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.45]
@@ -2625,11 +2746,121 @@ E_s$ of order $2^3$ such that $[2]P$ is an horizontal point and $\psi: E_s
 }
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{Un algorithme de Couveignes $\ell$-adique dans le cas Atkin avec $h \neq 0$}
+%\begin{figure}
+\begin{center}
+\begin{tikzpicture}[yshift=-25cm,scale=0.25]
+\begin{scope}[yshift=0cm,xshift=0cm]
+		\coordinate (A) at (33,-5);
+		\coordinate (B) at (33,-11);
+		\draw (A) node[fill=white]{$ \bmod \ell^{h+1}$};
+		\draw (B) node[fill=white]{$ \bmod \ell^{h+2}$};
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8.4,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-1,-11);
+		\coordinate (M) at (1,-11);
+		\draw (D) -- (E);
+		\draw [line width=1.5pt,blue](D) -- (F);
+		\draw [line width=1.5pt,red] (D) -- (K);
+		\draw (K) -- (L);
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw [line width=1.5pt,blue](F) -- (I);
+		\draw (F) -- (J);
+		\draw (D) node[fill=white]{$E$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
+\\4  & 3 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
+\\12  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
+\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\bullet $};
+		\draw (M) node[fill=white]{$\bullet $};
+		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}11 & 12 
+\\4 & 15 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		%\coordinate (A) at (12,-5);
+		%\coordinate (B) at (12,-11);
+		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
+		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+\end{scope}
+\begin{scope}[yshift=0cm,xshift=20.3cm]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8.4,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-1,-11);
+		\coordinate (M) at (1,-11);
+		\draw (D) -- (E);
+		\draw [line width=1.5pt,blue](D) -- (F);
+		\draw [line width=1.5pt,red] (D) -- (K);
+		\draw (K) -- (L);
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw [line width=1.5pt,blue](F) -- (I);
+		\draw (F) -- (J);
+		\draw (D) node[fill=white]{$E'$};
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}7 & 4 
+\\4  & 3 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}7 & 12 
+\\12  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}15 & 12 
+\\4  & 11 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\bullet $};
+		\draw (M) node[fill=white]{$\bullet $};
+		\draw (I) node[fill=white]{$\color{blue} \left( \begin{smallmatrix}11 & 12 
+\\4 & 15 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}3 & 4 
+\\4  & 7 \end{smallmatrix} \right) $};
+		%\coordinate (A) at (12,-5);
+		%\coordinate (B) at (12,-11);
+		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
+		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+		\coordinate (A) at (-20.1,0.5);
+		\coordinate (B) at (0,0.5);
+		%\draw [->] (A) --(B);
+		%\draw[bend right =20] (A)--(B);
+		\draw[dashed,thick,-latex,shorten >=5pt] (A) to[bend left=20] node[below left] {$\phi$} (B);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+%\end{figure}
+%Once the image by $\phi$ of one ($\color{red} P$) of the two bases point of $E[\ell^{h+i}]$ is 
+%determined, then the matrix $\pi(P,Q)$ that represents the Frobenius determines \emph{uniquely} a \emph{generator} of the
+%descending $\ell^{i}$-isogenies generated by the second basis point ($\color{blue} Q$). 
+Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la base de la de $E[\ell^{h+i}]$ a été déterminé alors la forme de la matrice du Frobenius $\pi(P,Q)$ détermine de façon unique le générateur de la $\ell^i$-isogénie engendrée par le second point de la base
+% les $\ell$-isogénies descendantes engendrées par le second point de la base.
+\end{frame}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{frame}
-\begin{prop}[Preciser source vu dans Fouquet '01]
+\begin{prop}
 Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] \quad \text{et} \quad (X-a)^2=X^2-t_{\pi}X+q \bmod g \]
 \end{prop}
 
@@ -2638,25 +2869,28 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 \begin{frame}
 
 
-\bluebox{Algorithm to compute the endomorphism ring of $E$ [Kohel '96]}{
+\bluebox{Algorithme de calcul de l'anneau des endomorphismes de $E$ [Kohel '96]}{
 \begin{algorithmic}[1]
-\REQUIRE $d_{\pi}$ the discriminant of the Elliptic curve $E$; 
-\ENSURE $\mathcal{O}$ the endomorphism ring of $E$
+\REQUIRE $d_{\pi}$ le discriminant de la courbe elliptique $E$; 
+\ENSURE $\mathcal{O}$ l'anneau d'endomorphisme de $E$
 \end{algorithmic}}
 
 \begin{enumerate}
-\item Compute the prime factorization of $d_{\pi}$ and deduce from it the conductor  $g=\prod_{i=1}^j\ell_i^{t_i}$ such that $d_{\pi}=g^2d_K$ and $a$ such that $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
-\item For each $\ell_i$:
+%\item Compute the prime factorization of $d_{\pi}$ and deduce from it the conductor  $g=\prod_{i=1}^j\ell_i^{t_i}$ such that $d_{\pi}=g^2d_K$ and $a$ such that $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
+\item Factorisation de $d_{\pi}$ et calcul du conducteur 
+$g=\prod_{i=1}^j\ell_i^{t_i}$ tel que $d_{\pi}=g^2d_K$ et $a$ tel que 
+$\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
+\item Pour tout $\ell_i$:
 \begin{enumerate}
-\item Compute $s_i= v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $
+\item Calcul de $s_i= v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $
 \end{enumerate}
-\item Return $\mathcal{O}=\mathbb{Z}+\left( (\pi-a)/\prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
+\item Retourne $\mathcal{O}=\mathbb{Z}+\left( (\pi-a)/\prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
 \end{enumerate}
 
-\bluebox{Previous work on the computation of $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $}{
+\bluebox{Travaux précédents sur le calcul de $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]]) $}{
 \begin{itemize}
-\item Kohel (1996) work with modular polynomials (variants with division polynomials, and ideal class group)
-\item Bisson-Sutherland (2009) enumerations of relations built from isogeny cycles
+\item Kohel (1996) utilise les polynômes modulaires (variantes avec les polynômes de division, et les groupes de classe d'idéaux)
+\item Bisson-Sutherland (2009) énumérations de relations construites à l'aide de cycles  d'isogénies
 \end{itemize}
 }
 %Parler de Kohel (Vu dans la thèse de Mireille 1) Methode par les polynomes de division, 2) polynomes modulaires 3) Methode par les ideaux 3.a) enumeration 3.b) groupe de classe d ideaux )
@@ -2678,13 +2912,14 @@ Il existe un entier $a$ tel que \[\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g
 %\item either $b$ and $c$ are prime with $\ell$;
 %\item either one of them is prime with $\ell$ and the other has its $\ell$-adic valuation included in $ [2,2e]$.
 %\end{itemize}
-In the Atkin case for any bases $(P,Q)$ of $E[\ell^k]$ with $k>h-e$ and $e$ the depth of $E$ in the volcano. The action of the Frobenius $\pi$ in this basis is up to permutation equals to:
+Dans le cas Atkin pour toute base $(P,Q)$ de $E[\ell^k]$ avec $k>h-e$ et $e$ la
+profondeur de $E$ dans le volcan. L'action du Frobenius dans cette base est, à permuationt prés:
  \[\pi(P,Q)= \left ( \begin{matrix}a & b\ell^{h-e} \\ c\ell^{h-e} & d
-\end{matrix}\right ) \bmod \ell^k, \quad \text{with }a,d \text{ primes with }\ell, v_{\ell}(a-d)\geqslant h .\]
-Moreover 
+\end{matrix}\right ) \bmod \ell^k, \quad \text{avec }a,d \text{ premier avec }\ell, v_{\ell}(a-d)\geqslant h .\]
+De plus
 \begin{itemize}
-\item either $b$ and $c$ are prime with $\ell$;
-\item either $b$ is prime with $\ell$ and $v_{\ell}(c) \in [2,2e]$.
+\item soit $b$ et $c$ sont premiers avec $\ell$;
+\item soit $b$ est premier avec $\ell$ et $v_{\ell}(c) \in [2,2e]$.
 \end{itemize}
 \end{prop}
 
@@ -2757,33 +2992,32 @@ c_2\ell^2 & d_2
 %Faire une slide qui parle de ça 
 %Il faut juste dire comment l'on distingue un cas Atkin d'un cas Elkies...
 %Faire une estimation à la louche
-
-\bluebox{Algorithm to compute the endomorphism ring of $E$}{
+\bluebox{Algorithme de calcul de l'anneau des endomorphismes de $E$ [Kohel '96]}{
 \begin{algorithmic}[1]
-\REQUIRE $d_{\pi}$ the discriminant of the Elliptic curve $E$; 
-\ENSURE $\mathcal{O}$ the endomorphism ring of $E$
+\REQUIRE $d_{\pi}$ le discriminant de la courbe elliptique $E$; 
+\ENSURE $\mathcal{O}$ l'anneau d'endomorphisme de $E$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fact:} For $\langle P, R \rangle = E[\ell_i^{r_i+1}]$ with $r_i=\lfloor v_{\ell_i}(d_{\pi})/2 \rfloor $ from  $\pi(P,R)$ we deduce $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$.}
+\bluebox{}{\textbf{Fait:} Pour $\langle P, R \rangle = E[\ell_i^{r_i+1}]$ avec $r_i=\lfloor v_{\ell_i}(d_{\pi})/2 \rfloor $ à partir de $\pi(P,R)$ nous déduisons $v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$.}
 
 \begin{enumerate}
-\item Compute from $d_{\pi}$ the prime factorization of the conductor $g=\prod_{i=1}^j\ell_i^{t_i}$ of $\mathbb{Z}[\pi]$ and $a$ such that $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
-\item For each $\ell_i$:
+\item \`A partir de la factorisation de $d_{\pi}$ calcul du conducteur $g=\prod_{i=1}^j\ell_i^{t_i}$ de $\mathbb{Z}[\pi]$ et $a$ tel que $\mathcal{O}_K=\mathbb{Z} \left[ \frac{\pi-a}{g} \right] $ 
+\item Pour tout $\ell_i$:
 \begin{enumerate}
-\item Compute $\langle P , Q \rangle = E[\ell_i^{r_i+1}]$
+\item Calcul de $\langle P , Q \rangle = E[\ell_i^{r_i+1}]$
 \medskip
-\item Determine from $d_{\pi}$ if $\ell_i$ is an Atkin or an Elkies prime 
+\item Détermination à partir de $d_{\pi}$ si $\ell_i$ est un nombre premier de Atkin ou de Elkies 
 \medskip 
-\item Compute $\pi(P,Q)$ and deduce from it $s_i=v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$ 
+\item Détermination de $s_i=v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$ à partir de  $\pi(P,Q)$
 \end{enumerate}
-\item Return $\mathcal{O}=\mathbb{Z} + \left( (\pi-a)/ \prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
+\item Retourne $\mathcal{O}=\mathbb{Z} + \left( (\pi-a)/ \prod_{i=1}^j\ell_i^{s_i} \right) \mathbb{Z}$
 \end{enumerate}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Comparison with the Elkies case}
+\frametitle{Comparaison avec le cas Elkies}
 \begin{figure}
 \begin{center}
 
@@ -2884,8 +3118,11 @@ c_2\ell^2 & d_2
 \end{figure}
 
 \end{frame}
+\backupend
+\end{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 %Parler de la représentation univariée et bivariée, dire que les calculs sont toujours plus rapide en univariée, montrer le passage d'une représentation bivariée à univariée. Dire que l'on peut ajouter des étages à la volée. Mentionner que l'on a des bonnes complexités pour le Frobenius en particulier.
@@ -2953,7 +3190,6 @@ alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf
 %Cela permet notamment d'ajouter sans coût supplémentaire des étages à la tour.
 
 \end{frame}
-\end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}

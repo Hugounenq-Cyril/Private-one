@@ -19,4 +19,3 @@ benchmarks/graphe-101-2^18bis.gp
 benchmarks/graphe-521bis.pdf: benchmarks/test-script-521-bis.tsv \
 benchmarks/test-script-1033-bis.tsv benchmarks/graphe-521bis.gp
 	cd benchmarks && gnuplot graphe-521bis.gp
-

@@ -1,0 +1,540 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+%\usepackage{natbib}
+\usepackage[francais]{babel}
+\usepackage{hyperref}
+\usepackage{amssymb,amsthm,amsmath,amsfonts}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{units}
+\usepackage{lmodern}
+\usepackage{fp}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{makeidx}
+%\usepackage{gloss}
+\usepackage{xcolor}
+%\usepackage[toc]{glossaries}
+\usepackage{changepage}
+\usepackage{tikz}
+\usepackage{array}
+\usetikzlibrary{decorations}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{calc}
+\usetikzlibrary{fixedpointarithmetic}
+\usepackage{todonotes}
+\usepackage[intoc]{nomencl}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\usepackage{apalike}
+\usepackage{subfig}
+\usepackage{pdfpages}
+
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Théorème}[section]
+\theoremstyle{definition}
+\newtheorem*{thm*}{Théorème}
+\theoremstyle{definition} 
+\newtheorem{lem}[thm]{Lemme}
+\theoremstyle{definition} 
+\newtheorem{cor}[thm]{Corollaire}
+\theoremstyle{definition} 
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition} 
+\newtheorem{defi}[thm]{Définition}
+\theoremstyle{remark} 
+\newtheorem{rem}[thm]{Remarque}
+\theoremstyle{remark} 
+\newtheorem{exe}[thm]{Exemple}
+\theoremstyle{definition}
+\newtheorem{nota}[thm]{Notation}
+
+\bibliographystyle{alpha}
+\title{Remarks concerning the correction of David Kohel}
+\begin{document}
+\maketitle
+\section{Introduction}
+\paragraph{p.13}{Référence à l'article de Jacques Vélu de 1971 "Isogénies entre Courbes Elliptiques" $\Rightarrow$  celui-ci n'est pas pertinent par rapport au problème que l'on étudie car ici on ne connaît pas le noyau de l'isogénie alors que dans l'article de Vélu si, voilà pourquoi je n'ai pas cité celui-ci. \'A moins qu'il n'y ait un article de Vélu que j'ai manqué...}
+\paragraph{p.13}{"En pratique ... au cas par cas" en fait ici je voulais faire référence au crosspoint entre l'algorithme de Couveignes et celui de Lercier-Sirvent dans le cas de la moyenne caractéristique. Les complexités de ces algorithmes sont explicitées dans le chapitre 2. Pour l'algorithme de Lercier-Sirvent il faut rajouter le coût de calcul du polynôme modulaire.}
+\paragraph{p.14}{Concernant l'article de Couveignes "Hard homogeneous space" Luca m'avait parlé de celui-ci, je le rajoute.}
+
+\paragraph{p.14}{Concernant "action d'isogénie" je l'ai remplacé par "évaluation de l'isogénie"}
+
+\paragraph{p.14}{Concernant les références aux travaux de Pizer et Mestre j'ai rédigé cela de la façon suivante: "Les graphes d'isogénies ont été étudiés pour la première fois par 
+\cite{Kohel96}, ses travaux dans le contexte particulier des courbes elliptiques
+supersingulières ont été inspirés par ceux de \cite{Mestre86,Pizer90,Pizer95} 
+qu'il a adapté et développé dans ce contexte, il a aussi étudié le cas des 
+courbes elliptiques ordinaires, tout cela afin de calculer l'anneau des 
+endomorphismes d'une courbe 
+elliptique."}
+
+\paragraph{p.14}{Concernant "a cherché à déterminer", j'ai changé de la manière suivante: "Kohel détermine le niveau d'une courbe dans le graphe tout en 
+connaissant la cardinalité de celle-ci afin de calculer son anneau des 
+endomorphismes."}
+
+\paragraph{p.14}{Concernant le travail de Fouquet Morain je l'ai reformulé de la façon suivante: "Fouquet et Morain~\cite{FouquetMorain02} ont par la suite résolu le même 
+problème, en adaptant les méthodes de Kohel sans la connaissance préalable de 
+la cardinalité de la courbe, afin d'améliorer SEA, et ont nommé les graphes 
+d'isogénies \emph{volcans d'isogénies}."}
+
+\paragraph{p.14}{Concernant le travail de Lenstra et de son articulation avec votre thèse, j'ai modifié cela comme suit: 
+"
+Ensuite les travaux de Miret \textit{et al.} 
+\cite{MiretMRV05}  \cite{MiretMSTV06} 
+\cite{MiretMSTV08} ont permis d'expliciter un lien entre le niveau d'une courbe
+dans le volcan de $\ell$-isogénies et la structure des $\ell$-sous-groupes de 
+Sylow, cette relation peut être aussi vue comme une conséquence des travaux de 
+Kohel \cite{Kohel96} et Lenstra \cite{Lenstra96}. 
+"}
+
+\paragraph{p.14}{Concernant le théorème, j'ai bien enlevé la numérotation 
+(trop) récemment, j'ai modifié l'énoncé comme suit :"Pour presque tous les 
+nombres premiers $q$ et les courbes elliptiques ordinaires $E,E'$ définies sur
+$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul explicite de
+l'isogénie" en un temps quasi-quadratique en le degré de l'isogénie, 
+avec une dépendance logarithmique en la caractéristique de $\mathbb{F}_q$." le 
+fait que le degré de l'isogénie soit connue est pour moi énoncé dans le 
+problème du "Calcul explicite de l'isogénie" je ne l'ai donc pas retranscrit à 
+nouveau ici}
+
+\paragraph{Question sur le théorème}{Notre algorithme proposé pour résoudre ce 
+problème traite différemment deux cas distincts: le cas Atkin et le cas Elkies.
+\begin{itemize}
+
+\item {} Pour le cas Elkies nous avons un algorithme fonctionnel avec une complexité
+satisfaisante (quasi-quadratique) avec une condition restrictive sur la hauteur
+$h$ du volcan de $\ell$-isogénies, concrètement on doit avoir $h< O(\log_{\ell}
+(4r))$ lorsque cette condition sur $h$ n'est pas vérifiée alors 
+l'algorithme a une complexité supérieure à la complexité quasi-quadratique. 
+\item {} Concernant le cas Atkin ce n'est pas explicitement écrit dans ma thèse mais 
+pour la cas où l'on a un entier de Atkin tel que la hauteur du volcan est 
+nulle alors nous obtenons un algorithme quadratique avec une dépendance 
+polynomiale en le paramètre $\ell$ moins bonne que dans le cas Elkies. 
+\item[Existence de tels cas]On fixe $L \in O(\log(q))$ tel que le produit de tous les nombres premiers 
+  dépasse $\Omega(\sqrt{q})$. On enlève alors les nombres premiers 
+  de Elkies $\ell \leqslant L$ tels que $\ell^{h} > \sqrt{r}$, cette condition
+  empêchant d'utiliser notre algorithme dans le cas Elkies, les nombres premiers de Atkin de hauteur $h>0$ et les nombres premiers ramifiés;
+  pour de tels nombres premiers ceux-ci sont des diviseurs de $d_{\pi}$ et leur 
+  produit est donc borné par $O(\sqrt{q})$. Ainsi il reste suffisamment de 
+  nombres premiers de satisfaisant pour avoir un algorithme quasi quadratique dans 
+  l'intervalle  $[1,L]$.
+
+%\`A l'aide du résultat de 
+%\cite[Theorem 1]{ShparlinskiSutherland14} si l'on fixe une 
+%borne $L=O(\log(q))$ et que pour celle-ci nous n'avons que des nombres $\ell$ de 
+%Elkies avec une hauteur $h$ associée $>\log_{\ell}(4r)$ alors en étudiant 
+%$d_{\pi}$ borné par $O(q)$, celui-ci($d_{\pi}$) ne peut admettre que des
+%nombres premiers ramifiés qui le divise et des nombres premiers de Atkin de 
+%hauteur $\neq 0$ car sinon ce produit de nombres premiers dépasserait largement
+%$O(q)$ ainsi on doit avoir au moins l'existence d'un entier de Atkin de 
+%hauteur $0$  ou d'un entier de Elkies de hauteur $h<\log_{\ell}(4r)$. Donc on 
+%peut trouver un entier soit de Atkin de hauteur $0$ soit de Elkies de hauteur 
+%$h<\log_{\ell}(4r)$ borné par $O\log(q)$.
+\end{itemize}
+}
+
+\section{Chapitre 4}
+
+\paragraph{p 61}{Merci pour les remarques autour de $d_{K}$, j'introduis donc de suite la notation $d_{\ell}$ pour le discriminant de l'ordre maximal par rapport à $\ell$ noté $\mathcal{O}_{\ell}$ lui aussi dans la nomenclature}
+
+\paragraph{p.63}{$f^2\frac{d_K (d_K-1)}{4}$ c'est fait.}
+
+\paragraph{p.63}{Concernant le Lemme 6.14, il est vrai que ce résultat est trivial, je l'ai mis sous forme de remarque et j'ai formulé cela comme suit dans la thèse: 
+"On fait alors la remarque suivante sur les duales des isogénies:
+\begin{rem}
+\label{lem:dua:vol}
+Soit $\phi : E \mapsto E'$ une isogénie et sa duale $\widehat{\phi}$. Alors:
+\begin{enumerate}
+\item $\phi$ est une isogénie montante si et seulement si $\widehat{\phi}$ est une isogénie descendante,
+\item $\phi$ est une isogénie horizontale si et seulement si $\widehat{\phi}$ est une isogénie horizontale.
+\end{enumerate}
+\end{rem}"}
+
+\paragraph{p.64}{Merci pour les remarques concernant le graphe non orienté, 
+j'ai donc reformulé une partie du paragraphe comme suit: "On a pris comme 
+convention de représenter ici un graphe non orienté. En effet chaque arrête 
+représente toutes les isogénies de noyaux identiques ainsi que leurs duales."}
+
+\paragraph{p.65}{Pour ce qui est du choix de $D$ ou de $d_{K}$ dans le tableau,
+je n'ai effectivement pas précisé que $D$ est le discriminant de l'ordre 
+associé à l'anneau des endomorphismes de la courbe $E$, je vais donc mettre 
+$d_K$ pour que cela soit plus clair pour le lecteur. Pour ce qui est du nombre 
+exact d'isogénies en prenant en compte l'action des automorphismes de la 
+courbe sur les noyaux des isogénies, j'ai préféré pour des raisons 
+"esthétiques" de disqualifier le cas $j=0$ et $j=1728$ pour le tableau et de 
+rajouter la phrase suivante après le tableau: "Pour $j=0$ ou $j=1728$ il faut 
+prendre en compte l'action des automorphismes de
+$E$ sur les sous-groupes cycliques de $E[\ell]$. Dans ce cas
+ les valeurs dans la seconde colonne ne donnent que le nombre 
+de représentants sous l'action du groupe des automorphismes de $E$."}
+
+\paragraph{ en référence à la modification précédente}{J'ai donc modifié le théorème qui se trouvait juste avant le corollaire en bas de la p.64: "\begin{thm}
+\label{thm:Koh:cas}
+Soit $E$ une courbe elliptique ordinaire définie sur un corps fini 
+$\mathbb{F}_q$ avec $j(E)\neq 0, 1728$ et soit $\ell$ un nombre premier 
+différent de la caractéristique de $\mathbb{F}_q$
+\begin{enumerate}
+\item Si $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $ 1 + \left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies horizontales
+\item Si $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet une $\ell$-isogénie montante
+\item Si $\ell \nmid [\mathcal{O} : \mathbb{Z}[\pi]]$ alors $E$ n'admet pas de $\ell$-isogénie descendante
+\item Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \nmid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell-\left( \frac{d_K}{\ell} \right)$ $\ell$-isogénies descendantes
+\item  Si $\ell \mid [\mathcal{O} : \mathbb{Z}[\pi]]$ et $\ell \mid [\mathcal{O}_K : \mathcal{O}]$ alors $E$ admet $\ell$ isogénies de degré $\ell$ descendantes.
+\end{enumerate}
+Si $j(E)=0$ ou $j(E)=1728$ alors il faut prendre en compte l'action des 
+automorphismes de $E$ sur les sous-groupes cycliques de $E[\ell]$. Dans ce cas
+les valeurs énoncées ne donnent que le nombre de représentants 
+sous l'action du groupe des automorphismes de $E$.
+\end{thm}"}
+
+\paragraph{Définition 4.23}{Il ne doit y avoir dans le manuscrit que des $E_s$, j'ai donc corrigé cela. J'ai reformulé la définition comme suit:"
+\begin{defi}
+\label{def:haut:vol}
+Pour une courbe sur le volcan son niveau est la longueur maximale d'un chemin descendant.
+\newline
+La hauteur $h$ d'un volcan est le niveau maximal des courbes dans le volcan.
+\end{defi}"}
+
+\paragraph{Remarque 4.24}{J'ai modifié la remarque comme suit:
+"\begin{rem} 
+\label{rem:lie:dp:dk}
+Pour un volcan de $\ell$-isogénies de hauteur $h$ par les 
+définitions~\ref{def:iso:nom} et ~\ref{def:haut:vol} $\ell^{2h} | d_{\pi}$.
+En particulier pour $\ell \neq 2$ $\ell^{2h}||d_{\pi}$, ce résultat ne peut être 
+énoncé  pour $\ell=2$ car il est possible que $4 \mid d_K$ par définition de $d_K$
+(définition~\ref{def:dis:dK}).
+\end{rem}"}
+
+\paragraph{Algorithme de Fouquet-Morain}{J'ai ajouté la référence et j'ai 
+enlevé le cherche à calculer: "L'algorithme de 
+Fouquet-Morain~\cite{FouquetMorain02} est un algorithme qui 
+calcule un chemin descendant d'une courbe elliptique située sur le cratère afin
+de calculer la valuation $\ell$-adique du conducteur de $\mathbb{Z}[\pi]$. Cet
+algorithme est une adaptation de l'algorithme "Probing the depths" de Kohel \cite[Section 4.2]{Kohel96} au contexte SEA."}
+
+\paragraph{Citation de FM02}{Si je comprends bien il serait préférable que je cite uniquement FM00 lorsque cela est possible ?}
+
+\paragraph{p.67-P.68: Proposition 4.\color{red}{2}\color{black}9 corollaire de 
+4.27}{Je suis tout à fait d'accord avec cette remarque qui fait référence aussi
+à celle de l'introduction. J'ai donc renommé cette proposition corollaire je 
+l'ai placé après la proposition dont il est le corollaire et j'ai rédigé la 
+preuve suivante:"\begin{proof}
+Comme $E$ et $E'$ sont situées au même niveau alors leurs anneaux 
+des endomorphismes sont isomorphes, par la proposition \ref{pro:len:str} on 
+obtient le résultat.
+\end{proof}"}
+
+\paragraph{prop 4.30}{Je n'ai pas vu de problème de parenthèses}
+
+\paragraph{prop 4.31}{$n_2 \mid n_1$ rajouté}
+
+\paragraph{Attention}{Courbes elliptiques ordinaires ajoutés!}
+
+\section{Chapitre 5}
+
+\paragraph{ligne -1}{J'ai modifié comme suit: "
+Dès lors puisque $\ell^{2h} \mid d_{\pi}$ et pour $\ell \neq 2$ $\ell^{2h}
+|| d_{\pi}$, pour $\ell=2$ on peut avoir $2^{2h+1} \mid d_{\pi}$ lorsque $2 \mid d_K$ (voir remarques~\ref{rem:def:dpi} 
+et ~\ref{rem:lie:dp:dk}) avoir $d_{\pi}$ un résidu quadratique est équivalent 
+à avoir $\left( \frac{d_{K}}{\ell} \right)=1$. Ainsi dans le cas Elkies le 
+cratère est cyclique par le corollaire~\ref{cor:tab:vol}.
+"}
+
+\paragraph{Proposition $5.\color{red}3$}{Concernant $\pi | \mathsf{T}_{\ell}(E)$ j'ai reformulé l'énoncé et la preuve comme suit:
+"
+\begin{prop}\label{pro:mat:fro}
+Soit~$E$ une courbe elliptique ordinaire, telle que $\ell$ est un nombre Elkies
+a deux racines distinctes $\lambda$, $\mu$ appartenant à $\mathbb{Z}_{\ell}$,
+ainsi le volcan des $\ell$-isogénies de $E$ a un cratère cyclique.
+Il existe un unique $e \in [ 0, h]$ tel que 
+l'action du Frobenius dans toute base de $\mathsf{T}_{\ell}(E)$  
+%$\pi|\mathsf{T}_{\ell}(E)$~
+est conjuguée, sur~$\mathbb{Z}_{\ell}$,
+à la matrice 
+\begin{equation*}
+\left ( \begin{matrix}\lambda & \ell^{h-e} \\ 0 & \mu
+\end{matrix}\right ).
+\end{equation*}
+% where $a \in \mathbb{Z}$, $0 \leq a \leq \ell^{h} - 1$,
+De plus $e = 0$ si~$E$ se situe sur le cratère,
+sinon $h - e$~est le niveau de~$E$ dans le volcan, $e$ est appelé la \emph{profondeur}
+de la courbe dans le volcan.
+\end{prop}
+
+\begin{rem}
+$\left(\begin{smallmatrix} \lambda & \ell^h \\ 0 &
+\mu \end{smallmatrix}\right)$ est conjuguée à $\left(\begin{smallmatrix} \lambda & 0 \\ 0 & \mu\end{smallmatrix}\right)$ sur~$\mathbb{Z}_{\ell}$.
+\end{rem}
+
+\begin{proof}
+Comme le polynôme caractéristique de $\pi$ admet deux valeurs propres sur 
+$\mathbb{Z}_{\ell}$ alors pour toute base de $\mathsf{T}_{\ell}(E)$ la matrice
+représentant l'action du Frobenius dans cette base est trigonalisable. %\todo{justifier cela Morris Newman Integral Matrices III.\color{red}{15}}
+La conjugaison de la matrice $\left ( \begin{smallmatrix}\lambda & a\\0 & \mu
+\end{smallmatrix}\right )$ par~$\left ( \begin{smallmatrix}1 & b\\0 & 1
+\end{smallmatrix} \right )$ change le coefficient $a$ en $a-b (\lambda - \mu)$, 
+et la conjugaison par ~$\left(\begin{smallmatrix} c & 0 \\ 0 &
+1\end{smallmatrix}\right)$ change~$a$ en~$c \cdot a$,
+ainsi la valuation $\ell$-adique~$h-e = v_{\ell}(a)$ est invariante sous la 
+conjugaison matricielle. Cela prouve la première partie de la proposition. 
+
+Pour la seconde partie, par le théorème de 
+Tate~\cite[Isogeny theorem III.7.7 (a)]{Silv1}, $\mathcal{O} \otimes 
+ \mathbb{Z}_{\ell}$~est isomorphe à l'ordre dans~$\mathbb{Q}_{\ell}[\pi_{\ell}]$
+des matrices avec coefficients entiers, cet ordre est engendré par la matrice 
+ identité et la matrice $\ell^{-\min (h, v_\ell(a))} (\pi_{\ell}-\lambda)$, dés 
+ lors l'indice de cet ordre par rapport à $\mathbb{Z}[\pi_{\ell}]$ est de 
+$\ell^{\min (h, v_\ell(a))}$, lui donnant son niveau $\min (h, v_\ell(a))$ dans 
+ le volcan des $\ell$-isogénies.
+\end{proof}
+"}
+
+\paragraph{Proposition 5.4}{Pourquoi ne pas travailler avec une matrice avec 
+$\delta = 1$? J'ai choisi de faire un énoncé le plus général possible pour une
+application pratique par la suite. Cette proposition serait tout aussi juste 
+avec $\delta = 1$. Est-ce nécessaire pour la compréhension du lecteur que je 
+rédige cela avec $\delta = 1$ ?}
+
+\paragraph{Lemme 5.6}{J'ai choisi de ne fixer dans l'énoncé du Lemme seulement 
+la base de $\mathsf{T}_{\ell}(E)$ et pas celle de $\mathsf{T}_{\ell}(E')$ afin 
+de ne pas surcharger l'énoncé. J'ai modifié l'énoncé comme suit "
+\begin{lem}
+\label{lem:iso:con}
+Soit une base fixée de $\mathsf{T}_{\ell}(E)$ dont la projection sur 
+$E[\ell^{k}]$ est $\langle P, Q \rangle$ avec $k>0$, soit $\phi:E 
+\rightarrow E'$ l'isogénie de noyau engendré par $R=[x]P+[y]Q$  avec $x\wedge 
+\ell =1$ et $y=\ell^my'$ avec $y' \wedge \ell =1$, $0 \leqslant m \leqslant k$.
+Soit $M_R$ la matrice de forme normale réduite de Hermite qui correspond au réseau 
+engendré par $R$, $\ell^k\mathsf{T}_{\ell}(E)$ alors la matrice du Frobenius sur 
+$\mathsf{T}_{\ell}(E')$ est donnée par $M_R^{-1} \cdot \Pi \cdot M_R$ à 
+conjugaison près, avec $\Pi$ la matrice du Frobenius dans la base fixée de 
+$\mathsf{T}_{\ell}(E)$.
+\end{lem}" J'ai remarqué que dans la preuve de la proposition suivante j'avais
+dit que $\Pi|\mathsf{T}_{\ell}(E')$ était $\color{red}\text{égale}$ j'ai 
+remplacée cela par conjugué et reformulé la phrase en question comme suit:
+"  Par le lemme~\ref{lem:iso:con}, pour toute base de 
+$\mathsf{T}_{\ell}(E')$ la matrice 
+$\pi|\mathsf{T}_{\ell}(E')$ est conjuguée à $\left ( \begin{smallmatrix}\lambda & \ell^{h-k} 
+x (\lambda-\mu)\\ 0 & \mu \end{smallmatrix}\right )$."}
+
+\paragraph{Notation 5.14}{J'ai essayé de clarifier la notation comme suit: "
+\begin{nota} 
+Soient $E$ une courbe elliptique, $P,Q$ deux points tels que $E[\ell^k]=\langle
+P,Q \rangle$ on note alors $\pi(P,Q)$ la représentation matricielle de l'action
+du Frobenius dans la base $(P,Q)$. Ainsi dans ce document nous avons pris la 
+convention que:
+\[
+\pi(P,Q)=\left(
+\begin{matrix}
+\lambda & a \\
+0 & \mu
+\end{matrix}
+ \right)
+\]
+signifie que l'on a $\pi(P)=[\lambda]P$ et $\pi(Q)=[a]P+[\mu]Q$
+\end{nota}" J'ai mis une entrée correspondant à cette notation dans la 
+nomenclature}
+
+\paragraph{Proposition 5.15}{Merci pour les remarques, j'ai reformulé l'énoncé 
+comme suit: "
+\begin{prop}
+\label{pro:etu:atk:elk}
+Soit $E$ une courbe elliptique située au niveau $h-e$ d'un volcan des 
+$\ell$-isogénies pour lequel $\ell$ est un nombre de Elkies. Soient $P,R 
+\in E$ tels que $\langle P,R \rangle =E[\ell^{h-e+i}]$ et $\pi(P,R)= 
+\left( \begin{matrix}\lambda & \beta 
+\ell^{h-e} \\0 & \mu \end{matrix}\right) \bmod \ell^{h-e+i}$ avec $\beta \wedge
+\ell=1$, alors pour toute $\ell^i$-isogénie descendante $\phi$ de domaine $E$ il
+existe une base $\langle P,R' \rangle$ de $E[\ell^{h-e+i}]$ telle que  $\ker(\phi)=\langle R' \rangle$ et $\pi(P,R)=\pi(P,R')$.
+\end{prop}"
+Concernant la preuve je l'ai modifié afin d'inclure ce que j'ai enlevé de 
+l'énoncé de la proposition (notamment $Q$) et mis en avant la distinction de 
+cas dans la seconde partie de la preuve:
+"
+Voir plus bas la version actualisée (11/09/17)
+"}
+
+\paragraph{p.76 Proposition 5.9}{Typo $\langle [\ell] P+ [b]Q \rangle$ corrigée en $\langle P+ [b]Q \rangle$ comme ce qui était suggéré et correct.}
+
+\paragraph{p.76 Corollaire 5.6}{A}
+
+\paragraph{p.77 par.1}{Typo $[\ell]P$ corrigée par $[2]P$.}
+
+\paragraph{P.77 Preuve de la Proposition 5.13}{J'ai considéré qu'il était 
+important de souligner que $[\ell^{k-1}]P$ n'était pas dans le noyau de 
+$\varphi$. J'ai modifié la preuve comme suit: "
+\begin{proof}
+Pour le point~\eqref{ite:pro:par:1} comme $[\ell^{k-1}]P$ n'est pas dans le 
+noyau de $\varphi$, alors $\langle [\ell^{k-i}]\varphi(P) \rangle $ est le 
+noyau de $\widehat{\varphi}$. 
+
+Pour le point~\eqref{ite:pro:par:2} il suffit d'écrire que $\widehat{\varphi}
+(P')= [\ell^i] P$; on conclut alors à l'aide
+des hypothèses sur $P$.
+\end{proof}
+"}
+
+\paragraph{p.77 Notation 5.14}{Déjà fait dans une modification précédente}
+
+\paragraph{p.78 Proposition 5.15}{J'ai fait une nouvelle modification (j'ai enlevé $\beta$) suite à votre remarque mais seulement dans la preuve car comme dit précédemment je veux que l'énoncé soit le plus général possible voici donc la version modifiée de la preuve (sans $\beta$ !): 
+"
+\begin{proof}%On peut supposer sans perte de généralités que $\beta =1$.
+\`A l'aide du changement de base $(P,R) \rightarrow ([\beta^{-1}]P,R)$ nous 
+supposons sans perte de généralités que $\beta =1$.
+Soit $Q \in E$ tel que $\langle P,Q \rangle = E[\ell^{h-e+i}]$. 
+Alors nous posons $R=[a]P+[b]Q$ et nous allons montrer qu'il existe une 
+transformation \begin{equation*}
+R=[a]P+[b]Q \mapsto R'=[c]P+[yb]Q
+\end{equation*}
+telle que $\pi(P,R)=\pi(P,R')$ et $\langle [\ell^{h-e}]R' \rangle = \ker(\phi)$.
+\newline
+Par la forme de la matrice $\pi(P,R)$ nous avons:
+\[ \pi([a]P+[b]Q)=[\ell^{h-e}] P + [\mu] ([a]P+[b]Q).\]
+De plus, comme $\pi$ est un morphisme $\pi([a]P+[b]Q)=[a \lambda ]P + [b] 
+\pi(Q)$, nous déduisons l'expression suivante pour $[b]\pi(Q)$:
+\[ [b] \pi(Q)=[\ell^{h-e} + (\mu - \lambda)a]P + [\mu b] Q. \]
+Nous avons alors $\pi([c]P+[by]Q)=[c\lambda]P+[y]([b]\pi(Q))$. La condition 
+$\pi(P,R')=\pi(P,R)$ est vérifiée si et seulement si:
+\begin{eqnarray*}
+\pi([c]P+[by]Q) &=& [\ell^{h-e}] P + [\mu]([c]P+[by]Q) \\
+				&=& [\lambda c]P + [y]([\ell^{h-e} + (\mu - \lambda)a]P + [\mu b] Q).
+\end{eqnarray*}
+Cela se traduit donc par l'égalité suivante:
+\[ \ell^{h-e} + c(\mu-\lambda)=y(\ell^{h-e}+(\mu - \lambda )a) \bmod \ell^{h-e+i}. \]
+Ainsi nous faisons une distinction selon que $h-e+i \leqslant h$ ou 
+$h-e+i > h$, car $\ell^h || \lambda - \mu$. 
+
+\begin{itemize}
+\item[$h-e+i \leqslant h$] %Pour $h-e+i \leqslant h$ 
+Dans ce cas nous obtenons l'équation suivante:
+\[ \ell^{h-e} = y \ell^{h-e}  \bmod \ell^{h-e+i}, \]
+et donc la valeur de la matrice ne dépend que de $y$. Or la
+$\ell^i$-isogénie de noyau $\langle \ell^{h-e}R' \rangle= \langle [\ell^{h-e}]
+([c(by)^{-1}]P+Q) \rangle$ est déterminée par la 
+valeur de $\ell^{h-e}b^{-1}y^{-1}c \bmod \ell^{h-e+i}$, ainsi en faisant 
+varier la valeur de $c$ nous pouvons faire en sorte que $[\ell^{h-e}]R'$ soit le 
+générateur de n'importe quelle $\ell^{i}$-isogénie descendante.
+
+\item[$h-e+i>h$] %On regarde donc maintenant le cas où $h-e+i>h$, 
+Montrons dans ce cas comment déterminer
+$y$ et $c$  tels que $\ell^{h-e}\gamma=\ell^{h-e}c(by)^{-1} \bmod 
+\ell^{h-e+i}$, avec $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$ qui détermine une 
+$\ell^i$-isogénie descendante spécifique (celle de noyau $\langle [\ell^{h-e}]
+([\gamma]P+Q) \rangle$). %tout en ayant $\pi(P,R)=\pi(P,R')$.
+Nous posons $\ell^{h} \alpha = \lambda - \mu$ avec $\alpha \wedge \ell=1$
+, l'égalité $\pi(P,R)=\pi(P,R')$ se traduit donc par:
+\[  \ell^{h-e} + \ell^{h}\alpha c=y( \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i}, \]
+nous multiplions alors cette équation par $(by)^{-1}$
+\begin{eqnarray*}
+ \ell^{h-e}(by)^{-1} + \ell^{e}\alpha \ell^{h-e} \gamma &=& b^{-1}( \ell^{h-e}+\ell^{h}(\alpha)a) \bmod \ell^{h-e+i} \\
+\ell^{h-e}(by)^{-1} &=&  b^{-1}(\ell^{h-e}+\ell^{h}(\alpha)a) - \ell^{e}\alpha \ell^{h-e} \gamma \bmod \ell^{h-e+i} 
+\end{eqnarray*}
+Nous pouvons alors déterminer $y$ puis $c$ afin d'avoir une transformation pour 
+laquelle nous obtenons un point $R'$ tel que $[\ell^{h-e}]R'$ soit un générateur 
+de l'isogénie spécifiée par $\ell^{h-e}\gamma \bmod \ell^{h-e+i}$.
+\end{itemize}
+\end{proof}
+"}
+
+\section{Chapitre 6}
+
+\paragraph{Énoncé du problème}{Merci pour les remarques, j'ai reformulé le problème comme suit: 
+"\paragraph{Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
+
+Le problème du \emph{calcul explicite d'isogénie} est: étant données deux 
+courbes elliptiques ordinaires $E_0$ et $E_1$ et un entier $r$ tel que les 
+courbes $E_0$ et $E_1$ soient $r$-isogènes, calculer une isogénie $\phi:E_0 
+\rightarrow E_1$ de degré $r$."}
+
+\paragraph{p.96 Proposition 6.1}{Concernant les spécifications sur les ordres des points ceux-ci sont déjà spécifiés lorsque il est écrit $P \in E[\ell^k]$ et $P \in E[\ell]$, le cas $P=0_E$ étant trivial pouvant être inclus.  L'énoncé de la proposition a été modifié comme suit:
+"
+\begin{prop}\label{pro:par:iso}
+Soit~$\phi: E \rightarrow E'$ une isogénie de degré~$r$, soit $\ell$ un entier 
+premier avec~$r$.
+\begin{enumerate}
+\item\label{pro:par:1} les courbes~$E$,~$E'$ ont la même profondeur dans leur volcan des
+ $\ell$-isogénies;
+\item\label{pro:par:fun} pour tout point~$P \in E[\ell^k]$,
+les isogénies de noyau $\langle P \rangle$ et~$\langle \phi(P) \rangle$ sont de même type
+(ascendantes, descendantes, ou horizontales de même direction);
+\item\label{pro:par:asc} si $P \in E[\ell]$ et $P' \in E'[\ell]$ sont tous les 
+deux des points générateurs d'isogénies ascendantes, ou horizontales de même 
+direction alors $E/\langle P \rangle$ et~$E'/\langle P' \rangle$ sont encore $r$-isogènes.
+\end{enumerate}
+\end{prop}
+"}
+
+\paragraph{p.96 Preuve de la Proposition 6.2}{Merci pour la remarque j'ai modifié la (le début) preuve comme suit:
+"
+\begin{proof}
+%Par définition(\ref{def:par:hor}) on peut construire $P$ et $P'$ à 
+Par définition(\ref{def:par:hor}) on peut trouver
+$R \in E_s$ et $R' \in E'_s$ tels que $[\ell^e]R$ et $[\ell^e]R'$ 
+soient des points horizontaux de même direction avec deux $\ell^e$-isogénies 
+$\psi:E_s \rightarrow E$ et $\psi':E'_s \rightarrow E'$ telles que $\psi(R)=P$ 
+et $\psi'(R')=P'$. On a tout d'abord $ \phi([\ell^{k-e}]P) \in \langle 
+[\ell^{k-e}]P' \rangle$  par la proposition~\ref{pro:par:iso}~\eqref{pro:par:fun} car par la 
+proposition~\ref{pro:elk:par:hor}~\eqref{pro:par:1} on a $\ker(\widehat{\psi})= \langle 
+[\ell^{k-e}]P \rangle$ et $\ker(\widehat{\psi'})= \langle [\ell^{k-e}]P' 
+\rangle$. Ensuite on a $\langle [\ell^e]R \rangle = \langle 
+\widehat{\psi}(P) \rangle $ et $\langle [\ell^e]R' \rangle = \langle 
+\widehat{\psi'}(P') \rangle$ ainsi les $\ell^{k}$-isogénies engendrées par 
+$P$ et $P'$ sont du même type: une composition d'une $\ell^e$ isogénie montante 
+et d'une $\ell^{k-e}$-isogénie horizontale de direction identique, donc par la 
+proposition~\ref{pro:par:iso}~\eqref{pro:par:fun} on a $\phi(P) \in \langle P' \rangle$.
+\end{proof}
+"
+}
+
+\paragraph{p.97-98}{merci de la remarque. Je n'ai pas voulu introduire la 
+notation pertinente que vous avez proposé car je pense (et j'espère) que le 
+texte se comprend sans celle-ci, j'ai modifié comme suit pour l'égalité vectorielle:
+"
+\[
+\phi \left(
+\begin{matrix}
+P \\
+Q
+\end{matrix}
+\right)=
+\left( 
+\begin{matrix}
+a &  b\ell^{h} \\
+c\ell^{h} & d
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
+P' \\
+Q'
+\end{matrix}
+\right) \quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^{\times}; c,d \in \mathbb{Z}/\ell^{k}\mathbb{Z}.
+\]
+" de la même manière j'ai modifié la deuxième itération et celles à la p.115 et
+119. J'ai enlevé les "action d'isogénies" qui traînaient (y compris encore dans
+l'introduction !). Pour les matrices [a,b;c,d] vous avez raison, en plus je ne 
+suis pas cohérent avec le reste de mon manuscrit...
+}
+
+
+\section{Modifications diverses}
+\paragraph{Nomenclature}{J'ai rajouté dans la nomenclature l'encart suivant:
+\{ $\pi(P,Q)$ \} \{Représente l'action du Frobenius $\pi$ dans une base $P,Q$ sous forme matricielle.\} }
+
+\paragraph{p.97}{ Typo:$\pi|(P,Q)=\pi|(P',Q') \rightarrow \pi(P,Q)=\pi(P',Q')$}
+
+\paragraph{p.101} Typo dans la preuve de la proposition 6.4 :"pour de tels nombres premiers ceux-ci sont des diviseurs de $\mathbf{d_{K}}$ et leur 
+  produit est donc borné par $O(\sqrt{q})$."$\rightarrow$ "pour de tels nombres premiers ceux-ci sont des diviseurs de $\mathbf{d_{\pi}}$ et leur 
+  produit est donc borné par $O(\sqrt{q})$." 
+\bibliography{Biblio}
+\end{document}
+%  LocalWords:  isogeny morphisms Isogenies isogenies isogenous
+%  LocalWords:  cardinality bijection Couveignes automorphism
+
+% vim: ts=2:
+%  LocalWords:  Frobenius endomorphism precomputation morphism
+%  LocalWords:  subproduct factorizations
