@@ -45,6 +45,36 @@ def test_ultime(l,P,Q,q,profondeur):
 				J=[]
 				Jb=[]
 	return [Test,L,L2]
+
+def test_invariance(l,P,Q,q,MatrixInput):
+	'''
+	Return the change of basis for which the action of the Frobenius is 
+	identical in it
+
+	Input:
+	-P,Q a basis of the l**k torsion we study
+	-l an integer (which is not useful to this algorithm)
+	-q the power of the frobenius
+	-MatrixInput the shape of the matrix we want to find thanks to linear
+	combinations of P and Q
+	
+	Output:
+	All the change of basis applied to Q->aP + bQ such that we find the 
+	same matrix as the input matrix in this new basis.  
+	'''
+	E=P.curve()
+	M=list(Q.order().factor())[0]
+	L=[]
+	for b in range(Q.order()):
+		if (b%M[0]!=0):
+			for a in range(P.order()):
+				Matrix=etude_action_Frobenius(P,a*P+b*Q,q)
+				if(Matrix==MatrixInput):
+					print a, " ",b, "\n"; #on imprime les matrices différentes
+					L.append([a,b])
+					
+	return L
+
 def etude_action_Frobenius(P,Q,q):
 	'''
 	Input:
@@ -68,8 +98,8 @@ def etude_action_Frobenius(P,Q,q):
 	k=P.order()
 	for r in range(L[1]):
 		k=int(k/L[0])
-		TP=k*P
-		TPF=k*PF
+		TP=k*P #point temporaire d'ordre \ell**r
+		TPF=k*PF 
 		TQ=k*Q
 		TQF=k*QF
 		for a0 in range(L[0]):
@@ -111,6 +141,44 @@ def test_matrices_possibles(L,P,Q,q,profondeur):
 				for r in range(profondeur):
 					J.append(E.isogeny(M[0]**(M[1]-1-r)*(P)).codomain().j_invariant())
 					J.append(E.isogeny(M[0]**(M[1]-1-r)*(a*P+b*Q)).codomain().j_invariant())
+				#J3=E.isogeny(M[0]**(M[1]-3)*(a*P+b*Q)).codomain().j_invariant()
+				if(([Matrix,J] in L)!=True):
+					print Matrix, "\n"; #on imprime les matrices différentes
+					L.append([Matrix,J])
+					L2.append([Matrix,a,b])				
+					Test=True
+				J=[]
+	return [Test,L,L2]
+
+def test_matrices_possibles_sp(L,P,Q,q):
+	'''
+	Algorithme très gourmand en capacités qui teste toutes les matrices
+	possibles pour le Frobenius et compare le résultat à la liste passée en
+	paramètre en entrée, si le résultat n'est pas présent à la liste il y est
+	rajouté
+	Input:
+	-L a List of matrices that represent the possible action of the Frobenius
+	q on the 2**k-torsion
+	-P,Q two points that forms a basis of the 2**k-torsion
+	-q the Frobenius we want to test
+
+	Output:
+	A boolean value saying that if there is a basis in which the Frobenius
+	is different from a matrix from the list and a list concatenated with
+	the matrices not present in it 
+	'''
+	Test=False	
+	E=P.curve()
+	M=list(Q.order().factor())[0]
+	L2=[]
+	J=[]
+	for b in range(Q.order()):
+		if (b%M[0]!=0):
+			for a in range(P.order()):
+				Matrix=etude_action_Frobenius(P,a*P+b*Q,q)
+				for r in range(2):
+					J.append(E.isogeny((M[0]**r)*(P)).codomain().j_invariant())
+					J.append(E.isogeny((M[0]**r)*(a*P+b*Q)).codomain().j_invariant())
 				#J3=E.isogeny(M[0]**(M[1]-3)*(a*P+b*Q)).codomain().j_invariant()
 				if(([Matrix,J] in L)!=True):
 					print Matrix, "\n"; #on imprime les matrices différentes
@@ -240,6 +308,8 @@ def test_liste(L,P,Q):
 	Input:
 	-L a list composed of 2 lists of points
 	-P,Q two basis points that we are looking for in the list
+	Output:
+	-La comparaison des points de la liste avec P et Q à l'aide du couplage
 	'''
 	L0=L[0]
 	L1=L[1]
@@ -292,3 +362,4 @@ def test_liste_profondeur(L,P,Q,profondeur,b=False):
 		print (l0).weil_pairing(Pt,Pt.order()).multiplicative_order(), 'test avec P avec l[0] L0'
 		print (l1).weil_pairing(Qt,Qt.order()).multiplicative_order(), 'test avec Q avec l[1] L0'
 		print 'on teste un nouveau couple de points', '\n'
+
