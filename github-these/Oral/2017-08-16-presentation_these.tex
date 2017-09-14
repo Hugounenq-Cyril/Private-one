@@ -237,7 +237,7 @@ avec $A,B$ des éléments de $\mathbb{K}$. $0_E$ est appelé le \emph{point à l
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Loi de Groupe sur une courbe elliptique}
+\frametitle{Loi de groupe sur une courbe elliptique}
 
 
 \begin{figure}
@@ -324,7 +324,6 @@ avec $A,B$ des éléments de $\mathbb{K}$. $0_E$ est appelé le \emph{point à l
 \end{center}
 \end{figure}
 
-\pause
 
 \begin{prop}
 L'ensemble des points d'une courbe elliptique forme un groupe abélien pour la loi additive d'élément neutre $0_E$.
@@ -342,7 +341,6 @@ $E$ et un entier $n$:
 [n] \;:\; E & \to E\\
 P & \mapsto [n] P
 \end{align*}}
-\pause 
 
 \hfill
 
@@ -355,7 +353,8 @@ et $m>0$
 \[E[m]= \{ P \in E(\bar{\mathbb{F}}_q) , [m]P=0_E \} \]
 }
 
-
+\bluebox{Polynômes de $\ell$-division}
+{Pour toute courbe elliptique $E$ et tout entier $n$ il existe un polynôme $\psi_n$ tel que les abscisses des points de $n$-torsion soient les racines de ce polynôme.}
 %\bluebox{Problème du logarithme discret sur une courbe elliptique $E$}
 %{
 %\begin{algorithmic}[1]
@@ -376,7 +375,7 @@ et $m>0$
 \frametitle{Isogénies}
 \bluebox{Isogénies}{
 \begin{itemize}
-\item $E$ et $E'$ deux courbes elliptiques, une isogénie est un morphisme surjectif $\phi: E \rightarrow E'$ telle que $\phi(0_{E})=0_{E'}$. Les isogénies sont
+\item $E$ et $E'$ deux courbes elliptiques, une isogénie est un morphisme surjectif $\phi: E \rightarrow E'$ tel que $\phi(0_{E})=0_{E'}$. Les isogénies sont
 \begin{itemize}
  \item des morphismes de groupe (avec un noyau fini),
  \item des fonctions algébriques (de degré fini).
@@ -393,7 +392,6 @@ et $m>0$
 %\item Moreover if the isogeny $\phi$ is $\textbf{separable}$ then we have $\deg \phi = | \ker(\phi) |$ and if $\ell= \deg \phi $ then we say that the curves $E$ and $E'$ are $\ell$-isogenous.
 \end{itemize}
 }
-\pause
 
 % \begin{thm} 
 % Let $G\subset E$ be a subgroup of points of order $\ell$. There is an isogeny $\phi:E\to E'$ of degree $\ell$ such that $\ker\phi = G$.
@@ -511,7 +509,7 @@ dépendance exponentielle en $\log(p)$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{An $\ell$-adic Couveignes algorithm (special case)}
 
-\section{Algorithme de Couveignes}
+\section{Algorithme de Couveignes[96]}
 
 \begin{frame}
 \frametitle{Classification des courbes elliptiques sur un corps fini}
@@ -519,17 +517,18 @@ dépendance exponentielle en $\log(p)$.
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ de caractéristique 
 $p$. Soit les conditions suivantes équivalentes sont vérifiées:
 \begin{enumerate}
-\item $E$ est supersingulière,
-\item $E[p]=\{0_E\}$,
-\item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
-\end{enumerate}
-\pause
-Soit les conditions suivantes équivalentes sont vérifiées:
-\begin{enumerate}
-\item $E$ est \emph{ordinaire},
 \item $E[p]=\mathbb{Z}/p\mathbb{Z}$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombres quadratique imaginaire noté $K$.
 \end{enumerate}
+$E$ est alors dite \emph{ordinaire}.
+
+Soit les conditions suivantes équivalentes sont vérifiées:
+\begin{enumerate}
+\item $E[p]=\{0_E\}$,
+\item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
+\end{enumerate}
+$E$ est alors dite supersingulière.
+
 \end{prop}
 
 \end{frame}
@@ -655,7 +654,7 @@ $\Rightarrow O(r^2)$ possibilités.
 %\end{center}
 
 \end{frame}
-
+\section{Graphes d'isogénies}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Endomorphismes d'un courbe elliptique}
@@ -828,8 +827,8 @@ $
 \begin{lem}[Kohel 1996]
 Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi :E \rightarrow E'$ une $\ell$-isogénie. Alors $\psi$ est dite
 \begin{enumerate}
-\item  \textbf<2>{descendante} si $\ell=[\mathcal{O} : \mathcal{O}']$,
-\item \textbf<3>{ascendante} si $\ell=[\mathcal{O}':\mathcal{O}]$,
+\item  \textbf<2>{descendante} si $[\mathcal{O} : \mathcal{O}']=\ell$,
+\item \textbf<3>{ascendante} si $[\mathcal{O}':\mathcal{O}]=\ell$,
 \item \textbf<4>{horizontale} si \\
  $\mathcal{O}=\mathcal{O}'$.
 \end{enumerate}
@@ -883,9 +882,9 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 		\coordinate (A) at (0,0);
 		\coordinate (C) at (240:4.2);
 		\coordinate (D) at (300:4.2);
-		\draw (A) node[fill=white]{$\bullet$};
-		\draw (C) node[fill=white]{$\bullet$};
-		\draw (D) node[fill=white]{$\bullet$};
+		\draw (A) node {$\bullet$};
+		\draw (C) node {$\bullet$};
+		\draw (D) node {$\bullet$};
 		\draw (A)--(C);
 		\draw (A)--(D);
 		\end{scope}
@@ -905,22 +904,22 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 			\begin{scope}[xshift=-3cm]
 			\coordinate (A) at (0,0);
 			\coordinate (C) at (270:4.2);
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node {$\bullet$};
+			\draw (C) node {$\bullet$};
 			\draw (A)--(C);
 			\end{scope}
 			\begin{scope}[xshift=3cm]
 			\coordinate (A) at (0,0);
 			\coordinate (C) at (270:4.2);
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node {$\bullet$};
+			\draw (C) node {$\bullet$};
 			\draw (A)--(C);
 			\end{scope}
 			\begin{scope}[yshift=-1.2cm]
 			\coordinate (A) at (0,0);
 			\coordinate (C) at (270:4.2);
-			\draw (A) node[fill=white]{$\bullet$};
-			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node {$\bullet$};
+			\draw (C) node {$\bullet$};
 			\draw (A)--(C);
 			\end{scope}
 		\end{scope}
@@ -982,7 +981,7 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Algorithme de Couveignes $\ell$-adique (cas Elkies)}
+\section{Algorithme de Couveignes[96] $\ell$-adique}
 
 
 
@@ -1652,7 +1651,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
   }
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\section{Algorithme de Couveignes $\ell$-adique}
+%\section{Algorithme de Couveignes $\ell$-adique}
 
 \begin{frame}
 %\section{Atkin Case}
@@ -2266,7 +2265,7 @@ Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $
 
 \begin{frame}
 \frametitle{Expérimentations}
-L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\ell=2$, le code est disponible sur GitHub: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}
+L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\ell=2$, le code ($XXXXX$ lignes) est disponible sur GitHub: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.8]{Images/graphe-101-149-269-C2.pdf}
