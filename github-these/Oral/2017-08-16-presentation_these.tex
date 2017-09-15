@@ -1714,7 +1714,7 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Titre abandonnée}
+\frametitle{Détermination du second vecteur de la base à l'aide du Frobenius}
 \begin{nota}
 La notation $\pi(P,Q)$ désigne l'action du Frobenius dans une base $\langle P,Q \rangle = E[\ell^k]$
 \end{nota}
@@ -1726,8 +1726,8 @@ La notation $\pi(P,Q)$ désigne l'action du Frobenius dans une base $\langle P,Q
 \]
 
 \begin{prop}
-Soit $\ell$ un nombre premier de Atkin soit $P,Q,R$ trois points de $E$ située 
-sur un volcan de hauteur $0$ tels que $\langle P,Q \rangle = \langle P,R 
+Soit $\ell$ un nombre premier de Atkin soient $P,Q,R$ trois points de $E$ 
+située sur un volcan de hauteur $0$ tels que $\langle P,Q \rangle = \langle P,R 
 \rangle$ alors $Q=R \Leftrightarrow \pi(P,Q)=\pi(P,R)$. 
 \end{prop}
 \end{frame}
@@ -1740,7 +1740,7 @@ sur un volcan de hauteur $0$ tels que $\langle P,Q \rangle = \langle P,R
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $R=Q$ \\
+\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $R=Q$ 
 avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 
 \begin{enumerate}
@@ -1776,10 +1776,14 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 \REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
-
+\only<1>{
+\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $\color{red}[\ell^h]\color{black}R=\color{red}[\ell^h]\color{black}Q$ \\
+avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
+}
+\only<2>{
 \bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $[\ell^h]R=[\ell^h]Q$ \\
 avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
-
+}
 \begin{enumerate}
 \item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
 \medskip
@@ -1804,7 +1808,7 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 %    $P\mapsto S'$ et $Q\mapsto U'$;
 %\hfill {$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 \item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
-   $L$ qui envoie $P\mapsto S'$ et $Q\mapsto R'$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+   $L$ qui envoie $P\mapsto S'$ et $Q\mapsto R'$; \hfill $\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$
   \end{enumerate}
 	
 \end{enumerate}
@@ -1818,8 +1822,11 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 
 \begin{thm}
 Soient deux courbes elliptiques $E,E'$, un entier $r$ tel que $E$ et $E'$ soient 
-$r$-isogènes, alors peut calculer la $r$-isogénie en temps quasiquadratique en 
-$r$ et polynomial en un paramètre $\ell$ borné par $O(\log(q))$.
+$r$-isogènes, alors la $r$-isogénie peut être calculée avec une complexité de
+\[
+\tilde{O}(r^2 \ell^{O(1)}) \text{ opérations sur }\mathbb{F}_q
+\]
+avec un paramètre $\ell$ borné par $O(\log(q))$.
 \end{thm}
 
 \end{frame}
@@ -1878,10 +1885,14 @@ $\mathsf{F}_{i-1}$ de degré $\ell$.
 
   \bluebox{Calcul dans une tour d'extension de corps finis}{
   \begin{itemize}
-%   \item We work on $\mathbb{F}_q$ such that $E[\ell] \subset E(\mathbb{F}_q)$,
-	\item Les points de torsion ne sont pas en général définis dans $\mathbb{F}_q$.	
+%	\item Les points de torsion ne sont pas en général définis dans $\mathbb{F}_q$.	
 	\item Nous travaillons dans des extensions $\ell$-adiques de $\mathbb F_q$
-        en généralisant les constructions de [De~Feo,~Doliskani, Schost '13], [Doliskani,~Schost '15] et où en particulier nous avons un calcul rapide du Frobenius.
+        en généralisant les constructions de [De~Feo,~Doliskani, Schost '13], [Doliskani,~Schost '15] et où en particulier nous avons
+		\begin{itemize}  
+		 \item un calcul rapide des points d'ordre $\ell^k$,       
+         \item un calcul rapide du Frobenius,
+         \item un calcul rapide du polynôme d'interpolation
+         \end{itemize}
 	\item Il est alors nécessaire d'implanter un algorithme qui prenne en compte ces constructions de tour d'extensions de corps finis.
   \end{itemize}
  	
@@ -1918,7 +1929,7 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \begin{itemize}
 \item Comparer notre implantation à d'autres algorithmes (en part. Lercier-Sirvent dans le contexte S.E.A.).
 % \item Directly generalize to curves not on the crater.
-\item Estimer le coût de calcul de l'anneau des endomorphismes en modifiant l'algorithme de Kohel  avec l'étude de l'action de l'endomorphisme du Frobenius et l'implanter.
+\item Estimer le coût de calcul de l'anneau des endomorphismes en modifiant l'algorithme de Kohel'96  avec l'étude de l'action de l'endomorphisme du Frobenius et l'implanter.
 \item Étudier l'utilité de notre technique dans d'autres contextes: comptage de points, polynômes de Hilbert, polynômes modulaires.
 %Analyze our techniques to navigate the volcano in other
 %  settings: point counting, Hilbert
