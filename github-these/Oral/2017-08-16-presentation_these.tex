@@ -601,8 +601,8 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{enumerate}
 \item Choix du plus petit entier $k$ tel que $p^{k}>4r$.
 \item Calcul des générateurs $P$ de
-  $E[p^k]$ et $P'$ de $E'[p^k]$; \hfill $\color{blue!50!gray}{O()}$
-\item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$; \hfill $\color{blue!50!gray}{O()}$
+  $E[p^k]$ et $P'$ de $E'[p^k]$; \hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
+\item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$; \hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
 \item Pour tout $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $\color{blue!50!gray}{O(r)}$
   \begin{enumerate}
   \item Calcul du polynôme d'interpolation 
@@ -617,7 +617,7 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 	$(r, r-1)$  à l'aide d'un algorithme de reconstruction rationnelle; 
 	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-   l'algorithme.
+   l'algorithme. \hfill $\color{blue!50!gray}{\tilde{O}(r)}$
   \end{enumerate}
 \end{enumerate}
 %Complexity polynomial in $p$. 
@@ -1137,7 +1137,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
 \medskip
 \item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
- et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
+ et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
 \item Pour toute matrice \textbf{diagonale inversible}
@@ -1153,7 +1153,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
 \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-   l'algorithme.
+   l'algorithme. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -1617,7 +1617,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$, avec $h<k$.
 \medskip
 \item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
- et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogenies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}  
+ et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogénies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}  
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$; Rajouter le coût de cela...
 \medskip
 \item Pour toute matrice \textbf{diagonale inversible}
@@ -1746,15 +1746,15 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 \begin{enumerate}
 \item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
 \medskip
-\item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$
+\item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$; \hfill\only<2>{$\color{blue!50!gray}\tilde{O}(r \ell^{O(1)})$}
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
-\item Calcul de la matrice $\pi(P,Q)$;
+\item Calcul de la matrice $\pi(P,Q)$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r}\ell^{O(1)})}$}
 \medskip
 \item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
-  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$\color{blue!50!gray}{O(r \ell^{O(1)})}$}
+  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
   \medskip
 
 %  \item Calcul du polynôme d'interpolation 
@@ -1787,15 +1787,15 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 \begin{enumerate}
 \item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
 \medskip
-\item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$
+\item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$; \hfill{$\color{blue!50!gray} \tilde{O}(r \ell^{O(1)})$}
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
-\item Calcul de la matrice $\pi(P,Q)$;
+\item Calcul de la matrice $\pi(P,Q)$; \hfill {$\color{blue!50!gray} \tilde{O}(\sqrt{r} \ell^{O(1))})$}
 \medskip
 \item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill {$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
-  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill {$\color{blue!50!gray}{O(r \ell^{O(1)})}$}
+  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill {$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
   \medskip
   \only<1>{
   \item $\color{red}{\text{Pour tout point } U' \in E' \text{ tel que } [\ell^h]R'=[\ell^h]U'}$}
@@ -1905,7 +1905,7 @@ $\mathsf{F}_{i-1}$ de degré $\ell$.
 
 \begin{frame}
 \frametitle{Expérimentations}
-L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\ell=2$, le code ($XXXXX$ lignes) est disponible sur GitHub: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}
+L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\ell=2$, le code ($2200$ lignes) est disponible sur GitHub: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.8]{Images/graphe-101-149-269-C2.pdf}
