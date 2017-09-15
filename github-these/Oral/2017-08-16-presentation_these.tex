@@ -239,7 +239,6 @@ avec $A,B$ des éléments de $\mathbb{K}$. $0_E$ est appelé le \emph{point à l
 \begin{frame}
 \frametitle{Loi de groupe sur une courbe elliptique}
 
-
 \begin{figure}
 \begin{center}
 
@@ -385,7 +384,7 @@ et $m>0$
 
 \item Deux courbes $E$ et $E'$ sont dites \emph{$\ell$-isogènes} si il existe une $\ell$-isogénie qui les relie.
 
-\item Dans cet exposé: seulement des isogénies \emph{rationnelles} (i.e. invariantes sous l'action de groupe de Galois).
+%\item Dans cet exposé: seulement des isogénies \emph{rationnelles} (i.e. invariantes sous l'action de groupe de Galois).
 
 %\item We say that $E$ and $E'$ are isogenous if there exist an isogeny $\phi$ between the two curves.
 
@@ -474,43 +473,36 @@ La connaissance du noyau de l'isogénie $\phi$ permet d'expliciter celle-ci
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Précédents travaux}
-\bluebox{Problème du calcul de l'isogénie explicite}
-{
- Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$. 
- \`A partir de $E$, $E'$  deux courbes elliptiques $r$-isogènes définies sur 
- $\mathbb{F}_q$, calculer la $r$-isogénie $\phi:E\to E'$.
-}
-\medskip 
-%\vspace{-1mm}
-\pause
-\begin{itemize}
-\item{} [Elkies~'92/'98],  %[Charlap, Colay, Robbins '91], 
-[Bostan,~Morain,~Salvy,~Schost~'08] fonctionne en $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$, seulement pour $r < 2p$. Spécifique au contexte SEA.
-\item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne pour tout $p$ à l'aide de $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$. Spécifique au contexte SEA.
-\pause
-\item{} [Lercier~'97] fonctionne seulement pour $p=2$.
-\pause
-\item{} [Couveignes~'94] pour tout $p$ à l'aide de $\tilde{O}(r^3p^{O(1)})$ 
-opérations.
-\item{} [Couveignes~'96], [De Feo~'10] pour tout $p$ à l'aide de  $\tilde{O}
-(r^2p^{O(1)})$ opérations.
-\end{itemize}
-\begin{itemize}
+\frametitle{Endomorphismes d'un courbe elliptique}
+\begin{defi}[Endomorphisme]
+Un endomorphisme d'une courbe elliptique $E$ est une isogénie $\psi:E \rightarrow E$. L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$.
+\end{defi}
 
-%\item[$\rightarrow$] we focus on the medium characteristic case ($n\gg p/\log(p)$),
-\pause
-\item[$\rightarrow$] Nous voulons modifier l'algorithme de Couveignes pour 
-obtenir un algorithme avec une complexité de  $\tilde{O}(r^2)$ mais sans 
-dépendance exponentielle en $\log(p)$.
-\end{itemize}
+\begin{prop}
+$\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
+\end{prop}
+\textbf{Exemple:} La multiplication scalaire est un endomorphisme.
+\end{frame}
+
+\begin{frame}
+\frametitle{Frobenius}
+\begin{defi}[L'endomorphisme de Frobenius]
+$E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Le morphisme
+\[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Il
+satisfait une équation quadratique \[ \pi^2 - t_\pi \pi + q = 0.\]
+\end{defi}
+
+Nous travaillons seulement avec des isogénies rationnelles $\psi:E \to E'$, i.e.
+\[
+\pi_{E'} \circ \psi =\psi \circ \pi_{E}.
+ \]
+ 
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{An $\ell$-adic Couveignes algorithm (special case)}
-
-\section{Algorithme de Couveignes[96]}
-
 \begin{frame}
 \frametitle{Classification des courbes elliptiques sur un corps fini}
 \begin{prop}
@@ -534,7 +526,44 @@ $E$ est alors dite supersingulière.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Problème du calcul de l'isogénie explicite}
+\bluebox{Problème du calcul de l'isogénie explicite}
+{
+ Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$. 
+ \`A partir de $E$, $E'$  deux courbes elliptiques $r$-isogènes définies sur 
+ $\mathbb{F}_q$, calculer la $r$-isogénie $\phi:E\to E'$.
+}
+\medskip 
+%\vspace{-1mm}
 
+\end{frame}
+\begin{frame}
+\frametitle{Précédents travaux}
+\begin{itemize}
+\item{} [Elkies~'92/'98],  %[Charlap, Colay, Robbins '91], 
+[Bostan,~Morain,~Salvy,~Schost~'08] fonctionne en $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$, seulement pour $r < 2p$. Spécifique au contexte SEA.
+\item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne pour tout $p$ à l'aide de $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$. Spécifique au contexte SEA.
+\pause
+\item{} [Lercier~'97] fonctionne seulement pour $p=2$.
+\pause
+\item{} [Couveignes~'94] pour tout $p$ à l'aide de $\tilde{O}(r^3p^{O(1)})$ 
+opérations.
+\item{} [Couveignes~'96], [De Feo~'10] pour tout $p$ à l'aide de  $\tilde{O}
+(r^2p^{O(1)})$ opérations.
+\end{itemize}
+\begin{itemize}
+
+%\item[$\rightarrow$] we focus on the medium characteristic case ($n\gg p/\log(p)$),
+\pause
+\item[$\rightarrow$] Nous voulons modifier l'algorithme de Couveignes pour 
+obtenir un algorithme avec une complexité de  $\tilde{O}(r^2)$ mais sans 
+dépendance exponentielle en $\log(p)$.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algorithme de Couveignes[96]}
 \begin{frame}
 
 Pour les courbes elliptiques \emph{ordinaires}
@@ -549,7 +578,7 @@ E[p^k]&\simeq\mathbb{Z}/p^k\mathbb{Z}
 Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{itemize}
 \item Calcul de générateurs $P,P'$ de $E[p^k],E'[p^k]$;
-\item Interpolation de $\phi$, en supposant que l'on a la correspondance $[u]P\mapsto [u]P'$ pour tout $u \in \mathbb{Z}/p^k\mathbb{Z}$;
+\item Interpolation de $\phi$, en supposant que l'on a la correspondance $P\mapsto P'$ pour tout $u \in \mathbb{Z}/p^k\mathbb{Z}$;
 \item Vérification si l'interpolation définit une isogénie.\\
     Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$ et on recommence à nouveau.
 \end{itemize}
@@ -570,8 +599,8 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{enumerate}
 \item Choix du plus petit entier $k$ tel que $p^{k}>4r$.
 \item Calcul des générateurs $P$ de
-  $E[p^k]$ et $P'$ de $E'[p^k]$;
-\item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$;
+  $E[p^k]$ et $P'$ de $E'[p^k]$; \hfill $\color{blue!50!gray}{O()}$
+\item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$; \hfill $\color{blue!50!gray}{O()}$
 \item Pour tout $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $\color{blue!50!gray}{O(r)}$
   \begin{enumerate}
   \item Calcul du polynôme d'interpolation 
@@ -655,37 +684,10 @@ $\Rightarrow O(r^2)$ possibilités.
 
 \end{frame}
 \section{Graphes d'isogénies}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Endomorphismes d'un courbe elliptique}
-\begin{defi}[Endomorphisme]
-Un endomorphisme d'une courbe elliptique $E$ est une isogénie $\psi:E \rightarrow E$. L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$.
-\end{defi}
-
-\begin{prop}
-$\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
-\end{prop}
-\textbf{Rappel:} L'anneau d'endomorphisme d'une courbe elliptique ordinaire est isomorphe à un ordre dans un corps de nombre quadratique imaginaire.
-\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-\frametitle{Frobenius}
-\begin{defi}[L'endomorphisme de Frobenius]
-$E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Le morphisme
-\[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Il
-satisfait une équation quadratique \[ \pi^2 - t_\pi \pi + q = 0.\]
-\end{defi}
 
-Nous travaillons seulement avec des isogénies rationnelles $\psi:E \to E'$, i.e.
-\[
-\pi_{E'} \circ \psi =\psi \circ \pi_{E}.
- \]
- 
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
 %%\section{Computation of endomorphism rings}
 %\frametitle{Computation of endomorphism rings}
@@ -723,22 +725,40 @@ En particulier: $d_{\pi}=g^2d_K$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Le cas général}
-\only<2-4>{
-La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'ordre associé à isomorphisme près à l'anneau des endomorphismes de $E$ (resp. $E'$)}
+\frametitle{Exemple illustratif de graphe d'isogénies}
+%\only<2-4>{
+%La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'ordre associé à isomorphisme près à l'anneau des endomorphismes de $E$ (resp. $E'$)}
 \vspace{-4mm}
 \begin{columns}
+\only<2-4>{
+\begin{column}{4cm}
+
+\begin{lem}[Kohel 1996]
+Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi :E \rightarrow E'$ une $\ell$-isogénie. Alors $\psi$ est dite
+\begin{enumerate}
+\item  \textbf<2>{descendante} si $[\mathcal{O} : \mathcal{O}']=\ell$,
+\item \textbf<3>{ascendante} si $[\mathcal{O}':\mathcal{O}]=\ell$,
+\item \textbf<4>{horizontale} si \\
+ $\mathcal{O}=\mathcal{O}'$.
+\end{enumerate}
+\end{lem}
+%\begin{defi}
+%The index $f=[\mathcal{O}_K : \mathcal{O}]$ is called the conductor of $\mathcal{O}$.
+%\end{defi}
+\end{column}}
+
+
 \begin{column}{6cm}
 %\includegraphics[scale=.66]{Images/ordres-l.eps}
 \begin{figure}
 \begin{center}
 
-\begin{tikzpicture}[scale=0.545]
-\coordinate (A) at (0,1.5);
-\coordinate (AB) at (0,2);
-\coordinate (B) at (0,5);
-\coordinate (C) at (0,10);
-\draw (AB) node[above,left,text width=2cm]{
+\begin{tikzpicture}[scale=0.545, xshift=-0.5cm]
+\coordinate (A) at (0,-7.5);
+\coordinate (AB) at (0,-7.00);
+\coordinate (B) at (0,-3.75);
+\coordinate (C) at (0,0);
+\draw (AB) node[above,left,text width=1.7cm]{
 $
 \mathbb{Z}[\pi]=\mathbb{Z}~+~\ell^2~\mathcal{O}_K 
 $
@@ -748,9 +768,8 @@ $
 \draw (C) node[left]{$\mathcal{O}_K$} node{$\bullet$};
 \draw (A)--(B)node[midway,left] {$\ell$};
 \draw (B)--(C) node[midway,left] {$\ell$};
-\only<2-4>{
-\begin{scope}[yshift=10cm]
-	\begin{scope}[xshift=4.3cm]
+\only<1-4>{
+	\begin{scope}[xshift=4.4cm]
 		\node (A) at (-3,0) {$\bullet$};
 		\node (B) at (3,0) {$\bullet$};
 		\node (C) at (270:1.2) {$\bullet$};
@@ -759,7 +778,7 @@ $
 		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
 		%\draw[-] (B.center) to[bend left=25] (C.center);
 		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		\only<2-3>{
+		\only<1-3>{
 		\draw[-] (A.center) to[bend right=40] (B.center);
 		}
 		\only<4-4>{
@@ -768,7 +787,7 @@ $
 		}
 			\begin{scope}[xshift=-3cm]
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
+			\coordinate (C) at (270:3.75);
 			\coordinate (CA) at (265:7.5);
 			\coordinate (CB) at (275:7.5);
 			\draw (C)--(CA);
@@ -781,7 +800,7 @@ $
 			\end{scope}
 			\begin{scope}[xshift=3cm]
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
+			\coordinate (C) at (270:3.75);
 			\coordinate (CA) at (265:7.5);
 			\coordinate (CB) at (275:7.5);
 			\draw (C)--(CA);
@@ -794,7 +813,7 @@ $
 			\end{scope}
 			\begin{scope}[yshift=-1.2cm]
 			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
+			\coordinate (C) at (270:3.75);
 			\coordinate (CA) at (265:7.5);
 			\coordinate (CB) at (275:7.5);
 			\draw (C)--(CA);
@@ -812,7 +831,6 @@ $
             }
 			\end{scope}
 	\end{scope}
-\end{scope}
 }
 %faire des fleches courbees avec les indices \ell et \ell^2
 
@@ -821,21 +839,6 @@ $
 \end{center}		
 \end{figure}
 
-\end{column}
-\begin{column}{4cm}
-\only<2-4>{
-\begin{lem}[Kohel 1996]
-Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi :E \rightarrow E'$ une $\ell$-isogénie. Alors $\psi$ est dite
-\begin{enumerate}
-\item  \textbf<2>{descendante} si $[\mathcal{O} : \mathcal{O}']=\ell$,
-\item \textbf<3>{ascendante} si $[\mathcal{O}':\mathcal{O}]=\ell$,
-\item \textbf<4>{horizontale} si \\
- $\mathcal{O}=\mathcal{O}'$.
-\end{enumerate}
-\end{lem}}
-%\begin{defi}
-%The index $f=[\mathcal{O}_K : \mathcal{O}]$ is called the conductor of $\mathcal{O}$.
-%\end{defi}
 \end{column}
 
 \end{columns}
@@ -1132,7 +1135,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
 \medskip
 \item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
- et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $
+ et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
 \item Pour toute matrice \textbf{diagonale inversible}
@@ -1589,7 +1592,7 @@ On procède étape par étape à l'aide de marche sur le cratère selon la direc
 \end{tikzpicture}
 \end{center}
 \vspace{-4mm}
-Des algorithmes pour déterminer des isogénies horizontales ont déjà été proposés: [Fouquet, Morain, '02], [Ionica,Joux, '10].
+D'autres algorithmes pour déterminer des isogénies horizontales ont déjà été proposés: [Fouquet, Morain, '02], [Ionica,Joux, '10].
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1612,7 +1615,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$, avec $h<k$.
 \medskip
 \item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
- et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogenies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$.  
+ et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogenies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}  
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$; Rajouter le coût de cela...
 \medskip
 \item Pour toute matrice \textbf{diagonale inversible}
@@ -1621,15 +1624,18 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
   \begin{enumerate}
 
-  \item Calcul du polynôme d'interpolation 
-    $L$ qui envoie\\
-    $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
-\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
-	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
-	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
-  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-   l'algorithme.
+%  \item Calcul du polynôme d'interpolation 
+%    $L$ qui envoie\\
+%    $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
+%\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+%	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
+%	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
+%\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
+%  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
+%   l'algorithme.
+   
+   \item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
+   $L$ qui envoie $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
   \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -1706,172 +1712,9 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Un algorithme de Couveignes $\ell$-adique dans le cas Atkin}
-%\begin{figure}
-\begin{center}
-\begin{tikzpicture}[yshift=-25cm,scale=0.25]
-\begin{scope}[yshift=0cm,xshift=0cm]
-		\coordinate (D) at (0,0);
-		\coordinate (E) at (-6,-5);
-		\coordinate (F) at (6,-5);
-		\coordinate (G) at (-4,-11);
-		\coordinate (H) at (-8.4,-11);
-		\coordinate (I) at (4,-11);
-		\coordinate (J) at (8,-11);
-		\coordinate (K) at (0,-5);
-		\coordinate (L) at (-1,-11);
-		\coordinate (M) at (1,-11);
-		\only<1>{
-		\draw [gray!25] (D) -- (E);
-		\draw [gray!25] (K) -- (L);
-		\draw [line width=1.5pt,blue!25](D) -- (F);
-		\draw [line width=1.5pt,red!25] (D) -- (K);
-		\draw [line width=1.5pt,red!25] (K) -- (M);
-		\draw [gray!25] (E) -- (H);
-		\draw [gray!25] (E) -- (G);
-		\draw [line width=1.5pt,blue!25](F) -- (I);
-		\draw [gray!25] (F) -- (J);
-		\draw (K) node[fill=white]{$\color{gray!25}{ \bullet}$};
-		\draw (E) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
-\\1  & 1 \end{smallmatrix} \right)$};
-		\draw (F) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
-\\1  & 0 \end{smallmatrix} \right) $};
-		\draw (G) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
-\\3  & 3 \end{smallmatrix} \right) $};
-		\draw (H) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}2 & 1 
-\\1  & 1 \end{smallmatrix} \right) $};
-		\draw (L) node[fill=white]{$\color{gray!25}{ \bullet }$};
-		\draw (M) node[fill=white]{$\color{gray!25}{ \bullet }$};
-		\draw (I) node[fill=white]{$ \color{blue!25} \left( \begin{smallmatrix}3 & 1 
-\\3 & 0 \end{smallmatrix} \right) $};
-		\draw (J) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
-\\1  & 2 \end{smallmatrix} \right) $};
-		}
-		\only<2>{
-		\draw (D) -- (E);
-		\draw (K) -- (L);
-		\draw [line width=1.5pt,blue](D) -- (F);
-		\draw [line width=1.5pt,red] (D) -- (K);
-		\draw [line width=1.5pt,red] (K) -- (M);
-		\draw (E) -- (H);
-		\draw (E) -- (G);
-		\draw [line width=1.5pt,blue](F) -- (I);
-		\draw (F) -- (J);
-		\draw (K) node[fill=white]{$\bullet$};
-		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
-\\1  & 1 \end{smallmatrix} \right)$};
-		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
-\\1  & 0 \end{smallmatrix} \right) $};
-		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
-\\3  & 3 \end{smallmatrix} \right) $};
-		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}2 & 1 
-\\1  & 1 \end{smallmatrix} \right) $};
-		\draw (L) node[fill=white]{$\bullet $};
-		\draw (M) node[fill=white]{$\bullet $};
-		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}3 & 1 
-\\3 & 0 \end{smallmatrix} \right) $};
-		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
-\\1  & 2 \end{smallmatrix} \right) $};}
-		\draw (D) node[fill=white]{$E$};
-		%\coordinate (A) at (12,-5);
-		%\coordinate (B) at (12,-11);
-		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
-		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
-\end{scope}
-\begin{scope}[yshift=0cm,xshift=20.3cm]
-		\coordinate (A) at (33,-5);
-		\coordinate (B) at (33,-11);
-		\draw (A) node[fill=white]{$ \bmod \ell^{1}$};
-		\draw (B) node[fill=white]{$ \bmod \ell^{2}$};
-		\coordinate (D) at (0,0);
-		\coordinate (E) at (-6,-5);
-		\coordinate (F) at (6,-5);
-		\coordinate (G) at (-4,-11);
-		\coordinate (H) at (-8.4,-11);
-		\coordinate (I) at (4,-11);
-		\coordinate (J) at (8,-11);
-		\coordinate (K) at (0,-5);
-		\coordinate (L) at (-1,-11);
-		\coordinate (M) at (1,-11);
-		\only<1>{
-		\draw [gray!25] (D) -- (E);
-		\draw [gray!25] (K) -- (L);
-		\draw [line width=1.5pt,blue!25](D) -- (F);
-		\draw [line width=1.5pt,red!25] (D) -- (K);
-		\draw [line width=1.5pt,red!25] (K) -- (M);
-		\draw [gray!25] (E) -- (H);
-		\draw [gray!25] (E) -- (G);
-		\draw [line width=1.5pt,blue!25](F) -- (I);
-		\draw [gray!25] (F) -- (J);
-		\draw (K) node[fill=white]{$\color{gray!25}{ \bullet}$};
-		\draw (E) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
-\\1  & 1 \end{smallmatrix} \right)$};
-		\draw (F) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
-\\1  & 0 \end{smallmatrix} \right) $};
-		\draw (G) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
-\\3  & 3 \end{smallmatrix} \right) $};
-		\draw (H) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}2 & 1 
-\\1  & 1 \end{smallmatrix} \right) $};
-		\draw (L) node[fill=white]{$\color{gray!25}{ \bullet }$};
-		\draw (M) node[fill=white]{$\color{gray!25}{ \bullet }$};
-		\draw (I) node[fill=white]{$ \color{blue!25} \left( \begin{smallmatrix}3 & 1 
-\\3 & 0 \end{smallmatrix} \right) $};
-		\draw (J) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
-\\1  & 2 \end{smallmatrix} \right) $};
-		}
-		\only<2>{
-		\draw (D) -- (E);
-		\draw (K) -- (L);
-		\draw [line width=1.5pt,blue](D) -- (F);
-		\draw [line width=1.5pt,red] (D) -- (K);
-		\draw [line width=1.5pt,red] (K) -- (M);
-		\draw (E) -- (H);
-		\draw (E) -- (G);
-		\draw [line width=1.5pt,blue](F) -- (I);
-		\draw (F) -- (J);
-		\draw (K) node[fill=white]{$\bullet$};
-		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
-\\1  & 1 \end{smallmatrix} \right)$};
-		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
-\\1  & 0 \end{smallmatrix} \right) $};
-		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
-\\3  & 3 \end{smallmatrix} \right) $};
-		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}2 & 1 
-\\1  & 1 \end{smallmatrix} \right) $};
-		\draw (L) node[fill=white]{$\bullet $};
-		\draw (M) node[fill=white]{$\bullet $};
-		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}3 & 1 
-\\3 & 0 \end{smallmatrix} \right) $};
-		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
-\\1  & 2 \end{smallmatrix} \right) $};}
-		\draw (D) node[fill=white]{$E$};
-		%\coordinate (A) at (12,-5);
-		%\coordinate (B) at (12,-11);
-		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
-		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
-		\draw (D) node[fill=white]{$E'$};
-		\coordinate (A) at (-20.1,0.5);
-		\coordinate (B) at (0,0.5);
-		%\draw [->] (A) --(B);
-		%\draw[bend right =20] (A)--(B);
-		\draw[dashed,thick,-latex,shorten >=5pt] (A) to[bend left=20] node[below left] {$\phi$} (B);
-\end{scope}
-\end{tikzpicture}
-\end{center}
-%\end{figure}
-%Once the image by $\phi$ of one ($\color{red} P$) of the two bases point of $E[\ell^{h+i}]$ is 
-%determined, then the matrix $\pi(P,Q)$ that represents the Frobenius determines \emph{uniquely} a \emph{generator} of the
-%descending $\ell^{i}$-isogenies generated by the second basis point ($\color{blue} Q$). 
-\only<2>{Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la 
-base $\langle P, Q \rangle$ de $E[\ell^{2}]$ a été déterminée alors la forme de
-la matrice du Frobenius dans une telle base notée $\pi(P,Q)$ détermine de façon
-unique le générateur de la $\ell^2$-isogénie engendrée par le second point 
-$(Q)$ de la base.}
-% les $\ell$-isogénies descendantes engendrées par le second point de la base.
+Slide lemme du cas Atkin $h=0$.
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 
 \bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin $h = 0$)}{
@@ -1896,16 +1739,12 @@ $(Q)$ de la base.}
   \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$\color{blue!50!gray}{O(r \ell^{O(1)})}$}
   \medskip
 
-  \item Calcul du polynôme d'interpolation 
-    $L$ qui envoie\\
-    $P\mapsto S'$ et $Q\mapsto R'$;
-\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
-	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
-	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
-  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-   l'algorithme.
-\end{enumerate}
+%  \item Calcul du polynôme d'interpolation 
+%    $L$ qui envoie\\
+%    $P\mapsto S'$ et $Q\mapsto R'$;
+\item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
+   $L$ qui envoie $P\mapsto S'$ et $Q\mapsto R'$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+   \end{enumerate}
 \end{enumerate}
 \end{frame}
 
@@ -1942,15 +1781,12 @@ avec $\langle P,R \rangle = \langle P,R' \rangle = E[\ell^{h+i}]$ avec $i>0$.}
   \item Pour tout point $U' \in E'$ tel que $[\ell^h]R'=[\ell^h]U'$ \hfill {$\color{blue!50!gray}{O(\ell^h)}$}}
   \begin{enumerate}
 
-  \item Calcul du polynôme d'interpolation 
-    $L$ qui envoie\\
-    $P\mapsto S'$ et $Q\mapsto U'$;
-\hfill {$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
-	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
-	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill {$\color{blue!50!gray}{\tilde{O}(r)}$}
-  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-   l'algorithme.
+%  \item Calcul du polynôme d'interpolation 
+%    $L$ qui envoie\\
+%    $P\mapsto S'$ et $Q\mapsto U'$;
+%\hfill {$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+\item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
+   $L$ qui envoie $P\mapsto S'$ et $Q\mapsto R'$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
   \end{enumerate}
 	
 \end{enumerate}
@@ -1962,247 +1798,16 @@ avec $\langle P,R \rangle = \langle P,R' \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 \begin{frame}
 \frametitle{Algorithme de Couveignes $\ell$-adique}
 
-Nous avons vu que nous sommes capables de proposer un algorithme de Couveignes $\ell$-adique quasi quadratique sans dépendance polynomiale en la caractéristique dès lors que:
-\begin{itemize}
-\item $\ell$ est un nombre premier de Elkies et $h<k$, 
-\item $\ell$ est un nombre premier de Atkin et $h=0$.
-\end{itemize}
-%On peut trouver un tel premier dans un intervalle $[1,O(\log(q))]$.
-Un tel premier borné par $O(\log(q))$ peut être trouvé.
+\begin{thm}
+Soient deux courbes elliptiques $E,E'$, un entier $r$ tel que $E$ et $E'$ soient 
+$r$-isogènes, alors peut calculer la $r$-isogénie en temps quasiquadratique en 
+$r$ et polynomial en un paramètre $\ell$ borné par $O(\log(q))$.
+\end{thm}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implantation}
-
-\begin{frame}
-\frametitle{Volcan et tour d'extensions}
-
-\begin{figure}
-\begin{center}
-
-\begin{tikzpicture}[scale=0.55]
-\coordinate (A) at (-2,1.5);	
-\coordinate (B) at (-2,5);
-\coordinate (C) at (-2,10);
-\coordinate (D) at (-2,7.5);
-\draw [gray!30] (D)--(C);
-\draw [gray!30] (C)--(B);
-\draw [gray!30] (A)--(B);
-\only<2->{
-\draw (D)--(C);}
-\only<4>{
-\draw (A)--(B);}
-\only<3->{
-\draw (B)--(D);}
-\draw (C) node[left]{$\mathbb{F}_q$} node{$\bullet$};
-\draw (A) node[left,gray!30]{$\mathsf{F}_3$} node[gray!30]{$\bullet$};
-\draw (B) node[left,gray!30]{$\mathsf{F}_2$} node[gray!30]{$\bullet$};
-\draw (D) node[left,gray!30]{$\mathsf{F}_1$} node[gray!30]{$\bullet$};
-\only<2->{
-\draw (D) node[left]{$\mathsf{F}_1$} node{$\bullet$};}
-\only<3->{
-\draw (B) node[left]{$\mathsf{F}_2$} node{$\bullet$};}
-\only<4->{
-\draw (A) node[left]{$\mathsf{F}_3$} node{$\bullet$};}
-
-%\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
-%\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
-\begin{scope}[yshift=10cm,xshift=6cm]
-		\node (A) at (-4,0) {$  \bullet $};
-		\node (B) at (4,0) {$   \bullet$};
-		\node (C) at (270:1.2) {$ \bullet \color{black}$};
-		\node (D) at (90:1.5) {};
-		%\draw[-] (A.center) to[bend right=25] (C.center);
-		\draw[-] (A.center) to[bend left=40] (B.center);
-		%\draw[-] (B.center) to[bend left=25] (C.center);
-		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		\draw[-] (A.center) to[bend right=30] (B.center);
-		\draw (A) node{$  \bullet $};
-		\draw (B) node{$  \bullet $};
-		\draw (C) node{$  \bullet $};
-		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
-			\begin{scope}[xshift=-4cm]% sous volcan de gauche
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (0,-3);
-			\coordinate (CA) at (1,-6);
-			\coordinate (CB) at (-1,-6);
-			\coordinate (CAA) at (1.4,-9);
-			\coordinate (CAB) at (0.6,-9);
-			\coordinate (CBA) at (-0.6,-9);
-			\coordinate (CBB) at (-1.4,-9);
-			\only<1-2>{
-			\draw [dashed,gray!30] (C)--(CA);
-			\draw [dashed,gray!30] (C)--(CB);}
-			\only<3->{
-			\draw (C)--(CA);
-			\draw (C)--(CB);}
-			\only<1>{
-			\draw [dashed,gray!30] (A)--(C);
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white] {$\bullet$};
-			\draw (C) node[gray!30]{$\bullet$};}
-			\only<2->{
-			\draw (A)--(C);
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white]{$\bullet$};}
-			\only<1-3>{
-			\draw [dashed,gray!30] (CA)--(CAA);
-			\draw [dashed,gray!30] (CA)--(CAB);
-			\draw [dashed,gray!30] (CB)--(CBA);
-			\draw [dashed,gray!30] (CB)--(CBB);}
-			\only<4>{
-			\draw (CA)--(CAA);
-			\draw (CA)--(CAB);
-			\draw (CB)--(CBA);
-			\draw (CB)--(CBB);}
-			\only<1-2>{
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CA) node[gray!30]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\draw (CB) node[gray!30]{$\bullet$};}
-			\only<3->{
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};}
-			\only<4>{
-			\draw (CAA) node[fill=white]{$\bullet$};
-			\draw (CAB) node[fill=white]{$\bullet$};
-			\draw (CBA) node[fill=white]{$\bullet$};
-			\draw (CBB) node[fill=white]{$\bullet$};}
-			\only<1-3>{
-			\draw (CAA) node[fill=white]{$\bullet$};
-			\draw (CAA) node[gray!30]{$\bullet$};
-			\draw (CAB) node[fill=white]{$\bullet$};
-			\draw (CAB) node[gray!30]{$\bullet$};
-			\draw (CBA) node[fill=white]{$\bullet$};
-			\draw (CBA) node[gray!30]{$\bullet$};
-			\draw (CBB) node[fill=white]{$\bullet$};
-			\draw (CBB) node[gray!30]{$\bullet$};}
-			\end{scope}
-			\begin{scope}[xshift=4cm]% sous volcan de droite
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (0,-3);
-			\coordinate (CA) at (1,-6);
-			\coordinate (CB) at (-1,-6);
-			\coordinate (CAA) at (1.4,-9);
-			\coordinate (CAB) at (0.6,-9);
-			\coordinate (CBA) at (-0.6,-9);
-			\coordinate (CBB) at (-1.4,-9);
-			\only<1-2>{
-			\draw [dashed,gray!30] (C)--(CA);
-			\draw [dashed,gray!30] (C)--(CB);}
-			\only<3->{
-			\draw (C)--(CA);
-			\draw (C)--(CB);}
-			\only<1>{
-			\draw [dashed,gray!30] (A)--(C);
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white] {$\bullet$};
-			\draw (C) node[gray!30]{$\bullet$};}
-			\only<2->{
-			\draw (A)--(C);
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white]{$\bullet$};}
-			\only<1-3>{
-			\draw [dashed,gray!30] (CA)--(CAA);
-			\draw [dashed,gray!30] (CA)--(CAB);
-			\draw [dashed,gray!30] (CB)--(CBA);
-			\draw [dashed,gray!30] (CB)--(CBB);}
-			\only<4>{
-			\draw (CA)--(CAA);
-			\draw (CA)--(CAB);
-			\draw (CB)--(CBA);
-			\draw (CB)--(CBB);}
-			\only<1-2>{
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CA) node[gray!30]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\draw (CB) node[gray!30]{$\bullet$};}
-			\only<3->{
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};}
-			\only<4>{
-			\draw (CAA) node[fill=white]{$\bullet$};
-			\draw (CAB) node[fill=white]{$\bullet$};
-			\draw (CBA) node[fill=white]{$\bullet$};
-			\draw (CBB) node[fill=white]{$\bullet$};}
-			\only<1-3>{
-			\draw (CAA) node[fill=white]{$\bullet$};
-			\draw (CAA) node[gray!30]{$\bullet$};
-			\draw (CAB) node[fill=white]{$\bullet$};
-			\draw (CAB) node[gray!30]{$\bullet$};
-			\draw (CBA) node[fill=white]{$\bullet$};
-			\draw (CBA) node[gray!30]{$\bullet$};
-			\draw (CBB) node[fill=white]{$\bullet$};
-			\draw (CBB) node[gray!30]{$\bullet$};}
-			\end{scope}
-			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (0,-3);
-			\coordinate (CA) at (1,-6);
-			\coordinate (CB) at (-1,-6);
-			\coordinate (CAA) at (1.4,-9);
-			\coordinate (CAB) at (0.6,-9);
-			\coordinate (CBA) at (-0.6,-9);
-			\coordinate (CBB) at (-1.4,-9);
-			\only<1-2>{
-			\draw [dashed,gray!30] (C)--(CA);
-			\draw [dashed,gray!30] (C)--(CB);}
-			\only<3->{
-			\draw (C)--(CA);
-			\draw (C)--(CB);}
-			\only<1>{
-			\draw [dashed,gray!30] (A)--(C);
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white] {$\bullet$};
-			\draw (C) node[gray!30]{$\bullet$};}
-			\only<2->{
-			\draw (A)--(C);
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (A) node[fill=white]{$\bullet$};}
-			\only<1-3>{
-			\draw [dashed,gray!30] (CA)--(CAA);
-			\draw [dashed,gray!30] (CA)--(CAB);
-			\draw [dashed,gray!30] (CB)--(CBA);
-			\draw [dashed,gray!30] (CB)--(CBB);}
-			\only<4>{
-			\draw (CA)--(CAA);
-			\draw (CA)--(CAB);
-			\draw (CB)--(CBA);
-			\draw (CB)--(CBB);}
-			\only<1-2>{
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CA) node[gray!30]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\draw (CB) node[gray!30]{$\bullet$};}
-			\only<3->{
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};}
-			\only<4>{
-			\draw (CAA) node[fill=white]{$\bullet$};
-			\draw (CAB) node[fill=white]{$\bullet$};
-			\draw (CBA) node[fill=white]{$\bullet$};
-			\draw (CBB) node[fill=white]{$\bullet$};}
-			\only<1-3>{
-			\draw (CAA) node[fill=white]{$\bullet$};
-			\draw (CAA) node[gray!30]{$\bullet$};
-			\draw (CAB) node[fill=white]{$\bullet$};
-			\draw (CAB) node[gray!30]{$\bullet$};
-			\draw (CBA) node[fill=white]{$\bullet$};
-			\draw (CBA) node[gray!30]{$\bullet$};
-			\draw (CBB) node[fill=white]{$\bullet$};
-			\draw (CBB) node[gray!30]{$\bullet$};}
-			\end{scope}
-\end{scope}
-
-%faire des fleches courbees avec les indices \ell et \ell^2
-
-
-\end{tikzpicture}
-\end{center}		
-\end{figure}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Construction et définition d'une tour d'extension de corps finis}
@@ -2229,11 +1834,17 @@ Un tel premier borné par $O(\log(q))$ peut être trouvé.
 \begin{column}{8cm}
 
 \begin{defi}[Tour \textit{$\ell$}-adique]
-Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, la tour d'extensions $\ell$-adiques de $\mathbb{F}_q$ est la suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{1}, \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
+Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, une tour d'extensions 
+$\ell$-adiques de $\mathbb{F}_q$ est la suite d'extensions: $\mathbb{F}_q, 
+\mathsf{F}_{1}, \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
 \begin{itemize}
-\item{} [Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré $d_1 \mid \ell-1$. De plus l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$ divise $d_1$,
-\item{} [Cas Atkin] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de degré au plus $ \ell^2-1$,
-\item $\mathsf{F}_{i}$ pour $i \geqslant 2$ est une extension de $\mathsf{F}_{i-1}$ de degré $\ell$.
+\item{} [Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de 
+degré $d_1 \mid \ell-1$. De plus l'ordre multiplicatif de $q$ dans 
+$\mathbb{Z}/\ell \mathbb{Z}$ divise $d_1$,
+\item{} [Cas Atkin] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de 
+degré au plus $ \ell^2-1$,
+\item $\mathsf{F}_{i}$ pour $i \geqslant 2$ est une extension de 
+$\mathsf{F}_{i-1}$ de degré $\ell$.
 \end{itemize}
 
 \end{defi}
@@ -2289,7 +1900,7 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \begin{itemize}
 \item Comparer notre implantation à d'autres algorithmes (en part. Lercier-Sirvent dans le contexte S.E.A.).
 % \item Directly generalize to curves not on the crater.
-\item Estimer le coût de calcul de l'anneau des endomorphismes avec l'étude de l'action de l'endomorphisme du Frobenius et l'implanter.
+\item Estimer le coût de calcul de l'anneau des endomorphismes en modifiant l'algorithme de Kohel  avec l'étude de l'action de l'endomorphisme du Frobenius et l'implanter.
 \item Étudier l'utilité de notre technique dans d'autres contextes: comptage de points, polynômes de Hilbert, polynômes modulaires.
 %Analyze our techniques to navigate the volcano in other
 %  settings: point counting, Hilbert
@@ -3115,8 +2726,407 @@ c_2\ell^2 & d_2
 
 \caption{\label{fig:elk:dif:niv:mat} Matrices du Frobenius possibles pour une base de $E[8]$ avec le premier vecteur de la base ($\color{red} P$) fixé et le second ($\color{blue} R$) qui engendre la $4$-isogénie descendante}
 \end{figure}
-
 \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Un algorithme de Couveignes $\ell$-adique dans le cas Atkin}
+%\begin{figure}
+\begin{center}
+\begin{tikzpicture}[yshift=-25cm,scale=0.25]
+\begin{scope}[yshift=0cm,xshift=0cm]
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8.4,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-1,-11);
+		\coordinate (M) at (1,-11);
+		\only<1>{
+		\draw [gray!25] (D) -- (E);
+		\draw [gray!25] (K) -- (L);
+		\draw [line width=1.5pt,blue!25](D) -- (F);
+		\draw [line width=1.5pt,red!25] (D) -- (K);
+		\draw [line width=1.5pt,red!25] (K) -- (M);
+		\draw [gray!25] (E) -- (H);
+		\draw [gray!25] (E) -- (G);
+		\draw [line width=1.5pt,blue!25](F) -- (I);
+		\draw [gray!25] (F) -- (J);
+		\draw (K) node[fill=white]{$\color{gray!25}{ \bullet}$};
+		\draw (E) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (M) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (I) node[fill=white]{$ \color{blue!25} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};
+		}
+		\only<2>{
+		\draw (D) -- (E);
+		\draw (K) -- (L);
+		\draw [line width=1.5pt,blue](D) -- (F);
+		\draw [line width=1.5pt,red] (D) -- (K);
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw [line width=1.5pt,blue](F) -- (I);
+		\draw (F) -- (J);
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\bullet $};
+		\draw (M) node[fill=white]{$\bullet $};
+		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};}
+		\draw (D) node[fill=white]{$E$};
+		%\coordinate (A) at (12,-5);
+		%\coordinate (B) at (12,-11);
+		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
+		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+\end{scope}
+\begin{scope}[yshift=0cm,xshift=20.3cm]
+		\coordinate (A) at (33,-5);
+		\coordinate (B) at (33,-11);
+		\draw (A) node[fill=white]{$ \bmod \ell^{1}$};
+		\draw (B) node[fill=white]{$ \bmod \ell^{2}$};
+		\coordinate (D) at (0,0);
+		\coordinate (E) at (-6,-5);
+		\coordinate (F) at (6,-5);
+		\coordinate (G) at (-4,-11);
+		\coordinate (H) at (-8.4,-11);
+		\coordinate (I) at (4,-11);
+		\coordinate (J) at (8,-11);
+		\coordinate (K) at (0,-5);
+		\coordinate (L) at (-1,-11);
+		\coordinate (M) at (1,-11);
+		\only<1>{
+		\draw [gray!25] (D) -- (E);
+		\draw [gray!25] (K) -- (L);
+		\draw [line width=1.5pt,blue!25](D) -- (F);
+		\draw [line width=1.5pt,red!25] (D) -- (K);
+		\draw [line width=1.5pt,red!25] (K) -- (M);
+		\draw [gray!25] (E) -- (H);
+		\draw [gray!25] (E) -- (G);
+		\draw [line width=1.5pt,blue!25](F) -- (I);
+		\draw [gray!25] (F) -- (J);
+		\draw (K) node[fill=white]{$\color{gray!25}{ \bullet}$};
+		\draw (E) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (M) node[fill=white]{$\color{gray!25}{ \bullet }$};
+		\draw (I) node[fill=white]{$ \color{blue!25} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\color{black!25} \left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};
+		}
+		\only<2>{
+		\draw (D) -- (E);
+		\draw (K) -- (L);
+		\draw [line width=1.5pt,blue](D) -- (F);
+		\draw [line width=1.5pt,red] (D) -- (K);
+		\draw [line width=1.5pt,red] (K) -- (M);
+		\draw (E) -- (H);
+		\draw (E) -- (G);
+		\draw [line width=1.5pt,blue](F) -- (I);
+		\draw (F) -- (J);
+		\draw (K) node[fill=white]{$\bullet$};
+		\draw (E) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\1  & 1 \end{smallmatrix} \right)$};
+		\draw (F) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 0 \end{smallmatrix} \right) $};
+		\draw (G) node[fill=white]{$\left( \begin{smallmatrix}0 & 1 
+\\3  & 3 \end{smallmatrix} \right) $};
+		\draw (H) node[fill=white]{$\left( \begin{smallmatrix}2 & 1 
+\\1  & 1 \end{smallmatrix} \right) $};
+		\draw (L) node[fill=white]{$\bullet $};
+		\draw (M) node[fill=white]{$\bullet $};
+		\draw (I) node[fill=white]{$ \color{blue} \left( \begin{smallmatrix}3 & 1 
+\\3 & 0 \end{smallmatrix} \right) $};
+		\draw (J) node[fill=white]{$\left( \begin{smallmatrix}1 & 1 
+\\1  & 2 \end{smallmatrix} \right) $};}
+		\draw (D) node[fill=white]{$E$};
+		%\coordinate (A) at (12,-5);
+		%\coordinate (B) at (12,-11);
+		%\draw (A) node[fill=white]{$\bmod \ell^{h+1}$};
+		%\draw (B) node[fill=white]{$\bmod \ell^{h+2}$};
+		\draw (D) node[fill=white]{$E'$};
+		\coordinate (A) at (-20.1,0.5);
+		\coordinate (B) at (0,0.5);
+		%\draw [->] (A) --(B);
+		%\draw[bend right =20] (A)--(B);
+		\draw[dashed,thick,-latex,shorten >=5pt] (A) to[bend left=20] node[below left] {$\phi$} (B);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+%\end{figure}
+%Once the image by $\phi$ of one ($\color{red} P$) of the two bases point of $E[\ell^{h+i}]$ is 
+%determined, then the matrix $\pi(P,Q)$ that represents the Frobenius determines \emph{uniquely} a \emph{generator} of the
+%descending $\ell^{i}$-isogenies generated by the second basis point ($\color{blue} Q$). 
+\only<2>{Une fois que l'image par $\phi$ d'un des deux points ($\color{red} P$) de la 
+base $\langle P, Q \rangle$ de $E[\ell^{2}]$ a été déterminée alors la forme de
+la matrice du Frobenius dans une telle base notée $\pi(P,Q)$ détermine de façon
+unique le générateur de la $\ell^2$-isogénie engendrée par le second point 
+$(Q)$ de la base.}
+% les $\ell$-isogénies descendantes engendrées par le second point de la base.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Volcan et tour d'extensions}
+
+\begin{figure}
+\begin{center}
+
+\begin{tikzpicture}[scale=0.55]
+\coordinate (A) at (-2,1.5);	
+\coordinate (B) at (-2,5);
+\coordinate (C) at (-2,10);
+\coordinate (D) at (-2,7.5);
+\draw [gray!30] (D)--(C);
+\draw [gray!30] (C)--(B);
+\draw [gray!30] (A)--(B);
+\only<2->{
+\draw (D)--(C);}
+\only<4>{
+\draw (A)--(B);}
+\only<3->{
+\draw (B)--(D);}
+\draw (C) node[left]{$\mathbb{F}_q$} node{$\bullet$};
+\draw (A) node[left,gray!30]{$\mathsf{F}_3$} node[gray!30]{$\bullet$};
+\draw (B) node[left,gray!30]{$\mathsf{F}_2$} node[gray!30]{$\bullet$};
+\draw (D) node[left,gray!30]{$\mathsf{F}_1$} node[gray!30]{$\bullet$};
+\only<2->{
+\draw (D) node[left]{$\mathsf{F}_1$} node{$\bullet$};}
+\only<3->{
+\draw (B) node[left]{$\mathsf{F}_2$} node{$\bullet$};}
+\only<4->{
+\draw (A) node[left]{$\mathsf{F}_3$} node{$\bullet$};}
+
+%\draw (CZ)--(BZ)[dashed]  node[midway,left] {$\ell$};
+%\draw (BZ2)--(AZ)[dashed]  node[midway,left] {$\ell$};
+\begin{scope}[yshift=10cm,xshift=6cm]
+		\node (A) at (-4,0) {$  \bullet $};
+		\node (B) at (4,0) {$   \bullet$};
+		\node (C) at (270:1.2) {$ \bullet \color{black}$};
+		\node (D) at (90:1.5) {};
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[-] (A.center) to[bend right=30] (B.center);
+		\draw (A) node{$  \bullet $};
+		\draw (B) node{$  \bullet $};
+		\draw (C) node{$  \bullet $};
+		%\draw[line width=2.5pt,red,->] (A.center) to[bend right=20] (C.center);
+			\begin{scope}[xshift=-4cm]% sous volcan de gauche
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (0,-3);
+			\coordinate (CA) at (1,-6);
+			\coordinate (CB) at (-1,-6);
+			\coordinate (CAA) at (1.4,-9);
+			\coordinate (CAB) at (0.6,-9);
+			\coordinate (CBA) at (-0.6,-9);
+			\coordinate (CBB) at (-1.4,-9);
+			\only<1-2>{
+			\draw [dashed,gray!30] (C)--(CA);
+			\draw [dashed,gray!30] (C)--(CB);}
+			\only<3->{
+			\draw (C)--(CA);
+			\draw (C)--(CB);}
+			\only<1>{
+			\draw [dashed,gray!30] (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white] {$\bullet$};
+			\draw (C) node[gray!30]{$\bullet$};}
+			\only<2->{
+			\draw (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};}
+			\only<1-3>{
+			\draw [dashed,gray!30] (CA)--(CAA);
+			\draw [dashed,gray!30] (CA)--(CAB);
+			\draw [dashed,gray!30] (CB)--(CBA);
+			\draw [dashed,gray!30] (CB)--(CBB);}
+			\only<4>{
+			\draw (CA)--(CAA);
+			\draw (CA)--(CAB);
+			\draw (CB)--(CBA);
+			\draw (CB)--(CBB);}
+			\only<1-2>{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CA) node[gray!30]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (CB) node[gray!30]{$\bullet$};}
+			\only<3->{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};}
+			\only<4>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};}
+			\only<1-3>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAA) node[gray!30]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CAB) node[gray!30]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBA) node[gray!30]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};
+			\draw (CBB) node[gray!30]{$\bullet$};}
+			\end{scope}
+			\begin{scope}[xshift=4cm]% sous volcan de droite
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (0,-3);
+			\coordinate (CA) at (1,-6);
+			\coordinate (CB) at (-1,-6);
+			\coordinate (CAA) at (1.4,-9);
+			\coordinate (CAB) at (0.6,-9);
+			\coordinate (CBA) at (-0.6,-9);
+			\coordinate (CBB) at (-1.4,-9);
+			\only<1-2>{
+			\draw [dashed,gray!30] (C)--(CA);
+			\draw [dashed,gray!30] (C)--(CB);}
+			\only<3->{
+			\draw (C)--(CA);
+			\draw (C)--(CB);}
+			\only<1>{
+			\draw [dashed,gray!30] (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white] {$\bullet$};
+			\draw (C) node[gray!30]{$\bullet$};}
+			\only<2->{
+			\draw (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};}
+			\only<1-3>{
+			\draw [dashed,gray!30] (CA)--(CAA);
+			\draw [dashed,gray!30] (CA)--(CAB);
+			\draw [dashed,gray!30] (CB)--(CBA);
+			\draw [dashed,gray!30] (CB)--(CBB);}
+			\only<4>{
+			\draw (CA)--(CAA);
+			\draw (CA)--(CAB);
+			\draw (CB)--(CBA);
+			\draw (CB)--(CBB);}
+			\only<1-2>{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CA) node[gray!30]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (CB) node[gray!30]{$\bullet$};}
+			\only<3->{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};}
+			\only<4>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};}
+			\only<1-3>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAA) node[gray!30]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CAB) node[gray!30]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBA) node[gray!30]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};
+			\draw (CBB) node[gray!30]{$\bullet$};}
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm] %sous volcan du bas
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (0,-3);
+			\coordinate (CA) at (1,-6);
+			\coordinate (CB) at (-1,-6);
+			\coordinate (CAA) at (1.4,-9);
+			\coordinate (CAB) at (0.6,-9);
+			\coordinate (CBA) at (-0.6,-9);
+			\coordinate (CBB) at (-1.4,-9);
+			\only<1-2>{
+			\draw [dashed,gray!30] (C)--(CA);
+			\draw [dashed,gray!30] (C)--(CB);}
+			\only<3->{
+			\draw (C)--(CA);
+			\draw (C)--(CB);}
+			\only<1>{
+			\draw [dashed,gray!30] (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white] {$\bullet$};
+			\draw (C) node[gray!30]{$\bullet$};}
+			\only<2->{
+			\draw (A)--(C);
+			\draw (C) node[fill=white]{$\bullet$};
+			\draw (A) node[fill=white]{$\bullet$};}
+			\only<1-3>{
+			\draw [dashed,gray!30] (CA)--(CAA);
+			\draw [dashed,gray!30] (CA)--(CAB);
+			\draw [dashed,gray!30] (CB)--(CBA);
+			\draw [dashed,gray!30] (CB)--(CBB);}
+			\only<4>{
+			\draw (CA)--(CAA);
+			\draw (CA)--(CAB);
+			\draw (CB)--(CBA);
+			\draw (CB)--(CBB);}
+			\only<1-2>{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CA) node[gray!30]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};
+			\draw (CB) node[gray!30]{$\bullet$};}
+			\only<3->{
+			\draw (CA) node[fill=white]{$\bullet$};
+			\draw (CB) node[fill=white]{$\bullet$};}
+			\only<4>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};}
+			\only<1-3>{
+			\draw (CAA) node[fill=white]{$\bullet$};
+			\draw (CAA) node[gray!30]{$\bullet$};
+			\draw (CAB) node[fill=white]{$\bullet$};
+			\draw (CAB) node[gray!30]{$\bullet$};
+			\draw (CBA) node[fill=white]{$\bullet$};
+			\draw (CBA) node[gray!30]{$\bullet$};
+			\draw (CBB) node[fill=white]{$\bullet$};
+			\draw (CBB) node[gray!30]{$\bullet$};}
+			\end{scope}
+\end{scope}
+
+%faire des fleches courbees avec les indices \ell et \ell^2
+
+
+\end{tikzpicture}
+\end{center}		
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \backupend
 \end{document}
 
