@@ -48,6 +48,8 @@
 \newtheorem{rem}[thm]{Remaque}
 \theoremstyle{remark} 
 \newtheorem{exe}[thm]{Exemple}
+\theoremstyle{definition}
+\newtheorem{nota}[thm]{Notation}
 
 \useoutertheme{split}
 \useinnertheme{rounded}
@@ -1712,7 +1714,22 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-Slide lemme du cas Atkin $h=0$.
+\frametitle{Titre abandonnée}
+\begin{nota}
+La notation $\pi(P,Q)$ désigne l'action du Frobenius dans une base $\langle P,Q \rangle = E[\ell^k]$
+\end{nota}
+
+\textbf{Exemple :}Pour deux points $P_0$ et $Q_0$ générateurs de $\ell^k$-isogénies horizontales 
+\[
+\pi(P_0,Q_0)= \left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
+0 & \color{blue} \mu \end{smallmatrix} \right)
+\]
+
+\begin{prop}
+Soit $\ell$ un nombre premier de Atkin soit $P,Q,R$ trois points de $E$ située 
+sur un volcan de hauteur $0$ tels que $\langle P,Q \rangle = \langle P,R 
+\rangle$ alors $Q=R \Leftrightarrow \pi(P,Q)=\pi(P,R)$. 
+\end{prop}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -1723,7 +1740,8 @@ Slide lemme du cas Atkin $h=0$.
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $R=R'$.}
+\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $R=Q$ \\
+avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 
 \begin{enumerate}
 \item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
@@ -1759,8 +1777,8 @@ Slide lemme du cas Atkin $h=0$.
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,R')$ ssi $[\ell^h]R=[\ell^h]R'$ \\
-avec $\langle P,R \rangle = \langle P,R' \rangle = E[\ell^{h+i}]$ avec $i>0$.}
+\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $[\ell^h]R=[\ell^h]Q$ \\
+avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 
 \begin{enumerate}
 \item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
