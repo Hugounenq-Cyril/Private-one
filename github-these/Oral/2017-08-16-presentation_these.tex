@@ -169,6 +169,10 @@ Volcans et calculs d'isogénies}
 %faire un rappel sur les courbes elliptiques
 
 \begin{frame}
+Boulot a faire ici avec une slide plus introductive...
+\end{frame}
+
+\begin{frame}
 \frametitle{Intérêts cryptographiques des isogénies}
 %We focus on one specific subproblem in the Schoof-Elkies-Atkin point counting  algorithm:
 %\medskip
@@ -353,7 +357,7 @@ et $m>0$
 \vspace{-1.5mm}
 \[E[m]= \{ P \in E(\bar{\mathbb{F}}_q) , [m]P=0_E \} \]
 }
-
+\medskip
 \bluebox{Polynômes de $\ell$-division}
 {Pour toute courbe elliptique $E$ et tout entier $n$ il existe un polynôme $\psi_n$ tel que les abscisses des points de $n$-torsion soient les racines de ce polynôme.}
 %\bluebox{Problème du logarithme discret sur une courbe elliptique $E$}
@@ -480,10 +484,11 @@ La connaissance du noyau de l'isogénie $\phi$ permet d'expliciter celle-ci
 Un endomorphisme d'une courbe elliptique $E$ est une isogénie $\psi:E \rightarrow E$. L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$.
 \end{defi}
 
+\textbf{Exemple:} La multiplication scalaire est un endomorphisme.
+
 \begin{prop}
 $\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
 \end{prop}
-\textbf{Exemple:} La multiplication scalaire est un endomorphisme.
 \end{frame}
 
 \begin{frame}
@@ -1214,7 +1219,7 @@ Nous supposons désormais que $k \geqslant h+1$.
 %to the matrix $\left ( \begin{smallmatrix}\lambda & a\\ 0 & \mu
 %\end{smallmatrix}\right )$.
 % where $a ∈ ℤ$, $0 ≤ a ≤ ℓ^{h} - 1$,
-Dans le cas Elkies l'action de l'endomorphisme du Frobenius $\pi$ sur 
+Dans le cas Elkies l'action de l'endomorphisme de Frobenius $\pi$ sur 
 $E[\ell^{h+1}]$~est conjuguée, sur~$\mathbb{Z}_{\ell}$, à l'unique matrice
  \[\left ( \begin{matrix}{\color{red}\lambda} & a\\ 0 &
 {\color{blue}\mu} \end{matrix}\right ), \]  avec $a \in \{ 1,\ell, \dots,
@@ -1929,7 +1934,7 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \begin{itemize}
 \item Comparer notre implantation à d'autres algorithmes (en part. Lercier-Sirvent dans le contexte S.E.A.).
 % \item Directly generalize to curves not on the crater.
-\item Estimer le coût de calcul de l'anneau des endomorphismes en modifiant l'algorithme de Kohel'96  avec l'étude de l'action de l'endomorphisme du Frobenius et l'implanter.
+\item Estimer le coût de calcul de l'anneau des endomorphismes en modifiant l'algorithme de Kohel'96  avec l'étude de l'action de l'endomorphisme de Frobenius et l'implanter.
 \item Étudier l'utilité de notre technique dans d'autres contextes: comptage de points, polynômes de Hilbert, polynômes modulaires.
 %Analyze our techniques to navigate the volcano in other
 %  settings: point counting, Hilbert
