@@ -534,6 +534,12 @@ $E$ est alors dite supersingulière.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+De par
+\begin{itemize}
+ \item{} les polynômes modulaires (algorithme SEA), 
+ \item{} la cryptanalyse de cryptosystème (par exemple [Rostovtsev,~Stolbunov~'06]) 
+\end{itemize}
+on peut être amené à résoudre le problème suivant:
 \frametitle{Problème du calcul de l'isogénie explicite}
 \bluebox{Problème du calcul de l'isogénie explicite}
 {
@@ -547,7 +553,9 @@ $E$ est alors dite supersingulière.
 \end{frame}
 \begin{frame}
 \frametitle{Précédents travaux}
+Travailler cette slide...
 \begin{itemize}
+\item{} [Atkin~'91],[Charlap, Colay, Robbins '91] ,
 \item{} [Elkies~'92/'98],  %[Charlap, Colay, Robbins '91], 
 [Bostan,~Morain,~Salvy,~Schost~'08] fonctionne en $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$, seulement pour $r < 2p$. Spécifique au contexte SEA.
 \item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne pour tout $p$ à l'aide de $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$. Spécifique au contexte SEA.
@@ -581,7 +589,7 @@ E[p^k]&\simeq\mathbb{Z}/p^k\mathbb{Z}
 \end{align*}
 
 \pause
-\bluebox{Algorithme de Couveignes (calcul d'une $r$-isogénie $\phi:E\to E'$)}{
+\bluebox{Algorithme de Couveignes'96 (calcul d'une $r$-isogénie $\phi:E\to E'$)}{
 Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{itemize}
 \item Calcul de générateurs $P,P'$ de $E[p^k],E'[p^k]$;
@@ -729,30 +737,109 @@ On note $g=[\mathcal{O}_K:\mathbb{Z}[\pi]]$ le conducteur de $\mathbb{Z}[\pi]$. 
 En particulier: $d_{\pi}=g^2d_K$
 
 \end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Exemple illustratif de graphe d'isogénies}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=0.545, xshift=-0.5cm]
+\coordinate (A) at (0,-7.5);
+\coordinate (AB) at (0,-7.00);
+\coordinate (B) at (0,-3.75);
+\coordinate (C) at (0,0);
+\draw (AB) node[above,left,text width=1.7cm]{
+$
+\mathbb{Z}[\pi]=\mathbb{Z}~+~\ell^2~\mathcal{O}_K 
+$
+} ;
+\draw (A) node{$\bullet$};
+\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}_K$} node{$\bullet$};
+\draw (C) node[left]{$\mathcal{O}_K$} node{$\bullet$};
+\draw (A)--(B)node[midway,left] {$\ell$};
+\draw (B)--(C) node[midway,left] {$\ell$};
+	\begin{scope}[xshift=4.4cm]
+		\node (A) at (-3,0) {$\bullet$};
+		\node (B) at (3,0) {$\bullet$};
+		\node (C) at (270:1.2) {$\bullet$};
+		\node (D) at (90:1.5) {};
+		%\draw[-] (A.center) to[bend right=25] (C.center);
+		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
+		%\draw[-] (B.center) to[bend left=25] (C.center);
+		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+		\draw[-] (A.center) to[bend right=40] (B.center);
+			\begin{scope}[xshift=-3cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:3.75);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (CA) node{$\bullet$};
+			\draw (CB) node{$\bullet$};
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+			\end{scope}
+			\begin{scope}[xshift=3cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:3.75);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (CA) node{$\bullet$};
+			\draw (CB) node{$\bullet$};
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);
+			\end{scope}
+			\begin{scope}[yshift=-1.2cm]
+			\coordinate (A) at (0,0);
+			\coordinate (C) at (270:3.75);
+			\coordinate (CA) at (265:7.5);
+			\coordinate (CB) at (275:7.5);
+			\draw (C)--(CA);
+			\draw (C)--(CB);
+			\draw (CA) node{$\bullet$};
+			\draw (CB) node{$\bullet$};
+			\draw (A) node{$\bullet$};
+			\draw (C) node{$\bullet$};
+			\draw (A)--(C);   
+			\end{scope}
+	\end{scope}
+%faire des fleches courbees avec les indices \ell et \ell^2
+
+
+\end{tikzpicture}
+\end{center}		
+\end{figure}
+
+\end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Exemple illustratif de graphe d'isogénies}
+\frametitle{Illustration des différents types d'isogénies}
 %\only<2-4>{
 %La notation $\mathcal{O}$ désigne (resp. $\mathcal{O}'$) l'ordre associé à isomorphisme près à l'anneau des endomorphismes de $E$ (resp. $E'$)}
 \vspace{-4mm}
 \begin{columns}
-\only<2-4>{
 \begin{column}{4cm}
 
 \begin{lem}[Kohel 1996]
 Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi :E \rightarrow E'$ une $\ell$-isogénie. Alors $\psi$ est dite
 \begin{enumerate}
-\item  \textbf<2>{descendante} si $[\mathcal{O} : \mathcal{O}']=\ell$,
-\item \textbf<3>{ascendante} si $[\mathcal{O}':\mathcal{O}]=\ell$,
-\item \textbf<4>{horizontale} si \\
+\item  \textbf<1>{descendante} si $[\mathcal{O} : \mathcal{O}']=\ell$,
+\item \textbf<2>{ascendante} si $[\mathcal{O}':\mathcal{O}]=\ell$,
+\item \textbf<3>{horizontale} si \\
  $\mathcal{O}=\mathcal{O}'$.
 \end{enumerate}
 \end{lem}
 %\begin{defi}
 %The index $f=[\mathcal{O}_K : \mathcal{O}]$ is called the conductor of $\mathcal{O}$.
 %\end{defi}
-\end{column}}
+\end{column}
 
 
 \begin{column}{6cm}
@@ -775,7 +862,7 @@ $
 \draw (C) node[left]{$\mathcal{O}_K$} node{$\bullet$};
 \draw (A)--(B)node[midway,left] {$\ell$};
 \draw (B)--(C) node[midway,left] {$\ell$};
-\only<1-4>{
+
 	\begin{scope}[xshift=4.4cm]
 		\node (A) at (-3,0) {$\bullet$};
 		\node (B) at (3,0) {$\bullet$};
@@ -785,10 +872,10 @@ $
 		\draw[-,dashed] (A.center) to[bend left=40] (B.center);
 		%\draw[-] (B.center) to[bend left=25] (C.center);
 		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		\only<1-3>{
+		\only<1-2>{
 		\draw[-] (A.center) to[bend right=40] (B.center);
 		}
-		\only<4-4>{
+		\only<3-3>{
 		\draw[-] (C.center) to[bend right=20] (B.center);
 		\draw[line width=1.5pt,red,->] (A.center) to[bend right=20] (C.center);
 		}
@@ -830,24 +917,21 @@ $
 			\draw (A) node{$\bullet$};
 			\draw (C) node{$\bullet$};
 			\draw (A)--(C);
-            \only<2-2>{
+            \only<1-1>{
             \draw[line width=1.5pt,red,->] (A)--(C);
             }
-            \only<3-3>{
+            \only<2-2>{
 			\draw[line width=1.5pt,red,<-] (A)--(C);            
             }
 			\end{scope}
 	\end{scope}
-}
 %faire des fleches courbees avec les indices \ell et \ell^2
 
 
 \end{tikzpicture}
 \end{center}		
 \end{figure}
-
 \end{column}
-
 \end{columns}
 \end{frame}
 
@@ -1733,7 +1817,7 @@ La notation $\pi(P,Q)$ désigne l'action du Frobenius dans une base $\langle P,Q
 \begin{prop}
 Soit $\ell$ un nombre premier de Atkin soient $P,Q,R$ trois points de $E$ 
 située sur un volcan de hauteur $0$ tels que $\langle P,Q \rangle = \langle P,R 
-\rangle$ alors $Q=R \Leftrightarrow \pi(P,Q)=\pi(P,R)$. 
+\rangle =E[\ell^k] $ alors $Q=R \Leftrightarrow \pi(P,Q)=\pi(P,R)$. 
 \end{prop}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1826,7 +1910,8 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 \frametitle{Algorithme de Couveignes $\ell$-adique}
 
 \begin{thm}
-Soient deux courbes elliptiques $E,E'$, un entier $r$ tel que $E$ et $E'$ soient 
+Soient $q$ une puissance d'un nombre premier, deux courbes elliptiques $E,E'$
+définies sur $\mathbb{F}_q$, un entier $r$ tel que $E$ et $E'$ soient 
 $r$-isogènes, alors la $r$-isogénie peut être calculée avec une complexité de
 \[
 \tilde{O}(r^2 \ell^{O(1)}) \text{ opérations sur }\mathbb{F}_q
@@ -1895,8 +1980,9 @@ $\mathsf{F}_{i-1}$ de degré $\ell$.
         en généralisant les constructions de [De~Feo,~Doliskani, Schost '13], [Doliskani,~Schost '15] et où en particulier nous avons
 		\begin{itemize}  
 		 \item un calcul rapide des points d'ordre $\ell^k$,       
-         \item un calcul rapide du Frobenius,
-         \item un calcul rapide du polynôme d'interpolation
+         \item un calcul rapide du Frobenius (adapté depuis [Doliskani-Schost'15]),
+         \item un calcul rapide du polynôme d'interpolation (adaptant des 
+         méthodes mentionnées par [Enge-Morain '03] et développées par [DeFeo'10])
          \end{itemize}
 	\item Il est alors nécessaire d'implanter un algorithme qui prenne en compte ces constructions de tour d'extensions de corps finis.
   \end{itemize}
@@ -1926,7 +2012,7 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \begin{itemize}
 \item De nouveaux outils pour se déplacer dans le volcan d'isogénies. 
 
-\item Une variante de l'algorithme de Couveignes quasi-quadratique sous certaines conditions.
+\item Une variante de l'algorithme de Couveignes quasi-quadratique.
 
 \end{itemize}
 }
