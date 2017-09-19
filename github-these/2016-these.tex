@@ -172,8 +172,8 @@ premières années de thèse, je tiens également à remercier les (anonymes)
 décisionnaires de cette bourse. Ensuite il y a eu une 4ème année qui a été 
 financée par le département d'informatiques de Versailles que je remercie 
 vivement pour le choix de me financer au détriment d'autres (bonnes) 
-candidatures. J'espère sincèrement avoir montré par mon engagement et mon 
-travail
+candidatures. J'espère sincèrement avoir fourni un travail à la hauteur des
+investissements faits dans ce projet.
 
 Permettez-moi de faire un retour dans le passé pour parler des origines de 
 cette thèse. 
@@ -274,11 +274,15 @@ problème suivant de calcul d'isogénies :
 
 \paragraph{Problème du calcul explicite d'isogénie}
 
-Soient deux $j$-invariants $j_0$ et $j_1$ et un entier positif $r$. En supposant que les 
-$j$-invariants sont $r$-isogènes, c'est à dire qu'il existe deux courbes 
-elliptiques $E_0$ et $E_1$ reliées par une isogénie de degré $r$ telles que 
-$j(E_0)=j_0$ et $j(E_1)=j_1$, calculer les courbes $E_0$, $E_1$ et 
-l'isogénie $\phi:E_0 \rightarrow E_1$.
+%Soient deux $j$-invariants $j_0$ et $j_1$ et un entier positif $r$. En supposant que les 
+%$j$-invariants sont $r$-isogènes, c'est à dire qu'il existe deux courbes 
+%elliptiques $E_0$ et $E_1$ reliées par une isogénie de degré $r$ telles que 
+%$j(E_0)=j_0$ et $j(E_1)=j_1$, calculer les courbes $E_0$, $E_1$ et 
+%l'isogénie $\phi:E_0 \rightarrow E_1$.
+
+Etant donnés deux courbes elliptiques $E_0$ et $E_1$, un entier $r$ tel que 
+$E_0$ et $E_1$ soient $r$-isogènes, c'est à dire qu'il existe une isogénie de 
+degré $r$  qui relie ces deux courbes, calculer l'isogénie $\phi:E_0 \rightarrow E_1$.
 \\
 
 Les premiers algorithmes de calcul d'isogénies sont dus à Atkin~\cite{Atkin91}
@@ -6586,10 +6590,11 @@ et donne le résultat annoncé.
 On précise le contexte dans lequel on se place:
 \paragraph{Problème du calcul explicite d'isogénie} \label{prob:isogeny-problem}
 
-Le problème du \emph{calcul explicite d'isogénie} est: étant données deux 
-courbes elliptiques ordinaires $E_0$ et $E_1$ et un entier $r$ tel que les 
-courbes $E_0$ et $E_1$ soient $r$-isogènes, calculer une isogénie $\phi:E_0 
-\rightarrow E_1$ de degré $r$.
+Le problème du \emph{calcul explicite d'isogénie} est: étant donnés deux
+$j$-invariants $j_0$ et $j_1$, un entier $r$ tel que les $j$-invariants soient 
+$r$-isogènes, c'est à dire qu'il existe deux courbes elliptiques $E_0$ et $E_1$
+reliées par une isogénie de degré $r$ telles que $j(E_0)=j_0$ et $j(E_1)=j_1$, 
+calculer les courbes $E_0$, $E_1$ et l'isogénie $\phi:E_0 \rightarrow E_1$.
 
 \smallskip
 
