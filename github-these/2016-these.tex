@@ -96,7 +96,7 @@
 \fancyfoot[C]{\thepage}%␣C␣=␣centré
 \fancyfoot[L]{}
 
-\setlength{\headheight}{22pt}
+\setlength{\headheight}{31pt}
 
 \renewcommand{\headrulewidth}{1pt}% 1pt header rule
 \renewcommand{\headrule}{\hbox to\headwidth{%
@@ -174,6 +174,9 @@ financée par le département d'informatiques de Versailles que je remercie
 vivement pour le choix de me financer au détriment d'autres (bonnes) 
 candidatures. J'espère sincèrement avoir montré par mon engagement et mon 
 travail
+
+Permettez-moi de faire un retour dans le passé pour parler des origines de 
+cette thèse. 
 
 D'un point de vue plus personnel, je tiens encore une fois à remercier Luca, il
 était plus que prêt pour encadrer un tel projet. Je le remercie pour la liberté
@@ -566,7 +569,8 @@ Dans ce document, de nombreux algorithmes vont utiliser la multiplication rapide
 \item $\mathsf{M}(n)$ est au plus quadratique: $\mathsf{M}(mn) \leqslant m^2 \mathsf{M}(n)$.
 \end{itemize} 
 
-\`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} utlisant des transformation de Fourrier rapides, la multiplication de polynômes de degré $n$ appartenant à $R[x]$ pour un anneau $R$ quelconque est de $O(n\log(n) \log \log (n))$ opérations arithmétiques dans $R$.
+\`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} utlisant des transformation de Fourrier rapides, la multiplication de polynômes de degré $n$ appartenant à $R[x]$ pour un anneau $R$ quelconque est de \newline ${O(n\log(n) \log \log (n))}$ opérations arithmétiques dans $R$.
+
 
 Dans ce document nous notons par $\omega$ un constante telle que l'on peut 
 multiplier des matrices de taille $m$ définies sur un anneau $A$ quelconque en
@@ -595,8 +599,7 @@ $(P_i)_{i \in I}$. On dit alors que $\mathbb{L}$ est le
 \end{defi}
 
 \begin{defi}
-Un extension de corps $\mathbb{L}/\mathbb{K}$ est dite \emph{normale} ou 
-quasi-galoisienne lorsque tout polynôme défini sur celle-ci se scinde ou 
+Un extension de corps $\mathbb{L}/\mathbb{K}$ est dite \emph{normale} ou quasi-galoisienne lorsque tout polynôme défini sur celle-ci se scinde ou 
 n'admet aucune racine.
 \end{defi}
 
@@ -919,7 +922,10 @@ Pour un sous-groupe $C$ de $E(\mathbb{K})$ les formules de Vélu~\cite{velu1971}
 Soit $P$ un point de $E$ alors les formules de Vélu nous donnent l'isogénie $I$ de noyau $C$ par: 
 \begin{equation}
 \label{eq:Velu}
-I(P)= \left( x(P)+\sum_{Q \in C \setminus \{0_E\}} x(P+Q)-x(Q),y(P)+\sum_{Q \in C \setminus \{0_E\}} y(P+Q)-y(Q) \right)
+\begin{alignedat}{1}
+I(P)= \Bigl( &  x(P)+\sum_{Q \in C \setminus \{0_E\}} x(P+Q)-x(Q), \\
+& y(P)+\sum_{Q \in C \setminus \{0_E\}} y(P+Q)-y(Q) \Bigr)
+\end{alignedat}
 \end{equation} 
 On peut alors exprimer l'équation de la courbe codomaine de l'isogénie à l'aide des formules d'addition. Par un souci de simplicité on va se restreindre au cas où l'on a $p \neq 2$, dans ce cas là on peut exprimer l'équation de $E$ par:
 \begin{equation*}
@@ -1790,7 +1796,9 @@ en utilisant la précision $1+ \lfloor \log_p(4r-1) \rfloor$ préconisée par
 
 
 \section{Algorithme de Couveignes et ses améliorations}
-Dans cette section nous présentons tout d'abord l'algorithme de Couveignes~\cite{Couveignes96}, puis ensuite les différentes améliorations apportées par De Feo dans \cite{DeFeo11}.
+Dans cette section nous présentons tout d'abord l'algorithme de Couveignes 
+\cite{Couveignes96}, puis ensuite les différentes améliorations apportées par 
+De Feo dans \cite{DeFeo11}.
 
 L'algorithme de Couveignes prend en entrée deux courbes elliptiques  ordinaires $r$-isogènes définies sur un corps fini $\mathbb{F}_q$ avec $r$ premier avec $p$ et calcule la $r$-isogénie $\mathbb{F}_q$-rationnelle qui les relie. L'algorithme est présenté ici uniquement en caractéristique $p$ impaire, par simplification.
 
@@ -2001,8 +2009,8 @@ reste le même.
 \end{rem}
 
 L'ensemble des abscisses des points primitifs de $p^k$-torsion est de taille 
-$p^{k-1}(p-1)/2$. La taille d'une orbite sous l'action du Frobenius est quant à
-elle égale à $[\mathbb{L}_k:\mathbb{F}_q]$ (ou 
+$p^{k-1}\frac{p-1}{2}$. La taille d'une orbite sous l'action du Frobenius est 
+quant à elle égale à $[\mathbb{L}_k:\mathbb{F}_q]$ (ou 
 $\frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$ voir corollaire \ref{cor:orb:fro}). 
 Ainsi si l'on note $e$ la taille de ces orbites et $f$ le nombre de 
 représentants on a $e \times f=p^{k-1}(p-1)/2$.
@@ -2076,9 +2084,9 @@ ces doublons inutiles.
 \end{proof}
 
 \begin{cor}
-\label{cor:orb:fro}
-Soient $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que 
-$E(\mathbb{F}_q)[p]=\{O_E\}$, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:
+\label{cor:orb:fro} 
+Soient $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que \newline
+$E(\mathbb{F}_q)[p] =\{O_E\} $, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:
 \mathbb{F}_q]=d_1$ avec $d_1 \mid p-1$, $k \geqslant 1$, alors les orbites des 
 abscisses de points d'ordre $p^k$ sous l'action de $\mathsf{Gal}
 (\mathbb{L}_{k}:\mathbb{F}_q)$ sont de taille $d_1 p^{k-v_p(E(\mathbb{L}_1))}$ 
@@ -2094,11 +2102,13 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.30,domain=-10/3:4.5,samples=100,yscale=1/2]
+		%tour des extensions		
 		\node (U0) at (0,0) {$\mathbb{F}_{q}$};
 		\node (U1) at (0,4) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))}$};
 		\node (U2) at (0,8) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))+1}$};
 		\node (U3) at (0,16) {$\mathbb{L}_{v_p(E(\mathbb{L}_1))+i}$};
         \draw[dashed] (U2) to (U3);
+        
         \node (At2) at (25,4) {};
 		\node (At3) at (35,4) {};
 		\node (At0) at (7,4) {};
@@ -2317,7 +2327,7 @@ Soit $A_0$ un polynôme d'interpolation défini sur $\mathbb{F}_q$, alors on a p
 \begin{equation*}
 A_0(\sigma(x(P))=\sigma(A_0(x(P)))=\sigma(x(P')).
 \end{equation*}
-L'information de l'image de $x(P) \in \mathbb{L}_k$ entraîne bien la connaissance des images des éléments de l'orbite de $x(P)$ sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_q)$, ainsi dans \cite{DeFeo11} l'auteur prend avantage du faible coût du Frobenius dans une tour d'Artin-Schreier à l'aide de l'algorithme \cite[Iter Frobenius,Theorem 17 et 18]{DeFeo-Shost'12}.% qui a une complexité de $O((i-j)L(i))$ pour le calcul d'une puissance $p^{p^{jd}}$ d'un élément de $\mathbb{U}_i$.
+L'information de l'image de $x(P) \in \mathbb{L}_k$ entraîne bien la connaissance des images des éléments de l'orbite de $x(P)$ sous l'action de n'importe quel élément de $\mathsf{Gal}(\mathbb{L}_k:\mathbb{F}_q)$, ainsi dans \cite{DeFeo11} l'auteur prend avantage du faible coût du Frobenius dans une tour d'Artin-Schreier à l'aide de l'algorithme \cite[Iter Frobenius,Theorem 17 et 18]{DeFeo-Shost'12}. % qui a une complexité de $O((i-j)L(i))$ pour le calcul d'une puissance $p^{p^{jd}}$ d'un élément de $\mathbb{U}_i$.
 
 
 %On va donc se servir de l'action du Frobenius sur le polynôme d'interpolation défini uniquement pour un représentant de l'orbite (en l'occurence $L(x(P))=x(P')$) pour déterminer $L$ alors que les méthodes classiques \cite[10.1-2]{vzGJG03} préconisent un arbre de produit binaire avec la connaissance des $x([n]P)$ avec $n \in (\mathbb{Z}/p^k\mathbb{Z})^*$. 
@@ -2660,7 +2670,7 @@ En pratique le changement de base monovariée à bivariée se fait de la façon 
 \end{equation*}
 %G(x_k)=G_0(x_k)+ G_1(x_k^\ell)+x_kG_2(x_k^\ell)+ \cdots + x_k^{\ell-1} G_{\ell}(x_k^{\ell}) =G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
 
-avec $G_1, \cdots G_{\ell}$ des polynômes de degré inférieur à $d_1\ell^{k-2}-1$ et $G_0$ de degré strictement inférieur à $\ell$. Ce changement de base ne requiert aucun calcul arithmétique, ainsi celui-ci pourra être utilisé sans coût supplémentaire et en particulier un élément pourra être considéré indifféremment dans une base bivariée ou univariée.%a completer
+avec $G_1, \cdots G_{\ell}$ des polynômes de degré inférieur à $d_1\ell^{k-2}-1$ et $G_0$ de degré strictement inférieur à $\ell$. Ce changement de base ne requiert aucun calcul arithmétique, ainsi celui-ci pourra être utilisé sans coût supplémentaire et en particulier un élément pourra être considéré indifféremment dans une base bivariée ou univariée. %a completer
 
 La descente correspond donc au passage d'un élément de $\mathsf{F}_k$ écrit sous la forme $G(x_k)$ en un élément de la forme $G_1(x_{k-1})$ appartenant à $\mathsf{F}_{k-1}$. Le relèvement est l'opération inverse.
 
@@ -7966,7 +7976,7 @@ sur différentes tours d'extensions $\ell$-adiques, il n'est pas nécessaire de
 travailler avec des composita de tours d'extensions $\ell$-adiques.
 
 Détaillons comment nous procédons, la méthode est retranscrite dans 
-l'algorithme~\ref{alg:cou:mult-adique:short}.%, 
+l'algorithme~\ref{alg:cou:mult-adique:short}. %, 
 %l'algorithme~\ref{alg:cou:mult-adique} détaillant un peu plus 
 %l'algorithme~\ref{alg:cou:mult-adique:short} est disponible en annexe.
 
