@@ -2110,10 +2110,10 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
         \draw[dashed] (U2) to (U3);
         
         \node (At2) at (25,4) {};
-		\node (At3) at (35,4) {};
+		\node (At3) at (33.5,4) {};
 		\node (At0) at (7,4) {};
-		\node (At1) at (17,4) {};
-		\node (Af0) at (11.5,1.5) {};
+		\node (At1) at (15.5,4) {};
+		\node (Af0) at (10.0,1.5) {};
 		\node (Af1) at (30.5,1.5) {};
 		\draw[color=black,decorate,decoration={brace,raise=0.2cm},below]
 				(Af1) -- (Af0) node[color=black,below=0.2cm, pos=0.5] {$f$};
@@ -2122,13 +2122,11 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 		\draw [dashed, color=gray!50] (At1.center) to (O);
 		\draw [dashed, color=gray!50] (At2.center) to (O);
 		\draw [dashed, color=gray!50] (At3.center) to (O);
-		\draw [dashed] (19,4) to (23,4);
+		\draw [dashed] (18.3,4) to (22.3,4);
          \begin{scope}[xshift=12cm]
          \node (A0) at (-5,4) {$\bullet$};
-         \node (A1) at (5,4) {$\bullet$};
-         \draw[dashed] (A0) to (A1);
-         \node (A0b) at (-5.3,4) {};
-         \node (A1b) at (5.3,4){};
+         \node (A0b) at (-5.7,4) {};
+         \node (A1b) at (4.6,4){};
          \draw[color=black,decorate,decoration={brace,raise=0.2cm},below]
 				(A1b) -- (A0b) node[color=black,below=0.2cm, pos=0.5] {$d_1$};
 		\node (A10) at (-7,8) {$\bullet$};
@@ -2136,11 +2134,6 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 		\draw[dashed] (A10) to (A11);
 		\draw (A0) to (A10);
 		\draw (A0) to (A11);
-		\node (A12) at (3,8) {$\bullet$};
-		\node (A13) at (7,8) {$\bullet$};
-		\draw (A1) to (A12);
-		\draw (A1) to (A13);
-		\draw[dashed] (A12) to (A13);
 		\node (A20) at (-8.5,16) {$\bullet$};
 		\node (A21) at (-5.5,16) {$\bullet$};
 		\draw[dashed] (A20) to (A21);
@@ -2151,32 +2144,37 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 		\draw[dashed] (A23) to (A22);
 		\draw (A11) to (A22);
 		\draw (A11) to (A23);
-		\node (A24) at (8.5,16) {$\bullet$}; %autre côté
-		\node (A25) at (5.5,16) {$\bullet$};
-		\draw[dashed] (A25) to (A24);
-		\draw (A13) to (A24);
-		\draw (A13) to (A25);
-		\node (A26) at (1.5,16) {$\bullet$};
-		\node (A27) at (4.5,16) {$\bullet$};
-		\draw[dashed] (A26) to (A27);
-		\draw (A12) to (A26);
-		\draw (A12) to (A27);
 		\node (A30) at (-8.9,16) {};
 		\node (A31) at (-1.1,16) {};
 		\draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
 				(A30) -- (A31) node[color=black,above=0.2cm, pos=0.5] {$e'$};
-		\node (A32) at (8.9,16) {};
-		\node (A33) at (1.1,16) {};
+		\node (A1) at (3.5,4) {$\bullet$};%autre côté
+         \draw[dashed] (A0) to (A1);		
+		\node (A12) at (1.5,8) {$\bullet$};
+		\node (A13) at (5.5,8) {$\bullet$};
+		\draw (A1) to (A12);
+		\draw (A1) to (A13);
+		\draw[dashed] (A12) to (A13);		
+		\node (A24) at (7.0,16) {$\bullet$}; 
+		\node (A25) at (4.0,16) {$\bullet$};
+		\draw[dashed] (A25) to (A24);
+		\draw (A13) to (A24);
+		\draw (A13) to (A25);
+		\node (A26) at (0.0,16) {$\bullet$};
+		\node (A27) at (3.0,16) {$\bullet$};
+		\draw[dashed] (A26) to (A27);
+		\draw (A12) to (A26);
+		\draw (A12) to (A27);
+		\node (A32) at (7.4,16) {};
+		\node (A33) at (-0.4,16) {};
 		\draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
 				(A33) -- (A32) node[color=black,above=0.2cm, pos=0.5] {$e'$};
 		
         \end{scope} 
         \begin{scope}[xshift=30cm]
-         \node (A0) at (-5,4) {$\bullet$};
-         \node (A1) at (5,4) {$\bullet$};
-         \draw[dashed] (A0) to (A1);
-         \node (A0b) at (-5.3,4) {};
-         \node (A1b) at (5.3,4){};
+        \node (A0) at (-5,4) {$\bullet$};
+         \node (A0b) at (-5.7,4) {};
+         \node (A1b) at (4.6,4){};
          \draw[color=black,decorate,decoration={brace,raise=0.2cm},below]
 				(A1b) -- (A0b) node[color=black,below=0.2cm, pos=0.5] {$d_1$};
 		\node (A10) at (-7,8) {$\bullet$};
@@ -2184,11 +2182,6 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 		\draw[dashed] (A10) to (A11);
 		\draw (A0) to (A10);
 		\draw (A0) to (A11);
-		\node (A12) at (3,8) {$\bullet$};
-		\node (A13) at (7,8) {$\bullet$};
-		\draw (A1) to (A12);
-		\draw (A1) to (A13);
-		\draw[dashed] (A12) to (A13);
 		\node (A20) at (-8.5,16) {$\bullet$};
 		\node (A21) at (-5.5,16) {$\bullet$};
 		\draw[dashed] (A20) to (A21);
@@ -2199,22 +2192,29 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 		\draw[dashed] (A23) to (A22);
 		\draw (A11) to (A22);
 		\draw (A11) to (A23);
-		\node (A24) at (8.5,16) {$\bullet$}; %autre côté
-		\node (A25) at (5.5,16) {$\bullet$};
-		\draw[dashed] (A25) to (A24);
-		\draw (A13) to (A24);
-		\draw (A13) to (A25);
-		\node (A26) at (1.5,16) {$\bullet$};
-		\node (A27) at (4.5,16) {$\bullet$};
-		\draw[dashed] (A26) to (A27);
-		\draw (A12) to (A26);
-		\draw (A12) to (A27);
 		\node (A30) at (-8.9,16) {};
 		\node (A31) at (-1.1,16) {};
 		\draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
 				(A30) -- (A31) node[color=black,above=0.2cm, pos=0.5] {$e'$};
-		\node (A32) at (8.9,16) {};
-		\node (A33) at (1.1,16) {};
+		\node (A1) at (3.5,4) {$\bullet$};%autre côté
+         \draw[dashed] (A0) to (A1);		
+		\node (A12) at (1.5,8) {$\bullet$};
+		\node (A13) at (5.5,8) {$\bullet$};
+		\draw (A1) to (A12);
+		\draw (A1) to (A13);
+		\draw[dashed] (A12) to (A13);		
+		\node (A24) at (7.0,16) {$\bullet$}; 
+		\node (A25) at (4.0,16) {$\bullet$};
+		\draw[dashed] (A25) to (A24);
+		\draw (A13) to (A24);
+		\draw (A13) to (A25);
+		\node (A26) at (0.0,16) {$\bullet$};
+		\node (A27) at (3.0,16) {$\bullet$};
+		\draw[dashed] (A26) to (A27);
+		\draw (A12) to (A26);
+		\draw (A12) to (A27);
+		\node (A32) at (7.4,16) {};
+		\node (A33) at (-0.4,16) {};
 		\draw[color=black,decorate,decoration={brace,raise=0.2cm},above]
 				(A33) -- (A32) node[color=black,above=0.2cm, pos=0.5] {$e'$};
 		\end{scope}             
