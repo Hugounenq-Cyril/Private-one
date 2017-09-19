@@ -2693,7 +2693,10 @@ alors $\alpha$ s'écrit de la façon suivante dans la base bivariée de $\mathsf
  
  Par contre pour $\beta$ un élément de $\mathsf{F}_4$ écrit de la façon suivante dans la base monovariée:
  \begin{equation*}
- \beta_0 + \beta_1 x_4+ \cdots +\beta_{5k}x_4^{5k} + \beta_{5k+1}x_4^{5k+1}+\beta_{5k+2}x_4^{5k+2}+ \beta_{5k+3}x_4^{5k+3}+ \beta_{5k+4}x_4^{5k+4}+ \cdots + \beta_{124}x_4^{124}
+ \begin{alignedat}{1}
+ \beta_0 +  \beta_1 x_4+ & \cdots + \beta_{5k}x_4^{5k} + \beta_{5k+1}x_4^{5k+1}+\beta_{5k+2}x_4^{5k+2}+ \beta_{5k+3}x_4^{5k+3}+ \\  \beta_{5k+4}x_4^{5k+4}+ 
+  & \cdots + \beta_{124}x_4^{124}
+ \end{alignedat}
  \end{equation*}
 l'écriture de $\beta$ dans la base bivariée est: 
  \begin{equation*}
@@ -2752,7 +2755,10 @@ b_0 + b_1 x_i + b_2 x_i^2 + \cdots + b_{\ell^{i-1}-1}x_i^{\ell^{i-1}-1}
 \end{equation*}
 avec $b_k$ un élément de $\mathsf{F}_1$ pour tout $k$. En remarquant que
 \begin{equation*}
- b_k=b_{k,0} + b_{k,1}x_1 + \cdots + b_{k,d_1-1} x_1^{d_1-1}=b_{k,0} + b_{k,1}x_i^{\ell^{i-1}} + b_{k,2} x_i^{2 \times \ell^{i-1}} + \cdots + b_{k,d_1-1} x_i^{(d_1-1)\times \ell^{i-1}} 
+\begin{alignedat}{1}
+ b_k= & b_{k,0} + b_{k,1}x_1 + \cdots + b_{k,d_1-1} x_1^{d_1-1} \\
+ = & b_{k,0} + b_{k,1}x_i^{\ell^{i-1}} + b_{k,2} x_i^{2 \times \ell^{i-1}} + \cdots + b_{k,d_1-1} x_i^{(d_1-1)\times \ell^{i-1}}
+ \end{alignedat} 
 \end{equation*}
  avec $b_{k,i}$ un élément de $\mathbb{F}_q$ pour tous $k,i$, on représente $a^s$ sous la forme:
 \begin{equation*}
@@ -2766,8 +2772,11 @@ Maintenant que le coût du Frobenius a été établi nous allons voir une autre 
 \subsection*{Calcul d'une racine carrée}
 Les résultats présentés sont issus d'idées développées dans \cite{Doliskani-Schost14} et sont adaptés à la construction de tour d'extensions $\ell$-adiques présentée ici où le coût du Frobenius est très faible. Le résultat à retenir est celui pour les extensions dyadiques du fait de son usage pratique même si une généralisation est présentée. 
 
-\begin{prop}
-Soit $\mathbb{F}_q, \mathsf{F}_1, \cdots \mathsf{F}_k$ une tour d'extensions $\ell$-adiques. Soit $\delta$ un carré non nul de $\mathsf{F}_k$, alors une racine carrée $\gamma$ de $\delta$ est calculée en $O(M(\ell^{k-1}d_1)\log(\ell^{k-1}q))$ opérations sur $\mathbb{F}_q$.
+\begin{prop} 
+Soit $\mathbb{F}_q, \mathsf{F}_1, \cdots \mathsf{F}_k$ une tour d'extensions 
+$\ell$-adiques. Soit $\delta$ un carré non nul de $\mathsf{F}_k$, alors une 
+racine carrée $\gamma$ de $\delta$ est calculée avec une complexité de 
+$O(M(\ell^{k-1}d_1)\log(\ell^{k-1}q))$ opérations sur $\mathbb{F}_q$. 
 \end{prop}
 
 \begin{proof}
@@ -2854,14 +2863,14 @@ appartenant à $\mathsf{F}_i[x]$ coûte $O(\mathsf{M}(d\ell^{i+1}))$ opérations
 $\mathbb{F}_q$.
 \end{prop}
 
-\begin{proof}
+\begin{proof} \sloppy
 On utilise la substitution de Kronecker déjà apparue 
-dans~\cite[Lemma 2.2]{vzGShoup92}, une description est tout de même faite dans 
+dans \newline \cite[Lemma 2.2]{vzGShoup92}, une description est tout de même faite dans 
 cette preuve. Soit $f$ un polynôme de $\mathsf{F}_{i}[x]$ de degré $d$ alors on 
 peut représenter $f$ comme un polynôme de $\mathbb{F}_q[x,y]$, avec 
 $\mathsf{F}_i=\mathbb{F}_q[y]$, en utilisant la substitution de 
 Kronecker $x \rightarrow y^{2\ell^{i}d_0-1}$. On a alors $f$ qui est représenté
- comme un polynôme univarié de degré au plus $2\ell^{i+1} d$, d'où le résultat.
+ comme un polynôme univarié de degré au plus $2\ell^{i+1} d$, d'où le résultat. \fussy
 \end{proof}
 
 \begin{nota}
@@ -2885,7 +2894,7 @@ Les coûts des différentes opérations dans de telles tours d'extensions $\ell$
 \end{tabular}
 \caption{\label{tab:complexite-degre2} Coûts des opérations dans $\mathsf{F}_{k}$ exprimées en nombre d'opérations sur $\mathbb{F}_q$}
 \end{figure}
-On a $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$ en utilisant la variante de l'algorithme de Cantor-Zassenhaus décrite dans ~\cite[Chapter~14.5]{vzGJG03}.
+On a $\mathsf{R}(i)=O(\ell^i\mathsf{M}(\ell^{i+1})\log(\ell)\log(\ell q))$ en utilisant la variante de l'algorithme de Cantor-Zassenhaus décrite dans \newline \cite[Chapter~14.5]{vzGJG03}.
 Il est à noter que pour le calcul d'une racine le coût est un coût en moyenne, cela est dû à une partie de l'algorithme qui est de type non déterministe (Las Vegas).
 
 
@@ -3417,7 +3426,7 @@ $1$ & cas 1: $\rightarrow$ & $\ell\,\nmid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell
 $\ell+1$ & cas 1:$\left\{ \begin{array}{cc}
 (1+\left(\frac{d_K}{\ell}\right))& \rightarrow\\
 (\ell-\left(\frac{d_K}{\ell}\right)) & \downarrow
-\end{array}\right.$ & $\ell \,\nmid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell \,\mid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $0$,$1$ ou $-1$ & $0$\\
+\end{array}\right.$ & $\ell \,\nmid[\mathcal{O}_{K}:\mathcal{O}]$ et $\ell \,\mid[\mathcal{O}:\mathbb{Z}[\pi]]$  & $\begin{alignedat}{1} 0 &, 1 \\ \text{ou} &-1 \end{alignedat}$ & $0$\\
  
 \cline{2-5} & cas 2:$\left\{ \begin{array}{cc}
 1 & \uparrow\\
@@ -3680,7 +3689,8 @@ Voir  \cite[Lemma 1]{Ruck1987}.
 Avant d'énoncer le résultat principal sur la structure de la $\ell$-torsion rationnelle on a besoin du résultat intermédiaire suivant:
 
 \begin{prop}
-Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi=a+g \omega_K$ l'endomorphisme de Frobenius alors: $v_{\ell}(a-1) \geqslant \min(v_{\ell}(g),v_{\ell}(|E(\mathbb{F}_q)|/2))$.
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi=a+g 
+\omega_K$ l'endomorphisme de Frobenius alors: $v_{\ell}(a-1) \geqslant \min(v_{\ell}(g),v_{\ell}(|E(\mathbb{F}_q)|/2))$.
 \end{prop}
 
 \begin{proof}
@@ -4475,7 +4485,7 @@ $(\pi - \mu) P = x (\lambda - \mu) R$ et l'on obtient le résultat.
 			\end{scope}
 	\end{scope}
 \end{scope}
-\begin{scope}[xshift=9cm] %2 eme volcan a droite
+\begin{scope}[xshift=8cm] %2 eme volcan a droite
 	\begin{scope}[xshift=4.3cm]
 		%Cratere
 		\node (A) at (-3,0) {$\bullet$};
@@ -4557,7 +4567,7 @@ $(\pi - \mu) P = x (\lambda - \mu) R$ et l'on obtient le résultat.
 			\end{scope}
 	\end{scope}
 \end{scope}
-\begin{scope}[xshift=18cm] %3 eme volcan a droite
+\begin{scope}[xshift=16cm] %3 eme volcan a droite
 	\begin{scope}[xshift=4.3cm]
 		%Cratere
 		\node (A) at (-3,0) {};
@@ -5689,7 +5699,9 @@ c\ell^{i} & \mu + d\ell^{i} \end{smallmatrix} \right) \bmod {\ell^{i+1}}.$
 \begin{prop}\label{pro:alg:diagonal}
 L'algorithme~\ref{alg:bas:diag} est correct et calcule une base diagonale 
 de~$E_s[\ell^k]$ avec une complexité espérée de
-$O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$ 
+\[
+O(\mathsf{R}(k-\beta) + \ell^2\mathsf{M}(\ell^{k-\beta}) + \ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))
+\]
 opérations dans $\mathbb{F}_q$.
 \end{prop}
 
@@ -5870,9 +5882,15 @@ complexité. Ainsi cette première partie de l'algorithme a un coût
 $\ell$-torsion: $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
 
 \item[\'Etape \ref{alg:ult:base:cratere}] Par la proposition~\ref{pro:alg:rem:tri:hor}
-cette étape a une complexité de \[O(\max(0,e-(h-\beta))(\mathsf{R}(1)+
-\ell^{1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{1}))+\mathsf{R}(h+1)+
-\ell^{h+1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{h+1})).\]
+cette étape a une complexité de 
+\begin{equation*}
+\begin{alignedat}{1}
+O \Bigl( &\max(0,e-(h-\beta))(\mathsf{R}(1)+
+\ell^{1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{1}))+ \\
+& \mathsf{R}(h+1)+
+\ell^{h+1}\mathsf{M}(\ell)+\ell^2 \mathsf{M}(\ell^{h+1}) \Bigr) .
+\end{alignedat}
+\end{equation*}
 
 \item[\'Etape \ref{alg:ult:diagonal:debut}]	Par la proposition~\ref{pro:alg:diagonal}, cette étape a un coût de $O(\mathsf{R}(k-\beta) + \ell^{k-\beta}\mathsf{M}(\ell) + \ell^2\mathsf{M}(\ell^{k-\beta}) )$ opérations sur $\mathbb{F}_q$.
 
@@ -6467,7 +6485,7 @@ $ d_k = \ell^{\max (0, k - \beta)}d_1$.
 \item Si $\ell=2$ alors $d_2 \in \{1,2\}$ et pour tout~$k > 2$,
 % $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
 $d_k = \ell^{\max (0, k - \beta)}d_2$.
-\item Si $\ell \neq 2$ pour $[\mathsf{F}:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](\mathsf{F})$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
+\item Si $\ell \neq 2$ pour $[\mathsf{F}:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](\mathsf{F})$ est isomorphe à $(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
 \item Si $\ell = 2$ pour $[F:\mathbb{F}_q]=d_2\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
 %\item\label{prop:classes:count} Le groupe~$E[\ell^k]$ contient au plus
 %$k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}_{q^{d_1}}$.
@@ -6879,7 +6897,7 @@ Q'
 			\draw (D) node[fill=white]{$\bullet$};
 \end{scope}
 
-\begin{scope}[xshift=35cm]
+\begin{scope}[xshift=33.3cm]
 		%Cratere
 		\node (A) at (-10.5,0) {$\bullet$};
 		\node (B) at (10.5,0) {};%{$\bullet$};
@@ -7159,10 +7177,12 @@ Q_{\mu}')))$ bases ascendantes horizontales de $E[\ell^k],E'[\ell^k]$ avec les $
 %  \[
 %O\Bigl( (r \ell + \log(\ell q) ) \mathsf{M}(r \ell^4) \log(r) \log(\ell) +  r\ell \mathsf{M}(r \ell^{1,5}) \log(r)^2 \Bigr) 
  %\]
- 
- \[
-O\Bigl(\sqrt{r}\mathsf{M}(\sqrt{r}\ell^{1,5})\log(r)\log(\ell)\log(\ell q) + r \ell ( \mathsf{M}(r \ell^4) \log(r) \log(\ell) + \mathsf{M}(r \ell^3) \log(r)^2 \log(\ell) )  \Bigr)
- \]
+ \begin{equation*}
+ \begin{alignedat}{1}
+O\Bigl( & \sqrt{r}\mathsf{M}(\sqrt{r}\ell^{1,5})\log(r)\log(\ell)\log(\ell q) + \\ 
+& r \ell ( \mathsf{M}(r \ell^4) \log(r) \log(\ell) + \mathsf{M}(r \ell^3) \log(r)^2 \log(\ell) )  \Bigr)
+ \end{alignedat}
+ \end{equation*}
 \end{prop}
 \begin{proof}
 Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
@@ -7180,7 +7200,7 @@ Par définition de ~$k$, on a ~$\ell^{2k-1} \in O(r\ell^2)$.
  
   Le coût de calcul des bases diagonales de courbes sommets à 
   l'étape~\ref{alg:cou-ell:bdiag} se fait à l'aide de 
-  l'algorithme~\ref{alg:ulti:fro} qui a un coût dans le pire des cas
+  l'algorithme~\ref{alg:ulti:fro} qui a une complexité dans le pire des cas
   de 
   %$O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+k(\mathsf{R}(k-\beta) +  \ell^2\mathsf{M}(\ell^{k-\beta})))$  
   $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q)+\mathsf{R}(k) +  \ell^2\mathsf{M}(\ell^{k}))$ 
@@ -7564,7 +7584,8 @@ $E'[\ell^k]$ telles que $\pi(P,Q)=\pi(P',Q')$ on a $[\ell^h]Q'=[\ell^h]\phi(Q)$.
 \end{cor}
 
 \begin{proof}
-Comme le Frobenius commute avec $\phi$ alors $\pi(P,Q)=\pi(\phi(P),\phi(Q))$.
+Comme le Frobenius commute avec l'isogénie $\phi$ alors $\pi(P,Q)=
+\pi(\phi(P),\phi(Q))$.
 De plus $P'=\phi(P)$ donc pour $Q'$ tel que $\pi(P,Q)=\pi(P',Q')$ nous obtenons 
 $\pi(P',Q')=\pi(\phi(P),\phi(Q))$, la proposition~\ref{pro:atk:equi} nous 
 permet alors de conclure.
@@ -7769,10 +7790,12 @@ dominé par les autres opérations (pour plus de détails le lecteur peut voir
 la preuve de la proposition~\ref{pro:full-complexity}).
 \sloppy
 Les étapes~\ref{alg:cou:atk:parc:poi} à ~\ref{alg:cou:atk:test} étant répétées 
-$\ell^{k-h}$ fois cela a un coût de 
+$\ell^{k-h}$ fois celles-ci ont une complexité de 
 $O(\sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ 
 à $S'$ fixé.
 \fussy
+
+
 Enfin l'étape~\ref{alg:cou:atk:frob:bas} et la boucle commençant à 
 l'étape~\ref{alg:cou:atk:parc:poi} étant répétées $\ell^{2k-2}(\ell+1)/2 \in 
 O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 \sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ à laquelle il faut ajouter les pré-calculs pour obtenir le résultat.
@@ -8577,9 +8600,11 @@ O(r(\prod_{i=1}^n\ell_i)n\mathsf{M}(r (\prod_{i=1}^n \ell_i^{3,5})
 \]
 sachant que la borne du calcul des $T_i$ et $A_i$ est large car nous avons 
 majoré $\sum_{i=1}^np_{n-i}^{(\omega-1)/2}$ par $np_{n-1}^{(\omega-1)/2}$ d'où 
-le $n$ en facteur et que de plus 
-$\max_i(d_{(i,1)}\ell_i^{k_i})p_{n-1} \in \Omega(p_n)$. Ainsi nous voyons que par 
-l'apport d'opérations de changement de représentations non-linéaires en la 
+le $n$ en facteur et que de plus nous avons
+$\max_i(d_{(i,1)}\ell_i^{k_i})p_{n-1} \in \Omega(p_n)$.
+
+Ainsi nous voyons que par l'apport d'opérations de changement de 
+représentations non-linéaires en la 
 taille des composita nous ne pouvons avoir une complexité quadratique en $r$
 pour le calcul de l'isogénie montrant ainsi qu'une telle approche en l'état 
 actuel n'est pas intéressante. Cependant cette approche avait l'avantage de 
