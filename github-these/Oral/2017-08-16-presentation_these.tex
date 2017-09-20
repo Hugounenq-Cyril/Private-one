@@ -598,24 +598,22 @@ E[p^k]&\simeq\mathbb{Z}/p^k\mathbb{Z}
 \end{align*}
 \pause
 \vspace{-5.1mm}
-\bluebox{Algorithme de Couveignes'96 (calcul d'une $r$-isogénie $\phi:E\to E'$)}{
+\bluebox{Algorithme de Couveignes (calcul d'une $r$-isogénie $\phi:E\to E'$)}{
 Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{itemize}
 \item Calcul de générateurs $P,P'$ de $E[p^k],E'[p^k]$;
 \item Interpolation de $\phi$, en supposant que l'on a la correspondance $P\mapsto P'$;
 \begin{itemize}
- 	\item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$; \hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$;
- 	\item Calcul du polynôme d'interpolation $L$ tel que \\
-   $L (x ([u] P)) = x([u]P' )$ pour tout $u \in \mathbb{Z}/p^k \mathbb{Z}$;
-\hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
-	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
-	$(r, r-1)$  à l'aide d'un algorithme de reconstruction rationnelle; 
+ 	\item Calcul du polynôme d'interpolation $L$ qui envoie $P \mapsto P'$ \\
+	\item Calcul d'une fraction rationnelle $F$ de degrés $(r, r-1)$ \\
+	à l'aide d'un algorithme de reconstruction rationnelle; 
 	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
 \end{itemize}
 \vspace{-1.5mm}
 \item Vérification si l'interpolation définit une isogénie.\hfill $\color{blue!50!gray}{\tilde{O}(r)}$;
 	\begin{itemize}
-	\item Test de la forme du dénominateur $d$ de $F$ et si $\mathrm{pgcd}(d,\omega_{\ell}) \neq 1$;
+	\item Test du degré du dénominateur $d$ de $F$ et de sa décomposition en 
+	facteurs carré et si $\omega_{\ell}^2= 0 \bmod d$;
 	\end{itemize}
     Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$.
 \end{itemize}
@@ -626,7 +624,7 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Algorithme de Couveignes (1996)}
+\frametitle{Algorithme de Couveignes}
 \bluebox{}{ %\cite{DBLP:conf/ants/Couveignes96}}{
 \begin{algorithmic}[1]
 \REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{p^n}$ 
@@ -640,22 +638,20 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$; \hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
 \item Pour tout $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $\color{blue!50!gray}{O(r)}$
   \begin{enumerate}
-  \item Calcul et test d'un candidat à l'aide d'un polynôme \\ 
-  d'interpolation $L$ qui envoie $P \mapsto [a]P'$ \hfill 
-  $\color{blue!50!gray}{\tilde{O}(r\ell^{O(1)})}$
-%  \item Calcul du polynôme d'interpolation 
-%    $L$ tel que
-%   $L (x ([u] P)) = x([a\, u\,]P' )$ pour tout
-%    $u \in \mathbb{Z}/p^k \mathbb{Z}$;
-%\hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
-%	%\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
-%	%calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
-%%\hfill $\tilde{O}(r)$
-%	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
-%	$(r, r-1)$  à l'aide d'un algorithme de reconstruction rationnelle; 
-%	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
-%  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-%   l'algorithme. \hfill $\color{blue!50!gray}{\tilde{O}(r)}$
+%  \item Calcul et test d'un candidat à l'aide d'un polynôme \\ 
+%  d'interpolation $L$ qui envoie $P \mapsto [a]P'$ \hfill 
+%  $\color{blue!50!gray}{\tilde{O}(r\ell^{O(1)})}$
+  \item Calcul du polynôme d'interpolation 
+    $L$ tel que
+   $L (x ([u] P)) = x([a\, u\,]P' )$ pour tout
+    $u \in \mathbb{Z}/p^k \mathbb{Z}$;
+\hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
+	%\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
+	%calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
+%\hfill $\tilde{O}(r)$
+	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
+	$(r, r-1)$ et test de celle-ci.
+	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
   \end{enumerate}
 \end{enumerate}
 %Complexity polynomial in $p$. 
@@ -686,7 +682,7 @@ Notre objectif est de travailler avec \boldmath $E[\ell^k]\simeq \left(\mathbb{Z
 \begin{column}{0.48\textwidth}
 
 \bluebox{$p$-adique}{
-Soient $P\in E\quad$ et $\quad P'\in E'$ tels que $\langle P \rangle= E[p^k]$ et $\langle P' \rangle= E'[p^k]$
+Soient $\langle P \rangle= E[p^k]$ et \\ $\langle P' \rangle= E'[p^k]$
 \[
 P \mapsto [a] P'  \qquad a\in(\mathbb{Z}/p^k\mathbb{Z})^*
 \]
@@ -696,7 +692,7 @@ $\Rightarrow O(r)$ possibilités.
 \end{column}
 \begin{column}{0.55\textwidth}
 \bluebox{$\ell$-adique}{
-Soit $P,Q$, $ \langle P,Q \rangle = E[\ell^k]\quad$ et $\quad P',Q'$, $ \langle P',Q' \rangle = E'[\ell^k]$
+Soient $ \langle P,Q \rangle = E[\ell^k]$ et \\ $\langle P',Q' \rangle = E'[\ell^k]$
 \begin{gather*}
 \begin{pmatrix}
 P\\Q
@@ -1032,7 +1028,7 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 		
 		\end{center} 
 		\end{figure}
-		Durant le reste de cet exposé nous étudierons tout d'abord le cas Elkies, puis le cas Atkin.
+		Durant le reste de cet exposé nous étudierons le cas Elkies et le cas Atkin.
 %\begin{figure}[hbtp]
 %\centering
 %\includegraphics[scale=0.4]{Images/duo-volcan-wo-label.png}
@@ -1082,7 +1078,7 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Algorithme de Couveignes[96] $\ell$-adique}
+\section{Algorithme de Couveignes $\ell$-adique}
 
 
 
@@ -1245,11 +1241,9 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
     $L$  qui envoie\\
     $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
 \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
-	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
-	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
+	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
+	$(r, r-1)$ et test de celle-ci.
 \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
-  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-   l'algorithme. \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -1426,6 +1420,7 @@ $E[\ell^{h+1}]$~est conjuguée, sur~$\mathbb{Z}_{\ell}$, à l'unique matrice
 
 
 \begin{frame}
+\frametitle{Marche sur le cratère}
 %Does it work the same with general volcanoes of $\ell$-isogenies?
 %\pause
 Nous supposons que $E$ se situe sur le cratère (nous pouvons nous ramener facilement à ce cas).
