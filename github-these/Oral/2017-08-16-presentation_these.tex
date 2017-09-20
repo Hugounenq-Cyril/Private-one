@@ -548,14 +548,14 @@ $E$ est alors dite \emph{supersingulière}.
 \bluebox{Problème du calcul de l'isogénie explicite}
 {
  Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$. 
- \`A partir de $E$, $E'$  deux courbes elliptiques $r$-isogènes définies sur 
+ \`A partir de $E$, $E'$  deux courbes elliptiques ordinaires $r$-isogènes définies sur 
  $\mathbb{F}_q$, calculer la $r$-isogénie $\phi:E\to E'$.
 }
 \medskip 
 Celui-ci apparaît dans:
 \begin{itemize}
  \item{} l'algorithme SEA; 
- \item{} la cryptanalyse de cryptosystème (par exemple [Rostovtsev,~Stolbunov~'06]).
+ \item{} la cryptanalyse de cryptosystèmes (par exemple [Rostovtsev,~Stolbunov~'06]).
 \end{itemize}
 %\vspace{-1mm}
 
@@ -566,14 +566,14 @@ Celui-ci apparaît dans:
 \begin{itemize}
 \item{} [Elkies~'89],[Charlap, Colay, Robbins~'91], [Atkin~'91].
 \item{} [Elkies~'92/'98],  %[Charlap, Colay, Robbins '91], 
-[Bostan,~Morain,~Salvy,~Schost~'08], [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne en $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$, pour tout $p$. Spécifique au contexte SEA.
+[Bostan,~Morain,~Salvy,~Schost~'08], [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne en $\tilde{O}(r \log(p))$ opérations dans $\mathbb{F}_q$. Spécifique au contexte SEA.
 \pause
-\item{} [Couveignes~'94] pour tout $p$ à l'aide de $\tilde{O}(r^3p^{O(1)})$ 
+\item{} [Couveignes~'94] en $\tilde{O}(r^3p^{O(1)})$ 
 opérations.
 \pause
 \item{} [Lercier~'97] fonctionne seulement pour $p=2$.
 \pause
-\item{} [Couveignes~'96], [De Feo~'10] pour tout $p$ à l'aide de  $\tilde{O}
+\item{} [Couveignes~'96], [De Feo~'10] en  $\tilde{O}
 (r^2p^{O(1)})$ opérations.
 \end{itemize}
 \begin{itemize}
@@ -587,7 +587,7 @@ dépendance exponentielle en $\log(p)$.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Algorithme de Couveignes[96]}
+\section{Algorithme de Couveignes}
 \begin{frame}
 
 Pour les courbes elliptiques \emph{ordinaires}
@@ -596,15 +596,28 @@ Pour les courbes elliptiques \emph{ordinaires}
 E[\ell^k]&\simeq\mathbb{Z}/\ell^k\mathbb{Z} \times \mathbb{Z}/\ell^k\mathbb{Z} \quad \textit{avec } \ell \neq p \\
 E[p^k]&\simeq\mathbb{Z}/p^k\mathbb{Z}
 \end{align*}
-
 \pause
+\vspace{-5.1mm}
 \bluebox{Algorithme de Couveignes'96 (calcul d'une $r$-isogénie $\phi:E\to E'$)}{
 Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{itemize}
 \item Calcul de générateurs $P,P'$ de $E[p^k],E'[p^k]$;
-\item Interpolation de $\phi$, en supposant que l'on a la correspondance $P\mapsto P'$ pour tout $u \in \mathbb{Z}/p^k\mathbb{Z}$;
-\item Vérification si l'interpolation définit une isogénie.\\
-    Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$ et on recommence à nouveau.
+\item Interpolation de $\phi$, en supposant que l'on a la correspondance $P\mapsto P'$;
+\begin{itemize}
+ 	\item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$; \hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$;
+ 	\item Calcul du polynôme d'interpolation $L$ tel que \\
+   $L (x ([u] P)) = x([u]P' )$ pour tout $u \in \mathbb{Z}/p^k \mathbb{Z}$;
+\hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
+	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
+	$(r, r-1)$  à l'aide d'un algorithme de reconstruction rationnelle; 
+	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
+\end{itemize}
+\vspace{-1.5mm}
+\item Vérification si l'interpolation définit une isogénie.\hfill $\color{blue!50!gray}{\tilde{O}(r)}$;
+	\begin{itemize}
+	\item Test de la forme du dénominateur $d$ de $F$ et si $\mathrm{pgcd}(d,\omega_{\ell}) \neq 1$;
+	\end{itemize}
+    Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$.
 \end{itemize}
 
 }
@@ -627,19 +640,22 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$; \hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
 \item Pour tout $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $\color{blue!50!gray}{O(r)}$
   \begin{enumerate}
-  \item Calcul du polynôme d'interpolation 
-    $L$ tel que
-   $L (x ([u] P)) = x([a\, u\,]P' )$ pour tout
-    $u \in \mathbb{Z}/p^k \mathbb{Z}$;
-\hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
-	%\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
-	%calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
-%\hfill $\tilde{O}(r)$
-	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
-	$(r, r-1)$  à l'aide d'un algorithme de reconstruction rationnelle; 
-	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
-  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-   l'algorithme. \hfill $\color{blue!50!gray}{\tilde{O}(r)}$
+  \item Calcul et test d'un candidat à l'aide d'un polynôme \\ 
+  d'interpolation $L$ qui envoie $P \mapsto [a]P'$ \hfill 
+  $\color{blue!50!gray}{\tilde{O}(r\ell^{O(1)})}$
+%  \item Calcul du polynôme d'interpolation 
+%    $L$ tel que
+%   $L (x ([u] P)) = x([a\, u\,]P' )$ pour tout
+%    $u \in \mathbb{Z}/p^k \mathbb{Z}$;
+%\hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
+%	%\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
+%	%calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
+%%\hfill $\tilde{O}(r)$
+%	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
+%	$(r, r-1)$  à l'aide d'un algorithme de reconstruction rationnelle; 
+%	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
+%  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
+%   l'algorithme. \hfill $\color{blue!50!gray}{\tilde{O}(r)}$
   \end{enumerate}
 \end{enumerate}
 %Complexity polynomial in $p$. 
@@ -670,7 +686,7 @@ Notre objectif est de travailler avec \boldmath $E[\ell^k]\simeq \left(\mathbb{Z
 \begin{column}{0.48\textwidth}
 
 \bluebox{$p$-adique}{
-Soit $P\in E\quad$ et $\quad P'\in E'$
+Soient $P\in E\quad$ et $\quad P'\in E'$ tels que $\langle P \rangle= E[p^k]$ et $\langle P' \rangle= E'[p^k]$
 \[
 P \mapsto [a] P'  \qquad a\in(\mathbb{Z}/p^k\mathbb{Z})^*
 \]
@@ -680,7 +696,7 @@ $\Rightarrow O(r)$ possibilités.
 \end{column}
 \begin{column}{0.55\textwidth}
 \bluebox{$\ell$-adique}{
-Soit $P,Q \in E\quad$ et $\quad P',Q' \in E'$
+Soit $P,Q$, $ \langle P,Q \rangle = E[\ell^k]\quad$ et $\quad P',Q'$, $ \langle P',Q' \rangle = E'[\ell^k]$
 \begin{gather*}
 \begin{pmatrix}
 P\\Q
@@ -752,12 +768,11 @@ En particulier: $d_{\pi}=g^2d_K$
 \frametitle{Exemple illustratif de graphe d'isogénies}
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}[scale=0.545, xshift=-0.5cm]
-\coordinate (A) at (0,-7.5);
-\coordinate (AB) at (0,-7.00);
+\begin{tikzpicture}[scale=0.545]
+\coordinate (A) at (0,-7.528648782);
 \coordinate (B) at (0,-3.75);
 \coordinate (C) at (0,0);
-\draw (AB) node[above,left,text width=1.7cm]{
+\draw (A) node[left]{
 $
 \mathbb{Z}[\pi]=\mathbb{Z}~+~\ell^2~\mathcal{O}_K 
 $
@@ -767,7 +782,7 @@ $
 \draw (C) node[left]{$\mathcal{O}_K$} node{$\bullet$};
 \draw (A)--(B)node[midway,left] {$\ell$};
 \draw (B)--(C) node[midway,left] {$\ell$};
-	\begin{scope}[xshift=4.4cm]
+	\begin{scope}[xshift=6.0cm]
 		\node (A) at (-3,0) {$\bullet$};
 		\node (B) at (3,0) {$\bullet$};
 		\node (C) at (270:1.2) {$\bullet$};
@@ -857,21 +872,6 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 \begin{center}
 
 \begin{tikzpicture}[scale=0.545, xshift=-0.5cm]
-\coordinate (A) at (0,-7.5);
-\coordinate (AB) at (0,-7.00);
-\coordinate (B) at (0,-3.75);
-\coordinate (C) at (0,0);
-\draw (AB) node[above,left,text width=1.7cm]{
-$
-\mathbb{Z}[\pi]=\mathbb{Z}~+~\ell^2~\mathcal{O}_K 
-$
-} ;
-\draw (A) node{$\bullet$};
-\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}_K$} node{$\bullet$};
-\draw (C) node[left]{$\mathcal{O}_K$} node{$\bullet$};
-\draw (A)--(B)node[midway,left] {$\ell$};
-\draw (B)--(C) node[midway,left] {$\ell$};
-
 	\begin{scope}[xshift=4.4cm]
 		\node (A) at (-3,0) {$\bullet$};
 		\node (B) at (3,0) {$\bullet$};
@@ -1032,9 +1032,7 @@ $
 		
 		\end{center} 
 		\end{figure}
-		Durant le reste de cet exposé nous étudierons tout d'abord le cas de volcans 
-		à cratères cycliques (cas Elkies), puis les volcans avec cratères réduits à 
-		un point (cas Atkin).
+		Durant le reste de cet exposé nous étudierons tout d'abord le cas Elkies, puis le cas Atkin.
 %\begin{figure}[hbtp]
 %\centering
 %\includegraphics[scale=0.4]{Images/duo-volcan-wo-label.png}
@@ -1209,7 +1207,7 @@ i.e. son polynôme minimal se factorise comme
     \begin{itemize}
     \item On appelle $\red{E[\ell^k]_\lambda}\oplus\blu{E[\ell^k]_\mu}$ une
      décomposition \emph{horizontale};
-    \item La littérature SEA appelle cela un \emph{cycle d'isogénies} [Couveignes,~Morain '96].%!!!!!!!!!!!!!!!!!!!!
+    \item La littérature SEA appelle cela un \emph{cycle d'isogénies} [Couveignes,~Morain '94].%!!!!!!!!!!!!!!!!!!!!
     \end{itemize}
   \end{uncoverenv}
 
@@ -1241,17 +1239,17 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \item Pour toute matrice \textbf{diagonale inversible}
   $\left ( \begin{smallmatrix}a & 0\\ 0 & b
 \end{smallmatrix}\right ) \in (\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
-\hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
+\hfill\uncover<2>{$\color{blue!50!gray}{O(r)}$}
     \begin{enumerate}
   \item Calcul du polynôme d'interpolation 
     $L$  qui envoie\\
     $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
-\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+\hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
 	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
+\hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-   l'algorithme. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
+   l'algorithme. \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -1715,13 +1713,13 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$, avec $h<k$.
 \medskip
 \item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
- et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogénies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}  
+ et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogénies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$. \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}  
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$; Rajouter le coût de cela...
 \medskip
 \item Pour toute matrice \textbf{diagonale inversible}
   $\left ( \begin{smallmatrix}a & 0\\ 0 & b
 \end{smallmatrix}\right ) \in (\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
-\hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
+\hfill\uncover<2>{$\color{blue!50!gray}{O(r)}$}
   \begin{enumerate}
 
 %  \item Calcul du polynôme d'interpolation 
@@ -1735,7 +1733,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 %   l'algorithme.
    
    \item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
-   $L$ qui envoie $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+   $L$ qui envoie $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$; \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
   \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -1747,8 +1745,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
  \bluebox{Trouver un premier $\ell$ de Elkies}{
   \begin{itemize}
   \item La complexité de l'algorithme dépend polynomialement du paramètre $\ell$.
-  \item Idéalement nous voudrions travailler avec $\ell=2$.
-  \item En pratique la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies.
+  \item Heuristiquement la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies.
   \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leqslant 
   O(\log(q))$ pour presque tous les $q$ et courbes $E,E'$ (voir 
 [Shparlinski,~Sutherland~'14]).\\
@@ -1764,7 +1761,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \frametitle{Cas Atkin}
 \bluebox{Premier de Atkin}{Un nombre premier $\ell$ est dit un \emph{premier de Atkin} si le polynôme caractéristique de $\pi$: 
 \[
-\pi^2 - t_{\pi}\pi + q 
+\pi^2 - t\pi + q 
 \]
 est irréductible sur $\mathbb{Z}_{\ell}$}
 %Thus we are not able to distinguish two different eigenspaces, 
@@ -1814,19 +1811,19 @@ Ainsi on ne peut se servir d'isogénies horizontales comme ce fut le cas avec de
 \begin{frame}
 \frametitle{Détermination du second vecteur de la base à l'aide du Frobenius}
 \begin{nota}
-La notation $\pi(P,Q)$ désigne l'action du Frobenius dans une base $\langle P,Q \rangle = E[\ell^k]$
+La notation $M_{\pi}(P,Q)$ désigne l'action du Frobenius dans une base $\langle P,Q \rangle = E[\ell^k]$
 \end{nota}
 
 \textbf{Exemple :}Pour deux points $P_0$ et $Q_0$ générateurs de $\ell^k$-isogénies horizontales 
 \[
-\pi(P_0,Q_0)= \left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
+M_{\pi}(P_0,Q_0)= \left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
 0 & \color{blue} \mu \end{smallmatrix} \right)
 \]
 
 \begin{prop}
-Soit $\ell$ un nombre premier de Atkin soient $P,Q,R$ trois points de $E$ 
-située sur un volcan de hauteur $0$ tels que $\langle P,Q \rangle = \langle P,R 
-\rangle =E[\ell^k] $ alors $Q=R \Leftrightarrow \pi(P,Q)=\pi(P,R)$. 
+Soit $E$ située sur un volcan de hauteur $0$, $\ell$ un nombre premier de 
+Atkin, $P,Q,R$ trois points de $E$  tels que $\langle P,Q \rangle = \langle P,R 
+\rangle =E[\ell^k] $ alors $Q=R \Leftrightarrow M_{\pi}(P,Q)=M_{\pi}(P,R)$. 
 \end{prop}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1838,7 +1835,7 @@ située sur un volcan de hauteur $0$ tels que $\langle P,Q \rangle = \langle P,R
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $R=Q$ 
+\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $R=Q$ 
 avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 
 \begin{enumerate}
@@ -1847,9 +1844,9 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 \item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$; \hfill\only<2>{$\color{blue!50!gray}\tilde{O}(r \ell^{O(1)})$}
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
-\item Calcul de la matrice $\pi(P,Q)$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r}\ell^{O(1)})}$}
+\item Calcul de la matrice $M_{\pi}(P,Q)$; \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r}\ell^{O(1)})}$}
 \medskip
-\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
+\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\uncover<2>{$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
   \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
@@ -1991,7 +1988,7 @@ $\mathsf{F}_{i-1}$ de degré $\ell$.
 		 \item un calcul rapide des points d'ordre $\ell^k$,       
          \item un calcul rapide du Frobenius (adapté depuis [Doliskani-Schost'15]),
          \item un calcul rapide du polynôme d'interpolation (adaptant des 
-         méthodes mentionnées par [Enge-Morain '03] et développées par [DeFeo'10])
+         techniques de [Enge,Morain~'03] développées par [De Feo~'10])
          \end{itemize}
 \end{itemize}
  	
