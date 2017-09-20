@@ -189,13 +189,13 @@ applications en cryptographie:
 \begin{itemize}
 \item l'algorithme de Schoof-Elkies-Atkin: algorithme de comptage de points
 d'une courbe elliptique, nécessaire pour l'évaluation de la sécurité 
-cryptographique d'une courbe elliptique,
+cryptographique d'une courbe elliptique;
 \pause
-\item cryptanalyse de la cryptographie à l'aide de courbes elliptiques: [Gaudry,~Hess,~Smart '02],
+\item cryptanalyse de la cryptographie à l'aide de courbes elliptiques: [Gaudry,~Hess,~Smart '02], [Galbraith,~Hess,~Smart '02];
 \pause
-\item construction de fonctions de hachage: [Charles,~Goren,~Lauter '07],
+\item construction de schéma cryptographique à trappe: [Teske~'06];
 \pause
-\item construction de schéma cryptographique à trappe: [Teske~'06],
+\item construction de fonctions de hachage: [Charles,~Goren,~Lauter '09];
 \pause
 \item construction de schémas cryptographiques post-quantiques: [Rostovtsev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
 \end{itemize}
@@ -359,13 +359,13 @@ P & \mapsto [n] P
 
 \bluebox{Points de torsion}{
 Soit $E$ une courbe elliptique définie sur un corps fini $\mathbb{F}_q$,
-et $m>0$
+et un entier $n$.
 \vspace{-1.5mm}
-\[E[m]= \{ P \in E(\bar{\mathbb{F}}_q) , [m]P=0_E \} \]
+\[E[n]= \{ P \in E(\bar{\mathbb{F}}_q) , [n]P=0_E \} \]
 }
 \medskip
-\bluebox{Polynômes de $\ell$-division}
-{Pour toute courbe elliptique $E$ et tout entier $n$ il existe un polynôme $\psi_n$ tel que les abscisses des points de $n$-torsion soient les racines de ce polynôme.}
+\bluebox{Polynômes de $n$-division}
+{Pour toute courbe elliptique $E$ et tout entier $n$ il existe un polynôme $\omega_n$ tel que les abscisses des points de $n$-torsion soient les racines de ce polynôme.}
 %\bluebox{Problème du logarithme discret sur une courbe elliptique $E$}
 %{
 %\begin{algorithmic}[1]
@@ -490,7 +490,11 @@ La connaissance du noyau de l'isogénie $\phi$ permet d'expliciter celle-ci
 Un endomorphisme d'une courbe elliptique $E$ est une isogénie $\psi:E \rightarrow E$. L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$.
 \end{defi}
 
+\smallskip
+
 \textbf{Exemple:} La multiplication scalaire est un endomorphisme.
+
+\smallskip
 
 \begin{prop}
 $\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
@@ -502,7 +506,7 @@ $\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
 \begin{defi}[L'endomorphisme de Frobenius]
 $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Le morphisme
 \[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Il
-satisfait une équation quadratique \[ \pi^2 - t_\pi \pi + q = 0.\]
+satisfait une équation quadratique \[ \pi^2 - t \pi + q = 0.\]
 \end{defi}
 
 Nous travaillons seulement avec des isogénies rationnelles $\psi:E \to E'$, i.e.
@@ -520,19 +524,19 @@ Nous travaillons seulement avec des isogénies rationnelles $\psi:E \to E'$, i.e
 \frametitle{Classification des courbes elliptiques sur un corps fini}
 \begin{prop}
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ de caractéristique 
-$p$. Soit les conditions suivantes équivalentes sont vérifiées:
+$p$. Soit:
 \begin{enumerate}
 \item $E[p]=\mathbb{Z}/p\mathbb{Z}$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombres quadratique imaginaire noté $K$.
 \end{enumerate}
 $E$ est alors dite \emph{ordinaire}.
 
-Soit les conditions suivantes équivalentes sont vérifiées:
+Soit:
 \begin{enumerate}
 \item $E[p]=\{0_E\}$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
 \end{enumerate}
-$E$ est alors dite supersingulière.
+$E$ est alors dite \emph{supersingulière}.
 
 \end{prop}
 
@@ -540,12 +544,6 @@ $E$ est alors dite supersingulière.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-De par
-\begin{itemize}
- \item{} les polynômes modulaires (algorithme SEA), 
- \item{} la cryptanalyse de cryptosystème (par exemple [Rostovtsev,~Stolbunov~'06]) 
-\end{itemize}
-on peut être amené à résoudre le problème suivant:
 \frametitle{Problème du calcul de l'isogénie explicite}
 \bluebox{Problème du calcul de l'isogénie explicite}
 {
@@ -554,22 +552,27 @@ on peut être amené à résoudre le problème suivant:
  $\mathbb{F}_q$, calculer la $r$-isogénie $\phi:E\to E'$.
 }
 \medskip 
+Celui-ci apparaît dans:
+\begin{itemize}
+ \item{} l'algorithme SEA; 
+ \item{} la cryptanalyse de cryptosystème (par exemple [Rostovtsev,~Stolbunov~'06]).
+\end{itemize}
 %\vspace{-1mm}
 
 \end{frame}
 \begin{frame}
 \frametitle{Précédents travaux}
-Travailler cette slide...
+%Travailler cette slide...
 \begin{itemize}
-\item{} [Atkin~'91],[Charlap, Colay, Robbins '91] ,
+\item{} [Elkies~'89],[Charlap, Colay, Robbins~'91], [Atkin~'91].
 \item{} [Elkies~'92/'98],  %[Charlap, Colay, Robbins '91], 
-[Bostan,~Morain,~Salvy,~Schost~'08] fonctionne en $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$, seulement pour $r < 2p$. Spécifique au contexte SEA.
-\item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne pour tout $p$ à l'aide de $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$. Spécifique au contexte SEA.
-\pause
-\item{} [Lercier~'97] fonctionne seulement pour $p=2$.
+[Bostan,~Morain,~Salvy,~Schost~'08], [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne en $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$, pour tout $p$. Spécifique au contexte SEA.
 \pause
 \item{} [Couveignes~'94] pour tout $p$ à l'aide de $\tilde{O}(r^3p^{O(1)})$ 
 opérations.
+\pause
+\item{} [Lercier~'97] fonctionne seulement pour $p=2$.
+\pause
 \item{} [Couveignes~'96], [De Feo~'10] pour tout $p$ à l'aide de  $\tilde{O}
 (r^2p^{O(1)})$ opérations.
 \end{itemize}
@@ -577,7 +580,7 @@ opérations.
 
 %\item[$\rightarrow$] we focus on the medium characteristic case ($n\gg p/\log(p)$),
 \pause
-\item[$\rightarrow$] Nous voulons modifier l'algorithme de Couveignes pour 
+\item[$\rightarrow$] Nous voulons modifier l'algorithme de Couveignes~'96 pour 
 obtenir un algorithme avec une complexité de  $\tilde{O}(r^2)$ mais sans 
 dépendance exponentielle en $\log(p)$.
 \end{itemize}
@@ -1765,7 +1768,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \]
 est irréductible sur $\mathbb{Z}_{\ell}$}
 %Thus we are not able to distinguish two different eigenspaces, 
-Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux sous espaces propres ne peut être utilisée. 
+Ainsi on ne peut se servir d'isogénies horizontales comme ce fut le cas avec des \emph{premiers de Elkies}.  
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.225]
@@ -1903,7 +1906,7 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 %    $P\mapsto S'$ et $Q\mapsto U'$;
 %\hfill {$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 \item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
-   $L$ qui envoie $P\mapsto S'$ et $Q\mapsto R'$; \hfill $\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$
+   $L$ qui envoie $P\mapsto S'$ et $Q\mapsto U'$; \hfill $\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$
   \end{enumerate}
 	
 \end{enumerate}
@@ -1956,7 +1959,7 @@ avec un paramètre $\ell$ borné par $O(\log(q))$.
 
 \begin{defi}[Tour \textit{$\ell$}-adique]
 Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, une tour d'extensions 
-$\ell$-adiques de $\mathbb{F}_q$ est la suite d'extensions: $\mathbb{F}_q, 
+$\ell$-adiques de $\mathbb{F}_q$ est une suite d'extensions: $\mathbb{F}_q, 
 \mathsf{F}_{1}, \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
 \begin{itemize}
 \item{} [Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de 
@@ -1990,8 +1993,7 @@ $\mathsf{F}_{i-1}$ de degré $\ell$.
          \item un calcul rapide du polynôme d'interpolation (adaptant des 
          méthodes mentionnées par [Enge-Morain '03] et développées par [DeFeo'10])
          \end{itemize}
-	\item Il est alors nécessaire d'implanter un algorithme qui prenne en compte ces constructions de tour d'extensions de corps finis.
-  \end{itemize}
+\end{itemize}
  	
   }
 
@@ -2005,7 +2007,10 @@ $\mathsf{F}_{i-1}$ de degré $\ell$.
 L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\ell=2$, le code ($2200$ lignes) est disponible sur GitHub: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.8]{Images/graphe-101-149-269-C2.pdf}
+\only<2>{
+\includegraphics[scale=0.8]{Images/graphe-101-149-269-C2.pdf}}
+\only<1>{
+\includegraphics[scale=0.8]{Images/graphe-101-149-269.pdf}}
 \end{figure}
 \end{frame}
 
