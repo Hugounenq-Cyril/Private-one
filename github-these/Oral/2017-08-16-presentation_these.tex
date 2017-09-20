@@ -1420,13 +1420,117 @@ $E[\ell^{h+1}]$~est conjuguée, sur~$\mathbb{Z}_{\ell}$, à l'unique matrice
 
 
 \begin{frame}
-\frametitle{Marche sur le cratère}
+\frametitle{Marche sur le cratère // Décomposition horizontale}
+\textbf{Objectif :} Calculer une décomposition horizontale de $E[\ell^k]$.
 %Does it work the same with general volcanoes of $\ell$-isogenies?
 %\pause
-Nous supposons que $E$ se situe sur le cratère (nous pouvons nous ramener facilement à ce cas).
- 
+\begin{columns}
+\begin{column}{5cm}
+\bluebox{Solutions existantes}
+{\begin{itemize}
+\item{} [Fouquet,~Morain~'02] est plus coûteux, nécessite le calcul de $\ell+1$ chemins distincts; %me situer par rapport à eux
+\item{} [Ionica,~Joux~'10] suppose la connaissance du cardinal de la courbe, possède des restrictions; %me situer par rapport à eux
+\end{itemize}}
+\end{column}
+\begin{column}{5cm}
+Dessin d'un volcan de hauteur $\neq 0$
+
+\begin{center}
+\tikzstyle{lambda1}=[lambda,draw=blue!60!green]
+\begin{tikzpicture}[scale=0.40]
+% \coordinate (A) at (0,-1.2);
+% \coordinate (B) at (-3,0);
+% \coordinate (C) at (-1.2,.7);
+% \coordinate (D) at (1.2,.7);
+% \coordinate (E) at (3,0);
+%\coordinate (A) at (2,-1);
+%\coordinate (B) at (-2,-1);
+%\coordinate (C) at (-4,0);
+%\coordinate (D) at (-2,1);
+%\coordinate (E) at (2,1);
+%\coordinate (F) at (4,0);
+\coordinate (L) at (0:4);
+\coordinate (K) at (30:3.5);
+\coordinate (J) at (60:3.1);
+\coordinate (I) at (90:3.1);
+\coordinate (D) at (120:3.1);
+\coordinate (E) at (150:3.5);
+\coordinate (G) at (180:4);
+\coordinate (H) at (210:3.5);
+\coordinate (F) at (240:3.1);
+\coordinate (C) at (270:3.1);
+\coordinate (B) at (300:3.1);
+\coordinate (A) at (330:3.5);
+\draw (L)--(A)--(B)--(C)--(F)--(H)--(G)--(E)--(D)--(I)--(J)--(K); \draw (K)--(L);
+
+\coordinate[position=-90:.8 from A] (AA);
+\coordinate[position=-60:.6 from AA] (AA0);
+\coordinate[position=-120:.6 from AA] (AA1);
+\draw (A)--(AA)--(AA0); \draw (AA)--(AA1);
+\coordinate[position=-90:.8 from B] (BB);
+\coordinate[position=-60:.6 from BB] (BB0);
+\coordinate[position=-120:.6 from BB] (BB1);
+\draw (B)--(BB)--(BB0); \draw (BB)--(BB1);
+\coordinate[position=-90:.8 from C] (CC);
+\coordinate[position=-60:.6 from CC] (CC0);
+\coordinate[position=-120:.6 from CC] (CC1);
+\draw (C)--(CC)--(CC0); \draw (CC)--(CC1);
+\coordinate[position=-90:.8 from F] (FF);
+\coordinate[position=-60:.6 from FF] (FF0);
+\coordinate[position=-120:.6 from FF] (FF1);
+\draw (F)--(FF)--(FF0); \draw (FF)--(FF1);
+%\draw<2>[lambda] (A)--(B); \draw<2>[lambda] (B)--(BB);
+%\draw<2>[lambda] (BB)--(BB0);
+%\draw<3>[lambda] (A)--(B); \draw<3>[lambda] (B)--(C);
+%\draw<3>[lambda] (C)--(D);
+\node[fill=pacificcream] at (A) {$E$};
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Décomposition horizontale pour le cas $h=0$.}
+%Slide rappel volcan $h=0$ et base diagonale. \\
+
+\begin{nota}
+La notation $M_{\pi}(P,Q)$ désigne l'action du Frobenius dans une base $\langle P,Q \rangle = E[\ell^k]$
+\end{nota}
+
+\textbf{Exemple :}
+\[
+M_{\pi}(P_0,Q_0)= \left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
+0 & \color{blue} \mu \end{smallmatrix} \right)
+\]
+Signifie que $\pi(P_0)=[\color{red}{\lambda} \color{black}]P_0$ et $\pi(Q_0)=[\color{blue} \mu \color{black}]Q_0$ générateurs de $\ell^k$-isogénies horizontales\\ 
+\smallskip
+Pour le calcul d'une décomposition horizontale en pratique on effectue l'opération suivante: 
+
+\bluebox{Diagonalisation}{
+\begin{algorithmic}[1]
+\REQUIRE $P_0,Q_0$ une base quelconque de $E[\ell^k]$.  
+\ENSURE $\langle P,Q \rangle =  E[\ell^k]$ tels que $M_{\pi}(P,Q)=\left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
+0 & \color{blue} \mu \end{smallmatrix} \right)$.
+\end{algorithmic}}
+Coût de la diagonalisation: $\tilde{O}(\ell^k)$ A verifier en détail...
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Marche sur le cratère // Décomposition horizontale}
 %Let $P \in E[\ell^{h+1}]$ such that  $\pi(P)=\red \lambda(P)$
 %We compute $\ell^k$-isogenies of kernel $\ker(\pi-\blu \mu)$.
+\textbf{Diagonalisation :}
+\begin{itemize}
+\item[$\rightarrow$] suffisant pour le cas $h=0$
+\item[$\rightarrow$] seulement $\langle [\ell^h]P,[\ell^h]Q \rangle$ s les $k-h$ premières $\ell$-isogénies peuvent être certifiées horizontales (reformuler). 
+\end{itemize}
 \begin{columns}
 \begin{column}{5cm}
 \bluebox{Volcan de hauteur $h=0$}{
@@ -1462,7 +1566,7 @@ Nous supposons que $E$ se situe sur le cratère (nous pouvons nous ramener facil
 	\end{center}
 \end{figure}
 }
-$\ker(\pi- \blu \mu\; | \; E[\ell^k])$ est un groupe cyclique de taille $\ell^k$.
+$\ker(\pi- \blu \mu\; | \; E[\ell^3])$ est un groupe cyclique de taille $\ell^3$.
 \end{column}
 \begin{column}{5.5cm}
 \bluebox{Volcan de hauteur $h=2$}{\begin{center}
@@ -1505,14 +1609,17 @@ $\ker(\pi- \blu \mu\; | \; E[\ell^k])$ est un groupe cyclique de taille $\ell^k$
 \end{tikzpicture}
 \end{center}
 }
-\textbf{Problème:} si $h \geqslant 1$
-alors $\ker(\pi- \blu \mu  \;| \; E[\ell^k])
-\simeq (\mathbb Z/\ell^k) \!\times\! (\mathbb Z/\ell^h)$ n'est pas cyclique,
-et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
+\textbf{Problème:} pour $h =2$
+alors $\ker(\pi- \blu \mu  \;| \; E[\ell^3])
+\simeq (\mathbb Z/\ell^3) \!\times\! (\mathbb Z/\ell^2)$ n'est pas cyclique,
+et contient $\ell^2$ sous-groupes cycliques d'ordre $\ell^3$.
 
 \end{column}
 \end{columns}
-
+\begin{itemize}
+\item Notre algorithme a une complexité de $\tilde{O}(\ell^2k \ell^{O(1)})$ (à vérifier);
+\item L'algorithme de [Fouquet,~Morain~'02] a une complexité de $O()$ (à compléter).
+\end{itemize}
 \end{frame}
 
 
@@ -1529,164 +1636,184 @@ et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}
-\frametitle{Marche sur le cratère}
-
-\bluebox{Fait}{
-    Soit $\phi$ une $r$-isogénie avec $\ell \nmid r$, alors $\phi$ préserve les noyaux des $\ell^k$-isogénies horizontales de direction $\red \lambda, \blu \mu $.}
-%\textbf{Goal:} compute the kernel of horizontal $\ell^k$-isogenies (codomain curves lying on the crater).
-On procède étape par étape à l'aide de marche sur le cratère selon la direction $ \blu \mu$. %to compute the kernels of the horizontal $\ell^3$-isogeny of direction $\blu \mu $.
-\vspace{-5mm}
-\begin{center}
-\begin{tikzpicture}[scale=0.37]
-\begin{scope}[yshift=10cm]
-	\begin{scope}[xshift=4.3cm]
-		\node (A) at (-3,0) {$\bullet$};
-		\node (B) at (3,0) {$\bullet$};
-		\node (C) at (270:1.2) {$\bullet$};
-		\node (D) at (125:1.2) {$E_2$};
-		%\draw[-] (A.center) to[bend right=25] (C.center);
-		\draw[-] (D.center) to[bend right=20] (A.center);
-		\only<1-2>{		
-		\draw[-] (D.center) to[bend left=18] (B.center);
-		}
-		\only<3->{
-		\draw[line width=1.5pt,blue,->] (D.center) to[bend left=20] (B.center);
-		
-		\node (F) at (1.25,1.30) {$\color{blue} \mu$};
-		%\node (F2) at (1.25,0.50) {$\color{blue} \psi_2$};		
-		}
-		\only<5->{
-		\draw[line width=1.5pt,blue,->] (D.center) to[bend right=20] (A.center);		
-		}
-		\only<5->{		
-		\node (F2) at (-2.25,1) {$\color{blue} \mu$};
-		}
-%		\only<4->{
-%		\draw[line width=1.5pt,red,->] (D.center) to[bend left=20] (B.center);
+%\begin{frame}
+%\frametitle{Calcul d'une $\ell$-isogénie horizontale de direction $\mu$}
+%%
+%%\bluebox{Fait}{
+%%    Soit $\phi$ une $r$-isogénie avec $\ell \nmid r$, alors $\phi$ préserve les noyaux des $\ell^k$-isogénies horizontales de direction $\red \lambda, \blu \mu $.}
+%%\textbf{Goal:} compute the kernel of horizontal $\ell^k$-isogenies (codomain curves lying on the crater).
+%%On procède étape par étape à l'aide de marche sur le cratère selon la direction $ \blu \mu$. %to compute the kernels of the horizontal $\ell^3$-isogeny of direction $\blu \mu $.
+%\begin{itemize}
+%\item Calcul d'une base diagonale $\langle P,Q \rangle $ de $E[\ell^3]$ telle que $\pi(Q)=[\mu]Q$
+%\item Renvoi de l'isogénie $\psi$ de noyau $\langle \ell^{2}Q \rangle$
+%\end{itemize}
+%L'isogénie de noyau $\langle Q \rangle$ étant rationnelle de degré
+%$\ell^3$ sur un volcan de hauteur $2$ alors $\langle \ell^{2}Q \rangle$ est le noyau d'une isogénie horizontale.
+%\vspace{-5mm}
+%\begin{center}
+%\begin{tikzpicture}[scale=0.37]
+%\begin{scope}[yshift=10cm]
+%	\begin{scope}[xshift=4.3cm]
+%		\node (A) at (-3,0) {$\bullet$};
+%		\node (B) at (3,0) {$\bullet$};
+%		\node (C) at (270:1.2) {$\bullet$};
+%		\node (D) at (125:1.2) {$E_2$};
+%		%\draw[-] (A.center) to[bend right=25] (C.center);
 %		\draw[-] (D.center) to[bend right=20] (A.center);
-%		\node (F) at (1.25,1.30) {$\color{red} \lambda$};		
-%		}
-		%\draw[-] (B.center) to[bend left=25] (C.center);
-		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		\only<1->{
-		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
-		\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
-		%\node (F2) at (1.5,-1.5) {$\color{blue} \psi$};	
-		}
-%		\only<2->{
-%		\draw[line width=1.5pt,red,<-] (C.center) to[bend right=20] (B.center); 
-%		\node (F) at (1.5,-0.5) {$\color{red} \lambda$};		
-%		}
-		
-			\begin{scope}[xshift=-3cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\only<1>{
-			\draw (C)--(CB);}
-			\only<2->{
-			\draw (C)--(CB);}
-			\only<1-3>{			
-			\draw (A)--(C);}
-			\only<4->{
-			\draw (A)--(C);}
-			\only<5>{
-			\draw [line width=1.5pt,blue] (C)--(A);
-			\draw [line width=1.5pt,blue] (C)--(CA);
-			}
-			%just to have a 6th slide
-			\only<6>{
-			\draw (C)--(A);
-			\draw (C)--(CA);
-			}
-%			\draw (A) node[fill=white]{$30$};
-%			\draw (C) node[fill=white]{$98$};
-%			\draw (CA) node[fill=white]{$22$};
-%			\draw (CB) node[fill=white]{$74$};
-			\draw (A) node[fill=white]{$E_3$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\end{scope}
-			\begin{scope}[xshift=3cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\only<1>{
-			\draw [line width=1.5pt,blue] (C)--(CB);
-			\draw [line width=1.5pt,blue] (A)--(C);
-			}
-%			\draw (A) node[fill=white]{$65$};
-%			\draw (C) node[fill=white]{$60$};
-%			\draw (CA) node[fill=white]{$39$};
-%			\draw (CB) node[fill=white]{$62$};
-			\draw (A) node[fill=white]{$E_1$};
-			\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\end{scope}
-			\begin{scope}[yshift=-1.2cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\draw (A) node[fill=white]{$E$};
-			\only<1>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};}
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-%			\draw (CA) node[fill=white]{$45$};
-%			\draw (CB) node[fill=white]{$68$};
-			\end{scope}
-			\begin{scope}[shift={(D)}]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw [dashed] (C)--(CA);
-			\draw [dashed] (C)--(CB);
-			\draw [dashed] (A)--(C);
-			\draw (C) node[color=black!90]{$\bullet$};
-			\draw (CA) node[color=black!90]{$\bullet$};
-			\draw (CB) node[color=black!90]{$\bullet$};
-			\only<3>{
-			\draw [line width=1.5pt,blue] (C)--(A);
-			\draw [line width=1.5pt,blue] (C)--(CA);
-			}
-			\only<1-3,5->{\draw (A) node[fill=white]{$E_2$};}			
-			\only<4>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_2$};}
-			\end{scope}
-	\coordinate (A) at (-3,0);
-	\coordinate (C) at (270:1.2);
-	\only<1->{
-	\draw (A.center) to[bend right=20] (C.center);
-	}
-	\draw (A) node[fill=white]{$E_3$};
-	\only<1>{
-	\draw (C) node[fill=yellow!50!white,shape=circle]{$E$};
-	}	
-	\only<2->{
-	\draw (C) node[fill=white]{$E$};
-	}
-	\end{scope}
-\end{scope}
-
-\end{tikzpicture}
-\end{center}
-\vspace{-4mm}
-D'autres algorithmes pour déterminer des isogénies horizontales ont déjà été proposés: [Fouquet, Morain, '02], [Ionica,Joux, '10].
-\end{frame}
+%%		\only<1-2>{		
+%		\draw[-] (D.center) to[bend left=18] (B.center);
+%%		}
+%%		\only<3->{
+%%		\draw[line width=1.5pt,blue,->] (D.center) to[bend left=20] (B.center);
+%%		
+%%		\node (F) at (1.25,1.30) {$\color{blue} \mu$};
+%%		%\node (F2) at (1.25,0.50) {$\color{blue} \psi_2$};		
+%%		}
+%%		\only<5->{
+%%		\draw[line width=1.5pt,blue,->] (D.center) to[bend right=20] (A.center);		
+%%		}
+%%		\only<5->{		
+%%		\node (F2) at (-2.25,1) {$\color{blue} \mu$};
+%%		}
+%%		\only<4->{
+%%		\draw[line width=1.5pt,red,->] (D.center) to[bend left=20] (B.center);
+%%		\draw[-] (D.center) to[bend right=20] (A.center);
+%%		\node (F) at (1.25,1.30) {$\color{red} \lambda$};		
+%%		}
+%		%\draw[-] (B.center) to[bend left=25] (C.center);
+%		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+%%		\only<1->{
+%		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
+%		\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
+%		%\node (F2) at (1.5,-1.5) {$\color{blue} \psi$};	
+%%		}
+%%		\only<2->{
+%%		\draw[line width=1.5pt,red,<-] (C.center) to[bend right=20] (B.center); 
+%%		\node (F) at (1.5,-0.5) {$\color{red} \lambda$};		
+%%		}
+%		
+%			\begin{scope}[xshift=-3cm]
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw (C)--(CA);
+%%			\only<1>{
+%			\draw (C)--(CB);
+%			%}
+%%			\only<2->{
+%%			\draw (C)--(CB);
+%%			}
+%%			\only<1-3>{			
+%			\draw (A)--(C);
+%%%			}
+%%			\only<4->{
+%%			\draw (A)--(C);}
+%%			\only<5>{
+%%			\draw [line width=1.5pt,blue] (C)--(A);
+%%			\draw [line width=1.5pt,blue] (C)--(CA);
+%%			}
+%%			%just to have a 6th slide
+%%			\only<6>{
+%%			\draw (C)--(A);
+%%			\draw (C)--(CA);
+%%			}
+%%			\draw (A) node[fill=white]{$30$};
+%%			\draw (C) node[fill=white]{$98$};
+%%			\draw (CA) node[fill=white]{$22$};
+%%			\draw (CB) node[fill=white]{$74$};
+%			\draw (A) node[fill=white]{$E_3$};
+%			\draw (C) node[fill=white]{$\bullet$};
+%			\draw (CA) node[fill=white]{$\bullet$};
+%			\draw (CB) node[fill=white]{$\bullet$};
+%			\end{scope}
+%			\begin{scope}[xshift=3cm]
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw (C)--(CA);
+%			\only<1>{
+%			\draw [line width=1.5pt,blue] (C)--(CB);
+%			\draw [line width=1.5pt,blue] (A)--(C);
+%			}
+%			\only<2>{
+%			\draw (C)--(CB);
+%			\draw (A)--(C);
+%			}
+%%			\draw (A) node[fill=white]{$65$};
+%%			\draw (C) node[fill=white]{$60$};
+%%			\draw (CA) node[fill=white]{$39$};
+%%			\draw (CB) node[fill=white]{$62$};
+%			\draw (A) node[fill=white]{$E_1$};
+%%			\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
+%			\draw (C) node[fill=white]{$\bullet$};
+%			\draw (CA) node[fill=white]{$\bullet$};
+%			\draw (CB) node[fill=white]{$\bullet$};
+%			\end{scope}
+%			\begin{scope}[yshift=-1.2cm]
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw (C)--(CA);
+%			\draw (C)--(CB);
+%			\draw (A)--(C);
+%			\draw (A) node[fill=white]{$E$};
+%%			\only<1>{
+%			\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};
+%%			}
+%			\draw (C) node[fill=white]{$\bullet$};
+%			\draw (CA) node[fill=white]{$\bullet$};
+%			\draw (CB) node[fill=white]{$\bullet$};
+%%			\draw (CA) node[fill=white]{$45$};
+%%			\draw (CB) node[fill=white]{$68$};
+%			\end{scope}
+%			\begin{scope}[shift={(D)}]
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw [dashed] (C)--(CA);
+%			\draw [dashed] (C)--(CB);
+%			\draw [dashed] (A)--(C);
+%			\draw (C) node[color=black!90]{$\bullet$};
+%			\draw (CA) node[color=black!90]{$\bullet$};
+%			\draw (CB) node[color=black!90]{$\bullet$};
+%%			\only<3>{
+%%			\draw [line width=1.5pt,blue] (C)--(A);
+%%			\draw [line width=1.5pt,blue] (C)--(CA);
+%%			}
+%%			\only<1-3,5->{
+%			\draw (A) node[fill=white]{$E_2$};
+%%			}			
+%%			\only<4>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_2$};}
+%			\end{scope}
+%	\coordinate (A) at (-3,0);
+%	\coordinate (C) at (270:1.2);
+%%	\only<1->{
+%	\draw (A.center) to[bend right=20] (C.center);
+%%	}
+%	\draw (A) node[fill=white]{$E_3$};
+%%	\only<1>{
+%	\draw (C) node[fill=yellow!50!white,shape=circle]{$E$};
+%%	}	
+%%	\only<2->{
+%%	\draw (C) node[fill=white]{$E$};
+%%	}
+%	\end{scope}
+%\end{scope}
+%
+%\end{tikzpicture}
+%\end{center}
+%\vspace{-4mm}
+%Pour le calcul d'une $\ell^k$-isogénie horizontale:
+%\begin{itemize}
+%\item Notre algorithme a une complexité de $\tilde{O}(\ell^2k \ell^{O(1)})$ (à vérifier);
+%\item L'algorithme de [Fouquet,~Morain~'02] a une complexité de $O()$ (à compléter).
+%\end{itemize}
+%%D'autres algorithmes pour déterminer des isogénies horizontales ont déjà été proposés: [Fouquet, Morain, '02], [Ionica,Joux, '10].
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1805,23 +1932,22 @@ Ainsi on ne peut se servir d'isogénies horizontales comme ce fut le cas avec de
 
 \begin{frame}
 \frametitle{Détermination du second vecteur de la base à l'aide du Frobenius}
-\begin{nota}
-La notation $M_{\pi}(P,Q)$ désigne l'action du Frobenius dans une base $\langle P,Q \rangle = E[\ell^k]$
-\end{nota}
-
-\textbf{Exemple :}Pour deux points $P_0$ et $Q_0$ générateurs de $\ell^k$-isogénies horizontales 
-\[
-M_{\pi}(P_0,Q_0)= \left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
-0 & \color{blue} \mu \end{smallmatrix} \right)
-\]
-
 \begin{prop}
 Soit $E$ située sur un volcan de hauteur $0$, $\ell$ un nombre premier de 
 Atkin, $P,Q,R$ trois points de $E$  tels que $\langle P,Q \rangle = \langle P,R 
 \rangle =E[\ell^k] $ alors $Q=R \Leftrightarrow M_{\pi}(P,Q)=M_{\pi}(P,R)$. 
 \end{prop}
+
+\begin{cor}
+Soit $E$ située sur un volcan de hauteur $0$, $\ell$ un nombre premier de 
+Atkin, $\langle P,Q \rangle = E[\ell^k]$, $R' \in E'[\ell^k]$ et $\phi$ une 
+isogénie de degré $r$, alors $R'=\phi(Q) \Leftrightarrow 
+M_{\pi}(P,Q)=M_{\pi}(\phi(P),R')$.
+\end{cor}
 \end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 
 \bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin $h = 0$)}{
@@ -1867,11 +1993,11 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 \only<1>{
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $\color{red}[\ell^h]\color{black}R=\color{red}[\ell^h]\color{black}Q$ \\
+\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $\color{red}[\ell^h]\color{black}R=\color{red}[\ell^h]\color{black}Q$ \\
 avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 }
 \only<2>{
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $[\ell^h]R=[\ell^h]Q$ \\
+\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $[\ell^h]R=[\ell^h]Q$ \\
 avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 }
 \begin{enumerate}
@@ -1880,12 +2006,12 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 \item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$; \hfill{$\color{blue!50!gray} \tilde{O}(r \ell^{O(1)})$}
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
-\item Calcul de la matrice $\pi(P,Q)$; \hfill {$\color{blue!50!gray} \tilde{O}(\sqrt{r} \ell^{O(1))})$}
+\item Calcul de la matrice $M_{\pi}(P,Q)$; \hfill {$\color{blue!50!gray} \tilde{O}(\sqrt{r} \ell^{O(1))})$}
 \medskip
 \item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill {$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
-  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill {$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
+  \item Calcul de $R'$ tel que $M_{\pi}(S',R')=M_{\pi}(P,Q)$ \hfill {$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
   \medskip
   \only<1>{
   \item $\color{red}{\text{Pour tout point } U' \in E' \text{ tel que } [\ell^h]R'=[\ell^h]U'}$}
@@ -2015,7 +2141,7 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \begin{itemize}
 \item De nouveaux outils pour se déplacer dans le volcan d'isogénies. 
 
-\item Une variante de l'algorithme de Couveignes quasi-quadratique.
+\item Une variante de l'algorithme de Couveignes sans dépendance polynomiale en la caractéristique.
 
 \end{itemize}
 }
@@ -2023,7 +2149,7 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \begin{itemize}
 \item Comparer notre implantation à d'autres algorithmes (en part. Lercier-Sirvent dans le contexte S.E.A.).
 % \item Directly generalize to curves not on the crater.
-\item Estimer le coût de calcul de l'anneau des endomorphismes en modifiant l'algorithme de Kohel'96  avec l'étude de l'action de l'endomorphisme de Frobenius et l'implanter.
+\item Estimer le coût de calcul de l'anneau des endomorphismes en modifiant l'algorithme de Kohel  avec l'étude de l'action de l'endomorphisme de Frobenius et l'implanter.
 \item Étudier l'utilité de notre technique dans d'autres contextes: comptage de points, polynômes de Hilbert, polynômes modulaires.
 %Analyze our techniques to navigate the volcano in other
 %  settings: point counting, Hilbert
