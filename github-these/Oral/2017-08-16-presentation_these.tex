@@ -1524,7 +1524,7 @@ Coût de la diagonalisation: $\tilde{O}(\ell^{2k+O(1)})$.
 \textbf{Diagonalisation :}
 \begin{itemize}
 \item[$\rightarrow$] suffisant pour le cas $h=0$
-\item[$\rightarrow$] seulement $\langle [\ell^h]P,[\ell^h]Q \rangle = \color{red}{E[\ell^{k-h}]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^{k-h}]_{{\mu}}}$.
+\uncover<2-3>{\item[$\rightarrow$] seulement $\langle [\ell^h]P,[\ell^h]Q \rangle = \color{red}{E[\ell^{k-h}]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^{k-h}]_{{\mu}}}$.}
 \end{itemize}
 \vspace{-1.0mm}
 \begin{columns}
@@ -1604,18 +1604,19 @@ $\ker(\pi- \blu \mu\; | \; E[\ell^k]) \simeq \mathbb Z/\ell^k$.
 \node[fill=pacificcream] at (A) {$E$};
 \end{tikzpicture}
 \end{center}
-}
+}\uncover<2-3>{
 \textbf{Problème:} pour $h \neq 0$
-alors $\ker(\pi- \blu \mu  \;| \; E[\ell^k])
+$\ker(\pi- \blu \mu  \;| \; E[\ell^k])
 \simeq (\mathbb Z/\ell^k) \!\times\! (\mathbb Z/\ell^h)$ n'est pas cyclique,
 et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
-
+}
 \end{column}
 \end{columns}
+\uncover<3>{
 \begin{itemize}
-\item Notre algorithme a une complexité de $\tilde{O}(\ell^{2k+O(1)})$;
-\item L'algorithme de [Fouquet,~Morain~'02] a une complexité de $O()$ (à compléter).
-\end{itemize}
+\item Notre algorithme a un coût de $\tilde{O}(\ell^{2k+O(1)})$;
+\item L'algorithme de [Fouquet,~Morain~'02] a un coût de $\tilde{O}((\ell)^{3k+O(1)})$.
+\end{itemize}}
 \end{frame}
 
 
