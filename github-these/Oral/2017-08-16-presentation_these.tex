@@ -180,7 +180,14 @@ Changer quelques logos
 \end{frame}
 
 \begin{frame}
+\frametitle{Aperçu historique de la cryptographie}
 Slide histoire de la cryptographie.
+\begin{itemize}
+\item Chiffrement symétrique (DES [1975])
+\item échange de clés Diffie-Hellman [1976]
+\item RSA [1977]
+\item Cryptographie à l'aide de Courbes Elliptiques [1985]
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -553,7 +560,7 @@ $E$ est alors dite \emph{supersingulière}.
 \bluebox{Problème du calcul de l'isogénie explicite}
 {
  Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$. 
- \`A partir de $E$, $E'$  deux courbes elliptiques ordinaires $r$-isogènes définies sur 
+ \`A partir de $E$, $E'$  deux courbes elliptiques \emph{ordinaires} $r$-isogènes définies sur 
  $\mathbb{F}_q$, calculer la $r$-isogénie $\phi:E\to E'$.
 }
 \medskip 
@@ -572,12 +579,9 @@ Celui-ci apparaît dans:
 \item{} [Elkies~'89],[Charlap, Colay, Robbins~'91], [Atkin~'91].
 \item{} [Elkies~'92/'98],  %[Charlap, Colay, Robbins '91], 
 [Bostan,~Morain,~Salvy,~Schost~'08], [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne en $\tilde{O}(r \log(p))$ opérations dans $\mathbb{F}_q$. Spécifique au contexte SEA.
-\pause
 \item{} [Couveignes~'94] en $\tilde{O}(r^3p^{O(1)})$ 
 opérations.
-\pause
 \item{} [Lercier~'97] fonctionne seulement pour $p=2$.
-\pause
 \item{} [Couveignes~'96], [De Feo~'10] en  $\tilde{O}
 (r^2p^{O(1)})$ opérations.
 \end{itemize}
@@ -610,12 +614,14 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \item Interpolation de $\phi$, en supposant que l'on a la correspondance $P\mapsto P'$;
 \item Vérification si la fraction rationnelle $F$ candidate définit une isogénie.\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
 	\begin{itemize}
-	\item Test du degré du dénominateur $d$ de $F$ et de sa décomposition en 
-	facteurs carré et si $\omega_{\ell}^2= 0 \bmod d$;
+	\item Test du degré du dénominateur $d$ de $F$;
+	\item Test de la décomposition de $d$ en facteurs carré ;
+	\item Test si $\omega_{\ell}^2= 0 \bmod d$;
 	\end{itemize}
     Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$.
 \end{itemize}
 }
+CHANGER OMEGA
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1236,13 +1242,13 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \end{smallmatrix}\right ) \in (\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
 \hfill\uncover<2>{$\color{blue!50!gray}{O(r)}$}
     \begin{enumerate}
-  \item Calcul du polynôme d'interpolation 
-    $L$  qui envoie\\
+  \item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
+    $L$  qui envoie
     $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
 \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
-	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
-	$(r, r-1)$ et test de celle-ci.
-\hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
+%	\item Calcul d'une fraction rationnelle $F$ de degrés \\
+%	$(r, r-1)$ et test de celle-ci.
+%\hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -2049,7 +2055,7 @@ pas la complexité espérée sont des diviseurs de $d_{\pi}$ borné par $O(q)$.
 \section{Implantation}
 
 \begin{frame}
-\frametitle{Définition d'une tour d'extension de corps finis}
+\frametitle{Corps de défintion de $E[\ell^i]$}
 \begin{columns}
 \begin{column}{2cm}
 \begin{center}
@@ -2077,17 +2083,17 @@ pas la complexité espérée sont des diviseurs de $d_{\pi}$ borné par $O(q)$.
 \vspace{-3.5mm}
 %\begin{defi}[Tour \textit{$\ell$}-adique]
 \bluebox{}{
-Pour $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell \neq p$ la 
-caractéristique de $\mathbb{F}_q$, une tour d'extensions $\ell$-adiques de 
+Pour $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell \nmid q$, une 
+tour d'extensions $\ell$-adiques de 
 $\mathbb{F}_q$ est une suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{1}, 
-\mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
-$E[\ell^i] \subset E(\mathsf{F}_{i})$
+\mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ où $\mathsf{F}_i$ est le plus
+petit corps tel que $E[\ell^i] \subset E(\mathsf{F}_{i})$
 \begin{itemize}
 \item{} [Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de 
 degré $d_1 \mid \ell-1$. De plus l'ordre multiplicatif de $q$ dans 
 $\mathbb{Z}/\ell \mathbb{Z}$ divise $d_1$;
 \item{} [Cas Atkin] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de 
-degré au plus $ \ell^2-1$;
+degré divisant $ \ell^2-1$;
 \item Il existe $i_0 \geqslant 1$ tel que $\mathsf{F}_{i_0} \simeq \mathsf{F}_{i_0-1} \simeq \cdots \simeq \mathsf{F}_{1}$ et $\mathsf{F}_{i_0} \not \simeq \mathsf{F}_{i_0+1}$; 
 \item $\mathsf{F}_{i}$ pour $i \geqslant i_0+1$ est une extension de 
 $\mathsf{F}_{i-1}$ de degré $\ell$.
@@ -2103,19 +2109,19 @@ $\mathsf{F}_{i-1}$ de degré $\ell$.
 
 \begin{frame}
 
-  \frametitle{Calculs dans une Tour d'extensions de corps finis}
+  \frametitle{Calculs dans une tour d'extensions de corps finis}
 
   \bluebox{}{
   \begin{itemize}
 %	\item Les points de torsion ne sont pas en général définis dans $\mathbb{F}_q$.	
-	\item Nous travaillons dans des tours d'extensions $\ell$-adiques de $\mathbb F_q$
-        en généralisant les constructions de [De~Feo,~Doliskani, Schost '13], 
+	\item Nous généralisons les constructions des tours d'extensions de 
+	    $\mathbb F_q$ [De~Feo,~Doliskani, Schost '13], 
         [Doliskani,~Schost '15] et où en particulier nous avons un calcul rapide 
 		\begin{itemize}  
 		 \item du Frobenius (adapté depuis [Doliskani-Schost'15]);
 		 \item du polynôme d'interpolation (adaptant des 
          techniques de [Enge,Morain~'03] développées par [De Feo~'10]);
-		 \item des points d'ordre $\ell^k$.       
+		 \item des points d'ordre $\ell^k$ d'une courbe elliptique.       
          \end{itemize}
 \end{itemize}
   }
@@ -2126,7 +2132,7 @@ $\mathsf{F}_{i-1}$ de degré $\ell$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Expérimentations}
+\frametitle{Expériences}
 L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\ell=2$, le code ($2200$ lignes) est disponible sur GitHub: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}
 \begin{figure}[hbtp]
 \centering
