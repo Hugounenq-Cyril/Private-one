@@ -617,7 +617,7 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 	\end{itemize}
     Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$.
 \end{itemize}
-
+Slide a Modifier
 }
 \end{frame}
 
@@ -657,6 +657,7 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 %Complexity polynomial in $p$. 
 \pause
 \bluebox{Objectif} {Remplacer $E[p^k]$ par \boldmath $E[\ell^k]$ \unboldmath pour un petit premier $\ell \neq p$.}
+Slide a modifier
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -682,7 +683,7 @@ Notre objectif est de travailler avec \boldmath $E[\ell^k]\simeq \left(\mathbb{Z
 \begin{column}{0.48\textwidth}
 
 \bluebox{$p$-adique}{
-Soient $\langle P \rangle= E[p^k]$ et \\ $\langle P' \rangle= E'[p^k]$
+Soient $\langle P \rangle= E[p^k]$, $\langle P' \rangle= E'[p^k]$
 \[
 P \mapsto [a] P'  \qquad a\in(\mathbb{Z}/p^k\mathbb{Z})^*
 \]
@@ -692,7 +693,7 @@ $\Rightarrow O(r)$ possibilités.
 \end{column}
 \begin{column}{0.55\textwidth}
 \bluebox{$\ell$-adique}{
-Soient $ \langle P,Q \rangle = E[\ell^k]$ et \\ $\langle P',Q' \rangle = E'[\ell^k]$
+Soient $ \langle P,Q \rangle = E[\ell^k]$, $\langle P',Q' \rangle = E'[\ell^k]$
 \begin{gather*}
 \begin{pmatrix}
 P\\Q
@@ -1505,9 +1506,9 @@ La notation $M_{\pi}(P,Q)$ désigne l'action du Frobenius dans une base $\langle
 M_{\pi}(P_0,Q_0)= \left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
 0 & \color{blue} \mu \end{smallmatrix} \right)
 \]
-Signifie que $\pi(P_0)=[\color{red}{\lambda} \color{black}]P_0$ et $\pi(Q_0)=[\color{blue} \mu \color{black}]Q_0$ générateurs de $\ell^k$-isogénies horizontales\\ 
+Signifie que $\pi(P_0)=[\color{red}{\lambda} \color{black}]P_0$ et $\pi(Q_0)=[\color{blue} \mu \color{black}]Q_0$.\\ 
 \smallskip
-Pour le calcul d'une décomposition horizontale en pratique on effectue l'opération suivante: 
+En pratique le calcul d'une décomposition horizontale est fait à l'aide de: 
 
 \bluebox{Diagonalisation}{
 \begin{algorithmic}[1]
@@ -1523,14 +1524,16 @@ Coût de la diagonalisation: $\tilde{O}(\ell^k)$ A verifier en détail...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Marche sur le cratère // Décomposition horizontale}
+\frametitle{Décomposition horizontale}
 %Let $P \in E[\ell^{h+1}]$ such that  $\pi(P)=\red \lambda(P)$
 %We compute $\ell^k$-isogenies of kernel $\ker(\pi-\blu \mu)$.
+\vspace{-2.0mm}
 \textbf{Diagonalisation :}
 \begin{itemize}
 \item[$\rightarrow$] suffisant pour le cas $h=0$
-\item[$\rightarrow$] seulement $\langle [\ell^h]P,[\ell^h]Q \rangle$ s les $k-h$ premières $\ell$-isogénies peuvent être certifiées horizontales (reformuler). 
+\item[$\rightarrow$] seulement $\langle [\ell^h]P,[\ell^h]Q \rangle = \color{red}{E[\ell^{k-h}]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^{k-h}]_{{\mu}}}$.
 \end{itemize}
+\vspace{-1.0mm}
 \begin{columns}
 \begin{column}{5cm}
 \bluebox{Volcan de hauteur $h=0$}{
@@ -1566,7 +1569,7 @@ Coût de la diagonalisation: $\tilde{O}(\ell^k)$ A verifier en détail...
 	\end{center}
 \end{figure}
 }
-$\ker(\pi- \blu \mu\; | \; E[\ell^3])$ est un groupe cyclique de taille $\ell^3$.
+$\ker(\pi- \blu \mu\; | \; E[\ell^k]) \simeq \mathbb Z/\ell^k$.
 \end{column}
 \begin{column}{5.5cm}
 \bluebox{Volcan de hauteur $h=2$}{\begin{center}
@@ -1609,15 +1612,15 @@ $\ker(\pi- \blu \mu\; | \; E[\ell^3])$ est un groupe cyclique de taille $\ell^3$
 \end{tikzpicture}
 \end{center}
 }
-\textbf{Problème:} pour $h =2$
-alors $\ker(\pi- \blu \mu  \;| \; E[\ell^3])
-\simeq (\mathbb Z/\ell^3) \!\times\! (\mathbb Z/\ell^2)$ n'est pas cyclique,
-et contient $\ell^2$ sous-groupes cycliques d'ordre $\ell^3$.
+\textbf{Problème:} pour $h \neq 0$
+alors $\ker(\pi- \blu \mu  \;| \; E[\ell^k])
+\simeq (\mathbb Z/\ell^k) \!\times\! (\mathbb Z/\ell^h)$ n'est pas cyclique,
+et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
 
 \end{column}
 \end{columns}
 \begin{itemize}
-\item Notre algorithme a une complexité de $\tilde{O}(\ell^2k \ell^{O(1)})$ (à vérifier);
+\item Notre algorithme a une complexité de $\tilde{O}(\ell^{2k} \ell^{O(1)})$ (à vérifier);
 \item L'algorithme de [Fouquet,~Morain~'02] a une complexité de $O()$ (à compléter).
 \end{itemize}
 \end{frame}
