@@ -12,11 +12,11 @@ set xlabel "r"
 set logscale y 2
 set logscale x 2
 set xtics 4
-plot [4:4096] 'test-script-18bits-bis.tsv' using 1:4 with line dt 7 lw 3 title "p ≈ 2^{18}", \
-     'test-script-30bits-bis.tsv' using 1:4 with line dt 2 lw 3 title "p ≈ 2^{30}", \
-     'test-script-62bits-2nd-bis.tsv' using 1:4 with line dt 4 lw 3 title "p ≈ 2^{62}", \
-     'test-script-252bits-bis.tsv' using 1:4 with line dt 5 lw 3 title "p ≈ 2^{252}"  
-
+plot [4:4096] 'test-script-18bits-bis.tsv' using 1:4 with line dt 7 lw 3 title "p ≈ 2^{18}              ", \
+     'test-script-30bits-bis.tsv' using 1:4 with line dt 2 lw 3 title "p ≈ 2^{30}              ", \
+     'test-script-62bits-2nd-bis.tsv' using 1:4 with line dt 4 lw 3 title "p ≈ 2^{62}              ", \
+     'test-script-252bits-bis.tsv' using 1:4 with line dt 5 lw 3 title "p ≈ 2^{252}             "  
+                                                                       
 #'test-script-269-bis.tsv' using 1:4 with line dt 6 lw 3 title "p = 269", \
 
 #     'test-script-149-bis.tsv' using 1:4 with line lt 2 lw 3 title "p=149", \
