@@ -181,12 +181,12 @@ Changer quelques logos
 
 \begin{frame}
 \frametitle{Aperçu historique de la cryptographie}
-Slide histoire de la cryptographie.
+
 \begin{itemize}
-\item Chiffrement symétrique (DES [1975])
-\item échange de clés Diffie-Hellman [1976]
-\item RSA [1977]
-\item Cryptographie à l'aide de Courbes Elliptiques [1985]
+\item Chiffrement symétrique (DES [1975]) (même clé pour chiffrer et déchiffrer);
+\item \'Echange de clés à l'aide du schéma de Diffie-Hellman [1976];
+\item RSA [1977] (Chiffrement asymétrique utilisant l'arithmétique modulaire);
+\item Cryptographie à l'aide de Courbes Elliptiques [1985] (Chiffrements asymétriques).
 \end{itemize}
 \end{frame}
 
@@ -199,17 +199,17 @@ Slide histoire de la cryptographie.
 Les isogénies, à l'image des courbes elliptiques sur les corps finis, ont de nombreuses 
 applications en cryptographie: 
 \begin{itemize}
-\item l'algorithme de Schoof-Elkies-Atkin: algorithme de comptage de points
+\item L'algorithme de Schoof-Elkies-Atkin: algorithme de comptage de points
 d'une courbe elliptique, nécessaire pour l'évaluation de la sécurité 
 cryptographique d'une courbe elliptique;
 \pause
-\item cryptanalyse de la cryptographie à l'aide de courbes elliptiques: [Gaudry,~Hess,~Smart '02], [Galbraith,~Hess,~Smart '02];
+\item Cryptanalyse de la cryptographie à l'aide de courbes elliptiques: [Gaudry,~Hess,~Smart '02], [Galbraith,~Hess,~Smart '02];
 \pause
-\item construction de schéma cryptographique à trappe: [Teske~'06];
+\item Construction de schéma cryptographique à trappe: [Teske~'06];
 \pause
-\item construction de fonctions de hachage: [Charles,~Goren,~Lauter '09];
+\item Construction de fonctions de hachage: [Charles,~Goren,~Lauter '09];
 \pause
-\item construction de schémas cryptographiques post-quantiques: [Rostovtsev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
+\item Construction de schémas cryptographiques post-quantiques: [Rostovtsev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
 \end{itemize}
 %Probleme du logarithme discret...
 \end{frame}
@@ -1611,13 +1611,32 @@ et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
 }
 \end{column}
 \end{columns}
-\uncover<3>{
+\end{frame}
+\begin{frame}
+\frametitle{Calcul d'une décomposition horizontale}
+%tu répètes x fois l'algo de diagonalisation en te déplaçant sur le
+%cratère, et pourquoi le surcoût est négligeable par rapport à h=0. \\
+
+\bluebox{Algorithme de décomposition horizontale}{
+\begin{algorithmic}[1]
+\REQUIRE $P_0,Q_0$ une base quelconque de $E[\ell^k]$ avec $E$ sur le cratère.  
+\ENSURE $\langle P,Q \rangle =  E[\ell^k]$ tels que $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $.
+\end{algorithmic}
+\begin{itemize}
+\item Calcul de $\color{red}{E[\ell^{k-h}]_{{\lambda}}} \color{black} \oplus 
+\color{blue}{E[\ell^{k-h}]_{{\mu}}}$ à l'aide de \textbf{Diagonalisation};
+\item $L \leftarrow L \cup \ell^{k-h}$ isogénies horizontales;
+\item Déplacement sur le cratère.
+\end{itemize}}
+$\Rightarrow$Pas de surcoût majeur par rapport au cas $h=0$ car nous utilisons uniquement 
+des bases diagonales de $E[\ell^k]$ 
+
 \begin{itemize}
 \item Notre algorithme a un coût de $\tilde{O}(\ell^{2k+O(1)})$;
 \item L'algorithme de [Fouquet,~Morain~'02] a un coût de $\tilde{O}(\ell^{3k+O(1)})$.
-\end{itemize}}
-\end{frame}
+\end{itemize}
 
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1865,7 +1884,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
   \item La complexité de l'algorithme dépend polynomialement du paramètre $\ell$.
   \item Heuristiquement la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies pour une courbe $E$ fixée.
   \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leqslant 
-  O(\log(q))$ \extbf{pour presque tous les $q$ et courbes $E,E'$} (voir 
+  O(\log(q))$ \textbf{pour presque tous les $q$ et courbes $E,E'$} (voir 
 [Shparlinski,~Sutherland~'14]).\\
  $\Rightarrow$ Algorithme quasi-quadratique de Couveignes $\ell$-adique.
 \end{itemize}
