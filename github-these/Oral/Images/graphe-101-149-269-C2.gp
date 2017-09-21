@@ -12,12 +12,13 @@ set xlabel "r"
 set logscale y 2
 set logscale x 2
 set xtics 4
-plot [4:4096] 'test-script-18bits-bis.tsv' using 1:4 with line dt 7 lw 3 title "p ≈ 2^{18}", \
+plot [4:4096] 'comparaison_C2-100bits.tsv' using 1:5 with line dt 1 lw 3 title "q = 2^{101} [DeFeo'10]", \
+     'comparaison_C2-1000bits.tsv' using 1:5 with line dt 6 lw 3 title "q = 2^{1023} [DeFeo'10]", \     
+     'test-script-18bits-bis.tsv' using 1:4 with line dt 7 lw 3 title "p ≈ 2^{18}", \
      'test-script-30bits-bis.tsv' using 1:4 with line dt 2 lw 3 title "p ≈ 2^{30}", \
      'test-script-62bits-2nd-bis.tsv' using 1:4 with line dt 4 lw 3 title "p ≈ 2^{62}", \
-     'test-script-252bits-bis.tsv' using 1:4 with line dt 5 lw 3 title "p ≈ 2^{252}", \
-     'comparaison_C2-100bits.tsv' using 1:5 with line dt 1 lw 3 title "q = 2^{101} [DeFeo'10]", \
-     'comparaison_C2-1000bits.tsv' using 1:5 with line dt 6 lw 3 title "q = 2^{1023} [DeFeo'10]"     
+     'test-script-252bits-bis.tsv' using 1:4 with line dt 5 lw 3 title "p ≈ 2^{252}"
+     
 
 #'test-script-269-bis.tsv' using 1:4 with line dt 6 lw 3 title "p = 269", \
 
@@ -25,3 +26,4 @@ plot [4:4096] 'test-script-18bits-bis.tsv' using 1:4 with line dt 7 lw 3 title "
 #     'test-script-269-bis.tsv' using 1:4 with line lt 3 lw 3 title "p=269", \
 #     'test-script-521-bis.tsv' using 1:4 with line lt 4 lw 3 title "p=521", \
 #     'test-script-1033-bis.tsv' using 1:4 with line lt 5 lw 3 title "p=1033", \
+
