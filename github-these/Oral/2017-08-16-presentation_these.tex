@@ -1430,32 +1430,21 @@ $E[\ell^{h+1}]$~est conjuguée, sur~$\mathbb{Z}_{\ell}$, à l'unique matrice
 Dessin d'un volcan de hauteur $\neq 0$
 
 \begin{center}
-\tikzstyle{lambda1}=[lambda,draw=blue!60!green]
+\tikzstyle{mu1}=[mu,draw=blue!60!green]
+\tikzstyle{lambda1}=[lambda,draw=red]
 \begin{tikzpicture}[scale=0.40]
 % \coordinate (A) at (0,-1.2);
 % \coordinate (B) at (-3,0);
 % \coordinate (C) at (-1.2,.7);
 % \coordinate (D) at (1.2,.7);
 % \coordinate (E) at (3,0);
-%\coordinate (A) at (2,-1);
-%\coordinate (B) at (-2,-1);
-%\coordinate (C) at (-4,0);
-%\coordinate (D) at (-2,1);
-%\coordinate (E) at (2,1);
-%\coordinate (F) at (4,0);
-\coordinate (L) at (0:4);
-\coordinate (K) at (30:3.5);
-\coordinate (J) at (60:3.1);
-\coordinate (I) at (90:3.1);
-\coordinate (D) at (120:3.1);
-\coordinate (E) at (150:3.5);
-\coordinate (G) at (180:4);
-\coordinate (H) at (210:3.5);
-\coordinate (F) at (240:3.1);
-\coordinate (C) at (270:3.1);
-\coordinate (B) at (300:3.1);
-\coordinate (A) at (330:3.5);
-\draw (L)--(A)--(B)--(C)--(F)--(H)--(G)--(E)--(D)--(I)--(J)--(K); \draw (K)--(L);
+\coordinate (A) at (2,-1);
+\coordinate (B) at (-2,-1);
+\coordinate (C) at (-4,0);
+\coordinate (D) at (-2,1);
+\coordinate (E) at (2,1);
+\coordinate (F) at (4,0);
+\draw (F)--(A)--(B)--(C)--(D)--(E); \draw[dashed] (E)--(F);
 
 \coordinate[position=-90:.8 from A] (AA);
 \coordinate[position=-60:.6 from AA] (AA0);
@@ -1473,11 +1462,9 @@ Dessin d'un volcan de hauteur $\neq 0$
 \coordinate[position=-60:.6 from FF] (FF0);
 \coordinate[position=-120:.6 from FF] (FF1);
 \draw (F)--(FF)--(FF0); \draw (FF)--(FF1);
-%\draw<2>[lambda] (A)--(B); \draw<2>[lambda] (B)--(BB);
-%\draw<2>[lambda] (BB)--(BB0);
-%\draw<3>[lambda] (A)--(B); \draw<3>[lambda] (B)--(C);
-%\draw<3>[lambda] (C)--(D);
-\node[fill=pacificcream] at (A) {$E$};
+\draw [mu] (A)--(B) node[midway,below]{$\color{red} \lambda$}; \draw[mu] (B)--(C) node[midway,below]{$\color{red} \lambda$}; \draw[mu] (C)--(D) node[midway,above]{$\color{red} \lambda$};
+\draw [lambda] (A)--(F) node[midway,below]{$\color{blue} \mu$} ; \draw[lambda] (F)--(E) node[midway,above]{$\color{blue} \mu$}; \draw[lambda] (E)--(D) node[midway,above]{$\color{blue} \mu$};
+\node at (A) {$E$};
 \end{tikzpicture}
 \end{center}
 \end{column}
@@ -1524,7 +1511,7 @@ Coût de la diagonalisation: $\tilde{O}(\ell^{2k+O(1)})$.
 \textbf{Diagonalisation :}
 \begin{itemize}
 \item[$\rightarrow$] suffisant pour le cas $h=0$
-\uncover<2-3>{\item[$\rightarrow$] seulement $\langle [\ell^h]P,[\ell^h]Q \rangle = \color{red}{E[\ell^{k-h}]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^{k-h}]_{{\mu}}}$.}
+\uncover<3>{\item[$\rightarrow$] seulement $\langle [\ell^h]P,[\ell^h]Q \rangle = \color{red}{E[\ell^{k-h}]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^{k-h}]_{{\mu}}}$.}
 \end{itemize}
 \vspace{-1.0mm}
 \begin{columns}
@@ -1615,7 +1602,7 @@ et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
 \uncover<3>{
 \begin{itemize}
 \item Notre algorithme a un coût de $\tilde{O}(\ell^{2k+O(1)})$;
-\item L'algorithme de [Fouquet,~Morain~'02] a un coût de $\tilde{O}((\ell)^{3k+O(1)})$.
+\item L'algorithme de [Fouquet,~Morain~'02] a un coût de $\tilde{O}(\ell^{3k+O(1)})$.
 \end{itemize}}
 \end{frame}
 
