@@ -377,7 +377,7 @@ et un entier $n$.
 }
 \medskip
 \bluebox{Polynômes de $n$-division}
-{Pour toute courbe elliptique $E$ et tout entier $n$ il existe un polynôme $\omega_n$ tel que les abscisses des points de $n$-torsion soient les racines de ce polynôme.}
+{Pour toute courbe elliptique $E$ et tout entier $n$ il existe un polynôme $\psi_n$ tel que les abscisses des points de $n$-torsion soient les racines de ce polynôme.}
 %\bluebox{Problème du logarithme discret sur une courbe elliptique $E$}
 %{
 %\begin{algorithmic}[1]
@@ -612,16 +612,15 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{itemize}
 \item Calcul de générateurs $P,P'$ de $E[p^k],E'[p^k]$;
 \item Interpolation de $\phi$, en supposant que l'on a la correspondance $P\mapsto P'$;
-\item Vérification si la fraction rationnelle $F$ candidate définit une isogénie.\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
+\item Vérification si la fraction rationnelle $F$ déduite du polynôme d'interpolation définit une isogénie.\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
 	\begin{itemize}
 	\item Test du degré du dénominateur $d$ de $F$;
 	\item Test de la décomposition de $d$ en facteurs carré ;
-	\item Test si $\omega_{\ell}^2= 0 \bmod d$;
+	\item Test si $\psi_{\ell}^2= 0 \bmod d$;
 	\end{itemize}
     Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$.
 \end{itemize}
 }
-CHANGER OMEGA
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1426,7 +1425,8 @@ $E[\ell^{h+1}]$~est conjuguée, sur~$\mathbb{Z}_{\ell}$, à l'unique matrice
 
 \begin{frame}
 \frametitle{Décomposition horizontale}
-\textbf{Objectif :} Calculer une décomposition horizontale de $E[\ell^k]$.
+\textbf{Objectif :} Calculer une décomposition horizontale de $E[\ell^k]$. \\
+Celle-ci est faite ici à l'aide de $\ell^k$-isogénies horizontales.
 %Does it work the same with general volcanoes of $\ell$-isogenies?
 %\pause
 \begin{columns}
@@ -1483,7 +1483,7 @@ $E[\ell^{h+1}]$~est conjuguée, sur~$\mathbb{Z}_{\ell}$, à l'unique matrice
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Décomposition horizontale pour le cas $h=0$.}
+\frametitle{Diagonalisation.}
 %Slide rappel volcan $h=0$ et base diagonale. \\
 
 \begin{nota}
@@ -1497,14 +1497,17 @@ M_{\pi}(P_0,Q_0)= \left( \begin{smallmatrix} \color{red}{\lambda} & \color{black
 $
 signifie que $\pi(P_0)=[\color{red}{\lambda} \color{black}]P_0$ et $\pi(Q_0)=[\color{blue} \mu \color{black}]Q_0$.\\ 
 \smallskip
-En pratique le calcul d'une décomposition horizontale est fait à l'aide de: 
 
-\bluebox{Diagonalisation}{
+\bluebox{Algorithme de diagonalisation}{
 \begin{algorithmic}[1]
-\REQUIRE $P_0,Q_0$ une base quelconque de $E[\ell^k]$.  
+\REQUIRE $P_0,Q_0$ une base quelconque de $E[\ell^k]$ avec $E$ sur le cratère.  
 \ENSURE $\langle P,Q \rangle =  E[\ell^k]$ tels que $M_{\pi}(P,Q)=\left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
 0 & \color{blue} \mu \end{smallmatrix} \right)$.
-\end{algorithmic}}
+\end{algorithmic}
+\begin{itemize}
+\item Algébre linéaire sur $M_{\pi}([\ell^{i}]P_0,[\ell^{i}]Q_0)$
+\item Relèvement ($i \leftarrow i-1$)
+\end{itemize}}
 Coût de la diagonalisation: $\tilde{O}(\ell^{2k+O(1)})$.
 
 
@@ -1860,9 +1863,9 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
  \bluebox{Trouver un premier $\ell$ de Elkies}{
   \begin{itemize}
   \item La complexité de l'algorithme dépend polynomialement du paramètre $\ell$.
-  \item Heuristiquement la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies.
+  \item Heuristiquement la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies pour une courbe $E$ fixée.
   \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leqslant 
-  O(\log(q))$ pour presque tous les $q$ et courbes $E,E'$ (voir 
+  O(\log(q))$ \extbf{pour presque tous les $q$ et courbes $E,E'$} (voir 
 [Shparlinski,~Sutherland~'14]).\\
  $\Rightarrow$ Algorithme quasi-quadratique de Couveignes $\ell$-adique.
 \end{itemize}
@@ -1934,18 +1937,18 @@ Atkin, $P,Q,R$ trois points de $E$  tels que $\langle P,Q \rangle = \langle P,R
 Q=R \Leftrightarrow M_{\pi}(P,Q)=M_{\pi}(P,R).
 \]
 \end{prop}
-Le coût de la détermination de $M_{\pi}(P,Q)$ est de $\tilde{O}(\sqrt{r}\ell^{O(1)})$
+Le coût du calcul de $M_{\pi}(P,Q)$ est de $\tilde{O}(\ell^{k+O(1)})$
 \begin{cor}
 Soient $E, E'$ deux courbes $r$-isogènes situées sur un volcan de hauteur $0$, 
 $\ell$ un nombre premier d'Atkin, $\langle P,Q \rangle = E[\ell^k]$, $R' \in 
 E'[\ell^k]$ et $\phi:E \mapsto E'$ une isogénie de degré $r$, alors 
 \[
 R'=\phi(Q)
- \Leftrightarrow M_{\pi}(P,Q)=M_{\pi}(\phi(P),R').
+ \Leftrightarrow M_{\pi}(P,Q)=M_{\pi'}(\phi(P),R').
 \]
 \end{cor}
 
-Le coût de la recherche d'un tel point $R'$ est de $O(\tilde{O}(\sqrt{r} \ell^{O(1)}))$
+Le coût de la recherche d'un tel point $R'$ est de $\tilde{O}(\ell^{k+O(1)})$
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2047,8 +2050,12 @@ $r$-isogènes, alors la $r$-isogénie peut être calculée avec une complexité 
 \]
 avec un paramètre $\ell$ borné par $O(\log(q))$.
 \end{thm}
-\textbf{Idée de preuve:} Les entiers $\ell$ pour lesquels notre algorithme n'a 
-pas la complexité espérée sont des diviseurs de $d_{\pi}$ borné par $O(q)$.
+\textbf{Idée de preuve:} 
+\begin{itemize}
+\item Si $\ell$ est un nombre de Atkin ou de Elkies avec $h=0$ alors on obtient la complexité énoncée;
+\item Si $\ell$ ne vérifie pas la condition précédente alors $\ell \mid d_{\pi}$;
+\item $d_{\pi}$ est borné par $O(q)$.
+\end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2083,9 +2090,8 @@ pas la complexité espérée sont des diviseurs de $d_{\pi}$ borné par $O(q)$.
 \vspace{-3.5mm}
 %\begin{defi}[Tour \textit{$\ell$}-adique]
 \bluebox{}{
-Pour $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell \nmid q$, une 
-tour d'extensions $\ell$-adiques de 
-$\mathbb{F}_q$ est une suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{1}, 
+Pour $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell \nmid q$, nous définissons une 
+une tour d'extensions de $\mathbb{F}_q$: $\mathbb{F}_q, \mathsf{F}_{1}, 
 \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ où $\mathsf{F}_i$ est le plus
 petit corps tel que $E[\ell^i] \subset E(\mathsf{F}_{i})$
 \begin{itemize}
