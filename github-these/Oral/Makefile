@@ -15,4 +15,3 @@ Images/test-script-18bits-bis.tsv Images/test-script-30bits-bis.tsv \
 Images/test-script-62bits-2nd-bis.tsv Images/test-script-252bits-bis.tsv\
 
 	cd Images && gnuplot graphe-101-149-269.gp
-

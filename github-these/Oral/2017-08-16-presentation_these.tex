@@ -189,13 +189,13 @@ applications en cryptographie:
 \begin{itemize}
 \item l'algorithme de Schoof-Elkies-Atkin: algorithme de comptage de points
 d'une courbe elliptique, nécessaire pour l'évaluation de la sécurité 
-cryptographique d'une courbe elliptique,
+cryptographique d'une courbe elliptique;
 \pause
-\item cryptanalyse de la cryptographie à l'aide de courbes elliptiques: [Gaudry,~Hess,~Smart '02],
+\item cryptanalyse de la cryptographie à l'aide de courbes elliptiques: [Gaudry,~Hess,~Smart '02], [Galbraith,~Hess,~Smart '02];
 \pause
-\item construction de fonctions de hachage: [Charles,~Goren,~Lauter '07],
+\item construction de schéma cryptographique à trappe: [Teske~'06];
 \pause
-\item construction de schéma cryptographique à trappe: [Teske~'06],
+\item construction de fonctions de hachage: [Charles,~Goren,~Lauter '09];
 \pause
 \item construction de schémas cryptographiques post-quantiques: [Rostovtsev,~Stolbunov~'06], [De~Feo,~Jao,~Pl\^ut~'11].
 \end{itemize}
@@ -359,13 +359,13 @@ P & \mapsto [n] P
 
 \bluebox{Points de torsion}{
 Soit $E$ une courbe elliptique définie sur un corps fini $\mathbb{F}_q$,
-et $m>0$
+et un entier $n$.
 \vspace{-1.5mm}
-\[E[m]= \{ P \in E(\bar{\mathbb{F}}_q) , [m]P=0_E \} \]
+\[E[n]= \{ P \in E(\bar{\mathbb{F}}_q) , [n]P=0_E \} \]
 }
 \medskip
-\bluebox{Polynômes de $\ell$-division}
-{Pour toute courbe elliptique $E$ et tout entier $n$ il existe un polynôme $\psi_n$ tel que les abscisses des points de $n$-torsion soient les racines de ce polynôme.}
+\bluebox{Polynômes de $n$-division}
+{Pour toute courbe elliptique $E$ et tout entier $n$ il existe un polynôme $\omega_n$ tel que les abscisses des points de $n$-torsion soient les racines de ce polynôme.}
 %\bluebox{Problème du logarithme discret sur une courbe elliptique $E$}
 %{
 %\begin{algorithmic}[1]
@@ -394,7 +394,7 @@ et $m>0$
  
 \item  Si l'isogénie est de degré $\ell$, nous l'appelons \emph{$\ell$-isogénie},
 
-\item Deux courbes $E$ et $E'$ sont dites \emph{$\ell$-isogènes} si il existe une $\ell$-isogénie qui les relie.
+\item Deux courbes $E$ et $E'$ sont dites \emph{$\ell$-isogènes} s'il existe une $\ell$-isogénie qui les relie.
 
 %\item Dans cet exposé: seulement des isogénies \emph{rationnelles} (i.e. invariantes sous l'action de groupe de Galois).
 
@@ -490,7 +490,11 @@ La connaissance du noyau de l'isogénie $\phi$ permet d'expliciter celle-ci
 Un endomorphisme d'une courbe elliptique $E$ est une isogénie $\psi:E \rightarrow E$. L'ensemble des endomorphismes d'une courbe $E$ est noté $\mathrm{End}(E)$.
 \end{defi}
 
+\smallskip
+
 \textbf{Exemple:} La multiplication scalaire est un endomorphisme.
+
+\smallskip
 
 \begin{prop}
 $\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
@@ -502,7 +506,7 @@ $\left( \mathrm{End}(E),+,\circ \right)$ est un anneau.
 \begin{defi}[L'endomorphisme de Frobenius]
 $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$. Le morphisme
 \[ \pi:(x,y) \mapsto (x^q,y^q)\] est appelé endomorphisme de Frobenius. Il
-satisfait une équation quadratique \[ \pi^2 - t_\pi \pi + q = 0.\]
+satisfait une équation quadratique \[ \pi^2 - t \pi + q = 0.\]
 \end{defi}
 
 Nous travaillons seulement avec des isogénies rationnelles $\psi:E \to E'$, i.e.
@@ -520,19 +524,19 @@ Nous travaillons seulement avec des isogénies rationnelles $\psi:E \to E'$, i.e
 \frametitle{Classification des courbes elliptiques sur un corps fini}
 \begin{prop}
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$ de caractéristique 
-$p$. Soit les conditions suivantes équivalentes sont vérifiées:
+$p$. Soit:
 \begin{enumerate}
 \item $E[p]=\mathbb{Z}/p\mathbb{Z}$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans un corps de nombres quadratique imaginaire noté $K$.
 \end{enumerate}
 $E$ est alors dite \emph{ordinaire}.
 
-Soit les conditions suivantes équivalentes sont vérifiées:
+Soit:
 \begin{enumerate}
 \item $E[p]=\{0_E\}$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
 \end{enumerate}
-$E$ est alors dite supersingulière.
+$E$ est alors dite \emph{supersingulière}.
 
 \end{prop}
 
@@ -540,51 +544,50 @@ $E$ est alors dite supersingulière.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-De par
-\begin{itemize}
- \item{} les polynômes modulaires (algorithme SEA), 
- \item{} la cryptanalyse de cryptosystème (par exemple [Rostovtsev,~Stolbunov~'06]) 
-\end{itemize}
-on peut être amené à résoudre le problème suivant:
 \frametitle{Problème du calcul de l'isogénie explicite}
 \bluebox{Problème du calcul de l'isogénie explicite}
 {
  Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$. 
- \`A partir de $E$, $E'$  deux courbes elliptiques $r$-isogènes définies sur 
+ \`A partir de $E$, $E'$  deux courbes elliptiques ordinaires $r$-isogènes définies sur 
  $\mathbb{F}_q$, calculer la $r$-isogénie $\phi:E\to E'$.
 }
 \medskip 
+Celui-ci apparaît dans:
+\begin{itemize}
+ \item{} l'algorithme SEA; 
+ \item{} la cryptanalyse de cryptosystèmes (par exemple [Rostovtsev,~Stolbunov~'06]).
+\end{itemize}
 %\vspace{-1mm}
 
 \end{frame}
 \begin{frame}
 \frametitle{Précédents travaux}
-Travailler cette slide...
+%Travailler cette slide...
 \begin{itemize}
-\item{} [Atkin~'91],[Charlap, Colay, Robbins '91] ,
+\item{} [Elkies~'89],[Charlap, Colay, Robbins~'91], [Atkin~'91].
 \item{} [Elkies~'92/'98],  %[Charlap, Colay, Robbins '91], 
-[Bostan,~Morain,~Salvy,~Schost~'08] fonctionne en $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$, seulement pour $r < 2p$. Spécifique au contexte SEA.
-\item{} [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne pour tout $p$ à l'aide de $\tilde{O}(r)$ opérations dans $\mathbb{F}_q$. Spécifique au contexte SEA.
+[Bostan,~Morain,~Salvy,~Schost~'08], [Lercier,~Sirvent~'08], [Lairez,~Vaccon~'16] fonctionne en $\tilde{O}(r \log(p))$ opérations dans $\mathbb{F}_q$. Spécifique au contexte SEA.
+\pause
+\item{} [Couveignes~'94] en $\tilde{O}(r^3p^{O(1)})$ 
+opérations.
 \pause
 \item{} [Lercier~'97] fonctionne seulement pour $p=2$.
 \pause
-\item{} [Couveignes~'94] pour tout $p$ à l'aide de $\tilde{O}(r^3p^{O(1)})$ 
-opérations.
-\item{} [Couveignes~'96], [De Feo~'10] pour tout $p$ à l'aide de  $\tilde{O}
+\item{} [Couveignes~'96], [De Feo~'10] en  $\tilde{O}
 (r^2p^{O(1)})$ opérations.
 \end{itemize}
 \begin{itemize}
 
 %\item[$\rightarrow$] we focus on the medium characteristic case ($n\gg p/\log(p)$),
 \pause
-\item[$\rightarrow$] Nous voulons modifier l'algorithme de Couveignes pour 
+\item[$\rightarrow$] Nous voulons modifier l'algorithme de Couveignes~'96 pour 
 obtenir un algorithme avec une complexité de  $\tilde{O}(r^2)$ mais sans 
 dépendance exponentielle en $\log(p)$.
 \end{itemize}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Algorithme de Couveignes[96]}
+\section{Algorithme de Couveignes}
 \begin{frame}
 
 Pour les courbes elliptiques \emph{ordinaires}
@@ -593,24 +596,27 @@ Pour les courbes elliptiques \emph{ordinaires}
 E[\ell^k]&\simeq\mathbb{Z}/\ell^k\mathbb{Z} \times \mathbb{Z}/\ell^k\mathbb{Z} \quad \textit{avec } \ell \neq p \\
 E[p^k]&\simeq\mathbb{Z}/p^k\mathbb{Z}
 \end{align*}
-
 \pause
-\bluebox{Algorithme de Couveignes'96 (calcul d'une $r$-isogénie $\phi:E\to E'$)}{
+\vspace{-5.1mm}
+\bluebox{Algorithme de Couveignes (calcul d'une $r$-isogénie $\phi:E\to E'$)}{
 Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \begin{itemize}
 \item Calcul de générateurs $P,P'$ de $E[p^k],E'[p^k]$;
-\item Interpolation de $\phi$, en supposant que l'on a la correspondance $P\mapsto P'$ pour tout $u \in \mathbb{Z}/p^k\mathbb{Z}$;
-\item Vérification si l'interpolation définit une isogénie.\\
-    Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$ et on recommence à nouveau.
+\item Interpolation de $\phi$, en supposant que l'on a la correspondance $P\mapsto P'$;
+\item Vérification si la fraction rationnelle $F$ candidate définit une isogénie.\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
+	\begin{itemize}
+	\item Test du degré du dénominateur $d$ de $F$ et de sa décomposition en 
+	facteurs carré et si $\omega_{\ell}^2= 0 \bmod d$;
+	\end{itemize}
+    Si ce n'en est pas une, on remplace $P'$ par un multiple $[a]P'$.
 \end{itemize}
-
 }
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Algorithme de Couveignes (1996)}
+\frametitle{Algorithme de Couveignes}
 \bluebox{}{ %\cite{DBLP:conf/ants/Couveignes96}}{
 \begin{algorithmic}[1]
 \REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{p^n}$ 
@@ -624,6 +630,9 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 \item Calcul de $T=\prod(X-x([u]P))$ avec $1\le u \le \frac{p^k-1}{2}$; \hfill $\color{blue!50!gray}{\tilde{O}(r p^{O(1)})}$
 \item Pour tout $a \in \left( \mathbb{Z}/p^k\mathbb{Z}\right)^{\times}$:\hfill $\color{blue!50!gray}{O(r)}$
   \begin{enumerate}
+%  \item Calcul et test d'un candidat à l'aide d'un polynôme \\ 
+%  d'interpolation $L$ qui envoie $P \mapsto [a]P'$ \hfill 
+%  $\color{blue!50!gray}{\tilde{O}(r\ell^{O(1)})}$
   \item Calcul du polynôme d'interpolation 
     $L$ tel que
    $L (x ([u] P)) = x([a\, u\,]P' )$ pour tout
@@ -633,15 +642,15 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 	%calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
 %\hfill $\tilde{O}(r)$
 	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
-	$(r, r-1)$  à l'aide d'un algorithme de reconstruction rationnelle; 
+	$(r, r-1)$ à l'aide d'un algorithme de reconstruction rationnelle et test de 
+	celle-ci.
 	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
-  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-   l'algorithme. \hfill $\color{blue!50!gray}{\tilde{O}(r)}$
   \end{enumerate}
 \end{enumerate}
 %Complexity polynomial in $p$. 
 \pause
 \bluebox{Objectif} {Remplacer $E[p^k]$ par \boldmath $E[\ell^k]$ \unboldmath pour un petit premier $\ell \neq p$.}
+Slide a modifier
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -667,7 +676,7 @@ Notre objectif est de travailler avec \boldmath $E[\ell^k]\simeq \left(\mathbb{Z
 \begin{column}{0.48\textwidth}
 
 \bluebox{$p$-adique}{
-Soit $P\in E\quad$ et $\quad P'\in E'$
+Soient $\langle P \rangle= E[p^k]$, $\langle P' \rangle= E'[p^k]$
 \[
 P \mapsto [a] P'  \qquad a\in(\mathbb{Z}/p^k\mathbb{Z})^*
 \]
@@ -677,7 +686,7 @@ $\Rightarrow O(r)$ possibilités.
 \end{column}
 \begin{column}{0.55\textwidth}
 \bluebox{$\ell$-adique}{
-Soit $P,Q \in E\quad$ et $\quad P',Q' \in E'$
+Soient $ \langle P,Q \rangle = E[\ell^k]$, $\langle P',Q' \rangle = E'[\ell^k]$
 \begin{gather*}
 \begin{pmatrix}
 P\\Q
@@ -749,12 +758,11 @@ En particulier: $d_{\pi}=g^2d_K$
 \frametitle{Exemple illustratif de graphe d'isogénies}
 \begin{figure}
 \begin{center}
-\begin{tikzpicture}[scale=0.545, xshift=-0.5cm]
-\coordinate (A) at (0,-7.5);
-\coordinate (AB) at (0,-7.00);
+\begin{tikzpicture}[scale=0.545]
+\coordinate (A) at (0,-7.528648782);
 \coordinate (B) at (0,-3.75);
 \coordinate (C) at (0,0);
-\draw (AB) node[above,left,text width=1.7cm]{
+\draw (A) node[left]{
 $
 \mathbb{Z}[\pi]=\mathbb{Z}~+~\ell^2~\mathcal{O}_K 
 $
@@ -764,7 +772,7 @@ $
 \draw (C) node[left]{$\mathcal{O}_K$} node{$\bullet$};
 \draw (A)--(B)node[midway,left] {$\ell$};
 \draw (B)--(C) node[midway,left] {$\ell$};
-	\begin{scope}[xshift=4.4cm]
+	\begin{scope}[xshift=6.0cm]
 		\node (A) at (-3,0) {$\bullet$};
 		\node (B) at (3,0) {$\bullet$};
 		\node (C) at (270:1.2) {$\bullet$};
@@ -854,21 +862,6 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 \begin{center}
 
 \begin{tikzpicture}[scale=0.545, xshift=-0.5cm]
-\coordinate (A) at (0,-7.5);
-\coordinate (AB) at (0,-7.00);
-\coordinate (B) at (0,-3.75);
-\coordinate (C) at (0,0);
-\draw (AB) node[above,left,text width=1.7cm]{
-$
-\mathbb{Z}[\pi]=\mathbb{Z}~+~\ell^2~\mathcal{O}_K 
-$
-} ;
-\draw (A) node{$\bullet$};
-\draw (B) node[left]{$\mathbb{Z} + \ell \mathcal{O}_K$} node{$\bullet$};
-\draw (C) node[left]{$\mathcal{O}_K$} node{$\bullet$};
-\draw (A)--(B)node[midway,left] {$\ell$};
-\draw (B)--(C) node[midway,left] {$\ell$};
-
 	\begin{scope}[xshift=4.4cm]
 		\node (A) at (-3,0) {$\bullet$};
 		\node (B) at (3,0) {$\bullet$};
@@ -1029,9 +1022,7 @@ $
 		
 		\end{center} 
 		\end{figure}
-		Durant le reste de cet exposé nous étudierons tout d'abord le cas de volcans 
-		à cratères cycliques (cas Elkies), puis les volcans avec cratères réduits à 
-		un point (cas Atkin).
+		Durant le reste de cet exposé nous étudierons le cas Elkies et le cas Atkin.
 %\begin{figure}[hbtp]
 %\centering
 %\includegraphics[scale=0.4]{Images/duo-volcan-wo-label.png}
@@ -1081,7 +1072,7 @@ $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Algorithme de Couveignes[96] $\ell$-adique}
+\section{Algorithme de Couveignes $\ell$-adique}
 
 
 
@@ -1206,7 +1197,7 @@ i.e. son polynôme minimal se factorise comme
     \begin{itemize}
     \item On appelle $\red{E[\ell^k]_\lambda}\oplus\blu{E[\ell^k]_\mu}$ une
      décomposition \emph{horizontale};
-    \item La littérature SEA appelle cela un \emph{cycle d'isogénies} [Couveignes,~Morain '96].%!!!!!!!!!!!!!!!!!!!!
+    \item La littérature SEA appelle cela un \emph{cycle d'isogénies} [Couveignes,~Morain '94].%!!!!!!!!!!!!!!!!!!!!
     \end{itemize}
   \end{uncoverenv}
 
@@ -1238,17 +1229,15 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \item Pour toute matrice \textbf{diagonale inversible}
   $\left ( \begin{smallmatrix}a & 0\\ 0 & b
 \end{smallmatrix}\right ) \in (\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
-\hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
+\hfill\uncover<2>{$\color{blue!50!gray}{O(r)}$}
     \begin{enumerate}
   \item Calcul du polynôme d'interpolation 
     $L$  qui envoie\\
     $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$;
-\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
-	\item Utilisation d'un algorithme de reconstruction rationnelle afin de 
-	calculer une fraction rationnelle $F$ de degrés~$(r, r-1)$;
-\hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
-  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
-   l'algorithme. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
+\hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
+	$(r, r-1)$ et test de celle-ci.
+\hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r)}$}
   \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -1425,12 +1414,119 @@ $E[\ell^{h+1}]$~est conjuguée, sur~$\mathbb{Z}_{\ell}$, à l'unique matrice
 
 
 \begin{frame}
+\frametitle{Décomposition horizontale}
+\textbf{Objectif :} Calculer une décomposition horizontale de $E[\ell^k]$.
 %Does it work the same with general volcanoes of $\ell$-isogenies?
 %\pause
-Nous supposons que $E$ se situe sur le cratère (nous pouvons nous ramener facilement à ce cas).
- 
+\begin{columns}
+\begin{column}{5cm}
+\bluebox{Solutions existantes}
+{\begin{itemize}
+\item{} [Fouquet,~Morain~'02] est plus coûteux, nécessite le calcul de $\ell+1$ chemins distincts; %me situer par rapport à eux
+\item{} [Ionica,~Joux~'10] suppose la connaissance du cardinal de la courbe, possède des restrictions; %me situer par rapport à eux
+\end{itemize}}
+\end{column}
+\begin{column}{5cm}
+Dessin d'un volcan de hauteur $\neq 0$
+
+\begin{center}
+\tikzstyle{lambda1}=[lambda,draw=blue!60!green]
+\begin{tikzpicture}[scale=0.40]
+% \coordinate (A) at (0,-1.2);
+% \coordinate (B) at (-3,0);
+% \coordinate (C) at (-1.2,.7);
+% \coordinate (D) at (1.2,.7);
+% \coordinate (E) at (3,0);
+%\coordinate (A) at (2,-1);
+%\coordinate (B) at (-2,-1);
+%\coordinate (C) at (-4,0);
+%\coordinate (D) at (-2,1);
+%\coordinate (E) at (2,1);
+%\coordinate (F) at (4,0);
+\coordinate (L) at (0:4);
+\coordinate (K) at (30:3.5);
+\coordinate (J) at (60:3.1);
+\coordinate (I) at (90:3.1);
+\coordinate (D) at (120:3.1);
+\coordinate (E) at (150:3.5);
+\coordinate (G) at (180:4);
+\coordinate (H) at (210:3.5);
+\coordinate (F) at (240:3.1);
+\coordinate (C) at (270:3.1);
+\coordinate (B) at (300:3.1);
+\coordinate (A) at (330:3.5);
+\draw (L)--(A)--(B)--(C)--(F)--(H)--(G)--(E)--(D)--(I)--(J)--(K); \draw (K)--(L);
+
+\coordinate[position=-90:.8 from A] (AA);
+\coordinate[position=-60:.6 from AA] (AA0);
+\coordinate[position=-120:.6 from AA] (AA1);
+\draw (A)--(AA)--(AA0); \draw (AA)--(AA1);
+\coordinate[position=-90:.8 from B] (BB);
+\coordinate[position=-60:.6 from BB] (BB0);
+\coordinate[position=-120:.6 from BB] (BB1);
+\draw (B)--(BB)--(BB0); \draw (BB)--(BB1);
+\coordinate[position=-90:.8 from C] (CC);
+\coordinate[position=-60:.6 from CC] (CC0);
+\coordinate[position=-120:.6 from CC] (CC1);
+\draw (C)--(CC)--(CC0); \draw (CC)--(CC1);
+\coordinate[position=-90:.8 from F] (FF);
+\coordinate[position=-60:.6 from FF] (FF0);
+\coordinate[position=-120:.6 from FF] (FF1);
+\draw (F)--(FF)--(FF0); \draw (FF)--(FF1);
+%\draw<2>[lambda] (A)--(B); \draw<2>[lambda] (B)--(BB);
+%\draw<2>[lambda] (BB)--(BB0);
+%\draw<3>[lambda] (A)--(B); \draw<3>[lambda] (B)--(C);
+%\draw<3>[lambda] (C)--(D);
+\node[fill=pacificcream] at (A) {$E$};
+\end{tikzpicture}
+\end{center}
+\end{column}
+\end{columns} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Décomposition horizontale pour le cas $h=0$.}
+%Slide rappel volcan $h=0$ et base diagonale. \\
+
+\begin{nota}
+La notation $M_{\pi}(P,Q)$ désigne l'action du Frobenius dans une base $\langle P,Q \rangle = E[\ell^k]$
+\end{nota}
+
+\textbf{Exemple :}
+$ 
+M_{\pi}(P_0,Q_0)= \left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
+0 & \color{blue} \mu \end{smallmatrix} \right)
+$
+signifie que $\pi(P_0)=[\color{red}{\lambda} \color{black}]P_0$ et $\pi(Q_0)=[\color{blue} \mu \color{black}]Q_0$.\\ 
+\smallskip
+En pratique le calcul d'une décomposition horizontale est fait à l'aide de: 
+
+\bluebox{Diagonalisation}{
+\begin{algorithmic}[1]
+\REQUIRE $P_0,Q_0$ une base quelconque de $E[\ell^k]$.  
+\ENSURE $\langle P,Q \rangle =  E[\ell^k]$ tels que $M_{\pi}(P,Q)=\left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
+0 & \color{blue} \mu \end{smallmatrix} \right)$.
+\end{algorithmic}}
+Coût de la diagonalisation: $\tilde{O}(\ell^{2k+O(1)})$.
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Décomposition horizontale}
 %Let $P \in E[\ell^{h+1}]$ such that  $\pi(P)=\red \lambda(P)$
 %We compute $\ell^k$-isogenies of kernel $\ker(\pi-\blu \mu)$.
+\vspace{-2.0mm}
+\textbf{Diagonalisation :}
+\begin{itemize}
+\item[$\rightarrow$] suffisant pour le cas $h=0$
+\uncover<2-3>{\item[$\rightarrow$] seulement $\langle [\ell^h]P,[\ell^h]Q \rangle = \color{red}{E[\ell^{k-h}]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^{k-h}]_{{\mu}}}$.}
+\end{itemize}
+\vspace{-1.0mm}
 \begin{columns}
 \begin{column}{5cm}
 \bluebox{Volcan de hauteur $h=0$}{
@@ -1466,7 +1562,7 @@ Nous supposons que $E$ se situe sur le cratère (nous pouvons nous ramener facil
 	\end{center}
 \end{figure}
 }
-$\ker(\pi- \blu \mu\; | \; E[\ell^k])$ est un groupe cyclique de taille $\ell^k$.
+$\ker(\pi- \blu \mu\; | \; E[\ell^k]) \simeq \mathbb Z/\ell^k$.
 \end{column}
 \begin{column}{5.5cm}
 \bluebox{Volcan de hauteur $h=2$}{\begin{center}
@@ -1508,15 +1604,19 @@ $\ker(\pi- \blu \mu\; | \; E[\ell^k])$ est un groupe cyclique de taille $\ell^k$
 \node[fill=pacificcream] at (A) {$E$};
 \end{tikzpicture}
 \end{center}
-}
-\textbf{Problème:} si $h \geqslant 1$
-alors $\ker(\pi- \blu \mu  \;| \; E[\ell^k])
+}\uncover<2-3>{
+\textbf{Problème:} pour $h \neq 0$
+$\ker(\pi- \blu \mu  \;| \; E[\ell^k])
 \simeq (\mathbb Z/\ell^k) \!\times\! (\mathbb Z/\ell^h)$ n'est pas cyclique,
 et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
-
+}
 \end{column}
 \end{columns}
-
+\uncover<3>{
+\begin{itemize}
+\item Notre algorithme a un coût de $\tilde{O}(\ell^{2k+O(1)})$;
+\item L'algorithme de [Fouquet,~Morain~'02] a un coût de $\tilde{O}((\ell)^{3k+O(1)})$.
+\end{itemize}}
 \end{frame}
 
 
@@ -1533,164 +1633,184 @@ et contient $\ell^h$ sous-groupes cycliques d'ordre $\ell^k$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{frame}
-\frametitle{Marche sur le cratère}
-
-\bluebox{Fait}{
-    Soit $\phi$ une $r$-isogénie avec $\ell \nmid r$, alors $\phi$ préserve les noyaux des $\ell^k$-isogénies horizontales de direction $\red \lambda, \blu \mu $.}
-%\textbf{Goal:} compute the kernel of horizontal $\ell^k$-isogenies (codomain curves lying on the crater).
-On procède étape par étape à l'aide de marche sur le cratère selon la direction $ \blu \mu$. %to compute the kernels of the horizontal $\ell^3$-isogeny of direction $\blu \mu $.
-\vspace{-5mm}
-\begin{center}
-\begin{tikzpicture}[scale=0.37]
-\begin{scope}[yshift=10cm]
-	\begin{scope}[xshift=4.3cm]
-		\node (A) at (-3,0) {$\bullet$};
-		\node (B) at (3,0) {$\bullet$};
-		\node (C) at (270:1.2) {$\bullet$};
-		\node (D) at (125:1.2) {$E_2$};
-		%\draw[-] (A.center) to[bend right=25] (C.center);
-		\draw[-] (D.center) to[bend right=20] (A.center);
-		\only<1-2>{		
-		\draw[-] (D.center) to[bend left=18] (B.center);
-		}
-		\only<3->{
-		\draw[line width=1.5pt,blue,->] (D.center) to[bend left=20] (B.center);
-		
-		\node (F) at (1.25,1.30) {$\color{blue} \mu$};
-		%\node (F2) at (1.25,0.50) {$\color{blue} \psi_2$};		
-		}
-		\only<5->{
-		\draw[line width=1.5pt,blue,->] (D.center) to[bend right=20] (A.center);		
-		}
-		\only<5->{		
-		\node (F2) at (-2.25,1) {$\color{blue} \mu$};
-		}
-%		\only<4->{
-%		\draw[line width=1.5pt,red,->] (D.center) to[bend left=20] (B.center);
+%\begin{frame}
+%\frametitle{Calcul d'une $\ell$-isogénie horizontale de direction $\mu$}
+%%
+%%\bluebox{Fait}{
+%%    Soit $\phi$ une $r$-isogénie avec $\ell \nmid r$, alors $\phi$ préserve les noyaux des $\ell^k$-isogénies horizontales de direction $\red \lambda, \blu \mu $.}
+%%\textbf{Goal:} compute the kernel of horizontal $\ell^k$-isogenies (codomain curves lying on the crater).
+%%On procède étape par étape à l'aide de marche sur le cratère selon la direction $ \blu \mu$. %to compute the kernels of the horizontal $\ell^3$-isogeny of direction $\blu \mu $.
+%\begin{itemize}
+%\item Calcul d'une base diagonale $\langle P,Q \rangle $ de $E[\ell^3]$ telle que $\pi(Q)=[\mu]Q$
+%\item Renvoi de l'isogénie $\psi$ de noyau $\langle \ell^{2}Q \rangle$
+%\end{itemize}
+%L'isogénie de noyau $\langle Q \rangle$ étant rationnelle de degré
+%$\ell^3$ sur un volcan de hauteur $2$ alors $\langle \ell^{2}Q \rangle$ est le noyau d'une isogénie horizontale.
+%\vspace{-5mm}
+%\begin{center}
+%\begin{tikzpicture}[scale=0.37]
+%\begin{scope}[yshift=10cm]
+%	\begin{scope}[xshift=4.3cm]
+%		\node (A) at (-3,0) {$\bullet$};
+%		\node (B) at (3,0) {$\bullet$};
+%		\node (C) at (270:1.2) {$\bullet$};
+%		\node (D) at (125:1.2) {$E_2$};
+%		%\draw[-] (A.center) to[bend right=25] (C.center);
 %		\draw[-] (D.center) to[bend right=20] (A.center);
-%		\node (F) at (1.25,1.30) {$\color{red} \lambda$};		
-%		}
-		%\draw[-] (B.center) to[bend left=25] (C.center);
-		%\draw[-,dashed] (B.center) to[bend right] (D.center);
-		\only<1->{
-		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
-		\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
-		%\node (F2) at (1.5,-1.5) {$\color{blue} \psi$};	
-		}
-%		\only<2->{
-%		\draw[line width=1.5pt,red,<-] (C.center) to[bend right=20] (B.center); 
-%		\node (F) at (1.5,-0.5) {$\color{red} \lambda$};		
-%		}
-		
-			\begin{scope}[xshift=-3cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\only<1>{
-			\draw (C)--(CB);}
-			\only<2->{
-			\draw (C)--(CB);}
-			\only<1-3>{			
-			\draw (A)--(C);}
-			\only<4->{
-			\draw (A)--(C);}
-			\only<5>{
-			\draw [line width=1.5pt,blue] (C)--(A);
-			\draw [line width=1.5pt,blue] (C)--(CA);
-			}
-			%just to have a 6th slide
-			\only<6>{
-			\draw (C)--(A);
-			\draw (C)--(CA);
-			}
-%			\draw (A) node[fill=white]{$30$};
-%			\draw (C) node[fill=white]{$98$};
-%			\draw (CA) node[fill=white]{$22$};
-%			\draw (CB) node[fill=white]{$74$};
-			\draw (A) node[fill=white]{$E_3$};
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\end{scope}
-			\begin{scope}[xshift=3cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\only<1>{
-			\draw [line width=1.5pt,blue] (C)--(CB);
-			\draw [line width=1.5pt,blue] (A)--(C);
-			}
-%			\draw (A) node[fill=white]{$65$};
-%			\draw (C) node[fill=white]{$60$};
-%			\draw (CA) node[fill=white]{$39$};
-%			\draw (CB) node[fill=white]{$62$};
-			\draw (A) node[fill=white]{$E_1$};
-			\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-			\end{scope}
-			\begin{scope}[yshift=-1.2cm]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw (C)--(CA);
-			\draw (C)--(CB);
-			\draw (A)--(C);
-			\draw (A) node[fill=white]{$E$};
-			\only<1>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};}
-			\draw (C) node[fill=white]{$\bullet$};
-			\draw (CA) node[fill=white]{$\bullet$};
-			\draw (CB) node[fill=white]{$\bullet$};
-%			\draw (CA) node[fill=white]{$45$};
-%			\draw (CB) node[fill=white]{$68$};
-			\end{scope}
-			\begin{scope}[shift={(D)}]
-			\coordinate (A) at (0,0);
-			\coordinate (C) at (270:4.2);
-			\coordinate (CA) at (265:7.5);
-			\coordinate (CB) at (275:7.5);
-			\draw [dashed] (C)--(CA);
-			\draw [dashed] (C)--(CB);
-			\draw [dashed] (A)--(C);
-			\draw (C) node[color=black!90]{$\bullet$};
-			\draw (CA) node[color=black!90]{$\bullet$};
-			\draw (CB) node[color=black!90]{$\bullet$};
-			\only<3>{
-			\draw [line width=1.5pt,blue] (C)--(A);
-			\draw [line width=1.5pt,blue] (C)--(CA);
-			}
-			\only<1-3,5->{\draw (A) node[fill=white]{$E_2$};}			
-			\only<4>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_2$};}
-			\end{scope}
-	\coordinate (A) at (-3,0);
-	\coordinate (C) at (270:1.2);
-	\only<1->{
-	\draw (A.center) to[bend right=20] (C.center);
-	}
-	\draw (A) node[fill=white]{$E_3$};
-	\only<1>{
-	\draw (C) node[fill=yellow!50!white,shape=circle]{$E$};
-	}	
-	\only<2->{
-	\draw (C) node[fill=white]{$E$};
-	}
-	\end{scope}
-\end{scope}
-
-\end{tikzpicture}
-\end{center}
-\vspace{-4mm}
-D'autres algorithmes pour déterminer des isogénies horizontales ont déjà été proposés: [Fouquet, Morain, '02], [Ionica,Joux, '10].
-\end{frame}
+%%		\only<1-2>{		
+%		\draw[-] (D.center) to[bend left=18] (B.center);
+%%		}
+%%		\only<3->{
+%%		\draw[line width=1.5pt,blue,->] (D.center) to[bend left=20] (B.center);
+%%		
+%%		\node (F) at (1.25,1.30) {$\color{blue} \mu$};
+%%		%\node (F2) at (1.25,0.50) {$\color{blue} \psi_2$};		
+%%		}
+%%		\only<5->{
+%%		\draw[line width=1.5pt,blue,->] (D.center) to[bend right=20] (A.center);		
+%%		}
+%%		\only<5->{		
+%%		\node (F2) at (-2.25,1) {$\color{blue} \mu$};
+%%		}
+%%		\only<4->{
+%%		\draw[line width=1.5pt,red,->] (D.center) to[bend left=20] (B.center);
+%%		\draw[-] (D.center) to[bend right=20] (A.center);
+%%		\node (F) at (1.25,1.30) {$\color{red} \lambda$};		
+%%		}
+%		%\draw[-] (B.center) to[bend left=25] (C.center);
+%		%\draw[-,dashed] (B.center) to[bend right] (D.center);
+%%		\only<1->{
+%		\draw[line width=1.5pt,blue,->] (C.center) to[bend right=20] (B.center); 
+%		\node (F) at (1.5,-0.5) {$\color{blue} \mu$};	
+%		%\node (F2) at (1.5,-1.5) {$\color{blue} \psi$};	
+%%		}
+%%		\only<2->{
+%%		\draw[line width=1.5pt,red,<-] (C.center) to[bend right=20] (B.center); 
+%%		\node (F) at (1.5,-0.5) {$\color{red} \lambda$};		
+%%		}
+%		
+%			\begin{scope}[xshift=-3cm]
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw (C)--(CA);
+%%			\only<1>{
+%			\draw (C)--(CB);
+%			%}
+%%			\only<2->{
+%%			\draw (C)--(CB);
+%%			}
+%%			\only<1-3>{			
+%			\draw (A)--(C);
+%%%			}
+%%			\only<4->{
+%%			\draw (A)--(C);}
+%%			\only<5>{
+%%			\draw [line width=1.5pt,blue] (C)--(A);
+%%			\draw [line width=1.5pt,blue] (C)--(CA);
+%%			}
+%%			%just to have a 6th slide
+%%			\only<6>{
+%%			\draw (C)--(A);
+%%			\draw (C)--(CA);
+%%			}
+%%			\draw (A) node[fill=white]{$30$};
+%%			\draw (C) node[fill=white]{$98$};
+%%			\draw (CA) node[fill=white]{$22$};
+%%			\draw (CB) node[fill=white]{$74$};
+%			\draw (A) node[fill=white]{$E_3$};
+%			\draw (C) node[fill=white]{$\bullet$};
+%			\draw (CA) node[fill=white]{$\bullet$};
+%			\draw (CB) node[fill=white]{$\bullet$};
+%			\end{scope}
+%			\begin{scope}[xshift=3cm]
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw (C)--(CA);
+%			\only<1>{
+%			\draw [line width=1.5pt,blue] (C)--(CB);
+%			\draw [line width=1.5pt,blue] (A)--(C);
+%			}
+%			\only<2>{
+%			\draw (C)--(CB);
+%			\draw (A)--(C);
+%			}
+%%			\draw (A) node[fill=white]{$65$};
+%%			\draw (C) node[fill=white]{$60$};
+%%			\draw (CA) node[fill=white]{$39$};
+%%			\draw (CB) node[fill=white]{$62$};
+%			\draw (A) node[fill=white]{$E_1$};
+%%			\only<2-3>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_1$};}
+%			\draw (C) node[fill=white]{$\bullet$};
+%			\draw (CA) node[fill=white]{$\bullet$};
+%			\draw (CB) node[fill=white]{$\bullet$};
+%			\end{scope}
+%			\begin{scope}[yshift=-1.2cm]
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw (C)--(CA);
+%			\draw (C)--(CB);
+%			\draw (A)--(C);
+%			\draw (A) node[fill=white]{$E$};
+%%			\only<1>{
+%			\draw (A) node[fill=yellow!50!white,shape=circle]{$E$};
+%%			}
+%			\draw (C) node[fill=white]{$\bullet$};
+%			\draw (CA) node[fill=white]{$\bullet$};
+%			\draw (CB) node[fill=white]{$\bullet$};
+%%			\draw (CA) node[fill=white]{$45$};
+%%			\draw (CB) node[fill=white]{$68$};
+%			\end{scope}
+%			\begin{scope}[shift={(D)}]
+%			\coordinate (A) at (0,0);
+%			\coordinate (C) at (270:4.2);
+%			\coordinate (CA) at (265:7.5);
+%			\coordinate (CB) at (275:7.5);
+%			\draw [dashed] (C)--(CA);
+%			\draw [dashed] (C)--(CB);
+%			\draw [dashed] (A)--(C);
+%			\draw (C) node[color=black!90]{$\bullet$};
+%			\draw (CA) node[color=black!90]{$\bullet$};
+%			\draw (CB) node[color=black!90]{$\bullet$};
+%%			\only<3>{
+%%			\draw [line width=1.5pt,blue] (C)--(A);
+%%			\draw [line width=1.5pt,blue] (C)--(CA);
+%%			}
+%%			\only<1-3,5->{
+%			\draw (A) node[fill=white]{$E_2$};
+%%			}			
+%%			\only<4>{\draw (A) node[fill=yellow!50!white,shape=circle]{$E_2$};}
+%			\end{scope}
+%	\coordinate (A) at (-3,0);
+%	\coordinate (C) at (270:1.2);
+%%	\only<1->{
+%	\draw (A.center) to[bend right=20] (C.center);
+%%	}
+%	\draw (A) node[fill=white]{$E_3$};
+%%	\only<1>{
+%	\draw (C) node[fill=yellow!50!white,shape=circle]{$E$};
+%%	}	
+%%	\only<2->{
+%%	\draw (C) node[fill=white]{$E$};
+%%	}
+%	\end{scope}
+%\end{scope}
+%
+%\end{tikzpicture}
+%\end{center}
+%\vspace{-4mm}
+%Pour le calcul d'une $\ell^k$-isogénie horizontale:
+%\begin{itemize}
+%\item Notre algorithme a une complexité de $\tilde{O}(\ell^2k \ell^{O(1)})$ (à vérifier);
+%\item L'algorithme de [Fouquet,~Morain~'02] a une complexité de $O()$ (à compléter).
+%\end{itemize}
+%%D'autres algorithmes pour déterminer des isogénies horizontales ont déjà été proposés: [Fouquet, Morain, '02], [Ionica,Joux, '10].
+%\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1712,13 +1832,13 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$, avec $h<k$.
 \medskip
 \item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
- et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogénies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}  
+ et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogénies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$. \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}  
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$; Rajouter le coût de cela...
 \medskip
 \item Pour toute matrice \textbf{diagonale inversible}
   $\left ( \begin{smallmatrix}a & 0\\ 0 & b
 \end{smallmatrix}\right ) \in (\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
-\hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
+\hfill\uncover<2>{$\color{blue!50!gray}{O(r)}$}
   \begin{enumerate}
 
 %  \item Calcul du polynôme d'interpolation 
@@ -1732,7 +1852,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 %   l'algorithme.
    
    \item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
-   $L$ qui envoie $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+   $L$ qui envoie $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$; \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
   \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -1744,8 +1864,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
  \bluebox{Trouver un premier $\ell$ de Elkies}{
   \begin{itemize}
   \item La complexité de l'algorithme dépend polynomialement du paramètre $\ell$.
-  \item Idéalement nous voudrions travailler avec $\ell=2$.
-  \item En pratique la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies.
+  \item Heuristiquement la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies.
   \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leqslant 
   O(\log(q))$ pour presque tous les $q$ et courbes $E,E'$ (voir 
 [Shparlinski,~Sutherland~'14]).\\
@@ -1759,13 +1878,13 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \begin{frame}
 %\section{Atkin Case}
 \frametitle{Cas Atkin}
-\bluebox{Premier de Atkin}{Un nombre premier $\ell$ est dit un \emph{premier de Atkin} si le polynôme caractéristique de $\pi$: 
+\bluebox{Premier d'Atkin}{Un nombre premier $\ell$ est dit un \emph{premier d'Atkin} si le polynôme caractéristique de $\pi$: 
 \[
-\pi^2 - t_{\pi}\pi + q 
+\pi^2 - t\pi + q 
 \]
 est irréductible sur $\mathbb{Z}_{\ell}$}
 %Thus we are not able to distinguish two different eigenspaces, 
-Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux sous espaces propres ne peut être utilisée. 
+Ainsi on ne peut se servir d'isogénies horizontales comme ce fut le cas avec des \emph{premiers de Elkies}.  
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.225]
@@ -1790,16 +1909,16 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 		\draw (F) -- (I);
 		\draw (F) -- (J);
 		%\coordinate (G) at (E)++(225:3);
-		\draw (D) node[fill=white]{$\bullet$};
-		\draw (J) node[fill=white]{$\bullet$};
-		\draw (E) node[fill=white]{$\bullet$};
-		\draw (F) node[fill=white]{$\bullet$};
-		\draw (G) node[fill=white]{$\bullet$};
-		\draw (H) node[fill=white]{$\bullet$};
-		\draw (I) node[fill=white]{$\bullet$};
-		\draw (K) node[fill=white]{$\bullet$};
-		\draw (L) node[fill=white]{$\bullet$};
-		\draw (M) node[fill=white]{$\bullet$};
+		\draw (D) node {$\bullet$};
+		\draw (J) node {$\bullet$};
+		\draw (E) node {$\bullet$};
+		\draw (F) node {$\bullet$};
+		\draw (G) node {$\bullet$};
+		\draw (H) node {$\bullet$};
+		\draw (I) node {$\bullet$};
+		\draw (K) node {$\bullet$};
+		\draw (L) node {$\bullet$};
+		\draw (M) node {$\bullet$};
 \end{scope}
 \end{tikzpicture}
 \end{center}
@@ -1810,23 +1929,31 @@ Ainsi la méthode utilisée avec des \emph{premiers de Elkies} à l'aide de deux
 
 \begin{frame}
 \frametitle{Détermination du second vecteur de la base à l'aide du Frobenius}
-\begin{nota}
-La notation $\pi(P,Q)$ désigne l'action du Frobenius dans une base $\langle P,Q \rangle = E[\ell^k]$
-\end{nota}
-
-\textbf{Exemple :}Pour deux points $P_0$ et $Q_0$ générateurs de $\ell^k$-isogénies horizontales 
-\[
-\pi(P_0,Q_0)= \left( \begin{smallmatrix} \color{red}{\lambda} & \color{black} 0 \\
-0 & \color{blue} \mu \end{smallmatrix} \right)
-\]
-
+\vspace{-0.5mm}
 \begin{prop}
-Soit $\ell$ un nombre premier de Atkin soient $P,Q,R$ trois points de $E$ 
-située sur un volcan de hauteur $0$ tels que $\langle P,Q \rangle = \langle P,R 
-\rangle =E[\ell^k] $ alors $Q=R \Leftrightarrow \pi(P,Q)=\pi(P,R)$. 
+Soit $E$ située sur un volcan de hauteur $0$, $\ell$ un nombre premier de 
+Atkin, $P,Q,R$ trois points de $E$  tels que $\langle P,Q \rangle = \langle P,R 
+\rangle =E[\ell^k] $ alors
+\[
+Q=R \Leftrightarrow M_{\pi}(P,Q)=M_{\pi}(P,R).
+\]
 \end{prop}
+Le coût de la détermination de $M_{\pi}(P,Q)$ est de $\tilde{O}(\sqrt{r}\ell^{O(1)})$
+\begin{cor}
+Soient $E, E'$ deux courbes $r$-isogènes situées sur un volcan de hauteur $0$, 
+$\ell$ un nombre premier d'Atkin, $\langle P,Q \rangle = E[\ell^k]$, $R' \in 
+E'[\ell^k]$ et $\phi:E \mapsto E'$ une isogénie de degré $r$, alors 
+\[
+R'=\phi(Q)
+ \Leftrightarrow M_{\pi}(P,Q)=M_{\pi}(\phi(P),R').
+\]
+\end{cor}
+
+Le coût de la recherche d'un tel point $R'$ est de $O(\tilde{O}(\sqrt{r} \ell^{O(1)}))$
 \end{frame}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 
 \bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin $h = 0$)}{
@@ -1835,7 +1962,7 @@ située sur un volcan de hauteur $0$ tels que $\langle P,Q \rangle = \langle P,R
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $R=Q$ 
+\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $R=Q$ 
 avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 
 \begin{enumerate}
@@ -1844,9 +1971,9 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 \item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$; \hfill\only<2>{$\color{blue!50!gray}\tilde{O}(r \ell^{O(1)})$}
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
-\item Calcul de la matrice $\pi(P,Q)$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r}\ell^{O(1)})}$}
+\item Calcul de la matrice $M_{\pi}(P,Q)$; \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r}\ell^{O(1)})}$}
 \medskip
-\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\only<2>{$\color{blue!50!gray}{O(r)}$}
+\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\uncover<2>{$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
   \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
@@ -1872,11 +1999,11 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 \ENSURE $\phi: E \rightarrow E'$ de degré $r$
 \end{algorithmic}}
 \only<1>{
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $\color{red}[\ell^h]\color{black}R=\color{red}[\ell^h]\color{black}Q$ \\
+\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $\color{red}[\ell^h]\color{black}R=\color{red}[\ell^h]\color{black}Q$ \\
 avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 }
 \only<2>{
-\bluebox{}{\textbf{Fait:} $\pi(P,R)=\pi(P,Q)$ ssi $[\ell^h]R=[\ell^h]Q$ \\
+\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $[\ell^h]R=[\ell^h]Q$ \\
 avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 }
 \begin{enumerate}
@@ -1885,12 +2012,12 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 \item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$; \hfill{$\color{blue!50!gray} \tilde{O}(r \ell^{O(1)})$}
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
 \medskip
-\item Calcul de la matrice $\pi(P,Q)$; \hfill {$\color{blue!50!gray} \tilde{O}(\sqrt{r} \ell^{O(1))})$}
+\item Calcul de la matrice $M_{\pi}(P,Q)$; \hfill {$\color{blue!50!gray} \tilde{O}(\sqrt{r} \ell^{O(1))})$}
 \medskip
 \item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill {$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
-  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$ \hfill {$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
+  \item Calcul de $R'$ tel que $M_{\pi}(S',R')=M_{\pi}(P,Q)$ \hfill {$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
   \medskip
   \only<1>{
   \item $\color{red}{\text{Pour tout point } U' \in E' \text{ tel que } [\ell^h]R'=[\ell^h]U'}$}
@@ -1903,7 +2030,7 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 %    $P\mapsto S'$ et $Q\mapsto U'$;
 %\hfill {$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
 \item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
-   $L$ qui envoie $P\mapsto S'$ et $Q\mapsto R'$; \hfill $\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$
+   $L$ qui envoie $P\mapsto S'$ et $Q\mapsto U'$; \hfill $\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$
   \end{enumerate}
 	
 \end{enumerate}
@@ -1924,51 +2051,60 @@ $r$-isogènes, alors la $r$-isogénie peut être calculée avec une complexité 
 \]
 avec un paramètre $\ell$ borné par $O(\log(q))$.
 \end{thm}
-
+\textbf{Idée de preuve:} Les entiers $\ell$ pour lesquels notre algorithme n'a 
+pas la complexité espérée sont des diviseurs de $d_{\pi}$ borné par $O(q)$.
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Implantation}
 
 \begin{frame}
-\frametitle{Construction et définition d'une tour d'extension de corps finis}
+\frametitle{Définition d'une tour d'extension de corps finis}
 \begin{columns}
 \begin{column}{2cm}
 \begin{center}
 \begin{figure}
 \begin{tikzpicture}[scale=0.3]
 \coordinate (A) at (-2,0);	
-\coordinate (B) at (-2,5);
-\coordinate (C) at (-2,10);
-\coordinate (D) at (-2,15);
+\coordinate (B) at (-2,4);
+\coordinate (C) at (-2,8);
+\coordinate (D) at (-2,12);
+\coordinate (E) at (-2,16);
 \draw (A) node {$\bullet$} node[left] {$\mathbb{F}_q$};
 \draw (B) node {$\bullet$} node[left] {$\mathsf{F}_1$};
 \draw (C) node {$\bullet$} node[left] {$\mathsf{F}_2$};
 \draw (D) node {$\bullet$} node[left] {$\mathsf{F}_3$};
+\draw (E) node {$\bullet$} node[left] {$\mathsf{F}_4$};
+\draw (D)--(E) node[midway,left]{$\ell$} ;
 \draw (C)--(D) node[midway,left]{$\ell$} ;
-\draw (B)--(C) node[midway,left]{$\ell$} ;
+\draw (B)--(C) node[midway,left]{$1$} ;
 \draw (A)--(B) node[midway,left]{$d_1$} ;
 \end{tikzpicture}
 \end{figure}
 \end{center}
 \end{column}
 \begin{column}{8cm}
-
-\begin{defi}[Tour \textit{$\ell$}-adique]
-Pour $\ell \neq p$ la caractéristique de $\mathbb{F}_q$, une tour d'extensions 
-$\ell$-adiques de $\mathbb{F}_q$ est la suite d'extensions: $\mathbb{F}_q, 
-\mathsf{F}_{1}, \mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
+\vspace{-3.5mm}
+%\begin{defi}[Tour \textit{$\ell$}-adique]
+\bluebox{}{
+Pour $E$ une courbe elliptique définie sur $\mathbb{F}_q$, $\ell \neq p$ la 
+caractéristique de $\mathbb{F}_q$, une tour d'extensions $\ell$-adiques de 
+$\mathbb{F}_q$ est une suite d'extensions: $\mathbb{F}_q, \mathsf{F}_{1}, 
+\mathsf{F}_{2}, \mathsf{F}_{3}, \cdots$ telles que:
+$E[\ell^i] \subset E(\mathsf{F}_{i})$
 \begin{itemize}
 \item{} [Cas Elkies] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de 
 degré $d_1 \mid \ell-1$. De plus l'ordre multiplicatif de $q$ dans 
-$\mathbb{Z}/\ell \mathbb{Z}$ divise $d_1$,
+$\mathbb{Z}/\ell \mathbb{Z}$ divise $d_1$;
 \item{} [Cas Atkin] $\mathsf{F}_{1}$ est une extension de $\mathbb{F}_q$ de 
-degré au plus $ \ell^2-1$,
-\item $\mathsf{F}_{i}$ pour $i \geqslant 2$ est une extension de 
+degré au plus $ \ell^2-1$;
+\item Il existe $i_0 \geqslant 1$ tel que $\mathsf{F}_{i_0} \simeq \mathsf{F}_{i_0-1} \simeq \cdots \simeq \mathsf{F}_{1}$ et $\mathsf{F}_{i_0} \not \simeq \mathsf{F}_{i_0+1}$; 
+\item $\mathsf{F}_{i}$ pour $i \geqslant i_0+1$ est une extension de 
 $\mathsf{F}_{i-1}$ de degré $\ell$.
-\end{itemize}
 
-\end{defi}
+\end{itemize}
+}
+%\end{defi}
 \end{column}
 \end{columns}
 \end{frame}
@@ -1977,22 +2113,21 @@ $\mathsf{F}_{i-1}$ de degré $\ell$.
 
 \begin{frame}
 
-  \frametitle{Tour d'extensions de corps finis}
+  \frametitle{Calculs dans une Tour d'extensions de corps finis}
 
-  \bluebox{Calcul dans une tour d'extension de corps finis}{
+  \bluebox{}{
   \begin{itemize}
 %	\item Les points de torsion ne sont pas en général définis dans $\mathbb{F}_q$.	
-	\item Nous travaillons dans des extensions $\ell$-adiques de $\mathbb F_q$
-        en généralisant les constructions de [De~Feo,~Doliskani, Schost '13], [Doliskani,~Schost '15] et où en particulier nous avons
+	\item Nous travaillons dans des tours d'extensions $\ell$-adiques de $\mathbb F_q$
+        en généralisant les constructions de [De~Feo,~Doliskani, Schost '13], 
+        [Doliskani,~Schost '15] et où en particulier nous avons un calcul rapide 
 		\begin{itemize}  
-		 \item un calcul rapide des points d'ordre $\ell^k$,       
-         \item un calcul rapide du Frobenius (adapté depuis [Doliskani-Schost'15]),
-         \item un calcul rapide du polynôme d'interpolation (adaptant des 
-         méthodes mentionnées par [Enge-Morain '03] et développées par [DeFeo'10])
+		 \item du Frobenius (adapté depuis [Doliskani-Schost'15]);
+		 \item du polynôme d'interpolation (adaptant des 
+         techniques de [Enge,Morain~'03] développées par [De Feo~'10]);
+		 \item des points d'ordre $\ell^k$.       
          \end{itemize}
-	\item Il est alors nécessaire d'implanter un algorithme qui prenne en compte ces constructions de tour d'extensions de corps finis.
-  \end{itemize}
- 	
+\end{itemize}
   }
 
 \end{frame}
@@ -2005,7 +2140,10 @@ $\mathsf{F}_{i-1}$ de degré $\ell$.
 L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\ell=2$, le code ($2200$ lignes) est disponible sur GitHub: \url{https://github.com/Hugounenq-Cyril/Two_curves_on_a_volcano}
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.8]{Images/graphe-101-149-269-C2.pdf}
+\only<2>{
+\includegraphics[scale=0.8]{Images/graphe-101-149-269-C2.pdf}}
+\only<1>{
+\includegraphics[scale=0.8]{Images/graphe-101-149-269.pdf}}
 \end{figure}
 \end{frame}
 
@@ -2014,11 +2152,11 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 
 \begin{frame}
 \frametitle{Conclusion}
-\bluebox{Contribution}{
+\bluebox{Contributions}{
 \begin{itemize}
 \item De nouveaux outils pour se déplacer dans le volcan d'isogénies. 
 
-\item Une variante de l'algorithme de Couveignes quasi-quadratique.
+\item Une variante de l'algorithme de Couveignes sans dépendance polynomiale en la caractéristique.
 
 \end{itemize}
 }
@@ -2026,7 +2164,7 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \begin{itemize}
 \item Comparer notre implantation à d'autres algorithmes (en part. Lercier-Sirvent dans le contexte S.E.A.).
 % \item Directly generalize to curves not on the crater.
-\item Estimer le coût de calcul de l'anneau des endomorphismes en modifiant l'algorithme de Kohel'96  avec l'étude de l'action de l'endomorphisme de Frobenius et l'implanter.
+\item Estimer le coût de calcul de l'anneau des endomorphismes en modifiant l'algorithme de Kohel  avec l'étude de l'action de l'endomorphisme de Frobenius et l'implanter.
 \item Étudier l'utilité de notre technique dans d'autres contextes: comptage de points, polynômes de Hilbert, polynômes modulaires.
 %Analyze our techniques to navigate the volcano in other
 %  settings: point counting, Hilbert
@@ -2742,7 +2880,7 @@ c_2\ell^2 & d_2
 \begin{enumerate}
 \item Calcul de $\langle P , Q \rangle = E[\ell_i^{r_i+1}]$
 \medskip
-\item Détermination à partir de $d_{\pi}$ si $\ell_i$ est un nombre premier de Atkin ou de Elkies 
+\item Détermination à partir de $d_{\pi}$ si $\ell_i$ est un nombre premier d'Atkin ou de Elkies 
 \medskip 
 \item Détermination de $s_i=v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$ à partir de  $\pi(P,Q)$
 \end{enumerate}
@@ -3264,7 +3402,7 @@ $(Q)$ de la base.}
 
 \bluebox{Représentation univariée}
 {
-Un élément de $F_k$ est dit sous forme univariée si il est écrit à l'aide d'un polynôme $G \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-1}$, avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$, évalué en l'élément primitif $x_k$ de $F_k$.
+Un élément de $F_k$ est dit sous forme univariée s'il est écrit à l'aide d'un polynôme $G \in \mathbb{F}_q[X]$ de degré inférieur à $d_1\ell^{k-1}$, avec $d_1=[\mathsf{F}_1:\mathbb{F}_q]$, évalué en l'élément primitif $x_k$ de $F_k$.
 }
 
 \begin{exe}
@@ -3280,7 +3418,7 @@ Soit $\mathbb{F}_q, \mathsf{F}_1, \mathsf{F}_2, \cdots, \mathsf{F}_k$ une tour d
 \begin{frame}
 \bluebox{Représentation bivariée}
 {
-Un élément de $\mathsf{F}_k$ est dit sous forme bivariée si il est écrit à l'aide des éléments primitifs $x_k$ de $\mathsf{F}_k$ et $x_{k-1}$ de $\mathsf{F}_{k-1}$ sous la forme: 
+Un élément de $\mathsf{F}_k$ est dit sous forme bivariée s'il est écrit à l'aide des éléments primitifs $x_k$ de $\mathsf{F}_k$ et $x_{k-1}$ de $\mathsf{F}_{k-1}$ sous la forme: 
 \begin{equation*}
  G_0(x_k)+G_1(x_{k-1})+x_kG_2(x_{k-1})+ \cdots x_k^{\ell-1}G_{\ell}(x_{k-1})
 \end{equation*}
