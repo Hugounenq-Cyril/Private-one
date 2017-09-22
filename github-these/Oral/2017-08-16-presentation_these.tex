@@ -1253,7 +1253,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 
-\bluebox{Premier de Elkies}{Nous appelons $\ell$ un \emph{premier de Elkies} si le polynôme caractéristique de $\pi$ se factorise sur $\mathbb{Z}_{\ell}$ comme suit:
+\bluebox{Premier d'Elkies}{Nous appelons $\ell$ un \emph{premier d'Elkies} si le polynôme caractéristique de $\pi$ se factorise sur $\mathbb{Z}_{\ell}$ comme suit:
 \[
 \pi^2 - t_{\pi}\pi + q = (\pi - \red \lambda) (\pi - \blu \mu), \quad \textsf{avec } \red \lambda \neq \blu \mu,
 \]
@@ -1827,7 +1827,7 @@ des bases diagonales de $E[\ell^k]$.
 
 \begin{frame}
 
-\bluebox{Un algorithme de Couveignes $\ell$-adique ($\ell$ un premier de Elkies)}{
+\bluebox{Un algorithme de Couveignes $\ell$-adique ($\ell$ un premier d'Elkies)}{
 \begin{algorithmic}[1]
 \REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
 \ENSURE $\phi: E \rightarrow E'$ de de degré $r$
@@ -1872,10 +1872,10 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 
 \begin{frame}
 \frametitle{Limitations du cas Elkies}
- \bluebox{Trouver un premier $\ell$ de Elkies}{
+ \bluebox{Trouver un premier $\ell$ d'Elkies}{
   \begin{itemize}
   \item La complexité de l'algorithme dépend polynomialement du paramètre $\ell$.
-  \item Heuristiquement la moitié des paramètres $\ell$ sont supposés être des premiers de Elkies pour une courbe $E$ fixée.
+  \item Heuristiquement la moitié des paramètres $\ell$ sont supposés être des premiers d'Elkies pour une courbe $E$ fixée.
   \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leqslant 
   O(\log(q))$ \textbf{pour presque tous les $q$ et courbes $E,E'$} (voir 
 [Shparlinski,~Sutherland~'14]).\\
@@ -1895,7 +1895,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \]
 est irréductible sur $\mathbb{Z}_{\ell}$}
 %Thus we are not able to distinguish two different eigenspaces, 
-Ainsi on ne peut se servir d'isogénies horizontales comme ce fut le cas avec des \emph{premiers de Elkies}.  
+Ainsi on ne peut se servir d'isogénies horizontales comme ce fut le cas avec des \emph{premiers d'Elkies}.  
 \begin{figure}
 \begin{center}
 \begin{tikzpicture}[scale=0.225]
@@ -2064,7 +2064,7 @@ avec un paramètre $\ell$ borné par $O(\log(q))$.
 \end{thm}
 \textbf{Idée de preuve:} 
 \begin{itemize}
-\item Si $\ell$ est un nombre d'Atkin ou de Elkies avec $h=0$ alors on obtient la complexité énoncée;
+\item Si $\ell$ est un nombre d'Atkin ou d'Elkies avec $h=0$ alors on obtient la complexité énoncée;
 \item Si $\ell$ ne vérifie pas la condition précédente alors $\ell \mid d_{\pi}$;
 \item $d_{\pi}$ est borné par $O(q)$.
 \end{itemize}
@@ -2893,7 +2893,7 @@ c_2\ell^2 & d_2
 \begin{enumerate}
 \item Calcul de $\langle P , Q \rangle = E[\ell_i^{r_i+1}]$
 \medskip
-\item Détermination à partir de $d_{\pi}$ si $\ell_i$ est un nombre premier d'Atkin ou de Elkies 
+\item Détermination à partir de $d_{\pi}$ si $\ell_i$ est un nombre premier d'Atkin ou d'Elkies 
 \medskip 
 \item Détermination de $s_i=v_{\ell_i}([\mathcal{O}:\mathbb{Z}[\pi]])$ à partir de  $\pi(P,Q)$
 \end{enumerate}
