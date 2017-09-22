@@ -1879,7 +1879,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
   \item En théorie nous pouvons seulement prouver qu'un tel $\ell \leqslant 
   O(\log(q))$ \textbf{pour presque tous les $q$ et courbes $E,E'$} (voir 
 [Shparlinski,~Sutherland~'14]).\\
- $\Rightarrow$ Algorithme quasi-quadratique de Couveignes $\ell$-adique.
+ $\Rightarrow$ Algorithme quasi-quadratique de Couveignes $\ell$-adique sans dépendance polynomiale en la caractéristique.
 \end{itemize}
   }
 \end{frame}
@@ -1987,7 +1987,7 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 \item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\uncover<2>{$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
-  \item Calcul de $R'$ tel que $\pi(S',R')=\pi(P,Q)$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
+  \item Calcul de $R'$ tel que $M_{\pi'}(S',R')=M_{\pi}(P,Q)$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
   \medskip
 
 %  \item Calcul du polynôme d'interpolation 
@@ -2028,7 +2028,7 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 \item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill {$\color{blue!50!gray}{O(r)}$}
 \begin{enumerate}
 \medskip
-  \item Calcul de $R'$ tel que $M_{\pi}(S',R')=M_{\pi}(P,Q)$; \hfill {$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
+  \item Calcul de $R'$ tel que $M_{\pi'}(S',R')=M_{\pi}(P,Q)$; \hfill {$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
   \medskip
   \only<1>{
   \item $\color{red}{\text{Pour tout point } U' \in E' \text{ tel que } [\ell^h]R'=[\ell^h]U':}$}
