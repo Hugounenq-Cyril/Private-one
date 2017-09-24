@@ -646,8 +646,8 @@ Calcul de $\phi$ par interpolation sur $E[p^k]$:
 	%calculer une fraction rationnelle $F=L\bmod{T}$ de degrés~$(r, r-1)$;
 %\hfill $\tilde{O}(r)$
 	\item Calcul d'une fraction rationnelle $F=L\bmod{T}$ de degrés \\
-	$(r, r-1)$ à l'aide d'un algorithme de reconstruction rationnelle et test de 
-	celle-ci.
+	$(r, r-1)$ à l'aide d'un algorithme de reconstruction \\ 
+	rationnelle et test de celle-ci.
 	\hfill $\color{blue!50!gray}{\tilde{O}(r)}$
   \end{enumerate}
 \end{enumerate}
@@ -1051,7 +1051,7 @@ Soient $E$ et $E'$ deux courbes elliptiques définies sur $\mathbb{F}_q$, $\psi 
 \vfill 
 \item Cas Atkin avec hauteur $h=0$;
 \vfill
-\item Cas Atkin avec hauteur $h \neq 0$;
+\item Cas Atkin avec hauteur $h \neq 0$; (non abordé)
 \end{itemize}
 \end{itemize}
 \vfill
@@ -1234,7 +1234,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \end{smallmatrix}\right ) \in (\mathbb{Z}/\ell^k \mathbb{Z})^{2 \times 2}$:
 \hfill\uncover<2>{$\color{blue!50!gray}{O(r)}$}
     \begin{enumerate}
-  \item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
+  \item Calcul et test d'un candidat à l'aide d'un polynôme\\ d'interpolation
     $L$  qui envoie
     $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$.
 \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
@@ -1862,8 +1862,9 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 %  \item Si $F$ définit une isogénie de degré $r$, on la retourne et on termine
 %   l'algorithme.
    
-   \item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
-   $L$ qui envoie $\color{red}P\mapsto [a]P'$ et $\color{blue}Q\mapsto [b]Q'$. \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+   \item Calcul et test d'un candidat à l'aide d'un polynôme\\ 
+   d'interpolation $L$ qui envoie $\color{red}P\mapsto [a]P'$ et 
+   $\color{blue}Q\mapsto [b]Q'$. \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
   \end{enumerate}
 \end{enumerate}
 \end{frame}
@@ -1993,62 +1994,13 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
 %  \item Calcul du polynôme d'interpolation 
 %    $L$ qui envoie\\
 %    $P\mapsto S'$ et $Q\mapsto R'$;
-\item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
-   $L$ qui envoie $P\mapsto S'$ et $Q\mapsto R'$. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+\item Calcul et test d'un candidat à l'aide d'un polynôme\\ 
+      d'interpolation $L$ qui envoie $P\mapsto S'$ et $Q\mapsto R'$. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
    \end{enumerate}
 \end{enumerate}
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-
-\bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin $h \neq 0$)}{
-\begin{algorithmic}[1]
-\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
-\ENSURE $\phi: E \rightarrow E'$ de degré $r$
-\end{algorithmic}}
-\only<1>{
-\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $\color{red}[\ell^h]\color{black}R=\color{red}[\ell^h]\color{black}Q$ \\
-avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
-}
-\only<2>{
-\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $[\ell^h]R=[\ell^h]Q$ \\
-avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
-}
-\begin{enumerate}
-\item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$;
-\medskip
-\item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$; \hfill{$\color{blue!50!gray} \tilde{O}(r \ell^{O(1)})$}
-%\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
-\medskip
-\item Calcul de la matrice $M_{\pi}(P,Q)$; \hfill {$\color{blue!50!gray} \tilde{O}(\sqrt{r} \ell^{O(1))})$}
-\medskip
-\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill {$\color{blue!50!gray}{O(r)}$}
-\begin{enumerate}
-\medskip
-  \item Calcul de $R'$ tel que $M_{\pi'}(S',R')=M_{\pi}(P,Q)$; \hfill {$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
-  \medskip
-  \only<1>{
-  \item $\color{red}{\text{Pour tout point } U' \in E' \text{ tel que } [\ell^h]R'=[\ell^h]U':}$}
-  \only<2>{
-  \item Pour tout point $U' \in E'$ tel que $[\ell^h]R'=[\ell^h]U'$: \hfill {$\color{blue!50!gray}{O(\ell^h)}$}}
-  \begin{enumerate}
-
-%  \item Calcul du polynôme d'interpolation 
-%    $L$ qui envoie\\
-%    $P\mapsto S'$ et $Q\mapsto U'$;
-%\hfill {$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
-\item Calcul et test d'un candidat à l'aide d'un polynôme d'interpolation \\
-   $L$ qui envoie $P\mapsto S'$ et $Q\mapsto U'$. \hfill $\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$
-  \end{enumerate}
-	
-\end{enumerate}
-\end{enumerate}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
 \frametitle{Algorithme de Couveignes $\ell$-adique}
@@ -2202,6 +2154,94 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 \tiny Modified from  \href{http://xkcd.com/1714/}{xkcd.com/1714}
 \end{frame}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin $h = 0$)}{
+\begin{algorithmic}[1]
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\ENSURE $\phi: E \rightarrow E'$ de degré $r$
+\end{algorithmic}}
+
+\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $R=Q$ 
+avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{k}]$.}
+
+\begin{enumerate}
+\item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$.
+\medskip
+\item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$; \hfill\only<2>{$\color{blue!50!gray}\tilde{O}(r \ell^{O(1)})$}
+%\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
+\medskip
+\item Calcul de la matrice $M_{\pi}(P,Q)$; \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r}\ell^{O(1)})}$}
+\medskip
+\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill\uncover<2>{$\color{blue!50!gray}{O(r)}$}
+\begin{enumerate}
+\medskip
+  \item Calcul de $R'$ tel que $M_{\pi'}(S',R')=M_{\pi}(P,Q)$; \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
+  \medskip
+
+%  \item Calcul du polynôme d'interpolation 
+%    $L$ qui envoie\\
+%    $P\mapsto S'$ et $Q\mapsto R'$;
+\item Calcul et test d'un candidat à l'aide d'un polynôme\\ 
+      d'interpolation $L$ qui envoie $P\mapsto S'$ et $Q\mapsto R'$. \hfill\only<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+   \end{enumerate}
+\end{enumerate}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\bluebox{Un algorithme de Couveignes $\ell$-adique (Cas Atkin $h \neq 0$)}{
+\begin{algorithmic}[1]
+\REQUIRE $E, E',r$ tels que $E$ et $E'$ soient deux courbes $r$-isogènes sur $\mathbb{F}_{q}$ 
+\ENSURE $\phi: E \rightarrow E'$ de degré $r$
+\end{algorithmic}}
+\only<1>{
+\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $\color{red}[\ell^h]\color{black}R=\color{red}[\ell^h]\color{black}Q$ \\
+avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
+}
+\only<2>{
+\bluebox{}{\textbf{Fait:} $M_{\pi}(P,R)=M_{\pi}(P,Q)$ ssi $[\ell^h]R=[\ell^h]Q$ \\
+avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
+}
+\begin{enumerate}
+\item Choix du plus petit entier $k$ tel que $\ell^{2k}>4r$;
+\medskip
+\item Calcul de $\langle P , Q \rangle = E[\ell^k]$ et $\langle P' , Q' \rangle = E'[\ell^k]$; \hfill{$\color{blue!50!gray} \tilde{O}(r \ell^{O(1)})$}
+%\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$;
+\medskip
+\item Calcul de la matrice $M_{\pi}(P,Q)$; \hfill {$\color{blue!50!gray} \tilde{O}(\sqrt{r} \ell^{O(1))})$}
+\medskip
+\item Pour tout point $S'$ d'ordre $\ell^k$ de $E'$: \hfill {$\color{blue!50!gray}{O(r)}$}
+\begin{enumerate}
+\medskip
+  \item Calcul de $R'$ tel que $M_{\pi'}(S',R')=M_{\pi}(P,Q)$; \hfill {$\color{blue!50!gray}{\tilde{O}(\sqrt{r} \ell^{O(1)})}$}
+  \medskip
+  \only<1>{
+  \item $\color{red}{\text{Pour tout point } U' \in E' \text{ tel que } [\ell^h]R'=[\ell^h]U':}$}
+  \only<2>{
+  \item Pour tout point $U' \in E'$ tel que $[\ell^h]R'=[\ell^h]U'$: \hfill {$\color{blue!50!gray}{O(\ell^h)}$}}
+  \begin{enumerate}
+
+%  \item Calcul du polynôme d'interpolation 
+%    $L$ qui envoie\\
+%    $P\mapsto S'$ et $Q\mapsto U'$;
+%\hfill {$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}
+\item Calcul et test d'un candidat à l'aide d'un polynôme\\ 
+	d'interpolation $L$ qui envoie $P\mapsto S'$ et $Q\mapsto U'$. \hfill $\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$
+  \end{enumerate}
+	
+\end{enumerate}
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backupbegin
 \begin{frame}
@@ -2230,6 +2270,9 @@ nous utilisons ensuite le Théorème des Restes Chinois pour obetnir $L$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+
 
 
 \begin{frame}
