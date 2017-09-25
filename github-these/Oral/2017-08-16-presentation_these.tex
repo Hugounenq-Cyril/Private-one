@@ -1843,7 +1843,7 @@ $\color{blue}{E[\ell^k]_{{\mu}}} \color{black}{\rightarrow} \color{blue}{E'[\ell
 \item Calcul du plus petit entier $k$ tel que $\ell^{2k}>4r$, avec $h<k$.
 \medskip
 \item Calcul de $\langle \red P , \blu Q \rangle = \color{red}{E[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E[\ell^k]_{{\mu}}} $\\
- et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de $\ell^k$-isogénies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$. \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}  
+ et $\langle \color{red} P' \color{black}, \color{blue} Q'\color{black} \rangle = \color{red}{E'[\ell^k]_{{\lambda}}} \color{black} \oplus \color{blue}{E'[\ell^k]_{{\mu}}} $ générateurs de \\ $\ell^k$-isogénies horizontales de directions $\color{red} \lambda \color{black}, \color{blue} \mu$. \hfill\uncover<2>{$\color{blue!50!gray}{\tilde{O}(r \ell^{O(1)})}$}  
 %\item Deduce $\to$ $\langle{\color{red}P},{\color{blue}Q}\rangle=E[\ell^k]$ and $\langle{\color{red}P'},{\color{blue}Q'}\rangle=E'[\ell^k]$; Rajouter le coût de cela...
 \medskip
 \item Pour toute matrice \textbf{diagonale inversible}
@@ -2156,6 +2156,7 @@ L'algorithme (cas Elkies) a été implanté sur SageMath v7.1 seulement pour $\e
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backupbegin
 
 \begin{frame}
 
@@ -2243,7 +2244,6 @@ avec $\langle P,R \rangle = \langle P,Q \rangle = E[\ell^{h+i}]$ avec $i>0$.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\backupbegin
 \begin{frame}
 \frametitle{Détails techniques: Amélioration de l'interpolation avec le Frobenius}
 %$A$ the polynomial that interpolates the isogeny according to the mappings $\red P \rightarrow \color{red} u P' $, $\blu Q \rightarrow \color{blue}v Q'$  and $\color{red} P' \in  E'[\ell^k]_{\lambda}$, $\color{blue} Q' \in  E'[\ell^k]_{\mu} \color{black}$.
