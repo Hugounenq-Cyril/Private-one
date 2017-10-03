@@ -179,8 +179,8 @@ Avant de parler du déroulement de cette thèse permettez-moi de faire un retour
 dans le passé et de parler de ceux qui sont aussi à l'origine de celle-ci.
 
 De mon passage au Lycée Joffre je garderai surtout cette maxime, que je n'ai 
-cessé d'essayer de suivre, formulée par M. Bondil:"On regarde sous le capot et 
-on comprend comment cela fonctionne", sans oublier cette volonté de M. Carré du
+cessé d'essayer de suivre, formulée par M. Bondil:«On regarde sous le capot et 
+on comprend comment cela fonctionne», sans oublier cette volonté de M. Carré du
 meilleur pour moi.
 
 De mon passage à l'ENSMM à Besançon, je ne retiendrai que des bon moments 
@@ -209,7 +209,7 @@ une autre thèse avec lui. Je tiens à remercier également François Morain pou
 son franc parler, ses remarques (notamment le \ref{sec:var:cou:uni} c'est 
 grâce à lui) et sa gentillesse. Je remercie également Louis Goubin avec qui 
 j'aurai pris plaisir à travailler au cours de notre collaboration qui n'a pas 
-encore mûri, "last but not least" Louis m'aura aidé au cours de nos (trop) 
+encore mûri, «last but not least» Louis m'aura aidé au cours de nos (trop) 
 nombreux problèmes administratifs (j'en tremble encore...). 
 
 Grâce à ma bourse Digiteo (et aux encouragements de Luca) j'ai pu voyager et 
@@ -267,7 +267,7 @@ remercier Cristian, Aura et N'Dugu qui m'ont accueilli dans leur maison à
 Waterloo et qui m'ont offert bien plus qu'un toit.
 
 Je vais donc paraphraser H. H. que j'ai eu le plaisir de rencontrer à Paris 
-pour la (presque) fin de ces remerciements:"Parents proches et amis remerciés... qui reste-t-il? Les absents sans doute. Vous avez toujours tort, vous ne rendez pas beaucoup service... Mais vous me manquez. Des fois..."
+pour la (presque) fin de ces remerciements:«Parents proches et amis remerciés... qui reste-t-il? Les absents sans doute. Vous avez toujours tort, vous ne rendez pas beaucoup service... Mais vous me manquez. Des fois...»
 
 Enfin il y a Jennifer pour qui cette thèse n'a peut être pas beaucoup de sens mais sans elle pour moi cette thèse n'en aurait pas.  
 
@@ -324,7 +324,7 @@ cryptographie \cite{Miller85,Koblitz87,Koblitz89}. Dans les domaines applicatifs
 on s'intéresse tout particulièrement aux courbes elliptiques sur les corps finis. 
 Les algorithmes de calculs de cardinalité de courbes elliptiques sont donc 
 fondamentaux, afin par exemple de définir les paramètres des cryptosystèmes. 
-L'algorithme de Schoof~\cite{Schoof85}, est le premier algorithme de complexité
+L'algorithme de Schoof~\cite{Schoof85}; est le premier algorithme de complexité
 polynomiale à calculer la cardinalité de courbes elliptiques sur les corps 
 finis. Il a été amélioré par la suite par les travaux de Atkin~\cite{Atkin88} 
 et Elkies~\cite{Elkies91} aboutissant à l'algorithme SEA~\cite{Schoof95}.
@@ -365,26 +365,25 @@ dernier algorithme a été récemment amélioré par un résultat de Lairez et V
 
 Bien que l'algorithme de Couveignes~\cite{Couveignes96} ait une meilleure 
 complexité en le degré de l'isogénie que l'algorithme de Lercier et 
-Sirvent,%~\cite{Lercier-Sirvent2008}
+Sirvent, %~\cite{Lercier-Sirvent2008}
 il n'est pas utilisé en pratique à 
 cause d'une dépendance polynomiale en la caractéristique $p$ qui le rend trop 
 coûteux dès que $p$ augmente. Ainsi, l'algorithme de Lercier et 
-Sirvent,%~\cite{Lercier-Sirvent2008}, 
+Sirvent, %~\cite{Lercier-Sirvent2008}, 
  avec une dépendance logarithmique en $p$, 
 est préféré pour les plus grandes caractéristiques. 
 %En pratique déterminer 
 %lequel des deux est le plus pertinent doit se faire au cas par cas. 
 
-Bien que la complexité de SEA ne soit pas dominée par le calcul de l'isogénie 
-explicite,
+Le calcul de l'isogénie explicite n'étant pas une étape qui domine le coût de 
+SEA, ce problème n'est donc, pour le moment, pas motivé dans ce contexte, il 
+l'est dans d'autres applications.
 %/Soulignons que, notons que/De plus comme dans SEA d'autres opérations ont 
 %un coût plus élevé que l'algorithme de Lercier et Sirvent 
 %\cite{Lercier-Sirvent2008}, la question de trouver un algorithme avec une 
 %complexité moins élevée en le degré de l'isogénie n'est pas motivée dans ce 
 %contexte.
 %Cependant
-le calcul d'isogénies peut s'appliquer à d'autres
-contextes. 
 Le calcul d'isogénies est intéressant par exemple pour les crypto-systèmes à 
 trappe de Teske~\cite{Teske06}, les travaux de cryptanalyse de 
  \cite{MaurerMenezesTeske01}, la construction de fonctions de hachage 
@@ -496,15 +495,15 @@ cardinalité.
 
 
 Les graphes d'isogénies ont été étudiés pour la première fois par 
-\cite{Kohel96}, ses travaux dans le contexte particulier des courbes elliptiques
+\cite{Kohel96}; ses travaux dans le contexte particulier des courbes elliptiques
 supersingulières ont été inspirés par ceux de \cite{Mestre86,Pizer90,Pizer95} 
-qu'il a adapté et développé dans ce contexte, il a aussi étudié le cas des 
-courbes elliptiques ordinaires, tout cela afin de calculer l'anneau des 
+qu'il a adapté et développé dans ce contexte; il a aussi étudié le cas des 
+courbes elliptiques ordinaires; tout cela afin de calculer l'anneau des 
 endomorphismes d'une courbe 
-elliptique. Kohel a permis de définir des niveaux dans le graphe 
+elliptique. Kohel a défini une nomenclature sur les niveaux dans le graphe 
 d'isogénies. Ainsi le graphe de la Figure~\ref{fig:int:vol} a été représenté
-selon cette convention, les isogénies allant entre deux courbes situées au même
-niveau sont appelées horizontales, celles allant vers une courbe située plus 
+selon cette convention; les isogénies allant entre deux courbes situées au même
+niveau sont appelées horizontales; celles allant vers une courbe située plus 
 bas (haut) sont appelées descendantes (ascendantes). %verticale 
 Kohel détermine le niveau d'une courbe dans le graphe tout en 
 connaissant la cardinalité de celle-ci afin de calculer son anneau des 
@@ -521,7 +520,7 @@ Ensuite les travaux de Miret \textit{et al.}
 \cite{MiretMRV05}  \cite{MiretMSTV06} 
 \cite{MiretMSTV08} ont permis d'expliciter un lien entre le niveau d'une courbe
 dans le volcan de $\ell$-isogénies et la structure des $\ell$-sous-groupes de 
-Sylow, cette relation peut être aussi vue comme une conséquence des travaux de 
+Sylow; cette relation peut être aussi vue comme une conséquence des travaux de 
 Kohel \cite{Kohel96} et Lenstra \cite{Lenstra96}. 
 Le travail de Ionica et Joux~\cite{Ionica-Joux10} a permis, à l'aide de 
 couplages, de déterminer un changement de niveau dans le volcan d'isogénies 
@@ -546,10 +545,10 @@ généralisations utiles.
 
 Ainsi, l'un des résultats principaux de cette thèse est le théorème suivant:
 \begin{thm*}
-Pour presque tous les nombres premiers $q$ et les courbes elliptiques 
-ordinaires $E,E'$ définies sur 
-$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul explicite de
-l'isogénie" en un temps quasi-quadratique en le degré de l'isogénie, 
+Pour presque tous les nombres premiers $q$ et presque toutes les courbes 
+elliptiques ordinaires $E,E'$ définies sur 
+$\mathbb{F}_q$, il est possible de résoudre le problème du «Calcul explicite de
+l'isogénie» en un temps quasi-quadratique en le degré de l'isogénie, 
 avec une dépendance logarithmique en la caractéristique de $\mathbb{F}_q$.
 \end{thm*}
 L'énoncé détaillé est le théorème~\ref{thm:gen:elk:fin} démontré dans la 
@@ -581,10 +580,9 @@ volcan et la structure des $\ell$-sous-groupes de Sylow; pour cela nous utilison
 des résultats de Kohel~\cite{Kohel96}, Fouquet et Morain~\cite{FouquetMorain02}, Miret \textit{et al.} \cite{MiretMRV05} \cite{MiretMSTV06} 
 \cite{MiretMSTV08}, et Ionica et Joux~\cite{Ionica-Joux10}. 
 
-Nous abordons alors les principaux apports de la thèse dans les deux prochains
-chapitres.
+Nous abordons dans les deux chapitres suivants les principaux apports de la thèse.
 
-Ensuite nous étudions dans le chapitre~\ref{cha:act:fro} l'action de 
+Tout d'abord nous étudions dans le chapitre~\ref{cha:act:fro} l'action de 
 l'endomorphisme de Frobenius sur la $\ell^k$-torsion d'une courbe elliptique. 
 Nous  développons de nouvelles méthodes pour déterminer des directions dans le 
 volcan de $\ell$-isogénies, y compris pour les directions descendantes dans le 
@@ -596,7 +594,8 @@ Ensuite, nous présentons dans le chapitre~\ref{cha:alg:fin} comment ces
 isogénies spécifiées 
 par leurs directions peuvent être utilisées dans un algorithme de Couveignes
 où l'isogénie est interpolée sur les points d'ordre $\ell^k$. Nous
-appellerons $\ell$-adiques ces variantes de l'algorithme de Couveignes.
+appellerons $\ell$-adiques ces variantes de l'algorithme de Couveignes, pour 
+tout $\ell$ premier différent de $p$.
 Nous présentons et analysons donc un algorithme $\ell$-adique de
 Couveignes dans un cas favorable (à savoir, lorsque un entier $\ell$ avec des 
 bonnes propriétés nous est fourni d'avance), puis dans le cas général, où nous 
@@ -2558,13 +2557,13 @@ La figure \ref{fig:orb:T} est à mettre en parallèle avec la figure \ref{fig:p-
 
 L'algorithme de Couveignes avec les modifications apportées par l'utilisation 
 de tours d'Artin-Schreier et du Frobenius pour le calcul du polynôme 
-d'interpolation, dénommé "C2-AS-FI" par \cite{DeFeo11}, a alors la complexité 
+d'interpolation, dénommé «C2-AS-FI» par \cite{DeFeo11}, a alors la complexité 
 suivante:
 
 \begin{thm}
 \label{thm:C2:FP}
 Soient $E$ et $E'$ deux courbes $r$-isogènes, l'algorithme de Couveignes 
-"C2-AS-FI" a, en supposant que $M(n)=O(n \log(n) \log \log (n))$, une complexité
+«C2-AS-FI» a, en supposant que $M(n)=O(n \log(n) \log \log (n))$, une complexité
 de:
 \[
 \tilde{O}_{p,d,\log r}(p^2d^3+\mathsf{C}(p)pd+(pd)^{\omega}\log^2 r + p^3 r^2 d \log^3 r + p^2r^2d^2+(\frac{r^2}{p}+p)\mathsf{C}(pd))
@@ -2595,11 +2594,11 @@ $x_0=X_0 \bmod Q_0$. Ici $\mathbb{U}_1$ représente le premier élément de la
 tour, les suivant étant construits comme des extensions de degré $p$ du 
 précédent à l'aide d'une équation d'Artin Schreier (comme dans 
 \cite{DeFeo-Shost'12}). Dans ces conditions on donne une estimation du coût de 
-"C2-AS-FI" en termes d'opérations sur $\mathbb{F}_q$.
+«C2-AS-FI» en termes d'opérations sur $\mathbb{F}_q$.
 
 \begin{thm}
 \label{thm:C2:FQ}
-La complexité totale de l'algorithme "C2-AS-FI" à l'aide de constructions de 
+La complexité totale de l'algorithme «C2-AS-FI» à l'aide de constructions de 
 tour d'Artin-Schreier construite sur $\mathbb{F}_q$ est dominée par le terme 
 \[O(p^3r^2\log_p(p^3r)^2)\]
 opérations sur $\mathbb{F}_q$.
@@ -3660,7 +3659,7 @@ Voir \cite[Proposition 6]{MiretMSTV08}.
 L'algorithme de Fouquet-Morain~\cite{FouquetMorain02} est un algorithme qui 
 calcule un chemin descendant d'une courbe elliptique située sur le cratère afin
 de calculer la valuation $\ell$-adique du conducteur de $\mathbb{Z}[\pi]$. Cet
-algorithme est une adaptation de l'algorithme "Probing the depths" de Kohel \cite[Section 4.2]{Kohel96} au contexte SEA. Pour trouver une courbe sur le cratère la première chose à faire est de savoir déterminer un chemin descendant. 
+algorithme est une adaptation de l'algorithme «Probing the depths» de Kohel \cite[Section 4.2]{Kohel96} au contexte SEA. Pour trouver une courbe sur le cratère la première chose à faire est de savoir déterminer un chemin descendant. 
 
 \paragraph{Chemin descendant}
 En pratique une courbe admet au plus $2$ isogénies horizontales et au moins une isogénie descendante (voir corollaire \ref{cor:tab:vol}), ainsi à l'aide du calcul en parallèle de 3 isogénies on est sûr d'avoir une des 3 qui soit descendante. Il est aussi important de noter que toute courbe du volcan admet au plus une isogénie montante. Dés lors que l'on parcourt le volcan d'isogénies à partir d'une isogénie descendante et que l'on ne retourne pas sur une courbe déjà visitée alors la suite des isogénies parcourues seront descendantes jusqu'à ce que l'on se retrouve sur une courbe située en bas du volcan. On détecte qu'une courbe est en bas du volcan dés qu'il y a une seule courbe isogène à celle-ci.
@@ -7349,8 +7348,9 @@ borne sur $\ell$ pour le pire des cas en fonction uniquement de $r$ et $q$.
 
 \begin{prop}
 \label{pro:bor:ell}
-Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
-$\mathbb{F}_q$, il existe un nombre premier $\ell$ de Elkies 
+Pour presque tous les nombres premiers $q$ et presque toutes les courbes 
+ordinaires $E,E'$ définies sur $\mathbb{F}_q$, il existe un nombre premier 
+$\ell$ de Elkies 
 dans l'intervalle $[1,L]$ tel que $\ell^h < \sqrt{r}$ pour $L \in O(\log(q))$.
 \end{prop}
 
@@ -7435,13 +7435,13 @@ par la proposition~\ref{pro:alg:diagonal}, en appliquant les résultats de
 \end{proof}
 
 On peut dés lors énoncer le résultat suivant qui permet d'exprimer le coût de 
-résolution du problème du "Calcul de l'isogénie explicite" en terme de $r$ et $q$.
+résolution du problème du «Calcul de l'isogénie explicite» en terme de $r$ et $q$.
 
 \begin{thm}
 \label{thm:gen:elk:fin}
-Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
-$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul explicite de l'isogénie" 
-en un temps espéré de 
+Pour presque tous les nombres premiers $q$ et presque toutes les courbes 
+ordinaires $E,E'$ définies sur $\mathbb{F}_q$, il est possible de résoudre le 
+problème du «Calcul explicite de l'isogénie» en un temps espéré de 
  \begin{equation*}
  \begin{alignedat}{1}
  O\Bigl( &\sqrt{r}\mathsf{M}(\sqrt{r}\log(q)^{1,5})\log(r)\log(\log(q))\log(\log(q) q) + \\
@@ -7481,7 +7481,7 @@ $O(r^3 \log^3(r) \log \log(r))$ opérations sur $\mathbb{F}_p$ d'après
 %$\mathbb{F}_q$ 
 nous avons donc une complexité cubique en $r$ supérieure à notre résultat.
 Nous comparons aussi la complexité énoncée dans le 
-théorème~\ref{thm:gen:elk:fin} avec l'algorithme appelé "C2-AS-FI" de 
+théorème~\ref{thm:gen:elk:fin} avec l'algorithme appelé «C2-AS-FI» de 
 De Feo~\cite{DeFeo11} car nous utilisons des méthodes similaires. Nous voyons donc que 
 comparé aux résultats des théorèmes~\ref{thm:C2:FP} et \ref{thm:C2:FQ} nous 
 obtenons une complexité qui est aussi quasi-quadratique en le degré de 
@@ -7508,7 +7508,7 @@ En pratique la recherche d'exemples s'est faite à l'aide des méthodes décrite
 dans les algorithmes de l'article~\cite{FouquetMorain02} (voir 
 sous-section~\ref{sub:alg:FM}) en résolvant donc les
 polynômes modulaires (ici $\Phi_2$) utilisés d'après la base de données 
-"database-kohel" implantée par David Kohel. La détermination de la forme du 
+«database-kohel» implantée par David Kohel. La détermination de la forme du 
 cratère se faisait elle à l'aide de la valeur du discriminant $d_k$. Un module 
 a été fait par Sébastien Besnier~\cite{Besnier14} sur Sagemath celui-ci permet 
 d'afficher directement les volcans des $\ell$-isogénies à partir d'une courbe 
@@ -7897,8 +7897,8 @@ Sirvent~\cite{Lercier-Sirvent2008}.
 
 %\begin{thm} \todo{resultat totaement inintéressant}
 %Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
-%$\mathbb{F}_q$, il est possible de résoudre le problème du "Calcul de 
-%l'isogénie explicite" avec l'algorithme~\ref{alg:cou:atk} en un temps espéré de
+%$\mathbb{F}_q$, il est possible de résoudre le problème du «Calcul de 
+%l'isogénie explicite« avec l'algorithme~\ref{alg:cou:atk} en un temps espéré de
 %\[
 %O(r \ell^2 (\sqrt{r}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))))
 %\]
