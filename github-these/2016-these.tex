@@ -629,13 +629,13 @@ f(x)>Mg(x) \quad \text{pour} \quad x>x_0.
 \]
 Nous définissons la notation $\Theta$ pour laquelle que $f \in \Theta(g)$ si et seulement si $f \in O(g)$ et $f \in \Omega(g)$.
 
-Dans ce document, de nombreux algorithmes vont utiliser la multiplication rapide, nous définissons donc celle-ci: $\mathsf{M}:\mathbb{N} \rightarrow \mathbb{N}$ la \emph{fonction de multiplication} tel que le coût de la multiplication de deux polynômes de de degré $n$ définis dans $\mathbb{F}_q[x]$ coûte $M(n)$ opérations arithmétiques dans $\mathbb{F}_q$. En utilisant les résultats de \cite[§8.3]{vzGJG03} nous pouvons supposer que:
+Dans ce document, de nombreux algorithmes vont utiliser la multiplication rapide, nous notons alos: $\mathsf{M}:\mathbb{N} \rightarrow \mathbb{N}$ la \emph{fonction de multiplication} tel que le coût de la multiplication de deux polynômes de de degré $n$ définis dans $\mathbb{F}_q[x]$ coûte $M(n)$ opérations arithmétiques dans $\mathbb{F}_q$. En utilisant les résultats de \cite[§8.3]{vzGJG03} nous pouvons supposer que:
 \begin{itemize}
 \item $\mathsf{M}(n)$ est superlinéaire, c'est à dire $\frac{\mathsf{M}(n)}{n} \geqslant \frac{\mathsf{M}(m)}{m}$ si $n \geqslant m$,
 \item $\mathsf{M}(n)$ est au plus quadratique: $\mathsf{M}(mn) \leqslant m^2 \mathsf{M}(n)$.
 \end{itemize} 
 
-\`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} utlisant des transformation de Fourrier rapides, la multiplication de polynômes de degré $n$ appartenant à $R[x]$ pour un anneau $R$ quelconque est de \newline ${O(n\log(n) \log \log (n))}$ opérations arithmétiques dans $R$.
+\`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} utlisant des transformation de Fourier rapides, la multiplication de polynômes de degré $n$ appartenant à $R[x]$ pour un anneau $R$ quelconque est de \newline ${O(n\log(n) \log \log (n))}$ opérations arithmétiques dans $R$.
 
 
 Dans ce document nous notons par $\omega$ un constante telle que l'on peut 
@@ -649,7 +649,10 @@ logarithmiques en la variable $r$. Ainsi nous avons $O(r \ell \log(r) \log(\ell)
 \subset \tilde{O}_{r}(r \ell \log(\ell)) \subset \tilde{O}_{r,\ell}(r \ell)$. 
 Nous omettrons de préciser la variable quand il n'y a pas d'ambiguïtés possibles.
 
-Enfin des algorithmes de Las Vegas vont être utilisés dans ce document. Ces algorithmes sont des algorithmes probabilistes qui produisent un résultat correct, dès lors que nous utilisons un algorithme de Las Vegas nous parlerons de coût moyen. 
+Enfin des algorithmes de type Las Vegas vont être utilisés dans ce travail; ces
+algorithmes sont des algorithmes probabilistes qui produisent un résultat 
+correct. Dès que nous utilisons un algorithme de type Las Vegas alors pour la 
+complexité énoncée nous parlerons de coût moyen. 
 
 
 \section{Théorie de Galois}
@@ -658,8 +661,8 @@ On définit tout d'abord un \emph{corps de décomposition}.
 \begin{defi}
 Soit $\mathbb{K}$ un corps, soit un ensemble fini de polynômes 
 $(P_i)_{i \in I}$. On dit alors que $\mathbb{L}$ est le 
-\emph{corps de décomposition} de cet ensemble de polynômes si l'on a tout polynôme
- $P_i$ qui se factorise en un produit de facteurs linéaires et tel que 
+\emph{corps de décomposition} de cet ensemble de polynômes si chaque polynôme
+ $P_i$ se factorise en un produit de facteurs linéaires et si 
  $\mathbb{L}$ est généré sur $\mathbb{K}$ par les racines des polynômes $P_i$.
  Le \emph{corps de décomposition} est unique à isomorphisme près. 
 \end{defi}
@@ -679,11 +682,11 @@ $\mathbb{L}/\mathbb{K}$ est dite \emph{séparable} si tout élément $x \in
 
 \begin{defi}
 Une extension de corps $\mathbb{L}/\mathbb{K}$ est dite une \emph{extension 
-Galoisienne}si elle est à la fois séparable et normale.
+Galoisienne} si elle est à la fois séparable et normale.
 \end{defi}
 
 \begin{thm}
-Soit $\mathbb{L}/\mathbb{K}$ une extension Galoisienne, alors il existe un 
+Soit $\mathbb{L}/\mathbb{K}$ une extension Galoisienne. Alors il existe un 
 élément $x \in \mathbb{L}$ appelé \emph{élément primitif} tel que $\mathbb{L}=\mathbb{K}[x]$. 
 \end{thm}
 
@@ -701,7 +704,9 @@ Soit $\mathbb{L}/\mathbb{K}$ une extension Galoisienne alors on appelle
 %\section{Théorie des ordres dans un corps quadratique imaginaire}
 
 \section{Courbes Elliptiques}
-Dans ce chapitre nous allons faire quelques rappels sur les courbes elliptiques. Pour approfondir le sujet le lecteur pourra consulter \cite{Silv1} ou encore \cite{Washington2008}
+Dans ce chapitre nous allons faire quelques rappels sur les courbes 
+elliptiques. Pour approfondir le sujet le lecteur pourra consulter 
+\cite{Silv1} ou encore \cite{Washington2008}.
 
 \subsection{\'Equations de Weierstrass}
 
@@ -724,7 +729,7 @@ Une courbe elliptique $E$ peut être définie comme la variété projective asso
 \label{eq:weierstrass-proj}
 E:Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3
 \end{equation}
-avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le point $[0:1:0]$ est appelé le \emph{point à l'infini} et sera noté $0_E$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
+avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le point $(0:1:0)$ est appelé \emph{point à l'infini} et sera noté $0_E$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
 \end{defi}
 
 L'équation \eqref{eq:weierstrass-proj} est dite forme homogène de l'équation de Weierstrass. En appliquant le changement de variables $x=\frac{X}{Z}$, $y=\frac{Y}{Z}$, on passe alors en coordonnées affines et on obtient l'équation de Weierstrass suivante:
@@ -733,15 +738,15 @@ L'équation \eqref{eq:weierstrass-proj} est dite forme homogène de l'équation 
 \label{eq:weierstrass-red}
 E:y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6
 \end{equation}
-appelée équation affine de Weierstrass. La courbe $E$ est alors définie comme étant l'ensemble des points solutions de \eqref{eq:weierstrass-red} avec le point à l'infini $O_E$.
+appelée équation affine de Weierstrass. La courbe $E$ est alors définie comme étant l'ensemble des points solutions de \eqref{eq:weierstrass-red} augmenté du point à l'infini $0_E$.
 
  On définit aussi:
 \begin{equation*}
-b_2=a_1^2+4a_2, b_4=a_1a_3+2a_4, b_6=a_3^2+4a_6, b_8=a_1^2a_6-a_1a_3a_4+4a_2a_6+a_2a_3^2-a_2^4
+b_2=a_1^2+4a_2, b_4=a_1a_3+2a_4, b_6=a_3^2+4a_6, b_8=a_1^2a_6-a_1a_3a_4+4a_2a_6+a_2a_3^2-a_2^4.
 \end{equation*}
 \`A l'aide de ceux-ci on définit le discriminant $\Delta$ de l'équation de Weierstrass \eqref{eq:weierstrass-red}:
 \begin{equation*}
-\Delta = -b_2^2b_8-8b_4-27b_6^2+9b_2b_4b_6
+\Delta = -b_2^2b_8-8b_4-27b_6^2+9b_2b_4b_6.
 \end{equation*}
 
 La courbe $E$ admet un unique point singulier si et seulement si $\Delta$ est nul, la courbe est non singulière si et seulement si $\Delta$ est non nul (\cite[Prop. III.1.4]{Silv1}).
@@ -755,7 +760,7 @@ La courbe $E$ admet un unique point singulier si et seulement si $\Delta$ est nu
 
 On définit: 
 \begin{equation*}
-j=\frac{(b_2^2-24b_4)^3}{\Delta}
+j=\frac{(b_2^2-24b_4)^3}{\Delta}.
 \end{equation*}
 La constante $j$ est appelée \emph{$j$-invariant} de la courbe.
 
@@ -788,9 +793,9 @@ E(\mathbb{K})=\{(x,y)\in \mathbb{K}^2  : y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6 \} \
 
 On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une 
 courbe elliptique $E$ définie sur $\mathbb{K}$, alors son corps des fonctions 
-$\mathbb{K}(E)$ est le corps des fractions de l'anneau des coordonnées:
+$\mathbb{K}(E)$ est le corps des fractions de l'anneau des coordonnées
 \begin{equation*}
-\mathbb{K}[x,y]/(f(x,y)).
+\mathbb{K}(E):=\mathbb{K}[x,y]/(f(x,y)).
 \end{equation*}
 
 \subsection{Loi de groupe}
@@ -863,7 +868,7 @@ $\mathbb{K}(E)$ est le corps des fractions de l'anneau des coordonnées:
 \end{center}
 \end{figure}
 
-On peut définir sur $E(\mathbb{K})$ une loi de groupe abélienne à l'aide de la méthode dite de la \emph{corde et de la tangente}
+On peut définir sur $E(\mathbb{K})$ une loi de groupe abélienne à l'aide de la méthode dite de la \emph{corde et de la tangente}.
 
 \begin{defi}[Loi d'addition]
 Soient $P,Q \in E(\mathbb{K})$, $L$ la droite reliant $P$ à $Q$ (ou tangente à la courbe en $P$ si $P=Q$) et $R$ le troisième point d'intersection de $L$ avec $E$. Soit $L'$ la droite reliant $R$ à $0_E$ cette droite intersecte alors la courbe en un troisième point $P+Q$.
@@ -873,9 +878,9 @@ Une preuve que cette loi définit bien une loi de groupe abélienne est montrée
 
 En utilisant la notation $(x_P,y_P)$ pour les coordonnées affines d'un point $P$ de la courbe, on obtient alors pour des points $P,Q$ de $E(\mathbb{K})$ les formules suivantes:
 \begin{itemize}
-\item $P+O_E=O_E+P=(x_P,y_P)$
-\item $-P=(x_P,-y_P-a_1x_P-a_3)$
-\item En notant $\lambda= \begin{cases}
+\item $P+O_E=O_E+P=(x_P,y_P)$;
+\item $-P=(x_P,-y_P-a_1x_P-a_3)$;
+\item En posant $\lambda= \begin{cases}
 \frac{y_{Q}-y_{P}}{x_{Q}-x_{P}} & \text{si } P\neq Q\\
 \frac{3x_{P}^{2}+2a_{2}x_{P}+a_{4}-a_{1}y_{P}}{2y_{P}+a_{1}x_{P}+a_{3}} & \text{si } P=Q
 \end{cases}\ $,
@@ -884,7 +889,7 @@ on peut alors exprimer les coordonnées de $P+Q$:
 \begin{equation*}
 \begin{alignedat}{1}
 & x_{P+Q}=\lambda^2 +a_1\lambda-a_2-x_P-x_Q,\\
-& y_{P+Q}=-(\lambda +a_1)x_{P+Q}-y_{P}-\lambda x_P-a_3
+& y_{P+Q}=-(\lambda +a_1)x_{P+Q}-y_{P}-\lambda x_P-a_3.
 \end{alignedat}
 \end{equation*}
 \end{itemize}
@@ -898,7 +903,7 @@ on peut alors exprimer les coordonnées de $P+Q$:
 \begin{equation}
 \begin{alignedat}{1}
 [m]: E(\mathbb{K}) & \rightarrow E(\mathbb{K}) \\
-P & \mapsto \underbrace{P+ \cdots +P}_{m fois} 
+P & \mapsto \underbrace{P+ \cdots +P}_{m \text{fois}} 
 \end{alignedat}
 \end{equation}
 
