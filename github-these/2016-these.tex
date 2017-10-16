@@ -1523,11 +1523,11 @@ Maintenant que la courbe isogène est entièrement déterminée, il reste à dé
 
 \chapter{Calcul d'isogénies sur les corps finis}
 \label{cha:iso:computing}
-Dans ce chapitre vont être présentés différents algorithmes pour résoudre le problème suivant: soient $E, E'$ deux courbes elliptiques définies sur $\mathbb{K}$, on cherche alors à calculer la fraction $\mathbb{K}$-rationnelle qui a pour domaine $E(\mathbb{K})$ et pour codomaine $E'(\mathbb{K})$  telle que  cette application  définisse une isogénie.
-On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$, bien que certains algorithmes présentés peuvent aussi s'utiliser sur des corps de caractéristique nulle.
+Dans ce chapitre vont être présentés différents algorithmes pour résoudre le problème suivant: soient $E, E'$ deux courbes elliptiques définies sur $\mathbb{K}$, on cherche alors à calculer la fraction $\mathbb{K}$-rationnelle qui a pour domaine $E(\mathbb{K})$ et pour codomaine $E'(\mathbb{K})$  telle que  cette application  définisse une isogénie séparable.
+On va s'intéresser tout particulièrement au cas des corps finis $\mathbb{F}_q$, bien que certains algorithmes (Elkies et BMSS) présentés peuvent aussi s'utiliser sur des corps de caractéristique nulle.
 
 \section{Rappel et applications des formules de Vélu}
-Comme vu dans la sous-section~\ref{sse:Vel} à l'aide des formules de Vélu on peut expliciter une isogénie séparable $I$ de degré $r$ sous la forme:
+Comme vu dans la sous-section~\ref{sse:Vel}, à l'aide des formules de Vélu on peut expliciter une isogénie séparable $I$ de degré $r$ sous la forme:
 \begin{equation} 
 I(x,y)=\left(\frac{g(x)}{h(x)},y\left( \frac{g(x)}{h(x)} \right)'\right)
 \end{equation}
@@ -1535,7 +1535,7 @@ avec
 \begin{equation*}
 h(x)=\prod_{Q \in G \setminus \{0_E\}}(x-x(Q)),
 \end{equation*}
-avec $G=\ker(I)$, $g$ un polynôme de degré $r$. De plus à l'aide de la reformulation d'Elkies on a:
+où $G=\ker(I)$, $g$ un polynôme de degré $r$. De plus à l'aide de la reformulation d'Elkies on a:
 \begin{equation}
 \label{eq:vel:elk}
 \frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
@@ -1546,30 +1546,30 @@ avec $f$ donné par l'équation de Weierstrass de $E$: $y^2=f(x)$, $p_1$ la somm
 Il est important de noter qu'il existe des isogénies de la forme:
 \begin{equation}
 \label{eq:iso:gen}
-I(x,y)=\left( \frac{g(x)}{h(x)},cy\frac{g(x)}{h(x)} \right)
+I(x,y)=\left( \frac{g(x)}{h(x)},cy \left( \frac{g(x)}{h(x)} \right)' \right)
 \end{equation}
 avec $c \in \overline{\mathbb{F}_q}$. Ainsi on énonce les définitions suivantes:
 
 
 \begin{defi}
-Soit $I$ une isogénie de la forme \eqref{eq:iso:gen} avec $c=1$, on dit alors 
-que cette isogénie est \emph{normalisée}, l'isogénie est alors séparable. 
+Une isogénie $I$ de la forme \eqref{eq:iso:gen} avec $c=1$ est dite 
+\emph{normalisée}. L'isogénie est alors séparable. 
 
-Pour deux courbes $r$-isogènes exprimées sous forme de Weierstrass telle que
-la $r$-isogénie associée à ces courbes est normalisée on dit que ces 
+\'Etant données deux courbes $r$-isogènes exprimées sous forme de Weierstrass 
+telles que la $r$-isogénie associée à ces courbes est normalisée, on dit que ces 
 courbes ont des équations de Weierstrass \emph{normalisées}. 
 \end{defi}
 
-\section{Elkies 1998}
+\section{L'algorithme de Elkies 1998}
 Dans cette sous-section on se restreint au cas où la caractéristique $p$ de 
-$\mathbb{F}_q$ est supérieure ou égale à $5$, en pratique on souhaite $p \gg r$.
+$\mathbb{F}_q$ est supérieure ou égale à $5$. En pratique on souhaite $p \gg r$.
 Dans le modèle de Elkies on travaille avec des courbes à équations de 
-Weierstrass normalisées, celles-ci sont calculées à l'aide du $r$-ème polynôme 
+Weierstrass normalisées. Celles-ci sont calculées à l'aide du $r$-ième polynôme 
 modulaire (voir proposition \ref{prop:elk:nor} pour la construction et 
-\cite{Schoof95} pour plus de détails). Le $r$-ème polynôme modulaire est 
+\cite{Schoof95} pour plus de détails). Le $r$-ième polynôme modulaire est 
 calculé en $\tilde{O}(r^3)$ opérations sur $\mathbb{F}_q$ d'après \cite{Enge09} \cite[Algorithm 6.1, Theorem 1]{BLS12}.
-Les idées présentées ici sont issues du travail de Elkies~\cite[§The kernel of
- the isogeny]{Elkies1998}, celui-ci commence à partir des équations de 
+Les idées présentées ici sont issues du travail de Elkies~\cite[ The kernel of
+ the isogeny]{Elkies1998}. Celui-ci commence à partir des équations de 
  Weierstrass normalisées de $E$
 \begin{equation}
 y^2=x^3+Ax+B
@@ -1589,7 +1589,7 @@ on injecte l'équation de $E$ et $I$ dans l'équation de $\tilde{E}$:
 Cette équation est alors dérivée pour obtenir une équation différentielle du second ordre:
 \begin{equation}
 \label{eq:Elkies-deriv}
-(3x^2+A)\left(\frac{g(x)}{h(x)} \right)'+2(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)''=  3\left(\frac{g(x)}{h(x)} \right)^2 + \tilde{A}
+(3x^2+A)\left(\frac{g(x)}{h(x)} \right)'+2(x^3+Ax+B)\left(\frac{g(x)}{h(x)} \right)''=  3\left(\frac{g(x)}{h(x)} \right)^2 + \tilde{A}.
 \end{equation}
 On écrit alors le développement en série de la fraction rationnelle $\frac{g(x)}{h(x)}$ à l'infini:
 \begin{equation}
@@ -1599,39 +1599,43 @@ On écrit alors le développement en série de la fraction rationnelle $\frac{g(
 que l'on injecte dans \eqref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $h_i$ en identifiant les coefficients des $x^{-i}$:
 \begin{equation}
 \label{eq:rec:h_k}
-h_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}h_ih_{k-1-i}\frac{2k-3}{2k+3}Ah_{k-2}-\frac{2(k-3)}{2k+3}Bh_{k-3} \; \forall k \geqslant 3,
+\forall k \geqslant 3, h_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}h_ih_{k-1-i}-\frac{2k-3}{2k+3}Ah_{k-2}-\frac{2(k-3)}{2k+3}Bh_{k-3} \; 
 \end{equation}
+\todo{notation des $h_i$}
 les termes $h_1,h_2$ étant déterminés par:
 \begin{equation}
-h_1=\frac{A-\tilde{A}}{5} \quad h_2={\frac{B-\tilde{B}}{7}}.
+h_1=\frac{A-\tilde{A}}{5}, \quad h_2={\frac{B-\tilde{B}}{7}}.
 \end{equation}
 Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{r-2}$ est de $O(r^2)$ opérations sur $\mathbb{F}_q$. 
 
-Il est à noter que la condition $p \gg r$ est là pour nous assurer que $2, \cdots, 2r-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir appliquer la remarque \ref{rem:pol:rec}, ainsi que l'équation \eqref{eq:rec:h_k}.
+Il est à noter que la condition $p \gg r$ est là pour nous assurer que $2, 
+\cdots, 2r-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir 
+appliquer l'équation \eqref{eq:rec:h_k}.
 
-On peut alors énoncer le théorème suivant
+On peut alors énoncer le théorème suivant.
 \begin{thm}
 Soient $E$ et $\tilde{E}$ deux courbes elliptiques $r$-isogènes définies sur
-$\mathbb{F}_q$ avec des équations de Weierstrass normalisées avec $p>2r-1$ 
+$\mathbb{F}_q$ avec des équations de Weierstrass normalisées pour $p>2r-1$ 
 alors l'algorithme de Elkies calcule la $r$-isogénie en $O(r^2)$ opérations sur
 $\mathbb{F}_q$.
 \end{thm}
 
+Comme on a $p \gg r$ on peut alors aussi appliquer la remarque suivante. \todo{verifier cela...}
 
 \begin{rem}
 \label{rem:pol:rec}
 Soit $P$ un polynôme de degré $d$ défini sur $\mathbb{F}_q[X]$ de caractéristique $p>d$ ou $p=0$. Alors $P$ peut être déterminé à l'aide de la formule:
 \begin{equation}
-P=\exp\left(\int{\frac{P'}{P}}\right)
+P=\exp\left(\int{\frac{P'}{P}}\right).
 \end{equation} 
 On a alors à l'aide des sommes de Newton (somme des puissances successives des racines de $P$):$p_0=d,p_1, \cdots, p_d$:
 \begin{equation}
 \label{eq:pol:new}
-\frac{P'}{P}= \frac{d}{X} + \sum_{i = 1}^d \frac{p_i}{X^{i+1}}
+\frac{P'}{P}= \frac{d}{X} + \sum_{i = 1}^d \frac{p_i}{X^{i+1}},
 \end{equation}
-Ce qui nous donne:
+ce qui nous donne:
 \begin{equation}
-P=\exp\left( d \log(X) - \sum_{i = 1}^{d} \frac{p_i}{i!X^i} \right)
+P=\exp\left( d \log(X) - \sum_{i = 1}^{d} \frac{p_i}{i!X^i} \right).
 \end{equation} 
 Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton 
 on est capable d'exprimer $P$.
@@ -1642,7 +1646,7 @@ de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de
 $p_0=r-1, p_1$ et du développement en série de $\frac{g(x)}{h(x)}:x+
 \sum_{i \geqslant 1}\frac{h_i}{x^i}$.
 Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer 
-la connaissance de $p_1$. En effet comme le calcul du $r$-ème polynôme 
+la connaissance de $p_1$. En effet comme le calcul du $r$-ième polynôme 
 modulaire $\Phi_{r}$ a été effectué (voir \ref{sub:Elkies} pour plus de 
 contexte), alors à l'aide des dérivées partielles de $\Phi_{r}$ on peut 
 calculer celui-ci. Une formule explicite de ce calcul est donnée dans 
@@ -1661,7 +1665,7 @@ Enfin à l'aide de $h$ on peut calculer $g$ en $O(\mathsf{M}(r))$ opérations su
 $\mathbb{F}_q$.
 \end{rem}
  
-\section{Bostan-Morain-Salvy-Schost}
+\section{L'algorithme de Bostan-Morain-Salvy-Schost}
 L'algorithme BMSS~\cite{BMSS08} propose de résoudre le même problème que 
 l'algorithme de Elkies~\cite{Elkies1998} et a une meilleure complexité car 
 il change notamment de méthode pour le calcul des $h_i$:
@@ -1849,7 +1853,7 @@ sinon. Cela pose donc des limites aux applications de BMSS.
 %\end{enumerate}
 
 
-\section{Algorithme de Lercier Sirvent}
+\section{L'algorithme de Lercier Sirvent}
 L'algorithme de Lercier Sirvent répond à la problématique posée par le fait que BMSS ne peut pas s'utiliser sur des corps de petite caractéristique à cause de possibles division par $0$, une solution naturelle envisagée est donc de résoudre ce problème en travaillant dans les entiers $p$-adiques.
 
 Ainsi l'algorithme de Lercier Sirvent transpose l'algorithme BMSS dans les 
@@ -1942,7 +1946,7 @@ en utilisant la précision $1+ \lfloor \log_p(4r-1) \rfloor$ préconisée par
 \end{rem}
 
 
-\section{Algorithme de Couveignes et ses améliorations}
+\section{L'algorithme de Couveignes 1996 et ses améliorations}
 Dans cette section nous présentons tout d'abord l'algorithme de Couveignes 
 \cite{Couveignes96}, puis ensuite les différentes améliorations apportées par 
 De Feo dans \cite{DeFeo11}.
