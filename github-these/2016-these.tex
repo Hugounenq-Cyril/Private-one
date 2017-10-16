@@ -276,7 +276,7 @@ Enfin il y a Jennifer pour qui cette thèse n'a peut être pas beaucoup de sens 
 
 \tableofcontents*
 \listofalgorithms
-%\listoftodos
+\listoftodos
 \listoffigures
 
 \nomenclature{$v_{\ell}(n)$}{La valuation $\ell$-adique de $n$}
@@ -1068,7 +1068,9 @@ t= \sum_{Q \in G \setminus \{0_E\}} f'(Q), \quad u=\sum_{Q \in G \setminus \{0_E
 \end{equation*}
 
 \begin{rem}
-On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une méthode pratique reste celle préconisée par Elkies~\cite{Elkies1998} et \cite[Section 2.4]{Kohel96} \todo{verifier reference} qui utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
+On peut calculer l'isogénie à l'aide de la connaissance de son noyau. Une 
+méthode pratique reste celle préconisée par Elkies~\cite{Elkies1998} qui 
+utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
 \begin{equation*}
 \frac{g(x)}{h(x)}= x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
 \end{equation*}
@@ -1077,6 +1079,12 @@ ce que l'on peut reformuler par:
 \frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
 \end{equation}
 avec $p_1$ la somme des abscisses des points du noyau. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{K}$. \todo{Justifier tout cela...}
+
+
+Il est à noter qu'il existe une autre méthode énoncée dans 
+\cite[Section 2.4]{Kohel96} qui diffère de celle de Elkies car elle utilise le 
+polynôme qui s'annule sur les points du groupe et exprime l'isogénie en 
+fonction de ce polynôme. 
 \end{rem}
 
 \begin{nota}
@@ -1205,7 +1213,11 @@ Une courbe elliptique $E$ est dite à multiplication complexe si $\mathrm{End}(E
 \end{defi}
 
 \begin{defi}
-Définir un ordre... \todo{definir un ordre}
+Un ordre $\mathcal{O}$ dans un corps quadratique $K$ est un sous-ensemble de $K$ tel que:
+\begin{enumerate}
+\item $\mathcal{O}$ est un sous-anneau de $K$,
+\item $\mathcal{O}$ est un $\mathbb{Z}$-module libre de rang $2$.
+\end{enumerate}
 \end{defi}
 
 On a le résultat suivant sur la structure de $\mathrm{End}(E)$.
@@ -1355,7 +1367,12 @@ X^2-t_{\pi}X+q=0.
 \end{equation*}
 Une fois la valeur de la trace du Frobenius $t_{\pi}$ déterminée, on a alors $|E(\mathbb{F}_q)|=q+1-t_{\pi}$. En pratique cette équation est résolue modulo $\ell_i$, avec $\ell_i$ un nombre premier. Cette résolution est répétée pour un ensemble $L$ de nombres premiers tel que: $\prod_{\ell_i \in L}\ell_i>4 \sqrt{q}$. Le théorème des restes chinois est alors utilisé pour déterminer $t_{\pi}$ modulo $\prod_{\ell_i \in L}\ell_i$. On utilise ensuite le théorème de Hasse pour déterminer la cardinalité de la courbe.
 
-Le principal problème avec cette approche est que l'on travaille avec la $\ell$-torsion qui lorsque l'on a $\ell \neq p$ est de la forme $E[\ell] \simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$. On doit alors travailler modulo le polynôme de $\ell$-division (le polynôme unitaire qui s'annule sur les abscisses des points de $\ell$-torsion) qui est de degré $(\ell^2-1)/2$. L'objectif de l'amélioration d'Elkies \todo{mettre la bonne référence ici...} est alors de considérer des sous-groupes de la $\ell$-torsion afin de diminuer le coût de l'algorithme.
+Le principal problème avec cette approche est que l'on travaille avec la 
+$\ell$-torsion qui lorsque l'on a $\ell \neq p$ est de la forme $E[\ell] 
+\simeq \mathbb{Z}/\ell \mathbb{Z} \times \mathbb{Z}/\ell \mathbb{Z}$. On doit 
+alors travailler modulo le polynôme de $\ell$-division (le polynôme unitaire 
+qui s'annule sur les abscisses des points de $\ell$-torsion) qui est de degré 
+$(\ell^2-1)/2$. L'objectif de l'amélioration d'Elkies~\cite{Elkies91} est alors de considérer des sous-groupes de la $\ell$-torsion afin de diminuer le coût de l'algorithme.
 
 Des améliorations ont donc été apportées à l'algorithme de Schoof par Atkin et Elkies en analysant plus précisément l'action du Frobenius sur la $\ell$-torsion afin d'exhiber des sous-groupes de la $\ell$-torsion. Ainsi en analysant les solutions de l'équation caractéristique de $\pi$:
 \begin{equation*}
@@ -1620,7 +1637,7 @@ alors l'algorithme de Elkies calcule la $r$-isogénie en $O(r^2)$ opérations su
 $\mathbb{F}_q$.
 \end{thm}
 
-Comme on a $p \gg r$ on peut alors aussi appliquer la remarque suivante. \todo{verifier cela...}
+Pour $p \gg r$ on applique la remarque suivante.
 
 \begin{rem}
 \label{rem:pol:rec}
