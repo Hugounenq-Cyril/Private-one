@@ -675,7 +675,7 @@ n'admet aucune racine.
 \begin{defi}
 Soit une extension de corps $\mathbb{L}/\mathbb{K}$, un élément $x$ de 
 $\mathbb{L}$ est dit séparable sur $\mathbb{K}$ si son polynôme minimal défini
-sur $\mathbb{K}$ admet aucune racine multiple. Une extension de corps 
+sur $\mathbb{K}$ n'admet aucune racine multiple. Une extension de corps 
 $\mathbb{L}/\mathbb{K}$ est dite \emph{séparable} si tout élément $x \in 
 \mathbb{L}$ est séparable.
 \end{defi}
@@ -704,7 +704,7 @@ Soit $\mathbb{L}/\mathbb{K}$ une extension Galoisienne alors on appelle
 %\section{Théorie des ordres dans un corps quadratique imaginaire}
 
 \section{Courbes Elliptiques}
-Dans ce chapitre nous allons faire quelques rappels sur les courbes 
+Dans cette section nous allons faire quelques rappels sur les courbes 
 elliptiques. Pour approfondir le sujet le lecteur pourra consulter 
 \cite{Silv1} ou encore \cite{Washington2008}.
 
@@ -724,21 +724,52 @@ On appelle espace projectif de dimension $2$ sur un corps $\mathbb{K}$ et on not
 \end{defi}
 
 \begin{defi}
-Une courbe elliptique $E$ peut être définie comme la variété projective associée à l'équation
+Une courbe elliptique $E$ est définie comme la variété projective associée à l'équation
 \begin{equation}
 \label{eq:weierstrass-proj}
 E:Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3
 \end{equation}
-avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$. Le point $(0:1:0)$ est appelé \emph{point à l'infini} et sera noté $0_E$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
+avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$ et $(X,Y,Z) \in \mathbb{P}(\overline{\mathbb{K}})$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
 \end{defi}
 
-L'équation \eqref{eq:weierstrass-proj} est dite forme homogène de l'équation de Weierstrass. En appliquant le changement de variables $x=\frac{X}{Z}$, $y=\frac{Y}{Z}$, on passe alors en coordonnées affines et on obtient l'équation de Weierstrass suivante:
+\begin{defi}
+Soit une courbe $E$ définie sur $\mathbb{K}$ on note $E(\mathbb{K})$, l'ensemble des points d'une courbe elliptique $E$ définie sur $\mathbb{K}$, c'est l'ensemble:
+\begin{equation*}
+\begin{alignedat}{1}
+E(\mathbb{K})=\{(X:Y:Z)\in \mathbb{P}^2(\mathbb{K}) \setminus (0,0,0) &:  \\
+Y^2Z+a_1XYZ+a_3YZ^2 &= X^3+a_2X^2Z+a_4XZ^2+a_6Z^3. \}
+\end{alignedat}
+\end{equation*}
+Le seul point correspondant à $Z=0$ est le \emph{point à l'infini} $0_E=(0:1:0)$, 
+chaque classe différente de $0_E$ a un unique représentant de la forme $(X:Y:1)$. 
+\end{defi}
 
+Ainsi cette dernière remarque nous amène à considérer le changement de 
+variables $x=\frac{X}{Z}$, $y=\frac{Y}{Z}$ (pour $Z \neq 0$), on passe alors en 
+coordonnées affines et on obtient l'équation affine de Weierstrass:
 \begin{equation}
 \label{eq:weierstrass-red}
-E:y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6
+E:y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6.
 \end{equation}
-appelée équation affine de Weierstrass. La courbe $E$ est alors définie comme étant l'ensemble des points solutions de \eqref{eq:weierstrass-red} augmenté du point à l'infini $0_E$.
+
+On peut alors définir l'ensemble des points de la courbe définis sur $\mathbb{K}$ dans ce système de coordonnées affine comme:
+\begin{equation*}
+E(\mathbb{K})=\{(x,y)\in \mathbb{K}^2  : y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6 \} \cup \{0_E\}
+\end{equation*}
+
+%L'équation \eqref{eq:weierstrass-proj} est dite forme homogène de l'équation de Weierstrass. En appliquant le changement de variables $x=\frac{X}{Z}$, $y=\frac{Y}{Z}$ (pour $Z \neq 0$), on obtient les coordonnées affines et on obtient l'équation de Weierstrass suivante:
+%
+%\begin{equation}
+%\label{eq:weierstrass-red}
+%E:y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6
+%\end{equation}
+%appelée équation affine de Weierstrass. L'ensemble des points de coordonnées 
+%affines de la courbe $E$ est défini comme les points solutions de 
+%\eqref{eq:weierstrass-red} augmenté du point à l'infini $0_E$ (qui correspond 
+%au cas où $Z=0$). 
+
+Nous travaillerons désormais dans la suite de ce document avec ce système de 
+coordonnées affine des points d'une courbe elliptique.
 
  On définit aussi:
 \begin{equation*}
@@ -776,20 +807,6 @@ x=u^2x'+r    \quad  y=u^3y'+u^2sx'+t
 avec $u,r,s,t$ des éléments de $\overline{\mathbb{K}}$ et $u$ différent de $0$. En calculant alors les coefficients $a'_i$ de la nouvelle équation de Weierstrass obtenue par le changement de variables, on obtient un $j$-invariant identique, ce qui justifie alors la dénomination de celui-ci.
 \newline
 
-
-\begin{defi}
-Soit une courbe $E$ définie sur $\mathbb{K}$ on note $E(\mathbb{K})$, l'ensemble des points d'une courbe elliptique $E$ défini sur $\mathbb{K}$, c'est l'ensemble:
-\begin{equation*}
-\begin{alignedat}{1}
-E(\mathbb{K})=\{(X:Y:Z)\in \mathbb{P}^2(\mathbb{K}) \setminus (0,0,0) &:  \\
-Y^2Z+a_1XYZ+a_3YZ^2 &= X^3+a_2X^2Z+a_4XZ^2+a_6Z^3 \}
-\end{alignedat}
-\end{equation*}
-Le seul point correspondant à $Z=0$ est le point à l'infini $0_E=(0:1:0)$, chaque classe différente de $0_E$ a un unique représentant $(X:Y:1)$ ce qui nous donne la notation équivalente suivante:
-\begin{equation*}
-E(\mathbb{K})=\{(x,y)\in \mathbb{K}^2  : y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6 \} \cup {O_E}
-\end{equation*}
-\end{defi}
 
 On rappelle que si l'on note $f(x,y)=0$ l'équation affine de Weierstrass d'une 
 courbe elliptique $E$ définie sur $\mathbb{K}$, alors son corps des fonctions 
