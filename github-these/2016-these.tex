@@ -276,7 +276,7 @@ Enfin il y a Jennifer pour qui cette thèse n'a peut être pas beaucoup de sens 
 
 \tableofcontents*
 \listofalgorithms
-\listoftodos
+%\listoftodos
 \listoffigures
 
 \nomenclature{$v_{\ell}(n)$}{La valuation $\ell$-adique de $n$}
@@ -704,7 +704,30 @@ Soit $[\mathbb{L}:\mathbb{K}]$ une extension Galoisienne alors on appelle
  représentant de l'orbite de $x$ sous l'action d'un élément de $\mathsf{Gal}
  (\mathbb{L}:\mathbb{K})$ n'importe quel élément de l'orbite.
 
+
+\begin{defi}
+Pour une extension de corps $[\mathbb{L}:\mathbb{K}]$, avec $\mathbb{K}$ de  
+caractéristique positive, un élément de $\mathbb{L}$ est dit \emph{purement 
+inséparable} ou radiciel si il est stable sous l'action d'un élément de 
+$ \mathsf{Gal}(\mathbb{L}:\mathbb{K})$. Une extension de corps 
+$[\mathbb{L}:\mathbb{K}]$ est alors dite purement inséparable (ou radicielle)
+si tout élément de $\mathbb{L}$ l'est.
+\end{defi}
+
+\begin{defi}
+\label{def:degs:degi}
+\begin{itemize}
+\item Le degré de séparabilité d'une extension $[\mathbb{L}:\mathbb{K}]$ est le degré
+de l'extension $\mathbb{L}$ par rapport à $\mathbb{K}$ lorsque celle-ci est 
+séparable.
+\item Le degré d'inséparabilité d'une extension $[\mathbb{L}:\mathbb{K}]$ est le degré
+de l'extension $\mathbb{L}$ par rapport à $\mathbb{K}$ lorsque celle-ci est 
+purement inséparable.
+\end{itemize}
+\end{defi}
 %\section{Théorie des ordres dans un corps quadratique imaginaire}
+
+
 
 \section{Courbes Elliptiques}
 Dans cette section nous allons faire quelques rappels sur les courbes 
@@ -982,11 +1005,6 @@ f & \mapsto f  \circ \varphi.
 \end{alignedat}
 \end{equation*}
 
-\todo{reste à faire...}
-\begin{defi}
-Degré de séparabilité et degré d'inséparabilité.
-\end{defi}
-
 \begin{defi}
 Soit $\mathbb{K}$ un corps algébriquement clos, $\varphi$ une isogénie définie
 sur $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors $\varphi$ est dite 
@@ -994,7 +1012,8 @@ sur $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors $\varphi$ est dite
 $[\mathbb{K}(E_1):\varphi^*(\mathbb{K}(E_2))]$ l'est ou pas. On note alors 
 \emph{$\deg_s{\varphi}$}, \emph{$\deg_i{\varphi}$} les degrés de séparabilité 
 et d'inséparabilité de l'extension de corps 
-$[\mathbb{K}(E_1):\varphi^*(\mathbb{K}(E_2))]$ et l'on a $\deg{\varphi}=
+$[\mathbb{K}(E_1):\varphi^*(\mathbb{K}(E_2))]$ (voir définition 
+\ref{def:degs:degi}). Nous avons donc $\deg{\varphi}=
 \deg_s{\varphi}\deg_i{\varphi}$ qui est égal aussi au degré de l'extension de 
 corps $[\mathbb{K}(E_1):\varphi^*(\mathbb{K}(E_2))]$.
 \end{defi}
@@ -1078,7 +1097,10 @@ ce que l'on peut reformuler par:
 \begin{equation}
 \frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
 \end{equation}
-avec $p_1$ la somme des abscisses des points du noyau. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{K}$. \todo{Justifier tout cela...}
+avec $p_1$ la somme des abscisses des points du noyau. Ainsi à partir de $h(x)$
+et $p_1$ on est capable de calculer l'isogénie en 
+$O(\mathsf{M}(\deg(I))\log(\deg(I)))$ opérations sur $\mathbb{K}$ à l'aide d'un
+algorithme de reconstruction rationnelle \cite[Théorème 7.5]{algeff17}.
 
 
 Il est à noter qu'il existe une autre méthode énoncée dans 
@@ -1361,6 +1383,15 @@ Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi$~l'en
 \subsection{Algorithme de Schoof et ses améliorations}
 %Ici vont être présentés les bases de S.E.A., aucun apport personnel n'a été fait dans ce cadre là, mais il est intéressant pour le lecteur de voir les concepts et  le contexte de celui-ci qui seront évoqués plus tard.
 \label{sub-sec:schoof}
+Dans cette sous-section une partie plus technique va être abordée. Celle-ci est
+connue dans la communauté mais permettra au lecteur non initié de se 
+familiariser avec la méthode employée pour déterminer un ensemble de points 
+restrictifs à l'aide du Frobenius. Cette partie présente aussi l'avantage de 
+montrer le contexte d'algorithmes (Elkies 1998 et BMSS2008 présentés dans le 
+chapitre~ \ref{cha:iso:computing}) de calculs d'isogénies auxquels il est 
+pertinent de se comparer.
+
+
 L'algorithme de Schoof~\cite{Schoof85} consiste à calculer le cardinal d'une courbe elliptique $E$ définie sur $\mathbb{F}_q$ à l'aide de l'équation caractéristique du Frobenius $\pi$:
 \begin{equation*}
 X^2-t_{\pi}X+q=0.
@@ -1611,19 +1642,19 @@ Cette équation est alors dérivée pour obtenir une équation différentielle d
 On écrit alors le développement en série de la fraction rationnelle $\frac{g(x)}{h(x)}$ à l'infini:
 \begin{equation}
 \label{eq:iso:frac}
-\frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{h_i}{x^i}
+\frac{g(x)}{h(x)}=x+ \sum_{i\geqslant 1} \frac{d_i}{x^i}
 \end{equation}
-que l'on injecte dans \eqref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $h_i$ en identifiant les coefficients des $x^{-i}$:
+que l'on injecte dans \eqref{eq:Elkies-deriv} pour trouver des relations de récurrence entre les $d_i$ en identifiant les coefficients des $x^{-i}$:
 \begin{equation}
 \label{eq:rec:h_k}
-\forall k \geqslant 3, h_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}h_ih_{k-1-i}-\frac{2k-3}{2k+3}Ah_{k-2}-\frac{2(k-3)}{2k+3}Bh_{k-3} \; 
+\forall k \geqslant 3, d_k=\frac{3}{(k-2)(2k+3)}\sum_{i=1}^{k-2}d_id_{k-1-i}-\frac{2k-3}{2k+3}Ad_{k-2}-\frac{2(k-3)}{2k+3}Bd_{k-3} \; 
 \end{equation}
-\todo{notation des $h_i$}
-les termes $h_1,h_2$ étant déterminés par:
+
+les termes $d_1, d_2$ étant déterminés par:
 \begin{equation}
-h_1=\frac{A-\tilde{A}}{5}, \quad h_2={\frac{B-\tilde{B}}{7}}.
+d_1=\frac{A-\tilde{A}}{5}, \quad d_2={\frac{B-\tilde{B}}{7}}.
 \end{equation}
-Ainsi, à l'aide de cette récurrence, le coût de calcul de $h_3, \cdots , h_{r-2}$ est de $O(r^2)$ opérations sur $\mathbb{F}_q$. 
+Ainsi, à l'aide de cette récurrence, le coût de calcul de $d_3, \cdots , d_{r-2}$ est de $O(r^2)$ opérations sur $\mathbb{F}_q$. 
 
 Il est à noter que la condition $p \gg r$ est là pour nous assurer que $2, 
 \cdots, 2r-1$ sont inversibles dans $\mathbb{F}_q$ ce qui permet de pouvoir 
@@ -1641,27 +1672,27 @@ Pour $p \gg r$ on applique la remarque suivante.
 
 \begin{rem}
 \label{rem:pol:rec}
-Soit $P$ un polynôme de degré $d$ défini sur $\mathbb{F}_q[X]$ de caractéristique $p>d$ ou $p=0$. Alors $P$ peut être déterminé à l'aide de la formule:
+Soit $P$ un polynôme de degré $r-1>0$ défini sur $\mathbb{F}_q[X]$ de caractéristique $p>r-1$ ou $p=0$. Alors $P$ peut être déterminé à l'aide de la formule:
 \begin{equation}
 P=\exp\left(\int{\frac{P'}{P}}\right).
 \end{equation} 
-On a alors à l'aide des sommes de Newton (somme des puissances successives des racines de $P$):$p_0=d,p_1, \cdots, p_d$:
+On a alors à l'aide des sommes de Newton (somme des puissances successives des racines de $P$):$p_0=r-1,p_1, \cdots, p_{r-1}$:
 \begin{equation}
 \label{eq:pol:new}
-\frac{P'}{P}= \frac{d}{X} + \sum_{i = 1}^d \frac{p_i}{X^{i+1}},
+\frac{P'}{P}= \frac{r-1}{X} + \sum_{i = 1}^{r-1} \frac{p_i}{X^{i+1}},
 \end{equation}
 ce qui nous donne:
 \begin{equation}
-P=\exp\left( d \log(X) - \sum_{i = 1}^{d} \frac{p_i}{i!X^i} \right).
+P=\exp\left( r-1 \log(X) - \sum_{i = 1}^{r-1} \frac{p_i}{i!X^i} \right).
 \end{equation} 
 Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton 
 on est capable d'exprimer $P$.
 On peut donc calculer $h(x)$ sans faire une reconstruction rationnelle (i.e. déterminer 
 la fraction $\frac{g(x)}{h(x)}$ à partir de son développement en série 
-$x+\sum_{i \geqslant 1}\frac{h_i}{x^i}$). En effet on peut déterminer les sommes
+$x+\sum_{i \geqslant 1}\frac{d_i}{x^i}$). En effet on peut déterminer les sommes
 de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de 
 $p_0=r-1, p_1$ et du développement en série de $\frac{g(x)}{h(x)}:x+
-\sum_{i \geqslant 1}\frac{h_i}{x^i}$.
+\sum_{i \geqslant 1}\frac{d_i}{x^i}$.
 Dans le cas considéré par Elkies il est tout à fait vraisemblable de supposer 
 la connaissance de $p_1$. En effet comme le calcul du $r$-ième polynôme 
 modulaire $\Phi_{r}$ a été effectué (voir \ref{sub:Elkies} pour plus de 
@@ -1672,7 +1703,7 @@ utilisant \eqref{eq:iso:frac} et \eqref{eq:pol:new} dans \eqref{eq:vel:elk} on
 établit la récurrence:
 \begin{equation}
 \label{eq:p:rec}
-h_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
+d_i=(2i+1)p_{i+1}+(2i-1)Ap_{i-1}+(2i-2)Bp_{i-2}
 \end{equation}
 à l'aide de laquelle on calcule tous les $p_i$ en $O(r)$ opérations sur 
 $\mathbb{F}_q$. Ensuite à l'aide de la remarque \ref{rem:pol:rec} et des sommes
