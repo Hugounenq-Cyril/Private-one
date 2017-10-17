@@ -4311,8 +4311,8 @@ conjugaison près.
 
 \begin{prop}\label{pro:mat:fro}
 Soit~$E$ une courbe elliptique ordinaire, telle que $\ell$ est un nombre Elkies
-à deux racines distinctes $\lambda$, $\mu$ appartenant à $\mathbb{Z}_{\ell}$,
-ainsi le volcan des $\ell$-isogénies de $E$ a un cratère cyclique.
+à deux racines distinctes $\lambda$, $\mu$ appartenant à $\mathbb{Z}_{\ell}$.
+%Dans ce cas le volcan des $\ell$-isogénies de $E$ a un cratère cyclique.
 Il existe un unique $e \in [ 0, h]$ tel que 
 l'action du Frobenius dans toute base de $\mathsf{T}_{\ell}(E)$  
 %$\pi|\mathsf{T}_{\ell}(E)$~
@@ -4361,7 +4361,7 @@ l'action du Frobenius sur $\mathsf{T}_{\ell}(E)$. Dans la
 figure~\ref{fig:elk:dif:niv:mat} est représenté un volcan des $2$-isogénies 
 de hauteur $2$, où l'on observe le lien entre le niveau de la courbe dans le 
 volcan (de hauteur $2$ ici) et la forme de la matrice du Frobenius à conjugaison 
-près. Ainsi, pour les courbes situées tout en bas du volcan, le coefficient 
+près. Par conséquent, pour les courbes situées tout en bas du volcan, le coefficient 
 triangulaire supérieur est de valuation $\ell$-adique nulle, et augmente
 de $1$ à chaque fois que l'on monte d'un niveau dans le volcan.
 
@@ -6073,7 +6073,7 @@ calcule une base diagonale de $E_s[\ell^{h+1}]$ ainsi que la liste de
 $\ell$-isogénies montantes reliant $E$ à $E_s$.
 \item La troisième et dernière partie correspond à 
 l'étape~\ref{alg:ult:diagonal:debut} qui, à partir d'une base diagonale de 
-$E_s[\ell^k]$, calcule une base diagonale de $E_s[\ell^k]$.
+$E_s[\ell^{h+1}]$, calcule une base diagonale de $E_s[\ell^k]$.
 \end{enumerate}
 Analysons maintenant les complexités de ces différentes parties de 
 l'algorithme.
@@ -6101,7 +6101,7 @@ complexité. Ainsi cette première partie de l'algorithme a un coût
  total de $O(\mathsf{R}(h-\beta-e+1 +\max(0,e-(h-\beta))+\ell^{h-\beta-e+1+
 \max(0,e-(h-\beta)}M(\ell)+\ell\mathsf{M}(\ell^{h-\beta-e+1+
 \max(0,e-(h-\beta)}))$, auquel il faut ajouter le coût de calcul de la base de 
-$\ell$-torsion: $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
+la $\ell$-torsion: $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$.
 
 \item[\'Etape \ref{alg:ult:base:cratere}] Par la proposition~\ref{pro:alg:rem:tri:hor}
 cette étape a une complexité de 
@@ -6123,7 +6123,7 @@ Une fois que l'on a calculé une base diagonale $(P,Q)$ de la $\ell^k$ torsion
 pour $k>h$, on connaît (par la proposition \ref{pro:dia:hor}) deux points 
 horizontaux  de directions opposées et d'ordre $\ell^{k-h}$, à savoir $[\ell^{h}]P, 
 [\ell^{h}]Q$. On va donc maintenant se servir de la proposition~\ref{pro:pus:hor} 
-concevoir un algorithme qui nous donne des points horizontaux sur le cratère.
+pour concevoir un algorithme qui nous donne des points horizontaux sur le cratère.
 
 \begin{algorithm}
 \caption{\label{alg:hor:poi}Calcul d'un point horizontal d'ordre~$\ell^k$}
@@ -6183,7 +6183,7 @@ Soit $E$ une courbe située au niveau $h-e$ dans un volcan de $\ell$-isogénies,
 soit $E_s$ sa courbe sommet, dont on connaît un point horizontal $P_h$ d'ordre 
 $\ell^k$. Soit $\varphi_s:Es \rightarrow E $ la $\ell^{e}$ isogénie descendante,
 dont on connaît une décomposition en $e$ $\ell$-isogénies descendantes: 
-$\varphi=\varphi_1 \circ \varphi_{e}$. Alors le coût de calculer $\varphi(P)$ 
+$\varphi=\varphi_1 \circ \dots \circ \varphi_{e}$. Alors le coût de calculer $\varphi(P)$ 
 est de $O(e\mathsf{M}(\ell^{k-\beta+1}))$ opérations sur $\mathbb{F}_q$.
 \end{prop}
 
@@ -6200,8 +6200,9 @@ pas en compte le calcul des isogénies descendantes $\varphi_i$, car, si l'on
 veut calculer un point ascendant horizontal pour une courbe non située sur 
 le cratère, alors il est raisonnable de penser que l'un des deux algorithmes 
 \ref{alg:rem:tri} ou \ref{alg:ulti:fro} a été utilisé pour obtenir une base 
-diagonale pour la courbe située sur le cratère, ainsi peut calculer les duales 
-des isogénies $\varphi_i$ dans l'algorithme \ref{alg:rem:tri} ou \ref{alg:ulti:fro}.
+diagonale pour la courbe située sur le cratère, ainsi on peut calculer les 
+duales des isogénies $\varphi_i$ dans l'algorithme \ref{alg:rem:tri} ou
+\ref{alg:ulti:fro}.
 \end{rem}
 \section{Cas Atkin}
 \label{subs:atk:dir}
