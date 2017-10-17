@@ -2562,7 +2562,7 @@ On note $T_0^{(0)}=x-x(P)$, soit $k \geqslant i\geqslant 0$ $\sigma_i$ un élém
 \[
 T_0^{(i+1)}=\prod_{j=0}^{b} \sigma_i^j(T_0^{(i)}) \quad  b = \begin{cases}
     p-1 &\text{si $i<k-1$,}\\
-    d_1 -1  &\text{si ( $i=k-1$ et $2 \nmid d_1$)}\\
+    d_1 -1  &\text{si ( $i=k-1$ et $2 \nmid d_1$),}\\
     d_1/2 - 1 &\text{si ( $i=k-1$ et $2 \mid d_1 $)}.
   \end{cases}
 \]
@@ -2572,7 +2572,7 @@ Une représentation de ce calcul sur un arbre de produit binaire permet de voir
 sur la figure \ref{fig:orb:T} que le calcul de $T_0$  n'est effectué qu'en 
 travaillant avec une branche de celui-ci à l'aide de la méthode décrite 
 ci-dessus. En effet seul les éléments en rouge de l'arbre sont pris en compte 
-pour le calcul de $T_0$, $\sigma$ peut être n'importe quel élément générateur 
+pour le calcul de $T_0$. $\sigma$ peut être n'importe quel élément générateur 
 de $\mathsf{Gal}(\mathbb{L}_3:\mathbb{L}_0)$.
 
 \begin{figure}
@@ -2705,7 +2705,7 @@ de:
 \[
 \tilde{O}_{p,d,\log r}(p^2d^3+\mathsf{C}(p)pd+(pd)^{\omega}\log^2 r + p^3 r^2 d \log^3 r + p^2r^2d^2+(\frac{r^2}{p}+p)\mathsf{C}(pd))
 \]
-opérations sur $\mathbb{F}_p$ avec $\mathsf{C}(n)$ le nombres d'opérations à effectuer dans $\mathbb{F}_q$ pour effectuer la composition de deux polynômes de degré au plus $n$, par \cite{BrentKung78} on a $\mathsf{C}(n) \in O(n^{(\omega+1)/2})$.
+opérations sur $\mathbb{F}_p$ avec $\mathsf{C}(n)$ le nombres d'opérations à effectuer dans $\mathbb{F}_p$ pour effectuer la composition de deux polynômes de degré au plus $n$, par \cite{BrentKung78} on a $\mathsf{C}(n) \in O(n^{(\omega+1)/2})$.
 \end{thm}
 
 \begin{proof}
@@ -2725,9 +2725,9 @@ De Feo~\cite{DeFeo11} avec une tour d'Artin-Schreier construite sur une
 extension de $\mathbb{F}_q$ (ainsi tout élément d'une tour d'Artin-Schreier est
 exprimé à l'aide d'un polynôme à coefficients dans $\mathbb{F}_q$). Il faut en 
 particulier que $\mathrm{Tr}_{\mathbb{U}_1/\mathbb{F}_q}(x_0) \neq 0$ avec 
-$\mathrm{Tr}$ qui représente la Trace, $\mathbb{U}_1=\mathbb{F}_q[X_0]/Q_0$ 
+$\mathrm{Tr}$ qui représente la Trace, $\mathbb{L}_1=\mathbb{F}_q[X_0]/Q_0$ 
 avec $Q_0$ un polynôme de degré divisant $p-1$ (par \cite{Gunji76}) et 
-$x_0=X_0 \bmod Q_0$. Ici $\mathbb{U}_1$ représente le premier élément de la 
+$x_0=X_0 \bmod Q_0$. Ici $\mathbb{L}_1$ représente le premier élément de la 
 tour, les suivant étant construits comme des extensions de degré $p$ du 
 précédent à l'aide d'une équation d'Artin Schreier (comme dans 
 \cite{DeFeo-Shost'12}). Dans ces conditions on donne une estimation du coût de 
@@ -2742,7 +2742,7 @@ opérations sur $\mathbb{F}_q$.
 \end{thm}
 
 Nous ne donnons pas une preuve de cette estimation juste quelques pistes. Le 
-pré-calcul des points de $p$-torsion et de l'extension $\mathbb{U}_1$ est 
+pré-calcul des points de $p$-torsion et de l'extension $\mathbb{L}_1$ est 
 majoré grossièrement par $\tilde{O}_{p,\log(r)}(M(rp^2)\log_{p}(r)^4)$ 
 opérations sur $\mathbb{F}_q$. 
 Le coût dominant de l'étape d'interpolation est de $O(p^3r\log_p(p^3r)^2)$ 
@@ -2786,7 +2786,11 @@ Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$, soit $\ell$ un nombre
   On construit tout d'abord $\mathsf{F}_1$ l'extension de $\mathbb{F}_q$ de degré $d_1$ qui divise $\ell-1$ et est donc premier avec $\ell$. Cette construction de $\mathsf{F}_1$ est faite en même temps que la détermination d'un non-résidu $\ell$-adique. 
 
 %Tout d'abord on détermine la nature de $\mathsf{F}_0$, pour cela on calcule le $\ell$-ème polynôme cyclotomique $\Phi_{\ell} \in \mathbb{Z}[X_0]$ et on le factorise sur $\mathbb{F}_q[X_0]$ par \cite[Th 9]{Shoup93} cela a un coût de $O_e(\mathsf{M}(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$. Sur $\mathbb{F}_q[X_0]$, $\Phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$. Si $r=1$ alors on a $\mathbb{F}_q \equiv \mathsf{F}_0$ sinon on doit construire $\mathsf{F}_0$.
-On calcule un polynôme irréductible de degré $d_1$ défini sur $\mathbb{F}_q$, pour cela on utilise par exemple l'algorithme probabiliste de Ben-Or qui calcule un tel polynôme avec une complexité moyenne de $O(d_1\mathsf{M}(d_1)\log(d_1)\log(d_1q))$ opérations sur $\mathbb{F}_q$ d'après \cite[Theorem 14.42]{vzGJG03}.
+Pour construire $\mathsf{F}_1$ on calcule tout d'abord un polynôme irréductible
+de degré $d_1$ défini sur $\mathbb{F}_q$, pour cela on utilise par exemple 
+l'algorithme probabiliste de Ben-Or qui calcule un tel polynôme avec une 
+complexité moyenne de $O(d_1\mathsf{M}(d_1)\log(d_1)\log(d_1q))$ opérations sur
+$\mathbb{F}_q$ d'après \cite[Theorem 14.42]{vzGJG03}.
  Soit $R_1$ un tel polynôme, alors par construction il existe un non-résidu $\ell$-adique dans $\mathbb{F}_q[X_1]/ \langle R_1 \rangle $. On trouve après avoir testé $O(1)$ éléments tirés au hasard un tel non-résidu $\ell$-adique, chaque essai a un coût moyen de $O(\mathsf{M}(\ell)\log(\ell))$ opérations sur $\mathbb{F}_q$ d'après \cite[11.1]{vzGJG03}. Une fois un tel non-résidu $\ell$-adique $y_1$ trouvé on calcule son polynôme minimal $P_1$, ce calcul coûte $O(d_1^2)=O(\ell^2)$ opérations sur $\mathbb{F}_q$ d'après \cite[Th. 3.4]{Shoup93}. On construit donc $\mathsf{F}_1=\mathbb{F}_q[X_1]/\langle P_1(X_1) \rangle$ et le non-résidu $\ell$-adique sera alors l'image de $X_1$ dans $\mathsf{F}_1$. On définit le polynôme irréductible $P_i=P_1(X^{\ell^{i-1}})$ dans $\mathbb{F}_q[X]$ et on construit toute extension $\mathsf{F}_{i}$ de $\mathbb{F}_{q}$ comme étant $\mathsf{F}_{i}=\mathbb{F}_q[X]/P_i(X)$. 
  
 \end{proof}
@@ -2797,7 +2801,9 @@ On calcule un polynôme irréductible de degré $d_1$ défini sur $\mathbb{F}_q$
 
  
 \begin{rem}
-Sachant que $d_1 \mid \ell-1$ ce coût peut être borné à l'aide de $\ell$ de la façon suivante: $O(\ell\mathsf{M}(\ell)\log(\ell)\log(\ell q))$ opérations en moyenne sur $\mathbb{F}_q$.
+Sachant que $d_1 \mid \ell-1$ ce coût peut être borné à l'aide de $\ell$ par
+$O(\ell\mathsf{M}(\ell)\log(\ell)\log(\ell q))$ opérations en moyenne sur 
+$\mathbb{F}_q$.
 \end{rem}
  
  %$\mathsf{F}_0$ étant une extension de degré premier à $\ell$ de $\mathbb{F}_q$ %alors lorsque l'on a une complexité exprimée en termes d'opérations sur $\mathsf{F}_0$ 
@@ -2828,8 +2834,8 @@ Les éléments de $\mathsf{F}_k$ peuvent être représentés de deux manières d
 
 Soit $P_1$ le polynôme minimal défini sur $\mathbb{F}_q$ d'un résidu non $\ell$ adique défini sur une extension de degré $d_1$, à l'aide de celui-ci sont définies les suites de polynômes $T_1,T_2,T_3,\cdots, T_k$ en les indéterminées $X_1,X_2,X_3, \cdots X_k$ de la façon suivante:
 \[
-T_1=P_1(X_1) \quad \text{et} \quad T_k=X_k^{\ell}-X_{k-1} \quad \text{avec $k \geqslant 1$ entier naturel}
-\]  de la même manière la suite de polynômes $P_1,P_2, \cdots P_k$ est définie à l'aide de $P_0$ de la façon suivante:
+T_1=P_1(X_1) \quad \text{et} \quad T_k=X_k^{\ell}-X_{k-1} \quad \text{avec $k \geqslant 1$ entier naturel.}
+\]  De la même manière la suite de polynômes $P_1,P_2, \cdots P_k$ est définie à l'aide de $P_0$ de la façon suivante:
 \[
 P_k=P_1(X_k^{\ell^{k-1}}) \quad \text{avec $k \geqslant 1$ entier naturel.} 
 \]
@@ -2935,8 +2941,10 @@ auquel il faut ajouter un calcul booléen de $O(\log(\ell^j)\log(\ell^{i-1}|\mat
 \begin{proof}
 Sans perte de généralité on peut supposer que l'on a $j<i$, le résultat étant sinon $a$ lui-même. Notons $s= |\mathsf{F}_j|$ et rappelons que $[\mathsf{F}_i:\mathsf{F}_1]=\ell^{i-1}$. Soit $x_i$ l'image de $x$ dans $\mathsf{F}_i=\mathsf{F}_1[x]/P_i(x)$, on a en particulier $x_i^{\ell^{i-1}}=x_1$.
 
-La première étape est de calculer $y=x_i^s$. En écrivant $s=u\ell^{i-1}+v$ avec $0 \leqslant v < \ell^{i-1}$ on a alors $y=x_1^{u \bmod |\mathsf{F}_1|-1}x_i^v$. 
-Une méthode rapide est préconisée pour le calcul de $u \bmod |\mathsf{F}_1|-1$ et $v$, dans un premier temps il faut calculer $\rho=s \bmod \ell^{i-1}(|\mathsf{F}_1|-1)$ à l'aide de l'exponentiation rapide puis $u \bmod |\mathsf{F}_1|-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne   de $\rho$ par $\ell^{i-1}$. Le coût booléen d'une telle opération est de $O(\log(\ell^j)\log(\ell^{i-1}|\mathsf{F}_1|))$. L'opération majeure étant l'exponentiation avec un exposant de taille $O(\ell^{j}\log(|\mathsf{F}_1|))$ modulo un entier de taille $O(\log(\ell^{i-1}|\mathsf{F}_1|))$, le calcul de $x_1^{u \bmod |\mathsf{F}_1|-1}$ se fait en utilisant $O( M(d_1) d_1\log(q))$ opérations sur $\mathbb{F}_q$. On conserve ce résultat sous la forme d'un monôme dans $\mathsf{F}_1[x_i]$. 
+La première étape est de calculer $y=x_i^s$. En écrivant $s=u\ell^{i-1}+v$ avec
+$0 \leqslant v < \ell^{i-1}$ on a alors $y=x_1^{u \bmod |\mathsf{F}_1|-1}x_i^v$. 
+Une méthode rapide est préconisée pour le calcul de $u \bmod |\mathsf{F}_1|-1$ 
+et $v$. Dans un premier temps il faut calculer $\rho=s \bmod \ell^{i-1}(|\mathsf{F}_1|-1)$ à l'aide de l'exponentiation rapide puis $u \bmod |\mathsf{F}_1|-1$ et $v$ sont obtenus comme le quotient et le reste de la division euclidienne de $\rho$ par $\ell^{i-1}$. Le coût booléen d'une telle opération est de $O(\log(\ell^j)\log(\ell^{i-1}|\mathsf{F}_1|))$. L'opération majeure étant l'exponentiation avec un exposant de taille $O(\ell^{j}\log(|\mathsf{F}_1|))$ modulo un entier de taille $O(\log(\ell^{i-1}|\mathsf{F}_1|))$, le calcul de $x_1^{u \bmod |\mathsf{F}_1|-1}$ se fait en utilisant $O( M(d_1) d_1\log(q))$ opérations sur $\mathbb{F}_q$. On conserve ce résultat sous la forme d'un monôme dans $\mathsf{F}_1[x_i]$. 
 
 Dans la tour d'extensions $\ell$-adiques les éléments de la tour peuvent être représentés sous forme $G(x_k)$ avec $G$ un polynôme de degré $d$ à coefficients dans $\mathsf{F}_1$, or un élément $G(x_k)$ peut aussi être représenté sous forme $H(x_k)$ avec $H$ un polynôme de degré $d_1\ell^{i-1}$ à coefficients dans $\mathbb{F}_q$. \`A travers le calcul du Frobenius on va expliciter ces changements de représentation. Soit $a$ représenté sous la forme d'un polynôme en $x_i$ de degré inférieur ou égal à $[\mathsf{F}_i:\mathbb{F}_q]$ : 
 \begin{equation*}
@@ -2952,7 +2960,7 @@ On écrit $a^s$ sous la forme:
 \begin{equation*}
 a_0 + a_1 y + a_2 y^2 + \cdots + a_{\ell^i-1}y^{\ell^{i-1}-1}
 \end{equation*}
-On calcule alors $a(y)$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_1[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(d_1))$ opérations sur $\mathbb{F}_q$. On a alors un coût total de $O(\ell^{i-1}M(d_1)))$ opérations dans $\mathbb{F}_q$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_1,x_i)$ de degré $(d_1-1,\ell^{i-1}-1)$, on réécrit alors $a^s$ sous la forme $G(x_i)$ avec $G$ un polynôme à coefficients dans $\mathbb{F}_q$ de degré $d_1\ell^{i-1}$  à l'aide du changement de représentation inverse de celui effectué précédemment. En effet $a^s$ est représenté sous la forme:
+On calcule alors $a^s$ par la méthode de Horner. Les puissances $y^k$ étant des monômes dans $F_1[x_i]$, on calcule chacune des puissances successives à l'aide de la précédente en $O(M(d_1))$ opérations sur $\mathbb{F}_q$. On a alors un coût total de $O(\ell^{i-1}M(d_1)))$ opérations dans $\mathbb{F}_q$. En réarrangeant les monômes $a_k y^k$ on obtient un polynôme en $(x_1,x_i)$ de degré $(d_1-1,\ell^{i-1}-1)$, on réécrit alors $a^s$ sous la forme $G(x_i)$ avec $G$ un polynôme à coefficients dans $\mathbb{F}_q$ de degré $d_1\ell^{i-1}$  à l'aide du changement de représentation inverse de celui effectué précédemment. En effet $a^s$ est représenté sous la forme:
 \begin{equation*}
 b_0 + b_1 x_i + b_2 x_i^2 + \cdots + b_{\ell^{i-1}-1}x_i^{\ell^{i-1}-1}
 \end{equation*}
@@ -2998,7 +3006,7 @@ Maintenant si l'on met au carré l'équation \eqref{eq:trace-square-root} on obt
 \begin{equation*}
 \beta^2=\delta \eta^2. 
 \end{equation*}
-Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation et $\gamma$ calculé car on a alors
+Dés lors si $\eta$ est connu, $\beta$ peut être déduit depuis cette équation et $\gamma$ calculé car
 \begin{equation*}
  \gamma=\beta \eta^{-1}.
 \end{equation*}
@@ -3009,7 +3017,7 @@ Le coût de calcul de $\beta$ est de $O(M(d_1)\log(q)+C(d_1)\log(d_1))$ opérati
 
 Soit $\lambda$ un élément de $\mathsf{F}_k$ défini par $\lambda = \delta^{(|\mathsf{F}_1|-1)/2} $ on a alors la relation suivante:
 \begin{equation*}
-\eta = 1 + \lambda + \lambda^{1+|\mathsf{F}_1|} + \lambda^{1+|\mathsf{F}_1|+|\mathsf{F}_1|^{2}} + \cdots + \lambda^{1+|\mathsf{F}_1|+|\mathsf{F}_1|^{2}+\cdots+|\mathsf{F}_1|^{\ell^{k-1}-2}} 
+\eta = 1 + \lambda + \lambda^{1+|\mathsf{F}_1|} + \lambda^{1+|\mathsf{F}_1|+|\mathsf{F}_1|^{2}} + \cdots + \lambda^{1+|\mathsf{F}_1|+|\mathsf{F}_1|^{2}+\cdots+|\mathsf{F}_1|^{\ell^{k-1}-2}}. 
 \end{equation*}
 Pour $m \geqslant 0$ on définit:
 \begin{equation}
@@ -3020,8 +3028,8 @@ que l'on peut construire par récurrence:
 \zeta_1=\gamma^{|\mathsf{F}_1|} \quad \text{et} \quad
 \zeta_m=
 \begin{cases} 
-\zeta_{m/2}  \zeta_{m/2}\zeta_{m/2}^{|\mathsf{F}_1|^{m/2}} \quad \text{si m est pair }\\
-\zeta_{1}  \zeta_{m-1}^{|\mathsf{F}_1|} \quad \text{si m est impair}
+\zeta_{m/2}  \zeta_{m/2}\zeta_{m/2}^{|\mathsf{F}_1|^{m/2}} \quad \text{si m est pair,}\\
+\zeta_{1}  \zeta_{m-1}^{|\mathsf{F}_1|} \quad \text{si m est impair.}
 \end{cases}
 \end{equation*}
 
@@ -3036,8 +3044,8 @@ on a alors une relation de récurrence pour le calcul de $\varepsilon$:
 \varepsilon_1=\lambda^{|\mathsf{F}_1|} \quad \text{et} \quad
 \varepsilon_m=
 \begin{cases} 
-\varepsilon_{m/2} + \zeta_{m/2}\varepsilon_{m/2}^{|\mathsf{F}_1|^{m/2}} \text{si m est pair }\\
-\varepsilon_{m-1} + \zeta_{m} \text{si m est impair}
+\varepsilon_{m/2} + \zeta_{m/2}\varepsilon_{m/2}^{|\mathsf{F}_1|^{m/2}} \text{si m est pair,}\\
+\varepsilon_{m-1} + \zeta_{m} \text{si m est impair.}
 \end{cases}
 \end{equation}
 
@@ -3072,8 +3080,8 @@ dans \newline \cite[Lemma 2.2]{vzGShoup92}, une description est tout de même fa
 cette preuve. Soit $f$ un polynôme de $\mathsf{F}_{i}[x]$ de degré $d$ alors on 
 peut représenter $f$ comme un polynôme de $\mathbb{F}_q[x,y]$, avec 
 $\mathsf{F}_i=\mathbb{F}_q[y]$, en utilisant la substitution de 
-Kronecker $x \rightarrow y^{2\ell^{i}d_0-1}$. On a alors $f$ qui est représenté
- comme un polynôme univarié de degré au plus $2\ell^{i+1} d$, d'où le résultat. \fussy
+Kronecker $x \rightarrow y^{2\ell^{i}d_0-1}$. $f$ est alors représenté
+comme un polynôme univarié de degré au plus $2\ell^{i+1} d$, d'où le résultat. \fussy
 \end{proof}
 
 \begin{nota}
@@ -3130,9 +3138,9 @@ Le contexte de notre travail est le suivant, soit deux éléments $v,w \in F_n
 tel que:
 \begin{equation}
 \label{eq:int:A}
-A(v)=w
+A(v)=w.
 \end{equation}
-en particulier si l'on note $T$ le polynôme minimal de $v$ il est clair que 
+En particulier si l'on note $T$ le polynôme minimal de $v$ il est clair que 
  $A(v)+T(v)=w$, on va donc chercher à calculer le représentant minimal de 
 $A$ dans la classe de polynômes $\mathbb{F}_q[x]/ \langle T \rangle$.
 Pour un polynôme $A$ solution de ~\ref{eq:int:A} pour tout 
@@ -3195,9 +3203,9 @@ $\mathsf{F}_{n-i}$. On calcule alors le polynôme $L \in \mathsf{F}_{n-i}[x]/
 \begin{equation}
 \label{eq:crt:int}
 L= \sigma(A^{(i)}) \bmod \sigma(T^{(i)}) \quad \text{pour tout} \quad \sigma \in 
-\mathsf{Gal}(\mathsf{F}_{n-i}: \mathsf{F}_{n-i-1}) 
+\mathsf{Gal}(\mathsf{F}_{n-i}: \mathsf{F}_{n-i-1}). 
 \end{equation} 
-ce polynôme $L$ étant invariant sous l'action du groupe de Galois: 
+Ce polynôme $L$ étant invariant sous l'action du groupe de Galois: 
 $\mathsf{Gal}(\mathsf{F}_{n-i}: \mathsf{F}_{n-i-1})$, il est alors défini dans
  $\mathsf{F}_{n-i-1}$. Par \ref{eq:crt:int} on a bien $L(v)=A^{(i)}(v)=w$, 
  ainsi on a $L=A^{(i+1)}$. 
@@ -3214,7 +3222,7 @@ A^{(i+1)}=\sum_{j=0}^{b}A^{(i,j)}\frac{T^{(i+1)}}{T^{(i,j)}} \qquad\text{avec}\q
     d_1 -1 &\text{sinon.}
   \end{cases}
 \end{equation*}
-on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A} 
+$A^{(i)}$ est alors le polynôme d'interpolation défini par \ref{eq:int:A} 
 à coefficients dans $\mathsf{F}_{n-i}$.
 
 \begin{prop}
@@ -3230,7 +3238,7 @@ on a alors $A^{(i)}$ le polynôme d'interpolation défini par \ref{eq:int:A}
   $T'(v) = (((T' \bmod T^{(n)}) \bmod T^{(n-1)}) \cdots \bmod T^{(0)})$.
   \`A l'étape $n-i$, on calcule la division Euclidienne d'un polynôme de degré
    $O(\ell^{n-i+1})$ par un polynôme de degré $O(\ell^{n-i})$ dans  $F_i[x]$. 
-   On a alors le coût de chaque division qui est de $O(\mathsf{M}(\ell^{n+1}))$ 
+   Le coût de chaque division est alors de $O(\mathsf{M}(\ell^{n+1}))$ 
    par la proposition~\ref{pro:mult:pol} 
    ce qui donne un coût total de $O(n\mathsf{M}(\ell^{n+1}))$ opérations.
    Le calcul de $w'=w/T'(v)$ est de $O(\mathsf{M}(\ell^n)\log(\ell^n))$ opérations.
@@ -3259,7 +3267,6 @@ On énonce un problème plus général de calcul de polynôme d'interpolation
   Les polynômes
   \begin{itemize}
   \item $T\in \mathbb{F}_q[x]$ de degré $t$ tel que $T(v_i)=0$ pour tout $i$,
-    et
   \item $A\in \mathbb{F}_q[x]$ de degré inférieur à $t$ tel que $A(v_i)=w_i$ pour
     tout $i$
   \end{itemize}
@@ -3300,17 +3307,23 @@ Les deux documents à citer pour cette section sont \cite{Kohel96} qui a introdu
 
 \section{Anneau des endomorphismes}
 \label{sec:ann:end}
-Dans cette section on va aborder les anneaux des endomorphismes, car c'est cet objet qu'a étudié Kohel dans sa thèse \cite{Kohel96} qui a permis ensuite de définir les volcans des $l$-isogénies. On a tout d'abord besoin de faire quelques rappels sur les ordres d'un corps quadratique imaginaire car on a vu que ceux-ci correspondent à isomorphisme près aux anneaux des endomorphismes de courbes elliptiques ordinaires définies sur un corps fini.
+Dans cette section on va aborder les anneaux des endomorphismes, car c'est cet 
+objet qu'a étudié Kohel dans sa thèse \cite{Kohel96} qui a permis ensuite de 
+définir les volcans des $l$-isogénies. Faisons tout d'abord quelques rappels 
+sur les ordres d'un corps quadratique imaginaire car, comme vu précédemment 
+(proposition~\ref{pro:fro:dis}), ceux-ci correspondent à isomorphisme près aux 
+anneaux des endomorphismes de courbes elliptiques ordinaires définies sur un 
+corps fini.
 
 \subsection{Rappel sur les ordres d'un corps quadratique}
 
-Soit $K$ un corps quadratique, alors il existe un entier $N$ sans facteur carré tel que l'on peut écrire $K=\mathbb{Q}[\sqrt{N}]$. On donne la définition suivante:
+Soit $K$ un corps quadratique, alors il existe un entier $N$ sans facteur carré tel que l'on peut écrire $K=\mathbb{Q}[\sqrt{N}]$. On définit alors alors le discriminant de $K$:
 \begin{defi}
 \label{def:dis:dK}
 Soit $K=\mathbb{Q}[\sqrt{N}]$, on définit le discriminant $d_K$ de $K$ de la façon suivante: 
 \begin{equation*}
 d_K=\begin{cases}
-N & \text{ si }  N \equiv 1 \bmod 4 \\
+N & \text{ si }  N \equiv 1 \bmod 4\text{,}\\
 4N & \text{ sinon.}
 \end{cases}
 \end{equation*}
@@ -3338,7 +3351,7 @@ Soit $K$ un corps quadratique imaginaire, $d_K$ son discriminant alors :
 Voir \cite[exercise 5.7]{Cox89}.
 \end{proof}
 
-On définit alors les ensembles sur $K$  avec lesquels on va travailler:
+Nous définissons alors les ensembles sur $K$  avec lesquels nous allons travailler:
 
 \begin{defi}
 Un ordre $\mathcal{O}$ d'un corps quadratique $K$ est un sous-ensemble vérifiant les conditions suivantes: 
@@ -3348,16 +3361,19 @@ Un ordre $\mathcal{O}$ d'un corps quadratique $K$ est un sous-ensemble vérifian
 \end{enumerate} 
 \end{defi}
 
-On a le résultat suivant qui nous permet de définir le plus grand ordre au sens de l'inclusion.
+Le résultat suivant nous permet de définir le plus grand ordre au sens de l'inclusion.
 
 \begin{prop}
-Soit $K$ un corps quadratique imaginaire, $\mathcal{O}_K$ l'anneau des entiers de $K$ alors $\mathcal{O}_K$ est l'ordre maximal de $K$.
+Soit $K$ un corps quadratique imaginaire, $\mathcal{O}_K$ l'anneau des entiers 
+de $K$ alors $\mathcal{O}_K$ est l'ordre maximal de $K$.
 \end{prop}
 
 \begin{proof}
-Soit $\mathcal{O}$ un ordre de $K$ et soit $\alpha \in \mathcal{O}$. Comme $\mathcal{O}$ est sous-anneau de $K$, on a $\alpha \in K$. $\mathcal{O}$ étant un $\mathbb{Z}$-module libre de rang 2 alors $\alpha$ est un entier algébrique et donc $\alpha \in \mathcal{O}_K$.
+Soit $\mathcal{O}$ un ordre de $K$ et soit $\alpha \in \mathcal{O}$. Comme 
+$\mathcal{O}$ est sous-anneau de $K$, on a $\alpha \in K$. $\mathcal{O}$ étant 
+un $\mathbb{Z}$-module libre de rang 2 alors $\alpha$ est un entier algébrique 
+et donc $\alpha \in \mathcal{O}_K$.
 \end{proof}
-
 
 \begin{rem}
 On pourra aussi noter $\mathcal{O}_K$ de la façon suivante 
@@ -3388,7 +3404,7 @@ Soit $\mathcal{O}$ un ordre du corps quadratique imaginaire $K$, l'indice $f=[\m
 C'est cette idée que l'on va retrouver dans les volcans des $l$-isogénies en essayant de donner une structure aux relations entre les différents ordres isomorphes aux anneaux des endomorphismes.
 \\
 \\
-On peut aussi définir un autre invariant pour un ordre, son discriminant.
+On définit un autre invariant pour un ordre, son discriminant.
 
 \begin{defi}
 Soit $\alpha \mapsto \overline{\alpha}$ l'automorphisme non-trivial d'un corps quadratique imaginaire $K$, soit $\mathcal{O}$ un ordre de $K$ avec $\mathcal{O}=[\alpha, \beta]$, alors le discriminant de $\mathcal{O}$ est le nombre 
@@ -3398,7 +3414,7 @@ Soit $\alpha \mapsto \overline{\alpha}$ l'automorphisme non-trivial d'un corps q
 \overline{\alpha} & \overline{\beta}
 \end{array} 
 \right) \right)^2. \]
-Le discriminant de $\mathcal{O}_K$ est noté $d_K$.
+On rappelle que le discriminant de $\mathcal{O}_K$ est noté $d_K$.
 \end{defi}
 Le discriminant est un invariant de la base choisie, en prenant la base $[1, f 
 \omega_K]$ de $\mathcal{O}$, on a:
@@ -3412,7 +3428,7 @@ anneau des endomorphismes, est $\mathbb{Z}[\pi]$. Alors de par l'isomorphisme
 de groupes entre le groupe de classes de formes (quadratiques) et le groupes de
 classes d'idéaux (voir \cite[Theorem 7.7]{Cox89} ou \cite[Theorem 5.2.8]{Cohen96}) on 
 peut définir le discriminant $d_{\pi}$ de l'ordre $\mathbb{Z}[\pi]$ comme étant
-le discriminant du polynôme minimal du Frobenius: $x^2-t_{\pi}+4q$. On a 
+le discriminant du polynôme minimal du Frobenius: $x^2-t_{\pi}+4q$, ainsi 
 $d_{\pi} =t_{\pi}^2-4q$.
 
 De même pour $\mathcal{O}=[ 1, \omega_K f ]$, le polynôme 
@@ -3585,6 +3601,9 @@ particulier pour le cas $\ell=2$:
 \end{equation*}
 \end{defi}
 
+On peut alors énoncer le théorème suivant qui donne la structure de tels 
+graphes.
+
 \begin{thm}
 \label{thm:Koh:cas}
 Soit $E$ une courbe elliptique ordinaire définie sur un corps fini 
@@ -3607,7 +3626,7 @@ sous l'action du groupe des automorphismes de $E$.
 Voir \cite[Proposition 23]{Kohel96}.
 \end{proof}
 
-On peut dés lors relier ce théorème avec les racines du $\ell$-ème polynôme modulaire évalué en le $j$-invariant de la courbe que l'on étudie:
+On peut dés lors relier ce théorème avec les racines du $\ell$-ième polynôme modulaire évalué en le $j$-invariant de la courbe que l'on étudie:
 
 \begin{cor}
 \label{cor:tab:vol} 
@@ -3678,7 +3697,7 @@ Soit $\ell$ un nombre premier, un chemin descendant sur un volcan des $\ell$-iso
 \label{def:haut:vol}
 %Soit $\ell$ un nombre premier, $E_s$ une courbe elliptique située sur le cratère d'un volcan des $\ell$-isogénies alors la longueur $h$ d'un chemin descendant partant de $E_s$ est appelée la hauteur du volcan.
 %\newline
-Pour une courbe sur le volcan son niveau est la longueur maximale d'un chemin descendant.
+Pour une courbe sur le volcan son niveau est la longueur d'un chemin descendant.
 \newline
 La hauteur $h$ d'un volcan est le niveau maximal des courbes dans le volcan.
 \end{defi}
@@ -3694,7 +3713,7 @@ En particulier pour $\ell \neq 2$ $\ell^{2h}||d_{\pi}$, ce résultat ne peut êt
 
 \begin{defi}
 \label{def:cou:som}
-Soit $E$ une courbe elliptique située au niveau $n$ du cratère du volcan des $\ell$-isogénies, soit $E_s$ la courbe codomaine de la $\ell^{h-n}$-isogénie ascendante $\widehat{\varphi}$ de domaine $E$. Alors $E_s$ est dite la \emph{courbe sommet} de $E$. 
+Soit $E$ une courbe elliptique située au niveau $n$ du volcan des $\ell$-isogénies, soit $E_s$ la courbe codomaine de la $\ell^{h-n}$-isogénie ascendante $\widehat{\varphi}$ de domaine $E$. Alors $E_s$ est dite la \emph{courbe sommet} de $E$. 
 \end{defi}
 
 \begin{figure}[h]
@@ -3777,7 +3796,7 @@ Soit $E$ une courbe elliptique située au niveau $n$ du cratère du volcan des $
 		\caption{\label{fig:vol:3t} Différents types de volcans des $2$-isogénies.}
 \end{figure}
 On peut voir sur le dessin \ref{fig:vol:3t} les 3 différentes formes de volcans
-qui existent, celles-ci sont distinguées par la forme de leur cratère qui est 
+qui existent. Celles-ci sont distinguées par la forme de leur cratère qui est 
 déterminée par la valeur de $\left( \frac{d_K}{\ell} \right)$.
 
 On peut vouloir travailler avec des $\ell$-isogénies qui ne sont pas définies dans $\mathbb{F}_q$ qui vont en dessous de la base du volcan, dés lors on doit travailler dans une extension de degré $\ell$ et la question du comportement du volcan se pose.
@@ -3828,7 +3847,7 @@ différents nombres premiers $\ell_i$ la valuation $v_i$ $\ell_i$-adique du
 conducteur de $\mathbb{Z}[\pi]$. \`A l'aide de cette valuation on obtient la 
 valeur du carré de la trace modulo $\ell_i^{v_i}$, le signe est calculé à 
 l'aide d'une détermination de valeurs propres pour le Frobenius en factorisant 
-le polynôme de $\ell_i$-division. Ainsi l'algorithme de Fouquet Morain a une 
+le polynôme de $\ell_i$-division. Ainsi l'algorithme de Fouquet-Morain a une 
 application dans l'algorithme de Schoof~\cite{Schoof85} (voir 
 sous-section~\ref{sub-sec:schoof}) qui calcule la cardinalité d'une courbe
 elliptique à partir de la valeur de sa trace modulo différents nombres premiers
@@ -3839,7 +3858,7 @@ de la courbe elliptique.
 
 \section{Lien entre les niveaux d'une courbe dans le volcan et la structure de la $\ell^{\infty}$ torsion rationnelle}
 \label{sec:lie:niv}
-Dans cette section on a mettre en avant les liens qui existent entre le niveau
+Dans cette section on met en avant les liens qui existent entre le niveau
 d'une courbe dans un volcan des $\ell$-isogénies et la structure de sa 
 $\ell$-torsion rationnelle. Les résultats exposés ici sont tirés de 
 \cite{MiretMSTV08} et \cite{Ionica-Joux10}.
@@ -4185,7 +4204,7 @@ On observe bien que c'est une isogénie montante par le corollaire \ref{cor:des:
 
 \begin{cor} 
 \label{cor:struct:ext}
-Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ avec $E(\mathbb{F}_{q})[\ell^{\infty}]=\mathbb{Z} / \ell^{r} \mathbb{Z} \times \mathbb{Z} / \ell^{s} \mathbb{Z}$, alors on a $E(\mathbb{F}_{q^{\ell}})[l^{\infty}]=\mathbb{Z} / \ell^{r+1} \mathbb{Z} \times \mathbb{Z} / \ell^{s+1} \mathbb{Z}$.
+Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ avec $E(\mathbb{F}_{q})[\ell^{\infty}]=\mathbb{Z} / \ell^{r} \mathbb{Z} \times \mathbb{Z} / \ell^{s} \mathbb{Z}$, alors $E(\mathbb{F}_{q^{\ell}})[l^{\infty}]=\mathbb{Z} / \ell^{r+1} \mathbb{Z} \times \mathbb{Z} / \ell^{s+1} \mathbb{Z}$.
 \end{cor}
 
 \begin{proof}
