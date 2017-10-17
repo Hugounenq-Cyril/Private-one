@@ -6252,14 +6252,14 @@ sont rationnelles, ainsi l'action du Frobenius sur une base de la
 $\ell^{h-e}$-torsion est diagonale. Mais, comme le polynôme caractéristique de 
 $\pi$ est irréductible sur $\mathbb{Z}_{\ell}$, alors l'action du Frobenius doit
 être scalaire, ainsi $a=d \bmod \ell^{h-e}$.
-Ainsi, la matrice du Frobenius sur $\mathbb{Z}_{\ell}$ est  
+La matrice du Frobenius sur $\mathbb{Z}_{\ell}$ est  
 \begin{itemize}
 \item lorsque $e=0$, de la forme $\left ( \begin{smallmatrix}a & b\ell^{h}\\c\ell^{h} & d
 \end{smallmatrix}\right )$ avec $b \wedge \ell=1$ et $c \wedge \ell=1$. En 
 effet on a $\left(\frac{d_K}{\ell}\right)=\left(\frac{d_{\pi}/\ell^{2h}}{\ell}
 \right)$, or $\frac{d_{\pi}}{\ell^{2h}}=\frac{(a-d)^2}{\ell^{2h}}+4bc$, ainsi on 
 doit avoir $bc \wedge \ell=1$. Comme dans le cas $\ell=2$ on a $d_K=5 \bmod 8$, 
-alors on a $(\frac{a-d}{\ell^{h}})^2 \neq 0 \bmod 2$.
+alors $(\frac{a-d}{\ell^{h}})^2 \neq 0 \bmod 2$.
 \item lorsque $e>0$, de la forme  $\left ( \begin{smallmatrix}a & 
 b\ell^{h-e}\\ c\ell^{h-e}  & d \end{smallmatrix}\right )$, avec soit $b, c$ 
 premiers avec $\ell$, soit $b$ ou $c$ premier avec $\ell$, l'autre ayant une 
@@ -6624,9 +6624,9 @@ utilisant le fait que~$a \cdot d = q \bmod \ell$.
 \begin{rem}
 \label{rem:hau:atk}
 Lorsque le volcan est de hauteur $0$, nous pouvons nous ramener au cas d'un 
-volcan de hauteur $h>0$ en travaillant dans une extension de degré $\ell+1$ 
-pour que le $\ell$-ème polynôme modulaire possède des racines dans cette 
-extension.
+volcan de hauteur $h>0$ en travaillant dans une extension de degré divisant 
+$\ell^2-1$ pour que le $\ell$-ième polynôme de division possède des racines 
+dans cette extension.
 \end{rem}
 
 Nous mettons en avant un résultat qui est une conséquence du 
@@ -6638,24 +6638,24 @@ Soit $E$ une courbe elliptique ordinaire située sur le cratère d'un
 volcan de $\ell$-isogénies de hauteur $h>0$, avec $\ell$ un nombre premier 
 de Atkin,
 \begin{itemize}
-\item si $\ell \neq 2$ on note $F/\mathbb{F}_q$ la 
+\item si $\ell \neq 2$ on note $\mathsf{F}/\mathbb{F}_q$ la 
 plus petite extension de corps de $\mathbb{F}_q$ de degré $d_1$ telle que 
-$E[\ell] \subset E(F)$,
-\item si $\ell=2$ on note $F/\mathbb{F}_q$ la 
+$E[\ell] \subset E(\mathsf{F})$,
+\item si $\ell=2$ on note $\mathsf{F}/\mathbb{F}_q$ la 
 plus petite extension de corps de $\mathbb{F}_q$ de degré $d_2 \in {1,2}$ telle
-que $E[4] \subset E(F)$.
+que $E[4] \subset E(\mathsf{F})$.
 \end{itemize}
 Nous avons alors:
 \[
-E(F)[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z}, 
+E(\mathsf{F})[\ell^{\infty}] \simeq \mathbb{Z}/ \ell^{\beta} \mathbb{Z} \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z}, 
 \]
 avec $\beta \in [1,h]$ pour $\ell \neq 2$, et $\beta \in [2,h]$ pour $\ell=2$. De 
-plus $\beta=h$, la hauteur du volcan sur $F$, si et seulement si le volcan est \emph{régulier}.
+plus $\beta=h$, la hauteur du volcan sur $\mathsf{F}$, si et seulement si le volcan est \emph{régulier}.
 Pour un volcan \emph{non-régulier} $\beta$ est égal au niveau du premier niveau de stabilité. 
 \end{prop}
 
 \begin{proof}
-Notons $E(F)[\ell^{\infty}]\simeq \mathbb{Z}/ \ell^{\alpha} \mathbb{Z} 
+Notons $E(\mathsf{F})[\ell^{\infty}]\simeq \mathbb{Z}/ \ell^{\alpha} \mathbb{Z} 
 \times \mathbb{Z}/ \ell^{\beta} \mathbb{Z}$. 
 
 Supposons par l'absurde que $\alpha > \beta$ dans le cas où le volcan serait 
@@ -6709,7 +6709,7 @@ $ d_k = \ell^{\max (0, k - \beta)}d_1$.
 % $d_k = \mathrm{lcm}(d_2, \ell^{k-\beta})$.
 $d_k = \ell^{\max (0, k - \beta)}d_2$.
 \item Si $\ell \neq 2$ pour $[\mathsf{F}:\mathbb{F}_q]=d_1\ell^n$, le groupe $E[\ell^{\infty}](\mathsf{F})$ est isomorphe à $(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
-\item Si $\ell = 2$ pour $[F:\mathbb{F}_q]=d_2\ell^n$, le groupe $E[\ell^{\infty}](F)$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
+\item Si $\ell = 2$ pour $[\mathsf{F}:\mathbb{F}_q]=d_2\ell^n$, le groupe $E[\ell^{\infty}](\mathsf{F})$ est isomorphe à~$(\mathbb{Z}/\ell^{n+\beta} \mathbb{Z}) \times (\mathbb{Z}/\ell^{n+\beta} \mathbb{Z})$.
 %\item\label{prop:classes:count} Le groupe~$E[\ell^k]$ contient au plus
 %$k \cdot \ell^{k+\beta}$ classes de conjugaisons de Galois sur~$F_1 = \mathbb{F}_{q^{d_1}}$.
 \end{enumerate}
@@ -6817,7 +6817,8 @@ calculer les courbes $E_0$, $E_1$ et l'isogénie $\phi:E_0 \rightarrow E_1$.
 
 \smallskip
 
-Pour résoudre ce problème du calcul explicite d'isogénie on pourrait utiliser 
+Pour résoudre ce problème du calcul explicite d'isogénie on pourrait 
+directement utiliser 
 les même méthodes que celles développées dans \cite{Couveignes96} et 
 \cite{DeFeo11} (voir chapitre~\ref{cha:iso:computing} pour plus de détails) en 
 remplaçant les points de $p$-torsion par ceux de $\ell$-torsion, ainsi on 
@@ -6902,14 +6903,14 @@ soient des points horizontaux de même direction avec deux $\ell^e$-isogénies
 $\psi:E_s \rightarrow E$ et $\psi':E'_s \rightarrow E'$ telles que $\psi(R)=P$ 
 et $\psi'(R')=P'$. On a tout d'abord $ \phi([\ell^{k-e}]P) \in \langle 
 [\ell^{k-e}]P' \rangle$  par la proposition~\ref{pro:par:iso}~\eqref{pro:par:fun} car par la 
-proposition~\ref{pro:elk:par:hor}~\eqref{pro:par:1} on a $\ker(\widehat{\psi})= \langle 
+proposition~\ref{pro:elk:par:hor}~\eqref{pro:par:1} $\ker(\widehat{\psi})= \langle 
 [\ell^{k-e}]P \rangle$ et $\ker(\widehat{\psi'})= \langle [\ell^{k-e}]P' 
 \rangle$. Ensuite on a $\langle [\ell^e]R \rangle = \langle 
 \widehat{\psi}(P) \rangle $ et $\langle [\ell^e]R' \rangle = \langle 
-\widehat{\psi'}(P') \rangle$ ainsi les $\ell^{k}$-isogénies engendrées par 
+\widehat{\psi'}(P') \rangle$. Ainsi les $\ell^{k}$-isogénies engendrées par 
 $P$ et $P'$ sont du même type: une composition d'une $\ell^e$ isogénie montante 
 et d'une $\ell^{k-e}$-isogénie horizontale de direction identique, donc par la 
-proposition~\ref{pro:par:iso}~\eqref{pro:par:fun} on a $\phi(P) \in \langle P' \rangle$.
+proposition~\ref{pro:par:iso}~\eqref{pro:par:fun} $\phi(P) \in \langle P' \rangle$.
 \end{proof}
 
 %Ainsi on est capable à l'aide de bases horizontales et d'isogénies montantes de
@@ -7329,7 +7330,7 @@ P'_{\lambda} \\
 Q'_{\mu}
 \end{matrix}
 \right)
-\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^{\times}
+\quad \text{avec} \quad a,b \in \left( \mathbb{Z}/\ell^k\mathbb{Z} \right)^{\times}.
 \]
  On énumère donc toutes les $\ell^{2k-2}$ matrices $M$ possibles $\left( 
  \begin{smallmatrix} a & 0 \\ 0 & b \end{smallmatrix} \right)$. Pour chaque 
@@ -7598,7 +7599,7 @@ résolution du problème du «Calcul de l'isogénie explicite» en terme de $r$ 
 \label{thm:gen:elk:fin}
 Pour presque tous les nombres premiers $q$ et presque toutes les courbes 
 ordinaires $E,E'$ définies sur $\mathbb{F}_q$, il est possible de résoudre le 
-problème du «Calcul explicite de l'isogénie» en un temps espéré de 
+problème du «Calcul explicite de l'isogénie» en un temps moyen de 
  \begin{equation*}
  \begin{alignedat}{1}
  O\Bigl( &\sqrt{r}\mathsf{M}(\sqrt{r}\log(q)^{1,5})\log(r)\log(\log(q))\log(\log(q) q) + \\
@@ -7624,7 +7625,7 @@ est lui majoré par la complexité donnée dans la
 proposition~\ref{pro:full-complexity}.
 \end{proof}
 
-Ce résultat est donc à comparer avec le coût de calcul du $r$-ème polynôme 
+Ce résultat est donc à comparer avec le coût de calcul du $r$-ième polynôme 
 modulaire $\Phi_r$ car les algorithmes de Elkies~\cite{Elkies1998}, Bostan, Morain, 
 Salvy et Schost~\cite{BMSS08} et Lercier et Sirvent~\cite{Lercier-Sirvent2008}
 supposent que les courbes sont données sous forme d'équation de Weierstrass
@@ -7632,7 +7633,7 @@ normalisée (ou dans le cas de Lercier et Sirvent prennent en compte ce coût)
 calculées à l'aide du $r$-ème polynôme modulaire (voir 
 chapitres~\ref{cha:iso:computing} et \ref{cha:rappel} pour plus de détails).
 Ainsi l'algorithme de Bröker, Lauter et Sutherland~\cite{BLS12}, le plus rapide
-connu pour calculer le $r$-ème polynôme modulaire a une complexité de 
+connu pour calculer le $r$-ième polynôme modulaire a une complexité de 
 $O(r^3 \log^3(r) \log \log(r))$ opérations sur $\mathbb{F}_p$ d'après 
 \cite[Theorem 1]{BLS12},  %ne serait-ce que pour représenter $\Phi_r$ sur 
 %$\mathbb{F}_q$ 
