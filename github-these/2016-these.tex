@@ -7667,7 +7667,7 @@ dans les algorithmes de l'article~\cite{FouquetMorain02} (voir
 sous-section~\ref{sub:alg:FM}) en résolvant donc les
 polynômes modulaires (ici $\Phi_2$) utilisés d'après la base de données 
 «database-kohel» implantée par David Kohel. La détermination de la forme du 
-cratère se faisait elle à l'aide de la valeur du discriminant $d_k$. Un module 
+cratère se faisait elle à l'aide de la valeur du discriminant $d_K$. Un module 
 a été fait par Sébastien Besnier~\cite{Besnier14} sur Sagemath celui-ci permet 
 d'afficher directement les volcans des $\ell$-isogénies à partir d'une courbe 
 et il est disponible à cette adresse 
@@ -7708,7 +7708,7 @@ l'interpolation. Nous voyons donc la linéarité en $r$ des temps de calcul.
 Le comportement en escalier observé est tout à fait normal car pour toutes les 
 isogénies de degré $\frac{\ell^{2k-2}(\ell+1)}{4} \leqslant r < 
 \frac{\ell^{2k}(\ell+1)}{4}$ nous avons besoin de travailler avec la même 
-taille de $\ell^{k}$ torsion, ainsi pour différents $r$ dans cet intervalle 
+taille de $\ell^{k}$ torsion. Ainsi pour différents $r$ dans cet intervalle 
 nous obtenons des polynômes $A_{a,b}$ et $T$ de même degré ce qui fait que la 
 complexité et le temps de calcul sont les mêmes. 
 Ceci est une raison suffisante pour motiver la recherche du plus petit nombre 
@@ -7716,13 +7716,13 @@ $\ell$ de Elkies car alors nous aurions des paliers plus petits pour
 l'algorithme. Il pourrait toutefois s'avérer que pour un autre nombre de Elkies
 $\ell'$ plus grand que $\ell$, $r$ se trouve à la fin du palier 
 $\frac{\ell'^{2k-2}(\ell+1)}{4} \leqslant r < \frac{\ell'^{2k}(\ell+1)}{4}$, 
-ainsi il serait plus utile de travailler avec $\ell'$ plutôt que $\ell$.
+il serait alors plus utile de travailler avec $\ell'$ plutôt que $\ell$.
 
 Comme l'étape d'interpolation va être répétée $O(r \ell)$ fois et domine la 
-complexité de l'algorithme~\ref{alg:cou:ell-adique} alors nous comparons le temps 
+complexité de l'algorithme~\ref{alg:cou:ell-adique} nous comparons donc le temps 
 de calcul obtenu pour une étape d'interpolation pour différentes tailles de 
 corps fini.
-Nous présentons donc une première série de tests qui a été réalisé sur des 
+Nous présentons une première série de tests qui a été réalisé sur des 
 courbes qui ont toutes leur $\beta=h=2$, ainsi notre 
 algorithme~\ref{alg:cou:ell-adique} a travaillé avec la $2^3$ torsion jusqu'à la 
 $2^8$ torsion sur des courbes elliptiques définies sur corps finis premiers 
@@ -7922,7 +7922,7 @@ Calcul de $(P,Q),(P',Q')$ bases de $E[\ell^k],E'[\ell^k]$;
   En supposant que $\ell^h<\sqrt{r}$, 
   l'algorithme~\ref{alg:cou:atk} calcule une $r$-isogénie 
   ${\phi:E \rightarrow E'}$ avec un coût moyen de \[
-  O(r \ell^2 \sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))\]
+  O(r \ell^2 \ell^{2h}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell^{1,5})\sqrt{r}\log(\ell)\log(\ell q))\]
 auquel il faut ajouter un temps de pré-calcul de:
 $O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\ell)\log(\ell q))$.
 \end{prop}
@@ -8015,18 +8015,40 @@ L'étape~\ref{alg:cou:atk:Cauchy} a une complexité de $O(r\log(r))$ d'après
 dominé par les autres opérations (pour plus de détails le lecteur peut voir 
 la preuve de la proposition~\ref{pro:full-complexity}).
 \sloppy
-Les étapes~\ref{alg:cou:atk:parc:poi} à ~\ref{alg:cou:atk:test} étant répétées 
-$\ell^{k-h}$ fois celles-ci ont une complexité de 
-$O(\sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ 
+Les étapes~\ref{alg:cou:atk:div:h} à ~\ref{alg:cou:atk:test} étant répétées 
+$\ell^{2h}$ fois celles-ci ont une complexité de 
+$O(\ell^{2h}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell^{1,5})\sqrt{r}\log(\ell)\log(\ell q)))$ 
 à $S'$ fixé.
 \fussy
 
 
 Enfin l'étape~\ref{alg:cou:atk:frob:bas} et la boucle commençant à 
 l'étape~\ref{alg:cou:atk:parc:poi} étant répétées $\ell^{2k-2}(\ell+1)/2 \in 
-O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 \sqrt{r \ell}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell)\sqrt{r}\log(\ell)\log(\ell q))$ à laquelle il faut ajouter les pré-calculs pour obtenir le résultat.
+O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 \ell^{2h}(\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell^{1,5})\sqrt{r}\log(\ell)\log(\ell q))$ à laquelle il faut ajouter les pré-calculs pour obtenir le résultat.
 \end{proof}
+L'expression en $\ell^{2h}$ dans le calcul de complexité a été délibérément 
+laissée dans le calcul de complexité afin de montrer l'influence de la boucle 
+entre les étapes \ref{alg:cou:atk:div:h} à ~\ref{alg:cou:atk:test} et de 
+pouvoir énoncer le corollaire suivant:
 
+Nous pouvons énoncer un résultat particulier intéressant pour les volcans de 
+Atkin de hauteur $0$.
+
+\begin{cor}
+  \label{cor:atk:full-complexity:h=0}
+  En supposant que $h=0$, 
+  l'algorithme~\ref{alg:cou:atk} calcule une $r$-isogénie 
+  ${\phi:E \rightarrow E'}$ avec un coût moyen de \[
+  O(r \ell^2 (\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell^{1,5})\sqrt{r}\log(\ell)\log(\ell q))\]
+auquel il faut ajouter un temps de pré-calcul de:
+$O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\ell)\log(\ell q))$.
+\end{cor}
+
+Il faut tout de même préciser que dans ce cas-là le premier étage de la tour 
+d'extensions sera de degré $d_1$ avec $d_1 | \ell^2-1$ (voir 
+remarque~\ref{rem:hau:atk}), ce qui asymptotiquement ne change pas grandement 
+l'analyse mais pour des applications cela peut rajouter un facteur non 
+négligeable.
 
 Maintenant nous abordons le cas général où les courbes $r$-isogènes ne sont
 pas situées sur le cratère du volcan de $\ell$-isogénies.
@@ -8053,6 +8075,7 @@ proposition~\ref{pro:atk:full-complexity} est meilleure que Lercier et
 Sirvent~\cite{Lercier-Sirvent2008}.
 
 
+
 %\begin{thm} \todo{resultat totaement inintéressant}
 %Pour presque tous les nombres premiers $q$ et les courbes $E,E'$ définies sur 
 %$\mathbb{F}_q$, il est possible de résoudre le problème du «Calcul de 
@@ -8062,10 +8085,41 @@ Sirvent~\cite{Lercier-Sirvent2008}.
 %\]
 %\end{thm}
 
+\section{Conclusion}
+
+Nous avons donc vu deux cas où l'on avait un algorithme de Couveignes 
+$\ell$-adique quasi-quadratique: la proposition~\ref{pro:full-complexity} et le
+corollaire~\ref{cor:atk:full-complexity:h=0}. On peut alors énoncer la borne 
+suivante pour trouver un premier $\ell$ qui permette de résoudre le problème du
+calcul explicite de l'isogénie en temps quasi-quadratique.
+
+\begin{thm}
+Soient $q$ une puissance d'un nombre premier, deux courbes elliptiques 
+ordinaires $E,E'$ définies sur $\mathbb{F}_q$, un entier $r$ tel que $E$ et 
+$E'$ soient $r$-isogènes, alors la $r$-isogénie peut être calculée avec une 
+complexité de
+\[
+\tilde{O}(r^2 \ell^{O(1)}) \text{ opérations sur }\mathbb{F}_q
+\]
+avec un paramètre $\ell$ borné par $O(\log(q))$.
+\end{thm}
+
+\begin{proof}
+L'idée de la preuve est de montrer que l'on peut trouver un premier $\ell$ de
+Elkies ou de Atkin pour un volcan de hauteur $h=0$ borné par $O(\log(q))$, 
+ainsi avec un tel premier on pourra conclure avec soit la 
+proposition~\ref{pro:full-complexity} soit le 
+corollaire~\ref{cor:atk:full-complexity:h=0}. Les nombres de Atkin et de Elkies
+de hauteur $h=0$ n'étant pas des diviseurs de $d_K$ et $d_K$ étant borné par 
+$O(q)$ car $d_{\pi}$ l'est alors par un raisonnement similaire à celui de la 
+preuve de la proposition~\ref{pro:bor:ell} on a le résultat. 
+\end{proof}
+
 \chapter{Variantes de l'algorithme de Couveignes $\ell$-adique dans le cas Elkies}
 \label{cha:var:cou}
 Dans les améliorations de l'algorithme de Couveignes que nous avons présentées 
-seules celles concernant le cas Elkies ont un intérêt en terme de complexité. 
+celles concernant le cas Elkies ont un meilleur résultat en terme de complexité
+lorsque $h \neq 0$. 
 Nous allons donc étudier des variantes à l'algorithme de Couveignes avec 
 approche $\ell$ adique que dans le cas Elkies y compris lorsque celles-ci
 auraient pu être appliquées à notre approche proposée pour le cas Atkin.
@@ -8075,14 +8129,14 @@ auraient pu être appliquées à notre approche proposée pour le cas Atkin.
 
 Au lieu de travailler avec une base (ascendante) horizontale dans l'algorithme 
 de Couveignes $\ell$-adique nous pourrions tout aussi bien travailler avec un 
-point (ascendant) horizontale. C'est l'approche que nous allons avoir dans 
+point (ascendant) horizontal. C'est l'approche que nous allons avoir dans 
 cette sous-section.
 Dés lors nous devons déterminer le plus petit entier $k$ tel que le nombre 
 d'abscisses de points d'ordre $\ell^k$ engendrés par un point d'ordre $\ell^k$:
 $\frac{\ell^{k-1}}{2}$ soit strictement plus grand que $2r$.
 
 Pour le calcul du point horizontal d'ordre $\ell^k$ nous sommes tout de même 
-obligé de calculer une base diagonale de la $\ell^{h+1}$-torsion et donc de 
+obligés de calculer une base diagonale de la $\ell^{h+1}$-torsion et donc de 
 travailler dans l'élément $\mathsf{F}_{h+1-\beta}$ de la tour d'extensions 
 $\ell$-adiques.
 
@@ -8846,11 +8900,12 @@ Couveignes~\cite{Couveignes96} au cas $\ell$-adique et s'affranchir de la
 dépendance polynomiale en la caractéristique. En particulier, nous avons 
 présenté un algorithme qui résout le problème du calcul explicite d'isogénie 
 avec une complexité quasi-quadratique en le degré de l'isogénie, et ce 
-uniquement dans le cas Elkies. Dans le cas Atkin nous avons seulement obtenu 
-un algorithme de complexité sous-cubique. Cet algorithme a une complexité moins
-bonne par rapport à l'algorithme de Couveignes~\cite{Couveignes96} et à notre 
-algorithme de la section~\ref{sec:cou:elk} , mais reste meilleur que le coût 
-Lerciet et Sirvent\cite{Lercier-Sirvent2008}.
+dans des cas particuliers de nombre de Elkies et d'Atkin qui sont fréquents. 
+%Dans le cas Atkin nous avons seulement obtenu 
+%un algorithme de complexité sous-cubique. Cet algorithme a une complexité moins
+%bonne par rapport à l'algorithme de Couveignes~\cite{Couveignes96} et à notre 
+%algorithme de la section~\ref{sec:cou:elk} , mais reste meilleur que le coût 
+%Lerciet et Sirvent\cite{Lercier-Sirvent2008}.
 Nous avons aussi vu au travers de notre étude de nouveaux 
 moyens pour déterminer des directions dans le volcan de $\ell$-isogénies à 
 l'aide de l'étude de l'action du Frobenius sur le module de Tate. En 
@@ -8918,13 +8973,13 @@ algorithmes (\cite{Couveignes96isogenycycles}) se limitent, à juste titre, au
 cas de volcans réduits à leur cratère, d'autres ne peuvent, et on va donc 
 aborder l'éventuel impact de nos travaux sur ceux-ci.
 Dans l'algorithme de Sutherland~\cite{Sutherland11a} pour le calcul de polynômes
-de Hilbert on est obligé, de par la taille du $\ell$-ème 
+de Hilbert on est obligé, de par la taille du $\ell$-ième 
 polynôme modulaire, de traiter les cas où le volcan n'est pas réduit à un
 cratère cyclique. Dés lors il serait pertinent de voir l'apport de notre 
 travail (proposition~\ref{pro:dia:hor}) dans ce contexte par rapport à 
 l'algorithme utilisé par Sutherland, similaire aux travaux de 
 \cite{FouquetMorain02} (voir sous-section~\ref{sub:alg:FM}) se servant
-du $\ell$-ème polynôme modulaire, ainsi on pourrait rendre cet algorithme non
+du $\ell$-ième polynôme modulaire, ainsi on pourrait rendre cet algorithme non
 dépendant du (pré)calcul des polynômes modulaires.
 Dans l'algorithme de Bröker, Lauter et Sutherland~\cite{BLS12}, pour 
 calculer le $\ell$-ème polynôme modulaire les auteurs se placent dans le cas
