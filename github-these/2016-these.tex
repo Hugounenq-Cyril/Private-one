@@ -707,7 +707,7 @@ Soit $\mathbb{L}/\mathbb{K}$ une extension Galoisienne alors on appelle
  $\mathbb{L}$ qui laisse fixe $\mathbb{K}$, on le note $\mathsf{Gal}(\mathbb{L}:
  \mathbb{K})$.
  
- Soit $x \in \mathbb{L}$, soit $\sigma \in \mathsf{Gal}(\mathbb{L}:\mathbb{K})$
+ Soit $x \in {L}$, soit $\sigma \in \mathsf{Gal}(\mathbb{L}:\mathbb{K})$
  alors on appelle $\sigma(x)$ les conjugués de $x$ et ils constituent les 
  racines du polynôme minimal de $x$ défini sur $\mathbb{K}$. On appelle 
  représentant de l'orbite de $x$ sous l'action d'un élément de $\mathsf{Gal}
@@ -724,12 +724,12 @@ si tout élément de $\mathbb{L}$ l'est.
 \end{defi}
 
 \begin{defi}
-\label{def:degs:degi}
+\label{def:degs:degi}\quad 
 \begin{itemize}
-\item Le degré de séparabilité d'une extension $[\mathbb{L}:\mathbb{K}]$ est le degré
+\item Le degré de séparabilité d'une extension $\mathbb{L}/\mathbb{K}$ est le degré
 de l'extension $\mathbb{L}$ par rapport à $\mathbb{K}$ lorsque celle-ci est 
 séparable.
-\item Le degré d'inséparabilité d'une extension $[\mathbb{L}:\mathbb{K}]$ est le degré
+\item Le degré d'inséparabilité d'une extension $\mathbb{L}/\mathbb{K}$ est le degré
 de l'extension $\mathbb{L}$ par rapport à $\mathbb{K}$ lorsque celle-ci est 
 purement inséparable.
 \end{itemize}
@@ -764,7 +764,9 @@ Une courbe elliptique $E$ est définie comme la variété projective associée �
 \label{eq:weierstrass-proj}
 E:Y^2Z+a_1XYZ+a_3YZ^2=X^3+a_2X^2Z+a_4XZ^2+a_6Z^3
 \end{equation}
-avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$ et $(X,Y,Z) \in \mathbb{P}(\overline{\mathbb{K}})$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
+avec $a_1,a_2,a_3,a_4,a_6$ des éléments de $\overline{\mathbb{K}}$ et $(X:Y:Z) 
+\in \mathbb{P}^2(\overline{\mathbb{K}})$. Dès lors que $a_1,a_2,a_3,a_4,a_6$ 
+appartiennent à $\mathbb{K}$ alors la courbe est dite définie sur $\mathbb{K}$.
 \end{defi}
 
 \begin{defi}
@@ -787,7 +789,7 @@ coordonnées affines et on obtient l'équation affine de Weierstrass:
 E:y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6.
 \end{equation}
 
-On peut alors définir l'ensemble des points de la courbe définis sur $\mathbb{K}$ dans ce système de coordonnées affine comme:
+On peut alors définir l'ensemble des points de la courbe définis sur $\mathbb{K}$ dans ce système de coordonnées affines comme:
 \begin{equation*}
 E(\mathbb{K})=\{(x,y)\in \mathbb{K}^2  : y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6 \} \cup \{0_E\}
 \end{equation*}
@@ -804,7 +806,7 @@ E(\mathbb{K})=\{(x,y)\in \mathbb{K}^2  : y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6 \} \
 %au cas où $Z=0$). 
 
 Nous travaillerons désormais dans la suite de ce document avec ce système de 
-coordonnées affine des points d'une courbe elliptique.
+coordonnées affines des points d'une courbe elliptique.
 
  On définit aussi:
 \begin{equation*}
@@ -1396,7 +1398,7 @@ Dans cette sous-section une partie plus technique va être abordée. Celle-ci es
 connue dans la communauté mais permettra au lecteur non initié de se 
 familiariser avec la méthode employée pour déterminer un ensemble de points 
 restrictifs à l'aide du Frobenius. Cette partie présente aussi l'avantage de 
-montrer le contexte d'algorithmes (Elkies 1998 et BMSS2008 présentés dans le 
+montrer le contexte d'algorithmes (Elkies 1998 et BMSS 2008 présentés dans le 
 chapitre~ \ref{cha:iso:computing}) de calculs d'isogénies auxquels il est 
 pertinent de se comparer.
 
