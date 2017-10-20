@@ -327,7 +327,7 @@ cryptographie \cite{Miller85,Koblitz87,Koblitz89}. Dans les domaines applicatifs
 on s'intéresse tout particulièrement aux courbes elliptiques sur les corps finis. 
 Les algorithmes de calculs de cardinalité de courbes elliptiques sont donc 
 fondamentaux, afin par exemple de définir les paramètres des cryptosystèmes. 
-L'algorithme de Schoof~\cite{Schoof85}; est le premier algorithme de complexité
+L'algorithme de Schoof~\cite{Schoof85} est le premier algorithme de complexité
 polynomiale à calculer la cardinalité de courbes elliptiques sur les corps 
 finis. Il a été amélioré par la suite par les travaux de Atkin~\cite{Atkin88} 
 et Elkies~\cite{Elkies91} aboutissant à l'algorithme SEA~\cite{Schoof95}.
@@ -375,6 +375,9 @@ coûteux dès que $p$ augmente. Ainsi, l'algorithme de Lercier et
 Sirvent, %~\cite{Lercier-Sirvent2008}, 
  avec une dépendance logarithmique en $p$, 
 est préféré pour les plus grandes caractéristiques. 
+
+Soulignons que le calcul d'isogénies n'est pas une étape dominante du point de
+vue de la complexité dans l'algorithme SEA.
 %En pratique déterminer 
 %lequel des deux est le plus pertinent doit se faire au cas par cas. 
 
@@ -387,7 +390,8 @@ l'est dans d'autres applications.
 %complexité moins élevée en le degré de l'isogénie n'est pas motivée dans ce 
 %contexte.
 %Cependant
-Le calcul d'isogénies est intéressant par exemple pour les crypto-systèmes à 
+Le problème du calcul de l'isogénie explicite a trouvé récemment de nouvelles 
+applications, par exemple pour les crypto-systèmes à 
 trappe de Teske~\cite{Teske06}, les travaux de cryptanalyse de 
  \cite{MaurerMenezesTeske01}, la construction de fonctions de hachage 
  \cite{CGL09}, l'accélération de la 
@@ -395,6 +399,7 @@ multiplication scalaire \cite{GallantLambertVanstone01,LongaSica14}, ou les
 crypto-systèmes post-quantiques à base de graphes d'isogénies 
 \cite{Couveignes06} \cite{RostovtsevStolbunov06} \cite{DeFeoJaoPlut14}.
 
+  
 %+  4) Mais il y a des cas (carac moyenne), ou c'est moins clair entre L-S et Couveignes;
 %Les toutes premières méthodes de calcul 
 %d'isogénies dans ce contexte \cite{Atkin91} \cite{CharlapColeyRobbins91} sont
@@ -407,7 +412,8 @@ crypto-systèmes post-quantiques à base de graphes d'isogénies
 %spécifiques des courbes (sous équation de Weierstrass normalisée) alors que 
 %les courbes peuvent être représentées à isomorphisme près à l'aide de leur 
 %$j$-invariant.
-
+Dans ces récentes applications le rapport des complexités avec le calcul 
+d'isogénies est différent que celui de S.E.A..
 Ainsi, il est pertinent d'approfondir le travail de Couveignes~\cite{Couveignes96} 
 sur le calcul d'isogénies à cause de sa bonne complexité en le degré
 de l'isogénie.
@@ -498,10 +504,11 @@ cardinalité.
 
 
 Les graphes d'isogénies ont été étudiés pour la première fois par 
-\cite{Kohel96}; ses travaux dans le contexte particulier des courbes elliptiques
-supersingulières ont été inspirés par ceux de \cite{Mestre86,Pizer90,Pizer95} 
+Kohel~\cite{Kohel96}; ses travaux ont été inspirés par ceux de
+\cite{Mestre86,Pizer90,Pizer95} dans le contexte particulier des 
+courbes elliptiques supersingulières 
 qu'il a adapté et développé dans ce contexte; il a aussi étudié le cas des 
-courbes elliptiques ordinaires; tout cela afin de calculer l'anneau des 
+courbes elliptiques ordinaires. Cela afin de calculer l'anneau des 
 endomorphismes d'une courbe 
 elliptique. Kohel a défini une nomenclature sur les niveaux dans le graphe 
 d'isogénies. Ainsi le graphe de la Figure~\ref{fig:int:vol} a été représenté
@@ -594,18 +601,18 @@ algorithmes permettant de calculer certaines isogénies, spécifiées par leurs
 directions, dans le volcan. 
 
 Ensuite, nous présentons dans le chapitre~\ref{cha:alg:fin} comment ces 
-isogénies spécifiées 
-par leurs directions peuvent être utilisées dans un algorithme de Couveignes
+isogénies peuvent être utilisées dans un algorithme de Couveignes
 où l'isogénie est interpolée sur les points d'ordre $\ell^k$. Nous
-appellerons $\ell$-adiques ces variantes de l'algorithme de Couveignes, pour 
-tout $\ell$ premier différent de $p$.
+appellerons «\emph{$\ell$-adiques}» ces variantes de l'algorithme de 
+Couveignes, qui fonctionnent pour presque tout $\ell$ premier différent de $p$.
 Nous présentons et analysons donc un algorithme $\ell$-adique de
 Couveignes dans un cas favorable (à savoir, lorsque un entier $\ell$ avec des 
-bonnes propriétés nous est fourni d'avance), puis dans le cas général, où nous 
+bonnes propriétés nous est fourni d'avance), puis nous 
 utilisons notamment un résultat de Shparlinski et Sutherland 
 \cite{ShparlinskiSutherland14} afin de donner une borne sur l'entier $\ell$. 
-Nous faisons aussi une présentation d'une variante qui n'impose pas de contraintes 
-sur $\ell$. Celle-ci sera moins détaillée car elle est moins performante.
+Nous présentons aussi une variante de l'algorithme qui nous permet alors de 
+donner directement une borne sur $\ell$ pour résoudre le problème de l'isogénie
+explicite.
 
 Enfin nous présentons dans le chapitre~\ref{cha:var:cou} trois variantes de notre
 algorithme du chapitre~\ref{cha:alg:fin} 
