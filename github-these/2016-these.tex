@@ -639,13 +639,13 @@ f(x)>Mg(x) \quad \text{pour} \quad x>x_0.
 \]
 Nous définissons la notation $\Theta$ pour laquelle que $f \in \Theta(g)$ si et seulement si $f \in O(g)$ et $f \in \Omega(g)$.
 
-Dans ce document, de nombreux algorithmes vont utiliser la multiplication rapide, nous notons alos: $\mathsf{M}:\mathbb{N} \rightarrow \mathbb{N}$ la \emph{fonction de multiplication} tel que le coût de la multiplication de deux polynômes de de degré $n$ définis dans $\mathbb{F}_q[x]$ coûte $M(n)$ opérations arithmétiques dans $\mathbb{F}_q$. En utilisant les résultats de \cite[§8.3]{vzGJG03} nous pouvons supposer que:
+Dans ce document, de nombreux algorithmes vont utiliser la multiplication rapide, nous notons alors $\mathsf{M}:\mathbb{N} \rightarrow \mathbb{N}$ la \emph{fonction de multiplication} telle que le coût de la multiplication de deux polynômes de de degré $n$ définis dans $\mathbb{F}_q[x]$ coûte $M(n)$ opérations arithmétiques dans $\mathbb{F}_q$. En utilisant les résultats de \cite[§8.3]{vzGJG03} nous pouvons supposer que:
 \begin{itemize}
 \item $\mathsf{M}(n)$ est superlinéaire, c'est à dire $\frac{\mathsf{M}(n)}{n} \geqslant \frac{\mathsf{M}(m)}{m}$ si $n \geqslant m$,
 \item $\mathsf{M}(n)$ est au plus quadratique: $\mathsf{M}(mn) \leqslant m^2 \mathsf{M}(n)$.
 \end{itemize} 
 
-\`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} utlisant des transformation de Fourier rapides, la multiplication de polynômes de degré $n$ appartenant à $R[x]$ pour un anneau $R$ quelconque est de \newline ${O(n\log(n) \log \log (n))}$ opérations arithmétiques dans $R$.
+\`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} utlisant des transformées de Fourier rapides, la multiplication de polynômes de degré $n$ appartenant à $R[x]$ pour un anneau $R$ quelconque est de \newline ${O(n\log(n) \log \log (n))}$ opérations arithmétiques dans $R$.
 
 
 Dans ce document nous notons par $\omega$ un constante telle que l'on peut 
@@ -660,9 +660,11 @@ logarithmiques en la variable $r$. Ainsi nous avons $O(r \ell \log(r) \log(\ell)
 Nous omettrons de préciser la variable quand il n'y a pas d'ambiguïtés possibles.
 
 Enfin des algorithmes de type Las Vegas vont être utilisés dans ce travail; ces
-algorithmes sont des algorithmes probabilistes qui produisent un résultat 
-correct. Dès que nous utilisons un algorithme de type Las Vegas alors pour la 
-complexité énoncée nous parlerons de coût moyen. 
+algorithmes sont des algorithmes probabilistes qui produisent un résultat toujours 
+correct mais dont la complexité dépend de l'aléa fourni.Dès que nous utilisons 
+un algorithme de type Las Vegas, nous analysons sa complexité dans le cas 
+moyen, et nous ignorons le pire cas. Nous indiquons donc l'utilisation 
+d'algorithme de type Las Vegas dès que nous parlons de complexité moyenne.
 
 
 \section{Théorie de Galois}
@@ -678,30 +680,30 @@ $(P_i)_{i \in I}$. On dit alors que $\mathbb{L}$ est le
 \end{defi}
 
 \begin{defi}
-Un extension de corps $[\mathbb{L}:\mathbb{K}]$ est dite \emph{normale} ou quasi-galoisienne lorsque tout polynôme défini sur celle-ci se scinde ou 
+Un extension de corps $\mathbb{L}/\mathbb{K}$ est dite \emph{normale} ou quasi-galoisienne lorsque tout polynôme défini sur celle-ci se scinde ou 
 n'admet aucune racine.
 \end{defi}
 
 \begin{defi}
-Soit une extension de corps $[\mathbb{L}:\mathbb{K}]$, un élément $x$ de 
+Soit une extension de corps $\mathbb{L}/\mathbb{K}$, un élément $x$ de 
 $\mathbb{L}$ est dit séparable sur $\mathbb{K}$ si son polynôme minimal défini
 sur $\mathbb{K}$ n'admet aucune racine multiple. Une extension de corps 
-$[\mathbb{L}:\mathbb{K}]$ est dite \emph{séparable} si tout élément $x \in 
+$\mathbb{L}/\mathbb{K}$ est dite \emph{séparable} si tout élément $x \in 
 \mathbb{L}$ est séparable.
 \end{defi}
 
 \begin{defi}
-Une extension de corps $[\mathbb{L}:\mathbb{K}]$ est dite une \emph{extension 
+Une extension de corps $\mathbb{L}/\mathbb{K}$ est dite une \emph{extension 
 Galoisienne} si elle est à la fois séparable et normale.
 \end{defi}
 
 \begin{thm}
-Soit $[\mathbb{L}:\mathbb{K}]$ une extension Galoisienne. Alors il existe un 
+Soit $\mathbb{L}/\mathbb{K}$ une extension Galoisienne. Alors il existe un 
 élément $x \in \mathbb{L}$ appelé \emph{élément primitif} tel que $\mathbb{L}=\mathbb{K}[x]$. 
 \end{thm}
 
-Soit $[\mathbb{L}:\mathbb{K}]$ une extension Galoisienne alors on appelle 
-\emph{groupe de Galois} de $[\mathbb{L}:\mathbb{K}]$ le groupe d'automorphismes de
+Soit $\mathbb{L}/\mathbb{K}$ une extension Galoisienne alors on appelle 
+\emph{groupe de Galois} de $\mathbb{L}/\mathbb{K}$ le groupe d'automorphismes de
  $\mathbb{L}$ qui laisse fixe $\mathbb{K}$, on le note $\mathsf{Gal}(\mathbb{L}:
  \mathbb{K})$.
  
@@ -713,11 +715,11 @@ Soit $[\mathbb{L}:\mathbb{K}]$ une extension Galoisienne alors on appelle
 
 
 \begin{defi}
-Pour une extension de corps $[\mathbb{L}:\mathbb{K}]$, avec $\mathbb{K}$ de  
+Pour une extension de corps $\mathbb{L}/\mathbb{K}$, avec $\mathbb{K}$ de  
 caractéristique positive, un élément de $\mathbb{L}$ est dit \emph{purement 
 inséparable} ou radiciel si il est stable sous l'action d'un élément de 
 $ \mathsf{Gal}(\mathbb{L}:\mathbb{K})$. Une extension de corps 
-$[\mathbb{L}:\mathbb{K}]$ est alors dite purement inséparable (ou radicielle)
+$\mathbb{L}/\mathbb{K}$ est alors dite purement inséparable (ou radicielle)
 si tout élément de $\mathbb{L}$ l'est.
 \end{defi}
 
@@ -926,14 +928,14 @@ Soient $P,Q \in E(\mathbb{K})$, $L$ la droite reliant $P$ à $Q$ (ou tangente à
 
 En utilisant la notation $(x_P,y_P)$ pour les coordonnées affines d'un point $P$ de la courbe, on obtient alors pour des points $P,Q$ de $E(\mathbb{K})$ les formules suivantes:
 \begin{itemize}
-\item $P+O_E=O_E+P=(x_P,y_P)$;
+\item $P+0_E=0_E+P=(x_P,y_P)$;
 \item $-P=(x_P,-y_P-a_1x_P-a_3)$;
 \item En posant $\lambda= \begin{cases}
 \frac{y_{Q}-y_{P}}{x_{Q}-x_{P}} & \text{si } P\neq Q\\
 \frac{3x_{P}^{2}+2a_{2}x_{P}+a_{4}-a_{1}y_{P}}{2y_{P}+a_{1}x_{P}+a_{3}} & \text{si } P=Q
 \end{cases}\ $,
 
-on peut alors exprimer les coordonnées de $P+Q$:
+on peut alors exprimer les coordonnées de $P+Q$ par
 \begin{equation*}
 \begin{alignedat}{1}
 & x_{P+Q}=\lambda^2 +a_1\lambda-a_2-x_P-x_Q,\\
@@ -1016,13 +1018,13 @@ f & \mapsto f  \circ \varphi.
 Soit $\mathbb{K}$ un corps algébriquement clos, $\varphi$ une isogénie définie
 sur $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors $\varphi$ est dite 
 \emph{séparable} ou \emph{inséparable} selon que l'extension 
-$[\mathbb{K}(E_1):\varphi^*(\mathbb{K}(E_2))]$ l'est ou pas. On note alors 
+$\mathbb{K}(E_1)/\varphi^*(\mathbb{K}(E_2))$ l'est ou pas. On note alors 
 \emph{$\deg_s{\varphi}$}, \emph{$\deg_i{\varphi}$} les degrés de séparabilité 
 et d'inséparabilité de l'extension de corps 
-$[\mathbb{K}(E_1):\varphi^*(\mathbb{K}(E_2))]$ (voir définition 
+$\mathbb{K}(E_1)/\varphi^*(\mathbb{K}(E_2))$ (voir définition 
 \ref{def:degs:degi}). Nous avons donc $\deg{\varphi}=
 \deg_s{\varphi}\deg_i{\varphi}$ qui est égal aussi au degré de l'extension de 
-corps $[\mathbb{K}(E_1):\varphi^*(\mathbb{K}(E_2))]$.
+corps $\mathbb{K}(E_1)/\varphi^*(\mathbb{K}(E_2))$.
 \end{defi}
 
 Une isogénie de degré $\ell$ sera alors appelée une $\ell$-isogénie.
@@ -1184,7 +1186,7 @@ E[m]=\nicefrac{\mathbb{Z}}{m\mathbb{Z}} \times \nicefrac{\mathbb{Z}}{m\mathbb{Z}
 \end{equation*}
 \item Si $\mathrm{car}(\mathbb{K})=p>0$ alors:
 \begin{enumerate}
-\item Soit $E[p^e]=\{O_E\}$ pour tout $e \geqslant 1$ et alors $E$ est dite \emph{supersingulière},
+\item Soit $E[p^e]=\{0_E\}$ pour tout $e \geqslant 1$ et alors $E$ est dite \emph{supersingulière},
 \item Soit $E[p^e]=\nicefrac{\mathbb{Z}}{p^e\mathbb{Z}}$ pour tout $e \geqslant 1$
 et alors $E$ est dite \emph{ordinaire}.
 \end{enumerate}
@@ -1196,7 +1198,7 @@ Voir \cite[Corrolary III.6.4]{Silv1}.
 \end{proof}
 
 %\begin{defi}
-%Une courbe elliptique $E$ définie sur un corps $\mathbb{K}$ de caractéristique $p$ différente de $0$ est dite \emph{supersingulière} si $E[p^e]=\{O_E\}$ pour tout $e$ entier naturel non nul, elle est dite \emph{ordinaire} sinon. 
+%Une courbe elliptique $E$ définie sur un corps $\mathbb{K}$ de caractéristique $p$ différente de $0$ est dite \emph{supersingulière} si $E[p^e]=\{0_E\}$ pour tout $e$ entier naturel non nul, elle est dite \emph{ordinaire} sinon. 
 %\end{defi}
 
 \begin{defi}[Module de Tate]
@@ -1224,7 +1226,7 @@ En tant que $\mathbb{Z}_{\ell}$ module, le module de Tate a la structure suivant
 
 %\begin{alignedat}{2}
 %& \mathsf{T}_{\ell} \cong \mathbb{Z}_{\ell} \times \mathbb{Z}_{\ell} &\textit{ si } \ell \neq \mathrm{car}(\mathbb{K}).& \\
-%& T_{p} \cong \{O_E\} \textit{ or } \mathbb{Z}_{p} \times \mathbb{Z}_{\ell} &\textit{ si }  p =\mathrm{car}(\mathbb{K})&>0.
+%& T_{p} \cong \{0_E\} \textit{ or } \mathbb{Z}_{p} \times \mathbb{Z}_{\ell} &\textit{ si }  p =\mathrm{car}(\mathbb{K})&>0.
 %\end{alignedat}
 
 
@@ -1321,7 +1323,7 @@ soit ordinaire ou supersingulière.
 Soit $E$ une courbe elliptique définie sur $\mathbb{F}_q$, soit $\pi$ l'endomorphisme de Frobenius. Les conditions suivantes sont équivalentes:
 \begin{enumerate}
 \item $E$ est supersingulière,
-\item $E[p^e]=\{O_E\}$ pour tout $e > 0$,
+\item $E[p^e]=\{0_E\}$ pour tout $e > 0$,
 \item la duale $\widehat{\pi}$ de l'endomorphisme de Frobenius est purement inséparable,
 \item la trace $t_{\pi}$ de l'endomorphisme de Frobenius est divisible par $p$,
 \item l'anneau des endomorphismes $\mathrm{End}(E)$ est isomorphe à un ordre dans une algèbre de quaternions.
@@ -2296,7 +2298,7 @@ ces doublons inutiles.
 \begin{cor}
 \label{cor:orb:fro} 
 Soient $E$ une courbe elliptique définie sur $\mathbb{F}_q$ telle que \newline
-$E(\mathbb{F}_q)[p] =\{O_E\} $, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:
+$E(\mathbb{F}_q)[p] =\{0_E\} $, $\mathbb{L}_1$ tel que $[\mathbb{L}_1:
 \mathbb{F}_q]=d_1$ avec $d_1 \mid p-1$, $k \geqslant 1$, alors les orbites des 
 abscisses de points d'ordre $p^k$ sous l'action de $\mathsf{Gal}
 (\mathbb{L}_{k}:\mathbb{F}_q)$ sont de taille $d_1 p^{k-v_p(E(\mathbb{L}_1))}$ 
@@ -2327,7 +2329,7 @@ Sur la figure \ref{fig:p-tor:fro} on peut voir une répartition des abscisses de
 		\node (Af1) at (30.5,1.5) {};
 		\draw[color=black,decorate,decoration={brace,raise=0.2cm},below]
 				(Af1) -- (Af0) node[color=black,below=0.2cm, pos=0.5] {$f$};
-		\node (O) at (21,-5) {$O_E$};
+		\node (O) at (21,-5) {$0_E$};
 		\draw [dashed, color=gray!50] (At0.center) to (O);
 		\draw [dashed, color=gray!50] (At1.center) to (O);
 		\draw [dashed, color=gray!50] (At2.center) to (O);
@@ -2792,7 +2794,7 @@ Soit $\mathbb{F}_q$ un corps fini de caractéristique $p$, soit $\ell$ un nombre
   %Pour $q \neq 1 \bmod \ell$ on se ramène au cas $q=1\bmod \ell$ en construisant une extension $\mathsf{F}_{0}$ de $\mathbb{F}_q$ de degré $d_0 \mid r$ avec $r$ qui représente l'ordre multiplicatif de $q$ dans $\mathbb{Z}/\ell \mathbb{Z}$,
   On construit tout d'abord $\mathsf{F}_1$ l'extension de $\mathbb{F}_q$ de degré $d_1$ qui divise $\ell-1$ et est donc premier avec $\ell$. Cette construction de $\mathsf{F}_1$ est faite en même temps que la détermination d'un non-résidu $\ell$-adique. 
 
-%Tout d'abord on détermine la nature de $\mathsf{F}_0$, pour cela on calcule le $\ell$-ème polynôme cyclotomique $\Phi_{\ell} \in \mathbb{Z}[X_0]$ et on le factorise sur $\mathbb{F}_q[X_0]$ par \cite[Th 9]{Shoup93} cela a un coût de $O_e(\mathsf{M}(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$. Sur $\mathbb{F}_q[X_0]$, $\Phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$. Si $r=1$ alors on a $\mathbb{F}_q \equiv \mathsf{F}_0$ sinon on doit construire $\mathsf{F}_0$.
+%Tout d'abord on détermine la nature de $\mathsf{F}_0$, pour cela on calcule le $\ell$-ème polynôme cyclotomique $\Phi_{\ell} \in \mathbb{Z}[X_0]$ et on le factorise sur $\mathbb{F}_q[X_0]$ par \cite[Th 9]{Shoup93} cela a un coût de $0_E(\mathsf{M}(\ell)\log(\ell q))$ opérations sur $\mathbb{F}_q$. Sur $\mathbb{F}_q[X_0]$, $\Phi_{\ell}$ se scinde en facteurs irréductibles de même degré $r$. Si $r=1$ alors on a $\mathbb{F}_q \equiv \mathsf{F}_0$ sinon on doit construire $\mathsf{F}_0$.
 Pour construire $\mathsf{F}_1$ on calcule tout d'abord un polynôme irréductible
 de degré $d_1$ défini sur $\mathbb{F}_q$, pour cela on utilise par exemple 
 l'algorithme probabiliste de Ben-Or qui calcule un tel polynôme avec une 
@@ -2816,7 +2818,7 @@ $\mathbb{F}_q$.
  %$\mathsf{F}_0$ étant une extension de degré premier à $\ell$ de $\mathbb{F}_q$ %alors lorsque l'on a une complexité exprimée en termes d'opérations sur $\mathsf{F}_0$ 
 %%on pourra appliquer les résultats obtenus sur les différents algorithmes étudiés (relèvement, descente, Frobenius) lorsque $q=1 \bmod \ell$ en 
 %on rajoute un facteur multiplicatif $O(\mathsf{M}(r))\log(r)$ pour prendre en compte le coût des opérations algorithmiques dans $\mathsf{F}_0$. En pratique pour ne pas surcharger les calculs de complexité on remplacera ce facteur multiplicatif $O(\mathsf{M}(r))\log(r)$ par $O(\mathsf{M}(\ell))\log(\ell)$ }
-%\paragraph{}{ Pour $q=1 \bmod \ell$ on pose $F_0=\mathbb{F}_q$. Tout non résidu $\ell$-adique $x_0$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-x_0$, duquel on déduit alors une construction de $\mathsf{F}_{n}$. Le calcul de ce non résidu $\ell$-adique se fait après avoir testé $O(1)$ éléments tirés au hasard chaque test s'effectuant en $O_e(\log(q))$ opérations sur $\mathbb{F}_q$ par \cite[Lemma 15]{Shoup93}.} 
+%\paragraph{}{ Pour $q=1 \bmod \ell$ on pose $F_0=\mathbb{F}_q$. Tout non résidu $\ell$-adique $x_0$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-x_0$, duquel on déduit alors une construction de $\mathsf{F}_{n}$. Le calcul de ce non résidu $\ell$-adique se fait après avoir testé $O(1)$ éléments tirés au hasard chaque test s'effectuant en $0_E(\log(q))$ opérations sur $\mathbb{F}_q$ par \cite[Lemma 15]{Shoup93}.} 
 %\subsubsection{$\ell=2$}
 %Pour $\ell=2$ comme vu dans \cite[Theorem VI.9.1]{lang2002algebra} et mis en pratique dans \cite{Shoup93} pour calculer une extension quadratique d'un corps fini $\mathbb{F}_q$ on a deux cas à considérer:
 %\begin{itemize}
