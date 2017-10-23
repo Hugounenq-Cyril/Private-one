@@ -381,9 +381,9 @@ vue de la complexité dans l'algorithme SEA.
 %En pratique déterminer 
 %lequel des deux est le plus pertinent doit se faire au cas par cas. 
 
-Le calcul de l'isogénie explicite n'étant pas une étape qui domine le coût de 
-SEA, ce problème n'est donc, pour le moment, pas motivé dans ce contexte, il 
-l'est dans d'autres applications.
+%Le calcul de l'isogénie explicite n'étant pas une étape qui domine le coût de 
+%SEA, ce problème n'est donc, pour le moment, pas motivé dans ce contexte, il 
+%l'est dans d'autres applications.
 %/Soulignons que, notons que/De plus comme dans SEA d'autres opérations ont 
 %un coût plus élevé que l'algorithme de Lercier et Sirvent 
 %\cite{Lercier-Sirvent2008}, la question de trouver un algorithme avec une 
@@ -403,17 +403,16 @@ crypto-systèmes post-quantiques à base de graphes d'isogénies
 %+  4) Mais il y a des cas (carac moyenne), ou c'est moins clair entre L-S et Couveignes;
 %Les toutes premières méthodes de calcul 
 %d'isogénies dans ce contexte \cite{Atkin91} \cite{CharlapColeyRobbins91} sont
-%dominées par d'autres étapes dans l'algorithme S.E.A.. Le premier algorithme à
+%dominées par d'autres étapes dans l'algorithme SEA. Le premier algorithme à
 %traiter du calcul d'isogénies sur les corps finis est celui de Elkies 
 %\cite{Elkies1998}; cet algorithme se limitait au cas de corps finis 
 %$\mathbb{F}_q$ de caractéristique $p$ suffisamment grande. 
 
-%Dans S.E.A. les isogénies sont calculées à l'aide de représentations 
+%Dans SEA les isogénies sont calculées à l'aide de représentations 
 %spécifiques des courbes (sous équation de Weierstrass normalisée) alors que 
 %les courbes peuvent être représentées à isomorphisme près à l'aide de leur 
 %$j$-invariant.
-Dans ces récentes applications le rapport des complexités avec le calcul 
-d'isogénies est différent que celui de S.E.A..
+Dans ces récentes applications le calcul d'isogénies peut être dominant. 
 Ainsi, il est pertinent d'approfondir le travail de Couveignes~\cite{Couveignes96} 
 sur le calcul d'isogénies à cause de sa bonne complexité en le degré
 de l'isogénie.
@@ -604,18 +603,15 @@ Ensuite, nous présentons dans le chapitre~\ref{cha:alg:fin} comment ces
 isogénies peuvent être utilisées dans un algorithme de Couveignes
 où l'isogénie est interpolée sur les points d'ordre $\ell^k$. Nous
 appellerons «\emph{$\ell$-adiques}» ces variantes de l'algorithme de 
-Couveignes, qui fonctionnent pour presque tout $\ell$ premier différent de $p$.
-Nous présentons et analysons donc un algorithme $\ell$-adique de
-Couveignes dans un cas favorable (à savoir, lorsque un entier $\ell$ avec des 
-bonnes propriétés nous est fourni d'avance), puis nous 
-utilisons notamment un résultat de Shparlinski et Sutherland 
-\cite{ShparlinskiSutherland14} afin de donner une borne sur l'entier $\ell$. 
-Nous présentons aussi une variante de l'algorithme qui nous permet alors de 
-donner directement une borne sur $\ell$ pour résoudre le problème de l'isogénie
-explicite.
+Couveignes. Nous présentons et analysons deux algorithmes $\ell$-adiques qui 
+fonctionnent pour presque tout $\ell$ premier différent de $p$. Après une étude
+de l'application du premier algorithme présentée à l'aide d'un résultat de 
+Shparlinski et Sutherland \cite{ShparlinskiSutherland14}, nous pouvons à l'aide
+du second algorithme donner directement une borne sur le paramètre $\ell$ pour 
+résoudre le problème de l'isogénie explicite.
 
 Enfin nous présentons dans le chapitre~\ref{cha:var:cou} trois variantes de notre
-algorithme du chapitre~\ref{cha:alg:fin} 
+premier algorithme du chapitre~\ref{cha:alg:fin} 
 avec une variante qui utilise un seul sous-groupe cyclique des points d'ordre $\ell^k$,
 une variante qui utilise différents nombres premiers favorables,
 une variante qui travaille avec un nombre composé favorable,
@@ -1404,7 +1400,7 @@ complexe.
 
 
 \subsection{Algorithme de Schoof et ses améliorations}
-%Ici vont être présentés les bases de S.E.A., aucun apport personnel n'a été fait dans ce cadre là, mais il est intéressant pour le lecteur de voir les concepts et  le contexte de celui-ci qui seront évoqués plus tard.
+%Ici vont être présentés les bases de SEA, aucun apport personnel n'a été fait dans ce cadre là, mais il est intéressant pour le lecteur de voir les concepts et  le contexte de celui-ci qui seront évoqués plus tard.
 \label{sub-sec:schoof}
 Dans cette sous-section une partie plus technique va être abordée. Celle-ci 
  permettra au lecteur non initié de se 
@@ -8079,9 +8075,7 @@ O(r\ell^2)$ fois cela donne une complexité de $O(r \ell^2 \ell^{2h}(\mathsf{M}(
 L'expression en $\ell^{2h}$ dans le calcul de complexité a été délibérément 
 laissée dans la complexité énoncée afin de montrer l'influence de la boucle 
 entre les étapes \ref{alg:cou:atk:div:h} à ~\ref{alg:cou:atk:test} et de 
-pouvoir énoncer le corollaire suivant:
-
-Nous pouvons énoncer un résultat particulier intéressant pour les volcans de 
+pouvoir énoncer le résultat suivant intéressant pour les volcans de 
 Atkin de hauteur $0$.
 
 \begin{cor}
@@ -8089,16 +8083,15 @@ Atkin de hauteur $0$.
   En supposant que $h=0$, 
   l'algorithme~\ref{alg:cou:atk} calcule une $r$-isogénie 
   ${\phi:E \rightarrow E'}$ avec un coût moyen de \[
-  O(r \ell^2 (\mathsf{M}(r\ell^4)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell^{1,5})\sqrt{r}\log(\ell)\log(\ell q))\]
+  O(r \ell^2 (\mathsf{M}(r\ell^5)\log(r)\log(\ell)+\mathsf{M}(\sqrt{r}\ell^{2,5})\sqrt{r}\log(\ell)\log(\ell q))\]
 auquel il faut ajouter un temps de pré-calcul de:
-$O(r \mathsf{M}(\sqrt{r})\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r})\log(\ell)\log(\ell q))$.
+$O(r \mathsf{M}(\sqrt{r}\ell)\log(r)\log(\ell)+ \sqrt{r} \mathsf{M}(\sqrt{r}\ell)\log(\ell)\log(\ell q))$.
 \end{cor}
 
 Il faut tout de même préciser que dans ce cas-là le premier étage de la tour 
 d'extensions sera de degré $d_1$ avec $d_1 | \ell^2-1$ (voir 
 remarque~\ref{rem:hau:atk}), ce qui asymptotiquement ne change pas grandement 
-l'analyse mais pour des applications cela peut rajouter un facteur non 
-négligeable.
+l'analyse mais qui ajoute un facteur $\ell$ dans les calculs.
 
 Maintenant nous abordons le cas général où les courbes $r$-isogènes ne sont
 pas situées sur le cratère du volcan de $\ell$-isogénies.
@@ -8137,7 +8130,7 @@ Sirvent~\cite{Lercier-Sirvent2008}.
 
 \section{Conclusion}
 
-Nous avons donc vu deux cas où l'on avait un algorithme de Couveignes 
+Nous avons donc vu deux cas où l'on a un algorithme de Couveignes 
 $\ell$-adique quasi-quadratique: la proposition~\ref{pro:full-complexity} et le
 corollaire~\ref{cor:atk:full-complexity:h=0}. On peut alors énoncer la borne 
 suivante pour trouver un premier $\ell$ qui permette de résoudre le problème du
@@ -8149,20 +8142,22 @@ ordinaires $E,E'$ définies sur $\mathbb{F}_q$, un entier $r$ tel que $E$ et
 $E'$ soient $r$-isogènes, alors la $r$-isogénie peut être calculée avec une 
 complexité de
 \[
-\tilde{O}(r^2 \ell^{O(1)}) \text{ opérations sur }\mathbb{F}_q
+\tilde{O}(r^2 \log(q)^{8}) \text{ opérations sur }\mathbb{F}_q
 \]
-avec un paramètre $\ell$ borné par $O(\log(q))$.
+en ayant borné le paramètre $\ell$ par $O(\log(q))$.
 \end{thm}
 
 \begin{proof}
-L'idée de la preuve est de montrer que l'on peut trouver un premier $\ell$ de
+L'idée est de montrer que l'on peut trouver un premier $\ell$ de
 Elkies ou de Atkin pour un volcan de hauteur $h=0$ borné par $O(\log(q))$, 
 ainsi avec un tel premier on pourra conclure avec soit la 
 proposition~\ref{pro:full-complexity} soit le 
-corollaire~\ref{cor:atk:full-complexity:h=0}. Les nombres de Atkin et de Elkies
-de hauteur $h=0$ n'étant pas des diviseurs de $d_K$ et $d_K$ étant borné par 
-$O(q)$ car $d_{\pi}$ l'est alors par un raisonnement similaire à celui de la 
-preuve de la proposition~\ref{pro:bor:ell} on a le résultat. 
+corollaire~\ref{cor:atk:full-complexity:h=0}. 
+$d_{\pi}$ est borné par $O(q)$ par le théorème de Hasse. Les nombres de Elkies 
+et d'Atkin pour des volcans de hauteur strictement positive sont des diviseurs
+de $d_{\pi}$, de tels nombres ainsi que les entiers qui divisent $d_{K}$
+sont bornés par $O(\log(q))$. On peut donc trouver un nombre de Elkies ou de 
+Atkin pour un volcan de hauteur $h=0$ borné par $O(\log(q))$.
 \end{proof}
 
 \chapter{Variantes de l'algorithme de Couveignes $\ell$-adique dans le cas Elkies}
@@ -8950,7 +8945,7 @@ Couveignes~\cite{Couveignes96} au cas $\ell$-adique et s'affranchir de la
 dépendance polynomiale en la caractéristique. En particulier, nous avons 
 présenté un algorithme qui résout le problème du calcul explicite d'isogénie 
 avec une complexité quasi-quadratique en le degré de l'isogénie, et ce 
-dans des cas particuliers de nombre de Elkies et d'Atkin qui sont fréquents. 
+dans des cas particuliers de nombres de Elkies et d'Atkin qui sont fréquents. 
 %Dans le cas Atkin nous avons seulement obtenu 
 %un algorithme de complexité sous-cubique. Cet algorithme a une complexité moins
 %bonne par rapport à l'algorithme de Couveignes~\cite{Couveignes96} et à notre 
