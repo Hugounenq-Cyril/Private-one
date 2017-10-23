@@ -1110,7 +1110,7 @@ utilise les équations \eqref{eq:velu:gh} et \eqref{eq:velu:sum}:
 \begin{equation*}
 \frac{g(x)}{h(x)}= x + \sum_{Q \in G \setminus \{0_E\}} \frac{f'(Q)}{x-x(Q)}+\frac{2f(Q)}{(x-x(Q))^2}
 \end{equation*}
-ce que l'on peut reformuler par:
+ce qui a été reformulé (\cite[Proposition 4.1]{BMSS08}) par:
 \begin{equation}
 \frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
 \end{equation}
@@ -1618,7 +1618,11 @@ où $G=\ker(I)$, $g$ un polynôme de degré $r$. De plus à l'aide de la reformu
 \label{eq:vel:elk}
 \frac{g(x)}{h(x)}= \deg(I) x -p_1 - f'(x) \frac{h'(x)}{h(x)} -2f(x)  \left(\frac{h'(x)}{h(x)}\right)'
 \end{equation}
-avec $f$ donné par l'équation de Weierstrass de $E$: $y^2=f(x)$, $p_1$ la somme des abscisses des points du noyau que l'on peut lire sur le coefficient de $x^{r-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc expliciter des algorithmes dans le reste de ce document qui calculent $h$.
+avec $f$ donné par l'équation de Weierstrass de $E$: $y^2=f(x)$, $p_1$ la somme
+des abscisses des points du noyau que l'on peut lire sur le coefficient de 
+$x^{r-2}$ dans $h$. Ainsi à partir de $h(x)$ on est capable de calculer 
+l'isogénie en $\mathsf{M}(\deg(I))$ opérations sur $\mathbb{F}_q$. On va donc 
+expliciter dans le reste de ce document des algorithmes qui calculent $h$.
 
 
 Il est important de noter qu'il existe des isogénies de la forme:
@@ -1633,9 +1637,10 @@ avec $c \in \overline{\mathbb{F}_q}$. Ainsi on énonce les définitions suivante
 Une isogénie $I$ de la forme \eqref{eq:iso:gen} avec $c=1$ est dite 
 \emph{normalisée}. L'isogénie est alors séparable. 
 
-\'Etant données deux courbes $r$-isogènes exprimées sous forme de Weierstrass 
-telles que la $r$-isogénie associée à ces courbes est normalisée, on dit que ces 
-courbes ont des équations de Weierstrass \emph{normalisées}. 
+\'Etant données deux courbes $r$-isogènes exprimées sous forme de Weierstrass,
+ces courbes ont des équations de Weierstrass \emph{normalisées} si l'isogénie 
+de degré $r$ qui relie ces deux courbes associée à ces représentations des 
+courbes est normalisée. 
 \end{defi}
 
 \section{L'algorithme de Elkies 1998}
