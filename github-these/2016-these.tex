@@ -311,7 +311,7 @@ Enfin il y a Jennifer pour qui cette thèse n'a peut être pas beaucoup de sens 
 \nomenclature{$\pi(P,Q)$}{Représente l'action du Frobenius $\pi$ dans une base $P,Q$ sous forme matricielle.}
 \nomenclature{$|S|$}{Cardinal de l'ensemble $S$}
 \nomenclature{$\phi^{-1}(S)$}{Ensemble des pré-images de $S$ par l'application $\phi$}
-\nomenclature{$f_{E_1}$}{Application $f$ qui va de $E_1$ dans $E_1$}
+\nomenclature{$f_{E_1}$}{Application $f$ de $E_1$ dans $E_1$}
 
 
 \printnomenclature
@@ -661,7 +661,7 @@ Nous omettrons de préciser la variable quand il n'y a pas d'ambiguïtés possib
 
 Enfin des algorithmes de type Las Vegas vont être utilisés dans ce travail; ces
 algorithmes sont des algorithmes probabilistes qui produisent un résultat toujours 
-correct mais dont la complexité dépend de l'aléa fourni.Dès que nous utilisons 
+correct mais dont la complexité dépend de l'aléa fourni. Dès que nous utilisons 
 un algorithme de type Las Vegas, nous analysons sa complexité dans le cas 
 moyen, et nous ignorons le pire cas. Nous indiquons donc l'utilisation 
 d'algorithme de type Las Vegas dès que nous parlons de complexité moyenne.
@@ -680,7 +680,7 @@ $(P_i)_{i \in I}$. On dit alors que $\mathbb{L}$ est le
 \end{defi}
 
 \begin{defi}
-Un extension de corps $\mathbb{L}/\mathbb{K}$ est dite \emph{normale} ou quasi-galoisienne lorsque tout polynôme défini sur celle-ci se scinde ou 
+Une extension de corps $\mathbb{L}/\mathbb{K}$ est dite \emph{normale} ou quasi-galoisienne lorsque tout polynôme défini sur celle-ci se scinde ou 
 n'admet aucune racine.
 \end{defi}
 
@@ -779,7 +779,7 @@ Y^2Z+a_1XYZ+a_3YZ^2 &= X^3+a_2X^2Z+a_4XZ^2+a_6Z^3. \}
 \end{alignedat}
 \end{equation*}
 Le seul point correspondant à $Z=0$ est le \emph{point à l'infini} $0_E=(0:1:0)$, 
-chaque classe différente de $0_E$ a un unique représentant de la forme $(X,Y,1)$. 
+chaque classe différente de $0_E$ a un unique représentant de la forme $(X:Y:1)$. 
 \end{defi}
 
 Ainsi cette dernière remarque nous amène à considérer le changement de 
@@ -991,12 +991,21 @@ Soit $\varphi:E_1 \rightarrow E_2$ une isogénie alors pour tous points $P,Q$ de
 \begin{proof}
 Voir \cite[Theoreme III.4.8]{Silv1}
 \end{proof}
+%
+%\begin{defi}
+%Soit $\varphi: E_1 \rightarrow E_2$ une isogénie, on dira que $\varphi$ est une
+%isogénie définie sur $\mathbb{K}$ si sa restriction sur $E_1(\mathbb{K})$ et $
+%E_2(\mathbb{K})$ est encore un morphisme de variétés.
+%\end{defi}
 
-\begin{defi}
-Soit $\varphi: E_1 \rightarrow E_2$ une isogénie, on dira que $\varphi$ est une
-isogénie définie sur $\mathbb{K}$ si sa restriction sur $E_1(\mathbb{K})$ et $
-E_2(\mathbb{K})$ est encore un morphisme de variétés.
-\end{defi}
+\begin{nota}
+Soient $E_1, E_2$ deux courbes elliptiques définies sur $\mathbb{K}$, alors 
+on note $\mathrm{Hom}_{\mathbb{K}}(E_1,E_2)$, l'ensemble des isogénies de $E_1$
+vers $E_2$ définies sur $\mathbb{K}$.
+\end{nota}
+
+En particulier par la suite on étudiera comment calculer un élément de cet 
+ensemble.
 
 On dira que $E_1$ et $E_2$ sont isogènes lorsqu'il existe une isogénie 
 $\varphi$ de $E_1$ dans $E_2$. 
@@ -1019,7 +1028,7 @@ f & \mapsto f  \circ \varphi.
 
 \begin{defi}
 Soit $\mathbb{K}$ un corps algébriquement clos, $\varphi$ une isogénie définie
-sur $\mathbb{K}$ qui va de $E_1$ dans $E_2$, alors $\varphi$ est dite 
+sur $\mathbb{K}$ de $E_1$ dans $E_2$, alors $\varphi$ est dite 
 \emph{séparable} ou \emph{inséparable} selon que l'extension 
 $\mathbb{K}(E_1)/\varphi^*(\mathbb{K}(E_2))$ l'est ou pas. On note alors 
 \emph{$\deg_s{\varphi}$}, \emph{$\deg_i{\varphi}$} les degrés de séparabilité 
@@ -1147,7 +1156,7 @@ ou simplement \emph{rationnelle} quand il n'y a pas d'ambiguïté.
 \begin{thm}[Isogénie duale]
 Soit $\varphi$ une isogénie définie sur $\mathbb{K}$ d'une courbe elliptique 
 $E_1$ vers une courbe elliptique $E_2$, alors il existe une unique isogénie 
-$\widehat{\varphi}$ qui va de $E_2$ ver $E_1$ telle que $\widehat{\varphi}\circ
+$\widehat{\varphi}$ de $E_2$ vers $E_1$ telle que $\widehat{\varphi}\circ
 \varphi=[\deg(\varphi)]_{E_1}$ est appelée \emph{isogénie duale}.
 \end{thm}
 
@@ -1348,10 +1357,10 @@ Voir \cite[Theorem V.3.1]{Silv1}
 Dorénavant on ne va travailler qu'avec des courbes elliptiques ordinaires dans 
 tout le reste du document.
 
-L'endomorphisme de Frobenius $\pi$ relatif à $\mathbb{F}_q$ admet pour polynôme caractéristique:
-\begin{equation}
-\pi^2-t_{\pi}\pi+q=0
-\end{equation}
+L'endomorphisme de Frobenius $\pi$ relatif à $\mathbb{F}_q$ admet pour équation:
+\begin{equation*}
+X^2-t_{\pi}X+q=0
+\end{equation*}
 avec $t_{\pi}$ la trace de l'endomorphisme de Frobenius. Cette équation a un rôle important dans le calcul de cardinalité de courbes elliptiques \cite{Schoof85}.
 
 \begin{prop}
@@ -1376,29 +1385,30 @@ Soit $E$ une courbe définie sur $\mathbb{F}_q$, alors
 Voir \cite[Theorem V.1.1]{Silv1}
 \end{proof}
 
-\subsection{Multiplication complexe}
-
 %\begin{defi}
 %Une courbe elliptique $E$ ordinaire est dite à multiplication complexe si $\mathrm{End(E)}$ contient un endomorphisme différent de $[m]$ (la multiplication par $m$ sur les points de $E$) pour tout entier $m$. 
 %\end{defi} 
-
-De par la définition~\ref{def:mul:comp} toute courbe elliptique définie sur un corps fini est à multiplication complexe:
-
-\begin{prop}
-Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi$~l'endomorphisme de Frobenius alors: 
-\[
-\mathbb{Z}[\pi] \subset \mathrm{End}(E).
-\]
-\end{prop}
+Nous rappelons qu'une courbe elliptique est dite à multiplication complexe si
+son anneau des endomorphismes n'est pas réduit à $\mathbb{Z}$. Ainsi toute 
+courbe elliptique définie sur un corps fini est à multiplication 
+complexe.
+%
+%\begin{prop}
+%Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi$~l'endomorphisme de Frobenius alors: 
+%\[
+%\mathbb{Z}[\pi] \subset \mathrm{End}(E).
+%\]
+%\end{prop}
 
 
 \subsection{Algorithme de Schoof et ses améliorations}
 %Ici vont être présentés les bases de S.E.A., aucun apport personnel n'a été fait dans ce cadre là, mais il est intéressant pour le lecteur de voir les concepts et  le contexte de celui-ci qui seront évoqués plus tard.
 \label{sub-sec:schoof}
-Dans cette sous-section une partie plus technique va être abordée. Celle-ci est
-connue dans la communauté mais permettra au lecteur non initié de se 
-familiariser avec la méthode employée pour déterminer un ensemble de points 
-restrictifs à l'aide du Frobenius. Cette partie présente aussi l'avantage de 
+Dans cette sous-section une partie plus technique va être abordée. Celle-ci 
+ permettra au lecteur non initié de se 
+familiariser avec des méthodes déterminant des sous ensembles de la 
+$\ell$-torsion à l'aide du Frobenius.
+Cette partie présente aussi l'avantage de 
 montrer le contexte d'algorithmes (Elkies 1998 et BMSS 2008 présentés dans le 
 chapitre~ \ref{cha:iso:computing}) de calculs d'isogénies auxquels il est 
 pertinent de se comparer.
@@ -1417,17 +1427,27 @@ alors travailler modulo le polynôme de $\ell$-division (le polynôme unitaire
 qui s'annule sur les abscisses des points de $\ell$-torsion) qui est de degré 
 $(\ell^2-1)/2$. L'objectif de l'amélioration d'Elkies~\cite{Elkies91} est alors de considérer des sous-groupes de la $\ell$-torsion afin de diminuer le coût de l'algorithme.
 
-Des améliorations ont donc été apportées à l'algorithme de Schoof par Atkin et Elkies en analysant plus précisément l'action du Frobenius sur la $\ell$-torsion afin d'exhiber des sous-groupes de la $\ell$-torsion. Ainsi en analysant les solutions de l'équation caractéristique de $\pi$:
+Des améliorations ont donc été apportées à l'algorithme de Schoof par Atkin et 
+Elkies en analysant plus précisément l'action du Frobenius sur la 
+$\ell$-torsion afin d'exhiber des sous-groupes de la $\ell$-torsion. En 
+particulier comme l'objectif de l'algorithme de Schoof est de calculer la trace
+du Frobenius, il est naturel d'étudier la détermination des valeurs propres du
+Frobenius et donc de voir comment calculer celles-ci. Ainsi en analysant les 
+solutions de l'équation caractéristique de $\pi$:
 \begin{equation*}
 X^2-t_{\pi}X+q = 0 \bmod \ell,
 \end{equation*} 
 on peut voir quand il est possible de déterminer des sous-groupes de la 
-$\ell$-torsion stables par $\pi$.
+$\ell$-torsion stables par $\pi$, c'est à dire des espaces propres pour 
+l'action du Frobenius.
 On a plusieurs cas possibles selon les propriétés du discriminant du Frobenius 
 $d_{\pi}=t_{\pi}^2-4q$.
 
 \begin{defi}\label{def:dif-Atk-Elk}
-Soient $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ de $j$-invariant $j(E) \neq 0,1728$, $d_{\pi}$ le discriminant du polynôme caractéristique du Frobenius $\pi$ associé à $E$. Soit $\ell$ un nombre premier différent de $p$ la caractéristique de $\mathbb{F}_q$. Alors :
+Soient $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$ de 
+$j$-invariant $j(E) \neq 0,1728$, $d_{\pi}$ le discriminant du polynôme 
+caractéristique du Frobenius $\pi$ associé à $E$. Soit $\ell$ un nombre premier
+différent de $p$ la caractéristique de $\mathbb{F}_q$. Alors :
 \begin{itemize}
 \item[pour $\ell \neq 2$,] on a la distinction suivante: 
 
@@ -1701,7 +1721,10 @@ Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton
 on est capable d'exprimer $P$.
 On peut donc calculer $h(x)$ sans faire une reconstruction rationnelle (i.e. déterminer 
 la fraction $\frac{g(x)}{h(x)}$ à partir de son développement en série 
-$x+\sum_{i \geqslant 1}\frac{d_i}{x^i}$). En effet on peut déterminer les sommes
+$x+\sum_{i \geqslant 1}\frac{d_i}{x^i}$). 
+%Ceci nous permet donc à cette étape 
+%d'éviter un facteur $\log(r)$ ($r$ le degré de l'isogénie) pour le calcul de $h$. 
+En effet on peut déterminer les sommes
 de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de 
 $p_0=r-1, p_1$ et du développement en série de $\frac{g(x)}{h(x)}:x+
 \sum_{i \geqslant 1}\frac{d_i}{x^i}$.
@@ -2037,7 +2060,7 @@ A_a(x([k] P))= x([ka] P') \bmod T \quad \forall k \in \mathbb{Z}/p^{k}\mathbb{Z}
 avec $T \in \mathbb{F}_q[x]$ qui s'annule sur les abscisses des points de 
 $E[p^k]$.
 
-On définit alors l'interpolation de Cauchy qui va nous permettre de faire un 
+On définit alors l'interpolation de Cauchy qui nous permet de faire un 
 lien entre ces deux représentations:
 \begin{defi}
 Soit $T \in \mathbb{F}_q[x]$ un polynôme de degré $n>0$ avec 
@@ -2821,7 +2844,7 @@ $\mathbb{F}_q$.
  %$\mathsf{F}_0$ étant une extension de degré premier à $\ell$ de $\mathbb{F}_q$ %alors lorsque l'on a une complexité exprimée en termes d'opérations sur $\mathsf{F}_0$ 
 %%on pourra appliquer les résultats obtenus sur les différents algorithmes étudiés (relèvement, descente, Frobenius) lorsque $q=1 \bmod \ell$ en 
 %on rajoute un facteur multiplicatif $O(\mathsf{M}(r))\log(r)$ pour prendre en compte le coût des opérations algorithmiques dans $\mathsf{F}_0$. En pratique pour ne pas surcharger les calculs de complexité on remplacera ce facteur multiplicatif $O(\mathsf{M}(r))\log(r)$ par $O(\mathsf{M}(\ell))\log(\ell)$ }
-%\paragraph{}{ Pour $q=1 \bmod \ell$ on pose $F_0=\mathbb{F}_q$. Tout non résidu $\ell$-adique $x_0$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-x_0$, duquel on déduit alors une construction de $\mathsf{F}_{n}$. Le calcul de ce non résidu $\ell$-adique se fait après avoir testé $O(1)$ éléments tirés au hasard chaque test s'effectuant en $0_E(\log(q))$ opérations sur $\mathbb{F}_q$ par \cite[Lemma 15]{Shoup93}.} 
+%\paragraph{}{ Pour $q=1 \bmod \ell$ on pose $F_0=\mathbb{F}_q$. Tout non résidu $\ell$-adique $x_0$ de $\mathbb{F}_q$ permet de construire le polynôme irréductible $X^n-x_0$, duquel on déduit alors une construction de $\mathsf{F}_{n}$. Le calcul de ce non résidu $\ell$-adique se fait après avoir testé $O(1)$ éléments tirés au hasard chaque test s'effectuant avec une complexité moyenne de $O(\log(q))$ opérations sur $\mathbb{F}_q$ par \cite[Lemma 15]{Shoup93}.} 
 %\subsubsection{$\ell=2$}
 %Pour $\ell=2$ comme vu dans \cite[Theorem VI.9.1]{lang2002algebra} et mis en pratique dans \cite{Shoup93} pour calculer une extension quadratique d'un corps fini $\mathbb{F}_q$ on a deux cas à considérer:
 %\begin{itemize}
@@ -7545,7 +7568,7 @@ Ce résultat comme le \cite[Theorem~1]{ShparlinskiSutherland14} s'applique aussi
 aux nombres premiers de Atkin.
 \end{rem}
 
-On énonce donc un tout premier résultat qui va nous permettre par la suite de
+On énonce donc un tout premier résultat qui nous permet par la suite de
 déterminer le coût pour une courbe choisie de trouver un nombre premier de 
 Elkies dans l'intervalle $[1,L]$ pour $L \in O(\log(q))$.
 \begin{lem}
