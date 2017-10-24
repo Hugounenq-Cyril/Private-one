@@ -1146,8 +1146,8 @@ ce qui a été reformulé (\cite[Proposition 4.1]{BMSS08}) par:
 \end{equation}
 avec $p_1$ la somme des abscisses des points du noyau. Ainsi à partir de $h(x)$
 et $p_1$ on est capable de calculer l'isogénie en 
-$O(\mathsf{M}(\deg(I))\log(\deg(I)))$ opérations sur $\mathbb{K}$ à l'aide d'un
-algorithme de reconstruction rationnelle \cite[Théorème 7.5]{algeff17}.
+$O(\mathsf{M}(\deg(I)))$ opérations sur $\mathbb{K}$ en développant les 
+fractions puis en simplifiant.
 
 
 Il est à noter qu'il existe une autre méthode énoncée dans 
@@ -1739,9 +1739,8 @@ Ainsi à l'aide de l'exponentiation et de la connaissance des sommes de Newton
 on est capable d'exprimer $P$.
 On peut donc calculer $h(x)$ sans faire une reconstruction rationnelle (i.e. déterminer 
 la fraction $\frac{g(x)}{h(x)}$ à partir de son développement en série 
-$x+\sum_{i \geqslant 1}\frac{d_i}{x^i}$). 
-%Ceci nous permet donc à cette étape 
-%d'éviter un facteur $\log(r)$ ($r$ le degré de l'isogénie) pour le calcul de $h$. 
+$x+\sum_{i \geqslant 1}\frac{d_i}{x^i}$). Ceci nous permet donc à cette étape 
+d'éviter un facteur $\log(r)$ ($r$ le degré de l'isogénie) pour le calcul de $h$. 
 En effet on peut déterminer les sommes
 de Newton: $p_0,p_1,\cdots, p_n$ de $h$ à l'aide de la connaissance de 
 $p_0=r-1, p_1$ et du développement en série de $\frac{g(x)}{h(x)}:x+
