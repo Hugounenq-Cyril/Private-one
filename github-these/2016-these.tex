@@ -1011,6 +1011,12 @@ endomorphismes et est noté \emph{$\mathrm{End}(E_1)=\mathrm{Hom}(E_1,E_1)$}.
 Les éléments de $\mathrm{End}(E_1)$ inversibles sont appelés automorphismes et 
 sont notés \emph{$\mathrm{Aut}(E_1)$}. 
 
+\begin{defi}
+Soient $E_1$, $E_2$ deux courbes définies sur $\mathbb{K}$, alors l'isogénie
+qui relie $E_1$ et $E_2$ est définie sur $\mathbb{K}$ si elle commute avec tout
+élément de $\mathsf{Gal}(\overline{\mathbb{K}}:\mathbb{K})$.
+\end{defi}
+
 \begin{nota}
 Soient $E_1, E_2$ deux courbes elliptiques définies sur $\mathbb{K}$, alors 
 on note $\mathrm{Hom}_{\mathbb{K}}(E_1,E_2)$, l'ensemble des isogénies de $E_1$
@@ -1025,25 +1031,36 @@ ensemble. Le résultat suivant permet de donner une autre représentation des
 isogénies. 
 
 \begin{prop}
+\label{pro:iso:equ}
 Soit $E$ une courbe elliptique, alors il y a une correspondance bijective entre les isogénies séparables qui ont pour domaine de définition $E$ et les sous-groupes finis de $E$:
 \begin{equation*}
-\begin{alignedat}{1}
-(\varphi :E\rightarrow \varphi(E)) &\mapsto  \ker(\varphi)  \\
- (E\rightarrow\nicefrac{E}{C})  &\  \reflectbox{$\mapsto$} \ C 
-\end{alignedat}
+(\varphi :E\rightarrow \varphi(E)) \Longleftrightarrow  \ker(\varphi)  
 \end{equation*}
+%\begin{alignedat}{1}
+%(\varphi :E\rightarrow \varphi(E)) &\Longleftrightarrow  \ker(\varphi)  \\
+% (E\rightarrow\nicefrac{E}{C})  &\  \reflectbox{$\mapsto$} \ C 
+%\end{alignedat}
 \end{prop}
 
 \begin{proof}
 Voir \cite[Proposition 4.12]{Silv1}.
 \end{proof}
 
-En utilisant dans l'énoncé précédent la notation suivante:
-
+En utilisant le résultat de la proposition précédente nous introduisons la 
+notation suivante:
 
 \begin{nota}
 Pour $E$ une courbe elliptique et $C$ un sous-groupe fini des points de $E$ la notation $\nicefrac{E}{C}$ désigne la courbe obtenue par l'isogénie séparable de noyau $C$.
 \end{nota}
+Nous pouvons alors illustrer l'énoncé de la proposition~\ref{pro:iso:equ} par
+les correspondances bijectives suivantes entre les isogénies séparables qui ont
+pour domaine de définition $E$ et les sous-groupes finis $C$ de $E$:
+\begin{equation*}
+\begin{alignedat}{1}
+(\varphi :E\rightarrow \varphi(E)) &\mapsto  \ker(\varphi)  \\
+ (E\rightarrow\nicefrac{E}{C})  &\  \reflectbox{$\mapsto$} \ C. 
+\end{alignedat}
+\end{equation*}
 
 Pour une isogénie $\varphi$ on peut définir sur les corps de fonctions 
 associés à $E_1$ et $E_2$ l'injection suivante:
@@ -1256,12 +1273,8 @@ Soit $E$ une courbe elliptique, alors si l'on munit $\mathrm{End}(E)$ de la
 composition et l'addition d'endomorphismes cela forme un anneau. De plus la
 multiplication scalaire fournit une injection de $\mathbb{Z}$ dans 
 $\mathrm{End}(E)$. Cependant $\mathrm{End}(E)$ n'est pas nécessairement réduit 
-à $\mathbb{Z}$.
-
-\begin{defi}
-\label{def:mul:comp}
-Une courbe elliptique $E$ est dite à multiplication complexe si $\mathrm{End}(E)$ n'est pas réduit à $\mathbb{Z}$.
-\end{defi}
+à $\mathbb{Z}$. Avant de parler de cela nous avons besoin d'introduire des 
+notions.
 
 \begin{defi}
 Un ordre $\mathcal{O}$ dans un corps de nombres quadratique $K$ est un 
@@ -1287,6 +1300,13 @@ dans ce cas la courbe est \emph{ordinaire},
 \begin{proof}
 Voir \cite[Corollary III.9.4]{Silv1}, et \cite[Theorem V.3.1]{Silv1}
 \end{proof}
+
+\begin{defi}
+\label{def:mul:comp}
+Une courbe elliptique $E$ est dite à multiplication complexe si 
+$\mathrm{End}(E)$ n'est pas réduit à $\mathbb{Z}$ mais isomorphe à ordre dans 
+un corps de nombre quadratique imaginaire. 
+\end{defi}
 
 \section{Courbes elliptiques définies sur un corps fini}
 
@@ -1399,9 +1419,9 @@ Voir \cite[Theorem V.1.1]{Silv1}
 %Une courbe elliptique $E$ ordinaire est dite à multiplication complexe si $\mathrm{End(E)}$ contient un endomorphisme différent de $[m]$ (la multiplication par $m$ sur les points de $E$) pour tout entier $m$. 
 %\end{defi} 
 Nous rappelons qu'une courbe elliptique est dite à multiplication complexe si
-son anneau des endomorphismes n'est pas réduit à $\mathbb{Z}$. Ainsi toute 
-courbe elliptique définie sur un corps fini est à multiplication 
-complexe.
+son anneau des endomorphismes est isomorphe à un ordre dans un corps 
+quadratique imaginaire. Ainsi toute courbe elliptique ordinaire définie sur un 
+corps fini est à multiplication complexe.
 %
 %\begin{prop}
 %Soit $E$ une courbe elliptique ordinaire définie sur $\mathbb{F}_q$, $\pi$~l'endomorphisme de Frobenius alors: 
@@ -1653,8 +1673,8 @@ avec $c \in \overline{\mathbb{F}_q}$. Ainsi on énonce les définitions suivante
 Une isogénie $I$ de la forme \eqref{eq:iso:gen} avec $c=1$ est dite 
 \emph{normalisée}. L'isogénie est alors séparable. 
 
-\'Etant données deux courbes $r$-isogènes exprimées sous forme de Weierstrass,
-ces courbes ont des équations de Weierstrass \emph{normalisées} si l'isogénie 
+Soient deux courbes $r$-isogènes exprimées sous forme de Weierstrass, ces deux
+courbes ont des équations de Weierstrass dites \emph{normalisées} si l'isogénie 
 de degré $r$ qui relie ces deux courbes associée à ces représentations des 
 courbes est normalisée. 
 \end{defi}
