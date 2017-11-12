@@ -642,7 +642,7 @@ Dans ce document, de nombreux algorithmes vont utiliser la multiplication rapide
 \item $\mathsf{M}(n)$ est au plus quadratique: $\mathsf{M}(mn) \leqslant m^2 \mathsf{M}(n)$.
 \end{itemize} 
 
-\`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} utlisant des transformées de Fourier rapides, la multiplication de polynômes de degré $n$ appartenant à $R[x]$ pour un anneau $R$ quelconque est de \newline ${O(n\log(n) \log \log (n))}$ opérations arithmétiques dans $R$.
+\`A l'aide des méthodes de \cite{SchonhageStrassen71} et de leurs généralisations  \cite{Schonhage77} \cite{Cantor-Kaltofen91} utilisant des transformées de Fourier rapides, la multiplication de polynômes de degré $n$ appartenant à $R[x]$ pour un anneau $R$ quelconque est de \newline ${O(n\log(n) \log \log (n))}$ opérations arithmétiques dans $R$.
 
 
 Dans ce document nous notons par $\omega$ un constante telle que l'on peut 
@@ -2032,7 +2032,7 @@ précision en entrée de $ 1 + \lfloor \log_p(2 r - 1) \rfloor $ nombres
 $p$-adiques.
 
 \begin{rem}
-Lors de l'étape~\ref{alg:LS08:modified:rel:polmod} de l'algorithme de Lercier Sirvent (decrit dans l'algorithme~\ref{alg:LS08:modified}) on a besoin de connaître l'évaluation du $r$-ième polynôme modulaire en $j_E$: $\Phi_{r}(X,j_E)$ et on a aussi besoin de connaître des dérivées partielles de $\Phi_{\ell}$ lors de l'étape $3$ (voir \ref{sub:Elkies}), ceci suppose donc la connaissance de $\Phi_{r}$ qui à l'aide de formules (voir \cite[Theorem 17.22]{ehcc05}) peut nous permettre de connaître $p_1$. Ainsi il est très raisonnable de penser que l'algorithme de Lercier Sirvent peut être utilisé dans certains cas avec une précision d'au plus $1 + \lfloor \log_{p}(2r - 1) \rfloor$.
+Lors de l'étape~\ref{alg:LS08:modified:rel:polmod} de l'algorithme de Lercier Sirvent (décrit dans l'algorithme~\ref{alg:LS08:modified}) on a besoin de connaître l'évaluation du $r$-ième polynôme modulaire en $j_E$: $\Phi_{r}(X,j_E)$ et on a aussi besoin de connaître des dérivées partielles de $\Phi_{\ell}$ lors de l'étape $3$ (voir \ref{sub:Elkies}), ceci suppose donc la connaissance de $\Phi_{r}$ qui à l'aide de formules (voir \cite[Theorem 17.22]{ehcc05}) peut nous permettre de connaître $p_1$. Ainsi il est très raisonnable de penser que l'algorithme de Lercier Sirvent peut être utilisé dans certains cas avec une précision d'au plus $1 + \lfloor \log_{p}(2r - 1) \rfloor$.
 \end{rem}
 
 \begin{prop}
@@ -2157,7 +2157,7 @@ où $p \neq 2$. Le lecteur intéressé par le cas $p=2$ pourra se référer à
 \cite[§3.2]{DeFeo11}.
 
 Le travail de Gunji~\cite[Theorem 4]{Gunji76} permet donc de déterminer les 
-abscisses de points d'odre $p$ à l'aide d'éléments définis dans une extension 
+abscisses de points d’ordre $p$ à l'aide d'éléments définis dans une extension 
 de $\mathbb{F}_q$ de degré au plus $p-1$.  
 
 Le calcul de la $p^k$-torsion est alors effectué itérativement à l'aide d'une 
@@ -2291,7 +2291,7 @@ $\frac{[\mathbb{L}_k:\mathbb{F}_q]}{2}$ voir corollaire \ref{cor:tai:orb}).
 Ainsi si l'on note $e$ la taille de ces orbites et $f$ le nombre de 
 représentants on a $e \times f=p^{k-1}(p-1)/2$.
 
-Etudions maintenant plus en détail les orbites des abscisses de points d'ordre $p^k$ sous les actions d'éléments de groupes de Galois.
+\'Etudions maintenant plus en détail les orbites des abscisses de points d'ordre $p^k$ sous les actions d'éléments de groupes de Galois.
 
 \begin{cor}
 \label{cor:tai:orb}
@@ -6022,7 +6022,7 @@ diagonalisable par la proposition~\ref{pro:mat:fro}.
 Nous analysons maintenant la complexité de l'algorithme.
 Pour~$i = 0$, une base de~$E[\ell](\mathsf{F}_1)$ à l'étape~\ref{alg:diagonal:divide}
 est calculée en factorisant le polynôme de $\ell$-division
-à un côut espéré de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
+à un coût espéré de $O(\ell\mathsf{M}(\ell^2)\log(\ell)\log(\ell q))$
 opérations en utilisant l'algorithme de Cantor-Zassenhaus~\cite[Chapter 14.5]{vzGJG03}.
   Pour tout point $P$ d'ordre $\ell^{i-1}$ défini dans $E(\mathsf{F}_{i-\beta-1})$, 
   le calcul de $\mathsf{divise}(\ell, P)$ à l'étape~\ref{alg:diagonal:divide}
@@ -6245,7 +6245,7 @@ les points~$(P_i, Q_i)$ forment un base diagonale de~$E_i[\ell^{h+1}]$,
 et $\psi_i$~a direction~$\lambda$.
 Le fait que $R$~est horizontal est une conséquence
 de la proposition~\ref{pro:pus:hor}.
-Les deux opérations les plus côuteuses des boucles sont les
+Les deux opérations les plus coûteuses des boucles sont les
 étapes~\ref{alg:horizontal:divide} et~\ref{alg:horizontal:frob},
 coûtant respectivement $O(\mathsf{R}(h-\beta+1))$ et 
 $O(\ell^2\mathsf{M}(\ell^{h-\beta+1}))$, comme
@@ -8209,7 +8209,7 @@ lorsque $h \neq 0$.
 Nous allons donc étudier des variantes à l'algorithme de Couveignes avec 
 approche $\ell$ adique que dans le cas Elkies y compris lorsque celles-ci
 auraient pu être appliquées à notre approche proposée pour le cas Atkin.
-\section{Algorihme de Couveignes $\ell$-adique dans le cas Elkies avec un point horizontal}
+\section{Algorithme de Couveignes $\ell$-adique dans le cas Elkies avec un point horizontal}
 \label{sec:var:cou:uni}
 
 
@@ -8508,7 +8508,7 @@ $[\vartheta_{i_0}] P=P_{i_0}$ pour $i_0 \in [1,n]$.}
 \newline
 %\overset{n}{\underset{i \neq i_0}{\underset{i = 0}{\prod}}}\ell_i^{k_i}
 Nous présentons tout d'abord en appendice~\ref{cha:alg} 
-l'algoritme~\ref{alg:TRC:init:gen} qui prend en entrée un point $P_{i}$ d'ordre
+l’algorithme~\ref{alg:TRC:init:gen} qui prend en entrée un point $P_{i}$ d'ordre
 $\ell_{i}^{k_{i}}$ et calcule alors un point $P$ d'ordre 
 $\upsilon_n$ tel que $[\vartheta_{i}]P=P_{i}$ et $[\ell_{i}^{k_{i}}]P$ pour 
 $i \in [1,n]$. \`A l'aide de l'algorithme~\ref{alg:TRC:init:gen} nous résolvons
